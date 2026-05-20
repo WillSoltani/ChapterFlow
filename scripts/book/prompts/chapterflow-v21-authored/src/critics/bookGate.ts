@@ -16,6 +16,7 @@ import {
   checkBookQuizCrossChapterDuplicates,
   checkBookQuizNgramTemplates,
 } from "./quizQuality.js";
+import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { loadBannedPhrases } from "./shared.js";
 
 export type BookGateFinding = {
@@ -235,6 +236,22 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
   // shipping "Ranking would make action impossible" in 6 chapters) is a
   // generation artifact, not authored content.
   for (const f of checkBookQuizCrossChapterDuplicates(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
+
+  // ── AS4 — positional quiz prompt template substitution. ─────────────────
+  // The May 2026 Covey incident: every chapter's q06 was "If the [TOKEN]
+  // family calendar rewards push through fatigue, which plan best serves
+  // [TOKEN] balance?" with TOKEN varying per chapter. BP20/BP21 missed it
+  // because the salt tokens broke verbatim n-gram matching. AS4 uses
+  // word-set similarity (not n-gram identity) to catch template skeletons
+  // with substituted nouns.
+  for (const f of checkBookQuizPromptTemplates(chapters)) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",

@@ -6,6 +6,59 @@ When you finish, every chapter the user assigned you exists at `state/chapters/<
 
 ---
 
+## CRITICAL — read this section before anything else. Do not skip.
+
+The pipeline has cross-chapter audits that fire when your chapters share phrases, openers, prompt skeletons, or proper-noun patterns with other chapters of the same book. **These audits exist because cross-chapter sameness ruins reader experience.** When an audit fires, the right answer is always to **rewrite the offending field as a different sentence with different words from a different angle**.
+
+The wrong answer — and a writer agent did this in the May 2026 7 Habits incident and shipped a ruined book — is to insert artificial markers that satisfy the bytewise audit while leaving the underlying template intact. The pipeline now detects every version of that gaming pattern and **fails closed with BLOCKER findings**. You CANNOT ship a book by salting it. Don't try. The four forbidden moves:
+
+### Forbidden move 1 — Identifier-token injection (`AS1`)
+
+NEVER write tokens like `q7`, `q01`, `p2`, `ex1`, `card3`, `chapter5` inside a quiz prompt, choice, explanation, card front/back, example scenario, or breakdown. These are STRUCTURAL identifiers; their presence in prose is a tell that you tried to break verbatim n-gram matching by adding chapter-unique salt. The ship gate fails closed with `AS1.identifier_token_injection` on any occurrence.
+
+**Forbidden example (from the actual incident):**
+> "goose q7 person goose studio critique wants to pick the safe sketch."
+
+**Correct response if you're tempted to write the above:** The chapter doesn't need a quiz question about "studio critique" if every other chapter also has one. Rewrite this prompt to use a scenario from THIS chapter's source notes — a different domain entirely.
+
+### Forbidden move 2 — Jammed proper nouns (`AS2`)
+
+NEVER write two capitalized words of 4+ letters mashed together without a space: `MaplefieldBridgeton`, `HarborlineNorthwell`, `ZenithKestrel`, `CooperLatham`. Real English doesn't produce these. They appear when an agent template-substitutes `{place_a}{place_b}` with a missing separator. The ship gate fails closed with `AS2.jammed_proper_nouns`.
+
+**Forbidden example:**
+> "MaplefieldBridgeton 10:20 p.m.. The room was full."
+
+**Correct:**
+> "At 10:20 p.m. in the Maplefield branch, the room was full."
+
+### Forbidden move 3 — Doubled periods (`AS3`)
+
+NEVER write `..` followed by a capital letter as a sentence boundary. Use a single period. The ship gate fails closed with `AS3.doubled_period`.
+
+**Forbidden:** `"10:20 p.m.. The room was quiet."`
+**Correct:** `"10:20 p.m. The room was quiet."`
+
+### Forbidden move 4 — Positional prompt template substitution (`AS4`)
+
+NEVER keep the same prompt skeleton across chapters with one or two nouns swapped per chapter. The book-level audit detects this by **word-set similarity** — if 3+ chapters' same-position questions (Ch1 q06, Ch2 q06, Ch3 q06, …) share >70% of their words, the gate fails closed with `AS4.quiz_prompt_template_substitution`.
+
+**Forbidden across-chapter pattern (from the actual incident):**
+- Ch1 q06: `"If the map family calendar rewards push through fatigue, which plan best serves map balance?"`
+- Ch2 q06: `"If the goose family calendar rewards push through fatigue, which plan best serves goose balance?"`
+- Ch3 q06: `"If the choice family calendar rewards push through fatigue, which plan best serves choice balance?"`
+
+These pass BP20 (which checks verbatim n-grams) because no 5-word phrase is identical across chapters — every "map / goose / choice" swap breaks the match. AS4 catches them because the word multisets overlap >70%.
+
+**Correct response:** Each chapter's q06 is a different scenario. If chapter 1 teaches "be proactive" and chapter 2 teaches "begin with the end in mind", their q06s should not share their underlying decision shape at all — one might be about a calendar conflict, the other about a 5-year career pivot.
+
+### The general rule
+
+If you are reaching for ANY of the four moves above to clear a cross-chapter audit, the problem is upstream of the prose: either your chapter source notes are too similar across chapters (Step 1 problem to surface to the user), or your quiz design is too template-bound (rethink the questions). Adding marker tokens is the symptom of an agent optimizing for the metric instead of the goal. The metric exists because cross-chapter sameness is the goal we're trying to avoid; the metric is a proxy, and gaming the proxy ruins the actual goal.
+
+If after 3 honest attempts you cannot get a chapter through the ship gate without using a forbidden move, **STOP and report to the user**. The user has a QC agent who can diagnose the structural issue.
+
+---
+
 ## Working directory
 
 ```
@@ -368,15 +421,28 @@ The gate prints:
 | BP16 (blocker) | Correct answer ≥2× distractor length | Shorten correct or expand distractors |
 | BP17 | >5/9 prompts open "A/An " | Vary openers |
 | BP19 | Banned tail-clause phrase in distractor | Rewrite with prompt-specific language |
+| BP20 | Cross-chapter quiz n-gram template repeat | Rewrite prompt/choice/explanation — NEVER insert salt tokens |
 | schema.quiz_duplicate_choice | Two identical choices in one question | Make them distinct |
 | schema.quiz_lowercase_choice_start | Choice starts lowercase | Capitalize |
 | schema.quiz_unexpected_field | `whyItMatters` or other field on quiz | Remove |
+| AS1 | Identifier token (q7, ex1, p2) inside prose | Rewrite the sentence WITHOUT the token. This is salting; not allowed. |
+| AS2 | Jammed proper nouns (MaplefieldBridgeton) | Rewrite as separate words with a separator. |
+| AS3 | Doubled period | Replace `..` with `.` (single period). |
+| AS4 | Cross-chapter prompt template substitution | Rewrite this chapter's quiz prompts as DIFFERENT scenarios from other chapters' same-position prompts. Do NOT just swap one noun. |
 | E1 | Reading level too academic | Use plainer words |
 | E2 | Tier progression / cross-tier verbatim | Vary tier-to-tier phrasing |
 
 Iterate until PASS. When PASS, advance to the next chapter.
 
-**If you cannot clear the same blocker after 3 attempts, STOP and report to the user.** Probably a structural issue requiring more context (different examples? different memorable line? wrong central concept?).
+**Iteration cap — strict.** If the same blocker code (e.g., `BP13`, `BP20`, `AS4`) fires on the same chapter for 3 attempts in a row, STOP IMMEDIATELY and report to the user. The fix for stuck blockers is upstream — usually one of:
+
+- The chapter source notes are too similar to other chapters' source notes (Step 1 quality issue; needs the research agent to differentiate them).
+- Your quiz design is template-bound (you keep writing the same scenario shape with different nouns); needs a structural rethink.
+- The chapter's central concept overlaps another chapter's central concept (the book's research arc may need refinement).
+
+**Do not solve a stuck blocker by inserting marker tokens, jammed names, or doubled periods. The pipeline detects all four forms of gaming and fails closed with AS1–AS4 blockers.** If you find yourself thinking "I'll just add `q7` here to make this prompt unique" or "I'll mash these two place names together" — stop and report. That's the trigger.
+
+When stopping mid-stuck, write a one-paragraph status: `<bookId>`, chapter number, blocker code, your last three attempt summaries, and your hypothesis about which upstream stage needs to fix what. The user has a QC reviewer who can diagnose.
 
 ---
 

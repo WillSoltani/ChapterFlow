@@ -735,7 +735,69 @@ async function runGateChapter(args: string[]): Promise<number> {
   }
   const report = runShipGate(chapter);
   console.log(formatGateReport(report));
+
+  // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
+  // a per-chapter counter of (attempt, blocker_signature) so an agent that
+  // re-runs the gate against the same chapter many times with the same blocker
+  // pattern gets a SCREAMING warning that it's probably trying to game the
+  // critic. Most legitimate fixes converge in 1-3 attempts; 4+ on the same
+  // blocker is a structural issue requiring upstream resolution, not retry.
+  const attempts = recordGateAttempt(chapterFile, report);
+  if (attempts.sameBlockerStreak >= 3) {
+    console.log("");
+    console.log("⚠️  STUCK-BLOCKER WARNING ⚠️");
+    console.log(`This chapter has been gate-checked ${attempts.total} times in total.`);
+    console.log(`The same blocker signature has fired ${attempts.sameBlockerStreak} times in a row:`);
+    console.log(`  ${attempts.lastSignature}`);
+    console.log("");
+    console.log("If you are a writer agent reading this: STOP. Do NOT keep iterating on");
+    console.log("the same field with surface edits. A blocker that survives 3+ attempts");
+    console.log("is a structural issue — either the chapter source notes don't differentiate");
+    console.log("this chapter from others, or the chapter design is template-bound. Surface");
+    console.log("the problem to the user with a one-paragraph status.");
+    console.log("");
+    console.log("Forbidden gaming patterns the pipeline now detects:");
+    console.log("  AS1 — identifier tokens (q7, ex1, p2) in prose");
+    console.log("  AS2 — jammed proper nouns (MaplefieldBridgeton)");
+    console.log("  AS3 — doubled periods (10:20 p.m.. The room)");
+    console.log("  AS4 — same prompt skeleton across chapters with one noun swapped");
+  }
+
   return report.blockers.length === 0 ? 0 : 1;
+}
+
+/** Persists gate-attempt history per chapter file to track stuck-blocker
+ *  patterns. Returns the running totals so the caller can warn the operator. */
+function recordGateAttempt(
+  chapterFile: string,
+  report: { blockers: Array<{ catalogId: string }>; passed: boolean },
+): { total: number; sameBlockerStreak: number; lastSignature: string } {
+  const STATE_FILE = resolve(__dirname, "../state/gate-attempts.json");
+  let state: Record<string, { total: number; lastSignature: string; sameBlockerStreak: number }> = {};
+  try {
+    if (existsSyncFs(STATE_FILE)) state = JSON.parse(readFileSync(STATE_FILE, "utf8"));
+  } catch {
+    state = {};
+  }
+  // Signature: sorted unique blocker catalogIds (e.g., "AS4,BP20"). Used to
+  // detect "same blocker repeating" vs "blocker changing each attempt".
+  const sig = report.passed
+    ? "PASS"
+    : [...new Set(report.blockers.map((b) => b.catalogId))].sort().join(",");
+  const prev = state[chapterFile] ?? { total: 0, lastSignature: "", sameBlockerStreak: 0 };
+  const sameBlockerStreak = sig !== "PASS" && sig === prev.lastSignature ? prev.sameBlockerStreak + 1 : sig === "PASS" ? 0 : 1;
+  state[chapterFile] = {
+    total: prev.total + 1,
+    lastSignature: sig,
+    sameBlockerStreak,
+  };
+  try {
+    mkdirSync(dirname(STATE_FILE), { recursive: true });
+    writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), "utf8");
+  } catch {
+    // Non-fatal — tracking is informational.
+  }
+  return { total: state[chapterFile].total, sameBlockerStreak, lastSignature: sig };
 }
 
 async function main() {

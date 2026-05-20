@@ -28,6 +28,18 @@ If any of these are missing, ASK the user. Do NOT invent categories/tags.
 
 ---
 
+## Step A0 — Mandatory: confirm with the user that QC has reviewed at least one chapter
+
+Before running the book gate, you MUST have a green-light from the user that a human (or the QC reviewer agent) has sampled at least one chapter's prose and confirmed it reads as natural English. The May 2026 7 Habits incident shipped a ruined book because every gate passed mechanically but no one read a chapter before promotion. Don't repeat that.
+
+Ask the user:
+
+> "Has the QC reviewer cleared at least one chapter of `<bookId>` for prose quality? If not, please pause this finalize and route a sample chapter to the QC reviewer first."
+
+If the user says no, STOP. The book gate's pattern audits are NECESSARY but not sufficient. A book can pass every BP/AS/F audit and still be unreadable — the gates check for known defect patterns; they do not verify English coherence at sentence level.
+
+Once the user confirms a chapter has been QC-cleared, proceed.
+
 ## Step A — Confirm all chapters are present and ship-gate clean
 
 ```bash

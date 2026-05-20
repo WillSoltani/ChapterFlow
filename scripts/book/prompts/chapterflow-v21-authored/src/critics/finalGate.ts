@@ -28,6 +28,11 @@ import {
   checkQuizUnexpectedFields,
 } from "./quizQuality.js";
 import {
+  checkChapterDoubledPeriods,
+  checkChapterIdentifierTokens,
+  checkChapterJammedNouns,
+} from "./antiSalting.js";
+import {
   checkCadenceVariance,
   checkClosingLineLandings,
   checkConcreteParagraphOpeners,
@@ -132,6 +137,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "schema.quiz_duplicate_choice": "blocker",
   "schema.quiz_lowercase_choice_start": "major",
   "schema.quiz_unexpected_field": "blocker",
+  // Anti-salting (May 2026 Covey incident).
+  "AS1.identifier_token_injection": "blocker",
+  "AS2.jammed_proper_nouns": "blocker",
+  "AS3.doubled_period": "blocker",
+  "AS4.quiz_prompt_template_substitution": "blocker",
 };
 
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
@@ -488,6 +498,20 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   }
   for (const f of checkQuizBannedTailPhrase(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+
+  // ── Anti-salting critics (AS1-AS3, chapter-level) ───────────────────────
+  // Catches the May 2026 Covey incident: writer agents inserting identifier
+  // tokens / jammed proper nouns / doubled periods to evade n-gram critics.
+  // Every AS finding is a BLOCKER.
+  for (const f of checkChapterIdentifierTokens(chapter)) {
+    push(f.checkId as string, "anti-salting", f.message, f.evidence);
+  }
+  for (const f of checkChapterJammedNouns(chapter)) {
+    push(f.checkId as string, "anti-salting", f.message, f.evidence);
+  }
+  for (const f of checkChapterDoubledPeriods(chapter)) {
+    push(f.checkId as string, "anti-salting", f.message, f.evidence);
   }
 
   // ── Cards (D2, B1, B2, B4, B5) ───────────────────────────────────────────

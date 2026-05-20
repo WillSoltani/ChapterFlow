@@ -351,10 +351,21 @@ export function checkBookQuizNgramTemplates(chapters: ChapterV21[]): CriticFindi
   const allWords: string[] = [];
   for (const ch of chapters) {
     for (const q of ch.quiz?.questions ?? []) {
+      // Scan PROMPT first — this is where the May 2026 Covey incident slipped
+      // a "Which X move should a analyst make" skeleton past the gate
+      // because the critic originally only checked choices.
+      if (typeof q.prompt === "string" && q.prompt) {
+        allWords.push(...q.prompt.toLowerCase().split(/[^a-z0-9']+/).filter(Boolean));
+      }
+      // Then choices (original behavior — catches distractor templates).
       for (const c of q.choices ?? []) {
         if (typeof c !== "string") continue;
         const tokens = c.toLowerCase().split(/[^a-z0-9']+/).filter(Boolean);
         allWords.push(...tokens);
+      }
+      // Then explanation — same defect class can hide there.
+      if (typeof q.explanation === "string" && q.explanation) {
+        allWords.push(...q.explanation.toLowerCase().split(/[^a-z0-9']+/).filter(Boolean));
       }
     }
   }

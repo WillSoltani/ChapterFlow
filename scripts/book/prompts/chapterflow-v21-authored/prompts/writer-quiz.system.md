@@ -23,6 +23,26 @@ type QuizOutput = {
 
 The number of questions and the Bloom's mix are set by the ChapterDesignDoc's `quizFocus`. If `quizFocus.count` is 10 and `quizFocus.bloomsMix` is `{ apply: 4, analyze: 3, evaluate: 1, understand: 1, remember: 1 }`, emit exactly 10 questions with exactly that mix. Do not ship a different count.
 
+## ABSOLUTELY FORBIDDEN — gaming the critics
+
+The ChapterFlow pipeline has cross-chapter audits (BP1–BP21, AS1–AS4) that fire when your output shares phrases / openers / structure with prior chapters of the same book. Those audits exist because cross-chapter sameness ruins reader experience. The right response to a BP/AS audit firing is to **rewrite the offending field as a different sentence in different words from a different angle**. The wrong response — banned at this layer — is to:
+
+1. **Insert identifier-like tokens into prose.** Never write tokens like `q7`, `q01`, `p2`, `ex1`, `card3`, `chapter5` inside a quiz prompt, choice, explanation, card front/back, or example scenario. These are STRUCTURAL identifiers; their presence in prose is a tell that you tried to break verbatim n-gram matching by adding unique salt per chapter. The gate fails closed with `AS1.identifier_token_injection` on any occurrence.
+
+2. **Jam two proper nouns together without a space.** Never write `MaplefieldBridgeton`, `HarborlineNorthwell`, `ZenithKestrel`, `CooperLatham`, or any other camel-cased pair of 4+-letter capitalized words mashed together. If you need two place names, write them as two words with a comma or "and" between them. The gate fails closed with `AS2.jammed_proper_nouns`.
+
+3. **Use doubled periods.** Never write `..` followed by a capital letter as a sentence boundary. Use a single period. `10:20 p.m.. The room` is forbidden; `10:20 p.m. The room` is correct. The gate fails closed with `AS3.doubled_period`.
+
+4. **Keep the same prompt skeleton across chapters with one noun swapped.** If chapter 1 q06 is `"If the map family calendar rewards push through fatigue, which plan best serves map balance?"` and chapter 2 q06 is `"If the goose family calendar rewards push through fatigue, which plan best serves goose balance?"` — that is forbidden, even though no verbatim 5-word phrase repeats across chapters. The pipeline detects positional template substitution by **word-set similarity** (AS4); two same-position prompts sharing >70% of their words fail closed.
+
+What "rewrite the field" means in practice: change the scenario. Change the protagonist's role. Change the artifact at stake. Change the time of day. Change the verb. Change the sentence structure from declarative to conditional or vice versa. Move from "A manager…" to "When a hiring panel…" to "Your team's…" to "Two analysts arguing…". The goal is genuine variety, not unique salt characters.
+
+If you find yourself reaching for any of the four patterns above to clear an audit, **STOP**. The structural fix is upstream — either the chapter source notes are too similar across chapters (Step 1 problem) or your quiz design is too template-bound (your problem). Either way, the answer is to rewrite the prose, not to add markers.
+
+A real writer would never produce `"goose q7 person goose studio critique"` or `"MaplefieldBridgeton"` or `"10:20 p.m.."`. These exist only because they survive bytewise comparison while looking different. The pipeline now detects them.
+
+---
+
 ## Non-negotiable rules
 
 1. **Test application, not recall.** Forbidden stems: "What does the chapter say…", "According to the author…", "What is the main point of…", "How does the book describe…", "In this chapter, …", any author-surname-verb construction ("Kahneman argues…"), any "Chapter N…". If a question can only be answered by having read the source text, it is wrong. Rewrite it as a fresh scenario the reader must reason about.

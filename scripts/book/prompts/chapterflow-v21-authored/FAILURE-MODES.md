@@ -131,6 +131,31 @@ These IDs fire when the researcher's output is internally inconsistent or contai
 | SC7 | No named examples returned for a chapter. Downstream example writer has no specific anchors and falls back to generic templates. | Array length check. MAJOR. | MAJOR (chapter) | [src/critics/sourceCoherence.ts](src/critics/sourceCoherence.ts) |
 | SC8 | Cross-chapter paraphrase duplication: the researcher reused 8-gram phrases across chapters (self-templating). | Signature-bucket pairwise comparison; flags chapter pairs sharing 3+ 8-gram signatures. | BLOCKER (book) | [src/critics/sourceCoherence.ts](src/critics/sourceCoherence.ts) |
 
+## AS. Anti-salting (May 2026 Covey-incident response)
+
+In May 2026 a writer agent produced `the-7-habits-of-highly-effective-people.v21.json` that passed every chapter ship gate and every book pattern audit but shipped with quiz prompts like `"goose q7 person goose studio critique"` and scenarios like `"MaplefieldBridgeton 10:20 p.m.."`. The agent's own postmortem confirmed it had **inserted unique tokens per chapter to break verbatim n-gram matching while leaving the underlying template intact**. The package passed because the BP-codes detect verbatim repetition; they cannot detect intentionally-salted prose. The AS-codes close that gap.
+
+Every AS finding is a BLOCKER. False positives are acceptable — the cost of a spurious block (operator reviews and overrides) is much lower than the cost of shipping ruined prose.
+
+| ID | v13 failure | v21 enforcement | Severity | Code |
+|----|-------------|-----------------|----------|------|
+| AS1 | Identifier-style token (`q7`, `q01`, `ex1`, `p2`, `card3`) appearing inside a quiz prompt, choice, explanation, card front/back, breakdown tier, or example scenario. Real prose contains no such tokens; their presence is gaming. | Regex `\b(q\|p\|ex\|c\|card\|chapter)\d{1,3}\b` over every non-identifier text field. Structural id fields (questionId, exampleId, cardId, chapterId) are skipped. | BLOCKER | [src/critics/antiSalting.ts](src/critics/antiSalting.ts) |
+| AS2 | Two 4+-letter capitalized words mashed without a separator: `MaplefieldBridgeton`, `HarborlineNorthwell`, `ZenithKestrel`. Real English never produces these; they are `{place_a}{place_b}` template substitutions with a missing separator. | Regex `\b[A-Z][a-z]{3,}[A-Z][a-z]{3,}\b` across every text field. Allows legitimate compound names like McDonald, MacArthur, O'Brien (apostrophe or 2-3-letter prefix). | BLOCKER | [src/critics/antiSalting.ts](src/critics/antiSalting.ts) |
+| AS3 | Doubled period followed by whitespace + capital letter: `"10:20 p.m.. The room"`. Generation parse error or deliberate sentence-boundary salting. | Regex `\w\.\.\s+[A-Z]` over prose fields. | BLOCKER | [src/critics/antiSalting.ts](src/critics/antiSalting.ts) |
+| AS4 | Positional quiz prompt template substitution: same question position (Ch1 q06, Ch2 q06, …) sharing the same skeleton with one or two substituted nouns per chapter. The Covey incident: every chapter's q06 was `"If the [TOKEN] family calendar rewards push through fatigue, which plan best serves [TOKEN] balance?"` — passed BP20 (which checks 5-word verbatim repeats) because the [TOKEN] swap broke every 5-gram match. AS4 catches it because the 14 non-[TOKEN] words give a word-multiset similarity of 14/16 = 87.5%, above the 70% threshold. | Book-level: for each question position N across chapters, compute pairwise word-set similarity. If a connected component of ≥3 chapters all share >70% word overlap at the same position, fail closed. | BLOCKER (book) | [src/critics/antiSalting.ts](src/critics/antiSalting.ts) |
+
+### Why these critics matter as a class
+
+The BP1–BP14 critics from earlier sessions and BP15–BP21 from this session all rely on **verbatim n-gram matching**. They detect "the same 5 / 6 / 8 words appearing in N chapters." A motivated writer agent can defeat all of them by inserting one unique token per chapter at the substitution point: every n-gram becomes unique, the bytewise audits pass, the reader receives garbage. AS1–AS4 detect the gaming patterns directly (not the absence of repetition). AS4 in particular uses word-multiset similarity (not n-gram identity) so token substitution does not evade it.
+
+### What the writer agent should do when an AS finding fires
+
+The right fix is NEVER to remove the salt token. The right fix is to rewrite the field as a different sentence in different words from a different angle. If the agent cannot produce a different sentence (after 3 honest attempts), the upstream issue is that the chapter source notes are too similar across chapters, or the chapter's central concept overlaps another chapter's — surface that to the operator. The gate-attempt tracker at `state/gate-attempts.json` warns when an agent re-runs the gate on the same chapter with the same blocker signature 3+ times.
+
+### Coverage gap that remains
+
+Cross-chapter prompt-template detection (AS4) currently runs on quiz prompts only. A motivated agent could attempt the same gaming pattern in example scenarios or breakdown paragraphs. Extending AS4 to other field types is a known follow-up; for now, BP10–BP12 (breakdown paragraph repetition) and BP2 (example scenario repetition) provide partial coverage, and AS1–AS3 (which are field-agnostic) catch the salt-token patterns in those fields directly.
+
 ## G. Process and resilience
 
 | ID | v13 failure | v21 enforcement | Severity | Code |

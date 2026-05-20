@@ -109,6 +109,13 @@ const CANONICAL_BLOOMS = new Set(["remember","understand","apply","analyze","eva
 const CANONICAL_DEPTH = new Set(["simple","standard","deep"]);
 
 const STRAWMAN_TRIGGER = /\b(always|never|automatically|impossible|guaranteed|entirely|ever|forever|completely|wholly|absolutely|under no circumstances|in all cases)\b/i;
+
+// AS1 / AS2 / AS3 — anti-salting patterns. Catches the May 2026 Covey incident
+// where an agent inserted unique identifier-like tokens / jammed proper nouns /
+// doubled periods into user-facing fields to evade cross-chapter n-gram audits.
+const IDENTIFIER_TOKEN_PATTERN = /\b(q\d{1,3}|p\d{1,3}|ex\d{1,3}|c\d{1,3}|card\d{1,3}|chapter\d{1,3})\b/i;
+const JAMMED_NOUN_PATTERN = /\b[A-Z][a-z]{3,}[A-Z][a-z]{3,}\b/;
+const DOUBLED_PERIOD_PATTERN = /\w\.\.\s+[A-Z]/;
 const ALLOWED_QUESTION_KEYS = new Set([
   "questionId","prompt","choices","correctIndex","correctAnswerIndex","explanation","bloomsLevel","depthLevel",
 ]);
@@ -223,6 +230,27 @@ function validateQuiz(q: QuizOutput, input: QuizInput): QuizOutput {
           problems.push(`q${i} contains banned distractor template "${banned}"`);
           break;
         }
+      }
+    }
+    // AS1 — identifier-token injection ("q7", "ex01", "p2") in prose.
+    {
+      const idMatch = qFullText.match(IDENTIFIER_TOKEN_PATTERN);
+      if (idMatch) {
+        problems.push(`q${i} contains identifier-like token "${idMatch[0]}" inside prose. This is salting to evade n-gram critics. Rewrite the prompt/choice/explanation as natural English without identifier tokens.`);
+      }
+    }
+    // AS2 — jammed proper nouns ("MaplefieldBridgeton").
+    {
+      const jamMatch = qFullText.match(JAMMED_NOUN_PATTERN);
+      if (jamMatch) {
+        problems.push(`q${i} contains jammed proper nouns "${jamMatch[0]}". Two capitalized words mashed without a space. Rewrite as separate words.`);
+      }
+    }
+    // AS3 — doubled period followed by capital letter.
+    {
+      const ddMatch = qFullText.match(DOUBLED_PERIOD_PATTERN);
+      if (ddMatch) {
+        problems.push(`q${i} contains doubled period "${ddMatch[0]}" — generation parse error or sentence-boundary salting. Replace with a single period.`);
       }
     }
     // Unexpected fields beyond the allowed quiz-question shape.

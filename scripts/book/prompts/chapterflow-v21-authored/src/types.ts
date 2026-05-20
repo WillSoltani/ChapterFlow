@@ -290,7 +290,12 @@ export type CriticCheckId =
   | "BP21.quiz_cross_chapter_duplicate"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
-  | "schema.quiz_unexpected_field";
+  | "schema.quiz_unexpected_field"
+  // Anti-salting critics (May 2026 Covey-incident response).
+  | "AS1.identifier_token_injection"
+  | "AS2.jammed_proper_nouns"
+  | "AS3.doubled_period"
+  | "AS4.quiz_prompt_template_substitution";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 
