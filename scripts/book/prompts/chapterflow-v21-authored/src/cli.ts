@@ -822,7 +822,17 @@ async function runIntraBookCheck(
   }
   if (siblings.length === 0) return [];
   const { checkIntraBookQuizSimilarity } = await import("./critics/intraBookQuizSimilarity.js");
-  return checkIntraBookQuizSimilarity(chapter, siblings) as any;
+  const { checkIntraBookCardSimilarity, checkIntraBookPlanSimilarity } = await import("./critics/intraBookFieldSimilarity.js");
+  // AS5/AS6 (quiz) + AS7 (cards) + AS8 (plan) — all chapter-time intra-book
+  // similarity detectors. Built incrementally as the writer-agent gaming
+  // pattern moved across fields (quiz → cards → plan) in successive
+  // incidents. Together they cover every reader-facing field that's
+  // positional or pairwise-comparable across chapters.
+  return [
+    ...checkIntraBookQuizSimilarity(chapter, siblings),
+    ...checkIntraBookCardSimilarity(chapter, siblings),
+    ...checkIntraBookPlanSimilarity(chapter, siblings),
+  ] as any;
 }
 
 function escapeRegex(s: string): string {

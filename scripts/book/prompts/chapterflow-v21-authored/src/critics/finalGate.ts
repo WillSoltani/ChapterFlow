@@ -32,6 +32,7 @@ import {
   checkChapterIdentifierTokens,
   checkChapterJammedNouns,
 } from "./antiSalting.js";
+import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -144,6 +145,9 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "AS4.quiz_prompt_template_substitution": "blocker",
   "AS5.chapter_quiz_prompt_matches_prior": "blocker",
   "AS6.chapter_quiz_distractor_matches_prior": "blocker",
+  "AS7.chapter_card_matches_prior": "blocker",
+  "AS8.chapter_plan_matches_prior": "blocker",
+  "BP24.cross_tier_breakdown_verbatim": "blocker",
 };
 
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
@@ -514,6 +518,18 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   }
   for (const f of checkChapterDoubledPeriods(chapter)) {
     push(f.checkId as string, "anti-salting", f.message, f.evidence);
+  }
+
+  // ── BP24 — cross-tier breakdown verbatim duplication ────────────────────
+  // The May 2026 "7 Habits Step 2 second-round" incident: Ch3 DeepRead and
+  // FullRead shared a 1,436-character verbatim block. The existing B8 critic
+  // (prose.ts:checkCrossTierPhraseUniqueness) returns after the first 4-word
+  // match and only emits one minor finding per chapter — it does not
+  // escalate by total duplicated mass. BP24 catches large-block copy-paste
+  // explicitly by computing the longest contiguous common substring between
+  // each tier pair.
+  for (const f of checkBreakdownCrossTierVerbatim(chapter)) {
+    push(f.checkId as string, "breakdown.cross-tier", f.message, f.evidence);
   }
 
   // ── Cards (D2, B1, B2, B4, B5) ───────────────────────────────────────────

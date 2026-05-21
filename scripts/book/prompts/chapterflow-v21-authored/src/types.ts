@@ -297,7 +297,10 @@ export type CriticCheckId =
   | "AS3.doubled_period"
   | "AS4.quiz_prompt_template_substitution"
   | "AS5.chapter_quiz_prompt_matches_prior"
-  | "AS6.chapter_quiz_distractor_matches_prior";
+  | "AS6.chapter_quiz_distractor_matches_prior"
+  | "AS7.chapter_card_matches_prior"
+  | "AS8.chapter_plan_matches_prior"
+  | "BP24.cross_tier_breakdown_verbatim";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 
