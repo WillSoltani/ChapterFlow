@@ -736,6 +736,27 @@ async function runGateChapter(args: string[]): Promise<number> {
   const report = runShipGate(chapter);
   console.log(formatGateReport(report));
 
+  // Intra-book quiz similarity check — runs AFTER the chapter-only ship gate.
+  // Loads sibling chapters of the same book from state/chapters/ and checks
+  // for templated quiz content (AS5 prompt similarity + AS6 distractor reuse).
+  // This is the early-detection version of AS4 / BP20 which only fire at
+  // book-gate time. Catches the May 2026 "7 Habits Step 2" defect class:
+  // writer agents producing one quiz and reusing it across chapters with
+  // name substitution. Without this, the writer wastes 10+ chapters of work
+  // before book-gate surfaces the structural issue.
+  const intraFindings = await runIntraBookCheck(chapter, chapterFile);
+  let extraBlockers = 0;
+  if (intraFindings.length > 0) {
+    console.log("");
+    console.log("Intra-book quiz similarity findings (compared against prior chapters of same book):");
+    for (const f of intraFindings) {
+      console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
+      if (f.severity === "blocker") extraBlockers++;
+    }
+  }
+
+  // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
+
   // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
   // a per-chapter counter of (attempt, blocker_signature) so an agent that
   // re-runs the gate against the same chapter many times with the same blocker
@@ -763,7 +784,49 @@ async function runGateChapter(args: string[]): Promise<number> {
     console.log("  AS4 — same prompt skeleton across chapters with one noun swapped");
   }
 
-  return report.blockers.length === 0 ? 0 : 1;
+  // Combined block: ship-gate blockers OR intra-book similarity blockers.
+  return report.blockers.length === 0 && extraBlockers === 0 ? 0 : 1;
+}
+
+/** Load every sibling chapter of the same book from state/chapters/ and run
+ *  the intra-book quiz similarity critic against them. The book ID is derived
+ *  from the chapter file's chapterId (which is `<bookId>-ch<NN>`). Returns
+ *  an empty array if there are no siblings (first chapter of a book) or if
+ *  any I/O fails (non-fatal — the ship gate still ran). */
+async function runIntraBookCheck(
+  chapter: ChapterV21,
+  chapterFile: string,
+): Promise<Array<{ checkId: string; severity: string; message: string; evidence?: string }>> {
+  const id = chapter.chapterId;
+  // chapterId shape: "<bookId>-ch<NN>" — strip the -chNN tail to get the book.
+  const m = id.match(/^(.+)-ch\d{1,3}$/);
+  if (!m) return [];
+  const bookId = m[1];
+  const dir = dirname(resolve(chapterFile));
+  let siblings: ChapterV21[] = [];
+  try {
+    const entries = readdirSync(dir);
+    const pattern = new RegExp(`^${escapeRegex(bookId)}-ch\\d{1,3}\\.v21-native\\.chapter\\.json$`);
+    for (const entry of entries) {
+      if (!pattern.test(entry)) continue;
+      const full = resolve(dir, entry);
+      if (full === resolve(chapterFile)) continue; // skip the chapter being gated
+      try {
+        siblings.push(JSON.parse(readFileSync(full, "utf8")) as ChapterV21);
+      } catch {
+        // skip unreadable siblings
+      }
+    }
+  } catch {
+    return [];
+  }
+  if (siblings.length === 0) return [];
+  const { checkIntraBookQuizSimilarity } = await import("./critics/intraBookQuizSimilarity.js");
+  return checkIntraBookQuizSimilarity(chapter, siblings) as any;
+}
+
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /** Persists gate-attempt history per chapter file to track stuck-blocker

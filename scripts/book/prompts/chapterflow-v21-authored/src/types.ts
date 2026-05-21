@@ -295,7 +295,9 @@ export type CriticCheckId =
   | "AS1.identifier_token_injection"
   | "AS2.jammed_proper_nouns"
   | "AS3.doubled_period"
-  | "AS4.quiz_prompt_template_substitution";
+  | "AS4.quiz_prompt_template_substitution"
+  | "AS5.chapter_quiz_prompt_matches_prior"
+  | "AS6.chapter_quiz_distractor_matches_prior";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 

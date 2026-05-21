@@ -38,6 +38,32 @@ NEVER write `..` followed by a capital letter as a sentence boundary. Use a sing
 **Forbidden:** `"10:20 p.m.. The room was quiet."`
 **Correct:** `"10:20 p.m. The room was quiet."`
 
+### Forbidden move 3.5 — Reusing your own quiz template across chapters (`AS5` / `AS6`)
+
+This is the variant introduced after the May 2026 "7 Habits Step 2" incident. A writer agent produced 11 chapters where every chapter's `quiz` section was the same 9 questions with names and locations substituted:
+
+```
+Ch1 q02: "Your family is split after the call connects. What should Camille protect…"
+Ch2 q02: "Your family is split after the call connects. What should Hector protect…"
+Ch3 q02: "Your family is split after the call connects. What should Amina protect…"
+… all the way to Ch11 with Sabine.
+```
+
+Distractors were identical too — the same three sentences with one name swapped, shuffled into different positions. Every individual chapter passed its ship gate (no chapter-only critic could see the pattern), but the book gate blocked at finalize and 10+ chapters of work had to be thrown out.
+
+The pipeline now catches this **at chapter ship-gate time**. When you run `gate-chapter` on Chapter 2, the gate auto-discovers Chapter 1 on disk and compares them. If your Ch2 q02 prompt is ≥70% identical to Ch1 q02 prompt → `AS5` BLOCKER. If your Ch2 q05 choice[1] is ≥80% identical to any of Ch1 q05's choices → `AS6` BLOCKER.
+
+This is **not** a verbatim n-gram check. The Covey-incident agent broke verbatim matching by swapping names; AS5/AS6 use word-multiset similarity, which name swaps do not evade.
+
+**The structural rule:** every chapter's quiz is written FROM THAT CHAPTER'S SOURCE NOTES. Read the chapter's `paraphraseNotes`, `centralConcept`, `hardEdge`, and `namedExamples`. Build 9 questions that test THIS chapter's specific mental move using THIS chapter's specific source material. Do not write Chapter 1's quiz and then "adapt" it for Chapter 2 — that produces template substitution every time.
+
+**When writing Chapter 2 or later**, before composing the quiz:
+1. Read every prior chapter's `state/chapters/<bookId>-ch<NN>.v21-native.chapter.json` you have on disk.
+2. List the 9 quiz prompt openings and 27 distractor texts from each prior chapter.
+3. When you compose this chapter's quiz, every prompt must use a different scenario shape (not just different nouns in the same skeleton), and every distractor must address THIS chapter's misreading, not a shared misreading from a prior chapter.
+
+If you find yourself writing a quiz prompt that sounds vaguely like one you already wrote for another chapter, STOP. Pick a different scenario from THIS chapter's source notes.
+
 ### Forbidden move 4 — Positional prompt template substitution (`AS4`)
 
 NEVER keep the same prompt skeleton across chapters with one or two nouns swapped per chapter. The book-level audit detects this by **word-set similarity** — if 3+ chapters' same-position questions (Ch1 q06, Ch2 q06, Ch3 q06, …) share >70% of their words, the gate fails closed with `AS4.quiz_prompt_template_substitution`.
@@ -428,7 +454,9 @@ The gate prints:
 | AS1 | Identifier token (q7, ex1, p2) inside prose | Rewrite the sentence WITHOUT the token. This is salting; not allowed. |
 | AS2 | Jammed proper nouns (MaplefieldBridgeton) | Rewrite as separate words with a separator. |
 | AS3 | Doubled period | Replace `..` with `.` (single period). |
-| AS4 | Cross-chapter prompt template substitution | Rewrite this chapter's quiz prompts as DIFFERENT scenarios from other chapters' same-position prompts. Do NOT just swap one noun. |
+| AS4 | Cross-chapter prompt template substitution (book gate) | Rewrite this chapter's quiz prompts as DIFFERENT scenarios from other chapters' same-position prompts. Do NOT just swap one noun. |
+| AS5 | This chapter's quiz prompt ≥70% identical to a prior chapter's same-position prompt | Pick a DIFFERENT scenario from THIS chapter's source notes. Do NOT swap one noun on a prior chapter's prompt. |
+| AS6 | This chapter's quiz distractor ≥80% identical to a prior chapter's same-position distractor | Rewrite this distractor to reflect THIS chapter's hardEdge misreading. Distractors must not be reused across chapters. |
 | E1 | Reading level too academic | Use plainer words |
 | E2 | Tier progression / cross-tier verbatim | Vary tier-to-tier phrasing |
 

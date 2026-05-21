@@ -142,6 +142,8 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "AS2.jammed_proper_nouns": "blocker",
   "AS3.doubled_period": "blocker",
   "AS4.quiz_prompt_template_substitution": "blocker",
+  "AS5.chapter_quiz_prompt_matches_prior": "blocker",
+  "AS6.chapter_quiz_distractor_matches_prior": "blocker",
 };
 
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
