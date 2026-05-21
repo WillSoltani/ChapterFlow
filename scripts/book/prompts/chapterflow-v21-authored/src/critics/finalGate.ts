@@ -147,6 +147,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "AS6.chapter_quiz_distractor_matches_prior": "blocker",
   "AS7.chapter_card_matches_prior": "blocker",
   "AS8.chapter_plan_matches_prior": "blocker",
+  "AS9.chapter_example_matches_prior": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
 };
 

@@ -38,7 +38,7 @@ NEVER write `..` followed by a capital letter as a sentence boundary. Use a sing
 **Forbidden:** `"10:20 p.m.. The room was quiet."`
 **Correct:** `"10:20 p.m. The room was quiet."`
 
-### Forbidden move 3.4 — Reusing your own template across chapters in ANY field (`AS5` / `AS6` / `AS7` / `AS8` / `BP24`)
+### Forbidden move 3.3 — Reusing your own template across chapters in ANY field (`AS5` / `AS6` / `AS7` / `AS8` / `AS9` / `BP24`)
 
 **Read this section carefully.** The pipeline has evolved through three template-substitution incidents. Each time we patched the gating where the agent did the templating, the next agent's gaming moved to a field we hadn't yet covered. The current ruleset closes every known surface:
 
@@ -48,6 +48,7 @@ NEVER write `..` followed by a capital letter as a sentence boundary. Use a sing
 | `AS6` | quiz choice (distractor or correct) at same position across chapters | ≥80% word overlap → BLOCKER |
 | `AS7` | review card front or back at same position across chapters | ≥75% word overlap → BLOCKER |
 | `AS8` | implementation plan field (coreSkill, twentyFourHourChallenge, weeklyPractice, ifThenPlans[i].plan) across chapters | ≥70% word overlap → BLOCKER |
+| `AS9` | example[i].scenario / whatToDo / whyItMatters at same position across chapters | ≥70% word overlap → BLOCKER |
 | `BP24` | breakdown tier verbatim copy-paste within a chapter (FastRead/DeepRead/FullRead) | ≥150 chars contiguous verbatim → BLOCKER |
 
 All of these use **word-multiset similarity**, not n-gram identity, so swapping one noun per chapter does not evade detection.
@@ -55,6 +56,19 @@ All of these use **word-multiset similarity**, not n-gram identity, so swapping 
 **The general rule, restated for emphasis:** every reader-facing field in every chapter must be composed FROM THAT CHAPTER'S SOURCE NOTES, not by adapting another chapter's text. You cannot write Chapter 1's six review cards and then "adapt" them for Chapter 2 by swapping the concept name. You cannot write Chapter 1's implementation plan and reuse the coreSkill / 24hr-challenge / weeklyPractice phrasing with one verb-phrase swapped. You cannot copy a paragraph from your own DeepRead into your own FullRead to fill the length floor.
 
 If you find yourself reaching for ANY of these moves to clear a length target or a gate, STOP. The right answer is to write THIS chapter's content from THIS chapter's source notes. If the source notes don't differentiate this chapter enough from another, surface that to the user — it's a Step 1 (research) issue, not something you should paper over.
+
+**Concrete example of the May 2026 "Start With Why" incident** that led to AS9:
+
+Example ex[0].scenario, same position across multiple chapters before the AS9 patch:
+```
+Ch1:  "Anika   leans over a clipboard at 8:10 a.m. in the Oakland repair bay…"
+Ch2:  "Giselle leans over a clipboard at 8:10 a.m. in the Denver running store…"
+Ch3:  "Marisol leans over a clipboard at 8:10 a.m. in the Austin robotics lab…"
+…
+Ch14: "Thabo   leans over a clipboard at 8:10 a.m. in the Hanna cross-country course…"
+```
+
+Every chapter's ex[0] used the same skeleton with only the name, location, and one chapter-specific verb phrase swapped. The literal 13-word string `"the group is already nodding. Minutes before the room commits"` appeared verbatim in all 14 chapters. AS9 catches this at chapter-gate time: rewrite each chapter's examples with a different scene structure, role, time, and setting drawn from THIS chapter's source notes.
 
 **Concrete example of the May 2026 "Step 2 second-round" incident** that led to AS7/AS8/BP24:
 
@@ -498,6 +512,7 @@ The gate prints:
 | AS6 | This chapter's quiz distractor ≥80% identical to a prior chapter's same-position distractor | Rewrite this distractor to reflect THIS chapter's hardEdge misreading. Distractors must not be reused across chapters. |
 | AS7 | This chapter's review card front or back ≥75% identical to a prior chapter's same-position card | Compose cards from THIS chapter's specific terminology (centralConcept name, hardEdge language). Do NOT use a card-skeleton from a prior chapter. |
 | AS8 | This chapter's implementation plan field ≥70% identical to a prior chapter's plan | Each chapter's plan must use its own framework. Do NOT use the same coreSkill / 24hr / weeklyPractice template with one phrase swapped. |
+| AS9 | This chapter's example scenario/whatToDo/whyItMatters ≥70% identical to a prior chapter's same-position example | Examples must be composed from THIS chapter's namedExamples + centralConcept + hardEdge. Use a different scene structure, role, time, setting, and decision shape per chapter — do NOT reuse a scenario skeleton with name/location/verb-phrase swapped. |
 | BP24 | Breakdown tier ≥150 chars verbatim shared with another tier of the same chapter | Tiers must LAYER content. Rewrite the longer tier to extend the shorter one with new examples and mechanism, not duplicate prose. |
 | E1 | Reading level too academic | Use plainer words |
 | E2 | Tier progression / cross-tier verbatim | Vary tier-to-tier phrasing |

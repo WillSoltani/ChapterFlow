@@ -210,6 +210,85 @@ export function checkIntraBookPlanSimilarity(
   return findings;
 }
 
+// ── AS9 — example scenario / whatToDo / whyItMatters similarity across chapters ─
+
+const EXAMPLE_SIMILARITY_BLOCKER = 0.7;
+
+/**
+ * Compare each example position's scenario, whatToDo, and whyItMatters to the
+ * same-position fields in every prior chapter.
+ *
+ * The May 2026 "Start With Why Step 2" incident: after AS5-AS8 + BP24 forced
+ * the writer agent to differentiate quizzes / cards / plans / breakdowns
+ * across chapters, the agent applied the same template-substitution pattern
+ * to example scenarios — a field BP2 detects only at book-gate time. All 14
+ * chapters of Start With Why shipped example scenarios with the same skeleton
+ * and only name + location + a single chapter-specific verb-phrase swapped:
+ *
+ *   Ch1 ex[0]: "Anika   leans over a clipboard at 8:10 a.m. in the Oakland repair bay…"
+ *   Ch2 ex[0]: "Giselle leans over a clipboard at 8:10 a.m. in the Denver running store…"
+ *   …
+ *   Ch14 ex[0]: "Thabo  leans over a clipboard at 8:10 a.m. in the Hanna cross-country course…"
+ *
+ * The pattern held across multiple example positions (ex[0], ex[2], etc).
+ * Per-chapter ship gates passed because no chapter-level critic compared
+ * against siblings. BP2 caught it at book-gate time but by then all 14
+ * chapters had been written. AS9 catches the same defect class at the
+ * chapter being written so the writer must compose chapter-specific
+ * examples before moving to the next chapter.
+ */
+export function checkIntraBookExampleSimilarity(
+  chapter: ChapterV21,
+  priorChapters: ChapterV21[],
+): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  if (priorChapters.length === 0) return findings;
+
+  const currentExamples = chapter.examples ?? [];
+  if (currentExamples.length === 0) return findings;
+
+  for (let i = 0; i < currentExamples.length; i++) {
+    const curEx = currentExamples[i];
+    if (!curEx) continue;
+
+    // Compare scenario, whatToDo, and whyItMatters at the same example position.
+    for (const field of ["scenario", "whatToDo", "whyItMatters"] as const) {
+      const curText = curEx[field];
+      if (typeof curText !== "string" || !curText) continue;
+      const curTokens = tokenize(curText);
+      if (curTokens.length < 6) continue;
+
+      const matches: Array<{ chapter: number; sim: number; priorText: string }> = [];
+      for (const priorCh of priorChapters) {
+        const priorExamples = priorCh.examples ?? [];
+        if (priorExamples.length <= i) continue;
+        const priorEx = priorExamples[i];
+        if (!priorEx) continue;
+        const priorText = priorEx[field];
+        if (typeof priorText !== "string") continue;
+        const sim = wordOverlapSimilarity(curTokens, tokenize(priorText));
+        if (sim >= EXAMPLE_SIMILARITY_BLOCKER) {
+          matches.push({ chapter: priorCh.number, sim, priorText });
+        }
+      }
+
+      if (matches.length === 0) continue;
+      const chList = matches.map((m) => `Ch${m.chapter}`).sort().join(", ");
+      const ex = matches[0];
+      findings.push(
+        finding(
+          "AS9.chapter_example_matches_prior" as any,
+          "blocker",
+          `example[${i}].${field} matches ${matches.length} prior chapter(s) at ≥${(EXAMPLE_SIMILARITY_BLOCKER * 100).toFixed(0)}% word overlap: ${chList}. Examples must be composed from THIS chapter's source notes (namedExamples, centralConcept, hardEdge) — not by adapting a scenario template from another chapter with name/location swapped. Rewrite this example with a different scene structure, role, time, and setting.`,
+          `current: ${curText.slice(0, 100)} | matched in Ch${ex.chapter}: ${ex.priorText.slice(0, 100)}`,
+        ),
+      );
+    }
+  }
+
+  return findings;
+}
+
 // ── BP24 — cross-tier breakdown verbatim duplication (replaces / supplements B8) ─
 
 /**
