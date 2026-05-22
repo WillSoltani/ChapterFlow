@@ -289,6 +289,270 @@ export function checkIntraBookExampleSimilarity(
   return findings;
 }
 
+// ── AS10 — chapter-time literal n-gram verbatim across chapters ─────────────
+
+const LITERAL_NGRAM_WINDOW = 5;
+
+// Minimum number of non-stopword non-short content tokens required in a
+// 5-token window before it counts as a candidate templating phrase.
+// Calibrated empirically: at 2 tokens, generic connectives like "must
+// decide whether to" false-positive on natural prose; at 3 tokens, only
+// phrases with real lexical fingerprints survive ("practical pattern
+// recognition, moving from" — content tokens "practical","pattern",
+// "recognition","moving").
+const AS10_MIN_CONTENT_TOKENS = 3;
+
+// Number of PRIOR chapters that must share a phrase before AS10 fires.
+// A single shared phrase across two chapters can be coincidence; a phrase
+// found in ≥2 prior chapters is a pattern. Corresponds to BP13's ≥3-
+// total-chapter threshold (when writing chapter N, two prior chapters
+// sharing a phrase means BP13 will fire at book-gate time once the
+// current chapter ships and makes it 3).
+const AS10_MIN_PRIOR_CHAPTERS = 2;
+
+// Stopword list mirrors BP13's. Phrases dominated by these are
+// statistically likely to coincide between unrelated chapters and would
+// false-positive.
+const NGRAM_STOPWORDS = new Set<string>([
+  "the", "and", "that", "this", "with", "from", "have", "were", "will",
+  "what", "when", "where", "which", "while", "their", "them", "they",
+  "these", "those", "then", "than", "into", "over", "under", "about",
+  "after", "before", "because", "could", "would", "should", "might",
+  "still", "just", "also", "very", "more", "most", "some", "many",
+  "much", "other", "another", "here", "there", "both",
+]);
+
+function literalContentWindows(text: string): Set<string> {
+  const out = new Set<string>();
+  const tokens = text.split(/\s+/).filter((t) => t.length > 0);
+  for (let s = 0; s + LITERAL_NGRAM_WINDOW <= tokens.length; s++) {
+    const slice = tokens.slice(s, s + LITERAL_NGRAM_WINDOW);
+    let contentCount = 0;
+    for (const tok of slice) {
+      const w = tok.toLowerCase().replace(/[^a-z0-9'-]/g, "");
+      if (w.length < 4) continue;
+      if (NGRAM_STOPWORDS.has(w)) continue;
+      contentCount++;
+    }
+    if (contentCount < AS10_MIN_CONTENT_TOKENS) continue;
+    out.add(slice.join(" "));
+  }
+  return out;
+}
+
+const AS10_FIELDS: Array<{ getter: (ch: ChapterV21) => Array<{ unit: string; text: string }> }> = [
+  {
+    getter: (ch) => {
+      const out: Array<{ unit: string; text: string }> = [];
+      const b = ch.breakdown;
+      if (b?.fastRead) out.push({ unit: "breakdown.fastRead", text: b.fastRead });
+      if (b?.deepRead) out.push({ unit: "breakdown.deepRead", text: b.deepRead });
+      if (b?.fullRead) out.push({ unit: "breakdown.fullRead", text: b.fullRead });
+      return out;
+    },
+  },
+  {
+    getter: (ch) => {
+      const out: Array<{ unit: string; text: string }> = [];
+      (ch.examples ?? []).forEach((ex, i) => {
+        if (typeof ex?.scenario === "string" && ex.scenario) out.push({ unit: `examples[${i}].scenario`, text: ex.scenario });
+        if (typeof ex?.whatToDo === "string" && ex.whatToDo) out.push({ unit: `examples[${i}].whatToDo`, text: ex.whatToDo });
+        if (typeof ex?.whyItMatters === "string" && ex.whyItMatters) out.push({ unit: `examples[${i}].whyItMatters`, text: ex.whyItMatters });
+      });
+      return out;
+    },
+  },
+];
+
+/**
+ * Chapter-time twin of BP13. BP13 is book-gate-only and fires after every
+ * chapter is already written; by then the writer agent has produced a full
+ * book of stock-phrase prose. AS10 runs at chapter-write time so the same
+ * defect class is caught on the chapter being shipped.
+ *
+ * The May 2026 "Start With Why round 2" incident: after AS9 forced
+ * scenario-position variation, the writer agent slid under AS9's 70%
+ * word-overlap threshold by keeping per-example word overlap low while
+ * still reusing short stock phrases ("practical pattern recognition,
+ * moving from", "hiring, marketing, culture, or operations", "let it
+ * define the answer") across odd/even chapter groups in whatToDo and
+ * whyItMatters. AS9 passed; BP13 found 288 cross-chapter verbatim
+ * matches at book-gate time, after 14 chapters had been authored.
+ *
+ * AS10 finds any 5-token content window (≥3 non-stopword content tokens)
+ * in the current chapter's examples or breakdown that also appears
+ * verbatim in the same field type of ≥2 prior chapters. Same family of
+ * detection as BP13, calibrated for chapter-write time: requires a real
+ * pattern (≥2 priors), not a single coincidence, and tightens content-
+ * token floor from 2 to 3 to suppress generic connectives.
+ */
+export function checkIntraBookLiteralNgrams(
+  chapter: ChapterV21,
+  priorChapters: ChapterV21[],
+): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  if (priorChapters.length === 0) return findings;
+
+  // For each field type, build the prior chapters' content windows once.
+  for (const { getter } of AS10_FIELDS) {
+    const currentFields = getter(chapter);
+    if (currentFields.length === 0) continue;
+
+    // Map from window string -> list of {chapter, unit} where it appears.
+    const priorWindows = new Map<string, Array<{ chapter: number; unit: string }>>();
+    for (const priorCh of priorChapters) {
+      for (const pf of getter(priorCh)) {
+        for (const win of literalContentWindows(pf.text)) {
+          if (!priorWindows.has(win)) priorWindows.set(win, []);
+          priorWindows.get(win)!.push({ chapter: priorCh.number, unit: pf.unit });
+        }
+      }
+    }
+
+    // For each current-chapter field, find any window that appears in priors.
+    // Group hits by (current unit) so each unit emits at most one finding,
+    // and inside the message list the matching phrases + prior chapters.
+    for (const cf of currentFields) {
+      const hits: Array<{ phrase: string; chapters: number[] }> = [];
+      const seenPhrases = new Set<string>();
+      for (const win of literalContentWindows(cf.text)) {
+        const priors = priorWindows.get(win);
+        if (!priors || priors.length === 0) continue;
+        if (seenPhrases.has(win)) continue;
+        seenPhrases.add(win);
+        const chSet = Array.from(new Set(priors.map((p) => p.chapter))).sort((a, b) => a - b);
+        if (chSet.length < AS10_MIN_PRIOR_CHAPTERS) continue;
+        hits.push({ phrase: win, chapters: chSet });
+      }
+      if (hits.length === 0) continue;
+      // Cap to top 5 phrases per finding to keep the message readable; the
+      // count is preserved in the message.
+      hits.sort((a, b) => b.chapters.length - a.chapters.length);
+      const top = hits.slice(0, 5);
+      const sample = top.map((h) => `"${h.phrase}" (Ch${h.chapters.join(",")})`).join("; ");
+      findings.push(
+        finding(
+          "AS10.chapter_field_ngram_matches_prior" as any,
+          "blocker",
+          `${cf.unit} contains ${hits.length} verbatim 5-token phrase(s) that also appear in prior chapter(s). Top: ${sample}${hits.length > 5 ? ` (+${hits.length - 5} more)` : ""}. Stock writer phrases recycled across chapters become visible to the reader by the third repetition. Rewrite this field from THIS chapter's source material; do not reach for the same connective phrasing used in earlier chapters.`,
+          cf.text.slice(0, 180),
+        ),
+      );
+    }
+  }
+
+  return findings;
+}
+
+// ── AS11 — chapter-time breakdown-paragraph verbatim across chapters ────────
+
+const PARAGRAPH_VERBATIM_MIN_CHARS = 60;
+
+function breakdownParagraphs(ch: ChapterV21): Array<{ unit: string; text: string }> {
+  const out: Array<{ unit: string; text: string }> = [];
+  const b = ch.breakdown;
+  if (!b) return out;
+  for (const tier of ["fastRead", "deepRead", "fullRead"] as const) {
+    const raw = b[tier];
+    if (typeof raw !== "string" || !raw) continue;
+    const paras = raw.split(/\n\s*\n+/).map((p) => p.trim()).filter((p) => p.length >= PARAGRAPH_VERBATIM_MIN_CHARS);
+    for (const p of paras) out.push({ unit: `breakdown.${tier}`, text: p });
+  }
+  return out;
+}
+
+/**
+ * Chapter-time twin of BP10/BP11. The May 2026 Start With Why incident
+ * shipped a single ~280-char closing paragraph ("In the next meeting, ask
+ * what the current action proves…") verbatim in all 14 chapters' fullRead
+ * tiers, plus four more breakdown paragraph skeletons templated across the
+ * book. BP10/BP11 catch this at book-gate time — too late, the agent has
+ * already written 14 chapters of templated breakdown.
+ *
+ * AS11 fires on any breakdown paragraph (≥60 chars) in the current chapter
+ * that appears verbatim in any breakdown tier of any prior chapter.
+ */
+export function checkIntraBookBreakdownParagraphVerbatim(
+  chapter: ChapterV21,
+  priorChapters: ChapterV21[],
+): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  if (priorChapters.length === 0) return findings;
+
+  const currentParas = breakdownParagraphs(chapter);
+  if (currentParas.length === 0) return findings;
+
+  // Build a map from paragraph text -> list of (chapter, unit) for prior chapters.
+  const priorMap = new Map<string, Array<{ chapter: number; unit: string }>>();
+  for (const priorCh of priorChapters) {
+    for (const p of breakdownParagraphs(priorCh)) {
+      if (!priorMap.has(p.text)) priorMap.set(p.text, []);
+      priorMap.get(p.text)!.push({ chapter: priorCh.number, unit: p.unit });
+    }
+  }
+
+  for (const cp of currentParas) {
+    const matches = priorMap.get(cp.text);
+    if (!matches || matches.length === 0) continue;
+    const chList = Array.from(new Set(matches.map((m) => `Ch${m.chapter}`))).join(", ");
+    findings.push(
+      finding(
+        "AS11.chapter_breakdown_paragraph_verbatim_prior" as any,
+        "blocker",
+        `${cp.unit} contains a paragraph that appears verbatim in prior chapter(s): ${chList}. Breakdown paragraphs cannot be reused across chapters — every chapter's reader sees the same paragraph in sequence and the templating becomes obvious. Rewrite this paragraph from THIS chapter's source notes.`,
+        cp.text.slice(0, 180),
+      ),
+    );
+  }
+
+  return findings;
+}
+
+// ── AS12 — chapter-time quiz correctIndex sequence match ─────────────────────
+
+/**
+ * Chapter-time twin of BP14. The May 2026 Start With Why incident shipped
+ * all 14 chapters with quiz correctIndex sequence [0,1,2,0,1,2,0,1,2] — a
+ * fixed rotation pattern the writer agent applied to every chapter,
+ * exactly because no chapter-time gate compared sequences. AS12 fires when
+ * the current chapter's correctIndex sequence is identical to any prior
+ * chapter's.
+ *
+ * A reader who notices the answer pattern can guess the correct choice
+ * without engaging with the question; sharing the pattern across the book
+ * is equivalent to printing the answer key.
+ */
+export function checkIntraBookQuizPositionMatch(
+  chapter: ChapterV21,
+  priorChapters: ChapterV21[],
+): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  if (priorChapters.length === 0) return findings;
+  const qs = chapter.quiz?.questions ?? [];
+  if (qs.length === 0) return findings;
+  const curSeq = qs.map((q) => q.correctIndex).join(",");
+  if (!curSeq) return findings;
+
+  const matches: number[] = [];
+  for (const priorCh of priorChapters) {
+    const pqs = priorCh.quiz?.questions ?? [];
+    if (pqs.length === 0) continue;
+    const priorSeq = pqs.map((q) => q.correctIndex).join(",");
+    if (priorSeq === curSeq) matches.push(priorCh.number);
+  }
+  if (matches.length === 0) return findings;
+  const chList = matches.map((c) => `Ch${c}`).join(", ");
+  findings.push(
+    finding(
+      "AS12.chapter_quiz_position_matches_prior" as any,
+      "blocker",
+      `quiz correctIndex sequence [${curSeq}] is identical to prior chapter(s): ${chList}. Templated answer positions let the reader guess without reading. Vary the correctIndex per chapter — pick each answer's slot based on which choice is the strongest distractor for THIS question, not by following a fixed rotation.`,
+      `seq: ${curSeq}`,
+    ),
+  );
+  return findings;
+}
+
 // ── BP24 — cross-tier breakdown verbatim duplication (replaces / supplements B8) ─
 
 /**

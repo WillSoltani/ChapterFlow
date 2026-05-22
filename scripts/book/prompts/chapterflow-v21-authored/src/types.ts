@@ -301,6 +301,9 @@ export type CriticCheckId =
   | "AS7.chapter_card_matches_prior"
   | "AS8.chapter_plan_matches_prior"
   | "AS9.chapter_example_matches_prior"
+  | "AS10.chapter_field_ngram_matches_prior"
+  | "AS11.chapter_breakdown_paragraph_verbatim_prior"
+  | "AS12.chapter_quiz_position_matches_prior"
   | "BP24.cross_tier_breakdown_verbatim";
 
 export type CriticSeverity = "blocker" | "major" | "minor";

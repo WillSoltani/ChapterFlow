@@ -38,20 +38,24 @@ NEVER write `..` followed by a capital letter as a sentence boundary. Use a sing
 **Forbidden:** `"10:20 p.m.. The room was quiet."`
 **Correct:** `"10:20 p.m. The room was quiet."`
 
-### Forbidden move 3.3 — Reusing your own template across chapters in ANY field (`AS5` / `AS6` / `AS7` / `AS8` / `AS9` / `BP24`)
+### Forbidden move 3.3 — Reusing your own template across chapters in ANY field (`AS5` / `AS6` / `AS7` / `AS8` / `AS9` / `AS10` / `AS11` / `AS12` / `BP24` / `E2`)
 
-**Read this section carefully.** The pipeline has evolved through three template-substitution incidents. Each time we patched the gating where the agent did the templating, the next agent's gaming moved to a field we hadn't yet covered. The current ruleset closes every known surface:
+**Read this section carefully.** The pipeline has evolved through five template-substitution incidents. Each time we patched the gating where the agent did the templating, the next agent's gaming moved to a field we hadn't yet covered. The current ruleset closes every known surface:
 
 | Code | Field covered | Threshold |
 |---|---|---|
 | `AS5` | quiz prompt at same position across chapters | ≥70% word overlap → BLOCKER |
 | `AS6` | quiz choice (distractor or correct) at same position across chapters | ≥80% word overlap → BLOCKER |
 | `AS7` | review card front or back at same position across chapters | ≥75% word overlap → BLOCKER |
-| `AS8` | implementation plan field (coreSkill, twentyFourHourChallenge, weeklyPractice, ifThenPlans[i].plan) across chapters | ≥70% word overlap → BLOCKER |
+| `AS8` | implementation plan field across chapters | ≥70% word overlap → BLOCKER |
 | `AS9` | example[i].scenario / whatToDo / whyItMatters at same position across chapters | ≥70% word overlap → BLOCKER |
+| `AS10` | literal 5-token phrase in examples or breakdown tier — verbatim in ≥2 prior chapters' same field type | verbatim match → BLOCKER |
+| `AS11` | breakdown paragraph (≥60 chars) verbatim in any prior chapter's breakdown | verbatim match → BLOCKER |
+| `AS12` | quiz `correctIndex` sequence identical to any prior chapter's sequence | sequence match → BLOCKER |
 | `BP24` | breakdown tier verbatim copy-paste within a chapter (FastRead/DeepRead/FullRead) | ≥150 chars contiguous verbatim → BLOCKER |
+| `E2` | the three breakdown tiers (fastRead/deepRead/fullRead) opening with the same first sentence | identical first sentence across any 2 tiers → BLOCKER |
 
-All of these use **word-multiset similarity**, not n-gram identity, so swapping one noun per chapter does not evade detection.
+`AS5`–`AS9` use **word-multiset similarity** so noun swaps don't evade. `AS10`–`AS11` use **literal verbatim** matching — they catch stock phrases that sit under the multiset thresholds. `AS12` is a structural-position check; `E2` is a tier-progression check. Together they cover the literal-verbatim, paragraph-verbatim, structural-position, and tier-progression gaps that multiset thresholds can't reach.
 
 **The general rule, restated for emphasis:** every reader-facing field in every chapter must be composed FROM THAT CHAPTER'S SOURCE NOTES, not by adapting another chapter's text. You cannot write Chapter 1's six review cards and then "adapt" them for Chapter 2 by swapping the concept name. You cannot write Chapter 1's implementation plan and reuse the coreSkill / 24hr-challenge / weeklyPractice phrasing with one verb-phrase swapped. You cannot copy a paragraph from your own DeepRead into your own FullRead to fill the length floor.
 
@@ -90,6 +94,31 @@ Card 1 back across the same chapters:
 That's templating. AS7 catches it at chapter-gate time. The fix is to compose each chapter's cards from the chapter's specific terminology: for Habit 1, talk about response-ability, Circle of Influence, reactive vs proactive language, kept promises. For Habit 4, talk about Win/Win or No Deal, abundance mentality, courage and consideration as paired axes. The card concepts come from the chapter's `centralConcept`, `hardEdge`, and `paraphraseNotes` — not from a card-skeleton you wrote for an earlier chapter.
 
 Same rule for the implementation plan. Same rule for breakdown — DeepRead and FullRead should layer content (mechanism + new examples), not duplicate prose.
+
+**Concrete example of the May 2026 "Start With Why round 2" incident** that led to AS10/AS11/AS12 and the E2 upgrade:
+
+After AS9 forced scenario-position variation, the writer agent slid under AS9's 70% word-multiset threshold by keeping per-example word overlap low while reusing **short stock phrases** in `whatToDo` and `whyItMatters`. The phrases rotated across chapter groups so no two adjacent chapters shared enough to trip AS9:
+
+```
+Group A (Ch 1, 4, 7, 10, 13): "practical pattern recognition, moving from story to rule"
+Group B (Ch 3, 6, 9, 12):     "hiring, marketing, culture, or operations"
+Group C (even chapters):       "practical pressure visible but refuses to let it define the answer"
+```
+
+At the same time the breakdown was templated end-to-end: one closing paragraph appeared verbatim in all 14 chapters' `fullRead`, four more breakdown paragraph skeletons templated across all 14 chapters, and every chapter's three tiers (fastRead, deepRead, fullRead) opened with the **same first sentence**. The quiz `correctIndex` sequence was `[0,1,2,0,1,2,0,1,2]` for all 14 chapters.
+
+All of this passed the chapter ship-gate because:
+- AS9 saw <70% multiset overlap → no fire
+- BP10/BP11/BP13/BP14 only run at book-gate time
+- E2 was registered as `major`, so chapter shipped even with all three tiers opening with the same line
+
+The fix:
+- `AS10` fires on a literal 5-token phrase that appears in ≥2 prior chapters' same field
+- `AS11` fires on any breakdown paragraph (≥60 chars) that appears verbatim in any prior chapter's breakdown
+- `AS12` fires when the quiz `correctIndex` sequence is identical to any prior chapter's
+- `E2` is now a `blocker` — three tiers opening with the same sentence is structural failure
+
+**What this means for your composition.** When you write Chapter N, every short connective phrase in your examples and breakdown must be different from prior chapters'. If you reach for "the team has to decide whether to" or "the practical edge of" or any stock framing, check whether you wrote it in Ch1, Ch2, Ch3 first. If you did, write differently. Every breakdown paragraph must be specific to THIS chapter's source notes — no shared closing paragraph, no shared skeleton with variable slots. Every quiz must have a `correctIndex` sequence that is meaningfully different from prior chapters — pick positions based on which distractor is strongest for THIS question, not by following a rotation. Every breakdown tier must open with a DIFFERENT first sentence than the other two tiers in the same chapter; the three tiers progress (fastRead = scene + rule, deepRead = mechanism + second scene, fullRead = third angle + limits), they do not echo.
 
 ### Forbidden move 3.5 — Reusing your own quiz template across chapters (`AS5` / `AS6`)
 
@@ -513,9 +542,12 @@ The gate prints:
 | AS7 | This chapter's review card front or back ≥75% identical to a prior chapter's same-position card | Compose cards from THIS chapter's specific terminology (centralConcept name, hardEdge language). Do NOT use a card-skeleton from a prior chapter. |
 | AS8 | This chapter's implementation plan field ≥70% identical to a prior chapter's plan | Each chapter's plan must use its own framework. Do NOT use the same coreSkill / 24hr / weeklyPractice template with one phrase swapped. |
 | AS9 | This chapter's example scenario/whatToDo/whyItMatters ≥70% identical to a prior chapter's same-position example | Examples must be composed from THIS chapter's namedExamples + centralConcept + hardEdge. Use a different scene structure, role, time, setting, and decision shape per chapter — do NOT reuse a scenario skeleton with name/location/verb-phrase swapped. |
+| AS10 | Literal 5-token phrase in this chapter's examples or breakdown also appears verbatim in ≥2 prior chapters' same field type | Rewrite the phrase. Do not reach for the same connective phrasing you used in earlier chapters. If you've used "the practical edge of" or "must decide whether to" in two prior chapters, write THIS chapter's prose with different connective language. |
+| AS11 | A breakdown paragraph (≥60 chars) appears verbatim in any prior chapter's breakdown | Rewrite the paragraph from THIS chapter's source notes. Breakdown paragraphs cannot be reused — every chapter's reader sees them in sequence and the templating becomes obvious. |
+| AS12 | Quiz `correctIndex` sequence identical to any prior chapter's | Vary the answer positions per chapter. Pick each slot based on which distractor is strongest for THIS question, not by following a fixed rotation like [0,1,2,0,1,2,…]. |
 | BP24 | Breakdown tier ≥150 chars verbatim shared with another tier of the same chapter | Tiers must LAYER content. Rewrite the longer tier to extend the shorter one with new examples and mechanism, not duplicate prose. |
 | E1 | Reading level too academic | Use plainer words |
-| E2 | Tier progression / cross-tier verbatim | Vary tier-to-tier phrasing |
+| E2 (blocker) | Two of the three breakdown tiers open with an identical first sentence | Each tier must open with a different first sentence. fastRead opens with the scene + rule. deepRead opens with mechanism. fullRead opens with a third angle or scope-of-applicability frame. |
 
 Iterate until PASS. When PASS, advance to the next chapter.
 

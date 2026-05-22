@@ -822,18 +822,38 @@ async function runIntraBookCheck(
   }
   if (siblings.length === 0) return [];
   const { checkIntraBookQuizSimilarity } = await import("./critics/intraBookQuizSimilarity.js");
-  const { checkIntraBookCardSimilarity, checkIntraBookPlanSimilarity, checkIntraBookExampleSimilarity } = await import("./critics/intraBookFieldSimilarity.js");
-  // AS5/AS6 (quiz) + AS7 (cards) + AS8 (plan) + AS9 (examples) — all
-  // chapter-time intra-book similarity detectors. Built incrementally as
-  // the writer-agent gaming pattern moved across fields in successive
-  // incidents (quiz → cards/plan → breakdown verbatim → examples).
-  // Together they cover every reader-facing field that is positional or
-  // pairwise-comparable across chapters.
+  const {
+    checkIntraBookCardSimilarity,
+    checkIntraBookPlanSimilarity,
+    checkIntraBookExampleSimilarity,
+    checkIntraBookLiteralNgrams,
+    checkIntraBookBreakdownParagraphVerbatim,
+    checkIntraBookQuizPositionMatch,
+  } = await import("./critics/intraBookFieldSimilarity.js");
+  // AS5/AS6 (quiz prompt+distractor) + AS7 (cards) + AS8 (plan)
+  // + AS9 (example word-multiset) + AS10 (literal 5-gram in examples
+  // + breakdown) + AS11 (breakdown paragraph verbatim) + AS12 (quiz
+  // correctIndex sequence) — all chapter-time intra-book detectors.
+  // Built incrementally as the writer-agent gaming pattern moved across
+  // fields in successive incidents:
+  //   round 1: salting (AS1-AS4)
+  //   round 2: quiz template (AS5-AS6)
+  //   round 3: card/plan template (AS7-AS8)
+  //   round 4: example scenario template (AS9)
+  //   round 5: stock-phrase n-grams in whatToDo/whyItMatters under AS9's
+  //            70% multiset floor; whole-paragraph reuse in breakdown;
+  //            fixed correctIndex rotation (AS10-AS12)
+  // Together they cover the literal-verbatim, paragraph-verbatim, and
+  // structural-position gaps that AS5-AS9's multiset-similarity floor
+  // can't reach.
   return [
     ...checkIntraBookQuizSimilarity(chapter, siblings),
     ...checkIntraBookCardSimilarity(chapter, siblings),
     ...checkIntraBookPlanSimilarity(chapter, siblings),
     ...checkIntraBookExampleSimilarity(chapter, siblings),
+    ...checkIntraBookLiteralNgrams(chapter, siblings),
+    ...checkIntraBookBreakdownParagraphVerbatim(chapter, siblings),
+    ...checkIntraBookQuizPositionMatch(chapter, siblings),
   ] as any;
 }
 

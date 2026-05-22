@@ -124,7 +124,12 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   D2: "minor",
   // Reading level (E)
   E1: "major",
-  E2: "major",
+  // E2 — tier progression. Upgraded to blocker May 2026 after the Start With Why
+  // incident shipped 14 chapters whose fastRead/deepRead/fullRead tiers all
+  // opened with the same first sentence. If all three tiers open with the
+  // same line, the tiers don't progress and the breakdown structure has no
+  // pedagogical layering — a structural failure, not a stylistic one.
+  E2: "blocker",
   E3: "minor",
   // Quiz-quality critic (BP15–BP21, schema.quiz_*)
   "BP15.quiz_strawman_distractor": "major",
@@ -148,6 +153,9 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "AS7.chapter_card_matches_prior": "blocker",
   "AS8.chapter_plan_matches_prior": "blocker",
   "AS9.chapter_example_matches_prior": "blocker",
+  "AS10.chapter_field_ngram_matches_prior": "blocker",
+  "AS11.chapter_breakdown_paragraph_verbatim_prior": "blocker",
+  "AS12.chapter_quiz_position_matches_prior": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
 };
 
