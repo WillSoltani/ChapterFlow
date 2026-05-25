@@ -37,7 +37,7 @@ Use the helper script from repo root:
 node scripts/book/upload-book-package.mjs \
   --origin https://your-app-domain \
   --token "<COGNITO_ID_TOKEN>" \
-  --file book-packages/crucial-conversations.modern.json \
+  --file book-packages/crucial-conversations.v21.json \
   --publish
 ```
 

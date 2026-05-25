@@ -1,0 +1,70 @@
+{
+  "chapterId": "start-with-why-ch01",
+  "number": 1,
+  "title": "Assume You Know",
+  "coreMove": "Design the result into the start; when the opening assumption is wrong, end-stage fixes only make the bad premise look competent.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "auto assembly",
+      "audience": "plant leaders",
+      "stakes": "recurring final repair",
+      "format": "decision_point",
+      "requiredBeat": "Premise before repair"
+    },
+    {
+      "domain": "operations benchmarking",
+      "audience": "process leaders",
+      "stakes": "copying the wrong thing",
+      "format": "decision_point",
+      "requiredBeat": "Unseen system before copied method"
+    },
+    {
+      "domain": "software release",
+      "audience": "engineering managers",
+      "stakes": "repeat production defects",
+      "format": "decision_point",
+      "requiredBeat": "Design review before QA patch"
+    },
+    {
+      "domain": "hospital discharge",
+      "audience": "clinic leadership",
+      "stakes": "repeat patient returns",
+      "format": "decision_point",
+      "requiredBeat": "Handoff before follow-up"
+    },
+    {
+      "domain": "supplier management",
+      "audience": "procurement leaders",
+      "stakes": "misread quality data",
+      "format": "decision_point",
+      "requiredBeat": "Measurement frame before contract switch"
+    },
+    {
+      "domain": "pilot training",
+      "audience": "training directors",
+      "stakes": "bad model reinforced by practice",
+      "format": "decision_point",
+      "requiredBeat": "Lesson model before extra drills"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-05-25T02:26:10.241Z"
+}

@@ -1,0 +1,316 @@
+{
+  "chapterId": "start-with-why-ch01",
+  "number": 1,
+  "title": "Assume You Know",
+  "readingTimeMinutes": 12,
+  "hook": "Rubber mallets can hide a bad factory when the fix happens after the mistake.",
+  "counterintuition": "More data can deepen a false frame when the first guess is wrong. Repair starts by testing the premise before speeding up the fix.",
+  "tryThisNow": "Choose one annoyance from today and write the premise you acted from. Add one alternate premise that would change the next move.",
+  "keyTakeaway": "Design the result into the start; when the opening assumption is wrong, end-stage fixes only make the bad premise look competent.",
+  "breakdown": {
+    "fastRead": "The car-door story starts with a small sound at the end of a factory line. American workers had learned to correct a door after it missed the frame, while the Japanese line had built the fit into the process much earlier.\n\nThat contrast exposes source assumptions. A team can spend money fixing what shows up late, or it can question the premise that made the late fix seem normal.\n\nA clean finish can still hide a broken start. More polish at the finish line may only make the wrong starting belief harder to see.\n\nUse the door as a test for any recurring defect. If the same correction keeps appearing, the work belongs upstream, where the first explanation was accepted too quickly.",
+    "deepRead": "Source assumptions decide which fixes look sensible before anyone reaches for a tool. When a plant assumes defects are normal at the end of assembly, the repair bay becomes part of the plan instead of a warning.\n\nThe car-door case is useful because the visible problem is almost too ordinary. A gap around the frame can be measured, assigned, and patched. Those facts do not reveal why the gap was allowed to reach final fit.\n\nIf the first premise is wrong, more effort only gives the mistake a louder engine. Extra inspection, heroic finishing, and better late-stage tracking can all protect the assumption that caused the waste.\n\nThe same pattern appears in software releases, hospital discharge notes, supplier scores, and flight training. Each setting offers a tidy repair after trouble appears. The harder discipline is to ask which earlier belief made that repair feel natural.\n\nA leader does not need a grand theory to apply this. The first move is to trace the repeated defect back to the earliest decision where the team stopped asking why.\n\nThe warning is plain. Borrowing the Japanese technique without borrowing the upstream belief only copies the visible part of the case. The result may look modern while the old assumption keeps running the line.\n\nA final safeguard still has value, but it should report backward. Door-fit data, bug escapes, readmission charts, supplier misses, and simulator errors all become clues about where the opening premise should change.",
+    "fullRead": "A repair method works only inside the assumption that gave it a job. If the belief behind the process stays unchanged, the new method becomes a better-looking patch.\n\nThe American door does not fail because the worker at the end lacks care. The system accepts late correction as normal, so good people learn to become skilled at rescue.\n\nJapanese assembly changes the problem earlier. The question is not how to make the mallet lighter. The question is how to make the mallet unnecessary.\n\nThat difference matters in any organization that rewards recovery more than prevention. A team can celebrate the person who fixes the emergency while ignoring the meeting where the emergency became likely.\n\nThe software release example carries the same lesson. A final QA gate can catch defects, but it can also hide a weak design review. The release manager has to decide where quality truly begins.\n\nThe hospital readmission case sharpens the cost. Another call after discharge may help, yet the family may have misunderstood the instructions before leaving the ward.\n\nSupplier reviews face the same trap. A visible score can point at a vendor, but the score may come from a measurement frame no one questioned.\n\nPilot training adds one more angle. Extra simulator hours can improve response, but the first lesson may be teaching the wrong explanation for failure.\n\nThe right repair begins where the defect first entered the work. That sentence is easy to agree with and hard to practice because late fixes are more visible.\n\nThere is a limit to the lesson. Some problems really do need downstream safeguards. Safety checks, audits, and final reviews protect people when complex work meets reality.\n\nThe error is treating the safeguard as proof that the source is sound. A final check should send information backward, not merely certify that someone corrected the mess.\n\nThe leader's question is simple. Where did the team first assume the thing that later became expensive? Once that place is found, the repair stops being cosmetic.\n\nProgress begins when the group is willing to look a little foolish. The old fix may be familiar, efficient, and staffed by competent people. It may also be solving the wrong problem with great skill.\n\nA second habit helps: separate the worker from the premise. The worker may be careful, fast, and proud. The process may still ask that worker to rescue a defect that should not exist. Blame keeps attention at the end of the line; source work sends attention to design, handoff, measurement, and teaching. That shift is the difference between a cleaner patch and a stronger system."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Door Premise Check",
+      "tags": [
+        "source assumptions",
+        "manufacturing"
+      ],
+      "planSpec": {
+        "domain": "auto assembly",
+        "audience": "plant leaders",
+        "stakes": "recurring final repair",
+        "format": "decision_point",
+        "requiredBeat": "Premise before repair"
+      },
+      "scenario": "Defect rates are flat, yet the final-fit bay is full of mechanics tapping door seams into place. The plant manager stands beside the door-fit gauge with finance waiting for a staffing request. She needs to decide before the capital review: add more repair labor, or trace why the door reaches the end of the line misaligned at all.",
+      "whatToDo": "The plant manager moves the door-fit review to the design and tooling decision. The late repair log becomes evidence for changing the first premise, not a reason to hire more finishers.",
+      "whyItMatters": "Source assumptions shape the whole line. When the start is questioned, the team can prevent the defect instead of building pride around a cleaner rescue."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Japanese System Transfer",
+      "tags": [
+        "source assumptions",
+        "process design"
+      ],
+      "planSpec": {
+        "domain": "operations benchmarking",
+        "audience": "process leaders",
+        "stakes": "copying the wrong thing",
+        "format": "decision_point",
+        "requiredBeat": "Unseen system before copied method"
+      },
+      "scenario": "The operations director returns from a Japanese assembly visit with photos of fixtures, training notes, and one uncomfortable observation: the cleanest line had fewer rescue stations. In the conference room, the president asks for a shopping list. The director's choice before the debrief is stark: buy visible tools, or name the prevention belief that made those tools useful.",
+      "whatToDo": "The operations director studies the beliefs behind the Japanese process before buying matching equipment. The tour notes become a question about prevention, not a shopping list.",
+      "whyItMatters": "Copying tools can preserve the old cause of failure. The useful transfer is the upstream standard that made late correction unnecessary."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Bug Root Trace",
+      "tags": [
+        "source assumptions",
+        "software"
+      ],
+      "planSpec": {
+        "domain": "software release",
+        "audience": "engineering managers",
+        "stakes": "repeat production defects",
+        "format": "decision_point",
+        "requiredBeat": "Design review before QA patch"
+      },
+      "scenario": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint. The release manager has a new gate ready, and the engineering lead can implement it by Monday. Before sprint planning closes, the manager is deciding whether the car-door lesson points to another checkpoint or to the design review where the bug first becomes likely.",
+      "whatToDo": "The release manager shifts the bug conversation into design review. The final QA gate stays, but the recurring issue is traced to the moment the weak assumption entered the sprint.",
+      "whyItMatters": "A defect caught late still teaches where work began wrong. Treating QA as the answer lets the same source assumption keep producing rework."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Readmission Source Review",
+      "tags": [
+        "source assumptions",
+        "health care"
+      ],
+      "planSpec": {
+        "domain": "hospital discharge",
+        "audience": "clinic leadership",
+        "stakes": "repeat patient returns",
+        "format": "decision_point",
+        "requiredBeat": "Handoff before follow-up"
+      },
+      "scenario": "At the hospital quality board, the nurse manager pins a weekend readmission chart beside a sample discharge sheet. Families heard the instructions, signed the form, and still returned confused. The staffing request is due at noon. The manager faces a choice: add a follow-up call after discharge, or redesign the handoff where misunderstanding entered the case.",
+      "whatToDo": "The nurse manager rewrites the discharge handoff around family understanding. The weekend readmission chart becomes a signal about the first explanation patients received.",
+      "whyItMatters": "Adding calls after discharge may help, but the source assumption sits in the handoff. Prevention begins where confusion first became likely."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Supplier Frame Audit",
+      "tags": [
+        "source assumptions",
+        "measurement"
+      ],
+      "planSpec": {
+        "domain": "supplier management",
+        "audience": "procurement leaders",
+        "stakes": "misread quality data",
+        "format": "decision_point",
+        "requiredBeat": "Measurement frame before contract switch"
+      },
+      "scenario": "The supplier council has a scorecard on the screen and a vendor replacement memo in draft. The vice president of supply recalls the American car-door line, where visible correction hid an earlier premise. Contracts roll over soon, and the council asks a sharper question: does the bad score name the vendor, or expose a measurement frame that taught the wrong behavior?",
+      "whatToDo": "The supply leader tests the scoring frame before changing vendors. The visible supplier result is used to inspect the premise behind the measure.",
+      "whyItMatters": "A bad score can be real and still point to the wrong cause. Source assumptions decide whether procurement fixes the vendor or the lens."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Simulator Lesson Reset",
+      "tags": [
+        "source assumptions",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "pilot training",
+        "audience": "training directors",
+        "stakes": "bad model reinforced by practice",
+        "format": "decision_point",
+        "requiredBeat": "Lesson model before extra drills"
+      },
+      "scenario": "A Japanese assembly report sits beside a simulator report shows pilots repeating the same landing-sequence mistake after extra drills. The training director studies the syllabus beside a printed cockpit flow. Before the next class begins, she needs to choose: add repetitions to prove seriousness, or change the first explanation students receive about the failure.",
+      "whatToDo": "The training director repairs the lesson before adding simulator time. Practice remains useful, but the first explanation for the landing error gets corrected.",
+      "whyItMatters": "More repetitions strengthen whatever premise the syllabus teaches. A pilot learns faster when the root explanation is sound before practice begins."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A factory lead sees door seams corrected with a rubber mallet after final inspection. What should she test before hiring more finishers?",
+        "choices": [
+          "Trace the defect to the assembly assumption that made the mallet necessary.",
+          "Record more late-stage dents so the repair crew can look faster next month.",
+          "Praise the final inspectors for catching the symptom before customers see it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The car-door case points upstream. Extra repair speed can hide the premise that produced the defect, while assumption testing changes the system that keeps making the repair necessary.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "During a budget review, a team wants to copy a rival plant technique after one impressive tour. Which question best protects judgment?",
+        "choices": [
+          "Which visible tool impressed the visitors enough to justify a press release?",
+          "What hidden belief lets that plant avoid the defect we keep correcting?",
+          "How soon can procurement buy a similar fixture for the old workflow?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Copying the surface tactic misses the cause. The useful question asks what premise, process choice, or design belief created the result before the tactic became visible.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "When the same customer complaint returns every Friday, which move shows source-assumption thinking?",
+        "choices": [
+          "Add a Friday escalation lane so service looks more responsive.",
+          "Ask the account team to write a friendlier explanation for the backlog.",
+          "Map where the complaint first becomes likely, then change that starting condition."
+        ],
+        "correctIndex": 2,
+        "explanation": "Recurring complaints are evidence of an upstream pattern. The source-assumption move locates the point where the problem is born rather than polishing the response after it appears.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A product group celebrates a dashboard full of defect counts. What warning fits the American and Japanese door example?",
+        "choices": [
+          "Measurement can prove the symptom is real while leaving the design premise untouched.",
+          "The largest defect count should get the largest staff increase at once.",
+          "A cleaner dashboard will usually remove the need for a process review."
+        ],
+        "correctIndex": 0,
+        "explanation": "Numbers help only after the right cause is being studied. A dashboard can make failure vivid while leaving the belief that creates the failure fully intact.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "In a planning session, one manager says the fix worked last quarter, so repeat it. What response carries source-assumption logic?",
+        "choices": [
+          "Repeat the fix once more, then discuss assumptions if the outcome slips.",
+          "Separate the fix from the starting premise and inspect the premise first.",
+          "Move the same fix to a different team so the comparison looks fair."
+        ],
+        "correctIndex": 1,
+        "explanation": "A fix that worked once may still depend on a bad premise. The disciplined move distinguishes visible repair from the underlying reason repair was needed.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Which note should sit beside a team's recurring-defect list?",
+        "choices": [
+          "Late repairs show dedication when the team stays calm under pressure.",
+          "Visible defects deserve new controls before anyone questions design intent.",
+          "A repeat fix is a clue, not proof that the real cause has been found."
+        ],
+        "correctIndex": 2,
+        "explanation": "The mallet story is a warning about false certainty. A repair can be competent and still reveal that no one has named the source condition yet.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A plant manager wants to reward the fastest final repair crew. What warning should shape the bonus?",
+        "choices": [
+          "Rewarding late repair may strengthen the system that keeps making late repair necessary.",
+          "The crew should be celebrated before anyone studies the first design choice.",
+          "Final repair speed proves upstream assumptions are healthy enough for scale."
+        ],
+        "correctIndex": 0,
+        "explanation": "A bonus can aim effort at the visible rescue instead of the source condition. The better measure asks whether the need for rescue is shrinking.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A consultant sees a copied best practice fail in a new factory. Which diagnosis fits the door-assembly lesson?",
+        "choices": [
+          "The receiving factory likely used the tool with a different starting belief.",
+          "The old factory must have hidden a better version of the same checklist.",
+          "The copied practice needs more pressure from senior leadership to work."
+        ],
+        "correctIndex": 1,
+        "explanation": "A practice carries hidden assumptions. When the setting changes, the visible move can lose the premise that made it effective in the original system.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A quality team asks what to do before adding another inspection step. Which answer is best?",
+        "choices": [
+          "Interview the inspectors until they agree on a better late-stage script.",
+          "Publish the defect rate so every department understands the visible pain.",
+          "Find the decision that makes inspection necessary, then test that decision first."
+        ],
+        "correctIndex": 2,
+        "explanation": "Another inspection step may catch more failures without changing why failures appear. The source move finds and tests the earlier decision.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "Why does the rubber mallet matter in the car-door story?",
+      "back": "It makes late repair visible. The deeper issue is the unseen design and assembly premise that required the repair in the first place.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What changes when a team inspects source assumptions before fixes?",
+      "back": "The team moves effort to the place where outcomes begin, so repeated defects stop being treated as separate emergencies.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "Why can better data still miss the cause of failure?",
+      "back": "Data can count the visible symptom with precision while leaving the initial belief, design choice, or process rule unexamined.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "What is the wrong lesson from comparing American and Japanese assembly?",
+      "back": "The wrong lesson is that one factory needs a different finishing technique. The stronger lesson is to question the premise that made finishing work necessary.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "How should repeated repair work be read?",
+      "back": "Repeated repair is evidence of a source condition. Treat it as a clue that the real decision happened earlier than the visible defect.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Audit the First Premise",
+    "coreSkill": "Name the premise before naming the fix. Look at a repeated defect, delay, or complaint, then ask which starting belief makes that outcome likely. The useful repair changes the condition that creates the pattern.",
+    "ifThenPlans": [
+      {
+        "context": "A defect has returned after two quick fixes.",
+        "plan": "If the same flaw returns after a patch, then pause the repair meeting and write the earliest decision that made the flaw likely."
+      },
+      {
+        "context": "A team wants to copy a competitor tactic.",
+        "plan": "If a borrowed method looks attractive, then ask which hidden assumption made it work there before adding it to your system."
+      },
+      {
+        "context": "A dashboard shows a familiar spike.",
+        "plan": "If the chart proves a recurring symptom, then choose one upstream rule to test before funding another response lane."
+      }
+    ],
+    "twentyFourHourChallenge": "Find one recurring correction in your work today and write the starting assumption beside it before you make the next repair.",
+    "weeklyPractice": "For seven days, keep a short premise log: symptom, late fix, earliest cause. Change one earliest cause before adding another late control."
+  },
+  "memorableLines": [
+    {
+      "text": "A clean finish can still hide a broken start.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the main move into a concrete image."
+    },
+    {
+      "text": "If the first premise is wrong, more effort only gives the mistake a louder engine.",
+      "location": "breakdown.deepRead",
+      "why": "It turns the warning into a line readers can remember under pressure."
+    },
+    {
+      "text": "The right repair begins where the defect first entered the work.",
+      "location": "breakdown.fullRead",
+      "why": "It names the practical test readers should carry."
+    }
+  ]
+}

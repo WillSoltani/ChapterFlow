@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-7-habits-of-highly-effective-people-ch05",
+  "number": 5,
+  "title": "Habit 3: Put First Things First",
+  "coreMove": "Put first things first by giving important nonurgent work a protected place before interruptions dress themselves as duty.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "Birmingham oncology unit",
+      "audience": "nurse manager",
+      "stakes": "training may lose to constant urgent coverage",
+      "format": "decision_point",
+      "requiredBeat": "schedule important nonurgent work before urgent gaps take over"
+    },
+    {
+      "domain": "Boise middle school classroom",
+      "audience": "science teacher",
+      "stakes": "lab prep may be buried by email requests",
+      "format": "planning_choice",
+      "requiredBeat": "convert values into a weekly appointment"
+    },
+    {
+      "domain": "Lisbon engineering pod",
+      "audience": "backend lead",
+      "stakes": "a key reliability fix may vanish under minor tickets",
+      "format": "decision_point",
+      "requiredBeat": "protect the high-value block from easy activity"
+    },
+    {
+      "domain": "Charlotte accounting floor",
+      "audience": "controller",
+      "stakes": "month-end pressure may erase process improvement",
+      "format": "decision_point",
+      "requiredBeat": "invest in prevention while numbers demand attention"
+    },
+    {
+      "domain": "Nashville rehearsal room",
+      "audience": "session guitarist",
+      "stakes": "career growth may lose to paid fragments",
+      "format": "planning_choice",
+      "requiredBeat": "honor the role goal before the day fragments"
+    },
+    {
+      "domain": "St. Louis apartment",
+      "audience": "single parent",
+      "stakes": "work messages may consume the only family meal",
+      "format": "decision_point",
+      "requiredBeat": "make a principle-based boundary visible"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-05-21T03:03:10.121Z"
+}

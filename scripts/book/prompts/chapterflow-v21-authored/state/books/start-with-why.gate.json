@@ -1,0 +1,1336 @@
+{
+  "bookId": "start-with-why",
+  "title": "Start With Why",
+  "author": "Simon Sinek",
+  "promotedAt": "2026-05-25T01:56:23.235Z",
+  "chapterCount": 14,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The operations director returns from a Japanese assembly visit with photos of fixtures, training notes, and one uncomfortable observation: the cleanest line had fewer rescue stations. In the conferen…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The supplier council has a scorecard on the screen and a vendor replacement memo in draft. The vice president of supply recalls the American car-door line, where visible correction hid an earlier pre…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When the same customer complaint returns every Friday, which move shows source-assumption thinking?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A product group celebrates a dashboard full of defect counts. What warning fits the American and Japanese door example?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which note should sit beside a team's recurring-defect list?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A plant manager wants to reward the fastest final repair crew. What warning should shape the bonus?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A consultant sees a copied best practice fail in a new factory. Which diagnosis fits the door-assembly lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A quality team asks what to do before adding another inspection step. Which answer is best?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"at the end of\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Find one offer, request, or meeting nudge you use often. Label it price, fear, s"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "A Colgate shelf map covers the category table with whitening, freshness, cavity,"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The Motorola promotion warning shadows the nonprofit appeal beat last year's response after a fear-heavy letter, and the next mailing deadline is close. At the donor review, the development director …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The subscription roadmap meeting opens with a list of small surprises that could lift signups for a week. Product analytics show a matching drop after each novelty wears off. Before the roadmap vote,…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a phone launch relies on celebrity buzz and scarcity after the RAZR peak, what should leaders notice?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit mailer uses fear to lift donations before a deadline. Which boundary keeps the tactic honest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A sales director says a purchase is a purchase. Which reply follows carrots-and-sticks logic?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which campaign result would signal inspiration rather than manipulation?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A gym uses guilt-heavy messages to fill January classes. What question should leadership ask in February?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A software trial adds countdown timers, bonus credits, and peer badges. Which sign would worry a purpose-led team?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A retailer celebrates a weekend bundle that lifts units but lowers repeat visits. What is the best interpretation?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A service-design review has purpose language on the wall and service standards in a separate binder. The director points to the gap before the policy is published. The decision is whether the Golden …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The Golden Circle reshapes a founder's investor deck that opens with market size, growth rate, and a product screenshot. A partner meeting starts in the afternoon. While the team revises the first sl…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The recruiting draft lists tasks, salary range, and remote-work perks. Candidates will see the posting by morning. The hiring manager pauses over the opening paragraph, deciding if the role should be…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An executive wants to copy Apple's tone while selling the same undifferentiated offer. Which risk should the team name?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A startup can explain its product perfectly but cannot say why anyone should care. Which correction fits the model?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement best treats HOW as the middle ring rather than a slogan?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A cafe says it sells coffee, pastries, and Wi-Fi. What would move the message toward WHY first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A design firm lists its methods before its cause. Which revision uses HOW correctly?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A buyer asks why the same product costs more from a purpose-led company. Which answer fits the Golden Circle?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a clear why lets\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Two vendor scorecards look nearly equal, yet the buying committee chair notices the room relax when one supplier is mentioned. In the procurement debrief, she writes trust cues beside the numbers. Be…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A Limbic signal follows a polished executive candidate with clean references, but the panel keeps returning to one uneasy moment from the interview. The offer recommendation is due by four. By four, …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A Limbic signal follows a polished executive candidate with clean references, but the panel keeps returning to one uneasy moment from the interview. The offer recommendation is due by four. By four, …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A Limbic trust frame guides an HR team with a legal memo ready for a policy announcement, while managers expect employee suspicion. In the communications room, the draft starts with compliance langua…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A buyer says a proposal just feels right but struggles to explain why. Which response fits limbic decision-making?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A fundraiser wants to remove all numbers from a donor appeal. Which correction avoids the sloppy takeaway?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team cannot explain why one vendor feels safer than another. What next step uses the limbic-neocortex gap?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement best captures the role of rational proof after a purpose-led appeal?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A board member says the customer story is too emotional for a serious pitch. What response fits the biology frame?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A donor cannot explain why one charity feels more trustworthy. Which follow-up is most useful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A sales deck opens with a belief but offers no proof. What is the disciplined critique?"
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "q01 correct answer is 1.70× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Treat the feeling as a behavior signal, then supply facts that help the buyer explain the choice."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the body often votes\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The Golden Circle leadership huddle has integrity printed at the top of the agenda, but no one can say what it requires on today's customer issue. The chief operating officer circles the word and ask…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Three product bets sit on the strategy offsite wall, each with a confident sponsor and a different fit with WHY, HOW, and WHAT. The chief strategy officer hands out a certainty scale before the portf…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Three product bets sit on the strategy offsite wall, each with a confident sponsor and a different fit with WHY, HOW, and WHAT. The chief strategy officer hands out a certainty scale before the portf…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A Golden Circle refund script protects speed but sounds evasive when read aloud in the support room. The customer promise says something warmer. Before agent training starts, the support director has…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team says its WHY is clear, yet sales, support, and hiring all send different signals. What is the main failure?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "During planning, leaders ask whether a new feature fits the cause. Which evidence would matter most?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit writes five abstract values on the wall. What should happen next?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sign shows consistency rather than cosmetic branding?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A school district says equity guides every decision, then keeps promotion criteria vague. What should happen?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A product promise sounds clear, but support scripts contradict it. What is the alignment failure?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leadership team asks whether consistency means doing the same tactic every year. Which answer is strongest?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the three\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a value that cannot\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At an overbooked gate, the supervisor sees a line of tired passengers and a departure clock moving fast. Clearing the queue would protect the metric, but it could break the service standard the turna…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At an overbooked gate, the supervisor sees a line of tired passengers and a departure clock moving fast. Clearing the queue would protect the metric, but it could break the service standard the turna…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A product roadmap review compares buyer expectations for the Mac maker, Dell, and Creative Technology. The research says customers expect different promises from each name. Before trade-offs are chos…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The enterprise procurement committee has Dell's specification score in front of it, but the users keep asking what happens after something breaks. The purchase order is ready. Before signing, the com…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The enterprise procurement committee has Dell's specification score in front of it, but the users keep asking what happens after something breaks. The purchase order is ready. Before signing, the com…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Creative Technology's launch message opens with strong technical claims for a music device. In the positioning meeting, the strategy group sees the sheet can impress without giving customers a larger…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "After Gordon Bethune changes Continental routines, which behavior would best signal trust to employees?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A technology buyer compares Apple, Dell, and Creative. Which reason would indicate loyalty rather than satisfaction?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A customer service team is polite but changes policies whenever margin drops. What should leaders see?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An executive asks why shared belief should matter when features are superior. Which reply is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which employee reaction shows trust taking root inside a culture?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A bank resolves complaints quickly but customers still expect self-protection. What trust signal is missing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An airline supervisor keeps a hard promise during a storm delay. What does that action build?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A buyer forgives one product flaw from a company they trust. Why?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"reliability says the job\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Buses for the March on Washington are being counted in a church basement while organizers review the call to action. The language could be softened for undecided observers. Before confirmations go ou…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Buses for the March on Washington are being counted in a church basement while organizers review the call to action. The language could be softened for undecided observers. Before confirmations go ou…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A Rogers campaign brief ranks social accounts by follower count, but no one has checked who would act before consensus. The brand strategist marks reach and risk in separate columns. Before outreach …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The growth team has national rollout funding on the agenda and only a handful of strong early-user stories. Cautious buyers keep asking who else has tried it. Before budget is released, the team is d…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A Rogers media strategy review shows TiVo awareness rising while voluntary trial stays weak. The communications team can buy more recognition by Friday. Before approving the spend, communications lea…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "TiVo has clear advantages but struggles to tip. Which lesson should a team draw?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A campaign manager wants everyone to like the same watered-down message. What is the adoption risk?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A city organizer studies the March on Washington. Which move fits the tipping-point logic?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A marketer labels a group early adopters after a demographic report. What should be challenged?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which metric would best show progress before the majority arrives?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A product demo wins praise from tech fans but no one shares the cause. What is still missing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A movement has a powerful moral claim but hides it to avoid opposition. What happens to tipping potential?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"a tipping\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the middle waits for\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Roy Disney's operating team has a production plan full of cost pressure and a creative promise no spreadsheet can fully capture. The next phase starts Monday. The operators face a choice: flatten the…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Jobs and Wozniak are represented by two artifacts in the startup review: a public launch story and a working circuit board. The prototype can impress the room, but roles are still unsettled. Before a…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A product lab praises Steve Jobs while ignoring Steve Wozniak's engineering role. What is the blind spot?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit has a compelling cause and chaotic delivery. Which move fits WHY-type and HOW-type balance?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A COO dismisses the founder's purpose talk as inefficient. What danger appears?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A board asks whether Bill Gates needed Steve Ballmer. Which answer best fits the framework?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which failure mode belongs to a lone WHY-type leader?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A studio founder inspires artists but invoices, rights, and schedules keep breaking. Which partner should be added?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An operations chief builds flawless routines but employees cannot say what future they serve. What is missing?"
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "q03 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Protect the cause while assigning a builder to convert it into routines, roles, and standards."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"there is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a sermon cannot scale\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A Think Different draft sits beside an incentive plan that rewards safe, incremental product choices. The manifesto sounds strong on the wall. Before copy testing starts, marketing leaders ask if pub…"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[3].scenario",
+            "message": "example[3].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Civil-rights organizers have a speech, local committees, church networks, and tr"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A campaign team admires Apple's 1984 spot but treats it as a clever ad format. Which correction fits the cone model?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader says the marketplace only sees products, so internal culture is secondary. What should be challenged?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A movement organizer has a strong speech but no local coordinators. What does the MLK infrastructure example add?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An executive wants more channels for the same confused message. What is the better first move?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which front-line action shows the organization-as-megaphone working?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A campaign reaches millions, yet service interactions contradict it. Which repair comes first?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"is translation under pressure\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "A strategy exercise leaves celery, rice milk, Oreos, and M&Ms written on the boa"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The category calendar includes an Oreo and M&M promotion with attractive exposure. In the planning room, the exposure number looks clean while the basket signal looks muddy. Before the promotion lock…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A Harley-Davidson tattoo photo is pinned beside campaign options in the brand identity meeting. The image is not just logo affection; it reflects years of rider experience and repeated choices. Befor…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Customer research says a community-support campaign sounded like a cash grab because the action came before the explanation. The executive communications team has a response draft ready. Before it po…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Customer research says a community-support campaign sounded like a cash grab because the action came before the explanation. The executive communications team has a response draft ready. Before it po…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A company sponsors an event that draws attention but conflicts with its purpose. Which listening move matters?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Harley-Davidson customers tattoo the logo on their bodies. What does that signal?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A strategist wants to use symbols without changing decisions. What is the flaw?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When two tactics both promise growth, how should a purpose-led team choose?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader says communication is about speaking clearly. What addition fits communication as listening?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A conference sponsor rejects a flashy booth because it would confuse its wellness cause. What did the team practice?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A brand survey shows people heard hypocrisy after a partnership announcement. What should listening trigger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants customers to tattoo its logo someday. Which condition matters first?"
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "q01 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Choose the items that visibly fit the stated belief, even if the basket is narrower."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"celery and rice milk\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The premium platform spreadsheet shows attractive margins and channel capacity. Product planners can defend the investment with numbers, but the purpose fit remains vague. Before development money is…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The premium platform spreadsheet shows attractive margins and channel capacity. Product planners can defend the investment with numbers, but the purpose fit remains vague. Before development money is…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a Wal-Mart leadership meeting, a Sam Walton story opens the session and then disappears when policy choices begin. The story gets warm nods but no authority. Before rollout, retail leaders test wh…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The finance packet shows strong store performance after Sam Walton, yet no slide asks what belief the results advance. The board meeting is scheduled for the morning. Before the packet is final, the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A Volkswagen category-expansion map shows the company can sell a new product through existing channels. The strategy room likes the access, but the WHY fit is thin. Before concept testing begins, str…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A Volkswagen category-expansion map shows the company can sell a new product through existing channels. The strategy room likes the access, but the WHY fit is thin. Before concept testing begins, str…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Purpose cards from an executive offsite disagree in subtle but important ways. The senior team wants to move on to more WHATs, because the wording feels close enough. Before strategy work resumes, le…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A brand team says customers still recognize the products, so purpose drift is harmless. What should be challenged?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An executive proposes an extension because the numbers look attractive. Which question addresses fuzziness?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A company repeats founder stories at annual meetings but ignores them in trade-offs. What is happening?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sign best shows a WHY going fuzzy before collapse?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A popular brand adds a premium line that sells well but unsettles loyal customers. What should leaders ask?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A retailer repeats founder sayings while store incentives reward the opposite behavior. What is the issue?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A strategy team cannot explain which future opportunities the WHY would reject. What does that reveal?"
+          },
+          {
+            "catalogId": "C20.what_to_do_overlap",
+            "severity": "major",
+            "unit": "example[2].whatToDo",
+            "message": "whatToDo shares 73% of its content words with the scenario — rewrite to add new instruction the scenario does not already contain",
+            "evidence": "Wal-Mart leaders turn the Walton story into a present rule for policy. The origin story must decide something now or it "
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"a fuzzy\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"success can keep the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "The split is not succession by title. It is the gap between operational continuity and belief continuity after the person who carried the WHY is no longer central.\n\nMicrosoft after Bill Gates gives t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Division leaders bring separate roadmaps to a portfolio-funding table. Each line has its own metric, and each metric looks reasonable alone. Before funding is renewed, division leaders test whether t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A board treats succession as the only threat to inspiration. Which correction fits the source notes?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leadership team uses the School Bus Test and realizes one person carries the cause. What should they do?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A COO says process will protect the company even if purpose is vague. What warning applies?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sign shows the split widening?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A successor hits every operating target while customers sense a colder company. Which split signal appears?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A board asks whether the School Bus Test is morbid. What is the useful reading?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead: 2 paragraphs open with \"a company\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"the school\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the school bus test\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Customer interviews have produced a purpose phrase that tests well, but it does not explain the organization's earliest choices. The brand team studies the research in a conference room. Before the p…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A consultant in a three-year slump tries to invent a market-friendly purpose statement. What should happen instead?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team wants customer research to define its WHY. What boundary should be set?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Apple's pre-product cause is used in a workshop. What should participants study?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leadership team discovers a cause that would rule out a tempting opportunity. What is the disciplined reaction?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which artifact best supports WHY discovery?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A workshop team invents a purpose that would have changed none of its past decisions. What is wrong?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A market study suggests a popular cause that conflicts with the founder's history. Which move protects discovery?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead: 2 paragraphs open with \"a why\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a why is uncovered\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A nonprofit annual report draft celebrates size: more donors, more chapters, more reach. Mission leaders compare those gains with Ben Comen's standard of progress against self. Before publication, le…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A company tracks only competitor rank and loses energy when rivals surge. What measure would better fit the final idea?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team improves a process because yesterday's version failed its own promise. Which reading is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which scoreboard best reflects competing against yourself?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A sales team beats its rival but cuts corners that weaken its purpose. What scoreboard would correct the drift?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A company wants employees to stop obsessing over a rival's launch. Which action fits the final move?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"people help a race\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 147
+  },
+  "bookGate": {
+    "bookId": "start-with-why",
+    "chapterCount": 14,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "F4",
+        "severity": "major",
+        "message": "soft-banned phrase \"rather than\" appears 24 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+        "evidence": "rather than"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        42,
+        42,
+        42
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 126,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "start-with-why",
+        "chapterCount": 14,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

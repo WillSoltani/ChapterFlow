@@ -42,11 +42,7 @@ in the catalog metadata at step 7.
 jq 'length' scripts/book/prompts/chapterflow-v21-authored/state/indexes/<BOOK_ID>.json
 ```
 
-Expect a number (the chapter count). If the file doesn't exist, run:
-
-```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/extract-all-chapter-indexes.ts
-```
+Expect a number (the chapter count). If the file doesn't exist, write `state/indexes/<BOOK_ID>.json` by hand (`{ "bookId", "title", "author", "chapters": [{ "number", "title" }, ...] }`). The legacy v13-driven `extract-all-chapter-indexes.ts` helper has been retired now that v13 packages are gone.
 
 ## Step 3 — Generate v21 content
 
@@ -151,11 +147,7 @@ This re-reads the DDB catalog and writes a fresh search index to `<BOOK_CONTENT_
 
 ## Step 10 — Mark this book done in the migration roster
 
-```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/extract-all-chapter-indexes.ts
-```
-
-This re-scans `book-packages/`, sees the new `<BOOK_ID>.v21.json`, and updates `MIGRATION-ROSTER.md` so the book moves from `○ ready` to `✓ shipped`.
+Hand-edit `scripts/book/prompts/chapterflow-v21-authored/MIGRATION-ROSTER.md` and flip the row for `<BOOK_ID>` from `○ ready` to `✓ shipped`. (The legacy `extract-all-chapter-indexes.ts` auto-updater was retired with the v13 corpus.)
 
 ## Step 11 — Report back
 

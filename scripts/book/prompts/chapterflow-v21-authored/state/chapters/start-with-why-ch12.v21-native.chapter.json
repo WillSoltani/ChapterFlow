@@ -1,0 +1,316 @@
+{
+  "chapterId": "start-with-why-ch12",
+  "number": 12,
+  "title": "Split Happens",
+  "readingTimeMinutes": 12,
+  "hook": "Founders leave, the machines keep running, and the cause may not survive.",
+  "counterintuition": "Succession can preserve the job chart and lose the cause. The problem is not departure, but failing to pass on why choices fit.",
+  "tryThisNow": "Write the decision rule someone would use if you vanished from a project tomorrow. If it names only tasks, add the cause.",
+  "keyTakeaway": "Prevent the split by turning founder instinct into shared language, hiring standards, rituals, and decision rules before scale tests it.",
+  "breakdown": {
+    "fastRead": "A company can survive a founder's exit and still lose the judgment that made the company make sense. The machine may keep running while the music changes.\n\nThe split appears when WHAT keeps growing after WHY stops transferring cleanly. Systems remain, but the reason behind them becomes less available.\n\nA company can inherit the machine and lose the music. Professional management can preserve output while the deeper standard becomes harder to hear.\n\nThe School Bus Test asks whether the meaning can walk without the founder. If one person leaving would erase the WHY, the organization has not yet made it portable.",
+    "deepRead": "The split is not succession by title. It is the gap between operational continuity and belief continuity after the person who carried the WHY is no longer central.\n\nMicrosoft after Bill Gates gives the question scale. Products, talent, and systems can remain strong while people debate what the company now stands for.\n\nThe School Bus Test asks whether meaning can walk without its founder. The dramatic image matters because it strips away polite succession language and tests portability.\n\nA hollow system warning appears when processes become cleaner while purpose becomes thinner. The organization looks more mature, but the inner standard is harder to use.\n\nFounder stories can help only if they become judgment. Retelling the story is weaker than converting it into questions people use when trade-offs arrive.\n\nSuccession is a transfer of judgment, not only a transfer of authority. The next leader needs rules, stories, and practices that carry WHY into new choices.\n\nThe portable form of WHY must be boring enough to use. It needs questions, rituals, rules, and trade-off examples that ordinary managers can carry.",
+    "fullRead": "Succession fails when it transfers control without transferring meaning. The organization can keep shipping while losing the reason that once made its choices coherent.\n\nMicrosoft after Bill Gates is useful because the company did not vanish. The issue is subtler than collapse. The issue is whether the WHY stayed clear as leadership changed.\n\nA company can inherit the machine and lose the music. The machine may be valuable, but it cannot tell people why the tune mattered.\n\nThe School Bus Test makes the risk blunt. If the founder disappeared tomorrow, would the organization still know how to choose?\n\nThat question is not morbid. It is practical. A WHY trapped in one person is a fragile asset no matter how strong that person is.\n\nProfessional management can improve order and still deepen the split. Calendars, budgets, reviews, and dashboards help only if they carry the source belief.\n\nA hollow system warning appears when meetings run better but choices feel less connected. The company may become easier to manage and harder to believe.\n\nFounder stories need conversion. A tale about an early sacrifice should become a question managers can ask when a current trade-off appears.\n\nProduct portfolios reveal drift quickly. Each roadmap can make local sense while the whole set stops pointing to the original cause.\n\nSuccession is a transfer of judgment, not only a transfer of authority. Authority lets the successor decide; judgment tells the successor what kind of decision belongs.\n\nThere is a limit. A successor should not imitate the founder's personality. Style imitation can freeze the company and block needed change.\n\nThe goal is not cloning. The goal is to preserve the decision logic that made the cause real, then let new leaders express it in current conditions.\n\nBoards should ask for more than a name. What practices teach WHY? What stories carry judgment? What rules stop a profitable drift?\n\nA split can be prevented only before the emergency. Once the founder is gone, the organization discovers whether it built memory into the system or merely admired the source.\n\nThe School Bus Test is severe because it removes charisma from the equation. People can no longer rely on the founder's instincts, mood, or last-minute call. What remains is the actual transfer: the stories people know, the standards they practice, the questions they ask, and the refusals they understand. If those are missing, the organization may keep operating while the split widens."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Gates Handoff Test",
+      "tags": [
+        "split",
+        "Microsoft"
+      ],
+      "planSpec": {
+        "domain": "technology company",
+        "audience": "board leaders",
+        "stakes": "purpose transfer",
+        "format": "decision_point",
+        "requiredBeat": "Transfer founder judgment"
+      },
+      "scenario": "A technology board reviews a leadership handoff while the product machine still looks healthy. The Microsoft example sits in the background: output can continue after founder judgment grows less portable. Before the handoff is approved, directors need to decide how the founder's WHY will live in standards, not memory alone.",
+      "whatToDo": "The technology board embeds founder judgment into standards before approving the handoff. Output strength is not treated as proof that WHY transferred.",
+      "whyItMatters": "The split hides behind continuity. Products can keep moving while the decision logic that gave them meaning becomes less portable."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "School Bus Stress Test",
+      "tags": [
+        "School Bus Test",
+        "succession"
+      ],
+      "planSpec": {
+        "domain": "leadership risk",
+        "audience": "executive team",
+        "stakes": "single-point purpose risk",
+        "format": "decision_point",
+        "requiredBeat": "Cause survives absence"
+      },
+      "scenario": "The School Bus Test lands awkwardly in the succession workshop. Executives smile at first, then notice how many calls still depend on the founder's instinct. Before planning continues, the executive team needs to decide what questions and routines would let the organization choose well without that person in the room.",
+      "whatToDo": "The executive team takes the School Bus Test seriously. Succession planning names how the WHY would guide choices without the founder present.",
+      "whyItMatters": "Meaning must outlive the person who first carried it. The test exposes whether purpose is in the system or only in the leader."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Hollow System Warning",
+      "tags": [
+        "professional systems",
+        "management"
+      ],
+      "planSpec": {
+        "domain": "professional management",
+        "audience": "operating leaders",
+        "stakes": "efficient emptiness",
+        "format": "decision_point",
+        "requiredBeat": "Systems serve WHY"
+      },
+      "scenario": "A Microsoft management cadence has made the company cleaner, faster, and easier to monitor. In the operating review, the dashboards look mature while the cause behind them feels faint. Before the cadence becomes permanent, managers need to decide which systems carry WHY and which systems only polish control.",
+      "whatToDo": "The management team attaches each operating cadence to the WHY it serves. Processes that cannot explain their source are revised.",
+      "whyItMatters": "A system can look mature while becoming hollow. The split grows when professional order replaces judgment instead of carrying it."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Story Becomes Judgment",
+      "tags": [
+        "culture transfer",
+        "founder stories"
+      ],
+      "planSpec": {
+        "domain": "organizational culture",
+        "audience": "HR leaders",
+        "stakes": "memory without use",
+        "format": "decision_point",
+        "requiredBeat": "Story becomes decision tool"
+      },
+      "scenario": "The School Bus Test reaches the onboarding room has founder stories ready for new managers, but the stories end as inspiration instead of judgment. The HR team reviews trade-off examples from recent decisions. Before the next class begins, it needs to decide how stories become questions managers can use when the founder is absent.",
+      "whatToDo": "The HR team converts founder stories into decision questions for managers. Onboarding teaches judgment, not only admiration.",
+      "whyItMatters": "Stories preserve WHY only when people can use them. Retelling alone does not help a manager choose under pressure."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Product Portfolio Drift",
+      "tags": [
+        "WHAT drift",
+        "Microsoft"
+      ],
+      "planSpec": {
+        "domain": "product strategy",
+        "audience": "division leaders",
+        "stakes": "fragmented priorities",
+        "format": "decision_point",
+        "requiredBeat": "Outputs trace to one WHY"
+      },
+      "scenario": "Division leaders bring separate roadmaps to a portfolio-funding table. Each line has its own metric, and each metric looks reasonable alone. Before funding is renewed, division leaders test whether the public promises still trace back to the original cause or merely satisfy local scorecards.",
+      "whatToDo": "Division leaders trace each roadmap promise back to the original cause before funding. Local metrics do not get to define fit alone.",
+      "whyItMatters": "Portfolio drift can look rational one product at a time. The split appears when many sensible WHATs no longer share a center."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Successor Trade-Off",
+      "tags": [
+        "succession",
+        "decision rules"
+      ],
+      "planSpec": {
+        "domain": "executive succession",
+        "audience": "new CEO",
+        "stakes": "hard choice after founder",
+        "format": "decision_point",
+        "requiredBeat": "Decision rule after founder"
+      },
+      "scenario": "The School Bus Test asks whether a successor can imitate the founder's style, follow the financial model, or apply the transferred WHY to a new trade-off. The CEO announcement is ready. Before it goes public, the board needs to decide what kind of judgment the transition is really transferring.",
+      "whatToDo": "The successor uses transferred WHY rules to make the public decision. Founder style and pure model obedience are both treated as incomplete.",
+      "whyItMatters": "Succession needs judgment, not mimicry. The new leader protects continuity by applying the cause to a fresh trade-off."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A founder leaves, the systems keep running, and the company still ships, but employees cannot explain the cause. What split has appeared?",
+        "choices": [
+          "The company needs fewer professional managers and more founder stories.",
+          "WHY and WHAT have separated while the machinery continues to produce.",
+          "The product line should expand until a new purpose appears naturally."
+        ],
+        "correctIndex": 1,
+        "explanation": "The split is not a failure of activity. It is the widening gap between the original belief and the structures that now keep producing outputs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A board treats succession as the only threat to inspiration. Which correction fits the source notes?",
+        "choices": [
+          "Professional managers should be avoided because systems weaken every cause.",
+          "The founder should keep all decisions personal to prevent operational drift.",
+          "Succession is dangerous only when culture and rules have not carried the WHY forward."
+        ],
+        "correctIndex": 2,
+        "explanation": "Professional systems are necessary. The risk is that systems scale WHAT without preserving the WHY those systems were meant to serve.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A leadership team uses the School Bus Test and realizes one person carries the cause. What should they do?",
+        "choices": [
+          "Ask the founder to make more speeches so everyone remembers the story.",
+          "Embed the WHY into decision rules and culture before that person is absent.",
+          "Delay delegation until the next generation proves it can copy charisma."
+        ],
+        "correctIndex": 1,
+        "explanation": "The School Bus Test exposes fragility. If one person holds the WHY, the organization needs transfer mechanisms, not more dependence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Microsoft keeps growing after Bill Gates shifts roles, but teams debate what the company stands for. Which issue does the example raise?",
+        "choices": [
+          "Scale can preserve output while weakening shared purpose if transfer is incomplete.",
+          "Strong software companies can rely on market share instead of belief.",
+          "Succession problems disappear when technical talent remains inside."
+        ],
+        "correctIndex": 0,
+        "explanation": "The point is the gap between production strength and purpose clarity. Scale can continue while inspiration becomes harder to locate.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A COO says process will protect the company even if purpose is vague. What warning applies?",
+        "choices": [
+          "Process should replace purpose because it is easier to train.",
+          "Purpose should be saved for recruiting while operations stay neutral.",
+          "Process can become hollow when it no longer serves a remembered cause."
+        ],
+        "correctIndex": 2,
+        "explanation": "Structure is not the enemy; empty structure is. Rules need a WHY to protect, or they turn into machinery that only preserves activity.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Which sign shows the split widening?",
+        "choices": [
+          "Employees can execute the playbook but cannot judge a trade-off by the founding belief.",
+          "Managers debate budgets more often near the end of the fiscal year.",
+          "Customers ask for a new feature that requires a technical roadmap."
+        ],
+        "correctIndex": 0,
+        "explanation": "The split becomes visible when execution remains possible but judgment loses its source. People can run the system without knowing what it is for.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A founder's favorite story still moves employees, but no rule preserves its lesson. What should be done?",
+        "choices": [
+          "Ask the founder to retell the story at every quarterly meeting.",
+          "Translate the story into a decision rule others can apply without the founder.",
+          "Keep the story informal so managers can adapt it as needed."
+        ],
+        "correctIndex": 1,
+        "explanation": "Stories can carry WHY, but transfer requires usable rules. The cause needs to survive without depending on one speaker's presence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A successor hits every operating target while customers sense a colder company. Which split signal appears?",
+        "choices": [
+          "The successor needs more authority to ignore founder-era habits.",
+          "Customers are resisting professional systems because they miss the founder.",
+          "WHAT performance remains strong while the original WHY loses force."
+        ],
+        "correctIndex": 2,
+        "explanation": "The split can appear during success. Output metrics may hold while the meaning behind the outputs stops guiding decisions.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A board asks whether the School Bus Test is morbid. What is the useful reading?",
+        "choices": [
+          "It tests whether WHY has moved from one person into culture and judgment.",
+          "It warns that professional managers cannot be trusted with cause.",
+          "It is a dramatic story meant mainly to preserve founder loyalty."
+        ],
+        "correctIndex": 0,
+        "explanation": "The test exposes dependence. If the cause disappears with one person, the organization has not transferred its source of judgment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What is the split?",
+      "back": "It is the gap between the original WHY and the current WHATs when systems keep running but no longer express the cause reliably.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why is succession not the whole problem?",
+      "back": "Leadership transition exposes whether the WHY has been transferred into culture, rules, and judgment beyond one person.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What does the School Bus Test reveal?",
+      "back": "It asks whether the organization would still know its cause if the key carrier disappeared. A fragile answer means transfer has failed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How can professional systems become hollow?",
+      "back": "They can scale outputs while forgetting the belief those outputs were supposed to serve. Efficiency then preserves motion without meaning.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "What should be transferred before scale or succession?",
+      "back": "The WHY must become decision rules, cultural habits, and leadership standards, not just founder memory.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Transfer the Living Cause",
+    "coreSkill": "Identify where the purpose currently lives: person, story, rule, ritual, or metric. Then move one piece of it from memory into a decision standard others can use without the founder in the room.",
+    "ifThenPlans": [
+      {
+        "context": "One leader carries most purpose language.",
+        "plan": "If one person is the source of WHY, then convert one of that person's trade-off stories into a rule the next team can apply."
+      },
+      {
+        "context": "A process works but feels detached.",
+        "plan": "If the machinery runs without meaning, then attach each key step to the belief it was built to protect."
+      },
+      {
+        "context": "Succession planning focuses only on roles.",
+        "plan": "If the handoff plan lists duties but not cause, then add the decisions the successor must judge by WHY."
+      }
+    ],
+    "twentyFourHourChallenge": "Write one decision rule that would preserve the cause if the current leader missed the next meeting.",
+    "weeklyPractice": "For a week, translate one founder-dependent judgment each day into a rule, ritual, or story that another person can use."
+  },
+  "memorableLines": [
+    {
+      "text": "A company can inherit the machine and lose the music.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the main move into a concrete image."
+    },
+    {
+      "text": "The School Bus Test asks whether meaning can walk without its founder.",
+      "location": "breakdown.deepRead",
+      "why": "It turns the warning into a line readers can remember under pressure."
+    },
+    {
+      "text": "Succession is a transfer of judgment, not only a transfer of authority.",
+      "location": "breakdown.fullRead",
+      "why": "It names the practical test readers should carry."
+    }
+  ]
+}

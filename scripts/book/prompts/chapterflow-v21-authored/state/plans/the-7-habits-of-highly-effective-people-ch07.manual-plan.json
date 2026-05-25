@@ -1,0 +1,70 @@
+{
+  "chapterId": "the-7-habits-of-highly-effective-people-ch07",
+  "number": 7,
+  "title": "Habit 4: Think Win/Win",
+  "coreMove": "Think Win/Win by protecting both legitimate wins; courage without consideration dominates, while consideration without courage quietly surrenders.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "Kansas City appliance store",
+      "audience": "store manager",
+      "stakes": "a reward board may pit employees against service",
+      "format": "decision_point",
+      "requiredBeat": "align incentives with mutual benefit"
+    },
+    {
+      "domain": "Delft robotics lab",
+      "audience": "project engineer",
+      "stakes": "one shared rig may create resentment",
+      "format": "dilemma",
+      "requiredBeat": "use No Deal instead of forced compromise"
+    },
+    {
+      "domain": "Glasgow rowing club",
+      "audience": "club treasurer",
+      "stakes": "fee relief may divide members",
+      "format": "decision_point",
+      "requiredBeat": "seek a solution that preserves dignity and fairness"
+    },
+    {
+      "domain": "New Orleans event kitchen",
+      "audience": "catering owner",
+      "stakes": "a client demand may damage staff and reputation",
+      "format": "decision_point",
+      "requiredBeat": "renegotiate around shared success"
+    },
+    {
+      "domain": "Copenhagen language school",
+      "audience": "program coordinator",
+      "stakes": "popular classes may create internal rivalry",
+      "format": "planning_choice",
+      "requiredBeat": "build a shared win into the schedule"
+    },
+    {
+      "domain": "Prague camera shop",
+      "audience": "shop owner",
+      "stakes": "a refund request may break policy or trust",
+      "format": "decision_point",
+      "requiredBeat": "hold a clear No Deal without contempt"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-05-21T03:03:10.122Z"
+}

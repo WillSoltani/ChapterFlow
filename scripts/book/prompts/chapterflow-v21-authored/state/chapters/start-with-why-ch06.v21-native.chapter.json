@@ -1,0 +1,316 @@
+{
+  "chapterId": "start-with-why-ch06",
+  "number": 6,
+  "title": "The Emergence of Trust",
+  "readingTimeMinutes": 12,
+  "hook": "Trust forms when a promise still feels safe after the deal is signed.",
+  "counterintuition": "Reliability can earn a repeat order without earning trust. Risk gets easier only when people sense shared values behind the exchange.",
+  "tryThisNow": "Name one relationship where you are reliable but not trusted. Write the value the other person needs to see before the next promise.",
+  "keyTakeaway": "Trust grows when people see the same values inside the culture and outside the offer, especially when short-term pressure tests the promise.",
+  "breakdown": {
+    "fastRead": "Continental did not rebuild trust by polishing a slogan. Gordon Bethune had to make choices employees and passengers could read as proof that the promise had changed.\n\nTrust grows when shared values become safer to rely on than the old shortcuts. People take a small leap because the culture has shown what it protects.\n\nReliability says the job was done; trust says the people are safe with you. A flight can depart on time and still leave passengers unsure what the company values.\n\nThe test is whether employees can act from the promise when pressure rises. If the inside culture does not believe it, the outside market will feel the gap.",
+    "deepRead": "Trust is more than satisfaction. A customer may get the expected service and still hesitate to believe the company will do the right thing when the situation gets messy.\n\nContinental's turnaround matters because the change had to reach employees first. A new public promise would mean little if the gate counter still rewarded the old habits.\n\nA culture cannot sell a promise it does not practice inside. Passengers read delays, overbooked flights, and employee choices as evidence of the real standard.\n\nThe Apple, Dell, and Creative contrast shows how expectation shapes trust. Buyers bring different beliefs to each name, even when the products sit in nearby categories.\n\nShared values lower the cost of taking a small leap. A person chooses with less fear when prior conduct says the company will protect the same thing next time.\n\nThe hard edge is moral, not cosmetic. Trust comes from repeated value-consistent behavior, not friendliness, polish, or a service metric that ignores what people feel at risk.\n\nThe employee side is decisive. If the company asks staff to carry a promise but punishes them for honoring it, the customer will eventually meet that contradiction.",
+    "fullRead": "Trust starts inside the group before it reaches the customer. Employees need to know which promise is real enough to guide a hard call.\n\nContinental's storm and gate-counter examples show why. A delayed flight gives the company a live test. The passenger watches whether the new promise survives inconvenience.\n\nAn overbooked gate can be cleared in many ways. Some are fast. Some preserve dignity. The culture decides which answer looks acceptable to the employee under pressure.\n\nReliability says the job was done; trust says the people are safe with you. On-time numbers matter, but they do not carry the whole relationship.\n\nApple enters the discussion because buyers expect more than a feature. They expect the company to protect a certain experience, even in future choices they cannot yet see.\n\nDell carries another expectation. A buyer may value configuration, efficiency, or directness. The trust standard differs because the belief attached to the name differs.\n\nCreative's music-player lesson shows the cost of technical strength without a larger bond. A strong specification can fail to create a feeling of safety with the company.\n\nShared values lower the cost of taking a small leap. The customer does not need perfect certainty. The customer needs enough evidence to risk choosing again.\n\nThe same rule applies to employees. If a department punishes people for honoring the stated value, the value stops being shared and becomes theater.\n\nThere is a limit. Trust does not excuse weak operations. A sincere airline that loses bags and hides delays will still burn credibility.\n\nThe point is sequence and depth. Competence opens the door. Shared values let people believe the competence will be used in a way they can live with.\n\nLeaders build trust by making the protected value visible in small decisions. The gate agent, product manager, and team lead all need permission to act from the same source.\n\nWhen that permission is absent, the market hears the contradiction. The company may still sell, but each transaction asks people to take the leap again from scratch.\n\nTrust is therefore slow work. It grows through the boring consistency of decisions that cost something. A gate agent protects dignity during an overbooking. A product team rejects a tempting feature that would weaken the experience. A procurement group asks how a vendor acts when trouble appears. None of these moments looks like a grand brand campaign, yet each one teaches people whether the promise is safe."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Continental Storm Promise",
+      "tags": [
+        "trust",
+        "Continental"
+      ],
+      "planSpec": {
+        "domain": "airline turnaround",
+        "audience": "executive team",
+        "stakes": "values under pressure",
+        "format": "decision_point",
+        "requiredBeat": "Value under pressure"
+      },
+      "scenario": "A storm delay has stranded passengers, and Continental's new promise is about to be tested at the airport. The airline operations review includes crews, gate notes, and a draft announcement. Before the delay plan goes out, leadership asks: will the promise survive the inconvenience where employees and passengers can both see it?",
+      "whatToDo": "Continental leadership keeps the delay promise visible to employees and passengers. The plan protects the value even when the storm makes the shortcut tempting.",
+      "whyItMatters": "Trust through shared values appears during strain. People believe the airline when they see the promise survive inconvenience."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Gate Counter Standard",
+      "tags": [
+        "shared values",
+        "front line"
+      ],
+      "planSpec": {
+        "domain": "airport operations",
+        "audience": "front-line managers",
+        "stakes": "policy credibility",
+        "format": "decision_point",
+        "requiredBeat": "Front-line value proof"
+      },
+      "scenario": "At an overbooked gate, the supervisor sees a line of tired passengers and a departure clock moving fast. Clearing the queue would protect the metric, but it could break the service standard the turnaround depends on. Boarding begins soon, and the supervisor needs to pick the action that preserves trust under public pressure.",
+      "whatToDo": "The gate supervisor chooses the slower answer that honors the new standard. Queue speed is managed without letting passengers absorb a broken promise.",
+      "whyItMatters": "Operational success is not the same as trust. The gate counter shows whether the culture will protect people when pressure is public."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Apple Trust Expectation",
+      "tags": [
+        "Apple",
+        "loyalty"
+      ],
+      "planSpec": {
+        "domain": "consumer technology",
+        "audience": "brand leaders",
+        "stakes": "loyalty versus satisfaction",
+        "format": "decision_point",
+        "requiredBeat": "Expectation beyond satisfaction"
+      },
+      "scenario": "A product roadmap review compares buyer expectations for the Mac maker, Dell, and Creative Technology. The research says customers expect different promises from each name. Before trade-offs are chosen, the product team is deciding which future choices will keep protecting the experience customers already trust.",
+      "whatToDo": "The Apple product team asks which roadmap trade-offs keep protecting the expected experience. New features must fit the belief buyers already trust.",
+      "whyItMatters": "Trust carries future expectation. Customers choose Apple partly because they believe later choices will still serve the same value."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Dell Feature Boundary",
+      "tags": [
+        "features",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "enterprise buying",
+        "audience": "procurement team",
+        "stakes": "feature-only scorecard",
+        "format": "decision_point",
+        "requiredBeat": "Trust beyond feature parity"
+      },
+      "scenario": "The enterprise procurement committee has Dell's specification score in front of it, but the users keep asking what happens after something breaks. The purchase order is ready. Before signing, the committee asks: is the feature score enough, or does vendor behavior during trouble belong in the evaluation?",
+      "whatToDo": "The procurement committee adds values-in-trouble evidence to the Dell review. Specification scores are weighed beside how the vendor behaves when problems appear.",
+      "whyItMatters": "Trust matters most after the purchase order. A buyer needs to know whether performance will be backed by conduct when the spreadsheet stops helping."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Creative Music Lesson",
+      "tags": [
+        "Creative Technology",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "music devices",
+        "audience": "product strategists",
+        "stakes": "category confusion",
+        "format": "decision_point",
+        "requiredBeat": "Belief gives features context"
+      },
+      "scenario": "Creative Technology's launch message opens with strong technical claims for a music device. In the positioning meeting, the strategy group sees the sheet can impress without giving customers a larger belief. Before approval, the group needs to decide what value the company can be trusted to protect after the launch.",
+      "whatToDo": "The Creative strategy group names the customer value before approving the launch message. Technical strength has to serve a belief people can rely on.",
+      "whyItMatters": "A device can be impressive without earning trust. Shared values give customers a reason to see the company as safe, not merely capable."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Shortcut Challenge Culture",
+      "tags": [
+        "culture",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "employee culture",
+        "audience": "department heads",
+        "stakes": "internal trust",
+        "format": "decision_point",
+        "requiredBeat": "Employee challenge proves culture"
+      },
+      "scenario": "Inside an operations meeting, a department head can save the week by taking a shortcut that contradicts the stated value. An employee quietly points out the conflict. The plan is due before close of business, and the head is deciding whether urgency or the shared standard will teach the culture what is real.",
+      "whatToDo": "The department head honors the employee challenge as evidence of the culture. Urgency is not allowed to erase the value the team claims to share.",
+      "whyItMatters": "Inside behavior teaches the outside promise. Trust grows when employees see that the stated value has authority over shortcuts."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A struggling airline improves schedules but employees still distrust leadership. Which missing ingredient fits the trust argument?",
+        "choices": [
+          "Customers should receive bigger perks so employees infer trust from revenue.",
+          "More on-time data should replace culture talk until morale improves.",
+          "Shared values must become visible enough that people expect leaders to protect the relationship."
+        ],
+        "correctIndex": 2,
+        "explanation": "Competence matters, but trust grows when people believe leaders will act from familiar values under pressure. Operational gains alone do not create that belief.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "After Gordon Bethune changes Continental routines, which behavior would best signal trust to employees?",
+        "choices": [
+          "A larger advertising buy that tells customers the airline is friendlier.",
+          "A public choice that sacrifices a short-term win to honor the new shared standard.",
+          "A private memo asking staff to wait for trust until profits stabilize."
+        ],
+        "correctIndex": 1,
+        "explanation": "Trust needs repeated evidence that the stated values govern hard calls. A costly public choice can show that the relationship is not merely a performance tactic.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A technology buyer compares Apple, Dell, and Creative. Which reason would indicate loyalty rather than satisfaction?",
+        "choices": [
+          "The buyer expects the company to keep acting from a belief they share.",
+          "The buyer liked the purchase enough to avoid complaining afterward.",
+          "The buyer found the lowest price after checking three feature lists."
+        ],
+        "correctIndex": 0,
+        "explanation": "Satisfaction can be transactional. Loyalty carries an expectation about future behavior because the buyer sees a familiar belief behind the product.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A customer service team is polite but changes policies whenever margin drops. What should leaders see?",
+        "choices": [
+          "Customers mainly need one more apology script after each policy shift.",
+          "Friendly tone is enough if complaint scores improve next month.",
+          "Polish can mask a weak value signal when pressure changes the rules."
+        ],
+        "correctIndex": 2,
+        "explanation": "Trust is not the same as pleasant interaction. People watch whether the organization keeps faith with its values when money or speed tests the relationship.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "An executive asks why shared belief should matter when features are superior. Which reply is strongest?",
+        "choices": [
+          "Features should be hidden until customers show emotional commitment.",
+          "Features can win a comparison, but shared belief predicts forgiveness, return, and advocacy.",
+          "Shared belief matters only for charities and lifestyle brands."
+        ],
+        "correctIndex": 1,
+        "explanation": "A superior feature can prompt a purchase. Trust makes people stay, recommend, and give the organization room when a problem appears.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Which employee reaction shows trust taking root inside a culture?",
+        "choices": [
+          "Staff challenge a shortcut because it violates the values leadership has repeatedly honored.",
+          "Staff follow scripts because the new compliance tracker is more visible.",
+          "Staff wait silently for leaders to reveal the next incentive program."
+        ],
+        "correctIndex": 0,
+        "explanation": "Trust becomes cultural when people use shared values to govern behavior without waiting for a reward or threat. The standard has moved inside the group.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A bank resolves complaints quickly but customers still expect self-protection. What trust signal is missing?",
+        "choices": [
+          "A smoother apology script should make the relationship feel warmer.",
+          "The bank should reduce complaint time until suspicion disappears by itself.",
+          "Customers need proof the bank will protect shared values when profit is tempting."
+        ],
+        "correctIndex": 2,
+        "explanation": "Speed can satisfy a transaction without creating trust. Customers need evidence that the bank will act from values when pressure tempts another path.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "An airline supervisor keeps a hard promise during a storm delay. What does that action build?",
+        "choices": [
+          "It proves the script can sound calm during difficult hours.",
+          "It gives employees and passengers evidence of predictable values under stress.",
+          "It shows that operational excellence matters more than shared belief."
+        ],
+        "correctIndex": 1,
+        "explanation": "Trust takes root when values remain visible under strain. The storm delay becomes evidence that the standard survives inconvenient conditions.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A buyer forgives one product flaw from a company they trust. Why?",
+        "choices": [
+          "A history of aligned behavior lets one mistake be read inside a trusted pattern.",
+          "The company promised a discount after the failure became public.",
+          "The flaw is ignored because loyal buyers stop judging performance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Trust does not erase failure. It gives people a larger pattern for interpreting failure, which can preserve the relationship long enough for repair.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What makes trust different from satisfaction?",
+      "back": "Satisfaction says a transaction worked. Trust says the other party is expected to act from familiar values when the next pressure arrives.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why does competence alone not create loyalty?",
+      "back": "Competence can earn respect, but loyalty depends on shared belief and repeated proof that the relationship will be protected.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What does Continental illustrate about trust?",
+      "back": "Operational improvement mattered, but the deeper work was restoring confidence that leadership and employees were acting from shared standards.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How can polite service still fail the trust test?",
+      "back": "A pleasant tone cannot compensate for choices that abandon values under pressure. People read behavior more than polish.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "Why do loyal customers forgive more?",
+      "back": "They interpret mistakes through a known belief and a history of aligned behavior, so one failure does not erase the relationship.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Make Values Predictable",
+    "coreSkill": "Choose one relationship where competence is present but trust feels thin. Identify the value the other party needs to see protected. Then make one decision that proves the value even when a faster option is available.",
+    "ifThenPlans": [
+      {
+        "context": "A team asks for proof that leadership means it.",
+        "plan": "If trust is low after a change, then choose one visible trade-off that protects the stated value before asking for patience."
+      },
+      {
+        "context": "A customer policy saves money but violates a promise.",
+        "plan": "If margin pressure threatens a relationship standard, then explain the value at stake and pick the option that people could trust next time."
+      },
+      {
+        "context": "An employee challenges a shortcut.",
+        "plan": "If someone names a value conflict, then treat the challenge as culture evidence and decide in public against the shortcut or against the value."
+      }
+    ],
+    "twentyFourHourChallenge": "Make one small promise today and keep it exactly. Use the kept promise as evidence, not as a speech about trust.",
+    "weeklyPractice": "For a week, note one pressure moment each day and record whether your action made your values more predictable or less predictable."
+  },
+  "memorableLines": [
+    {
+      "text": "Reliability says the job was done; trust says the people are safe with you.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the main move into a concrete image."
+    },
+    {
+      "text": "A culture cannot sell a promise it does not practice inside.",
+      "location": "breakdown.deepRead",
+      "why": "It turns the warning into a line readers can remember under pressure."
+    },
+    {
+      "text": "Shared values lower the cost of taking a small leap.",
+      "location": "breakdown.fullRead",
+      "why": "It names the practical test readers should carry."
+    }
+  ]
+}

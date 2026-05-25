@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-7-habits-of-highly-effective-people-ch01",
+  "number": 1,
+  "title": "Inside-Out",
+  "coreMove": "Change the map before polishing the route; when perception shifts, behavior follows from a truer picture instead of a better disguise in public.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "New York subway car",
+      "audience": "commuter",
+      "stakes": "a loud ride may become a public confrontation",
+      "format": "decision_point",
+      "requiredBeat": "pause for a missing fact before correcting strangers"
+    },
+    {
+      "domain": "Portland product studio",
+      "audience": "design lead",
+      "stakes": "a rushed critique may kill the strongest option",
+      "format": "decision_point",
+      "requiredBeat": "name the hidden assumption behind the first reaction"
+    },
+    {
+      "domain": "Atlanta kitchen table",
+      "audience": "parent",
+      "stakes": "homework may become a fight about character",
+      "format": "decision_point",
+      "requiredBeat": "separate performance from worth before speaking"
+    },
+    {
+      "domain": "Boston transit office",
+      "audience": "service supervisor",
+      "stakes": "angry commuters expect an immediate explanation",
+      "format": "dilemma",
+      "requiredBeat": "find the service reality beneath the complaint"
+    },
+    {
+      "domain": "Chicago interview room",
+      "audience": "hiring manager",
+      "stakes": "one quiet answer may sink a strong candidate",
+      "format": "decision_point",
+      "requiredBeat": "check the interpretation before scoring the person"
+    },
+    {
+      "domain": "Dallas newsroom",
+      "audience": "city editor",
+      "stakes": "a correction may be treated as embarrassment or service",
+      "format": "decision_point",
+      "requiredBeat": "choose the frame that serves principle over image"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "understand": 1,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-05-21T03:03:10.120Z"
+}

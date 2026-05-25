@@ -68,11 +68,7 @@ If any are missing, do this once before doing the book:
    ```
    Expect `{"ok": true, ...}`. If not, the user needs to install `claude` CLI (`npm i -g @anthropic-ai/claude-code` then `claude /login`) or set `CHAPTERFLOW_PROVIDER` + an API key.
 
-2. **Extract the chapter index from the v13 package:**
-   ```bash
-   npx tsx scripts/book/prompts/chapterflow-v21-authored/src/scratch/extract-chapter-index.ts <BOOK_ID>
-   ```
-   This reads `book-packages/<BOOK_ID>.modern.json` and writes `state/indexes/<BOOK_ID>.json`. Confirm the chapter count and titles look right; if any are wrong, edit the index file by hand before proceeding.
+2. **Confirm a chapter index exists for the book.** Pre-built indexes live at `state/indexes/<BOOK_ID>.json`. v13 packages and the `extract-chapter-index.ts` helper have been retired — for any new book without a pre-built index, write `state/indexes/<BOOK_ID>.json` by hand (`{ "bookId", "title", "author", "chapters": [{ "number", "title" }, ...] }`).
 
 3. **Run the pipeline. This takes ~14 minutes per chapter.** A 25-chapter book is ~6 hours sequential. Use a background task and monitor for milestones:
    ```bash

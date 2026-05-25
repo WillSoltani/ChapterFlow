@@ -1,0 +1,37 @@
+{
+  "bookId": "the-7-habits-of-highly-effective-people",
+  "chapterCount": 11,
+  "passed": true,
+  "findings": [],
+  "stats": {
+    "answerPositionCounts": [
+      33,
+      33,
+      33
+    ],
+    "answerPositionPctMax": 0.3333333333333333,
+    "totalQuizQuestions": 99,
+    "duplicatedNames": [],
+    "duplicatedHookOpeners": [],
+    "schemaInconsistencies": [],
+    "patternAudit": {
+      "bookId": "the-7-habits-of-highly-effective-people",
+      "chapterCount": 11,
+      "passed": true,
+      "findings": [],
+      "stats": {
+        "repeatedQuizExplanationGroups": 0,
+        "repeatedSurfaceFrameGroups": 0,
+        "repeatedExampleFrameGroups": 0,
+        "repeatedConcreteAnchors": 0,
+        "templatedBreakdownShellGroups": 0,
+        "shortParagraphDuplicateGroups": 0,
+        "literalSubstringGroups": 0,
+        "quizPositionTemplateDuplicates": 0,
+        "missingPlanChapters": [],
+        "missingBrief": false,
+        "sourceAlignmentWarnings": 0
+      }
+    }
+  }
+}

@@ -52,7 +52,11 @@ infra/lib/lambdas/*/node_modules/
 node_modules/
 .next/
 .next-chapterflow/
+.next-chapterflow-bookcheck/
 .open-next/
+
+# CDK build artifacts — compiled TS output from infra/tsconfig.json
+infra/dist/
 
 # Claude Code local working state — worktrees, agent cache, todos, MCP config
 .claude/
