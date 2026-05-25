@@ -6,6 +6,67 @@ When you finish, every chapter the user assigned you exists at `state/chapters/<
 
 ---
 
+## How to produce a great chapter — composition rubric
+
+Read this FIRST. The forbidden-moves catalog below this section exists because writer agents kept reaching for templates instead of writing from source. The single best way to avoid every forbidden move is to **anchor every field in this chapter's source sidecar** before composing.
+
+### Step 0 — Source notes (read before writing anything)
+
+Open `.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`. Note the following fields:
+
+- `namedExamples[*].label` + `summary` — Real-world cases the author uses in THIS chapter (e.g., for Start With Why Ch1: "American and Japanese car-door assembly"; for 7 Habits Ch1: "New York subway father").
+- `centralConcept.name` + `plainDefinition` — The chapter's anchoring framework (e.g., "Golden Circle", "inside-out change", "Circle of Influence").
+- `hardEdge` — The strict reading of the chapter's idea that the writer must preserve.
+- `paraphraseNotes` — The author's distinctive language, voice patterns, technical anchors.
+
+Every field you write must use specific terminology and proper nouns from these sources. A scenario that could appear in any chapter of any book is wrong — it's drifted from the source and is the root cause of every templating defect downstream.
+
+### Scenarios (`examples[i].scenario`)
+
+1. Anchor in ONE of this chapter's `namedExamples` or its `centralConcept`. Each scenario should reference at least one proper noun from the sidecar — a real company, person, product, place, or framework name. `SC9` fires at chapter-gate time if a scenario contains no source-grounded anchor.
+2. Use a DIFFERENT scene structure across scenarios — vary opener style (time-first, place-first, dialogue-led, data-first, role-action), vary protagonist role, vary stakes. Do NOT use the same skeleton with different nouns substituted.
+3. 80–140 words per scenario.
+
+### Quiz `correctIndex` per chapter
+
+1. After writing the 9 questions, score each choice independently for correctness.
+2. Distribute `correctIndex` across positions 0/1/2 with a balanced count (3-3-3 ideal; 4-3-2 acceptable; never 5+ of one position).
+3. Your chapter's full 9-element sequence must be DIFFERENT from every prior chapter's. `AS12` fires at chapter-gate time on duplicates.
+4. If you wrote choices such that the correct answer lands at the same sequence as a prior chapter, REORDER the `choices` array (don't change content) so the correct answer moves to a different position.
+
+### Breakdown tiers (`breakdown.fastRead` / `deepRead` / `fullRead`)
+
+1. `fastRead`: open with the anchoring scene + the rule. ~200 words.
+2. `deepRead`: open with the MECHANISM (why the rule works in this chapter's terms), then a second scene. ~500 words. **First sentence MUST differ from fastRead** (`E2` blocker).
+3. `fullRead`: open with a THIRD ANGLE — limits, scope, contrasting case. ~900 words. **First sentence MUST differ from fastRead AND deepRead** (`E2` blocker).
+4. No paragraph in any tier may appear verbatim in any other chapter's breakdown (`AS11` blocker). Each paragraph must be specific to THIS chapter's source notes.
+5. No stock 5-token connective phrase that appears in ≥2 prior chapters' breakdowns (`AS10` blocker). If you find yourself reaching for "the practical edge of", "must decide whether to", "the team has to choose", stop — pick different connective language for THIS chapter.
+
+### Cards + plan + whatToDo + whyItMatters
+
+Same source-grounding principle: each chapter's cards/plan/example explanations reference its specific `centralConcept` terms and `namedExamples`. No skeleton with chapter-name slots.
+
+### MANDATORY: gate-chapter between every chapter
+
+After writing each chapter and BEFORE starting the next, run:
+
+```bash
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+  gate-chapter state/chapters/<chapterId>.v21-native.chapter.json
+```
+
+If it reports >0 blockers, FIX THIS CHAPTER COMPLETELY before moving on. The chapter-time gate catches templating at scale-1, not scale-N — defer the gate until the end and you'll discover 14 chapters of templated content that requires another full rewrite.
+
+### After all chapters — use `book-gate <bookId>` to QC
+
+```bash
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts book-gate <bookId>
+```
+
+This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs the full book-level pattern audit. Must report 0 blockers before reporting Step 2 complete.
+
+---
+
 ## CRITICAL — read this section before anything else. Do not skip.
 
 The pipeline has cross-chapter audits that fire when your chapters share phrases, openers, prompt skeletons, or proper-noun patterns with other chapters of the same book. **These audits exist because cross-chapter sameness ruins reader experience.** When an audit fires, the right answer is always to **rewrite the offending field as a different sentence with different words from a different angle**.
@@ -54,6 +115,7 @@ NEVER write `..` followed by a capital letter as a sentence boundary. Use a sing
 | `AS12` | quiz `correctIndex` sequence identical to any prior chapter's sequence | sequence match → BLOCKER |
 | `BP24` | breakdown tier verbatim copy-paste within a chapter (FastRead/DeepRead/FullRead) | ≥150 chars contiguous verbatim → BLOCKER |
 | `E2` | the three breakdown tiers (fastRead/deepRead/fullRead) opening with the same first sentence | identical first sentence across any 2 tiers → BLOCKER |
+| `SC9` | example scenario must reference a proper-noun anchor from the chapter's source sidecar (namedExamples, centralConcept, hardEdge, paraphraseNotes) | scenario contains zero source anchors → MAJOR |
 
 `AS5`–`AS9` use **word-multiset similarity** so noun swaps don't evade. `AS10`–`AS11` use **literal verbatim** matching — they catch stock phrases that sit under the multiset thresholds. `AS12` is a structural-position check; `E2` is a tier-progression check. Together they cover the literal-verbatim, paragraph-verbatim, structural-position, and tier-progression gaps that multiset thresholds can't reach.
 
@@ -548,6 +610,7 @@ The gate prints:
 | BP24 | Breakdown tier ≥150 chars verbatim shared with another tier of the same chapter | Tiers must LAYER content. Rewrite the longer tier to extend the shorter one with new examples and mechanism, not duplicate prose. |
 | E1 | Reading level too academic | Use plainer words |
 | E2 (blocker) | Two of the three breakdown tiers open with an identical first sentence | Each tier must open with a different first sentence. fastRead opens with the scene + rule. deepRead opens with mechanism. fullRead opens with a third angle or scope-of-applicability frame. |
+| SC9 (major) | This chapter's example scenario contains no proper-noun anchor from the source sidecar (namedExamples, centralConcept, hardEdge, paraphraseNotes) | Rewrite the scenario to reference a real entity from THIS chapter's source notes — a company, person, product, place, or framework name. Invented characters at invented locations drift into templating because they aren't tethered to source material. |
 
 Iterate until PASS. When PASS, advance to the next chapter.
 

@@ -83,6 +83,11 @@ Commands:
                                      Codex sessions writing inline) and wants to validate
                                      output before saving / before assembling a book package.
                                      Exits 0 if no blockers; non-zero otherwise.
+  book-gate <bookId>                 Run the full book gate against every chapter on disk for
+                                     <bookId>. Auto-runs derive-artifacts first so the brief +
+                                     plan checks (BP7) don't false-fire. The default standalone
+                                     way to QC an assembled book without invoking generate-book.
+                                     Exits 0 if no blockers; non-zero otherwise.
   help                               This message
 
 Examples:
@@ -719,6 +724,66 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   return result.promoted ? 0 : 1;
 }
 
+/** `book-gate <bookId>` — standalone book-gate runner.
+ *
+ *  Loads every state/chapters/<bookId>-ch*.v21-native.chapter.json file,
+ *  auto-derives brief + plan artifacts (so BP7 doesn't false-fire on the
+ *  manual workflow), and runs runBookGate. Exits 0 on PASS, 1 on BLOCK.
+ *
+ *  Added May 2026 after the SWW post-mortem to eliminate the "forgot to
+ *  run derive-artifacts" failure mode. Operators and writer agents can
+ *  now QC an assembled book with one command. */
+async function runBookGate(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: book-gate <bookId>");
+    return 2;
+  }
+  const STATE_DIR = resolve(__dirname, "../state");
+  const chaptersDir = resolve(STATE_DIR, "chapters");
+  if (!existsSyncFs(chaptersDir)) {
+    console.error(`Chapters directory not found: ${chaptersDir}`);
+    return 2;
+  }
+  const pattern = new RegExp(`^${escapeRegex(bookId)}-ch\\d{1,3}\\.v21-native\\.chapter\\.json$`);
+  const chapterFiles = readdirSync(chaptersDir)
+    .filter((f) => pattern.test(f))
+    .sort();
+  if (chapterFiles.length === 0) {
+    console.error(`No chapters found for book "${bookId}" under ${chaptersDir}`);
+    return 2;
+  }
+
+  // Auto-derive brief + plan artifacts. BP7 (book gate) fails closed
+  // without these, but derive-artifacts is a deterministic side-effect-
+  // free pass over what's already on disk, so it's safe to run
+  // unconditionally on every book-gate invocation. Eliminates the
+  // recurring "derive-artifacts forgotten" defect that turned book-gate
+  // into a 2-blocker false alarm every time.
+  console.log(`Auto-deriving brief + plan artifacts for ${bookId} (so BP7 doesn't false-fire)...`);
+  const deriveCode = await runDeriveArtifacts([bookId]);
+  if (deriveCode !== 0) {
+    console.error(`derive-artifacts failed for ${bookId}; aborting book-gate.`);
+    return deriveCode;
+  }
+  console.log("");
+
+  const chapters: ChapterV21[] = [];
+  for (const f of chapterFiles) {
+    try {
+      chapters.push(JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21);
+    } catch (err) {
+      console.error(`Could not parse ${f}: ${(err as Error).message}`);
+      return 2;
+    }
+  }
+
+  const { runBookGate: runBookGateCritic, formatBookGateReport } = await import("./critics/bookGate.js");
+  const report = runBookGateCritic(bookId, chapters);
+  console.log(formatBookGateReport(report));
+  return report.passed ? 0 : 1;
+}
+
 async function runGateChapter(args: string[]): Promise<number> {
   const chapterFile = args[0];
   if (!chapterFile) {
@@ -923,6 +988,8 @@ async function main() {
       return runPromoteBook(args, flags);
     case "gate-chapter":
       return runGateChapter(args);
+    case "book-gate":
+      return runBookGate(args);
     case "help":
     case undefined:
     case "--help":

@@ -33,6 +33,7 @@ import {
   checkChapterJammedNouns,
 } from "./antiSalting.js";
 import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
+import { checkExampleSourceGrounding } from "./sourceGrounding.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -157,6 +158,12 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "AS11.chapter_breakdown_paragraph_verbatim_prior": "blocker",
   "AS12.chapter_quiz_position_matches_prior": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
+  // Source grounding (May 2026 SWW round-1 root cause). Major rather than
+  // blocker because the sidecar parsing is opportunistic and a chapter's
+  // source notes may legitimately lack strong proper-noun anchors; the
+  // critic auto-skips chapters whose sidecars yield < 3 candidates, so a
+  // false-positive on legitimate content is unlikely but not impossible.
+  "SC9.example_not_source_grounded": "major",
 };
 
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
@@ -413,6 +420,17 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // seven-powers; would have prevented both bad books from shipping.
   for (const f of checkExampleTemplating(chapter.examples)) {
     push("C8", "examples", f.message, f.evidence);
+  }
+
+  // ── SC9 source-grounding: each example scenario must reference at least
+  // one proper-noun anchor from the chapter's source sidecar namedExamples.
+  // Closes the May 2026 SWW round-1 root cause where scenarios were
+  // invented (Anika at Oakland repair bay) with zero reference to Sinek's
+  // real cases (American/Japanese car-door assembly, Wright brothers,
+  // Apple, MLK, TiVo). Once scenarios are detached from source material,
+  // templating naturally follows.
+  for (const f of checkExampleSourceGrounding(chapter)) {
+    push(f.checkId as string, "examples", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent
