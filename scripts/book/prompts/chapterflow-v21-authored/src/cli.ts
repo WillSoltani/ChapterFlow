@@ -16,13 +16,27 @@
  *   ledger   status             Show cross-book state
  */
 
-import { existsSync as existsSyncFs, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from "fs";
+import { existsSync as existsSyncFs, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync, renameSync } from "fs";
+import { execSync } from "child_process";
 import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
 import { BookCriticReport, BookPackage, ChapterV21 } from "./types.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
+import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileName, assertNoShadowStateDir } from "./lib/chapterPaths.js";
+
+/** Refuse to run if a repo-root shadow state/chapters dir holds chapters
+ *  (the dual-directory divergence hazard). Returns an exit code on failure. */
+function shadowGuard(): number {
+  try {
+    assertNoShadowStateDir();
+    return 0;
+  } catch (e) {
+    console.error((e as Error).message);
+    return 2;
+  }
+}
 import {
   getForbiddenNames,
   ingestChapter,
@@ -78,6 +92,9 @@ Commands:
                                      then writes book-packages/<id>.v21.json on success.
                                      Use --no-categorizer with manual --categories/--tags for Codex-only runs.
                                      Quarantines to state/books/_blocked/ on failure.
+  author-check <chapter.json>        Phase 1: run the authoring-contract (field-JOB) checks Codex uses to
+                                     converge in-session. Advisory/shadow (calibrated 0 false-positives).
+                                     Exit 1 on any finding so a write loop iterates to clean.
   gate-chapter <chapter.json>        Run the per-chapter ship gate against a single chapter JSON.
                                      Useful when an agent is producing chapters by hand (e.g.,
                                      Codex sessions writing inline) and wants to validate
@@ -88,6 +105,14 @@ Commands:
                                      plan checks (BP7) don't false-fire. The default standalone
                                      way to QC an assembled book without invoking generate-book.
                                      Exits 0 if no blockers; non-zero otherwise.
+
+  Phase-0 maintenance (see MASTER-PLAN.md):
+  state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
+  migrate-state [--apply]            Reconcile the repo-root shadow state/chapters into the canonical dir.
+                                     [--prefer-canonical|--prefer-shadow] to resolve divergent files.
+  fix-chapter-ids [<bookId>]         Normalize chapterId to match filename stem (--dry-run to preview).
+  quarantine-book <bookId>           Move a shipped-but-corrupt package out of book-packages/ (reversible).
+
   help                               This message
 
 Examples:
@@ -733,7 +758,235 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
  *  Added May 2026 after the SWW post-mortem to eliminate the "forgot to
  *  run derive-artifacts" failure mode. Operators and writer agents can
  *  now QC an assembled book with one command. */
+/** `author-check <chapter.json>` — Phase 1. Runs the authoring-contract checks
+ *  (the field-JOB layer the structural gate lacks) and prints a JOB-grouped
+ *  report Codex uses to converge in-session. Exit 1 on any finding so a write
+ *  loop (`author-check && gate-chapter`) iterates to clean. SHADOW: these are
+ *  advisory and do NOT affect the ship gate's blocker count yet. */
+async function runAuthorCheck(args: string[]): Promise<number> {
+  const chapterFile = args[0];
+  if (!chapterFile) {
+    console.error("Usage: author-check <path/to/chapter.json>");
+    return 2;
+  }
+  let chapter: ChapterV21;
+  try {
+    chapter = JSON.parse(readFileSync(resolve(chapterFile), "utf8")) as ChapterV21;
+  } catch (err) {
+    console.error(`Could not read/parse ${chapterFile}: ${(err as Error).message}`);
+    return 2;
+  }
+  const { checkAuthoringContract, formatAuthoringReport } = await import("./critics/authoringContract.js");
+  const { loadChapterSidecar } = await import("./critics/sourceGrounding.js");
+  const sidecar = loadChapterSidecar(chapter.chapterId);
+  const findings = checkAuthoringContract(chapter, { sidecar, filePath: resolve(chapterFile) });
+  console.log(formatAuthoringReport(chapter.chapterId, findings));
+  return findings.length === 0 ? 0 : 1;
+}
+
+/** `quarantine-book <bookId> [--reason "..."]` — Phase 0. Moves a shipped-but-bad
+ *  package out of `book-packages/` into `book-packages/_quarantined/` (reversible)
+ *  and writes a quarantine record, so a known-corrupt book (e.g. range: 108/108
+ *  word-salad quizzes) stops being part of the shipped set until it's redone. */
+async function runQuarantineBook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error('Usage: quarantine-book <bookId> [--reason "..."]');
+    return 2;
+  }
+  const reason = typeof flags["reason"] === "string" ? (flags["reason"] as string) : "quarantined: shipped corrupt / diverged from current chapters";
+  const pkgDir = resolve(REPO_ROOT, "book-packages");
+  const pkg = resolve(pkgDir, `${bookId}.v21.json`);
+  if (!existsSyncFs(pkg)) {
+    console.error(`No promoted package at ${pkg} — nothing to quarantine.`);
+    return 2;
+  }
+  const qDir = resolve(pkgDir, "_quarantined");
+  mkdirSync(qDir, { recursive: true });
+  const ts = new Date().toISOString().replace(/[:.]/g, "-");
+  const dest = resolve(qDir, `${bookId}.${ts}.v21.json`);
+  renameSync(pkg, dest);
+  const recDir = resolve(__dirname, "../state/books/_quarantined");
+  mkdirSync(recDir, { recursive: true });
+  const recPath = resolve(recDir, `${bookId}.json`);
+  writeFileSync(recPath, JSON.stringify({ bookId, reason, quarantinedAt: ts, movedTo: dest }, null, 2) + "\n", "utf8");
+  console.log(`Quarantined ${bookId}:`);
+  console.log(`  package moved: ${pkg}\n             ->  ${dest}`);
+  console.log(`  reason: ${reason}`);
+  console.log(`  record: ${recPath}`);
+  console.log(`  (reversible — move the file back to re-ship, after the book re-passes the gate.)`);
+  return 0;
+}
+
+/** `state-status` — Phase 0 operator visibility. Per book: chapters on disk,
+ *  how many are UNTRACKED in git (durability risk — uncommitted Step-2 work),
+ *  chapterId/filename mismatches (IDN risk), and whether it's promoted. Read-only. */
+async function runStateStatus(_args: string[], _flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  const files = readdirSync(chaptersDir).filter((f) => f.endsWith(".chapter.json"));
+  const untracked = new Set<string>();
+  try {
+    const out = execSync(`git status --porcelain -- "${chaptersDir}"`, { cwd: REPO_ROOT, encoding: "utf8" });
+    for (const line of out.split("\n")) {
+      const m = line.match(/^\?\?\s+(.*)$/);
+      if (m) untracked.add(basename(m[1].trim()));
+    }
+  } catch {
+    /* git unavailable — skip the tracked column */
+  }
+  const byBook: Record<string, { n: number; untracked: number; idMismatch: number }> = {};
+  for (const f of files) {
+    const bk = f.replace(/-ch\d+.*$/, "");
+    byBook[bk] ??= { n: 0, untracked: 0, idMismatch: 0 };
+    byBook[bk].n++;
+    if (untracked.has(f)) byBook[bk].untracked++;
+    try {
+      const obj = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
+      if (obj.chapterId !== chapterIdFromFileName(f)) byBook[bk].idMismatch++;
+    } catch {
+      /* ignore parse errors here */
+    }
+  }
+  const pkgDir = resolve(REPO_ROOT, "book-packages");
+  const promoted = new Set(
+    existsSyncFs(pkgDir) ? readdirSync(pkgDir).filter((f) => f.endsWith(".v21.json")).map((f) => f.replace(/\.v21\.json$/, "")) : [],
+  );
+  console.log(`${"book".padEnd(40)}${"ch".padStart(4)}${"untracked".padStart(11)}${"idMismatch".padStart(12)}   promoted`);
+  for (const bk of Object.keys(byBook).sort()) {
+    const b = byBook[bk];
+    console.log(
+      `${bk.padEnd(40)}${String(b.n).padStart(4)}${String(b.untracked).padStart(11)}${String(b.idMismatch).padStart(12)}   ${promoted.has(bk) ? "yes" : "-"}`,
+    );
+  }
+  const totalUntracked = Object.values(byBook).reduce((a, b) => a + b.untracked, 0);
+  const totalMismatch = Object.values(byBook).reduce((a, b) => a + b.idMismatch, 0);
+  console.log("");
+  if (totalUntracked > 0) console.log(`⚠️  ${totalUntracked} chapter file(s) UNTRACKED in git — commit them so Step-2 work isn't lost (manual-commit mode).`);
+  if (totalMismatch > 0) console.log(`⚠️  ${totalMismatch} chapter file(s) have chapterId != filename — run \`fix-chapter-ids\` before promoting IDN1 to a blocker.`);
+  if (!totalUntracked && !totalMismatch) console.log("All chapters tracked and identity-clean.");
+  return 0;
+}
+
+/** `migrate-state [--apply] [--prefer-canonical|--prefer-shadow]` — Phase 0.
+ *  Reconciles the accidental repo-root `state/chapters` SHADOW dir (whose files
+ *  are invisible to gates/promote) against the canonical pipeline dir. Default is
+ *  a dry-run. Identical shadow files are redundant (deleted on --apply); files
+ *  missing from canonical are moved in; DIVERGENT files are refused unless an
+ *  explicit --prefer-canonical (drop shadow) / --prefer-shadow (overwrite
+ *  canonical) is given. Never silently overwrites — divergence is the hazard. */
+async function runMigrateState(_args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const apply = !!flags["apply"];
+  const preferCanonical = !!flags["prefer-canonical"];
+  const preferShadow = !!flags["prefer-shadow"];
+  const canonDir = resolve(__dirname, "../state/chapters");
+  const shadowDir = resolve(REPO_ROOT, "state/chapters");
+  if (!existsSyncFs(shadowDir)) {
+    console.log(`No shadow dir at ${shadowDir} — nothing to migrate. State is canonical.`);
+    return 0;
+  }
+  const shadowFiles = readdirSync(shadowDir).filter((f) => f.endsWith(".chapter.json")).sort();
+  if (shadowFiles.length === 0) {
+    console.log(`Shadow dir ${shadowDir} has no chapter files.`);
+    return 0;
+  }
+  const identical: string[] = [];
+  const moveIn: string[] = [];
+  const divergent: string[] = [];
+  for (const f of shadowFiles) {
+    const s = resolve(shadowDir, f);
+    const c = resolve(canonDir, f);
+    if (!existsSyncFs(c)) moveIn.push(f);
+    else if (readFileSync(s, "utf8") === readFileSync(c, "utf8")) identical.push(f);
+    else divergent.push(f);
+  }
+  console.log(`Shadow: ${shadowDir}`);
+  console.log(`Canonical: ${canonDir}`);
+  console.log(
+    `  ${identical.length} identical (redundant) · ${moveIn.length} missing-in-canonical (move in) · ${divergent.length} DIVERGENT`,
+  );
+  for (const f of divergent) {
+    const sm = statSync(resolve(shadowDir, f)).mtimeMs;
+    const cm = statSync(resolve(canonDir, f)).mtimeMs;
+    console.log(`    DIVERGENT ${f} — shadow ${sm > cm ? "NEWER" : "older"}, canonical ${cm > sm ? "NEWER" : "older"}`);
+  }
+  if (!apply) {
+    console.log(`\n[dry-run] no files changed. Re-run with --apply` + (divergent.length ? ` --prefer-canonical|--prefer-shadow (for the ${divergent.length} divergent)` : ``) + `.`);
+    return 0;
+  }
+  if (divergent.length && !preferCanonical && !preferShadow) {
+    console.error(`\nREFUSING: ${divergent.length} divergent file(s). Re-run with --prefer-canonical (drop shadow copies) or --prefer-shadow (overwrite canonical). Nothing changed.`);
+    return 2;
+  }
+  let removed = 0, moved = 0, resolved = 0;
+  for (const f of identical) { rmSync(resolve(shadowDir, f)); removed++; }
+  for (const f of moveIn) { renameSync(resolve(shadowDir, f), resolve(canonDir, f)); moved++; }
+  for (const f of divergent) {
+    if (preferShadow) { renameSync(resolve(shadowDir, f), resolve(canonDir, f)); }
+    else { rmSync(resolve(shadowDir, f)); }
+    resolved++;
+  }
+  // Remove the shadow dir if it's now empty of chapter files.
+  const leftover = readdirSync(shadowDir).filter((f) => f.endsWith(".chapter.json"));
+  if (leftover.length === 0) { try { rmSync(shadowDir, { recursive: true }); } catch { /* non-empty of other files */ } }
+  console.log(`\nmigrate-state: removed ${removed} redundant, moved ${moved} in, resolved ${resolved} divergent (--prefer-${preferShadow ? "shadow" : "canonical"}). Canonical is now the single source of truth.`);
+  return 0;
+}
+
+/** `fix-chapter-ids [<bookId>] [--dry-run]` — Phase 0 migration. Normalizes each
+ *  chapter's in-JSON `chapterId` to equal its filename stem, so the IDN1 guard
+ *  can be promoted to a blocker without hard-blocking already-mismatched files
+ *  (e.g. the capital-U "Unreasonable-hospitality-chNN" the slot-fill scripts
+ *  wrote). With no bookId, scans every chapter. Only touches the `chapterId`
+ *  field; all other content is left byte-for-byte unchanged. */
+async function runFixChapterIds(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const dryRun = !!flags["dry-run"];
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  if (!existsSyncFs(chaptersDir)) {
+    console.error(`Chapters directory not found: ${chaptersDir}`);
+    return 2;
+  }
+  const files = readdirSync(chaptersDir)
+    .filter((f) => f.endsWith(".v21-native.chapter.json") && (!bookId || isSiblingFile(f, bookId)))
+    .sort();
+  if (files.length === 0) {
+    console.error(`No chapter files found${bookId ? ` for "${bookId}"` : ""} under ${chaptersDir}`);
+    return 2;
+  }
+  let changed = 0;
+  for (const f of files) {
+    const full = resolve(chaptersDir, f);
+    let raw: string;
+    let obj: ChapterV21;
+    try {
+      raw = readFileSync(full, "utf8");
+      obj = JSON.parse(raw) as ChapterV21;
+    } catch (err) {
+      console.error(`  skip ${f}: ${(err as Error).message}`);
+      continue;
+    }
+    const stem = chapterIdFromFileName(f);
+    if (obj.chapterId === stem) continue;
+    console.log(`  ${dryRun ? "[dry-run] would fix" : "fixed"} ${f}: chapterId "${obj.chapterId}" -> "${stem}"`);
+    changed++;
+    if (!dryRun) {
+      obj.chapterId = stem;
+      // Preserve the file's exact formatting style (2-space indent, trailing NL if present).
+      const out = JSON.stringify(obj, null, 2) + (raw.endsWith("\n") ? "\n" : "");
+      writeFileSync(full, out, "utf8");
+    }
+  }
+  console.log(
+    `fix-chapter-ids: ${changed} chapter(s) ${dryRun ? "would be" : ""} normalized across ${files.length} file(s)${dryRun ? " (dry-run — no files written)" : ""}.`,
+  );
+  return 0;
+}
+
 async function runBookGate(args: string[]): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: book-gate <bookId>");
@@ -745,9 +998,9 @@ async function runBookGate(args: string[]): Promise<number> {
     console.error(`Chapters directory not found: ${chaptersDir}`);
     return 2;
   }
-  const pattern = new RegExp(`^${escapeRegex(bookId)}-ch\\d{1,3}\\.v21-native\\.chapter\\.json$`);
+  // Case-insensitive sibling match via the shared resolver (Phase 0 casing fix).
   const chapterFiles = readdirSync(chaptersDir)
-    .filter((f) => pattern.test(f))
+    .filter((f) => isSiblingFile(f, bookId))
     .sort();
   if (chapterFiles.length === 0) {
     console.error(`No chapters found for book "${bookId}" under ${chaptersDir}`);
@@ -781,10 +1034,49 @@ async function runBookGate(args: string[]): Promise<number> {
   const { runBookGate: runBookGateCritic, formatBookGateReport } = await import("./critics/bookGate.js");
   const report = runBookGateCritic(bookId, chapters);
   console.log(formatBookGateReport(report));
+
+  // Phase 2 (shadow/advisory): cross-chapter keyed-choice duplication — the
+  // let-them-theory defect BP21 structurally cannot see (it skips the correct
+  // index). Calibrated to 0 false-positives across the corpus.
+  try {
+    const { checkKeyedChoiceDuplication } = await import("./critics/quizCorrectness.js");
+    const dup = checkKeyedChoiceDuplication(chapters);
+    if (dup.length > 0) {
+      console.log("");
+      console.log(`Quiz-correctness findings (advisory/shadow — ${dup.length}):`);
+      for (const f of dup) console.log(`  [${f.checkId}] ${f.message.slice(0, 180)}`);
+    }
+  } catch {
+    /* non-fatal advisory layer */
+  }
+
+  // ── Forced content-read reminder ────────────────────────────────────────
+  // Every gate in this pipeline is deterministic structure/templating/register
+  // analysis. NONE of them verify semantic correctness: a quiz can mark the
+  // wrong answer correct, a card can teach a false point, an example can be
+  // incoherent word-salad — and still pass every gate (hooked shipped 21/72
+  // wrong answer keys past a GREEN book-gate; the-5-am-club shipped word-salad).
+  // A PASS here is necessary but NOT sufficient. Surface that on every PASS so
+  // no operator or writer agent reads GREEN as "shippable" without reading the
+  // actual content a reader would see.
+  if (report.passed) {
+    console.log("");
+    console.log("⚠️  GATE PASS ≠ SEMANTICALLY VERIFIED ⚠️");
+    console.log("These gates check structure, templating, and register — NOT correctness.");
+    console.log("Before promote-book, a human (or the QC reviewer agent) MUST read raw");
+    console.log("content from at least 2-3 chapters and confirm:");
+    console.log("  • every quiz's correctIndex actually points to the right answer");
+    console.log("  • review cards and examples are coherent and true to the source");
+    console.log("  • prose reads as written-by-a-person, not template-filled");
+    console.log("Wrong answer keys and word-salad have shipped past a GREEN gate before.");
+  }
+
   return report.passed ? 0 : 1;
 }
 
 async function runGateChapter(args: string[]): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const chapterFile = args[0];
   if (!chapterFile) {
     console.error("Usage: gate-chapter <path/to/chapter.json>");
@@ -811,6 +1103,7 @@ async function runGateChapter(args: string[]): Promise<number> {
   // before book-gate surfaces the structural issue.
   const intraFindings = await runIntraBookCheck(chapter, chapterFile);
   let extraBlockers = 0;
+  let extraMajors = 0;
   if (intraFindings.length > 0) {
     console.log("");
     console.log("Intra-book quiz similarity findings (compared against prior chapters of same book):");
@@ -818,6 +1111,61 @@ async function runGateChapter(args: string[]): Promise<number> {
       console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
       if (f.severity === "blocker") extraBlockers++;
     }
+  }
+
+  // ── Identity guard (IDN, Phase 0) — chapterId must equal its filename stem ──
+  // The intra-book critics above match siblings on chapterId; a mismatch can
+  // silently skip them (the verified casing bug). Surface it here. Ships as
+  // `major` (shadow) so the casing fix doesn't simultaneously hard-block the
+  // already-mismatched chapters; promotes to blocker after `fix-chapter-ids`.
+  const identityFindings = checkChapterIdentity(chapter, chapterFile);
+  if (identityFindings.length > 0) {
+    console.log("");
+    console.log("Identity findings (chapterId vs filename):");
+    for (const f of identityFindings) {
+      console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
+      if (f.severity === "blocker") extraBlockers++;
+      else if (f.severity === "major") extraMajors++;
+    }
+  }
+
+  // ── Authoring-contract findings (Phase 1, advisory/shadow) ──────────────
+  // The field-JOB layer the structural gate lacks (concept-as-actor, templated
+  // loops, echo-template explanations, bare-label card fronts, scaffold leaks,
+  // proposition-whatToDo). Calibrated to ZERO fires on the clean corpus. SHADOW:
+  // surfaced for the writer to fix in-session via `author-check`, but does NOT
+  // affect the ship-gate blocker count until promoted out of shadow.
+  try {
+    const { checkAuthoringContract } = await import("./critics/authoringContract.js");
+    const { loadChapterSidecar } = await import("./critics/sourceGrounding.js");
+    const acFindings = checkAuthoringContract(chapter, { sidecar: loadChapterSidecar(chapter.chapterId), filePath: resolve(chapterFile) });
+    if (acFindings.length > 0) {
+      console.log("");
+      console.log(`Authoring-contract findings (advisory/shadow — ${acFindings.length}; run \`author-check\` for the full JOB report):`);
+      for (const f of acFindings) console.log(`  [${f.checkId}] ${f.unit}: ${f.message.slice(0, 140)}`);
+    }
+  } catch {
+    /* non-fatal — advisory layer */
+  }
+
+  // ── Authoritative combined verdict ──────────────────────────────────────
+  // formatGateReport prints "Ship gate: PASS/BLOCK" for the CHAPTER-ONLY ship
+  // gate. The intra-book blockers above are computed separately and are NOT in
+  // that count, so a chapter with 0 chapter-blockers but an AS5/AS6 intra-book
+  // blocker used to print "Ship gate: PASS" up top while exiting non-zero —
+  // the headline disagreed with the exit code (a trust hazard: a human or a
+  // writer agent reads "PASS" and ships a templated chapter). Print a single
+  // final line that combines both sources and matches the exit code exactly.
+  const combinedBlockers = report.blockers.length + extraBlockers;
+  console.log("");
+  if (combinedBlockers > 0) {
+    console.log(
+      `Gate verdict: BLOCK — ${report.blockers.length} chapter blocker(s) + ${extraBlockers} intra-book blocker(s) = ${combinedBlockers} total. (exit 1)`,
+    );
+  } else {
+    console.log(
+      `Gate verdict: PASS — 0 blockers (${report.majors.length + extraMajors} major(s), ${report.minors.length} minor(s) above are non-blocking). (exit 0)`,
+    );
   }
 
   // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
@@ -828,28 +1176,47 @@ async function runGateChapter(args: string[]): Promise<number> {
   // pattern gets a SCREAMING warning that it's probably trying to game the
   // critic. Most legitimate fixes converge in 1-3 attempts; 4+ on the same
   // blocker is a structural issue requiring upstream resolution, not retry.
-  const attempts = recordGateAttempt(chapterFile, report);
+  // Record the COMBINED failure (chapter + intra-book blockers) so the breakers
+  // engage for intra-book-only failures too (the common case — a chapter can pass
+  // the chapter-only gate while failing AS5–AS12 against its siblings).
+  const intraBlockerSig = intraFindings.filter((f) => f.severity === "blocker").map((f) => ({ catalogId: f.checkId }));
+  const combinedReport = {
+    blockers: [...report.blockers, ...intraBlockerSig],
+    passed: report.blockers.length === 0 && extraBlockers === 0,
+  };
+  const attempts = recordGateAttempt(chapterFile, combinedReport);
+  // Two circuit-breakers: STUCK (same blocker repeats) and FORM-SHIFTING (the
+  // blocker relocates each attempt — the writer editing surface to dodge the
+  // critic, the let-them-theory failure mode). Either trips a halt (exit 3).
+  let breakerTripped = false;
   if (attempts.sameBlockerStreak >= 3) {
+    breakerTripped = true;
     console.log("");
-    console.log("⚠️  STUCK-BLOCKER WARNING ⚠️");
-    console.log(`This chapter has been gate-checked ${attempts.total} times in total.`);
-    console.log(`The same blocker signature has fired ${attempts.sameBlockerStreak} times in a row:`);
+    console.log("⚠️  STUCK-BLOCKER — CIRCUIT BREAKER TRIPPED ⚠️");
+    console.log(`This chapter has been gate-checked ${attempts.total} times; the SAME blocker signature fired ${attempts.sameBlockerStreak} times in a row:`);
     console.log(`  ${attempts.lastSignature}`);
     console.log("");
-    console.log("If you are a writer agent reading this: STOP. Do NOT keep iterating on");
-    console.log("the same field with surface edits. A blocker that survives 3+ attempts");
-    console.log("is a structural issue — either the chapter source notes don't differentiate");
-    console.log("this chapter from others, or the chapter design is template-bound. Surface");
-    console.log("the problem to the user with a one-paragraph status.");
+    console.log("STOP. A blocker that survives 3+ attempts is structural, not a surface edit.");
+    console.log("Re-author the field from the source notes, or surface a one-paragraph status to");
+    console.log("the user (the source notes may not differentiate this chapter — a Step-1 issue).");
+  } else if (attempts.distinctSigStreak >= 3 && attempts.nonPassTotal >= 3) {
+    breakerTripped = true;
     console.log("");
-    console.log("Forbidden gaming patterns the pipeline now detects:");
-    console.log("  AS1 — identifier tokens (q7, ex1, p2) in prose");
-    console.log("  AS2 — jammed proper nouns (MaplefieldBridgeton)");
-    console.log("  AS3 — doubled periods (10:20 p.m.. The room)");
-    console.log("  AS4 — same prompt skeleton across chapters with one noun swapped");
+    console.log("⚠️  FORM-SHIFTING REPAIR — CIRCUIT BREAKER TRIPPED ⚠️");
+    console.log(`This chapter has failed ${attempts.nonPassTotal} times and the blocker MOVED each attempt:`);
+    console.log(`  ${attempts.recentSigs.join("  →  ")}`);
+    console.log("");
+    console.log("A defect that relocates instead of resolving means you are editing SURFACE FORM");
+    console.log("to evade the critic, not fixing the field — the underlying template just hides in");
+    console.log("whichever field isn't yet covered. STOP patching surfaces. Re-author the failing");
+    console.log("field from the source notes (the Bind Block), or escalate to the user / a different");
+    console.log("author. Do NOT run gate-chapter again on another surface edit — it will just relocate.");
   }
+  if (breakerTripped) console.log("\n(gate-chapter exit code 3 — halt the repair loop.)");
 
-  // Combined block: ship-gate blockers OR intra-book similarity blockers.
+  // Combined block: ship-gate blockers OR intra-book similarity blockers. Exit 3
+  // when a circuit-breaker tripped (so an orchestrating loop halts, not spins).
+  if (breakerTripped) return 3;
   return report.blockers.length === 0 && extraBlockers === 0 ? 0 : 1;
 }
 
@@ -862,18 +1229,19 @@ async function runIntraBookCheck(
   chapter: ChapterV21,
   chapterFile: string,
 ): Promise<Array<{ checkId: string; severity: string; message: string; evidence?: string }>> {
-  const id = chapter.chapterId;
-  // chapterId shape: "<bookId>-ch<NN>" — strip the -chNN tail to get the book.
-  const m = id.match(/^(.+)-ch\d{1,3}$/);
-  if (!m) return [];
-  const bookId = m[1];
+  // Phase 0 casing fix: parse the book id case-insensitively and match siblings
+  // via the shared resolver. The old code built a CASE-SENSITIVE regex from the
+  // raw chapterId, so a capital chapterId (e.g. "Unreasonable-hospitality-ch01")
+  // matched 0 lowercase files → AS5–AS12 silently skipped.
+  const parsed = parseChapterId(chapter.chapterId);
+  if (!parsed) return [];
+  const bookId = parsed.bookId;
   const dir = dirname(resolve(chapterFile));
   let siblings: ChapterV21[] = [];
   try {
     const entries = readdirSync(dir);
-    const pattern = new RegExp(`^${escapeRegex(bookId)}-ch\\d{1,3}\\.v21-native\\.chapter\\.json$`);
     for (const entry of entries) {
-      if (!pattern.test(entry)) continue;
+      if (!isSiblingFile(entry, bookId)) continue;
       const full = resolve(dir, entry);
       if (full === resolve(chapterFile)) continue; // skip the chapter being gated
       try {
@@ -885,7 +1253,19 @@ async function runIntraBookCheck(
   } catch {
     return [];
   }
-  if (siblings.length === 0) return [];
+  if (siblings.length === 0) {
+    // Loud fail-open: for chapter 2+ there SHOULD be prior siblings. Zero means
+    // either a genuine first chapter, or (the bug class) a slug/casing mismatch
+    // that excluded them — which would silently skip AS5–AS12. Warn so it's
+    // never mistaken for "intra-book critics passed".
+    if (parsed.num > 1) {
+      console.log(
+        `  WARN: intra-book critics DID NOT RUN — 0 sibling chapters found for "${bookId}" in ${dir} ` +
+          `(expected priors for ch${parsed.num}). This is NOT a pass; check chapterId/filename slug.`,
+      );
+    }
+    return [];
+  }
   const { checkIntraBookQuizSimilarity } = await import("./critics/intraBookQuizSimilarity.js");
   const {
     checkIntraBookCardSimilarity,
@@ -928,36 +1308,50 @@ function escapeRegex(s: string): string {
 
 /** Persists gate-attempt history per chapter file to track stuck-blocker
  *  patterns. Returns the running totals so the caller can warn the operator. */
+type GateAttemptEntry = {
+  total: number;
+  lastSignature: string;
+  sameBlockerStreak: number;
+  /** ++ each attempt where the non-PASS signature CHANGED from the prior one. */
+  distinctSigStreak: number;
+  /** count of consecutive non-PASS attempts (resets on PASS). */
+  nonPassTotal: number;
+  /** last few non-PASS signatures, for the form-shift message. */
+  recentSigs: string[];
+};
+
 function recordGateAttempt(
   chapterFile: string,
   report: { blockers: Array<{ catalogId: string }>; passed: boolean },
-): { total: number; sameBlockerStreak: number; lastSignature: string } {
+): { total: number; sameBlockerStreak: number; lastSignature: string; distinctSigStreak: number; nonPassTotal: number; recentSigs: string[] } {
   const STATE_FILE = resolve(__dirname, "../state/gate-attempts.json");
-  let state: Record<string, { total: number; lastSignature: string; sameBlockerStreak: number }> = {};
+  let state: Record<string, GateAttemptEntry> = {};
   try {
     if (existsSyncFs(STATE_FILE)) state = JSON.parse(readFileSync(STATE_FILE, "utf8"));
   } catch {
     state = {};
   }
   // Signature: sorted unique blocker catalogIds (e.g., "AS4,BP20"). Used to
-  // detect "same blocker repeating" vs "blocker changing each attempt".
+  // detect "same blocker repeating" (stuck) vs "blocker changing each attempt"
+  // (form-shifting — the writer relocating the defect to dodge the critic).
   const sig = report.passed
     ? "PASS"
     : [...new Set(report.blockers.map((b) => b.catalogId))].sort().join(",");
-  const prev = state[chapterFile] ?? { total: 0, lastSignature: "", sameBlockerStreak: 0 };
-  const sameBlockerStreak = sig !== "PASS" && sig === prev.lastSignature ? prev.sameBlockerStreak + 1 : sig === "PASS" ? 0 : 1;
-  state[chapterFile] = {
-    total: prev.total + 1,
-    lastSignature: sig,
-    sameBlockerStreak,
-  };
+  const prev: GateAttemptEntry = state[chapterFile] ?? { total: 0, lastSignature: "", sameBlockerStreak: 0, distinctSigStreak: 0, nonPassTotal: 0, recentSigs: [] };
+  const isPass = sig === "PASS";
+  const sameBlockerStreak = !isPass && sig === prev.lastSignature ? prev.sameBlockerStreak + 1 : isPass ? 0 : 1;
+  const shifted = !isPass && prev.lastSignature && prev.lastSignature !== "PASS" && sig !== prev.lastSignature;
+  const distinctSigStreak = isPass ? 0 : shifted ? prev.distinctSigStreak + 1 : prev.distinctSigStreak;
+  const nonPassTotal = isPass ? 0 : prev.nonPassTotal + 1;
+  const recentSigs = isPass ? [] : [...(prev.recentSigs ?? []), sig].slice(-4);
+  state[chapterFile] = { total: prev.total + 1, lastSignature: sig, sameBlockerStreak, distinctSigStreak, nonPassTotal, recentSigs };
   try {
     mkdirSync(dirname(STATE_FILE), { recursive: true });
     writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), "utf8");
   } catch {
     // Non-fatal — tracking is informational.
   }
-  return { total: state[chapterFile].total, sameBlockerStreak, lastSignature: sig };
+  return { total: state[chapterFile].total, sameBlockerStreak, lastSignature: sig, distinctSigStreak, nonPassTotal, recentSigs };
 }
 
 async function main() {
@@ -990,6 +1384,16 @@ async function main() {
       return runGateChapter(args);
     case "book-gate":
       return runBookGate(args);
+    case "author-check":
+      return runAuthorCheck(args);
+    case "fix-chapter-ids":
+      return runFixChapterIds(args, flags);
+    case "migrate-state":
+      return runMigrateState(args, flags);
+    case "state-status":
+      return runStateStatus(args, flags);
+    case "quarantine-book":
+      return runQuarantineBook(args, flags);
     case "help":
     case undefined:
     case "--help":

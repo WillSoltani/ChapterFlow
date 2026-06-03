@@ -26,6 +26,7 @@ import {
   checkQuizPromptOpenerMonotony,
   checkQuizStrawmanDistractors,
   checkQuizUnexpectedFields,
+  checkWithinChapterQuizTemplates,
 } from "./quizQuality.js";
 import {
   checkChapterDoubledPeriods,
@@ -157,6 +158,14 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "AS10.chapter_field_ngram_matches_prior": "blocker",
   "AS11.chapter_breakdown_paragraph_verbatim_prior": "blocker",
   "AS12.chapter_quiz_position_matches_prior": "blocker",
+  // AS13 — within-chapter quiz template (June 2026 unreasonable-hospitality
+  // incident). Chapter-time twin of book-wide BP20; catches a single chapter
+  // whose nine questions collapse to one distractor skeleton, which previously
+  // only surfaced at book-gate. Threshold ≥8 calibrated so coherent shared
+  // content (≤7) clears while templated skeletons (≥9) block; the only promoted
+  // books it flags are 3 that shipped pre-existing quiz templating (execution,
+  // measure-what-matters, the-12-week-year) — true positives, not noise.
+  "AS13.within_chapter_quiz_template": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
   // Source grounding (May 2026 SWW round-1 root cause). Major rather than
   // blocker because the sidecar parsing is opportunistic and a chapter's
@@ -164,6 +173,10 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // critic auto-skips chapters whose sidecars yield < 3 candidates, so a
   // false-positive on legitimate content is unlikely but not impossible.
   "SC9.example_not_source_grounded": "major",
+  // SC11.0 — no source run/sidecar on disk (Phase 0). SHADOW=major: missing
+  // source reliably predicts word-salad, but it's advisory until Phase 3
+  // guarantees every active book a resolvable sidecar (then → blocker).
+  "SC11.0.no_source_run": "major",
 };
 
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
@@ -531,6 +544,14 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   }
   for (const f of checkQuizBannedTailPhrase(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  // AS13 — within-chapter quiz template. Chapter-time twin of book-wide BP20:
+  // catches a single chapter whose questions collapse to one distractor
+  // skeleton (noun swapped per question). Without this the per-chapter gate
+  // prints PASS on a fully templated chapter and the defect only surfaces at
+  // book-gate (the June 2026 unreasonable-hospitality incident).
+  for (const f of checkWithinChapterQuizTemplates(chapter)) {
+    push(f.checkId as string, "quiz", f.message, f.evidence);
   }
 
   // ── Anti-salting critics (AS1-AS3, chapter-level) ───────────────────────

@@ -9,7 +9,7 @@ This is the shortest stage. You run 3-4 deterministic Bash commands. If they pas
 ## Working directory
 
 ```
-/Users/willsoltani/dev/chapterflow-siliconx
+/Users/radinsoltani/ChapterFlow
 ```
 
 `cd` there at the start of your session.
@@ -28,17 +28,29 @@ If any of these are missing, ASK the user. Do NOT invent categories/tags.
 
 ---
 
-## Step A0 — Mandatory: confirm with the user that QC has reviewed at least one chapter
+## Step A0 — Mandatory: confirm the book passed the PUBLISHABLE-BAR QC
 
-Before running the book gate, you MUST have a green-light from the user that a human (or the QC reviewer agent) has sampled at least one chapter's prose and confirmed it reads as natural English. The May 2026 7 Habits incident shipped a ruined book because every gate passed mechanically but no one read a chapter before promotion. Don't repeat that.
+Before you promote, you MUST have a green-light that the QC reviewer agent has scored
+the book against the **publishable bar** ([QC-SESSION-PROMPT.md](QC-SESSION-PROMPT.md);
+rubric in `src/critics/semantic/publishableBar.ts`) and **every chapter is GREEN** —
+no CORRUPTION hit (wrong key, false card/fact, incoherent scene) and no YELLOW
+(generated-draft: templated distractors, recall cards, planning-note examples). The
+May 2026 7 Habits incident shipped a ruined book because every deterministic gate
+passed mechanically but no one scored the content. Don't repeat that.
 
 Ask the user:
 
-> "Has the QC reviewer cleared at least one chapter of `<bookId>` for prose quality? If not, please pause this finalize and route a sample chapter to the QC reviewer first."
+> "Has the QC reviewer scored `<bookId>` against the publishable bar, and is every
+> chapter GREEN (no CORRUPTION, no YELLOW)? If not, pause this finalize and route the
+> book to a QC session first."
 
-If the user says no, STOP. The book gate's pattern audits are NECESSARY but not sufficient. A book can pass every BP/AS/F audit and still be unreadable — the gates check for known defect patterns; they do not verify English coherence at sentence level.
+If the user says no, or any chapter is RED/YELLOW, **STOP**. The book gate's pattern
+audits are NECESSARY but NOT sufficient — they check known templating/structure
+defects, not whether a quiz key is right, a card is true, or a scene is coherent. A
+book can pass every BP/AS/F/AC audit and still ship a wrong answer key or word-salad
+(this has happened repeatedly). Only a publishable-bar read catches that.
 
-Once the user confirms a chapter has been QC-cleared, proceed.
+Once the user confirms every chapter scored GREEN, proceed.
 
 ## Step A — Confirm all chapters are present and ship-gate clean
 
@@ -136,7 +148,7 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate-book $
 [HH:MM:SS] manual tags: <your tags>
 [HH:MM:SS] === Library promotion ===
 [HH:MM:SS] ✓ PROMOTED: <bookId>
-  Package: /Users/willsoltani/dev/chapterflow-siliconx/book-packages/<bookId>.v21.json
+  Package: /Users/radinsoltani/ChapterFlow/book-packages/<bookId>.v21.json
   Ship gate: 0 blockers, 0 majors
   Book gate: 0 blockers, ...
 ```
@@ -228,7 +240,7 @@ In every case: **do not attempt to write chapter content yourself**. Step 2 is t
 ## TL;DR sequence
 
 ```bash
-cd /Users/willsoltani/dev/chapterflow-siliconx
+cd /Users/radinsoltani/ChapterFlow
 
 # Step A — confirm chapters present and gating clean
 for f in scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-ch*.v21-native.chapter.json; do

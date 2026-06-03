@@ -9,7 +9,7 @@ When you finish, the source-coherence critic passes and the user can hand the ne
 ## Working directory
 
 ```
-/Users/willsoltani/dev/chapterflow-siliconx
+/Users/radinsoltani/ChapterFlow
 ```
 
 `cd` there at the start of your session. All paths below are relative to this directory.
@@ -277,7 +277,7 @@ Stop after Step 1.
 ## TL;DR loop
 
 ```bash
-cd /Users/willsoltani/dev/chapterflow-siliconx
+cd /Users/radinsoltani/ChapterFlow
 # Run this in a terminal at any time to see what's next:
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts next-task <bookId>
 # Follow its instructions. When it says "write-chapter", stop and report to the user.

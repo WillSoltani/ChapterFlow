@@ -434,6 +434,83 @@ function collectNGramFingerprints(tokens: string[], k: number): Set<string> {
 }
 
 /**
+ * AS13 — within-chapter quiz template repeat. The chapter-time, single-chapter
+ * twin of BP20 (which only fires book-wide at book-gate). A writer agent can
+ * collapse one chapter's nine quiz questions into a single distractor skeleton
+ * with a noun swapped per question. Because BP20's thresholds are tuned for the
+ * book-wide corpus (5-word ≥20×) and the intra-book AS5/AS6 critics only compare
+ * a chapter against PRIOR siblings, the very first corrupted chapter — and every
+ * corrupted chapter viewed in isolation — passes the per-chapter ship gate, so
+ * gate-chapter prints "PASS" on a fully templated chapter. This is the
+ * unreasonable-hospitality (June 2026) incident: all 9 questions per chapter
+ * shared "<Name> should copy <CONCEPT> as a fixed performance, even though the
+ * present cue says otherwise" and the chapter gate still reported PASS.
+ *
+ * Detection: pool a single chapter's quiz prompts + choices + explanations into
+ * one token stream (same fields as BP20) and count repeated 8-word phrases.
+ * Threshold ≥8 calibrated against the full corpus: legitimate coherent content
+ * (e.g. the-black-swan ch6's shared prompt stem, with real distinct questions
+ * beneath it) tops out at 7 within-chapter 8-gram repeats, while a templated
+ * skeleton reused once per question hits ≥9 (every corrupted unreasonable-
+ * hospitality chapter is ≥9). The 7/9 gap is the zero-false-positive separator.
+ * Across all 1,406 promoted chapters AS13 flags 46 — but all 46 are confined to
+ * three books (execution, measure-what-matters, the-12-week-year) that shipped
+ * with documented quiz-explanation templating PREDATING this critic (execution
+ * and the-12-week-year are named in this file's header above). Those are true
+ * positives surfacing pre-existing debt; the other 89 books / 1,360 chapters
+ * produce zero flags. Severity: BLOCKER.
+ */
+export function checkWithinChapterQuizTemplates(chapter: ChapterV21): CriticFinding[] {
+  const words: string[] = [];
+  for (const q of chapter.quiz?.questions ?? []) {
+    if (typeof q.prompt === "string" && q.prompt) {
+      words.push(...q.prompt.toLowerCase().split(/[^a-z0-9']+/).filter(Boolean));
+    }
+    for (const c of q.choices ?? []) {
+      if (typeof c !== "string") continue;
+      words.push(...c.toLowerCase().split(/[^a-z0-9']+/).filter(Boolean));
+    }
+    if (typeof q.explanation === "string" && q.explanation) {
+      words.push(...q.explanation.toLowerCase().split(/[^a-z0-9']+/).filter(Boolean));
+    }
+  }
+
+  const N = 8;
+  const THRESHOLD = 8;
+  if (words.length < N) return [];
+
+  const counts = new Map<string, number>();
+  for (let i = 0; i <= words.length - N; i++) {
+    const phrase = words.slice(i, i + N).join(" ");
+    counts.set(phrase, (counts.get(phrase) ?? 0) + 1);
+  }
+
+  // Same dedup strategy as BP20: a long verbatim skeleton produces many adjacent
+  // overlapping 8-grams, all over threshold. Report one finding per template
+  // family by locking out every internal 4-gram once a phrase is reported.
+  const locked4grams = new Set<string>();
+  const findings: CriticFinding[] = [];
+  const offenders = [...counts.entries()]
+    .filter(([, count]) => count >= THRESHOLD)
+    .sort((a, b) => b[1] - a[1]);
+  for (const [phrase, count] of offenders) {
+    const tokens = phrase.split(" ");
+    const fingerprints = collectNGramFingerprints(tokens, 4);
+    if ([...fingerprints].some((fp) => locked4grams.has(fp))) continue;
+    for (const fp of fingerprints) locked4grams.add(fp);
+    findings.push(
+      finding(
+        "AS13.within_chapter_quiz_template" as any,
+        "blocker",
+        `${N}-word phrase repeats ${count}× within this chapter's quiz — the questions share one templated skeleton with a noun swapped per question. Rewrite each question's prompt and distractors with scenario-specific language; no 8-word span should recur across a chapter's own questions.`,
+        phrase,
+      ),
+    );
+  }
+  return findings;
+}
+
+/**
  * BP21 — cross-chapter duplicate distractor. The same wrong choice text
  * appearing verbatim in multiple chapters (e.g., "Ranking would make action
  * impossible" across 6 chapters of the-one-thing) is a generation artifact,

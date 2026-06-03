@@ -21,7 +21,7 @@ If anything is ambiguous (chapter count, which edition), ask the user before pro
 ## Working directory
 
 ```
-/Users/willsoltani/dev/chapterflow-siliconx
+/Users/radinsoltani/ChapterFlow
 ```
 
 All paths in this briefing are relative to that repo root. Use `cd` to that directory at the start of your session.
@@ -234,7 +234,7 @@ Do not wait for permission between steps unless the briefing says to stop. Run n
 ## TL;DR
 
 ```bash
-cd /Users/willsoltani/dev/chapterflow-siliconx
+cd /Users/radinsoltani/ChapterFlow
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts next-task <bookId>
 # read what it says, produce that artifact, save to that path,
 # run the validation command, fix any blockers, re-run next-task.

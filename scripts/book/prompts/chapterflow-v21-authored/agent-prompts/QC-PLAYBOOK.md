@@ -252,6 +252,7 @@ Identify the **root cause** (see Section 5) and draft a redo prompt
 | `AS10` | Literal 5-token phrase in examples/breakdown appears in ≥2 prior chapters | Stock connective phrases (LLM default vocab). |
 | `AS11` | Breakdown paragraph ≥60 chars verbatim in prior chapter | Closing paragraph templated. |
 | `AS12` | Quiz `correctIndex` sequence matches prior chapter | Fixed rotation like `[0,1,2,0,1,2,0,1,2]`. |
+| `AS13` | Within-chapter quiz template: an 8-word phrase recurs ≥8× across a single chapter's own questions | All 9 questions share one distractor skeleton with a noun swapped per question. Chapter-time twin of book-wide BP20 — now fires at `gate-chapter`, not just `book-gate`. Rewrite each question's prompt + distractors with scenario-specific language. |
 | `BP10` | Breakdown paragraph verbatim across many chapters (book gate) | Same as AS11 but found at assembly. |
 | `BP11` | Breakdown paragraph skeleton repeats with variable slots | Templated structure. |
 | `BP13` | 5-token verbatim phrase in ≥3 chapters (book gate) | Stock vocab; AS10's book-time twin. |

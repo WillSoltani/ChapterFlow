@@ -22,6 +22,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { ChapterV21, CriticFinding } from "../types.js";
 import { finding } from "./shared.js";
+import { parseChapterId } from "../lib/chapterPaths.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // SC9 lives in src/critics/, so it needs one more `..` than helpers in
@@ -42,6 +43,23 @@ function findLatestRun(bookId: string): string | null {
     })
     .sort();
   return runs.length > 0 ? runs[runs.length - 1] : null;
+}
+
+/** Shared sidecar loader (Phase 1) — resolves a chapter's source sidecar via the
+ *  casing-normalized bookId, returns the parsed object or null. Used by SC9 and
+ *  by author-check (so AC1/AC2 can read the real centralConcept + source text). */
+export function loadChapterSidecar(chapterId: string): any | null {
+  const parsed = parseChapterId(chapterId);
+  if (!parsed) return null;
+  const runId = findLatestRun(parsed.bookId);
+  if (!runId) return null;
+  const sidecarPath = resolve(RUNS_DIR, parsed.bookId, runId, "sidecars/source", `ch${String(parsed.num).padStart(2, "0")}.source.json`);
+  if (!existsSync(sidecarPath)) return null;
+  try {
+    return JSON.parse(readFileSync(sidecarPath, "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 // Words that look proper-noun-shaped in titles + summaries but are not
@@ -126,13 +144,28 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
   const findings: CriticFinding[] = [];
   const id = chapter.chapterId;
   if (typeof id !== "string" || !id) return findings;
-  const m = id.match(/^(.+)-ch(\d{1,3})$/);
-  if (!m) return findings;
-  const bookId = m[1];
-  const chNum = m[2].padStart(2, "0");
+  // Phase 0 casing fix: normalize the bookId so the sidecar lookup isn't broken
+  // by a capital chapterId — the SAME bug class that silently skipped AS5–AS12
+  // also silently skipped source-grounding (findLatestRun was case-sensitive).
+  const parsed = parseChapterId(id);
+  if (!parsed) return findings;
+  const bookId = parsed.bookId;
+  const chNum = String(parsed.num).padStart(2, "0");
 
   const runId = findLatestRun(bookId);
-  if (!runId) return findings;
+  if (!runId) {
+    // SC11.0 (Phase 0, SHADOW = major) — no source run on disk. Missing source
+    // reliably predicts word-salad; surface it loudly instead of the old silent
+    // pass (`return findings`). Promotes to BLOCKER in Phase 3 once every active
+    // book is guaranteed a resolvable sidecar (with a schemaVersion migration).
+    return [
+      finding(
+        "SC11.0.no_source_run" as any,
+        "major",
+        `no source run found for "${bookId}" under .chapterflow/runs/ — this chapter was authored without on-disk source notes, which reliably predicts ungrounded/templated content. Run STEP-1 / check-source. [shadow: major — promotes to blocker in Phase 3]`,
+      ),
+    ];
+  }
   const sidecarPath = resolve(
     RUNS_DIR,
     bookId,
@@ -140,7 +173,15 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
     "sidecars/source",
     `ch${chNum}.source.json`,
   );
-  if (!existsSync(sidecarPath)) return findings;
+  if (!existsSync(sidecarPath)) {
+    return [
+      finding(
+        "SC11.0.no_source_run" as any,
+        "major",
+        `source run exists for "${bookId}" but no sidecar at ch${chNum}.source.json — this chapter has no source notes for grounding. [shadow: major — promotes to blocker in Phase 3]`,
+      ),
+    ];
+  }
 
   let sidecar: any;
   try {

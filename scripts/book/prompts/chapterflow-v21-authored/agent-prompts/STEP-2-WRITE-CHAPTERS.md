@@ -67,172 +67,99 @@ This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs th
 
 ---
 
-## CRITICAL — read this section before anything else. Do not skip.
+## Bind before you write
 
-The pipeline has cross-chapter audits that fire when your chapters share phrases, openers, prompt skeletons, or proper-noun patterns with other chapters of the same book. **These audits exist because cross-chapter sameness ruins reader experience.** When an audit fires, the right answer is always to **rewrite the offending field as a different sentence with different words from a different angle**.
-
-The wrong answer — and a writer agent did this in the May 2026 7 Habits incident and shipped a ruined book — is to insert artificial markers that satisfy the bytewise audit while leaving the underlying template intact. The pipeline now detects every version of that gaming pattern and **fails closed with BLOCKER findings**. You CANNOT ship a book by salting it. Don't try. The four forbidden moves:
-
-### Forbidden move 1 — Identifier-token injection (`AS1`)
-
-NEVER write tokens like `q7`, `q01`, `p2`, `ex1`, `card3`, `chapter5` inside a quiz prompt, choice, explanation, card front/back, example scenario, or breakdown. These are STRUCTURAL identifiers; their presence in prose is a tell that you tried to break verbatim n-gram matching by adding chapter-unique salt. The ship gate fails closed with `AS1.identifier_token_injection` on any occurrence.
-
-**Forbidden example (from the actual incident):**
-> "goose q7 person goose studio critique wants to pick the safe sketch."
-
-**Correct response if you're tempted to write the above:** The chapter doesn't need a quiz question about "studio critique" if every other chapter also has one. Rewrite this prompt to use a scenario from THIS chapter's source notes — a different domain entirely.
-
-### Forbidden move 2 — Jammed proper nouns (`AS2`)
-
-NEVER write two capitalized words of 4+ letters mashed together without a space: `MaplefieldBridgeton`, `HarborlineNorthwell`, `ZenithKestrel`, `CooperLatham`. Real English doesn't produce these. They appear when an agent template-substitutes `{place_a}{place_b}` with a missing separator. The ship gate fails closed with `AS2.jammed_proper_nouns`.
-
-**Forbidden example:**
-> "MaplefieldBridgeton 10:20 p.m.. The room was full."
-
-**Correct:**
-> "At 10:20 p.m. in the Maplefield branch, the room was full."
-
-### Forbidden move 3 — Doubled periods (`AS3`)
-
-NEVER write `..` followed by a capital letter as a sentence boundary. Use a single period. The ship gate fails closed with `AS3.doubled_period`.
-
-**Forbidden:** `"10:20 p.m.. The room was quiet."`
-**Correct:** `"10:20 p.m. The room was quiet."`
-
-### Forbidden move 3.3 — Reusing your own template across chapters in ANY field (`AS5` / `AS6` / `AS7` / `AS8` / `AS9` / `AS10` / `AS11` / `AS12` / `BP24` / `E2`)
-
-**Read this section carefully.** The pipeline has evolved through five template-substitution incidents. Each time we patched the gating where the agent did the templating, the next agent's gaming moved to a field we hadn't yet covered. The current ruleset closes every known surface:
-
-| Code | Field covered | Threshold |
-|---|---|---|
-| `AS5` | quiz prompt at same position across chapters | ≥70% word overlap → BLOCKER |
-| `AS6` | quiz choice (distractor or correct) at same position across chapters | ≥80% word overlap → BLOCKER |
-| `AS7` | review card front or back at same position across chapters | ≥75% word overlap → BLOCKER |
-| `AS8` | implementation plan field across chapters | ≥70% word overlap → BLOCKER |
-| `AS9` | example[i].scenario / whatToDo / whyItMatters at same position across chapters | ≥70% word overlap → BLOCKER |
-| `AS10` | literal 5-token phrase in examples or breakdown tier — verbatim in ≥2 prior chapters' same field type | verbatim match → BLOCKER |
-| `AS11` | breakdown paragraph (≥60 chars) verbatim in any prior chapter's breakdown | verbatim match → BLOCKER |
-| `AS12` | quiz `correctIndex` sequence identical to any prior chapter's sequence | sequence match → BLOCKER |
-| `BP24` | breakdown tier verbatim copy-paste within a chapter (FastRead/DeepRead/FullRead) | ≥150 chars contiguous verbatim → BLOCKER |
-| `E2` | the three breakdown tiers (fastRead/deepRead/fullRead) opening with the same first sentence | identical first sentence across any 2 tiers → BLOCKER |
-| `SC9` | example scenario must reference a proper-noun anchor from the chapter's source sidecar (namedExamples, centralConcept, hardEdge, paraphraseNotes) | scenario contains zero source anchors → MAJOR |
-
-`AS5`–`AS9` use **word-multiset similarity** so noun swaps don't evade. `AS10`–`AS11` use **literal verbatim** matching — they catch stock phrases that sit under the multiset thresholds. `AS12` is a structural-position check; `E2` is a tier-progression check. Together they cover the literal-verbatim, paragraph-verbatim, structural-position, and tier-progression gaps that multiset thresholds can't reach.
-
-**The general rule, restated for emphasis:** every reader-facing field in every chapter must be composed FROM THAT CHAPTER'S SOURCE NOTES, not by adapting another chapter's text. You cannot write Chapter 1's six review cards and then "adapt" them for Chapter 2 by swapping the concept name. You cannot write Chapter 1's implementation plan and reuse the coreSkill / 24hr-challenge / weeklyPractice phrasing with one verb-phrase swapped. You cannot copy a paragraph from your own DeepRead into your own FullRead to fill the length floor.
-
-If you find yourself reaching for ANY of these moves to clear a length target or a gate, STOP. The right answer is to write THIS chapter's content from THIS chapter's source notes. If the source notes don't differentiate this chapter enough from another, surface that to the user — it's a Step 1 (research) issue, not something you should paper over.
-
-**Concrete example of the May 2026 "Start With Why" incident** that led to AS9:
-
-Example ex[0].scenario, same position across multiple chapters before the AS9 patch:
-```
-Ch1:  "Anika   leans over a clipboard at 8:10 a.m. in the Oakland repair bay…"
-Ch2:  "Giselle leans over a clipboard at 8:10 a.m. in the Denver running store…"
-Ch3:  "Marisol leans over a clipboard at 8:10 a.m. in the Austin robotics lab…"
-…
-Ch14: "Thabo   leans over a clipboard at 8:10 a.m. in the Hanna cross-country course…"
-```
-
-Every chapter's ex[0] used the same skeleton with only the name, location, and one chapter-specific verb phrase swapped. The literal 13-word string `"the group is already nodding. Minutes before the room commits"` appeared verbatim in all 14 chapters. AS9 catches this at chapter-gate time: rewrite each chapter's examples with a different scene structure, role, time, and setting drawn from THIS chapter's source notes.
-
-**Concrete example of the May 2026 "Step 2 second-round" incident** that led to AS7/AS8/BP24:
-
-Card 1 front, same position across multiple chapters before the patch:
-```
-Ch1:  "What does inside-out change       ask you to inspect first?"
-Ch3:  "What does response-ability        ask you to inspect first?"
-Ch7:  "What does Win/Win or No Deal      ask you to inspect first?"
-Ch10: "What does balanced self-renewal   ask you to inspect first?"
-```
-
-Card 1 back across the same chapters:
-```
-"Inspect the source pattern before the surface behavior. In practice, that
- means choosing to [CHAPTER-SPECIFIC ACTION] before the quick repair takes
- over."
-```
-
-That's templating. AS7 catches it at chapter-gate time. The fix is to compose each chapter's cards from the chapter's specific terminology: for Habit 1, talk about response-ability, Circle of Influence, reactive vs proactive language, kept promises. For Habit 4, talk about Win/Win or No Deal, abundance mentality, courage and consideration as paired axes. The card concepts come from the chapter's `centralConcept`, `hardEdge`, and `paraphraseNotes` — not from a card-skeleton you wrote for an earlier chapter.
-
-Same rule for the implementation plan. Same rule for breakdown — DeepRead and FullRead should layer content (mechanism + new examples), not duplicate prose.
-
-**Concrete example of the May 2026 "Start With Why round 2" incident** that led to AS10/AS11/AS12 and the E2 upgrade:
-
-After AS9 forced scenario-position variation, the writer agent slid under AS9's 70% word-multiset threshold by keeping per-example word overlap low while reusing **short stock phrases** in `whatToDo` and `whyItMatters`. The phrases rotated across chapter groups so no two adjacent chapters shared enough to trip AS9:
+Every templating defect is a field that drifted off its source. So before you compose a single field, write a **Chapter Bind Block** from this chapter's source sidecar (`.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`). It is four lines plus one invention, and it stays in front of you while you write every field:
 
 ```
-Group A (Ch 1, 4, 7, 10, 13): "practical pattern recognition, moving from story to rule"
-Group B (Ch 3, 6, 9, 12):     "hiring, marketing, culture, or operations"
-Group C (even chapters):       "practical pressure visible but refuses to let it define the answer"
+BIND — ch<NN>
+  centralConcept : <name> — <plain one-sentence definition, your words>
+  namedExamples  : <3–6 real cases from the sidecar: companies, people, studies, places>
+  hardEdge       : <the strict reading you must preserve — the thing a lazy summary gets wrong>
+  readerTool     : <the ONE named move you invent for this chapter and use in the plan>
 ```
 
-At the same time the breakdown was templated end-to-end: one closing paragraph appeared verbatim in all 14 chapters' `fullRead`, four more breakdown paragraph skeletons templated across all 14 chapters, and every chapter's three tiers (fastRead, deepRead, fullRead) opened with the **same first sentence**. The quiz `correctIndex` sequence was `[0,1,2,0,1,2,0,1,2]` for all 14 chapters.
+The Bind Block is not paperwork. It is the answer to "what am I reasoning FROM" for every field below it. A scenario that doesn't trace to a `namedExample`, a quiz that doesn't test the `hardEdge`, a card that doesn't pull on the `centralConcept` — those are the fields that, having nothing real to say, fall back on a skeleton. Bind first and the skeleton has nowhere to live.
 
-All of this passed the chapter ship-gate because:
-- AS9 saw <70% multiset overlap → no fire
-- BP10/BP11/BP13/BP14 only run at book-gate time
-- E2 was registered as `major`, so chapter shipped even with all three tiers opening with the same line
+Then these four rules are **authoring law**. They are not gate-dodges; they are how each field does its job.
 
-The fix:
-- `AS10` fires on a literal 5-token phrase that appears in ≥2 prior chapters' same field
-- `AS11` fires on any breakdown paragraph (≥60 chars) that appears verbatim in any prior chapter's breakdown
-- `AS12` fires when the quiz `correctIndex` sequence is identical to any prior chapter's
-- `E2` is now a `blocker` — three tiers opening with the same sentence is structural failure
+**R1 — Concept labels are never grammatical subjects or objects.** A person acts; the idea is what their action *illustrates*. A concept like "psychological safety" or "the Golden Circle" cannot be lifted, studied, opened, or pointed at, because it is not a thing in the room — it is the meaning of what the person in the room did. When a label becomes an actor, the reader loses the scene and you've written an abstraction wearing a name tag.
+- Good: "Renee slides the injury report back across the desk and asks who knew first." (safety is shown)
+- Bad: "Renee studies the psychological safety on her clipboard." (the idea is being physically handled)
 
-**What this means for your composition.** When you write Chapter N, every short connective phrase in your examples and breakdown must be different from prior chapters'. If you reach for "the team has to decide whether to" or "the practical edge of" or any stock framing, check whether you wrote it in Ch1, Ch2, Ch3 first. If you did, write differently. Every breakdown paragraph must be specific to THIS chapter's source notes — no shared closing paragraph, no shared skeleton with variable slots. Every quiz must have a `correctIndex` sequence that is meaningfully different from prior chapters — pick positions based on which distractor is strongest for THIS question, not by following a rotation. Every breakdown tier must open with a DIFFERENT first sentence than the other two tiers in the same chapter; the three tiers progress (fastRead = scene + rule, deepRead = mechanism + second scene, fullRead = third angle + limits), they do not echo.
+**R2 — Never paste a source sentence into a reader field.** The source notes are input you reason FROM, not text you ship. A pasted breakdown sentence, a quoted study summary, or a scaffold marker ("Source Moment 3.1") fails the reader because it carries the author's framing and the editor's machinery instead of *this* field's register — a card back speaks differently than a scenario, which speaks differently than a quiz explanation. Read the source, understand it, then say it in the field's own voice.
+- Good (card back): "Because the cost lands on whoever spoke first, people stop speaking — and the team goes quiet exactly when it most needs the truth."
+- Bad (card back): "As the source cue notes, blame attribution suppresses upward information flow."
 
-### Forbidden move 3.5 — Reusing your own quiz template across chapters (`AS5` / `AS6`)
+**R3 — No fixed per-field skeleton across slots or chapters.** Compose each slot independently, from its own bit of source. A skeleton is the tell that you stopped writing and started filling blanks. The reader meets your fields in sequence; a rotating frame is obvious to them the second time they see it, and it teaches them that the book is generated, not authored. The diagnostic: if your six example scenarios share a clause, or your nine quiz prompts share an opener, or your card fronts share a stem with the concept swapped — you built a skeleton. Tear it out and write each from its own source moment.
+- Good: six scenarios with six different openers, roles, stakes, and scene shapes — each anchored in a different `namedExample`.
+- Bad: "<Name> leans over a clipboard at 8:10 a.m. in the <city> <place>…" six times with the nouns swapped.
 
-This is the variant introduced after the May 2026 "7 Habits Step 2" incident. A writer agent produced 11 chapters where every chapter's `quiz` section was the same 9 questions with names and locations substituted:
-
-```
-Ch1 q02: "Your family is split after the call connects. What should Camille protect…"
-Ch2 q02: "Your family is split after the call connects. What should Hector protect…"
-Ch3 q02: "Your family is split after the call connects. What should Amina protect…"
-… all the way to Ch11 with Sabine.
-```
-
-Distractors were identical too — the same three sentences with one name swapped, shuffled into different positions. Every individual chapter passed its ship gate (no chapter-only critic could see the pattern), but the book gate blocked at finalize and 10+ chapters of work had to be thrown out.
-
-The pipeline now catches this **at chapter ship-gate time**. When you run `gate-chapter` on Chapter 2, the gate auto-discovers Chapter 1 on disk and compares them. If your Ch2 q02 prompt is ≥70% identical to Ch1 q02 prompt → `AS5` BLOCKER. If your Ch2 q05 choice[1] is ≥80% identical to any of Ch1 q05's choices → `AS6` BLOCKER.
-
-This is **not** a verbatim n-gram check. The Covey-incident agent broke verbatim matching by swapping names; AS5/AS6 use word-multiset similarity, which name swaps do not evade.
-
-**The structural rule:** every chapter's quiz is written FROM THAT CHAPTER'S SOURCE NOTES. Read the chapter's `paraphraseNotes`, `centralConcept`, `hardEdge`, and `namedExamples`. Build 9 questions that test THIS chapter's specific mental move using THIS chapter's specific source material. Do not write Chapter 1's quiz and then "adapt" it for Chapter 2 — that produces template substitution every time.
-
-**When writing Chapter 2 or later**, before composing the quiz:
-1. Read every prior chapter's `state/chapters/<bookId>-ch<NN>.v21-native.chapter.json` you have on disk.
-2. List the 9 quiz prompt openings and 27 distractor texts from each prior chapter.
-3. When you compose this chapter's quiz, every prompt must use a different scenario shape (not just different nouns in the same skeleton), and every distractor must address THIS chapter's misreading, not a shared misreading from a prior chapter.
-
-If you find yourself writing a quiz prompt that sounds vaguely like one you already wrote for another chapter, STOP. Pick a different scenario from THIS chapter's source notes.
-
-### Forbidden move 4 — Positional prompt template substitution (`AS4`)
-
-NEVER keep the same prompt skeleton across chapters with one or two nouns swapped per chapter. The book-level audit detects this by **word-set similarity** — if 3+ chapters' same-position questions (Ch1 q06, Ch2 q06, Ch3 q06, …) share >70% of their words, the gate fails closed with `AS4.quiz_prompt_template_substitution`.
-
-**Forbidden across-chapter pattern (from the actual incident):**
-- Ch1 q06: `"If the map family calendar rewards push through fatigue, which plan best serves map balance?"`
-- Ch2 q06: `"If the goose family calendar rewards push through fatigue, which plan best serves goose balance?"`
-- Ch3 q06: `"If the choice family calendar rewards push through fatigue, which plan best serves choice balance?"`
-
-These pass BP20 (which checks verbatim n-grams) because no 5-word phrase is identical across chapters — every "map / goose / choice" swap breaks the match. AS4 catches them because the word multisets overlap >70%.
-
-**Correct response:** Each chapter's q06 is a different scenario. If chapter 1 teaches "be proactive" and chapter 2 teaches "begin with the end in mind", their q06s should not share their underlying decision shape at all — one might be about a calendar conflict, the other about a 5-year career pivot.
-
-### The general rule
-
-If you are reaching for ANY of the four moves above to clear a cross-chapter audit, the problem is upstream of the prose: either your chapter source notes are too similar across chapters (Step 1 problem to surface to the user), or your quiz design is too template-bound (rethink the questions). Adding marker tokens is the symptom of an agent optimizing for the metric instead of the goal. The metric exists because cross-chapter sameness is the goal we're trying to avoid; the metric is a proxy, and gaming the proxy ruins the actual goal.
-
-If after 3 honest attempts you cannot get a chapter through the ship gate without using a forbidden move, **STOP and report to the user**. The user has a QC agent who can diagnose the structural issue.
+**R4 — `correctIndex` follows correctness, never a rotation.** Score every choice for truth first, then record where the true one landed. The position is an *output* of which choice is correct, never an input you're balancing. A clean answer distribution is a *result* of honest questions; a perfectly even split laid over choices that were never scored for truth means you rotated positions and may now be keying a choice your own explanation contradicts. Decide which choice is right, write the explanation that proves it, then read off the index.
+- Good: nine questions, each keyed to the choice that actually follows from the `hardEdge`; the positions fall where they fall.
+- Bad: choices arranged so the index reads `[0,1,2,0,1,2,…]`, with the "correct" one chosen to fit the pattern.
 
 ---
+
+## False-positive allowances (write freely)
+
+The clean gold book does all of the following. Do not over-correct away from them — that just trades one templating defect for a different drift.
+
+- **A timestamp inside a coherent scene is good.** "At 6:40 p.m. in the rink office, coach Renee studies a clipboard…" is exactly right. The defect is the *concept-label header* with an identical fixed time every chapter ("<Name>, 8:40 a.m. at the <place>: <Concept>"), not the presence of a clock in a real scene.
+- **`whatToDo` may be third-person narrative** tied to the protagonist ("Aisha names the missed commitment and reschedules it before the standup…"). Do NOT force second-person imperatives. The only failure is `whatToDo` becoming an abstract proposition instead of an action.
+- **Explanations do not need the word "because."** They teach by naming and contrast too. Never bolt a connective onto a restatement to fake a justification — that doesn't add reasoning, it just disguises the echo.
+- **A consistent pedagogical opener across chapters is a convention,** not a skeleton, when the content that follows genuinely differs and reads as prose ("The mechanism is:" followed by a real, chapter-specific mechanism each time).
+- **A misconception keyed correct IS correct** when the stem asks for it ("What is the simplistic reading this chapter warns against?"). The wrong-sounding answer is the right answer when the question asked for the wrong move.
+- **An imperative plan title counts as the chapter's named reader tool** ("Name the Scarcity Cue", "Run the Purpose Receipt Check"). A proper-noun product name is not required; a sharp imperative title is a tool.
+
+---
+
+## The write→check loop (run as you go)
+
+After you finish each chapter — before you start the next — run both checks. The first reads your fields for whether they did their JOB; the second is the ship gate. Both must be clean before you move on.
+
+```bash
+# field-JOB check: does each field do its actual job?
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+  author-check state/chapters/<chapterId>.v21-native.chapter.json
+
+# ship gate: structural + cross-chapter
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+  gate-chapter state/chapters/<chapterId>.v21-native.chapter.json
+```
+
+`author-check` prints, per finding, the JOB the field violated and which field violated it — so you fix the *writing*, not a regex. Fix everything it names, fix everything `gate-chapter` names, re-run both, and only then advance. Checking at scale-1 catches a templated frame before it becomes fourteen chapters of it.
+
+**In-session FORM-SHIFT circuit-breaker.** Watch the shape of your own failures. If you fix one finding and a *different* code fires on a *different* field, then you fix that and a third code fires on yet another field — three or more distinct codes walking from field to field across your attempts — STOP. That walk is the signature of a writer patching surface form while the same underlying template hides in whichever field isn't yet covered. You are not converging; you are relocating the defect.
+
+When the circuit-breaker trips, do not edit another surface. Do one of two things:
+1. **Re-author the field from the source notes.** Go back to the Bind Block, find the `namedExample` or `hardEdge` this field was supposed to express, and write it fresh from that — not by adjusting the words that keep tripping checks.
+2. **Surface a status to the user.** If re-authoring from source doesn't resolve it, the source notes may not differentiate this chapter enough (a Step 1 issue). Report the chapter, the codes you saw move, and your read on which upstream stage needs to fix what. The user has a QC agent who can diagnose. That is a real, expected outcome — not a failure to hide.
+
+Never keep editing surface form to dodge a check. A check that keeps moving is telling you the field was never written from source in the first place.
+
+---
+
+## Gate reference — tripwires, not the spec
+
+The `AS`, `BP`, and `F` gates are **tripwires**, not the specification. They fire *because* a field stopped doing the job described above — a templated scenario, a reused distractor, an echoed explanation, a copy-pasted breakdown paragraph. When one fires, the fix is always in the writing: re-author the field from its source moment so it does its job. Never adjust the surface to slip past the threshold while the underlying template stays — that is optimizing the proxy and ruining the goal the proxy stands in for.
+
+Salting is detected and fails closed. The anti-evasion gates (`AS1`–`AS3`) catch the three classic surface hacks — injected identifier tokens (`q7`, `ex1`, `p2`), jammed proper nouns (`MaplefieldBridgeton`), and doubled sentence-boundary periods (`..`) — and block on any occurrence. They exist because every one of these once shipped a ruined book. If you ever find yourself reaching for one to make a field "unique," that impulse is the signal that the field needs re-authoring from source, not decoration. Fix the writing; the tripwires take care of themselves.
+
+---
+
+## Per-field JOBs — read before composing each field
+
+Every field has a JOB. The complete per-field specification — JOB, a WRITE recipe, what to REJECT and why it fails the reader, and a POSITIVE/NEGATIVE pair — lives in [FIELD-PURPOSE-CONTRACTS.md](FIELD-PURPOSE-CONTRACTS.md). Read the contract for each field as you compose it. The 10 composition steps below give the schema and order; FIELD-PURPOSE-CONTRACTS.md gives the JOB. `author-check` is the deterministic enforcement of those contracts.
+
+
+---
+
 
 ## Working directory
 
 ```
-/Users/willsoltani/dev/chapterflow-siliconx
+/Users/radinsoltani/ChapterFlow
 ```
 
 `cd` there at the start of your session. All paths below are relative to this directory.
@@ -657,9 +584,10 @@ In either case, report:
 ## TL;DR loop
 
 ```bash
-cd /Users/willsoltani/dev/chapterflow-siliconx
+cd /Users/radinsoltani/ChapterFlow
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts next-task <bookId>
-# It tells you which chapter to write. Read the source. Compose the JSON.
-# Save to the printed path. Run gate-chapter. Iterate until PASS.
+# It tells you which chapter to write. Write the Bind Block from the source.
+# Compose each field to its JOB (FIELD-PURPOSE-CONTRACTS.md). Save to the printed path.
+# Run author-check AND gate-chapter. Iterate until BOTH are clean.
 # Re-run next-task. When it stops saying "write-chapter", stop and report.
 ```
