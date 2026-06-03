@@ -598,6 +598,11 @@ async function runCheckSource(args: string[]): Promise<number> {
   };
   const { runSourceCoherenceCheck, formatSourceCoherenceReport } = await import("./critics/sourceCoherence.js");
   const report = runSourceCoherenceCheck({ bibliography, chapters });
+  // SC10 (Phase 3): source realness — v2 enforced, v1 advisory. Merge into the report.
+  const { checkSourceRealness } = await import("./critics/sourceRealness.js");
+  const realness = checkSourceRealness(chapters);
+  report.findings.push(...realness);
+  if (realness.some((f) => f.severity === "blocker")) report.passed = false;
   console.log(formatSourceCoherenceReport(report));
   return report.passed ? 0 : 1;
 }

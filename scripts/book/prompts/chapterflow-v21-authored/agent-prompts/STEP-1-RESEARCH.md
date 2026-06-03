@@ -151,6 +151,48 @@ type ChapterResearchResult = {
 };
 ```
 
+### v2 schema — REQUIRED for new books (`schemaVersion: "source-v2"`)
+
+The fields above are the legacy (v1) shape. New research MUST emit the v2 shape — it
+adds the spine that makes correct, non-templated authoring possible. `check-source`
+(SC10) **enforces** these on any sidecar tagged `schemaVersion: "source-v2"` (and is
+advisory on legacy v1). Additive over the schema above:
+
+```ts
+type SourceSidecarV2 = ChapterResearchResult & {
+  schemaVersion: "source-v2";
+  centralConcept: { id: string; name; plainDefinition; whyItMatters };  // id = "chNN.concept"
+  namedExamples: Array<{ id: string; label; summary; teachesWhat;
+    hardSpecifics: string[];   // 2-4 CONCRETE checkable tokens — a number, place, person, date
+    realWorld: boolean;        // true = a real case; false = an author's named device
+  }>;
+  testableFacts: Array<{       // >= 9 (one per quiz question) — the correctness spine
+    id: string;                // "chNN.fact.<k>"
+    claim: string;             // one verifiably-true proposition — the keyed-answer seed
+    becauseMechanism: string;  // one CAUSAL sentence (because/since/so that…) — the explanation seed
+    commonError: string;       // a plausible WRONG belief a real reader holds — the distractor seed
+    errorIsWhy: string;        // why the commonError is wrong
+    derivedFrom?: string;      // optional anchor id this elaborates
+  }>;
+  frameworks?: Array<{ name: string; members: string[]; acronym?: boolean }>;  // every named N-part model
+};
+```
+
+Why each exists (it pre-empts a downstream defect, so the writer can't template it):
+- **`testableFacts[].claim` + `becauseMechanism`** — the quiz writer keys the answer to a
+  `claim` and writes the explanation from its `becauseMechanism`, so a wrong key / echo
+  explanation becomes structurally impossible (the causal link exists by construction).
+- **`commonError` + `errorIsWhy`** — seed REAL distractors (a misbelief a reader holds), not
+  strawmen or the answer-in-disguise.
+- **`hardSpecifics`** — force a concrete noun into each scenario, so an example can't become
+  "<Name> studies <concept-label>".
+- **`frameworks`** — every named N-part model (e.g. BRAVING's 7), so completeness is checkable.
+
+Rules: every `testableFacts[].commonError` must differ from its `claim` by MORE than a negation
+(SC10 blocks a degenerate fact); every `becauseMechanism` must contain a causal connective; each
+chapter needs ≥2 real named entities in `namedExamples`/`hardSpecifics` (SC10 blocks "nothing to
+check"). Generate stable ids as shown so STEP-2 can cite them as provenance.
+
 **Hard rules for chapter sources:**
 
 1. **Paraphrase only, never verbatim.** Restate every claim in your own words. The pipeline checks for long quoted spans.
