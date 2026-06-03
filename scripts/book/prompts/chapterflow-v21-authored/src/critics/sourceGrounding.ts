@@ -23,6 +23,7 @@ import { fileURLToPath } from "url";
 import { ChapterV21, CriticFinding } from "../types.js";
 import { finding } from "./shared.js";
 import { parseChapterId } from "../lib/chapterPaths.js";
+import { detectSidecarShape } from "../source/sidecarSchema.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // SC9 lives in src/critics/, so it needs one more `..` than helpers in
@@ -140,6 +141,60 @@ function extractProperNouns(texts: string[], excluded: Set<string>): Set<string>
  * common stopwords filtered out so a chapter doesn't pass by echoing its
  * own title.
  */
+/**
+ * SC11 — declared provenance (Phase 3). The Goodhart-resistant grounding core:
+ * every reader unit names the source anchor it was built from (`sourceAnchorId`),
+ * and the gate verifies the unit actually USES that anchor's concrete specifics —
+ * not a generic sentence that merely mentions a proper noun (which is how the
+ * source-dilution evasion defeats SC9's inferred grounding).
+ *
+ * GATED behind v2 (hard rule): only runs when the chapter's sidecar is
+ * schemaVersion source-v2. v1 chapters (all current) skip → zero effect, no brick.
+ */
+export function checkChapterProvenance(chapter: ChapterV21, sidecarOverride?: any): CriticFinding[] {
+  const sc = sidecarOverride ?? loadChapterSidecar(chapter.chapterId);
+  if (!sc || detectSidecarShape(sc) !== "v2") return []; // v2-only — v1 cannot brick
+  const findings: CriticFinding[] = [];
+
+  // anchorId -> hardSpecifics (namedExamples carry them; facts/concept have none).
+  const anchors = new Map<string, string[]>();
+  for (const e of sc.namedExamples ?? []) if (e?.id) anchors.set(String(e.id), (e.hardSpecifics ?? []).map(String));
+  for (const f of sc.testableFacts ?? []) if (f?.id) anchors.set(String(f.id), []);
+  if (sc.centralConcept?.id) anchors.set(String(sc.centralConcept.id), []);
+
+  const checkUnit = (unit: string, anchorId: string | undefined, text: string) => {
+    if (!anchorId) {
+      findings.push(finding("SC11.1.missing_provenance" as any, "blocker",
+        `${unit} has no sourceAnchorId — a v2 chapter must declare which source anchor each unit is built from (declare-then-write). Add the anchor id it dramatizes.`));
+      return;
+    }
+    if (!anchors.has(anchorId)) {
+      findings.push(finding("SC11.1.missing_provenance" as any, "blocker",
+        `${unit} cites sourceAnchorId "${anchorId}" which is not an anchor in this chapter's sidecar (dangling/fabricated). Cite a real namedExample/testableFact/concept id.`, anchorId));
+      return;
+    }
+    const specifics = anchors.get(anchorId)!;
+    if (specifics.length >= 2) {
+      const lc = text.toLowerCase();
+      const present = specifics.filter((s) => s && lc.includes(s.toLowerCase())).length;
+      if (present < 2) {
+        findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
+          `${unit} names anchor "${anchorId}" but uses <2 of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details — a generic sentence that just mentions it doesn't ground the content (this is what the source-dilution evasion exploits).`, anchorId));
+      }
+    }
+  };
+
+  chapter.examples?.forEach((e, i) => checkUnit(`example[${i}].scenario`, e.sourceAnchorId, e.scenario ?? ""));
+  chapter.quiz?.questions?.forEach((q, i) => {
+    const ci = typeof q.correctIndex === "number" ? q.choices?.[q.correctIndex] ?? "" : "";
+    checkUnit(`quiz.q${String(i + 1).padStart(2, "0")}`, q.sourceAnchorId, `${q.prompt ?? ""} ${ci} ${q.explanation ?? ""}`);
+  });
+  chapter.reviewCards?.forEach((c, i) => checkUnit(`card[${i}]`, c.sourceAnchorId, `${c.front ?? ""} ${c.back ?? ""}`));
+  chapter.implementationPlan?.ifThenPlans?.forEach((it, i) => checkUnit(`plan.ifThen[${i}]`, it.sourceAnchorId, `${it.context ?? ""} ${it.plan ?? ""}`));
+
+  return findings;
+}
+
 export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const id = chapter.chapterId;

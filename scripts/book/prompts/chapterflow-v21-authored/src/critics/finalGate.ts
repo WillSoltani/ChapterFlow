@@ -34,7 +34,7 @@ import {
   checkChapterJammedNouns,
 } from "./antiSalting.js";
 import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
-import { checkExampleSourceGrounding } from "./sourceGrounding.js";
+import { checkExampleSourceGrounding, checkChapterProvenance } from "./sourceGrounding.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -177,6 +177,10 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // source reliably predicts word-salad, but it's advisory until Phase 3
   // guarantees every active book a resolvable sidecar (then → blocker).
   "SC11.0.no_source_run": "major",
+  // SC11.1/.2 — declared provenance (Phase 3). v2-gated: fires only when the
+  // chapter's sidecar is schemaVersion source-v2, so v1 chapters never brick.
+  "SC11.1.missing_provenance": "blocker",
+  "SC11.2.anchor_specific_not_present": "blocker",
 };
 
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
@@ -444,6 +448,10 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // templating naturally follows.
   for (const f of checkExampleSourceGrounding(chapter)) {
     push(f.checkId as string, "examples", f.message, f.evidence);
+  }
+  // SC11 — declared provenance (Phase 3, v2-gated; v1 chapters return [] → skip).
+  for (const f of checkChapterProvenance(chapter)) {
+    push(f.checkId as string, f.message.split(" ")[0] || "provenance", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent

@@ -419,6 +419,9 @@ export type ChapterV21 = {
 
 export type ExampleV21 = {
   exampleId: string;
+  /** Phase 3 provenance (v2): the source sidecar anchor id this scenario dramatizes.
+   *  Enforced by SC11 only when the chapter's sidecar is schemaVersion source-v2. */
+  sourceAnchorId?: string;
   title: string;
   /** Short descriptors for filtering/display. 1–4 items, each ≤40 chars. */
   tags: string[];
@@ -439,6 +442,7 @@ export type QuizV21 = {
   passingScorePercent: number;
   questions: Array<{
     questionId: string;
+    sourceAnchorId?: string;             // Phase 3 (v2): the testableFact this question tests
     prompt: string;
     choices: string[];                   // exactly 3
     correctIndex: number;                // 0, 1, 2
@@ -450,6 +454,7 @@ export type QuizV21 = {
 
 export type ReviewCardV21 = {
   cardId: string;
+  sourceAnchorId?: string;              // Phase 3 (v2): the fact/concept this card retrieves
   front: string;                        // 30–200 chars
   back: string;                         // 80–400 chars
   difficulty: "easy" | "medium" | "hard";
@@ -459,6 +464,7 @@ export type ImplementationPlanV21 = {
   title: string;                        // 4–7 words naming the specific skill this plan teaches
   coreSkill: string;                    // 2–4 sentences
   ifThenPlans: Array<{
+    sourceAnchorId?: string;            // Phase 3 (v2): the anchor this if-then applies
     context: string;                    // free-form; planner chooses relevant contexts for this book
     plan: string;                       // 1–2 sentences; "If X, then Y"
   }>;

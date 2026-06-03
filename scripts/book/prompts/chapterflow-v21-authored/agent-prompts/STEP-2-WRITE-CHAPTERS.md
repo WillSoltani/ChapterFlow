@@ -99,6 +99,15 @@ Then these four rules are **authoring law**. They are not gate-dodges; they are 
 - Good: nine questions, each keyed to the choice that actually follows from the `hardEdge`; the positions fall where they fall.
 - Bad: choices arranged so the index reads `[0,1,2,0,1,2,…]`, with the "correct" one chosen to fit the pattern.
 
+**R5 — Declare provenance, then write (v2 sidecars only).** If the sidecar is
+`schemaVersion: "source-v2"`, set each unit's `sourceAnchorId` to the anchor it is
+built from BEFORE you write it — the `namedExample`/`testableFact`/`concept` id from
+the Bind Block — and then build the unit FROM that anchor's `hardSpecifics` (use ≥2 of
+its concrete tokens). This is declare-then-write: grounding becomes a forward act, not a
+post-hoc check. `SC11` verifies the unit actually uses the anchor it claims — a generic
+sentence that merely name-drops the anchor fails. (v1 sidecars: no `sourceAnchorId`
+needed; SC11 skips them.)
+
 ---
 
 ## False-positive allowances (write freely)
