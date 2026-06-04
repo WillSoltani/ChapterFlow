@@ -1,0 +1,332 @@
+{
+  "chapterId": "rework-ch03",
+  "number": 3,
+  "title": "Learning from mistakes is overrated",
+  "readingTimeMinutes": 10,
+  "hook": "A postmortem can name the crater and still miss the road out.",
+  "counterintuition": "Failure can teach where one path broke, but the next useful move is often hidden in what already worked. Success gives a pattern to repeat, not just a scar to explain.",
+  "tryThisNow": "Find one recent win, a sale, reply, finished task, or retained customer, and write the exact behavior that made it work.",
+  "keyTakeaway": "Success as instruction means studying working behavior closely enough to repeat the price, message, feature, habit, or process that created it.",
+  "breakdown": {
+    "fastRead": "37signals did not need a museum of failed products to learn. It could watch which parts of its own work customers used, paid for, and praised. That positive signal told the team what deserved more care.\n\nFailure can warn. A bad price, weak message, or sloppy process may show what went wrong. Yet a warning is not a route. It often says, \"Do not step there,\" while leaving the next step blank.\n\nSuccess as instruction asks for a different study habit. Look at the offer that sold, the feature that stayed busy, the support reply that calmed a customer. Those moments contain repeatable business knowledge.",
+    "deepRead": "Working behavior carries more detail than a collapse. A failed launch may point to timing, price, execution, or taste, but it rarely says which combination would work next. A successful offer gives a live recipe. Someone cared enough to buy, use, return, recommend, or trust.\n\nThe 37signals anchor makes the lesson concrete. The company paid attention to the parts of its products and practices that customers actually valued. That is different from collecting cautionary stories about other firms. Other people's failures are often trapped inside their own conditions: their market, team, timing, cost, or assumptions.\n\nA team that studies success asks sharper questions. Which message made the buyer stop? Which feature stayed in daily use after launch excitement faded? Which support habit turned anger into loyalty? Which internal process made good work easier to repeat? Each answer gives a positive course of action.\n\nThis does not make failure useless. A mistake can prevent repeated harm. It can expose a risk or a weak assumption. The edge is priority. Do not make failure your identity or your curriculum. Put more time into the traces left by what worked.\n\nEvolution is a useful comparison. Progress comes from preserving useful adaptations, not from building a shrine to every form that died. In business, the useful adaptation may be small: a price point, a plain headline, a narrower feature, or a habit customers quietly reward.",
+    "fullRead": "Failure has become oddly glamorous in business talk. People trade collapse stories, praise scars, and treat the failed founder as if pain itself has turned into judgment. Pain may create humility. It may create caution. It may also create a vague story about why one attempt died without giving a usable map for the next attempt.\n\nSuccess is less dramatic, so teams often under-study it. A customer pays and the team rushes forward. A feature gets used and everyone treats it as normal. A support note earns trust and disappears into the queue. Yet those moments are where the practical knowledge sits. They show a working match among demand, message, execution, price, and timing.\n\n37signals offers the right habit of attention. The company could watch how customers used its products and how its own practices helped the work. A piece of behavior that kept producing value was not luck to wave past. It was evidence. Positive signal is not soft praise; it is a clue about what to protect and improve.\n\nThe difference between a warning and an instruction matters. A failed price can say the number was wrong for that audience. It does not say what price will work. A failed feature can say the design confused people. It does not identify the feature that will become central. A failed campaign can say the message missed. It does not write the sentence that buyers will repeat.\n\nA working piece of behavior gives more. If a small plan sells faster than the broad plan, narrowness has earned study. If one onboarding email cuts support tickets, its wording deserves care. If a certain customer segment renews without drama, that segment may understand the product best. The team is no longer staring at a dead end. It has a living pattern.\n\nThe hard edge is not denial. Mistakes matter when they stop a team from repeating harm. A security lapse, a broken promise, a bad hire, or a confused invoice can teach necessary caution. The point is proportion. Failure should be inspected and then released. Success should be inspected and then built upon.\n\nOther people's failures are even more limited. Their conditions may not match yours. They may have sold to different buyers, carried different costs, hired different people, or launched at the wrong time. Copying their caution can be as foolish as copying their strategy. The lesson may belong to their weather, not your road.\n\nSuccess as instruction changes the meeting after a win. Do not only celebrate. Ask what repeated. Ask what surprised the customer in a good way. Ask what felt easy because a hidden process was strong. Ask which part of the result was earned by design rather than chance. Then keep that part visible.\n\nThe closing standard is unsentimental. Failure can be a teacher, but it is often a teacher with a short lesson. Success leaves homework. It asks the team to repeat what worked without turning it stale, to protect the signal without worshiping it, and to improve from evidence that already carried weight in the world."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Lior Studies the Renewal Note",
+      "tags": [
+        "customer retention",
+        "pricing",
+        "positive signal"
+      ],
+      "planSpec": {
+        "domain": "subscription analytics",
+        "audience": "founders reviewing churn and renewals",
+        "stakes": "learn from a renewal instead of only dissecting churn",
+        "format": "postmortem",
+        "requiredBeat": "the protagonist studies a working customer behavior in the 37signals spirit"
+      },
+      "scenario": "Lior opens a renewal email at 8:45 a.m. in a Dublin kitchen, three hours before the churn review. The team wants to spend the meeting on lost accounts. This customer names the exact dashboard that saved a weekly finance call. Lior brings the 37signals habit into the room: study the part people use and value, not only the account that left.",
+      "whatToDo": "Lior should start the review with the renewal note and trace the dashboard, message, and support habit that made the customer stay.",
+      "whyItMatters": "A lost account may warn about one dead end. The renewal points to a working combination the team can repeat and improve."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Sana Marks the Busy Feature",
+      "tags": [
+        "product usage",
+        "feature focus",
+        "behavior"
+      ],
+      "planSpec": {
+        "domain": "municipal permitting software",
+        "audience": "product managers choosing roadmap work",
+        "stakes": "avoid letting failed feature stories crowd out actual use",
+        "format": "audit",
+        "requiredBeat": "the protagonist uses usage evidence as instruction"
+      },
+      "scenario": "Sana stands at 1:20 p.m. in a Calgary city office with a usage report on the wall. A search tool flopped last quarter, and everyone keeps retelling the failure. The permit-comment thread, though, has doubled in daily use. Before roadmap voting starts, Sana must decide whether 37signals-style attention belongs on the flop story or the working thread.",
+      "whatToDo": "Sana should map why the comment thread works, who uses it, and which adjacent permit steps could benefit from the same clarity.",
+      "whyItMatters": "The failed search tool may prevent a repeat mistake, but the busy thread shows a positive pattern worth extending."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Edwin Replays the Sales Call",
+      "tags": [
+        "sales message",
+        "customer language",
+        "repeatability"
+      ],
+      "planSpec": {
+        "domain": "industrial equipment service",
+        "audience": "sales teams after a surprise win",
+        "stakes": "capture the sentence that made a buyer act",
+        "format": "predict_reveal",
+        "requiredBeat": "the protagonist finds instruction inside a successful message"
+      },
+      "scenario": "Edwin sits at 6:05 p.m. in a Leeds depot, replaying a recorded sales call before the weekly forecast. The team expected price to win, but the buyer reacted to one line about fewer midnight breakdowns. Minutes before the forecast locks, Edwin has to reveal whether the 37signals lesson is in last month's lost bids or in the phrase that worked.",
+      "whatToDo": "Edwin should pull the buyer's phrase into the forecast notes and test that breakdown message in the next three service calls.",
+      "whyItMatters": "A successful sentence is not trivia. It can show what the buyer actually values, which gives the team a repeatable message."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Bo Protects the Support Habit",
+      "tags": [
+        "support",
+        "loyalty",
+        "team practice"
+      ],
+      "planSpec": {
+        "domain": "online music lessons",
+        "audience": "small service teams",
+        "stakes": "preserve a practice that customers quietly reward",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist chooses to study a support win before cutting it"
+      },
+      "scenario": "Bo reviews a cost spreadsheet at 9:30 a.m. in a Manila lesson studio. The accountant suggests dropping weekend replies because they look expensive. A 37signals note on valued behavior sits beside thirty parent thank-yous. Before the budget call, Bo must decide whether the support habit is waste or a success pattern hidden in plain sight.",
+      "whatToDo": "Bo should measure how weekend replies affect renewals before cutting them, then protect the parts that create loyalty.",
+      "whyItMatters": "Success can look ordinary until it is removed. Studying the thanked habit keeps the team from cutting its own useful adaptation."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Frida Refuses the Failure Trophy",
+      "tags": [
+        "startup culture",
+        "identity",
+        "experiments"
+      ],
+      "planSpec": {
+        "domain": "food delivery startup",
+        "audience": "teams after an unsuccessful experiment",
+        "stakes": "avoid turning failure into identity",
+        "format": "reflection",
+        "requiredBeat": "the protagonist limits the lesson from failure and returns to working evidence"
+      },
+      "scenario": "Frida sits at 10:15 p.m. in a Reykjavik office after a failed lunch-delivery test. The team wants a dramatic failure talk for the investor update. On the same whiteboard, one bakery pickup lane worked every day. Frida writes 37signals at the top and asks whether the real instruction is the collapse story or the small route that customers used.",
+      "whatToDo": "Frida should name the failed lunch test's warning, then spend more time studying why the bakery pickup lane kept working.",
+      "whyItMatters": "Failure can become a trophy. The useful map is more likely to sit inside the piece of the experiment that still produced demand."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Kamal Follows the Training Win",
+      "tags": [
+        "operations",
+        "training",
+        "process"
+      ],
+      "planSpec": {
+        "domain": "warehouse training",
+        "audience": "operations leaders",
+        "stakes": "repeat a working process instead of only blaming errors",
+        "format": "before_after",
+        "requiredBeat": "the protagonist compares error review with successful process evidence"
+      },
+      "scenario": "Kamal walks the Newark warehouse at 5:55 a.m. with two clipboards. One lists last month's packing errors. The other shows a new five-minute scan drill that cut mistakes on aisle seven. Before the supervisors gather, Kamal has to choose the 37signals pattern: preserve the adaptation that works, not just lecture people about what broke.",
+      "whatToDo": "Kamal should replay the aisle-seven drill, identify its repeatable steps, and test the same training rhythm on one more aisle.",
+      "whyItMatters": "The error list warns; the drill instructs. A working process gives operations something concrete to repeat."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A churn meeting opens with three lost customers, but one renewal email names the exact dashboard that saved time. What should the team study first?",
+        "choices": [
+          "Study the renewal email first, because it identifies a working behavior the team can repeat.",
+          "Study only the lost customers, because pain produces more memorable stories for the team.",
+          "Set the renewal aside until the churn causes are fully explained."
+        ],
+        "correctIndex": 0,
+        "explanation": "Success as instruction looks for the positive pattern. The renewal names a feature and use case that can guide future product and messaging work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A feature failed loudly, while another quiet workflow is used every day by city clerks. Which roadmap habit fits the source idea?",
+        "choices": [
+          "Keep retelling the failed feature story so the team feels enough caution.",
+          "Replace both features with a new concept so the team is not biased by recent results.",
+          "Inspect the daily workflow and ask which parts of its clarity can improve nearby steps."
+        ],
+        "correctIndex": 2,
+        "explanation": "The failed feature may warn the team, but the daily workflow contains instruction. Working use tells the team what to preserve and extend.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "During a sales review, the winning buyer reacted to one line about fewer midnight breakdowns. What is the strongest next move?",
+        "choices": [
+          "Treat the line as luck and focus on the bids that failed last month.",
+          "Test the breakdown message in several similar calls and watch buyer response.",
+          "Turn the line into a company slogan before checking whether other buyers care."
+        ],
+        "correctIndex": 1,
+        "explanation": "A successful message is positive evidence, not decoration. The team should test whether the same buyer concern repeats.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A manager wants to cut weekend support replies because they look costly, but renewal notes praise those replies. Which interpretation is best?",
+        "choices": [
+          "Weekend replies should be cut because cost lines are clearer than customer notes.",
+          "The renewal notes should be ignored unless every customer mentions support.",
+          "The support habit may be a working adaptation, so measure its link to retention before cutting."
+        ],
+        "correctIndex": 2,
+        "explanation": "Success can be hidden inside a routine. If customers reward a practice, the team should study its effect before treating it as waste.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "After a failed delivery test, one pickup lane still drew repeat customers. How should the founder frame the lesson?",
+        "choices": [
+          "Name the failure's warning, then study the pickup lane that kept producing demand.",
+          "Lead with a dramatic failure story so the team can show humility.",
+          "Drop the pickup lane because the larger experiment did not work."
+        ],
+        "correctIndex": 0,
+        "explanation": "The failed test may reveal a limit, but the working pickup lane points toward a repeatable customer behavior.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A warehouse supervisor has an error list and a scan drill that cut mistakes on one aisle. What should guide the next training change?",
+        "choices": [
+          "Use the error list as the whole lesson and warn every aisle about the bad month.",
+          "Replay the successful drill, isolate its steps, and test that rhythm on another aisle.",
+          "Avoid changing training until the error list explains every mistake."
+        ],
+        "correctIndex": 1,
+        "explanation": "The error list warns, but the scan drill instructs. A process that improved results gives the team a concrete pattern to adapt.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A founder says failure is the best teacher because it proves what not to do. Which reply keeps the priority clear?",
+        "choices": [
+          "Failure has no value once a team finds any success.",
+          "Failure teaches identity, while success mostly creates luck.",
+          "Failure can warn, but success usually shows the next repeatable move."
+        ],
+        "correctIndex": 2,
+        "explanation": "The point is priority, not denial. Failure may prevent repeat harm, but success usually gives clearer instruction about what to repeat.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A team studies a famous company's collapse to decide its own pricing. What question should interrupt the analysis?",
+        "choices": [
+          "Which current customer, offer, or renewal gives us direct evidence about our own price?",
+          "How can we make our story sound as hard-earned as the famous collapse?",
+          "Which failed competitor had the most memorable quote about pricing?"
+        ],
+        "correctIndex": 0,
+        "explanation": "Other people's failures often expose their conditions. The team needs positive evidence from its own buyers before making a pricing decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Which review question best turns a recent win into instruction?",
+        "choices": [
+          "How can we celebrate the win without changing our plan?",
+          "Which part of the win can be repeated, protected, refined, or priced more clearly?",
+          "What failure story can we pair with the win so it sounds balanced?"
+        ],
+        "correctIndex": 1,
+        "explanation": "A win becomes useful when the team extracts the repeatable part. The goal is not celebration alone, but a clearer working pattern.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What is success as instruction?",
+      "back": "It is the practice of studying what already worked, such as a price, message, feature, support habit, or process, so the team can repeat and improve it.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why is failure a limited teacher?",
+      "back": "Failure may show where one path broke, but it often leaves the next working move blank. It warns more readily than it instructs.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "front": "How does 37signals ground this lesson?",
+      "back": "37signals paid attention to the parts of its products and practices that customers actually used and valued, turning positive behavior into guidance.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "What should a team ask after a win?",
+      "back": "Ask what repeated, what customers rewarded, what process helped, and which part of the win was earned by design rather than chance.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "When should mistakes still be studied?",
+      "back": "Study mistakes when they prevent repeated harm, expose a real risk, or reveal a weak assumption. Then return attention to working evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "front": "Why are other people's failures weak evidence?",
+      "back": "Their failures may belong to their market, timing, team, cost, or execution. Your next move needs evidence from your own conditions.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Mine the Working Signal",
+    "coreSkill": "Build a habit of reviewing wins with more precision than failures. After each sale, renewal, use spike, or smooth process, identify the behavior that made it work. Then decide what to repeat, protect, refine, or test nearby.",
+    "ifThenPlans": [
+      {
+        "context": "When a review meeting starts with losses",
+        "plan": "If the losses dominate the room, then add one recent working signal and ask what it teaches before deciding the next action."
+      },
+      {
+        "context": "When a success looks like luck",
+        "plan": "If the win seems accidental, then trace the buyer, message, timing, process, and support touch until one repeatable factor appears."
+      },
+      {
+        "context": "When a failure story becomes identity",
+        "plan": "If the team keeps retelling the collapse, then write the warning in one sentence and move the meeting to a live positive signal."
+      },
+      {
+        "context": "When copying another company's caution",
+        "plan": "If the caution comes from someone else's failure, then name which conditions differ before applying it to your own work."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one recent win and write a five-line signal note: who responded, what they used, what wording mattered, what process helped, and what to repeat.",
+    "weeklyPractice": "Every Friday, pick one success from the week and turn it into a small experiment for the next week. Keep the test narrow enough to verify."
+  },
+  "memorableLines": [
+    {
+      "text": "Failure can warn.",
+      "location": "breakdown.fastRead",
+      "why": "The short sentence prevents the lesson from becoming denial."
+    },
+    {
+      "text": "Working behavior carries more detail than a collapse.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism behind studying success."
+    },
+    {
+      "text": "Failure can be a teacher, but it is often a teacher with a short lesson.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the priority shift without pretending mistakes teach nothing."
+    }
+  ]
+}

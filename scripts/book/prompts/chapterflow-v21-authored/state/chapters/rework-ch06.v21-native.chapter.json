@@ -1,0 +1,332 @@
+{
+  "chapterId": "rework-ch06",
+  "number": 6,
+  "title": "Workaholism",
+  "readingTimeMinutes": 10,
+  "hook": "The person still typing at midnight may be hiding a broken system.",
+  "counterintuition": "Long hours can look like devotion while masking bad priorities, weak scope, and slow methods. The better achievement is useful work finished cleanly enough that life remains intact.",
+  "tryThisNow": "Pick one task that keeps running late and write the simplest scope cut or process fix that could get the same result before dinner.",
+  "keyTakeaway": "Unsustainable effort is not proof of value; measure work by useful results, clear judgment, and whether the method can be repeated without exhaustion.",
+  "breakdown": {
+    "fastRead": "The real hero is already home. That Rework image flips the usual office admiration. The person still suffering at the desk may look committed, but the person who found a cleaner way to finish may have done the better work.\n\nWorkaholism confuses hours with value. More time can help in a short push. As a habit, it often hides poor priorities, bloated scope, weak systems, or a refusal to choose.\n\nUnsustainable effort damages the room around it. It makes sane schedules look lazy. It turns emergencies into culture. Judge the work by results, quality, and repeatability, not by public exhaustion.",
+    "deepRead": "Chronic overwork is seductive because it is visible. A late light, a full weekend, and constant replies are easy to count. Useful judgment is harder to see. A person who cuts the task in half, removes a needless handoff, or ships the important part by five o'clock may look less heroic while creating less waste.\n\n37signals' stance depends on sustainable work. Small teams cannot afford to make exhaustion the default engine. They need clear priorities, fewer fake emergencies, and methods that preserve judgment. If every finish requires a sprint, the system is not strong; it is being carried by tired people.\n\nThe real hero already home is not avoiding effort. The point is sharper. Hard work belongs in focused bursts when the work truly requires it. Chronic overwork is different. It trains the company to admire strain instead of asking why the strain exists.\n\nA team should inspect the late nights. Was the scope too broad? Did a meeting steal the afternoon? Did the team delay a decision until the deadline turned cruel? Did a manager praise the sacrifice instead of fixing the cause? Those questions turn moral pressure back into operational thinking.\n\nThe standard is useful output over visible suffering. Finish the important work. Protect quality. Keep enough life outside the job that judgment stays clear. If a method only works by consuming everyone, the method is part of the problem.",
+    "fullRead": "Workaholism often wears the costume of commitment. The person who answers at all hours seems serious. The employee who stays late seems loyal. The founder who brags about no weekends seems tough. Those signs are easy to admire because they are easy to see.\n\nThe harder question is what the hours are buying. More time does not automatically mean more useful work. It can mean the task was badly scoped. It can mean the team refused to choose. It can mean interruptions ate the day and the real work moved into the night. It can mean a manager normalized emergencies because emergencies made people look dedicated.\n\nRework's sharp image is the real hero already home. The hero is not the person proving pain in public. The hero is the person who finds the simpler path, finishes the meaningful work, and leaves without turning exhaustion into theater. That reversal moves admiration from endurance to judgment.\n\n37signals fits the lesson because sustainable pace is part of how a small team keeps standards. When the team is lean, every tired decision matters. Fatigue blurs taste. It makes shortcuts more tempting. It makes people mistake motion for progress. A company that depends on constant overwork is not strong. It is fragile in a way praise can hide.\n\nThe social damage is large. Workaholics can make normal schedules look suspect. A teammate who leaves at six after finishing good work starts to feel guilty beside someone sending messages at midnight. Managers may reward the visible strain. Soon the room learns that the signal of commitment is not quality, clarity, or customer value; it is availability.\n\nThat norm changes behavior. People pad their hours. They stop looking for easier ways because difficulty has status. They let scope expand because cutting it seems less heroic than surviving it. They answer every request because boundaries feel like weakness. The organization becomes proud of the very waste it should be removing.\n\nThe hard edge is not comfort worship. Some work is hard. Some moments need intensity. A launch may require a focused push. A real incident may need extra hours. A deadline may need concentration that feels demanding. The problem is making those bursts permanent and then calling the damage ambition.\n\nA better review asks why the work ran late. Which part mattered? Which part could have been cut? Which decision waited too long? Which meeting, approval, or habit stole the best hours? What would let the same result happen during a sane day? Those questions do not insult effort. They honor it by refusing to waste it.\n\nThe final measure is whether the method can be repeated. A business built on endless hours is borrowing from tomorrow's judgment, morale, and health. A business built on clear priorities can finish important work without making life disappear. The person already home may be the one who respected the work most."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Sabir Ends the Midnight Fix",
+      "tags": [
+        "software release",
+        "scope",
+        "late nights"
+      ],
+      "planSpec": {
+        "domain": "software release management",
+        "audience": "team leads normalizing late launches",
+        "stakes": "replace recurring heroics with a scope decision",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist uses the real hero already home contrast"
+      },
+      "scenario": "Sabir studies the release chat at 12:20 a.m. in a Denver apartment. Three Fridays in a row, the team praised whoever stayed latest to fix the same billing edge case. Before Monday's planning call, he has to tell the group whether the 37signals image of the real hero already home means cutting the optional workflow or celebrating another rescue.",
+      "whatToDo": "Sabir should remove the optional workflow from the release and schedule a daytime fix for the recurring billing cause.",
+      "whyItMatters": "The late rescue is visible, but the cleaner scope decision prevents the same public suffering from becoming the team's standard."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Amina Checks the Warehouse Pride",
+      "tags": [
+        "operations",
+        "morale",
+        "process"
+      ],
+      "planSpec": {
+        "domain": "warehouse operations",
+        "audience": "operations managers",
+        "stakes": "stop using overtime as proof of loyalty",
+        "format": "audit",
+        "requiredBeat": "the protagonist measures results rather than public strain"
+      },
+      "scenario": "Amina walks a Newark packing floor at 7:05 p.m. while a supervisor praises the crew for staying late again. The same pallet labels jam the scanners every afternoon. Before payroll closes, she must decide whether the 37signals standard points to more overtime praise or to fixing the label process so the real heroes leave on time.",
+      "whatToDo": "Amina should repair the label process, track error rates, and stop praising overtime that exists because the system keeps breaking.",
+      "whyItMatters": "Workaholism can turn preventable friction into moral theater. Results improve when the cause is fixed instead of glamorized."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Nerea Protects the Design Day",
+      "tags": [
+        "design",
+        "interruptions",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "brand design studio",
+        "audience": "creative directors",
+        "stakes": "keep quality high without rewarding constant availability",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist distinguishes focused intensity from chronic overwork"
+      },
+      "scenario": "Nerea reviews logo drafts at 8:40 a.m. in a Bilbao studio. Designers keep answering client messages all day, then doing the actual work at night. A partner calls the midnight drafts dedication. Hours before assigning the next project, Nerea must choose whether 37signals-style sustainable pace means fewer interruptions or another week of visible sacrifice.",
+      "whatToDo": "Nerea should create two client-response windows and protect a daytime design block before judging anyone's commitment by late files.",
+      "whyItMatters": "Late work may be a symptom of stolen attention. Sustainable output asks the studio to protect judgment while people are still fresh."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Ilya Stops the Founder Badge",
+      "tags": [
+        "founder culture",
+        "identity",
+        "boundaries"
+      ],
+      "planSpec": {
+        "domain": "early-stage hardware company",
+        "audience": "founders using exhaustion as identity",
+        "stakes": "avoid making burnout a leadership signal",
+        "format": "reflection",
+        "requiredBeat": "the protagonist rejects workaholism as a status badge"
+      },
+      "scenario": "Ilya sits at 5:30 a.m. in a Tallinn lab after posting that he has not taken a weekend in months. The prototype still misses its tolerance target. A 37signals note on the real hero already home makes the post feel thin. Before the engineers arrive, he must decide whether the badge is effort or a warning about the design process.",
+      "whatToDo": "Ilya should delete the boast, pick the tolerance problem that matters most, and set a focused test that ends at a sane hour.",
+      "whyItMatters": "Founder exhaustion can impress outsiders while hiding weak decisions. The work needs better judgment, not a louder sacrifice story."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Maia Shortens the Grant Sprint",
+      "tags": [
+        "nonprofit",
+        "deadlines",
+        "focused bursts"
+      ],
+      "planSpec": {
+        "domain": "nonprofit grant writing",
+        "audience": "directors managing deadline pressure",
+        "stakes": "use temporary intensity without turning it into culture",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist respects a focused burst but limits it"
+      },
+      "scenario": "Maia stands at 6:10 p.m. in a Quito nonprofit office with a grant deadline two days away. The team can finish if it cuts three weak program stories and works one focused evening. Before ordering dinner for everyone, she has to say whether the 37signals hard edge allows this burst or whether it risks making chronic overwork normal.",
+      "whatToDo": "Maia should cut the weak sections, run one bounded evening sprint, and schedule a next-day review of why the deadline became tight.",
+      "whyItMatters": "Intensity is not the enemy. The danger is letting a burst become proof that every deadline should consume the team."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Eitan Rewrites the Agency Rule",
+      "tags": [
+        "agency",
+        "availability",
+        "team norms"
+      ],
+      "planSpec": {
+        "domain": "marketing agency",
+        "audience": "agency partners setting client expectations",
+        "stakes": "keep sane schedules from looking lazy",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist changes a norm that rewards constant replies"
+      },
+      "scenario": "Eitan reads a client Slack thread at 9:55 p.m. in a Cape Town agency office. A junior strategist apologizes for missing a message sent during dinner, though her campaign brief is done. Before tomorrow's standup, Eitan must tell the partners whether 37signals' outcome standard beats the agency habit of treating instant replies as devotion.",
+      "whatToDo": "Eitan should set client reply hours and judge the strategist by the completed brief, not by whether she watched Slack at night.",
+      "whyItMatters": "Constant availability can make reasonable schedules look lazy. Clear norms protect both the work and the people doing it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A team keeps praising the person who stays late to fix the same optional workflow. Which response best follows the real-hero contrast?",
+        "choices": [
+          "Create a rotating late-night hero role so everyone shares the visible sacrifice.",
+          "Keep the optional workflow because removing it would make the release feel smaller.",
+          "Cut the optional workflow for now and fix the recurring cause during normal hours."
+        ],
+        "correctIndex": 2,
+        "explanation": "The real hero solves the problem cleanly instead of repeating public suffering. Scope and cause matter more than endurance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Warehouse overtime keeps happening because the same label process breaks each afternoon. What should the manager stop rewarding?",
+        "choices": [
+          "The overtime that exists because a preventable process problem remains unfixed.",
+          "The daytime packing crew that completes orders without visible drama.",
+          "The scanner repair request because it makes the team look dependent on tools."
+        ],
+        "correctIndex": 0,
+        "explanation": "Overtime praise can hide a broken system. The manager should fix the label process and measure useful output.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Designers answer messages all day and then produce the real work at night. Which change attacks workaholism at the source?",
+        "choices": [
+          "Praise the midnight drafts so clients know the studio is committed.",
+          "Create response windows and protect daytime design blocks.",
+          "Ask designers to start earlier so nights can stay available for finishing."
+        ],
+        "correctIndex": 1,
+        "explanation": "Late work may come from fractured attention. Protecting focused time is a cleaner fix than admiring the sacrifice.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A founder boasts about months without weekends, while the prototype still misses its target. What should the boast signal?",
+        "choices": [
+          "The founder has earned trust because visible sacrifice proves commitment.",
+          "The team should add another weekend push before changing the process.",
+          "The design process may be broken, so exhaustion should not be treated as progress."
+        ],
+        "correctIndex": 2,
+        "explanation": "Exhaustion can impress while hiding poor decisions. The prototype needs better judgment and a sharper test.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A grant deadline needs one focused evening after weak sections are cut. Which interpretation keeps the hard edge?",
+        "choices": [
+          "A bounded push can be acceptable, but the team should review why the deadline became tight.",
+          "The team should refuse the evening because any extra work proves workaholism.",
+          "The team should use the deadline to normalize late nights for future grants."
+        ],
+        "correctIndex": 0,
+        "explanation": "The hard edge allows focused bursts. Chronic overwork, not temporary intensity, is the broken approach.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A strategist apologizes for missing a dinner-hour message even though her brief is complete. What norm should the agency set?",
+        "choices": [
+          "Require everyone to watch client Slack at dinner so no one looks less committed.",
+          "Publish reply hours and judge the work by completed briefs and client outcomes.",
+          "Let each client decide which personal hours count as available."
+        ],
+        "correctIndex": 1,
+        "explanation": "Constant availability distorts team norms. Clear reply hours keep commitment tied to results rather than night watching.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which question best diagnoses whether long hours are helping or hiding waste?",
+        "choices": [
+          "Who stayed latest, and did everyone notice the sacrifice?",
+          "Can the same useful result be reached by cutting scope, removing friction, or deciding earlier?",
+          "Would the team feel more serious if late work became a shared ritual?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The Rework standard points to useful results and cleaner methods. The question should expose causes, not glorify hours.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A manager says sane schedules make the team look less ambitious. Which reply best protects the standard?",
+        "choices": [
+          "Ambition should be measured by useful work, quality, judgment, and whether the method can last.",
+          "Ambition should be measured by how many personal plans employees cancel for the company.",
+          "Ambition should be hidden from clients so they do not ask about team hours."
+        ],
+        "correctIndex": 0,
+        "explanation": "Sustainable output is not laziness. It keeps judgment clear and makes the method repeatable.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "What is the false reading of the workaholism critique?",
+        "choices": [
+          "That visible suffering can distort a team's sense of value.",
+          "That no project should ever require hard effort or a focused push.",
+          "That public exhaustion is a weak substitute for better decisions."
+        ],
+        "correctIndex": 1,
+        "explanation": "The critique is not against hard work. It is against chronic overwork as identity, culture, and a substitute for better methods.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What is unsustainable effort?",
+      "back": "It is excessive work used as a substitute for clearer priorities, better scope, stronger boundaries, or a cleaner system.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Who is the real hero in this lesson?",
+      "back": "The real hero is already home: the person who found a better way to finish useful work instead of proving dedication through public suffering.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "front": "How can workaholics distort a team?",
+      "back": "They can make sane schedules look lazy, turn emergencies into culture, and shift admiration from quality to visible sacrifice.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "When is extra effort acceptable?",
+      "back": "Focused bursts can be necessary when real work requires them. The danger is making those bursts permanent and calling the damage ambition.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "What should late nights trigger?",
+      "back": "They should trigger questions about scope, interruptions, delayed decisions, broken systems, and whether the same result could happen during a sane day.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "front": "How should work be measured?",
+      "back": "Measure useful results, quality, judgment, customer value, and repeatability. Time spent suffering in public is a weak scorecard.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Replace Hours With Cause",
+    "coreSkill": "When work runs late, do not start by praising stamina. Find the cause: unclear priority, too much scope, avoidable interruption, slow approval, or a broken process. Then change the method so useful work can finish without becoming a ritual of exhaustion.",
+    "ifThenPlans": [
+      {
+        "context": "When someone is praised for staying late",
+        "plan": "If the same problem caused the late night before, then thank the person and schedule a daytime fix for the cause."
+      },
+      {
+        "context": "When a deadline needs a push",
+        "plan": "If extra effort is truly needed, then bound the push and review the planning or scope problem afterward."
+      },
+      {
+        "context": "When sane hours look lazy",
+        "plan": "If a teammate finishes good work on time, then call out the result and method rather than the absence of sacrifice."
+      },
+      {
+        "context": "When constant replies become the norm",
+        "plan": "If availability is replacing output, then set response windows and judge performance by the work customers receive."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one recurring late task and write its likely cause. Make one change to scope, timing, approval, or interruption before the next attempt.",
+    "weeklyPractice": "Every Friday, review one moment of overtime. Decide whether it was a focused burst, a preventable system flaw, or a norm that needs correction."
+  },
+  "memorableLines": [
+    {
+      "text": "The real hero is already home.",
+      "location": "breakdown.fastRead",
+      "why": "It preserves the source's anti-hero reversal in one crisp line."
+    },
+    {
+      "text": "Chronic overwork is seductive because it is visible.",
+      "location": "breakdown.deepRead",
+      "why": "It explains why the bad norm spreads so easily."
+    },
+    {
+      "text": "The harder question is what the hours are buying.",
+      "location": "breakdown.fullRead",
+      "why": "It redirects attention from sacrifice to value."
+    }
+  ]
+}
