@@ -69,7 +69,7 @@ This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs th
 
 ## Bind before you write
 
-Every templating defect is a field that drifted off its source. So before you compose a single field, write a **Chapter Bind Block** from this chapter's source sidecar (`.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`). It is four lines plus one invention, and it stays in front of you while you write every field:
+Every templating defect is a field that drifted off its source. So before you compose a single field, write a **Chapter Bind Block** from this chapter's source sidecar (`.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`). It is five lines plus one invention, and it stays in front of you while you write every field:
 
 ```
 BIND — ch<NN>
@@ -77,9 +77,16 @@ BIND — ch<NN>
   namedExamples  : <3–6 real cases from the sidecar: companies, people, studies, places>
   hardEdge       : <the strict reading you must preserve — the thing a lazy summary gets wrong>
   readerTool     : <the ONE named move you invent for this chapter and use in the plan>
+  protagonists   : <THIS chapter's allocated names — copy from the name plan, see below>
 ```
 
 The Bind Block is not paperwork. It is the answer to "what am I reasoning FROM" for every field below it. A scenario that doesn't trace to a `namedExample`, a quiz that doesn't test the `hardEdge`, a card that doesn't pull on the `centralConcept` — those are the fields that, having nothing real to say, fall back on a skeleton. Bind first and the skeleton has nowhere to live.
+
+**Name plan — bind your protagonists before you write (prevents F1 / BP13).** Chapters in a book are authored in parallel, blind to each other, so independent agents reach for the same protagonist names and the same stock connectives — and book-gate blocks the whole book on the collision (F1: a name in ≥2 chapters; BP13: a verbatim 5-word run across ≥3 chapters). The pre-authoring name plan removes the guesswork. Before authoring:
+
+1. Run (or have the orchestrator run) `npx tsx src/cli.ts name-plan <bookId> --from <N> --to <M>`. It writes `state/name-plans/<bookId>.name-plan.json`.
+2. Read `allocation["<thisChapterNumber>"]` from that file. **Use ONLY those names as your scenario protagonists** — they are disjoint from every other chapter's allocation and from every name already used in the book and the cross-book ledger. Do not invent names outside your slice; do not borrow a name you saw in another chapter.
+3. Read `bannedConnectives` from the same file (sourced from `config/banned-connectives.json`). Never use any listed phrase, and obey the stated principle: **never let a 5-word run repeat across chapters — vary the grammar of how a scene opens, how a decision is framed, how a consequence lands.**
 
 Then these four rules are **authoring law**. They are not gate-dodges; they are how each field does its job.
 
@@ -386,7 +393,7 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 
 **Per-example rules (every one matters):**
 
-1. **C1 — Named protagonist.** Every scenario opens with a named person. NOT "a manager", NOT "an engineer". Use names that have NOT appeared in any prior chapter of this book AND are NOT in this banned name pool: `Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi`. Pick names that fit the cultural setting.
+1. **C1 — Named protagonist.** Every scenario opens with a named person. NOT "a manager", NOT "an engineer". **Draw names ONLY from this chapter's name-plan slice** (`allocation["<thisChapterNumber>"]` in `state/name-plans/<bookId>.name-plan.json` — see the name-plan step in the authoring law above). That slice is already guaranteed disjoint from every other chapter and from the cross-book ledger, so it is the F1-safe source of truth. If no name plan exists, fall back to names that have NOT appeared in any prior chapter of this book AND are NOT in this banned pool: `Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi`. Pick names that fit the cultural setting.
 
 2. **C2 — Specific scene.** Name a time, a place, a role, a concrete artifact. "On Tuesday at 4 PM in the Berlin warehouse, Hanna sees the manifest on her tablet…" NOT "A manager reviews paperwork…".
 

@@ -105,6 +105,13 @@ Commands:
                                      plan checks (BP7) don't false-fire. The default standalone
                                      way to QC an assembled book without invoking generate-book.
                                      Exits 0 if no blockers; non-zero otherwise.
+  name-plan <bookId> --from N --to M [--per-chapter K]
+                                     PRE-AUTHORING: deal each upcoming chapter a disjoint
+                                     protagonist-name slice (excludes cross-book + already-authored
+                                     names) and emit banned-connective guidance, so parallel STEP-2
+                                     agents can't collide on book-gate F1 / BP13. Writes
+                                     state/name-plans/<bookId>.name-plan.json. Default K=7.
+                                     Exit 1 if the name bank ran dry for any chapter.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
@@ -989,6 +996,38 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
   return 0;
 }
 
+/** `name-plan <bookId> --from N --to M [--per-chapter K]` — pre-authoring name
+ *  allocator. Deals each upcoming chapter a disjoint protagonist-name slice
+ *  (excluding cross-book + already-authored names) and emits the banned-
+ *  connective guidance, so parallel STEP-2 agents can't collide on F1/BP13.
+ *  Writes state/name-plans/<bookId>.name-plan.json and prints the allocation. */
+async function runNamePlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: name-plan <bookId> --from N --to M [--per-chapter K]   (default per-chapter 7)");
+    return 2;
+  }
+  const perChapter = typeof flags["per-chapter"] === "string" ? parseInt(flags["per-chapter"] as string, 10) : 7;
+  if (Number.isNaN(perChapter) || perChapter < 1) {
+    console.error(`--per-chapter must be a positive integer (got "${String(flags["per-chapter"])}")`);
+    return 2;
+  }
+  const { planNames, writeNamePlan, formatNamePlan } = await import("./librarian/namePlan.js");
+  const plan = planNames(bookId, from, to, perChapter);
+  const path = writeNamePlan(plan);
+  console.log(formatNamePlan(plan));
+  console.log("");
+  console.log(`Written: ${path}`);
+  // Non-zero so a batch driver notices an exhausted/over-broad request.
+  if (plan.diagnostics.shortChapters.length > 0) {
+    console.error(`\n⚠ name bank ran dry for ${plan.diagnostics.shortChapters.length} chapter(s) — add names to config/name-bank.json or lower --per-chapter.`);
+    return 1;
+  }
+  return 0;
+}
+
 async function runBookGate(args: string[]): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
@@ -1389,6 +1428,8 @@ async function main() {
       return runGateChapter(args);
     case "book-gate":
       return runBookGate(args);
+    case "name-plan":
+      return runNamePlan(args, flags);
     case "author-check":
       return runAuthorCheck(args);
     case "fix-chapter-ids":
