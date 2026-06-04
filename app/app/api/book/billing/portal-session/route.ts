@@ -34,6 +34,13 @@ export async function POST(req: Request) {
           "Your Pro access is from Flow Points — there's no Stripe subscription to manage."
         );
       }
+      if (source === "gift_code") {
+        throw new BookApiError(
+          400,
+          "not_stripe_subscriber",
+          "Your Pro access is from a gift — there's no Stripe subscription to manage."
+        );
+      }
       throw new BookApiError(
         400,
         "customer_not_found",

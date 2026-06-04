@@ -12,19 +12,11 @@ import {
 
 export const runtime = "nodejs";
 
-// Extended entitlement shape for billing intelligence (superset of
-// EntitlementSnapshot — may include new billing fields from Stripe).
-type BillingEnt = EntitlementSnapshot & {
-  billingCountry?: string;
-  billingCurrency?: string;
-  subscriptionAmountCents?: number;
-  cardBrand?: string;
-  cardCountry?: string;
-  lastInvoiceAmountCents?: number;
-  lastInvoiceCurrency?: string;
-  lastInvoicePaidAt?: string;
-  failedPaymentLastReason?: string;
-};
+// Billing intelligence fields now live on EntitlementSnapshot itself and are
+// projected + mapped by scanAllEntitlements. The previous `as BillingEnt[]`
+// cast declared these fields without the scan ever reading them, so every one
+// was `undefined` at runtime → realMrr=0. Reading EntitlementSnapshot directly
+// keeps TypeScript honest about what the scan actually returns.
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -38,9 +30,9 @@ export async function GET(req: Request) {
     const warnings: string[] = [];
     const days = lastNDays(30);
 
-    let entitlements: BillingEnt[] = [];
+    let entitlements: EntitlementSnapshot[] = [];
     try {
-      entitlements = (await scanAllEntitlements(tableName)) as BillingEnt[];
+      entitlements = await scanAllEntitlements(tableName);
     } catch (err) {
       console.warn("[admin-billing] entitlement scan failed:", err);
       warnings.push("Entitlement data unavailable (scan failed).");
