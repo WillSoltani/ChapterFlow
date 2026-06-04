@@ -63,7 +63,7 @@ export function computeNextTask(bookId: string): NextTask {
       kind: "research-bibliography",
       bookId,
       path,
-      playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-RESEARCH.md"),
+      playbook: resolve(PROMPTS_DIR, "STEP-1-RESEARCH.md"),
     };
   }
 
@@ -73,7 +73,7 @@ export function computeNextTask(bookId: string): NextTask {
       kind: "research-bibliography",
       bookId,
       path: tocPath,
-      playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-RESEARCH.md"),
+      playbook: resolve(PROMPTS_DIR, "STEP-1-RESEARCH.md"),
     };
   }
 
@@ -101,7 +101,7 @@ export function computeNextTask(bookId: string): NextTask {
         chapterNumber: ch.number,
         chapterTitle: ch.title,
         path: sourcePath,
-        playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-RESEARCH.md"),
+        playbook: resolve(PROMPTS_DIR, "STEP-1-RESEARCH.md"),
       };
     }
   }
@@ -134,7 +134,7 @@ export function computeNextTask(bookId: string): NextTask {
         chapterId,
         sourcePath,
         outputPath,
-        playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-CHAPTER.md"),
+        playbook: resolve(PROMPTS_DIR, "STEP-2-WRITE-CHAPTERS.md"),
       };
     }
   }
@@ -173,7 +173,7 @@ export function computeNextTask(bookId: string): NextTask {
     return {
       kind: "finalize",
       bookId,
-      playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-FINALIZE.md"),
+      playbook: resolve(PROMPTS_DIR, "STEP-3-FINALIZE.md"),
     };
   }
 
