@@ -15,6 +15,7 @@ import { Pricing } from "@/components/sections/Pricing";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 import { MobileStickyBar } from "@/components/landing/MobileStickyBar";
+import { PRICING } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
@@ -77,9 +78,9 @@ export default function Home() {
         "Unlimited access to a structured non-fiction reading library with summaries, scenarios, quizzes, and spaced-repetition retention.",
       offers: {
         "@type": "AggregateOffer",
-        lowPrice: "5.99",
-        highPrice: "7.99",
-        priceCurrency: "CAD",
+        lowPrice: PRICING.annualMonthlyAmount.toFixed(2),
+        highPrice: PRICING.monthlyAmount.toFixed(2),
+        priceCurrency: PRICING.currency,
         offerCount: 2,
         availability: "https://schema.org/InStock",
       },

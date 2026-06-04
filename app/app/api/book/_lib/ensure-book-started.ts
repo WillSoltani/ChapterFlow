@@ -40,6 +40,7 @@ import type {
   BookUserProgress,
 } from "@/app/app/api/book/_lib/types";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { MONTHLY_PRICE_PER_MONTH } from "@/lib/pricing";
 
 function sortUniqueNumbers(values: number[]): number[] {
   return Array.from(new Set(values.filter((value) => Number.isFinite(value) && value > 0))).sort(
@@ -195,7 +196,7 @@ export async function ensureUserBookStarted(params: {
           {
             unlockedBooksCount,
             freeBookSlots,
-            price: "$7.99/month",
+            price: MONTHLY_PRICE_PER_MONTH,
             benefits: [
               "Unlock unlimited books",
               "Keep progress synced across devices",

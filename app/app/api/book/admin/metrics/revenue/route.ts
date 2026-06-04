@@ -10,11 +10,15 @@ import {
   queryEventsForDay,
   scanAllEntitlements,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { PRICING } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
 // Default monthly price assumption — used purely for MRR estimation.
-const DEFAULT_PRO_PRICE = 7.99;
+// NOTE: this is the CAD list price; the response still labels it "USD" below —
+// that currency mislabel is tracked separately under the currency-correctness
+// work (W2), not changed here.
+const DEFAULT_PRO_PRICE = PRICING.monthlyAmount;
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {

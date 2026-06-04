@@ -19,6 +19,7 @@ import {
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
+import { MONTHLY_PRICE_WITH_CURRENCY } from "@/lib/pricing";
 import { useToast } from "@/app/book/hooks/useToast";
 import { Toast } from "@/app/book/components/ui/Toast";
 
@@ -243,7 +244,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   // Derived state
   const isPro = billingState.payload?.entitlement.plan === "PRO";
   const plan = billingState.payload?.entitlement.plan ?? "FREE";
-  const price = billingState.payload?.paywall.price ?? "$7.99 CAD";
+  const price = billingState.payload?.paywall.price ?? MONTHLY_PRICE_WITH_CURRENCY;
 
   // --- Reading Profile logic ---
   function handleProfileChange(profile: ReadingProfile) {
