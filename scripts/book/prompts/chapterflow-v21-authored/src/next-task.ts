@@ -25,7 +25,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, "../../../../..");
 const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
 const STATE_DIR = resolve(__dirname, "../state");
-const PROMPTS_DIR = resolve(__dirname, "../prompts");
+const PROMPTS_DIR = resolve(__dirname, "../agent-prompts");
 
 type NextTask =
   | { kind: "research-bibliography"; bookId: string; path: string; playbook: string }
