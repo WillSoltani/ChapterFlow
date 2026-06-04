@@ -167,12 +167,15 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // measure-what-matters, the-12-week-year) — true positives, not noise.
   "AS13.within_chapter_quiz_template": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
-  // Source grounding (May 2026 SWW round-1 root cause). Major rather than
-  // blocker because the sidecar parsing is opportunistic and a chapter's
-  // source notes may legitimately lack strong proper-noun anchors; the
-  // critic auto-skips chapters whose sidecars yield < 3 candidates, so a
-  // false-positive on legitimate content is unlikely but not impossible.
-  "SC9.example_not_source_grounded": "major",
+  // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
+  // zero reference to real source cases). PROMOTED major→blocker after
+  // calibration: zero findings across the gold corpus (daring-greatly ch01-07 +
+  // start-with-why ch01-14, 21 chapters) AND across rework ch01-23 — so it does
+  // not false-positive on legitimate content. The critic auto-skips chapters
+  // whose sidecars yield < 3 candidate anchors (sourceGrounding.ts), which
+  // protects genuinely abstract chapters; what remains is a real ungrounded
+  // scenario in a chapter that HAS resolvable source, which must not ship.
+  "SC9.example_not_source_grounded": "blocker",
   // SC11.0 — no source run/sidecar on disk (Phase 0). SHADOW=major: missing
   // source reliably predicts word-salad, but it's advisory until Phase 3
   // guarantees every active book a resolvable sidecar (then → blocker).

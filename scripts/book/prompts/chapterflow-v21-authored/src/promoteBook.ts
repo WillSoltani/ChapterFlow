@@ -60,6 +60,24 @@ export type PromotionInput = {
   tags?: string[];
 };
 
+/** Recursively remove every occurrence of `key` from a value (returns a copy).
+ *  Used to strip the v2-only `sourceAnchorId` provenance field — which exists so
+ *  SC11 can verify a unit uses its declared anchor at GATE time — from the
+ *  shipped package, so internal pipeline metadata never reaches the web
+ *  package validator / reader. */
+function stripKeyDeep<T>(value: T, key: string): T {
+  if (Array.isArray(value)) return value.map((v) => stripKeyDeep(v, key)) as unknown as T;
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      if (k === key) continue;
+      out[k] = stripKeyDeep(v, key);
+    }
+    return out as T;
+  }
+  return value;
+}
+
 export function promoteBook(input: PromotionInput): PromotionResult {
   const { bookId, title, author, chapters } = input;
 
@@ -152,7 +170,9 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       categories: input.categories,
       tags: input.tags,
     },
-    chapters: loadedChapters.sort((a, b) => a.number - b.number),
+    // Strip the v2-only sourceAnchorId provenance (gate-time metadata) so it
+    // never ships into book-packages/ or reaches the web package validator.
+    chapters: loadedChapters.map((c) => stripKeyDeep(c, "sourceAnchorId")).sort((a, b) => a.number - b.number),
   };
 
   mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
