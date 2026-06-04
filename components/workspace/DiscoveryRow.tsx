@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
+import { MONTHLY_PRICE } from "@/lib/pricing";
 
 interface ProBook {
   id: string;
@@ -137,7 +138,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
                 "0 0 25px -5px rgba(245, 158, 11, 0.45), 0 4px 12px -3px rgba(245, 158, 11, 0.25)";
             }}
           >
-            Go Pro — $7.99/mo
+            Go Pro — {MONTHLY_PRICE}/mo
           </motion.span>
           </Link>
           <p

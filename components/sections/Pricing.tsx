@@ -8,6 +8,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
+import { PRICING, ANNUAL_SAVINGS_PCT, formatAmount } from "@/lib/pricing";
 
 /* ------------------------------------------------------------------ */
 /*  Inline icons                                                      */
@@ -109,17 +110,14 @@ const faqs = [
 /*  Pricing component                                                 */
 /* ------------------------------------------------------------------ */
 
-const MONTHLY_PRICE = 7.99;
-const ANNUAL_MONTHLY_PRICE = 5.99;
-const ANNUAL_SAVINGS_PCT = Math.round((1 - ANNUAL_MONTHLY_PRICE / MONTHLY_PRICE) * 100);
-
 export function Pricing() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isAnnual, setIsAnnual] = useState(false);
   const { loggedIn } = useAuthStatus();
   const freeHref = loggedIn ? "/book" : AUTH_LOGIN_BOOK_URL;
   const proHref = loggedIn ? "/book/settings" : AUTH_LOGIN_BOOK_URL;
-  const annualTotal = (ANNUAL_MONTHLY_PRICE * 12).toFixed(2);
+  const perMonthAmount = isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount;
+  const annualTotal = formatAmount(PRICING.annualMonthlyAmount * 12);
 
   const toggleFaq = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -311,17 +309,17 @@ export function Pricing() {
                   className="text-[48px] font-bold leading-none text-[--text-heading]"
                   style={{ fontFamily: "var(--font-jetbrains)" }}
                 >
-                  ${isAnnual ? ANNUAL_MONTHLY_PRICE.toFixed(2) : MONTHLY_PRICE.toFixed(2)}
+                  {formatAmount(perMonthAmount)}
                 </span>
                 <span className="ml-1 text-[16px] text-[--text-muted]">
-                  CAD / month{isAnnual ? " · billed annually" : ""}
+                  {PRICING.currency} / month{isAnnual ? " · billed annually" : ""}
                 </span>
               </div>
 
               <p className="mt-1 text-[13px] text-[--accent-teal]">
-                That&apos;s ${isAnnual ? (ANNUAL_MONTHLY_PRICE / 30).toFixed(2) : (MONTHLY_PRICE / 30).toFixed(2)}/day
+                That&apos;s {formatAmount(perMonthAmount / 30)}/day
                 {isAnnual && (
-                  <span className="text-[--text-muted]"> &middot; ${annualTotal} CAD billed today</span>
+                  <span className="text-[--text-muted]"> &middot; {annualTotal} {PRICING.currency} billed today</span>
                 )}
               </p>
 

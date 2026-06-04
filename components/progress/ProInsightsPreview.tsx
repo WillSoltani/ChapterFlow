@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Lock } from "lucide-react";
+import { MONTHLY_PRICE_WITH_CURRENCY } from "@/lib/pricing";
 
 interface ProInsightsPreviewProps {
   isPro: boolean;
@@ -144,7 +145,7 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
       <div className="mt-5 flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-between sm:text-left">
         <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
           See how you&apos;re really progressing {"\u2014"}{" "}
-          <span style={{ color: "var(--accent-amber)", fontWeight: 700 }}>$7.99 CAD/mo</span>
+          <span style={{ color: "var(--accent-amber)", fontWeight: 700 }}>{MONTHLY_PRICE_WITH_CURRENCY}/mo</span>
         </p>
         <Link
           href="/pricing"

@@ -9,6 +9,7 @@ import {
   getBookTableName,
 } from "@/app/app/api/book/_lib/env";
 import { getUserEntitlement } from "@/app/app/api/book/_lib/repo";
+import { PRICING_TIER_DISPLAY, type PricingTierDisplay } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
@@ -26,31 +27,14 @@ export async function GET(req: Request) {
     const freeBookSlots = entitlement?.freeBookSlots ?? defaultSlots;
     const unlockedBookIds = entitlement?.unlockedBookIds ?? [];
 
-    const pricingTiers: {
-      interval: "monthly" | "annual" | "annual_upfront";
-      price: string;
-      label: string;
-      annualTotal?: string;
-      period: string;
-    }[] = [
-      { interval: "monthly", price: "$7.99", label: "$7.99 CAD/month", period: "month" },
-    ];
+    // Display strings come from the central pricing config; this route only
+    // decides which tiers to expose based on which Stripe Price IDs exist.
+    const pricingTiers: PricingTierDisplay[] = [PRICING_TIER_DISPLAY.monthly];
     if (annualPriceId) {
-      pricingTiers.push({
-        interval: "annual",
-        price: "$5.99",
-        label: "$5.99 CAD/month, billed annually",
-        annualTotal: "$71.88",
-        period: "year",
-      });
+      pricingTiers.push(PRICING_TIER_DISPLAY.annual);
     }
     if (annualUpfrontPriceId) {
-      pricingTiers.push({
-        interval: "annual_upfront",
-        price: "$59.99",
-        label: "$59.99 CAD/year",
-        period: "year",
-      });
+      pricingTiers.push(PRICING_TIER_DISPLAY.annual_upfront);
     }
 
     return bookOk({

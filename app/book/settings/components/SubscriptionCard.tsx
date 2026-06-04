@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
 import type { BillingInterval, PricingTier } from "@/app/book/hooks/useBookEntitlements";
+import { ANNUAL_SAVINGS_BADGE, TRIAL_CTA_LABEL } from "@/lib/pricing";
 
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
@@ -20,7 +21,7 @@ type SubscriptionCardProps = {
 
 const TIER_DISPLAY: Record<BillingInterval, { name: string; badge?: string }> = {
   monthly: { name: "Monthly" },
-  annual: { name: "Annual", badge: "Save 25%" },
+  annual: { name: "Annual", badge: ANNUAL_SAVINGS_BADGE },
   annual_upfront: { name: "Annual upfront", badge: "Best value" },
 };
 
@@ -233,7 +234,7 @@ export function SubscriptionCard({
           {actionLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            "Start 14-day free trial"
+            TRIAL_CTA_LABEL
           )}
         </Button>
         {actionError && (
