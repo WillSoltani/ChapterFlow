@@ -25,6 +25,8 @@ import {
 } from "@/app/app/api/book/_lib/stripe-service";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { mapSubscriptionStatus } from "@/app/app/api/book/_lib/subscription-status";
+import { buildRefundRecords, type RefundCharge } from "@/app/app/api/book/_lib/refund-events";
 import { BILLING_CURRENCY } from "@/lib/pricing";
 
 export const runtime = "nodejs";
@@ -32,22 +34,6 @@ export const runtime = "nodejs";
 function isoFromUnix(value: number | null | undefined): string | undefined {
   if (!value || !Number.isFinite(value)) return undefined;
   return new Date(value * 1000).toISOString();
-}
-
-function mapSubscriptionStatus(
-  status: string
-): { plan: "FREE" | "PRO"; proStatus: "inactive" | "active" | "past_due" | "canceled" } {
-  if (status === "active" || status === "trialing") {
-    return { plan: "PRO", proStatus: "active" };
-  }
-  if (status === "past_due") {
-    return { plan: "PRO", proStatus: "past_due" };
-  }
-  // "paused" — Stripe collection paused (e.g. via the portal). Treat as
-  // canceled for entitlement purposes; if it resumes, the next event will
-  // flip it back to active.
-  // "canceled", "incomplete", "incomplete_expired", "unpaid" → no Pro.
-  return { plan: "FREE", proStatus: "canceled" };
 }
 
 async function resolveUserIdForEvent(
@@ -389,60 +375,24 @@ export async function POST(req: Request) {
       // subscription fires a separate customer.subscription.deleted that handles
       // the entitlement. (Previously this wrongly stamped the analytics snapshot
       // "canceled", corrupting analytics for partial refunds.)
-      const charge = event.data.object as {
-        id: string;
-        customer: string | null;
-        amount_refunded?: number;
-        currency?: string;
-        created?: number;
-        refunds?: {
-          data?: Array<{
-            id: string;
-            amount?: number;
-            currency?: string;
-            reason?: string | null;
-            status?: string | null;
-            created?: number;
-          }>;
-        };
-      };
+      const charge = event.data.object as RefundCharge;
       const userId = charge.customer
         ? await getUserIdByStripeCustomer(tableName, charge.customer)
         : null;
-      const refunds = charge.refunds?.data ?? [];
-      if (refunds.length > 0) {
-        // One durable record per individual refund: charge.amount_refunded is
-        // CUMULATIVE, so we must use each refund's own amount, and each refund id
-        // is a unique, stable idempotency key (redelivery overwrites in place).
-        for (const r of refunds) {
-          await recordBillingEvent(tableName, {
-            kind: "refund",
-            eventId: r.id,
-            userId,
-            stripeCustomerId: charge.customer ?? null,
-            chargeId: charge.id,
-            amountCents: r.amount ?? 0,
-            currency: (r.currency ?? charge.currency ?? BILLING_CURRENCY).toUpperCase(),
-            reason: r.reason ?? null,
-            status: r.status ?? "succeeded",
-            createdAt: isoFromUnix(r.created ?? charge.created) ?? new Date().toISOString(),
-          });
-        }
-      } else {
-        // The Charge's refunds list isn't guaranteed on the event payload. Fall
-        // back to one cumulative record keyed by the UNIQUE event id, so repeated
-        // partial refunds produce distinct rows instead of colliding on charge.id.
+      // buildRefundRecords (pure, unit-tested) handles the per-refund vs
+      // cumulative-fallback and idempotency-key logic; we add userId + ISO here.
+      for (const rec of buildRefundRecords(charge, event.id, BILLING_CURRENCY)) {
         await recordBillingEvent(tableName, {
           kind: "refund",
-          eventId: event.id,
+          eventId: rec.eventId,
           userId,
-          stripeCustomerId: charge.customer ?? null,
-          chargeId: charge.id,
-          amountCents: charge.amount_refunded ?? 0,
-          currency: (charge.currency ?? BILLING_CURRENCY).toUpperCase(),
-          reason: null,
-          status: "refunded",
-          createdAt: isoFromUnix(charge.created) ?? new Date().toISOString(),
+          stripeCustomerId: rec.stripeCustomerId,
+          chargeId: rec.chargeId,
+          amountCents: rec.amountCents,
+          currency: rec.currency,
+          reason: rec.reason,
+          status: rec.status,
+          createdAt: isoFromUnix(rec.createdUnix) ?? new Date().toISOString(),
         });
       }
     } else if (event.type === "charge.dispute.created") {
