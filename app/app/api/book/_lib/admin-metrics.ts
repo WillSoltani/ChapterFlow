@@ -10,6 +10,8 @@ export type EntitlementSnapshot = {
   proSource?: string;
   stripeCustomerId?: string;
   stripeSubscriptionId?: string;
+  stripePriceId?: string;
+  subscriptionInterval?: string;
   currentPeriodEnd?: string;
   cancelAtPeriodEnd?: boolean;
   licenseKey?: string;
@@ -382,7 +384,7 @@ export async function scanAllEntitlements(
         FilterExpression: "entity = :e",
         ExpressionAttributeValues: { ":e": "BOOK_USER_ENTITLEMENT" },
         ProjectionExpression:
-          "userId, #p, proStatus, proSource, stripeCustomerId, stripeSubscriptionId, currentPeriodEnd, cancelAtPeriodEnd, licenseKey, licenseExpiresAt, updatedAt, billingCountry, billingCurrency, subscriptionAmountCents, cardBrand, cardCountry, lastInvoiceAmountCents, lastInvoiceCurrency, lastInvoicePaidAt, failedPaymentLastReason",
+          "userId, #p, proStatus, proSource, stripeCustomerId, stripeSubscriptionId, stripePriceId, subscriptionInterval, currentPeriodEnd, cancelAtPeriodEnd, licenseKey, licenseExpiresAt, updatedAt, billingCountry, billingCurrency, subscriptionAmountCents, cardBrand, cardCountry, lastInvoiceAmountCents, lastInvoiceCurrency, lastInvoicePaidAt, failedPaymentLastReason",
         ExpressionAttributeNames: { "#p": "plan" },
         ExclusiveStartKey: lastKey,
       }),
@@ -401,6 +403,12 @@ export async function scanAllEntitlements(
         stripeSubscriptionId:
           typeof item.stripeSubscriptionId === "string"
             ? item.stripeSubscriptionId
+            : undefined,
+        stripePriceId:
+          typeof item.stripePriceId === "string" ? item.stripePriceId : undefined,
+        subscriptionInterval:
+          typeof item.subscriptionInterval === "string"
+            ? item.subscriptionInterval
             : undefined,
         currentPeriodEnd:
           typeof item.currentPeriodEnd === "string" ? item.currentPeriodEnd : undefined,

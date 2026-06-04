@@ -289,6 +289,10 @@ export type BookUserEntitlement = {
   unlockedBookIds: string[];
   stripeCustomerId?: string;
   stripeSubscriptionId?: string;
+  /** Stripe Price id of the current subscription (for plan reconciliation). */
+  stripePriceId?: string;
+  /** Stripe recurring interval ("month" | "year") of the current subscription. */
+  subscriptionInterval?: string;
   currentPeriodEnd?: string;
   /** True if the Stripe subscription is set to cancel at the end of the current period (no auto-renew) */
   cancelAtPeriodEnd?: boolean;

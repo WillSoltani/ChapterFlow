@@ -186,7 +186,14 @@ export async function POST(req: Request) {
         cancel_at_period_end?: boolean;
         currency?: string;
         items?: {
-          data?: Array<{ price?: { unit_amount?: number; currency?: string } }>;
+          data?: Array<{
+            price?: {
+              id?: string;
+              unit_amount?: number;
+              currency?: string;
+              recurring?: { interval?: string };
+            };
+          }>;
         };
         discount?: { coupon?: { id?: string } };
         metadata?: { userId?: string };
@@ -218,6 +225,8 @@ export async function POST(req: Request) {
           );
         }
         const subAmountCents = firstItem?.unit_amount;
+        const subPriceId = firstItem?.id;
+        const subInterval = firstItem?.recurring?.interval;
 
         await mapStripeCustomerToUser(tableName, subscription.customer, userId);
         await updateUserEntitlementFromStripe(tableName, {
@@ -231,6 +240,8 @@ export async function POST(req: Request) {
           cancelAtPeriodEnd: subscription.cancel_at_period_end ?? false,
           billingCurrency: subCurrency,
           subscriptionAmountCents: subAmountCents,
+          stripePriceId: subPriceId,
+          subscriptionInterval: subInterval,
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
