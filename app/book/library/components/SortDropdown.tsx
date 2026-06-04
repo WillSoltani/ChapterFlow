@@ -2,7 +2,7 @@
 
 import type {
   LibrarySortOption,
-} from "@/app/book/data/mockUserLibraryState";
+} from "@/app/book/data/libraryState";
 
 type SortDropdownProps = {
   value: LibrarySortOption;

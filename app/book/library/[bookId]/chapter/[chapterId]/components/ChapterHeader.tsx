@@ -11,7 +11,7 @@ import {
   Settings,
 } from "lucide-react";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
-import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
 import { ReaderSettingsMenu } from "./ReaderSettingsMenu";
 

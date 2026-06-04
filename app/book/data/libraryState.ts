@@ -3,7 +3,7 @@ import {
   type BookDifficulty,
   BOOKS_CATALOG,
 } from "@/app/book/data/booksCatalog";
-import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
+import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 
 export type LibraryBookStatus = "in_progress" | "completed" | "not_started";
 

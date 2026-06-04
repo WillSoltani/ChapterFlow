@@ -4,7 +4,7 @@ import {
   type PreferredExampleContext,
   getExampleContextTaskLabel,
 } from "@/app/book/_lib/onboarding-personalization";
-import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
+import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 
 export type BookStatus = "completed" | "in_progress" | "not_started";
 

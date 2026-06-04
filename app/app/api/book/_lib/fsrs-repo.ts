@@ -29,44 +29,47 @@ export async function initializeCardsForChapter(
   reviewCards: ReviewCard[],
   preferredTone: string = "direct"
 ): Promise<FSRSCardState[]> {
-  const cards: FSRSCardState[] = [];
+  // Seed cards concurrently — each card is an independent (dedupe Get + Put)
+  // round-trip. Doing them sequentially adds avoidable latency to the
+  // quiz-pass request that calls this on the critical path.
+  const results = await Promise.all(
+    reviewCards.map(async (rc): Promise<FSRSCardState | null> => {
+      const cardId = `${bookId}:ch${String(chapterNumber).padStart(2, "0")}-${rc.cardId}`;
 
-  for (const rc of reviewCards) {
-    const cardId = `${bookId}:ch${String(chapterNumber).padStart(2, "0")}-${rc.cardId}`;
+      const existing = await ddbDoc.send(
+        new GetCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(userId), SK: fsrsCardSk(cardId) },
+        })
+      );
 
-    const existing = await ddbDoc.send(
-      new GetCommand({
-        TableName: tableName,
-        Key: { PK: bookUserPk(userId), SK: fsrsCardSk(cardId) },
-      })
-    );
+      if (existing.Item) return null;
 
-    if (existing.Item) continue;
+      const card = createNewCard(
+        cardId,
+        userId,
+        bookId,
+        chapterNumber,
+        toneText(rc.front, preferredTone),
+        toneText(rc.back, preferredTone)
+      );
 
-    const card = createNewCard(
-      cardId,
-      userId,
-      bookId,
-      chapterNumber,
-      toneText(rc.front, preferredTone),
-      toneText(rc.back, preferredTone)
-    );
+      await ddbDoc.send(
+        new PutCommand({
+          TableName: tableName,
+          Item: {
+            PK: bookUserPk(userId),
+            SK: fsrsCardSk(cardId),
+            ...card,
+          },
+        })
+      );
 
-    await ddbDoc.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: {
-          PK: bookUserPk(userId),
-          SK: fsrsCardSk(cardId),
-          ...card,
-        },
-      })
-    );
+      return card;
+    })
+  );
 
-    cards.push(card);
-  }
-
-  return cards;
+  return results.filter((card): card is FSRSCardState => card !== null);
 }
 
 export async function getDueCards(

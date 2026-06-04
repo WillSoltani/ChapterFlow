@@ -18,7 +18,7 @@ import type {
   ChapterSummaryBlock,
   ImplementationPlanItem,
   ReadingDepth,
-} from "@/app/book/data/mockChapters";
+} from "@/app/book/data/bookChapters";
 
 export const DEMO_CHAPTER_ID = "demo-never-split-the-difference-ch1";
 export const DEMO_BOOK_ID = "never-split-the-difference";

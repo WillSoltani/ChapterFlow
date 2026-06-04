@@ -1,7 +1,7 @@
 "use client";
 
 import { InfoModal } from "@/app/book/home/components/InfoModal";
-import type { BookChapter } from "@/app/book/data/mockChapters";
+import type { BookChapter } from "@/app/book/data/bookChapters";
 
 type ChapterSummaryModalProps = {
   open: boolean;

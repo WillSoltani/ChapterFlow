@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
-import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
 
 const MODE_OPTIONS: Array<{
   id: LearningMode;

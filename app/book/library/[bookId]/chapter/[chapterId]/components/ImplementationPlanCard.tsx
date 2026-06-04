@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Zap, Target, Clock, RotateCcw, ChevronDown, ChevronUp } from "lucide-react";
-import type { ImplementationPlanItem } from "@/app/book/data/mockChapters";
+import type { ImplementationPlanItem } from "@/app/book/data/bookChapters";
 
 const CONTEXT_ICONS: Record<string, string> = {
   work: "Briefcase",

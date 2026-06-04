@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
-import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
@@ -114,7 +114,7 @@ export function useQuizSession(params: {
   difficulty: ReadingDepth;
   contentTone: ToneKey;
   enabled: boolean;
-  /** Local quiz data from mockChapters for offline/dev fallback */
+  /** Local quiz data from bookChapters for offline/dev fallback */
   localQuiz?: {
     chapterId: string;
     questions: Array<{

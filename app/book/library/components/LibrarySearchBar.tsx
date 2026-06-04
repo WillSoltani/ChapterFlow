@@ -2,7 +2,7 @@
 
 import { Search } from "lucide-react";
 import type { RefObject } from "react";
-import type { LibrarySortOption } from "@/app/book/data/mockUserLibraryState";
+import type { LibrarySortOption } from "@/app/book/data/libraryState";
 import { SortDropdown } from "@/app/book/library/components/SortDropdown";
 
 type LibrarySearchBarProps = {

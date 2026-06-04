@@ -13,17 +13,17 @@ import { BookRow } from "./BookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
+import { getBookRating } from "@/app/book/data/bookRatings";
 import { getBookCoverPath } from "@/lib/book-covers";
-import {
-  BADGE_DEFINITIONS,
-  evaluateBadges,
-  type BadgeProgressStats,
-} from "@/app/book/badges/lib/badge-ui-definitions";
+import { matchesBookQuery, normalizeQuery } from "@/lib/book-search";
+import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
+import { evaluateBadges } from "@/app/book/badges/lib/badge-ui-definitions";
+import { BookCardWorkspace } from "./BookCardWorkspace";
 import { INSIGHT_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
 
 const jetBrainsMono = JetBrains_Mono({
@@ -96,6 +96,7 @@ interface WorkspaceData {
     readerCount: number;
     category: string;
     gradient?: string;
+    reason?: string;
   }>;
   discoveryBooks: Array<{
     id: string;
@@ -106,6 +107,18 @@ interface WorkspaceData {
     readerCount: number;
     category: string;
     gradient?: string;
+    reason?: string;
+  }>;
+  /** Full catalog mapped for in-place dashboard search. */
+  allBooks: Array<{
+    id: string;
+    title: string;
+    author: string;
+    coverUrl: string;
+    category: string;
+    categories: string[];
+    progressPercent: number;
+    status: "not_started" | "in_progress" | "completed";
   }>;
   nextReward: {
     name: string;
@@ -127,21 +140,129 @@ interface WorkspaceData {
 
 const ALL_BOOK_IDS = BOOKS_CATALOG.map((cat) => cat.id);
 
+/** Title-case category / interest -> onboarding-style slug ("Decision Making" -> "decision-making", "Health & Wellness" -> "health-wellness"). */
+function toSlug(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/** "behavior-change" -> "Behavior Change" for the "Based on …" recommendation reason. */
+function titleizeSlug(slug: string): string {
+  return slug
+    .split("-")
+    .map((word) => (word ? word[0].toUpperCase() + word.slice(1) : word))
+    .join(" ");
+}
+
+type RecCandidate = AnalyticsState["bookSnapshots"][number];
+
+/**
+ * Rank not-started books by how well they match the reader's tastes:
+ * onboarding interests + the categories of books they've read/are reading.
+ * Categories are the strong signal; book tags are a softer signal (they let
+ * interests like "habits"/"self-awareness"/"technology" — which aren't catalog
+ * categories — still personalize). Ties (and cold-start users with no signal)
+ * fall back to real popularity (ratings count) so a row is never empty.
+ */
+function rankRecommendations(
+  snapshots: RecCandidate[],
+  preferredSlugs: Set<string>,
+  savedIds: Set<string>,
+): Array<{ snap: RecCandidate; reason: string | null }> {
+  const notStarted = snapshots.filter((s) => s.status === "not_started");
+
+  const scored = notStarted.map((snap) => {
+    const cats = [snap.book.category, ...(snap.book.categories ?? [])].filter(
+      (c): c is string => typeof c === "string" && c.length > 0,
+    );
+    const tags = getBookMetadata(snap.book.id)?.tags ?? [];
+    let score = 0;
+    let reason: string | null = null;
+    // A book the user saved but hasn't started is the strongest signal — they
+    // explicitly chose to read it next. Surface those first.
+    if (savedIds.has(snap.book.id)) {
+      score += 5;
+      reason = "your saved list";
+    }
+    for (const cat of cats) {
+      if (preferredSlugs.has(toSlug(cat))) {
+        score += 3;
+        if (!reason) reason = cat;
+      }
+    }
+    for (const tag of tags) {
+      if (preferredSlugs.has(toSlug(tag))) {
+        score += 1;
+        if (!reason) reason = titleizeSlug(toSlug(tag));
+      }
+    }
+    const ratingsCount = getBookRating(snap.book.id)?.ratingsCount ?? 0;
+    return { snap, reason, score, ratingsCount };
+  });
+
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return b.ratingsCount - a.ratingsCount;
+  });
+
+  return scored.map(({ snap, reason }) => ({ snap, reason }));
+}
+
+function toRecommendationCard(
+  snap: RecCandidate,
+  reason: string | null,
+): WorkspaceData["recommendedProBooks"][number] {
+  const rating = getBookRating(snap.book.id);
+  return {
+    id: snap.book.id,
+    title: snap.book.title,
+    author: snap.book.author ?? "",
+    coverUrl: getBookCoverPath(snap.book.id),
+    rating: rating?.rating ?? 0,
+    readerCount: rating?.ratingsCount ?? 0,
+    category: snap.book.category ?? "General",
+    reason: reason ?? undefined,
+  };
+}
+
 function mapAnalyticsToWorkspaceData(
   analytics: AnalyticsState,
   firstName: string,
 ): WorkspaceData {
+  const savedIds = new Set(analytics.savedBookIds);
+  // Build the reader's taste profile from onboarding interests + the categories
+  // of books they've completed, are reading, OR have saved (read-next intent).
+  const preferredSlugs = new Set<string>();
+  for (const interest of analytics.interests) preferredSlugs.add(toSlug(interest));
+  for (const snap of analytics.bookSnapshots) {
+    const isPreference =
+      snap.status === "in_progress" ||
+      snap.status === "completed" ||
+      savedIds.has(snap.book.id);
+    if (isPreference) {
+      for (const cat of [snap.book.category, ...(snap.book.categories ?? [])]) {
+        if (typeof cat === "string" && cat.length > 0) preferredSlugs.add(toSlug(cat));
+      }
+    }
+  }
+  const rankedRecommendations = rankRecommendations(
+    analytics.bookSnapshots,
+    preferredSlugs,
+    savedIds,
+  );
   const lead = analytics.inProgressBookSnapshots[0] ?? null;
 
   let currentBook: WorkspaceData["currentBook"] = null;
   if (lead) {
     const nextChapter = lead.completedChapters + 1;
-    const catalog = BOOKS_CATALOG.find((cat) => cat.id === lead.book.id);
-    const avgChapterMinutes = catalog
-      ? Math.max(
-          1,
-          Math.round(catalog.estimatedMinutes / Math.max(lead.totalChapters, 1)),
-        )
+    // estimatedMinutes comes from the server catalog entry (lead.book), not the
+    // local static catalog.
+    const estimatedMinutes = lead.book.estimatedMinutes;
+    const avgChapterMinutes = estimatedMinutes
+      ? Math.max(1, Math.round(estimatedMinutes / Math.max(lead.totalChapters, 1)))
       : 13;
 
     currentBook = {
@@ -154,7 +275,7 @@ function mapAnalyticsToWorkspaceData(
       progressPercent: lead.progressPercent,
       currentLoopStep: lead.currentLoopStep ?? "summary",
       estimatedMinutes: avgChapterMinutes,
-      glowColor: catalog?.coverImage ? undefined : "rgba(139,92,246,0.35)",
+      glowColor: lead.book.coverImage ? undefined : "rgba(139,92,246,0.35)",
     };
   }
 
@@ -184,18 +305,9 @@ function mapAnalyticsToWorkspaceData(
 
   const recommendedProBooks = analytics.isPro
     ? []
-    : analytics.bookSnapshots
-        .filter((s) => s.status === "not_started")
+    : rankedRecommendations
         .slice(0, 3)
-        .map((snap) => ({
-          id: snap.book.id,
-          title: snap.book.title,
-          author: snap.book.author ?? "",
-          coverUrl: getBookCoverPath(snap.book.id),
-          rating: 0,
-          readerCount: 0,
-          category: snap.book.category ?? "General",
-        }));
+        .map(({ snap, reason }) => toRecommendationCard(snap, reason));
   const recommendedProBookIds = new Set(recommendedProBooks.map((b) => b.id));
 
   return {
@@ -228,18 +340,20 @@ function mapAnalyticsToWorkspaceData(
           : ("not_started" as const),
     })),
     recommendedProBooks,
-    discoveryBooks: analytics.bookSnapshots
-      .filter((s) => s.status === "not_started" && !recommendedProBookIds.has(s.book.id))
+    discoveryBooks: rankedRecommendations
+      .filter(({ snap }) => !recommendedProBookIds.has(snap.book.id))
       .slice(0, 4)
-      .map((snap) => ({
-        id: snap.book.id,
-        title: snap.book.title,
-        author: snap.book.author ?? "",
-        coverUrl: getBookCoverPath(snap.book.id),
-        rating: 0,
-        readerCount: 0,
-        category: snap.book.category ?? "General",
-      })),
+      .map(({ snap, reason }) => toRecommendationCard(snap, reason)),
+    allBooks: analytics.bookSnapshots.map((snap) => ({
+      id: snap.book.id,
+      title: snap.book.title,
+      author: snap.book.author ?? "",
+      coverUrl: getBookCoverPath(snap.book.id),
+      category: snap.book.category ?? "General",
+      categories: snap.book.categories ?? [],
+      progressPercent: snap.progressPercent,
+      status: snap.status,
+    })),
     nextReward: {
       name: INSIGHT_POINTS_REWARDS[0]?.name ?? "Bonus Book Unlock",
       pointsRequired: INSIGHT_POINTS_REWARDS[0]?.costPoints ?? 900,
@@ -252,59 +366,12 @@ function mapAnalyticsToWorkspaceData(
 function deriveNextAchievement(
   analytics: AnalyticsState
 ): WorkspaceData["nextAchievement"] {
-  const partialStats: BadgeProgressStats = {
-    totalCompletedChapters: analytics.totalCompletedChapters,
-    completedBooks: analytics.booksCompleted,
-    startedBooks: analytics.inProgressBookSnapshots.length + analytics.booksCompleted,
-    streakDays: analytics.streakDays,
-    longestStreak: analytics.longestStreak,
-    avgQuizScore: analytics.avgQuizScore,
-    maxQuizScore: analytics.maxQuizScore,
-    quizzesPassed: 0,
-    perfectQuizCount: 0,
-    distinctQuizBooks: 0,
-    quizzesPassedInDeeperMode: 0,
-    quizCount: 0,
-    totalQuizQuestionsAnswered: 0,
-    completedGoalDays: 0,
-    activeWeeks: 0,
-    totalActiveDays: analytics.heatmapCells.filter((c) => c.minutes > 0).length,
-    weekendActiveDays: 0,
-    weekdayActiveDays: 0,
-    recoveredAfterMiss: 0,
-    chaptersSimpleCompleted: 0,
-    chaptersStandardCompleted: 0,
-    chaptersDeeperCompleted: 0,
-    usedAllReadingModes: false,
-    chaptersCompletedWithFocusMode: 0,
-    completedChaptersWithNotes: 0,
-    completedBooksInDeeperMode: 0,
-    examplesViewedChapters: 0,
-    viewedExampleContexts: [],
-    personalExamplesChapters: 0,
-    schoolExamplesChapters: 0,
-    workExamplesChapters: 0,
-    notesCount: 0,
-    noteBooksCount: 0,
-    completedChaptersWithReflection: 0,
-    exploredCategories: 0,
-    challengingBooksStarted: 0,
-    returnedAfterLongGap: 0,
-    readingListCount: 0,
-    challengingBooksCompleted: 0,
-    strategyBooksCompleted: 0,
-    psychologyBooksCompleted: 0,
-    completedCategoriesCount: 0,
-    booksCompletedWithAllQuizzesPassed: 0,
-    proActivated: false,
-    proMultiTrack: false,
-    recapCompletions: 0,
-  };
-
+  // Evaluate against the full server-derived badge stats (device-independent),
+  // not a partial object with most fields zeroed out.
   const earnedHistory = Object.fromEntries(
     Array.from(analytics.earnedBadgeIds).map((id) => [id, new Date().toISOString()])
   );
-  const badges = evaluateBadges(partialStats, earnedHistory);
+  const badges = evaluateBadges(analytics.badgeStats, earnedHistory);
 
   const next = badges
     .filter((b) => !b.earned && b.isVisible && b.targetValue > 0)
@@ -587,15 +654,74 @@ function ProfileIcon({ active }: { active: boolean }) {
    Dashboard Content (rendered after data loads)
    ──────────────────────────────────────────── */
 
+function DashboardSearchResults({
+  query,
+  books,
+}: {
+  query: string;
+  books: WorkspaceData["allBooks"];
+}) {
+  const normalized = normalizeQuery(query);
+  const results = books.filter((book) =>
+    matchesBookQuery(
+      {
+        title: book.title,
+        author: book.author,
+        category: book.category,
+        categories: book.categories,
+      },
+      normalized,
+    ),
+  );
+
+  return (
+    <div className="mt-2">
+      <h2
+        className="mb-4 font-(family-name:--font-display) text-xl font-semibold"
+        style={{ color: "var(--cf-text-1)" }}
+      >
+        {results.length > 0
+          ? `Results for “${query.trim()}”`
+          : `No books match “${query.trim()}”`}
+      </h2>
+      {results.length > 0 && (
+        <div className="flex flex-wrap gap-3">
+          {results.map((book) => (
+            <BookCardWorkspace
+              key={book.id}
+              variant="user"
+              book={{
+                id: book.id,
+                title: book.title,
+                author: book.author,
+                coverUrl: book.coverUrl,
+                progressPercent: book.progressPercent,
+                status: book.status,
+              }}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function DashboardContent({
   data,
   prefersReducedMotion,
+  searchQuery,
 }: {
   data: WorkspaceData;
   prefersReducedMotion: boolean | null;
+  searchQuery: string;
 }) {
   const userState = deriveUserState(data);
   const subtitle = getSubtitle(userState, data);
+  const isSearching = normalizeQuery(searchQuery).length > 0;
+
+  if (isSearching) {
+    return <DashboardSearchResults query={searchQuery} books={data.allBooks} />;
+  }
   const dailyProgress = Math.min(
     (data.user.dailyProgressMinutes / (data.user.dailyGoalMinutes || 20)) * 100,
     100
@@ -713,13 +839,16 @@ export function WorkspacePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
-  const { analytics } = useBookAnalytics(ALL_BOOK_IDS, 20);
+  const { analytics, error, refetch } = useBookAnalytics(ALL_BOOK_IDS, 20);
   const { identity } = useBookViewer();
   const firstName = (identity.displayName || "").split(" ")[0] || "Reader";
-  const isLoading = !analytics;
-  const data = analytics
-    ? mapAnalyticsToWorkspaceData(analytics, firstName)
-    : null;
+  const isLoading = !analytics && !error;
+  // Memoize so the heavy mapper (ranking + badge evaluation over the whole
+  // catalog) doesn't re-run on every render — notably on each search keystroke.
+  const data = useMemo(
+    () => (analytics ? mapAnalyticsToWorkspaceData(analytics, firstName) : null),
+    [analytics, firstName],
+  );
 
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -776,6 +905,7 @@ export function WorkspacePage() {
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           searchInputRef={searchRef}
+          showGlobalSearchPanel={false}
           logoVariant="dashboard"
         />
 
@@ -783,10 +913,20 @@ export function WorkspacePage() {
           className="mx-auto w-full px-4 py-5 md:px-8 md:py-7 lg:px-10 xl:px-16"
           style={{ maxWidth: 1800 }}
         >
-          {isLoading || !data ? (
+          {error && !data ? (
+            <ErrorBanner
+              title="We couldn’t load your dashboard"
+              message={error}
+              onRetry={refetch}
+            />
+          ) : isLoading || !data ? (
             <DashboardSkeleton />
           ) : (
-            <DashboardContent data={data} prefersReducedMotion={prefersReducedMotion} />
+            <DashboardContent
+              data={data}
+              prefersReducedMotion={prefersReducedMotion}
+              searchQuery={searchQuery}
+            />
           )}
 
           {/* Bottom spacer for mobile nav */}

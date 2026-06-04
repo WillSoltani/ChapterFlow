@@ -1,22 +1,31 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { getBookErrorMessage } from "@/app/book/_lib/error-messages";
+import type { LibraryCatalogBook } from "@/app/book/_lib/library-data";
 import type { StoredReaderStateSnapshot } from "@/app/book/_lib/reader-storage";
-import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
+import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 import {
   buildLibraryCatalog,
   type LibraryBookEntry,
-} from "@/app/book/data/mockUserLibraryState";
+} from "@/app/book/data/libraryState";
+import {
+  computeBadgeProgressStats,
+  type BadgeStatsBook,
+  type ChapterReaderSignals,
+  type ReadingDepth,
+} from "@/app/book/_lib/badge-stats";
+import type { BadgeProgressStats } from "@/app/book/badges/lib/badge-ui-definitions";
 import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
 import {
   toDayKey,
 } from "@/app/book/library/hooks/readingActivityStorage";
 
+const DEFAULT_LAST_ACTIVITY = new Date(0).toISOString();
+
 type DashboardPayload = {
-  catalog: Array<{
-    bookId: string;
-  }>;
+  catalog?: LibraryCatalogBook[];
   progress: Array<{
     bookId: string;
     currentChapterNumber: number;
@@ -52,6 +61,7 @@ type DashboardPayload = {
     earnedAt?: string;
     tier?: string;
   }>;
+  saved?: Array<{ bookId?: string }>;
   entitlement?: {
     plan?: string;
   } | null;
@@ -61,6 +71,8 @@ type DashboardPayload = {
       starterShelf?: string[];
       dailyGoal?: number;
       onboardingCompleted?: boolean;
+      interests?: string[];
+      motivation?: string;
     };
     dailyGoal?: number;
   } | null;
@@ -128,6 +140,10 @@ export type AnalyticsState = {
   isPro: boolean;
   insightPoints: number;
   starterShelf: string[];
+  savedBookIds: string[];
+  interests: string[];
+  motivation: string | null;
+  badgeStats: BadgeProgressStats;
 };
 
 const EMPTY_ACTIVITY_LABEL = "No activity yet";
@@ -227,53 +243,76 @@ function statusFromCounts(
   return "not_started";
 }
 
-function buildFallbackAnalytics(
-  localEntries: LibraryBookEntry[],
-  dailyGoalMinutes: number
-): AnalyticsState {
-  const bookSnapshots = localEntries.map((entry): BookProgressSnapshot => {
-    const chapters = getBookChaptersBundle(entry.id).chapters;
-    const totalChapters = chapters.length || entry.chaptersTotal;
+/**
+ * Map the server-published catalog (LibraryCatalogBook) into the LibraryBookEntry
+ * shape the analytics mapper expects. This makes the dashboard's book identity /
+ * metadata come from the production catalog (mirroring the already-migrated
+ * library page) instead of the local static BOOKS_CATALOG. Chapter-level math
+ * still uses the local bundle when available, falling back to chapterCount.
+ */
+function catalogToEntries(catalog: LibraryCatalogBook[]): LibraryBookEntry[] {
+  return catalog.map((book) => ({
+    id: book.id,
+    icon: book.icon,
+    coverImage: book.coverImage,
+    title: book.title,
+    author: book.author,
+    category: book.category,
+    categories: book.categories,
+    difficulty: book.difficulty,
+    estimatedMinutes: book.estimatedMinutes,
+    status: "not_started",
+    progressPercent: 0,
+    chaptersTotal: Math.max(1, book.chapterCount),
+    chaptersCompleted: 0,
+    isNew: true,
+    lastActivityAt: DEFAULT_LAST_ACTIVITY,
+  }));
+}
 
-    return {
-      book: entry,
-      status: "not_started",
-      completedChapters: 0,
-      totalChapters,
-      progressPercent: 0,
-      bestScore: 0,
-      avgScore: 0,
-      lastOpenedLabel: "Not started",
-      lastActivityAt: entry.lastActivityAt,
-      resumeChapterId: chapters[0]?.id ?? "",
-      currentLoopStep: null,
-    };
-  });
-
+function readReaderSignals(
+  raw: unknown,
+  chapterId: string,
+  isCompleted: boolean,
+  chapterScore: number
+): ChapterReaderSignals {
+  const state =
+    raw && typeof raw === "object" && !Array.isArray(raw)
+      ? (raw as Record<string, unknown>)
+      : null;
+  const depth =
+    state?.readingDepth === "simple" ||
+    state?.readingDepth === "standard" ||
+    state?.readingDepth === "deeper"
+      ? (state.readingDepth as ReadingDepth)
+      : "deeper";
+  const quizResultRaw = state?.quizResult;
+  const quizResult =
+    quizResultRaw &&
+    typeof quizResultRaw === "object" &&
+    typeof (quizResultRaw as { score?: unknown }).score === "number"
+      ? {
+          score: (quizResultRaw as { score: number }).score,
+          passed: (quizResultRaw as { passed?: unknown }).passed === true,
+        }
+      : null;
+  const quizAnswers =
+    state?.quizAnswers && typeof state.quizAnswers === "object" && !Array.isArray(state.quizAnswers)
+      ? (state.quizAnswers as Record<string, unknown>)
+      : {};
   return {
-    streakDays: 0,
-    dailyGoalMinutes,
-    minutesReadToday: 0,
-    totalMinutesRead: 0,
-    booksCompleted: 0,
-    avgQuizScore: 0,
-    maxQuizScore: 0,
-    totalCompletedChapters: 0,
-    longestStreak: 0,
-    lastActiveLabel: EMPTY_ACTIVITY_LABEL,
-    bookSnapshots,
-    engagedBookSnapshots: [],
-    recentlyOpenedSnapshots: [],
-    completedBookSnapshots: [],
-    inProgressBookSnapshots: [],
-    heatmapCells: buildHeatmap(new Map()),
-    upcomingReviews: [],
-    hasAnyProgress: false,
-    hasAnyEngagement: false,
-    earnedBadgeIds: new Set<string>(),
-    isPro: false,
-    insightPoints: 0,
-    starterShelf: [],
+    chapterId,
+    isCompleted,
+    hasReader: state !== null,
+    notes: typeof state?.notes === "string" ? state.notes : "",
+    quizResult,
+    chapterScore,
+    readingDepth: depth,
+    activeTab: typeof state?.activeTab === "string" ? state.activeTab : null,
+    exampleFilter: typeof state?.exampleFilter === "string" ? state.exampleFilter : null,
+    focusMode: state?.focusMode === true,
+    showRecap: state?.showRecap === true,
+    quizAnswersCount: Object.keys(quizAnswers).length,
   };
 }
 
@@ -377,7 +416,13 @@ function calculateLongestStreak(dayKeys: string[]): number {
 export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: number) {
   const [hydrated, setHydrated] = useState(false);
   const [analytics, setAnalytics] = useState<AnalyticsState | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [revision, setRevision] = useState(0);
+
+  const refetch = useCallback(() => {
+    setError(null);
+    setRevision((value) => value + 1);
+  }, []);
 
   const seedKey = useMemo(
     () => `${selectedBookIds.join("|")}::${dailyGoalMinutes}`,
@@ -417,14 +462,29 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         const starterShelf: string[] = Array.isArray(onboardingSettings.starterShelf)
           ? onboardingSettings.starterShelf
           : [];
+        const savedBookIds: string[] = Array.isArray(payload.saved)
+          ? payload.saved
+              .map((s) => s?.bookId)
+              .filter((id): id is string => typeof id === "string" && id.length > 0)
+          : [];
+        const interests: string[] = Array.isArray(onboardingSettings.interests)
+          ? onboardingSettings.interests.filter((v): v is string => typeof v === "string")
+          : [];
+        const motivation: string | null =
+          typeof onboardingSettings.motivation === "string" ? onboardingSettings.motivation : null;
         const settingsDailyGoal: number =
           typeof payload.settings?.dailyGoal === "number"
             ? payload.settings.dailyGoal
             : typeof onboardingSettings.dailyGoal === "number"
               ? onboardingSettings.dailyGoal
               : dailyGoalMinutes;
-        const localEntries = buildLibraryCatalog();
-        const entries = localEntries;
+        // Prefer the server-published catalog for book identity/metadata
+        // (matches the migrated library page); fall back to the local bundle
+        // only when the catalog is empty.
+        const entries =
+          Array.isArray(payload.catalog) && payload.catalog.length > 0
+            ? catalogToEntries(payload.catalog)
+            : buildLibraryCatalog();
         const progressByBook = new Map(progressRows.map((item) => [item.bookId, item]));
         const stateByBook = new Map(bookStateRows.map((item) => [item.bookId, item]));
         const chapterStatesByBook = new Map<string, Array<DashboardPayload["chapterStates"][number]>>();
@@ -470,12 +530,17 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           const activities = buildActivities(entry.id, chapterCompletedAt);
           allActivities.push(...activities);
 
-          const completedChapters = new Set(
-            state?.completedChapterIds ??
-              (progress?.completedChapters ?? [])
-                .map((chapterNumber) => chapters.find((chapter) => chapter.order === chapterNumber)?.id ?? "")
-                .filter(Boolean)
-          ).size;
+          const completedChapters = state?.completedChapterIds
+            ? new Set(state.completedChapterIds).size
+            : chapters.length === 0
+              ? // Server book with no local chapter bundle — count numeric
+                // progress directly (the id-mapping below can only yield 0).
+                (progress?.completedChapters ?? []).length
+              : new Set(
+                  (progress?.completedChapters ?? [])
+                    .map((chapterNumber) => chapters.find((chapter) => chapter.order === chapterNumber)?.id ?? "")
+                    .filter(Boolean)
+                ).size;
           const status = statusFromCounts(completedChapters, totalChapters);
           const progressPercent = totalChapters
             ? Math.min(100, Math.round((completedChapters / totalChapters) * 100))
@@ -614,7 +679,90 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         const heatmapCells = buildHeatmap(readingByDay);
         const completedBookSnapshots = engagedBookSnapshots.filter((item) => item.status === "completed");
         const inProgressBookSnapshots = engagedBookSnapshots.filter((item) => item.status === "in_progress");
-        // Try loading FSRS review cards with a 3s timeout; fall back to placeholder if unavailable
+
+        // Badge stats from server-persisted state (device-independent) — replaces
+        // the dashboard's old all-zeros partial stats object.
+        const badgeStatsBooks: BadgeStatsBook[] = bookSnapshots.map((snap) => {
+          const entry = snap.book;
+          const state = stateByBook.get(entry.id);
+          const progress = progressByBook.get(entry.id);
+          const bundleChapters = getBookChaptersBundle(entry.id).chapters;
+          const completedIds = new Set<string>(
+            state?.completedChapterIds ??
+              (progress?.completedChapters ?? [])
+                .map((n) => bundleChapters.find((c) => c.order === n)?.id ?? "")
+                .filter(Boolean)
+          );
+          // chapterScores is keyed by chapterId on bookState, but the
+          // progress-table fallback (bestScoreByChapter) is keyed by chapter
+          // NUMBER — map it to ids so progress-only quiz scores aren't dropped.
+          const chapterScores: Record<string, number> =
+            state?.chapterScores ??
+            Object.fromEntries(
+              Object.entries(progress?.bestScoreByChapter ?? {})
+                .map(([num, score]) => {
+                  const cid = bundleChapters.find((c) => c.order === Number(num))?.id;
+                  return cid ? ([cid, Number(score)] as const) : null;
+                })
+                .filter((e): e is readonly [string, number] => e !== null)
+            );
+          const stateByChapterId = new Map<string, unknown>();
+          for (const cs of chapterStatesByBook.get(entry.id) ?? []) {
+            const cid =
+              cs.chapterId ?? bundleChapters.find((c) => c.order === cs.chapterNumber)?.id;
+            if (cid) stateByChapterId.set(cid, cs.state);
+          }
+          const relevant = new Set<string>([
+            ...completedIds,
+            ...Object.keys(chapterScores),
+            ...stateByChapterId.keys(),
+          ]);
+          const chapters: ChapterReaderSignals[] = [...relevant].map((cid) =>
+            readReaderSignals(
+              stateByChapterId.get(cid),
+              cid,
+              completedIds.has(cid),
+              Number(chapterScores[cid] ?? 0)
+            )
+          );
+          return {
+            id: entry.id,
+            category: entry.category,
+            difficulty: entry.difficulty,
+            // "Started" = any real engagement (opened/scored/has reader state),
+            // not just a fully-completed chapter — matches the original
+            // localStorage deriver so browsed books still count.
+            isStarted:
+              Boolean(state) ||
+              completedIds.size > 0 ||
+              Object.keys(chapterScores).length > 0 ||
+              stateByChapterId.size > 0,
+            isCompleted: snap.status === "completed",
+            chapters,
+          };
+        });
+        const badgeStats = computeBadgeProgressStats({
+          activity: {
+            heatmapCells,
+            totalCompletedChapters,
+            booksCompleted,
+            streakDays: currentStreak,
+            longestStreak,
+            avgQuizScore,
+            maxQuizScore,
+            inProgressCount: inProgressBookSnapshots.length,
+          },
+          books: badgeStatsBooks,
+          dailyGoalMinutes: settingsDailyGoal,
+          plan: payload.entitlement?.plan === "PRO" ? "PRO" : "FREE",
+          // The "reading list" is the user's saved books, not the whole
+          // catalog — using ALL_BOOK_IDS here falsely earned reading-list badges.
+          readingListCount: Array.isArray(payload.saved) ? payload.saved.length : 0,
+        });
+
+        // Load real FSRS review cards (3s timeout). These are seeded server-side
+        // when a chapter quiz is passed; when none are due we show NOTHING rather
+        // than fabricating placeholder cards from in-progress books.
         let upcomingReviews: UpcomingReviewItem[] = [];
         try {
           const fsrsController = new AbortController();
@@ -637,23 +785,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             }));
           }
         } catch {
-          // FSRS not available or timed out — use placeholder reviews
-        }
-        if (upcomingReviews.length === 0) {
-          upcomingReviews = inProgressBookSnapshots.slice(0, 3).map((item, index) => {
-            const dueDate = new Date();
-            dueDate.setDate(dueDate.getDate() + index + 1);
-            return {
-              id: `${item.book.id}-review-${index}`,
-              prompt: `Review ${item.book.title}: chapter ${Math.max(item.completedChapters, 1)} takeaways`,
-              dueLabel: dueDate.toLocaleDateString(undefined, {
-                weekday: "short",
-                month: "short",
-                day: "numeric",
-              }),
-              bookId: item.book.id,
-            };
-          });
+          // FSRS unavailable or timed out — leave reviews empty.
         }
 
         setAnalytics({
@@ -680,13 +812,23 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           isPro: payload.entitlement?.plan === "PRO",
           insightPoints: typeof payload.insightPointsBalance === "number" ? payload.insightPointsBalance : 0,
           starterShelf,
+          savedBookIds,
+          interests,
+          motivation,
+          badgeStats,
         });
+        setError(null);
         setHydrated(true);
       } catch (err) {
-        console.error("Dashboard API failed, using fallback analytics:", err);
         if (!mounted) return;
-        const localEntries = buildLibraryCatalog();
-        setAnalytics(buildFallbackAnalytics(localEntries, dailyGoalMinutes));
+        // Surface the failure instead of silently showing all-zero local
+        // analytics. On the initial load `analytics` is still null, so the
+        // dashboard renders the error/retry state. On a background refetch
+        // (focus/storage events) we keep the last-good analytics so a transient
+        // blip doesn't wipe a working dashboard — the error is held but the
+        // page keeps rendering real data.
+        console.error("Dashboard API failed:", err);
+        setError(getBookErrorMessage(err));
         setHydrated(true);
       }
     };
@@ -701,5 +843,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
   return {
     hydrated,
     analytics,
+    error,
+    refetch,
   };
 }

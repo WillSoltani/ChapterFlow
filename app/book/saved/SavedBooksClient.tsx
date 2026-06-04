@@ -8,7 +8,7 @@ import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { buildLibraryCatalog, type LibraryBookEntry } from "@/app/book/data/mockUserLibraryState";
+import { buildLibraryCatalog, type LibraryBookEntry } from "@/app/book/data/libraryState";
 import { BookCardLarge } from "@/app/book/library/components/BookCardLarge";
 
 export function SavedBooksClient() {

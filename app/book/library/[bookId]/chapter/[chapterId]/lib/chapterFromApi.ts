@@ -14,7 +14,7 @@
 import {
   buildBookChapterFromRawV21,
   type BookChapter,
-} from "@/app/book/data/mockChapters";
+} from "@/app/book/data/bookChapters";
 
 type ApiToneKeyed = {
   gentle?: string;

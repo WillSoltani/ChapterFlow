@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
-import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 
 export type ChapterTab = "summary" | "examples" | "quiz" | "practice";

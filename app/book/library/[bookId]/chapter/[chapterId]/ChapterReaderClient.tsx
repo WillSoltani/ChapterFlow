@@ -9,7 +9,7 @@ import {
   getChapterById,
   type ChapterExample,
   type ReadingDepth,
-} from "@/app/book/data/mockChapters";
+} from "@/app/book/data/bookChapters";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import {
   chapterStartModeToInitialTab,

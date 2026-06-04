@@ -15,9 +15,11 @@ import { bookOk, requireBodyObject, withBookApiErrors } from "@/app/app/api/book
 import {
   getLocalQuizQuestions,
   getPublishedBookManifest,
+  getUserAccessibleChapter,
   getUserAccessibleQuiz,
   isLocalV12Package,
 } from "@/app/app/api/book/_lib/content-service";
+import { initializeCardsForChapter } from "@/app/app/api/book/_lib/fsrs-repo";
 import {
   analyticsTrackBookCompleted,
   analyticsTrackFlowPointsTransaction,
@@ -64,7 +66,7 @@ import {
   type LoopPipelineResult,
 } from "@/app/book/_lib/flow-points-economy";
 import type { LearningMode } from "@/app/book/settings/types/settings";
-import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 
 export const runtime = "nodejs";
@@ -573,6 +575,40 @@ export async function POST(
             ExpressionAttributeValues: { ":ts": ts },
           })
         ).catch(() => {});
+
+      // ── Step 1.5: Seed FSRS spaced-repetition cards (idempotent) ──────
+      // This is the load-bearing seam: without it /me/reviews stays empty
+      // and the dashboard has nothing real to show. initializeCardsForChapter
+      // dedupes per card, so re-passes / retries are safe.
+      try {
+        const { chapter: chapterContent } = await getUserAccessibleChapter({
+          tableName,
+          contentBucket,
+          userId: user.sub,
+          bookId,
+          chapterNumber: chapterNumberInt,
+        });
+        const reviewCards = chapterContent.reviewCards ?? [];
+        if (reviewCards.length > 0) {
+          await initializeCardsForChapter(
+            tableName,
+            user.sub,
+            bookId,
+            chapterNumberInt,
+            reviewCards,
+            tone,
+          );
+          await markLoopStep("fsrsSeededAt");
+        }
+      } catch (e) {
+        // FSRS seeding is a non-critical, idempotent side effect — do NOT add it
+        // to pipelineErrors (that would block markLoopPipelineCompleted and force
+        // the whole loop pipeline to re-run). The next pass or the backfill seeds it.
+        console.error("[fsrs-seed-failure]", {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          error: String(e),
+        });
+      }
 
       // ── Step 2: Update streak ────────────────────────────────────────
       let streakResult: Awaited<ReturnType<typeof updateStreakOnLoopComplete>> | null = null;

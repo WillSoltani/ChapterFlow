@@ -19,7 +19,7 @@ import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { Card } from "@/app/book/components/ui/Card";
 import { Button } from "@/app/book/components/ui/Button";
 import { ChipButton } from "@/app/book/components/ui/Chip";
-import { InfoModal } from "@/app/book/home/components/InfoModal";
+import { ReviewSessionFSRS } from "@/app/book/components/ReviewSessionFSRS";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 
 function ringStyle(percent: number): CSSProperties {
@@ -531,27 +531,9 @@ export function BookProgressClient() {
         </Card>
       </section>
 
-      <InfoModal
-        open={showReviewModal}
-        title="Review Session"
-        onClose={() => setShowReviewModal(false)}
-      >
-        <p className="text-sm text-(--cf-text-2)">
-          Review mode will combine spaced repetition cards and adaptive quiz prompts.
-        </p>
-        <div className="mt-3 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-sm text-(--cf-text-2)">
-          <p className="flex items-center gap-2 text-(--cf-text-1)">
-            <Target className="h-4 w-4 text-(--cf-accent)" />
-            Adaptive review with spaced repetition.
-          </p>
-          <p className="mt-2">You already have {analytics.upcomingReviews.length} items queued.</p>
-        </div>
-        <div className="mt-4">
-          <Button variant="secondary" onClick={() => setShowReviewModal(false)}>
-            Close
-          </Button>
-        </div>
-      </InfoModal>
+      {showReviewModal && (
+        <ReviewSessionFSRS onClose={() => setShowReviewModal(false)} />
+      )}
 
       {analytics.avgQuizScore >= 90 ? (
         <div className="pointer-events-none fixed bottom-6 right-6 hidden rounded-xl border border-(--cf-success-border) bg-(--cf-success-soft) px-3 py-1.5 text-xs text-(--cf-success-text) md:inline-flex md:items-center md:gap-1.5">

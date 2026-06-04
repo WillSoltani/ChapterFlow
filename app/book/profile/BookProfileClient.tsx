@@ -30,7 +30,7 @@ import {
   parseStoredReaderState,
 } from "@/app/book/_lib/reader-storage";
 import type { BadgeState } from "@/app/book/badges/lib/badge-ui-definitions";
-import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
+import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 import { BOOK_STORAGE_EVENT, emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";

@@ -10,7 +10,7 @@ import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/c
 import { ContinueButton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ContinueButton";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
-import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
 
 import { AppWindowChrome } from "./AppWindowChrome";
 import { DesktopQuizPanel } from "./DesktopQuizPanel";

@@ -5,7 +5,7 @@ import { ArrowRight, Bookmark, BookmarkCheck, Trophy } from "lucide-react";
 import { ImplementationPlanCard } from "./ImplementationPlanCard";
 import { ReviewCardsPanel } from "./ReviewCardsPanel";
 import { CommitmentPrompt } from "./CommitmentPrompt";
-import type { ImplementationPlanItem, ReviewCardItem } from "@/app/book/data/mockChapters";
+import type { ImplementationPlanItem, ReviewCardItem } from "@/app/book/data/bookChapters";
 
 type PracticePhaseProps = {
   keyTakeawayCard?: string;

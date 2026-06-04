@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
 
 const options: Array<{ id: ReadingDepth; label: string; sub: string }> = [
   { id: "simple", label: "Fast", sub: "2 min" },

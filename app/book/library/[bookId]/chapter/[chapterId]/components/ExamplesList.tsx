@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import { MessageCircle, Plus, Sparkles, X } from "lucide-react";
-import type { ChapterExample, ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ChapterExample, ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 import { track } from "@/lib/analytics";

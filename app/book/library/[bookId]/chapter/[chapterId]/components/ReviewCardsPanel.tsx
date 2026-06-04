@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp, RotateCcw, Layers } from "lucide-react";
-import type { ReviewCardItem } from "@/app/book/data/mockChapters";
+import type { ReviewCardItem } from "@/app/book/data/bookChapters";
 
 const DIFFICULTY_COLORS: Record<string, string> = {
   easy: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ProBadge } from "./ProBadge";
 import { getBookCoverPath } from "@/lib/book-covers";
+import { formatRatingsCount } from "@/app/book/data/bookRatings";
 
 interface UserBookData {
   id: string;
@@ -36,11 +37,6 @@ const statusConfig = {
   not_started: { label: "Not Started", color: "var(--cf-text-soft)" },
   completed: { label: "Completed", color: "var(--cf-success-text)" },
 };
-
-function formatReaderCount(count: number): string {
-  if (count >= 1000) return `${(count / 1000).toFixed(1)}k`;
-  return count.toString();
-}
 
 export function BookCardWorkspace(props: BookCardWorkspaceProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -187,13 +183,13 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
               <>
                 <span style={{ color: "var(--accent-gold)" }}>★</span>
                 <span className="tabular-nums">
-                  {(book as ProBookData).rating}
+                  {(book as ProBookData).rating.toFixed(1)}
                 </span>
                 {(book as ProBookData).readerCount > 0 && (
                   <>
                     <span style={{ color: "var(--cf-text-soft)" }}>·</span>
                     <span>
-                      {formatReaderCount((book as ProBookData).readerCount)} readers
+                      {formatRatingsCount((book as ProBookData).readerCount)} ratings
                     </span>
                   </>
                 )}

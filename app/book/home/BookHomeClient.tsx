@@ -12,7 +12,7 @@ import {
   getPreferredExampleContextShortLabel,
 } from "@/app/book/_lib/onboarding-personalization";
 import { getBookById } from "@/app/book/data/booksCatalog";
-import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
+import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 import type { RecentBookProgress } from "@/app/book/data/mockProgress";
 import type { BadgeState } from "@/app/book/badges/lib/badge-ui-definitions";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";

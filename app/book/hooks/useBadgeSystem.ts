@@ -16,7 +16,8 @@ import {
   type BadgeProgressStats,
   type BadgeState,
 } from "@/app/book/badges/lib/badge-ui-definitions";
-import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
+import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
+import { mergeBadgeProgressStats } from "@/app/book/_lib/badge-stats";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
 
@@ -474,7 +475,15 @@ export function useBadgeSystem({
   const badgeStats = useMemo(() => {
     if (!hydrated || !analytics) return null;
     void revision;
-    return deriveBadgeStats(analytics, dailyGoalMinutes, plan, selectedBookIds);
+    // Merge server-truth stats (device-independent, from /me/dashboard) with the
+    // localStorage-derived stats, taking the more-progressed value per field.
+    // This keeps badges device-independent without regressing users whose
+    // local progress hasn't fully synced to the server (or vice-versa) during
+    // the reader migration.
+    const local = deriveBadgeStats(analytics, dailyGoalMinutes, plan, selectedBookIds);
+    return analytics.badgeStats
+      ? mergeBadgeProgressStats(analytics.badgeStats, local)
+      : local;
   }, [analytics, dailyGoalMinutes, hydrated, plan, revision, selectedBookIds]);
 
   const badges = useMemo(() => {

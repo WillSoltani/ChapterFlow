@@ -4,7 +4,7 @@ import { useDeferredValue, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { BookText, FileText, Lightbulb, Loader2, MessageSquare } from "lucide-react";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
-import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
+import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 import { useGlobalSearch } from "@/app/book/hooks/useGlobalSearch";
 import type { SearchResult, GroupedResults } from "@/app/book/types/search";
 

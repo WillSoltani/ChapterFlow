@@ -23,7 +23,7 @@ import {
   listRecentQuizAttempts,
 } from "@/app/app/api/book/_lib/repo";
 import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
-import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 
 export const runtime = "nodejs";

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
-import type { BookChapter } from "@/app/book/data/mockChapters";
+import type { BookChapter } from "@/app/book/data/bookChapters";
 import {
   adaptApiChapterToBookChapter,
   type ApiChapterResponse,
