@@ -16,6 +16,7 @@ import {
   Monitor,
   Radio,
   Repeat,
+  Scale,
   Settings2,
   ShieldAlert,
   Sparkles,
@@ -52,6 +53,7 @@ const NAV: NavItem[] = [
 
   { href: "/book/admin/revenue", label: "Revenue", icon: Wallet, group: "revenue" },
   { href: "/book/admin/billing", label: "Billing (Stripe)", icon: Wallet, group: "revenue" },
+  { href: "/book/admin/reconciliation", label: "Reconciliation", icon: Scale, group: "revenue" },
   { href: "/book/admin/economy", label: "Economy", icon: Coins, group: "revenue" },
 
   { href: "/book/admin/content", label: "Content", icon: BookOpen, group: "content" },

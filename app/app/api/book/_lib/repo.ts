@@ -1723,6 +1723,8 @@ export async function updateUserEntitlementFromStripe(
     proSource?: "stripe";
     stripeCustomerId?: string;
     stripeSubscriptionId?: string;
+    stripePriceId?: string;
+    subscriptionInterval?: string;
     currentPeriodEnd?: string;
     cancelAtPeriodEnd?: boolean;
     // Billing intelligence (optional)
@@ -1820,6 +1822,14 @@ export async function updateUserEntitlementFromStripe(
   if (params.failedPaymentLastReason !== undefined) {
     setParts.push("failedPaymentLastReason = :fplr");
     eav[":fplr"] = params.failedPaymentLastReason;
+  }
+  if (params.stripePriceId !== undefined) {
+    setParts.push("stripePriceId = :spi");
+    eav[":spi"] = params.stripePriceId;
+  }
+  if (params.subscriptionInterval !== undefined) {
+    setParts.push("subscriptionInterval = :sint");
+    eav[":sint"] = params.subscriptionInterval;
   }
 
   try {
