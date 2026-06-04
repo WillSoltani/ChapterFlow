@@ -119,6 +119,21 @@ reader Summary renders non-empty.
 
 ---
 
+## Fast path — write every chapter in parallel (`fanout`)
+
+Steps 2+3 above are the slow, serial way. To write the whole book at once, after
+research is done run:
+```
+npx tsx src/cli.ts fanout <bookId>
+```
+It runs `name-plan` for you and prints **one ready-to-paste prompt per chapter** —
+title, the real source-notes path, that chapter's names, the save path, and the
+self-gate command all filled in. Paste each block into its own Codex agent and let
+them run in parallel; each self-gates to `PASS — 0 blockers` on its own. Re-run
+`fanout` any time to see only what's still unwritten. Then `book-gate`, QC, promote
+as normal. This replaces the manual per-chapter `name-plan` + `next-task` + edit-the-
+prompt-by-hand loop.
+
 ## Quick reference — the happy path
 
 ```

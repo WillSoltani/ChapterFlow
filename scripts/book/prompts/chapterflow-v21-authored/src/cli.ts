@@ -119,6 +119,12 @@ Commands:
                                      chapter afterward makes it stale and forces re-review.
   qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
                                      CORRUPTION / MISSING. Exit 0 iff every chapter is ship-ready.
+  fanout <bookId> [--from N --to M] [--all]
+                                     Print a ready-to-paste authoring prompt for each chapter still to
+                                     write — title, real source-notes path, allocated names, save path,
+                                     and self-gate command all filled in. Paste each block into its own
+                                     Codex agent to write the book in parallel. Runs name-plan for you.
+                                     Skips already-written chapters unless --all.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
@@ -1003,6 +1009,90 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
   return 0;
 }
 
+/** `fanout <bookId> [--from N --to M] [--all]` — print a ready-to-paste authoring
+ *  prompt for each chapter still to write: title, real source-notes path (with the
+ *  run timestamp resolved), the chapter's allocated names, the save path, and the
+ *  self-gate command — all filled in. Paste each block into its own Codex agent to
+ *  write the whole book in parallel. Skips already-written chapters unless --all. */
+async function runFanout(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: fanout <bookId> [--from N --to M] [--all]");
+    return 2;
+  }
+  const { findLatestRun } = await import("./next-task.js");
+  const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
+  const REPO = resolve(__dirname, "../../../../..");
+  const PIPE = resolve(__dirname, "..");
+  const runId = findLatestRun(bookId);
+  if (!runId) {
+    console.error(`No research run for "${bookId}". Do Step 1 (research) first:  npx tsx src/cli.ts next-task ${bookId}`);
+    return 2;
+  }
+  const tocPath = resolve(REPO, ".chapterflow/runs", bookId, runId, "source-freeze", "toc.json");
+  if (!existsSyncFs(tocPath)) {
+    console.error(`No chapter list yet at ${tocPath}. Finish the research step first.`);
+    return 2;
+  }
+  const toc = JSON.parse(readFileSync(tocPath, "utf8"));
+  const title = toc.title ?? toc.book?.title ?? bookId;
+  const flat: Array<{ number: number; title: string }> = (
+    toc.flatChapters && toc.flatChapters.length > 0 ? toc.flatChapters : (toc.sections ?? []).flatMap((s: any) => s.chapters ?? [])
+  )
+    .slice()
+    .sort((a: any, b: any) => a.number - b.number);
+  if (flat.length === 0) {
+    console.error(`Chapter list at ${tocPath} is empty.`);
+    return 2;
+  }
+  const indexPath = resolve(PIPE, "state/indexes", `${bookId}.json`);
+  const idx: Array<{ chapterId: string; chapterNumber: number }> = existsSyncFs(indexPath)
+    ? JSON.parse(readFileSync(indexPath, "utf8"))
+    : [];
+  const idById = new Map(idx.map((c) => [c.chapterNumber, c.chapterId]));
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : flat[0].number;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : flat[flat.length - 1].number;
+  const plan = planNames(bookId, from, to);
+  writeNamePlan(plan);
+  const sourceDir = resolve(REPO, ".chapterflow/runs", bookId, runId, "sidecars", "source");
+  const chaptersDir = resolve(PIPE, "state/chapters");
+  const includeAll = flags["all"] === true;
+  const blocks: string[] = [];
+  let pending = 0;
+  let done = 0;
+  for (const ch of flat) {
+    if (ch.number < from || ch.number > to) continue;
+    const numStr = String(ch.number).padStart(2, "0");
+    const chapterId = idById.get(ch.number) ?? `${bookId}-ch${numStr}`;
+    const written = existsSyncFs(resolve(chaptersDir, `${chapterId}.v21-native.chapter.json`));
+    if (written && !includeAll) {
+      done++;
+      continue;
+    }
+    pending++;
+    const names = (plan.allocation[ch.number] ?? []).join(", ");
+    blocks.push(
+      `─── Chapter ${ch.number} — "${ch.title}"${written ? "  (already written — re-do)" : ""} ───\n` +
+        `Write chapter ${ch.number} of "${title}" for ChapterFlow. Work in this folder:\n` +
+        `  ${PIPE}\n` +
+        `• Read its source notes: ${resolve(sourceDir, `ch${numStr}.source.json`)}\n` +
+        `• Use ONLY these character names: ${names}\n` +
+        `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring rules)\n` +
+        `• Save to state/chapters/${chapterId}.v21-native.chapter.json\n` +
+        `• Then run: npx tsx src/cli.ts gate-chapter state/chapters/${chapterId}.v21-native.chapter.json\n` +
+        `  Fix every blocker it reports and re-run until it prints "Gate verdict: PASS — 0 blockers". Only stop when it is clean.`,
+    );
+  }
+  console.log(
+    `fanout — ${bookId} (ch${from}-${to}): ${pending} prompt(s) to paste` +
+      (includeAll ? "" : `  [${done} already written, skipped — use --all to include]`) +
+      `\n`,
+  );
+  console.log(blocks.join("\n\n"));
+  console.log(`\nPaste each block above into its own Codex agent (run them in parallel). When they finish, check the batch:\n  npx tsx src/cli.ts book-gate ${bookId}`);
+  return 0;
+}
+
 /** `name-plan <bookId> --from N --to M [--per-chapter K]` — pre-authoring name
  *  allocator. Deals each upcoming chapter a disjoint protagonist-name slice
  *  (excluding cross-book + already-authored names) and emits the banned-
@@ -1518,6 +1608,8 @@ async function main() {
       return runQcAttest(args, flags);
     case "qc-status":
       return runQcStatus(args);
+    case "fanout":
+      return runFanout(args, flags);
     case "author-check":
       return runAuthorCheck(args);
     case "fix-chapter-ids":
