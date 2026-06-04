@@ -5,6 +5,7 @@ import {
   getUserIdByStripeCustomer,
   hasStripeWebhookEventBeenProcessed,
   mapStripeCustomerToUser,
+  recordBillingEvent,
   recordStripeWebhookEvent,
   updateUserEntitlementFromStripe,
 } from "@/app/app/api/book/_lib/repo";
@@ -372,21 +373,115 @@ export async function POST(req: Request) {
         }
       }
     } else if (event.type === "charge.refunded") {
-      // Audit-only: refunds don't directly downgrade — Stripe will fire a
-      // separate customer.subscription.deleted if the refund cancels the sub.
-      // We just log to analytics so finance has a trail.
-      const charge = event.data.object as { customer: string | null };
-      if (charge.customer && analyticsTable) {
-        const userId = await getUserIdByStripeCustomer(tableName, charge.customer);
-        if (userId) {
-          analyticsTrackSubscription(analyticsTable, {
+      // Persist a durable refund record for the admin finance report. We do NOT
+      // downgrade here: refunds may be partial, and a refund that cancels the
+      // subscription fires a separate customer.subscription.deleted that handles
+      // the entitlement. (Previously this wrongly stamped the analytics snapshot
+      // "canceled", corrupting analytics for partial refunds.)
+      const charge = event.data.object as {
+        id: string;
+        customer: string | null;
+        amount_refunded?: number;
+        currency?: string;
+        created?: number;
+        refunds?: {
+          data?: Array<{
+            id: string;
+            amount?: number;
+            currency?: string;
+            reason?: string | null;
+            status?: string | null;
+            created?: number;
+          }>;
+        };
+      };
+      const userId = charge.customer
+        ? await getUserIdByStripeCustomer(tableName, charge.customer)
+        : null;
+      const refunds = charge.refunds?.data ?? [];
+      if (refunds.length > 0) {
+        // One durable record per individual refund: charge.amount_refunded is
+        // CUMULATIVE, so we must use each refund's own amount, and each refund id
+        // is a unique, stable idempotency key (redelivery overwrites in place).
+        for (const r of refunds) {
+          await recordBillingEvent(tableName, {
+            kind: "refund",
+            eventId: r.id,
             userId,
-            plan: "PRO",
-            proStatus: "canceled",
-            proSource: "stripe",
-            stripeCustomerId: charge.customer,
-          }).catch(() => {});
+            stripeCustomerId: charge.customer ?? null,
+            chargeId: charge.id,
+            amountCents: r.amount ?? 0,
+            currency: (r.currency ?? charge.currency ?? BILLING_CURRENCY).toUpperCase(),
+            reason: r.reason ?? null,
+            status: r.status ?? "succeeded",
+            createdAt: isoFromUnix(r.created ?? charge.created) ?? new Date().toISOString(),
+          });
         }
+      } else {
+        // The Charge's refunds list isn't guaranteed on the event payload. Fall
+        // back to one cumulative record keyed by the UNIQUE event id, so repeated
+        // partial refunds produce distinct rows instead of colliding on charge.id.
+        await recordBillingEvent(tableName, {
+          kind: "refund",
+          eventId: event.id,
+          userId,
+          stripeCustomerId: charge.customer ?? null,
+          chargeId: charge.id,
+          amountCents: charge.amount_refunded ?? 0,
+          currency: (charge.currency ?? BILLING_CURRENCY).toUpperCase(),
+          reason: null,
+          status: "refunded",
+          createdAt: isoFromUnix(charge.created) ?? new Date().toISOString(),
+        });
+      }
+    } else if (event.type === "charge.dispute.created") {
+      // A chargeback. Policy: record it AND revoke access immediately — the
+      // customer reversed payment, so Pro ends now. The proSource guard inside
+      // updateUserEntitlementFromStripe protects license/gift/flow_points users;
+      // only a stripe-source entitlement is downgraded. The Dispute object
+      // carries the charge id but not the customer, so retrieve the charge to
+      // resolve customer → user.
+      const dispute = event.data.object as {
+        id: string;
+        charge?: string | null;
+        amount?: number;
+        currency?: string;
+        reason?: string | null;
+        status?: string | null;
+        created?: number;
+      };
+      // Resolve the customer via the charge. We intentionally do NOT swallow a
+      // retrieve failure: letting it throw makes the handler 500 so Stripe
+      // retries (recordStripeWebhookEvent hasn't run yet) — a transient Stripe
+      // blip must not silently skip revoking access. A charge that genuinely has
+      // no customer just yields null → record-only, no downgrade.
+      let customerId: string | null = null;
+      if (typeof dispute.charge === "string") {
+        const charge = await stripe.charges.retrieve(dispute.charge);
+        customerId = typeof charge.customer === "string" ? charge.customer : null;
+      }
+      const userId = customerId
+        ? await getUserIdByStripeCustomer(tableName, customerId)
+        : null;
+      await recordBillingEvent(tableName, {
+        kind: "dispute",
+        eventId: dispute.id,
+        userId,
+        stripeCustomerId: customerId,
+        chargeId: dispute.charge ?? null,
+        amountCents: dispute.amount ?? 0,
+        currency: (dispute.currency ?? BILLING_CURRENCY).toUpperCase(),
+        reason: dispute.reason ?? null,
+        status: dispute.status ?? "needs_response",
+        createdAt: isoFromUnix(dispute.created) ?? new Date().toISOString(),
+      });
+      if (userId) {
+        await updateUserEntitlementFromStripe(tableName, {
+          userId,
+          plan: "FREE",
+          proStatus: "canceled",
+          stripeCustomerId: customerId ?? undefined,
+        });
       }
     } else if (event.type === "customer.deleted") {
       // Customer wiped from Stripe. Downgrade the user (subject to the
@@ -401,6 +496,11 @@ export async function POST(req: Request) {
           proStatus: "canceled",
         });
       }
+    } else {
+      // Unhandled event type. We still record it as processed below (so Stripe
+      // stops retrying an event we will never act on), but log it so a newly
+      // relevant event type isn't silently swallowed during future work.
+      console.warn(`[stripe-webhook] unhandled event type: ${event.type}`);
     }
 
     // Only record the event as processed AFTER all side effects succeed.
