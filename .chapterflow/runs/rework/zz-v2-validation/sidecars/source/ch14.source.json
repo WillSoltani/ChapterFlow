@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 14,
+  "chapterTitle": "Outside money is Plan Z",
+  "focus": "Fundraising is moved from default startup step to last-resort tool. The essay emphasizes the hidden costs of spending someone else's money.",
+  "coreClaim": "Use outside money only when truly necessary because it can push the business away from customers and toward investor priorities.",
+  "centralConcept": {
+    "id": "ch14.concept",
+    "name": "funding restraint",
+    "plainDefinition": "Outside capital should be a last resort because it changes incentives, control, pace, and accountability. Customer revenue is usually a cleaner signal.",
+    "whyItMatters": "A reader can protect independence by shrinking the plan, charging customers, and avoiding investor pressure until no better option exists."
+  },
+  "keyClaims": [
+    "Many service and software businesses do not need factory-scale capital to begin. [14.1]",
+    "Investor money reduces control and adds another party whose interests must be served. [14.2]",
+    "Spending other people's money can become addictive because it softens discipline. [14.3]",
+    "The need to provide investor returns can make exit thinking compete with product quality. [14.4]",
+    "Raising money consumes attention that could go into making and selling. [14.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch14.ex.37signals-basecamp",
+      "label": "37signals bootstrapping instead of venture funding",
+      "summary": "37signals favored customer-funded growth for Basecamp rather than building the company around venture capital. That kept product decisions and profitability closer to the customer relationship.",
+      "teachesWhat": "Funding choice shapes the company's loyalties and constraints.",
+      "hardSpecifics": ["37signals", "Basecamp", "venture capital", "customer-funded growth"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is that outside capital is always foolish. The edge is to treat it as Plan Z, appropriate only when the business model truly requires it.",
+  "voiceCues": [
+    "uses an alphabet reversal to demote fundraising",
+    "lists practical control costs",
+    "keeps customer revenue as the discipline"
+  ],
+  "forbiddenLeakage": [
+    "launch iteration",
+    "competitor positioning",
+    "remote hiring"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch14.fact.1",
+      "claim": "The chapter frames raising outside money as Plan Z, the last resort rather than the first startup milestone.",
+      "becauseMechanism": "It is positioned last because reaching for outside cash before exhausting smaller, cheaper, customer-funded paths surrenders control prematurely, so the ranking forces founders to try those paths first.",
+      "commonError": "Securing a funding round is the foundational first step that legitimizes a startup and should be pursued before building the product.",
+      "errorIsWhy": "The chapter explicitly demotes fundraising to the end of the sequence and treats early revenue, not early financing, as the real marker of a viable business.",
+      "derivedFrom": "ch14.concept"
+    },
+    {
+      "id": "ch14.fact.2",
+      "claim": "Many service and software businesses can begin without factory-scale capital.",
+      "becauseMechanism": "Service and web-software ventures carry no heavy manufacturing, inventory, or facilities burden, which means the case for large upfront infrastructure spending is weak for them.",
+      "commonError": "Every ambitious business needs a big pool of upfront capital before it can launch, regardless of what it sells.",
+      "errorIsWhy": "The essay distinguishes capital-light service and software work from manufacturing or regulated ventures, showing the heavy-infrastructure assumption does not generalize.",
+      "derivedFrom": "ch14.fact.1"
+    },
+    {
+      "id": "ch14.fact.3",
+      "claim": "Taking investor money reduces the founder's control and adds another party whose interests must be served.",
+      "becauseMechanism": "Investors acquire a stake and a voice, so that founders must now answer to an additional audience beyond customers and employees.",
+      "commonError": "Investors simply hand over cash and stay out of how the company is actually run.",
+      "errorIsWhy": "The chapter stresses that money comes attached to expectations and obligations, meaning ownership and decision rights are diluted, not left untouched.",
+      "derivedFrom": "ch14.fact.1"
+    },
+    {
+      "id": "ch14.fact.4",
+      "claim": "Spending other people's money can become addictive.",
+      "becauseMechanism": "Outside cash softens the natural discipline of scarcity, since spending feels painless when the money was not earned from customers, which makes the habit self-reinforcing.",
+      "commonError": "Founders treat investor capital just as carefully as money they earned themselves, so its source has no effect on spending habits.",
+      "errorIsWhy": "The essay's point is precisely that the source matters: easy money erodes restraint, whereas customer revenue keeps spending honest.",
+      "derivedFrom": "ch14.fact.3"
+    },
+    {
+      "id": "ch14.fact.5",
+      "claim": "Having investors can pull a founder's attention away from the customer.",
+      "becauseMechanism": "Once outside backers are involved, founders begin optimizing for the next financing event or acquisition, which means the customer moves down the priority ladder.",
+      "commonError": "Raising money makes founders serve customers even harder because they now have more resources to spend on them.",
+      "errorIsWhy": "The chapter argues the opposite directional effect: investor expectations reorient attention toward liquidity and growth metrics, displacing the customer rather than amplifying focus on them.",
+      "derivedFrom": "ch14.fact.3"
+    },
+    {
+      "id": "ch14.fact.6",
+      "claim": "The obligation to deliver investor returns can put exit thinking in competition with product quality.",
+      "becauseMechanism": "Because backers expect a liquidity event, founders may optimize for an acquisition or sale, so that decisions favoring a future buyer can crowd out decisions that serve the product's users.",
+      "commonError": "Planning for an exit and improving the product are always perfectly aligned goals that reinforce each other.",
+      "errorIsWhy": "The chapter shows the two can pull apart, with return obligations sometimes pushing choices that look good to a buyer but worse for the product and customer.",
+      "derivedFrom": "ch14.fact.4"
+    },
+    {
+      "id": "ch14.fact.7",
+      "claim": "The act of raising money itself consumes attention that could otherwise go into making and selling.",
+      "becauseMechanism": "Fundraising is a demanding, time-intensive process, which means the hours spent courting investors are hours not spent building the product or reaching customers.",
+      "commonError": "Fundraising is a quick, low-effort task that runs in the background without taking time away from the core work.",
+      "errorIsWhy": "The chapter treats raising money as a real cost of focus, not a free background activity, because it competes directly with making and selling.",
+      "derivedFrom": "ch14.fact.5"
+    },
+    {
+      "id": "ch14.fact.8",
+      "claim": "37signals built Basecamp using customer-funded growth instead of building the company around venture capital.",
+      "becauseMechanism": "37signals chose revenue and control over venture status, which means product decisions and profitability stayed close to the customer relationship rather than to investors.",
+      "commonError": "A profitable, well-known software company like Basecamp must necessarily have been built on a large venture-capital raise.",
+      "errorIsWhy": "37signals is the chapter's anchor precisely because it is a profitable software company that deliberately bootstrapped, proving venture capital is not a prerequisite for success.",
+      "derivedFrom": "ch14.ex.37signals-basecamp"
+    },
+    {
+      "id": "ch14.fact.9",
+      "claim": "A founder's first move should be to make the idea smaller, cheaper, and customer-funded before reaching for outside cash.",
+      "becauseMechanism": "Shrinking the plan lets customers finance the next step, so that outside capital is only pursued after those cheaper paths have genuinely failed.",
+      "commonError": "If an idea seems too big to fund from revenue, the right response is to immediately raise outside money to match its full scope.",
+      "errorIsWhy": "The chapter prescribes the reverse order: first reduce scope and charge earlier, and only treat raising capital as a fallback when smaller, self-funded approaches are exhausted.",
+      "derivedFrom": "ch14.concept"
+    },
+    {
+      "id": "ch14.fact.10",
+      "claim": "Some businesses genuinely require outside capital, so the chapter's argument is about sequence and skepticism rather than purity.",
+      "becauseMechanism": "Manufacturing, regulation, inventory, and expensive research impose real upfront costs, which means a blanket refusal of capital would be wrong and the rule must allow exceptions.",
+      "commonError": "The essay claims that accepting outside money is always foolish and that no legitimate business should ever raise capital.",
+      "errorIsWhy": "The chapter explicitly preserves the nuance that capital-intensive ventures may need funding; its target is the reflex to raise first, not the existence of investment itself.",
+      "derivedFrom": "ch14.hardEdge"
+    }
+  ],
+  "frameworks": [],
+  "paraphraseNotes": "The essay challenges the startup reflex that raising money is a first milestone. For many modern businesses, especially service or web-software companies, the heavy infrastructure case is weak. A team can begin smaller, charge earlier, and let customers finance the next step. Outside money changes the structure of attention. Once investors are involved, founders answer to another audience, accept expectations about growth and liquidity, and may begin optimizing for the next financing event or acquisition. The customer moves down the priority ladder. 37signals' bootstrapped Basecamp story is the key anchor because it shows a profitable software company choosing revenue and control over venture status. The research handoff should keep nuance. Some businesses genuinely require capital for manufacturing, regulation, inventory, or expensive research. The point is not purity. The point is sequence and skepticism: first ask how to make the idea smaller, cheaper, and customer-funded; reach for outside cash only after those paths fail. Research detail 14 (Outside money is Plan Z): Many service and software businesses do not need factory-scale capital to begin. Investor money reduces control and adds another party whose interests must be served. Spending other people's money can become addictive because it softens discipline. Named anchor 14, 37signals bootstrapping instead of venture funding, keeps later prose concrete: 37signals favored customer-funded growth for Basecamp rather than building the company around venture capital. That kept product decisions and profitability closer to the customer relationship. Funding choice shapes the company's loyalties and constraints."
+}

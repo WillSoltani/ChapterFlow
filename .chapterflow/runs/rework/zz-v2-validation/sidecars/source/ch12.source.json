@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 12,
+  "chapterTitle": "Draw a line in the sand",
+  "focus": "Strong businesses are shown as opinionated, not neutral. A clear stance creates fans, critics, and easier decisions.",
+  "coreClaim": "State and live a point of view because clarity attracts the right customers and simplifies tradeoffs.",
+  "centralConcept": {
+    "id": "ch12.concept",
+    "name": "clear point of view",
+    "plainDefinition": "A business needs visible beliefs that guide choices, attract allies, and repel poor fits. A line in the sand turns vague preference into a standard.",
+    "whyItMatters": "A reader can make decisions faster and earn stronger loyalty by standing for something specific instead of pleasing everyone."
+  },
+  "keyClaims": [
+    "A company without beliefs has to debate every choice from scratch. [12.1]",
+    "Strong opinions create passionate supporters who spread the word more credibly than advertising. [12.2]",
+    "A real stance will turn some people away, which is part of its value. [12.3]",
+    "Trying to avoid all criticism usually produces bland decisions. [12.4]",
+    "Beliefs matter only when they shape product, pricing, communication, and refusal. [12.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch12.ex.37signals-bloat-stance",
+      "label": "37signals' public stance against bloated software",
+      "summary": "37signals repeatedly positioned its products against complexity, enterprise bloat, and feature overload. That stance helped customers who shared the frustration recognize the company as an ally.",
+      "teachesWhat": "A point of view becomes useful when it guides both attraction and refusal.",
+      "hardSpecifics": ["37signals", "bloated software", "enterprise bloat", "feature overload"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is to manufacture controversy for attention. The hard edge is that the line must come from real operating beliefs customers can observe.",
+  "voiceCues": [
+    "uses combative boundary language",
+    "connects belief to fans and haters",
+    "favors decision clarity over universal appeal"
+  ],
+  "forbiddenLeakage": [
+    "launch iteration",
+    "competitor positioning",
+    "remote hiring"
+  ],
+  "paraphraseNotes": "The essay moves from starting to standing for something. Once work is underway, the company needs a line that tells people what it believes and what it refuses. Without that line, every feature request, marketing claim, customer segment, and partnership can reopen the company's identity. 37signals' stance against bloated software is the practical anchor. The company did not merely prefer simplicity in private; it made simplicity visible in product design, writing, pricing, and competitive positioning. That visibility attracted customers tired of heavyweight tools and also irritated people who wanted every feature. Both reactions are useful. Supporters become more passionate when they can name the shared belief, and detractors clarify the boundary. The research handoff should avoid turning this into attitude for its own sake. Empty provocation is cheap. The valuable version is a point of view that helps decide what to build, what to omit, how to speak, and which customers are not a fit. Research detail 12 (Draw a line in the sand): A company without beliefs has to debate every choice from scratch. Strong opinions create passionate supporters who spread the word more credibly than advertising. A real stance will turn some people away, which is part of its value. Named anchor 12, 37signals' public stance against bloated software, keeps later prose concrete: 37signals repeatedly positioned its products against complexity, enterprise bloat, and feature overload. That stance helped customers who shared the frustration recognize the company as an ally. A point of view becomes useful when it guides both attraction and refusal.",
+  "testableFacts": [
+    {
+      "id": "ch12.fact.1",
+      "claim": "A company without clearly stated beliefs has to debate every choice from scratch.",
+      "becauseMechanism": "Without a fixed line of beliefs there is no shared standard to defer to, so each new feature request, pricing question, or partnership reopens the company's identity and must be argued again.",
+      "commonError": "Staying neutral on issues keeps a company nimble and lets it pursue any opportunity without internal friction.",
+      "errorIsWhy": "Neutrality removes the standard that would settle decisions, which actually multiplies friction because the team relitigates the same identity questions every time instead of resolving them once.",
+      "derivedFrom": "ch12.concept"
+    },
+    {
+      "id": "ch12.fact.2",
+      "claim": "Strong opinions create passionate supporters who spread the word more credibly than advertising.",
+      "becauseMechanism": "Supporters who can name a shared belief recommend the company out of genuine conviction, which means their word carries more credibility than paid advertising that audiences discount as self-interested.",
+      "commonError": "The fastest way to grow a customer base is to buy more advertising and reach as many people as possible.",
+      "errorIsWhy": "Paid advertising is treated as biased by audiences, so it persuades less per impression than a conviction-driven recommendation from a peer who identifies with the company's stance.",
+      "derivedFrom": "ch12.fact.1"
+    },
+    {
+      "id": "ch12.fact.3",
+      "claim": "A real stance will turn some people away, and that repulsion is part of its value.",
+      "becauseMechanism": "A genuine line marks who the business is not for, so the people it pushes away clarify the boundary and free the company from chasing poor-fit customers.",
+      "commonError": "A successful business should aim to be acceptable to the widest possible audience so it never loses a potential customer.",
+      "errorIsWhy": "Chasing universal acceptability erases the boundary that signals fit, leaving the company with no clear allies and forcing compromises that weaken the product for everyone.",
+      "derivedFrom": "ch12.concept"
+    },
+    {
+      "id": "ch12.fact.4",
+      "claim": "Trying to avoid all criticism usually produces bland decisions.",
+      "becauseMechanism": "Eliminating every objection forces a company to soften each distinctive choice until nothing remains that anyone could attack, which means the surviving decisions are generic and unremarkable.",
+      "commonError": "Designing products so that no one ever complains is a reliable sign that the product is excellent.",
+      "errorIsWhy": "A complete absence of complaints typically signals that the offering has been smoothed into blandness rather than perfected, because distinctiveness always provokes some objection.",
+      "derivedFrom": "ch12.concept"
+    },
+    {
+      "id": "ch12.fact.5",
+      "claim": "Beliefs matter only when they visibly shape product, pricing, communication, and refusal.",
+      "becauseMechanism": "Customers can only act on beliefs they can observe, so a stance held privately changes nothing until it shows up in what the company builds, charges, says, and declines to do.",
+      "commonError": "It is enough to hold strong private values; how they show up in the product and pricing is a separate matter.",
+      "errorIsWhy": "Private values customers cannot see produce no attraction or repulsion, so they fail to guide decisions or build loyalty until they are made concrete in observable choices.",
+      "derivedFrom": "ch12.fact.7"
+    },
+    {
+      "id": "ch12.fact.6",
+      "claim": "37signals built its identity by publicly positioning its products against complexity, enterprise bloat, and feature overload.",
+      "becauseMechanism": "37signals named a specific enemy in its public stance, which means frustrated customers could instantly recognize a shared grievance and treat the company as an ally.",
+      "commonError": "37signals won customers mainly by matching the long feature lists of heavyweight enterprise competitors.",
+      "errorIsWhy": "37signals deliberately opposed feature overload rather than competing on feature count, so its appeal came from rejecting heavyweight tools, not from matching them.",
+      "derivedFrom": "ch12.ex.37signals-bloat-stance"
+    },
+    {
+      "id": "ch12.fact.7",
+      "claim": "37signals made simplicity visible across product design, writing, pricing, and competitive positioning rather than keeping it a private preference.",
+      "becauseMechanism": "Because the company expressed its simplicity belief in multiple observable surfaces, customers tired of heavyweight tools could see the stance in action and trust it was real.",
+      "commonError": "37signals expressed its simplicity preference mainly in private internal decisions rather than in customer-facing choices.",
+      "errorIsWhy": "The whole point of the anchor is that 37signals did not keep simplicity private; it surfaced the belief in design, writing, pricing, and positioning so customers could observe and rely on it.",
+      "derivedFrom": "ch12.ex.37signals-bloat-stance"
+    },
+    {
+      "id": "ch12.fact.8",
+      "claim": "37signals' stance both attracted customers tired of heavyweight tools and irritated people who wanted every feature.",
+      "becauseMechanism": "Since the company drew a clear line favoring simplicity, the same visible boundary pulled in allies who shared the frustration and pushed away those who valued maximal features.",
+      "commonError": "A well-positioned stance should win over the feature-maximizers as well as the simplicity-seekers if it is communicated clearly enough.",
+      "errorIsWhy": "A genuine line cannot satisfy both camps because it explicitly favors one set of values, so irritating the feature-maximizers is an intended consequence rather than a communication failure.",
+      "derivedFrom": "ch12.ex.37signals-bloat-stance"
+    },
+    {
+      "id": "ch12.fact.9",
+      "claim": "The hard edge is that a line must come from real operating beliefs customers can observe, not from manufactured controversy for attention.",
+      "becauseMechanism": "Because empty provocation is not backed by how the company actually operates, customers eventually detect the mismatch, which means manufactured controversy fails to build the durable trust a genuine stance creates.",
+      "commonError": "Picking public fights and stirring controversy is a smart growth tactic because any attention helps a brand.",
+      "errorIsWhy": "Controversy without real operating beliefs is cheap provocation that does not guide what to build or refuse, so it generates attention without the fit, loyalty, or decision clarity that a true line provides.",
+      "derivedFrom": "ch12.concept"
+    },
+    {
+      "id": "ch12.fact.10",
+      "claim": "A useful point of view helps decide what to build, what to omit, how to speak, and which customers are not a fit.",
+      "becauseMechanism": "A clear stance acts as a decision filter, so each of these four questions resolves against the same standard instead of being argued from scratch every time.",
+      "commonError": "A point of view is mainly a marketing message and has little to do with internal product and customer decisions.",
+      "errorIsWhy": "Treating the stance as marketing-only ignores that its primary value is operational: it governs what to build, omit, say, and decline, which is where its leverage actually comes from.",
+      "derivedFrom": "ch12.fact.5"
+    }
+  ],
+  "frameworks": []
+}
