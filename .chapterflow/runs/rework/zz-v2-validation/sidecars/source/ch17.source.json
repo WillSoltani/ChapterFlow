@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 17,
+  "chapterTitle": "Building to flip is building to flop",
+  "focus": "Exit strategy thinking is challenged as premature detachment. The essay favors commitment to the product, customers, and operating life of the business.",
+  "coreClaim": "Do not build a company around getting out; build one that deserves to keep existing.",
+  "centralConcept": {
+    "id": "ch17.concept",
+    "name": "commitment strategy",
+    "plainDefinition": "Designing a company primarily for acquisition misaligns priorities from the start. A durable business is built to serve customers and satisfy its makers, not to escape itself.",
+    "whyItMatters": "A reader can focus on making something worth owning instead of courting buyers before the work has real substance."
+  },
+  "keyClaims": [
+    "Thinking about the exit before the work begins puts priorities out of order. [17.1]",
+    "Acquisition fantasies can pull attention toward buyers rather than customers. [17.2]",
+    "A commitment strategy asks how the business will grow, serve, and remain satisfying. [17.3]",
+    "Work built only as a stepping stone is less likely to earn deep care. [17.4]",
+    "Durability depends on wanting to run the business, not merely sell it. [17.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch17.ex.commitment-vs-exit",
+      "label": "commitment strategy over exit strategy",
+      "summary": "The essay's central contrast replaces the usual exit strategy with a commitment strategy. The focus shifts from who might buy the company to how the company can become worth running.",
+      "teachesWhat": "The imagined ending should not control the first product decisions.",
+      "hardSpecifics": ["exit strategy", "commitment strategy"],
+      "realWorld": true
+    },
+    {
+      "id": "ch17.ex.37signals-independence",
+      "label": "37signals' independence as a concrete commitment strategy",
+      "summary": "37signals presents itself as building products it wants to keep operating rather than packaging assets for a quick sale. Its independence makes the commitment strategy concrete instead of abstract.",
+      "teachesWhat": "Choosing to keep running a business, rather than positioning it for acquirers, is a real operating stance, not just a slogan.",
+      "hardSpecifics": ["37signals"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is that selling a company is always wrong. The hard edge is that building for sale from day one distorts what gets valued.",
+  "testableFacts": [
+    { "id": "ch17.fact.1", "claim": "Designing a company primarily for acquisition misaligns its priorities from the start.", "becauseMechanism": "because optimizing for a buyer pulls decisions toward acquirer optics instead of customer value, so the wrong things get prioritized first.", "commonError": "planning for an exit early is just prudent strategy that keeps options open.", "errorIsWhy": "early exit focus shifts the maker's attention to buyers before the product has substance, distorting what the company chooses to value.", "derivedFrom": "ch17.concept" },
+    { "id": "ch17.fact.2", "claim": "A commitment strategy replaces the exit-strategy question of who might buy the company with how the company can become worth running.", "becauseMechanism": "because reframing the goal as running a worthy business directs effort at product, customers, and durability rather than at courting acquirers.", "commonError": "a commitment strategy means refusing ever to sell the business.", "errorIsWhy": "the point is the posture during building, not a vow against acquisition; the target is premature exit worship, not selling itself.", "derivedFrom": "ch17.ex.commitment-vs-exit" },
+    { "id": "ch17.fact.3", "claim": "Acquisition fantasies can pull a founder's attention toward buyers rather than customers.", "becauseMechanism": "because chasing what looks attractive to acquirers turns customers and product quality into means to another end.", "commonError": "keeping potential buyers happy and keeping customers happy are basically the same goal.", "errorIsWhy": "buyers reward growth optics and positioning, which diverges from what actually serves customers and the product.", "derivedFrom": "ch17.fact.2" },
+    { "id": "ch17.fact.4", "claim": "Thinking about the exit before the work begins puts priorities out of order.", "becauseMechanism": "because the imagined ending starts controlling the first product decisions before the work has real substance.", "commonError": "you should define your exit before you start so every decision serves a clear endgame.", "errorIsWhy": "letting the ending drive the opening inverts the order; a company deserves full attention while it is being born.", "derivedFrom": "ch17.concept" },
+    { "id": "ch17.fact.5", "claim": "An exit strategy can sound sophisticated yet reveal that the maker is already emotionally absent.", "becauseMechanism": "because treating the business mainly as a vehicle to be sold signals the maker has detached from running it.", "commonError": "wanting an exit just shows clear-eyed business discipline with no downside.", "errorIsWhy": "premature detachment means the maker stops caring about the operating life of the business, which is what durability depends on.", "derivedFrom": "ch17.fact.4" },
+    { "id": "ch17.fact.6", "claim": "37signals' independence makes the commitment strategy concrete because it presents itself as building products it wants to keep operating, not packaging assets for a quick sale.", "becauseMechanism": "because a real company choosing to keep running its products shows the commitment posture as an actual operating stance rather than a slogan.", "commonError": "37signals stayed independent only because no acquirer ever made an offer.", "errorIsWhy": "the chapter frames independence as a deliberate stance of building to keep, not an accident of lacking buyers.", "derivedFrom": "ch17.ex.37signals-independence" },
+    { "id": "ch17.fact.7", "claim": "Work built only as a stepping stone is less likely to earn deep care.", "becauseMechanism": "because if the business is primarily a vehicle to be sold, the maker invests less of themselves in making it genuinely good.", "commonError": "as long as the team is competent, the underlying motive for building does not affect product quality.", "errorIsWhy": "motive shapes attention; treating the work as a means to a sale tilts decisions toward signals rather than substance.", "derivedFrom": "ch17.concept" },
+    { "id": "ch17.fact.8", "claim": "Durability depends on wanting to run the business, not merely on wanting to sell it.", "becauseMechanism": "because the desire to keep operating sustains the full attention a company needs to keep deserving to exist.", "commonError": "a business is durable as long as its financials are strong, regardless of whether the owner wants to run it.", "errorIsWhy": "without the will to keep running it, attention and care erode, undermining the long-term substance that financials rest on.", "derivedFrom": "ch17.concept" },
+    { "id": "ch17.fact.9", "claim": "Building a company for sale from day one is the real problem, not the act of selling a company.", "becauseMechanism": "because acquisitions can be sensible, but building-to-sell from the start distorts what the company chooses to value.", "commonError": "the chapter's argument is that selling a company is always the wrong move.", "errorIsWhy": "that is the misreading; the hard edge targets building for sale on day one, not acquisitions, which can be reasonable.", "derivedFrom": "ch17.edge" }
+  ],
+  "frameworks": [],
+  "voiceCues": [
+    "uses a rhyme-like title",
+    "turns investor vocabulary against itself",
+    "centers satisfaction in running the business"
+  ],
+  "forbiddenLeakage": [
+    "launch iteration",
+    "competitor positioning",
+    "remote hiring"
+  ],
+  "paraphraseNotes": "The essay pushes against founders who start by imagining the buyer. An exit strategy can sound sophisticated, but it may reveal that the maker is already emotionally absent. If the business is primarily a vehicle to be sold, decisions can tilt toward what looks attractive to acquirers: growth optics, fashionable categories, strategic positioning, or short-term signals. Customers and product quality become means to another end. The alternative phrase, commitment strategy, changes the posture. How will the product improve? How will customers be served? How will the company make money and remain a place worth working in? 37signals' independence makes the point concrete because the company presents itself as building products it wants to keep operating, not packaging assets for a quick sale. Downstream prose should keep nuance: acquisitions happen and can be sensible. The target is premature exit worship. A company deserves full attention while it is being born. Research detail 17 (Building to flip is building to flop): Thinking about the exit before the work begins puts priorities out of order. Acquisition fantasies can pull attention toward buyers rather than customers. A commitment strategy asks how the business will grow, serve, and remain satisfying. Named anchor 17, commitment strategy over exit strategy, keeps later prose concrete: The essay's central contrast replaces the usual exit strategy with a commitment strategy. The focus shifts from who might buy the company to how the company can become worth running. The imagined ending should not control the first product decisions."
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 16,
+  "chapterTitle": "Start a business, not a startup",
+  "focus": "Startup mythology is contrasted with business fundamentals. Profit is treated as an early responsibility, not a distant phase.",
+  "coreClaim": "Build something that can earn money and survive, rather than using the startup label to suspend business reality.",
+  "centralConcept": {
+    "id": "ch16.concept",
+    "name": "profit reality",
+    "plainDefinition": "A business has to bring in more money than it spends. The startup label can excuse postponing that basic market discipline.",
+    "whyItMatters": "A reader can judge the venture by revenue, expenses, customers, and sustainability from day one instead of by future funding stories."
+  },
+  "keyClaims": [
+    "Every company ultimately faces revenue in, expenses out, and the need to stay alive. [16.1]",
+    "Spending investor money can hide whether customers value the product enough to pay. [16.2]",
+    "Plans to figure out profit later often mask an unproven business model. [16.3]",
+    "Profit discipline makes tradeoffs clearer at the beginning. [16.4]",
+    "A real business does not need startup mythology to be ambitious. [16.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch16.ex.profit-from-day-one",
+      "label": "actual businesses worrying about profit from day one",
+      "summary": "The practical contrast is between companies that treat revenue as optional future work and companies that ask immediately how customers will pay. 37signals falls on the actual-business side of that divide.",
+      "teachesWhat": "Early profit pressure keeps the company honest about value.",
+      "hardSpecifics": ["37signals", "Basecamp"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is to demand instant large profits. The edge is to make the path to earning visible early, even if the first amounts are modest.",
+  "testableFacts": [
+    { "id": "ch16.fact.1", "claim": "A business has to bring in more money than it spends to survive, and calling the venture a startup does not change that.", "becauseMechanism": "because revenue must eventually cover expenses or the company runs out of money and disappears, regardless of the label attached to it.", "commonError": "a startup operates under different economic rules that exempt it from covering its costs.", "errorIsWhy": "the startup label is a name, not a repeal of accounting; the law that expenses must be covered applies to every company.", "derivedFrom": "ch16.concept" },
+    { "id": "ch16.fact.2", "claim": "Spending investor money can hide whether customers actually value the product enough to pay for it.", "becauseMechanism": "because funding lets the company keep operating without customer payment, so the real test of value is postponed and obscured.", "commonError": "raising investment is itself proof that the product has real market value.", "errorIsWhy": "investors bet on a story; only paying customers confirm that the product is worth money, which spending capital can mask.", "derivedFrom": "ch16.ex.profit-from-day-one" },
+    { "id": "ch16.fact.3", "claim": "Plans to figure out profit later often mask an unproven business model.", "becauseMechanism": "because deferring the question of how money is made lets a team avoid confronting whether the model works at all.", "commonError": "postponing profit is a neutral sequencing choice that says nothing about the business model.", "errorIsWhy": "the deferral frequently conceals that no one has shown the venture can ever earn; 'later' substitutes for an answer.", "derivedFrom": "ch16.concept" },
+    { "id": "ch16.fact.4", "claim": "Treating profit as a core design constraint makes tradeoffs clearer at the very beginning.", "becauseMechanism": "because needing customers to pay forces immediate attention to value, support, pricing, and restraint when decisions are made.", "commonError": "worrying about profit early stifles ambition and should be deferred until the product is mature.", "errorIsWhy": "early profit pressure sharpens decisions rather than shrinking them; it centers customers and value from day one.", "derivedFrom": "ch16.concept" },
+    { "id": "ch16.fact.5", "claim": "37signals anchored its stance in customer-funded software rather than investor-funded growth.", "becauseMechanism": "because the company chose to be funded by customers paying for the product, which put value and sustainability at the center.", "commonError": "37signals relied on outside investment to build its products before charging customers.", "errorIsWhy": "its model was customer-funded; revenue from users, not investor capital, supported the business.", "derivedFrom": "ch16.ex.profit-from-day-one" },
+    { "id": "ch16.fact.6", "claim": "Basecamp had to be useful enough that people would pay for it.", "becauseMechanism": "because the company depended on customer payment, the product was forced to deliver enough value to justify the price.", "commonError": "Basecamp could grow first on free users and worry about charging only after reaching scale.", "errorIsWhy": "the customer-funded model required payment early, which pushed attention toward value, support, pricing, and restraint.", "derivedFrom": "ch16.ex.profit-from-day-one" },
+    { "id": "ch16.fact.7", "claim": "A real business can be ambitious without relying on startup mythology.", "becauseMechanism": "because ambition comes from building something valuable and durable, not from the narrative of spending other people's money to chase scale.", "commonError": "calling the venture a business rather than a startup makes it small-minded or unambitious.", "errorIsWhy": "the term business is clarifying, not limiting; it centers customers, value, and sustainability while still allowing big goals.", "derivedFrom": "ch16.concept" },
+    { "id": "ch16.fact.8", "claim": "The goal is to make the path to earning visible early, not to demand instant large profits.", "becauseMechanism": "because some products need development time, so the test is whether earning is on a clear path, even if first amounts are modest.", "commonError": "starting a business means every venture must be fully profitable immediately.", "errorIsWhy": "the edge is visibility of the earning path, not instant large profit; modest early revenue with a clear path still passes the test.", "derivedFrom": "ch16.edge" },
+    { "id": "ch16.fact.9", "claim": "The real difference is whether a team treats profit as a core design constraint or as an embarrassing detail to solve later.", "becauseMechanism": "because where profit sits in the design priorities determines whether the venture is built around real value or around securing attention and funding first.", "commonError": "the difference between a business and a startup is mostly the company's size or stage, not how it treats profit.", "errorIsWhy": "the distinction is about posture toward profit, not scale; a venture that defers profit as a detail behaves differently from one that designs around it.", "derivedFrom": "ch16.concept" }
+  ],
+  "frameworks": [],
+  "voiceCues": [
+    "uses fairy-tale startup language skeptically",
+    "returns to basic arithmetic",
+    "keeps survival as the test"
+  ],
+  "forbiddenLeakage": [
+    "launch iteration",
+    "competitor positioning",
+    "remote hiring"
+  ],
+  "paraphraseNotes": "The essay strips glamour from the word startup. In the mythic version, startups spend other people's money, chase users, postpone revenue, and promise that profit will appear at scale. The counter is almost blunt accounting: revenue comes in, expenses go out, and a company that cannot eventually cover the difference disappears. Calling the venture a startup does not repeal that law. 37signals' stance is anchored in customer-funded software. Basecamp had to be useful enough for people to pay, which forced attention toward value, support, pricing, and restraint. The research handoff should avoid a simplistic demand that every business be fully profitable immediately. Some products need development time. The important difference is whether the team treats profit as a core design constraint or as an embarrassing detail to solve after attention and funding are secured. The downstream writer should make the term business feel clarifying, not small-minded: it centers customers, value, and sustainability. Research detail 16 (Start a business, not a startup): Every company ultimately faces revenue in, expenses out, and the need to stay alive. Spending investor money can hide whether customers value the product enough to pay. Plans to figure out profit later often mask an unproven business model. Named anchor 16, actual businesses worrying about profit from day one, keeps later prose concrete: The practical contrast is between companies that treat revenue as optional future work and companies that ask immediately how customers will pay. 37signals falls on the actual-business side of that divide. Early profit pressure keeps the company honest about value."
+}

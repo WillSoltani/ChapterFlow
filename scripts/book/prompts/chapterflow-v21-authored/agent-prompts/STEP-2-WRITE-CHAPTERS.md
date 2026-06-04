@@ -87,6 +87,7 @@ The Bind Block is not paperwork. It is the answer to "what am I reasoning FROM" 
 1. Run (or have the orchestrator run) `npx tsx src/cli.ts name-plan <bookId> --from <N> --to <M>`. It writes `state/name-plans/<bookId>.name-plan.json`.
 2. Read `allocation["<thisChapterNumber>"]` from that file. **Use ONLY those names as your scenario protagonists** — they are disjoint from every other chapter's allocation and from every name already used in the book and the cross-book ledger. Do not invent names outside your slice; do not borrow a name you saw in another chapter.
 3. Read `bannedConnectives` from the same file (sourced from `config/banned-connectives.json`). Never use any listed phrase, and obey the stated principle: **never let a 5-word run repeat across chapters — vary the grammar of how a scene opens, how a decision is framed, how a consequence lands.**
+4. **One name = one person, everywhere in the chapter.** The breakdown sections (`fastRead`/`deepRead`/`fullRead`) and `memorableLines` also name characters — draw those from the SAME allocated slice, and never reuse one name for two different people. If `deepRead` illustrates with "Trygve" and an example also stars "Trygve", they must be the *same* person doing consistent things; otherwise give the second one a different name from your slice. A name that means two people inside one chapter reads as a continuity error.
 
 Then these four rules are **authoring law**. They are not gate-dodges; they are how each field does its job.
 

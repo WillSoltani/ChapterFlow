@@ -72,7 +72,28 @@ function isBankable(name: string): boolean {
   return got.length === 1 && got[0] === name;
 }
 
-/** Load + flatten + dedupe (first-occurrence order) + validate the name bank. */
+/** Deterministic FNV-1a hash — used to scatter the bank so adjacent (= same
+ *  chapter) names don't share an origin or an initial. Stable across runs (no
+ *  Math.random) so allocations stay reproducible. */
+function nameHash(s: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
+/** Load + dedupe + validate + DE-CLUSTER the name bank.
+ *
+ *  The bank is grouped by tradition and roughly alphabetical within each group.
+ *  Dealing it in that order clustered same-culture names into consecutive
+ *  chapters (ch16-21 all Nordic) AND produced alphabetical name runs within a
+ *  chapter (ch16: Asbjorn, Astrid, Bodil, Brage, Dagny… — a C9-ish scaffold a
+ *  reader can spot) — both flagged by the ch16-23 QC. Sorting by a stable hash
+ *  scatters origin and initial, so each chapter's disjoint slice reads like a
+ *  varied real-world cast. Deterministic → allocations remain reproducible and
+ *  re-plan stays idempotent. */
 export function loadNameBank(): string[] {
   let raw: Record<string, unknown>;
   try {
@@ -92,6 +113,8 @@ export function loadNameBank(): string[] {
       if (isBankable(name)) out.push(name);
     }
   }
+  // Scatter: hash primary, name secondary (stable tie-break on hash collision).
+  out.sort((a, b) => nameHash(a) - nameHash(b) || (a < b ? -1 : a > b ? 1 : 0));
   return out;
 }
 

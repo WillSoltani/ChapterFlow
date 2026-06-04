@@ -1,80 +1,80 @@
 {
   "bookId": "rework",
-  "fromChapter": 16,
-  "toChapter": 23,
+  "fromChapter": 24,
+  "toChapter": 31,
   "perChapter": 7,
   "allocation": {
-    "16": [
-      "Anders",
-      "Asbjorn",
-      "Astrid",
-      "Bodil",
-      "Brage",
-      "Dagny",
-      "Eivind"
+    "24": [
+      "Ornella",
+      "Refilwe",
+      "Theunis",
+      "Nkosana",
+      "Nadezhda",
+      "Ila",
+      "Aysel"
     ],
-    "17": [
-      "Frode",
-      "Gunnhild",
-      "Haldis",
-      "Hedda",
-      "Ingmar",
-      "Jorunn",
-      "Kjell"
+    "25": [
+      "Hatim",
+      "Benedetta",
+      "Dumisani",
+      "Carmel",
+      "Padraig",
+      "Ertan",
+      "Ilkay"
     ],
-    "18": [
-      "Liv",
-      "Nanna",
-      "Odd",
-      "Pernille",
-      "Ragnhild",
-      "Sigrun",
-      "Stellan"
+    "26": [
+      "Cesare",
+      "Kabir",
+      "Vlasta",
+      "Nikodimos",
+      "Noga",
+      "Lambros",
+      "Useni"
     ],
-    "19": [
-      "Sverre",
-      "Thora",
-      "Torstein",
-      "Tuva",
-      "Vegard",
-      "Yngve",
-      "Birger"
+    "27": [
+      "Nawal",
+      "Joris",
+      "Buthaina",
+      "Hayat",
+      "Bilal",
+      "Adelina",
+      "Narin"
     ],
-    "20": [
-      "Eldrid",
-      "Folke",
-      "Gudrun",
-      "Helle",
-      "Ivar",
-      "Jarle",
-      "Kari"
+    "28": [
+      "Ottavio",
+      "Patrizio",
+      "Caterina",
+      "Tadhg",
+      "Ignacio",
+      "Serena",
+      "Nasrin"
     ],
-    "21": [
-      "Marit",
-      "Njal",
-      "Oddny",
-      "Ragnar",
-      "Signy",
-      "Trygve",
-      "Unni"
+    "29": [
+      "Ozan",
+      "Vukasin",
+      "Tendai",
+      "Graziella",
+      "Orlaith",
+      "Donato",
+      "Jelani"
     ],
-    "22": [
-      "Vidar",
-      "Aslaug",
-      "Dagfinn",
-      "Bogdan",
-      "Dragana",
-      "Ilona",
-      "Janka"
+    "30": [
+      "Odhran",
+      "Sorcha",
+      "Jawad",
+      "Gerda",
+      "Mehrdad",
+      "Danica",
+      "Mingyu"
     ],
-    "23": [
-      "Katarzyna",
-      "Milena",
-      "Nikola",
-      "Ostap",
-      "Radmila",
-      "Slavko",
-      "Vesna"
+    "31": [
+      "Lethabo",
+      "Itai",
+      "Haruki",
+      "Lautaro",
+      "Sibel",
+      "Wenli",
+      "Cornelis"
     ]
   },
   "bannedConnectives": [
@@ -107,8 +107,8 @@
   "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
   "diagnostics": {
     "bankSize": 648,
-    "excludedCount": 1276,
-    "availableCount": 595,
+    "excludedCount": 1343,
+    "availableCount": 545,
     "shortChapters": [],
     "alreadyAuthored": []
   }
