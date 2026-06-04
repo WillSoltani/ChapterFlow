@@ -129,6 +129,10 @@ Commands:
   categorize <bookId>                Preview the no-API auto-categorizer's pick (categories + tags from
                                      the book's own content). promote-book applies it automatically when
                                      --categories/--tags aren't given; pass those to override.
+  register-web <bookId>              Make a promoted book show up in the reader: append-only registration
+                                     into app/book/data/bookPackages.ts (no existing line touched) + a
+                                     catalog-metadata refresh. Idempotent. Prints the production publish
+                                     command (DynamoDB/S3, needs AWS env) at the end.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
@@ -1003,6 +1007,79 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
   return 0;
 }
 
+/** `register-web <bookId>` — make a promoted book show up in the reader (local/dev).
+ *  Append-only registration into app/book/data/bookPackages.ts (one import + a
+ *  self-contained block that pushes the package and registers its tone getter —
+ *  no existing line is touched; presentation auto-infers), then regenerates the
+ *  catalog metadata (which imports BOOK_PACKAGES, so it also verifies the edit
+ *  compiles). Idempotent. Production publish (DynamoDB/S3) is a separate step that
+ *  needs AWS env — printed at the end. */
+async function runRegisterWeb(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: register-web <bookId>");
+    return 2;
+  }
+  const REPO = resolve(__dirname, "../../../../..");
+  const pkgPath = resolve(REPO, "book-packages", `${bookId}.v21.json`);
+  if (!existsSyncFs(pkgPath)) {
+    console.error(`No package at ${pkgPath}. Run \`promote-book ${bookId} ...\` first.`);
+    return 2;
+  }
+  const bpPath = resolve(REPO, "app/book/data/bookPackages.ts");
+  if (!existsSyncFs(bpPath)) {
+    console.error(`Web registry not found at ${bpPath}. (Are you on the web-app branch / is app/ present?)`);
+    return 2;
+  }
+  let src = readFileSync(bpPath, "utf8");
+  if (src.includes(`from "@/book-packages/${bookId}.v21.json"`)) {
+    console.log(`${bookId} is already registered in bookPackages.ts — leaving it; just refreshing the catalog.`);
+  } else {
+    const ident = `auto_${bookId.replace(/[^a-zA-Z0-9]/g, "_")}_Json`;
+    const lines = src.split("\n");
+    let lastImport = -1;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].includes('from "@/book-packages/') && lines[i].includes(".v21.json")) lastImport = i;
+    }
+    if (lastImport === -1) {
+      console.error("Could not find the book-packages import block in bookPackages.ts to anchor the new import.");
+      return 2;
+    }
+    lines.splice(lastImport + 1, 0, `import ${ident} from "@/book-packages/${bookId}.v21.json";`);
+    src = lines.join("\n");
+    const block =
+      `\n// --- auto-registered by \`register-web\` for "${bookId}" (do not edit by hand) ---\n` +
+      `{\n` +
+      `  const __autoPkg = normalizeAnyPackage(${ident}, "direct");\n` +
+      `  BOOK_PACKAGES.push(__autoPkg);\n` +
+      `  BOOK_PACKAGE_TONE_GETTERS["${bookId}"] = (tone) => normalizeAnyPackage(${ident}, tone);\n` +
+      `}\n`;
+    src = src.replace(/\s*$/, "\n") + block;
+    writeFileSync(bpPath, src, "utf8");
+    console.log(`Registered "${bookId}" in app/book/data/bookPackages.ts (import + BOOK_PACKAGES + tone getter; presentation auto-infers).`);
+  }
+  // Regenerate the catalog metadata — this imports BOOK_PACKAGES, so success also
+  // confirms the registration compiles and the book is picked up.
+  const genScript = resolve(REPO, "scripts/book/generate-catalog-metadata.ts");
+  if (existsSyncFs(genScript)) {
+    try {
+      execSync(`npx tsx ${JSON.stringify(genScript)}`, { cwd: REPO, stdio: "inherit" });
+      console.log(`✓ Catalog regenerated — "${bookId}" will appear in the library when you run the app locally.`);
+    } catch (err) {
+      console.error(
+        `Catalog regeneration FAILED (${(err as Error).message}). The registration may be malformed — ` +
+          `review the auto-registered block at the bottom of app/book/data/bookPackages.ts, or revert it with git.`,
+      );
+      return 1;
+    }
+  } else {
+    console.warn(`Catalog generator not found at ${genScript}; run it yourself to refresh the library list.`);
+  }
+  console.log(`\nProduction (live reader via DynamoDB/S3 — needs AWS env vars BOOK_TABLE_NAME / BOOK_*_BUCKET / AWS_REGION):`);
+  console.log(`  npx tsx scripts/book/publish-single-package.ts --file book-packages/${bookId}.v21.json --created-by you`);
+  return 0;
+}
+
 /** `categorize <bookId> [--title "..."]` — preview the no-API auto-categorizer's
  *  pick (categories + tags derived from the book's own content). promote-book runs
  *  this automatically when --categories/--tags aren't passed. */
@@ -1629,6 +1706,8 @@ async function main() {
       return runFanout(args, flags);
     case "categorize":
       return runCategorize(args);
+    case "register-web":
+      return runRegisterWeb(args);
     case "author-check":
       return runAuthorCheck(args);
     case "fix-chapter-ids":

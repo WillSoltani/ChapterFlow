@@ -106,16 +106,18 @@ does NOT ship. **Categories + tags are auto-derived (no-API) from the book's
 content** — preview them with `npx tsx src/cli.ts categorize <bookId>`, or override
 with `--categories "A,B" --tags "x,y"`.
 
-## 7. Make it render in the reader  (web app)
+## 7. Make it render in the reader  (one command)
 
-The web reader registers packages statically. In `app/book/data/bookPackages.ts`:
-1. `import <bookId>PackageJson from "@/book-packages/<bookId>.v21.json";`
-2. Register + the tone getter with **`normalizeAnyPackage(...)`** (NOT
-   `normalizeNstdPackage` — that path renders a blank Summary for v21 books; see
-   the C1 fix). Copy a recent v21 sibling's two lines.
-
-Then the catalog/ingest the app uses (`/api/book/*`) picks it up. Verify the
-reader Summary renders non-empty.
+```
+npx tsx src/cli.ts register-web <bookId>
+```
+Registers the book in `app/book/data/bookPackages.ts` (append-only — touches no
+existing line) and refreshes the catalog, so it shows up when you run the app
+locally. Idempotent. For the **production** reader (DynamoDB/S3) it prints the
+publish command, which needs AWS env vars:
+```
+npx tsx scripts/book/publish-single-package.ts --file book-packages/<bookId>.v21.json --created-by you
+```
 
 ---
 
@@ -145,7 +147,7 @@ next-task <bookId>            # → write each chapter (loop)
 book-gate <bookId>            # → 0 blockers cross-chapter
 # (Claude QC session) qc-attest each chapter ; qc-status <bookId> → all PASS
 promote-book <bookId> --title … --author …          # categories/tags auto-derived
-# register in app/book/data/bookPackages.ts via normalizeAnyPackage
+register-web <bookId>                                # show it in the reader
 ```
 
 Not yet automated: `name-plan` and `qc-attest` are manual inserts (the `next-task`
