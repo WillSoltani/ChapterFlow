@@ -105,12 +105,13 @@ export function RevenueClient() {
               label="MRR (est.)"
               value={data ? Math.round(data.mrr.value) : 0}
               format="currency"
-              hint="based on PRO total"
+              hint={data ? `based on PRO total · ${data.mrr.currency}` : "based on PRO total"}
             />
             <KPITile
               label="ARR (est.)"
               value={data ? Math.round(data.arr.value) : 0}
               format="currency"
+              hint={data?.arr.currency}
             />
             <KPITile label="PRO total" value={data?.proTotal ?? 0} hint="all-time" />
             <KPITile label="PRO active 7d" value={data?.proActive7d ?? 0} />

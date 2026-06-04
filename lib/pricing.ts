@@ -58,6 +58,16 @@ export function formatAmountWithCurrency(amount: number): string {
   return `${formatAmount(amount)} ${PRICING.currency}`;
 }
 
+/**
+ * The ISO 4217 currency ChapterFlow charges in. Single-currency today (same as
+ * the display currency). Admin revenue aggregation assumes ONE billing currency
+ * and sums across subscriptions; if you start selling in another currency, group
+ * MRR/ARR per currency — the admin billing route already warns when it sees more
+ * than one distinct currency. Stripe is the source of truth per subscription
+ * (entitlement.billingCurrency); this is the expected/default value.
+ */
+export const BILLING_CURRENCY = PRICING.currency;
+
 /** Canonical CTA shown on every upgrade button, e.g. "Start 14-day free trial". */
 export const TRIAL_CTA_LABEL = `Start ${PRICING.trialDays}-day free trial`;
 

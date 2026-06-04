@@ -9,6 +9,7 @@ import {
   scanAllEntitlements,
   type EntitlementSnapshot,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { BILLING_CURRENCY } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
@@ -43,13 +44,30 @@ export async function GET(req: Request) {
     );
     const stripePro = activePro.filter((e) => e.proSource === "stripe");
 
-    // Real MRR = sum of subscriptionAmountCents over active stripe PROs,
-    // normalized to USD (assume same currency for now — a mix would need
-    // per-currency grouping or conversion)
+    // Real MRR = sum of subscriptionAmountCents over active stripe PROs. We bill
+    // in a single currency (BILLING_CURRENCY), so this sum is meaningful as-is.
+    // If multiple billing currencies ever appear (see the mixed-currency warning
+    // below) this sum is no longer valid and needs per-currency grouping.
     const mrrCents = stripePro.reduce(
       (sum, e) => sum + (e.subscriptionAmountCents ?? 0),
       0,
     );
+
+    // Determine the billing currency from the live data, defaulting to the
+    // configured single currency. Surface a warning (rather than silently
+    // mis-summing) the moment more than one currency is in play.
+    const distinctCurrencies = [
+      ...new Set(stripePro.map((e) => e.billingCurrency ?? BILLING_CURRENCY)),
+    ];
+    const currency =
+      distinctCurrencies.length === 1 ? distinctCurrencies[0] : BILLING_CURRENCY;
+    if (distinctCurrencies.length > 1) {
+      warnings.push(
+        `Mixed billing currencies in active subscriptions (${distinctCurrencies.join(
+          ", ",
+        )}). realMrr/realArr sum across currencies and assume one — add per-currency grouping before reporting these.`,
+      );
+    }
 
     // Real MRR by country
     const byCountry: Record<string, number> = {};
@@ -64,7 +82,7 @@ export async function GET(req: Request) {
     // Currency mix by count
     const currencyCounts: Record<string, number> = {};
     for (const e of stripePro) {
-      const cur = e.billingCurrency ?? "USD";
+      const cur = e.billingCurrency ?? BILLING_CURRENCY;
       currencyCounts[cur] = (currencyCounts[cur] ?? 0) + 1;
     }
     const currencyMix = Object.entries(currencyCounts)
@@ -137,6 +155,7 @@ export async function GET(req: Request) {
 
     return bookOk({
       generatedAt: new Date().toISOString(),
+      currency,
       realMrr: mrrCents / 100,
       realArr: (mrrCents * 12) / 100,
       stripeProCount: stripePro.length,

@@ -24,6 +24,7 @@ import {
 } from "@/app/app/api/book/_lib/stripe-service";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { BILLING_CURRENCY } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
@@ -206,6 +207,15 @@ export async function POST(req: Request) {
         const firstItem = subscription.items?.data?.[0]?.price;
         const subCurrency =
           subscription.currency?.toUpperCase() ?? firstItem?.currency?.toUpperCase();
+        if (subCurrency && subCurrency !== BILLING_CURRENCY) {
+          // We sell in a single currency (BILLING_CURRENCY). A different currency
+          // means a misconfigured Stripe Price or an unplanned market — admin MRR
+          // assumes one currency, so flag it. Do NOT reject: dropping the event
+          // would desync the entitlement from Stripe.
+          console.warn(
+            `[stripe-webhook] subscription ${subscription.id} billed in ${subCurrency}, expected ${BILLING_CURRENCY}`,
+          );
+        }
         const subAmountCents = firstItem?.unit_amount;
 
         await mapStripeCustomerToUser(tableName, subscription.customer, userId);
