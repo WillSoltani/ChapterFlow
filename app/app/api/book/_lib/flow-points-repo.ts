@@ -6,7 +6,10 @@ import {
   TransactWriteCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import {
+  BookApiError,
+  isTransactionConditionFailedAt,
+} from "@/app/app/api/book/_lib/errors";
 import {
   bookUserPk,
   engagementSk,
@@ -653,6 +656,13 @@ export async function redeemFlowPointsReward(
             },
             UpdateExpression:
               "SET #plan = :proPlan, proStatus = :activeStatus, proSource = :flowSource, currentPeriodEnd = :periodEnd, licenseKey = :nullValue, licenseExpiresAt = :nullValue, updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+            // Never convert an active paid Stripe subscription into a flow_points
+            // pass — that orphans the Stripe sub (it keeps billing while proSource
+            // flips). The route also pre-checks (pro passes are freeOnly), but the
+            // read is not atomic with this write. proSource is only "stripe" while
+            // a sub is active/retrying.
+            ConditionExpression:
+              "attribute_not_exists(proSource) OR proSource <> :stripeSource",
             ExpressionAttributeNames: {
               "#plan": "plan",
             },
@@ -660,6 +670,7 @@ export async function redeemFlowPointsReward(
               ":proPlan": "PRO",
               ":activeStatus": "active",
               ":flowSource": "flow_points",
+              ":stripeSource": "stripe",
               ":periodEnd": params.passExpiresAt ?? now,
               ":nullValue": null,
               ":updatedAt": now,
@@ -669,7 +680,8 @@ export async function redeemFlowPointsReward(
           },
         };
 
-  await ddbDoc.send(
+  try {
+    await ddbDoc.send(
     new TransactWriteCommand({
       TransactItems: [
         {
@@ -752,7 +764,20 @@ export async function redeemFlowPointsReward(
         entitlementUpdate,
       ],
     })
-  );
+    );
+  } catch (error: unknown) {
+    // The entitlement upgrade is the final TransactItem (index 4). When only it
+    // fails its guard, the caller already has an active paid Stripe subscription
+    // (the slot-add branch carries no such guard, so it can't trip this).
+    if (isTransactionConditionFailedAt(error, 4)) {
+      throw new BookApiError(
+        409,
+        "active_subscription",
+        "You already have an active paid subscription. Pro passes are for free-plan accounts only — manage your subscription from billing settings."
+      );
+    }
+    throw error;
+  }
 
   return {
     state: await getUserFlowPointsState(tableName, params.userId),

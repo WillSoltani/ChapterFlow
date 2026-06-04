@@ -2,7 +2,7 @@ import "server-only";
 
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { BookApiError, transactionCancellationReasons } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import {
   bookUserPk,
@@ -83,11 +83,18 @@ export async function POST(
                 },
                 UpdateExpression:
                   "SET #plan = :proPlan, proStatus = :active, proSource = :giftSource, currentPeriodEnd = :expires, updatedAt = :now, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+                // Never overwrite an active paid Stripe subscription with a gift
+                // grant — that would flip proSource off "stripe" while Stripe keeps
+                // billing, leaving the account unreconcilable. proSource is only
+                // ever "stripe" while a sub is active/retrying (cleared to null on
+                // cancellation), so this allows free/license/flow_points/gift users.
+                ConditionExpression: "attribute_not_exists(proSource) OR proSource <> :stripeSource",
                 ExpressionAttributeNames: { "#plan": "plan" },
                 ExpressionAttributeValues: {
                   ":proPlan": "PRO",
                   ":active": "active",
                   ":giftSource": "gift_code",
+                  ":stripeSource": "stripe",
                   ":expires": proExpires,
                   ":now": now,
                   ":defaultSlots": 2,
@@ -99,11 +106,26 @@ export async function POST(
         })
       );
     } catch (error: unknown) {
-      if (
-        error &&
-        typeof error === "object" &&
-        (error as Record<string, unknown>).name === "TransactionCanceledException"
-      ) {
+      const reasons = transactionCancellationReasons(error);
+      if (reasons) {
+        // Index 0 = the gift code itself. The code being gone takes priority over
+        // the claimant's plan state, so report it first even if both items failed.
+        if (reasons[0]?.Code === "ConditionalCheckFailed") {
+          throw new BookApiError(
+            400,
+            "already_redeemed",
+            "This gift code has already been redeemed."
+          );
+        }
+        // Index 1 = entitlement guard: claimant has an active paid Stripe sub.
+        if (reasons[1]?.Code === "ConditionalCheckFailed") {
+          throw new BookApiError(
+            409,
+            "active_subscription",
+            "You already have an active paid subscription. Gift codes are for free-pass access only — manage your subscription from billing settings."
+          );
+        }
+        // Cancellation with no item-specific reason — preserve historical default.
         throw new BookApiError(
           400,
           "already_redeemed",

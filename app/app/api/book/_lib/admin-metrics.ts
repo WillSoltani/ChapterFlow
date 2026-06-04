@@ -14,6 +14,21 @@ export type EntitlementSnapshot = {
   cancelAtPeriodEnd?: boolean;
   licenseKey?: string;
   licenseExpiresAt?: string;
+  // Billing intelligence — written by the Stripe webhook (absent for
+  // license / flow_points / gift sources). These MUST stay in lockstep with
+  // the ProjectionExpression AND the item mapping in scanAllEntitlements
+  // below: a field listed here but not projected reads back `undefined` at
+  // runtime, which is exactly how the admin billing dashboard silently
+  // reported $0 MRR while the data sat in DynamoDB.
+  billingCountry?: string;
+  billingCurrency?: string;
+  subscriptionAmountCents?: number;
+  cardBrand?: string;
+  cardCountry?: string;
+  lastInvoiceAmountCents?: number;
+  lastInvoiceCurrency?: string;
+  lastInvoicePaidAt?: string;
+  failedPaymentLastReason?: string;
   updatedAt?: string;
 };
 
@@ -367,7 +382,7 @@ export async function scanAllEntitlements(
         FilterExpression: "entity = :e",
         ExpressionAttributeValues: { ":e": "BOOK_USER_ENTITLEMENT" },
         ProjectionExpression:
-          "userId, #p, proStatus, proSource, stripeCustomerId, stripeSubscriptionId, currentPeriodEnd, cancelAtPeriodEnd, licenseKey, licenseExpiresAt, updatedAt",
+          "userId, #p, proStatus, proSource, stripeCustomerId, stripeSubscriptionId, currentPeriodEnd, cancelAtPeriodEnd, licenseKey, licenseExpiresAt, updatedAt, billingCountry, billingCurrency, subscriptionAmountCents, cardBrand, cardCountry, lastInvoiceAmountCents, lastInvoiceCurrency, lastInvoicePaidAt, failedPaymentLastReason",
         ExpressionAttributeNames: { "#p": "plan" },
         ExclusiveStartKey: lastKey,
       }),
@@ -394,6 +409,28 @@ export async function scanAllEntitlements(
         licenseKey: typeof item.licenseKey === "string" ? item.licenseKey : undefined,
         licenseExpiresAt:
           typeof item.licenseExpiresAt === "string" ? item.licenseExpiresAt : undefined,
+        billingCountry:
+          typeof item.billingCountry === "string" ? item.billingCountry : undefined,
+        billingCurrency:
+          typeof item.billingCurrency === "string" ? item.billingCurrency : undefined,
+        subscriptionAmountCents:
+          typeof item.subscriptionAmountCents === "number"
+            ? item.subscriptionAmountCents
+            : undefined,
+        cardBrand: typeof item.cardBrand === "string" ? item.cardBrand : undefined,
+        cardCountry: typeof item.cardCountry === "string" ? item.cardCountry : undefined,
+        lastInvoiceAmountCents:
+          typeof item.lastInvoiceAmountCents === "number"
+            ? item.lastInvoiceAmountCents
+            : undefined,
+        lastInvoiceCurrency:
+          typeof item.lastInvoiceCurrency === "string" ? item.lastInvoiceCurrency : undefined,
+        lastInvoicePaidAt:
+          typeof item.lastInvoicePaidAt === "string" ? item.lastInvoicePaidAt : undefined,
+        failedPaymentLastReason:
+          typeof item.failedPaymentLastReason === "string"
+            ? item.failedPaymentLastReason
+            : undefined,
         updatedAt: typeof item.updatedAt === "string" ? item.updatedAt : undefined,
       });
     }
