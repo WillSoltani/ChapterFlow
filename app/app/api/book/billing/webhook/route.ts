@@ -27,6 +27,7 @@ import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 import { mapSubscriptionStatus } from "@/app/app/api/book/_lib/subscription-status";
 import { buildRefundRecords, type RefundCharge } from "@/app/app/api/book/_lib/refund-events";
+import { extractBillingDetails } from "@/app/app/api/book/_lib/billing-details";
 import { BILLING_CURRENCY } from "@/lib/pricing";
 
 export const runtime = "nodejs";
@@ -288,6 +289,7 @@ export async function POST(req: Request) {
       const invoice = event.data.object as {
         customer: string | null;
         subscription?: string | null;
+        charge?: string | null;
         amount_paid?: number;
         currency?: string;
         status_transitions?: { paid_at?: number };
@@ -301,6 +303,18 @@ export async function POST(req: Request) {
             `invoice.paid: no user for customer ${invoice.customer}`
           );
         }
+        // Capture card brand/country + billing country for the admin billing
+        // panels. Best-effort: a retrieve failure must NOT fail an already-
+        // succeeded payment (the entitlement update below is the critical part).
+        let billingDetails = {} as ReturnType<typeof extractBillingDetails>;
+        if (invoice.charge) {
+          try {
+            const charge = await stripe.charges.retrieve(invoice.charge);
+            billingDetails = extractBillingDetails(charge);
+          } catch {
+            billingDetails = {};
+          }
+        }
         await updateUserEntitlementFromStripe(tableName, {
           userId,
           plan: "PRO",
@@ -311,6 +325,9 @@ export async function POST(req: Request) {
           lastInvoiceAmountCents: invoice.amount_paid,
           lastInvoiceCurrency: invoice.currency?.toUpperCase(),
           lastInvoicePaidAt: isoFromUnix(invoice.status_transitions?.paid_at),
+          billingCountry: billingDetails.billingCountry,
+          cardBrand: billingDetails.cardBrand,
+          cardCountry: billingDetails.cardCountry,
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
