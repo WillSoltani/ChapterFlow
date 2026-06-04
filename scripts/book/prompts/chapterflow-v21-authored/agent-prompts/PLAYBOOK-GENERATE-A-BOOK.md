@@ -97,14 +97,14 @@ batch in one run.
 ## 6. Promote → ship the package  (Step 3)
 
 ```
-npx tsx src/cli.ts promote-book <bookId> --title "Full Title" --author "Author Name" \
-  --no-categorizer --categories "Productivity,Focus" --tags "deep-work,attention"
+npx tsx src/cli.ts promote-book <bookId> --title "Full Title" --author "Author Name"
 ```
 Promote re-runs the **ship gate + book gate + QC-attestation gate** — ALL must be
 blocker-clean. It strips the internal `sourceAnchorId` and writes
 `book-packages/<bookId>.v21.json`. On any failure it quarantines the report and
-does NOT ship. (`--no-categorizer` + manual `--categories`/`--tags` is the
-inline-operator path; categories must be non-empty.)
+does NOT ship. **Categories + tags are auto-derived (no-API) from the book's
+content** — preview them with `npx tsx src/cli.ts categorize <bookId>`, or override
+with `--categories "A,B" --tags "x,y"`.
 
 ## 7. Make it render in the reader  (web app)
 
@@ -144,7 +144,7 @@ next-task <bookId>            # → write each chapter (loop)
   author-check / gate-chapter # → self-gate each to 0 blockers
 book-gate <bookId>            # → 0 blockers cross-chapter
 # (Claude QC session) qc-attest each chapter ; qc-status <bookId> → all PASS
-promote-book <bookId> --title … --author … --no-categorizer --categories … --tags …
+promote-book <bookId> --title … --author …          # categories/tags auto-derived
 # register in app/book/data/bookPackages.ts via normalizeAnyPackage
 ```
 

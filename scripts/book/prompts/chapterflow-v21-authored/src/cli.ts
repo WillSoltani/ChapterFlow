@@ -87,10 +87,11 @@ Commands:
                                      using an existing chapter index. Auto-promotes on success.
                                      For inline-operator mode (no subprocess calls), pre-populate
                                      state/chapters/ and use --no-categorizer with manual metadata.
-  promote-book <bookId> --title X --author Y [--no-categorizer] [--categories A,B] [--tags x,y]
-                                     Final gate. Re-validates every chapter + book-level checks,
-                                     then writes book-packages/<id>.v21.json on success.
-                                     Use --no-categorizer with manual --categories/--tags for Codex-only runs.
+  promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
+                                     Final gate. Re-validates every chapter + book-level checks + the
+                                     QC-attestation gate, then writes book-packages/<id>.v21.json on
+                                     success. Categories/tags are auto-derived (no-API) from the book's
+                                     content when not given; pass --categories/--tags to override.
                                      Quarantines to state/books/_blocked/ on failure.
   author-check <chapter.json>        Phase 1: run the authoring-contract (field-JOB) checks Codex uses to
                                      converge in-session. Advisory/shadow (calibrated 0 false-positives).
@@ -125,6 +126,9 @@ Commands:
                                      and self-gate command all filled in. Paste each block into its own
                                      Codex agent to write the book in parallel. Runs name-plan for you.
                                      Skips already-written chapters unless --all.
+  categorize <bookId>                Preview the no-API auto-categorizer's pick (categories + tags from
+                                     the book's own content). promote-book applies it automatically when
+                                     --categories/--tags aren't given; pass those to override.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
@@ -747,26 +751,16 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   let categories = parseCsvFlag(flags["categories"]);
   let tags = parseCsvFlag(flags["tags"]);
 
-  // Codex-only/manual runs should not call the model-backed categorizer.
-  // The operator can provide deterministic metadata via --categories and --tags.
-  const noCategorizer = flags["no-categorizer"] === true;
-  if (noCategorizer) {
-    if (!categories) console.warn("--no-categorizer set without --categories; promoting without categories");
-    if (!tags) console.warn("--no-categorizer set without --tags; promoting without tags");
-  } else if (!categories || !tags) {
-    try {
-      const { runCategorizer } = await import("./agents/categorizer.js");
-      const categorized = await runCategorizer({
-        bookId,
-        title,
-        author,
-        chapterTitles: chapters.map((c) => c.chapterTitle),
-      });
-      categories = categories ?? categorized.categories;
-      tags = tags ?? categorized.tags;
-    } catch (err) {
-      console.warn(`categorizer failed (${(err as Error).message}); promoting without categories/tags. For Codex-only, rerun with --no-categorizer --categories ... --tags ...`);
-    }
+  // Auto-fill categories/tags with the NO-API deterministic categorizer when the
+  // operator doesn't pass them (the default). It reads the book's own content, so
+  // it works without the model API and never ships empty (which the strict
+  // package validator rejects). --categories/--tags always override.
+  if (!categories || !tags) {
+    const { deriveCategoriesAndTags } = await import("./agents/autoCategorize.js");
+    const auto = deriveCategoriesAndTags(bookId, { title, chapterTitles: chapters.map((c) => c.chapterTitle) });
+    if (!categories) categories = auto.categories;
+    if (!tags) tags = auto.tags;
+    console.log(`Auto-categorized (no-API, source: ${auto.source}): categories=[${categories.join(", ")}]  tags=[${tags.join(", ")}]`);
   }
 
   const result = promoteBook({ bookId, title, author, chapters, categories, tags });
@@ -1006,6 +1000,29 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
   console.log(
     `fix-chapter-ids: ${changed} chapter(s) ${dryRun ? "would be" : ""} normalized across ${files.length} file(s)${dryRun ? " (dry-run — no files written)" : ""}.`,
   );
+  return 0;
+}
+
+/** `categorize <bookId> [--title "..."]` — preview the no-API auto-categorizer's
+ *  pick (categories + tags derived from the book's own content). promote-book runs
+ *  this automatically when --categories/--tags aren't passed. */
+async function runCategorize(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: categorize <bookId>");
+    return 2;
+  }
+  const { deriveCategoriesAndTags } = await import("./agents/autoCategorize.js");
+  let chapterTitles: string[] = [];
+  try {
+    const { loadChapterIndex } = await import("./generateBook.js");
+    chapterTitles = loadChapterIndex(bookId).map((c) => c.chapterTitle);
+  } catch {/* index may not exist yet */}
+  const auto = deriveCategoriesAndTags(bookId, { chapterTitles });
+  console.log(`Auto-categorize — ${bookId}  (no-API, source: ${auto.source})`);
+  console.log(`  categories: ${auto.categories.join(", ") || "(none)"}`);
+  console.log(`  tags:       ${auto.tags.join(", ") || "(none)"}`);
+  console.log(`\npromote-book uses these automatically. Override with --categories "A,B" --tags "x,y".`);
   return 0;
 }
 
@@ -1610,6 +1627,8 @@ async function main() {
       return runQcStatus(args);
     case "fanout":
       return runFanout(args, flags);
+    case "categorize":
+      return runCategorize(args);
     case "author-check":
       return runAuthorCheck(args);
     case "fix-chapter-ids":
