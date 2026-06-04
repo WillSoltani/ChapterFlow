@@ -1,0 +1,352 @@
+{
+  "chapterId": "rework-ch09",
+  "number": 9,
+  "title": "Scratch your own itch",
+  "readingTimeMinutes": 10,
+  "hook": "The strongest brief is a problem you already feel every working day.",
+  "counterintuition": "Building for a faceless market sounds ambitious, yet guessing at a stranger's needs is weaker than fixing the pain you live inside. Your own itch hands you the test the survey never could.",
+  "tryThisNow": "Write down one tool or task that annoyed you today, then name the single change that would make you reach for a fix right now, not someday.",
+  "keyTakeaway": "When you build to relieve a problem you personally feel, your own daily use becomes the test; firsthand pain gives sharper judgment than guessing at a stranger's needs.",
+  "breakdown": {
+    "fastRead": "37signals was a small consultancy drowning in client coordination. Files, decisions, and progress lived in scattered email threads. The pain was theirs, not a market they read about. So they built Basecamp to fix their own day.\n\nThe move is plain. Start from a problem you feel firsthand. You already know what a good fix should do, because you know exactly where the old way hurts.\n\nThat felt pain becomes a built-in test. Use the thing daily, and a weak feature shows itself within hours. You score each choice against lived experience, not a guess about someone you have never met.",
+    "deepRead": "Firsthand need works because it replaces guessing with evidence you already carry. When you have suffered a problem, you know which parts matter and which are noise. A survey collects stated wishes; daily friction reveals the real ache. So the maker who shares the pain starts with a sharper compass than the one studying an outsider from a distance.\n\nCommitment rides along with that knowledge. When you are the user who benefits, you care past the paycheck. The unglamorous middle stretch, where the payout is still unclear, gets carried by the fact that you want the result for yourself. You finish it well because you will have to live with it.\n\nRuby on Rails shows the same logic taken one step further. DHH did not sit down to design a framework in the abstract. He pulled a reusable structure out of Basecamp's working code, because real product work had already exposed which patterns repeated. The by-product was strong precisely because it came from solving an actual problem, not from imagining what other developers might want.\n\nThe useful discrimination is this: a need felt firsthand is a starting signal, not a finished verdict. It tells you the problem is real for at least one demanding user, which is more than a market abstraction gives you. It does not yet tell you how many others share it. That part still has to be proven by people choosing the thing.",
+    "fullRead": "Personal taste can mislead as easily as it can guide, and that tension is where the idea earns its keep. Loving your own product proves the problem is real for you. It does not prove the problem is common. The maker who forgets this builds a beautiful tool for an audience of one and calls the silence bad luck. So firsthand pain is the right place to start and the wrong place to stop.\n\nConsider how the signal actually behaves. When 37signals needed to coordinate client projects, the pain was specific: messages buried, files lost, decisions hard to trace, progress invisible. Building Basecamp for that exact ache gave the team a standard no conference room could supply. They knew what a good day using the product should feel like, so they could reject features that did not earn their place and protect the few that did. The first user was the maker, and the maker was hard to fool.\n\nThe knowledge advantage is concrete, not mystical. A person who has felt a failure knows its texture. They remember the moment the old tool wasted an hour, the workaround that almost held, the small relief a real fix would bring. That memory acts like a requirements document written in lived detail. A team guessing at an outsider's needs has to invent that document, and invention under pressure tends to fill gaps with assumptions that turn out wrong.\n\nFeedback speed is the quiet advantage people miss. When the maker uses the product every day, a flaw surfaces the moment it bites, not three weeks later in a support ticket. Tickets lag the problem; daily self-use catches it while the bruise is fresh. Early on, before a large customer base exists, that immediate loop is often the only honest feedback available, and it costs nothing to run.\n\nBy-products deserve a place in the story too. Ruby on Rails came out of Basecamp because DHH extracted a framework that the product work had already proven useful. The order matters: product first, framework as a residue of real building. A team that sets out to design a framework in the abstract usually misses the friction that makes a tool worth using, because it never felt that friction. Solving your own problem can leave behind value you did not set out to create.\n\nNow the limit, because the move has one. A shared pain often means a shared market: if many people sit in a similar situation, a fix for you tends to fit them. But the pain has to actually be shared. When the itch is idiosyncratic, the solution stays narrow, and no amount of personal enthusiasm widens it. The discipline is to treat your need as a strong hypothesis and then watch whether strangers adopt it. Enthusiasm validates the problem for one person; prevalence is a separate question only customers can answer. Start where you hurt, build what you would use, then let real demand decide how far it travels."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch09.ex.basecamp",
+      "title": "Basecamp From Inside the Pain",
+      "tags": [
+        "consultancy",
+        "internal tool",
+        "first user"
+      ],
+      "planSpec": {
+        "domain": "web consultancy operations",
+        "audience": "makers tempted to chase a market they do not share",
+        "stakes": "build from felt pain or guess at an outsider's needs",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist chooses to solve a problem the team personally feels"
+      },
+      "scenario": "Dario sits at 9:10 a.m. in a Chicago studio, watching client files scatter across a dozen email threads, the same coordination mess that pushed 37signals to build Basecamp. An advisor urges him to instead build a generic planner for a huge market he has never worked in. Before the sprint board locks, Dario must choose: chase the broad market blind, or fix the project chaos he feels every single day.",
+      "whatToDo": "Dario should commit the team to fixing its own coordination pain first, then score each feature against whether it relieves the mess they personally live with.",
+      "whyItMatters": "A problem felt firsthand hands the team a standard to judge by, while a market they have never lived in leaves them guessing at requirements they cannot test."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch09.fact.4",
+      "title": "The Survey That Missed the Ache",
+      "tags": [
+        "research",
+        "stated vs felt",
+        "requirements"
+      ],
+      "planSpec": {
+        "domain": "field-service software",
+        "audience": "teams trusting surveys over lived friction",
+        "stakes": "trust stated preferences or the friction you actually feel",
+        "format": "contrast",
+        "requiredBeat": "the protagonist weighs survey wishes against firsthand pain"
+      },
+      "scenario": "Priscilla reads a tidy survey at 2:40 p.m. in a Lisbon office: technicians say they want more dashboards. But she has ridden the vans herself, and the real ache was a form that ate twenty minutes after every job. With the roadmap meeting starting, she has to decide whether to trust the polished feature list or the friction she felt with her own hands on the clipboard.",
+      "whatToDo": "Priscilla should weight the felt friction she experienced on the vans over the survey's stated wishes, and prototype the faster form first.",
+      "whyItMatters": "Surveys capture what people say they want; daily friction reveals what actually slows them down, so firsthand experience often points to the more useful fix."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch09.ex.basecamp",
+      "title": "Rails Falls Out of Basecamp",
+      "tags": [
+        "by-product",
+        "framework",
+        "extraction"
+      ],
+      "planSpec": {
+        "domain": "software framework extraction",
+        "audience": "builders deciding whether to design tools in the abstract",
+        "stakes": "design a framework up front or let real work produce one",
+        "format": "before_after",
+        "requiredBeat": "value emerges as a by-product of solving a real problem"
+      },
+      "scenario": "Halvard remembers how DHH did not set out to build Ruby on Rails as a grand framework. Rails was pulled from Basecamp's working code, the reusable patterns that real product work had already proven. Now Halvard's own team wants to pause shipping to design a clean framework in the abstract for developers they have never met, guessing at needs no one on the team has actually felt.",
+      "whatToDo": "Halvard should keep solving the real product problem and extract shared structure only once the working code proves which patterns truly repeat.",
+      "whyItMatters": "A framework born from solving an actual problem carries the friction that makes it useful, while one designed in the abstract tends to miss what real work would have exposed."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch09.fact.8",
+      "title": "The Boast That Hid a Market of One",
+      "tags": [
+        "taste vs demand",
+        "hard edge",
+        "validation"
+      ],
+      "planSpec": {
+        "domain": "consumer mobile app",
+        "audience": "makers mistaking personal love for proven demand",
+        "stakes": "treat self-love as proof or as a hypothesis to test",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist separates personal taste from market demand"
+      },
+      "scenario": "Imelda tells her cofounder at 6:20 p.m. in a Nairobi cafe that she uses their meditation app every night, so the market is surely huge. Her cofounder asks how many strangers have stuck with it past a week. Before they set the launch budget, Imelda has to admit her own love proves the problem is real for her, not that thousands share the same itch.",
+      "whatToDo": "Imelda should treat her personal enthusiasm as a strong hypothesis, then check whether unrelated users keep returning before she funds a big launch.",
+      "whyItMatters": "Loving your own product confirms the problem for one person, but breadth has to be proven by others adopting it, or a maker funds a tool with a market of one."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch09.fact.5",
+      "title": "The Middle Stretch Nobody Sees",
+      "tags": [
+        "commitment",
+        "stamina",
+        "self-use"
+      ],
+      "planSpec": {
+        "domain": "indie productivity tool",
+        "audience": "solo makers losing motivation mid-build",
+        "stakes": "quit at the unglamorous middle or finish it well",
+        "format": "reflection",
+        "requiredBeat": "self-felt need sustains effort when payout is uncertain"
+      },
+      "scenario": "Soren stares at month four of a tool he started because his own invoicing was a nightly nightmare. Revenue is flat and the work has gone dull. He notices that what keeps him at the desk is not the payout, which is still uncertain, but the fact that he refuses to live with the broken process himself. The same logic that built Basecamp at 37signals is quietly carrying him through the slog.",
+      "whatToDo": "Soren should let his own need to use the tool drive the next week of work, finishing the invoicing fix because he is the user who has to live with it.",
+      "whyItMatters": "When you are the user who benefits, commitment outlasts an uncertain payout, which is what carries a maker through the unglamorous middle where many projects stall."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch09.fact.6",
+      "title": "When the Itch Is Yours Alone",
+      "tags": [
+        "scope",
+        "idiosyncratic pain",
+        "limit"
+      ],
+      "planSpec": {
+        "domain": "niche hobbyist software",
+        "audience": "makers checking whether their pain generalizes",
+        "stakes": "assume the pain is shared or verify it before scaling",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist tests whether firsthand pain is common or idiosyncratic"
+      },
+      "scenario": "Wren built a tagging tool at 8:15 p.m. in a Melbourne flat to fix a sorting headache from a rare collecting hobby. The build relieved a real itch, her own. Now an investor wants her to scale it as if the demand were proven. Before she signs, Wren must decide whether to confirm that other collectors share the exact pain, or assume her enthusiasm equals a market.",
+      "whatToDo": "Wren should test whether other collectors feel the same sorting pain before scaling, treating her own need as a signal rather than settled proof of demand.",
+      "whyItMatters": "Firsthand pain generalizes only when others share it; when the itch is idiosyncratic, the fix stays narrow, so the maker must verify breadth before betting on scale."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch09.ex.basecamp",
+        "prompt": "A studio lead watches client files scatter across email threads, the same mess that pushed 37signals to build Basecamp, while an advisor urges a generic planner for a market she has never worked in. Which move fits self-felt demand?",
+        "choices": [
+          "Build for the larger unfamiliar market because its size promises more buyers later.",
+          "Fix the coordination pain her own team feels every day and judge features against it.",
+          "Postpone any build until a survey of strangers ranks the most requested planner features."
+        ],
+        "correctIndex": 1,
+        "explanation": "Firsthand pain gives a standard to judge by. Chasing an unfamiliar market means inventing requirements she cannot test, while her own coordination ache she already understands.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch09.fact.4",
+        "prompt": "A product lead has a tidy survey saying technicians want more dashboards, but she rode the service vans and felt a slow form eat twenty minutes after every job. Which signal should she trust first?",
+        "choices": [
+          "The survey list, since stated preferences capture user needs as well as personal use does.",
+          "Neither, because she should wait for support tickets to confirm the technicians' real priority.",
+          "The friction she felt on the vans, because felt pain reveals what actually slows the work."
+        ],
+        "correctIndex": 2,
+        "explanation": "Surveys capture stated wishes, not the felt friction that shows what matters. Having suffered the slow form herself, she knows which fix is real rather than guessing.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch09.ex.basecamp",
+        "prompt": "Recalling that DHH pulled Ruby on Rails out of Basecamp's working code, a team wants to pause shipping to design a clean framework in the abstract for developers none of them has ever been. What is the sounder move?",
+        "choices": [
+          "Design the framework first, since Rails proves frameworks should precede the products built on them.",
+          "Keep solving the real product problem and extract shared structure once the code proves which patterns repeat.",
+          "Hire outside developers to specify the framework so the team can match their stated requirements."
+        ],
+        "correctIndex": 1,
+        "explanation": "Rails was a by-product of real work, not an up-front design. Structure extracted from a working product carries the friction that makes it useful; an abstract framework misses it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch09.fact.8",
+        "prompt": "A founder uses her meditation app nightly and argues the market must be huge because she loves it. Her cofounder asks how to judge that reasoning. Which reply is most accurate?",
+        "choices": [
+          "Her love proves the problem is real for her, but breadth still has to be shown by strangers adopting it.",
+          "Her enthusiasm settles the question, since a maker who loves the product means the market will love it too.",
+          "Her taste is irrelevant, because only a large advertising budget can ever reveal whether demand exists."
+        ],
+        "correctIndex": 0,
+        "explanation": "Personal taste is a starting signal, not proof of demand. Her enthusiasm validates the problem for one person; prevalence is a separate question only customers answer.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch09.fact.5",
+        "prompt": "Four months into building a tool that fixes his own nightly invoicing, a solo maker finds revenue flat and the work dull. He wonders what should keep him at the desk. Which reason best fits self-felt demand?",
+        "choices": [
+          "The size of the eventual payout, since motivation comes mainly from the potential reward.",
+          "The fact that he is the user who has to live with the broken process and wants it fixed for himself.",
+          "A public promise to investors that would make quitting look unprofessional to his backers."
+        ],
+        "correctIndex": 1,
+        "explanation": "Self-felt need sustains effort through the unglamorous middle where payout is uncertain. Because he benefits as the user, he cares beyond the paycheck and finishes it well.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch09.fact.6",
+        "prompt": "A maker built a tagging tool for a rare collecting hobby that only she pursues, and an investor wants to scale it as if demand were proven. Before signing, what should she verify?",
+        "choices": [
+          "Nothing, since a tool built for personal use is too narrow to ever sell broadly.",
+          "Only that the code is bug-free, because a working build means the market will follow on its own.",
+          "Whether other collectors feel the same sorting pain, treating her own need as a signal rather than proof."
+        ],
+        "correctIndex": 2,
+        "explanation": "A shared pain generalizes; an idiosyncratic one stays narrow. Her firsthand itch is a strong hypothesis, but breadth must be confirmed by others who share the exact pain.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch09.fact.7",
+        "prompt": "A maker who uses her own product daily wants the fastest honest feedback before her customer base grows large. Which approach best uses firsthand use?",
+        "choices": [
+          "Treat her own daily use as the immediate test, since a flaw surfaces the moment it bites her.",
+          "Wait for support tickets to accumulate, because that is the main way to learn what to fix.",
+          "Survey a panel of strangers monthly and act only on the most requested change each cycle."
+        ],
+        "correctIndex": 0,
+        "explanation": "Daily self-use catches a problem the moment it bites, while tickets lag it by weeks. Before a large base exists, the maker's own use is often the only immediate, honest feedback.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch09.fact.9",
+        "prompt": "A smart team insists it can reason its way to the requirements of an outsider's problem none of them has ever experienced. A colleague pushes back. Which warning is most consistent with self-felt demand?",
+        "choices": [
+          "The team is right, since a capable group can deduce an outsider's needs without sharing the problem.",
+          "Reasoning without lived evidence still rests on guesses about what the user feels, so gaps fill with assumptions that may be wrong.",
+          "The team should copy whatever the biggest competitor built, because market leaders define the requirements."
+        ],
+        "correctIndex": 1,
+        "explanation": "Without lived context the team guesses at requirements, and clever reasoning over those guesses still produces a product that can miss what users actually need.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch09.concept",
+        "prompt": "Your teammate wants one test to decide whether an early product idea has a sharp enough compass to start. Which question best reflects self-felt demand?",
+        "choices": [
+          "Which idea targets the largest total market, regardless of whether anyone here shares its problem?",
+          "Which idea would impress investors most at the next pitch meeting?",
+          "Which problem do we feel firsthand, so our own daily use can test whether the fix actually works?"
+        ],
+        "correctIndex": 2,
+        "explanation": "Self-felt demand starts from a problem the makers personally understand, so lived use replaces guesswork. Market size and pitch appeal do not supply that built-in test.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch09.concept",
+      "front": "Why does a problem you personally feel give sharper product judgment?",
+      "back": "Because you already know what a good fix should do, you can score each decision against lived experience instead of guessing at a stranger's needs.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch09.ex.basecamp",
+      "front": "How did Basecamp begin at 37signals?",
+      "back": "The consultancy needed a calmer way to coordinate its own client projects. Basecamp was built to scratch that internal itch first; broad market fit was discovered afterward, not designed up front.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch09.ex.basecamp",
+      "front": "Where did Ruby on Rails come from, and why does the order matter?",
+      "back": "DHH extracted Rails as a by-product of Basecamp's working code. The order was product first, framework as residue, so the tool carried the friction that abstract design would have missed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch09.fact.7",
+      "front": "Why does firsthand daily use beat support tickets for early feedback?",
+      "back": "Tickets lag the problem by weeks, while daily self-use catches a flaw the moment it bites. Before the customer base is large, the maker's own use is often the only immediate, honest feedback.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch09.fact.8",
+      "front": "Why is loving your own product not proof of market demand?",
+      "back": "Your enthusiasm shows the problem is real for one person, not that many share it. Personal taste is a strong starting signal; prevalence still has to be confirmed by others adopting the thing.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch09.fact.6",
+      "front": "When does a tool built for your own use stay too narrow to sell broadly?",
+      "back": "When the pain is idiosyncratic to you. If the itch is shared by people in similar situations, a fit for the maker is often a fit for them; only a peculiar need keeps the solution narrow.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Self-Use Test",
+    "coreSkill": "Before backing an idea, ask whether you would actually reach for it yourself every day, and let that felt friction drive the next decision. Start from a problem you live inside, build the fix you would use, then watch whether your own daily use exposes weak features fast. Treat your enthusiasm as a hypothesis to verify, never as settled proof of demand.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch09.concept",
+        "context": "When a teammate proposes chasing a market none of you have lived in",
+        "plan": "If a teammate aims the build at a stranger's problem, then run the Self-Use Test and pick instead the pain your team feels firsthand and can judge by daily use."
+      },
+      {
+        "sourceAnchorId": "ch09.fact.4",
+        "context": "When a survey and your lived experience disagree about what to build",
+        "plan": "If a stated-preference list clashes with friction you felt yourself, then run the Self-Use Test and weight the felt ache over the survey wish."
+      },
+      {
+        "sourceAnchorId": "ch09.fact.8",
+        "context": "When you catch yourself sure the market is huge because you love the product",
+        "plan": "If your own enthusiasm is the only evidence, then run the Self-Use Test as a hypothesis and check whether unrelated users return before you bet on scale."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, write down three tasks or tools that personally annoyed you. Beside each, mark whether you would use a fix daily, and name the one change that would make you reach for it now.",
+    "weeklyPractice": "Each week, pick one problem you feel firsthand and use your own daily experience to score one product decision. Track which weak feature your own use exposed that a survey would have missed."
+  },
+  "memorableLines": [
+    {
+      "text": "The pain was theirs, not a market they read about.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the whole chapter into the difference between felt pain and a market abstraction."
+    },
+    {
+      "text": "A survey collects stated wishes; daily friction reveals the real ache.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism that makes firsthand need sharper than research in one clean contrast."
+    },
+    {
+      "text": "Start where you hurt, build what you would use, then let real demand decide how far it travels.",
+      "location": "breakdown.fullRead",
+      "why": "It carries the hard edge: firsthand pain is the start, customers prove the breadth."
+    }
+  ]
+}
