@@ -36,7 +36,9 @@ type DashboardCatalogPayload = {
 
 const EPOCH_ISO = new Date(0).toISOString();
 
-function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry[] {
+export type { DashboardCatalogPayload };
+
+export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry[] {
   const progressByBook = new Map(payload.progress.map((item) => [item.bookId, item]));
   const stateByBook = new Map(payload.bookStates.map((item) => [item.bookId, item]));
 

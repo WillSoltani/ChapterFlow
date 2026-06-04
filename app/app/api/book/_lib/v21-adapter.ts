@@ -8,6 +8,7 @@ import type {
   ImplementationPlan,
   ReviewCard,
   ToneKeyed,
+  V21ChapterExtras,
   VariantKey,
 } from "./types";
 
@@ -140,6 +141,47 @@ function adaptImplementationPlan(raw: unknown): ImplementationPlan | undefined {
   };
 }
 
+function adaptMemorableLines(raw: unknown): V21ChapterExtras["memorableLines"] {
+  if (!Array.isArray(raw)) return undefined;
+  const lines = raw
+    .map((ml) => {
+      const rec = isRecord(ml) ? ml : {};
+      const text = asString(rec.text);
+      if (!text) return null;
+      const location = asString(rec.location);
+      const why = asString(rec.why);
+      return {
+        text,
+        ...(location ? { location } : {}),
+        ...(why ? { why } : {}),
+      };
+    })
+    .filter((line): line is { text: string; location?: string; why?: string } => line !== null);
+  return lines.length > 0 ? lines : undefined;
+}
+
+/**
+ * Collect the v21-only chapter fields (hook / counterintuition / tryThisNow /
+ * keyTakeaway / structured memorableLines) so they survive ingestion and reach
+ * the reader. Returns undefined when none are present (e.g. native v13).
+ */
+function adaptV21Extras(ch: Record<string, unknown>): V21ChapterExtras | undefined {
+  const hook = asString(ch.hook);
+  const counterintuition = asString(ch.counterintuition);
+  const tryThisNow = asString(ch.tryThisNow);
+  const keyTakeaway = asString(ch.keyTakeaway);
+  const memorableLines = adaptMemorableLines(ch.memorableLines);
+
+  const extras: V21ChapterExtras = {};
+  if (hook) extras.hook = hook;
+  if (counterintuition) extras.counterintuition = counterintuition;
+  if (tryThisNow) extras.tryThisNow = tryThisNow;
+  if (keyTakeaway) extras.keyTakeaway = keyTakeaway;
+  if (memorableLines) extras.memorableLines = memorableLines;
+
+  return Object.keys(extras).length > 0 ? extras : undefined;
+}
+
 function adaptChapter(raw: unknown): BookPackageChapter {
   const ch = isRecord(raw) ? raw : {};
   const breakdown = isRecord(ch.breakdown) ? ch.breakdown : {};
@@ -170,6 +212,7 @@ function adaptChapter(raw: unknown): BookPackageChapter {
     implementationPlan: adaptImplementationPlan(ch.implementationPlan),
     reviewCards: adaptReviewCards(ch.reviewCards).length > 0 ? adaptReviewCards(ch.reviewCards) : undefined,
     keyTakeawayCard: keyTakeawayStr ? toToneKeyed(keyTakeawayStr) : undefined,
+    v21Extras: adaptV21Extras(ch),
   };
 }
 

@@ -103,6 +103,20 @@ export type ImplementationPlan = {
   checkpoint?: ToneKeyed;
 };
 
+/**
+ * v21-only chapter fields that have no v13/tone-keyed equivalent. The v21 → v13
+ * adapter and validator carry these through unchanged so the reader can render
+ * the hook banner, counterintuition, "try this now" directive, and memorable
+ * lines. Absent for native v13 packages.
+ */
+export type V21ChapterExtras = {
+  hook?: string;
+  counterintuition?: string;
+  tryThisNow?: string;
+  keyTakeaway?: string;
+  memorableLines?: Array<{ text: string; location?: string; why?: string }>;
+};
+
 export type BookPackageChapter = {
   book?: {
     bookId?: string;
@@ -120,6 +134,7 @@ export type BookPackageChapter = {
   implementationPlan?: ImplementationPlan;
   reviewCards?: ReviewCard[];
   keyTakeawayCard?: ToneKeyed;
+  v21Extras?: V21ChapterExtras;
 };
 
 export type BookPackageEdition = {
@@ -197,6 +212,7 @@ export type ChapterSummaryPayload = {
   implementationPlan?: ImplementationPlan;
   reviewCards?: ReviewCard[];
   keyTakeawayCard?: ToneKeyed;
+  v21Extras?: V21ChapterExtras;
 };
 
 export type ChapterQuizPayload = {

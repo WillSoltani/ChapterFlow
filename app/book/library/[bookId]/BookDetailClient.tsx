@@ -469,8 +469,15 @@ export function BookDetailClient({
               );
             })}
 
+            {/* Empty state: book published without chapters yet */}
+            {chapters.length === 0 && (
+              <p className="py-8 text-center text-sm text-(--cf-text-3)">
+                Chapters are coming soon for this book.
+              </p>
+            )}
+
             {/* Empty state when no chapters match filter */}
-            {chapters.every((ch) => !matchesFilter(ch)) && (
+            {chapters.length > 0 && chapters.every((ch) => !matchesFilter(ch)) && (
               <p className="py-8 text-center text-sm text-(--cf-text-3)">
                 No chapters match this filter.
               </p>

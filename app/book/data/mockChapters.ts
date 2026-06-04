@@ -114,6 +114,7 @@ import {
   V21_SCHEMA_VERSION,
   extractV21ChapterExtras,
   isV21NormalizedPackage,
+  normalizeV21Package,
   type V21MemorableLine,
 } from "@/app/book/lib/v21-adapter";
 
@@ -712,8 +713,12 @@ function extractNewFields(rawChapter: any, tone: ToneKey): Partial<BookChapter> 
   return fields;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKey = "direct"): BookChapterBundle {
+function buildBundle(
+  bookPackage: BookPackage,
+  rawChapters?: any[], // eslint-disable-line @typescript-eslint/no-explicit-any
+  tone: ToneKey = "direct",
+  options?: { suppressEmptyQuizWarning?: boolean },
+): BookChapterBundle {
   const family = bookPackage.book.variantFamily;
   const strictV12 = isStrictV12ReaderPackage(bookPackage);
   const isV21 = isV21NormalizedPackage(bookPackage);
@@ -740,7 +745,7 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
           )
           .filter((q): q is ChapterQuizQuestion => q !== null)
       );
-      if (quiz.length === 0) {
+      if (quiz.length === 0 && !options?.suppressEmptyQuizWarning) {
         console.error(`Chapter "${chapter.chapterId}" has 0 valid quiz questions after filtering — quiz will be empty`);
       }
       const quizRetryPool = buildQuizRetryPool(chapter, family, tone, strictV12);
@@ -907,6 +912,48 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
     pages: estimatePages(bookPackage),
     chapters,
   };
+}
+
+/**
+ * Build a single reader `BookChapter` from a reconstructed raw-v21 chapter
+ * object (the same shape `book-packages/*.v21.json` chapters have). This is the
+ * shared seam the API-backed reader uses: the production content API response is
+ * reconstructed into a raw-v21 chapter (see `chapter/[chapterId]/lib/chapterFromApi.ts`),
+ * then run through the exact same `normalizeV21Package` → `buildBundle` pipeline
+ * the local path uses, so the resulting `BookChapter` is identical by construction.
+ */
+export function buildBookChapterFromRawV21(
+  rawChapter: Record<string, unknown>,
+  book: {
+    bookId: string;
+    title?: string;
+    author?: string;
+    categories?: string[];
+    tags?: string[];
+  },
+): BookChapter {
+  const rawPackage = {
+    schemaVersion: V21_SCHEMA_VERSION,
+    packageId: "",
+    createdAt: "",
+    contentOwner: "",
+    book: {
+      bookId: book.bookId,
+      title: book.title ?? "",
+      author: book.author ?? "",
+      categories: book.categories ?? [],
+      tags: book.tags ?? [],
+      variantFamily: "EMH",
+    },
+    chapters: [rawChapter],
+  };
+  const pkg = normalizeV21Package(rawPackage);
+  // The API content path carries no quiz (quiz is fetched separately by
+  // useQuizSession), so suppress the empty-quiz warning for this path.
+  const bundle = buildBundle(pkg, [rawChapter], "direct", {
+    suppressEmptyQuizWarning: true,
+  });
+  return bundle.chapters[0];
 }
 
 type ToneBundleGetter = (tone: ToneKey) => BookPackage;

@@ -5,6 +5,10 @@ import {
   BOOKS_CATALOG_METADATA,
   type BookCatalogMetadata,
 } from "@/app/book/data/booksCatalog";
+import type {
+  LibraryCatalogBook,
+  LibraryBookEntry,
+} from "@/app/book/_lib/library-data";
 
 export type Category =
   | "Psychology"
@@ -1180,6 +1184,70 @@ function buildLibraryBookFromMetadata(
     staffPickReason: overrides.staffPickReason,
     similarBookId: overrides.similarBookId,
     userProgress: overrides.userProgress,
+  };
+}
+
+/**
+ * Build the presentational `LibraryBook` UI shape from a published catalog book
+ * (`/api/book/me/dashboard` → `catalog[]`) plus the viewer's per-book progress
+ * entry. This is the production-data counterpart to `buildLibraryBookFromMetadata`
+ * (which reads the local static catalog). Editorial config (overrides + inferred
+ * social-proof/visual fields) is reused so the presentational components don't
+ * change. Fields with no backend source (readerCount, completionRate, gradient,
+ * badges) are deterministic/static — see TODOs in `dashboardToLibraryUi.ts`.
+ */
+export function buildLibraryBookFromCatalog(
+  book: LibraryCatalogBook,
+  entry?: LibraryBookEntry,
+): LibraryBook {
+  const bookId = book.id;
+  const category = inferLibraryCategory(book.categories);
+  const overrides = GENERATED_LIBRARY_BOOK_OVERRIDES[bookId] ?? {};
+
+  const userProgress: UserProgress | undefined =
+    entry && entry.status !== "not_started"
+      ? {
+          currentChapter: Math.min(
+            entry.chaptersCompleted + 1,
+            Math.max(1, entry.chaptersTotal),
+          ),
+          percentComplete: entry.progressPercent,
+          lastReadAt: new Date(entry.lastActivityAt),
+          xpEarned: 0,
+          isCompleted: entry.status === "completed",
+          completedAt:
+            entry.status === "completed" ? new Date(entry.lastActivityAt) : undefined,
+        }
+      : undefined;
+
+  return {
+    id: bookId,
+    title: book.title,
+    author: book.author,
+    authorCredentials: overrides.authorCredentials,
+    coverImage: overrides.coverImage ?? book.coverImage,
+    coverGradient: overrides.coverGradient ?? inferCoverGradient(bookId),
+    hook:
+      overrides.hook ??
+      book.synopsis.split(".")[0]?.trim() ??
+      "A focused, chapter-based learning experience with practical examples and quiz gates.",
+    description: overrides.description ?? book.synopsis,
+    whatYoullLearn:
+      overrides.whatYoullLearn ?? buildLearningPoints(book.tags, book.categories),
+    bestFor: overrides.bestFor ?? inferBestFor(category),
+    category: overrides.category ?? category,
+    difficulty:
+      (overrides.difficulty as Difficulty | undefined) ??
+      (book.difficulty.toLowerCase() as Difficulty),
+    totalChapters: book.chapterCount,
+    estimatedReadingTimeMinutes: book.estimatedMinutes,
+    readerCount: overrides.readerCount ?? inferReaderCount(bookId),
+    completionRate: overrides.completionRate ?? inferCompletionRate(bookId),
+    isPro: overrides.isPro ?? true,
+    badges: overrides.badges ?? ["new"],
+    staffPickReason: overrides.staffPickReason,
+    similarBookId: overrides.similarBookId,
+    userProgress,
   };
 }
 

@@ -6,13 +6,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BookLock, CheckCircle2, CloudOff } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  getBookChaptersBundle,
   getChapterById,
   type ChapterExample,
   type ReadingDepth,
-  type ToneKey,
 } from "@/app/book/data/mockChapters";
-import { getLibraryBookById } from "@/app/book/data/mockUserLibraryState";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import {
   chapterStartModeToInitialTab,
@@ -53,6 +50,7 @@ import { ChapterCompleteModal } from "@/app/book/library/[bookId]/chapter/[chapt
 import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
 import { useChapterState, type ChapterTab, type FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
+import { useChapterContent } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterContent";
 import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
 import { usePhaseCompletion, getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
@@ -182,11 +180,57 @@ export function ChapterReaderClient({
   const preferredFocusMode = bookPrefs.reading.focusModeDefault;
   const preferredFontScale: FontScale = bookPrefs.reading.fontSize <= 14 ? "sm" : bookPrefs.reading.fontSize >= 18 ? "lg" : "md";
 
-  const entry = useMemo(() => getLibraryBookById(bookId), [bookId]);
-  const bundle = useMemo(() => getBookChaptersBundle(bookId, contentTone), [bookId, contentTone]);
-  const chapters = bundle.chapters;
-  const baseChapter = useMemo(() => getChapterById(bookId, chapterId, contentTone), [bookId, chapterId, contentTone]);
-  const chapter = baseChapter;
+  // Title/author for headers/share — sourced from the published manifest.
+  const entry = useMemo(
+    () => ({ title: initialBook?.title ?? bookId, author: initialBook?.author ?? "" }),
+    [initialBook, bookId],
+  );
+  // Chapter list (id/order/title) for navigation + progress — from the manifest.
+  const chapters = useMemo(
+    () =>
+      (initialBook?.chapters ?? []).map((c) => ({
+        id: c.chapterId,
+        order: c.number,
+        title: c.title,
+      })),
+    [initialBook],
+  );
+  // Translate the string chapterId (route param) → integer chapterNumber for
+  // the content/quiz/state APIs, using the manifest.
+  const chapterNumber = useMemo(
+    () => initialBook?.chapters.find((c) => c.chapterId === chapterId)?.number,
+    [initialBook, chapterId],
+  );
+  const bookMeta = useMemo(
+    () => ({
+      bookId,
+      title: initialBook?.title,
+      author: initialBook?.author,
+      categories: initialBook?.categories,
+      tags: initialBook?.tags,
+    }),
+    [bookId, initialBook],
+  );
+  const localFallback = useCallback(
+    () => getChapterById(bookId, chapterId, contentTone),
+    [bookId, chapterId, contentTone],
+  );
+  // Production content path: fetch from the API, adapt to the BookChapter UI
+  // shape, fall back to the local package on any error (offline/dev/gated).
+  const { chapter: baseChapter, hydrated: contentHydrated } = useChapterContent({
+    bookId,
+    chapterNumber,
+    book: bookMeta,
+    localFallback,
+  });
+  // Force the chapter's id to the manifest/route chapterId. The content payload
+  // can carry a different internal chapterId (e.g. "ch02-identity-driven-change")
+  // than the manifest ("atomic-habits-ch02"); progress/unlock state is keyed by
+  // the manifest id, so the reader must use it for getChapterState/navigation.
+  const chapter = useMemo(
+    () => (baseChapter ? { ...baseChapter, id: chapterId } : undefined),
+    [baseChapter, chapterId],
+  );
   const preferredReadingDepth: ReadingDepth = baseChapter?.isStrictV12
     ? "standard"
     : mapLearningStyleToDepth(onboarding.learningStyle);
@@ -369,10 +413,13 @@ export function ChapterReaderClient({
   }, [onboarding.setupComplete, onboardingHydrated, router]);
 
   useEffect(() => {
+    // Content loads asynchronously now — only bounce to the library once the
+    // fetch has settled and there is genuinely no chapter (not while loading).
+    if (!contentHydrated) return;
     if (!entry || !chapter) {
       router.replace("/book/library");
     }
-  }, [chapter, entry, router]);
+  }, [chapter, entry, contentHydrated, router]);
 
   useEffect(() => {
     if (!chapter || !hydrated) return;

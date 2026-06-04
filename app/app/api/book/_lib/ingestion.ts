@@ -156,6 +156,7 @@ function buildArtifacts(pkg: BookPackage): {
     implementationPlan: chapter.implementationPlan,
     reviewCards: chapter.reviewCards,
     keyTakeawayCard: chapter.keyTakeawayCard,
+    v21Extras: chapter.v21Extras,
   }));
 
   const quizPayloads: ChapterQuizPayload[] = sortedChapters.map((chapter) => ({

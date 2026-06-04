@@ -64,8 +64,16 @@ export async function GET(
         readingTimeMinutes: chapter.readingTimeMinutes,
         activeVariant,
         availableVariants: Object.keys(chapter.contentVariants),
+        // `content` is the active variant only (kept for back-compat); the
+        // reader uses the full `contentVariants` map to switch reading depth
+        // client-side without refetching.
         content: chapter.contentVariants[activeVariant as keyof typeof chapter.contentVariants],
+        contentVariants: chapter.contentVariants,
         examples: chapter.examples,
+        implementationPlan: chapter.implementationPlan,
+        reviewCards: chapter.reviewCards,
+        keyTakeawayCard: chapter.keyTakeawayCard,
+        v21Extras: chapter.v21Extras,
       },
       progress: {
         currentChapterNumber: progress.currentChapterNumber,

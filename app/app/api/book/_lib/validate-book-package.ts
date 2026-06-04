@@ -10,6 +10,7 @@ import type {
   ConceptGraph,
   OneMinuteRecapToneKeyed,
   ToneKeyed,
+  V21ChapterExtras,
   VariantFamily,
   VariantKey,
 } from "./types";
@@ -74,6 +75,7 @@ const CHAPTER_KEYS = new Set([
   "reviewCards",
   "keyTakeawayCard",
   "takeaways",
+  "v21Extras",
 ]);
 const EXAMPLE_KEYS = new Set(["exampleId", "title", "scenario", "whatToDo", "whyItMatters", "contexts", "category", "format", "endingType"]);
 const QUIZ_KEYS = new Set([
@@ -777,7 +779,41 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
     implementationPlan,
     reviewCards,
     keyTakeawayCard,
+    v21Extras: parseV21Extras(chapterRaw.v21Extras),
   };
+}
+
+/**
+ * Tolerant passthrough for the v21-only chapter extras. These are produced by
+ * the v21 → v13 adapter (`adaptV21Extras`) and carry no v13 equivalent, so the
+ * validator copies them through (shape-coerced) rather than rejecting them.
+ */
+function parseV21Extras(value: unknown): V21ChapterExtras | undefined {
+  if (!isRecord(value)) return undefined;
+  const extras: V21ChapterExtras = {};
+  if (typeof value.hook === "string" && value.hook.trim()) extras.hook = value.hook;
+  if (typeof value.counterintuition === "string" && value.counterintuition.trim()) {
+    extras.counterintuition = value.counterintuition;
+  }
+  if (typeof value.tryThisNow === "string" && value.tryThisNow.trim()) {
+    extras.tryThisNow = value.tryThisNow;
+  }
+  if (typeof value.keyTakeaway === "string" && value.keyTakeaway.trim()) {
+    extras.keyTakeaway = value.keyTakeaway;
+  }
+  if (Array.isArray(value.memorableLines)) {
+    const lines = value.memorableLines
+      .map((ml) => {
+        if (!isRecord(ml) || typeof ml.text !== "string" || !ml.text.trim()) return null;
+        const line: { text: string; location?: string; why?: string } = { text: ml.text };
+        if (typeof ml.location === "string" && ml.location.trim()) line.location = ml.location;
+        if (typeof ml.why === "string" && ml.why.trim()) line.why = ml.why;
+        return line;
+      })
+      .filter((line): line is { text: string; location?: string; why?: string } => line !== null);
+    if (lines.length > 0) extras.memorableLines = lines;
+  }
+  return Object.keys(extras).length > 0 ? extras : undefined;
 }
 
 function parseToneKeyed(value: unknown, path: string, issues: ValidationIssue[]): { gentle: string; direct: string; competitive: string } | null {
