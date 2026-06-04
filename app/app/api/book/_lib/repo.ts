@@ -46,11 +46,14 @@ import {
   stripeCustomerSk,
   webhookPk,
   webhookSk,
+  billingEventPk,
+  billingEventSk,
   licenseKeyPk,
   licenseKeySk,
   licenseIndexPk,
   licenseIndexSk,
   accountStatusSk,
+  accountStatusChangeSk,
   shareEventSk,
 } from "./keys";
 import type {
@@ -76,6 +79,8 @@ import type {
   LicenseKeyItem,
   QuizAttemptItem,
   AccountStatusItem,
+  AccountStatusChangeItem,
+  AccountStatus,
   BookUserShareEventItem,
 } from "./types";
 
@@ -1588,6 +1593,90 @@ export async function recordStripeWebhookEvent(
   }
 }
 
+export type BillingEventKind = "refund" | "dispute";
+
+export type BillingEventRecord = {
+  kind: BillingEventKind;
+  /** Stripe object id (refund id or dispute id) — also the idempotency key. */
+  eventId: string;
+  userId: string | null;
+  stripeCustomerId: string | null;
+  chargeId: string | null;
+  amountCents: number;
+  currency: string;
+  reason: string | null;
+  /** Refund/dispute status (e.g. "refunded", "needs_response", "won", "lost"). */
+  status: string | null;
+  /** ISO timestamp from the Stripe object's `created`. */
+  createdAt: string;
+};
+
+/**
+ * Persist a refund or dispute (chargeback) as a durable, append-only billing
+ * event for the admin finance reports. Idempotent: the SK embeds the Stripe
+ * object id + its created timestamp, so webhook redelivery overwrites in place
+ * rather than duplicating.
+ */
+export async function recordBillingEvent(
+  tableName: string,
+  e: BillingEventRecord
+): Promise<void> {
+  const skKind = e.kind === "refund" ? "REFUND" : "DISPUTE";
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: billingEventPk(),
+        SK: billingEventSk(skKind, e.createdAt, e.eventId),
+        entity: "BOOK_BILLING_EVENT",
+        kind: e.kind,
+        eventId: e.eventId,
+        userId: e.userId,
+        stripeCustomerId: e.stripeCustomerId,
+        chargeId: e.chargeId,
+        amountCents: e.amountCents,
+        currency: e.currency,
+        reason: e.reason,
+        status: e.status,
+        createdAt: e.createdAt,
+      },
+    })
+  );
+}
+
+/** List the most recent refund or dispute events (newest first) for admin reports. */
+export async function listRecentBillingEvents(
+  tableName: string,
+  kind: BillingEventKind,
+  limit: number
+): Promise<BillingEventRecord[]> {
+  const skKind = kind === "refund" ? "REFUND" : "DISPUTE";
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+      ExpressionAttributeValues: {
+        ":pk": billingEventPk(),
+        ":prefix": `${skKind}#`,
+      },
+      ScanIndexForward: false, // newest first
+      Limit: limit,
+    })
+  );
+  return (res.Items ?? []).map((item) => ({
+    kind,
+    eventId: readStr(item.eventId) ?? "",
+    userId: readStr(item.userId) ?? null,
+    stripeCustomerId: readStr(item.stripeCustomerId) ?? null,
+    chargeId: readStr(item.chargeId) ?? null,
+    amountCents: readNum(item.amountCents) ?? 0,
+    currency: readStr(item.currency) ?? "",
+    reason: readStr(item.reason) ?? null,
+    status: readStr(item.status) ?? null,
+    createdAt: readStr(item.createdAt) ?? "",
+  }));
+}
+
 export async function mapStripeCustomerToUser(
   tableName: string,
   customerId: string,
@@ -2188,9 +2277,21 @@ export async function setAccountStatus(
     statusReason?: string;
     previousPlan?: "FREE" | "PRO";
     previousProSource?: string;
+    /** Who made the change: "self" (default), "admin:<adminUserId>", or "system". */
+    changedBy?: string;
   }
 ): Promise<void> {
   const now = nowIso();
+
+  // Capture the prior status for the audit trail (best-effort — never blocks).
+  let previousStatus: AccountStatus | null = null;
+  try {
+    const prev = await getAccountStatus(tableName, userId);
+    previousStatus = prev?.status ?? null;
+  } catch {
+    // ignore — the audit row just won't carry a previousStatus
+  }
+
   const item: Record<string, unknown> = {
     PK: bookUserPk(userId),
     SK: accountStatusSk(),
@@ -2205,6 +2306,61 @@ export async function setAccountStatus(
   if (extras?.previousProSource) item.previousProSource = extras.previousProSource;
 
   await ddbDoc.send(new PutCommand({ TableName: tableName, Item: item }));
+
+  // Append an immutable audit record (who/when/why). Best-effort: a failed
+  // audit write must not undo or block the authoritative status change above.
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: bookUserPk(userId),
+          SK: accountStatusChangeSk(now),
+          entity: "BOOK_ACCOUNT_STATUS_CHANGE",
+          userId,
+          status,
+          previousStatus,
+          changedAt: now,
+          changedBy: extras?.changedBy ?? "self",
+          reason: extras?.statusReason,
+        },
+      })
+    );
+  } catch (error) {
+    console.error("account_status_audit_write_failed", {
+      userId,
+      status,
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+/** List a user's account-status change history (newest first) for the admin UI. */
+export async function listAccountStatusChanges(
+  tableName: string,
+  userId: string,
+  limit = 50
+): Promise<AccountStatusChangeItem[]> {
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+      ExpressionAttributeValues: {
+        ":pk": bookUserPk(userId),
+        ":prefix": "ACCOUNTSTATUSCHANGE#",
+      },
+      ScanIndexForward: false, // newest first
+      Limit: Math.min(Math.max(limit, 1), 200),
+    })
+  );
+  return (res.Items ?? []).map((item) => ({
+    userId,
+    status: (readStr(item.status) as AccountStatus) ?? "active",
+    previousStatus: (readStr(item.previousStatus) as AccountStatus) ?? null,
+    changedAt: readStr(item.changedAt) ?? "",
+    changedBy: readStr(item.changedBy) ?? "self",
+    reason: readStr(item.reason),
+  }));
 }
 
 export async function getUserSettingsItem(

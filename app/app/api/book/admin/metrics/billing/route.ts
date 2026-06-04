@@ -9,6 +9,10 @@ import {
   scanAllEntitlements,
   type EntitlementSnapshot,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import {
+  listRecentBillingEvents,
+  type BillingEventRecord,
+} from "@/app/app/api/book/_lib/repo";
 import { BILLING_CURRENCY } from "@/lib/pricing";
 
 export const runtime = "nodejs";
@@ -119,15 +123,20 @@ export async function GET(req: Request) {
       (e) => e.proStatus === "past_due" && e.failedPaymentLastReason,
     ).length;
 
-    // Refund tracking is per-event; surface any `refunded` Stripe webhook events
-    // TODO: wire up charge.refunded capture on webhook processor
-    const refundsPlaceholder: Array<{
-      userId: string;
-      amount: number;
-      currency: string;
-      reason: string;
-      createdAt: string;
-    }> = [];
+    // Recent refunds + disputes (chargebacks), persisted by the Stripe webhook.
+    const [recentRefunds, recentDisputes] = await Promise.all([
+      listRecentBillingEvents(tableName, "refund", 25).catch(() => []),
+      listRecentBillingEvents(tableName, "dispute", 25).catch(() => []),
+    ]);
+    const toBillingEventRow = (e: BillingEventRecord) => ({
+      userId: e.userId,
+      amountCents: e.amountCents,
+      amount: e.amountCents / 100,
+      currency: e.currency,
+      reason: e.reason,
+      status: e.status,
+      createdAt: e.createdAt,
+    });
 
     // Top paying users
     const topPayingUsers = stripePro
@@ -166,7 +175,8 @@ export async function GET(req: Request) {
       pastDue30d,
       canceled30d,
       topPayingUsers,
-      recentRefunds: refundsPlaceholder,
+      recentRefunds: recentRefunds.map(toBillingEventRow),
+      recentDisputes: recentDisputes.map(toBillingEventRow),
       coverage,
       warnings,
     });
