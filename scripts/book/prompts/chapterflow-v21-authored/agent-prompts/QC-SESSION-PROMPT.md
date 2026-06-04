@@ -148,7 +148,7 @@ A chapter's verdict is the **worst** of the deterministic gate and your bar scor
   recall cards, planning-note examples — the ~61/100 chapter). List the sub-0.6
   axes; it needs a quality pass before promote, not just an absence of defects.
 - **GREEN — ship** → 0 blockers, no corruption, overall ≥ 85, no axis < 0.6. Only
-  then tell the user it's ready for `promote-book`.
+  then record a PUBLISHABLE attestation (§3b).
 
 **The book ships GREEN only if EVERY scored chapter is GREEN.** Do not average across
 chapters — one RED chapter is a RED book.
@@ -156,6 +156,32 @@ chapters — one RED chapter is a RED book.
 Known-acceptable majors that do NOT block ship (stylistic debt, not bar failures):
 `F4` (soft-banned phrase overuse), a reasonable `D1` count, `F1` on real
 company/person names, `SC9` on an already-shipped book. See QC-PLAYBOOK §4.
+
+---
+
+## 3b. Record your verdict — REQUIRED (`qc-attest`)
+
+Your read does nothing until it is recorded. `promote-book` **blocks** any chapter
+without a fresh `PUBLISHABLE` attestation — this is the no-API semantic gate, the
+whole reason this session exists. For **every chapter you scored**, write the verdict:
+
+```
+npx tsx src/cli.ts qc-attest state/chapters/<bookId>-ch<NN>.v21-native.chapter.json \
+  --verdict PUBLISHABLE|REVISE|CORRUPTION \
+  --reviewer "claude-qc:<your-session-id>" \
+  --dimensions "keysCorrect=true,grounded=true,nonTemplated=true,frameworkComplete=true,cardsAnswerFronts=true,distractorsReal=true" \
+  --notes "<bar score; the one-line reason; any cited corruption>"
+```
+
+Verdict mapping: **GREEN → `PUBLISHABLE`**, **YELLOW → `REVISE`**, **RED → `CORRUPTION`**
+(if you cited a corruption hit) else `REVISE`. Set each `--dimensions` flag to what you
+actually verified — `keysCorrect=false` if you found a wrong key, etc.
+
+The attestation is stamped with a hash of the chapter's reader-facing content. If Codex
+edits the chapter afterward, the hash no longer matches and the attestation goes **STALE**
+— `promote` blocks again and the chapter must be re-reviewed. So: review, then attest, and
+never attest a chapter you have not actually read. Check coverage any time with
+`npx tsx src/cli.ts qc-status <bookId>` (PASS / STALE / REVISE / CORRUPTION / MISSING).
 
 ---
 
@@ -197,7 +223,7 @@ Verdict: GREEN ship | YELLOW not-publishable-yet | RED redo
 
 ## 6. Hard rules — do NOT
 
-- **Do NOT write or edit chapter JSONs** (not even to fix a typo). Surface it; Codex fixes it.
+- **Do NOT write or edit chapter JSONs** (not even to fix a typo). Surface it; Codex fixes it. (Writing your verdict with `qc-attest` (§3b) is REQUIRED and is not a chapter edit — it only writes to `state/qc/`.)
 - **Do NOT run `promote-book`, `generate`, `generate-book`, or `research`.** Those are the user's / writer's.
 - **Do NOT push to git.**
 - **Do NOT report GREEN without reading content** (see §0).

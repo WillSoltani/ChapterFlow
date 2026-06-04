@@ -27,6 +27,7 @@ import { fileURLToPath } from "url";
 import { BookPackageV21, ChapterV21, V21_SCHEMA_VERSION } from "./types.js";
 import { runShipGate, GateReport, formatGateReport } from "./critics/finalGate.js";
 import { runBookGate, BookGateReport, formatBookGateReport } from "./critics/bookGate.js";
+import { checkQcAttestation } from "./critics/qcAttestation.js";
 import { ChapterSpec } from "./generateChapter.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -116,6 +117,16 @@ export function promoteBook(input: PromotionInput): PromotionResult {
   const bookBlockerCount = bookGate.findings.filter((f) => f.severity === "blocker").length;
   const bookMajorCount = bookGate.findings.filter((f) => f.severity === "major").length;
 
+  // Step 3.5: QC-attestation gate — the no-API semantic judge. Every chapter
+  // must carry a fresh PUBLISHABLE attestation from a Claude reviewer; this is
+  // what makes the reviewer's verdict an enforceable ship blocker instead of an
+  // out-of-band manual step. Stale (chapter edited since review) or missing
+  // attestations block here even when every deterministic gate is clean.
+  const qcFindings = loadedChapters.flatMap((ch) =>
+    checkQcAttestation(ch, true).map((f) => ({ chapter: ch.number, ...f })),
+  );
+  const qcBlockerCount = qcFindings.length;
+
   // Step 4: Write the report regardless of pass/fail.
   mkdirSync(resolve(STATE, "books"), { recursive: true });
   const reportPath = resolve(STATE, "books", `${bookId}.gate.json`);
@@ -137,14 +148,19 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       totalMajors: shipMajorCount,
     },
     bookGate,
+    qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
   };
   writeFileSync(reportPath, JSON.stringify(fullReport, null, 2), "utf8");
 
-  // Step 5: Promote only if EVERY gate passes blocker-clean.
-  if (shipBlockerCount > 0 || bookBlockerCount > 0) {
+  // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
+  // gates AND the QC-attestation (semantic) gate.
+  if (shipBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${Date.now()}.report.json`);
     writeFileSync(quarantinePath, JSON.stringify(fullReport, null, 2), "utf8");
+    const qcSummary = qcBlockerCount > 0
+      ? ` + ${qcBlockerCount} QC-attestation blocker(s): ${qcFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${qcFindings.length > 3 ? ", …" : ""}`
+      : "";
     return {
       promoted: false,
       bookId,
@@ -153,7 +169,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       bookGateBlockerCount: bookBlockerCount,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s) + ${bookBlockerCount} book-gate blocker(s). Quarantined at ${quarantinePath}.`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s) + ${bookBlockerCount} book-gate blocker(s)${qcSummary}. Quarantined at ${quarantinePath}.`,
     };
   }
 

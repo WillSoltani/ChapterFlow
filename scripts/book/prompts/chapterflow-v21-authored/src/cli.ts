@@ -112,6 +112,13 @@ Commands:
                                      agents can't collide on book-gate F1 / BP13. Writes
                                      state/name-plans/<bookId>.name-plan.json. Default K=7.
                                      Exit 1 if the name bank ran dry for any chapter.
+  qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."]
+                                     SEMANTIC GATE (no-API): record a Claude reviewer's verdict,
+                                     stamped with the chapter's content hash, to state/qc/. promote
+                                     requires a fresh PUBLISHABLE attestation per chapter; editing the
+                                     chapter afterward makes it stale and forces re-review.
+  qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
+                                     CORRUPTION / MISSING. Exit 0 iff every chapter is ship-ready.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
@@ -1028,6 +1035,83 @@ async function runNamePlan(args: string[], flags: Record<string, string | boolea
   return 0;
 }
 
+/** `qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id>
+ *  [--notes "..."] [--dimensions key=true,key=false]` — record a Claude reviewer's
+ *  semantic verdict for a chapter, stamped with the chapter's current content hash.
+ *  promote requires a fresh PUBLISHABLE attestation per chapter (the no-API
+ *  semantic gate); editing the chapter afterward makes it stale. */
+async function runQcAttest(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const file = args[0];
+  const verdict = typeof flags["verdict"] === "string" ? (flags["verdict"] as string).toUpperCase() : "";
+  const reviewer = typeof flags["reviewer"] === "string" ? (flags["reviewer"] as string) : "";
+  if (!file || !["PUBLISHABLE", "REVISE", "CORRUPTION"].includes(verdict) || !reviewer) {
+    console.error(`Usage: qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."] [--dimensions k=true,k2=false]`);
+    return 2;
+  }
+  const chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
+  const parsed = chapter.chapterId ? parseChapterId(chapter.chapterId) : null;
+  if (!parsed) {
+    console.error(`Could not parse chapterId "${chapter.chapterId}" — cannot attest.`);
+    return 2;
+  }
+  const { chapterContentHash, writeAttestation } = await import("./critics/qcAttestation.js");
+  const dimensions: Record<string, boolean> = {};
+  for (const kv of parseCsvFlag(flags["dimensions"]) ?? []) {
+    const [k, v] = kv.split("=");
+    if (k) dimensions[k.trim()] = (v ?? "").trim().toLowerCase() === "true";
+  }
+  const notes = typeof flags["notes"] === "string" ? (flags["notes"] as string) : undefined;
+  const findings = parseCsvFlag(flags["findings"]) ?? undefined;
+  const path = writeAttestation({
+    schemaVersion: "qc-attest-v1",
+    bookId: parsed.bookId,
+    chapterNumber: chapter.number,
+    chapterId: chapter.chapterId!,
+    verdict: verdict as "PUBLISHABLE" | "REVISE" | "CORRUPTION",
+    contentHash: chapterContentHash(chapter),
+    reviewer,
+    reviewedAt: new Date().toISOString(),
+    dimensions: Object.keys(dimensions).length ? dimensions : undefined,
+    findings,
+    notes,
+  });
+  console.log(`QC attestation written: ${path}\n  ${parsed.bookId}-ch${chapter.number}  verdict=${verdict}  hash=${chapterContentHash(chapter)}  reviewer=${reviewer}`);
+  return 0;
+}
+
+/** `qc-status <bookId>` — show per-chapter QC-attestation coverage (the semantic
+ *  gate's readiness for promote): PASS (fresh PUBLISHABLE), STALE, REVISE/
+ *  CORRUPTION, or MISSING. */
+async function runQcStatus(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: qc-status <bookId>");
+    return 2;
+  }
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  const files = readdirSync(chaptersDir).filter((f) => isSiblingFile(f, bookId)).sort();
+  if (files.length === 0) {
+    console.error(`No chapters found for "${bookId}".`);
+    return 2;
+  }
+  const { chapterContentHash, loadAttestation } = await import("./critics/qcAttestation.js");
+  let ready = 0;
+  const lines: string[] = [];
+  for (const f of files) {
+    const ch = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
+    const att = loadAttestation(bookId, ch.number);
+    let status: string;
+    if (!att) status = "MISSING";
+    else if (att.verdict !== "PUBLISHABLE") status = att.verdict;
+    else if (att.contentHash !== chapterContentHash(ch)) status = "STALE";
+    else { status = "PASS"; ready++; }
+    lines.push(`  ch${String(ch.number).padStart(2, "0")}: ${status}${att ? `  (reviewer=${att.reviewer}, ${att.reviewedAt.slice(0, 10)})` : ""}`);
+  }
+  console.log(`QC attestation status — ${bookId}: ${ready}/${files.length} chapters ship-ready (PASS)`);
+  console.log(lines.join("\n"));
+  return ready === files.length ? 0 : 1;
+}
+
 async function runBookGate(args: string[]): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
@@ -1430,6 +1514,10 @@ async function main() {
       return runBookGate(args);
     case "name-plan":
       return runNamePlan(args, flags);
+    case "qc-attest":
+      return runQcAttest(args, flags);
+    case "qc-status":
+      return runQcStatus(args);
     case "author-check":
       return runAuthorCheck(args);
     case "fix-chapter-ids":
