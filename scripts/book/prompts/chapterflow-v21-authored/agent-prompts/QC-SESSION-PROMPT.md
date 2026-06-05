@@ -42,10 +42,13 @@ All `npx tsx` commands below run from this directory.
 Required on-disk files for book `<bookId>`:
 - `state/chapters/<bookId>-ch{NN}.v21-native.chapter.json` × N (the chapters)
 - `state/indexes/<bookId>.json` (chapter index)
-- `.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch{NN}.source.json` × N (source notes)
+- `.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch{NN}.source.json` × N (source notes).
+  **Find `<runId>` first** — it's a timestamp dir, so list it before concluding sidecars are absent:
+  `ls .chapterflow/runs/<bookId>/*/sidecars/source/` (run from the repo root, where `.chapterflow` lives — NOT the pipeline subdir). Do not claim "no sidecars" without running this.
 
 If chapters are missing → Codex hasn't finished Step 2; tell the user.
-If sidecars are missing → source-grounding checks are weakened; tell the user.
+If sidecars are genuinely absent (the `ls` above is empty) → source-grounding was unverifiable
+against notes; grade grounding cautiously and flag it.
 
 ---
 
@@ -119,10 +122,16 @@ attested them PASS) — each is a `example_coherence` DRAFT hit → **YELLOW**:
    agency — geographically implausible. The C11 gate now BLOCKS the egregious case
    (one location in ≥4 of 6 scenes); you catch the subtler 3-of-6 version. Each scene
    gets its own domain-appropriate setting.
-2. **Shared skeleton** — do ≥half the scenes share a structural shape even with
-   different words? (4HWW ch12: "[Name] [task] at [fixed clock time] in [place]; the
-   manager [fear]; [Name] must [verb] before [deadline]: [3-item comma list]" ×3.) A
-   rotating frame is templating even when every noun differs.
+2. **Shared skeleton — THE most-missed defect.** Do ≥half the scenes share a structural
+   shape even with different words? The deterministic gates CANNOT catch this (clock times
+   and decision language are legitimate and common in gold books — so there is no gate for
+   it; you are the only catch). The frame that sank Rich Dad Poor Dad, in nearly every
+   chapter: **"[Name] [does X] at [clock time] in [place]; [pressure]; must decide whether
+   A or B"** ×5–6 of 6, with only the name/time/place/A-B swapped. Also 4HWW ch12:
+   "[Name] [task] at [time]; the manager [fear]; must [verb] before [deadline]: [3-item
+   list]" ×3. A clock-time opener in one or two scenes is fine; the SAME frame across most
+   scenes is GENERATED_DRAFT → YELLOW. Diagnostic: if one sentence template describes all
+   six scenes, it fails — cite the template and the scene numbers.
 3. **One name = one person** — does any name denote two different people/roles across
    the breakdown vs the examples vs the quiz? (4HWW ch14: the remote-income role was
    "Wendy" in the breakdown but "Alice" in the example; ch5 used "Holden" for two

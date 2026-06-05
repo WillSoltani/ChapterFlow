@@ -1308,6 +1308,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `  ${PIPE}\n` +
         `• Read its source notes: ${resolve(sourceDir, `ch${numStr}.source.json`)}\n` +
         `• Use ONLY these character names: ${names}\n` +
+        `• Give each of the 6 example scenes a DIFFERENT SHAPE (R6): do NOT open every scene "[Name] does X at [clock time] in [place]…", and use a binary "must decide whether A or B" frame at most ONCE. Vary opener, structure, and stakes per scene. One name = one person across breakdown→examples→quiz.\n` +
         `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring rules)\n` +
         `• Save to state/chapters/${chapterId}.v21-native.chapter.json\n` +
         `• Then run: npx tsx src/cli.ts gate-chapter state/chapters/${chapterId}.v21-native.chapter.json\n` +

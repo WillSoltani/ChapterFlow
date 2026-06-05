@@ -116,6 +116,23 @@ post-hoc check. `SC11` verifies the unit actually uses the anchor it claims — 
 sentence that merely name-drops the anchor fails. (v1 sidecars: no `sourceAnchorId`
 needed; SC11 skips them.)
 
+**R6 — Vary the SHAPE of each scene, not just the nouns (the systemic templating
+defect).** This is the single defect that put whole books at REVISE (Rich Dad Poor Dad:
+nearly every scene across every chapter opened the same way). The gates CANNOT catch it
+(clock times and decision language are legitimate — gold books use them), so it is on
+YOU. A reader meeting six scenes built on one frame knows instantly the book was
+generated. The frame to BREAK:
+> ❌ `[Name] [does X] at [clock time] in [place]; [pressure/deadline]; must decide whether A or B.`
+> repeated across 5–6 of 6 scenes, with only the name, time, place, and the A/B swapped.
+Concretely: a clock-time opener is fine in *one or two* scenes, never as the default for
+all six. The "must decide whether A or B" / "one option is X, the other is Y" binary is a
+frame, not a scene — use it at most once. Give each of the six scenes a genuinely
+different **construction**: one opens mid-action, one on a line of dialogue, one on a
+number, one on an aftermath, one on a place, one on a decision already made. If you can
+describe all six scenes with one sentence template, you have failed R6 — tear them out
+and rebuild each from a different `namedExample`. (And per the name plan: one name = one
+person across breakdown → examples → quiz; never reuse a name for a second character.)
+
 ---
 
 ## False-positive allowances (write freely)
