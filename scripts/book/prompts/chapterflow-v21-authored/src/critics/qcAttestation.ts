@@ -80,9 +80,11 @@ function canonicalContent(ch: any): unknown {
     return r;
   };
   const projected = {
+    title: ch?.title ?? "",
     hook: ch?.hook ?? "",
     counterintuition: ch?.counterintuition ?? "",
     keyTakeaway: ch?.keyTakeaway ?? "",
+    tryThisNow: ch?.tryThisNow ?? "",
     breakdown: pick(ch?.breakdown ?? {}, ["fastRead", "deepRead", "fullRead"]),
     examples: (ch?.examples ?? []).map((e: any) => pick(e, ["title", "format", "scenario", "whatToDo", "whyItMatters"])),
     quiz: (ch?.quiz?.questions ?? []).map((q: any) =>

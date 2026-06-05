@@ -92,17 +92,19 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   C8: "blocker",
   C9: "blocker",
   C10: "blocker",
-  // C11 — within-chapter location-stamping (the ch2-of-4HWW "Princeton in every
+  // C18 — within-chapter location-stamping (the ch2-of-4HWW "Princeton in every
   // scene" defect the QC bar caught but the gates missed). BLOCKER: calibrated
   // zero false-positives across the gold corpus (daring-greatly + start-with-why,
   // 21 ch), rework (v2), and the 14 clean 4HWW chapters; the location-context
   // narrowing spares central concepts/entities (Golden Circle, Basecamp, Rogers).
-  C11: "blocker",
-  // C12 — same protagonist leads multiple example scenes. SHADOW=major: precise
+  // (Uses C18/C19, NOT C11/C12 — those are taken by the support-section checks
+  // below; the original C11/C12 reuse was a catalog collision caught in review.)
+  C18: "blocker",
+  // C19 — same protagonist leads multiple example scenes. SHADOW=major: precise
   // and zero-FP in calibration, but no confirmed true-positive yet (the ch5/ch14
-  // reuse is breakdown-vs-example, which C12 doesn't see), so it surfaces rather
+  // reuse is breakdown-vs-example, which C19 doesn't see), so it surfaces rather
   // than blocks until a real example-vs-example reuse confirms it.
-  C12: "major",
+  C19: "major",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -179,14 +181,15 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "AS13.within_chapter_quiz_template": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
-  // zero reference to real source cases). PROMOTED major→blocker after
-  // calibration: zero findings across the gold corpus (daring-greatly ch01-07 +
-  // start-with-why ch01-14, 21 chapters) AND across rework ch01-23 — so it does
-  // not false-positive on legitimate content. The critic auto-skips chapters
-  // whose sidecars yield < 3 candidate anchors (sourceGrounding.ts), which
-  // protects genuinely abstract chapters; what remains is a real ungrounded
-  // scenario in a chapter that HAS resolvable source, which must not ship.
-  "SC9.example_not_source_grounded": "blocker",
+  // zero reference to real source cases). SHADOW=major. A mid-session promotion to
+  // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
+  // claim FALSE — as a blocker SC9 fires on 16 of 21 gold (reference-quality)
+  // chapters (daring-greatly 5/7, start-with-why 11/14) because well-grounded
+  // scenes don't always name a source proper noun the way SC9 demands. SC9 is too
+  // strict to be a hard blocker; it stays advisory and the semantic QC catches the
+  // real ungrounded cases. (The earlier calibration run reported 0 only because the
+  // gold sidecars weren't resolving at that moment — a fragile, non-reproducible 0.)
+  "SC9.example_not_source_grounded": "major",
   // SC11.0 — no source run/sidecar on disk (Phase 0). SHADOW=major: missing
   // source reliably predicts word-salad, but it's advisory until Phase 3
   // guarantees every active book a resolvable sidecar (then → blocker).
@@ -473,10 +476,10 @@ export function runShipGate(chapter: ChapterV21): GateReport {
       sc.coreClaim ?? "",
     ].join(" \n ");
     for (const f of checkExampleSettingStamping(chapter.examples, coreTeachingText)) {
-      push("C11", "examples", f.message, f.evidence);
+      push("C18", "examples", f.message, f.evidence);
     }
     for (const f of checkExampleProtagonistReuse(chapter.examples)) {
-      push("C12", "examples", f.message, f.evidence);
+      push("C19", "examples", f.message, f.evidence);
     }
   }
 
