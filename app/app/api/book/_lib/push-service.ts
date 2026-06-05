@@ -2,6 +2,7 @@ import "server-only";
 
 import webpush from "web-push";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { isAllowedPushEndpoint } from "@/app/app/api/book/_lib/push-endpoint-allowlist";
 
 let configured = false;
 
@@ -25,6 +26,14 @@ export async function sendPushNotification(
   subscription: PushSubscription,
   payload: { title: string; body: string; url?: string }
 ): Promise<{ sent: boolean; expired?: boolean; error?: string }> {
+  // SSRF guard: web-push POSTs to this endpoint server-side, and it originates
+  // from client-supplied device registration. Refuse anything that isn't a known
+  // browser push service over HTTPS so a crafted endpoint can't make us hit
+  // internal hosts / cloud metadata.
+  if (!isAllowedPushEndpoint(subscription.endpoint)) {
+    console.warn("[push-service] refusing send to non-allowlisted endpoint");
+    return { sent: false, error: "endpoint_not_allowed" };
+  }
   try {
     await ensureConfigured();
     await webpush.sendNotification(
