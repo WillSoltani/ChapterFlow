@@ -4,6 +4,7 @@ import {
   GetCommand,
   QueryCommand,
   TransactWriteCommand,
+  UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
@@ -837,6 +838,44 @@ export async function markReferralActivationRewarded(
             },
           },
         ],
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
+}
+
+/**
+ * Consume a referral claim that failed fraud screening: mark it blocked so it is
+ * not retried on the next book-start, WITHOUT crediting the inviter (no
+ * activatedInvites / points — unlike markReferralActivationRewarded). Idempotent
+ * via attribute_not_exists(activationRewardedAt).
+ */
+export async function markReferralActivationBlocked(
+  tableName: string,
+  claim: BookUserReferralClaimItem,
+  reason: string | null
+): Promise<boolean> {
+  const now = nowIso();
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(claim.userId),
+          SK: referralClaimSk(),
+        },
+        UpdateExpression:
+          "SET #status = :blocked, blockedReason = :reason, activationRewardedAt = :now, updatedAt = :now",
+        ConditionExpression: "attribute_not_exists(activationRewardedAt)",
+        ExpressionAttributeNames: { "#status": "status" },
+        ExpressionAttributeValues: {
+          ":blocked": "blocked",
+          ":reason": reason ?? "fraud",
+          ":now": now,
+        },
       })
     );
     return true;
