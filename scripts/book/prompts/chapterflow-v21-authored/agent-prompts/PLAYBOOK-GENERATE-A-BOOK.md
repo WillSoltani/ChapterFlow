@@ -111,13 +111,15 @@ with `--categories "A,B" --tags "x,y"`.
 ```
 npx tsx src/cli.ts register-web <bookId>
 ```
-Registers the book in `app/book/data/bookPackages.ts` (append-only — touches no
-existing line) and refreshes the catalog, so it shows up when you run the app
-locally. Idempotent. For the **production** reader (DynamoDB/S3) it prints the
-publish command, which needs AWS env vars:
-```
-npx tsx scripts/book/publish-single-package.ts --file book-packages/<bookId>.v21.json --created-by you
-```
+Covers BOTH surfaces:
+- **Static `/books` browse page** — append-only registration into
+  `app/book/data/bookPackages.ts` (touches no existing line) + catalog refresh.
+- **In-app reader + library** (the actual reading experience, backed by
+  DynamoDB/S3) — if your AWS env is set (`BOOK_TABLE_NAME` / `BOOK_INGEST_BUCKET`
+  / `BOOK_CONTENT_BUCKET` / `AWS_REGION`), it **auto-runs the ingest**; otherwise
+  it prints the `publish-single-package.ts` command to run when you have AWS.
+
+Idempotent. Refresh the page after — no dev-server restart needed for the reader.
 
 ---
 

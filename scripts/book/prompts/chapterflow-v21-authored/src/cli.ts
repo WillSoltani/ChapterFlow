@@ -129,10 +129,12 @@ Commands:
   categorize <bookId>                Preview the no-API auto-categorizer's pick (categories + tags from
                                      the book's own content). promote-book applies it automatically when
                                      --categories/--tags aren't given; pass those to override.
-  register-web <bookId>              Make a promoted book show up in the reader: append-only registration
-                                     into app/book/data/bookPackages.ts (no existing line touched) + a
-                                     catalog-metadata refresh. Idempotent. Prints the production publish
-                                     command (DynamoDB/S3, needs AWS env) at the end.
+  register-web <bookId> [--created-by <name>] [--skip-ingest]
+                                     Make a promoted book show up in the reader. (1) Static /books browse:
+                                     append-only registration into app/book/data/bookPackages.ts (no
+                                     existing line touched) + catalog refresh. (2) In-app reader/library:
+                                     if AWS env (BOOK_TABLE_NAME / BOOK_*_BUCKET) is set, auto-runs the
+                                     DynamoDB/S3 ingest; otherwise prints the command. Idempotent.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
@@ -1014,10 +1016,10 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
  *  catalog metadata (which imports BOOK_PACKAGES, so it also verifies the edit
  *  compiles). Idempotent. Production publish (DynamoDB/S3) is a separate step that
  *  needs AWS env — printed at the end. */
-async function runRegisterWeb(args: string[]): Promise<number> {
+async function runRegisterWeb(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: register-web <bookId>");
+    console.error("Usage: register-web <bookId> [--created-by <name>] [--skip-ingest]");
     return 2;
   }
   const REPO = resolve(__dirname, "../../../../..");
@@ -1075,8 +1077,31 @@ async function runRegisterWeb(args: string[]): Promise<number> {
   } else {
     console.warn(`Catalog generator not found at ${genScript}; run it yourself to refresh the library list.`);
   }
-  console.log(`\nProduction (live reader via DynamoDB/S3 — needs AWS env vars BOOK_TABLE_NAME / BOOK_*_BUCKET / AWS_REGION):`);
-  console.log(`  npx tsx scripts/book/publish-single-package.ts --file book-packages/${bookId}.v21.json --created-by you`);
+  // Reader ingest (DynamoDB/S3) — the in-app library + reader read from the
+  // published catalog, NOT the static one above. Auto-run the ingest when the
+  // AWS env is present; otherwise print the command to run later.
+  const publishCmd = `npx tsx scripts/book/publish-single-package.ts --file book-packages/${bookId}.v21.json --created-by you`;
+  const hasAwsEnv = !!(process.env.BOOK_TABLE_NAME && process.env.BOOK_INGEST_BUCKET && process.env.BOOK_CONTENT_BUCKET);
+  const publishScript = resolve(REPO, "scripts/book/publish-single-package.ts");
+  if (flags["skip-ingest"] === true) {
+    console.log(`\nReader ingest skipped (--skip-ingest). To do it later:\n  ${publishCmd}`);
+  } else if (hasAwsEnv && existsSyncFs(publishScript)) {
+    const createdBy = typeof flags["created-by"] === "string" ? (flags["created-by"] as string) : "register-web";
+    console.log(`\nAWS env detected — ingesting "${bookId}" into the reader catalog (DynamoDB/S3)…`);
+    try {
+      execSync(
+        `npx tsx ${JSON.stringify(publishScript)} --file ${JSON.stringify(`book-packages/${bookId}.v21.json`)} --created-by ${JSON.stringify(createdBy)}`,
+        { cwd: REPO, stdio: "inherit" },
+      );
+      console.log(`✓ Ingested — "${bookId}" is now in the in-app library + reader (just refresh the page).`);
+    } catch (err) {
+      console.error(`Reader ingest FAILED (${(err as Error).message}). Run it manually:\n  ${publishCmd}`);
+      return 1;
+    }
+  } else {
+    console.log(`\nReader ingest skipped — AWS env not set (need BOOK_TABLE_NAME / BOOK_INGEST_BUCKET / BOOK_CONTENT_BUCKET${process.env.AWS_REGION ? "" : " / AWS_REGION"}).`);
+    console.log(`This step puts the book in the actual in-app reader. When your AWS env is set, run:\n  ${publishCmd}`);
+  }
   return 0;
 }
 
@@ -1707,7 +1732,7 @@ async function main() {
     case "categorize":
       return runCategorize(args);
     case "register-web":
-      return runRegisterWeb(args);
+      return runRegisterWeb(args, flags);
     case "author-check":
       return runAuthorCheck(args);
     case "fix-chapter-ids":
