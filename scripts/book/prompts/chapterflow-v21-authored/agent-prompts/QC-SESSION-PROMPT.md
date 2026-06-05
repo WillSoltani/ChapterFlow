@@ -110,6 +110,24 @@ Full rubric text is `AXIS_RUBRIC` in publishableBar.ts; the essentials:
 | factual_accuracy (8) | named-framework enumerations complete & correct vs source | CORRUPTION |
 | memorable_line_quality (6) | portable aphorisms, not 20-word explanations | DRAFT |
 
+**Example-slate coherence (the 4HWW miss — read the 6 scenes TOGETHER, not one at a
+time).** A chapter can be clean scene-by-scene yet fail at the slate level. Three
+patterns a per-scene read misses (they put 4HWW ch2/12/14 at REVISE after a first pass
+attested them PASS) — each is a `example_coherence` DRAFT hit → **YELLOW**:
+1. **Location stamping** — is one place (a city, campus, building) the setting of most
+   scenes? 4HWW ch2 stamped "Princeton University" on a nonprofit, a sales rep, AND an
+   agency — geographically implausible. The C11 gate now BLOCKS the egregious case
+   (one location in ≥4 of 6 scenes); you catch the subtler 3-of-6 version. Each scene
+   gets its own domain-appropriate setting.
+2. **Shared skeleton** — do ≥half the scenes share a structural shape even with
+   different words? (4HWW ch12: "[Name] [task] at [fixed clock time] in [place]; the
+   manager [fear]; [Name] must [verb] before [deadline]: [3-item comma list]" ×3.) A
+   rotating frame is templating even when every noun differs.
+3. **One name = one person** — does any name denote two different people/roles across
+   the breakdown vs the examples vs the quiz? (4HWW ch14: the remote-income role was
+   "Wendy" in the breakdown but "Alice" in the example; ch5 used "Holden" for two
+   people.) Each name maps to exactly one person doing consistent things everywhere.
+
 **Hidden-key protocol (mandatory — the only way to catch a wrong key behind a clean
 explanation, the hooked / dare-to-lead defect):** for every question the gate /
 `author-check` flagged, PLUS ~4 random questions per chapter — cover `correctIndex`,

@@ -12,7 +12,7 @@
 
 import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
-import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
+import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity } from "./integrity.js";
 import { finding } from "./shared.js";
 import { checkCardTestsRetrieval, checkQuizTestsApplication } from "./pedagogy.js";
@@ -34,7 +34,7 @@ import {
   checkChapterJammedNouns,
 } from "./antiSalting.js";
 import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
-import { checkExampleSourceGrounding, checkChapterProvenance } from "./sourceGrounding.js";
+import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -92,6 +92,17 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   C8: "blocker",
   C9: "blocker",
   C10: "blocker",
+  // C11 — within-chapter location-stamping (the ch2-of-4HWW "Princeton in every
+  // scene" defect the QC bar caught but the gates missed). BLOCKER: calibrated
+  // zero false-positives across the gold corpus (daring-greatly + start-with-why,
+  // 21 ch), rework (v2), and the 14 clean 4HWW chapters; the location-context
+  // narrowing spares central concepts/entities (Golden Circle, Basecamp, Rogers).
+  C11: "blocker",
+  // C12 — same protagonist leads multiple example scenes. SHADOW=major: precise
+  // and zero-FP in calibration, but no confirmed true-positive yet (the ch5/ch14
+  // reuse is breakdown-vs-example, which C12 doesn't see), so it surfaces rather
+  // than blocks until a real example-vs-example reuse confirms it.
+  C12: "major",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -440,6 +451,33 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // seven-powers; would have prevented both bad books from shipping.
   for (const f of checkExampleTemplating(chapter.examples)) {
     push("C8", "examples", f.message, f.evidence);
+  }
+
+  // ── Example-slate coherence the deterministic gates missed but the 4HWW
+  // semantic QC caught: (C11) one proper noun stamped across most scenes as a
+  // shared setting (ch2 "Princeton University" in all six), and (C12) the same
+  // protagonist leading multiple scenes (ch5/ch14). The thesis text exempts the
+  // book's genuinely-central entity from C11.
+  {
+    // Exempt only the chapter's CORE TEACHING (keyTakeaway + counterintuition +
+    // the sidecar's centralConcept/focus/coreClaim) — NOT the breakdown, which
+    // discusses the examples and would launder a stamped location ("Princeton")
+    // into the exemption. A genuinely central concept/entity ("Golden Circle")
+    // lives in the core teaching and is correctly spared.
+    const sc: any = loadChapterSidecar(chapter.chapterId) ?? {};
+    const coreTeachingText = [
+      chapter.keyTakeaway,
+      chapter.counterintuition ?? "",
+      sc.centralConcept?.name ?? "",
+      sc.focus ?? "",
+      sc.coreClaim ?? "",
+    ].join(" \n ");
+    for (const f of checkExampleSettingStamping(chapter.examples, coreTeachingText)) {
+      push("C11", "examples", f.message, f.evidence);
+    }
+    for (const f of checkExampleProtagonistReuse(chapter.examples)) {
+      push("C12", "examples", f.message, f.evidence);
+    }
   }
 
   // ── SC9 source-grounding: each example scenario must reference at least
