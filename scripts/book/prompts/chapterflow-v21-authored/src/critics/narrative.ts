@@ -122,6 +122,117 @@ export function checkExampleTemplating(
 }
 
 /**
+ * Check: one proper noun is stamped across most example scenarios as a shared
+ * setting/entity — the ch2-of-4HWW "Princeton University in all six scenes"
+ * defect that the QC bar caught but the gates missed. Distinct from
+ * checkExampleTemplating (which needs a verbatim shared 5-gram): here the prose
+ * varies but the same place/institution is bolted onto every scene, which reads
+ * as source-stuffing rather than distinct real-world scenes. Exempts nouns that
+ * appear in the chapter's THESIS text (hook/counterintuition/keyTakeaway/
+ * breakdown) — those are the book's genuinely central entity (e.g. "Basecamp"
+ * for "scratch your own itch") and legitimately recur across scenes.
+ */
+const SPATIAL_PREP = new Set([
+  "in", "at", "inside", "outside", "near", "within", "across", "atop", "aboard", "into", "onto", "around",
+]);
+
+export function checkExampleSettingStamping(
+  examples: Array<{ scenario?: string }>,
+  coreTeachingText: string,
+): CriticFinding[] {
+  const n = examples.length;
+  if (n < 4) return [];
+  const exempt = (coreTeachingText ?? "").toLowerCase();
+  // Collect, per example, proper nouns used as a SETTING — a capitalized token
+  // within 4 words after a spatial preposition ("in a Princeton room"). This
+  // targets a single LOCATION stamped across scenes (the ch2 "Princeton" x6
+  // defect) while ignoring a concept/figure merely referenced ("Rogers's law",
+  // "the Golden Circle"), which is what produced the false positives on the gold
+  // corpus before this narrowing.
+  const nounToExamples = new Map<string, Set<number>>();
+  examples.forEach((ex, i) => {
+    const words = (ex.scenario ?? "").split(/\s+/);
+    const seen = new Set<string>();
+    for (let w = 0; w < words.length; w++) {
+      const m = words[w].match(/^([A-Z][a-z]{2,})/);
+      if (!m) continue;
+      const noun = m[1];
+      if (PROPER_NOUN_STOPWORDS.has(noun) || seen.has(noun)) continue;
+      let spatial = false;
+      for (let k = Math.max(0, w - 4); k < w; k++) {
+        if (SPATIAL_PREP.has(words[k].toLowerCase().replace(/[^a-z]/g, ""))) { spatial = true; break; }
+      }
+      if (!spatial) continue;
+      seen.add(noun);
+      if (!nounToExamples.has(noun)) nounToExamples.set(noun, new Set());
+      nounToExamples.get(noun)!.add(i);
+    }
+  });
+  const threshold = Math.max(4, Math.ceil(n * 0.6));
+  const findings: CriticFinding[] = [];
+  for (const [noun, idxs] of nounToExamples) {
+    if (idxs.size < threshold) continue;
+    if (exempt.includes(noun.toLowerCase())) continue; // central concept/entity — legit
+    findings.push(
+      finding(
+        "narrative.example_setting_stamping",
+        "major",
+        `the location "${noun}" is the setting in ${idxs.size} of ${n} example scenes (examples ${[...idxs].map((i) => i + 1).join(", ")}) — a single place stamped across the slate reads as source-stuffing, not ${idxs.size} distinct real-world scenes. Vary the settings.`,
+        noun,
+      ),
+    );
+  }
+  return findings;
+}
+
+/**
+ * Check: the same protagonist name leads more than one example scene. The name
+ * plan allocates a distinct protagonist per example, so a name that is the
+ * recurring actor (>=2 mentions) in two scenes is a reused/templated cast — the
+ * within-chapter twin of book-gate F1, which the 4HWW QC flagged on ch5/ch14.
+ * Counts only names that recur within a scenario (>=2x) so one-off place/entity
+ * nouns can't false-positive.
+ */
+export function checkExampleProtagonistReuse(
+  examples: Array<{ scenario?: string }>,
+): CriticFinding[] {
+  if (examples.length < 2) return [];
+  const protagonistOf = (scenario: string): string | null => {
+    const counts = new Map<string, number>();
+    for (const m of (scenario ?? "").matchAll(PROPER_NOUN_RE)) {
+      const w = m[0];
+      if (PROPER_NOUN_STOPWORDS.has(w)) continue;
+      counts.set(w, (counts.get(w) ?? 0) + 1);
+    }
+    let best: string | null = null;
+    let bestC = 1;
+    for (const [w, c] of counts) if (c >= 2 && c > bestC) { best = w; bestC = c; }
+    return best;
+  };
+  const nameToExamples = new Map<string, number[]>();
+  examples.forEach((ex, i) => {
+    const p = protagonistOf(ex.scenario ?? "");
+    if (!p) return;
+    if (!nameToExamples.has(p)) nameToExamples.set(p, []);
+    nameToExamples.get(p)!.push(i + 1);
+  });
+  const findings: CriticFinding[] = [];
+  for (const [name, exs] of nameToExamples) {
+    if (exs.length >= 2) {
+      findings.push(
+        finding(
+          "narrative.example_protagonist_reuse",
+          "major",
+          `"${name}" is the recurring protagonist of multiple examples (${exs.join(", ")}) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.`,
+          name,
+        ),
+      );
+    }
+  }
+  return findings;
+}
+
+/**
  * Check N: alphabet-cycling protagonist names within a chapter.
  *
  * When an agent enumerates names by walking the alphabet, the first letters

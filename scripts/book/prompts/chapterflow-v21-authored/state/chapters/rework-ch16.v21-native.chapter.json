@@ -1,0 +1,352 @@
+{
+  "chapterId": "rework-ch16",
+  "number": 16,
+  "title": "Start a business, not a startup",
+  "readingTimeMinutes": 11,
+  "hook": "Revenue in, expenses out, stay alive: the word startup does not repeal that arithmetic.",
+  "counterintuition": "Calling a venture a startup feels like permission to postpone earning until scale arrives. But the label is just a name, and a company that never covers the gap between money in and money out simply runs out and disappears.",
+  "tryThisNow": "Write the venture you are working on at the top of a page, then under it answer in one line how a real customer pays you and when that first payment could land.",
+  "keyTakeaway": "A startup is still a business: it must earn more than it spends. Make the path to a paying customer visible from day one, even if first amounts stay modest.",
+  "breakdown": {
+    "fastRead": "37signals built Basecamp and charged for it. People had to find the product useful enough to hand over money, so value and price sat at the center from the start. The funding came from customers, not investors.\n\nThe move is blunt accounting. Money comes in, money goes out, and a company that never covers the gap disappears. Calling the venture a startup changes the label, not the law.\n\nSo treat profit as a design constraint, not a chore for after the attention is won. Ask early how customers will pay. That question keeps the work honest about whether anyone values it at all.",
+    "deepRead": "Customer payment works as a truth test that investor money quietly switches off. When a venture runs on a raise, it can keep operating for months while nobody pays, so the one signal that matters, will a stranger spend money on this, stays hidden. Charge from the start and that signal arrives immediately. A paying customer confirms value in a way a funding round never can. Investors bet on a story, while users vote with cash.\n\nWatch how the posture changes the daily decisions. Because Basecamp depended on people paying, the product had to deliver enough to justify its price. That pressure pushed attention toward value, support, pricing, and restraint. Each of those gets sharper when a customer has to say yes with a credit card rather than a survey answer.\n\nNow the deferral trap. A plan to figure out profit later often hides an unproven model. Saying earning comes after scale can sound like neutral sequencing, but the phrase frequently covers a harder fact, that no one has yet shown the venture can ever make money. Later becomes a substitute for an answer instead of a schedule. The startup frame makes this easy, because it grants social permission to skip the question that a plain business would have to face on day one.\n\nDistinguishing the two cases is the payoff. A funded venture with no paying users is not automatically further along than a tiny one with revenue. The first has runway and a story; the second has proof. Runway buys time, but only payment proves worth, and the two are easy to confuse when the bank balance looks healthy.",
+    "fullRead": "Pushed too far, profit reality becomes its own mistake, and naming that limit is what keeps it honest. The crude reading says every venture must post large profit immediately or be abandoned. That reading is wrong. Some products genuinely need development time before they can ship and charge, and a rule that kills them on day one is not discipline; it is impatience. What the edge actually demands is softer and sharper at once. It asks whether the path to earning is visible early, not whether the earning has already arrived.\n\nDagny's case shows the edge clearly. Her sensor product cannot ship at volume for months, so demanding huge profit this quarter would just end a good venture. The honest question is whether a modest paid pilot can land soon, proving customers will pay even while the full product develops. A small first amount with a clear path passes. A glamorous deck with no path does not. The number can be tiny; what cannot be missing is the line from here to a customer's money.\n\nThis is where the startup frame does its quiet damage. It supplies a vocabulary for skipping the question. Spend other people's money, chase users, postpone revenue, promise profit at scale: each phrase sounds like strategy and each one moves the moment of truth further away. The frame is not evil, just permissive. It lets a team feel like a serious company while the one fact a plain business confronts on day one, can we earn more than we spend, stays politely off the table. The startup label does not repeal that arithmetic; it only mutes the alarm.\n\nThe deeper point is about posture, not stage or size. Two ventures can look identical from the outside and be opposites underneath. One treats profit as a core design constraint and lets the need for a paying customer shape its value, its support, its pricing, and its restraint. The other treats profit as an embarrassing detail to clean up once attention and funding are secured. The first is a business at any size; the second is a startup in the mythic sense even when it grows large. Where profit sits in the priorities decides which one a venture actually is, and a healthy bank balance can hide that for a surprisingly long time.\n\nNotice what the word business does once the glamour is stripped off. It sounds plain next to the founders spending capital to chase scale, and that plainness reads, wrongly, as small. But ambition never lived in the label. It lives in building something valuable and durable that people choose to pay for. The term business is clarifying, not limiting: it centers customers, value, and sustainability while leaving every large goal fully intact. A founder can want to change an industry and still ask, on the first day, how a real customer will pay. Those are not in tension. The path to earning, made visible early and kept modest if it must be, is what turns a story about scale into a company that survives to tell one."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch16.fact.5",
+      "title": "Customer-Funded Versus Investor-Funded",
+      "tags": [
+        "37signals",
+        "funding source",
+        "posture"
+      ],
+      "planSpec": {
+        "domain": "bootstrapped software venture",
+        "audience": "founders choosing how the venture gets funded",
+        "stakes": "build on customer payment or on investor capital",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist picks customer-funded over investor-funded software"
+      },
+      "scenario": "Asbjorn has a working project tracker and a handful of early users at his desk, and he keeps reading how 37signals anchored Basecamp in customer-funded software rather than investor-funded growth. A mentor pushes him to raise first and charge much later, once usage is large. Before he replies to the term sheet sitting in his inbox, Asbjorn must choose which side of that divide his venture sits on: revenue from users now, or capital from investors first.",
+      "whatToDo": "Asbjorn turns down the term sheet and charges his early users this month, letting revenue from people who value the tracker fund the next step the way Basecamp was customer-funded.",
+      "whyItMatters": "Choosing customer payment over investor capital puts value and sustainability at the center early, so a founder learns whether strangers will actually pay instead of betting the venture on a funding story."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch16.fact.2",
+      "title": "The Quiet That Hid the Test",
+      "tags": [
+        "investor money",
+        "hidden signal",
+        "willingness to pay"
+      ],
+      "planSpec": {
+        "domain": "consumer subscription venture",
+        "audience": "teams running on a raise with no paid users",
+        "stakes": "keep spending capital or test whether anyone will pay",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist sees investor money hiding the willingness-to-pay test"
+      },
+      "scenario": "At 8 a.m. in the Oslo office founder Astrid opens the deck for the nine o'clock board meeting and finally sees what eighteen months of investor money concealed. Her habit-tracking app has a quarter million sign-ups and not one of them has ever been asked to pay. The slide still calls that free growth proof of value. With the directors arriving in an hour, Astrid has to tell the room a harder thing: spending the raise let them skip the one test, whether a stranger would actually spend money on this, that the funding quietly switched off.",
+      "whatToDo": "Astrid replaces the free-growth slide with a paid pilot plan, putting price in front of a slice of users so the board sees whether anyone values the app enough to pay, not just to sign up.",
+      "whyItMatters": "Investor money can run a product for months without a single payment, so the willingness-to-pay test stays hidden; surfacing it early stops a team from mistaking sign-ups for proven value."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch16.fact.3",
+      "title": "Later as a Substitute for an Answer",
+      "tags": [
+        "deferred profit",
+        "unproven model",
+        "the word later"
+      ],
+      "planSpec": {
+        "domain": "marketplace venture",
+        "audience": "teams deferring the profit question",
+        "stakes": "treat later as a schedule or as a missing answer",
+        "format": "contrast",
+        "requiredBeat": "the protagonist exposes deferred profit as a masked unproven model"
+      },
+      "scenario": "On Friday afternoon in the Bergen co-working loft, Bodil, the marketplace's product lead, keeps hearing one phrase in the planning session: profit comes later, after scale. On the whiteboard it reads like calm sequencing. But she pulls the model apart and finds no version where buyers and sellers ever pay enough to cover the work, the kind of customer-funded math 37signals demanded of Basecamp from the first day. The word later, she realizes, is standing in for an answer nobody has. With the next funding round being pitched on that same slide in twenty minutes, Bodil must say whether the venture has a real path to earning or only a deferral dressed as a plan.",
+      "whatToDo": "Bodil stops the pitch and asks the team to show the exact version of the model where buyers and sellers cover the work, refusing to let the word later stand in for that missing answer.",
+      "whyItMatters": "Deferring the profit question lets a team skip whether the model can ever work; forcing the path to earning into the open early prevents an unproven business from coasting on a funding story."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch16.fact.6",
+      "title": "When Paying Customers Sharpened Basecamp",
+      "tags": [
+        "design constraint",
+        "value and support",
+        "Basecamp"
+      ],
+      "planSpec": {
+        "domain": "B2B software venture",
+        "audience": "builders deciding when profit pressure starts",
+        "stakes": "treat profit as early constraint or late cleanup",
+        "format": "before_after",
+        "requiredBeat": "profit pressure sharpens value, support, pricing, and restraint"
+      },
+      "scenario": "Through his first year as sole developer in a Trondheim flat, Brage let his scheduling tool grow on free accounts, and every feature request got a yes because nothing cost a decision. After he turned on real billing one Monday morning, the picture changed the way it once did for Basecamp, which had to be useful enough that people would pay. Suddenly value, support, pricing, and restraint were live constraints. A feature now had to earn its place against a customer who could cancel. The tool got smaller, clearer, and far more defensible than the bloated free version ever was.",
+      "whatToDo": "Brage turns on paid billing and re-scores every pending feature against a customer who can cancel, cutting the ones that only padded a free product and keeping the few that justify the price.",
+      "whyItMatters": "When payment becomes the constraint, value, support, pricing, and restraint stop being optional, so designing around a paying customer sharpens the product instead of letting it bloat unchecked."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch16.fact.8",
+      "title": "Modest Now, Path Visible",
+      "tags": [
+        "hard edge",
+        "earning path",
+        "development time"
+      ],
+      "planSpec": {
+        "domain": "hardware-software venture",
+        "audience": "founders confusing the edge with instant riches",
+        "stakes": "demand instant large profit or a visible path",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist applies the edge as a visible path, not instant profit"
+      },
+      "scenario": "In the workshop at noon, Dagny faces a partner who reads the profit-first rule as a demand to be hugely profitable this quarter or quit, even though her sensor product needs real development time before it ships at volume. Minutes before the shutdown vote, she has to answer the room with the actual edge: the test is not instant large profit, it is whether the path to earning is visible early, even if the first amounts are small. Dagny must decide right now whether to defend the venture by showing that a modest paid pilot next month makes the earning path real, or let the vote end it.",
+      "whatToDo": "Dagny reframes the test for the room and commits to a modest paid pilot next month, proving the path to earning is visible early rather than demanding instant large profit this quarter.",
+      "whyItMatters": "The edge is a visible earning path, not immediate riches, so a product that genuinely needs development time can still pass; judging it by instant profit would kill good ventures by impatience."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch16.fact.7",
+      "title": "Ambitious Without the Mythology",
+      "tags": [
+        "business not startup",
+        "ambition",
+        "clarifying term"
+      ],
+      "planSpec": {
+        "domain": "design-studio venture",
+        "audience": "founders who think business sounds small-minded",
+        "stakes": "chase startup mythology or build an ambitious business",
+        "format": "reflection",
+        "requiredBeat": "the protagonist reframes business as clarifying, not limiting"
+      },
+      "scenario": "Eivind used to wince at the word business, sure it made his venture sound small next to the founders chasing startup mythology with other people's money. Sitting with his numbers one evening, he sees it differently. The grand label was never what made an idea ambitious; building something valuable and durable is. Calling it a business does not shrink the goal. It centers customers, value, and sustainability while leaving every bit of ambition intact, and it stops him from mistaking a story about scale for actual worth.",
+      "whatToDo": "Eivind drops the startup framing and describes his venture as a business, then sets a goal measured by valuable, durable work customers pay for rather than by how much capital he can raise.",
+      "whyItMatters": "The term business is clarifying, not limiting, so it centers customers, value, and sustainability while leaving big ambition intact, which keeps a founder from confusing a scale story with real worth."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch16.fact.1",
+        "prompt": "A founder insists his venture follows different economic rules because it is a startup, so it need not cover its costs the way a normal business does. How should a colleague correct the reasoning?",
+        "choices": [
+          "Agree that startups operate under separate rules, so covering costs can wait until the company reaches a much larger scale.",
+          "Accept the framing but suggest he trim a few expenses to look responsible while the special rules still apply to him.",
+          "Point out that the startup label is a name, not a repeal of accounting, so revenue must eventually cover expenses or the company runs out."
+        ],
+        "correctIndex": 2,
+        "explanation": "The startup label does not change the arithmetic. Revenue must eventually cover expenses or the venture disappears, no matter what it calls itself; that law applies to every company.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch16.fact.2",
+        "prompt": "A subscription team has a quarter million free sign-ups, has never charged anyone, and points to that growth as proof its product has real value. Which read fits profit reality best?",
+        "choices": [
+          "Free sign-ups leave the willingness-to-pay test untouched, so the growth shows interest but not yet that anyone values the product enough to pay.",
+          "The large free base settles the question of value, since that many users would clearly convert to paying whenever the team decides to charge.",
+          "The number of sign-ups proves demand on its own, so the team should raise more capital and keep the product free for several more years."
+        ],
+        "correctIndex": 0,
+        "explanation": "Spending the raise lets the team operate without payment, which hides the real test. Sign-ups show interest; only people paying confirm the product is worth money.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch16.fact.3",
+        "prompt": "When a marketplace team writes profit comes later, after scale on its funding slide, a new analyst asks what that line might be hiding. Which interpretation best reflects the deferral trap?",
+        "choices": [
+          "It is neutral sequencing that says nothing about the model, so the analyst should treat the timing as a settled detail and move on.",
+          "Deferring profit often masks an unproven model, so later may be standing in for the fact that no one has shown the venture can ever earn.",
+          "The phrase signals strong discipline, since postponing revenue until scale is usually how a responsible marketplace proves itself before charging."
+        ],
+        "correctIndex": 1,
+        "explanation": "Postponing the profit question lets a team avoid confronting whether the model works. The word later frequently substitutes for an answer no one actually has yet.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch16.fact.4",
+        "prompt": "Two teams build similar tools. One ignores pricing until the product is mature; the other treats needing a paying customer as a constraint from day one. A skeptic claims the early-profit team is stifling its own ambition. Where does that claim go wrong?",
+        "choices": [
+          "The skeptic is right, because worrying about money early tends to shrink the vision and should wait until the product is fully built out.",
+          "Both teams end up identical, since the timing of the profit question has no real effect on which features either team chooses to build.",
+          "Early profit pressure sharpens decisions rather than shrinking them, forcing immediate attention to value, support, pricing, and restraint instead of stifling ambition."
+        ],
+        "correctIndex": 2,
+        "explanation": "Needing customers to pay centers value and restraint from the start. Profit as a design constraint makes tradeoffs clearer; it does not shrink ambition, it focuses it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch16.fact.6",
+        "prompt": "A builder lets his tool grow on free accounts and approves every feature request because none of them costs a decision. A peer suggests turning on real billing the way Basecamp had to charge to survive. What change should the builder expect?",
+        "choices": [
+          "Billing will slow new sign-ups without affecting the product, so the feature list and the roadmap will stay exactly as sprawling as before.",
+          "Each feature now has to earn its place against a customer who can cancel, which pushes attention toward value, support, pricing, and restraint.",
+          "Charging users mainly creates support headaches, so the builder should keep everything free and revisit pricing only after the team triples in size."
+        ],
+        "correctIndex": 1,
+        "explanation": "When people must pay, the product has to justify its price. That pressure forces value, support, pricing, and restraint, which a free model with no decisions never demands.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch16.fact.8",
+        "prompt": "A sensor product genuinely needs months of development before it can ship, and an impatient partner reads the profit-first rule as a demand to be hugely profitable this quarter or shut down. How should the founder apply the edge correctly?",
+        "choices": [
+          "Agree that every venture must be fully profitable immediately, so the founder should abandon any product that cannot post large profit this quarter.",
+          "Show that the test is a visible path to earning, not instant large profit, so a modest paid pilot soon can satisfy the rule even while development continues.",
+          "Argue that a development-stage sensor is exempt from the rule, so the team can defer any thought of revenue until the product is finished and polished."
+        ],
+        "correctIndex": 1,
+        "explanation": "The edge is visibility of the earning path, not instant riches. Some products need development time; modest early revenue on a clear path still passes the test.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch16.fact.7",
+        "prompt": "A designer worries that calling her venture a business rather than a startup will make it sound small-minded next to peers chasing scale on investor money. A friend pushes back on that worry. Which response is soundest?",
+        "choices": [
+          "She is correct to worry, since the startup label is what signals real ambition and the word business marks a venture as cautious and unimpressive.",
+          "She should drop both labels and let outside funding alone decide how ambitious the venture appears to the customers and partners she works with.",
+          "The term business is clarifying, not limiting, because ambition comes from building something valuable and durable, not from spending other people's money to chase scale."
+        ],
+        "correctIndex": 2,
+        "explanation": "Ambition lives in the value and durability of what you build. Calling it a business centers customers, value, and sustainability while leaving every big goal intact.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch16.fact.9",
+        "prompt": "A mentor claims the only real difference between a business and a startup is the company's size or stage. A founder who has watched both up close disagrees. Which distinction actually separates them?",
+        "choices": [
+          "The mentor is right that stage is the whole story, so a venture simply graduates from startup to business once it grows past a certain headcount.",
+          "The split is mostly about funding source, so any venture that takes investor money is a startup and any that charges customers counts as a business.",
+          "The real difference is whether the team treats profit as a core design constraint or as an embarrassing detail to solve after attention and funding are secured."
+        ],
+        "correctIndex": 2,
+        "explanation": "The distinction is posture toward profit, not scale. A venture that designs around earning behaves differently from one that defers profit as a detail for later.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch16.fact.5",
+        "prompt": "Recalling that 37signals anchored its stance in customer-funded software rather than investor-funded growth, a two-person team debates how to fund its first product. Which move best fits that customer-funded posture?",
+        "choices": [
+          "Charge early users for the product so revenue from people who value it supports the business, putting sustainability at the center from the start.",
+          "Raise outside capital to build the full product first, then introduce charges only once the venture has grown large enough to look fundable to buyers.",
+          "Keep the product free indefinitely and rely on investor money for operations, since revenue can be added quietly after the user base is impressively big."
+        ],
+        "correctIndex": 0,
+        "explanation": "A customer-funded model lives on users paying, not investor capital. Revenue from people who value the product puts sustainability and worth at the center from day one.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch16.fact.1",
+      "front": "Why does calling a venture a startup not change whether it must cover its costs?",
+      "back": "The label is a name, not a repeal of accounting. Revenue still has to eventually cover expenses, or the company runs out of money and disappears, exactly as it would under any other name.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch16.fact.2",
+      "front": "How can spending investor money hide whether a product has real value?",
+      "back": "Funding lets the company keep running without anyone paying, so the test of whether a customer will spend money on it is postponed. Investors bet on a story; only paying users confirm worth.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch16.fact.3",
+      "front": "What does a plan to figure out profit later often conceal?",
+      "back": "Deferring the question of how money gets made lets a team avoid confronting whether the model works at all. The word later frequently masks an unproven model, standing in for an answer no one has.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch16.fact.6",
+      "front": "What happened to Basecamp's design once it depended on people paying?",
+      "back": "Because customers had to find it useful enough to pay, the product was forced to deliver real value. That pressure pushed attention toward value, support, pricing, and restraint instead of unchecked feature growth.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch16.fact.8",
+      "front": "What is the real test profit reality asks for, and what misreading does it warn against?",
+      "back": "The test is whether the path to earning is visible early, even if first amounts are modest. The misreading is demanding instant large profit; some products need development time before revenue scales.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch16.fact.9",
+      "front": "What actually separates a business from a startup, if not size or stage?",
+      "back": "The difference is posture toward profit. A business treats profit as a core design constraint; a startup, in the mythic sense, treats it as an embarrassing detail to solve after attention and funding are secured.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Path-to-Earning Check",
+    "coreSkill": "Before backing a venture, ask out loud how a real customer pays you and when that first payment could land. Treat profit as a design constraint from day one, not an embarrassing detail to fix after attention and funding arrive. The path to earning has to be visible early, even if the first amounts are modest; if the only answer is later, that is usually a missing answer wearing a schedule.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch16.fact.2",
+        "context": "When a team points to free sign-ups or user counts as proof the product has value",
+        "plan": "If growth with no payment is being called proof, then run the Path-to-Earning Check and ask whether a single stranger has yet spent money, since funding hides that test."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.3",
+        "context": "When a plan says profit comes later, after scale",
+        "plan": "If the slide defers profit to later, then run the Path-to-Earning Check and make someone show the actual model where money gets made, so later cannot stand in for a missing answer."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.8",
+        "context": "When someone reads the profit-first rule as a demand for instant large profit",
+        "plan": "If a partner wants huge profit this quarter or a shutdown, then run the Path-to-Earning Check and judge by whether a modest paid step is visible soon, not by immediate riches."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, take every venture or feature idea you discuss and write beside each exactly how a customer would pay for it and when that first payment could realistically land. Mark any idea whose only answer is later.",
+    "weeklyPractice": "Each week, pick one decision on your venture and score it against a paying customer rather than a sign-up count. Track which choices changed once a real payment, not investor money, had to justify them."
+  },
+  "memorableLines": [
+    {
+      "text": "Calling the venture a startup changes the label, not the law.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the chapter's whole argument into one line a reader can repeat verbatim."
+    },
+    {
+      "text": "Investors bet on a story, while users vote with cash.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism that makes paying customers the real test in one sharp contrast."
+    },
+    {
+      "text": "Later becomes a substitute for an answer instead of a schedule.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the deferral trap in a single memorable, quotable turn."
+    }
+  ]
+}

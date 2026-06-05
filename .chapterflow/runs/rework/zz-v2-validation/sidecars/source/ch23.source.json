@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 23,
+  "chapterTitle": "Making the call is making progress",
+  "focus": "Progress is linked to decision-making itself. The essay favors timely calls that create momentum over endless reconsideration.",
+  "coreClaim": "Make decisions while the work is alive because movement teaches more than a pile of deferred choices.",
+  "centralConcept": {
+    "id": "ch23.concept",
+    "name": "decision momentum",
+    "plainDefinition": "A decision converts uncertainty into movement. Postponed choices pile up, slow morale, and often receive worse treatment later.",
+    "whyItMatters": "A reader can build a rhythm of choosing and moving instead of waiting for perfect certainty."
+  },
+  "keyClaims": [
+    "Unmade decisions accumulate and eventually get ignored or handled in a rush. [23.1]",
+    "Replacing think about it with decide on it changes the team's rhythm. [23.2]",
+    "Perfect solutions rarely arrive simply because the calendar advances. [23.3]",
+    "Frequent decisions build morale by making progress visible. [23.4]",
+    "Long projects drain energy when choices remain unresolved. [23.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch23.ex.decide-on-it",
+      "label": "decide on it instead of think about it",
+      "summary": "The phrase swap captures the practice: when a team can choose, make the call rather than postponing into a vague later. The decision creates the next piece of evidence.",
+      "teachesWhat": "A timely imperfect choice is often more productive than suspended ambiguity.",
+      "hardSpecifics": ["decide on it", "think about it", "37signals"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is to make reckless irreversible calls. The edge is to choose at the smallest responsible scale and keep work moving.",
+  "testableFacts": [
+    { "id": "ch23.fact.1", "claim": "Making a decision is itself a form of progress, not merely the setup for progress.", "becauseMechanism": "because a decision converts uncertainty into movement, so the work can proceed and start producing evidence to adjust against.", "commonError": "real progress only counts as the visible output produced after all the decisions are settled.", "errorIsWhy": "the choice is what unblocks the work; treating only output as progress leaves the project frozen on unresolved calls.", "derivedFrom": "ch23.concept" },
+    { "id": "ch23.fact.2", "claim": "Unmade decisions accumulate into a pile that eventually gets ignored or handled in a rush.", "becauseMechanism": "because the project cannot move cleanly around unresolved choices, so deferred calls go stale and get rushed when they can no longer be avoided.", "commonError": "deferring a decision is harmless because you can always come back and give it proper attention later.", "errorIsWhy": "the backlog grows stale and gets handled hastily; postponing usually trades a calm decision now for a worse one under pressure.", "derivedFrom": "ch23.concept" },
+    { "id": "ch23.fact.3", "claim": "Replacing the phrase \"think about it\" with \"decide on it\" changes the team's working rhythm.", "becauseMechanism": "because the wording reframes the default from postponement to choice, so the team is nudged to make the call while the work is still alive.", "commonError": "swapping a phrase is cosmetic and cannot actually shift how a team behaves.", "errorIsWhy": "the language sets the default action; making \"decide\" the reflex word changes which behavior the team reaches for first.", "derivedFrom": "ch23.ex.decide-on-it" },
+    { "id": "ch23.fact.4", "claim": "Perfect solutions rarely arrive simply because the calendar advances.", "becauseMechanism": "because waiting does not generate clarity on its own; only making a call and seeing its consequences exposes what reality requires.", "commonError": "if you wait long enough, more time alone will reveal the obviously correct answer.", "errorIsWhy": "time without action does not produce certainty; the missing evidence comes from a decision meeting reality, not from the clock.", "derivedFrom": "ch23.concept" },
+    { "id": "ch23.fact.5", "claim": "Frequent decisions build morale by making progress visible.", "becauseMechanism": "because each call moves the work forward in a way the team can see, so momentum and a sense of progress accumulate.", "commonError": "morale depends mainly on the quality of each individual decision, so it is safer to make fewer, more careful calls.", "errorIsWhy": "visible forward motion is what sustains morale; hoarding decisions for perfection stalls the work and drains energy.", "derivedFrom": "ch23.concept" },
+    { "id": "ch23.fact.6", "claim": "Long projects drain energy and slow launch when choices remain unresolved.", "becauseMechanism": "because unresolved choices leave the project waiting for perfect confidence, so motivation and clarity leak away the longer it drags on.", "commonError": "a project's energy mainly depends on its length, so shorter projects feel better regardless of how decisions are handled.", "errorIsWhy": "it is the unresolved choices, not the duration alone, that bleed morale; resolving calls keeps even long work alive.", "derivedFrom": "ch23.concept" },
+    { "id": "ch23.fact.7", "claim": "37signals' small-team style depends on a rhythm of making calls rather than deferring them.", "becauseMechanism": "because a small team cannot absorb a backlog of stalled decisions, so keeping work moving by choosing is what their style relies on.", "commonError": "small teams can afford to deliberate as long as larger organizations before committing to a decision.", "errorIsWhy": "a small team has less slack to carry unresolved choices, so the momentum rhythm matters more, not less, than for big organizations.", "derivedFrom": "ch23.ex.decide-on-it" },
+    { "id": "ch23.fact.8", "claim": "Decisiveness here means responsible, scoped, revisable calls, not macho certainty or reckless irreversible moves.", "becauseMechanism": "because the goal is momentum at the smallest responsible scale, so a good call keeps work moving while staying revisable when possible.", "commonError": "making the call means committing boldly and irreversibly to project an image of confidence.", "errorIsWhy": "the edge is choosing at the smallest responsible scale and staying revisable; reckless irreversible bets are the misreading the essay warns against.", "derivedFrom": "ch23.edge" },
+    { "id": "ch23.fact.9", "claim": "A decision made today gives the team something concrete to adjust, because it exposes consequences from reality.", "becauseMechanism": "because the call produces the next piece of evidence, so the team learns from what actually happens instead of from suspended ambiguity.", "commonError": "you should resolve all uncertainty before deciding, so that the choice never needs to be adjusted afterward.", "errorIsWhy": "adjustment is the point, not a failure; the decision reduces ambiguity and teaches from reality, which waiting cannot do.", "derivedFrom": "ch23.concept" }
+  ],
+  "frameworks": [],
+  "voiceCues": [
+    "uses a phrase replacement as a tool",
+    "connects decisions to morale",
+    "treats postponement as clutter"
+  ],
+  "forbiddenLeakage": [
+    "meeting rules",
+    "promotion by teaching",
+    "culture as behavior"
+  ],
+  "paraphraseNotes": "The essay treats decisions as the engine of progress. Teams often delay by saying they will think about it, revisit it, or decide after more information. Sometimes more information is truly needed, but many delays merely create piles. Those piles become stale, ignored, or rushed because the project cannot move cleanly around unresolved choices. The proposed habit is linguistic and behavioral: replace think about it with decide on it when the stakes allow. A call made today creates direction, exposes consequences, and gives the team something to adjust. 37signals' small-team style depends on this rhythm because long unresolved projects drain morale and slow launch. The downstream writer should avoid portraying decisiveness as macho certainty. The best calls are responsible, scoped, and revisable when possible. The core mechanism is momentum. Each decision reduces ambiguity, lets work proceed, and teaches from reality. The longer a project waits for perfect confidence, the more likely motivation and clarity leak away. Research detail 23 (Making the call is making progress): Unmade decisions accumulate and eventually get ignored or handled in a rush. Replacing think about it with decide on it changes the team's rhythm. Perfect solutions rarely arrive simply because the calendar advances. Named anchor 23, decide on it instead of think about it, keeps later prose concrete: The phrase swap captures the practice: when a team can choose, make the call rather than postponing into a vague later. The decision creates the next piece of evidence. A timely imperfect choice is often more productive than suspended ambiguity."
+}

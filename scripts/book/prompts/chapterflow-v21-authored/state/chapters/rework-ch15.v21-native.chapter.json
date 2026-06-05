@@ -1,0 +1,333 @@
+{
+  "chapterId": "rework-ch15",
+  "number": 15,
+  "title": "You need less than you think",
+  "readingTimeMinutes": 11,
+  "hook": "Ten people, six months, a warehouse: most of that list was fear wearing a budget.",
+  "counterintuition": "Long requirement lists feel like careful analysis, yet they usually grow from copying bigger companies and fearing an unprepared look. Less stuff at the start can move the work faster and keep the cash that proves the idea.",
+  "tryThisNow": "Write the three biggest things you think a new project requires. Beside each, mark whether the first real test actually needs it, or whether it only serves later scale.",
+  "keyTakeaway": "Challenge every claimed prerequisite before buying it. Start with a smaller team, a shorter cut, and cheaper space, then add only the resource a proven constraint demands.",
+  "breakdown": {
+    "fastRead": "A founder writes down what the project needs: ten people, six months, an office, a warehouse, a long runway. Then comes the harder question. Could two people run the first test instead of ten? The honest answer is usually yes. Most of those ten roles support scale, not the first proof. The list grew from fear of looking unprepared and from copying the visible trappings of established firms. None of it came from what the work itself demands. Garages, home offices, and a rented shelf can carry the early phase. The first version should test necessity, not buy legitimacy. Start lean, watch what breaks, then add only the resource a proven constraint requires.",
+    "deepRead": "Fear does the inflating, not analysis. People copy the warehouse and the staff because those trappings feel safe, so the requirement list swells from anxiety rather than from the task. That is the engine to watch. Once you see it, the prompts get sharp. A six-month plan often hides a two-month version that teaches enough to proceed, because the earliest weeks surface most of the decisive unknowns. Waiting for the complete scope just delays learning that was already available. Consider Brigid, who is sure her food brand needs a leased commercial kitchen before launch. She runs the first batch from her home oven and a rented walk-in shelf for a weekend market. Sales and complaints arrive in days; the lease would have arrived as twelve months of rent before a single customer judged the product. Customers judge the food, not the square footage. The same logic governs headcount. Each added person brings meetings, coordination, and someone to manage, so a bigger early team can slow the first test rather than speed it. 37signals runs on this discipline. Its small-team practice keeps asking what can be removed before anything is added, treating subtraction as the default move so weight never piles up enough to demand more infrastructure. That is a chosen strategy, not a sign the company cannot afford to grow. The discrimination you can now make is between a prerequisite the work truly needs and one that only dresses the work to look established.",
+    "fullRead": "Where this idea breaks is the moment lean tips into starved. The misreading treats minimalism as a vow to never spend, refusing money on principle even when a proven bottleneck is choking the work. That is not the discipline. Resource minimalism is a discovery tool about timing and proof: a genuine constraint only becomes visible once the lean version runs, and the right move is then to add the one resource that constraint demands. Saul learns this the hard way at his print shop. He guts every cost to stay pure, but his single press jams under real orders, and the jam is now demonstrated, not imagined. Buying the second press is exactly correct here, because the constraint proved itself. Refusing it on principle would starve work that genuinely needs the resource. So the rule is not cheapness; it is necessity testing, and the two can look alike from outside. Watch how the costs land in time. New hires, rent, and inventory each arrive with recurring commitments, so the obligations show up immediately while the payoff stays unproven. Renata almost signs a warehouse lease for inventory she has not sold; the rent would land every month while demand stays a guess. A garage and a small storage arrangement let her hold the early stock and learn the real sell-through first. Early resources lock in payroll and duties before the project has earned them, which is why securing things too soon adds burden instead of removing obstacles. There is a quieter benefit too. Limited resources make it impossible to do everything, which forces a team to cut down to the few things that actually matter. That pressure is not deprivation. It pushes effort toward the highest-value work and away from low-value extras, so constraints can raise the quality of what ships rather than lower it. Operating lean sharpens priorities; that is the part the word cheap never captures. The boundary, said plainly, is this: challenge the prerequisite hard, but honor it once the work proves it. A two-person test, a two-month cut, a garage instead of a warehouse, a simple tool instead of a custom system, these protect speed, creativity, and cash precisely because fewer commitments mean fewer things to coordinate and fund. The discipline pays off only if you keep watching for the proven constraint and then move. Start with less than instinct demands, let real use reveal what is actually needed, and you spend on truth instead of on appearances."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch15.fact.1",
+      "title": "Ten Roles, Two Seats",
+      "tags": ["staffing", "first test", "software"],
+      "planSpec": {
+        "domain": "early-stage software",
+        "audience": "first-time founders",
+        "stakes": "burning runway on headcount before validation",
+        "format": "decision_point",
+        "requiredBeat": "shrink an imagined ten-person plan to the two people who can run the first test"
+      },
+      "scenario": "Friday, 4 p.m., Dunia stares at a hiring plan that lists ten people for her scheduling app: two engineers, a designer, a marketer, a support lead, an ops manager, and more. A recruiter needs her answer before the weekend so offers can go out Monday. She does the math on runway and realizes ten salaries would empty the account in five months, well before any customer has touched the product. The pressure is real: hire the team that looks serious, or test with far less first.",
+      "whatToDo": "Dunia cuts the plan to herself and one engineer for the first test, parking the other eight roles as scale hires that only fire once a proven bottleneck demands them.",
+      "whyItMatters": "Most imagined roles support scale, not the first proof, so two people can validate the core idea before the rest are needed. The same cut protects runway whenever a plan looks staffed for a company that does not yet exist."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch15.fact.2",
+      "title": "Two Months Inside Six",
+      "tags": ["timeline", "compression", "hardware"],
+      "planSpec": {
+        "domain": "consumer hardware",
+        "audience": "product leads",
+        "stakes": "spending four extra months before learning if the idea works",
+        "format": "decision_point",
+        "requiredBeat": "find the two-month cut hidden inside a six-month plan"
+      },
+      "scenario": "Otis runs a six-month roadmap for a smart watering sensor: full firmware, custom enclosure, three sensor types, a polished app. His board wants the timeline confirmed before the budget review at noon. He notices the decisive unknown is simply whether gardeners trust an automated valve at all. Most of the six months builds polish around an assumption nobody has tested. He has to answer whether the full plan is the only path, or whether a shorter cut would teach enough.",
+      "whatToDo": "Otis carves a two-month version, one sensor and a rough app driving a single valve, aimed only at the trust question, and defers the enclosure and extra sensors until that answer arrives.",
+      "whyItMatters": "The earliest weeks surface most decisive unknowns, so a compressed cut can deliver the learning that justifies continuing. Waiting for full scope only delays a signal that was available much sooner."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch15.ex.garage-home-office",
+      "title": "Home Oven, Rented Shelf",
+      "tags": ["space", "credibility", "food"],
+      "planSpec": {
+        "domain": "artisan food",
+        "audience": "solo makers",
+        "stakes": "a twelve-month kitchen lease before a single sale",
+        "format": "before_after",
+        "requiredBeat": "swap a leased commercial kitchen for a home oven and rented shelf"
+      },
+      "scenario": "Before, Brigid was certain her hot-sauce brand needed a leased commercial kitchen and a dedicated warehouse to look like a real business. The numbers were a wall: a year of rent due before any jar sold. After, she runs it from her home office and oven, stores stock on a rented walk-in shelf, and sells at a weekend market. Buyers taste, react, and reorder within days, judging the sauce itself rather than the square footage behind it.",
+      "whatToDo": "Brigid runs the home office version of a food business: kitchen oven, rented shelf, and a market stall, treating the commercial kitchen and warehouse as scale costs she signs only once demand is proven.",
+      "whyItMatters": "The first stage needs a place to do the work, not a place that signals legitimacy, so modest space carries the early phase. Customers judge the product, which is why expensive premises are not a credibility prerequisite."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch15.fact.5",
+      "title": "The Lease She Did Not Sign",
+      "tags": ["inventory", "obligations", "retail"],
+      "planSpec": {
+        "domain": "e-commerce retail",
+        "audience": "small retailers",
+        "stakes": "monthly warehouse rent against unproven demand",
+        "format": "mistake_recovery",
+        "requiredBeat": "stop early inventory commitments from creating obligations before value"
+      },
+      "scenario": "Renata had a warehouse lease open in a browser tab and a pen on the desk, minutes before a call where she planned to commit to bulk inventory for her candle shop. She catches the trap: the rent and the stock would bill every month while demand is still a guess. She has not sold enough to know whether the shelves would move or sit. The obligation would land immediately; the payoff was still unproven. She has to decide before the supplier call connects.",
+      "whatToDo": "Renata kills the lease, holds the early run in her garage and a small storage unit, and orders only the stock she can sell through before committing to warehouse-scale inventory.",
+      "whyItMatters": "Inventory and rent arrive with recurring commitments, so costs land before value is proven. Holding stock lean lets real sell-through reveal demand before any obligation locks in, which protects cash that a guess would have burned."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch15.fact.9",
+      "title": "The Press That Proved Itself",
+      "tags": ["constraint", "proven spend", "manufacturing"],
+      "planSpec": {
+        "domain": "small-batch printing",
+        "audience": "shop owners",
+        "stakes": "starving a real bottleneck in the name of staying lean",
+        "format": "decision_point",
+        "requiredBeat": "add a resource only after a constraint demonstrates itself"
+      },
+      "scenario": "Saul had cut his print shop to the bone, proud that one press did everything. Then a big order hit, the single press jammed twice a day, and orders backed up past the promised dates. A customer needs an answer this afternoon about whether the run ships on time. Saul faces the line he swore he would not cross: stay pure and refuse the second press, or admit the jam is now a proven constraint, not an imagined one, and spend.",
+      "whatToDo": "Saul buys the second press, because the bottleneck demonstrated itself under real orders, and pairs the purchase with a note on which constraint forced it so he only adds against proof.",
+      "whyItMatters": "Minimalism is about timing and proof, not refusing to spend. A genuine constraint becomes visible only once the lean version runs, so adding the resource that solves it is the discipline working, not a failure of it."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch15.ex.37signals-small-team",
+      "title": "Subtract Before You Add",
+      "tags": ["small-team", "subtraction", "tech"],
+      "planSpec": {
+        "domain": "software team practice",
+        "audience": "engineering managers",
+        "stakes": "headcount creep that demands more infrastructure",
+        "format": "reflection",
+        "requiredBeat": "treat subtraction as the default before adding weight, in the 37signals mode"
+      },
+      "scenario": "Cosmo manages a product team that keeps asking to grow. Every quarter someone proposes another hire, another tool, another layer. He studies how 37signals sustains its output with a small-team practice, and notices the company keeps asking what can be removed before anything is added. Subtraction is the default move there, which is why weight never piles up enough to demand more headcount and infrastructure. Cosmo sees his own team has been adding first and asking later.",
+      "whatToDo": "Cosmo flips the team's reflex: before approving any new hire or tool, he runs the 37signals question and asks what existing weight could be removed to free the same capacity instead.",
+      "whyItMatters": "Subtraction at 37signals is a deliberate discipline that protects focus, not a symptom of being unable to expand. Removing weight before adding it keeps a small team fast and spares it the infrastructure that growth would otherwise force."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch15.fact.1",
+        "prompt": "Dunia's hiring plan lists ten roles for a scheduling app she has not tested, and a recruiter wants her decision before Monday's offers. Which move best fits the lean-start discipline?",
+        "choices": [
+          "Hire all ten now so the app always looks staffed for serious customers and never falls short of expectations.",
+          "Run the first test with herself and one engineer, parking the other eight roles as scale hires that fire only on a proven bottleneck.",
+          "Hire the four customer-facing roles immediately and decide on the remaining six after the product launches widely."
+        ],
+        "correctIndex": 1,
+        "explanation": "Most of the ten roles support scale, not the first proof, so two people can validate the core idea. Hiring all ten burns runway before validation, and the four-role compromise still staffs for a company that does not yet exist.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch15.fact.2",
+        "prompt": "Otis holds a six-month roadmap whose decisive unknown is simply whether gardeners trust an automated valve. His board wants the timeline confirmed at noon. What is the strongest reason to compress the plan rather than build the full six months?",
+        "choices": [
+          "A shorter version is cheaper, and lowering cost is the main goal of cutting any project's timeline.",
+          "He cannot truly learn whether the sensor works until the entire planned scope, including the enclosure, is finished and polished.",
+          "The earliest weeks surface most decisive unknowns, so a two-month cut aimed at the trust question teaches enough to justify continuing."
+        ],
+        "correctIndex": 2,
+        "explanation": "Viability signals appear from a partial, early version, so the compressed cut delivers the learning sooner. Cost is a side effect, not the point, and waiting for full scope delays a signal that was already available.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch15.fact.3",
+        "prompt": "Brigid believes her hot-sauce brand needs a leased commercial kitchen and a warehouse to seem credible, but a year of rent would be due before a single jar sells. A friend insists customers will not take her seriously without the premises. How should she weigh that claim?",
+        "choices": [
+          "Customers judge the sauce and service, not the square footage, so a home oven and rented shelf can carry the first stage without expensive overhead.",
+          "Her friend is right that buyers in most markets refuse to purchase from makers who lack a dedicated commercial kitchen.",
+          "She should lease the kitchen but skip the warehouse, since splitting the cost proves she is serious while staying somewhat lean."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first stage needs a place to do the work, not one that signals legitimacy. Credibility rides on the product, so the premises claim is the inflated kind the discipline tells her to challenge before buying.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch15.fact.4",
+        "prompt": "A new team's requirement list keeps growing: a big office, a custom system, a full staff, a long runway. A colleague argues the long list simply reflects careful, objective analysis of what the work needs. What is really driving the list, on the lean-start view?",
+        "choices": [
+          "The list reflects a precise audit of the task, since longer requirement lists generally come from more rigorous planning.",
+          "Fear of looking unprepared and the habit of copying established firms' trappings, so the list reflects perceived legitimacy more than measured necessity.",
+          "The team is simply more ambitious than most, and ambitious projects naturally require longer lists of resources up front."
+        ],
+        "correctIndex": 1,
+        "explanation": "People copy visible trappings because they feel safe, so the list swells from anxiety, not from the task. Calling it objective analysis or ambition misses that fear and imitation, not necessity, shaped it.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch15.fact.5",
+        "prompt": "Renata is minutes from signing a warehouse lease and committing to bulk inventory for her candle shop, though she has not sold enough to know if the stock will move. Securing resources early feels prudent to her. Which reasoning should change her mind?",
+        "choices": [
+          "Locking in the warehouse now is wise, because resources secured early remove future obstacles from a growing shop's path.",
+          "She should sign the lease but delay the inventory order, keeping the space ready for whenever demand eventually appears.",
+          "Rent and inventory bring recurring commitments, so the obligation lands immediately while the payoff stays unproven, adding burden before value."
+        ],
+        "correctIndex": 2,
+        "explanation": "Early resources lock in rent and stock before the shop proves it needs them, so they add burden rather than remove obstacles. Signing and merely delaying the order still commits the recurring cost against a guess.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch15.fact.6",
+        "prompt": "Cosmo's team complains that a tight budget will just lower the quality of what they build this quarter. He has watched lean periods sharpen the team before. How should he frame the constraint to them?",
+        "choices": [
+          "Constraints make it impossible to do everything, which forces effort toward the highest-value work and can raise the quality of what ships.",
+          "The team is right that tight budgets mostly reduce quality, so he should quietly find more money before they lose momentum.",
+          "A tight budget is a temporary punishment to endure, and quality will simply have to dip until funding returns to normal."
+        ],
+        "correctIndex": 0,
+        "explanation": "Limited resources push a team to cut to the few things that matter, so constraints can raise quality rather than lower it. Treating the budget as a punishment or a quality cut misses that the pressure sharpens priorities.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch15.fact.7",
+        "prompt": "Reviewing how 37signals stays small, a manager assumes the company removes things and avoids hiring only because it cannot afford to grow. Why does that read miss what the small-team practice actually is?",
+        "choices": [
+          "The manager is essentially correct, since companies that stay small and subtract are usually ones that lack the means to expand.",
+          "Subtraction at 37signals is a deliberate discipline that protects focus, so staying small is a chosen strategy rather than a sign it cannot expand.",
+          "The company stays small mainly because its market is too narrow to support more people, not because of any real discipline."
+        ],
+        "correctIndex": 1,
+        "explanation": "37signals treats subtraction as the default move to keep weight from piling up, which is a chosen strategy. Reading it as inability to grow or a narrow market confuses a deliberate discipline with a forced limit.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch15.fact.8",
+        "prompt": "Two founders disagree about a first version. One wants it polished and fully equipped to make a strong first impression; the other wants it built only to test whether the idea is necessary. Which position fits the lean-start discipline, and why?",
+        "choices": [
+          "The polish-first founder, because a fully equipped early version always wins more customers than a rough one and protects the brand.",
+          "Splitting the difference, building a half-polished version, since that balances impression and testing without committing fully to either aim.",
+          "The test-first founder, because a version built to test necessity reveals what truly breaks and informs the next decision better than spending to look established."
+        ],
+        "correctIndex": 2,
+        "explanation": "A test reveals what breaks under real use, which guides the next move; polish spends budget on appearance before necessity is known. The half-polished compromise still pays for impression the lean test has not justified.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch15.fact.9",
+        "prompt": "Saul kept his print shop bone-lean, but under a big order his single press now jams twice a day and delays shipments. He believes staying lean means never spending more. What does resource minimalism actually call for here?",
+        "choices": [
+          "Hold the line and refuse the second press, since being lean means permanently declining to spend more money on the shop.",
+          "Buy several presses and extra staff at once, since the jam proves the shop was badly under-resourced from the very beginning.",
+          "Buy the one press the proven jam demands, because minimalism is about timing and proof and permits adding a resource a demonstrated constraint requires."
+        ],
+        "correctIndex": 2,
+        "explanation": "The bottleneck demonstrated itself under real orders, so adding the press that solves it is the discipline working. Refusing on principle starves real work, and over-buying ignores that only the proven constraint justifies the spend.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch15.fact.1",
+      "front": "Why can a project that seems to need ten people often be tested by two?",
+      "back": "Most of the imagined ten roles support later scale, not the first proof. Two people can already validate the core idea, and the extra headcount mainly adds meetings, coordination, and management that can slow the first test.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch15.fact.2",
+      "front": "How can a six-month plan often be cut to a two-month version that still teaches enough?",
+      "back": "The earliest weeks surface most of the decisive unknowns, so a compressed two-month cut delivers the learning that justifies continuing. Waiting for full scope just delays a viability signal that was already available much sooner.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch15.fact.4",
+      "front": "What really drives an inflated list of starting requirements, if not careful analysis?",
+      "back": "Fear of looking unprepared and the habit of copying established firms' visible trappings. The list grows from anxiety and imitation, so it reflects perceived legitimacy far more than the measured necessity of the work.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch15.fact.5",
+      "front": "Why do extra resources acquired too early often create obligations before they create value?",
+      "back": "New hires, rent, and inventory each arrive with recurring commitments, so the costs land immediately while the payoff stays unproven. Securing them early locks in payroll and duties before the project has proven it needs them.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch15.concept",
+      "front": "How does resource minimalism work as a discovery tool rather than a vow to never spend?",
+      "back": "Start lean and watch what breaks. A genuine constraint becomes visible only once the lean version runs, so you then add the one resource that proven constraint demands. It is about timing and proof, not refusing to spend outright.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch15.fact.6",
+      "front": "Why is operating lean different from mere deprivation?",
+      "back": "Limited resources make it impossible to do everything, so the team must cut to the few things that actually matter. That pressure pushes effort toward the highest-value work and away from extras, which can raise the quality of what ships.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Challenge the Prerequisite Before Buying",
+    "coreSkill": "Take each thing a project supposedly requires and ask one question: does the first real test need it, or does it only serve later scale? Build the leanest version that answers the decisive unknown, watch what actually breaks under real use, and add only the resource a proven constraint demands. The skill is separating measured necessity from fear and imitation before any money is spent.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch15.fact.1",
+        "context": "You are about to staff a new project and the plan lists a team that looks serious",
+        "plan": "If a hiring plan names roles you have not yet proven you need, then keep only the one or two seats that can run the first test and label the rest as scale hires that fire on a proven bottleneck."
+      },
+      {
+        "sourceAnchorId": "ch15.fact.2",
+        "context": "A timeline lands on your desk that stretches months before anyone learns whether the idea works",
+        "plan": "If a six-month plan is waiting for sign-off, then find the two-month cut that targets the single decisive unknown and defer the polish until that answer arrives."
+      },
+      {
+        "sourceAnchorId": "ch15.fact.5",
+        "context": "You are minutes from signing a lease or committing to bulk inventory for something unproven",
+        "plan": "If a recurring commitment is about to lock in before demand is proven, then hold the work in a garage or rented shelf and order only the stock you can sell through first."
+      },
+      {
+        "sourceAnchorId": "ch15.fact.9",
+        "context": "Your lean version is running and one part keeps jamming under real use",
+        "plan": "If a bottleneck has demonstrated itself under actual orders, then buy the one resource that constraint demands and write down which proven jam forced the spend."
+      }
+    ],
+    "twentyFourHourChallenge": "Take one project you are planning today and list every resource you assume it requires. Beside each, mark whether the first real test needs it or whether it only serves later scale, then cross out everything in the scale column before you commit a dollar.",
+    "weeklyPractice": "Once this week, run the subtract-before-you-add question on a live commitment: before approving any new hire, tool, or space, name one piece of existing weight you could remove to free the same capacity, and track which prerequisites keep proving inflated."
+  },
+  "memorableLines": [
+    {
+      "text": "The first version should test necessity, not buy legitimacy.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the whole discipline into one sharp contrast the reader can repeat before any spend."
+    },
+    {
+      "text": "Fear does the inflating, not analysis.",
+      "location": "breakdown.deepRead",
+      "why": "A blunt five-word reversal that names the real engine behind bloated requirement lists."
+    },
+    {
+      "text": "So the rule is not cheapness; it is necessity testing, and the two can look alike from outside.",
+      "location": "breakdown.fullRead",
+      "why": "It guards the hard edge, marking the line between lean discipline and starving the work."
+    }
+  ]
+}

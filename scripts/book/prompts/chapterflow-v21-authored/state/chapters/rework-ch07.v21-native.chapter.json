@@ -1,0 +1,332 @@
+{
+  "chapterId": "rework-ch07",
+  "number": 7,
+  "title": "Enough with \"entrepreneurs\"",
+  "readingTimeMinutes": 10,
+  "hook": "The costume of entrepreneurship can keep a useful shop from opening.",
+  "counterintuition": "The grand label meant to honor starters can make starting feel like a club. Plain language lowers the barrier only when it moves someone toward real work and a real customer.",
+  "tryThisNow": "Replace one sentence about becoming an entrepreneur with one sentence about what you will make, sell, teach, repair, or serve this week.",
+  "keyTakeaway": "Starter identity moves attention from a glamorous founder persona to the first useful action: make something, charge honestly, and learn from demand.",
+  "breakdown": {
+    "fastRead": "37signals cuts the pose down to size. The useful word is not entrepreneur, with all its pitch-stage baggage. The useful word is starter: someone who begins real work and tries to earn from it.\n\nThe label matters because labels invite or repel people. Entrepreneur can sound like a personality type, a school, a funding path, or a myth. Starter sounds like an action.\n\nStarter identity is not magic. A plainer word does not build the product or find the customer. It clears the costume rack away so the work can begin: make, sell, serve, teach, repair, write, or support.",
+    "deepRead": "The entrepreneur label has collected too much theater. It can suggest heroic risk, venture capital, pitch decks, business-school polish, and a special kind of person. Many people who could build useful businesses hear that story and quietly step back. They do not want the costume, so they delay the work.\n\nStarter identity changes the doorway. A starter can be a baker, tutor, repair tech, software maker, consultant, designer, or shop owner. The word does not ask for a grand biography. It asks whether the person has begun making something useful and finding people who value it.\n\n37signals fits this plain stance because its advice keeps pushing away startup theater. Keep costs low. Charge customers. Work on something real. Learn from demand. Those actions matter more than whether the person performing them matches a glamorous founder image.\n\nThe hard edge is practical. Language alone does not create access. A person can call herself a starter and still avoid the first sale. The label only helps if it lowers the psychological barrier to action. It should move attention toward the first offer, first customer, first invoice, and first improvement.\n\nThe clean test is action versus inaction. Does the word make the work feel closer? Does it remove needless status pressure? Does it invite someone ordinary to begin? If yes, the simpler label has done its job.",
+    "fullRead": "Entrepreneur used to be a useful word. It named a person who started a business. Over time, the word picked up decorations. It began to suggest a heroic founder, a pitch deck, a funding story, a taste for risk, a certain confidence, and a place in a special club. The word got bigger than the work.\n\nThat matters because identity can block action. Someone may have a bakery idea, a bookkeeping service, a tutoring method, a web tool, a newsletter, or a repair practice. The need is practical: make the offer, reach the first customer, charge enough to keep going, and improve from what happens. Yet the entrepreneur myth asks a different question first: are you the type?\n\nRework answers with starter. The word is smaller and better. A starter begins. A starter can work from a kitchen table, a garage, a library desk, a small office, or a laptop after a day job. The act is not reserved for people fluent in startup theater. The act belongs to anyone willing to make useful work real enough for customers to judge.\n\n37signals belongs in this frame because the company keeps favoring profitable action over costume. It is not impressed by status language when the work is thin. It is interested in the plain moves that turn an idea into a business: keep costs low, build something useful, charge customers, listen to demand, and stay close to the product.\n\nThe label also changes who feels welcome. A craftsperson may not want to call herself an entrepreneur. A local mechanic may not want a founder story. A teacher selling a course may not want a venture-capital plot. Starter leaves room for all of them. It says the useful distinction is not elite identity versus everyone else. It is beginning versus not beginning.\n\nPlain language also cuts away excuses. If entrepreneurship sounds like a caste, a person can wait to become worthy. If starting is the act, the next step is less dramatic. Write the menu. Price the lesson. Publish the booking page. Call the first customer. Make the repair offer. Ship the small tool. The mythology has less room to hide delay.\n\nThe hard edge keeps the lesson from becoming wordplay. Renaming yourself does not build anything. A person can trade one label for another and still avoid risk, customer contact, pricing, quality, and follow-through. Starter identity matters only if it makes action easier to take.\n\nThere is also a status trap in the new word. Starter should not become another badge. The point is not to sound humbler than entrepreneurs or to create a new club for people who dislike the old club. The point is to remove the club feeling altogether. The work is the test.\n\nThe closing move is simple. Do not ask whether you look like the kind of person who starts a business. Ask what you can start. Ask who might value it. Ask what it would cost to offer it plainly. Then begin at the size the work can bear. The useful identity arrives after the useful action, not before it."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Leif Names the Repair Offer",
+      "tags": [
+        "repair shop",
+        "first sale",
+        "plain language"
+      ],
+      "planSpec": {
+        "domain": "bicycle repair",
+        "audience": "skilled workers hesitant about business identity",
+        "stakes": "move from identity anxiety to a first paid offer",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist uses starter identity to make the next action concrete"
+      },
+      "scenario": "Leif sits at 7:25 p.m. in a Portland garage with three tuned bicycles and a blank website form. He tells his sister he is not an entrepreneur. She points to his 37signals notes and asks what a starter would do before Saturday. Before closing the laptop, Leif must choose between debating the label and posting a repair slot with a price.",
+      "whatToDo": "Leif should publish two Saturday repair slots, name the price, and let the first customers judge the offer.",
+      "whyItMatters": "Starter identity lowers the drama. The useful question is not whether Leif fits a business myth, but whether he begins serving."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Petra Drops the Pitch Voice",
+      "tags": [
+        "consulting",
+        "persona",
+        "customer call"
+      ],
+      "planSpec": {
+        "domain": "supply-chain consulting",
+        "audience": "professionals starting a side practice",
+        "stakes": "avoid copying startup theater before speaking to customers",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist rejects persona performance for plain customer value"
+      },
+      "scenario": "Petra waits at 8:50 a.m. in a Prague train cafe before calling a warehouse owner. Her draft intro sounds like a pitch-stage founder bio. The owner only needs fewer missed deliveries. Minutes before dialing, Petra has to decide whether 37signals' anti-theater stance means performing entrepreneurship or asking a plain starter question about the owner's route problem.",
+      "whatToDo": "Petra should open with the delivery problem she can help solve and skip the founder persona.",
+      "whyItMatters": "Customers buy useful work, not identity performance. Plain language keeps Petra close to the problem."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Rafi Prices the Tutoring Hour",
+      "tags": [
+        "education",
+        "pricing",
+        "side start"
+      ],
+      "planSpec": {
+        "domain": "math tutoring",
+        "audience": "teachers turning skill into paid work",
+        "stakes": "charge customers without waiting for permission from a label",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist starts on his own terms"
+      },
+      "scenario": "Rafi sits at 5:15 p.m. in a Queens library, writing algebra notes after school. Two parents have asked for help, but he keeps saying he is not the entrepreneurial type. His 37signals bookmark says starters build profitable work on their own terms. Before replying to the parents, Rafi must decide whether to keep waiting or price one tutoring hour.",
+      "whatToDo": "Rafi should offer one paid tutoring hour with a clear topic and use the session to learn what parents actually need.",
+      "whyItMatters": "Starting can be modest and ordinary. The first paid lesson matters more than adopting a grand business identity."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Marta Removes the Founder Slide",
+      "tags": [
+        "software",
+        "pitch deck",
+        "first users"
+      ],
+      "planSpec": {
+        "domain": "small software tool",
+        "audience": "makers distracted by founder mythology",
+        "stakes": "shift attention from biography to first use",
+        "format": "reset_moment",
+        "requiredBeat": "the protagonist replaces identity polish with product contact"
+      },
+      "scenario": "Marta stares at a founder-story slide at 11:05 p.m. in a Granada apartment. The scheduling tool works for five dance teachers, but she keeps polishing a deck no one asked for. A 37signals line about profitable action over startup theater makes her stop. Before bed, she must choose whether starter identity means another slide or an email to ten teachers.",
+      "whatToDo": "Marta should delete the founder-story slide for now and send the working tool to ten dance teachers with a simple price.",
+      "whyItMatters": "The label has done its job only if it moves Marta toward use, payment, and feedback."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Tomas Starts the Bakery List",
+      "tags": [
+        "bakery",
+        "local demand",
+        "ordinary business"
+      ],
+      "planSpec": {
+        "domain": "home bakery",
+        "audience": "local sellers intimidated by business culture",
+        "stakes": "make starting feel ordinary enough to begin",
+        "format": "before_after",
+        "requiredBeat": "the protagonist replaces entrepreneur anxiety with a concrete preorder"
+      },
+      "scenario": "Tomas wipes flour from his phone at 6:40 a.m. in a Leeds kitchen. He has sold cinnamon rolls to neighbors for cash, but the word entrepreneur makes him laugh and shut down. After reading a 37signals note about starters, he changes the question before Friday market: not what he is, but whether twenty preorders can cover ingredients.",
+      "whatToDo": "Tomas should open a twenty-order list with pickup times and ingredient costs, then decide from the demand.",
+      "whyItMatters": "Plain words make room for ordinary profitable work. Tomas does not need a myth before he can test a bakery offer."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Yasmin Checks the Badge",
+      "tags": [
+        "identity",
+        "craft",
+        "follow-through"
+      ],
+      "planSpec": {
+        "domain": "handmade stationery",
+        "audience": "craft sellers turning skill into a shop",
+        "stakes": "avoid turning starter into a new costume",
+        "format": "reflection",
+        "requiredBeat": "the protagonist sees the hard edge: action, not labels"
+      },
+      "scenario": "Yasmin sits at 3:30 p.m. in a Rabat studio, arranging handmade notebooks for photos. She has started calling herself a starter, but the online shop is still empty. The 37signals warning about action over theater stings. Before editing another profile line, she has to face the question: is the new word helping, or has it become a softer badge?",
+      "whatToDo": "Yasmin should upload three notebooks, set prices, and ask five past buyers which design they would reorder.",
+      "whyItMatters": "The hard edge is practical. A friendlier label matters only when it lowers the barrier to real selling."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A mechanic says he is not an entrepreneur, so he keeps delaying a paid repair page. What would starter identity ask him to do?",
+        "choices": [
+          "Post a clear repair slot with a price and let customers respond.",
+          "Study founder biographies until the identity feels more natural.",
+          "Wait until the repair idea sounds large enough for a business label."
+        ],
+        "correctIndex": 0,
+        "explanation": "Starter identity points to action. The repair offer and first customers matter more than whether the mechanic fits a glamorous label.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A consultant's opening line sounds like a pitch-stage founder bio, but the client needs fewer missed deliveries. Which revision fits the source idea?",
+        "choices": [
+          "Add more founder language so the client sees ambition.",
+          "Open with the delivery problem she can solve and drop the persona performance.",
+          "Avoid the client call until her new identity feels convincing."
+        ],
+        "correctIndex": 1,
+        "explanation": "Plain customer value beats identity theater. The starter frame should move the consultant toward the route problem.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A teacher has two parents asking for algebra help but keeps waiting because he is not the entrepreneurial type. What is the useful distinction?",
+        "choices": [
+          "Whether the teacher has a business-school persona or a venture story.",
+          "Whether the teacher can describe tutoring in more impressive language.",
+          "Whether the teacher begins a clear paid session or keeps avoiding the offer."
+        ],
+        "correctIndex": 2,
+        "explanation": "The useful distinction is action versus inaction. One priced tutoring hour is more relevant than adopting a founder identity.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A software maker keeps polishing a founder-story slide while five users already like the tool. Which next move honors 37signals' posture?",
+        "choices": [
+          "Send the tool to more likely users with a simple price.",
+          "Keep improving the founder slide until the story sounds serious.",
+          "Pause outreach until the product has a venture-capital narrative."
+        ],
+        "correctIndex": 0,
+        "explanation": "37signals' posture favors profitable action over startup theater. The maker should seek use, payment, and feedback.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A baker dislikes the entrepreneur label but has neighbors asking for rolls. Which test best lowers the psychological barrier?",
+        "choices": [
+          "Choose a more impressive label before accepting more orders.",
+          "Open a small preorder list with pickup times and ingredient costs.",
+          "Refuse the orders until the bakery can look like a formal company."
+        ],
+        "correctIndex": 1,
+        "explanation": "The plain starter frame makes ordinary profitable work feel available. A preorder list tests local demand without identity drama.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A craft seller now calls herself a starter, but the shop is still empty. What correction preserves the hard edge?",
+        "choices": [
+          "Keep refining the starter profile until the word feels fully owned.",
+          "Return to the entrepreneur label because it creates more pressure.",
+          "Upload products, set prices, and ask buyers what they would reorder."
+        ],
+        "correctIndex": 2,
+        "explanation": "The word helps only if it lowers the barrier to action. Starter identity without selling is just another badge.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which statement best explains why Rework prefers starter over entrepreneur?",
+        "choices": [
+          "Starter centers the act of beginning instead of a special business caste.",
+          "Starter makes a business easier by removing the need for customers.",
+          "Starter sounds humbler, so it proves the person is more authentic."
+        ],
+        "correctIndex": 0,
+        "explanation": "The simpler word removes mystique and points to beginning. It does not remove the need for real customers or follow-through.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A friend says changing the label is pointless because words do not build businesses. Which reply is most accurate?",
+        "choices": [
+          "The label matters when it invites action, but the work still has to begin.",
+          "The label matters more than pricing, selling, or customer demand.",
+          "The label proves ordinary people can skip the hard parts of starting."
+        ],
+        "correctIndex": 0,
+        "explanation": "The hard edge is practical. Language helps only when it moves someone toward making, charging, serving, and learning.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "What question best replaces \"Am I an entrepreneur?\" for someone with a service idea?",
+        "choices": [
+          "Which founder traits should I practice before speaking to customers?",
+          "What can I offer this week, who might value it, and what would I charge?",
+          "How can I make the service sound more like a startup?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The replacement question turns identity anxiety into a concrete first offer. That is the point of starter identity.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What is starter identity?",
+      "back": "It is the plain frame that starting a business is an action available to ordinary people, not proof of membership in a glamorous founder class.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why reject the entrepreneur label?",
+      "back": "The label can carry baggage: pitch culture, risk mythology, heroic stories, and the sense that only a special type of person may begin.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "front": "How does 37signals shape this point?",
+      "back": "37signals favors profitable action over startup theater: keep costs low, build something useful, charge customers, and learn from demand.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "What is the hard edge of the label change?",
+      "back": "Words alone do not create access. The simpler label matters only when it lowers the barrier to making an offer and serving a customer.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "What can starter identity invite?",
+      "back": "It can invite bakers, tutors, repair techs, consultants, software makers, writers, and shop owners to begin without adopting a business celebrity costume.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "front": "What is the new status trap?",
+      "back": "Starter can become another badge if people use it to sound humble while still avoiding prices, customers, quality, and follow-through.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Turn Identity Into Offer",
+    "coreSkill": "Translate identity language into a concrete starter action. Name what you will make, sell, teach, repair, write, or serve. Then put one small offer in front of a real person so the label becomes behavior.",
+    "ifThenPlans": [
+      {
+        "context": "When you wonder whether you are the right type",
+        "plan": "If the identity question stalls you, then write the offer, price, and first likely customer instead."
+      },
+      {
+        "context": "When your pitch sounds theatrical",
+        "plan": "If the wording performs founder identity, then replace it with the customer problem and the useful result."
+      },
+      {
+        "context": "When a plain start feels too small",
+        "plan": "If the next step looks ordinary, then remember that ordinary paid work is the point, not a mythic launch."
+      },
+      {
+        "context": "When starter becomes a badge",
+        "plan": "If you are polishing the label again, then publish, price, call, ship, or ask for a reorder."
+      }
+    ],
+    "twentyFourHourChallenge": "Write a one-sentence offer without the words entrepreneur, founder, startup, or visionary. Send it to one person who might actually value it.",
+    "weeklyPractice": "Each week, turn one identity thought into one customer-facing action: a price, booking link, sample, call, shop listing, or service note."
+  },
+  "memorableLines": [
+    {
+      "text": "Starter sounds like an action.",
+      "location": "breakdown.fastRead",
+      "why": "It captures why the label change matters without overexplaining it."
+    },
+    {
+      "text": "The entrepreneur label has collected too much theater.",
+      "location": "breakdown.deepRead",
+      "why": "It names the baggage that keeps ordinary starters outside the room."
+    },
+    {
+      "text": "The word got bigger than the work.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the chapter's critique compact and memorable."
+    }
+  ]
+}

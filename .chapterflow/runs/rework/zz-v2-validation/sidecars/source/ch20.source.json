@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 20,
+  "chapterTitle": "Build half a product, not a half-assed product",
+  "focus": "Quality is separated from quantity. The essay argues for cutting scope until the team can make the essential part excellent.",
+  "coreClaim": "Do less, but finish the chosen part with care; partial excellence beats broad mediocrity.",
+  "centralConcept": {
+    "id": "ch20.concept",
+    "name": "narrow excellence",
+    "plainDefinition": "A product should do fewer things completely well rather than many things poorly. Scope cuts protect quality.",
+    "whyItMatters": "A reader can sacrifice good ideas in order to make the remaining promise strong enough to matter."
+  },
+  "keyClaims": [
+    "Trying to pursue every good idea at once turns quality into mush. [20.1]",
+    "Limited time and ability require sacrifice, not wishful scope. [20.2]",
+    "Cutting merely good pieces can be the start of making one great piece. [20.3]",
+    "A half product has a coherent promise; a half-assed product has broken promises everywhere. [20.4]",
+    "Focus lets the team put craft where customers will actually feel it. [20.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch20.ex.basecamp",
+      "label": "Basecamp choosing core project coordination over feature sprawl",
+      "summary": "Basecamp's value came from doing essential project coordination clearly rather than matching every feature in heavyweight tools. The narrower promise allowed the product to feel complete within its chosen boundaries.",
+      "teachesWhat": "Completeness is measured against the promise, not against the competitor's feature list.",
+      "hardSpecifics": ["Basecamp", "37signals", "project coordination"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is to ship something incomplete and call it focus. The edge is to shrink the promise until it can be honored fully.",
+  "testableFacts": [
+    { "id": "ch20.fact.1", "claim": "Building half a product means doing fewer things completely well rather than many things poorly.", "becauseMechanism": "because limited time and skill must be concentrated on the essential part so it can reach excellence instead of being spread thin across everything.", "commonError": "more features always make a product more valuable to customers.", "errorIsWhy": "spreading effort across every feature turns quality into mush, so the product disappoints everywhere instead of excelling anywhere.", "derivedFrom": "ch20.concept" },
+    { "id": "ch20.fact.2", "claim": "A half product is fundamentally different from a half-assed product.", "becauseMechanism": "because a half product deliberately narrows the promise and honors it fully, while a half-assed product makes broad promises it breaks everywhere.", "commonError": "a half product and a half-assed product are basically the same thing with different framing.", "errorIsWhy": "one has a coherent, complete promise within its boundaries; the other is full of broken promises, so they are opposites, not synonyms.", "derivedFrom": "ch20.fact.4" },
+    { "id": "ch20.fact.3", "claim": "Cutting ideas that are merely good can be the first step toward making one piece great.", "becauseMechanism": "because removing the merely-good frees the time and attention needed to push the remaining part from good to great.", "commonError": "you should keep every good idea since each one adds value.", "errorIsWhy": "good ideas are the hardest to cut because they feel defensible, but keeping them all prevents any one piece from becoming great.", "derivedFrom": "ch20.concept" },
+    { "id": "ch20.fact.4", "claim": "Limited time and ability require real sacrifice, not wishful scope.", "becauseMechanism": "because a team cannot execute every attractive idea well, so it must deliberately drop scope rather than pretend it can do it all.", "commonError": "with enough planning a team can include every good idea without hurting quality.", "errorIsWhy": "time, skill, and attention are finite, so wishful scope guarantees mediocre execution across the board.", "derivedFrom": "ch20.concept" },
+    { "id": "ch20.fact.5", "claim": "Basecamp's value came from doing essential project coordination clearly rather than matching the feature bulk of heavyweight enterprise tools.", "becauseMechanism": "because a narrower promise let Basecamp feel complete within its chosen boundaries instead of competing on feature count.", "commonError": "Basecamp succeeded by offering as many features as the larger enterprise tools it competed with.", "errorIsWhy": "Basecamp deliberately did fewer things; its completeness came from clarity within a narrow promise, not from matching competitors' feature lists.", "derivedFrom": "ch20.ex.basecamp" },
+    { "id": "ch20.fact.6", "claim": "Completeness should be measured against the product's own promise, not against a competitor's feature list.", "becauseMechanism": "because a product feels whole when it fully delivers what it set out to do, regardless of what rivals include.", "commonError": "a product is incomplete whenever a competitor offers a feature it lacks.", "errorIsWhy": "missing a competitor's feature does not break your own promise; completeness is about honoring your chosen boundaries, not matching someone else's.", "derivedFrom": "ch20.ex.basecamp" },
+    { "id": "ch20.fact.7", "claim": "Focus puts craft where customers will actually feel it.", "becauseMechanism": "because concentrating effort on the central promise means the parts customers experience most are the ones executed with the most care.", "commonError": "quality is best demonstrated by polishing every feature equally.", "errorIsWhy": "spreading polish evenly dilutes it, so the parts customers care about most do not stand out; focus directs craft to where it is felt.", "derivedFrom": "ch20.concept" },
+    { "id": "ch20.fact.8", "claim": "Shipping something incomplete and calling it focus is a misreading of the half-product idea.", "becauseMechanism": "because the real move is to shrink the promise until it can be honored fully, not to leave the chosen half broken or sloppy.", "commonError": "as long as you cut scope, the remaining part does not have to be finished well.", "errorIsWhy": "focus is not an excuse for sloppiness; if a team cuts the product in half, the remaining half must work beautifully for the people it serves.", "derivedFrom": "ch20.edge" },
+    { "id": "ch20.fact.9", "claim": "The useful question for product work is whether the central promise feels whole, not how many features exist.", "becauseMechanism": "because a coherent, fully-delivered promise is what makes a product satisfying, while a raw feature count says nothing about quality.", "commonError": "the best gauge of a product's strength is the number of features it offers.", "errorIsWhy": "feature count can grow while coherence collapses; the meaningful test is whether the core promise feels complete to the customer.", "derivedFrom": "ch20.concept" }
+  ],
+  "frameworks": [],
+  "voiceCues": [
+    "uses a memorable contrast in the title",
+    "frames cutting as quality work",
+    "presses sacrifice as the price of greatness"
+  ],
+  "forbiddenLeakage": [
+    "meeting rules",
+    "promotion by teaching",
+    "culture as behavior"
+  ],
+  "paraphraseNotes": "The essay makes a crucial distinction for product work. A half product is not a broken product. It is a deliberately narrower product that fulfills its promise. A half-assed product tries to include every attractive idea and then disappoints everywhere because the team lacks the time, skill, or attention to execute them all. The 37signals anchor is Basecamp's restraint: project coordination, communication, and clarity mattered more than matching the feature bulk of enterprise tools. That narrower boundary let the product feel coherent. The downstream writer should emphasize sacrifice. Good ideas are the hardest to cut because they feel defensible, but getting to great often requires removing what is merely good. The mistake to avoid is using focus as an excuse for sloppiness. If a team cuts the product in half, the remaining half must work beautifully for the people it serves. The useful question is not how many features exist, but whether the central promise feels whole. Research detail 20 (Build half a product, not a half-assed product): Trying to pursue every good idea at once turns quality into mush. Limited time and ability require sacrifice, not wishful scope. Cutting merely good pieces can be the start of making one great piece. Named anchor 20, Basecamp choosing core project coordination over feature sprawl, keeps later prose concrete: Basecamp's value came from doing essential project coordination clearly rather than matching every feature in heavyweight tools. The narrower promise allowed the product to feel complete within its chosen boundaries. Completeness is measured against the promise, not against the competitor's feature list."
+}

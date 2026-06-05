@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "rework",
+  "chapterNumber": 20,
+  "chapterId": "rework-ch20",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "f0b2b532691aea0e",
+  "reviewer": "claude-qc:wf_93f0a1dd",
+  "reviewedAt": "2026-06-04T12:41:08.260Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "bar-read score 91/100; hidden-key derivation found 0 key errors; grounded, non-templated, cards answer fronts"
+}

@@ -1,0 +1,384 @@
+{
+  "chapterId": "rework-ch22",
+  "number": 22,
+  "title": "Ignore the details early on",
+  "readingTimeMinutes": 11,
+  "hook": "Two hours arguing over a button color, and the product it belongs to does not exist yet.",
+  "counterintuition": "Picking labels and colors feels like careful work, yet a detail has no right answer until the thing it lives in is built. Settling it early just decides blind, then redecides once the real shape shows up.",
+  "tryThisNow": "Scan your task list for one open question about a color or a label and move it under a heading called Decide After It Works. Leave it parked there until the core actually runs.",
+  "keyTakeaway": "Defer details that depend on structure you have not built; a color or label has no right answer until the core exists, so early polish decides blind and gets redone.",
+  "breakdown": {
+    "fastRead": "37signals watched teams burn whole mornings on labels, colors, and edge cases before anything useful existed. The arguments felt productive. Nothing shippable came out of them.\n\nHere is why that happens. A detail's right answer depends on the structure around it, and that structure is still being invented. Decide the button color now and you decide against a screen that does not exist.\n\nSo the discipline is sequence, not neglect. Get the core working first, until you can touch it and feel where it rubs. The friction tells you which details matter. Then you refine, with real ground under the choice instead of opinion in a meeting room.",
+    "deepRead": "Picture two people arguing over gray versus blue for a button that sits on no screen yet. When the product is only a sketch, every detail argument runs on opinion, because there is no real behavior to point at. One likes the gray, the other likes the blue, and neither claim can be settled, so the meeting just trades preferences until someone gets tired. Build the core, use it for a week, and the same question often answers itself: the gray washes out next to the data, so blue it is. Use exposes what a spec only guesses.\n\nThere is a quieter trap underneath. Choosing a label is concrete and easy, and concrete-and-easy feels like progress even when the hard question, the one about whether the core holds together, stays untouched. A team can stay busy on settings for a week and feel responsible while the real risk sits there unaddressed. Motion on small parts does not resolve the big one; it only feels like it does.\n\nWaste compounds the cost. Polish a part early and then watch the structure shift, and the polish goes in the bin along with the part it lived on. The careful gradient you tuned for a panel disappears when the panel does. Refinement only banks value if the refined thing survives, and early on, before the core has settled, very little is safe yet. 37signals built broad usefulness first and coherence second, so polish had a stable target by the time it arrived. Refine what is going to last, after you know what lasts.",
+    "fullRead": "Care is not the enemy here, and saying so matters, because the lazy reading of all this is permission to ship junk. That reading is wrong. Details are crucial. A product that never sweats its edge cases, its colors, its wording ends up rough and forgettable. The claim is narrower and sharper: a detail is poisonous only when it blocks the first real version from existing. Timing is the whole argument, not neglect.\n\nWatch how the trap actually springs. A team gathers to settle a setting nobody can yet evaluate, and because the question is small and answerable in the abstract, everyone has an opinion and the meeting fills with them. Opinion versus opinion does not resolve; it stalls. An hour later the team has a decision it will likely reverse, plus the quiet belief that more such meetings reduce risk. They do the opposite. Discussion without a buildable thing to point at manufactures disagreement instead of settling it, since the team has no shared reality to test a claim against.\n\nConsider the part people miss about reasoning ahead. The promise that a thorough spec can predict the right details is seductive, and it is false in a specific way. A spec predicts; only use reveals. You cannot reason your way to the friction a real user hits, because the friction emerges from the structure colliding with a real task, and that collision has not happened yet. The right details surface through making, touching, and getting stuck, which is exactly why they cannot be front-loaded onto a whiteboard.\n\nThere is a reason the early detail pull is so strong, and it is worth naming. Picking a label is finishable in an afternoon; resolving whether the core even works is not. Concrete tasks reward you with a checkmark, so a frightened team drifts toward them and calls the drift diligence. The fear is reasonable, but the comfort is false. Every finished setting on an unbuilt product is a small win banked against a structure that may erase it. Progress you can feel is not the same as progress that survives, and the gap between them is where weeks quietly vanish.\n\nNow the boundary, because there is one. Deferring details is not a license to defer forever, and it is not a blanket rule. Some details are load-bearing from day one: a payment field that drops a decimal is not a polish question, it is the core failing. The test is whether the detail can even be judged yet. If judging it requires a structure you have not built, defer it. If the detail is part of whether the core works at all, it was never a detail in the first place. Sequence the work from broad shape to specific polish, and momentum survives, because forward motion on the core is what actually drives a product. Lock every label first and the core never gets its turn. Ignore early, notice later, refine with context: that order is the difference between a product that ships and a meeting that never ends."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch22.ex.early-detail-meetings",
+      "title": "The Button-Color Standoff",
+      "tags": [
+        "early meetings",
+        "labels and colors",
+        "no product yet"
+      ],
+      "planSpec": {
+        "domain": "consumer software startup",
+        "audience": "teams debating details before a build exists",
+        "stakes": "settle the color now or build the core first",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist refuses a detail debate that has no buildable referent"
+      },
+      "scenario": "A whiteboard covered in button-color swatches, and not one line of the product written: that is the room Vidar walks into on a Tuesday standup. The team, echoing the labels-and-colors meetings 37signals warned about, wants a vote on the primary action color before the core flow even runs. The sprint slot closes in ten minutes, and Vidar must say whether to spend it picking a color or pointing the team at the working version that still does not exist.",
+      "whatToDo": "Vidar parks the color swatches under a Decide Later list and sends the team to make the core checkout flow actually run before anyone votes on a shade.",
+      "whyItMatters": "A color choice has no correct answer until the screen it lives on exists, so deciding it now just spends a sprint on a vote the real product will overturn."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch22.fact.3",
+      "title": "The Gradient Thrown Away",
+      "tags": [
+        "wasted polish",
+        "structure shifts",
+        "rework"
+      ],
+      "planSpec": {
+        "domain": "analytics product interface",
+        "audience": "designers polishing before the layout settles",
+        "stakes": "polish the panel now or wait until it survives",
+        "format": "before_after",
+        "requiredBeat": "early refinement is discarded when the structure changes"
+      },
+      "scenario": "Three weeks ago, at her desk in the Oslo studio, lead designer Aslaug hand-tuned a gradient and spacing system for the side panel of a new analytics tool, proud of how it read. This week the team learned, from people actually using the build, that the side panel must become a top bar to fit the real workflow. The gradient, the careful spacing, the edge cases she handled, all of it lived on a panel that no longer exists. The polish went into the bin with the structure it decorated.",
+      "whatToDo": "Aslaug stops refining surfaces until the layout proves it will survive contact with real use, then reserves her polish for the parts the working product confirms are staying.",
+      "whyItMatters": "Refinement only banks value when the refined part lasts; tune a detail before the core settles and a single structural shift discards the work along with the part."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch22.fact.4",
+      "title": "What The Spec Could Not Predict",
+      "tags": [
+        "friction reveals",
+        "making over planning",
+        "real use"
+      ],
+      "planSpec": {
+        "domain": "logistics software",
+        "audience": "teams trusting a spec to name the right details",
+        "stakes": "specify every detail up front or let use reveal them",
+        "format": "contrast",
+        "requiredBeat": "the right details surface through use, not advance reasoning"
+      },
+      "scenario": "Dagfinn holds a forty-page spec naming every label and setting for a warehouse dispatch tool, the kind of upfront detail work 37signals warns delays the real build. The first crew then uses a rough version on the floor, and friction nobody predicted appears: a scan button a glove cannot reach, a label that reads fine on a desk and badly in a cold aisle. Before the next sprint locks, Dagfinn must choose whether to keep trusting the spec or follow the friction the crew just exposed.",
+      "whatToDo": "Dagfinn stops treating the spec as the source of detail decisions and instead ships a rough version to the floor, then fixes the specific friction the crew's real use exposes.",
+      "whyItMatters": "A spec predicts and only use reveals, so the friction that names the right details cannot be reasoned out in advance; it emerges when a real task collides with the real build."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch22.fact.6",
+      "title": "Busy On Settings, Blind On Risk",
+      "tags": [
+        "displacement",
+        "concrete feels safe",
+        "hidden fear"
+      ],
+      "planSpec": {
+        "domain": "fintech product team",
+        "audience": "teams mistaking detail motion for real progress",
+        "stakes": "stay busy on settings or face the unresolved core",
+        "format": "reflection",
+        "requiredBeat": "concrete detail work hides the unaddressed hard question"
+      },
+      "scenario": "Bogdan looks back on a week his team spent naming settings, picking labels, and arranging a preferences screen for a payments app. It felt responsible; every task got finished. Yet the one question that would decide the product, whether the core transfer is fast and trustworthy enough for anyone to switch banks, sat untouched the entire time. The settings were concrete and easy, so the team reached for them while the hard, unresolved thing waited in the corner, ignored because it was uncomfortable.",
+      "whatToDo": "Bogdan names the displacement out loud, freezes the settings work, and puts the team's week onto the core transfer question that actually decides whether the product is worth building.",
+      "whyItMatters": "Concrete activity on small details can be a comfortable hiding place from the hard core question; finished settings feel like progress while the risk that decides the product stays untouched."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch22.fact.7",
+      "title": "Coherence Before The Coat Of Paint",
+      "tags": [
+        "37signals sequence",
+        "usefulness first",
+        "polish target"
+      ],
+      "planSpec": {
+        "domain": "project management saas",
+        "audience": "founders sequencing usefulness against polish",
+        "stakes": "polish in parallel from day one or after coherence holds",
+        "format": "planning_choice",
+        "requiredBeat": "broad usefulness and coherence come before fine polish"
+      },
+      "scenario": "Dragana sketches a build order for a new scheduling product and remembers how 37signals put broad usefulness and coherence first, fine polish second. Her cofounder wants polish and usefulness developed together from the start so nothing ever ships rough. Before the roadmap locks for the quarter, Dragana has to choose: chase a refined finish on features that may not survive, or make the thing genuinely useful and coherent first so polish later has a stable target worth refining.",
+      "whatToDo": "Dragana sequences the roadmap to prove broad usefulness and coherence first, holding fine polish until the surviving features give that polish something stable to refine.",
+      "whyItMatters": "Polish applied before usefulness exists refines a thing that may not last; coherence first gives the later polish a stable target, which is the order that keeps the refinement from being wasted."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch22.fact.5",
+      "title": "Deferred Is Not Abandoned",
+      "tags": [
+        "timing not neglect",
+        "later stage",
+        "misreading"
+      ],
+      "planSpec": {
+        "domain": "indie hardware",
+        "audience": "makers worried that deferring means shipping careless work",
+        "stakes": "skip details entirely or defer them to a later stage",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist separates deferring details from neglecting them"
+      },
+      "scenario": "\"So we just ship it sloppy and never fix the finish?\" Ilona's junior asks at 3:52 p.m., having heard the team will ignore details on the first build of a small sensor device. The build kickoff starts in minutes, and Ilona must tell him the real rule before it does: ignoring details early is about sequence, not neglect. The labels, the casing fit, the edge cases all still get their careful pass, just later, once the sensor core proves itself, when there is real reality to refine instead of guesses on a drawing.",
+      "whatToDo": "Ilona corrects the misreading on the spot, writing the deferred details into a clearly scheduled later pass so the team sees them postponed to a real stage, not skipped.",
+      "whyItMatters": "Deferring details is about sequence, not abandonment; the careful pass is real and scheduled, just placed after the core exists, so the team chases timing rather than excusing careless work."
+    },
+    {
+      "exampleId": "ex07",
+      "sourceAnchorId": "ch22.fact.9",
+      "title": "The Detail That Was The Core",
+      "tags": [
+        "load-bearing detail",
+        "boundary",
+        "not really polish"
+      ],
+      "planSpec": {
+        "domain": "accounting software",
+        "audience": "teams deciding which details can be safely deferred",
+        "stakes": "defer a detail that is actually the core or fix it now",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist catches a detail that is load-bearing, not deferrable"
+      },
+      "scenario": "Minutes before the build freeze, at the engineering review in a Tallinn office, staff engineer Janka spots that the rounding rule on a payroll tool drops a cent on large sums. A teammate waves it off as a detail for the polish pass, the way the team agreed to defer labels and colors. Janka has to call it now: a payment field that quietly loses money is not polish to postpone, it is the core failing. The test she applies is whether the detail can even be judged yet, and this one decides whether the product works at all.",
+      "whatToDo": "Janka pulls the rounding rule out of the deferred pile and into the core, fixing it before freeze because a money field that loses a cent is the product failing, not a finish to defer.",
+      "whyItMatters": "Deferring details has a boundary; a detail that decides whether the core works at all was never really a detail, so the test is whether it can be judged before the structure exists."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch22.ex.early-detail-meetings",
+        "prompt": "A team gathers at a standup to vote on the primary button color for a checkout product whose core flow has not been built yet, echoing the labels-and-colors debates 37signals warned about. The lead has ten minutes left in the sprint slot. Which move fits deferred refinement?",
+        "choices": [
+          "Run the vote now so the color is locked, since settling it early removes one decision from the team's plate.",
+          "Survey customers about preferred colors first, because their stated taste should drive the button before the flow runs.",
+          "Park the color under a decide-later list and send the team to make the checkout flow actually run first."
+        ],
+        "correctIndex": 2,
+        "explanation": "A button color has no right answer until the screen it lives on exists. Voting now decides against a structure not yet built, so the choice gets reversed once the real flow appears.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch22.fact.3",
+        "prompt": "A designer spent three weeks hand-tuning a gradient and spacing system for a side panel. Real use then showed the side panel must become a top bar to fit the workflow. A colleague calls the tuning banked value that carries forward anyway. How should she judge that claim?",
+        "choices": [
+          "The polish is discarded with the panel it lived on; refinement banks value only when the refined part survives the structure shift.",
+          "The colleague is right, since refined work done early usually carries forward and protects the team from starting over.",
+          "The tuning is fine to keep, because a gradient can be lifted onto any new layout without rework or loss."
+        ],
+        "correctIndex": 0,
+        "explanation": "Polishing a part that later moves throws the polish away with the part. The tuning carries forward only if the panel survives, and once the structure shifts the refinement is binned along with it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch22.fact.4",
+        "prompt": "A warehouse dispatch team holds a forty-page spec naming every label and setting, written before any build. A manager insists the spec already captures the right details, so the team can implement straight from it. Which response best reflects how the right details surface?",
+        "choices": [
+          "The manager is correct, since a thorough spec reasons out the friction in advance and rarely misses a real detail.",
+          "Add more reviewers to the spec, because enough careful readers can predict every friction the crew will hit on the floor.",
+          "Ship a rough version to the floor, since friction like an unreachable scan button only appears when real hands hit the build."
+        ],
+        "correctIndex": 2,
+        "explanation": "A spec predicts; only use reveals. The friction that names the right details emerges when a real task collides with the real build, so it cannot be reasoned out on the page beforehand.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch22.fact.6",
+        "prompt": "Your payments team finishes a week naming settings, picking labels, and arranging a preferences screen, and everyone feels productive. Meanwhile no one has tested whether the core transfer is fast and trustworthy enough for anyone to switch banks. What is the most accurate read of the week?",
+        "choices": [
+          "The settings work was real progress, because finishing concrete tasks on a product reliably advances it toward shipping.",
+          "The concrete detail work was comfortable displacement; finished settings felt like progress while the core risk that decides the product stayed untouched.",
+          "The team balanced its time well, since polishing settings and resolving the transfer question advance together at the same pace."
+        ],
+        "correctIndex": 1,
+        "explanation": "Picking labels is concrete and easy, so it feels responsible while the hard core question waits. Motion on small details is not the same as resolving the risk that actually decides the product.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch22.fact.7",
+        "prompt": "Sketching a build order for a scheduling product, a founder recalls that 37signals put broad usefulness and coherence first and fine polish second. A cofounder wants polish and usefulness developed together from day one so nothing ships rough. Which sequencing holds up?",
+        "choices": [
+          "Develop polish and usefulness together from the start, since a uniformly refined product signals quality and rarely looks unfinished to early users.",
+          "Make the product genuinely useful and coherent first, so the later polish has a surviving, stable target worth refining.",
+          "Polish the most visible features first, because the parts users notice early deserve the finish before the core is proven useful."
+        ],
+        "correctIndex": 1,
+        "explanation": "Polish applied before usefulness exists refines something that may not survive. Coherence first gives polish a stable target, which is the order that keeps the refinement from being thrown away.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch22.fact.5",
+        "prompt": "A junior worries that the plan to ignore details on the first build of a sensor device means the team will ship careless work and never fix the finish. The lead wants to correct the misreading before kickoff. Which framing is right?",
+        "choices": [
+          "Ignoring details early means sequence, not neglect; the careful pass on labels and casing is scheduled for after the core proves itself.",
+          "The junior is right to worry, since deferring any detail is the same as deciding to ship the product rough and leave it that way.",
+          "Details should be skipped on this product for good, because a sensor that works needs no finish work on labels or casing later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The claim is timing, not abandonment. Details stay crucial; they are postponed to a later stage with real reality to refine, not dropped, so deferring is about order rather than neglect.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch22.fact.9",
+        "prompt": "Minutes before a build freeze, an engineer finds that a payroll tool's rounding rule drops a cent on large sums. A teammate files it as a detail for the polish pass, alongside the deferred labels and colors. Which judgment fits the boundary of deferring details?",
+        "choices": [
+          "File it with the other deferred details, since any rounding question is finish work that belongs in a later polish pass.",
+          "Fix the rounding now; a payment field that loses money is the core failing, not polish, because the detail decides whether the product works at all.",
+          "Wait for users to report the lost cents, because real friction should surface the rounding problem the same way it surfaces label issues."
+        ],
+        "correctIndex": 1,
+        "explanation": "The test is whether a detail can be judged yet. A money field that drops a cent decides whether the core works, so it was never a deferrable detail; it is the product failing right now.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch22.fact.2",
+        "prompt": "Before any product exists, a team schedules a long meeting to settle a setting nobody can evaluate yet, on the belief that more early discussion reduces risk by surfacing problems sooner. A colleague is skeptical. Which assessment of the meeting is sharpest?",
+        "choices": [
+          "More early discussion does cut risk, since talking through a setting before building it surfaces problems while they are cheap to fix.",
+          "The meeting is neutral, because debating a setting early neither helps nor hurts as long as the team revisits it after building.",
+          "Discussion without a buildable thing to point at runs on opinion versus opinion, so it manufactures disagreement and stalls instead of resolving it."
+        ],
+        "correctIndex": 2,
+        "explanation": "Without a real product to point at, people argue preference, not behavior. Opinion against opinion does not resolve; it stalls, producing a decision the team will likely reverse once the thing exists.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch22.concept",
+        "prompt": "A teammate wants one quick test to decide whether a pending detail should be settled now or deferred until the core is built. Which question best captures deferred refinement?",
+        "choices": [
+          "Can this detail be judged correctly yet, or does judging it require a structure the team has not built, so it should wait until the core exists?",
+          "Which pending detail would impress a stakeholder most if it were finished and shown at the next review?",
+          "Which detail can the team finish fastest right now, so the board shows early movement before the core is built?"
+        ],
+        "correctIndex": 0,
+        "explanation": "Deferred refinement turns on whether a detail can be judged without a structure that does not exist yet. Impressiveness and speed of finishing do not test that; the judgeability question does.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch22.concept",
+      "front": "Why can many product details not be judged correctly until the core thing already exists?",
+      "back": "A detail's right answer depends on the structure around it, and that structure stays undefined until the core is built. Deciding the detail first means choosing against context that does not exist yet, so the choice usually gets reversed once the real shape appears.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch22.ex.early-detail-meetings",
+      "front": "What did 37signals notice teams losing time to before any useful product existed?",
+      "back": "Whole mornings spent debating labels, colors, edge cases, and settings. Those arguments felt productive but produced nothing shippable, because the work that gave the details a right answer had not been built yet.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch22.fact.3",
+      "front": "When does early refinement get wasted, and why?",
+      "back": "When the surrounding structure later changes. Polishing a part that then moves or disappears throws the polish away with the part. Refinement only banks value if the refined thing survives, and before the core settles very little is safe yet.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch22.fact.4",
+      "front": "How do the right details actually become visible, if not from a thorough spec?",
+      "back": "Through making, use, and friction. A spec predicts, but only real use reveals which choices support the promise. The friction that names the right details emerges when a real task collides with the real build, so it cannot be reasoned out in advance.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch22.fact.6",
+      "front": "Why can a team feel responsible doing detail work while making no real progress?",
+      "back": "Choosing labels and settings is concrete and easy, so it offers comfortable, finishable tasks while the hard, unresolved core question goes untouched. Motion on small details can be displacement, not the same as resolving the risk that decides the product.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch22.fact.5",
+      "front": "What separates deferring a detail from neglecting it?",
+      "back": "Sequence. Deferred details still get a careful pass, just at a later stage once the core exists and there is real reality to refine. The argument is about timing, not abandonment, so it never endorses shipping careless work.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card07",
+      "sourceAnchorId": "ch22.fact.9",
+      "front": "How do you tell a deferrable detail from one that is actually the core, like a rounding rule that drops a cent?",
+      "back": "Ask whether the detail can even be judged yet. If judging it needs a structure not built, defer it. If the detail decides whether the core works at all, like a payment field losing money, it was never really a detail and must be fixed now.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Defer the Detail, Build the Shape",
+    "coreSkill": "Before settling a label, color, edge case, or setting, ask whether it can be judged yet, or whether judging it needs a structure you have not built. If it needs the missing structure, move it to a scheduled later pass and put the hour into making the core run instead. Then let real use and friction tell you which deferred details actually matter, and refine those with the context that finally exists.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch22.ex.early-detail-meetings",
+        "context": "When meetings are being called to settle labels, colors, and settings before the core flow runs, the way 37signals warned about",
+        "plan": "If a debate over labels, colors, or settings starts with no working product to point at, then defer those details to a decide-later list and send the time to making the core run."
+      },
+      {
+        "sourceAnchorId": "ch22.fact.4",
+        "context": "When someone says the spec already names the right details so the team can build straight from it",
+        "plan": "If a spec is treated as the source of detail decisions, then ship a rough version to real users and let the friction they hit name which details actually matter."
+      },
+      {
+        "sourceAnchorId": "ch22.fact.9",
+        "context": "When a detail is about to be filed for the polish pass and you are unsure it belongs there",
+        "plan": "If a detail is queued for later, then run the judge-it-yet test, and if it decides whether the core works at all, pull it into the core and fix it now."
+      },
+      {
+        "sourceAnchorId": "ch22.fact.6",
+        "context": "When a week of finished detail tasks feels productive but the core risk is untested",
+        "plan": "If the team is busy on settings while the hard core question waits, then name the displacement, freeze the detail work, and aim the week at the unresolved core."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, log every detail decision someone proposes settling, and beside each mark whether it can be judged without a structure you have not built. Move every one that fails the test to a dated later pass, and spend the freed time making the core run.",
+    "weeklyPractice": "Each week, review which deferred details real use ended up answering for you and which you had wrongly tried to settle early. Track how many early detail choices got reversed once the core existed, and let that count tune how aggressively you defer next week."
+  },
+  "memorableLines": [
+    {
+      "text": "Decide the button color now and you decide against a screen that does not exist.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the abstract timing argument vivid in one concrete image a reader can picture."
+    },
+    {
+      "text": "Use exposes what a spec only guesses.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the whole making-over-planning mechanism into a five-word contrast worth memorizing."
+    },
+    {
+      "text": "If the detail is part of whether the core works at all, it was never a detail in the first place.",
+      "location": "breakdown.fullRead",
+      "why": "It carries the hard-edge boundary that separates load-bearing work from deferrable polish."
+    }
+  ]
+}

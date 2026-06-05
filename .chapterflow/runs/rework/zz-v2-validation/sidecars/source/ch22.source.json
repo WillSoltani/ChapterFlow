@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 22,
+  "chapterTitle": "Ignore the details early on",
+  "focus": "The essay separates respect for details from premature detail work. Build enough shape first so refinements have context.",
+  "coreClaim": "Do not let early details delay the work; many details reveal themselves only after the product is taking form.",
+  "centralConcept": {
+    "id": "ch22.concept",
+    "name": "deferred refinement",
+    "plainDefinition": "Details matter, but many cannot be judged correctly until the main thing exists. Early detail obsession causes delay, debate, and rework.",
+    "whyItMatters": "A reader can protect momentum by postponing refinements that will become clearer after real building starts."
+  },
+  "keyClaims": [
+    "Details can create meetings and disagreements before the team knows what the product really needs. [22.1]",
+    "Early refinements are often wasted because the surrounding structure changes. [22.2]",
+    "The right details become visible through making, use, and friction. [22.3]",
+    "Ignoring details early does not mean ignoring them forever. [22.4]",
+    "Momentum is easier to preserve when the team works from broad shape to specific polish. [22.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch22.ex.early-detail-meetings",
+      "label": "early product details causing meetings and delay",
+      "summary": "The essay points to teams getting stuck on details before anything useful exists. Those debates consume energy even though the work may later change enough to make the debate irrelevant.",
+      "teachesWhat": "Refinement belongs after the product has enough reality to refine.",
+      "hardSpecifics": ["37signals", "meetings", "labels", "colors", "edge cases", "settings"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is to ship careless work. The hard edge is timing: details are crucial later, but poisonous when they block the first real version.",
+  "testableFacts": [
+    { "id": "ch22.fact.1", "claim": "Many product details cannot be judged correctly until the main thing already exists.", "becauseMechanism": "because a detail's correctness depends on the surrounding structure, which is undefined until the core is built.", "commonError": "you should settle every detail up front so the design is fully specified before building.", "errorIsWhy": "specifying details against a structure that does not yet exist means deciding without the context that makes the decision answerable.", "derivedFrom": "ch22.concept" },
+    { "id": "ch22.fact.2", "claim": "Early detail debates generate meetings and disagreement before the team has evidence to decide well.", "becauseMechanism": "because without a real product to point at, people argue from opinion rather than from how the thing actually behaves.", "commonError": "more discussion early always reduces risk by surfacing problems sooner.", "errorIsWhy": "discussion without a buildable referent produces opinion-versus-opinion stalls, not resolved problems.", "derivedFrom": "ch22.ex.early-detail-meetings" },
+    { "id": "ch22.fact.3", "claim": "Early refinements are often wasted because the surrounding structure changes.", "becauseMechanism": "because polishing a part that later moves or disappears throws away the polishing work along with the part.", "commonError": "refined work done early is banked value that carries forward regardless of later changes.", "errorIsWhy": "value only carries forward if the refined part survives; when the structure shifts, the refinement is discarded with it.", "derivedFrom": "ch22.concept" },
+    { "id": "ch22.fact.4", "claim": "The right details become visible through making, use, and friction.", "becauseMechanism": "because touching, using, and hitting friction in the real product exposes which choices actually support the promise.", "commonError": "the right details can be reasoned out in advance from a thorough spec.", "errorIsWhy": "a spec predicts; only real use reveals the friction that tells you which details matter.", "derivedFrom": "ch22.concept" },
+    { "id": "ch22.fact.5", "claim": "Ignoring details early does not mean ignoring them forever.", "becauseMechanism": "because the argument is about sequence: details are deferred to a later stage, not abandoned.", "commonError": "the chapter advises shipping careless work and skipping detail entirely.", "errorIsWhy": "the claim is timing, not neglect; details remain crucial, just later once there is reality to refine.", "derivedFrom": "ch22.concept" },
+    { "id": "ch22.fact.6", "claim": "Early detail work feels responsible because it is concrete, but it can hide fear of the bigger unresolved question.", "becauseMechanism": "because picking labels and colors is tangible and easy, it offers comfortable progress while the hard core question goes unaddressed.", "commonError": "if a team is busy on concrete detail tasks, it is making real progress on the product.", "errorIsWhy": "concrete activity can be displacement; motion on small details is not the same as resolving the core.", "derivedFrom": "ch22.ex.early-detail-meetings" },
+    { "id": "ch22.fact.7", "claim": "In 37signals' product philosophy, broad usefulness and coherence come before polish.", "becauseMechanism": "because the product must first do something genuinely useful and hold together before fine polish has anything worth refining.", "commonError": "polish and usefulness should be developed together from the start so nothing ships rough.", "errorIsWhy": "polish applied before usefulness exists refines a thing that may not survive; coherence has to come first to give polish a stable target.", "derivedFrom": "ch22.ex.early-detail-meetings" },
+    { "id": "ch22.fact.8", "claim": "Momentum is easier to preserve by moving from broad shape to specific polish.", "becauseMechanism": "because broad-to-specific sequencing avoids stalling on refinements that the unfinished core cannot yet justify.", "commonError": "you keep momentum by locking down each detail completely before moving on.", "errorIsWhy": "locking details prematurely stops forward motion on the core, which is what actually drives momentum.", "derivedFrom": "ch22.concept" },
+    { "id": "ch22.fact.9", "claim": "The danger is not care itself but using premature care to delay the stage where the product becomes real.", "becauseMechanism": "because details are crucial later yet poisonous when they block the first real version from existing.", "commonError": "obsessing over details early is always the careful, safe choice.", "errorIsWhy": "premature care blocks the first real version, so the safe-looking choice is actually what stalls the work.", "derivedFrom": "ch22.edge" }
+  ],
+  "frameworks": [],
+  "voiceCues": [
+    "balances a concession with a warning",
+    "names meetings as a cost",
+    "uses sequence as the organizing idea"
+  ],
+  "forbiddenLeakage": [
+    "meeting rules",
+    "promotion by teaching",
+    "culture as behavior"
+  ],
+  "paraphraseNotes": "The essay protects early progress from a sophisticated-looking trap. Details do matter; the argument never denies that. The problem is timing. Before the product has a real shape, teams can spend hours debating labels, colors, edge cases, settings, and minor interactions that may disappear once the core is built. Early detail work feels responsible because it is concrete, but it can hide fear of the bigger unresolved question. It also generates meetings and disagreement before the team has enough evidence to decide well. In 37signals' product philosophy, broad usefulness and coherence come before polish. Details become easier to judge after people can touch the thing, encounter friction, and see which choices support the promise. The downstream writer should preserve the disciplined sequence: ignore early, notice later, refine with context. The danger is not care. The danger is using premature care to delay the stage where the product becomes real enough to teach. Research detail 22 (Ignore the details early on): Details can create meetings and disagreements before the team knows what the product really needs. Early refinements are often wasted because the surrounding structure changes. The right details become visible through making, use, and friction. Named anchor 22, early product details causing meetings and delay, keeps later prose concrete: The essay points to teams getting stuck on details before anything useful exists. Those debates consume energy even though the work may later change enough to make the debate irrelevant. Refinement belongs after the product has enough reality to refine."
+}

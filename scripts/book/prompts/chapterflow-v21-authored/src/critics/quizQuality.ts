@@ -53,6 +53,7 @@ const VERB_HINT = /\b(is|are|was|were|be|been|being|has|have|had|do|does|did|can
  */
 const ALLOWED_QUESTION_KEYS = new Set([
   "questionId",
+  "sourceAnchorId", // Phase 3 (v2) provenance — required by SC11 on v2 chapters; stripped at promote so it never reaches the package validator
   "prompt",
   "choices",
   "correctIndex",

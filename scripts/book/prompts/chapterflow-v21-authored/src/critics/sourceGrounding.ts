@@ -279,6 +279,11 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
   };
   pushIfText(sidecar?.hardEdge);
   pushIfText(sidecar?.paraphraseNotes);
+  // v2: testableFacts carry real entities too (e.g. "Pierre Omidyar" in a claim).
+  for (const f of sidecar?.testableFacts ?? []) {
+    if (typeof f?.claim === "string") texts.push(f.claim);
+    if (typeof f?.becauseMechanism === "string") texts.push(f.becauseMechanism);
+  }
 
   // Exclude the chapter's own title words from the candidate pool so a
   // chapter doesn't auto-pass by referencing its own title in scenarios.
@@ -289,6 +294,17 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
       .filter((w) => w.length >= 4),
   );
   const candidates = extractProperNouns(texts, titleWords);
+  // v2: hardSpecifics are curated REAL anchors (e.g. "eBay", "auction marketplace")
+  // — add them directly so lowercase-initial / multi-word entities count, which the
+  // capital-first proper-noun regex would otherwise miss (the eBay false-positive).
+  for (const ex of namedExamples) {
+    if (ex && typeof ex === "object") {
+      for (const s of (ex as any).hardSpecifics ?? []) {
+        const t = String(s).toLowerCase().trim();
+        if (t.length >= 3 && !titleWords.has(t)) candidates.add(t);
+      }
+    }
+  }
   // If the sidecar is too abstract to yield anchors, skip to avoid
   // false-positives on legitimately concept-heavy chapters. Threshold
   // of 2 is conservative — a chapter with only one proper-noun anchor

@@ -69,7 +69,7 @@ This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs th
 
 ## Bind before you write
 
-Every templating defect is a field that drifted off its source. So before you compose a single field, write a **Chapter Bind Block** from this chapter's source sidecar (`.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`). It is four lines plus one invention, and it stays in front of you while you write every field:
+Every templating defect is a field that drifted off its source. So before you compose a single field, write a **Chapter Bind Block** from this chapter's source sidecar (`.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`). It is five lines plus one invention, and it stays in front of you while you write every field:
 
 ```
 BIND — ch<NN>
@@ -77,9 +77,17 @@ BIND — ch<NN>
   namedExamples  : <3–6 real cases from the sidecar: companies, people, studies, places>
   hardEdge       : <the strict reading you must preserve — the thing a lazy summary gets wrong>
   readerTool     : <the ONE named move you invent for this chapter and use in the plan>
+  protagonists   : <THIS chapter's allocated names — copy from the name plan, see below>
 ```
 
 The Bind Block is not paperwork. It is the answer to "what am I reasoning FROM" for every field below it. A scenario that doesn't trace to a `namedExample`, a quiz that doesn't test the `hardEdge`, a card that doesn't pull on the `centralConcept` — those are the fields that, having nothing real to say, fall back on a skeleton. Bind first and the skeleton has nowhere to live.
+
+**Name plan — bind your protagonists before you write (prevents F1 / BP13).** Chapters in a book are authored in parallel, blind to each other, so independent agents reach for the same protagonist names and the same stock connectives — and book-gate blocks the whole book on the collision (F1: a name in ≥2 chapters; BP13: a verbatim 5-word run across ≥3 chapters). The pre-authoring name plan removes the guesswork. Before authoring:
+
+1. Run (or have the orchestrator run) `npx tsx src/cli.ts name-plan <bookId> --from <N> --to <M>`. It writes `state/name-plans/<bookId>.name-plan.json`.
+2. Read `allocation["<thisChapterNumber>"]` from that file. **Use ONLY those names as your scenario protagonists** — they are disjoint from every other chapter's allocation and from every name already used in the book and the cross-book ledger. Do not invent names outside your slice; do not borrow a name you saw in another chapter.
+3. Read `bannedConnectives` from the same file (sourced from `config/banned-connectives.json`). Never use any listed phrase, and obey the stated principle: **never let a 5-word run repeat across chapters — vary the grammar of how a scene opens, how a decision is framed, how a consequence lands.**
+4. **One name = one person, everywhere in the chapter.** The breakdown sections (`fastRead`/`deepRead`/`fullRead`) and `memorableLines` also name characters — draw those from the SAME allocated slice, and never reuse one name for two different people. If `deepRead` illustrates with "Trygve" and an example also stars "Trygve", they must be the *same* person doing consistent things; otherwise give the second one a different name from your slice. A name that means two people inside one chapter reads as a continuity error.
 
 Then these four rules are **authoring law**. They are not gate-dodges; they are how each field does its job.
 
@@ -107,6 +115,23 @@ its concrete tokens). This is declare-then-write: grounding becomes a forward ac
 post-hoc check. `SC11` verifies the unit actually uses the anchor it claims — a generic
 sentence that merely name-drops the anchor fails. (v1 sidecars: no `sourceAnchorId`
 needed; SC11 skips them.)
+
+**R6 — Vary the SHAPE of each scene, not just the nouns (the systemic templating
+defect).** This is the single defect that put whole books at REVISE (Rich Dad Poor Dad:
+nearly every scene across every chapter opened the same way). The gates CANNOT catch it
+(clock times and decision language are legitimate — gold books use them), so it is on
+YOU. A reader meeting six scenes built on one frame knows instantly the book was
+generated. The frame to BREAK:
+> ❌ `[Name] [does X] at [clock time] in [place]; [pressure/deadline]; must decide whether A or B.`
+> repeated across 5–6 of 6 scenes, with only the name, time, place, and the A/B swapped.
+Concretely: a clock-time opener is fine in *one or two* scenes, never as the default for
+all six. The "must decide whether A or B" / "one option is X, the other is Y" binary is a
+frame, not a scene — use it at most once. Give each of the six scenes a genuinely
+different **construction**: one opens mid-action, one on a line of dialogue, one on a
+number, one on an aftermath, one on a place, one on a decision already made. If you can
+describe all six scenes with one sentence template, you have failed R6 — tear them out
+and rebuild each from a different `namedExample`. (And per the name plan: one name = one
+person across breakdown → examples → quiz; never reuse a name for a second character.)
 
 ---
 
@@ -386,7 +411,7 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 
 **Per-example rules (every one matters):**
 
-1. **C1 — Named protagonist.** Every scenario opens with a named person. NOT "a manager", NOT "an engineer". Use names that have NOT appeared in any prior chapter of this book AND are NOT in this banned name pool: `Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi`. Pick names that fit the cultural setting.
+1. **C1 — Named protagonist.** Every scenario opens with a named person. NOT "a manager", NOT "an engineer". **Draw names ONLY from this chapter's name-plan slice** (`allocation["<thisChapterNumber>"]` in `state/name-plans/<bookId>.name-plan.json` — see the name-plan step in the authoring law above). That slice is already guaranteed disjoint from every other chapter and from the cross-book ledger, so it is the F1-safe source of truth. If no name plan exists, fall back to names that have NOT appeared in any prior chapter of this book AND are NOT in this banned pool: `Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi`. Pick names that fit the cultural setting.
 
 2. **C2 — Specific scene.** Name a time, a place, a role, a concrete artifact. "On Tuesday at 4 PM in the Berlin warehouse, Hanna sees the manifest on her tablet…" NOT "A manager reviews paperwork…".
 

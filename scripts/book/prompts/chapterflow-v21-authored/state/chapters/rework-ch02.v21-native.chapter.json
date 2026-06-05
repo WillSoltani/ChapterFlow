@@ -1,0 +1,332 @@
+{
+  "chapterId": "rework-ch02",
+  "number": 2,
+  "title": "Ignore the real world",
+  "readingTimeMinutes": 10,
+  "hook": "The phrase real world can be a locked door with no evidence behind it.",
+  "counterintuition": "A warning can sound seasoned while only protecting the speaker's old limits. The useful question is whether the warning names evidence from your conditions or just repeats yesterday's habits.",
+  "tryThisNow": "Write the last \"real world\" objection you heard, then underline only the parts that name a customer fact, cost, law, or delivery risk.",
+  "keyTakeaway": "Borrowed pessimism treats someone else's ceiling as a claim to test, not a law to obey; Basecamp proves traction can outrank incumbent taste.",
+  "breakdown": {
+    "fastRead": "Basecamp met a market that expected enterprise software to be heavy. The normal script wanted feature bulk, sales machinery, and custom installs. A simpler web product still found users because ordinary project coordination had a real pain.\n\nBorrowed pessimism is what happens when the phrase real world hides fear. It can sound wise. It may only mean, \"That is not how my old setup worked.\"\n\nThe rule is not to sneer at warnings. Check the warning. Legal facts, buyer behavior, and hard costs deserve respect. Vague gloom does not. Put the product, pitch, or process in contact with actual use, then let traction speak louder than inherited limits.",
+    "deepRead": "Borrowed pessimism works by stealing the test before it starts. A person says customers will not accept a simpler tool, staff will not work without close control, or a company must copy the incumbent pattern. The sentence arrives with confidence, but confidence is not evidence.\n\nBasecamp gives the point a concrete shape. Enterprise project software had a familiar costume: thick feature lists, private installations, sales calls, and long buying cycles. Basecamp chose web delivery, clarity, and ordinary customer usefulness. It did not win an argument about the real world in a conference room. It met users and found traction.\n\nUseful caution feels different. It points to a named risk. A hospital tool may face privacy rules. A delivery service may face fuel costs. A consumer product may face refund behavior. Those facts should change the plan. They should not become an excuse to abandon every unfamiliar path.\n\nBorrowed pessimism is most dangerous when it borrows the language of maturity. The mature move is to ask what conditions apply here. Are we smaller, cheaper, faster, more focused, or closer to buyers than the people giving the warning? If yes, their ceiling may not be ours.\n\nThe hard edge stays in view. Ignoring every objection is not courage. It is just another shortcut. The better move is to separate evidence from reflex, then test the disputed claim where the work can answer back.",
+    "fullRead": "A real-world warning often arrives before reality has been consulted. Someone hears a new plan and says customers will not buy it, employees will not accept it, or the market only respects the familiar model. The words sound adult because they carry the weight of experience. Yet experience can come from a different company, a different cost base, a different customer, or a different era.\n\nBasecamp supplies the clean countercase. Corporate software once came with assumptions about size and ceremony. Serious tools were expected to have dense feature menus, custom setups, sales teams, and a posture aimed at large buyers. A plain web product for project coordination should have looked too light under that model. The market gave a better answer than the model did.\n\nThat is the first lesson: possibility belongs to the conditions of the attempt. A small team with a focused product is not living inside the same constraints as an incumbent vendor. A direct web channel is not the same as a long enterprise sales channel. A buyer who wants clarity is not the same as a committee shopping for a feature inventory. Borrowed pessimism collapses those differences.\n\nThe second lesson is that outsiders often defend the arrangement they know. They may not be malicious. They may simply remember the last place where they worked. If that place needed a large sales staff, they call sales staff reality. If that place had bloated software, they call bloat inevitable. If that place distrusted employees, they call supervision practical. The old condition gets renamed nature.\n\nThe answer is not blind rebellion. Some warnings are real. A payment product must care about fraud. A food business must care about health rules. A medical workflow must care about patient safety. A startup that waves away those facts is not bold; it is careless. The distinction is whether the objection points to evidence from use, law, cost, or delivery, or whether it merely protects a familiar pattern.\n\nBasecamp matters because it chose contact over permission. The product did not need enterprise-software veterans to bless its simplicity. Users could try it, pay for it, rely on it, and tell the company where the pain remained. Actual traction became a better judge than the imagination of people attached to heavier tools.\n\nThat same test works outside software. A restaurant owner may hear that diners need a thick menu, but a tight menu can prove itself through orders and repeat visits. A school may hear that parents will reject a short weekly update, but parent replies can show whether clarity beats volume. A repair shop may hear that customers need a showroom, but booked appointments may show that trust travels through proof of work.\n\nBorrowed pessimism should be treated like a hypothesis with a source label. Who is saying it? Which conditions shaped their view? What evidence would confirm it here? What small trial would expose the truth without betting the whole company? Those questions keep humility without surrender.\n\nThe failure mode is contempt. A team can become so proud of ignoring old advice that it stops listening to facts. That is not the Rework stance. The stance is sharper: ignore fake reality, not reality itself. Keep the facts. Drop the inherited ceiling. Let the work meet customers before someone else's fear gets to close the door."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Marin Sorts the Clinic Warning",
+      "tags": [
+        "health software",
+        "customer evidence",
+        "borrowed limits"
+      ],
+      "planSpec": {
+        "domain": "clinic scheduling software",
+        "audience": "small product teams",
+        "stakes": "avoid surrendering to enterprise assumptions before a pilot",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist separates real compliance risk from inherited software pessimism"
+      },
+      "scenario": "Marin stands at 8:25 a.m. in a Halifax clinic office with a pilot calendar printed beside her laptop. A vendor says clinics will reject any tool that lacks an enterprise feature menu. Before the medical director arrives, she must decide whether the Basecamp lesson applies: keep privacy and audit facts, but test whether nurses value a simpler scheduling screen.",
+      "whatToDo": "Marin should run the pilot around one privacy-safe scheduling flow and ask nurses where the simple screen helps or fails.",
+      "whyItMatters": "Borrowed pessimism loses force when the objection is split apart. Compliance is real; enterprise feature bulk may only be someone else's habit."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Zev Answers the Investor Script",
+      "tags": [
+        "fundraising",
+        "sales model",
+        "traction"
+      ],
+      "planSpec": {
+        "domain": "B2B collaboration tool",
+        "audience": "founders facing incumbent advice",
+        "stakes": "protect a direct-sales experiment from premature dismissal",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist uses Basecamp to challenge sales-heavy assumptions"
+      },
+      "scenario": "Zev sits at 3:10 p.m. in a Toronto hotel lobby after a demo. \"No one buys collaboration software without a sales rep,\" an investor says. Zev has nine paid teams from self-serve trials. Before the elevator doors open, he has to say whether Basecamp's web-first path is evidence or whether the investor's corporate-software memory gets the final word.",
+      "whatToDo": "Zev should answer with the paid-trial data and name the next self-serve test instead of debating the investor's old sales script.",
+      "whyItMatters": "The scene shows actual traction outranking a confident prediction. The investor may know one model, but Zev has evidence from this one."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Rosa Keeps the Menu Tight",
+      "tags": [
+        "restaurant",
+        "scope",
+        "customer behavior"
+      ],
+      "planSpec": {
+        "domain": "neighborhood restaurant",
+        "audience": "operators choosing between focus and convention",
+        "stakes": "avoid expanding a menu because outsiders call focus unrealistic",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist treats Basecamp as proof that simpler can work"
+      },
+      "scenario": "Rosa reviews Saturday receipts at 11:40 p.m. in her Providence prep kitchen. A former chain manager says the real world demands a huge menu. Her small card sells out twice a week, yet staff are nervous. Before Monday's supplier order, Rosa must decide whether Basecamp-style clarity is a clue or whether chain habits define her restaurant.",
+      "whatToDo": "Rosa should keep the short menu for another measured week and compare sellouts, waste, prep time, and repeat visits.",
+      "whyItMatters": "Useful warnings should meet operating facts. A chain manager's ceiling does not settle what a focused neighborhood room can do."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Ishaan Tests the Remote Rule",
+      "tags": [
+        "remote work",
+        "management",
+        "supervision"
+      ],
+      "planSpec": {
+        "domain": "design studio",
+        "audience": "managers designing team norms",
+        "stakes": "distinguish accountability from inherited suspicion",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist rejects supervision folklore while preserving delivery standards"
+      },
+      "scenario": "Ishaan opens a delivery board at 7:50 a.m. in a Manchester design studio. A senior client warns that remote designers will drift unless watched in person. The latest Basecamp notes show every file shipped early. Hours before the staffing plan is due, Ishaan has to choose between evidence from the work and a real-world story about supervision.",
+      "whatToDo": "Ishaan should keep the remote cadence tied to delivery dates, review quality, and client response rather than office attendance.",
+      "whyItMatters": "Borrowed pessimism often hides as people management wisdom. The proof belongs in shipped work, not in a rule from another workplace."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Greta Checks the School Update",
+      "tags": [
+        "education",
+        "communication",
+        "parent feedback"
+      ],
+      "planSpec": {
+        "domain": "school communication",
+        "audience": "administrators simplifying a process",
+        "stakes": "avoid assuming more volume means more trust",
+        "format": "predict_reveal",
+        "requiredBeat": "the protagonist uses a small test to answer a pessimistic claim"
+      },
+      "scenario": "Greta stands at 4:35 p.m. in the Tallinn school office with two parent emails on the screen. A board member says families will call a one-page Friday update lazy. Before the trial notice goes out, Greta must predict whether Basecamp's clarity lesson can transfer, then reveal the answer through parent replies and missed-question counts.",
+      "whatToDo": "Greta should send the one-page update for four Fridays and track replies, confusion, and follow-up calls before expanding it.",
+      "whyItMatters": "The test respects families more than the gloomy claim does. Parent behavior can judge clarity better than a fear of looking too simple."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Luc Labels the Legal Risk",
+      "tags": [
+        "legal service",
+        "risk sorting",
+        "constraints"
+      ],
+      "planSpec": {
+        "domain": "online legal intake",
+        "audience": "service teams under regulatory pressure",
+        "stakes": "keep true constraints while refusing blanket pessimism",
+        "format": "audit",
+        "requiredBeat": "the protagonist honors real legal limits without letting them swallow the whole experiment"
+      },
+      "scenario": "Luc reviews an intake prototype at 10:05 a.m. in a Montreal legal clinic. A partner says online intake is impossible in the real world. The checklist shows two true privacy issues and six vague fears. Before the pilot vote, Luc must use Basecamp as the contrast: do not ask permission from custom-install habits, but do respect the legal facts.",
+      "whatToDo": "Luc should fix the two privacy issues, run the intake with ten screened clients, and record where the simpler flow breaks down.",
+      "whyItMatters": "The hard edge matters here. Ignoring all objections would be reckless; sorting evidence from reflex makes the experiment responsible."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A clinic vendor says a simple scheduling pilot cannot work because enterprise buyers expect dense menus. Which response best handles the warning?",
+        "choices": [
+          "Cancel the pilot because the vendor's enterprise background gives the safest reading of clinic behavior.",
+          "Add the dense menus before nurses try the scheduling flow so the product looks familiar.",
+          "Keep the privacy requirements, then let nurses test the simple flow and report where it fails."
+        ],
+        "correctIndex": 2,
+        "explanation": "Borrowed pessimism should be sorted, not worshiped. Privacy is evidence-based risk; a prediction about dense menus needs contact with actual clinic use.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "After nine paid self-serve trials, an investor insists collaboration software needs a sales rep to be taken seriously. What should the founder protect?",
+        "choices": [
+          "The investor's preferred sales model, since it has the comfort of industry tradition.",
+          "The paid trial evidence, because Basecamp shows direct traction can challenge a sales-heavy assumption.",
+          "A larger demo process, because buyers may respect a longer path even if current trials are working."
+        ],
+        "correctIndex": 1,
+        "explanation": "Actual traction is stronger than a confident story about how buying must happen. The founder should keep testing the channel that already produced buyers.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A restaurant's short menu sells well, but a former chain manager calls it unrealistic. Which next step best avoids borrowed pessimism?",
+        "choices": [
+          "Measure sellouts, waste, prep time, and repeat visits before changing the menu.",
+          "Expand the menu to match chain expectations so the restaurant feels safer.",
+          "Ask regulars fewer questions so the owner is not tempted to ignore industry experience."
+        ],
+        "correctIndex": 0,
+        "explanation": "The chain manager may know one operating model. The restaurant needs evidence from its own room, staff, costs, and repeat customers.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A client claims remote designers need office supervision, while the delivery board shows early files and clean reviews. What judgment fits the source idea?",
+        "choices": [
+          "Move everyone back to the office because supervision stories are easier to explain to clients.",
+          "Ignore delivery quality and ask the designers whether the warning hurt their morale.",
+          "Keep accountability tied to dates, quality, and client response rather than the client's supervision folklore."
+        ],
+        "correctIndex": 2,
+        "explanation": "The warning becomes weak when it conflicts with visible delivery evidence. The team should keep real standards without inheriting another workplace's suspicion.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Before trying a one-page parent update, a board member says families will see brevity as laziness. Which test is sharpest?",
+        "choices": [
+          "Send the shorter update for a fixed trial and track replies, confusion, and follow-up calls.",
+          "Add more sections so parents see that the school worked hard on the message.",
+          "Drop the trial because communication habits are too sensitive for experiments."
+        ],
+        "correctIndex": 0,
+        "explanation": "The board member's fear is a prediction. Parent behavior can test whether clarity works better than volume in this school.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An online legal intake has two true privacy issues and several vague objections. What would preserve the hard edge?",
+        "choices": [
+          "Treat all objections as equal and stop before the clinic risks any discomfort.",
+          "Fix the privacy issues, then pilot the intake with screened clients and watch where the flow breaks.",
+          "Dismiss the partner's concern because pessimism usually protects old arrangements."
+        ],
+        "correctIndex": 1,
+        "explanation": "Ignoring every objection would be careless. The better distinction is between real legal constraints and reflexive doubt about an unfamiliar path.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A product lead uses Basecamp as a reason to reject every criticism of a simple tool. Which correction is most accurate?",
+        "choices": [
+          "Basecamp means simplicity wins when a team refuses to hear outside concerns.",
+          "Basecamp means feature-heavy products cannot have valid customers or constraints.",
+          "Basecamp is evidence that traction can beat assumptions, not permission to skip facts."
+        ],
+        "correctIndex": 2,
+        "explanation": "The source case does not praise defiance for its own sake. It shows that real use can disprove incumbent assumptions when the conditions fit.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A colleague says, \"That will never work in the real world,\" but names no buyer behavior, cost, law, or delivery problem. What should happen next?",
+        "choices": [
+          "Ask for a concrete risk, then run a narrow test if the objection stays vague.",
+          "Accept the phrase as enough because experienced people often compress their evidence.",
+          "Switch to the incumbent model so the colleague can recognize the plan."
+        ],
+        "correctIndex": 0,
+        "explanation": "Reality-talk without evidence is not a verdict. The next move is to request a specific risk and let a small test answer the loose claim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team wants to decide whether an objection is useful or borrowed pessimism. Which question gives the cleanest split?",
+        "choices": [
+          "Does the objection make the team feel more mature than the original plan?",
+          "Would the objection sound convincing if it came from a famous company?",
+          "Does the objection name evidence from this market, toolset, customer, or constraint?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The useful split is source and fit. Evidence from this situation deserves attention; prestige, habit, and generalized gloom do not settle the question.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What is borrowed pessimism?",
+      "back": "It is someone else's fear, habit, or institutional limit dressed up as universal reality before evidence from your own conditions has appeared.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "How does Basecamp challenge enterprise-software assumptions?",
+      "back": "Basecamp showed that a clearer web product for project coordination could work without copying feature bulk, custom installs, and sales-heavy expectations.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "front": "Which warnings deserve respect?",
+      "back": "Respect warnings that name evidence: customer behavior, legal duties, unit economics, delivery limits, security needs, or other facts that apply to your conditions.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "What makes a real-world objection weak?",
+      "back": "It is weak when it only protects the familiar pattern: the incumbent's cost base, old sales customs, supervision habits, or the speaker's prior failure conditions.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "Why is actual traction the better judge?",
+      "back": "Traction comes from users, buyers, and work. It can reveal whether a new setup fits current conditions better than an outsider's memory of the old model.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "front": "What is the danger of overcorrecting?",
+      "back": "Ignoring every objection turns skepticism into recklessness. The disciplined move is to keep real constraints while refusing vague despair.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Sort the Reality Claim",
+    "coreSkill": "Learn to hear the phrase real world as a claim, not a verdict. The skill is to ask what evidence the warning contains and which conditions produced it. Then design a small contact point with buyers, users, costs, or delivery so the work can answer.",
+    "ifThenPlans": [
+      {
+        "context": "When someone says customers will reject the approach",
+        "plan": "If the claim names no specific customer behavior, then ask for the behavior and test one narrow interaction before changing the plan."
+      },
+      {
+        "context": "When the warning points to law, safety, or money",
+        "plan": "If the risk is concrete, then preserve it as a constraint and look for the simplest version that still respects it."
+      },
+      {
+        "context": "When an incumbent model is treated as nature",
+        "plan": "If the argument depends on how large firms operate, then compare their cost base, channel, and buyer with yours before accepting the ceiling."
+      },
+      {
+        "context": "When Basecamp is used as a slogan",
+        "plan": "If the example is being used to dodge facts, then restate the measurable evidence your own attempt must produce."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one current objection and make a two-column note: evidence on the left, inherited belief on the right. Run one small test for the strongest unproven belief.",
+    "weeklyPractice": "Once a week, review one rejected idea or delayed decision. Ask whether a real constraint stopped it or whether borrowed pessimism ended the test too early."
+  },
+  "memorableLines": [
+    {
+      "text": "Borrowed pessimism is what happens when the phrase real world hides fear.",
+      "location": "breakdown.fastRead",
+      "why": "It names the central concept in a way a reader can recognize in conversation."
+    },
+    {
+      "text": "A person says customers will not accept a simpler tool, staff will not work without close control, or a company must copy the incumbent pattern.",
+      "location": "breakdown.deepRead",
+      "why": "It lists the common disguises that make the advice feel familiar."
+    },
+    {
+      "text": "A real-world warning often arrives before reality has been consulted.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the chapter's reversal without dismissing real constraints."
+    }
+  ]
+}

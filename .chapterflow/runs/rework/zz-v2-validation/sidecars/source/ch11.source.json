@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 11,
+  "chapterTitle": "No time is no excuse",
+  "focus": "The common time excuse is challenged as a priority problem. Starting can happen in small consistent blocks before a person quits a job or makes a dramatic leap.",
+  "coreClaim": "If the work matters enough, make modest recurring time for it instead of waiting for an empty calendar.",
+  "centralConcept": {
+    "id": "ch11.concept",
+    "name": "time ownership",
+    "plainDefinition": "Lack of time often masks lack of priority. Even a few protected hours each week can move a serious side project from fantasy into evidence.",
+    "whyItMatters": "A reader can reclaim small blocks from television, browsing, or low-value obligations and use them to test whether the desire is real."
+  },
+  "keyClaims": [
+    "Most people can find a few hours each week by changing how they spend discretionary time. [11.1]",
+    "A side project does not require abandoning a day job at the beginning. [11.2]",
+    "Small, repeated work sessions compound into a product, service, or proof of demand. [11.3]",
+    "The excuse protects ego because it avoids testing whether the person truly wants the outcome. [11.4]",
+    "Responsibility begins when time is deliberately allocated instead of wished for. [11.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch11.ex.night-weekend-starter",
+      "label": "night-and-weekend starter schedule",
+      "summary": "The practical example is a person keeping a day job while trading some television or idle time for evening work on a business. A few hours each week are enough to begin learning from real effort.",
+      "teachesWhat": "Commitment shows up first in calendar choices, not in dramatic declarations.",
+      "hardSpecifics": ["day job", "television", "a few hours each week", "weekends"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is to ignore real caregiving, health, or survival constraints. The edge is aimed at discretionary time that gets spent elsewhere while the dream remains untouched.",
+  "voiceCues": [
+    "uses direct second-person challenge",
+    "names ordinary time sinks",
+    "keeps the first step small"
+  ],
+  "forbiddenLeakage": [
+    "launch iteration",
+    "competitor positioning",
+    "remote hiring"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch11.fact.1",
+      "claim": "Most people can find a few hours each week by changing how they spend their discretionary time.",
+      "becauseMechanism": "Discretionary hours already exist in a typical week, which means reallocating them away from low-value activities frees time without adding any new hours to the day.",
+      "commonError": "You need a large, uninterrupted block of free time before you can begin any side project.",
+      "errorIsWhy": "The chapter argues the opposite: a few scattered hours reclaimed from idle time are enough to start, and waiting for a large block is itself the excuse.",
+      "derivedFrom": "11.1"
+    },
+    {
+      "id": "ch11.fact.2",
+      "claim": "Starting a side project does not require quitting a day job at the beginning.",
+      "becauseMechanism": "Early work can be done in evenings and on weekends, which means income and stability stay intact while the idea is tested.",
+      "commonError": "To take a business idea seriously you must first quit your job and commit to it full-time.",
+      "errorIsWhy": "The chapter explicitly endorses keeping the day job at the start, treating a dramatic full-time leap as unnecessary and premature.",
+      "derivedFrom": "11.2"
+    },
+    {
+      "id": "ch11.fact.3",
+      "claim": "Small, repeated work sessions accumulate into a real product, service, or proof of demand.",
+      "becauseMechanism": "Each short session adds concrete output, so that consistent repetition compounds modest effort into a tangible first version over time.",
+      "commonError": "Meaningful results only come from rare bursts of intense, marathon effort rather than from short regular sessions.",
+      "errorIsWhy": "The chapter credits compounding from steady, repeated small blocks, not from occasional heroic pushes, as what produces a finished result.",
+      "derivedFrom": "11.3"
+    },
+    {
+      "id": "ch11.fact.4",
+      "claim": "Saying there is no time often protects the ego from discovering that the desire is weak or the work is harder than imagined.",
+      "becauseMechanism": "The excuse blocks any real attempt, since an untested dream can never fail and therefore the self-image stays safe.",
+      "commonError": "People who say they have no time are simply being accurate about an overloaded schedule and nothing more.",
+      "errorIsWhy": "The chapter frames the time excuse as a psychological shield over priority and desire, not as a neutral factual report about a full calendar.",
+      "derivedFrom": "11.4"
+    },
+    {
+      "id": "ch11.fact.5",
+      "claim": "Lack of time is frequently a disguised lack of priority.",
+      "becauseMechanism": "People consistently find time for what they truly value, which means an absent project usually signals low ranking rather than a genuinely empty schedule.",
+      "commonError": "If something does not get done, it is because there were literally not enough hours available for it.",
+      "errorIsWhy": "The chapter reframes the shortage as a choice about priorities, since the same hours get spent on other things the person values more.",
+      "derivedFrom": "ch11.concept"
+    },
+    {
+      "id": "ch11.fact.6",
+      "claim": "Reclaiming time from television or idle browsing is a practical source of the hours needed to begin.",
+      "becauseMechanism": "Low-value entertainment occupies real hours, so that substituting evening work for some of it converts already-spent time into productive effort.",
+      "commonError": "Cutting back on entertainment makes no meaningful difference because those minutes are too small to matter.",
+      "errorIsWhy": "The chapter treats television and idle time as a concrete, sufficient reservoir of the few weekly hours required to start.",
+      "derivedFrom": "ch11.ex.night-weekend-starter"
+    },
+    {
+      "id": "ch11.fact.7",
+      "claim": "A few hours each week are enough to begin learning from real effort on a business.",
+      "becauseMechanism": "Real effort generates real feedback, which means even a small weekly commitment starts producing lessons that fantasy alone never could.",
+      "commonError": "A couple of hours a week is too little to learn anything useful, so it is not worth attempting until you can devote far more.",
+      "errorIsWhy": "The chapter holds that a few hours weekly is genuinely enough to start and to learn, directly rejecting the it-is-not-worth-it threshold.",
+      "derivedFrom": "ch11.ex.night-weekend-starter"
+    },
+    {
+      "id": "ch11.fact.8",
+      "claim": "Commitment shows up first in calendar choices rather than in dramatic declarations.",
+      "becauseMechanism": "Allocating actual hours is observable evidence of priority, which means how time is scheduled reveals real intent better than stated ambition does.",
+      "commonError": "Commitment is best demonstrated by announcing a bold goal and making a public, all-or-nothing declaration about it.",
+      "errorIsWhy": "The chapter locates commitment in quiet, concrete time allocation, treating dramatic declarations as no substitute for protected hours on the calendar.",
+      "derivedFrom": "ch11.ex.night-weekend-starter"
+    },
+    {
+      "id": "ch11.fact.9",
+      "claim": "Responsibility for a project begins when time is deliberately allocated to it instead of merely wished for.",
+      "becauseMechanism": "Deliberate allocation forces a real trade-off against other uses of the hour, so that the decision turns a wish into accountable action.",
+      "commonError": "Responsibility begins once you feel sufficiently motivated and ready to start, regardless of whether time has been set aside.",
+      "errorIsWhy": "The chapter ties responsibility to the concrete act of allocating time, not to a feeling of readiness, since wishing changes nothing until hours are committed.",
+      "derivedFrom": "11.5"
+    },
+    {
+      "id": "ch11.fact.10",
+      "claim": "The time-excuse pressure is aimed at discretionary time, not at genuine caregiving, health, or survival constraints.",
+      "becauseMechanism": "The chapter draws an explicit edge around real constraints, which means the challenge targets only the person who has free hours but spends them elsewhere.",
+      "commonError": "The advice to make time is a blanket claim that everyone, regardless of their circumstances, is simply lazy or making excuses.",
+      "errorIsWhy": "The chapter deliberately exempts heavy real-life constraints and keeps compassion alongside pressure, so it is not a universal accusation.",
+      "derivedFrom": "hardEdge"
+    }
+  ],
+  "frameworks": [],
+  "hardEdgeId": "ch11.hardEdge",
+  "paraphraseNotes": "The essay speaks to people who claim they would build something if only life supplied a clean opening. The counterclaim is deliberately practical. A person does not need to quit a job, empty a savings account, or find six uninterrupted months before starting. A few hours at night, on weekends, or in place of low-value entertainment can create the first version, first customer conversation, first sample, or first sale. The night-and-weekend starter is the concrete figure: still employed, still constrained, but no longer waiting. The psychological point is sharp. Saying there is no time often protects the ego from discovering that the desire is weak or the work is harder than imagined. The research note should keep compassion and pressure together. Some lives truly have heavy constraints, and the advice should not flatten them. The target is the person with available hours who spends them elsewhere while preserving the dream as an untested identity. Research detail 11 (No time is no excuse): Most people can find a few hours each week by changing how they spend discretionary time. A side project does not require abandoning a day job at the beginning. Small, repeated work sessions compound into a product, service, or proof of demand. Named anchor 11, night-and-weekend starter schedule, keeps later prose concrete: The practical example is a person keeping a day job while trading some television or idle time for evening work on a business. A few hours each week are enough to begin learning from real effort. Commitment shows up first in calendar choices, not in dramatic declarations."
+}

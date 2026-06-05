@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 21,
+  "chapterTitle": "Start at the epicenter",
+  "focus": "Progress is grounded in identifying the must-have center. The essay gives a simple removal test for finding what truly matters.",
+  "coreClaim": "Begin with the part that cannot be removed without destroying what is being sold.",
+  "centralConcept": {
+    "id": "ch21.concept",
+    "name": "essential core",
+    "plainDefinition": "The epicenter is the part that must exist for the product or service to remain itself. Everything else is secondary until that core works.",
+    "whyItMatters": "A reader can stop spending early energy on optional edges and put effort where failure would kill the whole offer."
+  },
+  "keyClaims": [
+    "New projects create many possible tasks, but not all tasks are equally structural. [21.1]",
+    "The useful test asks whether the product still exists if a part is removed. [21.2]",
+    "A strong core creates the foundation for every later detail. [21.3]",
+    "Working on optional edges first creates the illusion of progress. [21.4]",
+    "Energy should go to the thing customers actually need the product to do. [21.5]"
+  ],
+  "namedExamples": [
+    {
+      "id": "ch21.ex.hot-dog-stand",
+      "label": "hot dog stand without hot dogs",
+      "summary": "The familiar test imagines a hot dog stand: without napkins or relish it can still exist, but without hot dogs it cannot. Product work needs the same center-finding discipline.",
+      "teachesWhat": "The first build target is the non-removable function.",
+      "hardSpecifics": ["hot dog stand", "hot dogs", "napkins", "relish", "signs", "uniforms"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The misreading is to neglect all supporting work forever. The edge is sequence: core first, refinements after the center holds.",
+  "testableFacts": [
+    { "id": "ch21.fact.1", "claim": "Product work should begin with the part that cannot be removed without destroying what is being sold.", "becauseMechanism": "because the non-removable function carries the promise customers came for, so everything else only matters once it works.", "commonError": "you should start with whatever task is quickest or easiest to ship.", "errorIsWhy": "easy edges do not make the product itself; shipping them first leaves the core unproven and the offer hollow.", "derivedFrom": "ch21.concept" },
+    { "id": "ch21.fact.2", "claim": "The epicenter test asks whether the product still exists if a given part is removed.", "becauseMechanism": "because removal exposes which parts are structural and which are optional, so the test isolates the true center.", "commonError": "the most important part is whichever feature took the most effort to build.", "errorIsWhy": "effort spent does not equal structural necessity; a costly accessory can still be removed without ending the product.", "derivedFrom": "ch21.ex.hot-dog-stand" },
+    { "id": "ch21.fact.3", "claim": "A hot dog stand survives without napkins or relish but not without hot dogs.", "becauseMechanism": "because hot dogs are the non-removable function that defines the stand, while napkins and relish are accessories around it.", "commonError": "the relish and napkins are part of what makes it a hot dog stand, so they belong in the first build.", "errorIsWhy": "they enhance the experience but are removable; the stand is still a hot dog stand without them, but not without the hot dogs.", "derivedFrom": "ch21.ex.hot-dog-stand" },
+    { "id": "ch21.fact.4", "claim": "A new project pulls attention toward many directions like name, logo, settings, accessories, and integrations.", "becauseMechanism": "because every new thing generates optional possible tasks, so the maker must cut through that noise to find the structural center.", "commonError": "settling the name and logo first gives the project a clear identity to build around.", "errorIsWhy": "name and logo are removable surface; deciding them first spends early energy on edges instead of the function that carries the promise.", "derivedFrom": "ch21.concept" },
+    { "id": "ch21.fact.5", "claim": "Working on optional edges first creates the illusion of progress.", "becauseMechanism": "because polishing accessories produces visible output, so it feels productive even though the core promise remains unbuilt.", "commonError": "any completed task moves the project forward, so finishing edges is real progress.", "errorIsWhy": "motion on removable parts is not progress on the offer; the product still cannot do the thing customers came for.", "derivedFrom": "ch21.concept" },
+    { "id": "ch21.fact.6", "claim": "A strong core creates the foundation that every later detail rests on.", "becauseMechanism": "because surrounding improvements only have value once the non-removable promise works, so the center must come first to support them.", "commonError": "the surrounding experience can be built in parallel with the core without any ordering cost.", "errorIsWhy": "refinements depend on a working center; built before it, they rest on nothing and may have to be redone.", "derivedFrom": "ch21.fact.1" },
+    { "id": "ch21.fact.7", "claim": "Starting at the epicenter means sequence, not contempt for supporting details.", "becauseMechanism": "because optional work is not worthless, only dangerous when it precedes the core, so the rule is core first and refinements after the center holds.", "commonError": "the lesson is to neglect all supporting work and ship only the bare core forever.", "errorIsWhy": "the edge is about order, not permanent neglect; details matter once the center is proven, just not before it.", "derivedFrom": "ch21.edge" },
+    { "id": "ch21.fact.8", "claim": "Building a crude center and ignoring the surrounding experience is a surface mistake, not the real lesson.", "becauseMechanism": "because every surrounding improvement still depends on the non-removable promise working first, so the deeper point is dependency, not minimalism.", "commonError": "the takeaway is that a rough core alone is always enough and the surrounding experience never needs work.", "errorIsWhy": "the experience does need attention; it just has to follow a working core rather than precede or replace it.", "derivedFrom": "ch21.edge" },
+    { "id": "ch21.fact.9", "claim": "Energy should go to the function customers actually need the product to do.", "becauseMechanism": "because that function is the center where failure would kill the whole offer, so it deserves effort before any optional edge.", "commonError": "early energy is best spent on the features that make the product look most polished to first-time viewers.", "errorIsWhy": "polish on edges cannot rescue a product that fails its core function; the structural need has to be served first.", "derivedFrom": "ch21.concept" }
+  ],
+  "frameworks": [],
+  "voiceCues": [
+    "uses a simple everyday analogy",
+    "offers a removal test",
+    "separates must-do from could-do"
+  ],
+  "forbiddenLeakage": [
+    "meeting rules",
+    "promotion by teaching",
+    "culture as behavior"
+  ],
+  "paraphraseNotes": "The essay gives product teams a way to escape scattered beginnings. Every new thing pulls attention in multiple directions: name, logo, settings, accessories, integrations, polish, internal tools, edge cases. The epicenter question cuts through that noise. If this part disappeared, would the thing still be the thing? The hot dog stand analogy is deliberately plain. Napkins, relish, signs, and uniforms may matter eventually, but the stand without hot dogs has lost its center. For Basecamp-style software, the same logic asks which function carries the promise customers came for. The research handoff should emphasize sequence rather than contempt for details. Optional work is not worthless; it is simply dangerous when it precedes the core. Starting at the epicenter creates a foundation that later choices can rest on. The surface mistake is building a crude center and ignoring the surrounding experience. The deeper lesson is that every surrounding improvement depends on the non-removable promise working first. Research detail 21 (Start at the epicenter): New projects create many possible tasks, but not all tasks are equally structural. The useful test asks whether the product still exists if a part is removed. A strong core creates the foundation for every later detail. Named anchor 21, hot dog stand without hot dogs, keeps later prose concrete: The familiar test imagines a hot dog stand: without napkins or relish it can still exist, but without hot dogs it cannot. Product work needs the same center-finding discipline. The first build target is the non-removable function."
+}

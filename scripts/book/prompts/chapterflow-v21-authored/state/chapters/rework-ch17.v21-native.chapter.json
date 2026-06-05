@@ -1,0 +1,352 @@
+{
+  "chapterId": "rework-ch17",
+  "number": 17,
+  "title": "Building to flip is building to flop",
+  "readingTimeMinutes": 10,
+  "hook": "Plan the sale before the first product ships, and the buyer starts picking your features for you.",
+  "counterintuition": "An exit strategy can sound like seasoned discipline while quietly admitting the maker has already left. Naming who might buy you, before customers exist, hands the steering wheel to a stranger you have never met.",
+  "tryThisNow": "Write the next product decision you face, then ask out loud whether it serves a customer using the thing or a buyer scanning it for resale, and circle which one you answered for.",
+  "keyTakeaway": "Build a company worth running, not one staged for sale; let customer value pick your priorities, because designing for an acquirer pulls the first decisions toward the wrong audience.",
+  "breakdown": {
+    "fastRead": "Frode opens his first board meeting by naming the buyer he hopes will acquire him in three years. The product has no users yet. Already the roadmap bends toward what looks shiny to acquirers, not what helps a customer get work done.\n\nThat is building to flip. The exit gets imagined before the work has any real substance, so the imagined ending starts steering the opening.\n\n37signals answers the move with a different posture. It presents itself as building products it wants to keep operating, not assets packaged for a quick sale. Swap the exit strategy for a commitment strategy and the questions change. How does the product improve? How are customers served? The aim becomes a business worth owning, not one staged to be handed off.",
+    "deepRead": "Picture the first decisions getting made for an audience that is not in the room. Optimizing for a buyer pulls them toward acquirer optics: growth charts, fashionable categories, strategic positioning, the short-term signals a deck rewards. Customers and product quality quietly become means to another end. The wrong things get prioritized first, and by the time anyone notices, the habit is set.\n\nGunnhild lives the second version of the trap. Her financials look strong, so she assumes the company is durable and lets herself drift toward the sale. But durability rides on wanting to run the thing, not merely wanting to sell it. The will to keep operating is what sustains the full attention a company needs to stay worth owning. Pull that will out and care erodes, then the substance the financials rest on erodes too.\n\nThe commitment strategy reframes the goal. Instead of asking who might buy the company, it asks how the company becomes worth running: how it grows, how it serves, how it stays a place worth working in. 37signals makes that concrete by choosing to keep operating its products rather than dressing them for an acquirer. The posture is an operating stance, not a slogan.\n\nThe discrimination a reader can now make is this. Keeping potential buyers happy and keeping customers happy are not the same goal. Buyers reward positioning and optics; customers reward a product that works. When those two pull apart, the maker who built to flip follows the buyer and loses the customer who would have carried the business.",
+    "fullRead": "Selling a company is not the failure here, and saying it is gets the idea exactly wrong. Acquisitions happen, and many of them are sensible. A maker can build something good for years and then take a fair offer with full attention paid the whole way. The target is narrower and sharper: building for sale from day one, when the imagined buyer starts controlling the first product decisions before the company has earned any substance of its own.\n\nHaldis shows how early the distortion begins. She picks her category because it is fashionable to acquirers, not because she or her customers care about it. She tilts the roadmap toward growth optics that read well in a deck. Each choice is defensible alone, yet together they aim the whole company at a buyer instead of a user. Motive shapes attention, and her attention has already left the customer before the first version ships.\n\nThe deeper tell sits underneath the strategy talk. An exit plan can sound sophisticated and still reveal that the maker is emotionally absent. Treating the business mainly as a vehicle to be sold signals that the person has stopped caring about its operating life. That premature detachment is the thing durability cannot survive, because a company needs someone who wants to keep running it to keep deserving to exist.\n\nThere is a quieter failure mode too. Work built only as a stepping stone earns less of the maker. If the business is primarily a thing to be sold, the founder invests less of themselves in making it genuinely good, and that thinness shows up in the product. A team can be perfectly competent and still ship something hollow, because the motive underneath tilted every close call toward a signal rather than the substance.\n\nNow the limit, because the commitment posture has one. It is not a vow never to sell, and reading it that way turns a useful stance into a superstition. Jorunn keeps a clean commitment strategy for years, builds something customers depend on, and then a serious offer arrives. Refusing it on principle would be its own kind of distortion. The point was the posture during building, not a permanent ban on acquisition. A company gets built to be worth running, and being worth running is exactly what makes it worth buying when an honest offer comes. The commitment strategy is the order of operations, not a cage.\n\nSo the move is to name your audience before you name your moves. A company deserves full attention while it is being born. Build it to keep, serve the customer in front of you, and let any sale be the consequence of having made something worth owning, never the plan that shaped it."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch17.ex.commitment-vs-exit",
+      "title": "The Buyer Named Before the User",
+      "tags": [
+        "exit framing",
+        "roadmap",
+        "priorities"
+      ],
+      "planSpec": {
+        "domain": "early-stage SaaS founding",
+        "audience": "founders planning the sale before the first release",
+        "stakes": "aim the roadmap at an acquirer or at a customer",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist chooses commitment strategy over exit strategy"
+      },
+      "scenario": "Frode sits in a first board meeting with no users yet, a slide titled Likely Acquirers already drafted. His advisor wants the roadmap shaped to look shiny to those buyers in three years. The product team, meanwhile, has a list of fixes real customers keep asking for. Before the quarter's priorities are locked, Frode must pick which audience the next build serves: the exit strategy on the slide, or a commitment strategy aimed at people who would actually use the thing.",
+      "whatToDo": "Frode drops the acquirer slide and re-sorts the roadmap around the fixes customers keep asking for, scoring each item by whether a real user gets work done.",
+      "whyItMatters": "Naming the buyer first bends every later decision toward acquirer optics, so the priorities go out of order before a single customer has been served."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch17.ex.37signals-independence",
+      "title": "The Stance, Not the Slogan",
+      "tags": [
+        "independence",
+        "operating posture",
+        "37signals"
+      ],
+      "planSpec": {
+        "domain": "bootstrapped product company",
+        "audience": "teams unsure whether staying independent is a real strategy",
+        "stakes": "treat independence as an accident or as a deliberate posture",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist frames commitment as an operating stance"
+      },
+      "scenario": "At a 4 p.m. coffee in an Oslo boardroom, a skeptical investor tells Gunnhild that 37signals only stayed independent because no acquirer bid for it. Gunnhild pushes back: the company presents itself as building products it wants to keep operating, not assets packaged for a quick sale. The investor asks her to prove the same about her own shop before the term sheet talk goes further. She must answer right then, minutes before the meeting breaks, whether her independence is a deliberate commitment strategy or just a buyer who never showed.",
+      "whatToDo": "Gunnhild points to the operating choices she keeps making, renewing support and improving the product she intends to run, rather than dressing the company up for a sale.",
+      "whyItMatters": "Treating commitment as a posture you choose, not luck you fell into, is what makes 37signals' independence a real stance instead of a story about absent bidders."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch17.fact.3",
+      "title": "Two Audiences Pulling Apart",
+      "tags": [
+        "buyers vs customers",
+        "optics",
+        "divergence"
+      ],
+      "planSpec": {
+        "domain": "consumer marketplace startup",
+        "audience": "founders conflating buyer appeal with customer value",
+        "stakes": "chase numbers a buyer rewards or value a customer rewards",
+        "format": "contrast",
+        "requiredBeat": "the protagonist separates keeping buyers happy from keeping customers happy"
+      },
+      "scenario": "At 11 a.m. in a Bergen co-working loft, Haldis lays two roadmaps side by side. One chases the vanity growth chart and fashionable category that make acquirers lean in. The other fixes the checkout flow her actual sellers complain about every week. She had assumed pleasing buyers and pleasing customers were the same goal, but the lists barely overlap. Before the planning call starts, Haldis must tell her team which roadmap they build this quarter: the one a buyer would admire, or the one a seller stuck on a slow payout actually needs.",
+      "whatToDo": "Haldis builds the slower-payout fix her sellers actually feel, accepting that the buyer-pleasing growth chart will look less dramatic in any future pitch deck.",
+      "whyItMatters": "Buyers reward positioning and optics while customers reward a working product, so a founder who treats the two as one goal ends up serving the audience that will not stay."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch17.fact.5",
+      "title": "Sophisticated Words, Empty Chair",
+      "tags": [
+        "detachment",
+        "exit talk",
+        "absence"
+      ],
+      "planSpec": {
+        "domain": "founder coaching session",
+        "audience": "makers mistaking exit fluency for discipline",
+        "stakes": "read exit fluency as discipline or as detachment",
+        "format": "reflection",
+        "requiredBeat": "the protagonist reads exit talk as a sign of premature absence"
+      },
+      "scenario": "At 7 p.m. alone in her Trondheim office, Hedda rehearses the exit strategy pitch she has polished for months: the strategic buyer, the multiple, the clean handoff. It all sounds sophisticated. Then she notices she cannot remember the last roadmap call she joined with any real interest. The fluent exit language, she realizes, is not discipline. It is the sound of someone who has already stopped caring about the operating life of the company, the opposite of the commitment strategy posture she once held, while the product quietly thins beneath her.",
+      "whatToDo": "Hedda sets the exit deck aside and rejoins the next operating decision as the person who intends to keep running the company, not the one rehearsing how to leave it.",
+      "whyItMatters": "Exit talk can sound seasoned while signaling that the maker is already emotionally absent, and that detachment is exactly what durability cannot survive."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch17.fact.7",
+      "title": "The Stepping-Stone Tell",
+      "tags": [
+        "motive",
+        "thin product",
+        "stepping stone"
+      ],
+      "planSpec": {
+        "domain": "mobile app studio",
+        "audience": "competent teams building only to flip",
+        "stakes": "build as a stepping stone or invest real care",
+        "format": "postmortem",
+        "requiredBeat": "the protagonist traces a hollow product back to its stepping-stone motive"
+      },
+      "scenario": "At a Friday retro in a Stavanger studio, months after the launch flopped, Ingmar walks his clearly skilled team back through the build. The code was clean, the deadlines met. Yet every close call had quietly tilted toward whatever signaled well to a future buyer instead of what a user would feel. The product had been an exit strategy from day one, a stepping stone to a sale, and that motive, far more than any missing skill, is what left the thing competent and hollow at once, the cost a commitment strategy is meant to avoid.",
+      "whatToDo": "Ingmar names the stepping-stone motive as the root cause, then rebuilds the next product around customers he intends to keep serving rather than a buyer he hopes to attract.",
+      "whyItMatters": "Motive shapes attention, so work built only as a stepping stone earns less of the maker and ships thin even when the team is fully competent."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch17.fact.9",
+      "title": "When the Offer Is Honest",
+      "tags": [
+        "hard edge",
+        "fair offer",
+        "not a vow"
+      ],
+      "planSpec": {
+        "domain": "established software business",
+        "audience": "owners who think commitment forbids ever selling",
+        "stakes": "refuse a fair offer on principle or judge it on merit",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist distinguishes building-to-flip from a sensible sale"
+      },
+      "scenario": "After years of running a product customers depend on, Jorunn gets a serious, fair offer to acquire it. Her instinct is to refuse on principle, since she built the company on a commitment strategy, not an exit one. But the term sheet sits on the table and the board meets in an hour. Jorunn must decide whether commitment means a permanent ban on selling, or whether building something worth running is exactly what now makes the company worth buying on honest terms.",
+      "whatToDo": "Jorunn judges the offer on its merits rather than refusing it on principle, recognizing that her commitment was about how she built, not a vow never to sell.",
+      "whyItMatters": "The hard edge targets building for sale from day one, not selling itself, so a worthy company meeting a fair offer is the order working, not the principle failing."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch17.ex.commitment-vs-exit",
+        "prompt": "At a first board meeting with no users yet, a founder finds a Likely Acquirers slide drafted under the heading exit strategy and an advisor pushing to shape the roadmap around those buyers. Which move fits a commitment strategy?",
+        "choices": [
+          "Keep the exit strategy slide as the north star, since naming buyers early keeps useful options open.",
+          "Split the roadmap evenly so the buyers and the unmet customers each get the same share of effort.",
+          "Drop the exit framing and re-sort the roadmap around the fixes real customers keep asking for."
+        ],
+        "correctIndex": 2,
+        "explanation": "Naming the buyer before customers exist bends priorities toward acquirer optics. A commitment strategy aims the first decisions at people who actually use the product, while the exit strategy posture puts priorities out of order.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch17.ex.37signals-independence",
+        "prompt": "An investor argues that 37signals stayed independent only because no acquirer ever bid for it. A founder wants to answer accurately about what its independence actually shows. Which reply is most accurate?",
+        "choices": [
+          "Its independence is a deliberate stance: the company presents itself as building products it wants to keep operating, not assets staged for sale.",
+          "The investor is right, since a company stays independent only when buyers fail to notice it.",
+          "Independence proves nothing either way, because operating choices reveal less about intent than financial results do."
+        ],
+        "correctIndex": 0,
+        "explanation": "The commitment posture is an operating stance, not an accident of absent bidders. Choosing to keep running its products, rather than packaging them, is what makes the independence deliberate rather than luck.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch17.fact.3",
+        "prompt": "A marketplace founder assumes that pleasing future acquirers and pleasing her current sellers are the same goal, so she keeps chasing a fashionable growth chart. A colleague pushes back. Which warning fits a commitment strategy?",
+        "choices": [
+          "The colleague is wrong, since whatever attracts a buyer reliably attracts the sellers using the product too.",
+          "Buyers reward positioning and optics while sellers reward a working product, so the two goals can pull apart and she may serve the wrong one.",
+          "She should freeze all roadmap work until an acquirer confirms exactly which growth chart it wants to see."
+        ],
+        "correctIndex": 1,
+        "explanation": "Keeping buyers happy and keeping customers happy are not one goal. Buyers reward optics; customers reward a product that works, so conflating them sends effort to the audience that will not stay.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch17.fact.5",
+        "prompt": "A founder notices she can deliver a polished exit pitch about strategic buyers and multiples, yet cannot recall the last roadmap call she joined with real interest. What does her fluent exit talk most likely reveal?",
+        "choices": [
+          "It reveals sound discipline, since a clear exit narrative is the strongest evidence a company is being run well.",
+          "It reveals that she has likely detached from the operating life of the company, narrating a departure while the product thins.",
+          "It reveals nothing, because a founder's enthusiasm on calls has limited bearing on how durable the business is."
+        ],
+        "correctIndex": 1,
+        "explanation": "An exit plan can sound sophisticated while signaling the maker is already absent. Treating the business mainly as a thing to sell shows she has stopped caring about running it, which is what durability cannot survive.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch17.fact.8",
+        "prompt": "Two owners point to identical strong financials. One genuinely wants to keep operating the business for years; the other is mentally checked out and waiting to sell. Which is the better bet for long-term durability?",
+        "choices": [
+          "They are equally durable, because durability is settled by the financial statements and not by who wants to run the place.",
+          "The checked-out owner, since detachment frees up attention that strong financials can then convert into more growth.",
+          "The owner who wants to keep operating, because the will to keep running it sustains the attention the substance behind the numbers depends on."
+        ],
+        "correctIndex": 2,
+        "explanation": "Durability rides on wanting to run the business, not merely on the financials. Without the will to keep operating, care erodes and the substance the numbers rest on erodes with it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch17.fact.7",
+        "prompt": "A skilled studio ships a clean, on-time app that lands hollow, and every close call had been settled in favor of what would look good to a future buyer. What best explains the hollow result?",
+        "choices": [
+          "The motive: building it only as a stepping stone to a sale tilted each decision toward signals over substance, even with a competent team.",
+          "A skills gap, since a hollow product is the clearest proof the team simply lacked the technical ability to build it.",
+          "Bad luck in the market, because product motive has little bearing on whether the result feels substantial."
+        ],
+        "correctIndex": 0,
+        "explanation": "Motive shapes attention. Work built mainly as a stepping stone earns less of the maker, so close calls tilt toward what signals well to a buyer rather than what a user feels, leaving competent work hollow.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch17.fact.9",
+        "prompt": "After years running a product customers depend on, an owner gets a serious, fair acquisition offer and wants to refuse it purely on principle because she built on a commitment strategy. Which reading of the idea is correct?",
+        "choices": [
+          "She should refuse, since a commitment strategy means a standing vow against selling the company on any terms.",
+          "She should sell at once, since any fair offer proves the commitment strategy was a mistake from the start.",
+          "She can weigh it on merit, since the target was building for sale on day one, and a worthy company is exactly what a fair offer rewards."
+        ],
+        "correctIndex": 2,
+        "explanation": "The hard edge is building to flip from day one, not selling itself. Acquisitions can be sensible; commitment governs how you build, so a worthy company can meet a fair offer without betraying it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch17.fact.4",
+        "prompt": "Before writing a line of product, a founder insists on defining the exact exit first so every later decision serves that clear endgame. A teammate is uneasy. Which response best fits a commitment strategy?",
+        "choices": [
+          "Letting the imagined ending drive the opening inverts the order, since a company deserves full attention while it is being born.",
+          "The founder is right, since fixing the endgame up front is the surest way early decisions stay coherent.",
+          "It makes no difference when the exit is defined, because the timing of that planning rarely touches product decisions."
+        ],
+        "correctIndex": 0,
+        "explanation": "Thinking about the exit before the work begins puts priorities out of order. The imagined ending starts controlling first decisions before the product has substance, so the order of operations is inverted.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch17.fact.2",
+        "prompt": "A team wants one guiding question to replace the usual exit prompt of who might eventually buy the company. Which question best reflects a commitment strategy?",
+        "choices": [
+          "Which acquirer in our space would pay the highest multiple for what we are building?",
+          "How will this company grow, serve its customers, and stay a place worth running over time?",
+          "Which fashionable category will make us look most attractive in a future acquisition deck?"
+        ],
+        "correctIndex": 1,
+        "explanation": "A commitment strategy swaps who might buy us for how we become worth running. It directs effort at product, customers, and durability instead of at courting acquirers before the work has substance.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch17.concept",
+      "front": "What does a commitment strategy ask that an exit strategy does not?",
+      "back": "It replaces who might buy the company with how the company becomes worth running: how it grows, how it serves customers, and how it stays a place worth working in. The aim is owning something good, not staging it for sale.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch17.fact.1",
+      "front": "Why does designing a company mainly for acquisition misalign its priorities from the start?",
+      "back": "Optimizing for a buyer pulls decisions toward acquirer optics, like growth charts and fashionable positioning, instead of customer value. The wrong things get prioritized first, and customers become a means to a sale.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch17.ex.37signals-independence",
+      "front": "How does 37signals make a commitment strategy concrete rather than abstract?",
+      "back": "It presents itself as building products it wants to keep operating, not assets packaged for a quick sale. That deliberate choice to keep running its work shows the posture as a real operating stance, not a slogan or an accident of absent buyers.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch17.fact.5",
+      "front": "What can a fluent, sophisticated exit pitch quietly reveal about a maker?",
+      "back": "That the maker may already be emotionally absent. Treating the business mainly as a vehicle to sell signals they have stopped caring about its operating life, and that premature detachment is exactly what durability cannot survive.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch17.fact.8",
+      "front": "Why is wanting to run a business, not just strong financials, what durability rests on?",
+      "back": "The will to keep operating sustains the attention a company needs to keep deserving to exist. Pull that will out and care erodes, then the substance the financials sit on erodes too, no matter how strong the numbers look today.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch17.fact.9",
+      "front": "Why is building to flip the problem rather than the act of selling a company?",
+      "back": "Acquisitions can be sensible, so the target is narrower: building for sale from day one lets an imagined buyer distort what the company values before it has substance. A worthy company can still meet a fair offer without betraying its commitment.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Commitment Strategy Check",
+    "coreSkill": "Before any product decision, name which audience it serves: a customer using the thing or a buyer scanning it for resale. Score the choice for whether it makes the company worth running rather than worth flipping. Treat a possible sale as a consequence of having built something good, never as the plan that shapes the build.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch17.ex.commitment-vs-exit",
+        "context": "When a roadmap discussion opens with who might acquire the company",
+        "plan": "If the discussion slides from an exit strategy of naming likely buyers, then run the Commitment Strategy Check and re-sort the work around fixes a real user would feel."
+      },
+      {
+        "sourceAnchorId": "ch17.fact.3",
+        "context": "When a feature is justified mainly because it looks impressive to an acquirer",
+        "plan": "If a feature earns its slot from buyer appeal alone, then run the Commitment Strategy Check and ask what an actual customer gets from it before approving the build."
+      },
+      {
+        "sourceAnchorId": "ch17.fact.5",
+        "context": "When you catch yourself more fluent about the exit than about the next release",
+        "plan": "If exit talk comes easier than the roadmap, then run the Commitment Strategy Check and rejoin one operating decision as the person who intends to keep running the company."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, write down every product or business decision you make. Beside each, mark whether you answered for a customer using the thing or a buyer reselling it, and rewrite one that served the buyer.",
+    "weeklyPractice": "Each week, pick one roadmap choice and run the Commitment Strategy Check on it, recording whether it made the company more worth running or merely more sellable. Track which audience your defaults keep favoring."
+  },
+  "memorableLines": [
+    {
+      "text": "Swap the exit strategy for a commitment strategy and the questions change.",
+      "location": "breakdown.fastRead",
+      "why": "It names the single move of the chapter as a clean substitution the reader can repeat."
+    },
+    {
+      "text": "Keeping potential buyers happy and keeping customers happy are not the same goal.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the chapter's mechanism into one contrast the reader can test any decision against."
+    },
+    {
+      "text": "A company deserves full attention while it is being born.",
+      "location": "breakdown.fullRead",
+      "why": "It carries the hard edge in a single quotable line about presence over premature exit."
+    }
+  ]
+}
