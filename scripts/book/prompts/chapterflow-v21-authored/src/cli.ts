@@ -135,6 +135,10 @@ Commands:
                                      existing line touched) + catalog refresh. (2) In-app reader/library:
                                      if AWS env (BOOK_TABLE_NAME / BOOK_*_BUCKET) is set, auto-runs the
                                      DynamoDB/S3 ingest; otherwise prints the command. Idempotent.
+  batch <manifest.json> [--run]      MULTI-BOOK DRIVER. manifest = [{bookId,title,author},...]. Shows each
+                                     book's stage (RESEARCH/AUTHOR/GATE_FIX/QC/SHIP/DONE) + a work queue
+                                     with the exact next command. With --run, auto promotes + registers
+                                     every book whose QC is complete. Re-run as books progress.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
@@ -1009,6 +1013,114 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
   return 0;
 }
 
+/** `batch <manifest.json> [--run]` — multi-book driver. The manifest is a JSON
+ *  array of { bookId, title, author }. For each book it computes the pipeline
+ *  stage (RESEARCH / AUTHOR / GATE_FIX / QC / SHIP / DONE), and with --run it
+ *  auto-runs the terminal steps (promote-book + register-web) for every book whose
+ *  QC is complete. The AI steps (research, authoring, QC) are surfaced as a work
+ *  queue with the exact command to run. Re-run it as books progress. */
+async function runBatch(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const manifestPath = args[0];
+  if (!manifestPath) {
+    console.error('Usage: batch <manifest.json> [--run]\n  manifest = [{ "bookId": "...", "title": "...", "author": "..." }, ...]');
+    return 2;
+  }
+  let books: Array<{ bookId: string; title: string; author: string }>;
+  try {
+    books = JSON.parse(readFileSync(resolve(manifestPath), "utf8"));
+    if (!Array.isArray(books)) throw new Error("manifest must be a JSON array");
+  } catch (err) {
+    console.error(`Could not read manifest ${manifestPath}: ${(err as Error).message}`);
+    return 2;
+  }
+  const doRun = flags["run"] === true;
+  const { computeNextTask } = await import("./next-task.js");
+  const { runShipGate } = await import("./critics/finalGate.js");
+  const { runBookGate } = await import("./critics/bookGate.js");
+  const { loadAttestation, chapterContentHash } = await import("./critics/qcAttestation.js");
+  const STATE = resolve(__dirname, "../state");
+  const REPO = resolve(__dirname, "../../../../..");
+  const chaptersDir = resolve(STATE, "chapters");
+
+  type Row = { bookId: string; title: string; stage: string; detail: string; action: string | null };
+  const rows: Row[] = [];
+  for (const b of books) {
+    const bookId = parseChapterId(`${b.bookId}-ch01`)?.bookId ?? b.bookId; // normSlug
+    let stage = "RESEARCH";
+    let detail = "needs Step-1 research";
+    let action: string | null = "research";
+    let task: any;
+    try { task = computeNextTask(bookId); } catch { task = { kind: "research-bibliography" }; }
+    if (["research-bibliography", "research-chapter", "chapter-index"].includes(task.kind)) {
+      stage = "RESEARCH"; detail = "needs Step-1 research (toc + source sidecars)"; action = "research";
+    } else if (task.kind === "write-chapter") {
+      stage = "AUTHOR"; detail = `chapter ${task.chapterNumber}+ still to write`; action = "author";
+    } else if (existsSyncFs(resolve(REPO, "book-packages", `${bookId}.v21.json`))) {
+      // Already promoted — the batch's job is to drive books TO shipped, so a
+      // shipped book is DONE (re-gating it against newer/stricter gates is not the
+      // batch's concern).
+      stage = "DONE"; detail = "promoted"; action = null;
+    } else {
+      const files = existsSyncFs(chaptersDir) ? readdirSync(chaptersDir).filter((f) => isSiblingFile(f, bookId)).sort() : [];
+      const chapters = files.map((f) => JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21);
+      let blockers = 0;
+      for (const ch of chapters) blockers += runShipGate(ch).blockers.length;
+      blockers += runBookGate(bookId, chapters).findings.filter((f) => f.severity === "blocker").length;
+      if (blockers > 0) {
+        stage = "GATE_FIX"; detail = `${blockers} gate blocker(s)`; action = "gatefix";
+      } else {
+        const qcPassed = chapters.filter((ch) => {
+          const a = loadAttestation(bookId, ch.number);
+          return a && a.verdict === "PUBLISHABLE" && a.contentHash === chapterContentHash(ch);
+        }).length;
+        if (chapters.length === 0 || qcPassed < chapters.length) {
+          stage = "QC"; detail = `${qcPassed}/${chapters.length} chapters QC-passed`; action = "qc";
+        } else {
+          stage = "SHIP"; detail = "QC complete — ready to promote + register"; action = "ship";
+        }
+      }
+    }
+    rows.push({ bookId, title: b.title, stage, detail, action });
+  }
+
+  // --run: auto-advance the terminal steps (promote + register) for SHIP books.
+  if (doRun) {
+    for (const r of rows.filter((x) => x.action === "ship")) {
+      const b = books.find((x) => (parseChapterId(`${x.bookId}-ch01`)?.bookId ?? x.bookId) === r.bookId)!;
+      try {
+        const { promoteBook } = await import("./promoteBook.js");
+        const { loadChapterIndex } = await import("./generateBook.js");
+        const { deriveCategoriesAndTags } = await import("./agents/autoCategorize.js");
+        const chapters = loadChapterIndex(r.bookId);
+        const auto = deriveCategoriesAndTags(r.bookId, { title: b.title, chapterTitles: chapters.map((c) => c.chapterTitle) });
+        const res = promoteBook({ bookId: r.bookId, title: b.title, author: b.author, chapters, categories: auto.categories, tags: auto.tags });
+        if (!res.promoted) { r.stage = "SHIP_BLOCKED"; r.detail = (res.reason ?? "promote blocked").slice(0, 90); continue; }
+        await runRegisterWeb([r.bookId], {});
+        r.stage = "DONE"; r.detail = "promoted + registered";
+      } catch (err) {
+        r.stage = "SHIP_BLOCKED"; r.detail = (err as Error).message.slice(0, 90);
+      }
+    }
+  }
+
+  // Dashboard
+  console.log(`\nBatch: ${manifestPath}  (${rows.length} book(s))${doRun ? "  [--run: promoted/registered ready books]" : ""}\n`);
+  const w = Math.max(...rows.map((r) => r.bookId.length), 8);
+  for (const r of rows) console.log(`  ${r.bookId.padEnd(w)}  ${r.stage.padEnd(11)}  ${r.detail}`);
+
+  // Work queue (the human/AI steps)
+  const group = (a: string) => rows.filter((r) => r.action === a).map((r) => r.bookId);
+  const research = group("research"), author = group("author"), gatefix = group("gatefix"), qc = group("qc"), ship = group("ship");
+  console.log(`\nWork queue:`);
+  if (research.length) console.log(`  RESEARCH (${research.length}): ${research.join(", ")}\n     → one Codex agent per book, per agent-prompts/STEP-1-RESEARCH.md (give it the title+author)`);
+  if (author.length) console.log(`  AUTHOR (${author.length}): ${author.join(", ")}\n     → per book: npx tsx src/cli.ts fanout <bookId>  (paste each block into a Codex agent)`);
+  if (gatefix.length) console.log(`  GATE_FIX (${gatefix.length}): ${gatefix.join(", ")}\n     → per book: npx tsx src/cli.ts book-gate <bookId>  (fix the blockers it names)`);
+  if (qc.length) console.log(`  QC (${qc.length}): ${qc.join(", ")}\n     → per book: a Claude QC session (agent-prompts/QC-SESSION-PROMPT.md), qc-attest each chapter`);
+  if (!doRun && ship.length) console.log(`  SHIP (${ship.length}): ${ship.join(", ")}\n     → re-run with --run to auto promote + register these`);
+  if (![research, author, gatefix, qc, ship].some((g) => g.length)) console.log(`  (nothing pending — all books DONE)`);
+  return 0;
+}
+
 /** `register-web <bookId>` — make a promoted book show up in the reader (local/dev).
  *  Append-only registration into app/book/data/bookPackages.ts (one import + a
  *  self-contained block that pushes the package and registers its tone getter —
@@ -1733,6 +1845,8 @@ async function main() {
       return runCategorize(args);
     case "register-web":
       return runRegisterWeb(args, flags);
+    case "batch":
+      return runBatch(args, flags);
     case "author-check":
       return runAuthorCheck(args);
     case "fix-chapter-ids":
