@@ -2,18 +2,17 @@
  * Pre-authoring name plan — the structural fix for the parallel-authoring
  * collision class (book-gate F1 / BP13).
  *
- * The library ledger (libraryState.ts) enforces name uniqueness CROSS-book and
- * within-book-AT-INGEST. But chapters authored concurrently in a batch are not
- * ingested until after they exist, so blind parallel agents independently reach
- * for the same protagonist names (verified on Rework: Halvard ch9/12, Yusuf
- * ch12/13/14) and the same stock connectives (BP13). book-gate catches it after
- * the fact; this prevents it before.
+ * Chapters authored concurrently in a batch are blind to each other, so parallel
+ * agents independently reach for the same protagonist names (verified on Rework:
+ * Halvard ch9/12, Yusuf ch12/13/14) and the same stock connectives (BP13).
+ * book-gate catches it after the fact; this prevents it before.
  *
  * `planNames` deals each upcoming chapter a DISJOINT slice of protagonist names
- * drawn from config/name-bank.json, after excluding:
- *   - cross-book + within-book-ingested names (getForbiddenNames)
- *   - names already present in this book's authored chapter files
- *     (usedNamesInBook — robust to chapters that exist but were never ingested)
+ * drawn from config/name-bank.json, excluding ONLY names already present in THIS
+ * book's authored chapter files. Names MAY repeat ACROSS books (owner's policy),
+ * so there is no cross-book exclusion — the bank never exhausts under volume,
+ * which is what lets mass production scale. A per-book rotation offset still gives
+ * different books different opening casts.
  *
  * Dealing is deterministic (stable bank order, sequential cursor) so the same
  * request always yields the same allocation, and authoring in ascending batches
@@ -35,7 +34,7 @@ import { fileURLToPath } from "url";
 
 import { ChapterV21 } from "../types.js";
 import { CHAPTERS_DIR, isSiblingFile, normSlug } from "../lib/chapterPaths.js";
-import { extractNamesFromText, getForbiddenNames, loadLibraryState } from "./libraryState.js";
+import { extractNamesFromText } from "./libraryState.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const CONFIG_DIR = resolve(__dirname, "../../config");
@@ -184,23 +183,24 @@ export function planNames(
 ): NamePlan {
   if (toChapter < fromChapter) throw new Error(`toChapter (${toChapter}) < fromChapter (${fromChapter})`);
   if (perChapter < 1) throw new Error(`perChapter must be >= 1 (got ${perChapter})`);
-  // Normalize once so getForbiddenNames, usedNamesByChapter (isSiblingFile), and
-  // the written plan filename all key off the SAME id (the case-sensitivity
-  // asymmetry the review flagged).
+  // Normalize once so usedNamesByChapter (isSiblingFile) and the written plan
+  // filename key off the SAME id (the case-sensitivity asymmetry the review flagged).
   const bookId = normSlug(rawBookId);
 
-  const state = loadLibraryState();
   const usedByChapter = usedNamesByChapter(bookId);
   const usedAll = new Set<string>();
   for (const names of Object.values(usedByChapter)) for (const n of names) usedAll.add(n);
 
-  const excluded = new Set<string>([
-    ...getForbiddenNames(state, bookId, opts.lookback ?? 10),
-    ...usedAll,
-  ]);
-
+  // Names MAY repeat across books (owner's policy), so exclude ONLY names already
+  // used WITHIN this book — no cross-book ledger exclusion. The bank therefore
+  // never exhausts under volume (every book draws the full bank), which is what
+  // makes mass production scale. To still give different books different opening
+  // casts, rotate the bank by a per-book deterministic offset.
+  const excluded = usedAll;
   const bank = loadNameBank();
-  const available = bank.filter((n) => !excluded.has(n));
+  const offset = bank.length ? nameHash(bookId) % bank.length : 0;
+  const rotated = bank.slice(offset).concat(bank.slice(0, offset));
+  const available = rotated.filter((n) => !excluded.has(n));
 
   const allocation: Record<number, string[]> = {};
   const shortChapters: number[] = [];
