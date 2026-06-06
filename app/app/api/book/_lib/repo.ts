@@ -53,6 +53,7 @@ import {
   licenseIndexPk,
   licenseIndexSk,
   accountStatusSk,
+  accountStatusChangeSk,
   shareEventSk,
 } from "./keys";
 import type {
@@ -78,6 +79,8 @@ import type {
   LicenseKeyItem,
   QuizAttemptItem,
   AccountStatusItem,
+  AccountStatusChangeItem,
+  AccountStatus,
   BookUserShareEventItem,
 } from "./types";
 
@@ -2284,9 +2287,21 @@ export async function setAccountStatus(
     statusReason?: string;
     previousPlan?: "FREE" | "PRO";
     previousProSource?: string;
+    /** Who made the change: "self" (default), "admin:<adminUserId>", or "system". */
+    changedBy?: string;
   }
 ): Promise<void> {
   const now = nowIso();
+
+  // Capture the prior status for the audit trail (best-effort — never blocks).
+  let previousStatus: AccountStatus | null = null;
+  try {
+    const prev = await getAccountStatus(tableName, userId);
+    previousStatus = prev?.status ?? null;
+  } catch {
+    // ignore — the audit row just won't carry a previousStatus
+  }
+
   const item: Record<string, unknown> = {
     PK: bookUserPk(userId),
     SK: accountStatusSk(),
@@ -2301,6 +2316,61 @@ export async function setAccountStatus(
   if (extras?.previousProSource) item.previousProSource = extras.previousProSource;
 
   await ddbDoc.send(new PutCommand({ TableName: tableName, Item: item }));
+
+  // Append an immutable audit record (who/when/why). Best-effort: a failed
+  // audit write must not undo or block the authoritative status change above.
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: bookUserPk(userId),
+          SK: accountStatusChangeSk(now),
+          entity: "BOOK_ACCOUNT_STATUS_CHANGE",
+          userId,
+          status,
+          previousStatus,
+          changedAt: now,
+          changedBy: extras?.changedBy ?? "self",
+          reason: extras?.statusReason,
+        },
+      })
+    );
+  } catch (error) {
+    console.error("account_status_audit_write_failed", {
+      userId,
+      status,
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+/** List a user's account-status change history (newest first) for the admin UI. */
+export async function listAccountStatusChanges(
+  tableName: string,
+  userId: string,
+  limit = 50
+): Promise<AccountStatusChangeItem[]> {
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+      ExpressionAttributeValues: {
+        ":pk": bookUserPk(userId),
+        ":prefix": "ACCOUNTSTATUSCHANGE#",
+      },
+      ScanIndexForward: false, // newest first
+      Limit: Math.min(Math.max(limit, 1), 200),
+    })
+  );
+  return (res.Items ?? []).map((item) => ({
+    userId,
+    status: (readStr(item.status) as AccountStatus) ?? "active",
+    previousStatus: (readStr(item.previousStatus) as AccountStatus) ?? null,
+    changedAt: readStr(item.changedAt) ?? "",
+    changedBy: readStr(item.changedBy) ?? "self",
+    reason: readStr(item.reason),
+  }));
 }
 
 export async function getUserSettingsItem(

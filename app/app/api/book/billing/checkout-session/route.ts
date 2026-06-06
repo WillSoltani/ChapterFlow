@@ -1,5 +1,5 @@
 import "server-only";
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { getAppBaseUrl, getBookTableName } from "@/app/app/api/book/_lib/env";
@@ -19,7 +19,7 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
 
     let interval: BillingInterval = "monthly";
     try {

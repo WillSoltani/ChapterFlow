@@ -251,6 +251,8 @@ export type CriticCheckId =
   | "narrative.example_templating"
   | "narrative.title_templating"
   | "narrative.alphabet_cycling_names"
+  | "narrative.example_setting_stamping"
+  | "narrative.example_protagonist_reuse"
   | "register.no_meta_reference"
   | "register.no_chapter_number_literal"
   | "register.no_banned_phrase"

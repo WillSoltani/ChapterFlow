@@ -6,7 +6,7 @@ import "server-only";
 // handles the 3 preserved freeOnly sinks.
 
 import { GetCommand, PutCommand, TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   getBookAnalyticsTableName,
   getBookTableName,
@@ -43,7 +43,7 @@ export const runtime = "nodejs";
 /** GET — List available shop items with user's inventory and tier context */
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
 
     // Fetch tier for gate checks
@@ -90,7 +90,7 @@ export async function GET(req: Request) {
 /** POST — Purchase a personalization item or Gift a Friend */
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const bodyRaw = await req.json();
     const body = requireBodyObject(bodyRaw);
     const itemId = requireString(body.itemId, "itemId", { maxLength: 100 });

@@ -62,6 +62,9 @@ import theBlackSwanPackageJson from "@/book-packages/the-black-swan.v21.json";
 import theFirst20HoursPackageJson from "@/book-packages/the-first-20-hours.v21.json";
 import theOutsidersPackageJson from "@/book-packages/the-outsiders.v21.json";
 import ultralearningPackageJson from "@/book-packages/ultralearning.v21.json";
+import auto_the_4_hour_workweek_Json from "@/book-packages/the-4-hour-workweek.v21.json";
+import auto_rich_dad_poor_dad_Json from "@/book-packages/rich-dad-poor-dad.v21.json";
+import auto_think_and_grow_rich_Json from "@/book-packages/think-and-grow-rich.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { isV21RawPackage, normalizeV21Package } from "@/app/book/lib/v21-adapter";
 
@@ -493,13 +496,13 @@ function normalizeNstdPackage(raw: Record<string, unknown>, tone: ToneKey = "dir
 }
 
 export const THE_POWER_OF_HABIT_PACKAGE =
-  normalizeNstdPackage(thePowerOfHabitPackageJson, "direct");
+  normalizeAnyPackage(thePowerOfHabitPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_POWER_OF_HABIT_RAW_CHAPTERS = getRawChapters(thePowerOfHabitPackageJson);
 
 export function getThePowerOfHabitPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(thePowerOfHabitPackageJson, tone);
+  return normalizeAnyPackage(thePowerOfHabitPackageJson, tone);
 }
 
 export const MAKE_TIME_PACKAGE = normalizeAnyPackage(makeTimePackageJson, "direct");
@@ -551,22 +554,22 @@ export function getDifficultConversationsPackageForTone(tone: ToneKey): BookPack
 }
 
 export const WHAT_EVERY_BODY_IS_SAYING_PACKAGE =
-  normalizeNstdPackage(whatEveryBodyIsSayingPackageJson, "direct");
+  normalizeAnyPackage(whatEveryBodyIsSayingPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const WHAT_EVERY_BODY_IS_SAYING_RAW_CHAPTERS = getRawChapters(whatEveryBodyIsSayingPackageJson);
 
 export function getWhatEveryBodyIsSayingPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(whatEveryBodyIsSayingPackageJson, tone);
+  return normalizeAnyPackage(whatEveryBodyIsSayingPackageJson, tone);
 }
 
-export const THE_PRINCE_PACKAGE = normalizeNstdPackage(thePrincePackageJson, "direct");
+export const THE_PRINCE_PACKAGE = normalizeAnyPackage(thePrincePackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_PRINCE_RAW_CHAPTERS = getRawChapters(thePrincePackageJson);
 
 export function getThePrincePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(thePrincePackageJson, tone);
+  return normalizeAnyPackage(thePrincePackageJson, tone);
 }
 
 export const TINY_HABITS_PACKAGE = normalizeAnyPackage(tinyHabitsPackageJson, "direct");
@@ -716,7 +719,7 @@ export function getPredictablyIrrationalPackageForTone(tone: ToneKey): BookPacka
   return normalizeAnyPackage(predictablyIrrationalPackageJson, tone);
 }
 
-export const THINKING_FAST_AND_SLOW_PACKAGE = normalizeNstdPackage(
+export const THINKING_FAST_AND_SLOW_PACKAGE = normalizeAnyPackage(
   thinkingFastAndSlowPackageJson,
   "direct"
 );
@@ -725,19 +728,19 @@ export const THINKING_FAST_AND_SLOW_PACKAGE = normalizeNstdPackage(
 export const THINKING_FAST_AND_SLOW_RAW_CHAPTERS = getRawChapters(thinkingFastAndSlowPackageJson);
 
 export function getThinkingFastAndSlowPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(thinkingFastAndSlowPackageJson, tone);
+  return normalizeAnyPackage(thinkingFastAndSlowPackageJson, tone);
 }
 
-export const THINKING_IN_BETS_PACKAGE = normalizeNstdPackage(thinkingInBetsPackageJson, "direct");
+export const THINKING_IN_BETS_PACKAGE = normalizeAnyPackage(thinkingInBetsPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THINKING_IN_BETS_RAW_CHAPTERS = getRawChapters(thinkingInBetsPackageJson);
 
 export function getThinkingInBetsPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(thinkingInBetsPackageJson, tone);
+  return normalizeAnyPackage(thinkingInBetsPackageJson, tone);
 }
 
-export const THE_PSYCHOLOGY_OF_MONEY_PACKAGE = normalizeNstdPackage(
+export const THE_PSYCHOLOGY_OF_MONEY_PACKAGE = normalizeAnyPackage(
   thePsychologyOfMoneyPackageJson,
   "direct"
 );
@@ -746,10 +749,10 @@ export const THE_PSYCHOLOGY_OF_MONEY_PACKAGE = normalizeNstdPackage(
 export const THE_PSYCHOLOGY_OF_MONEY_RAW_CHAPTERS = getRawChapters(thePsychologyOfMoneyPackageJson);
 
 export function getThePsychologyOfMoneyPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(thePsychologyOfMoneyPackageJson, tone);
+  return normalizeAnyPackage(thePsychologyOfMoneyPackageJson, tone);
 }
 
-export const THE_LAWS_OF_HUMAN_NATURE_PACKAGE = normalizeNstdPackage(
+export const THE_LAWS_OF_HUMAN_NATURE_PACKAGE = normalizeAnyPackage(
   theLawsOfHumanNaturePackageJson,
   "direct"
 );
@@ -758,10 +761,10 @@ export const THE_LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS =
   getRawChapters(theLawsOfHumanNaturePackageJson);
 
 export function getTheLawsOfHumanNaturePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theLawsOfHumanNaturePackageJson, tone);
+  return normalizeAnyPackage(theLawsOfHumanNaturePackageJson, tone);
 }
 
-export const THE_ALMANACK_OF_NAVAL_RAVIKANT_PACKAGE = normalizeNstdPackage(
+export const THE_ALMANACK_OF_NAVAL_RAVIKANT_PACKAGE = normalizeAnyPackage(
   theAlmanackOfNavalRavikantPackageJson,
   "direct"
 );
@@ -771,10 +774,10 @@ export const THE_ALMANACK_OF_NAVAL_RAVIKANT_RAW_CHAPTERS =
   getRawChapters(theAlmanackOfNavalRavikantPackageJson);
 
 export function getTheAlmanackOfNavalRavikantPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theAlmanackOfNavalRavikantPackageJson, tone);
+  return normalizeAnyPackage(theAlmanackOfNavalRavikantPackageJson, tone);
 }
 
-export const THE_HARD_THING_ABOUT_HARD_THINGS_PACKAGE = normalizeNstdPackage(
+export const THE_HARD_THING_ABOUT_HARD_THINGS_PACKAGE = normalizeAnyPackage(
   theHardThingAboutHardThingsPackageJson,
   "direct"
 );
@@ -784,7 +787,7 @@ export const THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS =
   getRawChapters(theHardThingAboutHardThingsPackageJson);
 
 export function getTheHardThingAboutHardThingsPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theHardThingAboutHardThingsPackageJson, tone);
+  return normalizeAnyPackage(theHardThingAboutHardThingsPackageJson, tone);
 }
 
 export const INFLUENCE_PACKAGE = normalizeAnyPackage(influencePackageJson, "direct");
@@ -796,7 +799,7 @@ export function getInfluencePackageForTone(tone: ToneKey): BookPackage {
   return normalizeAnyPackage(influencePackageJson, tone);
 }
 
-export const THE_INNOVATORS_DILEMMA_PACKAGE = normalizeNstdPackage(
+export const THE_INNOVATORS_DILEMMA_PACKAGE = normalizeAnyPackage(
   theInnovatorsDilemmaPackageJson,
   "direct"
 );
@@ -807,7 +810,7 @@ export const THE_INNOVATORS_DILEMMA_RAW_CHAPTERS = getRawChapters(
 );
 
 export function getTheInnovatorsDilemmaPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theInnovatorsDilemmaPackageJson, tone);
+  return normalizeAnyPackage(theInnovatorsDilemmaPackageJson, tone);
 }
 
 export const BUILT_TO_LAST_PACKAGE = normalizeAnyPackage(builtToLastPackageJson, "direct");
@@ -833,7 +836,7 @@ export function getCompetingAgainstLuckPackageForTone(tone: ToneKey): BookPackag
   return normalizeAnyPackage(competingAgainstLuckPackageJson, tone);
 }
 
-export const LEADERS_EAT_LAST_PACKAGE = normalizeNstdPackage(
+export const LEADERS_EAT_LAST_PACKAGE = normalizeAnyPackage(
   leadersEatLastPackageJson,
   "direct"
 );
@@ -842,7 +845,7 @@ export const LEADERS_EAT_LAST_PACKAGE = normalizeNstdPackage(
 export const LEADERS_EAT_LAST_RAW_CHAPTERS = getRawChapters(leadersEatLastPackageJson);
 
 export function getLeadersEatLastPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(leadersEatLastPackageJson, tone);
+  return normalizeAnyPackage(leadersEatLastPackageJson, tone);
 }
 
 export const LIMITLESS_PACKAGE = normalizeAnyPackage(limitlessPackageJson, "direct");
@@ -872,16 +875,16 @@ export function getPlayingToWinPackageForTone(tone: ToneKey): BookPackage {
   return normalizeAnyPackage(playingToWinPackageJson, tone);
 }
 
-export const THE_ONE_THING_PACKAGE = normalizeNstdPackage(theOneThingPackageJson, "direct");
+export const THE_ONE_THING_PACKAGE = normalizeAnyPackage(theOneThingPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_ONE_THING_RAW_CHAPTERS = getRawChapters(theOneThingPackageJson);
 
 export function getTheOneThingPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theOneThingPackageJson, tone);
+  return normalizeAnyPackage(theOneThingPackageJson, tone);
 }
 
-export const THE_CHARISMA_MYTH_PACKAGE = normalizeNstdPackage(
+export const THE_CHARISMA_MYTH_PACKAGE = normalizeAnyPackage(
   theCharismaMythPackageJson,
   "direct"
 );
@@ -890,16 +893,16 @@ export const THE_CHARISMA_MYTH_PACKAGE = normalizeNstdPackage(
 export const THE_CHARISMA_MYTH_RAW_CHAPTERS = getRawChapters(theCharismaMythPackageJson);
 
 export function getTheCharismaMythPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theCharismaMythPackageJson, tone);
+  return normalizeAnyPackage(theCharismaMythPackageJson, tone);
 }
 
-export const THE_LIKE_SWITCH_PACKAGE = normalizeNstdPackage(theLikeSwitchPackageJson, "direct");
+export const THE_LIKE_SWITCH_PACKAGE = normalizeAnyPackage(theLikeSwitchPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_LIKE_SWITCH_RAW_CHAPTERS = getRawChapters(theLikeSwitchPackageJson);
 
 export function getTheLikeSwitchPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theLikeSwitchPackageJson, tone);
+  return normalizeAnyPackage(theLikeSwitchPackageJson, tone);
 }
 
 export const GOOD_TO_GREAT_PACKAGE = normalizeAnyPackage(goodToGreatPackageJson, "direct");
@@ -944,13 +947,13 @@ export function getSmarterFasterBetterPackageForTone(tone: ToneKey): BookPackage
   return normalizeAnyPackage(smarterFasterBetterPackageJson, tone);
 }
 
-export const TALK_LIKE_TED_PACKAGE = normalizeNstdPackage(talkLikeTedPackageJson, "direct");
+export const TALK_LIKE_TED_PACKAGE = normalizeAnyPackage(talkLikeTedPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const TALK_LIKE_TED_RAW_CHAPTERS = getRawChapters(talkLikeTedPackageJson);
 
 export function getTalkLikeTedPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(talkLikeTedPackageJson, tone);
+  return normalizeAnyPackage(talkLikeTedPackageJson, tone);
 }
 
 export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE = normalizeAnyPackage(
@@ -1033,25 +1036,25 @@ export function getExtremeOwnershipPackageForTone(tone: ToneKey): BookPackage {
   return normalizeAnyPackage(extremeOwnershipPackageJson, tone);
 }
 
-export const THE_ART_OF_WAR_PACKAGE = normalizeNstdPackage(theArtOfWarPackageJson, "direct");
+export const THE_ART_OF_WAR_PACKAGE = normalizeAnyPackage(theArtOfWarPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_ART_OF_WAR_RAW_CHAPTERS = getRawChapters(theArtOfWarPackageJson);
 
 export function getTheArtOfWarPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theArtOfWarPackageJson, tone);
+  return normalizeAnyPackage(theArtOfWarPackageJson, tone);
 }
 
-export const THE_WAR_OF_ART_PACKAGE = normalizeNstdPackage(theWarOfArtPackageJson, "direct");
+export const THE_WAR_OF_ART_PACKAGE = normalizeAnyPackage(theWarOfArtPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_WAR_OF_ART_RAW_CHAPTERS = getRawChapters(theWarOfArtPackageJson);
 
 export function getTheWarOfArtPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theWarOfArtPackageJson, tone);
+  return normalizeAnyPackage(theWarOfArtPackageJson, tone);
 }
 
-export const THE_33_STRATEGIES_OF_WAR_PACKAGE = normalizeNstdPackage(
+export const THE_33_STRATEGIES_OF_WAR_PACKAGE = normalizeAnyPackage(
   the33StrategiesOfWarPackageJson,
   "direct"
 );
@@ -1062,7 +1065,7 @@ export const THE_33_STRATEGIES_OF_WAR_RAW_CHAPTERS = getRawChapters(
 );
 
 export function getThe33StrategiesOfWarPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(the33StrategiesOfWarPackageJson, tone);
+  return normalizeAnyPackage(the33StrategiesOfWarPackageJson, tone);
 }
 
 export const ATOMIC_HABITS_PACKAGE = normalizeAnyPackage(atomicHabitsPackageJson, "direct");
@@ -1074,7 +1077,7 @@ export function getAtomicHabitsPackageForTone(tone: ToneKey): BookPackage {
   return normalizeAnyPackage(atomicHabitsPackageJson, tone);
 }
 
-export const THE_GREAT_MENTAL_MODELS_VOL_1_PACKAGE = normalizeNstdPackage(
+export const THE_GREAT_MENTAL_MODELS_VOL_1_PACKAGE = normalizeAnyPackage(
   theGreatMentalModelsVol1PackageJson,
   "direct"
 );
@@ -1085,19 +1088,19 @@ export const THE_GREAT_MENTAL_MODELS_VOL_1_RAW_CHAPTERS = getRawChapters(
 );
 
 export function getTheGreatMentalModelsVol1PackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theGreatMentalModelsVol1PackageJson, tone);
+  return normalizeAnyPackage(theGreatMentalModelsVol1PackageJson, tone);
 }
 
-export const THE_LEAN_STARTUP_PACKAGE = normalizeNstdPackage(theLeanStartupPackageJson, "direct");
+export const THE_LEAN_STARTUP_PACKAGE = normalizeAnyPackage(theLeanStartupPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_LEAN_STARTUP_RAW_CHAPTERS = getRawChapters(theLeanStartupPackageJson);
 
 export function getTheLeanStartupPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theLeanStartupPackageJson, tone);
+  return normalizeAnyPackage(theLeanStartupPackageJson, tone);
 }
 
-export const THE_CHECKLIST_MANIFESTO_PACKAGE = normalizeNstdPackage(
+export const THE_CHECKLIST_MANIFESTO_PACKAGE = normalizeAnyPackage(
   theChecklistManifestoPackageJson,
   "direct"
 );
@@ -1106,7 +1109,7 @@ export const THE_CHECKLIST_MANIFESTO_PACKAGE = normalizeNstdPackage(
 export const THE_CHECKLIST_MANIFESTO_RAW_CHAPTERS = getRawChapters(theChecklistManifestoPackageJson);
 
 export function getTheChecklistManifestoPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theChecklistManifestoPackageJson, tone);
+  return normalizeAnyPackage(theChecklistManifestoPackageJson, tone);
 }
 
 export const EXECUTION_PACKAGE = normalizeAnyPackage(executionPackageJson, "direct");
@@ -1118,16 +1121,16 @@ export function getExecutionPackageForTone(tone: ToneKey): BookPackage {
   return normalizeAnyPackage(executionPackageJson, tone);
 }
 
-export const THE_BLACK_SWAN_PACKAGE = normalizeNstdPackage(theBlackSwanPackageJson, "direct");
+export const THE_BLACK_SWAN_PACKAGE = normalizeAnyPackage(theBlackSwanPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_BLACK_SWAN_RAW_CHAPTERS = getRawChapters(theBlackSwanPackageJson);
 
 export function getTheBlackSwanPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theBlackSwanPackageJson, tone);
+  return normalizeAnyPackage(theBlackSwanPackageJson, tone);
 }
 
-export const THE_FIRST_20_HOURS_PACKAGE = normalizeNstdPackage(
+export const THE_FIRST_20_HOURS_PACKAGE = normalizeAnyPackage(
   theFirst20HoursPackageJson,
   "direct"
 );
@@ -1136,25 +1139,25 @@ export const THE_FIRST_20_HOURS_PACKAGE = normalizeNstdPackage(
 export const THE_FIRST_20_HOURS_RAW_CHAPTERS = getRawChapters(theFirst20HoursPackageJson);
 
 export function getTheFirst20HoursPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theFirst20HoursPackageJson, tone);
+  return normalizeAnyPackage(theFirst20HoursPackageJson, tone);
 }
 
-export const THE_OUTSIDERS_PACKAGE = normalizeNstdPackage(theOutsidersPackageJson, "direct");
+export const THE_OUTSIDERS_PACKAGE = normalizeAnyPackage(theOutsidersPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const THE_OUTSIDERS_RAW_CHAPTERS = getRawChapters(theOutsidersPackageJson);
 
 export function getTheOutsidersPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theOutsidersPackageJson, tone);
+  return normalizeAnyPackage(theOutsidersPackageJson, tone);
 }
 
-export const ULTRALEARNING_PACKAGE = normalizeNstdPackage(ultralearningPackageJson, "direct");
+export const ULTRALEARNING_PACKAGE = normalizeAnyPackage(ultralearningPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ULTRALEARNING_RAW_CHAPTERS = getRawChapters(ultralearningPackageJson);
 
 export function getUltralearningPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(ultralearningPackageJson, tone);
+  return normalizeAnyPackage(ultralearningPackageJson, tone);
 }
 
 export const BOOK_PACKAGES: BookPackage[] = [
@@ -1925,4 +1928,25 @@ function inferFallbackPresentation(bookId: string): BookPackagePresentation {
 
 export function getBookPackagePresentation(bookId: string): BookPackagePresentation {
   return BOOK_PACKAGE_PRESENTATION[bookId] ?? inferFallbackPresentation(bookId);
+}
+
+// --- auto-registered by `register-web` for "the-4-hour-workweek" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_4_hour_workweek_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-4-hour-workweek"] = (tone) => normalizeAnyPackage(auto_the_4_hour_workweek_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "rich-dad-poor-dad" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_rich_dad_poor_dad_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["rich-dad-poor-dad"] = (tone) => normalizeAnyPackage(auto_rich_dad_poor_dad_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "think-and-grow-rich" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_think_and_grow_rich_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["think-and-grow-rich"] = (tone) => normalizeAnyPackage(auto_think_and_grow_rich_Json, tone);
 }

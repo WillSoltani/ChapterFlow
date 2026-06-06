@@ -733,6 +733,48 @@ export type AccountStatusItem = {
   previousProSource?: string;
 };
 
+/**
+ * Append-only audit record of a single account-status transition. Captures who
+ * changed it (the user themselves, an admin, or the system), when, and why.
+ */
+export type AccountStatusChangeItem = {
+  userId: string;
+  status: AccountStatus;
+  previousStatus?: AccountStatus | null;
+  changedAt: string;
+  /** "self" | "admin:<adminUserId>" | "system" */
+  changedBy: string;
+  reason?: string;
+};
+
+export type OpsFailureKind =
+  | "stripe_cancel"
+  | "stripe_cancel_at_period_end"
+  | "stripe_customer_delete"
+  | "cognito_delete";
+
+/**
+ * A recorded operational failure that a human operator should follow up on.
+ * Currently used for Stripe subscription-cancellation failures during account
+ * delete/deactivate, which previously were swallowed silently.
+ */
+export type OpsFailureItem = {
+  id: string;
+  kind: OpsFailureKind;
+  /** Where the failure occurred, e.g. "account_delete" | "account_deactivate". */
+  context: string;
+  userId: string;
+  subscriptionId?: string;
+  stripeCustomerId?: string;
+  errorCode?: string;
+  errorMessage?: string;
+  createdAt: string;
+  resolvedAt?: string;
+  /** Admin userId who resolved it (or "auto" when a retry succeeded). */
+  resolvedBy?: string;
+  resolutionNote?: string;
+};
+
 export type BookUserSavedBookItem = {
   userId: string;
   bookId: string;

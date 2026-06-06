@@ -11,15 +11,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ── Hard gate: typecheck + tests + Next.js build + OpenNext bundle ────────
   app-checks:
     name: App Build + Tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
       NEXT_TELEMETRY_DISABLED: "1"
+      # Build-time placeholders so server modules that read config don't throw
+      # during `next build`. Real values are injected at deploy time.
       COGNITO_REGION: "us-east-1"
       COGNITO_USER_POOL_ID: "ci-user-pool"
-      SECURE_DOC_TABLE: "ci-table"
+      BOOK_TABLE_NAME: "ci-table"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,15 +44,62 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-
 
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test
+
       - name: Build app
         run: npm run build
 
       - name: Build OpenNext
         run: npx open-next build
 
-      - name: Type-check
-        run: npm run typecheck
+  # ── Advisory: lint (known in-scope debt — reports, never blocks) ─────────
+  # NOTE: keep this OUT of the required status checks in branch protection.
+  # The web-app lint surface (app/, components/, lib/) carries pre-existing
+  # debt; this job surfaces it without blocking merges/deploys. Pay it down
+  # over time, then promote to a hard gate.
+  lint:
+    name: Lint (advisory)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=optional
+
+      - name: ESLint (advisory)
+        run: |
+          set +e
+          npx eslint . --format stylish | tee eslint.log
+          STATUS=${PIPESTATUS[0]}
+          {
+            echo "## Lint (advisory)"
+            echo ""
+            if [ "$STATUS" -eq 0 ]; then
+              echo "No lint problems in app/components/lib. ✅"
+            else
+              echo "ESLint reported problems (advisory — does not block):"
+              echo ""
+              echo '```'
+              tail -n 20 eslint.log
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+
+  # ── Hard gate: CDK synth (backend) for the dev environment ───────────────
   infra-checks:
     name: Infra Build + CDK Synth
     runs-on: ubuntu-latest
@@ -74,5 +124,5 @@ jobs:
       - name: Build infra TypeScript
         run: npm run build
 
-      - name: CDK synth (backend only — frontend requires OpenNext build artifacts)
-        run: npm run cdk -- synth ChapterFlowBackend
+      - name: CDK synth (backend, dev context — frontend needs OpenNext artifacts)
+        run: npm run cdk -- synth -c env=dev ChapterFlowBackend-dev

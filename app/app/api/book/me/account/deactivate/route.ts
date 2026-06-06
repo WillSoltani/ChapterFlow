@@ -4,6 +4,7 @@ import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getUserEntitlement, setAccountStatus } from "@/app/app/api/book/_lib/repo";
 import { getStripeClient } from "@/app/app/api/book/_lib/stripe-service";
+import { captureStripeCancelFailure } from "@/app/app/api/book/_lib/ops-failure-repo";
 
 export const runtime = "nodejs";
 
@@ -31,16 +32,24 @@ export async function POST(req: Request) {
       previousProSource: entitlement?.proSource,
     });
 
-    // Cancel Stripe subscription at period end if active
+    // Cancel Stripe subscription at period end if active. A failure must NOT
+    // block deactivation, but it's recorded for operator follow-up (admin Ops
+    // dashboard) and emits a CloudWatch metric rather than being swallowed.
     if (entitlement?.stripeSubscriptionId && entitlement.proStatus === "active") {
       try {
         const stripe = await getStripeClient();
         await stripe.subscriptions.update(entitlement.stripeSubscriptionId, {
           cancel_at_period_end: true,
         });
-      } catch {
-        // Don't block deactivation if Stripe call fails — subscription
-        // will eventually expire or can be handled manually
+      } catch (error) {
+        await captureStripeCancelFailure(tableName, {
+          kind: "stripe_cancel_at_period_end",
+          context: "account_deactivate",
+          userId: user.sub,
+          subscriptionId: entitlement.stripeSubscriptionId,
+          stripeCustomerId: entitlement.stripeCustomerId,
+          error,
+        });
       }
     }
 

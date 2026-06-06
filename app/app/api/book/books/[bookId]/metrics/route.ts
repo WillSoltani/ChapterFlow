@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { bookMetricsPk, dailyMetricsSk } from "@/app/app/api/book/_lib/keys";
@@ -14,7 +14,7 @@ export async function GET(
   { params }: { params: Promise<{ bookId: string }> }
 ) {
   return withBookApiErrors(req, async () => {
-    await requireUser();
+    await requireActiveBookUser();
     const { bookId } = await params;
 
     const tableName = await getBookTableName();

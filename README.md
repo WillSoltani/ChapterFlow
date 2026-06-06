@@ -22,7 +22,7 @@ The app focuses on chapter based learning with summaries, examples, quizzes, not
 - React 19
 - TypeScript
 - Tailwind CSS 4
-- AWS DynamoDB, S3, Step Functions, Lambda, Cognito, SSM
+- AWS DynamoDB, S3, Lambda, Cognito, SSM
 - Stripe
 - CDK for infrastructure
 
@@ -63,9 +63,16 @@ npm run dev:3001
 
 ### Verification
 ```bash
-npm run verify
-npm run test:pdf-fill
+npm run verify   # typecheck + unit tests + next build (the CI hard gate)
+npm test         # unit tests only (node test runner via tsx)
+npm run lint     # advisory — known in-scope debt, not a blocking gate
 ```
+
+## Deployment & environments
+Three environments run in one AWS account, suffixed `dev` / `staging` / `prod`
+(prod is the unsuffixed, data-bearing set). Push to `main` auto-deploys **dev**;
+`staging`/`prod` are manual and prod is approval-gated. See
+[docs/CI_CD.md](docs/CI_CD.md) and [docs/OPERATIONS.md](docs/OPERATIONS.md).
 
 ## Required environment
 At minimum configure:

@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
@@ -17,7 +17,7 @@ type Params = { params: Promise<{ bookId: string }> };
 
 export async function POST(req: Request, ctx: Params) {
   try {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const { bookId } = await ctx.params;
     const body = await req.json();

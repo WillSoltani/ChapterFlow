@@ -1,104 +1,101 @@
 # Operations Guide
 
-Author: Will Soltani
+Operating the ChapterFlow web app. For how it gets deployed, see
+[CI_CD.md](./CI_CD.md); for the system layout, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
-## 1) Production Topology
-- Next.js app serves UI and API routes.
-- DynamoDB stores project/file metadata.
-- S3 raw bucket stores uploaded sources.
-- S3 output bucket stores converted and filled artifacts.
-- Step Functions orchestrates conversion jobs.
-- Lambda container worker performs conversion execution.
+## 1) Production topology
 
-## 2) Monitoring and Alerting
+```
+Browser
+  → CloudFront (custom domain or *.cloudfront.net)
+  → Lambda Function URL (OpenNext server fn, RESPONSE_STREAM)
+  → Next.js route handlers (app/app/api/book/**)
+      → DynamoDB  (main table + analytics table)
+      → S3        (book content / ingest buckets)
+      → Stripe · Cognito · Anthropic · ElevenLabs
+```
 
-### 2.1 Key signals
-- API 5xx rate on `/app/api/projects/*` endpoints.
-- Step Functions execution failures/timeouts.
-- Lambda worker errors and duration percentiles.
-- S3 access errors (Put/Get/Delete failures).
-- DynamoDB conditional/check failures where unexpected.
+- **Compute:** OpenNext on AWS Lambda (server, image, revalidation, warmer fns)
+  behind CloudFront. No servers, no Step Functions.
+- **State:** single-table DynamoDB (`ChapterFlowApp`) + analytics table
+  (`ChapterFlowInsights`, GSIs); book prose in S3; config in SSM.
+- **Auth:** Cognito Hosted UI (OAuth2 + PKCE); `requireUser()` verifies the
+  ID-token JWT per route.
 
-### 2.2 Recommended CloudWatch alarms
-- Worker `Errors > 0` over short window.
-- Worker `Duration` approaching timeout.
-- State machine `ExecutionsFailed` > threshold.
-- API route 5xx anomaly alarms.
-- Optional: DynamoDB throttling alarms.
+## 2) Environments
 
-## 3) Logs and Diagnostics
+Three environments in one account, suffixed (`dev` / `staging` / `prod`). prod is
+the unsuffixed, data-bearing set (`ChapterFlowApp`, `ChapterFlowServer`, …) and
+is RETAIN + deletion-protected + PITR. See [CI_CD.md §2](./CI_CD.md). Each env's
+config lives at `/chapterflow/<env>/*` in SSM and is read by the running Lambda.
 
-### 3.1 API logs
-- Route handlers log structured failures and auth errors.
-- Single-file delete endpoint logs requested id and object deletion counts (guardrail against cascades).
+## 3) Health checks
 
-### 3.2 Worker logs
-- Conversion flow logs source detection and critical transformation failures.
-- SVG/PAGES/AVIF paths should be monitored for regression signatures.
-- Preserve error message payloads for user-safe API responses and operator debugging.
+- **`GET /api/health`** — public, unauthenticated, dependency-free; returns
+  `200 {status, env, commit, time}`. This is the deploy gate's primary probe.
+- **`GET /api/health?deep=1`** — additionally probes DynamoDB reachability and
+  reports it in the body, but still returns 200 (never false-fails on a blip).
+- The deploy pipeline also asserts `/` and `/pricing` return 2xx.
 
-### 3.3 Fill PDF logs
-- Client-side export path logs contextual step names on failure in dev.
-- Persist failures are surfaced as non-fatal warnings after successful local download.
+## 4) Monitoring & alerting
 
-## 4) Common Failure Modes and Troubleshooting
+CloudWatch alarms defined in `infra/lib/chapterflow-backend-stack.ts` publish to
+the `ChapterFlowOpsAlerts` SNS topic (subscribe an inbox via the
+`CHAPTERFLOW_OPS_ALERT_EMAIL` secret, then confirm the subscription):
 
-### 4.1 Upload or completion failures
-Checklist:
-1. Validate presigned URL expiration and method.
-2. Check required headers (`Content-Type`) on upload.
-3. Verify DynamoDB write permission and key format.
+- **App / analytics table throttling** — any throttled DynamoDB op in a 5-min
+  window.
+- **`ChapterFlow/Ops StripeCancellationFailure`** — a Stripe cancellation failed
+  during account delete/deactivate. Follow up in the admin Ops dashboard
+  (Operational failures panel) → `/app/api/book/admin/ops-failures`.
 
-### 4.2 Conversion stuck in processing
-Checklist:
-1. Confirm Step Functions execution started.
-2. Inspect worker Lambda logs for source detection/conversion errors.
-3. Verify RAW/OUTPUT bucket object permissions and KMS grants.
-4. Validate output row update path did not fail on reserved-name aliasing.
+Signals worth watching in CloudWatch Logs / metrics: server-fn 5xx and duration
+p95, DynamoDB throttles, and the per-day analytics EVENT volume.
 
-### 4.3 Download URL failures
-Checklist:
-1. Confirm file row has valid bucket/key.
-2. Check object exists in S3 (HEAD).
-3. Confirm signed URL TTL and clock drift assumptions.
+## 5) Deploy & rollback runbook
 
-### 4.4 Filled PDF persistence failed after local download
-Checklist:
-1. Verify create/upload/complete filled endpoints are reachable.
-2. Confirm output bucket policy allows write for app role.
-3. Confirm frontend sends bytes as binary payload (not stringified).
+**Deploy:** see [CI_CD.md §3](./CI_CD.md). prod requires approval.
 
-## 5) Performance Tuning Knobs
+**Before a prod deploy**, confirm no stateful resource will be replaced. The
+**backend** (data-bearing) stack synthesizes standalone:
 
-### 5.1 Lambda worker
-- `memorySize`: currently configured for mixed conversion workloads; increase for AVIF/PDF-heavy jobs.
-- `timeout`: increase if large document/image conversions regularly approach limit.
-- architecture: x86_64 chosen for native dependency compatibility.
+```bash
+cd infra
+# Backend synthesizes without an OpenNext build (frontend is skipped when
+# .open-next/ is absent), so run this in a clean checkout:
+npx cdk diff -c env=prod ChapterFlowBackend
+# Expect: NO replace/delete on DynamoDB tables or S3 buckets.
 
-### 5.2 Concurrency
-- Control worker reserved concurrency to protect downstream services.
-- Tune Step Functions retry policy for transient AWS errors versus deterministic input failures.
+# The FRONTEND stack additionally needs the OpenNext build + bucket names:
+npx open-next build   # from the repo root
+export BOOK_INGEST_BUCKET=$(aws ssm get-parameter --name /chapterflow/prod/BOOK_INGEST_BUCKET --query Parameter.Value --output text)
+export BOOK_CONTENT_BUCKET=$(aws ssm get-parameter --name /chapterflow/prod/BOOK_CONTENT_BUCKET --query Parameter.Value --output text)
+npx cdk diff -c env=prod ChapterFlowFrontend
+```
 
-### 5.3 Caching and fetch behavior
-- File listing uses `cache: no-store` for consistency.
-- Signed URL fetching should be refreshed on expiration-sensitive UI flows.
+**Rollback:** OpenNext bundles are immutable per commit, so:
 
-## 6) Security Checklist
-- Keep all buckets private; enforce SSL-only transport.
-- Use KMS encryption for raw/output objects.
-- Keep presigned URL TTL short and operation-scoped.
-- Validate and sanitize user-provided filenames.
-- Enforce auth on all project/file endpoints.
-- Ensure delete endpoints are key-specific (no prefix deletes for single-item operations).
-- Keep SVG sanitization strict against script/XXE/remote fetch vectors.
+1. `Actions → Deploy → Run workflow`, set `environment` and run it on the **last
+   known-good commit/tag** → redeploys the prior Lambda + assets.
+2. CloudFront is invalidated automatically by the deploy.
+3. **Stateful resources (DynamoDB/S3) are RETAINed and are NOT rolled back** by
+   an app redeploy — a data migration needs its own forward-fix.
 
-## 7) Deployment and Rollback Notes
-- Deploy infra and app with coordinated env vars.
-- Validate canary flows: upload, convert, download, fill PDF, filled artifact persistence.
-- Rollback strategy:
-  - app rollback for UI/API regressions,
-  - infra rollback only after verifying stateful impacts (table/buckets).
+## 6) Common failure modes
 
-## 8) Unknown/Not Found
-- Automated alerting configuration files are not present in this repository.
-- If alarms are configured externally (Console/Terraform/organization baseline), document them in a future `docs/alerts/` supplement.
+| Symptom | Check |
+|---|---|
+| Deploy fails the health gate | Run summary lists the failing path; check the `ChapterFlowServer[-env]` Lambda logs in CloudWatch. |
+| 401 HTML redirect on an API call | Caller hit a `/app/**` route without a session — middleware redirects to login (APIs should send the auth cookie). |
+| Frontend deploy throws "requires BOOK_INGEST_BUCKET…" | Backend stack for that env not deployed yet (no SSM params). Deploy infra first. |
+| Stripe cancellation alarm fired | Admin Ops dashboard → Operational failures → retry or resolve. |
+| Table throttling alarm | Inspect hot partitions / unbounded scans (admin metrics, soft-decay); the table is on-demand so this usually self-heals. |
+
+## 7) Security checklist
+
+- Keep all buckets private (covers prefix is the only public read); enforce SSL.
+- Secrets are injected as Lambda env at deploy from environment-scoped GitHub
+  secrets — never commit them. Editor swap files (`*.swp`) are gitignored.
+- Every new API route must call `requireUser()` / `requireAdminUser()` — auth is
+  per-route, not global.
+- Quizzes are graded server-side; never trust client-supplied scores/ids.

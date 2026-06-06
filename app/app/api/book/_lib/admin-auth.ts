@@ -1,9 +1,11 @@
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "./account-guard";
 import { BookApiError } from "./errors";
 import { getBookAdminGroupName } from "./env";
 
 export async function requireAdminUser() {
-  const user = await requireUser();
+  // Enforce account lifecycle status before the admin group check: a
+  // deactivated/deleted account must not be able to operate admin endpoints.
+  const user = await requireActiveBookUser();
   const adminGroup = await getBookAdminGroupName();
   const groups = user.groups ?? [];
   if (!groups.includes(adminGroup)) {

@@ -1,0 +1,90 @@
+name: Deploy
+
+# Single entry point for all environment deploys.
+#
+#   • push to main            → auto-deploy DEV (infra sync + app, no re-seed)
+#   • workflow_dispatch       → pick env (dev/staging/prod) + what to run
+#
+# prod is gated by the `prod` GitHub Environment's required reviewers (set in
+# repo Settings → Environments). Each environment supplies its own scoped
+# secrets (AWS role, domain, Cognito, Stripe, AI keys). The reusable internals
+# (_deploy-infra.yml / _deploy-app.yml) do the actual work.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+      - 'scripts/book/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        type: choice
+        options: [dev, staging, prod]
+        default: dev
+      deploy_infra:
+        description: "Deploy the backend (CDK) stack"
+        type: boolean
+        default: false
+      deploy_app:
+        description: "Deploy the app (OpenNext frontend) stack"
+        type: boolean
+        default: true
+      seed:
+        description: "Re-seed book data after infra deploy"
+        type: boolean
+        default: false
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+
+jobs:
+  plan:
+    name: Plan deploy
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.s.outputs.environment }}
+      deploy_infra: ${{ steps.s.outputs.deploy_infra }}
+      deploy_app: ${{ steps.s.outputs.deploy_app }}
+      seed: ${{ steps.s.outputs.seed }}
+    steps:
+      - id: s
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "environment=${{ inputs.environment }}" >> "$GITHUB_OUTPUT"
+            echo "deploy_infra=${{ inputs.deploy_infra }}" >> "$GITHUB_OUTPUT"
+            echo "deploy_app=${{ inputs.deploy_app }}" >> "$GITHUB_OUTPUT"
+            echo "seed=${{ inputs.seed }}" >> "$GITHUB_OUTPUT"
+          else
+            # push to main → keep dev in sync (cdk no-ops when unchanged); no re-seed
+            echo "environment=dev" >> "$GITHUB_OUTPUT"
+            echo "deploy_infra=true" >> "$GITHUB_OUTPUT"
+            echo "deploy_app=true" >> "$GITHUB_OUTPUT"
+            echo "seed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  infra:
+    needs: plan
+    if: needs.plan.outputs.deploy_infra == 'true'
+    uses: ./.github/workflows/_deploy-infra.yml
+    with:
+      environment: ${{ needs.plan.outputs.environment }}
+      seed: ${{ needs.plan.outputs.seed == 'true' }}
+    secrets: inherit
+
+  app:
+    needs: [plan, infra]
+    # Run after infra when present; tolerate infra being skipped (app-only deploy).
+    if: >-
+      always() &&
+      needs.plan.outputs.deploy_app == 'true' &&
+      (needs.infra.result == 'success' || needs.infra.result == 'skipped')
+    uses: ./.github/workflows/_deploy-app.yml
+    with:
+      environment: ${{ needs.plan.outputs.environment }}
+    secrets: inherit

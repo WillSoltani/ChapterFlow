@@ -1,0 +1,211 @@
+name: Deploy App (reusable)
+
+# Reusable: builds the Next.js app via OpenNext and deploys the CDK FRONTEND
+# stack (Lambda + CloudFront) for one environment, invalidates the CDN, then
+# runs a BLOCKING health gate (the deploy fails if the app is unhealthy).
+# Called by deploy.yml. The environment is the GitHub Environment too, so prod
+# inherits its required-reviewer approval and environment-scoped secrets.
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: "dev | staging | prod"
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write # open a deploy-failure issue on prod
+
+concurrency:
+  group: deploy-app-${{ inputs.environment }}
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy-app:
+    name: Frontend stack (${{ inputs.environment }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Resolve env/stack names
+        run: |
+          set -euo pipefail
+          ENV="${{ inputs.environment }}"
+          case "$ENV" in
+            prod) SUFFIX="" ;;
+            dev|staging) SUFFIX="-$ENV" ;;
+            *) echo "::error::invalid environment '$ENV'"; exit 1 ;;
+          esac
+          echo "CHAPTERFLOW_ENV=$ENV" >> "$GITHUB_ENV"
+          echo "FRONTEND_STACK=ChapterFlowFrontend${SUFFIX}" >> "$GITHUB_ENV"
+          echo "SSM_PREFIX=/chapterflow/$ENV" >> "$GITHUB_ENV"
+
+      - name: Install app dependencies
+        run: npm ci
+
+      - name: Install infra dependencies
+        run: npm ci --prefix infra
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Bucket names are CDK-auto-generated; resolve them from SSM (the backend
+      # stack's published config) so app.ts never relies on hardcoded literals.
+      - name: Resolve resource names from SSM
+        run: |
+          set -euo pipefail
+          get() { aws ssm get-parameter --name "$1" --query Parameter.Value --output text; }
+          echo "BOOK_INGEST_BUCKET=$(get "$SSM_PREFIX/BOOK_INGEST_BUCKET")" >> "$GITHUB_ENV"
+          echo "BOOK_CONTENT_BUCKET=$(get "$SSM_PREFIX/BOOK_CONTENT_BUCKET")" >> "$GITHUB_ENV"
+          echo "CHAPTERFLOW_BOOK_TABLE_NAME=$(get "$SSM_PREFIX/BOOK_TABLE_NAME")" >> "$GITHUB_ENV"
+          echo "CHAPTERFLOW_BOOK_ANALYTICS_TABLE_NAME=$(get "$SSM_PREFIX/BOOK_ANALYTICS_TABLE_NAME")" >> "$GITHUB_ENV"
+
+      - name: Build OpenNext (includes Next.js build)
+        run: npx open-next build
+
+      - name: CDK deploy frontend stack
+        working-directory: infra
+        run: npx cdk deploy -c env=${{ env.CHAPTERFLOW_ENV }} "${FRONTEND_STACK}" --exclusively --require-approval never
+        env:
+          CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
+          CHAPTERFLOW_ENV: ${{ env.CHAPTERFLOW_ENV }}
+          CHAPTERFLOW_COMMIT_SHA: ${{ github.sha }}
+          # App + domain
+          CHAPTERFLOW_APP_BASE_URL: ${{ secrets.CHAPTERFLOW_APP_BASE_URL }}
+          CHAPTERFLOW_DOMAIN_NAME: ${{ secrets.CHAPTERFLOW_DOMAIN_NAME }}
+          # Cognito
+          COGNITO_DOMAIN: ${{ secrets.COGNITO_DOMAIN }}
+          COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
+          COGNITO_REGION: ${{ secrets.COGNITO_REGION }}
+          COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
+          COGNITO_REDIRECT_URI: ${{ secrets.COGNITO_REDIRECT_URI }}
+          COGNITO_LOGOUT_REDIRECT_URI: ${{ secrets.COGNITO_LOGOUT_REDIRECT_URI }}
+          AUTH_STATE_SECRET: ${{ secrets.AUTH_STATE_SECRET }}
+          AUTH_COOKIE_DOMAIN: ${{ secrets.AUTH_COOKIE_DOMAIN }}
+          # Stripe
+          BOOK_STRIPE_SECRET_KEY: ${{ secrets.BOOK_STRIPE_SECRET_KEY }}
+          BOOK_STRIPE_WEBHOOK_SECRET: ${{ secrets.BOOK_STRIPE_WEBHOOK_SECRET }}
+          BOOK_STRIPE_PRICE_ID: ${{ secrets.BOOK_STRIPE_PRICE_ID }}
+          BOOK_STRIPE_PRICE_ID_ANNUAL: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL }}
+          BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+          # AI providers
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+
+      - name: Resolve CloudFront distribution
+        id: cf
+        run: |
+          set -euo pipefail
+          DIST_ID=$(aws cloudformation describe-stacks --stack-name "${FRONTEND_STACK}" \
+            --query "Stacks[0].Outputs[?OutputKey=='DistributionId'].OutputValue" --output text)
+          DIST_DOMAIN=$(aws cloudformation describe-stacks --stack-name "${FRONTEND_STACK}" \
+            --query "Stacks[0].Outputs[?OutputKey=='DistributionDomain'].OutputValue" --output text)
+          echo "distribution_id=${DIST_ID}" >> "$GITHUB_OUTPUT"
+          echo "distribution_domain=${DIST_DOMAIN}" >> "$GITHUB_OUTPUT"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ steps.cf.outputs.distribution_id }}" --paths "/*"
+
+      # BLOCKING health gate — a non-2xx on any critical surface fails the deploy.
+      - name: Health gate
+        run: |
+          set -uo pipefail
+          APP_URL="https://${{ steps.cf.outputs.distribution_domain }}"
+          echo "Health-checking ${APP_URL} (allowing warm-up)..."
+          sleep 10
+          fail=0
+          for p in "/" "/pricing" "/api/health"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 \
+              --retry 4 --retry-delay 10 --retry-all-errors "${APP_URL}${p}")
+            echo "  ${p} -> HTTP ${code}"
+            if [ "${code}" -lt 200 ] || [ "${code}" -ge 400 ]; then
+              echo "::error::health check FAILED for ${p} (HTTP ${code})"
+              fail=1
+            fi
+          done
+          if [ "${fail}" -ne 0 ]; then
+            {
+              echo "## ❌ Deploy FAILED health gate — ${{ inputs.environment }}"
+              echo ""
+              echo "One or more critical surfaces returned non-2xx after deploy."
+              echo ""
+              echo "### Rollback"
+              echo "1. Re-run **Deploy** on the last known-good commit/tag:"
+              echo "   \`Actions → Deploy → Run workflow → environment=${{ inputs.environment }}\`, ref = prior good SHA."
+              echo "2. OpenNext bundles are immutable per-commit, so redeploying the previous commit restores the prior Lambda + assets."
+              echo "3. Stateful resources (DynamoDB/S3) are RETAINed and are NOT rolled back by an app redeploy."
+              echo "4. Check CloudWatch logs for the \`${FRONTEND_STACK/Frontend/Server}\` Lambda (env: ${{ inputs.environment }})."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo "Health gate PASSED" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Deployment summary
+        if: success()
+        run: |
+          {
+            echo "## ✅ App deploy — ${{ inputs.environment }}"
+            echo ""
+            echo "| Detail | Value |"
+            echo "|--------|-------|"
+            echo "| Stack | \`${FRONTEND_STACK}\` |"
+            echo "| CloudFront | ${{ steps.cf.outputs.distribution_domain }} |"
+            echo "| Commit | \`${GITHUB_SHA::8}\` |"
+            echo "| Triggered by | ${GITHUB_ACTOR} |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # GitHub-native failure notification for prod (built-in failed-run emails
+      # cover the rest). Dedupes by title so retries update one issue.
+      - name: Open deploy-failure issue (prod only)
+        if: failure() && inputs.environment == 'prod'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `🚨 Prod deploy failed (${context.sha.substring(0,8)})`;
+            const body = [
+              `Prod deploy failed in run ${context.runId}.`,
+              ``,
+              `- Commit: ${context.sha}`,
+              `- Actor: ${context.actor}`,
+              `- Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ``,
+              `**Rollback:** re-run Deploy on the previous good commit/tag (env=prod).`,
+            ].join("\n");
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: "open", labels: "deploy-failure", per_page: 100,
+            });
+            const dup = existing.data.find((i) => i.title === title);
+            if (dup) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: dup.number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ["deploy-failure"],
+              });
+            }
