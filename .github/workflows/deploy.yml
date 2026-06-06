@@ -2,21 +2,17 @@ name: Deploy
 
 # Single entry point for all environment deploys.
 #
-#   • push to main            → auto-deploy DEV (infra sync + app, no re-seed)
-#   • workflow_dispatch       → pick env (dev/staging/prod) + what to run
+#   • workflow_dispatch only  → pick env (dev/staging/prod) + what to run
 #
-# prod is gated by the `prod` GitHub Environment's required reviewers (set in
-# repo Settings → Environments). Each environment supplies its own scoped
-# secrets (AWS role, domain, Cognito, Stripe, AI keys). The reusable internals
-# (_deploy-infra.yml / _deploy-app.yml) do the actual work.
+# Deploys are MANUAL — there is no auto-deploy on push to main (CI still runs on
+# every push/PR via ci.yml). This avoids firing a deploy at an environment whose
+# scoped secrets aren't configured. prod is gated by the `prod` GitHub
+# Environment's required reviewers (set in repo Settings → Environments). Each
+# environment supplies its own scoped secrets (AWS role, domain, Cognito,
+# Stripe, AI keys). The reusable internals (_deploy-infra.yml / _deploy-app.yml)
+# do the actual work.
 
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - 'docs/**'
-      - '**/*.md'
-      - 'scripts/book/**'
   workflow_dispatch:
     inputs:
       environment:
