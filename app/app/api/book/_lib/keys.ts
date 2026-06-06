@@ -178,6 +178,24 @@ export function webhookSk(eventId: string): string {
   return `EVENT#${eventId}`;
 }
 
+/** Shared PK for durable billing events (refunds, disputes) surfaced in admin finance reports. */
+export function billingEventPk(): string {
+  return "BOOKBILLING#EVENTS";
+}
+
+/**
+ * SK for a billing event. Embeds the kind, the Stripe object's created
+ * timestamp (so a Query sorts chronologically within a kind), and the Stripe
+ * object id (so webhook redelivery overwrites the same item — idempotent).
+ */
+export function billingEventSk(
+  kind: "REFUND" | "DISPUTE",
+  createdAtIso: string,
+  id: string
+): string {
+  return `${kind}#${createdAtIso}#${id}`;
+}
+
 export function stripeCustomerPk(customerId: string): string {
   return `BOOKBILLING#CUSTOMER#${customerId}`;
 }

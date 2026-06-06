@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import Image from "next/image";
+import { MONTHLY_PRICE_WITH_CURRENCY, TRIAL_CTA_LABEL } from "@/lib/pricing";
 import {
   ArrowUpRight,
   BookOpen,
@@ -1160,10 +1161,10 @@ export function UpgradeCard({
         </div>
         <p className="mt-4 text-base leading-7 text-(--cf-text-2)">{personalizedMessage}</p>
         <p className="mt-3 text-lg font-semibold text-(--cf-text-1)">
-          $7.99 CAD/month <span className="text-sm font-normal text-(--cf-text-3)">— less than a single book purchase</span>
+          {MONTHLY_PRICE_WITH_CURRENCY}/month <span className="text-sm font-normal text-(--cf-text-3)">— less than a single book purchase</span>
         </p>
         <p className="mt-2 text-sm text-(--cf-text-3)">Join readers who chose to go deeper</p>
-        <Button variant="primary" size="lg" fullWidth onClick={onUpgrade} className="mt-5">Start 14-day free trial &rarr;</Button>
+        <Button variant="primary" size="lg" fullWidth onClick={onUpgrade} className="mt-5">{TRIAL_CTA_LABEL} &rarr;</Button>
         <p className="mt-3 text-center text-sm text-(--cf-text-soft)">Not now</p>
         <div className="mt-3 flex flex-wrap justify-center gap-4 text-xs text-(--cf-text-3)">
           <span>Cancel anytime</span><span>&bull;</span><span>No hidden fees</span>

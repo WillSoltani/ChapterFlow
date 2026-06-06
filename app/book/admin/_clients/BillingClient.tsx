@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CreditCard, Globe } from "lucide-react";
+import { AlertTriangle, CreditCard, Globe, type LucideIcon } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -25,8 +25,19 @@ import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
 
 type CountryRow = { country: string; mrrCents: number; mrr: number };
 
+type BillingEventRow = {
+  userId: string | null;
+  amountCents: number;
+  amount: number;
+  currency: string;
+  reason: string | null;
+  status: string | null;
+  createdAt: string;
+};
+
 type BillingResponse = {
   generatedAt: string;
+  currency: string;
   realMrr: number;
   realArr: number;
   stripeProCount: number;
@@ -44,7 +55,8 @@ type BillingResponse = {
     cardBrand: string | null;
     lastInvoicePaidAt: string | null;
   }>;
-  recentRefunds: Array<{ userId: string; amount: number; currency: string; reason: string; createdAt: string }>;
+  recentRefunds: BillingEventRow[];
+  recentDisputes: BillingEventRow[];
   coverage: { country: number; cardBrand: number };
   warnings?: string[];
 };
@@ -98,12 +110,13 @@ export function BillingClient() {
               label="Real MRR"
               value={Math.round(data?.realMrr ?? 0)}
               format="currency"
-              hint="actual Stripe revenue"
+              hint={data?.currency ? `actual Stripe revenue · ${data.currency}` : "actual Stripe revenue"}
             />
             <KPITile
               label="Real ARR"
               value={Math.round(data?.realArr ?? 0)}
               format="currency"
+              hint={data?.currency ?? undefined}
             />
             <KPITile label="Paying PROs" value={data?.stripeProCount ?? 0} hint="stripe source" />
             <KPITile label="Past due" value={data?.pastDue30d ?? 0} hint="last 30d" />
@@ -248,6 +261,25 @@ export function BillingClient() {
         </AdminCard>
       </div>
 
+      <div className="mt-6 grid gap-4 lg:grid-cols-2">
+        <BillingEventsCard
+          title="Recent refunds"
+          icon={CreditCard}
+          emptyTitle="No refunds recorded"
+          emptyDescription="Stripe refunds will appear here."
+          rows={data?.recentRefunds}
+          loading={loading && !data}
+        />
+        <BillingEventsCard
+          title="Recent disputes"
+          icon={AlertTriangle}
+          emptyTitle="No disputes recorded"
+          emptyDescription="Chargebacks revoke Pro access and appear here."
+          rows={data?.recentDisputes}
+          loading={loading && !data}
+        />
+      </div>
+
       <p className="mt-4 text-[11px] text-(--cf-text-soft)">
         Real MRR = sum of actual Stripe subscription amounts for active
         stripe-source PROs. License and flow_points PROs are excluded
@@ -255,5 +287,60 @@ export function BillingClient() {
         populate billing fields for existing subscribers.
       </p>
     </div>
+  );
+}
+
+function BillingEventsCard({
+  title,
+  icon,
+  emptyTitle,
+  emptyDescription,
+  rows,
+  loading,
+}: {
+  title: string;
+  icon: LucideIcon;
+  emptyTitle: string;
+  emptyDescription: string;
+  rows: BillingEventRow[] | undefined;
+  loading: boolean;
+}) {
+  return (
+    <AdminCard title={`${title} (${rows?.length ?? 0})`}>
+      {loading ? (
+        <TableSkeleton rows={4} cols={4} />
+      ) : (rows?.length ?? 0) === 0 ? (
+        <EmptyState icon={icon} title={emptyTitle} description={emptyDescription} compact />
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-[12px]">
+            <thead>
+              <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                <th className="py-2 pr-3">User</th>
+                <th className="py-2 pr-3 text-right">Amount</th>
+                <th className="py-2 pr-3">Reason</th>
+                <th className="py-2 pr-3">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows?.map((r) => (
+                <tr key={`${r.createdAt}-${r.userId ?? "?"}`} className="border-b border-(--cf-border)/50">
+                  <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-2)" title={r.userId ?? undefined}>
+                    {r.userId ? `${r.userId.slice(0, 14)}…` : "—"}
+                  </td>
+                  <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-1)">
+                    ${r.amount.toFixed(2)} {r.currency}
+                  </td>
+                  <td className="py-2 pr-3 text-(--cf-text-3)">{r.reason ?? r.status ?? "—"}</td>
+                  <td className="py-2 pr-3 text-(--cf-text-3)">
+                    {r.createdAt ? new Date(r.createdAt).toLocaleDateString() : "—"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </AdminCard>
   );
 }

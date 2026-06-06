@@ -8,7 +8,7 @@ import {
   TransactWriteCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { BookApiError } from "./errors";
+import { BookApiError, transactionCancellationReasons } from "./errors";
 import {
   badgeAwardSk,
   approvedScenarioPk,
@@ -46,6 +46,8 @@ import {
   stripeCustomerSk,
   webhookPk,
   webhookSk,
+  billingEventPk,
+  billingEventSk,
   licenseKeyPk,
   licenseKeySk,
   licenseIndexPk,
@@ -633,19 +635,23 @@ export async function getUserEntitlement(
         ? "license"
         : item.proSource === "flow_points"
           ? "flow_points"
-          : undefined;
+          : item.proSource === "gift_code"
+            ? "gift_code"
+            : undefined;
   const licenseKey = readStr(item.licenseKey);
   const licenseExpiresAt = readStr(item.licenseExpiresAt);
   const currentPeriodEnd = readStr(item.currentPeriodEnd);
 
-  // Compute effective plan for time-limited grants inline.
+  // Compute effective plan for time-limited grants inline. license expires via
+  // licenseExpiresAt; flow_points and gift_code passes expire via
+  // currentPeriodEnd. (stripe is driven by webhooks and never expired here.)
   const storedPlan = item.plan === "PRO" ? "PRO" : "FREE";
   const grantExpired =
     storedPlan === "PRO" &&
     ((proSource === "license" &&
       licenseExpiresAt != null &&
       new Date(licenseExpiresAt) < new Date()) ||
-      (proSource === "flow_points" &&
+      ((proSource === "flow_points" || proSource === "gift_code") &&
         currentPeriodEnd != null &&
         new Date(currentPeriodEnd) < new Date()));
   const plan: "FREE" | "PRO" = grantExpired ? "FREE" : storedPlan;
@@ -697,7 +703,7 @@ export async function reserveBookEntitlement(
           "SET #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :freeSlots), updatedAt = :updatedAt ADD unlockedBookIds :bookSet",
         // A user may bypass the slot limit only when they are PRO with a non-expired entitlement.
         ConditionExpression: [
-          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now)))",
+          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now) OR (proSource = :giftSource AND currentPeriodEnd >= :now)))",
           "OR contains(unlockedBookIds, :bookId)",
           "OR attribute_not_exists(unlockedBookIds)",
           "OR attribute_not_exists(freeBookSlots)",
@@ -712,6 +718,7 @@ export async function reserveBookEntitlement(
           ":stripeSource": "stripe",
           ":licenseSource": "license",
           ":flowPointsSource": "flow_points",
+          ":giftSource": "gift_code",
           ":now": ts,
           ":freeSlots": params.freeSlotsDefault,
           ":updatedAt": ts,
@@ -729,7 +736,9 @@ export async function reserveBookEntitlement(
           ? "license"
           : item.proSource === "flow_points"
             ? "flow_points"
-            : undefined;
+            : item.proSource === "gift_code"
+              ? "gift_code"
+              : undefined;
     return {
       userId: params.userId,
       plan: item.plan === "PRO" ? "PRO" : "FREE",
@@ -1581,6 +1590,90 @@ export async function recordStripeWebhookEvent(
   }
 }
 
+export type BillingEventKind = "refund" | "dispute";
+
+export type BillingEventRecord = {
+  kind: BillingEventKind;
+  /** Stripe object id (refund id or dispute id) — also the idempotency key. */
+  eventId: string;
+  userId: string | null;
+  stripeCustomerId: string | null;
+  chargeId: string | null;
+  amountCents: number;
+  currency: string;
+  reason: string | null;
+  /** Refund/dispute status (e.g. "refunded", "needs_response", "won", "lost"). */
+  status: string | null;
+  /** ISO timestamp from the Stripe object's `created`. */
+  createdAt: string;
+};
+
+/**
+ * Persist a refund or dispute (chargeback) as a durable, append-only billing
+ * event for the admin finance reports. Idempotent: the SK embeds the Stripe
+ * object id + its created timestamp, so webhook redelivery overwrites in place
+ * rather than duplicating.
+ */
+export async function recordBillingEvent(
+  tableName: string,
+  e: BillingEventRecord
+): Promise<void> {
+  const skKind = e.kind === "refund" ? "REFUND" : "DISPUTE";
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: billingEventPk(),
+        SK: billingEventSk(skKind, e.createdAt, e.eventId),
+        entity: "BOOK_BILLING_EVENT",
+        kind: e.kind,
+        eventId: e.eventId,
+        userId: e.userId,
+        stripeCustomerId: e.stripeCustomerId,
+        chargeId: e.chargeId,
+        amountCents: e.amountCents,
+        currency: e.currency,
+        reason: e.reason,
+        status: e.status,
+        createdAt: e.createdAt,
+      },
+    })
+  );
+}
+
+/** List the most recent refund or dispute events (newest first) for admin reports. */
+export async function listRecentBillingEvents(
+  tableName: string,
+  kind: BillingEventKind,
+  limit: number
+): Promise<BillingEventRecord[]> {
+  const skKind = kind === "refund" ? "REFUND" : "DISPUTE";
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+      ExpressionAttributeValues: {
+        ":pk": billingEventPk(),
+        ":prefix": `${skKind}#`,
+      },
+      ScanIndexForward: false, // newest first
+      Limit: limit,
+    })
+  );
+  return (res.Items ?? []).map((item) => ({
+    kind,
+    eventId: readStr(item.eventId) ?? "",
+    userId: readStr(item.userId) ?? null,
+    stripeCustomerId: readStr(item.stripeCustomerId) ?? null,
+    chargeId: readStr(item.chargeId) ?? null,
+    amountCents: readNum(item.amountCents) ?? 0,
+    currency: readStr(item.currency) ?? "",
+    reason: readStr(item.reason) ?? null,
+    status: readStr(item.status) ?? null,
+    createdAt: readStr(item.createdAt) ?? "",
+  }));
+}
+
 export async function mapStripeCustomerToUser(
   tableName: string,
   customerId: string,
@@ -1627,6 +1720,8 @@ export async function updateUserEntitlementFromStripe(
     proSource?: "stripe";
     stripeCustomerId?: string;
     stripeSubscriptionId?: string;
+    stripePriceId?: string;
+    subscriptionInterval?: string;
     currentPeriodEnd?: string;
     cancelAtPeriodEnd?: boolean;
     // Billing intelligence (optional)
@@ -1724,6 +1819,14 @@ export async function updateUserEntitlementFromStripe(
   if (params.failedPaymentLastReason !== undefined) {
     setParts.push("failedPaymentLastReason = :fplr");
     eav[":fplr"] = params.failedPaymentLastReason;
+  }
+  if (params.stripePriceId !== undefined) {
+    setParts.push("stripePriceId = :spi");
+    eav[":spi"] = params.stripePriceId;
+  }
+  if (params.subscriptionInterval !== undefined) {
+    setParts.push("subscriptionInterval = :sint");
+    eav[":sint"] = params.subscriptionInterval;
   }
 
   try {
@@ -2782,11 +2885,18 @@ export async function redeemLicenseKey(
                 "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots),",
                 "unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
               ].join(" "),
+              // Atomically refuse to clobber an active paid Stripe subscription.
+              // The route also pre-checks this (license/route.ts), but the read is
+              // not atomic with this write — this closes that race. proSource is
+              // only "stripe" while a sub is active/retrying.
+              ConditionExpression:
+                "attribute_not_exists(proSource) OR proSource <> :stripeSource",
               ExpressionAttributeNames: { "#plan": "plan" },
               ExpressionAttributeValues: {
                 ":pro": "PRO",
                 ":active": "active",
                 ":licenseSource": "license",
+                ":stripeSource": "stripe",
                 ":code": normalized,
                 ":expiresAt": expiresAt,
                 ":now": now,
@@ -2817,14 +2927,19 @@ export async function redeemLicenseKey(
       })
     );
   } catch (error: unknown) {
-    // If the transaction was cancelled it means the ConditionExpression on the key failed —
-    // the key was already redeemed or revoked between our read and this write.
-    if (
-      error &&
-      typeof error === "object" &&
-      ((error as Record<string, unknown>).name === "TransactionCanceledException" ||
-        (error as Record<string, unknown>).__type === "TransactionCanceledException")
-    ) {
+    const reasons = transactionCancellationReasons(error);
+    if (reasons) {
+      // Index 1 = entitlement guard: the user already has an active paid Stripe
+      // subscription, so we refuse to switch them onto a license grant.
+      if (reasons[1]?.Code === "ConditionalCheckFailed") {
+        throw new BookApiError(
+          409,
+          "already_subscribed",
+          "You already have an active Pro subscription via Stripe. License keys are for free-pass access only."
+        );
+      }
+      // Index 0 (or unspecified) = the key was redeemed or revoked between our
+      // read and this write.
       throw new BookApiError(409, "code_already_redeemed", "This license key has already been claimed.");
     }
     throw error;

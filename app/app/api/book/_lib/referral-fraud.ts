@@ -9,29 +9,13 @@ import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, referralClaimSk } from "@/app/app/api/book/_lib/keys";
 import { listRecentRiskEvents } from "@/app/app/api/book/_lib/repo";
+import {
+  evaluateReferralFraud,
+  DEVICE_VELOCITY_THRESHOLD,
+  type ReferralFraudCheckResult,
+} from "@/app/app/api/book/_lib/referral-fraud-core";
 
-// ── Types ───────────────────────────────────────────────────────────────────
-
-export type ReferralFraudCheckResult = {
-  allowed: boolean;
-  flagForReview: boolean;
-  reason: string | null;
-};
-
-// ── Disposable email domain blocklist (§6.6) ────────────────────────────────
-
-// Subset of ~100 most common disposable domains. Full list (~3,000) should be
-// loaded from a config file or DynamoDB in production.
-const DISPOSABLE_DOMAINS = new Set([
-  "10minutemail.com", "guerrillamail.com", "mailinator.com", "throwaway.email",
-  "temp-mail.org", "fakeinbox.com", "tempail.com", "dispostable.com",
-  "yopmail.com", "maildrop.cc", "sharklasers.com", "guerrillamailblock.com",
-  "grr.la", "guerrillamail.info", "guerrillamail.net", "trash-mail.com",
-  "trashmail.me", "trashmail.net", "tempmailaddress.com", "tempmailo.com",
-  "mohmal.com", "mailnesia.com", "mailsac.com", "minutemail.com",
-  "getairmail.com", "bugmenot.com", "bobmail.info", "bumpymail.com",
-  "emailondeck.com", "getnada.com",
-]);
+export type { ReferralFraudCheckResult } from "@/app/app/api/book/_lib/referral-fraud-core";
 
 function sha(value: string): string {
   return createHash("sha256").update(value).digest("base64url");
@@ -40,8 +24,9 @@ function sha(value: string): string {
 // ── Main fraud check (§6.6) ────────────────────────────────────────────────
 
 /**
- * Run all referral fraud checks before activating a referral reward.
- * Returns { allowed: true } if clear, or { allowed: false, reason } if blocked.
+ * Gather the referral-fraud signals (DB queries) and run the pure decision
+ * (evaluateReferralFraud). Returns { allowed: true } if clear, or
+ * { allowed: false, reason } if blocked.
  */
 export async function checkReferralFraud(params: {
   tableName: string;
@@ -64,36 +49,15 @@ export async function checkReferralFraud(params: {
     inviterIp,
   } = params;
 
-  // §6.6 — Disposable email domain blocking
-  const emailDomain = inviteeEmail.split("@")[1]?.toLowerCase();
-  if (emailDomain && DISPOSABLE_DOMAINS.has(emailDomain)) {
-    return {
-      allowed: false,
-      flagForReview: false,
-      reason: "disposable_email",
-    };
-  }
+  const crossReferral = await checkCrossReferral(tableName, inviteeUserId, inviterUserId);
 
-  // §6.6 — Cross-referral detection (two users refer each other)
-  const crossCheck = await checkCrossReferral(tableName, inviteeUserId, inviterUserId);
-  if (crossCheck) {
-    return {
-      allowed: false,
-      flagForReview: true,
-      reason: "cross_referral",
-    };
-  }
+  const sameDevice = Boolean(
+    inviteeDeviceId && inviterDeviceId && inviteeDeviceId === inviterDeviceId
+  );
 
-  // §6.6 — Device fingerprint match
-  if (inviteeDeviceId && inviterDeviceId && inviteeDeviceId === inviterDeviceId) {
-    return {
-      allowed: false,
-      flagForReview: true,
-      reason: "device_fingerprint_match",
-    };
-  }
-
-  // §6.6 — Device fingerprint velocity (≥3 different invitees on same device in 30 days)
+  // Distinct users on the invitee's device in the last 30 days — queried
+  // whenever a device id is present (cheap at solo-founder scale).
+  let deviceVelocityCount = 0;
   if (inviteeDeviceId) {
     const deviceHash = sha(`device:${inviteeDeviceId}`);
     const deviceEvents = await listRecentRiskEvents(tableName, {
@@ -101,45 +65,34 @@ export async function checkReferralFraud(params: {
       fingerprint: deviceHash,
       limit: 30,
     });
-
-    const now = Date.now();
-    const thirtyDaysAgo = now - 30 * 24 * 60 * 60 * 1000;
-    const distinctUsersOnDevice = new Set(
+    const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    deviceVelocityCount = new Set(
       deviceEvents
         .filter((e) => Date.parse(e.createdAt) > thirtyDaysAgo)
-        // Count all event types from distinct users on this device
         .map((e) => e.userId)
-    );
-
-    if (distinctUsersOnDevice.size >= 3) {
-      return {
-        allowed: false,
-        flagForReview: true,
-        reason: "device_velocity",
-      };
-    }
+    ).size;
   }
 
-  // §6.6 — Network + user-agent match (same IP within 24 hours)
-  if (inviteeIp && inviterIp && inviteeIp === inviterIp) {
-    return {
-      allowed: true, // Not blocked, but flagged for manual review
-      flagForReview: true,
-      reason: "network_match_flagged",
-    };
+  const sameIp = Boolean(inviteeIp && inviterIp && inviteeIp === inviterIp);
+
+  // Inviter activations in the last 7 days. Skip the query when an earlier,
+  // higher-priority signal already blocks — evaluateReferralFraud short-circuits
+  // before inviter velocity, so it only matters when nothing above triggered.
+  let inviterVelocityCount = 0;
+  const blockedEarlier =
+    crossReferral || sameDevice || deviceVelocityCount >= DEVICE_VELOCITY_THRESHOLD;
+  if (!blockedEarlier) {
+    inviterVelocityCount = await checkInviterVelocity(tableName, inviterUserId);
   }
 
-  // §6.6 — Inviter velocity (>5 activations per 7-day rolling window)
-  const inviterVelocity = await checkInviterVelocity(tableName, inviterUserId);
-  if (inviterVelocity > 5) {
-    return {
-      allowed: true, // Delayed, not blocked
-      flagForReview: true,
-      reason: "inviter_velocity",
-    };
-  }
-
-  return { allowed: true, flagForReview: false, reason: null };
+  return evaluateReferralFraud({
+    inviteeEmail,
+    crossReferral,
+    sameDevice,
+    deviceVelocityCount,
+    sameIp,
+    inviterVelocityCount,
+  });
 }
 
 // ── Helper functions ────────────────────────────────────────────────────────

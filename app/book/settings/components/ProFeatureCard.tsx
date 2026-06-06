@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { ProBadge } from "./ProBadge";
 import { Button } from "@/app/book/components/ui/Button";
+import { TRIAL_CTA_LABEL } from "@/lib/pricing";
 
 type ProFeatureCardProps = {
   icon: string;
@@ -90,7 +91,7 @@ export function ProFeatureCard({
 
               <div className="mt-6 space-y-3">
                 <Button variant="primary" fullWidth onClick={onUpgrade}>
-                  Start 14-day free trial
+                  {TRIAL_CTA_LABEL}
                 </Button>
                 <button
                   type="button"

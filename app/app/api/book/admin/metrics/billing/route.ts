@@ -9,22 +9,19 @@ import {
   scanAllEntitlements,
   type EntitlementSnapshot,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import {
+  listRecentBillingEvents,
+  type BillingEventRecord,
+} from "@/app/app/api/book/_lib/repo";
+import { BILLING_CURRENCY } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
-// Extended entitlement shape for billing intelligence (superset of
-// EntitlementSnapshot — may include new billing fields from Stripe).
-type BillingEnt = EntitlementSnapshot & {
-  billingCountry?: string;
-  billingCurrency?: string;
-  subscriptionAmountCents?: number;
-  cardBrand?: string;
-  cardCountry?: string;
-  lastInvoiceAmountCents?: number;
-  lastInvoiceCurrency?: string;
-  lastInvoicePaidAt?: string;
-  failedPaymentLastReason?: string;
-};
+// Billing intelligence fields now live on EntitlementSnapshot itself and are
+// projected + mapped by scanAllEntitlements. The previous `as BillingEnt[]`
+// cast declared these fields without the scan ever reading them, so every one
+// was `undefined` at runtime → realMrr=0. Reading EntitlementSnapshot directly
+// keeps TypeScript honest about what the scan actually returns.
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -38,9 +35,9 @@ export async function GET(req: Request) {
     const warnings: string[] = [];
     const days = lastNDays(30);
 
-    let entitlements: BillingEnt[] = [];
+    let entitlements: EntitlementSnapshot[] = [];
     try {
-      entitlements = (await scanAllEntitlements(tableName)) as BillingEnt[];
+      entitlements = await scanAllEntitlements(tableName);
     } catch (err) {
       console.warn("[admin-billing] entitlement scan failed:", err);
       warnings.push("Entitlement data unavailable (scan failed).");
@@ -51,13 +48,30 @@ export async function GET(req: Request) {
     );
     const stripePro = activePro.filter((e) => e.proSource === "stripe");
 
-    // Real MRR = sum of subscriptionAmountCents over active stripe PROs,
-    // normalized to USD (assume same currency for now — a mix would need
-    // per-currency grouping or conversion)
+    // Real MRR = sum of subscriptionAmountCents over active stripe PROs. We bill
+    // in a single currency (BILLING_CURRENCY), so this sum is meaningful as-is.
+    // If multiple billing currencies ever appear (see the mixed-currency warning
+    // below) this sum is no longer valid and needs per-currency grouping.
     const mrrCents = stripePro.reduce(
       (sum, e) => sum + (e.subscriptionAmountCents ?? 0),
       0,
     );
+
+    // Determine the billing currency from the live data, defaulting to the
+    // configured single currency. Surface a warning (rather than silently
+    // mis-summing) the moment more than one currency is in play.
+    const distinctCurrencies = [
+      ...new Set(stripePro.map((e) => e.billingCurrency ?? BILLING_CURRENCY)),
+    ];
+    const currency =
+      distinctCurrencies.length === 1 ? distinctCurrencies[0] : BILLING_CURRENCY;
+    if (distinctCurrencies.length > 1) {
+      warnings.push(
+        `Mixed billing currencies in active subscriptions (${distinctCurrencies.join(
+          ", ",
+        )}). realMrr/realArr sum across currencies and assume one — add per-currency grouping before reporting these.`,
+      );
+    }
 
     // Real MRR by country
     const byCountry: Record<string, number> = {};
@@ -72,7 +86,7 @@ export async function GET(req: Request) {
     // Currency mix by count
     const currencyCounts: Record<string, number> = {};
     for (const e of stripePro) {
-      const cur = e.billingCurrency ?? "USD";
+      const cur = e.billingCurrency ?? BILLING_CURRENCY;
       currencyCounts[cur] = (currencyCounts[cur] ?? 0) + 1;
     }
     const currencyMix = Object.entries(currencyCounts)
@@ -109,15 +123,20 @@ export async function GET(req: Request) {
       (e) => e.proStatus === "past_due" && e.failedPaymentLastReason,
     ).length;
 
-    // Refund tracking is per-event; surface any `refunded` Stripe webhook events
-    // TODO: wire up charge.refunded capture on webhook processor
-    const refundsPlaceholder: Array<{
-      userId: string;
-      amount: number;
-      currency: string;
-      reason: string;
-      createdAt: string;
-    }> = [];
+    // Recent refunds + disputes (chargebacks), persisted by the Stripe webhook.
+    const [recentRefunds, recentDisputes] = await Promise.all([
+      listRecentBillingEvents(tableName, "refund", 25).catch(() => []),
+      listRecentBillingEvents(tableName, "dispute", 25).catch(() => []),
+    ]);
+    const toBillingEventRow = (e: BillingEventRecord) => ({
+      userId: e.userId,
+      amountCents: e.amountCents,
+      amount: e.amountCents / 100,
+      currency: e.currency,
+      reason: e.reason,
+      status: e.status,
+      createdAt: e.createdAt,
+    });
 
     // Top paying users
     const topPayingUsers = stripePro
@@ -145,6 +164,7 @@ export async function GET(req: Request) {
 
     return bookOk({
       generatedAt: new Date().toISOString(),
+      currency,
       realMrr: mrrCents / 100,
       realArr: (mrrCents * 12) / 100,
       stripeProCount: stripePro.length,
@@ -155,7 +175,8 @@ export async function GET(req: Request) {
       pastDue30d,
       canceled30d,
       topPayingUsers,
-      recentRefunds: refundsPlaceholder,
+      recentRefunds: recentRefunds.map(toBillingEventRow),
+      recentDisputes: recentDisputes.map(toBillingEventRow),
       coverage,
       warnings,
     });

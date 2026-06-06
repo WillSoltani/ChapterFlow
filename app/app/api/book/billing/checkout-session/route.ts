@@ -13,6 +13,7 @@ import {
   getUserEntitlement,
   mapStripeCustomerToUser,
 } from "@/app/app/api/book/_lib/repo";
+import { PRICING } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
@@ -39,6 +40,7 @@ export async function POST(req: Request) {
 
     const entitlement = await getUserEntitlement(tableName, user.sub);
     let customerId = entitlement?.stripeCustomerId;
+    const customerExisted = Boolean(customerId);
 
     if (!customerId) {
       const customer = await stripe.customers.create({
@@ -72,6 +74,21 @@ export async function POST(req: Request) {
       }
     }
 
+    // Free trials are for NEW subscribers only (Terms: "14-day free trial for
+    // new subscribers"). A pre-existing customer that already has ANY Stripe
+    // subscription — active, canceled, or past (status "all") — has used their
+    // trial, so suppress it to prevent cancel-and-resubscribe trial farming. A
+    // freshly created customer provably has none, so they keep the trial.
+    let grantTrial = true;
+    if (customerExisted && customerId) {
+      const priorSubs = await stripe.subscriptions.list({
+        customer: customerId,
+        status: "all",
+        limit: 1,
+      });
+      grantTrial = priorSubs.data.length === 0;
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       customer: customerId,
@@ -87,6 +104,13 @@ export async function POST(req: Request) {
         userId: user.sub,
       },
       allow_promotion_codes: true,
+      // Stripe still collects a card up front and auto-charges when the trial
+      // ends, so the "you won't be charged during the trial" copy holds. The
+      // trial length is the single source PRICING.trialDays and is shared across
+      // all intervals (monthly / annual / annual_upfront).
+      ...(grantTrial
+        ? { subscription_data: { trial_period_days: PRICING.trialDays } }
+        : {}),
     });
 
     return bookOk({

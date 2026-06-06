@@ -1,4 +1,5 @@
 import { mustServerEnv, getServerEnv } from "@/app/app/api/_lib/server-env";
+import { MONTHLY_PRICE_PER_MONTH } from "@/lib/pricing";
 
 const DEFAULT_ADMIN_GROUP = "admin";
 
@@ -46,7 +47,7 @@ export async function getBookStripeWebhookSecret(): Promise<string | undefined> 
 }
 
 export async function getBookPaywallPriceDisplay(): Promise<string> {
-  return (await getServerEnv("BOOK_PAYWALL_PRICE")) || "$7.99/month";
+  return (await getServerEnv("BOOK_PAYWALL_PRICE")) || MONTHLY_PRICE_PER_MONTH;
 }
 
 export async function getBookAnalyticsTableName(): Promise<string | undefined> {

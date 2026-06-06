@@ -10,11 +10,14 @@ import {
   queryEventsForDay,
   scanAllEntitlements,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { PRICING, BILLING_CURRENCY } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
-// Default monthly price assumption — used purely for MRR estimation.
-const DEFAULT_PRO_PRICE = 7.99;
+// Default monthly price assumption (in BILLING_CURRENCY) — used purely for MRR
+// estimation. This is a count × list-price estimate; the admin billing route
+// reports the real per-subscription MRR.
+const DEFAULT_PRO_PRICE = PRICING.monthlyAmount;
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -133,8 +136,8 @@ export async function GET(req: Request) {
     return bookOk({
       generatedAt: new Date().toISOString(),
       range: days.length,
-      mrr: { value: mrrEstimate, currency: "USD", priceAssumption: DEFAULT_PRO_PRICE },
-      arr: { value: arrEstimate, currency: "USD" },
+      mrr: { value: mrrEstimate, currency: BILLING_CURRENCY, priceAssumption: DEFAULT_PRO_PRICE },
+      arr: { value: arrEstimate, currency: BILLING_CURRENCY },
       proTotal,
       freeTotal,
       proActive7d,

@@ -544,7 +544,7 @@ function filterPlaceholder(field: FilterField): string {
     case "plan":
       return "FREE or PRO";
     case "proSource":
-      return "stripe, license, or flow_points";
+      return "stripe, license, flow_points, or gift_code";
     case "country":
       return "US, CA, GB…";
     case "lastActiveWithinDays":

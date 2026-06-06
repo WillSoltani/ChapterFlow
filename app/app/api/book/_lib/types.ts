@@ -283,12 +283,16 @@ export type BookUserEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
   proStatus?: "inactive" | "active" | "past_due" | "canceled";
-  /** How the user obtained PRO — "stripe" for paid subscription, "license" for a free-pass key, "flow_points" for a timed reward pass */
-  proSource?: "stripe" | "license" | "flow_points";
+  /** How the user obtained PRO — "stripe" for paid subscription, "license" for a free-pass key, "flow_points" for a timed reward pass, "gift_code" for a gifted Pro window. license/flow_points/gift_code are time-limited and expire (see getUserEntitlement). */
+  proSource?: "stripe" | "license" | "flow_points" | "gift_code";
   freeBookSlots: number;
   unlockedBookIds: string[];
   stripeCustomerId?: string;
   stripeSubscriptionId?: string;
+  /** Stripe Price id of the current subscription (for plan reconciliation). */
+  stripePriceId?: string;
+  /** Stripe recurring interval ("month" | "year") of the current subscription. */
+  subscriptionInterval?: string;
   currentPeriodEnd?: string;
   /** True if the Stripe subscription is set to cancel at the end of the current period (no auto-renew) */
   cancelAtPeriodEnd?: boolean;

@@ -19,8 +19,13 @@ import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
   awardFlowPoints,
   getUserReferralClaim,
+  markReferralActivationBlocked,
   markReferralActivationRewarded,
 } from "@/app/app/api/book/_lib/flow-points-repo";
+import {
+  checkReferralFraud,
+  type ReferralFraudCheckResult,
+} from "@/app/app/api/book/_lib/referral-fraud";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 import {
   createProgressIfMissing,
@@ -40,6 +45,7 @@ import type {
   BookUserProgress,
 } from "@/app/app/api/book/_lib/types";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { MONTHLY_PRICE_PER_MONTH } from "@/lib/pricing";
 
 function sortUniqueNumbers(values: number[]): number[] {
   return Array.from(new Set(values.filter((value) => Number.isFinite(value) && value > 0))).sort(
@@ -195,7 +201,7 @@ export async function ensureUserBookStarted(params: {
           {
             unlockedBooksCount,
             freeBookSlots,
-            price: "$7.99/month",
+            price: MONTHLY_PRICE_PER_MONTH,
             benefits: [
               "Unlock unlimited books",
               "Keep progress synced across devices",
@@ -283,35 +289,65 @@ export async function ensureUserBookStarted(params: {
   let inviteeAwarded = false;
 
   if (referralClaim && !referralClaim.activationRewardedAt) {
-    const [inviterAward, inviteeAward] = await Promise.all([
-      awardFlowPoints(tableName, {
-        userId: referralClaim.inviterUserId,
-        amount: INSIGHT_POINTS_AMOUNTS.referralActivationInviter,
-        sourceType: "referral_activation_inviter",
-        sourceId: referralClaim.claimId,
-        metadata: {
-          inviteCode: referralClaim.inviteCode,
-          referredUserId: user.sub,
-        },
-      }),
-      awardFlowPoints(tableName, {
-        userId: user.sub,
-        amount: INSIGHT_POINTS_AMOUNTS.referralActivationInvitee,
-        sourceType: "referral_activation_invitee",
-        sourceId: referralClaim.claimId,
-        metadata: {
-          inviteCode: referralClaim.inviteCode,
-          inviterUserId: referralClaim.inviterUserId,
-        },
-      }),
-    ]);
-    inviterAwarded = inviterAward.awarded;
-    inviteeAwarded = inviteeAward.awarded;
-    await markReferralActivationRewarded(
+    // §6.6 — Fraud-screen before paying out 180 IP (inviter) + 80 IP (invitee).
+    // Without this, throwaway accounts can farm the IP economy (and IP buys Pro).
+    // Fail OPEN on a check error (award + flag) so a transient DB blip never
+    // denies a legitimate referral; the award's own grant key stays idempotent.
+    const fraud = await checkReferralFraud({
       tableName,
-      referralClaim,
-      INSIGHT_POINTS_AMOUNTS.referralActivationInviter
-    ).catch(() => false);
+      inviteeUserId: user.sub,
+      inviterUserId: referralClaim.inviterUserId,
+      inviteeEmail: user.email ?? "",
+      inviteeDeviceId: riskDeviceId,
+      inviterDeviceId: null,
+      inviteeIp: null,
+      inviterIp: null,
+    }).catch(
+      (): ReferralFraudCheckResult => ({
+        allowed: true,
+        flagForReview: true,
+        reason: "fraud_check_error",
+      })
+    );
+
+    if (fraud.allowed) {
+      const [inviterAward, inviteeAward] = await Promise.all([
+        awardFlowPoints(tableName, {
+          userId: referralClaim.inviterUserId,
+          amount: INSIGHT_POINTS_AMOUNTS.referralActivationInviter,
+          sourceType: "referral_activation_inviter",
+          sourceId: referralClaim.claimId,
+          metadata: {
+            inviteCode: referralClaim.inviteCode,
+            referredUserId: user.sub,
+          },
+        }),
+        awardFlowPoints(tableName, {
+          userId: user.sub,
+          amount: INSIGHT_POINTS_AMOUNTS.referralActivationInvitee,
+          sourceType: "referral_activation_invitee",
+          sourceId: referralClaim.claimId,
+          metadata: {
+            inviteCode: referralClaim.inviteCode,
+            inviterUserId: referralClaim.inviterUserId,
+          },
+        }),
+      ]);
+      inviterAwarded = inviterAward.awarded;
+      inviteeAwarded = inviteeAward.awarded;
+      await markReferralActivationRewarded(
+        tableName,
+        referralClaim,
+        INSIGHT_POINTS_AMOUNTS.referralActivationInviter
+      ).catch(() => false);
+    } else {
+      // Fraud detected — consume the claim (so it isn't retried) WITHOUT crediting
+      // the inviter. inviterAwarded/inviteeAwarded stay false, so the analytics
+      // block below skips the referral-earn events too.
+      await markReferralActivationBlocked(tableName, referralClaim, fraud.reason).catch(
+        () => false
+      );
+    }
   }
 
   getBookAnalyticsTableName()
