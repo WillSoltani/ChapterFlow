@@ -230,13 +230,6 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     keywords: ["subscription", "plan", "billing", "pro", "free", "upgrade", "price"],
   },
   {
-    id: "analytics",
-    section: "account",
-    label: "Share usage analytics",
-    description: "Help improve ChapterFlow with anonymous data",
-    keywords: ["analytics", "data", "tracking", "privacy", "anonymous"],
-  },
-  {
     id: "recommendations",
     section: "account",
     label: "Personalized recommendations",

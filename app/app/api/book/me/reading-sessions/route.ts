@@ -124,14 +124,11 @@ export async function POST(req: Request) {
             loc.timezone ??
             headersSnapshot.get("cloudfront-viewer-time-zone") ??
             undefined,
-          latitude:
-            loc.latitude ??
-            headersSnapshot.get("cloudfront-viewer-latitude") ??
-            undefined,
-          longitude:
-            loc.longitude ??
-            headersSnapshot.get("cloudfront-viewer-longitude") ??
-            undefined,
+          // loc.latitude/longitude are already coarsened to ~city level in
+          // location.ts. Do NOT fall back to the raw cloudfront-viewer-*
+          // headers — those are precise and would defeat the coarsening.
+          latitude: loc.latitude ?? undefined,
+          longitude: loc.longitude ?? undefined,
           acceptLanguage,
         }).catch(() => {});
       }

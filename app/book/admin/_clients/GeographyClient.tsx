@@ -20,6 +20,7 @@ type Country = {
 };
 type City = { city: string; country: string; count: number };
 type TZ = { tz: string; count: number };
+type LocationCluster = { lat: number; lng: number; country: string | null; count: number };
 
 type GeoResponse = {
   generatedAt: string;
@@ -28,6 +29,7 @@ type GeoResponse = {
   countries: Country[];
   topCities: City[];
   topTimezones: TZ[];
+  locationClusters?: LocationCluster[];
   warnings?: string[];
 };
 
@@ -218,6 +220,73 @@ export function GeographyClient() {
               </div>
             </AdminCard>
           </div>
+
+          {data.locationClusters && data.locationClusters.length > 0 && (
+            <div className="mt-6">
+              <AdminCard
+                title={`Approximate location clusters (${data.locationClusters.length})`}
+                description="Users grouped by coarse (~city-level) coordinates — approximate, not precise"
+                action={
+                  <button
+                    type="button"
+                    onClick={() =>
+                      downloadCSV(
+                        data.locationClusters as unknown as Record<string, unknown>[],
+                        `geography-clusters-${new Date().toISOString().slice(0, 10)}.csv`,
+                      )
+                    }
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[11px] text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+                  >
+                    <Download className="h-3 w-3" />
+                    CSV
+                  </button>
+                }
+              >
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[12px]">
+                    <thead>
+                      <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                        <th className="py-2 pr-3">Approx. coordinates</th>
+                        <th className="py-2 pr-3">Country</th>
+                        <th className="py-2 pr-3 text-right">Users</th>
+                        <th className="py-2 pr-3">Distribution</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.locationClusters.map((c, i) => {
+                        const max = data.locationClusters![0].count;
+                        const pct = (c.count / max) * 100;
+                        return (
+                          <tr
+                            key={`${c.lat},${c.lng}-${i}`}
+                            className="border-b border-(--cf-border)/50 transition hover:bg-(--cf-surface-muted)/40"
+                          >
+                            <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-1)">
+                              {c.lat.toFixed(1)}, {c.lng.toFixed(1)}
+                            </td>
+                            <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-3)">
+                              {c.country ?? "—"}
+                            </td>
+                            <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-2)">
+                              {c.count.toLocaleString()}
+                            </td>
+                            <td className="w-32 py-2 pr-3">
+                              <div className="h-1.5 overflow-hidden rounded-full bg-(--cf-surface-muted)">
+                                <div
+                                  className="h-full rounded-full bg-(--cf-accent)"
+                                  style={{ width: `${pct}%` }}
+                                />
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </AdminCard>
+            </div>
+          )}
         </>
       )}
     </div>

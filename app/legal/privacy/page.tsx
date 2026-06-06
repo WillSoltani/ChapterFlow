@@ -30,12 +30,12 @@ export default function PrivacyPolicyPage() {
             <li><strong style={{ color: "var(--text-heading)" }}>Notes and bookmarks:</strong> Chapter notes you write and takeaways you bookmark within the reading experience.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Preferences:</strong> Your display settings, learning mode, reading goals, and notification preferences.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Gamification data:</strong> Insight Points balance, badge progress, streak data, and scenario submissions.</li>
-            <li><strong style={{ color: "var(--text-heading)" }}>Device information:</strong> A hashed device identifier and coarse network information used solely for abuse prevention. We do not collect precise location data.</li>
+            <li><strong style={{ color: "var(--text-heading)" }}>Device &amp; approximate location:</strong> A hashed device identifier and coarse network information used for abuse prevention. We also derive an <em>approximate</em> location (country, region, city, and approximate coordinates) from your IP address to understand where our community is and to improve the product. We do not collect precise GPS location.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Payment information:</strong> Billing is handled entirely by Stripe. We store your Stripe customer ID and subscription status but never see or store your credit card number.</li>
             <li>
-              <strong style={{ color: "var(--text-heading)" }}>Optional analytics data:</strong> If you enable &quot;Share Usage Analytics&quot; in Settings, we collect
-              technical information such as screen dimensions, browser and device type, operating system, page load performance, and navigation patterns.
-              This data is used to improve the product and is never shared with third parties. You can disable this at any time.
+              <strong style={{ color: "var(--text-heading)" }}>Usage analytics:</strong> We collect usage analytics to operate, secure, and improve ChapterFlow &mdash; including
+              technical information (screen dimensions, browser and device type, operating system, page-load performance) and how you use the product
+              (reading sessions, quiz activity, badges, and Insight Points). This data is never shared with third parties or sold.
             </li>
           </ul>
         </section>
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
             <li>To process payments and manage your subscription through Stripe.</li>
             <li>To detect and prevent abuse, including multi-account exploitation of free book slots.</li>
             <li>To send transactional emails related to your account (e.g., password resets, subscription confirmations).</li>
-            <li>To improve product performance and user experience through opt-in analytics data.</li>
+            <li>To improve product performance and user experience through usage analytics.</li>
           </ul>
         </section>
 
@@ -89,9 +89,8 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p className="mb-3">You can manage your privacy preferences directly in ChapterFlow Settings:</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong style={{ color: "var(--text-heading)" }}>Usage analytics:</strong> Opt out of anonymous usage analytics at any time.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Personalized recommendations:</strong> Toggle personalized book and chapter recommendations.</li>
-            <li><strong style={{ color: "var(--text-heading)" }}>Reading history:</strong> Choose whether your daily reading activity is tracked.</li>
+            <li><strong style={{ color: "var(--text-heading)" }}>Reading history:</strong> Choose whether your daily reading activity is saved to your profile (it powers your streaks and reading history). Usage analytics, described above, is collected regardless.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Data export:</strong> Download all your data (reading history, notes, bookmarks, quiz results, badges, and more) in JSON, CSV, or Markdown format.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Account deactivation:</strong> Temporarily disable your account from Settings. Your data is preserved and you can reactivate by signing back in.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Account deletion:</strong> Permanently delete your account from Settings. You can also contact us at <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.</li>
