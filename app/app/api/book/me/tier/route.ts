@@ -2,7 +2,7 @@ import "server-only";
 
 // Implements §3.2 — Tier progress endpoint for client display.
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import {
@@ -15,7 +15,7 @@ export const runtime = "nodejs";
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const tier = await getOrCreateTier(tableName, user.sub);
     const progress = computeTierProgress(tier);

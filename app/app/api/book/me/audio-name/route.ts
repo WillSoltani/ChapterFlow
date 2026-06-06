@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
@@ -26,7 +26,7 @@ const TIMES_OF_DAY: TimeOfDay[] = ["morning", "afternoon", "evening"];
  */
 export async function POST(req: Request) {
   try {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const body = await req.json();
     const name = typeof body.name === "string" ? body.name.trim() : "";
 

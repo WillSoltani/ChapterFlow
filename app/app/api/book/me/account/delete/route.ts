@@ -5,6 +5,7 @@ import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getUserEntitlement, setAccountStatus } from "@/app/app/api/book/_lib/repo";
 import { getStripeClient } from "@/app/app/api/book/_lib/stripe-service";
+import { captureStripeCancelFailure } from "@/app/app/api/book/_lib/ops-failure-repo";
 
 export const runtime = "nodejs";
 
@@ -54,13 +55,22 @@ export async function POST(req: Request) {
       previousProSource: entitlement?.proSource,
     });
 
-    // Cancel Stripe subscription immediately if active
+    // Cancel Stripe subscription immediately if active. A failure must NOT block
+    // the deletion, but it must NOT be swallowed either — record it for operator
+    // follow-up (admin Ops dashboard) and emit a CloudWatch metric.
     if (entitlement?.stripeSubscriptionId && entitlement.proStatus === "active") {
       try {
         const stripe = await getStripeClient();
         await stripe.subscriptions.cancel(entitlement.stripeSubscriptionId);
-      } catch {
-        // Don't block deletion if Stripe call fails
+      } catch (error) {
+        await captureStripeCancelFailure(tableName, {
+          kind: "stripe_cancel",
+          context: "account_delete",
+          userId: user.sub,
+          subscriptionId: entitlement.stripeSubscriptionId,
+          stripeCustomerId: entitlement.stripeCustomerId,
+          error,
+        });
       }
     }
 

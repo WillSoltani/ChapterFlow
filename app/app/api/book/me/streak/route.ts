@@ -2,7 +2,7 @@ import "server-only";
 
 // Implements §2.2 Streak Shield purchase and §2.1 streak state read.
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, requireBodyObject, requireString, withBookApiErrors } from "@/app/app/api/book/_lib/http";
@@ -17,7 +17,7 @@ export const runtime = "nodejs";
 /** GET — Read current streak state */
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const streak = await getOrCreateStreak(tableName, user.sub);
 
@@ -47,7 +47,7 @@ export async function GET(req: Request) {
 /** POST — Purchase a Streak Shield (100 IP, max 3 held) */
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
 
     let action = "purchase_shield";
     try {

@@ -86,10 +86,10 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
           >
             <Trash2 className="h-4 w-4 text-(--cf-danger-text)" />
             <div>
-              <span className="text-(--cf-danger-text)">Delete account &amp; all data</span>
+              <span className="text-(--cf-danger-text)">Delete account</span>
               <p className="text-xs text-(--cf-text-3)">
-                Permanently erase your account and all associated data. This cannot be
-                undone.
+                Permanently closes your account — you won&apos;t be able to sign back in. Data
+                is retained per our Privacy Policy; email support to request full erasure.
               </p>
             </div>
           </button>
@@ -177,7 +177,8 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
                 <>
                   <h3 className="text-lg font-bold text-(--cf-text-1)">Are you sure?</h3>
                   <p className="mt-2 text-sm text-(--cf-text-3)">
-                    This will permanently delete:
+                    Your account will be permanently closed and you won&apos;t be able to sign
+                    back in. You&apos;ll immediately lose access to:
                   </p>
                   <ul className="mt-2 space-y-1 text-sm text-(--cf-text-2)">
                     <li>&bull; All your reading history and progress</li>
@@ -185,6 +186,10 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
                     <li>&bull; Streaks and badges</li>
                     <li>&bull; Account settings and preferences</li>
                   </ul>
+                  <p className="mt-3 text-xs text-(--cf-text-3)">
+                    Your data is retained per our Privacy Policy and is no longer used in the
+                    product. To request complete erasure, contact support after deleting.
+                  </p>
                   <div className="mt-5 flex gap-2.5">
                     <Button
                       variant="secondary"
@@ -209,7 +214,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
                   </h3>
                   <p className="mt-2 text-sm text-(--cf-text-3)">
                     Type <strong className="text-(--cf-text-1)">DELETE</strong> to
-                    permanently erase your account.
+                    permanently close your account.
                   </p>
                   <input
                     type="text"

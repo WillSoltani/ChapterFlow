@@ -1,7 +1,7 @@
 import "server-only";
 
 import { ConditionalCheckFailedException } from "@aws-sdk/client-dynamodb";
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
   bookErr,
@@ -22,7 +22,7 @@ type Params = { params: Promise<{ commitmentId: string }> };
 
 export async function PATCH(req: Request, ctx: Params) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const { commitmentId } = await ctx.params;
     const body = requireBodyObject(await req.json());

@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
   requireBodyObject,
@@ -19,7 +19,7 @@ export const runtime = "nodejs";
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const saved = await listSavedBooks(tableName, user.sub);
     return bookOk({ saved });
@@ -28,7 +28,7 @@ export async function GET(req: Request) {
 
 export async function PUT(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
 
     let bodyRaw: unknown;
@@ -63,7 +63,7 @@ export async function PUT(req: Request) {
 
 export async function DELETE(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const url = new URL(req.url);
     const bookId = requireString(url.searchParams.get("bookId"), "bookId", { maxLength: 120 });

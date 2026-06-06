@@ -8,6 +8,8 @@ import {
   getUserEntitlement,
   getUserEngagement,
   listAllUserProgress,
+  getAccountStatus,
+  listAccountStatusChanges,
 } from "@/app/app/api/book/_lib/repo";
 
 export const runtime = "nodejs";
@@ -28,13 +30,16 @@ export async function GET(
       return bookErr(req, 400, "invalid_user_id", "userId required.");
     }
 
-    const [snapshot, events, entitlement, engagement, progressList] = await Promise.all([
-      getUserSnapshot(analyticsTable, userId),
-      getUserEvents(analyticsTable, userId, 50),
-      getUserEntitlement(tableName, userId).catch(() => null),
-      getUserEngagement(tableName, userId).catch(() => null),
-      listAllUserProgress(tableName, userId).catch(() => []),
-    ]);
+    const [snapshot, events, entitlement, engagement, progressList, accountStatus, statusHistory] =
+      await Promise.all([
+        getUserSnapshot(analyticsTable, userId),
+        getUserEvents(analyticsTable, userId, 50),
+        getUserEntitlement(tableName, userId).catch(() => null),
+        getUserEngagement(tableName, userId).catch(() => null),
+        listAllUserProgress(tableName, userId).catch(() => []),
+        getAccountStatus(tableName, userId).catch(() => null),
+        listAccountStatusChanges(tableName, userId, 25).catch(() => []),
+      ]);
 
     if (!snapshot && !entitlement && !engagement) {
       return bookErr(req, 404, "user_not_found", "No data found for this user.");
@@ -45,6 +50,9 @@ export async function GET(
       snapshot: snapshot ? cleanSnapshot(snapshot) : null,
       entitlement: entitlement ?? null,
       engagement: engagement ?? null,
+      accountStatus: accountStatus?.status ?? "active",
+      accountStatusChangedAt: accountStatus?.statusChangedAt ?? null,
+      accountStatusHistory: statusHistory,
       progress: progressList.map((p) => ({
         bookId: p.bookId,
         currentChapterNumber: p.currentChapterNumber,
