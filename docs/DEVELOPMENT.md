@@ -83,11 +83,10 @@ Update docs when changes affect:
 Run the checks that match your change set:
 
 ```bash
-npm run build
-npm run lint
-npm run test:pdf-fill
+npm run verify                                    # typecheck + tests + build (the CI gate)
+npm run lint                                       # advisory — known in-scope debt
 npm --prefix infra run build
-npm --prefix infra run cdk -- synth
+npm --prefix infra run cdk -- synth -c env=dev ChapterFlowBackend-dev
 ```
 
 Not every task needs every command, but build verification is the minimum standard for UI and route changes.

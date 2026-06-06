@@ -15,11 +15,16 @@ import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
+import { type EnvName } from "./env-config";
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
 
 export interface ChapterFlowFrontendStackProps extends cdk.StackProps {
+  /** dev | staging | prod. Injected into the server Lambda as CHAPTERFLOW_ENV. */
+  readonly envName: EnvName;
+  /** "" for prod, "-dev"/"-staging" otherwise — appended to named resources. */
+  readonly resourceSuffix: string;
   /**
    * Names/ARNs of backend resources. Using explicit strings instead of
    * cross-stack references so the backend stack can be deployed independently
@@ -58,8 +63,14 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
   ) {
     super(scope, id, props);
 
-    const domainName = props.domainName ?? "chapterflow.ca";
-    const appDomain = `app.${domainName}`;
+    const suffix = props.resourceSuffix;
+    // Append the env suffix to every explicitly-named (globally-unique) resource
+    // so dev/staging never collide with prod. "" for prod => identical names.
+    const name = (base: string) => `${base}${suffix}`;
+    // prod has a domain; dev/staging may have none (serve on the CloudFront
+    // domain — the deploy health check uses that domain regardless).
+    const domainName = props.domainName;
+    const appDomain = domainName ? `app.${domainName}` : undefined;
     const openNextDir = path.join(__dirname, "../../.open-next");
 
     // Construct ARNs from known names to avoid cross-stack references
@@ -77,6 +88,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     cdk.Tags.of(this).add("App", "ChapterFlow");
     cdk.Tags.of(this).add("System", "Frontend");
     cdk.Tags.of(this).add("ManagedBy", "CDK");
+    cdk.Tags.of(this).add("Environment", props.envName);
 
     // -------------------------------------------------------------------
     // S3 — static assets + ISR cache
@@ -94,7 +106,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const cacheTable = new dynamodb.Table(this, "CacheTable", {
-      tableName: "ChapterFlowNextCache",
+      tableName: name("ChapterFlowNextCache"),
       partitionKey: { name: "tag", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "path", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
@@ -118,7 +130,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const revalidationQueue = new sqs.Queue(this, "RevalidationQueue", {
-      queueName: "ChapterFlowRevalidation.fifo",
+      queueName: `ChapterFlowRevalidation${suffix}.fifo`,
       fifo: true,
       contentBasedDeduplication: true,
       visibilityTimeout: cdk.Duration.seconds(30),
@@ -130,7 +142,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const lambdaRole = new iam.Role(this, "LambdaRole", {
-      roleName: "ChapterFlowLambdaRole",
+      roleName: name("ChapterFlowLambdaRole"),
       assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
       managedPolicies: [
         iam.ManagedPolicy.fromAwsManagedPolicyName(
@@ -179,6 +191,21 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           "cloudwatch:GetMetricData",
         ],
         resources: ["*"],
+      }),
+    );
+
+    // CloudWatch metrics write access — the server emits custom operational
+    // metrics (e.g. StripeCancellationFailure via putOpsMetric) that a backend
+    // alarm pages on. PutMetricData isn't resource-scoped, so we constrain it to
+    // the ChapterFlow/Ops namespace instead.
+    lambdaRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "CloudWatchMetricsWrite",
+        actions: ["cloudwatch:PutMetricData"],
+        resources: ["*"],
+        conditions: {
+          StringEquals: { "cloudwatch:namespace": "ChapterFlow/Ops" },
+        },
       }),
     );
 
@@ -256,6 +283,23 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
     );
 
+    // Cognito admin access — the admin "erase user" tool resolves a user by
+    // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
+    // of a GDPR-style complete erasure. Scoped to the configured pool when its
+    // id is known at synth, otherwise to all pools.
+    const cognitoUserPoolId = process.env.COGNITO_USER_POOL_ID;
+    lambdaRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "CognitoAdminUserErasure",
+        actions: ["cognito-idp:ListUsers", "cognito-idp:AdminDeleteUser"],
+        resources: cognitoUserPoolId
+          ? [
+              `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
+            ]
+          : ["*"],
+      }),
+    );
+
     // SQS access — revalidation queue
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
@@ -290,6 +334,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       REVALIDATION_QUEUE_REGION: this.region,
       // App config
       CHAPTERFLOW_DEPLOYMENT_MODE: "standalone",
+      CHAPTERFLOW_ENV: props.envName,
       NODE_ENV: "production",
       // Merge caller-provided env vars (secrets come from here)
       ...(props.serverEnv ?? {}),
@@ -300,7 +345,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     this.serverFunction = new lambda.Function(this, "ServerFn", {
-      functionName: "ChapterFlowServer",
+      functionName: name("ChapterFlowServer"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
@@ -323,7 +368,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const imageFn = new lambda.Function(this, "ImageFn", {
-      functionName: "ChapterFlowImage",
+      functionName: name("ChapterFlowImage"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
@@ -349,7 +394,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const revalidationFn = new lambda.Function(this, "RevalidationFn", {
-      functionName: "ChapterFlowRevalidation",
+      functionName: name("ChapterFlowRevalidation"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
@@ -371,7 +416,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const dynamoProviderFn = new lambda.Function(this, "DynamoProviderFn", {
-      functionName: "ChapterFlowDynamoProvider",
+      functionName: name("ChapterFlowDynamoProvider"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
@@ -389,7 +434,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const warmerFn = new lambda.Function(this, "WarmerFn", {
-      functionName: "ChapterFlowWarmer",
+      functionName: name("ChapterFlowWarmer"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(path.join(openNextDir, "warmer-function")),
@@ -397,7 +442,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       timeout: cdk.Duration.minutes(1),
       role: lambdaRole,
       environment: {
-        FUNCTION_NAME: "ChapterFlowServer",
+        FUNCTION_NAME: name("ChapterFlowServer"),
         CONCURRENCY: "1",
         ...commonEnv,
       },
@@ -422,7 +467,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
             {
               service: "lambda",
               resource: "function",
-              resourceName: "ChapterFlowServer",
+              resourceName: name("ChapterFlowServer"),
             },
             this,
           ),
@@ -466,7 +511,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       });
 
       certificate = new acm.Certificate(this, "Certificate", {
-        domainName: appDomain,
+        domainName: `app.${domainName}`,
         subjectAlternativeNames: [domainName, `www.${domainName}`],
         validation: acm.CertificateValidation.fromDns(hostedZone),
       });
@@ -497,7 +542,11 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     const serverOrigin = new origins.HttpOrigin(serverOriginDomain, {
       protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
-      customHeaders: { "x-forwarded-host": appDomain },
+      // Tell OpenNext the public host (custom domain). With no custom domain
+      // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
+      ...(appDomain
+        ? { customHeaders: { "x-forwarded-host": appDomain } }
+        : {}),
     });
 
     const imageOrigin = new origins.HttpOrigin(imageOriginDomain, {
@@ -509,7 +558,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this,
       "ServerCachePolicy",
       {
-        cachePolicyName: "ChapterFlowServerPolicy",
+        cachePolicyName: name("ChapterFlowServerPolicy"),
         defaultTtl: cdk.Duration.seconds(0),
         maxTtl: cdk.Duration.days(365),
         minTtl: cdk.Duration.seconds(0),
@@ -533,7 +582,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this,
       "StaticCachePolicy",
       {
-        cachePolicyName: "ChapterFlowStaticPolicy",
+        cachePolicyName: name("ChapterFlowStaticPolicy"),
         defaultTtl: cdk.Duration.days(30),
         maxTtl: cdk.Duration.days(365),
         minTtl: cdk.Duration.days(1),
@@ -644,7 +693,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           cachePolicy: staticCachePolicy,
         },
       },
-      ...(certificate
+      ...(certificate && appDomain && domainName
         ? {
             certificate,
             domainNames: [appDomain, domainName, `www.${domainName}`],

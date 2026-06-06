@@ -58,6 +58,11 @@ node_modules/
 # CDK build artifacts — compiled TS output from infra/tsconfig.json
 infra/dist/
 
+# Editor swap/backup cruft (never commit — these can leak file contents)
+*.swp
+*.swo
+*~
+
 # Claude Code local working state — worktrees, agent cache, todos, MCP config
 .claude/
 

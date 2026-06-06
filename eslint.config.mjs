@@ -26,6 +26,11 @@ const eslintConfig = defineConfig([
     "cdk.out/**",
     "infra/cdk.out/**",
     "infra/dist/**",
+    // Out of scope for the web-app lint surface: the offline v21 authoring
+    // pipeline and the CDK infra package live in their own contexts (separate
+    // tsconfig / package). The app lint focuses on app/, components/, lib/.
+    "scripts/**",
+    "infra/**",
   ]),
 ]);
 
