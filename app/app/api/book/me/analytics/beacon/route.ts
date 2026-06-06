@@ -1,5 +1,5 @@
 import "server-only";
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
@@ -25,7 +25,7 @@ const MAX_PAYLOAD_KEYS = 20;
  */
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
 
     // Server-side consent check — respect the user's privacy preference

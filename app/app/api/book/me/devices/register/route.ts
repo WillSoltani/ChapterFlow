@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { bookOk, requireBodyObject, requireString, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { bookUserPk, deviceTokenSk, nowIso } from "@/app/app/api/book/_lib/keys";
@@ -11,7 +11,7 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const body = requireBodyObject(await req.json());
     const endpoint = requireString(body.endpoint, "endpoint", { maxLength: 2000 });
     const keys = body.keys as { p256dh: string; auth: string } | undefined;

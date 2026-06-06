@@ -425,3 +425,43 @@ export function eventStatsSk(): string {
 export function nudgeSentSk(nudgeType: string, dateKey: string): string {
   return `NUDGE_SENT#${nudgeType}#${dateKey}`;
 }
+
+// ── Operational failure log keys ─────────────────────────────────────────────
+
+/**
+ * Shared PK for the operational-failure log (e.g. a Stripe cancellation that
+ * failed during account delete/deactivate). Surfaced in the admin Ops
+ * dashboard so an operator can follow up instead of the failure being swallowed.
+ */
+export function opsFailurePk(): string {
+  return "BOOKOPSFAILURE";
+}
+
+/** SK embeds the timestamp (newest-first Query) and a uuid (uniqueness). */
+export function opsFailureSk(createdAtIso: string, id: string): string {
+  return `${createdAtIso}#${id}`;
+}
+
+/**
+ * Shared PK for the permanent erasure audit log. Erasure deletes the user
+ * partition (including its own status-change audit rows), so the record of an
+ * erasure having happened is written here, OUTSIDE the user partition.
+ */
+export function erasureLogPk(): string {
+  return "BOOKERASURE#LOG";
+}
+
+export function erasureLogSk(erasedAtIso: string, userId: string): string {
+  return `${erasedAtIso}#${userId}`;
+}
+
+// ── Account-status audit log keys ────────────────────────────────────────────
+
+/**
+ * SK for an append-only account-status change record under the user partition.
+ * The current status still lives in the single `ACCOUNT_STATUS` item
+ * (`accountStatusSk`); these rows are the immutable who/when/why audit trail.
+ */
+export function accountStatusChangeSk(changedAtIso: string): string {
+  return `ACCOUNTSTATUSCHANGE#${changedAtIso}`;
+}

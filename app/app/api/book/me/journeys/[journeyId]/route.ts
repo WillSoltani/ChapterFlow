@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getJourneyProgress } from "@/app/app/api/book/_lib/journey-repo";
@@ -14,7 +14,7 @@ type Params = { params: Promise<{ journeyId: string }> };
 
 export async function GET(req: Request, ctx: Params) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const { journeyId } = await ctx.params;
 
     const def = (journeyDefinitions as JourneyDefinition[]).find(

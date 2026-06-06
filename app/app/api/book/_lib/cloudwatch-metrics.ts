@@ -3,6 +3,7 @@ import "server-only";
 import {
   CloudWatchClient,
   GetMetricStatisticsCommand,
+  PutMetricDataCommand,
   type Datapoint,
 } from "@aws-sdk/client-cloudwatch";
 import { DescribeTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
@@ -20,6 +21,45 @@ function getCw(): CloudWatchClient {
 function getDdbMeta(): DynamoDBClient {
   if (!ddbMetaClient) ddbMetaClient = new DynamoDBClient({ region: REGION });
   return ddbMetaClient;
+}
+
+/** Namespace for custom operational metrics that CloudWatch alarms watch. */
+export const OPS_METRIC_NAMESPACE = "ChapterFlow/Ops";
+
+/**
+ * Emit a custom CloudWatch metric for an operational event (e.g. a Stripe
+ * cancellation failure during account deletion). Fire-and-forget: never throws,
+ * so a metrics outage can't break the calling request. Requires the Lambda role
+ * to hold `cloudwatch:PutMetricData` (see the backend CDK stack).
+ */
+export async function putOpsMetric(
+  metricName: string,
+  value = 1,
+  dimensions?: Record<string, string>
+): Promise<void> {
+  try {
+    await getCw().send(
+      new PutMetricDataCommand({
+        Namespace: OPS_METRIC_NAMESPACE,
+        MetricData: [
+          {
+            MetricName: metricName,
+            Value: value,
+            Unit: "Count",
+            Timestamp: new Date(),
+            Dimensions: dimensions
+              ? Object.entries(dimensions).map(([Name, Value]) => ({ Name, Value }))
+              : undefined,
+          },
+        ],
+      })
+    );
+  } catch (error) {
+    console.error("cloudwatch_put_metric_failed", {
+      metricName,
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
 }
 
 // ─── Helpers ────────────────────────────────────────────────────────────────

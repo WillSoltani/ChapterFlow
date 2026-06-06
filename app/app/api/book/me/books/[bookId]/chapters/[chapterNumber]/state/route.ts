@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
   requireBodyObject,
@@ -21,7 +21,7 @@ export async function GET(
   { params }: { params: Promise<{ bookId: string; chapterNumber: string }> }
 ) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const { bookId, chapterNumber } = await params;
     const parsedChapterNumber = Number(chapterNumber);
     if (!bookId || !Number.isFinite(parsedChapterNumber) || parsedChapterNumber < 1) {
@@ -43,7 +43,7 @@ export async function PATCH(
   { params }: { params: Promise<{ bookId: string; chapterNumber: string }> }
 ) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const { bookId, chapterNumber } = await params;
     const parsedChapterNumber = Number(chapterNumber);
     if (!bookId || !Number.isFinite(parsedChapterNumber) || parsedChapterNumber < 1) {

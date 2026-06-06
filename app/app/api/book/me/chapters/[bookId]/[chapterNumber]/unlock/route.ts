@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
@@ -29,7 +29,7 @@ export async function POST(
   { params }: { params: Promise<{ bookId: string; chapterNumber: string }> }
 ) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const { bookId, chapterNumber: chapterNumberStr } = await params;
     const chapterNumber = parseInt(chapterNumberStr, 10);
     if (!Number.isFinite(chapterNumber) || chapterNumber < 1) {

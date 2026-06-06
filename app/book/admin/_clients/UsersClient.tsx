@@ -1,9 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronRight, Download, Search, Users as UsersIcon, X } from "lucide-react";
+import {
+  ChevronRight,
+  Download,
+  Search,
+  Users as UsersIcon,
+  X,
+  RotateCcw,
+  UserX,
+  Trash2,
+  ShieldAlert,
+} from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { adminGet } from "@/app/book/admin/_components/admin-api";
+import { adminGet, adminPost } from "@/app/book/admin/_components/admin-api";
 import { downloadCSV } from "@/app/book/admin/_components/csv";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
@@ -49,6 +59,15 @@ type UserDetailResp = {
     occurredAt: string;
     bookId?: string;
     chapterNumber?: number;
+  }>;
+  accountStatus?: "active" | "deactivated" | "deleted";
+  accountStatusChangedAt?: string | null;
+  accountStatusHistory?: Array<{
+    status: string;
+    previousStatus?: string | null;
+    changedAt: string;
+    changedBy: string;
+    reason?: string;
   }>;
 };
 
@@ -274,6 +293,7 @@ export function UsersClient() {
             detail={detail}
             loading={detailLoading}
             onClose={closeDetail}
+            onRefresh={() => openDetail(selected)}
           />
         )}
       </AnimatePresence>
@@ -286,11 +306,13 @@ function UserDetailDrawer({
   detail,
   loading,
   onClose,
+  onRefresh,
 }: {
   user: UserRow;
   detail: UserDetailResp | null;
   loading: boolean;
   onClose: () => void;
+  onRefresh: () => void;
 }) {
   return (
     <div className="fixed inset-0 z-50 flex">
@@ -376,6 +398,13 @@ function UserDetailDrawer({
                 </div>
               </Section>
 
+              <AccountLifecycleSection
+                userId={user.userId}
+                status={detail.accountStatus ?? "active"}
+                history={detail.accountStatusHistory ?? []}
+                onRefresh={onRefresh}
+              />
+
               {detail.entitlement && (
                 <Section title="Entitlement">
                   <pre className="cf-panel-muted overflow-x-auto rounded-lg p-3 text-[11px] text-(--cf-text-2)">
@@ -450,6 +479,174 @@ function UserDetailDrawer({
         </div>
       </motion.aside>
     </div>
+  );
+}
+
+function AccountLifecycleSection({
+  userId,
+  status,
+  history,
+  onRefresh,
+}: {
+  userId: string;
+  status: "active" | "deactivated" | "deleted";
+  history: NonNullable<UserDetailResp["accountStatusHistory"]>;
+  onRefresh: () => void;
+}) {
+  const [busy, setBusy] = useState<string | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  const [eraseOpen, setEraseOpen] = useState(false);
+  const [eraseConfirm, setEraseConfirm] = useState("");
+  const [eraseSummary, setEraseSummary] = useState<Record<string, unknown> | null>(null);
+
+  const statusStyle =
+    status === "active"
+      ? "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)"
+      : status === "deactivated"
+        ? "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text)"
+        : "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)";
+
+  const runStatus = async (action: "reactivate" | "deactivate" | "delete") => {
+    setBusy(action);
+    setErr(null);
+    try {
+      await adminPost(`/users/${encodeURIComponent(userId)}/account-status`, { action });
+      onRefresh();
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "Action failed");
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const runErase = async () => {
+    setBusy("erase");
+    setErr(null);
+    try {
+      const res = await adminPost<{ result: Record<string, unknown> }>(
+        `/users/${encodeURIComponent(userId)}/erase`,
+        { confirm: "ERASE" },
+      );
+      setEraseSummary(res.result);
+      setEraseOpen(false);
+      setEraseConfirm("");
+      onRefresh();
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "Erase failed");
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  return (
+    <Section title="Account lifecycle">
+      <div className="space-y-3">
+        <div className="flex items-center gap-2">
+          <span className={`inline-flex rounded-md border px-1.5 py-0.5 text-[11px] font-medium ${statusStyle}`}>
+            {status}
+          </span>
+        </div>
+
+        {err && (
+          <div className="rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) p-2 text-[12px] text-(--cf-danger-text)">
+            {err}
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-2">
+          {status !== "active" && (
+            <button
+              type="button"
+              disabled={busy !== null}
+              onClick={() => runStatus("reactivate")}
+              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-text-1) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
+            >
+              <RotateCcw className="h-3.5 w-3.5" /> Reactivate
+            </button>
+          )}
+          {status !== "deactivated" && (
+            <button
+              type="button"
+              disabled={busy !== null}
+              onClick={() => runStatus("deactivate")}
+              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
+            >
+              <UserX className="h-3.5 w-3.5" /> Deactivate
+            </button>
+          )}
+          {status !== "deleted" && (
+            <button
+              type="button"
+              disabled={busy !== null}
+              onClick={() => runStatus("delete")}
+              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-danger-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-danger-text) transition hover:bg-(--cf-danger-soft) disabled:opacity-50"
+            >
+              <Trash2 className="h-3.5 w-3.5" /> Mark deleted
+            </button>
+          )}
+          <button
+            type="button"
+            disabled={busy !== null}
+            onClick={() => setEraseOpen((v) => !v)}
+            className="inline-flex items-center gap-1 rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2.5 py-1 text-[12px] font-semibold text-(--cf-danger-text) transition hover:opacity-90 disabled:opacity-50"
+          >
+            <ShieldAlert className="h-3.5 w-3.5" /> Erase permanently…
+          </button>
+        </div>
+
+        {eraseOpen && (
+          <div className="rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft)/40 p-3">
+            <p className="text-[12px] text-(--cf-danger-text)">
+              Irreversibly erases this user across DynamoDB, analytics, Stripe, and Cognito. Type{" "}
+              <span className="font-mono font-semibold">ERASE</span> to confirm.
+            </p>
+            <div className="mt-2 flex items-center gap-2">
+              <input
+                value={eraseConfirm}
+                onChange={(e) => setEraseConfirm(e.target.value.toUpperCase())}
+                placeholder="ERASE"
+                className="w-32 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[12px] font-mono text-(--cf-text-1) focus:border-(--cf-danger-border) focus:outline-none"
+              />
+              <button
+                type="button"
+                disabled={eraseConfirm !== "ERASE" || busy !== null}
+                onClick={runErase}
+                className="rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2.5 py-1 text-[12px] font-semibold text-(--cf-danger-text) transition hover:opacity-90 disabled:opacity-40"
+              >
+                {busy === "erase" ? "Erasing…" : "Erase now"}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {eraseSummary && (
+          <pre className="cf-panel-muted overflow-x-auto rounded-lg p-3 text-[11px] text-(--cf-text-2)">
+            {JSON.stringify(eraseSummary, null, 2)}
+          </pre>
+        )}
+
+        {history.length > 0 && (
+          <div className="cf-panel-muted max-h-56 overflow-y-auto rounded-lg">
+            <table className="w-full text-[11px]">
+              <tbody>
+                {history.map((h, i) => (
+                  <tr key={i} className="border-b border-(--cf-border)/40 last:border-0">
+                    <td className="px-2 py-1 text-(--cf-text-3)">{formatTime(h.changedAt)}</td>
+                    <td className="px-2 py-1 text-(--cf-text-2)">
+                      {h.previousStatus ? `${h.previousStatus} → ` : ""}
+                      {h.status}
+                    </td>
+                    <td className="px-2 py-1 text-(--cf-text-soft)" title={h.reason}>
+                      {h.changedBy}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </Section>
   );
 }
 

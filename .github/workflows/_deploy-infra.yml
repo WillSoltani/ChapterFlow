@@ -1,0 +1,150 @@
+name: Deploy Infra (reusable)
+
+# Reusable: deploys the CDK BACKEND stack (DynamoDB, S3, SSM config, ops alerts,
+# reminder cron) for one environment, then seeds reference/book data. Called by
+# deploy.yml. The environment is the GitHub Environment too, so prod inherits
+# its required-reviewer approval gate and environment-scoped secrets.
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: "dev | staging | prod"
+        required: true
+        type: string
+      seed:
+        description: "Run post-deploy book-data seeding"
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write # open a deploy-failure issue on prod
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy-infra:
+    name: Backend stack (${{ inputs.environment }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    # Binds to the GitHub Environment of the same name → prod's required
+    # reviewers gate this job, and environment-scoped secrets resolve here.
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Resolve env/stack names
+        run: |
+          set -euo pipefail
+          ENV="${{ inputs.environment }}"
+          case "$ENV" in
+            prod) SUFFIX="" ;;
+            dev|staging) SUFFIX="-$ENV" ;;
+            *) echo "::error::invalid environment '$ENV'"; exit 1 ;;
+          esac
+          echo "CHAPTERFLOW_ENV=$ENV" >> "$GITHUB_ENV"
+          echo "BACKEND_STACK=ChapterFlowBackend${SUFFIX}" >> "$GITHUB_ENV"
+          echo "SSM_PREFIX=/chapterflow/$ENV" >> "$GITHUB_ENV"
+
+      - name: Install app dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install infra dependencies
+        run: npm ci --prefix infra
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: CDK deploy backend
+        working-directory: infra
+        run: npx cdk deploy -c env=${{ env.CHAPTERFLOW_ENV }} "${BACKEND_STACK}" --exclusively --require-approval never
+        env:
+          CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
+          CHAPTERFLOW_ENV: ${{ env.CHAPTERFLOW_ENV }}
+          CHAPTERFLOW_OPS_ALERT_EMAIL: ${{ secrets.CHAPTERFLOW_OPS_ALERT_EMAIL }}
+
+      # Resource names are the single source of truth in SSM (written by the
+      # backend stack). Seeding reads them — never hardcoded bucket/table names.
+      - name: Resolve resource names from SSM
+        if: ${{ inputs.seed }}
+        run: |
+          set -euo pipefail
+          get() { aws ssm get-parameter --name "$1" --query Parameter.Value --output text; }
+          echo "BOOK_TABLE_NAME=$(get "$SSM_PREFIX/BOOK_TABLE_NAME")" >> "$GITHUB_ENV"
+          echo "BOOK_INGEST_BUCKET=$(get "$SSM_PREFIX/BOOK_INGEST_BUCKET")" >> "$GITHUB_ENV"
+          echo "BOOK_CONTENT_BUCKET=$(get "$SSM_PREFIX/BOOK_CONTENT_BUCKET")" >> "$GITHUB_ENV"
+
+      - name: Seed license keys
+        if: ${{ inputs.seed }}
+        run: node scripts/book/seed-license-keys.mjs
+
+      - name: Publish bundled book packages
+        if: ${{ inputs.seed }}
+        run: npx tsx scripts/book/publish-bundled-packages.ts
+
+      - name: Publish library catalog and covers
+        if: ${{ inputs.seed }}
+        run: npx tsx scripts/book/publish-library-assets.ts
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Infra deploy — ${{ inputs.environment }}"
+            echo ""
+            echo "| Detail | Value |"
+            echo "|--------|-------|"
+            echo "| Stack | \`${BACKEND_STACK:-?}\` |"
+            echo "| SSM prefix | \`${SSM_PREFIX:-?}\` |"
+            echo "| Seeded | ${{ inputs.seed }} |"
+            echo "| Commit | \`${GITHUB_SHA::8}\` |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # GitHub-native failure notification for the prod BACKEND stack (the
+      # data-bearing, higher-stakes deploy). Mirrors the app-deploy issue.
+      - name: Open deploy-failure issue (prod only)
+        if: failure() && inputs.environment == 'prod'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `🚨 Prod INFRA deploy failed (${context.sha.substring(0,8)})`;
+            const body = [
+              `Prod backend (CDK) deploy failed in run ${context.runId}.`,
+              ``,
+              `- Commit: ${context.sha}`,
+              `- Actor: ${context.actor}`,
+              `- Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ``,
+              `**Rollback:** the backend stack is RETAIN/deletion-protected — a failed deploy does not drop data. Re-run Deploy (env=prod, deploy_infra=true) on the previous good commit/tag.`,
+            ].join("\n");
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: "open", labels: "deploy-failure", per_page: 100,
+            });
+            const dup = existing.data.find((i) => i.title === title);
+            if (dup) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: dup.number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ["deploy-failure"],
+              });
+            }

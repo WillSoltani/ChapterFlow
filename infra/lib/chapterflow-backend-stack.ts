@@ -1,6 +1,9 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as cloudwatch from "aws-cdk-lib/aws-cloudwatch";
+import * as cloudwatchActions from "aws-cdk-lib/aws-cloudwatch-actions";
+import * as sns from "aws-cdk-lib/aws-sns";
+import * as snsSubscriptions from "aws-cdk-lib/aws-sns-subscriptions";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as events from "aws-cdk-lib/aws-events";
 import * as targets from "aws-cdk-lib/aws-events-targets";
@@ -9,6 +12,7 @@ import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import * as path from "path";
+import { type EnvName } from "./env-config";
 
 function normalizeCorsOrigin(raw: string): string | null {
   const trimmed = raw.trim();
@@ -56,13 +60,6 @@ function resolveAllowedWebOrigins(): string[] {
   return Array.from(normalized);
 }
 
-function normalizeSsmPrefix(raw?: string): string {
-  const trimmed = (raw || "").trim();
-  if (!trimmed) return "/chapterflow/prod";
-  const prefixed = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
-  return prefixed.endsWith("/") ? prefixed.slice(0, -1) : prefixed;
-}
-
 function applyStandardTags(scope: Construct) {
   cdk.Tags.of(scope).add("App", "ChapterFlow");
   cdk.Tags.of(scope).add("System", "Backend");
@@ -99,6 +96,19 @@ function buildThrottleMetric(table: dynamodb.Table): cloudwatch.MathExpression {
   });
 }
 
+export interface ChapterFlowBackendStackProps extends cdk.StackProps {
+  /** dev | staging | prod. */
+  readonly envName: EnvName;
+  /** "" for prod, "-dev"/"-staging" otherwise — appended to named resources. */
+  readonly resourceSuffix: string;
+  readonly tableName: string;
+  readonly analyticsTableName: string;
+  readonly ssmPrefix: string;
+  readonly removalPolicy: cdk.RemovalPolicy;
+  readonly deletionProtection: boolean;
+  readonly pointInTimeRecovery: boolean;
+}
+
 export class ChapterFlowBackendStack extends cdk.Stack {
   public readonly appTable: dynamodb.Table;
   public readonly analyticsTable: dynamodb.Table;
@@ -107,21 +117,25 @@ export class ChapterFlowBackendStack extends cdk.Stack {
   public readonly appRunnerRuntimeRole: iam.Role;
   public readonly ssmPrefix: string;
 
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: ChapterFlowBackendStackProps) {
     super(scope, id, props);
     applyStandardTags(this);
+    cdk.Tags.of(this).add("Environment", props.envName);
 
+    const suffix = props.resourceSuffix;
     const allowedWebOrigins = resolveAllowedWebOrigins();
-    this.ssmPrefix = normalizeSsmPrefix(process.env.CHAPTERFLOW_SSM_PARAMETER_PREFIX);
+    this.ssmPrefix = props.ssmPrefix;
 
     this.appTable = new dynamodb.Table(this, "ChapterFlowAppTable", {
-      tableName: process.env.CHAPTERFLOW_BOOK_TABLE_NAME || "ChapterFlowApp",
+      tableName: props.tableName,
       partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
-      pointInTimeRecoverySpecification: { pointInTimeRecoveryEnabled: true },
-      deletionProtection: true,
-      removalPolicy: cdk.RemovalPolicy.RETAIN,
+      pointInTimeRecoverySpecification: {
+        pointInTimeRecoveryEnabled: props.pointInTimeRecovery,
+      },
+      deletionProtection: props.deletionProtection,
+      removalPolicy: props.removalPolicy,
     });
 
     this.appTable.addGlobalSecondaryIndex({
@@ -132,15 +146,16 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
 
     this.analyticsTable = new dynamodb.Table(this, "ChapterFlowAnalyticsTable", {
-      tableName:
-        process.env.CHAPTERFLOW_BOOK_ANALYTICS_TABLE_NAME || "ChapterFlowInsights",
+      tableName: props.analyticsTableName,
       partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
-      pointInTimeRecoverySpecification: { pointInTimeRecoveryEnabled: true },
-      deletionProtection: true,
+      pointInTimeRecoverySpecification: {
+        pointInTimeRecoveryEnabled: props.pointInTimeRecovery,
+      },
+      deletionProtection: props.deletionProtection,
       stream: dynamodb.StreamViewType.NEW_AND_OLD_IMAGES,
-      removalPolicy: cdk.RemovalPolicy.RETAIN,
+      removalPolicy: props.removalPolicy,
     });
 
     this.analyticsTable.addGlobalSecondaryIndex({
@@ -219,7 +234,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     );
 
     this.appRunnerRuntimeRole = new iam.Role(this, "ChapterFlowAppRuntimeRole", {
-      roleName: process.env.CHAPTERFLOW_APP_RUNNER_ROLE_NAME || "ChapterFlowAppRuntimeRole",
+      roleName: `ChapterFlowAppRuntimeRole${suffix}`,
       assumedBy: new iam.ServicePrincipal("tasks.apprunner.amazonaws.com"),
       description: "Least-privilege runtime role for the ChapterFlow App Runner service.",
     });
@@ -320,7 +335,21 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       })
     );
 
-    new cloudwatch.Alarm(this, "ChapterFlowAppTableThrottlesAlarm", {
+    // Operational-alerts SNS topic. Failures that need a human (table
+    // throttling, or a Stripe cancellation that failed during account
+    // delete/deactivate) publish here. Subscribe an inbox by setting
+    // CHAPTERFLOW_OPS_ALERT_EMAIL at synth time (then confirm the SES/SNS email).
+    const opsAlertsTopic = new sns.Topic(this, "ChapterFlowOpsAlerts", {
+      topicName: `ChapterFlowOpsAlerts${suffix}`,
+      displayName: "ChapterFlow operational alerts",
+    });
+    const opsAlertEmail = process.env.CHAPTERFLOW_OPS_ALERT_EMAIL;
+    if (opsAlertEmail) {
+      opsAlertsTopic.addSubscription(new snsSubscriptions.EmailSubscription(opsAlertEmail));
+    }
+    const opsAlarmAction = new cloudwatchActions.SnsAction(opsAlertsTopic);
+
+    const appTableThrottlesAlarm = new cloudwatch.Alarm(this, "ChapterFlowAppTableThrottlesAlarm", {
       metric: buildThrottleMetric(this.appTable),
       threshold: 1,
       evaluationPeriods: 1,
@@ -328,8 +357,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
       alarmDescription: "Alerts when ChapterFlow operational table experiences throttling.",
     });
+    appTableThrottlesAlarm.addAlarmAction(opsAlarmAction);
 
-    new cloudwatch.Alarm(this, "ChapterFlowAnalyticsTableThrottlesAlarm", {
+    const analyticsTableThrottlesAlarm = new cloudwatch.Alarm(this, "ChapterFlowAnalyticsTableThrottlesAlarm", {
       metric: buildThrottleMetric(this.analyticsTable),
       threshold: 1,
       evaluationPeriods: 1,
@@ -337,6 +367,34 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
       alarmDescription: "Alerts when ChapterFlow analytics table experiences throttling.",
     });
+    analyticsTableThrottlesAlarm.addAlarmAction(opsAlarmAction);
+
+    // Alarm on the unified `OpsFailure` metric the server Lambda emits
+    // (recordOpsFailure → putOpsMetric, namespace "ChapterFlow/Ops"). One metric
+    // covers every failure kind (stripe cancellation, stripe customer delete,
+    // cognito delete, partial erasure). CloudWatch metrics are account/region-
+    // global, so we reference by name with no cross-stack import. Any failure in
+    // a 5-minute window pages the ops topic.
+    const opsFailureAlarm = new cloudwatch.Alarm(
+      this,
+      "ChapterFlowOpsFailureAlarm",
+      {
+        metric: new cloudwatch.Metric({
+          namespace: "ChapterFlow/Ops",
+          metricName: "OpsFailure",
+          statistic: "Sum",
+          period: cdk.Duration.minutes(5),
+        }),
+        threshold: 1,
+        evaluationPeriods: 1,
+        datapointsToAlarm: 1,
+        comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+        treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+        alarmDescription:
+          "An operational failure was recorded (Stripe cancellation/customer delete, Cognito delete, or partial account erasure). Follow up via the admin Ops dashboard (Operational failures panel).",
+      },
+    );
+    opsFailureAlarm.addAlarmAction(opsAlarmAction);
 
     // -------------------------------------------------------------------
     // Lambda — Reading reminder cron (hourly)
@@ -348,7 +406,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     //     --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb \
     //     --external:@aws-sdk/client-sesv2
     const reminderFn = new lambda.Function(this, "ReadingReminderCron", {
-      functionName: "ChapterFlowReadingReminder",
+      functionName: `ChapterFlowReadingReminder${suffix}`,
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "reading-reminder-cron.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
@@ -372,7 +430,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       new iam.PolicyStatement({
         actions: ["ssm:GetParameter", "ssm:GetParameters"],
         resources: [
-          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter/chapterflow/prod/*`,
+          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${this.ssmPrefix}/*`,
         ],
       })
     );
@@ -401,6 +459,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
     new cdk.CfnOutput(this, "SsmParameterPrefix", {
       value: this.ssmPrefix,
+    });
+    new cdk.CfnOutput(this, "OpsAlertsTopicArn", {
+      value: opsAlertsTopic.topicArn,
     });
   }
 }
