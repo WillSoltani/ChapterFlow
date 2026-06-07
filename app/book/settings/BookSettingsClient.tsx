@@ -1362,20 +1362,6 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             <SubsectionLabel>Privacy</SubsectionLabel>
 
             <SettingRow
-              id="analytics"
-              label="Share usage analytics"
-              description="Help improve ChapterFlow by sharing anonymous usage data. No personal information is ever collected."
-            >
-              <ToggleSwitch
-                checked={hydrated ? preferences.privacy.analyticsParticipation : false}
-                onChange={(v) => { patchSection("privacy", { analyticsParticipation: v }); announce(`Usage analytics ${v ? "enabled" : "disabled"}`); triggerToast(); }}
-                label="Share usage analytics"
-              />
-            </SettingRow>
-
-            <Divider />
-
-            <SettingRow
               id="recommendations"
               label="Personalized recommendations"
               description="Use your reading history to suggest books you'll love."
@@ -1392,7 +1378,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             <SettingRow
               id="reading-history"
               label="Save reading history"
-              description="Remember which chapters and books you've completed."
+              description="Save your daily reading activity to power your streaks and reading history."
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.privacy.saveReadingHistory : true}
