@@ -63,7 +63,7 @@
         "format": "decision_point",
         "requiredBeat": "Design review before QA patch"
       },
-      "scenario": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint. The release manager has a new gate ready, and the engineering lead can implement it by Monday. Before sprint planning closes, the manager is deciding whether the car-door lesson points to another checkpoint or to the design review where the bug first becomes likely.",
+      "scenario": "An American assembly lesson reframes a Friday release report that shows the same defect escaping through final QA for the third sprint. The release manager has a new gate ready, and the engineering lead can implement it by Monday. Before sprint planning closes, the manager is deciding whether the car-door lesson points to another checkpoint or to the design review where the bug first becomes likely.",
       "whatToDo": "The release manager shifts the bug conversation into design review. The final QA gate stays, but the recurring issue is traced to the moment the weak assumption entered the sprint.",
       "whyItMatters": "A defect caught late still teaches where work began wrong. Treating QA as the answer lets the same source assumption keep producing rework."
     },
@@ -117,7 +117,7 @@
         "format": "decision_point",
         "requiredBeat": "Lesson model before extra drills"
       },
-      "scenario": "A Japanese assembly report sits beside a simulator report shows pilots repeating the same landing-sequence mistake after extra drills. The training director studies the syllabus beside a printed cockpit flow. Before the next class begins, she needs to choose: add repetitions to prove seriousness, or change the first explanation students receive about the failure.",
+      "scenario": "A Japanese assembly report sits beside a simulator report showing pilots repeating the same landing-sequence mistake after extra drills. The training director studies the syllabus beside a printed cockpit flow. Before the next class begins, she needs to choose: add repetitions to prove seriousness, or change the first explanation students receive about the failure.",
       "whatToDo": "The training director repairs the lesson before adding simulator time. Practice remains useful, but the first explanation for the landing error gets corrected.",
       "whyItMatters": "More repetitions strengthen whatever premise the syllabus teaches. A pilot learns faster when the root explanation is sound before practice begins."
     }
