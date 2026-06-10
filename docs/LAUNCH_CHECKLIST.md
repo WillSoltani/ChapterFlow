@@ -110,8 +110,11 @@ See [ENVIRONMENT.md §3.D](./ENVIRONMENT.md).
 ## 6) Ops alerting & account lifecycle (⚠ commonly missed)
 
 - [ ] Set `CHAPTERFLOW_OPS_ALERT_EMAIL`, deploy the **backend** stack, then
-      **confirm the SNS subscription email** — until confirmed, table-throttle
-      and `StripeCancellationFailure` alarms publish to nobody.
+      **confirm the SNS subscription email** — until confirmed, every ops alarm
+      publishes to nobody. The topic carries the backend alarms (table throttling,
+      `OpsFailure`) **and** the frontend alarms (server-fn errors/throttles/
+      duration, ISR DLQ depth, CloudFront 5xx, `StripeWebhookFailure`). See
+      [OPERATIONS.md §4](./OPERATIONS.md).
 - [ ] Confirm `COGNITO_USER_POOL_ID` was present at synth (see §4) so **hard
       erasure actually deletes the Cognito user** — otherwise erasure cascades
       DynamoDB/S3/Stripe but **silently skips Cognito** (GDPR gap). See
@@ -135,9 +138,14 @@ Ongoing: merging to `main` auto-syncs **dev** only.
 
 ## 8) Post-deploy verification
 
-- [ ] CI **health gate** passed (the job curls `/`, `/pricing`, `/api/health`).
+- [ ] CI **health gate** passed (the blocking job curls `/`, `/pricing`,
+      `/api/health`), and the **non-blocking deep smoke** step tabled its results
+      in the run summary.
 - [ ] `GET /api/health` → `200 {status, env, commit, time}` with the right
-      `env`/`commit`; `GET /api/health?deep=1` reports DynamoDB reachable.
+      `env`/`commit`; `GET /api/health?deep=1` reports `status: "ok"` with every
+      check `true` — `dynamo`, `catalog`, `content`, `billing`, `auth`. A
+      `degraded` here means a dependency is mis-wired (catalog not seeded, SES/
+      content bucket, or Stripe/Cognito config) even though the deploy passed.
 - [ ] Smoke: log in via Cognito → land on `/dashboard`; open a book → reader
       renders Summary/Examples/Quiz; submit a quiz → points/streak update; run a
       Stripe **test** checkout → entitlement flips to Pro via the webhook.

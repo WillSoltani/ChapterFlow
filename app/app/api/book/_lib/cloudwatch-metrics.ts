@@ -5,6 +5,7 @@ import {
   GetMetricStatisticsCommand,
   PutMetricDataCommand,
   type Datapoint,
+  type MetricDatum,
 } from "@aws-sdk/client-cloudwatch";
 import { DescribeTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 
@@ -31,6 +32,14 @@ export const OPS_METRIC_NAMESPACE = "ChapterFlow/Ops";
  * cancellation failure during account deletion). Fire-and-forget: never throws,
  * so a metrics outage can't break the calling request. Requires the Lambda role
  * to hold `cloudwatch:PutMetricData` (see the backend CDK stack).
+ *
+ * IMPORTANT — always emits a DIMENSIONLESS datapoint, because CloudWatch stores
+ * dimensioned datapoints under their exact dimension set and does NOT roll them
+ * up into the `{namespace, metricName}` series. The ops alarms (OpsFailure,
+ * StripeWebhookFailure) watch the dimensionless series, so a dimensions-only
+ * emit would make those alarms silently never fire. When `dimensions` are
+ * supplied we additionally emit a dimensioned copy for per-cause breakdown in
+ * the console — but the alarm-bearing rollup is always present.
  */
 export async function putOpsMetric(
   metricName: string,
@@ -38,20 +47,25 @@ export async function putOpsMetric(
   dimensions?: Record<string, string>
 ): Promise<void> {
   try {
+    const timestamp = new Date();
+    const metricData: MetricDatum[] = [
+      // Dimensionless rollup — the series the CloudWatch alarms watch.
+      { MetricName: metricName, Value: value, Unit: "Count", Timestamp: timestamp },
+    ];
+    if (dimensions && Object.keys(dimensions).length > 0) {
+      // Dimensioned copy — for slicing by cause in the CloudWatch console.
+      metricData.push({
+        MetricName: metricName,
+        Value: value,
+        Unit: "Count",
+        Timestamp: timestamp,
+        Dimensions: Object.entries(dimensions).map(([Name, Value]) => ({ Name, Value })),
+      });
+    }
     await getCw().send(
       new PutMetricDataCommand({
         Namespace: OPS_METRIC_NAMESPACE,
-        MetricData: [
-          {
-            MetricName: metricName,
-            Value: value,
-            Unit: "Count",
-            Timestamp: new Date(),
-            Dimensions: dimensions
-              ? Object.entries(dimensions).map(([Name, Value]) => ({ Name, Value }))
-              : undefined,
-          },
-        ],
+        MetricData: metricData,
       })
     );
   } catch (error) {

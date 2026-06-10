@@ -3,6 +3,9 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as acm from "aws-cdk-lib/aws-certificatemanager";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as cloudwatch from "aws-cdk-lib/aws-cloudwatch";
+import * as cloudwatchActions from "aws-cdk-lib/aws-cloudwatch-actions";
+import * as sns from "aws-cdk-lib/aws-sns";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as events from "aws-cdk-lib/aws-events";
@@ -129,12 +132,23 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // SQS — ISR revalidation queue
     // -------------------------------------------------------------------
 
+    // Dead-letter queue for revalidation messages that repeatedly fail to
+    // process. A FIFO source requires a FIFO DLQ. Messages landing here mean ISR
+    // revalidation is silently broken — a CloudWatch alarm (below) pages on it.
+    const revalidationDlq = new sqs.Queue(this, "RevalidationDlq", {
+      queueName: `ChapterFlowRevalidationDlq${suffix}.fifo`,
+      fifo: true,
+      contentBasedDeduplication: true,
+      retentionPeriod: cdk.Duration.days(14),
+    });
+
     const revalidationQueue = new sqs.Queue(this, "RevalidationQueue", {
       queueName: `ChapterFlowRevalidation${suffix}.fifo`,
       fifo: true,
       contentBasedDeduplication: true,
       visibilityTimeout: cdk.Duration.seconds(30),
       retentionPeriod: cdk.Duration.days(1),
+      deadLetterQueue: { queue: revalidationDlq, maxReceiveCount: 5 },
     });
 
     // -------------------------------------------------------------------
@@ -151,7 +165,14 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       ],
     });
 
-    // DynamoDB access — app tables (same as App Runner role)
+    // DynamoDB access — app + analytics tables, scoped to their exact ARNs.
+    // `dynamodb:Scan` is intentionally retained: the admin metrics routes plus
+    // economy-health and soft-decay full-table-Scan to compute aggregates, and
+    // OpenNext runs EVERY route (user + admin) in this single server Lambda, so
+    // the role can't drop Scan without breaking those dashboards. Resource scope
+    // (no `*`) keeps the blast radius to these two tables. Future hardening:
+    // move admin/Scan paths to a dedicated least-privilege function and remove
+    // Scan from this role.
     const ddbResources = [
       appTableArn,
       `${appTableArn}/index/*`,
@@ -262,24 +283,39 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
     );
 
-    // SSM access — the app's getServerEnv() tries multiple candidate paths
-    // (prefixed, bare name, lowercase) so we grant access to all parameters.
+    // SSM access — scoped to THIS env's parameter namespace only.
+    // getServerEnv() (app/app/api/_lib/server-env.ts) resolves every value from
+    // process.env first and only falls back to SSM; when it does, it tries the
+    // prefixed parameter (`${SSM_PARAMETER_PREFIX}/<KEY>`) BEFORE any bare-name
+    // candidate, so the role never needs access outside the prefix. The
+    // unreachable bare-name fallbacks now return AccessDenied instead of
+    // ParameterNotFound — server-env treats both as skippable (isMissingParameterError).
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "SsmConfigAccess",
         actions: ["ssm:GetParameter", "ssm:GetParameters"],
         resources: [
-          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter/*`,
+          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
         ],
       }),
     );
 
-    // SES access — notification emails
+    // SES access — transactional/notification emails are sent from an address
+    // on the app's verified domain (e.g. info@chapterflow.ca via SES_SENDER_EMAIL).
+    // Scope SendEmail to that domain's SES identity so the role can't send as an
+    // arbitrary identity. dev/staging without a verified domain have no identity
+    // to scope to, so they fall back to "*" — same conditional shape as the
+    // Cognito statement above.
+    const sesIdentityResources = props.domainName
+      ? [
+          `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${props.domainName}`,
+        ]
+      : ["*"];
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "SesSendAccess",
         actions: ["ses:SendEmail", "sesv2:SendEmail"],
-        resources: ["*"],
+        resources: sesIdentityResources,
       }),
     );
 
@@ -771,6 +807,118 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         ),
       });
     }
+
+    // -------------------------------------------------------------------
+    // CloudWatch alarms — Lambda / SQS / CloudFront / billing webhook
+    // -------------------------------------------------------------------
+
+    // Reuse the backend stack's ops SNS topic (same account/region) by
+    // reconstructing its ARN by name. This matches the codebase's
+    // reference-by-name convention (the backend OpsFailure alarm references a
+    // CloudWatch metric by name across stacks the same way) and avoids
+    // CloudFormation cross-stack export coupling. Email subscriptions are
+    // managed on the backend topic (CHAPTERFLOW_OPS_ALERT_EMAIL).
+    const opsTopic = sns.Topic.fromTopicArn(
+      this,
+      "OpsAlertsTopic",
+      `arn:${cdk.Aws.PARTITION}:sns:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:ChapterFlowOpsAlerts${suffix}`,
+    );
+    const opsAction = new cloudwatchActions.SnsAction(opsTopic);
+
+    const makeAlarm = (
+      id: string,
+      metric: cloudwatch.IMetric,
+      threshold: number,
+      alarmDescription: string,
+      opts?: { evaluationPeriods?: number; datapointsToAlarm?: number },
+    ): cloudwatch.Alarm => {
+      const alarm = new cloudwatch.Alarm(this, id, {
+        metric,
+        threshold,
+        evaluationPeriods: opts?.evaluationPeriods ?? 1,
+        datapointsToAlarm: opts?.datapointsToAlarm ?? 1,
+        comparisonOperator:
+          cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+        treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+        alarmDescription,
+      });
+      alarm.addAlarmAction(opsAction);
+      return alarm;
+    };
+
+    const alarmPeriod = cdk.Duration.minutes(5);
+
+    // Server Lambda — errors, throttles, and latency approaching the 30s timeout.
+    makeAlarm(
+      "ServerFnErrorsAlarm",
+      this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      5,
+      "ChapterFlow server Lambda returned ≥5 errors in 5 minutes (elevated 5xx).",
+    );
+    makeAlarm(
+      "ServerFnThrottlesAlarm",
+      this.serverFunction.metricThrottles({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "ChapterFlow server Lambda is being throttled (concurrency limit hit).",
+    );
+    makeAlarm(
+      "ServerFnDurationAlarm",
+      this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p99" }),
+      20000,
+      "ChapterFlow server Lambda p99 duration ≥20s — approaching the 30s timeout.",
+      { evaluationPeriods: 3, datapointsToAlarm: 2 },
+    );
+
+    // Revalidation Lambda errors + dead-letter / stuck-queue depth.
+    makeAlarm(
+      "RevalidationFnErrorsAlarm",
+      revalidationFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "ISR revalidation Lambda is erroring — cached pages may be stale.",
+    );
+    makeAlarm(
+      "RevalidationDlqDepthAlarm",
+      revalidationDlq.metricApproximateNumberOfMessagesVisible({
+        period: alarmPeriod,
+        statistic: "max",
+      }),
+      1,
+      "Revalidation messages have landed in the DLQ — ISR revalidation is failing.",
+    );
+    makeAlarm(
+      "RevalidationQueueAgeAlarm",
+      revalidationQueue.metricApproximateAgeOfOldestMessage({
+        period: alarmPeriod,
+        statistic: "max",
+      }),
+      300,
+      "Oldest revalidation message is >5 min old — the queue is backing up.",
+    );
+
+    // CloudFront edge 5xx rate (percent). Sustained over 3 periods to avoid
+    // paging on a transient blip.
+    makeAlarm(
+      "CloudFront5xxAlarm",
+      this.distribution.metric5xxErrorRate({ period: alarmPeriod, statistic: "Average" }),
+      1,
+      "CloudFront is serving >1% 5xx responses at the edge.",
+      { evaluationPeriods: 3, datapointsToAlarm: 3 },
+    );
+
+    // Stripe webhook processing failures — the server emits this custom metric
+    // (putOpsMetric, ChapterFlow/Ops namespace) when a delivery fails after
+    // signature verification. Referenced by name, like the backend OpsFailure alarm.
+    makeAlarm(
+      "StripeWebhookFailureAlarm",
+      new cloudwatch.Metric({
+        namespace: "ChapterFlow/Ops",
+        metricName: "StripeWebhookFailure",
+        statistic: "Sum",
+        period: alarmPeriod,
+      }),
+      1,
+      "A Stripe webhook delivery failed to process (post-signature). Stripe will retry; check the billing webhook logs and reconciliation tool.",
+    );
 
     // -------------------------------------------------------------------
     // Stack Outputs

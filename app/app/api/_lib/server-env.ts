@@ -24,20 +24,22 @@ async function getSsmClient() {
   return ssmClientPromise;
 }
 
-function isMissingParameterError(error: unknown): boolean {
+// SSM lookups walk a list of candidate parameter names (the env-prefixed name
+// first, then bare-name fallbacks). Two error classes mean "this candidate is
+// unusable, try the next one" rather than "SSM is broken":
+//   - ParameterNotFound — the name simply doesn't exist.
+//   - AccessDenied — the Lambda role is scoped to this env's SSM prefix (see the
+//     CDK SsmConfigAccess statement), so the unscoped bare-name fallbacks are
+//     denied. That denial is expected; skip past it instead of failing the
+//     request (the prefixed candidate is always tried first).
+function isSkippableSsmError(error: unknown): boolean {
   if (typeof error !== "object" || error === null) return false;
-  const maybe = error as {
-    name?: unknown;
-    Code?: unknown;
-    __type?: unknown;
-  };
-  const name = typeof maybe.name === "string" ? maybe.name : "";
-  const code = typeof maybe.Code === "string" ? maybe.Code : "";
-  const type = typeof maybe.__type === "string" ? maybe.__type : "";
-  return (
-    name.includes("ParameterNotFound") ||
-    code.includes("ParameterNotFound") ||
-    type.includes("ParameterNotFound")
+  const maybe = error as { name?: unknown; Code?: unknown; __type?: unknown };
+  const fields = [maybe.name, maybe.Code, maybe.__type].filter(
+    (v): v is string => typeof v === "string",
+  );
+  return fields.some(
+    (f) => f.includes("ParameterNotFound") || f.includes("AccessDenied"),
   );
 }
 
@@ -98,7 +100,7 @@ async function loadFromSsm(key: string): Promise<string | undefined> {
         return value;
       }
     } catch (error: unknown) {
-      if (isMissingParameterError(error)) continue;
+      if (isSkippableSsmError(error)) continue;
       lastError = error;
     }
   }
