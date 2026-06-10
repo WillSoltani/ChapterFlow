@@ -1,3 +1,0 @@
-- Remove unsupported claims, repetition, filler, thesis-first openings, and generic motivational language.
-- Sharpen transitions and paragraph jobs without flattening the chapter's edge, tension, or analytical spine.
-- Do not add new facts; improve the draft by subtraction, compression, and cleaner emphasis.

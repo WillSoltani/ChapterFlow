@@ -1,4 +1,0 @@
-- Convert approved prose into the exact ChapterFlow schema without becoming a second writer or importing new truth.
-- Keep meta-distance near zero, preserve the chapter's real distinctions, and make every tone object functionally different.
-- Hard depth, scenarios, recap, cards, and implementation steps must extend the learning rather than restate the same sentence in new slots.
-- If the approved prose is thin, keep the structured outputs precise and lean instead of compensating with invented detail.

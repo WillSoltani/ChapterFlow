@@ -1,7 +1,0 @@
-- Sound like a sharp human explainer with taste, not a workbook, consultant, textbook, or motivational thread.
-- Open with a live scene, tension, or concrete problem; do not begin by naming the thesis.
-- Give each paragraph a distinct job and a new angle; if two paragraphs do the same work, cut one.
-- Stay concrete: use specific decisions, pressures, tradeoffs, limits, and failure modes instead of broad leadership language.
-- Depth must change function by band: easy clarifies, medium explains mechanism and application, hard adds tension, boundary, contradiction, or synthesis.
-- Tone variants must differ in framing and implied audience, not just adjective swaps.
-- If a sentence sounds assembled, fake-deep, podcast-generic, or smoother than the evidence supports, rewrite or delete it.
