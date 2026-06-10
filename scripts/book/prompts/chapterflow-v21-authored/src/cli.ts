@@ -106,6 +106,10 @@ Commands:
                                      plan checks (BP7) don't false-fire. The default standalone
                                      way to QC an assembled book without invoking generate-book.
                                      Exits 0 if no blockers; non-zero otherwise.
+  shape-plan <bookId> --from N --to M
+                                     PRE-AUTHORING: deal each chapter a slot-pinned palette of
+                                     structurally distinct scene shapes (the anti-skeleton plan;
+                                     fanout runs it automatically)
   name-plan <bookId> --from N --to M [--per-chapter K]
                                      PRE-AUTHORING: deal each upcoming chapter a disjoint
                                      protagonist-name slice (excludes cross-book + already-authored
@@ -1311,18 +1315,17 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     console.error("Usage: fanout <bookId> [--from N --to M] [--all]");
     return 2;
   }
-  const { findLatestRun } = await import("./next-task.js");
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
+  const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
+  const { findRunArtifact } = await import("./lib/runDirs.js");
   const REPO = resolve(__dirname, "../../../../..");
   const PIPE = resolve(__dirname, "..");
-  const runId = findLatestRun(bookId);
-  if (!runId) {
-    console.error(`No research run for "${bookId}". Do Step 1 (research) first:  npx tsx src/cli.ts next-task ${bookId}`);
-    return 2;
-  }
-  const tocPath = resolve(REPO, ".chapterflow/runs", bookId, runId, "source-freeze", "toc.json");
-  if (!existsSyncFs(tocPath)) {
-    console.error(`No chapter list yet at ${tocPath}. Finish the research step first.`);
+  const RUNS = resolve(REPO, ".chapterflow/runs");
+  // Artifact-aware: the toc comes from the newest run that HAS one (a rework
+  // run dir without a toc must not hide the original — the zz- burial class).
+  const tocPath = findRunArtifact(RUNS, bookId, "source-freeze/toc.json");
+  if (!tocPath) {
+    console.error(`No research run with a toc.json for "${bookId}". Do Step 1 (research) first:  npx tsx src/cli.ts next-task ${bookId}`);
     return 2;
   }
   const toc = JSON.parse(readFileSync(tocPath, "utf8"));
@@ -1345,7 +1348,9 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : flat[flat.length - 1].number;
   const plan = planNames(bookId, from, to);
   writeNamePlan(plan);
-  const sourceDir = resolve(REPO, ".chapterflow/runs", bookId, runId, "sidecars", "source");
+  const shapePlan = planShapes(bookId, from, to);
+  writeShapePlan(shapePlan);
+  const shapeDefs = new Map(loadSceneShapes().map((s) => [s.id, s.definition]));
   const chaptersDir = resolve(PIPE, "state/chapters");
   const includeAll = flags["all"] === true;
   const blocks: string[] = [];
@@ -1362,15 +1367,52 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     }
     pending++;
     const names = (plan.allocation[ch.number] ?? []).join(", ");
+
+    // Shape palette: slot-pinned structural variety (the anti-skeleton plan).
+    const shapeIds = shapePlan.allocation[ch.number] ?? [];
+    const shapeLines = shapeIds
+      .map((id, i) => `    ${i + 1}. ${id} — ${shapeDefs.get(id) ?? "use the format the planSpec names"}`)
+      .join("\n");
+
+    // Source specifics: the sidecar's real anchors, pasted so the writer
+    // grounds scenes in them instead of inventing interchangeable ones (SC9's
+    // root cause). Artifact-aware lookup per chapter.
+    const sidecarPath = findRunArtifact(RUNS, bookId, `sidecars/source/ch${numStr}.source.json`);
+    let specificsLine = "";
+    if (sidecarPath) {
+      try {
+        const sc = JSON.parse(readFileSync(sidecarPath, "utf8"));
+        const specs: string[] = [];
+        for (const ex of (sc?.namedExamples ?? []).slice(0, 5)) {
+          const label = typeof ex === "string" ? ex : ex?.label;
+          const hard = Array.isArray(ex?.hardSpecifics) ? ex.hardSpecifics[0] : undefined;
+          if (label) specs.push(hard ? `${label} (${String(hard).slice(0, 60)})` : String(label));
+        }
+        if (specs.length > 0) {
+          specificsLine = `• Ground the scenes in the source's REAL cases — use at least 2 of these meaningfully: ${specs.join("; ")}\n`;
+        }
+      } catch { /* unreadable sidecar → omit the line; STEP-2 still requires grounding */ }
+    }
+
+    const recallLine = ch.number > 1
+      ? `• Spaced recall: make 1–2 review cards explicitly resurface a concept from an EARLIER chapter of this book (name the concept on the card front).\n`
+      : "";
+
     blocks.push(
       `─── Chapter ${ch.number} — "${ch.title}"${written ? "  (already written — re-do)" : ""} ───\n` +
         `Write chapter ${ch.number} of "${title}" for ChapterFlow. Work in this folder:\n` +
         `  ${PIPE}\n` +
-        `• Read its source notes: ${resolve(sourceDir, `ch${numStr}.source.json`)}\n` +
+        `• Read its source notes: ${sidecarPath ?? "(no sidecar found — STOP and run Step-1 research for this chapter first)"}\n` +
         `• Use ONLY these character names: ${names}\n` +
-        `• Give each of the 6 example scenes a DIFFERENT SHAPE (R6): do NOT open every scene "[Name] does X at [clock time] in [place]…", and use a binary "must decide whether A or B" frame at most ONCE. Vary opener, structure, and stakes per scene. One name = one person across breakdown→examples→quiz.\n` +
-        `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring rules)\n` +
+        `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
+        `${shapeLines}\n` +
+        specificsLine +
+        `• Quiz distractors: each distractor is a NAMED plausible misconception (what a hasty reader of THIS chapter would actually believe) — never a junk-prefix mutation or rephrasing of the correct choice.\n` +
+        recallLine +
+        `• One name = one person across breakdown→examples→quiz.\n` +
+        `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring law).\n` +
         `• Save to state/chapters/${chapterId}.v21-native.chapter.json\n` +
+        `• TWO-PASS: after drafting, self-critique against agent-prompts/FIELD-PURPOSE-CONTRACTS.md (concept-as-actor, templated loops, echo-template explanations, bare-label card fronts, proposition-not-action whatToDo) and FIX what you find before gating.\n` +
         `• Then run: npx tsx src/cli.ts gate-chapter state/chapters/${chapterId}.v21-native.chapter.json\n` +
         `  Fix every blocker it reports and re-run until it prints "Gate verdict: PASS — 0 blockers". Only stop when it is clean.`,
     );
@@ -1382,6 +1424,28 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   );
   console.log(blocks.join("\n\n"));
   console.log(`\nPaste each block above into its own Codex agent (run them in parallel). When they finish, check the batch:\n  npx tsx src/cli.ts book-gate ${bookId}`);
+  return 0;
+}
+
+/** `shape-plan <bookId> --from N --to M` — pre-authoring scene-shape allocator
+ *  (name-plan's pattern applied to example STRUCTURE). Deals each chapter a
+ *  slot-pinned palette of structurally distinct scene shapes so parallel
+ *  authoring agents can't converge on one frame — the skeleton class that has
+ *  no viable deterministic gate. fanout runs this automatically; the command
+ *  exists to preview/regenerate. */
+async function runShapePlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: shape-plan <bookId> --from N --to M");
+    return 2;
+  }
+  const { planShapes, writeShapePlan, formatShapePlan } = await import("./librarian/shapePlan.js");
+  const plan = planShapes(bookId, from, to);
+  const path = writeShapePlan(plan);
+  console.log(formatShapePlan(plan));
+  console.log(`\nWritten: ${path}`);
   return 0;
 }
 
@@ -2070,6 +2134,8 @@ async function main() {
       return runBookGate(args);
     case "name-plan":
       return runNamePlan(args, flags);
+    case "shape-plan":
+      return runShapePlan(args, flags);
     case "qc-attest":
       return runQcAttest(args, flags);
     case "qc-status":
