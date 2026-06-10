@@ -115,6 +115,13 @@ See [ENVIRONMENT.md §3.D](./ENVIRONMENT.md).
       `OpsFailure`) **and** the frontend alarms (server-fn errors/throttles/
       duration, ISR DLQ depth, CloudFront 5xx, `StripeWebhookFailure`). See
       [OPERATIONS.md §4](./OPERATIONS.md).
+- [ ] **⚠ Never `cdk deploy` the backend *locally*.** The email subscription is
+      created at synth time *only* when `CHAPTERFLOW_OPS_ALERT_EMAIL` is set
+      (`backend-stack.ts`); the CI infra job injects it from the env secret, but
+      a local deploy without it exported **deletes the subscription and silences
+      every ops alarm**. Deploy the backend through GitHub Actions. (Local
+      `cdk diff` is read-only and safe — it will *show* the subscription as a
+      delete when the var is unset, but applies nothing.)
 - [ ] Confirm `COGNITO_USER_POOL_ID` was present at synth (see §4) so **hard
       erasure actually deletes the Cognito user** — otherwise erasure cascades
       DynamoDB/S3/Stripe but **silently skips Cognito** (GDPR gap). See
