@@ -87,10 +87,11 @@ Commands:
                                      using an existing chapter index. Auto-promotes on success.
                                      For inline-operator mode (no subprocess calls), pre-populate
                                      state/chapters/ and use --no-categorizer with manual metadata.
-  promote-book <bookId> --title X --author Y [--no-categorizer] [--categories A,B] [--tags x,y]
-                                     Final gate. Re-validates every chapter + book-level checks,
-                                     then writes book-packages/<id>.v21.json on success.
-                                     Use --no-categorizer with manual --categories/--tags for Codex-only runs.
+  promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
+                                     Final gate. Re-validates every chapter + book-level checks + the
+                                     QC-attestation gate, then writes book-packages/<id>.v21.json on
+                                     success. Categories/tags are auto-derived (no-API) from the book's
+                                     content when not given; pass --categories/--tags to override.
                                      Quarantines to state/books/_blocked/ on failure.
   author-check <chapter.json>        Phase 1: run the authoring-contract (field-JOB) checks Codex uses to
                                      converge in-session. Advisory/shadow (calibrated 0 false-positives).
@@ -105,6 +106,39 @@ Commands:
                                      plan checks (BP7) don't false-fire. The default standalone
                                      way to QC an assembled book without invoking generate-book.
                                      Exits 0 if no blockers; non-zero otherwise.
+  name-plan <bookId> --from N --to M [--per-chapter K]
+                                     PRE-AUTHORING: deal each upcoming chapter a disjoint
+                                     protagonist-name slice (excludes cross-book + already-authored
+                                     names) and emit banned-connective guidance, so parallel STEP-2
+                                     agents can't collide on book-gate F1 / BP13. Writes
+                                     state/name-plans/<bookId>.name-plan.json. Default K=7.
+                                     Exit 1 if the name bank ran dry for any chapter.
+  qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."]
+                                     SEMANTIC GATE (no-API): record a Claude reviewer's verdict,
+                                     stamped with the chapter's content hash, to state/qc/. promote
+                                     requires a fresh PUBLISHABLE attestation per chapter; editing the
+                                     chapter afterward makes it stale and forces re-review.
+  qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
+                                     CORRUPTION / MISSING. Exit 0 iff every chapter is ship-ready.
+  fanout <bookId> [--from N --to M] [--all]
+                                     Print a ready-to-paste authoring prompt for each chapter still to
+                                     write — title, real source-notes path, allocated names, save path,
+                                     and self-gate command all filled in. Paste each block into its own
+                                     Codex agent to write the book in parallel. Runs name-plan for you.
+                                     Skips already-written chapters unless --all.
+  categorize <bookId>                Preview the no-API auto-categorizer's pick (categories + tags from
+                                     the book's own content). promote-book applies it automatically when
+                                     --categories/--tags aren't given; pass those to override.
+  register-web <bookId> [--created-by <name>] [--skip-ingest]
+                                     Make a promoted book show up in the reader. (1) Static /books browse:
+                                     append-only registration into app/book/data/bookPackages.ts (no
+                                     existing line touched) + catalog refresh. (2) In-app reader/library:
+                                     if AWS env (BOOK_TABLE_NAME / BOOK_*_BUCKET) is set, auto-runs the
+                                     DynamoDB/S3 ingest; otherwise prints the command. Idempotent.
+  batch <manifest.json> [--run]      MULTI-BOOK DRIVER. manifest = [{bookId,title,author},...]. Shows each
+                                     book's stage (RESEARCH/AUTHOR/GATE_FIX/QC/SHIP/DONE) + a work queue
+                                     with the exact next command. With --run, auto promotes + registers
+                                     every book whose QC is complete. Re-run as books progress.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
@@ -727,26 +761,16 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   let categories = parseCsvFlag(flags["categories"]);
   let tags = parseCsvFlag(flags["tags"]);
 
-  // Codex-only/manual runs should not call the model-backed categorizer.
-  // The operator can provide deterministic metadata via --categories and --tags.
-  const noCategorizer = flags["no-categorizer"] === true;
-  if (noCategorizer) {
-    if (!categories) console.warn("--no-categorizer set without --categories; promoting without categories");
-    if (!tags) console.warn("--no-categorizer set without --tags; promoting without tags");
-  } else if (!categories || !tags) {
-    try {
-      const { runCategorizer } = await import("./agents/categorizer.js");
-      const categorized = await runCategorizer({
-        bookId,
-        title,
-        author,
-        chapterTitles: chapters.map((c) => c.chapterTitle),
-      });
-      categories = categories ?? categorized.categories;
-      tags = tags ?? categorized.tags;
-    } catch (err) {
-      console.warn(`categorizer failed (${(err as Error).message}); promoting without categories/tags. For Codex-only, rerun with --no-categorizer --categories ... --tags ...`);
-    }
+  // Auto-fill categories/tags with the NO-API deterministic categorizer when the
+  // operator doesn't pass them (the default). It reads the book's own content, so
+  // it works without the model API and never ships empty (which the strict
+  // package validator rejects). --categories/--tags always override.
+  if (!categories || !tags) {
+    const { deriveCategoriesAndTags } = await import("./agents/autoCategorize.js");
+    const auto = deriveCategoriesAndTags(bookId, { title, chapterTitles: chapters.map((c) => c.chapterTitle) });
+    if (!categories) categories = auto.categories;
+    if (!tags) tags = auto.tags;
+    console.log(`Auto-categorized (no-API, source: ${auto.source}): categories=[${categories.join(", ")}]  tags=[${tags.join(", ")}]`);
   }
 
   const result = promoteBook({ bookId, title, author, chapters, categories, tags });
@@ -989,6 +1013,427 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
   return 0;
 }
 
+/** `batch <manifest.json> [--run]` — multi-book driver. The manifest is a JSON
+ *  array of { bookId, title, author }. For each book it computes the pipeline
+ *  stage (RESEARCH / AUTHOR / GATE_FIX / QC / SHIP / DONE), and with --run it
+ *  auto-runs the terminal steps (promote-book + register-web) for every book whose
+ *  QC is complete. The AI steps (research, authoring, QC) are surfaced as a work
+ *  queue with the exact command to run. Re-run it as books progress. */
+async function runBatch(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const manifestPath = args[0];
+  if (!manifestPath) {
+    console.error('Usage: batch <manifest.json> [--run]\n  manifest = [{ "bookId": "...", "title": "...", "author": "..." }, ...]');
+    return 2;
+  }
+  let books: Array<{ bookId: string; title: string; author: string }>;
+  try {
+    books = JSON.parse(readFileSync(resolve(manifestPath), "utf8"));
+    if (!Array.isArray(books)) throw new Error("manifest must be a JSON array");
+  } catch (err) {
+    console.error(`Could not read manifest ${manifestPath}: ${(err as Error).message}`);
+    return 2;
+  }
+  const doRun = flags["run"] === true;
+  const { computeNextTask } = await import("./next-task.js");
+  const { runShipGate } = await import("./critics/finalGate.js");
+  const { runBookGate } = await import("./critics/bookGate.js");
+  const { loadAttestation, chapterContentHash } = await import("./critics/qcAttestation.js");
+  const STATE = resolve(__dirname, "../state");
+  const REPO = resolve(__dirname, "../../../../..");
+  const chaptersDir = resolve(STATE, "chapters");
+
+  type Row = { bookId: string; title: string; stage: string; detail: string; action: string | null };
+  const rows: Row[] = [];
+  for (const b of books) {
+    const bookId = parseChapterId(`${b.bookId}-ch01`)?.bookId ?? b.bookId; // normSlug
+    let stage = "RESEARCH";
+    let detail = "needs Step-1 research";
+    let action: string | null = "research";
+    let task: any;
+    try { task = computeNextTask(bookId); } catch { task = { kind: "research-bibliography" }; }
+    if (["research-bibliography", "research-chapter", "chapter-index"].includes(task.kind)) {
+      stage = "RESEARCH"; detail = "needs Step-1 research (toc + source sidecars)"; action = "research";
+    } else if (task.kind === "write-chapter") {
+      stage = "AUTHOR"; detail = `chapter ${task.chapterNumber}+ still to write`; action = "author";
+    } else if (existsSyncFs(resolve(REPO, "book-packages", `${bookId}.v21.json`))) {
+      // Already promoted — the batch's job is to drive books TO shipped, so a
+      // shipped book is DONE (re-gating it against newer/stricter gates is not the
+      // batch's concern).
+      stage = "DONE"; detail = "promoted"; action = null;
+    } else {
+      const files = existsSyncFs(chaptersDir) ? readdirSync(chaptersDir).filter((f) => isSiblingFile(f, bookId)).sort() : [];
+      const chapters = files.map((f) => JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21);
+      let blockers = 0;
+      for (const ch of chapters) blockers += runShipGate(ch).blockers.length;
+      blockers += runBookGate(bookId, chapters).findings.filter((f) => f.severity === "blocker").length;
+      if (blockers > 0) {
+        stage = "GATE_FIX"; detail = `${blockers} gate blocker(s)`; action = "gatefix";
+      } else {
+        const qcPassed = chapters.filter((ch) => {
+          const a = loadAttestation(bookId, ch.number);
+          return a && a.verdict === "PUBLISHABLE" && a.contentHash === chapterContentHash(ch);
+        }).length;
+        if (chapters.length === 0 || qcPassed < chapters.length) {
+          stage = "QC"; detail = `${qcPassed}/${chapters.length} chapters QC-passed`; action = "qc";
+        } else {
+          stage = "SHIP"; detail = "QC complete — ready to promote + register"; action = "ship";
+        }
+      }
+    }
+    rows.push({ bookId, title: b.title, stage, detail, action });
+  }
+
+  // --run: auto-advance the terminal steps (promote + register) for SHIP books.
+  if (doRun) {
+    for (const r of rows.filter((x) => x.action === "ship")) {
+      const b = books.find((x) => (parseChapterId(`${x.bookId}-ch01`)?.bookId ?? x.bookId) === r.bookId)!;
+      try {
+        const { promoteBook } = await import("./promoteBook.js");
+        const { loadChapterIndex } = await import("./generateBook.js");
+        const { deriveCategoriesAndTags } = await import("./agents/autoCategorize.js");
+        const chapters = loadChapterIndex(r.bookId);
+        const auto = deriveCategoriesAndTags(r.bookId, { title: b.title, chapterTitles: chapters.map((c) => c.chapterTitle) });
+        const res = promoteBook({ bookId: r.bookId, title: b.title, author: b.author, chapters, categories: auto.categories, tags: auto.tags });
+        if (!res.promoted) { r.stage = "SHIP_BLOCKED"; r.detail = (res.reason ?? "promote blocked").slice(0, 90); continue; }
+        await runRegisterWeb([r.bookId], {});
+        r.stage = "DONE"; r.detail = "promoted + registered";
+      } catch (err) {
+        r.stage = "SHIP_BLOCKED"; r.detail = (err as Error).message.slice(0, 90);
+      }
+    }
+  }
+
+  // Dashboard
+  console.log(`\nBatch: ${manifestPath}  (${rows.length} book(s))${doRun ? "  [--run: promoted/registered ready books]" : ""}\n`);
+  const w = Math.max(...rows.map((r) => r.bookId.length), 8);
+  for (const r of rows) console.log(`  ${r.bookId.padEnd(w)}  ${r.stage.padEnd(11)}  ${r.detail}`);
+
+  // Work queue (the human/AI steps)
+  const group = (a: string) => rows.filter((r) => r.action === a).map((r) => r.bookId);
+  const research = group("research"), author = group("author"), gatefix = group("gatefix"), qc = group("qc"), ship = group("ship");
+  console.log(`\nWork queue:`);
+  if (research.length) console.log(`  RESEARCH (${research.length}): ${research.join(", ")}\n     → one Codex agent per book, per agent-prompts/STEP-1-RESEARCH.md (give it the title+author)`);
+  if (author.length) console.log(`  AUTHOR (${author.length}): ${author.join(", ")}\n     → per book: npx tsx src/cli.ts fanout <bookId>  (paste each block into a Codex agent)`);
+  if (gatefix.length) console.log(`  GATE_FIX (${gatefix.length}): ${gatefix.join(", ")}\n     → per book: npx tsx src/cli.ts book-gate <bookId>  (fix the blockers it names)`);
+  if (qc.length) console.log(`  QC (${qc.length}): ${qc.join(", ")}\n     → per book: a Claude QC session (agent-prompts/QC-SESSION-PROMPT.md), qc-attest each chapter`);
+  if (!doRun && ship.length) console.log(`  SHIP (${ship.length}): ${ship.join(", ")}\n     → re-run with --run to auto promote + register these`);
+  if (![research, author, gatefix, qc, ship].some((g) => g.length)) console.log(`  (nothing pending — all books DONE)`);
+  return 0;
+}
+
+/** `register-web <bookId>` — make a promoted book show up in the reader (local/dev).
+ *  Append-only registration into app/book/data/bookPackages.ts (one import + a
+ *  self-contained block that pushes the package and registers its tone getter —
+ *  no existing line is touched; presentation auto-infers), then regenerates the
+ *  catalog metadata (which imports BOOK_PACKAGES, so it also verifies the edit
+ *  compiles). Idempotent. Production publish (DynamoDB/S3) is a separate step that
+ *  needs AWS env — printed at the end. */
+async function runRegisterWeb(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: register-web <bookId> [--created-by <name>] [--skip-ingest]");
+    return 2;
+  }
+  const REPO = resolve(__dirname, "../../../../..");
+  const pkgPath = resolve(REPO, "book-packages", `${bookId}.v21.json`);
+  if (!existsSyncFs(pkgPath)) {
+    console.error(`No package at ${pkgPath}. Run \`promote-book ${bookId} ...\` first.`);
+    return 2;
+  }
+  const bpPath = resolve(REPO, "app/book/data/bookPackages.ts");
+  if (!existsSyncFs(bpPath)) {
+    console.error(`Web registry not found at ${bpPath}. (Are you on the web-app branch / is app/ present?)`);
+    return 2;
+  }
+  let src = readFileSync(bpPath, "utf8");
+  if (src.includes(`from "@/book-packages/${bookId}.v21.json"`)) {
+    console.log(`${bookId} is already registered in bookPackages.ts — leaving it; just refreshing the catalog.`);
+  } else {
+    const ident = `auto_${bookId.replace(/[^a-zA-Z0-9]/g, "_")}_Json`;
+    const lines = src.split("\n");
+    let lastImport = -1;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].includes('from "@/book-packages/') && lines[i].includes(".v21.json")) lastImport = i;
+    }
+    if (lastImport === -1) {
+      console.error("Could not find the book-packages import block in bookPackages.ts to anchor the new import.");
+      return 2;
+    }
+    lines.splice(lastImport + 1, 0, `import ${ident} from "@/book-packages/${bookId}.v21.json";`);
+    src = lines.join("\n");
+    const block =
+      `\n// --- auto-registered by \`register-web\` for "${bookId}" (do not edit by hand) ---\n` +
+      `{\n` +
+      `  const __autoPkg = normalizeAnyPackage(${ident}, "direct");\n` +
+      `  BOOK_PACKAGES.push(__autoPkg);\n` +
+      `  BOOK_PACKAGE_TONE_GETTERS["${bookId}"] = (tone) => normalizeAnyPackage(${ident}, tone);\n` +
+      `}\n`;
+    src = src.replace(/\s*$/, "\n") + block;
+    writeFileSync(bpPath, src, "utf8");
+    console.log(`Registered "${bookId}" in app/book/data/bookPackages.ts (import + BOOK_PACKAGES + tone getter; presentation auto-infers).`);
+  }
+  // Regenerate the catalog metadata — this imports BOOK_PACKAGES, so success also
+  // confirms the registration compiles and the book is picked up.
+  const genScript = resolve(REPO, "scripts/book/generate-catalog-metadata.ts");
+  if (existsSyncFs(genScript)) {
+    try {
+      execSync(`npx tsx ${JSON.stringify(genScript)}`, { cwd: REPO, stdio: "inherit" });
+      console.log(`✓ Catalog regenerated — "${bookId}" will appear in the library when you run the app locally.`);
+    } catch (err) {
+      console.error(
+        `Catalog regeneration FAILED (${(err as Error).message}). The registration may be malformed — ` +
+          `review the auto-registered block at the bottom of app/book/data/bookPackages.ts, or revert it with git.`,
+      );
+      return 1;
+    }
+  } else {
+    console.warn(`Catalog generator not found at ${genScript}; run it yourself to refresh the library list.`);
+  }
+  // Reader ingest (DynamoDB/S3) — the in-app library + reader read from the
+  // published catalog, NOT the static one above. Auto-run the ingest when the
+  // AWS env is present; otherwise print the command to run later.
+  const publishCmd = `npx tsx scripts/book/publish-single-package.ts --file book-packages/${bookId}.v21.json --created-by you`;
+  const hasAwsEnv = !!(process.env.BOOK_TABLE_NAME && process.env.BOOK_INGEST_BUCKET && process.env.BOOK_CONTENT_BUCKET);
+  const publishScript = resolve(REPO, "scripts/book/publish-single-package.ts");
+  if (flags["skip-ingest"] === true) {
+    console.log(`\nReader ingest skipped (--skip-ingest). To do it later:\n  ${publishCmd}`);
+  } else if (hasAwsEnv && existsSyncFs(publishScript)) {
+    const createdBy = typeof flags["created-by"] === "string" ? (flags["created-by"] as string) : "register-web";
+    console.log(`\nAWS env detected — ingesting "${bookId}" into the reader catalog (DynamoDB/S3)…`);
+    try {
+      execSync(
+        `npx tsx ${JSON.stringify(publishScript)} --file ${JSON.stringify(`book-packages/${bookId}.v21.json`)} --created-by ${JSON.stringify(createdBy)}`,
+        { cwd: REPO, stdio: "inherit" },
+      );
+      console.log(`✓ Ingested — "${bookId}" is now in the in-app library + reader (just refresh the page).`);
+    } catch (err) {
+      console.error(`Reader ingest FAILED (${(err as Error).message}). Run it manually:\n  ${publishCmd}`);
+      return 1;
+    }
+  } else {
+    console.log(`\nReader ingest skipped — AWS env not set (need BOOK_TABLE_NAME / BOOK_INGEST_BUCKET / BOOK_CONTENT_BUCKET${process.env.AWS_REGION ? "" : " / AWS_REGION"}).`);
+    console.log(`This step puts the book in the actual in-app reader. When your AWS env is set, run:\n  ${publishCmd}`);
+  }
+  return 0;
+}
+
+/** `categorize <bookId> [--title "..."]` — preview the no-API auto-categorizer's
+ *  pick (categories + tags derived from the book's own content). promote-book runs
+ *  this automatically when --categories/--tags aren't passed. */
+async function runCategorize(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: categorize <bookId>");
+    return 2;
+  }
+  const { deriveCategoriesAndTags } = await import("./agents/autoCategorize.js");
+  let chapterTitles: string[] = [];
+  try {
+    const { loadChapterIndex } = await import("./generateBook.js");
+    chapterTitles = loadChapterIndex(bookId).map((c) => c.chapterTitle);
+  } catch {/* index may not exist yet */}
+  const auto = deriveCategoriesAndTags(bookId, { chapterTitles });
+  console.log(`Auto-categorize — ${bookId}  (no-API, source: ${auto.source})`);
+  console.log(`  categories: ${auto.categories.join(", ") || "(none)"}`);
+  console.log(`  tags:       ${auto.tags.join(", ") || "(none)"}`);
+  console.log(`\npromote-book uses these automatically. Override with --categories "A,B" --tags "x,y".`);
+  return 0;
+}
+
+/** `fanout <bookId> [--from N --to M] [--all]` — print a ready-to-paste authoring
+ *  prompt for each chapter still to write: title, real source-notes path (with the
+ *  run timestamp resolved), the chapter's allocated names, the save path, and the
+ *  self-gate command — all filled in. Paste each block into its own Codex agent to
+ *  write the whole book in parallel. Skips already-written chapters unless --all. */
+async function runFanout(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: fanout <bookId> [--from N --to M] [--all]");
+    return 2;
+  }
+  const { findLatestRun } = await import("./next-task.js");
+  const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
+  const REPO = resolve(__dirname, "../../../../..");
+  const PIPE = resolve(__dirname, "..");
+  const runId = findLatestRun(bookId);
+  if (!runId) {
+    console.error(`No research run for "${bookId}". Do Step 1 (research) first:  npx tsx src/cli.ts next-task ${bookId}`);
+    return 2;
+  }
+  const tocPath = resolve(REPO, ".chapterflow/runs", bookId, runId, "source-freeze", "toc.json");
+  if (!existsSyncFs(tocPath)) {
+    console.error(`No chapter list yet at ${tocPath}. Finish the research step first.`);
+    return 2;
+  }
+  const toc = JSON.parse(readFileSync(tocPath, "utf8"));
+  const title = toc.title ?? toc.book?.title ?? bookId;
+  const flat: Array<{ number: number; title: string }> = (
+    toc.flatChapters && toc.flatChapters.length > 0 ? toc.flatChapters : (toc.sections ?? []).flatMap((s: any) => s.chapters ?? [])
+  )
+    .slice()
+    .sort((a: any, b: any) => a.number - b.number);
+  if (flat.length === 0) {
+    console.error(`Chapter list at ${tocPath} is empty.`);
+    return 2;
+  }
+  const indexPath = resolve(PIPE, "state/indexes", `${bookId}.json`);
+  const idx: Array<{ chapterId: string; chapterNumber: number }> = existsSyncFs(indexPath)
+    ? JSON.parse(readFileSync(indexPath, "utf8"))
+    : [];
+  const idById = new Map(idx.map((c) => [c.chapterNumber, c.chapterId]));
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : flat[0].number;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : flat[flat.length - 1].number;
+  const plan = planNames(bookId, from, to);
+  writeNamePlan(plan);
+  const sourceDir = resolve(REPO, ".chapterflow/runs", bookId, runId, "sidecars", "source");
+  const chaptersDir = resolve(PIPE, "state/chapters");
+  const includeAll = flags["all"] === true;
+  const blocks: string[] = [];
+  let pending = 0;
+  let done = 0;
+  for (const ch of flat) {
+    if (ch.number < from || ch.number > to) continue;
+    const numStr = String(ch.number).padStart(2, "0");
+    const chapterId = idById.get(ch.number) ?? `${bookId}-ch${numStr}`;
+    const written = existsSyncFs(resolve(chaptersDir, `${chapterId}.v21-native.chapter.json`));
+    if (written && !includeAll) {
+      done++;
+      continue;
+    }
+    pending++;
+    const names = (plan.allocation[ch.number] ?? []).join(", ");
+    blocks.push(
+      `─── Chapter ${ch.number} — "${ch.title}"${written ? "  (already written — re-do)" : ""} ───\n` +
+        `Write chapter ${ch.number} of "${title}" for ChapterFlow. Work in this folder:\n` +
+        `  ${PIPE}\n` +
+        `• Read its source notes: ${resolve(sourceDir, `ch${numStr}.source.json`)}\n` +
+        `• Use ONLY these character names: ${names}\n` +
+        `• Give each of the 6 example scenes a DIFFERENT SHAPE (R6): do NOT open every scene "[Name] does X at [clock time] in [place]…", and use a binary "must decide whether A or B" frame at most ONCE. Vary opener, structure, and stakes per scene. One name = one person across breakdown→examples→quiz.\n` +
+        `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring rules)\n` +
+        `• Save to state/chapters/${chapterId}.v21-native.chapter.json\n` +
+        `• Then run: npx tsx src/cli.ts gate-chapter state/chapters/${chapterId}.v21-native.chapter.json\n` +
+        `  Fix every blocker it reports and re-run until it prints "Gate verdict: PASS — 0 blockers". Only stop when it is clean.`,
+    );
+  }
+  console.log(
+    `fanout — ${bookId} (ch${from}-${to}): ${pending} prompt(s) to paste` +
+      (includeAll ? "" : `  [${done} already written, skipped — use --all to include]`) +
+      `\n`,
+  );
+  console.log(blocks.join("\n\n"));
+  console.log(`\nPaste each block above into its own Codex agent (run them in parallel). When they finish, check the batch:\n  npx tsx src/cli.ts book-gate ${bookId}`);
+  return 0;
+}
+
+/** `name-plan <bookId> --from N --to M [--per-chapter K]` — pre-authoring name
+ *  allocator. Deals each upcoming chapter a disjoint protagonist-name slice
+ *  (excluding cross-book + already-authored names) and emits the banned-
+ *  connective guidance, so parallel STEP-2 agents can't collide on F1/BP13.
+ *  Writes state/name-plans/<bookId>.name-plan.json and prints the allocation. */
+async function runNamePlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: name-plan <bookId> --from N --to M [--per-chapter K]   (default per-chapter 7)");
+    return 2;
+  }
+  const perChapter = typeof flags["per-chapter"] === "string" ? parseInt(flags["per-chapter"] as string, 10) : 7;
+  if (Number.isNaN(perChapter) || perChapter < 1) {
+    console.error(`--per-chapter must be a positive integer (got "${String(flags["per-chapter"])}")`);
+    return 2;
+  }
+  const { planNames, writeNamePlan, formatNamePlan } = await import("./librarian/namePlan.js");
+  const plan = planNames(bookId, from, to, perChapter);
+  const path = writeNamePlan(plan);
+  console.log(formatNamePlan(plan));
+  console.log("");
+  console.log(`Written: ${path}`);
+  // Non-zero so a batch driver notices an exhausted/over-broad request.
+  if (plan.diagnostics.shortChapters.length > 0) {
+    console.error(`\n⚠ name bank ran dry for ${plan.diagnostics.shortChapters.length} chapter(s) — add names to config/name-bank.json or lower --per-chapter.`);
+    return 1;
+  }
+  return 0;
+}
+
+/** `qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id>
+ *  [--notes "..."] [--dimensions key=true,key=false]` — record a Claude reviewer's
+ *  semantic verdict for a chapter, stamped with the chapter's current content hash.
+ *  promote requires a fresh PUBLISHABLE attestation per chapter (the no-API
+ *  semantic gate); editing the chapter afterward makes it stale. */
+async function runQcAttest(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const file = args[0];
+  const verdict = typeof flags["verdict"] === "string" ? (flags["verdict"] as string).toUpperCase() : "";
+  const reviewer = typeof flags["reviewer"] === "string" ? (flags["reviewer"] as string) : "";
+  if (!file || !["PUBLISHABLE", "REVISE", "CORRUPTION"].includes(verdict) || !reviewer) {
+    console.error(`Usage: qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."] [--dimensions k=true,k2=false]`);
+    return 2;
+  }
+  const chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
+  const parsed = chapter.chapterId ? parseChapterId(chapter.chapterId) : null;
+  if (!parsed) {
+    console.error(`Could not parse chapterId "${chapter.chapterId}" — cannot attest.`);
+    return 2;
+  }
+  const { chapterContentHash, writeAttestation } = await import("./critics/qcAttestation.js");
+  const dimensions: Record<string, boolean> = {};
+  for (const kv of parseCsvFlag(flags["dimensions"]) ?? []) {
+    const [k, v] = kv.split("=");
+    if (k) dimensions[k.trim()] = (v ?? "").trim().toLowerCase() === "true";
+  }
+  const notes = typeof flags["notes"] === "string" ? (flags["notes"] as string) : undefined;
+  const findings = parseCsvFlag(flags["findings"]) ?? undefined;
+  const path = writeAttestation({
+    schemaVersion: "qc-attest-v1",
+    bookId: parsed.bookId,
+    chapterNumber: chapter.number,
+    chapterId: chapter.chapterId!,
+    verdict: verdict as "PUBLISHABLE" | "REVISE" | "CORRUPTION",
+    contentHash: chapterContentHash(chapter),
+    reviewer,
+    reviewedAt: new Date().toISOString(),
+    dimensions: Object.keys(dimensions).length ? dimensions : undefined,
+    findings,
+    notes,
+  });
+  console.log(`QC attestation written: ${path}\n  ${parsed.bookId}-ch${chapter.number}  verdict=${verdict}  hash=${chapterContentHash(chapter)}  reviewer=${reviewer}`);
+  return 0;
+}
+
+/** `qc-status <bookId>` — show per-chapter QC-attestation coverage (the semantic
+ *  gate's readiness for promote): PASS (fresh PUBLISHABLE), STALE, REVISE/
+ *  CORRUPTION, or MISSING. */
+async function runQcStatus(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: qc-status <bookId>");
+    return 2;
+  }
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  const files = readdirSync(chaptersDir).filter((f) => isSiblingFile(f, bookId)).sort();
+  if (files.length === 0) {
+    console.error(`No chapters found for "${bookId}".`);
+    return 2;
+  }
+  const { chapterContentHash, loadAttestation } = await import("./critics/qcAttestation.js");
+  let ready = 0;
+  const lines: string[] = [];
+  for (const f of files) {
+    const ch = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
+    const att = loadAttestation(bookId, ch.number);
+    let status: string;
+    if (!att) status = "MISSING";
+    else if (att.verdict !== "PUBLISHABLE") status = att.verdict;
+    else if (att.contentHash !== chapterContentHash(ch)) status = "STALE";
+    else { status = "PASS"; ready++; }
+    lines.push(`  ch${String(ch.number).padStart(2, "0")}: ${status}${att ? `  (reviewer=${att.reviewer}, ${att.reviewedAt.slice(0, 10)})` : ""}`);
+  }
+  console.log(`QC attestation status — ${bookId}: ${ready}/${files.length} chapters ship-ready (PASS)`);
+  console.log(lines.join("\n"));
+  return ready === files.length ? 0 : 1;
+}
+
 async function runBookGate(args: string[]): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
@@ -1106,7 +1551,10 @@ async function runGateChapter(args: string[]): Promise<number> {
   // writer agents producing one quiz and reusing it across chapters with
   // name substitution. Without this, the writer wastes 10+ chapters of work
   // before book-gate surfaces the structural issue.
-  const intraFindings = await runIntraBookCheck(chapter, chapterFile);
+  const { runIntraBookChecks, loadSiblingChapters } = await import("./critics/intraBook.js");
+  const siblingLoad = loadSiblingChapters(chapter, chapterFile);
+  if (siblingLoad.warning) console.log(`  WARN: ${siblingLoad.warning}`);
+  const intraFindings = runIntraBookChecks(chapter, siblingLoad.siblings);
   let extraBlockers = 0;
   let extraMajors = 0;
   if (intraFindings.length > 0) {
@@ -1225,87 +1673,6 @@ async function runGateChapter(args: string[]): Promise<number> {
   return report.blockers.length === 0 && extraBlockers === 0 ? 0 : 1;
 }
 
-/** Load every sibling chapter of the same book from state/chapters/ and run
- *  the intra-book quiz similarity critic against them. The book ID is derived
- *  from the chapter file's chapterId (which is `<bookId>-ch<NN>`). Returns
- *  an empty array if there are no siblings (first chapter of a book) or if
- *  any I/O fails (non-fatal — the ship gate still ran). */
-async function runIntraBookCheck(
-  chapter: ChapterV21,
-  chapterFile: string,
-): Promise<Array<{ checkId: string; severity: string; message: string; evidence?: string }>> {
-  // Phase 0 casing fix: parse the book id case-insensitively and match siblings
-  // via the shared resolver. The old code built a CASE-SENSITIVE regex from the
-  // raw chapterId, so a capital chapterId (e.g. "Unreasonable-hospitality-ch01")
-  // matched 0 lowercase files → AS5–AS12 silently skipped.
-  const parsed = parseChapterId(chapter.chapterId);
-  if (!parsed) return [];
-  const bookId = parsed.bookId;
-  const dir = dirname(resolve(chapterFile));
-  let siblings: ChapterV21[] = [];
-  try {
-    const entries = readdirSync(dir);
-    for (const entry of entries) {
-      if (!isSiblingFile(entry, bookId)) continue;
-      const full = resolve(dir, entry);
-      if (full === resolve(chapterFile)) continue; // skip the chapter being gated
-      try {
-        siblings.push(JSON.parse(readFileSync(full, "utf8")) as ChapterV21);
-      } catch {
-        // skip unreadable siblings
-      }
-    }
-  } catch {
-    return [];
-  }
-  if (siblings.length === 0) {
-    // Loud fail-open: for chapter 2+ there SHOULD be prior siblings. Zero means
-    // either a genuine first chapter, or (the bug class) a slug/casing mismatch
-    // that excluded them — which would silently skip AS5–AS12. Warn so it's
-    // never mistaken for "intra-book critics passed".
-    if (parsed.num > 1) {
-      console.log(
-        `  WARN: intra-book critics DID NOT RUN — 0 sibling chapters found for "${bookId}" in ${dir} ` +
-          `(expected priors for ch${parsed.num}). This is NOT a pass; check chapterId/filename slug.`,
-      );
-    }
-    return [];
-  }
-  const { checkIntraBookQuizSimilarity } = await import("./critics/intraBookQuizSimilarity.js");
-  const {
-    checkIntraBookCardSimilarity,
-    checkIntraBookPlanSimilarity,
-    checkIntraBookExampleSimilarity,
-    checkIntraBookLiteralNgrams,
-    checkIntraBookBreakdownParagraphVerbatim,
-    checkIntraBookQuizPositionMatch,
-  } = await import("./critics/intraBookFieldSimilarity.js");
-  // AS5/AS6 (quiz prompt+distractor) + AS7 (cards) + AS8 (plan)
-  // + AS9 (example word-multiset) + AS10 (literal 5-gram in examples
-  // + breakdown) + AS11 (breakdown paragraph verbatim) + AS12 (quiz
-  // correctIndex sequence) — all chapter-time intra-book detectors.
-  // Built incrementally as the writer-agent gaming pattern moved across
-  // fields in successive incidents:
-  //   round 1: salting (AS1-AS4)
-  //   round 2: quiz template (AS5-AS6)
-  //   round 3: card/plan template (AS7-AS8)
-  //   round 4: example scenario template (AS9)
-  //   round 5: stock-phrase n-grams in whatToDo/whyItMatters under AS9's
-  //            70% multiset floor; whole-paragraph reuse in breakdown;
-  //            fixed correctIndex rotation (AS10-AS12)
-  // Together they cover the literal-verbatim, paragraph-verbatim, and
-  // structural-position gaps that AS5-AS9's multiset-similarity floor
-  // can't reach.
-  return [
-    ...checkIntraBookQuizSimilarity(chapter, siblings),
-    ...checkIntraBookCardSimilarity(chapter, siblings),
-    ...checkIntraBookPlanSimilarity(chapter, siblings),
-    ...checkIntraBookExampleSimilarity(chapter, siblings),
-    ...checkIntraBookLiteralNgrams(chapter, siblings),
-    ...checkIntraBookBreakdownParagraphVerbatim(chapter, siblings),
-    ...checkIntraBookQuizPositionMatch(chapter, siblings),
-  ] as any;
-}
 
 function escapeRegex(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -1389,6 +1756,20 @@ async function main() {
       return runGateChapter(args);
     case "book-gate":
       return runBookGate(args);
+    case "name-plan":
+      return runNamePlan(args, flags);
+    case "qc-attest":
+      return runQcAttest(args, flags);
+    case "qc-status":
+      return runQcStatus(args);
+    case "fanout":
+      return runFanout(args, flags);
+    case "categorize":
+      return runCategorize(args);
+    case "register-web":
+      return runRegisterWeb(args, flags);
+    case "batch":
+      return runBatch(args, flags);
     case "author-check":
       return runAuthorCheck(args);
     case "fix-chapter-ids":

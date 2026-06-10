@@ -27,6 +27,8 @@ import { fileURLToPath } from "url";
 import { BookPackageV21, ChapterV21, V21_SCHEMA_VERSION } from "./types.js";
 import { runShipGate, GateReport, formatGateReport } from "./critics/finalGate.js";
 import { runBookGate, BookGateReport, formatBookGateReport } from "./critics/bookGate.js";
+import { runIntraBookChecks } from "./critics/intraBook.js";
+import { checkQcAttestation } from "./critics/qcAttestation.js";
 import { ChapterSpec } from "./generateChapter.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -42,6 +44,9 @@ export type PromotionResult = {
   reportPath: string;            // always set; contains the gate findings
   shipGateBlockerCount: number;
   bookGateBlockerCount: number;
+  /** AS5–AS12 cross-chapter blockers. Until Phase 1 these ran ONLY in
+   *  gate-chapter, so promote shipped books the authoring gate would block. */
+  intraBookBlockerCount: number;
   shipGateMajorCount: number;
   bookGateMajorCount: number;
   reason: string;                // human-readable explanation
@@ -59,6 +64,24 @@ export type PromotionInput = {
   categories?: string[];
   tags?: string[];
 };
+
+/** Recursively remove every occurrence of `key` from a value (returns a copy).
+ *  Used to strip the v2-only `sourceAnchorId` provenance field — which exists so
+ *  SC11 can verify a unit uses its declared anchor at GATE time — from the
+ *  shipped package, so internal pipeline metadata never reaches the web
+ *  package validator / reader. */
+function stripKeyDeep<T>(value: T, key: string): T {
+  if (Array.isArray(value)) return value.map((v) => stripKeyDeep(v, key)) as unknown as T;
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      if (k === key) continue;
+      out[k] = stripKeyDeep(v, key);
+    }
+    return out as T;
+  }
+  return value;
+}
 
 export function promoteBook(input: PromotionInput): PromotionResult {
   const { bookId, title, author, chapters } = input;
@@ -93,10 +116,35 @@ export function promoteBook(input: PromotionInput): PromotionResult {
   const shipBlockerCount = perChapterGates.reduce((acc, g) => acc + g.report.blockers.length, 0);
   const shipMajorCount = perChapterGates.reduce((acc, g) => acc + g.report.majors.length, 0);
 
+  // Step 2.5: Intra-book AS5–AS12 cross-chapter checks, against the SAME
+  // in-memory chapter set being shipped (no disk re-discovery, so no slug/
+  // casing mismatch can silently skip them — the gate-chapter bug class).
+  // Until Phase 1 this suite ran only in gate-chapter; the identical-card-
+  // backs incident class passed promote cleanly.
+  // Priors-only so each pairwise collision reports exactly once, from the
+  // later chapter (the finding messages read "matches prior Ch<N>").
+  const intraFindings = loadedChapters.flatMap((ch) =>
+    runIntraBookChecks(ch, loadedChapters.filter((other) => other.number < ch.number)).map((f) => ({
+      chapter: ch.number,
+      ...f,
+    })),
+  );
+  const intraBlockerCount = intraFindings.filter((f) => f.severity === "blocker").length;
+
   // Step 3: Run book gate across all chapters.
   const bookGate = runBookGate(bookId, loadedChapters);
   const bookBlockerCount = bookGate.findings.filter((f) => f.severity === "blocker").length;
   const bookMajorCount = bookGate.findings.filter((f) => f.severity === "major").length;
+
+  // Step 3.5: QC-attestation gate — the no-API semantic judge. Every chapter
+  // must carry a fresh PUBLISHABLE attestation from a Claude reviewer; this is
+  // what makes the reviewer's verdict an enforceable ship blocker instead of an
+  // out-of-band manual step. Stale (chapter edited since review) or missing
+  // attestations block here even when every deterministic gate is clean.
+  const qcFindings = loadedChapters.flatMap((ch) =>
+    checkQcAttestation(ch, true).map((f) => ({ chapter: ch.number, ...f })),
+  );
+  const qcBlockerCount = qcFindings.length;
 
   // Step 4: Write the report regardless of pass/fail.
   mkdirSync(resolve(STATE, "books"), { recursive: true });
@@ -119,23 +167,33 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       totalMajors: shipMajorCount,
     },
     bookGate,
+    intraBook: { totalBlockers: intraBlockerCount, findings: intraFindings },
+    qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
   };
   writeFileSync(reportPath, JSON.stringify(fullReport, null, 2), "utf8");
 
-  // Step 5: Promote only if EVERY gate passes blocker-clean.
-  if (shipBlockerCount > 0 || bookBlockerCount > 0) {
+  // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
+  // gates (per-chapter + intra-book + book) AND the QC-attestation gate.
+  if (shipBlockerCount > 0 || intraBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${Date.now()}.report.json`);
     writeFileSync(quarantinePath, JSON.stringify(fullReport, null, 2), "utf8");
+    const qcSummary = qcBlockerCount > 0
+      ? ` + ${qcBlockerCount} QC-attestation blocker(s): ${qcFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${qcFindings.length > 3 ? ", …" : ""}`
+      : "";
+    const intraSummary = intraBlockerCount > 0
+      ? ` + ${intraBlockerCount} intra-book blocker(s): ${intraFindings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${intraBlockerCount > 3 ? ", …" : ""}`
+      : "";
     return {
       promoted: false,
       bookId,
       reportPath,
       shipGateBlockerCount: shipBlockerCount,
       bookGateBlockerCount: bookBlockerCount,
+      intraBookBlockerCount: intraBlockerCount,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s) + ${bookBlockerCount} book-gate blocker(s). Quarantined at ${quarantinePath}.`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}. Quarantined at ${quarantinePath}.`,
     };
   }
 
@@ -152,7 +210,9 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       categories: input.categories,
       tags: input.tags,
     },
-    chapters: loadedChapters.sort((a, b) => a.number - b.number),
+    // Strip the v2-only sourceAnchorId provenance (gate-time metadata) so it
+    // never ships into book-packages/ or reaches the web package validator.
+    chapters: loadedChapters.map((c) => stripKeyDeep(c, "sourceAnchorId")).sort((a, b) => a.number - b.number),
   };
 
   mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
@@ -166,6 +226,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     reportPath,
     shipGateBlockerCount: 0,
     bookGateBlockerCount: 0,
+    intraBookBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
     reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Majors logged: ${shipMajorCount} ship + ${bookMajorCount} book.`,
@@ -179,6 +240,7 @@ function blockedResult(args: { bookId: string; reason: string; missingChapters?:
     reportPath: "",
     shipGateBlockerCount: 0,
     bookGateBlockerCount: 0,
+    intraBookBlockerCount: 0,
     shipGateMajorCount: 0,
     bookGateMajorCount: 0,
     reason: args.reason,
@@ -192,6 +254,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   if (r.packagePath) lines.push(`  Package: ${r.packagePath}`);
   if (r.reportPath) lines.push(`  Report: ${r.reportPath}`);
   lines.push(`  Ship gate: ${r.shipGateBlockerCount} blockers, ${r.shipGateMajorCount} majors`);
+  lines.push(`  Intra-book (AS5–AS12): ${r.intraBookBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
   return lines.join("\n");
 }

@@ -65,17 +65,21 @@ export function checkIntraBookQuizSimilarity(
   const currentQs = chapter.quiz?.questions ?? [];
   if (currentQs.length === 0) return findings;
 
-  // Build a lookup from questionId → prompt for each prior chapter.
-  // Same-position comparison means matching by questionId (q01, q02, ...).
-  for (const currentQ of currentQs) {
+  // Same-position comparison is POSITIONAL (question index), not questionId
+  // equality. The original implementation matched by questionId as a proxy
+  // for position, which silently compared NOTHING for chapter-scoped id
+  // conventions (<bookId>-chNN-qNN — 16 of 17 conventions on disk, verified
+  // 2026-06-09): ids never collide across chapters, so a verbatim-copied
+  // quiz produced zero findings. The casing bug's twin — do not reintroduce
+  // an id-based join here.
+  for (let qi = 0; qi < currentQs.length; qi++) {
+    const currentQ = currentQs[qi];
     if (typeof currentQ.prompt !== "string" || !currentQ.prompt) continue;
     const currentPromptTokens = tokenize(currentQ.prompt);
     if (currentPromptTokens.length < 4) continue;
 
     for (const priorCh of priorChapters) {
-      const priorQ = (priorCh.quiz?.questions ?? []).find(
-        (q) => q.questionId === currentQ.questionId,
-      );
+      const priorQ = (priorCh.quiz?.questions ?? [])[qi];
       if (!priorQ || typeof priorQ.prompt !== "string") continue;
 
       // AS5 — prompt-to-prompt similarity at same position.
@@ -104,7 +108,8 @@ export function checkIntraBookQuizSimilarity(
   // all the prior matches, not one finding per (current, prior) pair. The
   // grouped form is what the writer agent needs: "this choice is the same as
   // 10 prior chapters' choices — rewrite it" rather than 10 separate findings.
-  for (const currentQ of currentQs) {
+  for (let qi = 0; qi < currentQs.length; qi++) {
+    const currentQ = currentQs[qi];
     if (!Array.isArray(currentQ.choices) || currentQ.choices.length < 2) continue;
     const currentCorrect = currentQ.correctIndex;
     for (let ci = 0; ci < currentQ.choices.length; ci++) {
@@ -116,9 +121,7 @@ export function checkIntraBookQuizSimilarity(
       const matches: Array<{ chapter: number; pi: number; sim: number; priChoice: string; isCorrectPair: boolean }> = [];
       const isCurrentCorrect = ci === currentCorrect;
       for (const priorCh of priorChapters) {
-        const priorQ = (priorCh.quiz?.questions ?? []).find(
-          (q) => q.questionId === currentQ.questionId,
-        );
+        const priorQ = (priorCh.quiz?.questions ?? [])[qi]; // positional, not id-joined (see AS5 note)
         if (!priorQ || !Array.isArray(priorQ.choices)) continue;
         const priorCorrect = priorQ.correctIndex;
         let bestSim = 0;

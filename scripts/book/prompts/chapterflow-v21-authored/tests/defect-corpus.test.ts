@@ -60,24 +60,25 @@ test("AS5 catches a verbatim quiz copy when questionIds align (plain q01.. conve
   );
 });
 
-xfail(
-  "AS5 catches the same verbatim quiz copy under chapter-scoped questionIds (the dominant on-disk convention)",
-  "VERIFIED DEAD PATH: AS5/AS6 match by exact questionId equality (intraBookQuizSimilarity.ts:76-78); chapter-scoped ids (<bookId>-chNN-qNN, 16 of 17 on-disk conventions) never collide across chapters, so the critics compare nothing — Phase 1: switch to positional matching + add a questionId-format invariant",
-  () => {
-    const book = "zz-fixture-as5-dead";
-    const ch1 = makeChapter(book, 1, { questionIdStyle: "scoped" });
-    const ch3 = makeChapter(book, 3, { questionIdStyle: "scoped" });
-    ch3.quiz.questions = ch3.quiz.questions.map((q, i) => ({
-      ...q,
-      prompt: ch1.quiz.questions[i].prompt, // same defect as the alive test
-    }));
-    const findings = checkIntraBookQuizSimilarity(ch3, [ch1]);
-    assert.ok(
-      findings.some((f) => f.checkId.startsWith("AS5")),
-      "identical defect as the alive test, but invisible under scoped ids",
-    );
-  },
-);
+test("AS5 catches the same verbatim quiz copy under chapter-scoped questionIds (the dominant on-disk convention)", () => {
+  // Was a verified dead path until Phase 1: AS5/AS6 joined prior questions by
+  // exact questionId equality, and chapter-scoped ids (<bookId>-chNN-qNN —
+  // 16 of 17 on-disk conventions) never collide across chapters, so the
+  // critics compared nothing. Matching is now positional; this test keeps the
+  // id-convention independence pinned.
+  const book = "zz-fixture-as5-dead";
+  const ch1 = makeChapter(book, 1, { questionIdStyle: "scoped" });
+  const ch3 = makeChapter(book, 3, { questionIdStyle: "scoped" });
+  ch3.quiz.questions = ch3.quiz.questions.map((q, i) => ({
+    ...q,
+    prompt: ch1.quiz.questions[i].prompt, // same defect as the alive test
+  }));
+  const findings = checkIntraBookQuizSimilarity(ch3, [ch1]);
+  assert.ok(
+    findings.some((f) => f.checkId.startsWith("AS5")),
+    "identical defect as the alive test must be visible regardless of id convention",
+  );
+});
 
 // ── Incident: HWF — protagonist name reused across chapters (F1) ────────────
 
