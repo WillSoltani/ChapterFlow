@@ -86,6 +86,25 @@ function stripKeyDeep<T>(value: T, key: string): T {
 export function promoteBook(input: PromotionInput): PromotionResult {
   const { bookId, title, author, chapters } = input;
 
+  // Step 0: Quarantine tombstone. quarantine-book used to only MOVE the
+  // shipped package aside — every piece of state that made the book
+  // promotable survived, so the next promote/batch --run silently re-shipped
+  // a book an operator had explicitly pulled (verified 2026-06-09). The
+  // tombstone makes quarantine sticky until `unquarantine-book` releases it.
+  const tombstonePath = resolve(STATE, "books", "_quarantined", `${bookId}.json`);
+  if (existsSync(tombstonePath)) {
+    let why = "";
+    try {
+      why = (JSON.parse(readFileSync(tombstonePath, "utf8")) as { reason?: string }).reason ?? "";
+    } catch { /* unreadable tombstone still blocks */ }
+    return blockedResult({
+      bookId,
+      reason:
+        `QUARANTINED: ${bookId} was explicitly quarantined${why ? ` (${why})` : ""}. ` +
+        `Promote refuses until \`unquarantine-book ${bookId}\` releases it (after the defect is fixed and re-QC'd).`,
+    });
+  }
+
   // Step 1: Load every expected chapter from state/chapters/
   const loadedChapters: ChapterV21[] = [];
   const missingChapters: number[] = [];

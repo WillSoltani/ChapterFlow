@@ -146,7 +146,8 @@ Commands:
   migrate-state [--apply]            Reconcile the repo-root shadow state/chapters into the canonical dir.
                                      [--prefer-canonical|--prefer-shadow] to resolve divergent files.
   fix-chapter-ids [<bookId>]         Normalize chapterId to match filename stem (--dry-run to preview).
-  quarantine-book <bookId>           Move a shipped-but-corrupt package out of book-packages/ (reversible).
+  quarantine-book <bookId>           Pull a shipped-but-corrupt package; promote/register refuse until released
+  unquarantine-book <bookId>         Release a quarantine tombstone (book must then re-pass the full gate)
 
   help                               This message
 
@@ -844,7 +845,32 @@ async function runQuarantineBook(args: string[], flags: Record<string, string | 
   console.log(`  package moved: ${pkg}\n             ->  ${dest}`);
   console.log(`  reason: ${reason}`);
   console.log(`  record: ${recPath}`);
-  console.log(`  (reversible — move the file back to re-ship, after the book re-passes the gate.)`);
+  console.log(`  promote-book and register-web now REFUSE this book until \`unquarantine-book ${bookId}\` releases it.`);
+  return 0;
+}
+
+/** `unquarantine-book <bookId>` — explicit release of a quarantine tombstone.
+ *  The record is archived (not deleted) so the quarantine history survives.
+ *  Releasing does NOT re-ship anything: the book still has to pass promote's
+ *  full gate stack (ship + intra-book + book + QC attestations) again. */
+async function runUnquarantineBook(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: unquarantine-book <bookId>");
+    return 2;
+  }
+  const recDir = resolve(__dirname, "../state/books/_quarantined");
+  const recPath = resolve(recDir, `${bookId}.json`);
+  if (!existsSyncFs(recPath)) {
+    console.error(`No quarantine record for "${bookId}" at ${recPath} — nothing to release.`);
+    return 2;
+  }
+  const ts = new Date().toISOString().replace(/[:.]/g, "-");
+  const archived = resolve(recDir, `${bookId}.released.${ts}.json`);
+  renameSync(recPath, archived);
+  console.log(`Released quarantine for ${bookId}.`);
+  console.log(`  record archived: ${archived}`);
+  console.log(`  Next: the book must re-pass the full gate stack — \`promote-book ${bookId} --title … --author …\`.`);
   return 0;
 }
 
@@ -1136,6 +1162,14 @@ async function runRegisterWeb(args: string[], flags: Record<string, string | boo
     return 2;
   }
   const REPO = resolve(__dirname, "../../../../..");
+  const tombstone = resolve(__dirname, "../state/books/_quarantined", `${bookId}.json`);
+  if (existsSyncFs(tombstone)) {
+    console.error(
+      `QUARANTINED: ${bookId} was explicitly quarantined — refusing to register it for the web. ` +
+        `Run \`unquarantine-book ${bookId}\` first (after the defect is fixed and re-QC'd).`,
+    );
+    return 2;
+  }
   const pkgPath = resolve(REPO, "book-packages", `${bookId}.v21.json`);
   if (!existsSyncFs(pkgPath)) {
     console.error(`No package at ${pkgPath}. Run \`promote-book ${bookId} ...\` first.`);
@@ -1872,6 +1906,8 @@ async function main() {
       return runStateStatus(args, flags);
     case "quarantine-book":
       return runQuarantineBook(args, flags);
+    case "unquarantine-book":
+      return runUnquarantineBook(args);
     case "help":
     case undefined:
     case "--help":
