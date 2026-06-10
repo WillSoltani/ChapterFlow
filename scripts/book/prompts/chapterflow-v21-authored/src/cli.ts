@@ -119,6 +119,10 @@ Commands:
                                      requires a fresh PUBLISHABLE attestation per chapter; editing the
                                      chapter afterward makes it stale and forces re-review.
   qc-rehash <bookId>|--all           Upgrade unchanged v1-hash attestations to the v2 content hash
+  qc-run <bookId> [--chapters 1,2]   Generate the harness QC workflow (blind keys + dual-lens bar reads
+                                     + cross-chapter sweep + adjudication + qc-attest)
+  quiz-blind <chapter.json>          Print the quiz with the answer key stripped (hidden-key protocol)
+  quiz-verify <chapter.json> --answers "0:1,..."  Diff blind-derived answers against the real key
   qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
                                      CORRUPTION / MISSING. Exit 0 iff every chapter is ship-ready.
   fanout <bookId> [--from N --to M] [--all]
@@ -1550,6 +1554,163 @@ async function runQcRehash(args: string[], flags: Record<string, string | boolea
   return 0;
 }
 
+/** `quiz-blind <chapter.json>` — print the chapter's quiz with the answer key
+ *  STRIPPED (no correctIndex / explanation / sourceAnchorId). The tooled half
+ *  of the hidden-key protocol: a reviewer derives answers from THIS output
+ *  only, then `quiz-verify` diffs the derivation against the real key — the
+ *  honor-system "cover correctIndex with your hand" becomes mechanical. */
+async function runQuizBlind(args: string[]): Promise<number> {
+  const file = args[0];
+  if (!file) {
+    console.error("Usage: quiz-blind <chapter.json>");
+    return 2;
+  }
+  let chapter: ChapterV21;
+  try {
+    chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
+  } catch (err) {
+    console.error(`Could not read/parse ${file}: ${(err as Error).message}`);
+    return 2;
+  }
+  const questions = (chapter.quiz?.questions ?? []).map((q, i) => ({
+    questionIndex: i,
+    prompt: q.prompt,
+    choices: q.choices,
+  }));
+  console.log(JSON.stringify({ chapterId: chapter.chapterId, questionCount: questions.length, questions }, null, 2));
+  return 0;
+}
+
+/** `quiz-verify <chapter.json> --answers "0:1,1:2,..."` — diff blind-derived
+ *  answers (qIndex:choiceIndex pairs) against the chapter's real key. Requires
+ *  FULL coverage (every question answered) so a reviewer can't pass by only
+ *  answering the easy ones. Exit 0 = all match; 1 = mismatch/missing; 2 usage.
+ *  Mismatch output includes the keyed explanation so an adjudicator can judge
+ *  whether the KEY or the DERIVATION is wrong. */
+async function runQuizVerify(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const file = args[0];
+  const answersRaw = typeof flags["answers"] === "string" ? (flags["answers"] as string) : "";
+  if (!file || !answersRaw) {
+    console.error('Usage: quiz-verify <chapter.json> --answers "<qIndex>:<choiceIndex>,..."');
+    return 2;
+  }
+  let chapter: ChapterV21;
+  try {
+    chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
+  } catch (err) {
+    console.error(`Could not read/parse ${file}: ${(err as Error).message}`);
+    return 2;
+  }
+  const derived = new Map<number, number>();
+  for (const pair of answersRaw.split(",")) {
+    const m = pair.trim().match(/^(\d+)\s*[:=]\s*(\d+)$/);
+    if (!m) {
+      console.error(`Bad --answers entry "${pair.trim()}" — expected <qIndex>:<choiceIndex>.`);
+      return 2;
+    }
+    derived.set(Number(m[1]), Number(m[2]));
+  }
+  const questions = chapter.quiz?.questions ?? [];
+  let mismatches = 0;
+  let missing = 0;
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
+    const d = derived.get(i);
+    if (d === undefined) {
+      missing++;
+      console.log(`q${i}: MISSING — no derived answer supplied (full coverage is required)`);
+      continue;
+    }
+    if (d === q.correctIndex) {
+      console.log(`q${i}: MATCH (choice ${d})`);
+    } else {
+      mismatches++;
+      console.log(`q${i}: MISMATCH — derived ${d} ("${(q.choices[d] ?? "<no such choice>").slice(0, 70)}") vs keyed ${q.correctIndex} ("${(q.choices[q.correctIndex] ?? "").slice(0, 70)}")`);
+      console.log(`    keyed explanation: ${(q.explanation ?? "<none>").slice(0, 160)}`);
+    }
+  }
+  console.log(
+    `quiz-verify: ${questions.length - mismatches - missing}/${questions.length} match, ${mismatches} mismatch(es), ${missing} missing.` +
+      (mismatches > 0 ? " A mismatch is a CLAIM (key OR derivation may be wrong) — adjudicate before calling it corruption." : ""),
+  );
+  return mismatches === 0 && missing === 0 ? 0 : 1;
+}
+
+/** `qc-run <bookId> [--chapters 1,2,3]` — generate the harness QC workflow for
+ *  a book: tooled blind-key verification, dual-lens publishable-bar reads, a
+ *  cross-chapter sweep, adversarial adjudication of every corruption claim,
+ *  and qc-attest with reviewer=harness:<id>. The generated script embeds the
+ *  LIVE rubric/weights/floors from publishableBar.ts (no prompt drift) and is
+ *  launched from a Claude Code session via the Workflow tool. */
+async function runQcRun(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: qc-run <bookId> [--chapters 1,2,3]");
+    return 2;
+  }
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  const files = readdirSync(chaptersDir).filter((f) => isSiblingFile(f, bookId)).sort();
+  if (files.length === 0) {
+    console.error(`No chapters found for "${bookId}" in state/chapters/.`);
+    return 2;
+  }
+  const only = (parseCsvFlag(flags["chapters"]) ?? []).map((s) => Number(s)).filter((n) => Number.isFinite(n));
+  const { findRunArtifact } = await import("./lib/runDirs.js");
+  const { AXIS_RUBRIC, AXIS_WEIGHTS, CORRUPTION_AXES, PUBLISHABLE_FLOOR, AXIS_FLOOR } =
+    await import("./critics/semantic/publishableBar.js");
+  const RUNS = resolve(__dirname, "../../../../..", ".chapterflow/runs");
+
+  const quizCounts: Record<number, number> = {};
+  const chapters = files
+    .map((f) => {
+      const ch = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
+      quizCounts[ch.number] = ch.quiz?.questions?.length ?? 0;
+      return {
+        n: ch.number,
+        file: resolve(chaptersDir, f),
+        sidecar: findRunArtifact(RUNS, bookId, `sidecars/source/ch${String(ch.number).padStart(2, "0")}.source.json`),
+      };
+    })
+    .filter((c) => only.length === 0 || only.includes(c.n))
+    .sort((a, b) => a.n - b.n);
+
+  // Gold anchor: judges skim one reference-quality chapter so "85+" is
+  // calibrated against the corpus every blocker is calibrated against.
+  const goldCandidate = resolve(chaptersDir, "daring-greatly-ch01.v21-native.chapter.json");
+  const config = {
+    bookId,
+    pipelineDir: resolve(__dirname, ".."),
+    reviewer: `harness:qc-run-${bookId}-${new Date().toISOString().slice(0, 10)}`,
+    chapters,
+    quizCounts,
+    goldFile: existsSyncFs(goldCandidate) && !bookId.startsWith("daring-greatly") ? goldCandidate : null,
+    rubric: AXIS_RUBRIC,
+    weights: AXIS_WEIGHTS,
+    corruptionAxes: [...CORRUPTION_AXES],
+    publishableFloor: PUBLISHABLE_FLOOR,
+    axisFloor: AXIS_FLOOR,
+  };
+
+  const template = readFileSync(resolve(__dirname, "../templates/qc-run.workflow.template.js"), "utf8");
+  const script = template.replace("__CONFIG__", JSON.stringify(config, null, 2));
+  const outDir = resolve(__dirname, "../state/qc-runs");
+  mkdirSync(outDir, { recursive: true });
+  const outPath = resolve(outDir, `${bookId}.workflow.js`);
+  writeFileSync(outPath, script, "utf8");
+
+  console.log(`QC workflow generated: ${outPath}`);
+  console.log(`  book: ${bookId} — ${chapters.length} chapter(s); sidecars resolved for ${chapters.filter((c) => c.sidecar).length}/${chapters.length}`);
+  console.log(`  reviewer id: ${config.reviewer}`);
+  console.log(`  agents: ~${chapters.length * 3 + 2}+ (blind-keys + 2 lenses per chapter, sweep, adjudication, attest)`);
+  console.log("");
+  console.log("Launch from a Claude Code session (the harness is the no-API semantic judge):");
+  console.log(`  Workflow({ scriptPath: "${outPath}" })`);
+  console.log("Then review the returned verdicts; REVISE/CORRUPTION chapters go back to authoring.");
+  return 0;
+}
+
 /** `qc-status <bookId>` — show per-chapter QC-attestation coverage (the semantic
  *  gate's readiness for promote): PASS (fresh PUBLISHABLE), STALE, REVISE/
  *  CORRUPTION, or MISSING. */
@@ -1915,6 +2076,12 @@ async function main() {
       return runQcStatus(args);
     case "qc-rehash":
       return runQcRehash(args, flags);
+    case "qc-run":
+      return runQcRun(args, flags);
+    case "quiz-blind":
+      return runQuizBlind(args);
+    case "quiz-verify":
+      return runQuizVerify(args, flags);
     case "fanout":
       return runFanout(args, flags);
     case "categorize":
