@@ -4,7 +4,7 @@
   "chapterNumber": 7,
   "chapterId": "think-and-grow-rich-ch07",
   "verdict": "PUBLISHABLE",
-  "contentHash": "d500bc50748c85de",
+  "contentHash": "4445683c9d1fcf18",
   "reviewer": "claude-qc:tgr-20260605",
   "reviewedAt": "2026-06-05T12:02:33.557Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Bar ~91 GREEN. 9/9 keys correct (1,2,0,1,2,0,2,1,0). Master Mind, QQS formula, 11 leadership traits/10 failures, consent-vs-force accurate. Minor: Q9 options phrased as principles not actions, key unambiguous. No corruption."
+  "notes": "Bar ~91 GREEN. 9/9 keys correct (1,2,0,1,2,0,2,1,0). Master Mind, QQS formula, 11 leadership traits/10 failures, consent-vs-force accurate. Minor: Q9 options phrased as principles not actions, key unambiguous. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 7,
+      "chapterId": "think-and-grow-rich-ch07",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "d500bc50748c85de",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T12:02:33.557Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~91 GREEN. 9/9 keys correct (1,2,0,1,2,0,2,1,0). Master Mind, QQS formula, 11 leadership traits/10 failures, consent-vs-force accurate. Minor: Q9 options phrased as principles not actions, key unambiguous. No corruption."
+    }
+  ]
 }

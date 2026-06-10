@@ -4,7 +4,7 @@
   "chapterNumber": 11,
   "chapterId": "psycho-cybernetics-ch11",
   "verdict": "PUBLISHABLE",
-  "contentHash": "8966234b67a9b952",
+  "contentHash": "b16657193b98311a",
   "reviewer": "claude-qc:opus48-20260609-psycho-r2",
   "reviewedAt": "2026-06-10T01:25:00.722Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "GREEN ~88. 9/9 keys correct; five disinhibition exercises represented (no-worry speech/act-before-plan/stop-self-criticism/louder/compliments); stuttering grounded; de-templated; cards good."
+  "notes": "GREEN ~88. 9/9 keys correct; five disinhibition exercises represented (no-worry speech/act-before-plan/stop-self-criticism/louder/compliments); stuttering grounded; de-templated; cards good.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 11,
+      "chapterId": "psycho-cybernetics-ch11",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "8966234b67a9b952",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:25:00.722Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~88. 9/9 keys correct; five disinhibition exercises represented (no-worry speech/act-before-plan/stop-self-criticism/louder/compliments); stuttering grounded; de-templated; cards good."
+    }
+  ]
 }

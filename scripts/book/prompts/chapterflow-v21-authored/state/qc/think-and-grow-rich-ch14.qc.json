@@ -4,7 +4,7 @@
   "chapterNumber": 14,
   "chapterId": "think-and-grow-rich-ch14",
   "verdict": "PUBLISHABLE",
-  "contentHash": "1803d2767507592b",
+  "contentHash": "9d05f2535710244a",
   "reviewer": "claude-qc:tgr-20260605",
   "reviewedAt": "2026-06-05T12:02:36.669Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Bar ~91 GREEN. 9/9 keys correct (2,0,1,1,2,0,2,1,0). Invisible Counselors (Emerson/Paine/Edison/Lincoln/Ford/Carnegie), 13th-principle capstone ordering accurate; thoughtful hunch-deserves-less-authority reading. No corruption."
+  "notes": "Bar ~91 GREEN. 9/9 keys correct (2,0,1,1,2,0,2,1,0). Invisible Counselors (Emerson/Paine/Edison/Lincoln/Ford/Carnegie), 13th-principle capstone ordering accurate; thoughtful hunch-deserves-less-authority reading. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 14,
+      "chapterId": "think-and-grow-rich-ch14",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "1803d2767507592b",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T12:02:36.669Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~91 GREEN. 9/9 keys correct (2,0,1,1,2,0,2,1,0). Invisible Counselors (Emerson/Paine/Edison/Lincoln/Ford/Carnegie), 13th-principle capstone ordering accurate; thoughtful hunch-deserves-less-authority reading. No corruption."
+    }
+  ]
 }

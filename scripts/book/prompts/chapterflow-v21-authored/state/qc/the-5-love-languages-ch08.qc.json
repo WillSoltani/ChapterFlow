@@ -4,7 +4,7 @@
   "chapterNumber": 8,
   "chapterId": "the-5-love-languages-ch08",
   "verdict": "PUBLISHABLE",
-  "contentHash": "7b09e2478d6b3f45",
+  "contentHash": "eef85dcfa2311680",
   "reviewer": "claude-qc:5ll-20260606",
   "reviewedAt": "2026-06-06T11:53:28.368Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Bar ~92/100. 9/9 keys; touch-dialects/consent/crisis/abuse-boundary faithful; varied scenes; plan 'Ask the Touch Dialect'. Minor: 'high sex-drive' archetype named Raymond in breakdown but Brock in ex5 (naming inefficiency, not incoherence). GREEN."
+  "notes": "Bar ~92/100. 9/9 keys; touch-dialects/consent/crisis/abuse-boundary faithful; varied scenes; plan 'Ask the Touch Dialect'. Minor: 'high sex-drive' archetype named Raymond in breakdown but Brock in ex5 (naming inefficiency, not incoherence). GREEN.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-5-love-languages",
+      "chapterNumber": 8,
+      "chapterId": "the-5-love-languages-ch08",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "7b09e2478d6b3f45",
+      "reviewer": "claude-qc:5ll-20260606",
+      "reviewedAt": "2026-06-06T11:53:28.368Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~92/100. 9/9 keys; touch-dialects/consent/crisis/abuse-boundary faithful; varied scenes; plan 'Ask the Touch Dialect'. Minor: 'high sex-drive' archetype named Raymond in breakdown but Brock in ex5 (naming inefficiency, not incoherence). GREEN."
+    }
+  ]
 }

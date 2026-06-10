@@ -9,9 +9,9 @@
 
 import assert from "node:assert/strict";
 
-import { chapterContentHash } from "../src/critics/qcAttestation.js";
+import { chapterContentHash, chapterContentHashV1, isAttestationFresh } from "../src/critics/qcAttestation.js";
 import type { ChapterV21 } from "../src/types.js";
-import { test, xfail } from "./harness.js";
+import { test } from "./harness.js";
 import { deepStrip, makeChapter } from "./helpers.js";
 
 const BOOK = "zz-fixture-hash";
@@ -99,41 +99,42 @@ test("promote-time provenance strip cannot stale a valid attestation", () => {
   assert.equal(chapterContentHash(ch), chapterContentHash(stripped));
 });
 
-// ── KNOWN GAPS (verified 2026-06-09) — Phase 1 flips these to assertCovered ─
+// ── Formerly-missed fields, covered since the v2 exclude-list inversion ─────
+// (these were the verified 2026-06-09 gaps: the v1 include-list silently
+// dropped them, so a post-review edit shipped under a "fresh" attestation)
 
-const GAP = "VERIFIED GAP: field is reader-facing but outside the hash projection (qcAttestation.ts canonicalContent) — Phase 1: invert to exclude-list";
-
-xfail("covers quiz.passingScorePercent", GAP, () => {
-  const { base, changed } = mutated((c) => { c.quiz.passingScorePercent = 95; });
-  assert.notEqual(changed, base);
+assertCovered("quiz.passingScorePercent", (c) => { c.quiz.passingScorePercent = 95; });
+assertCovered("readingTimeMinutes", (c) => { c.readingTimeMinutes = 45; });
+assertCovered("examples[].tags", (c) => { c.examples[0].tags = ["completely", "different"]; });
+assertCovered("reviewCards[].difficulty", (c) => {
+  c.reviewCards[0].difficulty = c.reviewCards[0].difficulty === "hard" ? "easy" : "hard";
 });
 
-xfail("covers readingTimeMinutes", GAP, () => {
-  const { base, changed } = mutated((c) => { c.readingTimeMinutes = 45; });
-  assert.notEqual(changed, base);
+test("implementationPlan inner key order does not affect the hash (deep key sort)", () => {
+  const ch = makeChapter(BOOK, 5);
+  const reordered = structuredClone(ch);
+  reordered.implementationPlan = Object.fromEntries(
+    Object.entries(reordered.implementationPlan).reverse(),
+  ) as ChapterV21["implementationPlan"];
+  assert.equal(chapterContentHash(ch), chapterContentHash(reordered));
 });
 
-xfail("covers examples[].tags", GAP, () => {
-  const { base, changed } = mutated((c) => { c.examples[0].tags = ["completely", "different"]; });
-  assert.notEqual(changed, base);
-});
+// ── Hash versioning: legacy v1 attestations must keep verifying ─────────────
 
-xfail("covers reviewCards[].difficulty", GAP, () => {
-  const { base, changed } = mutated((c) => {
-    c.reviewCards[0].difficulty = c.reviewCards[0].difficulty === "hard" ? "easy" : "hard";
-  });
-  assert.notEqual(changed, base);
+test("a legacy v1 attestation (no hashVersion) stays FRESH for unchanged content", () => {
+  const ch = makeChapter(BOOK, 6);
+  const att = {
+    schemaVersion: "qc-attest-v1" as const,
+    bookId: BOOK,
+    chapterNumber: 6,
+    chapterId: ch.chapterId,
+    verdict: "PUBLISHABLE" as const,
+    contentHash: chapterContentHashV1(ch), // recorded before the v2 switch
+    reviewer: "test",
+    reviewedAt: "2026-06-01T00:00:00.000Z",
+  };
+  assert.ok(isAttestationFresh(att, ch), "v2 rollout must not mass-stale existing attestations");
+  const edited = structuredClone(ch);
+  edited.quiz.questions[0].correctIndex = (edited.quiz.questions[0].correctIndex + 1) % 3;
+  assert.ok(!isAttestationFresh(att, edited), "a real edit must still stale a v1 attestation");
 });
-
-xfail(
-  "implementationPlan inner key order should not affect the hash",
-  "VERIFIED WART: implementationPlan/memorableLines are hashed with on-disk key order; a semantic no-op reorder marks the chapter STALE — Phase 1: canonicalize (deep key sort) when inverting the projection",
-  () => {
-    const ch = makeChapter(BOOK, 5);
-    const reordered = structuredClone(ch);
-    reordered.implementationPlan = Object.fromEntries(
-      Object.entries(reordered.implementationPlan).reverse(),
-    ) as ChapterV21["implementationPlan"];
-    assert.equal(chapterContentHash(ch), chapterContentHash(reordered));
-  },
-);

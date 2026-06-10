@@ -4,7 +4,7 @@
   "chapterNumber": 6,
   "chapterId": "the-book-of-boundaries-ch06",
   "verdict": "PUBLISHABLE",
-  "contentHash": "178e6c0190b00282",
+  "contentHash": "86afa893a37f129a",
   "reviewer": "claude-qc:boundaries-20260609",
   "reviewedAt": "2026-06-10T00:50:46.560Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "~89/100. 9/9 keys correct; Fair Play (Eve Rodsky) + agreement-vs-limit + consent grounded to source; examples lean kitchen (~4/6) but distinct lessons/formats."
+  "notes": "~89/100. 9/9 keys correct; Fair Play (Eve Rodsky) + agreement-vs-limit + consent grounded to source; examples lean kitchen (~4/6) but distinct lessons/formats.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-book-of-boundaries",
+      "chapterNumber": 6,
+      "chapterId": "the-book-of-boundaries-ch06",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "178e6c0190b00282",
+      "reviewer": "claude-qc:boundaries-20260609",
+      "reviewedAt": "2026-06-10T00:50:46.560Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~89/100. 9/9 keys correct; Fair Play (Eve Rodsky) + agreement-vs-limit + consent grounded to source; examples lean kitchen (~4/6) but distinct lessons/formats."
+    }
+  ]
 }

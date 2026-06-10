@@ -4,7 +4,7 @@
   "chapterNumber": 10,
   "chapterId": "the-body-keeps-the-score-ch10",
   "verdict": "PUBLISHABLE",
-  "contentHash": "3933d137c78690b4",
+  "contentHash": "0916bbdc9bfad2a1",
   "reviewer": "claude-qc:tbkts-20260606",
   "reviewedAt": "2026-06-06T17:42:49.320Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Bar ~86/100. 9/9 keys correct; DTD facts grounded vs ch10 sidecar (NCTSN 2000, 12-member group twice-yearly x4yrs, DSM rejection, EU prevention contrasts). Examples cross-system & domain-varied; cards test understanding. Minor: fullRead repeats the prevention/policy point in two near-duplicate paragraphs (prose ~0.80, still GREEN). No corruption."
+  "notes": "Bar ~86/100. 9/9 keys correct; DTD facts grounded vs ch10 sidecar (NCTSN 2000, 12-member group twice-yearly x4yrs, DSM rejection, EU prevention contrasts). Examples cross-system & domain-varied; cards test understanding. Minor: fullRead repeats the prevention/policy point in two near-duplicate paragraphs (prose ~0.80, still GREEN). No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-body-keeps-the-score",
+      "chapterNumber": 10,
+      "chapterId": "the-body-keeps-the-score-ch10",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "3933d137c78690b4",
+      "reviewer": "claude-qc:tbkts-20260606",
+      "reviewedAt": "2026-06-06T17:42:49.320Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~86/100. 9/9 keys correct; DTD facts grounded vs ch10 sidecar (NCTSN 2000, 12-member group twice-yearly x4yrs, DSM rejection, EU prevention contrasts). Examples cross-system & domain-varied; cards test understanding. Minor: fullRead repeats the prevention/policy point in two near-duplicate paragraphs (prose ~0.80, still GREEN). No corruption."
+    }
+  ]
 }

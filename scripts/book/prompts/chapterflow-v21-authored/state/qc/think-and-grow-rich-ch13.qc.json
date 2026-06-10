@@ -4,7 +4,7 @@
   "chapterNumber": 13,
   "chapterId": "think-and-grow-rich-ch13",
   "verdict": "PUBLISHABLE",
-  "contentHash": "e0aaa33f9ce03b75",
+  "contentHash": "5cca9e86ff3689c1",
   "reviewer": "claude-qc:tgr-20260605",
   "reviewedAt": "2026-06-05T12:02:36.132Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Bar ~90 GREEN. 9/9 keys correct (0,2,1,0,2,1,0,2,1). Bell/Gates, radio broadcasting metaphor accurate; honestly frames Bell/Gates as period color not settled science. No corruption."
+  "notes": "Bar ~90 GREEN. 9/9 keys correct (0,2,1,0,2,1,0,2,1). Bell/Gates, radio broadcasting metaphor accurate; honestly frames Bell/Gates as period color not settled science. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 13,
+      "chapterId": "think-and-grow-rich-ch13",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "e0aaa33f9ce03b75",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T12:02:36.132Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~90 GREEN. 9/9 keys correct (0,2,1,0,2,1,0,2,1). Bell/Gates, radio broadcasting metaphor accurate; honestly frames Bell/Gates as period color not settled science. No corruption."
+    }
+  ]
 }

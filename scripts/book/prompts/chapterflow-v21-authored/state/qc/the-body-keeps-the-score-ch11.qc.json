@@ -4,7 +4,7 @@
   "chapterNumber": 11,
   "chapterId": "the-body-keeps-the-score-ch11",
   "verdict": "PUBLISHABLE",
-  "contentHash": "e648a873139caa50",
+  "contentHash": "06e54e9f92a229f4",
   "reviewer": "claude-qc:tbkts-20260606",
   "reviewedAt": "2026-06-10T00:24:06.060Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "~92. 9/9 keys correct, explanations agree (Janet 1889/Freud/delayed recall); distinct scenes, no collision. No corruption."
+  "notes": "~92. 9/9 keys correct, explanations agree (Janet 1889/Freud/delayed recall); distinct scenes, no collision. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-body-keeps-the-score",
+      "chapterNumber": 11,
+      "chapterId": "the-body-keeps-the-score-ch11",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "e648a873139caa50",
+      "reviewer": "claude-qc:tbkts-20260606",
+      "reviewedAt": "2026-06-10T00:24:06.060Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~92. 9/9 keys correct, explanations agree (Janet 1889/Freud/delayed recall); distinct scenes, no collision. No corruption."
+    }
+  ]
 }

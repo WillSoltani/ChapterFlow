@@ -4,7 +4,7 @@
   "chapterNumber": 2,
   "chapterId": "the-mountain-is-you-ch02",
   "verdict": "PUBLISHABLE",
-  "contentHash": "d43f362254136717",
+  "contentHash": "9019c786b18ffea6",
   "reviewer": "claude-qc:the-mountain-is-you-r2",
   "reviewedAt": "2026-06-10T00:59:39.464Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "~86/100 GREEN. 9/9 keys correct. Examples varied (no shared skeleton). Breakdown teaches (Gay Hendricks upper-limit, Teal Swan core-commitment - accurate). Cards/plan/lines solid. No corruption."
+  "notes": "~86/100 GREEN. 9/9 keys correct. Examples varied (no shared skeleton). Breakdown teaches (Gay Hendricks upper-limit, Teal Swan core-commitment - accurate). Cards/plan/lines solid. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-mountain-is-you",
+      "chapterNumber": 2,
+      "chapterId": "the-mountain-is-you-ch02",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "d43f362254136717",
+      "reviewer": "claude-qc:the-mountain-is-you-r2",
+      "reviewedAt": "2026-06-10T00:59:39.464Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~86/100 GREEN. 9/9 keys correct. Examples varied (no shared skeleton). Breakdown teaches (Gay Hendricks upper-limit, Teal Swan core-commitment - accurate). Cards/plan/lines solid. No corruption."
+    }
+  ]
 }

@@ -4,7 +4,7 @@
   "chapterNumber": 15,
   "chapterId": "psycho-cybernetics-ch15",
   "verdict": "PUBLISHABLE",
-  "contentHash": "c65549e05d6a55a8",
+  "contentHash": "0a1114c5095ec5a3",
   "reviewer": "claude-qc:opus48-20260609-psycho-r2",
   "reviewedAt": "2026-06-10T01:11:23.043Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "GREEN ~89 (round2). Clock-stamp shared-skeleton FIXED: all 5 clocks removed, 6 scenes enact distinct actions; Selye/The Stress of Life/1956 accurate; all 9 keys unchanged & correct."
+  "notes": "GREEN ~89 (round2). Clock-stamp shared-skeleton FIXED: all 5 clocks removed, 6 scenes enact distinct actions; Selye/The Stress of Life/1956 accurate; all 9 keys unchanged & correct.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 15,
+      "chapterId": "psycho-cybernetics-ch15",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "c65549e05d6a55a8",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:11:23.043Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~89 (round2). Clock-stamp shared-skeleton FIXED: all 5 clocks removed, 6 scenes enact distinct actions; Selye/The Stress of Life/1956 accurate; all 9 keys unchanged & correct."
+    }
+  ]
 }

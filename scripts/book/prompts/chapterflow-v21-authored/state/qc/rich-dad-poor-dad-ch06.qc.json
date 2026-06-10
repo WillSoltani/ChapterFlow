@@ -4,7 +4,7 @@
   "chapterNumber": 6,
   "chapterId": "rich-dad-poor-dad-ch06",
   "verdict": "PUBLISHABLE",
-  "contentHash": "940651511e30b5a2",
+  "contentHash": "b583f649b5018666",
   "reviewer": "claude-qc:rdpd-20260605-r2",
   "reviewedAt": "2026-06-05T11:40:16.406Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Full 8-axis read. All 9 keys correct; Singapore reporter, Xerox sales, Marine leadership, management=cashflow/systems/people faithful to RDPD Lesson 6. Minor: orphan persona Jacqueline q08 (echoes q06 concept; not a bar failure). No corruption."
+  "notes": "Full 8-axis read. All 9 keys correct; Singapore reporter, Xerox sales, Marine leadership, management=cashflow/systems/people faithful to RDPD Lesson 6. Minor: orphan persona Jacqueline q08 (echoes q06 concept; not a bar failure). No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "rich-dad-poor-dad",
+      "chapterNumber": 6,
+      "chapterId": "rich-dad-poor-dad-ch06",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "940651511e30b5a2",
+      "reviewer": "claude-qc:rdpd-20260605-r2",
+      "reviewedAt": "2026-06-05T11:40:16.406Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Full 8-axis read. All 9 keys correct; Singapore reporter, Xerox sales, Marine leadership, management=cashflow/systems/people faithful to RDPD Lesson 6. Minor: orphan persona Jacqueline q08 (echoes q06 concept; not a bar failure). No corruption."
+    }
+  ]
 }

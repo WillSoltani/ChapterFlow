@@ -4,7 +4,7 @@
   "chapterNumber": 9,
   "chapterId": "the-body-keeps-the-score-ch09",
   "verdict": "PUBLISHABLE",
-  "contentHash": "e6ac2c2c7b135cc0",
+  "contentHash": "4533d7ed22a29226",
   "reviewer": "claude-qc:tbkts-r2-20260610",
   "reviewedAt": "2026-06-10T00:47:33.199Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "R2 re-verify ~92. PRIOR unsourced stats RESOLVED — 87%/81% removed entirely (qualitative 'cluster'/'high rates', grounded); skeleton RESOLVED. 9/9 keys correct. No new defect."
+  "notes": "R2 re-verify ~92. PRIOR unsourced stats RESOLVED — 87%/81% removed entirely (qualitative 'cluster'/'high rates', grounded); skeleton RESOLVED. 9/9 keys correct. No new defect.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-body-keeps-the-score",
+      "chapterNumber": 9,
+      "chapterId": "the-body-keeps-the-score-ch09",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "e6ac2c2c7b135cc0",
+      "reviewer": "claude-qc:tbkts-r2-20260610",
+      "reviewedAt": "2026-06-10T00:47:33.199Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "R2 re-verify ~92. PRIOR unsourced stats RESOLVED — 87%/81% removed entirely (qualitative 'cluster'/'high rates', grounded); skeleton RESOLVED. 9/9 keys correct. No new defect."
+    }
+  ]
 }

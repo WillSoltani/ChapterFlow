@@ -4,7 +4,7 @@
   "chapterNumber": 11,
   "chapterId": "think-and-grow-rich-ch11",
   "verdict": "PUBLISHABLE",
-  "contentHash": "897bac0f911a6fe0",
+  "contentHash": "efba2e73472a5fbe",
   "reviewer": "claude-qc:tgr-20260605",
   "reviewedAt": "2026-06-05T12:02:35.102Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Bar ~91 GREEN. 9/9 keys correct (0,1,2,0,1,2,0,1,2). 10-stimuli list, Edward VIII abdication, achievement-after-40, magnetism accurate. Sensitive topic, proper register. No corruption."
+  "notes": "Bar ~91 GREEN. 9/9 keys correct (0,1,2,0,1,2,0,1,2). 10-stimuli list, Edward VIII abdication, achievement-after-40, magnetism accurate. Sensitive topic, proper register. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 11,
+      "chapterId": "think-and-grow-rich-ch11",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "897bac0f911a6fe0",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T12:02:35.102Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~91 GREEN. 9/9 keys correct (0,1,2,0,1,2,0,1,2). 10-stimuli list, Edward VIII abdication, achievement-after-40, magnetism accurate. Sensitive topic, proper register. No corruption."
+    }
+  ]
 }

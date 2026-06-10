@@ -4,7 +4,7 @@
   "chapterNumber": 4,
   "chapterId": "the-mountain-is-you-ch04",
   "verdict": "PUBLISHABLE",
-  "contentHash": "b15b0c749708cb14",
+  "contentHash": "c2ce96af2ea5c750",
   "reviewer": "claude-qc:the-mountain-is-you-r2",
   "reviewedAt": "2026-06-10T00:59:42.211Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "~86/100 GREEN. 9/9 keys correct. Citation-prop skeleton REMOVED; sources now woven not stapled (mild residual: 4/6 still name a source inline). Facts accurate (Molecule of More 2018, Adam Cole/NPR 2016). No corruption."
+  "notes": "~86/100 GREEN. 9/9 keys correct. Citation-prop skeleton REMOVED; sources now woven not stapled (mild residual: 4/6 still name a source inline). Facts accurate (Molecule of More 2018, Adam Cole/NPR 2016). No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-mountain-is-you",
+      "chapterNumber": 4,
+      "chapterId": "the-mountain-is-you-ch04",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "b15b0c749708cb14",
+      "reviewer": "claude-qc:the-mountain-is-you-r2",
+      "reviewedAt": "2026-06-10T00:59:42.211Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~86/100 GREEN. 9/9 keys correct. Citation-prop skeleton REMOVED; sources now woven not stapled (mild residual: 4/6 still name a source inline). Facts accurate (Molecule of More 2018, Adam Cole/NPR 2016). No corruption."
+    }
+  ]
 }

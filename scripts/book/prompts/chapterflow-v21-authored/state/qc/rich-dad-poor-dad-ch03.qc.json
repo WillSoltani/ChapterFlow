@@ -4,7 +4,7 @@
   "chapterNumber": 3,
   "chapterId": "rich-dad-poor-dad-ch03",
   "verdict": "PUBLISHABLE",
-  "contentHash": "d44a73767b945dfb",
+  "contentHash": "59ac221f8ee350ae",
   "reviewer": "claude-qc:rdpd-20260605-r2",
   "reviewedAt": "2026-06-05T11:38:52.873Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Full 8-axis read. All 9 keys correct; Kroc 1974 MBA real-estate reframe + Keith Cunningham car-wash faithful; Blake/Henry are distinct consistent personas; cards/plan/lines solid. No corruption."
+  "notes": "Full 8-axis read. All 9 keys correct; Kroc 1974 MBA real-estate reframe + Keith Cunningham car-wash faithful; Blake/Henry are distinct consistent personas; cards/plan/lines solid. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "rich-dad-poor-dad",
+      "chapterNumber": 3,
+      "chapterId": "rich-dad-poor-dad-ch03",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "d44a73767b945dfb",
+      "reviewer": "claude-qc:rdpd-20260605-r2",
+      "reviewedAt": "2026-06-05T11:38:52.873Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Full 8-axis read. All 9 keys correct; Kroc 1974 MBA real-estate reframe + Keith Cunningham car-wash faithful; Blake/Henry are distinct consistent personas; cards/plan/lines solid. No corruption."
+    }
+  ]
 }

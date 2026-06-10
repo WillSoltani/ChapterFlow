@@ -4,7 +4,7 @@
   "chapterNumber": 7,
   "chapterId": "the-5-love-languages-ch07",
   "verdict": "PUBLISHABLE",
-  "contentHash": "81a628427860d740",
+  "contentHash": "2aadf39e89679658",
   "reviewer": "claude-qc:5ll-20260606",
   "reviewedAt": "2026-06-06T11:46:12.306Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Bar ~91/100. 9/9 keys verified; names map 1:1 (Olivia=car-washer, Carmen/Douglas role-script) across breakdown+examples; doormat/coercion/role-script faithful to Chapman. Heavy chore-vocab reuse (dishes/cooking/ironing/car) is the chapter's domain -> F4 majors, stylistic not corruption. GREEN."
+  "notes": "Bar ~91/100. 9/9 keys verified; names map 1:1 (Olivia=car-washer, Carmen/Douglas role-script) across breakdown+examples; doormat/coercion/role-script faithful to Chapman. Heavy chore-vocab reuse (dishes/cooking/ironing/car) is the chapter's domain -> F4 majors, stylistic not corruption. GREEN.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-5-love-languages",
+      "chapterNumber": 7,
+      "chapterId": "the-5-love-languages-ch07",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "81a628427860d740",
+      "reviewer": "claude-qc:5ll-20260606",
+      "reviewedAt": "2026-06-06T11:46:12.306Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~91/100. 9/9 keys verified; names map 1:1 (Olivia=car-washer, Carmen/Douglas role-script) across breakdown+examples; doormat/coercion/role-script faithful to Chapman. Heavy chore-vocab reuse (dishes/cooking/ironing/car) is the chapter's domain -> F4 majors, stylistic not corruption. GREEN."
+    }
+  ]
 }

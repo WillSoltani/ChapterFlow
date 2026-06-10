@@ -118,6 +118,7 @@ Commands:
                                      stamped with the chapter's content hash, to state/qc/. promote
                                      requires a fresh PUBLISHABLE attestation per chapter; editing the
                                      chapter afterward makes it stale and forces re-review.
+  qc-rehash <bookId>|--all           Upgrade unchanged v1-hash attestations to the v2 content hash
   qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
                                      CORRUPTION / MISSING. Exit 0 iff every chapter is ship-ready.
   fanout <bookId> [--from N --to M] [--all]
@@ -1367,7 +1368,7 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
   const verdict = typeof flags["verdict"] === "string" ? (flags["verdict"] as string).toUpperCase() : "";
   const reviewer = typeof flags["reviewer"] === "string" ? (flags["reviewer"] as string) : "";
   if (!file || !["PUBLISHABLE", "REVISE", "CORRUPTION"].includes(verdict) || !reviewer) {
-    console.error(`Usage: qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."] [--dimensions k=true,k2=false]`);
+    console.error(`Usage: qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."] [--dimensions k=true,k2=false] [--supersede "<reason>"]`);
     return 2;
   }
   const chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
@@ -1376,7 +1377,8 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
     console.error(`Could not parse chapterId "${chapter.chapterId}" — cannot attest.`);
     return 2;
   }
-  const { chapterContentHash, writeAttestation } = await import("./critics/qcAttestation.js");
+  const { chapterContentHash, writeAttestation, loadAttestation, isAttestationFresh } =
+    await import("./critics/qcAttestation.js");
   const dimensions: Record<string, boolean> = {};
   for (const kv of parseCsvFlag(flags["dimensions"]) ?? []) {
     const [k, v] = kv.split("=");
@@ -1384,6 +1386,39 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
   }
   const notes = typeof flags["notes"] === "string" ? (flags["notes"] as string) : undefined;
   const findings = parseCsvFlag(flags["findings"]) ?? undefined;
+  const supersede = typeof flags["supersede"] === "string" ? (flags["supersede"] as string) : null;
+
+  // Self-attest replay guard. The verified failure mode (rich-dad redo loop):
+  // a reviewer records REVISE, the AUTHORING agent re-runs qc-attest with
+  // verdict PUBLISHABLE on the UNCHANGED chapter, silently overwriting the
+  // human verdict. A PUBLISHABLE flip over a non-PUBLISHABLE attestation is
+  // only legitimate when the content actually changed since that review
+  // (hash differs → the redo loop worked). Same content → refuse, unless
+  // --supersede "<reason>" records an explicit, auditable override.
+  const existing = loadAttestation(parsed.bookId, chapter.number);
+  if (
+    existing &&
+    existing.verdict !== "PUBLISHABLE" &&
+    verdict === "PUBLISHABLE" &&
+    isAttestationFresh(existing, chapter) &&
+    !supersede
+  ) {
+    console.error(
+      `REFUSED: ${parsed.bookId}-ch${chapter.number} carries a ${existing.verdict} verdict ` +
+        `(reviewer=${existing.reviewer}, ${existing.reviewedAt.slice(0, 10)}) and the chapter is UNCHANGED ` +
+        `since that review. Flipping to PUBLISHABLE without changing the content is the self-attest ` +
+        `replay this gate exists to stop. Fix the chapter (the hash will change), or — if the ` +
+        `${existing.verdict} was itself wrong — re-run with --supersede "<why the prior verdict was wrong>".`,
+    );
+    return 1;
+  }
+  if (existing) {
+    console.log(
+      `Overwriting prior attestation (verdict=${existing.verdict}, reviewer=${existing.reviewer}, ` +
+        `${existing.reviewedAt.slice(0, 10)}) — it is preserved in the attestation's history.`,
+    );
+  }
+  const { history: _prevHistory, ...existingSansHistory } = existing ?? {};
   const path = writeAttestation({
     schemaVersion: "qc-attest-v1",
     bookId: parsed.bookId,
@@ -1391,13 +1426,68 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
     chapterId: chapter.chapterId!,
     verdict: verdict as "PUBLISHABLE" | "REVISE" | "CORRUPTION",
     contentHash: chapterContentHash(chapter),
+    hashVersion: "v2",
     reviewer,
     reviewedAt: new Date().toISOString(),
     dimensions: Object.keys(dimensions).length ? dimensions : undefined,
     findings,
     notes,
+    history: existing
+      ? [...(existing.history ?? []), existingSansHistory as any].slice(-10)
+      : undefined,
+    supersededReason: supersede ?? undefined,
   });
-  console.log(`QC attestation written: ${path}\n  ${parsed.bookId}-ch${chapter.number}  verdict=${verdict}  hash=${chapterContentHash(chapter)}  reviewer=${reviewer}`);
+  console.log(`QC attestation written: ${path}\n  ${parsed.bookId}-ch${chapter.number}  verdict=${verdict}  hash=${chapterContentHash(chapter)} (v2)  reviewer=${reviewer}`);
+  return 0;
+}
+
+/** `qc-rehash [--all | <bookId>]` — one-time migration: upgrade v1-hash
+ *  attestations to v2 WHERE THE CONTENT IS UNCHANGED since review (v1 hash
+ *  still matches the chapter on disk). A v1 attestation that no longer
+ *  matches is already stale and is left alone — it needs re-review, not a
+ *  re-pin. The prior record is preserved in the attestation's history. */
+async function runQcRehash(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookFilter = args[0];
+  if (!bookFilter && flags["all"] !== true) {
+    console.error("Usage: qc-rehash <bookId> | qc-rehash --all");
+    return 2;
+  }
+  const { QC_DIR, chapterContentHash, chapterContentHashV1, writeAttestation } =
+    await import("./critics/qcAttestation.js");
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  let upgraded = 0, alreadyV2 = 0, stale = 0, missing = 0;
+  const files = readdirSync(QC_DIR).filter((f) => f.endsWith(".qc.json")).sort();
+  for (const f of files) {
+    const att = JSON.parse(readFileSync(resolve(QC_DIR, f), "utf8"));
+    if (bookFilter && att.bookId !== bookFilter) continue;
+    if (att.hashVersion === "v2") { alreadyV2++; continue; }
+    const chapterFile = resolve(
+      chaptersDir,
+      `${att.bookId}-ch${String(att.chapterNumber).padStart(2, "0")}.v21-native.chapter.json`,
+    );
+    if (!existsSyncFs(chapterFile)) {
+      console.log(`  SKIP (no chapter on disk): ${f}`);
+      missing++;
+      continue;
+    }
+    const chapter = JSON.parse(readFileSync(chapterFile, "utf8")) as ChapterV21;
+    if (chapterContentHashV1(chapter) !== att.contentHash) {
+      console.log(`  STALE under v1 — left for re-review: ${f}`);
+      stale++;
+      continue;
+    }
+    const { history: _h, ...prior } = att;
+    writeAttestation({
+      ...att,
+      contentHash: chapterContentHash(chapter),
+      hashVersion: "v2",
+      history: [...(att.history ?? []), prior].slice(-10),
+    });
+    upgraded++;
+  }
+  console.log(
+    `qc-rehash: ${upgraded} upgraded to v2, ${alreadyV2} already v2, ${stale} stale (need re-review), ${missing} missing chapters.`,
+  );
   return 0;
 }
 
@@ -1416,7 +1506,7 @@ async function runQcStatus(args: string[]): Promise<number> {
     console.error(`No chapters found for "${bookId}".`);
     return 2;
   }
-  const { chapterContentHash, loadAttestation } = await import("./critics/qcAttestation.js");
+  const { isAttestationFresh, loadAttestation } = await import("./critics/qcAttestation.js");
   let ready = 0;
   const lines: string[] = [];
   for (const f of files) {
@@ -1425,7 +1515,7 @@ async function runQcStatus(args: string[]): Promise<number> {
     let status: string;
     if (!att) status = "MISSING";
     else if (att.verdict !== "PUBLISHABLE") status = att.verdict;
-    else if (att.contentHash !== chapterContentHash(ch)) status = "STALE";
+    else if (!isAttestationFresh(att, ch)) status = "STALE";
     else { status = "PASS"; ready++; }
     lines.push(`  ch${String(ch.number).padStart(2, "0")}: ${status}${att ? `  (reviewer=${att.reviewer}, ${att.reviewedAt.slice(0, 10)})` : ""}`);
   }
@@ -1762,6 +1852,8 @@ async function main() {
       return runQcAttest(args, flags);
     case "qc-status":
       return runQcStatus(args);
+    case "qc-rehash":
+      return runQcRehash(args, flags);
     case "fanout":
       return runFanout(args, flags);
     case "categorize":

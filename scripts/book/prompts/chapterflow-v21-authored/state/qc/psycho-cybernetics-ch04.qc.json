@@ -4,7 +4,7 @@
   "chapterNumber": 4,
   "chapterId": "psycho-cybernetics-ch04",
   "verdict": "PUBLISHABLE",
-  "contentHash": "7a9ef1512451a430",
+  "contentHash": "d663615bd9d619e2",
   "reviewer": "claude-qc:opus48-20260609-psycho-r2",
   "reviewedAt": "2026-06-10T01:43:23.170Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "GREEN ~88 (re-QC after fix). 'Alder'->'Adler' corrected in chapter + source: first mention 'Alfred Adler', later 'Adler'; lesson and all 9 keys (0,1,2,0,2,1,0,1,2) unchanged. Four relaxation pictures complete; Chappell/Norton-Williams grounded; examples de-templated."
+  "notes": "GREEN ~88 (re-QC after fix). 'Alder'->'Adler' corrected in chapter + source: first mention 'Alfred Adler', later 'Adler'; lesson and all 9 keys (0,1,2,0,2,1,0,1,2) unchanged. Four relaxation pictures complete; Chappell/Norton-Williams grounded; examples de-templated.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 4,
+      "chapterId": "psycho-cybernetics-ch04",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "7a9ef1512451a430",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:43:23.170Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~88 (re-QC after fix). 'Alder'->'Adler' corrected in chapter + source: first mention 'Alfred Adler', later 'Adler'; lesson and all 9 keys (0,1,2,0,2,1,0,1,2) unchanged. Four relaxation pictures complete; Chappell/Norton-Williams grounded; examples de-templated."
+    }
+  ]
 }

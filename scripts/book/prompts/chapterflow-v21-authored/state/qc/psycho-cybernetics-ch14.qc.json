@@ -4,7 +4,7 @@
   "chapterNumber": 14,
   "chapterId": "psycho-cybernetics-ch14",
   "verdict": "PUBLISHABLE",
-  "contentHash": "9c48fd4f8bc38450",
+  "contentHash": "d096ff9bcf56f297",
   "reviewer": "claude-qc:opus48-20260609-psycho-r2",
   "reviewedAt": "2026-06-10T01:25:02.475Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "GREEN ~88. 9/9 keys correct; winning-feeling/Cary-Middlecoff/teleological end-picture/positive-worry/small-wins grounded; de-templated; cards good."
+  "notes": "GREEN ~88. 9/9 keys correct; winning-feeling/Cary-Middlecoff/teleological end-picture/positive-worry/small-wins grounded; de-templated; cards good.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 14,
+      "chapterId": "psycho-cybernetics-ch14",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "9c48fd4f8bc38450",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:25:02.475Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~88. 9/9 keys correct; winning-feeling/Cary-Middlecoff/teleological end-picture/positive-worry/small-wins grounded; de-templated; cards good."
+    }
+  ]
 }

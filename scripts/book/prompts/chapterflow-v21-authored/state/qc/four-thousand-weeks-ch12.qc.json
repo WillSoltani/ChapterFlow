@@ -4,7 +4,7 @@
   "chapterNumber": 12,
   "chapterId": "four-thousand-weeks-ch12",
   "verdict": "PUBLISHABLE",
-  "contentHash": "0bd64b1df36bdd2f",
+  "contentHash": "442aab248d4a1ad1",
   "reviewer": "claude-qc:4kw-20260609-r2",
   "reviewedAt": "2026-06-10T01:05:47.172Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Full read. GREEN ~88. 9/9 quiz keys correct (hidden-key derived), prose coherent, facts accurate to source, examples coherent (0/6 staged source-props, names consistent), cards test understanding, plan uses named tool 'Shared-Time Check' with clean context/plan, lines portable. No corruption, no templating."
+  "notes": "Full read. GREEN ~88. 9/9 quiz keys correct (hidden-key derived), prose coherent, facts accurate to source, examples coherent (0/6 staged source-props, names consistent), cards test understanding, plan uses named tool 'Shared-Time Check' with clean context/plan, lines portable. No corruption, no templating.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "four-thousand-weeks",
+      "chapterNumber": 12,
+      "chapterId": "four-thousand-weeks-ch12",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "0bd64b1df36bdd2f",
+      "reviewer": "claude-qc:4kw-20260609-r2",
+      "reviewedAt": "2026-06-10T01:05:47.172Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Full read. GREEN ~88. 9/9 quiz keys correct (hidden-key derived), prose coherent, facts accurate to source, examples coherent (0/6 staged source-props, names consistent), cards test understanding, plan uses named tool 'Shared-Time Check' with clean context/plan, lines portable. No corruption, no templating."
+    }
+  ]
 }

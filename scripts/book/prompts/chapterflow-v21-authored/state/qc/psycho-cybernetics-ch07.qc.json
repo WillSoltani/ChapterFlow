@@ -4,7 +4,7 @@
   "chapterNumber": 7,
   "chapterId": "psycho-cybernetics-ch07",
   "verdict": "PUBLISHABLE",
-  "contentHash": "882a27127cf95e89",
+  "contentHash": "7ad3a3c82e69f33a",
   "reviewer": "claude-qc:opus48-20260609-psycho-r2",
   "reviewedAt": "2026-06-10T01:24:59.602Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "GREEN ~89. 9/9 keys correct; eight happiness instructions enumerated complete; Proverbs merry-heart/21-day shoe/garment grounded; de-templated; cards good."
+  "notes": "GREEN ~89. 9/9 keys correct; eight happiness instructions enumerated complete; Proverbs merry-heart/21-day shoe/garment grounded; de-templated; cards good.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 7,
+      "chapterId": "psycho-cybernetics-ch07",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "882a27127cf95e89",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:24:59.602Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~89. 9/9 keys correct; eight happiness instructions enumerated complete; Proverbs merry-heart/21-day shoe/garment grounded; de-templated; cards good."
+    }
+  ]
 }

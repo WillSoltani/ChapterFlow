@@ -4,7 +4,7 @@
   "chapterNumber": 3,
   "chapterId": "who-moved-my-cheese-ch03",
   "verdict": "PUBLISHABLE",
-  "contentHash": "88d3e4dbe04c16a7",
+  "contentHash": "c7cc40094c35d5f3",
   "reviewer": "claude-qc:wmmc-20260606",
   "reviewedAt": "2026-06-06T10:16:25.159Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "bar~93/100. Discussion chapter (mirror before label). All 9 keys derived & correct. Names consistent across breakdown/examples/quiz (one name = one person). Cases grounded (job loss, family stores, relocation, layoffs, clinic); check-source PASS."
+  "notes": "bar~93/100. Discussion chapter (mirror before label). All 9 keys derived & correct. Names consistent across breakdown/examples/quiz (one name = one person). Cases grounded (job loss, family stores, relocation, layoffs, clinic); check-source PASS.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "who-moved-my-cheese",
+      "chapterNumber": 3,
+      "chapterId": "who-moved-my-cheese-ch03",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "88d3e4dbe04c16a7",
+      "reviewer": "claude-qc:wmmc-20260606",
+      "reviewedAt": "2026-06-06T10:16:25.159Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "bar~93/100. Discussion chapter (mirror before label). All 9 keys derived & correct. Names consistent across breakdown/examples/quiz (one name = one person). Cases grounded (job loss, family stores, relocation, layoffs, clinic); check-source PASS."
+    }
+  ]
 }

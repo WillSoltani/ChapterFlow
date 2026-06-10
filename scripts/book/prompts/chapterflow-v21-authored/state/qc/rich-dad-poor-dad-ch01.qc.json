@@ -4,7 +4,7 @@
   "chapterNumber": 1,
   "chapterId": "rich-dad-poor-dad-ch01",
   "verdict": "PUBLISHABLE",
-  "contentHash": "f77e23e7fb38c33f",
+  "contentHash": "8ca76d1c91788913",
   "reviewer": "claude-qc:rdpd-20260605-r2",
   "reviewedAt": "2026-06-05T11:36:09.552Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "All 9 keys correct, distractors real, prose/cards/plan/facts solid. Round-1 defect (q03/q05/q06 explanations naming the wrong persona) is FIXED: q03=Kathleen, q05=Ravi, q06=Min. No corruption."
+  "notes": "All 9 keys correct, distractors real, prose/cards/plan/facts solid. Round-1 defect (q03/q05/q06 explanations naming the wrong persona) is FIXED: q03=Kathleen, q05=Ravi, q06=Min. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "rich-dad-poor-dad",
+      "chapterNumber": 1,
+      "chapterId": "rich-dad-poor-dad-ch01",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "f77e23e7fb38c33f",
+      "reviewer": "claude-qc:rdpd-20260605-r2",
+      "reviewedAt": "2026-06-05T11:36:09.552Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "All 9 keys correct, distractors real, prose/cards/plan/facts solid. Round-1 defect (q03/q05/q06 explanations naming the wrong persona) is FIXED: q03=Kathleen, q05=Ravi, q06=Min. No corruption."
+    }
+  ]
 }
