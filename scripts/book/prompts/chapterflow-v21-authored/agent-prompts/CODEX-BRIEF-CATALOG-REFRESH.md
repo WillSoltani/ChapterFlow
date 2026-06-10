@@ -157,3 +157,60 @@ edits to satisfy a deliverable.
 Per chapter: gate-chapter to "Gate verdict: PASS — 0 blockers". Acceptance:
 paste `catalog-audit outliers` after-lines + the verb-distribution counts
 ("weighs" ≤4; top anchor-integration construction ≤2).
+
+---
+
+## PART 4 — SCENE RE-AUTHORING (added 2026-06-10 after the qc-run sweeps)
+
+Three independent sweeps (outliers, rich-dad-poor-dad, the-body-keeps-the-
+score) proved the slot refresh is necessary but NOT sufficient for books
+authored before the scene-shape plan existed: the templating readers feel
+lives in the SCENARIO GRAMMAR. Outliers: all 54 scenarios share one frame
+("[At clock time] in [workplace], [role] [Name] studies [artifact]…").
+TBKTS: a deadline-decision closer stamps 22+ scenarios across 13 chapters.
+RDPD: one property-evaluation scene re-staged across 5 chapters. Per-slot
+metrics (catalog-audit) cannot see this; only the qc-run sweep can.
+
+**Scope per book (run per-book, one Codex session each):**
+
+1. `shape-plan <bookId> --from 1 --to N` with the plan regenerated fresh
+   (the operator will pre-generate with forceFresh). Each chapter's
+   example[i] gets REWRITTEN to its dealt shape — keep the example's anchor,
+   teaching point, whatToDo/whyItMatters substance; replace the scene's
+   STRUCTURE per the shape definition in config/scene-shapes.json.
+2. Structural caps (the sweep's findings, made into rules):
+   - The "Before [imminent event], [Name] must/needs to decide…" closer:
+     at most ONE scenario per chapter (R6's binary cap), zero in most.
+   - No two chapters may share an opening-line grammar at the same example
+     slot ("[Name] has already…" as ex06 opener in 12 chapters = the tell).
+   - Clock times in at most 2 scenarios per chapter, never in ex01's first
+     sentence twice in consecutive chapters, never the same literal time in
+     two chapters (TBKTS had two 9:10-a.m. whiteboard scenes).
+   - Researcher-citation-on-a-whiteboard/memo/notes is the anchor-as-prop
+     pattern — anchors go INSIDE the scene's logic (Part 2 rule 6).
+3. Book-specific sweep fixes (do these in the same pass):
+   - the-body-keeps-the-score: rename the INVENTED ch7 "Lisa" (attachment
+     coach) — ch19's Lisa is Sebern Fisher's real patient and keeps the
+     name; purge "the hard edge" from ALL reader-facing copy (18 chapters:
+     quiz explanations, card fronts, breakdowns, memorableLines.why) — name
+     the actual caveat each time instead; rewrite ch10's hook OR ch9's (the
+     "five X … wound that" twins).
+   - rich-dad-poor-dad: collapse/differentiate the twin scenes (boutique
+     watch ch3/ch8; freelancer pay-first ch7/ch8; promotion letter
+     ch2/ch3/ch6; property folder ch2/4/5/7/9 — each instance gets a
+     different shape from the plan); de-duplicate the repeated quiz answers
+     and cards (ch7 q06 = ch08 q05; the luxuries-after-assets unit appears
+     as a quiz answer AND card in ch2, ch3, ch8 — keep ONE, replace others
+     with different testable facts from each chapter's sidecar).
+   - outliers: the 54-scenario frame — every scenario gets its dealt shape;
+     quiz prompts: no literal stem twice per chapter ("What happens next"
+     appeared 34×; openers are FORMS, not sentences).
+4. Per chapter: author-check + gate-chapter to "Gate verdict: PASS — 0
+   blockers". Quiz keys NEVER change. List every touched chapter for re-QC.
+5. Acceptance is the NEXT qc-run sweep (the operator runs it) — there is no
+   self-check that substitutes. Anti-gaming rules from the ADDENDUM apply:
+   distribution caps, no new uniform templates, report-don't-manufacture.
+
+Priority order: outliers (pilot completion), the-body-keeps-the-score
+(19 stale-able PASSes + the Lisa collision), rich-dad-poor-dad. The 4HWW
+full redo (fanout --all) supersedes Part 4 for that book.

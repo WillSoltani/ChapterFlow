@@ -33,8 +33,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const CHAPTERS_DIR = resolve(__dirname, "../../state/chapters");
 
 /** Case-insensitive tic phrases counted across all reader-facing prose.
- *  Extend deliberately — every entry should trace to observed saturation. */
-export const HOUSE_TICS = ["the point is", "the question is", "that is the", "scoreboard"] as const;
+ *  Extend deliberately — every entry should trace to observed saturation.
+ *  2026-06-10 qc-run sweeps added: "the hard edge" (undefined generator
+ *  scaffolding in reader-facing copy across 18/20 TBKTS chapters + outliers'
+ *  q09 closers) and "guardrail" (same class). */
+export const HOUSE_TICS = ["the point is", "the question is", "that is the", "scoreboard", "the hard edge", "guardrail"] as const;
 
 const DEADLINE_TIC = /\b(before the|before she|before he|before they|minutes before|must decide|must choose|must tell)\b/i;
 
