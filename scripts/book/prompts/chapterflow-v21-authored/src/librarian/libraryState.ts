@@ -187,7 +187,7 @@ export async function withLibraryState(
     const before = existsSync(LEDGER_PATH)
       ? (JSON.parse(readFileSync(LEDGER_PATH, "utf8")) as LibraryState)
       : emptyState();
-    const after = (await mutate(before)) ?? before;
+    const after = ((await mutate(before)) ?? before) as LibraryState;
     saveLibraryStateUnlocked(after);
     return after;
   } finally {
@@ -205,9 +205,15 @@ export function saveLibraryStateSync(state: LibraryState): void {
   renameSync(tmp, LEDGER_PATH);
 }
 
-/** Extract plausible protagonist names from a scenario text. */
+/** Extract plausible protagonist names from a scenario text. Diacritics are
+ *  NFD-stripped first so an accented name ("Joaquín", "Renée", "Mehveş") is seen
+ *  as ONE whole ASCII token ("Joaquin", "Renee", "Mehves") instead of a mangled
+ *  prefix ("Joaqu", "Ren", "Mehve"). Without this, F1 (bookGate, which calls
+ *  this) compared chapters on the prefix, and the name-bank allocator and F1
+ *  disagreed on what an accented name even is. */
 export function extractNamesFromText(text: string): string[] {
-  const matches = Array.from(text.matchAll(/\b[A-Z][a-z]{2,}\b/g)).map((m) => m[0]);
+  const ascii = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const matches = Array.from(ascii.matchAll(/\b[A-Z][a-z]{2,}\b/g)).map((m) => m[0]);
   return matches.filter((w) => !NAME_STOPWORDS.has(w));
 }
 
@@ -307,7 +313,9 @@ export function getForbiddenNames(
 ): string[] {
   const otherBooks = Object.values(state.books)
     .filter((b) => b.bookId !== currentBookId)
-    .sort((a, b) => b.generatedAt.localeCompare(a.generatedAt))
+    // bookId tie-break so the lookback window is deterministic when two books
+    // share an identical generatedAt timestamp (else insertion order decides).
+    .sort((a, b) => b.generatedAt.localeCompare(a.generatedAt) || a.bookId.localeCompare(b.bookId))
     .slice(0, lookback);
   const names = new Set<string>();
   for (const book of otherBooks) {
