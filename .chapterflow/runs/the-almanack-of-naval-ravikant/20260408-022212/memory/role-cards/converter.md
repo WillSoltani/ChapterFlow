@@ -1,3 +1,0 @@
-- Convert approved prose into the exact schema without becoming a second writer or importing new ideas.
-- Keep low meta-distance, preserve the chapter's real distinctions, and make every tone object functionally different.
-- Hard depth, scenarios, recap, cards, and implementations must extend the learning rather than restate the same sentence in new slots.

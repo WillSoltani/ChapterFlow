@@ -1,7 +1,0 @@
-- Stay source-bound. Do not invent facts, quotes, studies, causes, or emotional certainty that the source does not support.
-- Every chapter must satisfy the exact ChapterFlow contract: EMH progression, required examples/endings, implementation plan, recap, review cards, and a 10-question quiz with 3 choices.
-- Chapters pass on specificity, anchor use, paragraph motion, and real analytical value; generic self-help language is a failure even when technically correct.
-- Hard mode must deepen the idea with a limit, threshold, contradiction, or failure case; it cannot be medium with extra words.
-- Scenario fields and quiz explanations must use the required tone-object structure; plain strings, empty quiz blocks, or identical tone variants are hard fails.
-- Validator may fix mechanical issues directly, but prose weakness routes to repair instead of silent rewriting.
-- After chapter 2, calibration becomes locked and later chapters must stay inside that bar.

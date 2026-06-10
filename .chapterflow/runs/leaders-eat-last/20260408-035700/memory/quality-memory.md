@@ -1,7 +1,0 @@
-- Stay source-bound. This run is coverage-only, so later chapters must be paraphrase-first, claim-light, and narrower than a full-text-locked run.
-- If the source sidecar is thin, lower the concept budget and prefer precision over breadth; never fabricate historical color, mechanism language, or supporting detail.
-- Every chapter must satisfy the exact ChapterFlow contract: EMH progression, schema-valid tone objects, required examples, implementation plan, recap, review cards, and a 10-question quiz with 3 choices.
-- Chapters pass on specificity, anchor use, paragraph motion, and real analytical value; generic self-help language is a failure even when structurally compliant.
-- Hard mode must deepen with a limit, threshold, contradiction, or failure case; it cannot be medium with extra words.
-- Plain-string scenario fields, empty quiz blocks, identical tone variants, instruction leakage, and unsupported facts are hard fails.
-- Mechanical issues can be fixed directly, but prose weakness, genericity, tone collapse, or weak teaching must route to repair rather than silent flattening.

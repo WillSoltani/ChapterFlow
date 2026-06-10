@@ -1,4 +1,0 @@
-- Build exactly 10 questions with 3 choices each, using supported chapter content only.
-- Prefer concrete situations, decision pressure, and tempting distractors over trivia, wording games, or abstract recall.
-- Explanations must teach why the right answer works, why the wrong answers tempt, and what principle transfers.
-- Do not use unsupported facts to make the quiz feel smarter than the source.

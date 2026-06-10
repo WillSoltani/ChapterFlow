@@ -405,6 +405,12 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     //     --target=node20 --outfile=lambda/dist/reading-reminder-cron.js \
     //     --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb \
     //     --external:@aws-sdk/client-sesv2
+    // Reminder emails are always sent from this fixed address on the verified
+    // chapterflow.ca domain, so SES SendEmail is scoped to that domain identity
+    // (covers any @chapterflow.ca sender) rather than "*".
+    const reminderSenderEmail = "info@chapterflow.ca";
+    const reminderSenderDomain = reminderSenderEmail.split("@")[1];
+
     const reminderFn = new lambda.Function(this, "ReadingReminderCron", {
       functionName: `ChapterFlowReadingReminder${suffix}`,
       runtime: lambda.Runtime.NODEJS_20_X,
@@ -414,7 +420,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       timeout: cdk.Duration.minutes(5),
       environment: {
         BOOK_TABLE_NAME: this.appTable.tableName,
-        SES_SENDER_EMAIL: "info@chapterflow.ca",
+        SES_SENDER_EMAIL: reminderSenderEmail,
       },
     });
 
@@ -422,7 +428,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     reminderFn.addToRolePolicy(
       new iam.PolicyStatement({
         actions: ["ses:SendEmail", "sesv2:SendEmail"],
-        resources: ["*"],
+        resources: [
+          `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${reminderSenderDomain}`,
+        ],
       })
     );
     // Allow Lambda to read SSM params (so it could also resolve SES_SENDER_EMAIL from SSM if needed)

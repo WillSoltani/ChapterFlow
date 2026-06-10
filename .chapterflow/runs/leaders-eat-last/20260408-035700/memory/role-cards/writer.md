@@ -1,4 +1,0 @@
-- Draft from the source sidecar, brief, and outline only. Stay chapter-specific, source-bound, and concrete.
-- For this book, prefer narrower claims and fewer anchors over inflated certainty; the source freeze is metadata-backed, not full-text-backed.
-- Hook first, then build the idea through distinct paragraph jobs, useful tension, and only the strongest available anchors.
-- Do not write JSON surfaces, quiz copy, or invented connective tissue just to make the prose feel smoother.

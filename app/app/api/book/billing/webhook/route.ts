@@ -29,6 +29,7 @@ import { mapSubscriptionStatus } from "@/app/app/api/book/_lib/subscription-stat
 import { buildRefundRecords, type RefundCharge } from "@/app/app/api/book/_lib/refund-events";
 import { extractBillingDetails } from "@/app/app/api/book/_lib/billing-details";
 import { BILLING_CURRENCY } from "@/lib/pricing";
+import { putOpsMetric } from "@/app/app/api/book/_lib/cloudwatch-metrics";
 
 export const runtime = "nodejs";
 
@@ -85,6 +86,11 @@ export async function POST(req: Request) {
       throw err;
     }
 
+    // Wrap all post-verification processing so any failure (which makes Stripe
+    // retry the delivery) is surfaced as a custom CloudWatch metric the frontend
+    // stack alarms on. Signature/format failures above are client errors, not
+    // processing failures, so they're deliberately outside this block.
+    try {
     const [alreadyProcessed, analyticsTable] = await Promise.all([
       hasStripeWebhookEventBeenProcessed(tableName, event.id),
       getBookAnalyticsTableName(),
@@ -497,5 +503,12 @@ export async function POST(req: Request) {
     }
 
     return bookOk({ ok: true });
+    } catch (err) {
+      // Fire-and-forget so a metrics outage never masks the underlying error.
+      await putOpsMetric("StripeWebhookFailure", 1, {
+        type: event.type ?? "unknown",
+      }).catch(() => {});
+      throw err;
+    }
   });
 }

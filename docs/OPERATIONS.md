@@ -29,25 +29,59 @@ the unsuffixed, data-bearing set (`ChapterFlowApp`, `ChapterFlowServer`, …) an
 is RETAIN + deletion-protected + PITR. See [CI_CD.md §2](./CI_CD.md). Each env's
 config lives at `/chapterflow/<env>/*` in SSM and is read by the running Lambda.
 
+> The server Lambda's IAM is **scoped to read SSM only under `/chapterflow/<env>/*`**.
+> Any new config the app resolves via `getServerEnv()` must therefore live at
+> `/chapterflow/<env>/<KEY>` — a bare-name parameter (`/<KEY>`) is denied and
+> skipped. Secrets normally arrive as Lambda env vars (see `infra/bin/app.ts`);
+> SSM is the fallback for SSM-only config like `SES_SENDER_EMAIL` / `VAPID_*`.
+
 ## 3) Health checks
 
 - **`GET /api/health`** — public, unauthenticated, dependency-free; returns
   `200 {status, env, commit, time}`. This is the deploy gate's primary probe.
-- **`GET /api/health?deep=1`** — additionally probes DynamoDB reachability and
-  reports it in the body, but still returns 200 (never false-fails on a blip).
-- The deploy pipeline also asserts `/` and `/pricing` return 2xx.
+- **`GET /api/health?deep=1`** — additionally probes the subsystems the app
+  depends on and reports each in `checks{}`: **dynamo** (operational table
+  reachable), **catalog** (the published library list builds), **content** (S3
+  content bucket reachable), **billing** (Stripe secret/webhook + pricing config
+  present), **auth** (Cognito OAuth config present). Non-throwing — always
+  returns `200` with `status: "ok" | "degraded"`, so a transient dependency blip
+  never false-fails a deploy. Use it for uptime monitors and manual diagnosis.
+- The deploy pipeline asserts `/`, `/pricing`, `/api/health` return 2xx
+  (**blocking** gate), then runs `?deep=1` as a **non-blocking** smoke step that
+  tables the per-check results into the run summary.
 
 ## 4) Monitoring & alerting
 
-CloudWatch alarms defined in `infra/lib/chapterflow-backend-stack.ts` publish to
-the `ChapterFlowOpsAlerts` SNS topic (subscribe an inbox via the
-`CHAPTERFLOW_OPS_ALERT_EMAIL` secret, then confirm the subscription):
+CloudWatch alarms publish to the `ChapterFlowOpsAlerts[-env]` SNS topic
+(subscribe an inbox via the `CHAPTERFLOW_OPS_ALERT_EMAIL` secret at synth time,
+then confirm the subscription). The frontend stack references that topic **by
+ARN**, so alarms from both stacks page the same inbox.
+
+**Backend stack** (`infra/lib/chapterflow-backend-stack.ts`):
 
 - **App / analytics table throttling** — any throttled DynamoDB op in a 5-min
   window.
-- **`ChapterFlow/Ops StripeCancellationFailure`** — a Stripe cancellation failed
-  during account delete/deactivate. Follow up in the admin Ops dashboard
+- **`ChapterFlow/Ops → OpsFailure`** — an operational failure was recorded
+  (Stripe cancellation / customer delete, Cognito delete, or partial account
+  erasure; the `kind` dimension says which). Follow up in the admin Ops dashboard
   (Operational failures panel) → `/app/api/book/admin/ops-failures`.
+
+**Frontend stack** (`infra/lib/chapterflow-frontend-stack.ts`):
+
+- **Server Lambda** — `Errors` (≥5 / 5 min), `Throttles` (≥1), `Duration` p99
+  ≥20s (approaching the 30s timeout).
+- **ISR revalidation** — revalidation-fn `Errors`, **DLQ depth ≥1** (revalidation
+  is failing; messages redrive after 5 receives), and oldest-message age >5 min.
+- **CloudFront `5xxErrorRate` >1%** sustained ~15 min.
+- **`ChapterFlow/Ops → StripeWebhookFailure`** — a Stripe webhook delivery failed
+  to process *after* signature verification (Stripe will retry). Check the
+  billing webhook logs and the reconciliation tool.
+
+> **Custom `ChapterFlow/Ops` metrics are emitted with a dimensionless rollup**
+> (what the alarms watch) **plus** a dimensioned copy for per-cause slicing — see
+> `putOpsMetric` in `_lib/cloudwatch-metrics.ts`. Do **not** "simplify" it to a
+> dimensions-only emit: CloudWatch does not roll dimensioned datapoints into the
+> dimensionless series, so the alarms would silently stop firing.
 
 Signals worth watching in CloudWatch Logs / metrics: server-fn 5xx and duration
 p95, DynamoDB throttles, and the per-day analytics EVENT volume.
@@ -88,7 +122,9 @@ npx cdk diff -c env=prod ChapterFlowFrontend
 | Deploy fails the health gate | Run summary lists the failing path; check the `ChapterFlowServer[-env]` Lambda logs in CloudWatch. |
 | 401 HTML redirect on an API call | Caller hit a `/app/**` route without a session — middleware redirects to login (APIs should send the auth cookie). |
 | Frontend deploy throws "requires BOOK_INGEST_BUCKET…" | Backend stack for that env not deployed yet (no SSM params). Deploy infra first. |
-| Stripe cancellation alarm fired | Admin Ops dashboard → Operational failures → retry or resolve. |
+| OpsFailure alarm fired | Admin Ops dashboard → Operational failures → retry or resolve (the `kind` dimension says which subsystem). |
+| Revalidation DLQ alarm fired | ISR revalidation is failing — check the `ChapterFlowRevalidation[-env]` DLQ + revalidation-fn logs; messages redrive after 5 receives. |
+| StripeWebhookFailure alarm fired | A delivery failed post-signature; Stripe retries. Check billing webhook logs + `/app/api/book/admin/reconciliation`. |
 | Table throttling alarm | Inspect hot partitions / unbounded scans (admin metrics, soft-decay); the table is on-demand so this usually self-heals. |
 
 ## 7) Security checklist
@@ -96,6 +132,11 @@ npx cdk diff -c env=prod ChapterFlowFrontend
 - Keep all buckets private (covers prefix is the only public read); enforce SSL.
 - Secrets are injected as Lambda env at deploy from environment-scoped GitHub
   secrets — never commit them. Editor swap files (`*.swp`) are gitignored.
+- Runtime IAM is least-privilege: the server Lambda's SSM read is scoped to
+  `/chapterflow/<env>/*` and SES send is scoped to the verified domain identity
+  (prod). `dynamodb:Scan` is retained only because admin metrics / economy-health
+  / soft-decay run in the same Lambda — scope it to the two table ARNs and revisit
+  if those move to a dedicated function.
 - Every new API route must call `requireUser()` / `requireAdminUser()` — auth is
   per-route, not global.
 - Quizzes are graded server-side; never trust client-supplied scores/ids.

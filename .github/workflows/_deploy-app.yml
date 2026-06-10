@@ -162,6 +162,28 @@ jobs:
           fi
           echo "Health gate PASSED" >> "$GITHUB_STEP_SUMMARY"
 
+      # NON-BLOCKING readiness smoke — probes deep dependency checks
+      # (dynamo / catalog / content / billing / auth) and reports them to the
+      # job summary. Never fails the deploy: /api/health?deep=1 always returns
+      # 200, and this step is continue-on-error, so a degraded dependency is
+      # surfaced for follow-up without triggering a rollback.
+      - name: Readiness smoke (deep, non-blocking)
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          APP_URL="https://${{ steps.cf.outputs.distribution_domain }}"
+          body=$(curl -s --max-time 25 --retry 2 --retry-delay 5 --retry-all-errors \
+            "${APP_URL}/api/health?deep=1" || echo '{}')
+          echo "Deep health: ${body}"
+          status=$(echo "${body}" | jq -r '.status // "unknown"')
+          {
+            echo "### Readiness smoke (non-blocking) — status: \`${status}\`"
+            echo ""
+            echo "| Check | OK |"
+            echo "|-------|----|"
+            echo "${body}" | jq -r '(.checks // {}) | to_entries[] | "| \(.key) | \(if .value then "✅" else "❌" end) |"'
+          } >> "$GITHUB_STEP_SUMMARY" || true
+
       - name: Deployment summary
         if: success()
         run: |
