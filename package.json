@@ -8,6 +8,8 @@
     "build": "next build",
     "build:open-next": "npx open-next build",
     "start": "next start",
+    "prepare": "git config core.hooksPath .githooks || true",
+    "scan:secrets": "bash scripts/ci/scan-secrets-and-artifacts.sh --all && bash scripts/ci/scan-secrets-and-artifacts.sh --selftest",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "FILES=$(find app lib -name '*.test.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no test files found' >&2; exit 1; fi; tsx --test $FILES",

@@ -95,9 +95,10 @@ p95, DynamoDB throttles, and the per-day analytics EVENT volume.
 
 ```bash
 cd infra
-# Backend synthesizes without an OpenNext build (frontend is skipped when
-# .open-next/ is absent), so run this in a clean checkout:
-npx cdk diff -c env=prod ChapterFlowBackend
+# The frontend stack is skipped when .open-next/ is absent. If you have a stale
+# local .open-next/ build, pass -c skipFrontend=true so the backend diffs alone
+# without demanding bucket names (the deploy workflow never sets this flag):
+npx cdk diff -c env=prod -c skipFrontend=true ChapterFlowBackend
 # Expect: NO replace/delete on DynamoDB tables or S3 buckets.
 
 # The FRONTEND stack additionally needs the OpenNext build + bucket names:
