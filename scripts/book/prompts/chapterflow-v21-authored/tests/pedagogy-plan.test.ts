@@ -56,6 +56,19 @@ test("pedagogy palettes load with unique ids, substantial definitions, and valid
     assert.ok(VALID_HOOK_CLASSES.has(entry.auditClass), `${entry.id} has invalid auditClass ${entry.auditClass}`);
     hookClassCounts[entry.auditClass]++;
     assert.equal(classifyHook(sampleHookFor(entry.auditClass)), entry.auditClass, `${entry.auditClass} sample must match catalogAudit`);
+    // NON-CIRCULAR ground-truth check (added after adversarial review caught
+    // ratio-reversal declaring "numeric" while its own example classified as
+    // declarative_image): classify the palette's ACTUAL embedded example, not
+    // a test-authored sample. Authors imitate the example — if it lands in
+    // the wrong classifyHook bucket, the feature moves catalog-audit's
+    // numbers the wrong way.
+    const embedded = entry.definition.match(/Miniature example: ["“](.+?)["”]/);
+    assert.ok(embedded, `${entry.id}'s definition must embed a 'Miniature example: "…"'`);
+    assert.equal(
+      classifyHook(embedded![1]),
+      entry.auditClass,
+      `${entry.id}'s OWN example ("${embedded![1].slice(0, 60)}…") classifies as ${classifyHook(embedded![1])}, not its declared ${entry.auditClass}`,
+    );
   }
   assert.ok(hookClassCounts.question >= 2, "need at least 2 question hook shapes");
   assert.ok(hookClassCounts.direct_address >= 2, "need at least 2 direct-address hook shapes");

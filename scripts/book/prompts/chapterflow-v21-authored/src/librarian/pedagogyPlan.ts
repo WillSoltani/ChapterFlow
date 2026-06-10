@@ -236,6 +236,10 @@ function assertNoConsecutiveHookRepeats(plan: PedagogyPlan): void {
 
 export function planPedagogy(bookId: string, from: number, to: number, opts: PlanPedagogyOpts = {}): PedagogyPlan {
   if (to < from) throw new Error(`to (${to}) < from (${from})`);
+  // Chapters are 1-based; a non-positive `from` drives JS's negative modulo
+  // through the chapter pattern and silently deals null/undefined slots
+  // (adversarial-review finding) — fail loud like the to<from case.
+  if (from < 1) throw new Error(`from (${from}) must be >= 1 (chapters are 1-based)`);
   const palettes = loadPedagogyPalettes();
   const hash = fnv1a(bookId);
 
