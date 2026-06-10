@@ -51,20 +51,36 @@ const openNextExists = fs.existsSync(
   path.join(openNextDir, "server-functions/default"),
 );
 
-if (!openNextExists) {
+// Escape hatch for backend-only synth/diff (e.g. `cdk diff ChapterFlowBackend`
+// from a checkout that happens to have a stale .open-next/ build): skip the
+// frontend stack entirely so it doesn't demand bucket names. The deploy
+// workflow never sets this, so deploy behavior is unchanged.
+//   npx cdk diff -c env=prod -c skipFrontend=true ChapterFlowBackend
+const skipFrontend =
+  app.node.tryGetContext("skipFrontend") === "true" ||
+  app.node.tryGetContext("skipFrontend") === true ||
+  process.env.CHAPTERFLOW_SKIP_FRONTEND === "1";
+
+if (skipFrontend) {
+  console.warn(
+    "⚠ Skipping ChapterFlowFrontend stack — skipFrontend flag set " +
+      "(backend-only synth/diff).",
+  );
+} else if (!openNextExists) {
   console.warn(
     "⚠ Skipping ChapterFlowFrontend stack — .open-next/ build output not found.\n" +
       "  Run `npx open-next build` first to include the frontend stack.",
   );
 }
 
-if (openNextExists) {
+if (!skipFrontend && openNextExists) {
   if (!ingestBucketName || !contentBucketName) {
     throw new Error(
       "Frontend stack requires BOOK_INGEST_BUCKET and BOOK_CONTENT_BUCKET. " +
         `Resolve them from SSM /chapterflow/${cfg.env}/BOOK_INGEST_BUCKET and ` +
         `/chapterflow/${cfg.env}/BOOK_CONTENT_BUCKET (the deploy workflow does ` +
-        "this). Refusing to synth the frontend against unknown buckets.",
+        "this), or pass `-c skipFrontend=true` to synth/diff the backend alone. " +
+        "Refusing to synth the frontend against unknown buckets.",
     );
   }
 
