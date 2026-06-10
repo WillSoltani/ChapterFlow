@@ -1,0 +1,298 @@
+{
+  "chapterId": "range-ch11",
+  "number": 11,
+  "title": "Learning to Drop Your Familiar Tools",
+  "readingTimeMinutes": 14,
+  "hook": "A tool can become dangerous precisely because it once proved you were competent.",
+  "counterintuition": "Procedure and metrics save lives until conditions leave their assumptions behind. The hard part is recognizing that break while pride still says hold on.",
+  "tryThisNow": "Name one trusted tool in your work. Write the condition under which keeping it would make the situation worse.",
+  "keyTakeaway": "Adaptation requires noticing when a familiar tool, metric, or identity cue has crossed from helpful to harmful.",
+  "breakdown": {
+    "fastRead": "In a case classroom, Julia sees the sponsorship payoff circled in red and realizes no one has asked for the missing temperature data.\n\nFamiliar tools are hardest to drop when they once proved competence: a payoff table, a launch norm, a checklist, a fire tool, a green dashboard.\n\nCarter Racing, Challenger, Mann Gulch, Storm King, and Weick all ask the same question: what assumption has changed, and what must be released now?\n\nName one tool you would hate to drop under pressure. Write the cue that tells you it has crossed from useful to harmful.",
+    "deepRead": "The decision problem starts in a classroom with Carter Racing: a team can race for a major sponsorship or withdraw because past engine failures might recur. The data available to students invites financial calculation and partial skilled analysis, but the missing question is whether the dataset is the right one. Nonfailure races and temperature patterns matter. The reveal is that the case mirrors the Challenger launch decision, with engine failures standing in for O-ring damage.\n\nThe working distinction is dropping familiar tools: Dropping familiar tools means abandoning a practiced method, object, metric, or identity cue when conditions make it harmful. The difficulty is psychological because the tool often symbolizes competence.\n\nSpace shuttle Challenger: The Carter Racing data mirrors the 1986 launch decision, where cold-temperature O-ring risk was not treated as decisive before disaster. Organizational norms shaped which evidence counted.\n\nThe disaster was not merely a failure to calculate; it was a failure of sensemaking inside a culture. That privileged certain quantitative forms and normalized previous warning signs. Diane Vaughan's analysis helps explain how repeated anomalies can become acceptable when nothing catastrophic happens immediately. Firefighting cases make the metaphor literal.\n\nReaders can ask whether the trusted method still fits the situation instead of defending it on its own under pressure.\n\nCarter Racing asks for missing data. Challenger shows what warning signs can become. Mann Gulch makes the tool problem physical. Drop what no longer fits.",
+    "fullRead": "The Carter Racing case begins with a familiar managerial temptation: calculate the visible upside, weigh the known failures, and make a decision. Many students race because the sponsorship payoff is vivid and the available failure data feels sufficient. The missing move is to ask for nonfailure temperature data, the comparison that would reveal whether the dataset can answer the risk question.\n\nThat hidden structure maps onto the Challenger launch decision. O-ring concerns existed, but NASA's quantitative culture made evidence harder to hear when it did not arrive in the preferred form. Diane Vaughan's work on normalization of deviance shows how previous survival can become false reassurance; danger starts to look routine because catastrophe has not yet happened.\n\nMann Gulch and Storm King Mountain turn the metaphor physical. Firefighters carried tools that represented competence and identity, even when dropping weight could aid escape. Karl Weick's sensemaking frame emphasizes that leaders must update the meaning of a situation, not merely defend the tool that once made sense.\n\nThe lesson is not to throw away procedure. Procedures, metrics, and tools are vital while their assumptions hold. Adaptation begins when someone notices the boundary: the old tool is now hiding missing data, blocking an anomaly, slowing escape, or preserving identity at the expense of reality.\n\nA reader can use this by naming the object before the crisis. What is the tool you would hate to demote? A dashboard, checklist, model, script, credential, protocol, or role can all become too meaningful. Then write the assumptions that make it valid. If those assumptions fail, the tool must become a clue instead of a command.\n\nThis is why Carter Racing and the fire stories belong together. In one case the tool is a decision frame that hides missing comparison data. In another it is literal equipment that slows escape. In both, competence becomes dangerous when it keeps a person from asking what the situation has become.\n\nWeick's sensemaking language keeps the lesson alive after the dramatic cases. Adaptation is not just choosing faster. It is noticing that the old meaning of the moment is wrong. The professional act may be to request the missing data, challenge the normalized warning, drop the pack, or pause the checklist long enough to see the anomaly.\n\nThat cue should be rehearsed while the room is calm. Under pressure, people rarely invent a new identity quickly. They follow the script they practiced, including the script for letting a trusted tool go."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Carter Racing Table",
+      "tags": [
+        "carter",
+        "racing",
+        "table"
+      ],
+      "planSpec": {
+        "domain": "carter racing table",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "decision_point",
+        "requiredBeat": "Carter Racing Table"
+      },
+      "scenario": "Julia sits in a strategy class with the Carter Racing case open and a sponsorship payoff circled. Her team debates whether engine failures justify withdrawing. She notices no one has asked for nonfailure temperature data, even though the missing pattern could change the whole decision.",
+      "whatToDo": "Julia requests the absent comparison before voting. Financial upside stays on the table, but the dataset must answer the technical risk.",
+      "whyItMatters": "Carter Racing teaches sensemaking before calculation. A familiar payoff table can distract from the evidence that was never gathered."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Challenger Launch Review",
+      "tags": [
+        "challenger",
+        "launch",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "challenger launch review",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "reflection",
+        "requiredBeat": "Challenger Launch Review"
+      },
+      "scenario": "Eamon leads an aerospace risk meeting with Challenger and O-ring history in the binder. Engineers present prior damage as manageable because launches had survived before. Eamon writes cold temperature across the screen and asks whether normalization of deviance is making warning signs look routine.",
+      "whatToDo": "Eamon separates survival from safety. Previous non-catastrophic outcomes become data to examine, not reassurance to lean on.",
+      "whyItMatters": "Challenger shows how culture decides which evidence counts. Familiar metrics can normalize danger until the assumption breaks."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Mann Gulch Drill",
+      "tags": [
+        "mann",
+        "gulch",
+        "drill"
+      ],
+      "planSpec": {
+        "domain": "mann gulch drill",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "business_case",
+        "requiredBeat": "Mann Gulch Drill"
+      },
+      "scenario": "Captain Alvarez trains wildland firefighters with Mann Gulch on the map. Recruits practice cutting line with tools they are proud to carry. Then the wind shift drill begins, and Alvarez orders them to drop packs and tools before running the escape route.",
+      "whatToDo": "Alvarez rehearses tool abandonment as a professional act. The crew names the condition where equipment stops serving survival.",
+      "whyItMatters": "Firefighting tools symbolize competence. Mann Gulch shows why adaptation must sometimes cut against identity."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Storm King Identity Cue",
+      "tags": [
+        "storm",
+        "king",
+        "identity"
+      ],
+      "planSpec": {
+        "domain": "storm king identity cue",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "scene",
+        "requiredBeat": "Storm King Identity Cue"
+      },
+      "scenario": "Marin reviews Storm King Mountain during an after-action session. A new firefighter asks why trained people held equipment so long. Marin places gloves, radios, and saws on the table and asks which objects feel like the job itself.",
+      "whatToDo": "Marin makes identity visible before the next incident. Crews practice saying when a tool's meaning must yield to changing fire behavior.",
+      "whyItMatters": "Dropping tools is psychological, not merely logistical. People hold what proves they belong."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Dashboard Abandonment",
+      "tags": [
+        "dashboard",
+        "abandonment"
+      ],
+      "planSpec": {
+        "domain": "dashboard abandonment",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "planning_choice",
+        "requiredBeat": "Dashboard Abandonment"
+      },
+      "scenario": "Evan's customer-success team trusts a green dashboard while cancellations rise. The metric once worked when accounts were small. Now enterprise buyers hide dissatisfaction until renewal. Evan thinks of Carter Racing and asks what data would exist if the account did not fail.",
+      "whatToDo": "Evan adds nonfailure comparisons and qualitative renewal signals. The old dashboard is downgraded from verdict to clue.",
+      "whyItMatters": "A metric can age out of its assumptions. Familiar confidence is dangerous when the environment has shifted."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Hospital Protocol Edge",
+      "tags": [
+        "hospital",
+        "protocol",
+        "edge"
+      ],
+      "planSpec": {
+        "domain": "hospital protocol edge",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "audit",
+        "requiredBeat": "Hospital Protocol Edge"
+      },
+      "scenario": "Dr. Salma runs an emergency department where a standard checklist usually prevents misses. A rare poisoning case violates the checklist's assumptions. Remembering Challenger, she asks whether procedure is guiding attention or blocking the one anomalous clue. In the emergency bay, Dr. Salma must decide whether the checklist still matches the rare poisoning case or blocks the odd clue. As attending doctor in the emergency bay, Dr. Salma has the checklist on the counter before the rare case moves.",
+      "whatToDo": "Salma follows safety steps while opening a parallel exception review. The team states which assumption no longer holds.",
+      "whyItMatters": "Procedure is vital until reality leaves the script. Adaptation is the skill of seeing that moment in time."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What does dropping familiar tools mean?",
+        "choices": [
+          "Rejecting professional procedure whenever a situation becomes stressful.",
+          "Abandoning a practiced method, object, metric, or identity cue when conditions make it harmful.",
+          "Keeping familiar methods because they symbolize competence even after conditions change."
+        ],
+        "correctIndex": 1,
+        "explanation": "Epstein focuses on the moment when a useful tool becomes harmful. Dropping it is difficult because it often carries identity.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "What mistake do many students make in the Carter Racing case?",
+        "choices": [
+          "They request all missing nonfailure data before deciding whether to race.",
+          "They cancel the race because they correctly infer the Challenger analogy immediately.",
+          "They focus on available upside and incomplete failure data rather than asking for the missing temperature evidence."
+        ],
+        "correctIndex": 2,
+        "explanation": "Many decision makers treat the visible data as enough. The missing nonfailure data would clarify temperature risk.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "How does Carter Racing map onto the Challenger launch decision?",
+        "choices": [
+          "Both involve incomplete interpretation of temperature-related failure evidence before a high-stakes decision.",
+          "Both cases involve a purely financial choice with no engineering evidence.",
+          "Both show that complete data always prevents organizational failure."
+        ],
+        "correctIndex": 0,
+        "explanation": "Carter Racing is structured to mirror Challenger's O-ring temperature problem. The danger lies in how evidence is framed and missing.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "How did NASA's quantitative culture contribute to the Challenger failure?",
+        "choices": [
+          "The organization ignored all numerical evidence and relied only on intuition.",
+          "Engineers had no concerns until after the launch decision was made.",
+          "Evidence without familiar numerical form became harder to hear, even when engineers had serious concerns."
+        ],
+        "correctIndex": 2,
+        "explanation": "NASA valued quantitative forms of evidence. Concerns that did not fit the expected numerical format were easier to discount.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "What is normalization of deviance in Diane Vaughan's account?",
+        "choices": [
+          "The process by which repeated warning signs become accepted as normal over time.",
+          "The practice of treating every warning sign as a reason to stop immediately.",
+          "The habit of asking outsiders to reinterpret a crisis."
+        ],
+        "correctIndex": 0,
+        "explanation": "Repeated anomalies can become familiar and therefore acceptable. That is the danger Vaughan identified.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Why were Mann Gulch and Storm King Mountain important examples?",
+        "choices": [
+          "They showed that equipment never matters during expert crisis response.",
+          "They made the familiar-tool problem literal: firefighters clung to heavy tools that slowed escape.",
+          "They proved that firefighters should ignore procedure before every escape."
+        ],
+        "correctIndex": 1,
+        "explanation": "The firefighters' tools were useful in normal work but dangerous during escape. Dropping them also meant dropping symbols of role and competence.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "What does Karl Weick's sensemaking frame emphasize?",
+        "choices": [
+          "Leaders must update the meaning of a situation, not merely make and defend a decision.",
+          "Leaders should preserve the original interpretation once a decision is public.",
+          "Leaders can solve novel crises by applying the standard tool harder."
+        ],
+        "correctIndex": 0,
+        "explanation": "Sensemaking is about reinterpreting what is happening. Without that update, decisions defend the wrong frame.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Which crisis lesson would overcorrect in the wrong direction?",
+        "choices": [
+          "Procedures and metrics can become harmful when assumptions fail.",
+          "Professionals should throw away procedure during crisis.",
+          "Adaptation depends on recognizing when the situation has crossed a boundary."
+        ],
+        "correctIndex": 1,
+        "explanation": "Epstein does not celebrate chaos. Procedures matter until conditions leave their assumptions behind.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Why is dropping a familiar tool psychologically hard?",
+        "choices": [
+          "Because the tool is always physically impossible to remove.",
+          "Because abandoning a tool has no connection to professional identity.",
+          "Because the tool often symbolizes competence, role, and the practiced way to be useful."
+        ],
+        "correctIndex": 2,
+        "explanation": "Tools are not just objects or methods. They can stand for expertise, which makes abandoning them feel like abandoning competence.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What missing evidence did Carter Racing decision makers often fail to seek?",
+      "back": "They often failed to ask for nonfailure temperature data, the comparison needed to judge whether cold conditions predicted engine risk.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "When does a familiar tool become dangerous?",
+      "back": "A tool becomes dangerous when the conditions that made it useful have changed and the tool now hides anomalies, missing data, or urgent adaptation.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "Why are tools hard to drop under pressure?",
+      "back": "Tools can become tied to competence, role, and identity, so releasing them can feel like abandoning the self instead of adapting to reality.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "What cue should trigger a drop-the-tool review?",
+      "back": "Use a cue such as missing comparison data, warnings outside the normal metric, changed assumptions, or the tool slowing response in a live situation.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Drop-the-Tool Cue",
+    "coreSkill": "Recognize when a familiar tool, metric, procedure, or identity cue has crossed from helpful to harmful under changed conditions.",
+    "ifThenPlans": [
+      {
+        "context": "When my usual tool feels reassuring",
+        "plan": "If the tool gives comfort under pressure, then I will ask which assumption must be true for it to still fit."
+      },
+      {
+        "context": "When evidence arrives in an unfamiliar form",
+        "plan": "If a warning does not fit my preferred metric, then I will translate it before dismissing it."
+      },
+      {
+        "context": "When dropping the tool feels like losing competence",
+        "plan": "If abandoning a method feels shameful, then I will name the survival or learning cue that outranks identity."
+      }
+    ],
+    "twentyFourHourChallenge": "Name one tool, metric, or procedure you would resist dropping. Write the conditions that make it useful and the cue that means it must be demoted.",
+    "weeklyPractice": "This week, run one assumption check on a trusted dashboard, checklist, or routine; add a visible cue for when the tool should become a clue instead of a verdict."
+  }
+}

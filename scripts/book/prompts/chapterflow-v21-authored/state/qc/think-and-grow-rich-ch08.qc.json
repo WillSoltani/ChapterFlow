@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 8,
+  "chapterId": "think-and-grow-rich-ch08",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "19b86de594eec13b",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T11:53:55.148Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~93/100, GREEN. All 9 quiz keys verified correct. Examples distinct (board vote, renters union, plant floor, investor call, pledge thread, procurement) grounded in real anchors (Declaration signers/1776/treason, Samuel Adams/Boston, Ford Model T with sophisticated held-too-long nuance). Boston in 2/6 (justified by Adams). No shared skeleton, no corruption."
+}

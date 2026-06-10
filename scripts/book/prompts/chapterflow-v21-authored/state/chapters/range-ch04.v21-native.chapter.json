@@ -1,0 +1,299 @@
+{
+  "chapterId": "range-ch04",
+  "number": 4,
+  "title": "Learning, Fast and Slow",
+  "readingTimeMinutes": 13,
+  "hook": "The lesson that feels smooth can leave less behind than the one that makes you retrieve.",
+  "counterintuition": "Useful confusion has a job. It helps only when learners must tell ideas apart, recall them, space them, or explain a real link.",
+  "tryThisNow": "Take one thing you just studied and close the source. Reconstruct it from memory before checking the missing pieces.",
+  "keyTakeaway": "Desirable difficulties trade short-term fluency for durable recall and transfer by making learners retrieve, space, interleave, and classify.",
+  "breakdown": {
+    "fastRead": "A student reaches for a formula, the teacher pauses, and the room has to compare two solution paths before anyone rescues them with the next step.\n\nLearning that feels fast can be fragile. Smooth hints, blocked drills, and popular instruction often produce better feelings than later transfer.\n\nDesirable difficulty works when it is tied to retrieval, spacing, generation, discrimination, or explanation. Random confusion is just confusion.\n\nBuild one drill that makes you generate before being told, mixes problem types, and returns after a delay.",
+    "deepRead": "The learning evidence attacks a common illusion: the lesson that feels easiest is often the one that leaves the weakest trace. Procedure drills can produce clean immediate answers because the learner knows exactly which method was just demonstrated. Connection-making is slower because the learner must identify shape, explain relationships, and choose a strategy without being led by the hand. Classroom research shows how quickly teachers rescue students from that productive struggle, changing a idea-based prompt into a step-by-step routine.\n\nThe working distinction is desirable difficulties: Desirable difficulties are learning conditions that feel harder during practice but improve later recall and carry over. They include spacing, testing, interleaving, and wrestling with connections before receiving hints.\n\nAir Force Academy instructors: Students rated some demanding professors poorly because their courses felt harder. Later performance suggested that the discomfort produced better retention and application than smoother instruction.\n\nThe Japanese classroom contrast gives struggle a social and instructional shape: students are allowed to reason visibly before the procedure is settled. Desirable difficulty then becomes the organizing idea. Retrieval practice strengthens memory by forcing recall.\n\nReaders can stop equating smooth practice with progress and design learning that survives beyond the next worksheet, exam, or performance.\n\nRichland shows the classroom risk. The Air Force case shows the rating risk. Mixed math shows the practice risk. Smooth work can fool everyone.\n\nThe slow part matters. A learner recalls. A learner sorts. A learner explains. The later test shows what stuck.",
+    "fullRead": "The trap is the lesson that feels smooth. Lindsey Richland's classroom research shows how a promising comparison question can collapse into procedural rescue when students hesitate and the teacher supplies the next step too quickly. Everyone feels helped, but the deeper link may never be built.\n\nThe Air Force Academy evidence sharpens the discomfort. Students can prefer instructors who make a course feel easier while later performance reveals that the demanding course taught more. The learner's immediate experience is real, but it is not always the best measure of durable learning.\n\nBlocked practice creates the same illusion. When every problem uses the just-demonstrated method, speed rises because the learner already knows what kind of problem it is. Interleaving forces the harder act: diagnose the problem type, choose a strategy, and retrieve the method after interference. That difficulty trains transfer.\n\nThis is not a defense of bad teaching. Difficulty helps only when it does cognitive work: retrieval, spacing, generation, discrimination, or explanation. The craft is to design struggle that points at the skill you want, not to romanticize frustration.\n\nA reader can build this into any practice session. First, delay the answer long enough to generate. Second, mix examples so the learner must identify the problem type. Third, return after time has passed, because retrieval after forgetting is where durable memory is built. Fourth, explain why two methods differ or match. Those moves feel slower than demonstration followed by repetition, but they train the judgment that later tasks require.\n\nThe boundary condition is compassion as much as rigor. A learner should not be abandoned in confusion. The teacher, coach, or self-learner designs a gap that can be crossed with effort and feedback. Too much rescue removes the work; too little structure turns practice into fog. Desirable difficulty lives between those failures.\n\nThat is why the evidence cuts against both comfort worship and struggle worship. The smooth lesson may vanish. The painful lesson may be pointless. The useful lesson makes the learner retrieve, discriminate, and explain when the answer is no longer sitting beside the question.\n\nThis also changes feedback. Instead of asking whether the session felt clear, ask what the learner can do later, mixed with other tasks, without being told which procedure applies. The delayed test is the honest one."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Richland Math Prompt",
+      "tags": [
+        "richland",
+        "math",
+        "prompt"
+      ],
+      "planSpec": {
+        "domain": "richland math prompt",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "decision_point",
+        "requiredBeat": "Richland Math Prompt"
+      },
+      "scenario": "Tara observes a ninth-grade math class with Lindsey Richland's research notes in her folder. The teacher asks why two solution methods match, then quickly points to the next step when students hesitate. Tara marks the moment: the class moved from conceptual linking to procedural rescue in under a minute.",
+      "whatToDo": "Tara coaches the teacher to hold the comparison longer. Hints come after students attempt an explanation, not before the relation is visible.",
+      "whyItMatters": "The useful difficulty is the act of connecting. Richland's classroom work shows how fast adults can erase the struggle that builds transfer."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Academy Evaluation Surprise",
+      "tags": [
+        "academy",
+        "evaluation",
+        "surprise"
+      ],
+      "planSpec": {
+        "domain": "academy evaluation surprise",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "reflection",
+        "requiredBeat": "Academy Evaluation Surprise"
+      },
+      "scenario": "Colonel Ruiz reviews Air Force Academy course ratings after cadets praise a smooth instructor and complain about a demanding one. Later sections show stronger follow-on performance from the harder course.",
+      "whatToDo": "Ruiz keeps student feedback but weights later performance heavily. The academy now asks whether discomfort came from retrieval and reasoning, not confusion alone.",
+      "whyItMatters": "Smoothness during instruction can mislead. The Air Force evidence makes delayed performance a better judge than immediate comfort."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Interleaved Homework Night",
+      "tags": [
+        "interleaved",
+        "homework",
+        "night"
+      ],
+      "planSpec": {
+        "domain": "interleaved homework night",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "business_case",
+        "requiredBeat": "Interleaved Homework Night"
+      },
+      "scenario": "Mei's son finishes a blocked math worksheet quickly because every problem uses the same formula. The next page mixes problem types, and he groans at the kitchen table. Mei remembers the blocked versus interleaved practice evidence and resists sorting the page for him.",
+      "whatToDo": "Mei asks him to name the problem type before solving. Speed drops during practice, but the classifying muscle gets trained.",
+      "whyItMatters": "Interleaving feels worse because it removes the label. Later performance improves when the learner has practiced choosing the method."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Sales Retrieval Drill",
+      "tags": [
+        "sales",
+        "retrieval",
+        "drill"
+      ],
+      "planSpec": {
+        "domain": "sales retrieval drill",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "scene",
+        "requiredBeat": "Sales Retrieval Drill"
+      },
+      "scenario": "Alicia trains sales reps who can recite the demo after watching her. On Friday, she closes the deck and asks each rep to rebuild the pitch from memory for three different customers. Someone says the old method felt cleaner. Alicia points to retrieval practice instead of presentation polish.",
+      "whatToDo": "Alicia spaces and tests the material across contexts. Reps recall, adapt, and explain instead of copying the most recent example.",
+      "whyItMatters": "Retrieval creates effort at the right point. Fluent watching may feel productive while leaving weak memory traces."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Japanese Classroom Pause",
+      "tags": [
+        "japanese",
+        "classroom",
+        "pause"
+      ],
+      "planSpec": {
+        "domain": "japanese classroom pause",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "planning_choice",
+        "requiredBeat": "Japanese Classroom Pause"
+      },
+      "scenario": "Kenji visits a school where students debate a solution before the procedure is formalized. Back home, his department usually demonstrates first and practices after. He brings the Japanese classroom contrast to a planning meeting and asks where students can reason publicly before being rescued.",
+      "whatToDo": "Kenji designs a lesson with a visible pause for student explanations. The teacher records competing attempts before naming the standard method.",
+      "whyItMatters": "Struggle needs structure and safety. Reasoning before the hint can turn uncertainty into conceptual grip."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Medical Board Review",
+      "tags": [
+        "medical",
+        "board",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "medical board review",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "audit",
+        "requiredBeat": "Medical Board Review"
+      },
+      "scenario": "Dr. Hale prepares residents for board exams with blocked question banks. Scores are high by topic and weak on mixed practice. She pins the interleaving study beside the schedule and moves cardiology, renal, and endocrine questions into mixed rounds on Wednesday afternoons. In the resident workroom before the mixed round begins, Dr. Hale must decide whether blocked banks flatter scores or interleaving trains diagnosis.",
+      "whatToDo": "Dr. Hale makes residents identify the category before recalling the answer. Review feels slower, but diagnostic discrimination improves.",
+      "whyItMatters": "Medicine rarely labels the problem type on arrival. Mixed practice trains the choice that real cases demand."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What are desirable difficulties?",
+        "choices": [
+          "Harder learning conditions, such as spacing and retrieval, that improve later recall and transfer.",
+          "Any confusing experience that makes students feel less confident during a lesson.",
+          "Practice routines that maximize immediate fluency by keeping every problem type together."
+        ],
+        "correctIndex": 0,
+        "explanation": "Desirable difficulties are productive difficulties tied to retrieval, spacing, discrimination, or explanation. Mere confusion is not enough.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "What did Lindsey Richland's classroom research distinguish?",
+        "choices": [
+          "Teachers who assigned more homework from teachers who assigned less homework.",
+          "Students who preferred math from students who disliked math.",
+          "Questions that make students connect concepts from questions that rehearse procedures."
+        ],
+        "correctIndex": 2,
+        "explanation": "The research separated making-connections problems from using-procedures problems. That distinction explains why a lesson can look rigorous but train only repetition.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Why can giving hints too quickly weaken learning?",
+        "choices": [
+          "Hints always make students perform worse immediately and later.",
+          "Hints can turn connection-making into procedure-following, protecting short-term performance while reducing conceptual growth.",
+          "Hints are useful only in Japanese classrooms, not American classrooms."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fast hints remove the struggle of explaining why a method works. Students may look fluent while missing the transferable concept.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Why does spacing help memory even though it feels harder?",
+        "choices": [
+          "It prevents learners from having to retrieve anything during practice.",
+          "It makes retrieval more effortful in the moment, which strengthens later recall.",
+          "It works because forgetting between sessions has no effect on learning."
+        ],
+        "correctIndex": 1,
+        "explanation": "Spacing creates useful retrieval effort. That temporary difficulty makes memory more durable.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "What advantage does interleaving have over blocked practice?",
+        "choices": [
+          "It forces learners to identify the structure of each problem instead of applying the most recent formula automatically.",
+          "It removes the need to diagnose which kind of problem is being solved.",
+          "It makes practice feel easier, which is why students perform better later."
+        ],
+        "correctIndex": 0,
+        "explanation": "Interleaving trains discrimination. Learners must decide which strategy fits, a skill blocked practice can hide.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "What did the Air Force Academy evidence suggest about student evaluations?",
+        "choices": [
+          "Students always rate the instructors who produce the best long-term learning highest.",
+          "Demanding instructors harm later performance because discomfort blocks retention.",
+          "Students may dislike harder instructors even when those instructors improve later retention and application."
+        ],
+        "correctIndex": 2,
+        "explanation": "Epstein uses the Academy evidence to separate smooth experience from durable learning. Immediate satisfaction can point the wrong way.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "What is Epstein's warning about fluency during practice?",
+        "choices": [
+          "Fluency is always proof that practice has produced deep conceptual understanding.",
+          "Fluency matters only when learners practice in groups.",
+          "Fluency can feel like learning while producing weaker retention and transfer."
+        ],
+        "correctIndex": 2,
+        "explanation": "Blocked or hint-driven work can create a sense of ease. Epstein warns that ease is a poor measure of later performance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "What is the wrong interpretation of Epstein's argument about difficulty?",
+        "choices": [
+          "Difficulty helps when it is tied to retrieval or discrimination.",
+          "Confusion is automatically good no matter what causes it.",
+          "Random frustration is different from productive struggle."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hard edge rejects difficulty worship. Productive difficulty has a learning function; random frustration does not.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "How are Japanese classrooms used in Epstein's contrast?",
+        "choices": [
+          "They illustrate teachers allowing more struggle and reasoning before supplying the answer.",
+          "They show teachers avoiding public reasoning so students never struggle.",
+          "They prove that procedure-following is always better than conceptual explanation."
+        ],
+        "correctIndex": 0,
+        "explanation": "The contrast is about preserving productive struggle. Students reason publicly before the teacher resolves the problem.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What did Richland's math-classroom research warn about?",
+      "back": "Promising comparison questions can become shallow hint routines when teachers rescue students before they do the conceptual work.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What makes a difficulty desirable?",
+      "back": "It is desirable when it forces useful cognitive work such as retrieval, spacing, generation, explanation, or discriminating among problem types.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "Why can blocked practice flatter learning?",
+      "back": "Blocked practice tells learners which method to use before they have to diagnose the problem, so fluency can rise while transfer stays weak.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "How should you judge a hard learning experience?",
+      "back": "Judge it by later mastery and transfer, while checking that the struggle is purposeful instead of random frustration or poor instruction.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Desirable-Difficulty Drill Builder",
+    "coreSkill": "Design practice that feels slower now because it strengthens later retrieval, discrimination, spacing, and transfer.",
+    "ifThenPlans": [
+      {
+        "context": "When practice feels too smooth",
+        "plan": "If I can solve every item because the method is obvious, then I will mix problem types so I must choose the strategy first."
+      },
+      {
+        "context": "When I want to explain immediately",
+        "plan": "If I am about to give or request the answer, then I will first generate a guess, comparison, or explanation attempt."
+      },
+      {
+        "context": "When difficulty becomes noise",
+        "plan": "If the struggle is not tied to retrieval, spacing, generation, or discrimination, then I will redesign it instead of praising the pain."
+      }
+    ],
+    "twentyFourHourChallenge": "Convert one easy drill into a desirable-difficulty drill: space it, mix item types, and require a generated answer before checking.",
+    "weeklyPractice": "This week, replace one blocked practice session with interleaving and one immediate review with delayed retrieval; compare later performance, not just comfort."
+  }
+}

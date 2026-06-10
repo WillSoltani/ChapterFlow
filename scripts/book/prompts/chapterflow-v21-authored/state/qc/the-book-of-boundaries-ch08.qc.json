@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-book-of-boundaries",
+  "chapterNumber": 8,
+  "chapterId": "the-book-of-boundaries-ch08",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "41b859894e838e9e",
+  "reviewer": "claude-qc:boundaries-20260609",
+  "reviewedAt": "2026-06-10T00:50:59.695Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~90/100. 9/9 keys correct; Green/Yellow/Red applied to food/table-talk; no-explanation-trap correct; 6 varied scenes."
+}

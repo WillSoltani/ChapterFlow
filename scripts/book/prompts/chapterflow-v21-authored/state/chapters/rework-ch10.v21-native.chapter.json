@@ -1,0 +1,352 @@
+{
+  "chapterId": "rework-ch10",
+  "number": 10,
+  "title": "Start making something",
+  "readingTimeMinutes": 11,
+  "hook": "Anyone can picture an auction site; only a built marketplace ever takes a single trade.",
+  "counterintuition": "An unbuilt idea feels like property worth guarding, yet it carries no evidence anyone wants it. A rough first artifact, exposed to real people, teaches more in a week than a year of protecting the thought.",
+  "tryThisNow": "Pick the idea you have circled longest, then build the smallest version someone could actually use today: a single page, a sketch, or one real invoice.",
+  "keyTakeaway": "An idea is worth little until it becomes a thing people can use, buy, or reject; making converts imagination into evidence, and execution, not the notion, decides the outcome.",
+  "breakdown": {
+    "fastRead": "Picture an online auction site where strangers trust each other enough to trade. That thought is cheap. Pierre Omidyar had it, and so did plenty of others who never built anything.\n\nThe marketplace only became real once the work started. Software had to run. Strangers needed reasons to trust. Payments, listings, disputes, and support all had to exist before a single sale could clear.\n\nSo the move is plain. Stop guarding the notion and make the smallest real thing. A page, a prototype, one working transaction. The made object draws reactions that talk never could, and those reactions are the first true evidence you have.",
+    "deepRead": "Reactions only attach to things people can touch. Describe a product and a listener nods politely at an imagined version. Hand them something they can click, use, or pay for, and a different set of responses appears: the confusion, the objection, the small delight, the part they ignore entirely. That gap is why a made artifact teaches what a pitch deck cannot.\n\nWatch the eBay contrast carry the point. The concept of an auction marketplace was a sentence. The business was years of building trust between strangers, clearing transactions, growing a user base, and answering support tickets when a deal went wrong. The idea was a tiny fraction of what created value. Whoever executed the listings, the feedback system, and the dispute process owned the thing that buyers actually paid for.\n\nBeginning does a second quiet job. The moment you build, you are forced to choose. What goes in the first version, what waits, what gets cut entirely. Planning lets you defer those tradeoffs forever; making demands them now. Each real choice turns a vague concept into a shape you can test, and the shape is what reality can finally push back on.\n\nThe useful discrimination is this. An idea you can describe is imagination; an artifact someone can reject is evidence. The first feels safer because nothing can fail yet. The second is worth more because something finally can. You trade the comfort of a flawless plan for the information only a built thing returns.",
+    "fullRead": "Two founders can hold the same idea and walk away with wildly different businesses, and that fact alone should end the worship of ideas. If the notion were decisive, identical concepts would produce identical outcomes. They never do. The gap between them is execution: how well each one is built, refined, and pushed against real use. The shared sentence was never the advantage; the years of careful making were.\n\nLook again at how eBay actually came to exist. The auction-site thought took a moment. The marketplace took software that stayed up, a feedback system that let strangers trust strangers, a payment path, a way to handle the deal that fell apart, and constant iteration as new kinds of fraud and confusion appeared. Pierre Omidyar was not first to imagine online auctions; he was among those who built and sustained one. Buyers paid for the working implementation, never for the underlying notion, because the notion on its own does nothing for anyone.\n\nThere is a trap on the other side, and it ruins the lesson if you miss it. Reading start now as ship anything, fast and sloppy turns the advice into frantic motion. Speed is not the point. Busyness produces no useful evidence; a half-built mess that no one can really use teaches almost nothing, because there is nothing solid for reality to test. The aim is a real, working artifact, however small, whose quality can then improve against actual feedback. Making is not an excuse to skip judgment. It is the act that finally gives judgment something true to chew on.\n\nThinking still matters, which is the part the cartoon version of this gets wrong. The argument is not that planning is worthless or that you should never reflect. It is that thought earns its keep only once it becomes embodied in something testable. A brilliant analysis trapped in your head changes nothing until it takes a form someone can react to. So the plan is not the enemy; the plan that never becomes a thing is. Convert the thinking into a sketch, a working service, a first invoice, or a public launch, and let that object carry the idea into contact with the world.\n\nThe boundary is worth naming so this idea is not over-applied. Making something does not guarantee the thing is good, and a built artifact still has to face the harder question of whether anyone wants it. Begin where you can, build the smallest honest version, and expose it early. But hold it loosely enough to keep improving it, because the first artifact is a starting line, not a verdict. The only ideas worth talking about for long are the ones already being converted into work, where reality can answer the questions that talk leaves open."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch10.ex.ebay",
+      "title": "Beatriz Ships One Real Listing",
+      "tags": [
+        "marketplace",
+        "first artifact",
+        "trust"
+      ],
+      "planSpec": {
+        "domain": "online marketplace startup",
+        "audience": "founders who keep refining a concept instead of building",
+        "stakes": "build the smallest working version or keep polishing the pitch",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist chooses to make a real artifact over guarding the idea"
+      },
+      "scenario": "Beatriz has a fourteen-page deck describing an auction marketplace, the same kind of thought that preceded eBay before any software existed. At 9:40 a.m. in a Sao Paulo coworking loft, an investor asks her to demo one real transaction between two strangers. She has none. Before the meeting ends she must choose: keep refining the deck that proves nothing, or go build a single listing where one stranger can actually buy from another and trust holds.",
+      "whatToDo": "Beatriz should close the deck and build one working listing that lets a real buyer pay a real seller, then watch where trust and the transaction actually break.",
+      "whyItMatters": "A demo of one cleared trade is evidence; a deck about a marketplace is imagination, so making the smallest real version is what finally lets reality answer the question."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch10.fact.2",
+      "title": "The Idea Nobody Would Buy",
+      "tags": [
+        "selling an idea",
+        "standalone value",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "consumer hardware pitching",
+        "audience": "inventors hoping to sell a concept before building",
+        "stakes": "sell the unbuilt idea or build proof first",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist learns an unexecuted idea fetches almost nothing"
+      },
+      "scenario": "Niamh sits across from a buyer at 3:15 p.m. in a Dublin patent office, certain her idea for a quieter kettle is worth a fortune on its own. The buyer reminds her that a bare auction-site idea was worth almost nothing before Pierre Omidyar built eBay, then asks: does a working unit exist that someone has paid for? It does not. He offers almost nothing for an unverifiable concept. Niamh must decide whether to keep shopping the bare idea or go make a unit a real customer would actually buy.",
+      "whatToDo": "Niamh should stop selling the bare concept and build one working kettle a real customer pays for, so the price reflects evidence instead of a promise.",
+      "whyItMatters": "Buyers discount an unbuilt idea because nothing proves it works or sells; the market price of a concept alone reveals how little standalone worth it really carries."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch10.fact.3",
+      "title": "The Page That Drew Real Reactions",
+      "tags": [
+        "feedback",
+        "artifact over talk",
+        "landing page"
+      ],
+      "planSpec": {
+        "domain": "software product validation",
+        "audience": "teams running endless interviews before building",
+        "stakes": "keep interviewing or ship a small thing people can react to",
+        "format": "contrast",
+        "requiredBeat": "the protagonist weighs talk-based feedback against reactions to a real artifact"
+      },
+      "scenario": "Gus has run thirty friendly interviews and every one praised his scheduling tool that does not yet exist. At 11:20 a.m. on Thursday in a Lyon studio, his cofounder ships a crude one-page version that actually books a slot, the way a live eBay listing once drew real reactions a description never could. Within an hour, three users abandon it at the same confusing step nobody mentioned in any interview. Gus must decide whether to trust another round of polite talk or the messy reactions the live page just surfaced.",
+      "whatToDo": "Gus should trust the abandonment he watched on the live page over the praise from interviews, and fix the confusing step real users actually hit.",
+      "whyItMatters": "People react to imagined products with imagined approval; only a thing they can use surfaces the confusion and objections that abstract descriptions never trigger."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch10.fact.5",
+      "title": "The Tradeoffs Building Forced",
+      "tags": [
+        "momentum",
+        "concrete tradeoffs",
+        "scope"
+      ],
+      "planSpec": {
+        "domain": "indie game development",
+        "audience": "makers waiting for a perfect plan before starting",
+        "stakes": "wait for every answer or start and let building force the choices",
+        "format": "before_after",
+        "requiredBeat": "beginning forces tradeoffs that planning had postponed"
+      },
+      "scenario": "For eight months Roshan kept a flawless design document for his puzzle game, resolving every open question before writing code. Nothing shipped. Then at 10 p.m. in a Pune flat, the lead developer finally built a single playable level. Just as building eBay forced real choices about transactions and trust, Roshan now had to choose what to include and what to cut, decisions the document had let him defer forever. Building forced tradeoffs that planning had postponed, and momentum arrived with them.",
+      "whatToDo": "Roshan should keep building the next small piece, letting each real inclusion-or-cut decision get made now instead of deferred behind another round of planning.",
+      "whyItMatters": "Once you start building you must choose what is in and what is out, so making forces the concrete tradeoffs that a search for perfect certainty postpones indefinitely."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch10.fact.6",
+      "title": "Same Idea, Two Outcomes",
+      "tags": [
+        "execution quality",
+        "common idea",
+        "differentiator"
+      ],
+      "planSpec": {
+        "domain": "food delivery startups",
+        "audience": "founders who think the idea itself is the advantage",
+        "stakes": "treat the shared idea as decisive or treat execution as decisive",
+        "format": "predict_reveal",
+        "requiredBeat": "two teams with the same idea diverge on execution quality"
+      },
+      "scenario": "At 8 a.m. the product lead Linnea watches two delivery startups launch the same week in Stockholm with an identical pitch: groceries in thirty minutes. The auction-marketplace idea behind eBay was likewise shared by many who never built it. Before her own team copies either startup, she must answer why one is thriving and one is folding. The gap was never the concept; it was how cleanly each built routing, handled refunds, and refined the service against real orders.",
+      "whatToDo": "Linnea should study the execution differences, how each team built routing and handled failures, rather than searching for a better idea than the one both teams shared.",
+      "whyItMatters": "Identical ideas routinely produce wildly different results, so the differentiator is execution quality refined against real use, not possession of the shared concept."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch10.fact.9",
+      "title": "Frantic Motion Is Not Execution",
+      "tags": [
+        "hard edge",
+        "sloppy speed",
+        "real artifact"
+      ],
+      "planSpec": {
+        "domain": "agency client work",
+        "audience": "teams mistaking busyness for execution",
+        "stakes": "ship anything fast and sloppy or make one real, testable thing",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist separates frantic motion from making a real artifact"
+      },
+      "scenario": "Yusuf has pushed his team to ship three half-built features in a week, calling the blur execution. At 5:50 p.m. in a Rabat office, a client tries the work and cannot complete a single task; nothing is solid enough to test. Real execution built eBay through working transactions and trust between strangers, not through frantic motion. He must decide before the next sprint whether to keep mistaking the blur for progress, or slow down and build one real, usable thing whose quality can improve against actual feedback.",
+      "whatToDo": "Yusuf should stop the sloppy rush and have the team finish one genuinely usable feature, so there is finally something solid enough for reality to test.",
+      "whyItMatters": "Busyness produces no useful evidence; the lesson favors making real, testable artifacts whose quality improves against feedback, not raw speed mistaken for execution."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch10.ex.ebay",
+        "prompt": "A founder has a polished deck describing an auction marketplace, the same kind of thought that preceded eBay, but an investor wants a demo of one real trade between strangers, which she does not have. Which move fits execution over ideas?",
+        "choices": [
+          "Keep refining the deck, since a clearer description of the marketplace proves the concept is sound.",
+          "Build one working listing where a real buyer pays a real seller, then watch where trust and the transaction break.",
+          "Pitch the idea to more investors first, because a strong enough concept should sell before anything is built."
+        ],
+        "correctIndex": 1,
+        "explanation": "The eBay concept was a sentence; the business was the built listings, trust, and transactions. A demo of one cleared trade is evidence, while a deck about a marketplace stays imagination.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch10.fact.2",
+        "prompt": "An inventor is certain her concept for a quieter kettle is worth a fortune on its own, but the one buyer she finds offers almost nothing because no paid working unit exists. How should she read that low offer?",
+        "choices": [
+          "The buyer is simply undervaluing a brilliant concept, so she should hold out for someone who will pay full price for the idea.",
+          "The idea must be worthless, so she should drop the quieter kettle and move on to a different invention.",
+          "The price reveals how little an unbuilt idea is worth, so she should make a unit a real customer pays for before selling."
+        ],
+        "correctIndex": 2,
+        "explanation": "Buyers discount a concept because nothing proves it works or sells. The low offer is not undervaluation; it is the true standalone worth of an idea with no execution behind it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch10.fact.3",
+        "prompt": "Thirty friendly interviews praised a scheduling tool that did not exist, yet a crude one-page version that actually books a slot makes three users quit at the same confusing step nobody mentioned. Which signal should the team trust first?",
+        "choices": [
+          "The abandonment on the live page, because a thing people can use surfaces confusion that talk about an imagined product never triggers.",
+          "The interview praise, because thorough discussion before building captures user needs as well as a live product does.",
+          "Neither, because the team should run more interviews until everyone agrees on the design before building anything."
+        ],
+        "correctIndex": 0,
+        "explanation": "Talk-based feedback responds to an imagined product and misses real reactions. The live page exposed the confusing step precisely because people interacted with an actual artifact.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch10.fact.5",
+        "prompt": "A maker has kept a flawless design document for eight months, resolving every open question before writing code, and nothing has shipped. He wonders why building a single playable level changed things. Which explanation fits best?",
+        "choices": [
+          "Building forced concrete tradeoffs about what to include and cut that the document had let him defer forever.",
+          "The level shipped only because the design document was finally detailed enough to remove all remaining risk.",
+          "Writing code is inherently faster than planning, so the playable level proves the design document was wasted effort."
+        ],
+        "correctIndex": 0,
+        "explanation": "Once you build, you must choose what is in and out, so real decisions get made now. Planning let him defer those tradeoffs; making demanded them and brought momentum.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch10.fact.6",
+        "prompt": "Two delivery startups launch the same week with an identical pitch of groceries in thirty minutes, and months later one thrives while the other folds. A teammate wants to copy the survivor's idea. What is the soundest read?",
+        "choices": [
+          "Copy the survivor's idea exactly, since starting from the same concept will produce the same successful outcome.",
+          "Find a cleverer idea than groceries in thirty minutes, because the original concept was clearly the weak point.",
+          "Study how each team built routing and handled refunds, since the shared idea was identical and execution made the gap."
+        ],
+        "correctIndex": 2,
+        "explanation": "Identical ideas routinely produce different results. The decisive factor was not the shared concept but execution quality, how each team built and refined the service against real orders.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch10.fact.9",
+        "prompt": "A team lead pushes his people to ship three half-built features in a week and calls the blur execution, but a client cannot complete a single task because nothing is solid enough to test. Which judgment best fits making real artifacts?",
+        "choices": [
+          "He is executing well, since shipping as fast as possible and staying constantly busy is what matters most.",
+          "Frantic motion is not execution; the point is to make one real, usable thing whose quality can improve against actual feedback.",
+          "He should ship even faster next sprint, because more features in less time will eventually produce something usable."
+        ],
+        "correctIndex": 1,
+        "explanation": "Busyness produces no useful evidence, since a half-built mess gives reality nothing to test. The lesson favors a real artifact, however small, that can then improve against feedback.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch10.fact.4",
+        "prompt": "A strategist insists a detailed pitch deck already counts as proof that a concept is sound and worth funding. A colleague disagrees. Which response best reflects turning imagination into evidence?",
+        "choices": [
+          "A plan is still imagination on paper; only a built thing real users interact with produces verifiable proof the concept holds.",
+          "The deck is proof enough, because a sufficiently detailed plan removes the need to build anything to know it works.",
+          "The deck is useless on its own, so the team should drop all planning and ship whatever code they can write today."
+        ],
+        "correctIndex": 0,
+        "explanation": "A made thing can be tested against reality, which gives observable proof. A pitch deck is untested assumption; making converts the concept into something people can use, buy, or reject.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch10.fact.10",
+        "prompt": "After hearing start making something, a colleague concludes the lesson is that thinking is a waste of time and planning should be abandoned for pure action. How should you correct that reading?",
+        "choices": [
+          "Agree fully, since the strongest interpretation is to skip planning and only act as quickly as possible.",
+          "Tell him to stop building anything and return to planning, because reflection alone is what truly creates value.",
+          "Thinking still matters, but it earns its keep only once it becomes embodied in something that can be tested."
+        ],
+        "correctIndex": 2,
+        "explanation": "The argument is not anti-thinking. Thought delivers value through the testable artifact it produces, so an analysis trapped in your head changes nothing until it takes a usable form.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch10.fact.1",
+        "prompt": "A first-time founder believes the hardest, most valuable part of building a company is dreaming up a truly original idea, and that having one all but guarantees success. Which assessment is most accurate?",
+        "choices": [
+          "He is right, since a rare enough idea is the decisive advantage and everything afterward is just routine work.",
+          "Most people already have ideas, so possessing one rarely creates a durable advantage; the scarce work is building it into a tested product.",
+          "Ideas count for nothing, so he should pick any concept at random and the execution will carry it regardless."
+        ],
+        "correctIndex": 1,
+        "explanation": "Ideas are abundant and cheap, so an idea alone is not defensible. Advantage accrues where the scarce, difficult work happens: converting the notion into a built, tested product.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch10.concept",
+      "front": "Why is an idea worth little until it becomes a thing people can use?",
+      "back": "Because a described idea is only imagination, while a built artifact someone can use, buy, or reject is evidence. Making converts the notion into something reality can finally test and value.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch10.ex.ebay",
+      "front": "What separated the eBay idea from the eBay business?",
+      "back": "The auction-site thought took a moment; the business took software that stayed up, trust between strangers, transactions, a user base, support, and constant iteration. The idea was a tiny fraction of what created value.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch10.fact.2",
+      "front": "What does trying to sell an unbuilt idea reveal about its worth?",
+      "back": "Buyers will not pay much for a concept they cannot verify works or makes money, so the low price they offer exposes how little standalone value an idea carries before any execution.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch10.fact.6",
+      "front": "Why can two companies with the same idea reach opposite outcomes?",
+      "back": "Because the idea is shared and therefore not the differentiator. Execution quality, how well each one builds and refines the work against real use, is what turns a common idea into a meaningful product or a failure.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch10.fact.9",
+      "front": "How is frantic motion different from real execution?",
+      "back": "Rushing sloppy, half-built work that no one can use produces no evidence, because nothing is solid enough to test. Real execution makes one genuine artifact, however small, whose quality then improves against actual feedback.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch10.fact.10",
+      "front": "How does this idea still leave room for thinking and planning?",
+      "back": "Thought is not the enemy; the thought that never becomes a thing is. Thinking earns its keep once it is embodied in a page, prototype, or service someone can react to, so analysis only counts once it takes a testable form.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Ship the First Artifact",
+    "coreSkill": "Take the idea you keep protecting and convert it into the smallest real thing someone can use, buy, or reject this week. Build a page, a prototype, or one working transaction instead of refining a plan, then read the reactions the artifact draws as your first true evidence. Treat that first version as a starting line you keep improving, never as a finished verdict.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch10.concept",
+        "context": "When you notice you have been polishing a concept or deck for weeks without building",
+        "plan": "If the idea exists only as a description, then Ship the First Artifact by making the smallest usable version a real person could try today."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.3",
+        "context": "When you are tempted to run one more round of interviews before building",
+        "plan": "If you are gathering talk-based feedback on an imagined product, then Ship the First Artifact and watch how people react to a thing they can actually use instead."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.9",
+        "context": "When the team is shipping a blur of half-built work and calling it progress",
+        "plan": "If frantic motion has replaced real making, then slow down and Ship the First Artifact as one genuinely usable thing whose quality can improve against feedback."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next day, take one idea you have been guarding and build the smallest real artifact someone could use: a single page, a prototype, or one working transaction. Show it to one real person and write down the first reaction it drew.",
+    "weeklyPractice": "Each week, convert one stalled idea into a small built thing and expose it to at least one real user. Track which reaction the artifact surfaced that no amount of talk or planning had revealed."
+  },
+  "memorableLines": [
+    {
+      "text": "The made object draws reactions that talk never could, and those reactions are the first true evidence you have.",
+      "location": "breakdown.fastRead",
+      "why": "It names the whole payoff of making in one line: a real thing produces evidence that conversation cannot."
+    },
+    {
+      "text": "An idea you can describe is imagination; an artifact someone can reject is evidence.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the chapter's core distinction into a clean, quotable contrast."
+    },
+    {
+      "text": "The shared sentence was never the advantage; the years of careful making were.",
+      "location": "breakdown.fullRead",
+      "why": "It carries the hard edge that execution, not the idea, is where durable value actually lives."
+    }
+  ]
+}

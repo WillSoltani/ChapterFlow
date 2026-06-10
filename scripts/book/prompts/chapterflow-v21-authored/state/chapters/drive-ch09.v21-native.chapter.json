@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "drive-ch09",
+  "number": 9,
+  "title": "Type I for Organizations",
+  "readingTimeMinutes": 8,
+  "hook": "An organization changes motivation by changing the climate people work inside every day.",
+  "counterintuition": "Perks alone do not create Type I behavior; decision rights, feedback, and purpose have to shift.",
+  "tryThisNow": "Ask one team where it lacks choice over task, time, technique, or team, and pick the smallest reversible experiment.",
+  "keyTakeaway": "Organizations move toward engagement by redesigning autonomy, recognition, feedback, and purpose rather than decorating control.",
+  "breakdown": {
+    "fastRead": "An autonomy audit makes organizational motivation design visible. It asks where people have real choice over task, time, technique, and team. A FedEx Day creates a short, bounded burst of self-directed work. Whose purpose is it anyway tests whether a mission belongs to employees or only executives. Peer bonus practices can make appreciation immediate and informational. The rule is to alter the work environment, not just demand a better attitude.",
+    "deepRead": "The mechanism is climate: policies and rituals teach people what kind of motive is welcome. Organizational motivation design changes the work environment so autonomy, mastery, and purpose are easier to experience, not merely easier to talk about.\n\nAn autonomy audit turns self-direction into something visible by asking where people have choice over task, time, technique, and team. FedEx Days create a bounded space for chosen work and quick delivery. Whose purpose is it anyway tests whether the mission is shared or only executive language. Peer recognition can make appreciation immediate, modest, and informational when it is designed carefully.\n\nThe risk is cosmetic adoption. A company can add a hack day, a purpose workshop, or a peer bonus while keeping the same distrust, surveillance, and narrow measures underneath. The practical unit of change is a policy, ritual, or metric. If the environment is producing disengagement, a speech about attitude will not repair it. A redesign is credible only when someone can point to the changed signal.",
+    "fullRead": "The risk is cosmetic adoption, where Type I language sits on top of Type X habits. The shallow version treats these practices as perks layered onto the same control system. The real work is redesigning decision rights, feedback, and purpose so people experience a different motivational climate.\n\nAn autonomy audit is the diagnostic entry point. People identify how much choice they have over task, time, technique, and team, then compare that with what would help them do better work. The audit turns a broad value into a map of specific decision rights.\n\nFedEx Days give autonomy a short, safe trial. People choose a problem, work quickly, and deliver something visible. The time box matters because it gives freedom a container and makes learning public.\n\nPurpose checks ask whether the mission belongs to the organization or only to leadership. If employees write five different purposes, or cannot connect the purpose to daily choices, the mission is not yet a motivational resource. Peer recognition can help when it is specific and informational, because appreciation no longer has to wait for hierarchy.\n\nThe design lesson is environmental. Motivation problems are often predictable outputs of the system. Change one ritual, one measure, or one decision right, then read the result before blaming character.\n\nThe organizational tools work best when they are treated as experiments. An autonomy audit should lead to one changed decision right. A FedEx Day should lead to a demo, a lesson, or a next policy question. A purpose exercise should lead to a decision that tests the stated mission. Peer recognition should make useful behavior more visible, not create a new status game.\n\nMeasurement needs the same care. If a customer success team is rewarded for touch count, it will create touches. If a hybrid policy rewards visible presence, people will manage visibility. If a peer bonus pays for popularity, popularity will grow. A Type I organization asks what motive each measure teaches and whether that motive fits the work.\n\nThe strongest redesigns are local enough to test and serious enough to matter. A team does not have to transform the whole company before moving one approval, revising one meeting, or changing one metric. But the change has to touch the actual system. Otherwise autonomy, mastery, and purpose remain words people hear while experiencing something else.\n\nA useful organizational experiment should name the behavior it expects to change before it begins. Otherwise a new ritual can feel good for a week and leave no learning behind. The climate changes when people can point to a different decision right, measure, or feedback pattern."
+  },
+  "examples": [
+    {
+      "exampleId": "drive-ch09-ex01",
+      "title": "A Misread Incentive",
+      "tags": [
+        "work design",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "quarterly operations review",
+        "audience": "Cora, an operations director auditing autonomy before blaming morale",
+        "stakes": "A quarterly review is about to treat disengagement as an attitude problem.",
+        "format": "decision_point",
+        "requiredBeat": "Use an autonomy audit as an environmental diagnosis."
+      },
+      "scenario": "Cora asks each team to mark task, time, technique, and team choice before discussing morale scores. The lowest scores are not in enthusiasm; they are in technique, where every local decision needs approval.",
+      "whatToDo": "Run an autonomy audit in the quarterly operations review before blaming disengagement on attitude.",
+      "whyItMatters": "The audit turns complaint into a design map. The system may be suppressing initiative."
+    },
+    {
+      "exampleId": "drive-ch09-ex02",
+      "title": "The Calendar Test",
+      "tags": [
+        "team choice",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "product hack day kickoff",
+        "audience": "Desmond, a product lead designing a bounded hack day",
+        "stakes": "A hack day needs real autonomy and a real delivery moment.",
+        "format": "dialogue",
+        "requiredBeat": "Show FedEx Day freedom inside a container."
+      },
+      "scenario": "Desmond gives teams one day to choose a product friction, build a working demo, and present it by 4 p.m. He removes normal roadmap approval for the day but keeps the delivery requirement.",
+      "whatToDo": "For the product hack day kickoff, define the delivery moment before opening self-directed work time.",
+      "whyItMatters": "The container makes autonomy safe to test. Freedom without delivery would be easy to dismiss."
+    },
+    {
+      "exampleId": "drive-ch09-ex03",
+      "title": "When Metrics Crowd Out Meaning",
+      "tags": [
+        "ethics",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "peer recognition circle",
+        "audience": "Inez, a facilitator making recognition useful",
+        "stakes": "Peer recognition could become popularity theater or genuine feedback.",
+        "format": "audit",
+        "requiredBeat": "Show modest, specific, peer-delivered appreciation."
+      },
+      "scenario": "Inez asks each person to name one colleague's specific helpful act and the work it improved. The notes are small, concrete, and given peer to peer rather than saved for a manager's speech.",
+      "whatToDo": "Make one recognition note in the peer recognition circle specific, modest, and peer-delivered.",
+      "whyItMatters": "Recognition supports motivation when it gives information and connection. Vague praise is cheaper and weaker."
+    },
+    {
+      "exampleId": "drive-ch09-ex04",
+      "title": "A Better Design Choice",
+      "tags": [
+        "autonomy",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "regional nonprofit retreat",
+        "audience": "Ravi, a nonprofit leader testing whose purpose is shared",
+        "stakes": "A retreat may reveal that the mission is executive language, not a common guide.",
+        "format": "planning_choice",
+        "requiredBeat": "Use the one-sentence purpose check."
+      },
+      "scenario": "Ravi asks everyone to write the organization's purpose in one sentence. The board writes donor confidence, staff write tenant stability, and volunteers write emergency relief.",
+      "whatToDo": "Ask the regional nonprofit retreat group whose purpose the mission currently serves.",
+      "whyItMatters": "The mismatch is not a branding problem first. A purpose that is not shared cannot guide daily choices."
+    },
+    {
+      "exampleId": "drive-ch09-ex05",
+      "title": "The Control Signal",
+      "tags": [
+        "management",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "hybrid-work policy meeting",
+        "audience": "Selah, a people lead pairing flexibility with outcomes",
+        "stakes": "A hybrid-work policy needs trust and standards at the same time.",
+        "format": "postmortem",
+        "requiredBeat": "Show autonomy without abandoning accountability."
+      },
+      "scenario": "Selah replaces a three-day attendance rule with team-level coverage promises, response windows, and outcome reviews. Managers can still see whether work is served, but the policy stops treating presence as the only proof.",
+      "whatToDo": "Pair the hybrid-work policy meeting with clear outcomes so flexibility has trust and standards.",
+      "whyItMatters": "Flexibility becomes credible when outcomes are clear. Trust and standards can reinforce each other."
+    },
+    {
+      "exampleId": "drive-ch09-ex06",
+      "title": "After the Reward Debate",
+      "tags": [
+        "reflection",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "customer success metrics workshop",
+        "audience": "Bram, a customer success manager revising a harmful metric",
+        "stakes": "A metric rewards visibility while punishing good judgment.",
+        "format": "reflection",
+        "requiredBeat": "Change one measure that teaches the wrong motive."
+      },
+      "scenario": "Bram sees reps logging many shallow check-ins because the dashboard rewards touch count. He adds customer issue resolution and quality notes, so the measure starts valuing judgment over appearance.",
+      "whatToDo": "In the customer success metrics workshop, revise one metric that rewards visibility over judgment.",
+      "whyItMatters": "Metrics teach people what the organization respects. Changing the measure changes the climate."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "drive-ch09-q01",
+        "prompt": "A quarterly review blames disengagement on attitude. What should leaders inspect first?",
+        "choices": [
+          "Whether the morale slide deck uses more inspiring language.",
+          "Whether employees can be reminded to care without changing the work.",
+          "Which policies, rituals, and measures are shaping autonomy, mastery, and purpose."
+        ],
+        "correctIndex": 2,
+        "explanation": "Organizational motivation design treats the environment as the unit of change. A speech is not a redesign.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch09-q02",
+        "prompt": "Why is an autonomy audit useful?",
+        "choices": [
+          "It proves every employee needs the same kind of freedom.",
+          "It makes self-direction visible enough to guide practical changes.",
+          "It replaces the need to discuss outcomes."
+        ],
+        "correctIndex": 1,
+        "explanation": "The audit maps choice over the four Ts. It does not erase standards or differences.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch09-q03",
+        "prompt": "A company adds a hack day but keeps every useful proposal stuck in approval for months. What is the problem?",
+        "choices": [
+          "The real work is redesigning decision rights and follow-through, not adding a perk on top of control.",
+          "The hack day should become a party with no delivery.",
+          "Employees should be blamed for not feeling inspired enough."
+        ],
+        "correctIndex": 0,
+        "explanation": "Cosmetic adoption borrows Type I language without changing the system.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch09-q04",
+        "prompt": "What does an autonomy audit ask about directly?",
+        "choices": [
+          "Which employees deserve autonomy as a personality reward.",
+          "How leaders can avoid naming any decision rights.",
+          "Where people lack choice over task, time, technique, or team."
+        ],
+        "correctIndex": 2,
+        "explanation": "The audit is specific. It locates decision rights.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch09-q05",
+        "prompt": "When does peer recognition support motivation?",
+        "choices": [
+          "When it is specific, modest, timely, and delivered by peers as useful information.",
+          "When it becomes a popularity contest with large prizes.",
+          "When managers save all appreciation for annual reviews."
+        ],
+        "correctIndex": 0,
+        "explanation": "Good recognition gives connection and information. The wrong answers distort or delay it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch09-q06",
+        "prompt": "Why can a FedEx Day help an organization test Type I conditions?",
+        "choices": [
+          "It removes every deadline so creativity has no container.",
+          "It gives a short, bounded burst of task autonomy with a visible delivery moment.",
+          "It proves the normal work system never needs change."
+        ],
+        "correctIndex": 1,
+        "explanation": "The time box and delivery make the experiment usable. It is a trial of climate, not a vacation.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "drive-ch09-q07",
+        "prompt": "At an operations review, which environmental test would be worth trying first?",
+        "choices": [
+          "Move one low-risk decision right to the team and review autonomy, feedback quality, and outcomes.",
+          "Rewrite the values poster while leaving approvals untouched.",
+          "Tell managers to trust people without changing any policy."
+        ],
+        "correctIndex": 0,
+        "explanation": "A real test changes the environment. Language alone is not enough.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch09-q08",
+        "prompt": "A team calls people unmotivated, but the metric rewards visible check-ins over good judgment. What should change?",
+        "choices": [
+          "Keep the metric and ask people to be more purpose-driven.",
+          "Revise the metric so it values customer progress and decision quality.",
+          "Remove all measures so no one feels controlled."
+        ],
+        "correctIndex": 1,
+        "explanation": "The system is teaching the wrong behavior. The better move is a better measure, not no measure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch09-q09",
+        "prompt": "For organizational motivation design, where should a leader begin?",
+        "choices": [
+          "Start with a new slogan and wait for motivation to rise.",
+          "Assume every motivation problem is a personal attitude flaw.",
+          "Audit the local climate, then test one policy, ritual, or metric change with clear outcomes."
+        ],
+        "correctIndex": 2,
+        "explanation": "Environmental experiments reveal what slogans and blame avoid.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "drive-ch09-card01",
+      "front": "What is organizational motivation design?",
+      "back": "Changing policies, rituals, measures, and decision rights so people can experience more autonomy, mastery, and purpose.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "drive-ch09-card02",
+      "front": "What does an autonomy audit make visible?",
+      "back": "Where people do and do not have choice over task, time, technique, and team.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch09-card03",
+      "front": "Why does a FedEx Day need delivery?",
+      "back": "Delivery gives freedom a container. It lets the organization learn from autonomy without losing accountability.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch09-card04",
+      "front": "What does Whose purpose is it anyway test?",
+      "back": "Whether the mission is shared enough to guide daily choices, or whether it exists mainly in leadership language.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "drive-ch09-card05",
+      "front": "What is cosmetic Type I adoption?",
+      "back": "Adding purpose language or autonomy perks while leaving the old control system, measures, and approvals intact.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Use the Climate Redesign Board",
+    "coreSkill": "Use the Climate Redesign Board with four columns: signal, current behavior, Type I nutrient affected, and one policy, ritual, or metric to test.",
+    "ifThenPlans": [
+      {
+        "context": "People blame attitude",
+        "plan": "Move the discussion to signals: what does the system currently reward, punish, notice, or ignore?"
+      },
+      {
+        "context": "Autonomy is vague",
+        "plan": "Run a four-T audit and choose one decision right to test for a limited time."
+      },
+      {
+        "context": "Purpose feels executive-owned",
+        "plan": "Ask people to write the purpose in one sentence, compare answers, and repair the mismatch through a real decision."
+      }
+    ],
+    "twentyFourHourChallenge": "Draw the four-column Climate Redesign Board for one team ritual. Choose one small change and define the outcome you will check.",
+    "weeklyPractice": "For seven days, observe one organizational signal per day. Ask what motive it teaches and whether it deserves redesign."
+  },
+  "memorableLines": [
+    {
+      "text": "An autonomy audit makes organizational motivation design visible.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the lesson through a concrete source scene."
+    },
+    {
+      "text": "The mechanism is climate: policies and rituals teach people what kind of motive is welcome.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism before adding detail."
+    },
+    {
+      "text": "The risk is cosmetic adoption, where Type I language sits on top of Type X habits.",
+      "location": "breakdown.fullRead",
+      "why": "It frames the limit that protects the lesson from overreach."
+    }
+  ]
+}

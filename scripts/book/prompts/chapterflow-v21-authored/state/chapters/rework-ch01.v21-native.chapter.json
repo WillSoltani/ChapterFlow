@@ -1,0 +1,332 @@
+{
+  "chapterId": "rework-ch01",
+  "number": 1,
+  "title": "The new reality",
+  "readingTimeMinutes": 10,
+  "hook": "A profitable company can now begin on a laptop before anyone rents a room.",
+  "counterintuition": "Scale used to look like the proof that a business was serious. Now the first proof is whether a tiny team can reach real customers without dragging old overhead behind it.",
+  "tryThisNow": "Pick one idea and list the cheapest way to make, sell, support, and collect payment for it before adding any office, staff, or investor step.",
+  "keyTakeaway": "Low-friction business asks you to test the useful offer first, then add machinery only after real demand proves the need.",
+  "breakdown": {
+    "fastRead": "37signals made web software without acting like an old firm. Basecamp reached paying customers through the web, not through a tower of departments. The lesson is plain: small can now be real.\n\nCheap tools change the first move. Hosting, payments, support, design, and remote work no longer require a large staff. A side project can talk to customers, take money, and improve from a home desk.\n\nLow-friction business is not a free pass. Bad ideas still fail. The point is that old start-up rituals are no longer facts. Make the useful thing, get it into hands, and let real demand tell you what weight to add.",
+    "deepRead": "Lower cost changes behavior when it removes a dependency. A maker who can publish, sell, host, and answer customers today does not need to wait for a full company costume. That is the mechanism behind low-friction business: less permission at the front, less waste around the test, and more contact with what buyers actually do.\n\n37signals gives the idea a firm shape. Basecamp did not need a corporate maze before it could matter. The product could be built, sold, and supported by a lean web-software company because the web had made reach cheap. The team could keep the offer narrow, learn from users, and avoid the heavy setup that older advice treated as normal.\n\nPicture a designer with a day job and a small invoicing tool for other freelancers. Ten years earlier, she might have waited for investors, office space, sales staff, and a formal launch plan. In the new reality, she can put up a working page, take payment, and support the first fifty users herself. The test becomes sharper because the cost of being wrong is lower.\n\nThe hard part is not pretending every laptop project deserves customers. Cheap tools only matter if they make the team act leaner: fewer promises, faster trials, closer feedback, and less appetite for bureaucracy. The useful offer still has to be useful. Low friction removes the ceremonial delay between an idea and the market's answer.",
+    "fullRead": "Old business advice often smuggles in old prices. Rent the office, raise the money, hire the staff, form the departments, buy the systems, then begin. That order made sense when tools were scarce and distribution was slow. It becomes a drag when software, payments, hosting, and support can be assembled at a fraction of the old cost.\n\n37signals shows the new base line. A small web-software company can reach many customers without copying the structure of a large firm. Basecamp could sell a focused product through direct web access, serve users without a giant support layer, and stay clear about what it was for. Smallness was not a stage to hide. It was a way to stay quick, close, and plain about the work.\n\nThe first gain is speed. A committed maker can put a real offer in front of people before a committee turns the idea into a ceremony. The second gain is honesty. When the launch is cheap, the team can hear demand without inventing a fantasy around future scale. The third gain is control. Less machinery means fewer obligations that push the product away from its first purpose.\n\nConsider the side project that starts at a kitchen table. The maker can use a simple site, a payment link, a support inbox, and rented hosting. Those pieces do not make the offer good. They do make the first test possible. If customers care, the maker has evidence. If they do not, the loss is small enough to learn from without pretending a giant plan must be saved.\n\nThe limit matters. Low-friction business is not a claim that capital, staff, offices, or larger systems are useless. Some work needs labs, trucks, licenses, compliance, warehouses, or around-the-clock service. The sharper claim is that many businesses add weight before the work has earned it. The burden of proof moves from the small start to the old ritual.\n\nA team should ask what current tools make unnecessary. Does the first version need a sales department, or can the founder write to likely buyers? Does support need a platform, or can the team answer the first hundred messages directly? Does the product need a full suite, or can one sharp feature teach the team enough?\n\nThe failure mode is mistaking cheapness for proof. A weak offer can now be launched cheaply, promoted cheaply, and ignored cheaply. That does not make it a business. The new reality rewards the person who uses low cost to face the market sooner, not the person who uses it to avoid judgment.\n\nStart with the thing customers might value. Use the cheap tools to make that thing visible, payable, and supportable. Add weight only when demand makes the added weight earn its keep."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Arjun Tests the Booking Page",
+      "tags": [
+        "side project",
+        "payments",
+        "first customers"
+      ],
+      "planSpec": {
+        "domain": "independent fitness coaching",
+        "audience": "solo operators with a service idea",
+        "stakes": "avoid delaying a paid test behind business theater",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist chooses a low-friction test before renting space"
+      },
+      "scenario": "Arjun stands in his Halifax apartment at 7:15 a.m., staring at a Stripe test receipt on his laptop. He wants to sell eight weeks of remote mobility coaching, but the lease brochure for a studio sits beside his coffee. Before the bank call, he must decide whether the idea needs a room first or a Basecamp-style web offer with payment and support.",
+      "whatToDo": "Publish the smallest paid coaching page, take the first bookings online, and answer clients directly before treating rent as a business requirement.",
+      "whyItMatters": "Low-friction business turns the first test into customer contact rather than overhead. The studio can wait until demand earns it."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Sloane Shrinks the Launch",
+      "tags": [
+        "software",
+        "scope",
+        "global reach"
+      ],
+      "planSpec": {
+        "domain": "small SaaS product",
+        "audience": "technical founders",
+        "stakes": "reach buyers before building a corporate shell",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist uses 37signals as a scale reference"
+      },
+      "scenario": "Sloane opens the product roadmap at 9:40 p.m. in a coworking phone booth in Austin. Her checklist says legal entity, office search, two hires, and a launch party. The working prototype already helps three clinics track callbacks. Hours before she sends the investor deck, she has to choose between old-company staging and a 37signals-sized first release.",
+      "whatToDo": "Send the prototype to the clinics, charge for the narrow callback workflow, and replace the launch checklist with direct support notes.",
+      "whyItMatters": "The new reality lets a small software offer prove itself in use. A polished company shell can hide whether anyone values the tool."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Keiko Keeps the Shop Online",
+      "tags": [
+        "retail",
+        "remote work",
+        "lean setup"
+      ],
+      "planSpec": {
+        "domain": "specialty retail",
+        "audience": "craft sellers",
+        "stakes": "sell beyond local foot traffic without heavy setup",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist treats cheap distribution as a behavioral change"
+      },
+      "scenario": "Keiko scans handmade notebooks at 6:05 p.m. in her Kyoto kitchen while a broker's storefront estimate glows on her tablet. Her buyers already follow her process videos. Before the lease window closes, she must answer whether the shop needs street frontage or a low-friction business setup: web store, payment link, shipping labels, and a plain support inbox tied to her Basecamp notes.",
+      "whatToDo": "Open the online store for one notebook line and use the first month of orders to judge whether a physical shop deserves the cost.",
+      "whyItMatters": "Cheap reach changes the order of proof. Keiko can test demand across distance before locking herself into local overhead."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Bram Rejects the Department Map",
+      "tags": [
+        "consulting",
+        "departments",
+        "client service"
+      ],
+      "planSpec": {
+        "domain": "operations consulting",
+        "audience": "small professional teams",
+        "stakes": "avoid copying large-firm structure",
+        "format": "decision_memo",
+        "requiredBeat": "the protagonist identifies old overhead masquerading as seriousness"
+      },
+      "scenario": "Bram reads a proposed org chart at 11:20 a.m. in a Rotterdam client room. The two-person consulting practice has six paying factories, yet the memo adds sales, account management, and delivery departments. Minutes before the partners approve it, he must tell them whether 37signals-style smallness is a weakness or the reason clients get fast answers.",
+      "whatToDo": "Keep the partners close to sales and delivery, then add roles only when a repeated client problem proves that a layer would help.",
+      "whyItMatters": "Departments can look serious while slowing the work. Low friction asks whether structure improves service or merely imitates bigger firms."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Soraya Prices the First Course",
+      "tags": [
+        "education",
+        "pricing",
+        "home business"
+      ],
+      "planSpec": {
+        "domain": "online education",
+        "audience": "subject experts building paid lessons",
+        "stakes": "turn knowledge into a sale without waiting for a platform team",
+        "format": "predict_reveal",
+        "requiredBeat": "the protagonist sees cheap tools as a test, not a guarantee"
+      },
+      "scenario": "Soraya sits at 2:30 p.m. in the public library in Dearborn, editing a ten-lesson Arabic calligraphy course. A friend says she needs a studio crew and a custom site. Before the enrollment email goes out, she has to predict whether a Basecamp-like lean start can reach learners, then reveal the truth through paid signups and support replies.",
+      "whatToDo": "Sell the first course with simple hosting, a payment link, and a direct help address, then improve only where students actually struggle.",
+      "whyItMatters": "Cheap tools lower the cost of learning from buyers. They do not prove the course is good; paying students and real support requests do."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Nikhil Sends the Support Link",
+      "tags": [
+        "services",
+        "support",
+        "first proof"
+      ],
+      "planSpec": {
+        "domain": "remote bookkeeping",
+        "audience": "solo professionals testing a niche service",
+        "stakes": "serve early buyers without inventing a larger firm",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist chooses direct customer contact over a staffed facade"
+      },
+      "scenario": "Nikhil sits in a Chicago train station at 8:10 a.m. with three invoices from food-truck owners on his phone. \"Do you have an office?\" one prospect asks over text. Before his reply, he has to say whether the new bookkeeping offer is real because it has a staffed front desk or because a 37signals-like small setup can sell, serve, and learn directly.",
+      "whatToDo": "Reply with the service terms, payment link, and a direct support address, then use the first clients' questions to shape the next version.",
+      "whyItMatters": "Direct contact is part of the low-friction advantage. Nikhil learns what buyers need instead of spending early money on a facade."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A designer with a paid prototype wants to delay release until she has an office, a formal support desk, and a launch event. Which response fits low-friction business?",
+        "choices": [
+          "Tell the designer to seek a larger launch budget so the prototype feels more established.",
+          "Have the designer sell the prototype now with simple payment and direct support, then add overhead after demand appears.",
+          "Ask the designer to write a longer plan that proves the office will look professional."
+        ],
+        "correctIndex": 1,
+        "explanation": "Low-friction business moves the test closer to customers. The office and launch event may become useful later, but they are not proof that the prototype solves a real problem.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "When a two-person software team compares itself with 37signals, which sign shows it has understood the new reality?",
+        "choices": [
+          "The team keeps the offer narrow, charges early users, and handles feedback without building departments first.",
+          "The team copies the visible size of older firms so buyers see a familiar company shape.",
+          "The team waits for a full staff because support, sales, and product work feel separate."
+        ],
+        "correctIndex": 0,
+        "explanation": "The 37signals anchor points to reach and judgment without heavy corporate scaffolding. The team acts serious by serving users, not by imitating an older structure.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Your friend says cheap hosting and online payments mean almost any product idea can work. What correction preserves the hard edge?",
+        "choices": [
+          "Your friend should spend more on hosting so customers see stronger technical ambition.",
+          "Your friend should ignore payment setup until a large audience forms around the idea.",
+          "Your friend should use cheap tools to test faster while remembering that usefulness, price, and support still decide."
+        ],
+        "correctIndex": 2,
+        "explanation": "Cheap tools lower the barrier to action, not the standard for value. The new reality removes many excuses, but customers still judge the offer itself.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A craft seller has followers, a product line, and a payment option, but she thinks a storefront must come first. Which test best fits low-friction business?",
+        "choices": [
+          "Have the craft seller tour storefronts so the business feels tangible before buyers respond.",
+          "Have the craft seller open online orders for one product line and let demand decide whether the storefront earns its cost.",
+          "Have the craft seller hire retail staff early so customer service looks prepared."
+        ],
+        "correctIndex": 1,
+        "explanation": "The new order of proof is a useful offer in customers' hands before added weight. A storefront may help, but it should answer demand rather than replace it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A founder drafts a plan with departments for sales, support, and operations before any buyer has paid. Which diagnosis best catches the old assumption?",
+        "choices": [
+          "The founder is treating corporate structure as a prerequisite instead of asking what current tools make unnecessary.",
+          "The founder should make each department smaller so the plan appears leaner on paper.",
+          "The founder should delay customer calls until the department names sound stable."
+        ],
+        "correctIndex": 0,
+        "explanation": "Old overhead can disguise itself as seriousness. Low-friction business asks whether the team can sell, support, and learn directly before adding layers.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "An online teacher can sell ten lessons with a simple page, but a colleague argues for a custom platform first. What action best uses the new conditions?",
+        "choices": [
+          "Build the custom platform so the online teacher avoids hearing early student complaints.",
+          "Postpone the lessons until a production crew can make the course look larger.",
+          "Sell the lessons through the simple page and let paid students reveal where the teaching needs work."
+        ],
+        "correctIndex": 2,
+        "explanation": "A simple page can expose real demand and real friction. The teacher should use low cost to learn sooner, then invest where student experience proves the need.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which question best separates useful smallness from mere cheapness in a new web business?",
+        "choices": [
+          "Which tool stack makes the web business look least expensive to outsiders?",
+          "Can the web business make, sell, support, and improve a valued offer without adding weight ahead of proof?",
+          "How quickly can the web business copy the staffing pattern of firms that already grew?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Useful smallness is behavioral. The point is not to spend the least; it is to keep the path to customer value clear until demand justifies more machinery.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A small team says it needs outside machinery because serious companies have machinery. How should a low-friction review respond?",
+        "choices": [
+          "Tell the small team to add machinery in stages so the company resembles a mature firm.",
+          "Ask the small team to postpone sales while it researches the machinery used by large competitors.",
+          "Ask which pieces help customers now, which pieces only signal status, and which pieces current tools replace."
+        ],
+        "correctIndex": 2,
+        "explanation": "Low-friction review tests each old requirement against current costs and customer value. Status signals are weak reasons to add complexity before proof.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Before a weekend launch, your partner wants to wait for a perfect business plan. What reply best matches the opening idea?",
+        "choices": [
+          "Put the useful offer in front of buyers, collect payment if they value it, and use their response to guide the next step.",
+          "Add more plan pages so the weekend launch can be judged without risking buyer contact.",
+          "Wait for a larger team because the partner's concern shows the offer is too small."
+        ],
+        "correctIndex": 0,
+        "explanation": "The new reality favors direct market contact over launch theater. A concise plan can help, but buyer response is a stronger test than imagined scale.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What does low-friction business change first?",
+      "back": "It changes the order of proof. A tiny team can make, sell, support, and learn before adding old overhead such as offices, departments, and large launch rituals.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why does 37signals matter in this idea?",
+      "back": "37signals shows smallness as an operating advantage. Basecamp reached paying customers through focused web software without copying the heavy structure of traditional firms.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "front": "What is the false promise of cheap tools?",
+      "back": "Cheap tools do not make a weak offer valuable. They only make it easier to test usefulness, price, support, and demand with less delay and less loss.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "Which old requirements should be challenged?",
+      "back": "Challenge any requirement that adds weight before customer proof: rented space, formal departments, large staff, elaborate launch plans, and systems copied from bigger firms.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "How does smallness become a strength?",
+      "back": "Smallness keeps the maker close to buyers, reduces permission loops, lowers the cost of a wrong guess, and helps the team adjust from real use.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "front": "When should machinery be added?",
+      "back": "Add machinery when demand proves that it improves the customer experience or the team's ability to deliver, not when it merely makes the company look mature.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Prove Before Adding Weight",
+    "coreSkill": "Train yourself to separate customer proof from company theater. For each idea, name the smallest way to make the offer visible, payable, and supportable. Treat every added layer as a cost that must earn its place.",
+    "ifThenPlans": [
+      {
+        "context": "When you catch yourself waiting for a formal setup",
+        "plan": "If the setup does not help a customer buy or use the offer this week, then move it to a later list and run the direct test first."
+      },
+      {
+        "context": "When a tool or hire feels necessary",
+        "plan": "If the need is based on how serious companies look, then ask what 37signals-style smallness would do with existing web tools."
+      },
+      {
+        "context": "When early buyers appear",
+        "plan": "If customers pay or ask for help, then use their behavior to decide which support, product, or process weight is now worth adding."
+      },
+      {
+        "context": "When an idea fails to draw interest",
+        "plan": "If the cheap test gets no real demand, then revise the offer before building a larger company shape around it."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one offer and make a one-page proof map: how a customer sees it, pays for it, receives it, and asks for help using tools you already have.",
+    "weeklyPractice": "Once a week, review one business assumption you inherited from older advice. Mark it as customer-critical, nice later, or status theater."
+  },
+  "memorableLines": [
+    {
+      "text": "Low-friction business is not a free pass.",
+      "location": "breakdown.fastRead",
+      "why": "It keeps the optimism honest and prevents cheap tools from becoming a fantasy."
+    },
+    {
+      "text": "Lower cost changes behavior when it removes a dependency.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism in plain language and ties cost savings to action."
+    },
+    {
+      "text": "The burden of proof moves from the small start to the old ritual.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the chapter's reversal without overstating what small teams can do."
+    }
+  ]
+}

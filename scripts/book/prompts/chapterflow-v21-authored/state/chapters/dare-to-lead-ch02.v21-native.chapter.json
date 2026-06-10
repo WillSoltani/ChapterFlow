@@ -1,0 +1,312 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "dare-to-lead-ch02",
+  "number": 2,
+  "title": "The Call to Courage",
+  "readingTimeMinutes": 12,
+  "hook": "Charles's timeline feedback makes courage sound less heroic and more like one precise conversation.",
+  "counterintuition": "Rumbling is not venting; it is discomfort governed by curiosity, behavior rules, and a return to the work.",
+  "tryThisNow": "Before one hard conversation, write the permission slip you need and the rule you will uphold.",
+  "keyTakeaway": "A rumble turns avoided tension into clear agreements without letting blame or appeasement run the meeting.",
+  "breakdown": {
+    "fastRead": "Courage often looks like a scheduled hard conversation before avoidance becomes culture. A rumble is a bounded conversation that stays with facts, feelings, accountability, and curiosity long enough to serve the work. Clear expectations are kinder than vague promises because vagueness passes discomfort to the people who must absorb the chaos. Permission slips help people name fear, risk, and need without turning the meeting into a blame ritual. The practice is not venting; it is disciplined candor that turns private resentment into shared information. When a deadline is unsupported, the courageous move is to test capacity before optimism becomes an agreement.",
+    "deepRead": "The pressure point is overpromising: vague kindness passes discomfort downstream until colleagues inherit the chaos. The rumble gives that discomfort a table, a rule set, and a return path. Teams spend less energy decoding silence and more energy solving the real problem. The practice turns discomfort into shared information instead of private resentment. Clarity is a form of kindness because vague expectations and avoided conversations transfer discomfort onto everyone else. Unclear expectations feel polite in the moment but create rework, disappointment, and hidden blame when reality arrives. Fear and courage can occupy the same room; the leadership move is to name fear without letting fear drive the meeting. A military leader opens direct conversation about fatigue, loneliness, and mental health instead of sanitizing the emotional reality of the work. Performance improves because hidden strain becomes discussable and therefore manageable. Permission slips help people state what they need to show up well, such as patience, honesty, or permission to ask awkward questions. Clear is kind when vague promises pass pain downstream. A rumble gives discomfort a job and a boundary. Avoidance becomes culture faster than leaders expect.",
+    "fullRead": "The useful reading is practical and almost procedural. Courage means naming the timeline, the fear in the room, the rules for conduct, and the return point after a pause. The tempting shortcut is to treat rumbling as unlimited emotional processing or a meeting where everyone vents until relief arrives. The real demand is disciplined clarity: feelings are welcomed as data, but behavior remains boundaried and the work stays at the center. The main movement is from avoided conversation to clear courageous conversation. A finance leader's feedback about unrealistic timelines exposes how overpromising can look generous while actually creating chaos for colleagues. A home example reinforces the same pattern, making time estimation and overfunctioning visible as recurring behaviors instead of a single workplace complaint. The memorable teaching is that clarity serves people better than vague niceness. Clear expectations, direct feedback, and revisiting a conversation after reflection prevent hidden resentment from becoming culture. Binary labels like optimist and realist can trap team members in roles and narrow the range of contributions they are allowed to make. The permission-slip ritual gives teams a low-friction way to state what they need before a difficult discussion begins. The leadership error of assigning people fixed roles, such as optimist or realist, also gets surfaced; role labels can reduce people to a single contribution and excuse leaders from hearing the full range of talent in the room. Tough conversations require behavioral guardrails: no yelling, eye-rolling, interruption, put-downs, or hostile theatrics. A military example widens the application: fatigue, loneliness, and mental health cannot be managed if organizational language refuses to name them. Rumbles need rules, including no contemptuous gestures, verbal attacks, or interruptions. Time-outs preserve the conversation when nervous systems are overloaded; pausing is different from avoiding. That procedure matters because discomfort can otherwise masquerade as tact. A missed expectation, a fixed role, or a contemptuous gesture may look small while it is happening. Once the leader names it, the group can stop decoding each other and start repairing the agreement. The rumble has done its job when role labels drop, expectations sharpen, and regulation gives people enough steadiness to continue. Time-outs make room for regulation without canceling accountability. Courage is treated as the choice to stay with discomfort in service of clearer work."
+  },
+  "examples": [
+    {
+      "exampleId": "dare-to-lead-ch02-ex01",
+      "title": "Sprint Truth",
+      "tags": [
+        "software sprint planning",
+        "rumbling",
+        "Charles and unrealistic timelines"
+      ],
+      "planSpec": {
+        "domain": "software sprint planning",
+        "audience": "Gita and leaders facing software sprint planning",
+        "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Charles and unrealistic timelines to practice rumbling in software sprint planning"
+      },
+      "scenario": "Monday at 9:10 a.m. before sprint planning starts. Gita opens sprint planning and sees that the date depends on work nobody has estimated honestly. The optimistic timeline would sound supportive in the meeting and become punitive once the team has to deliver it.",
+      "whatToDo": "She cuts the commitment, names the overpromising pattern, and asks what must be true before any new date becomes real.",
+      "whyItMatters": "The sprint becomes kinder because Gita removes the hidden transfer of stress that vague planning would create."
+    },
+    {
+      "exampleId": "dare-to-lead-ch02-ex02",
+      "title": "Staffing Permission",
+      "tags": [
+        "hospital staffing",
+        "rumbling",
+        "Family event-planning mirror"
+      ],
+      "planSpec": {
+        "domain": "hospital staffing",
+        "audience": "Harlan and leaders facing hospital staffing",
+        "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Family event-planning mirror to practice rumbling in hospital staffing"
+      },
+      "scenario": "Wednesday at 5:30 p.m. in the hospital staffing huddle. Harlan hears nurses describe exhaustion in hallway whispers but not in the official staffing huddle. The schedule looks covered on paper while the real risk is being kept off the table.",
+      "whatToDo": "He opens with permission slips, then asks each shift lead to name one hidden risk in the current schedule.",
+      "whyItMatters": "The hospital team can manage strain because Harlan turns private fatigue into operational information."
+    },
+    {
+      "exampleId": "dare-to-lead-ch02-ex03",
+      "title": "Fundraiser Mirror",
+      "tags": [
+        "community fundraiser",
+        "rumbling",
+        "Air Force leader naming exhaustion"
+      ],
+      "planSpec": {
+        "domain": "community fundraiser",
+        "audience": "Iris and leaders facing community fundraiser",
+        "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+        "format": "audit",
+        "requiredBeat": "use Air Force leader naming exhaustion to practice rumbling in community fundraiser"
+      },
+      "scenario": "Saturday morning at a community fundraiser table. Iris notices that fundraiser volunteers are repeating the same last-minute scramble she creates at home. The familiar pattern makes it harder to blame the committee or treat the stress as a one-time glitch.",
+      "whatToDo": "She owns the pattern aloud and revises the sign-up sheet so deadlines, backup owners, and handoffs are visible.",
+      "whyItMatters": "The committee gets relief because Iris treats repeated evidence as a behavior to change instead of a complaint to explain away."
+    },
+    {
+      "exampleId": "dare-to-lead-ch02-ex04",
+      "title": "Client Rules",
+      "tags": [
+        "agency review",
+        "rumbling",
+        "Charles and unrealistic timelines"
+      ],
+      "planSpec": {
+        "domain": "agency review",
+        "audience": "Jalen and leaders facing agency review",
+        "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Charles and unrealistic timelines to practice rumbling in agency review"
+      },
+      "scenario": "Tuesday at 2:45 p.m. inside the agency review room. Jalen hears contemptuous sighs during a tense agency review and can feel the room sliding toward performance. The client problem will not get clearer while people are scoring points.",
+      "whatToDo": "He pauses the review, restates the no-contempt rule, and gives the group ten minutes before returning to the decision.",
+      "whyItMatters": "The client discussion stays useful because Jalen regulates the room without abandoning accountability."
+    },
+    {
+      "exampleId": "dare-to-lead-ch02-ex05",
+      "title": "Sales Labels",
+      "tags": [
+        "regional sales planning",
+        "rumbling",
+        "Family event-planning mirror"
+      ],
+      "planSpec": {
+        "domain": "regional sales planning",
+        "audience": "Kira and leaders facing regional sales planning",
+        "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+        "format": "before_after",
+        "requiredBeat": "use Family event-planning mirror to practice rumbling in regional sales planning"
+      },
+      "scenario": "Thursday before lunch on the regional sales call. Kira's sales call has turned one teammate into the optimist and another into the person expected to object. The labels are saving the group from fuller thinking.",
+      "whatToDo": "She asks both people to bring hope, risk, and evidence, then removes the labels from the next agenda.",
+      "whyItMatters": "The region gets fuller thinking because Kira refuses to let fixed roles shrink what people are allowed to contribute."
+    },
+    {
+      "exampleId": "dare-to-lead-ch02-ex06",
+      "title": "Budget Return",
+      "tags": [
+        "school board hearing",
+        "rumbling",
+        "Air Force leader naming exhaustion"
+      ],
+      "planSpec": {
+        "domain": "school board hearing",
+        "audience": "Lucien and leaders facing school board hearing",
+        "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Air Force leader naming exhaustion to practice rumbling in school board hearing"
+      },
+      "scenario": "Friday night in a school board hearing room. Lucien faces a school board hearing where budget fear is making every question sound like an accusation. Treating the emotion as a nuisance would leave the facts harder to hear.",
+      "whatToDo": "He names the fear, separates facts from interpretations, and states which decision remains open after public comment.",
+      "whyItMatters": "The hearing keeps moving because Lucien treats emotion as data while still protecting the work of deciding."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "dare-to-lead-ch02-q01",
+        "prompt": "An engineering manager sees that the sprint plan depends on promises nobody can keep.",
+        "choices": [
+          "Cut the commitment to what the team can honestly deliver.",
+          "Ask people to work the weekend before naming the pattern.",
+          "Keep the date because optimism protects morale."
+        ],
+        "correctIndex": 0,
+        "explanation": "Charles's feedback shows clarity is kinder than pleasing; the other options continue overpromising.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch02-q02",
+        "prompt": "Nurses stop naming exhaustion because loyalty is being measured by silence.",
+        "choices": [
+          "Begin with a toughness lecture before the staffing facts are named.",
+          "Wait for staff to confess burnout without any prompt.",
+          "Open with permission slips so people can say what they need."
+        ],
+        "correctIndex": 2,
+        "explanation": "Permission slips lower the barrier to honest conversation; toughness lectures and passive waiting keep strain hidden.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "dare-to-lead-ch02-q03",
+        "prompt": "A volunteer chair notices the same overcommitment pattern at home and in fundraiser planning.",
+        "choices": [
+          "Blame the committee for poor organization.",
+          "Treat the repeated evidence as a behavior pattern to own.",
+          "Keep home and work separate so the feedback feels less personal."
+        ],
+        "correctIndex": 1,
+        "explanation": "The family mirror makes the pattern harder to dismiss; the distractors avoid ownership.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch02-q04",
+        "prompt": "An account director hears eye-rolling during a tense client review.",
+        "choices": [
+          "Let everyone vent until the charge is gone.",
+          "Set rules for no contempt, no interruptions, and an explicit return after any time-out.",
+          "End the review because conflict means the client is unreasonable."
+        ],
+        "correctIndex": 1,
+        "explanation": "A rumble needs behavioral boundaries; venting and flight do not protect the work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch02-q05",
+        "prompt": "A sales VP labels one person the optimist and another the realist.",
+        "choices": [
+          "Invite each person to bring data, hope, and concern without role labels.",
+          "Keep the labels because they make meetings efficient.",
+          "Ask the realist to stop making the room uncomfortable."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fixed roles narrow contribution; the right move gives people back their full range.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch02-q06",
+        "prompt": "Charles gives feedback about unrealistic timelines and the leader feels exposed.",
+        "choices": [
+          "Soften the feedback until the sting disappears.",
+          "Collect private complaints and avoid the timeline issue.",
+          "Ask for the impact, name the pattern, and agree on a different planning behavior."
+        ],
+        "correctIndex": 2,
+        "explanation": "Clear feedback can hurt and still be useful; softening or hiding it prevents repair.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch02-q07",
+        "prompt": "A board chair calls time-out during a public budget fight.",
+        "choices": [
+          "Use the pause to avoid the vote indefinitely.",
+          "Treat the time-out as proof accountability can wait.",
+          "State when the group will return and what decision remains open."
+        ],
+        "correctIndex": 2,
+        "explanation": "Regulation is accountable only with a return plan; the wrong choices use time-out as escape.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "dare-to-lead-ch02-q08",
+        "prompt": "A regional planning team admits the deadline scares them.",
+        "choices": [
+          "Tell people feelings are not operational data.",
+          "Treat the fear as information while keeping the work visible.",
+          "Move the emotional material to private journals."
+        ],
+        "correctIndex": 1,
+        "explanation": "Rumbling welcomes feelings as data, not as the whole agenda or as forbidden material.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch02-q09",
+        "prompt": "A leader says emotional facts distract from performance.",
+        "choices": [
+          "The Air Force example shows named strain can improve operational effectiveness.",
+          "The family mirror proves personal patterns should stay private.",
+          "Charles's feedback proves kindness means delaying directness."
+        ],
+        "correctIndex": 0,
+        "explanation": "The military case links naming fatigue to performance; the other readings invert Brown's point.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "dare-to-lead-ch02-card01",
+      "front": "What makes a rumble different from venting?",
+      "back": "A rumble has boundaries, curiosity, and a commitment to the work. It welcomes emotion as information without letting the meeting become release for its own sake."
+    },
+    {
+      "cardId": "dare-to-lead-ch02-card02",
+      "front": "Why is clarity a form of kindness?",
+      "back": "Clear requests make ownership, timing, and standards visible. Vague niceness often moves discomfort onto the people who must guess."
+    },
+    {
+      "cardId": "dare-to-lead-ch02-card03",
+      "front": "What should a leader do with an unsupported deadline?",
+      "back": "Name the gap between the promise and the capacity. Then ask what must change before the commitment can be honest."
+    },
+    {
+      "cardId": "dare-to-lead-ch02-card04",
+      "front": "How do permission slips help a hard conversation?",
+      "back": "They make fear, uncertainty, and needs easier to name at the start. That lowers performance pressure and improves the quality of candor."
+    },
+    {
+      "cardId": "dare-to-lead-ch02-card05",
+      "front": "What keeps rumbling honest under pressure?",
+      "back": "The conversation stays tied to behavior, agreements, and decisions. Feelings matter, but they do not replace accountability."
+    }
+  ],
+  "implementationPlan": {
+    "title": "The Call to Courage practice",
+    "coreSkill": "Run one bounded rumble by naming the issue, inviting the missing truth, and ending with a clearer agreement.",
+    "ifThenPlans": [
+      {
+        "context": "An unsupported deadline is about to become a promise",
+        "plan": "If a timeline sounds generous but untested, then ask what work, owner, and constraint must change before it is promised."
+      },
+      {
+        "context": "Private exhaustion is missing from the official conversation",
+        "plan": "If strain only appears in side channels, then open the meeting with permission to name one risk the plan is hiding."
+      },
+      {
+        "context": "A hard conversation is turning into blame or performance",
+        "plan": "If the room overheats, then pause, restate the rule of engagement, and return to the unresolved decision."
+      }
+    ],
+    "twentyFourHourChallenge": "Within one day, rewrite one vague expectation as a direct request with owner, date, and standard of done.",
+    "weeklyPractice": "Across seven days, notice where niceness is hiding resentment and schedule one bounded conversation before the pattern hardens."
+  },
+  "memorableLines": [
+    {
+      "text": "Clear is kind when vague promises pass pain downstream."
+    },
+    {
+      "text": "A rumble gives discomfort a job and a boundary."
+    },
+    {
+      "text": "Avoidance becomes culture faster than leaders expect."
+    }
+  ]
+}

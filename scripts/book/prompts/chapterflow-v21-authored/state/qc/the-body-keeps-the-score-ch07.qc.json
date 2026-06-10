@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-body-keeps-the-score",
+  "chapterNumber": 7,
+  "chapterId": "the-body-keeps-the-score-ch07",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "d6ca6daf71289b0f",
+  "reviewer": "claude-qc:tbkts-r2-20260610",
+  "reviewedAt": "2026-06-10T00:47:31.968Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "R2 re-verify ~91. PRIOR Bowlby-triad skeleton RESOLVED — attachment terms now enter each scene differently; no pasted triad. 9/9 keys correct. No new defect."
+}

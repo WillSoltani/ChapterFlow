@@ -1,0 +1,358 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "who-moved-my-cheese-ch02",
+  "number": 2,
+  "title": "The Story of Who Moved My Cheese?",
+  "readingTimeMinutes": 11,
+  "hook": "The Cheese is gone, and the loudest question in the Maze is not who took it.",
+  "counterintuition": "Hunger is less dangerous than the story that Cheese Station C owes you food. Quick noticing helps, but freedom begins when fear loses its veto.",
+  "tryThisNow": "Write one reward you treat as permanent, then list one sign it may be shrinking and one next scout move you could make in 60 seconds.",
+  "keyTakeaway": "When Cheese moves, stop arguing with the empty station, read the early signs, take one scouting step toward New Cheese, and keep your shoes ready.",
+  "breakdown": {
+    "fastRead": "Cheese Station C is empty when Hem and Haw arrive, and the missing Cheese feels personal. Hem argues with the loss. Haw feels the same shock, then starts to notice a harder fact: hunger will not refill the station.\n\nSniff and Scurry keep the problem smaller. They inspect, accept the absence, and run back into the Maze. Their speed comes from simple evidence, not from brave speeches.\n\nThe rule is not to worship change. It is to stop defending an empty place after reality has changed. Watch the Cheese while it is still aging, move before fear gets the final vote, and keep your shoes close after New Cheese appears.",
+    "deepRead": "Fear makes the empty station look safer than the Maze. Once a reward has fed a person for a while, the mind starts calling it normal, then deserved, then unfairly taken. That story burns energy that could have gone into looking.\n\nThe mice avoid that trap by keeping their method plain. Sniff and Scurry do not make a trial out of Cheese Station C. They check what is in front of them, then search. The littlepeople add a second layer: belief. Hem wants the old supply to prove that life is fair. Haw first joins the complaint, then notices that the complaint leaves him hungry.\n\nAnne sees the same pattern in a warehouse after a familiar vendor stops filling the old route. The team can spend the afternoon blaming the route, or it can inspect the shelf tags that showed the supply shrinking for weeks. Anne does not need a speech about courage. She needs a live map, a fresh route, and enough humility to admit the old station is empty.\n\nThe hammer and chisel make the warning sharper. Work can feel noble while it keeps denial alive. Digging into the wall of Cheese Station C creates sweat, noise, and proof of effort, yet it does not move anyone through the Maze. False work is fear with tools in its hand.\n\nHaw changes when he can compare two risks. The Maze is dark, but staying put is no longer safe. Movement wins when the danger of waiting becomes visible.",
+    "fullRead": "The limit is danger, not comfort. Moving with the Cheese does not mean praising every loss or rushing into any corridor that opens. A Maze can hold real risk. The question is whether caution is reading the risk, or whether fear is defending a station that has already stopped feeding anyone.\n\nHem shows the cost of turning loss into a court case. He wants someone to answer for the empty station. He wants the old Cheese back as proof that the world still follows his claim. The feeling is human, but it narrows the room. While he argues with absence, the supply elsewhere keeps moving.\n\nHaw's wall notes help because they change fear into a trail. A thought on the Maze walls can be read again after panic passes. Each line records a shift: the old Cheese had been aging, the fear was bigger in his mind than in the corridor, and New Cheese became easier to picture once he started walking.\n\nPatrice uses that trail idea in a clinic schedule review. She writes the warning signs on a whiteboard before naming a new booking route. The note is not a slogan for the wall. It is a receipt from reality: the old pattern no longer feeds the day.\n\nHaw's Handwriting on the Wall holds the full sequence: change happens, anticipate change, monitor change, adapt quickly, move with change, enjoy change, stay ready for more change. The sequence is simple, but it is not shallow. It starts before the loss, not after the crisis. It ends after the win, not at the first taste of relief.\n\nCheese Station N proves the reward for movement, yet it also gives the final test. Haw finds a larger supply and meets Sniff and Scurry there. He could rebuild the old sleep around a new pile. Instead, he keeps his shoes ready and listens for change.\n\nThe hard edge sits there. The parable is not a command to smile while anything gets taken. It is a warning against letting fear make emptiness feel loyal. If the Cheese is gone, old effort aimed at the old wall only extends the hunger.\n\nNo one can carry Hem through the Maze. Haw can leave notes, offer help, and model the search, but Hem has to see the advantage for himself. Persuasion cannot do the walking for a person who still needs the empty station to be right.\n\nThe useful practice is small and repeatable. Check whether the Cheese is fresh. Notice whether the supply is shrinking. Name the fear that makes the corridor look worse than it is. Take one scouting step before certainty arrives.\n\nNew Cheese is not a finish line. It is proof that movement can work, and a reminder that comfort can harden again. The shoes stay near the door because Cheese can move again."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch02.ex.sniff-scurry-station-c",
+      "title": "Anne Maps the Empty Route",
+      "tags": [
+        "operations",
+        "early signals",
+        "routing"
+      ],
+      "planSpec": {
+        "domain": "warehouse operations",
+        "audience": "operations leaders facing a vanished supply route",
+        "stakes": "avoid spending the shift defending a dead route",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist follows evidence away from the old station"
+      },
+      "scenario": "Anne finds the returned scanners lined up beside the warehouse dashboard after a carrier skips the third pickup in a row. The old route is the team's Cheese Station C, and a test lane on the far dock is labeled Cheese Station N. Before the shipping window closes, she needs to decide which lane gets the crew.",
+      "whatToDo": "Anne marks the failed route as evidence, not insult, then sends one picker to test the far dock while the rest clear orders that still have live carriers.",
+      "whyItMatters": "Fast adaptation starts with accepting what the station now shows. The first scout move saves the team from turning old comfort into a claim."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch02.ex.hem-haw-empty-station",
+      "title": "Khalil Answers the Renewal Room",
+      "tags": [
+        "customer success",
+        "entitlement",
+        "loss"
+      ],
+      "planSpec": {
+        "domain": "software renewals",
+        "audience": "customer teams whose old renewal script stopped working",
+        "stakes": "separate shock from a useful search",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist refuses to make fairness the whole meeting"
+      },
+      "scenario": "\"The old dashboard owed us renewals,\" Khalil hears from the back of the conference room. On the screen, Cheese Station C is the familiar script, and the empty station is this quarter's churn report. He must answer whether the team will demand the old pattern back or search for why buyers moved.",
+      "whatToDo": "Khalil gives the loss one sentence, then moves the meeting to buyer interviews and account notes where the first signs of drift were missed.",
+      "whyItMatters": "Entitlement keeps attention on who should have protected the old reward. A search posture puts that same energy into finding live demand."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch02.ex.hammer-chisel-wall",
+      "title": "Patrice Stops the Wall Work",
+      "tags": [
+        "clinic scheduling",
+        "false work",
+        "triage"
+      ],
+      "planSpec": {
+        "domain": "clinic scheduling",
+        "audience": "care coordinators mistaking effort for movement",
+        "stakes": "free staff from labor aimed at a dead process",
+        "format": "audit",
+        "requiredBeat": "the protagonist distinguishes visible effort from useful motion"
+      },
+      "scenario": "Seventeen reschedule calls sit in Patrice's queue while two coordinators keep revising a template nobody opens. The edit log feels like a hammer, a chisel, and the Cheese Station C wall. Before lunch, Patrice needs to choose the next hour's work: polish the template again or call patients on the live list.",
+      "whatToDo": "Patrice stops the template edit, assigns the patient calls first, and keeps one note on what the old process no longer solves.",
+      "whyItMatters": "Effort can protect denial when it attacks the wrong wall. Useful movement changes the route, not just the amount of strain."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch02.ex.haw-wall-notes",
+      "title": "Valere Leaves the Hall Note",
+      "tags": [
+        "school leadership",
+        "wall notes",
+        "fear"
+      ],
+      "planSpec": {
+        "domain": "school scheduling",
+        "audience": "principals changing a familiar routine",
+        "stakes": "make a scary route rememberable",
+        "format": "decision_memo",
+        "requiredBeat": "the protagonist turns a change lesson into a visible trail"
+      },
+      "scenario": "Valere tapes a short memo beside the ninth-grade hallway map after the bus schedule changes. Parents are arriving in the next 20 minutes, and the old dismissal flow will jam the Maze walls. The note is his Handwriting on the Wall: name the new exit, show the reason, and leave no room for Hem-style waiting.",
+      "whatToDo": "Valere posts the new route where pressure will hit first and writes the reason in one line so staff can repeat it without debate.",
+      "whyItMatters": "A visible lesson turns fear into a path people can follow. The note also keeps the leader from slipping back into the old pattern."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch02.ex.cheese-station-n",
+      "title": "Raphael Keeps the Shoes Ready",
+      "tags": [
+        "events",
+        "new supply",
+        "vigilance"
+      ],
+      "planSpec": {
+        "domain": "film festival logistics",
+        "audience": "event producers after a successful pivot",
+        "stakes": "avoid treating the new win as permanent property",
+        "format": "before_after",
+        "requiredBeat": "the protagonist keeps scouting after the replacement works"
+      },
+      "scenario": "Behind the festival booth, Raphael has already moved screenings to a smaller theater and watched the line recover. Cheese Station N is real enough to cheer; a volunteer jokes that even Sniff would nap now. Raphael adds a venue check to the closing checklist before the new room becomes another shrine.",
+      "whatToDo": "Raphael celebrates the recovered line, then schedules a nightly venue scan so the team notices crowd shifts before they become a crisis.",
+      "whyItMatters": "New Cheese can breed the same sleep as Old Cheese. Keeping shoes ready protects the win from hardening into the next blind spot."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch02.ex.cheese-station-n",
+      "title": "Sage Tests the Second Counter",
+      "tags": [
+        "small business",
+        "partial reward",
+        "scouting"
+      ],
+      "planSpec": {
+        "domain": "neighborhood cafe",
+        "audience": "owners rebuilding confidence after foot traffic moves",
+        "stakes": "use a small find before waiting for a full replacement",
+        "format": "predict_reveal",
+        "requiredBeat": "the protagonist treats a partial result as evidence to keep moving"
+      },
+      "scenario": "The lunch rush is over when Sage counts only six receipts from the old office tower. A pop-up counter near the train stop has produced four new orders, not a miracle. Like Haw before Cheese Station N, Sage has a small taste before certainty, and she is deciding which counter gets tomorrow's first batch.",
+      "whatToDo": "Sage treats the four orders as a live clue and moves one tray to the train counter before waiting for perfect proof.",
+      "whyItMatters": "Small pieces of New Cheese rebuild nerve. A partial reward can teach the next step before the full supply appears."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch02.fact.1",
+        "prompt": "Anne sees an old warehouse route fail twice while a backup lane begins moving orders. Which response best matches Sniff and Scurry?",
+        "choices": [
+          "Anne should keep debating why the old route failed until the crew feels treated fairly.",
+          "Anne should inspect the missing supply, accept the evidence, and send a scout through the backup lane.",
+          "Anne should ask the crew to work harder on the old route so the missed pickups feel less wasted."
+        ],
+        "correctIndex": 1,
+        "explanation": "Sniff and Scurry act on absence rather than injustice. Anne follows the same simple sequence when she treats the failed route as evidence and resumes searching.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch02.fact.2",
+        "prompt": "Khalil's renewal team says the old script should still work because it worked last year. What is the strongest Cheese Station C warning?",
+        "choices": [
+          "Khalil's team is turning a familiar reward into something reality owes them.",
+          "Khalil's team mainly needs a longer meeting so everyone can share frustration.",
+          "Khalil's team should punish the accounts that changed before studying buyer signals."
+        ],
+        "correctIndex": 0,
+        "explanation": "The trap is entitlement. Once the old station feels owed, Khalil's group spends attention on fairness instead of the wider Maze where buyers moved.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch02.fact.3",
+        "prompt": "Patrice notices appointment gaps, staff complaints, and stale reminder templates before the clinic schedule breaks. Which read fits the old Cheese?",
+        "choices": [
+          "Patrice should wait for a full collapse so the clinic has cleaner proof.",
+          "Patrice should treat every complaint as noise until patients miss visits.",
+          "Patrice is seeing the Cheese shrink and age before the empty-station shock."
+        ],
+        "correctIndex": 2,
+        "explanation": "The Cheese did not vanish without signals. Patrice can reduce shock by reading small signs while there is still time to move.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch02.fact.4",
+        "prompt": "Valere's staff rewrites the same dismissal memo while the new bus pattern keeps jamming the hallway. Which move avoids hammer-and-chisel work?",
+        "choices": [
+          "Valere should ask staff to polish the memo again so effort stays visible.",
+          "Valere should stop the memo loop and test a live exit route with staff posted nearby.",
+          "Valere should keep the old dismissal route until families stop objecting."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hammer and chisel warn against busy effort aimed at the wrong wall. Valere needs movement through the Maze, not a cleaner artifact for the old route.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch02.fact.5",
+        "prompt": "Raphael delays a venue change because the new theater feels risky, though the current line is losing guests. Which question would help Haw's turn begin?",
+        "choices": [
+          "What is fear blocking, and is waiting now more dangerous than scouting?",
+          "Which colleague can be blamed if the new theater disappoints guests?",
+          "How long can the festival defend the old room before sponsors notice?"
+        ],
+        "correctIndex": 0,
+        "explanation": "Haw moves when fear becomes visible enough to question. Raphael has to compare the imagined risk of motion with the real cost of staying hungry.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch02.fact.6",
+        "prompt": "Sage gets four orders at the train counter, far less than the old office rush. What would count as moving with the Cheese?",
+        "choices": [
+          "Sage should dismiss the four orders because the replacement is smaller than the old lunch line.",
+          "Sage should return every tray to the office tower so the team protects its old identity.",
+          "Sage should treat the four orders as evidence and make a small next move toward the train stop."
+        ],
+        "correctIndex": 2,
+        "explanation": "Small pieces of New Cheese matter before the large supply appears. Sage uses partial proof to rebuild confidence and learn the route.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch02.fact.7",
+        "prompt": "Jasmine changes a grant process and wants staff to remember why the old route ended. Which action uses Haw's wall-note pattern?",
+        "choices": [
+          "Jasmine writes a short visible note that names the shift, the fear, and the first new step.",
+          "Jasmine stores the explanation in a private file so staff ask fewer hard questions.",
+          "Jasmine repeats the new deadline without naming what the old process stopped solving."
+        ],
+        "correctIndex": 0,
+        "explanation": "The wall notes are not decoration. Jasmine turns learning into a trail when the note records a live shift that others can follow under pressure.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch02.fact.8",
+        "prompt": "Khalil explains the new renewal plan twice, but one teammate keeps defending the old script. What should Khalil remember about Hem?",
+        "choices": [
+          "Khalil should offer a trail and a first step, but the teammate must see the advantage personally.",
+          "Khalil should make the teammate repeat the new plan until resistance looks less public.",
+          "Khalil should drop buyer interviews and focus on winning the argument in the room."
+        ],
+        "correctIndex": 0,
+        "explanation": "Haw cannot carry Hem into change. Khalil can leave help and model the search, yet the resistant person has to choose movement.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch02.fact.9",
+        "prompt": "After Sage's train counter works for a week, the staff wants to stop checking foot traffic. Which answer keeps the ending intact?",
+        "choices": [
+          "Sage should lock the new counter plan for the season so staff can relax.",
+          "Sage should return to the office tower once the team feels confident again.",
+          "Sage should enjoy the win and keep scouting because Cheese Station N can change too."
+        ],
+        "correctIndex": 2,
+        "explanation": "Cheese Station N is a reward, not an exemption from change. Sage keeps the final posture by enjoying the new supply while watching for movement.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch02.fact.1",
+      "front": "What makes Sniff and Scurry quick after the Cheese disappears?",
+      "back": "They keep the problem simple. They inspect Cheese Station C, accept the absence as evidence, and return to the Maze instead of holding a fairness trial.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch02.fact.2",
+      "front": "How does Cheese Station C become a trap for Hem and Haw?",
+      "back": "The station stops being a place they found and starts feeling like a right. That entitlement keeps their attention on what should have happened.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch02.fact.4",
+      "front": "What does the hammer-and-chisel episode warn against?",
+      "back": "It warns that hard work can serve denial. Effort helps only when it aims at a live route instead of attacking the wall around missing Cheese.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch02.fact.7",
+      "front": "Why do Haw's wall notes matter?",
+      "back": "They turn fear and insight into a trail. Each note captures a choice in the Maze, so learning can be remembered and perhaps followed later.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch02.fact.9",
+      "front": "Why is Cheese Station N not the end of the practice?",
+      "back": "A new supply can become another place of sleep. Haw enjoys the larger Cheese, but he keeps his shoes ready because change can return.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch02.fact.7",
+      "front": "What sequence does Handwriting on the Wall give for change?",
+      "back": "It names the full path: change happens, anticipate change, monitor change, adapt quickly, move with change, enjoy change, and stay ready for more change.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Empty Station Scan",
+    "coreSkill": "Practice checking whether a reward is still feeding you before you defend it. Run the Empty Station Scan by naming the station, the evidence that it changed, and one scouting step toward a live route. The point is useful movement, not forced cheerfulness.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch02.fact.3",
+        "context": "If a familiar reward feels thinner than it used to",
+        "plan": "If the supply looks smaller, then run the Empty Station Scan and write the first two signs you have been tempted to ignore."
+      },
+      {
+        "sourceAnchorId": "ch02.fact.4",
+        "context": "If effort is rising while results stay stuck",
+        "plan": "If work starts looking like a hammer on the old wall, then run the Empty Station Scan and move one hour toward a live route."
+      },
+      {
+        "sourceAnchorId": "ch02.fact.5",
+        "context": "If the new route feels scarier than the empty place",
+        "plan": "If fear gives the empty station a loyal voice, then run the Empty Station Scan and name the risk of waiting beside the risk of moving."
+      },
+      {
+        "sourceAnchorId": "ch02.fact.9",
+        "context": "If a new supply starts feeling settled",
+        "plan": "If New Cheese begins to feel permanent, then run the Empty Station Scan and schedule one check for early signs of the next shift."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, run the Empty Station Scan on one work or home reward: name the station, one stale sign, and one scouting step you can finish today.",
+    "weeklyPractice": "For seven days, end the day with a two-line Cheese log: one signal you noticed, one small movement you made or postponed."
+  },
+  "memorableLines": [
+    {
+      "text": "Movement wins when the danger of waiting becomes visible.",
+      "location": "breakdown.deepRead",
+      "why": "It names the fear shift that moves Haw from argument to action."
+    },
+    {
+      "text": "False work is fear with tools in its hand.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the hammer-and-chisel warning easy to spot in real life."
+    },
+    {
+      "text": "New Cheese is not a finish line.",
+      "location": "breakdown.fullRead",
+      "why": "It keeps the chapter's final posture focused on ongoing vigilance."
+    }
+  ]
+}

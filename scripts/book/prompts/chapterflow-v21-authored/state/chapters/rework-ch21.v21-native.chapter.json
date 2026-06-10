@@ -1,0 +1,357 @@
+{
+  "chapterId": "rework-ch21",
+  "number": 21,
+  "title": "Start at the epicenter",
+  "readingTimeMinutes": 10,
+  "hook": "Take the hot dogs out of a hot dog stand and the stand is gone; take the napkins and it still sells lunch.",
+  "counterintuition": "Finishing the name, the logo, and the settings feels like real progress because each task gets checked off. Yet none of that early motion proves the product can do the one thing a customer came for.",
+  "tryThisNow": "Write the one function that would stop your project from being that product if you deleted it. Circle that line. It marks where today's work belongs.",
+  "keyTakeaway": "Find the part you cannot remove without destroying what you sell, build that first, and let napkins-and-relish details wait until the center actually holds.",
+  "breakdown": {
+    "fastRead": "Picture a hot dog stand. Pull off the napkins and it still sells lunch. Drop the relish, lose the painted sign, skip the matching uniforms, and customers still line up. Take away the hot dogs and there is no stand at all.\n\nThat removal test names the core. Hot dogs are the part that cannot leave. The rest is an extra, useful later, but not the thing itself.\n\nNew product work hides the same center under noise. A name, a logo, settings, integrations, polish, all shout for early hours. The move is to ask of each part: if this vanished, would the thing still be the thing? Build the non-removable function first. The rest waits until that core carries the promise people came for.",
+    "deepRead": "Removal works as a test because it sorts structure from decoration in one stroke. You imagine deleting a part and watch what happens to the offer. If the product survives the deletion, that part is an accessory; if it collapses, you have found the center. Napkins fail the test and hot dogs pass it, and the same question cuts cleanly through any product's pile of possible tasks.\n\nSettle a name and logo on day one and a team gets a clear identity to point at. That is exactly the trap. Identity is removable surface. A booth with a gorgeous sign and no grill is not a place that sells lunch; it is a sign. Spending the first energy there produces visible output while the function that carries the promise stays unbuilt, so the project feels productive and proves nothing.\n\nTheunis runs a small Basecamp-style tool for tracking field repairs. His backlog holds forty tickets: dark mode, a referral page, an onboarding tour, and somewhere in the middle, the one screen where a technician marks a job done. Asked which screen the product cannot exist without, he points to the job-done screen and nothing else. So that screen ships first, crude but working, while dark mode waits. The discrimination he can now make is the whole skill. He can tell motion on the edges from progress on the core, because he has run each task through the removal test and watched which ones the product could lose and still be itself.",
+    "fullRead": "Run the removal test too hard and it curdles into a different mistake. A maker decides the grilled hot dogs are all that matters, ships a greasy grill with no napkins, no sign, no clean counter, and tells himself the surrounding experience is just decoration he can skip forever. That is not the lesson. The stand that never adds napkins loses the customer who wanted lunch without sticky hands. Sequence is the point, not contempt for the edges.\n\nLook closely at why order matters and the rule sharpens. Every surrounding improvement is built to make a working core more pleasant to use. Relish makes a good hot dog better; it does nothing for a stand that has no hot dogs yet. Build the relish station first and you have polished a thing that cannot serve its purpose. The refinements rest on the center, so the center has to exist before they have anything to rest on. Reverse the order and you may have to tear the refinements out and redo them once the real core arrives.\n\nOrnella faces this on a payments product. Her team is three weeks from launch and the loudest voices want a referral program, a settings page with a dozen toggles, and a polished onboarding tour. The one thing not yet reliable is the transfer itself: money moving from one account to another without dropping. She asks the removal question out loud. Strip the referral program and the product still moves money. Strip the toggles, the tour, even the logo, and it still moves money. Strip the transfer and there is nothing to onboard anyone into. So she freezes every edge task and puts the whole team on the transfer until it is boringly dependable, then reopens the rest.\n\nThe quieter failure is the one that looks like discipline. A founder who has read about epicenters can recite the rule and still get the center wrong. He names the flashiest feature as the core because it took the most effort to build, mistaking spent hours for structural necessity. Effort is not the test; removal is. A costly accessory the product can drop while remaining itself is still an accessory, however many weeks went into it. A cart does not earn its name because someone hand-carved the relish tray.\n\nThere is one more edge worth naming. Starting at the epicenter is a rule about the first build, not about the whole life of the product. Once the transfer is reliable, the toggles and the tour and the referral page stop being distractions and become the next real work. A center with no surrounding experience is a prototype, not a finished offer. The order is core first, then the experience that wraps it, and the only sin is doing those two in the wrong order. Find the part you cannot remove, make it carry the promise, and only then spend an hour on the napkins."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch21.ex.hot-dog-stand",
+      "title": "The Stand With No Hot Dogs",
+      "tags": [
+        "removal test",
+        "non-removable function",
+        "first build"
+      ],
+      "planSpec": {
+        "domain": "street food cart",
+        "audience": "makers tempted to polish accessories first",
+        "stakes": "build the grill or build the branding",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist applies the removal test to find the epicenter"
+      },
+      "scenario": "Marit is opening a hot dog stand and her week is already booked with a sign painter, a uniform fitting, and a relish supplier. At 8:00 a.m. she realizes the grill is still in its box. A friend insists the matching uniforms will make the stand look real on opening day. Before she pays the painter, Marit must decide whether to spend the week on the look or on the one thing that, removed, leaves her with no hot dog stand at all.",
+      "whatToDo": "Marit cancels the uniform fitting, unboxes and tests the grill until it cooks a clean hot dog, and pushes the sign and relish to the week after opening.",
+      "whyItMatters": "The removal test points effort at the function customers came for, so a maker stops dressing up an offer that cannot yet do the one job that makes it the thing."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch21.fact.4",
+      "title": "Forty Tickets, One Screen",
+      "tags": [
+        "task triage",
+        "field software",
+        "noise"
+      ],
+      "planSpec": {
+        "domain": "field-repair software",
+        "audience": "product teams drowning in possible tasks",
+        "stakes": "ship the structural screen or the optional polish",
+        "format": "audit",
+        "requiredBeat": "the protagonist separates structural tasks from optional edges"
+      },
+      "scenario": "Njal opens a backlog of forty tickets for a Basecamp-style repair tracker: dark mode, a referral page, an onboarding tour, a name change, and buried in the list, the screen where a technician marks a job done. The team wants to start with the onboarding tour because it demos well. Before the sprint board locks, Njal must decide which ticket to build first, reading each one against a single question: if this disappeared, could the tool still track a repair from start to finish?",
+      "whatToDo": "Njal sorts every ticket by the removal question, finds only the job-done screen fails it, and assigns the team to ship that crude-but-working screen before any tour.",
+      "whyItMatters": "Sorting tasks by what the product cannot exist without keeps a backlog from spending early energy on edges that look productive while the core promise stays unbuilt."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch21.fact.5",
+      "title": "The Productive-Looking Week",
+      "tags": [
+        "illusion of progress",
+        "visible output",
+        "core unbuilt"
+      ],
+      "planSpec": {
+        "domain": "consumer mobile app",
+        "audience": "makers who mistake motion for progress",
+        "stakes": "keep polishing edges or face the unbuilt core",
+        "format": "reflection",
+        "requiredBeat": "the protagonist sees that finished edge tasks are not progress on the offer"
+      },
+      "scenario": "Oddny looks back on a productive-feeling week building a meal-planning app: a finished logo, a settings screen with twelve toggles, a tidy color palette, and a referral banner. Every task is checked off. Then she opens the app as a hungry user would and discovers it still cannot generate a single weekly meal plan, the one thing the whole product exists to do. The visible output was real; the progress was not.",
+      "whatToDo": "Oddny stops counting finished edge tasks as progress, names the meal-plan generator as the non-removable function, and rebuilds her week around getting it working.",
+      "whyItMatters": "Polishing accessories produces output that feels like progress yet leaves the promise unbuilt, so a maker can mistake a busy week for a working product unless the core is the measure."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch21.fact.7",
+      "title": "The Grill With No Napkins",
+      "tags": [
+        "hard edge",
+        "sequence not neglect",
+        "surrounding experience"
+      ],
+      "planSpec": {
+        "domain": "specialty coffee kiosk",
+        "audience": "makers who over-correct into bare-core minimalism",
+        "stakes": "ship a core-only product forever or wrap it once it holds",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist separates core-first sequence from permanent neglect of details"
+      },
+      "scenario": "Ragnar tells his partner at 4:30 p.m. that just as a hot dog stand needs no napkins to be a hot dog stand, their kiosk needs only espresso, so they will pour great shots and skip cups that do not leak, a readable menu, and a clean counter for good. His partner pushes back: the espresso works now, so why keep treating the surrounding experience as decoration? Before they reorder supplies, Ragnar must decide whether core-first meant the bare core forever, or just first.",
+      "whatToDo": "Ragnar concedes the espresso core now holds, then schedules the leak-proof cups and readable menu as the next real work rather than dismissing them forever.",
+      "whyItMatters": "The epicenter rule governs sequence, not permanent neglect, so once the core carries the promise the surrounding experience becomes the next job instead of decoration to skip."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch21.fact.2",
+      "title": "The Feature That Cost The Most",
+      "tags": [
+        "effort vs structure",
+        "wrong epicenter",
+        "removal test"
+      ],
+      "planSpec": {
+        "domain": "B2B analytics dashboard",
+        "audience": "founders who confuse spent effort with structural necessity",
+        "stakes": "crown the costly feature or the non-removable one as the core",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist corrects an epicenter chosen by effort instead of removal"
+      },
+      "scenario": "At 11:00 a.m. in his Oslo office, Trygve reviews three months of work on a flashy animated chart engine he calls the heart of his Basecamp-style analytics dashboard. A customer asks whether the dashboard would still be worth buying without the animations; it would, as long as it pulls the right numbers from their database. The animations are the relish, not the hot dogs. Minutes before the renewal call, Trygve has to choose: go on defending the costliest feature as the core, or let the removal test point him somewhere quieter.",
+      "whatToDo": "Trygve reruns the removal test, finds the data-pull is the part the product cannot lose, and shifts effort onto its reliability instead of the animation engine.",
+      "whyItMatters": "Effort spent does not equal structural necessity, so a costly accessory can still be removed without ending the product, which is why removal, not hours, names the true center."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch21.fact.6",
+      "title": "Relish Before The Grill",
+      "tags": [
+        "foundation",
+        "ordering cost",
+        "rework"
+      ],
+      "planSpec": {
+        "domain": "online booking platform",
+        "audience": "teams building refinements in parallel with the core",
+        "stakes": "build the surrounding experience now or after the center holds",
+        "format": "predict_reveal",
+        "requiredBeat": "the protagonist predicts the ordering cost of refining before the core works"
+      },
+      "scenario": "Signy watches her team start a sleek confirmation-email designer and a loyalty-points screen while the actual booking engine still double-books slots half the time. It is like building a relish station before the grill works, she says: the moment the booking engine is rebuilt, those screens will hook into different data and have to be torn out. Before the sprint commits, Signy must decide whether to let the refinements run ahead of the center.",
+      "whatToDo": "Signy halts the email designer and loyalty screen, puts the team on a booking engine that never double-books, and reopens the refinements only once it holds.",
+      "whyItMatters": "Refinements depend on a working center, so building them first leaves them resting on nothing and risks redoing the work, which is why the core must come before its surrounding experience."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch21.ex.hot-dog-stand",
+        "prompt": "Unni is opening a hot dog stand and her week holds a sign painter, a uniform fitting, and a relish order, while the grill is still boxed. A friend says matching uniforms will make it look real on day one. Which move starts at the epicenter?",
+        "choices": [
+          "Pay the sign painter and book the uniform fitting first so the stand looks established when it opens.",
+          "Unbox and test the grill until it cooks a clean hot dog, and push the sign, relish, and uniforms to later.",
+          "Order the relish and napkins this week, since those are what customers physically touch at the stand."
+        ],
+        "correctIndex": 1,
+        "explanation": "Remove the uniforms or sign and it is still a hot dog stand; remove the cooked hot dog and it is nothing. The non-removable function gets built first, so the grill comes before the look.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch21.fact.4",
+        "prompt": "Njal's repair-tracker backlog has forty tickets: dark mode, a referral page, an onboarding tour, a rename, and the screen where a technician marks a job done. The team wants the tour first because it demos well. How should he choose what to build first?",
+        "choices": [
+          "Build the onboarding tour first, because a smooth first impression is what sells the tool to new technicians.",
+          "Start with the rename and dark mode, since a clear identity gives the team something concrete to build around.",
+          "Ask which ticket the tool cannot track a repair without, find only the job-done screen fails, and build that first."
+        ],
+        "correctIndex": 2,
+        "explanation": "Every new project throws off optional tasks. The removal question separates them from the structural center, and only the job-done screen is the part the tracker cannot exist without.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch21.fact.5",
+        "prompt": "Oddny finishes a productive-feeling week on a meal-planning app: a logo, a twelve-toggle settings screen, a color palette, a referral banner, all checked off. Opening it as a user, she finds it still cannot generate one weekly meal plan. What does her week actually show?",
+        "choices": [
+          "Real progress, because every task on the list is finished and the app now looks complete to a first-time viewer.",
+          "The illusion of progress, since polishing removable edges produced visible output while the core promise stayed unbuilt.",
+          "Balanced progress, given that the edges and the meal-plan generator advance together and need no particular order."
+        ],
+        "correctIndex": 1,
+        "explanation": "Motion on accessories feels productive because it produces output you can see. But the app still cannot do the thing users came for, so the finished edges are not progress on the offer.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch21.fact.7",
+        "prompt": "Ragnar argues that since espresso is the epicenter of their coffee kiosk, they should pour great shots and never bother with leak-proof cups, a readable menu, or a clean counter. His partner says the espresso already works. Which reading of the epicenter rule is right?",
+        "choices": [
+          "Ragnar is right to drop the cups and menu, because a true core focus treats the bare espresso as the whole product in most cases.",
+          "The rule is about sequence: now that the espresso core holds, the cups and menu become the next real work, not decoration to skip.",
+          "The partner is right that the surrounding experience hardly mattered, so the kiosk should have opened with cups and signage instead of espresso."
+        ],
+        "correctIndex": 1,
+        "explanation": "Starting at the epicenter means order, not contempt for details. The edge is core first, refinements after the center holds, so the working espresso now earns attention to the cups and menu.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch21.fact.2",
+        "prompt": "Trygve spent three months on an animated chart engine and calls it the heart of his analytics product. A customer asks whether the dashboard would still be worth buying without the animations, as long as it pulls the right numbers. Which test names the real core?",
+        "choices": [
+          "The effort test: the animation engine took the most work to build, so it is clearly the structural center of the product.",
+          "The popularity test: whichever feature first-time viewers comment on most is the part the product cannot exist without.",
+          "The removal test: strip the animations and it still sells if it pulls the right numbers, so the data-pull is the non-removable core."
+        ],
+        "correctIndex": 2,
+        "explanation": "Spent hours do not equal structural necessity. Removal exposes which part the product cannot lose, and the dashboard survives losing the animations but not the accurate data-pull.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch21.fact.6",
+        "prompt": "Signy's team wants to finish a sleek confirmation-email designer and a loyalty-points screen while the booking engine still double-books slots half the time. A teammate says the edges and engine can be built in parallel at no cost. What ordering risk should she name?",
+        "choices": [
+          "None, because the email designer and loyalty screen are independent and will work no matter how the booking engine is built.",
+          "Only a scheduling risk, since the edges might launch a few days late but will plug into the finished engine without any change.",
+          "The refinements rest on the engine, so building them before it works may force tearing them out and redoing them once the core is fixed."
+        ],
+        "correctIndex": 2,
+        "explanation": "Surrounding improvements only have value once the non-removable promise works. Built before the booking engine holds, they rest on nothing and often must be redone, so the core comes first.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch21.fact.9",
+        "prompt": "A teammate proposes spending the first sprint on the features that make their new app look most polished to first-time viewers, before the app can reliably do its main job. Marit pushes back. Which principle best supports her objection?",
+        "choices": [
+          "Energy belongs on the function customers actually need, because polish on edges cannot rescue a product that fails its core job.",
+          "Polish should come first, since first-time viewers decide on appearance and the underlying function can be fixed quietly later.",
+          "It does not matter where the sprint starts, because viewers judge polish and function as a single combined impression anyway."
+        ],
+        "correctIndex": 0,
+        "explanation": "The core is where failure would kill the whole offer, so it deserves effort before any edge. A polished surface over a broken function still leaves the product unable to do its one job.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch21.fact.3",
+        "prompt": "Oddny insists the relish and napkins are part of what makes her cart a hot dog stand, so they belong in the first build alongside the grill. A colleague disagrees. Which reasoning about the removal test settles it?",
+        "choices": [
+          "Oddny is right, because anything a customer touches at the cart, including the relish and napkins, counts as structural and so must be built in the first pass alongside the grill.",
+          "Remove the relish and napkins and it is still a hot dog stand; remove the hot dogs and it is not, so the hot dogs are the first-build target.",
+          "The colleague is right, but only because relish spoils quickly and is hard to store, not because of anything to do with what actually defines a hot dog stand."
+        ],
+        "correctIndex": 1,
+        "explanation": "Relish and napkins enhance the experience but are removable; the stand survives without them. The hot dogs are the non-removable function that defines it, so they alone are the first-build target.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch21.concept",
+        "prompt": "A new team is starting a product and asks for one test to decide what to build first amid a pile of names, logos, settings, and integrations. Which question best finds the epicenter?",
+        "choices": [
+          "Which task can we finish fastest, so the project shows early momentum and the team feels it is moving?",
+          "Which feature would impress the most people if we showed it at a demo before anything else is ready?",
+          "If we removed this part, would the product still be the product, so we can build the one part it cannot lose first?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The epicenter is the part that must exist for the product to remain itself. The removal question isolates it, while speed and demo appeal point at edges that the product could lose and survive.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch21.concept",
+      "front": "What question finds the epicenter of a product among all its possible tasks?",
+      "back": "Ask of each part: if this were removed, would the product still be the product? The part whose removal destroys the offer is the epicenter; everything that survives deletion is an accessory you build later.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch21.ex.hot-dog-stand",
+      "front": "In the hot dog stand example, what survives removal and what does not?",
+      "back": "Napkins, relish, signs, and uniforms can all be removed and it is still a hot dog stand. Remove the hot dogs and there is no stand at all, so the hot dogs are the non-removable center and the rest are accessories.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch21.fact.5",
+      "front": "Why does working on optional edges first create the illusion of progress?",
+      "back": "Polishing accessories produces visible output, so the week feels productive. But the product still cannot do the thing customers came for, so motion on removable parts is not progress on the actual offer.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch21.fact.7",
+      "front": "Does starting at the epicenter mean neglecting supporting details forever?",
+      "back": "No. The rule is about sequence, not contempt for details. Optional work is dangerous only when it precedes the core; once the center holds and carries the promise, the surrounding experience becomes the next real work.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch21.fact.2",
+      "front": "Why is the feature that took the most effort not automatically the core?",
+      "back": "Effort spent is not structural necessity. A costly accessory can be removed and the product still exists, so the test is removal, not hours: whatever the product cannot lose without ceasing to be itself is the real center.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch21.fact.6",
+      "front": "Why must the core be built before the surrounding refinements?",
+      "back": "Refinements only have value once the non-removable promise works, so they depend on the center. Built before it, they rest on nothing and may have to be torn out and redone once the real core arrives.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Removal Test",
+    "coreSkill": "Before adding anything, ask of each part whether the product would still be itself if that part vanished. The parts that survive deletion are accessories; the one whose removal collapses the offer is the epicenter, and it gets built first. Hold the sequence: build the core until it carries the promise, then wrap it in the surrounding experience, never the reverse.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch21.fact.4",
+        "context": "When a new project floods you with possible tasks like names, logos, settings, and integrations",
+        "plan": "If the backlog is pulling you in many directions, then run the Removal Test on each task and start only with the one part the product cannot exist without."
+      },
+      {
+        "sourceAnchorId": "ch21.fact.5",
+        "context": "When a week of finished edge tasks leaves you feeling productive",
+        "plan": "If you have checked off logos and settings but the core still cannot do its job, then run the Removal Test, name the illusion of progress, and put the week back on the function that carries the promise."
+      },
+      {
+        "sourceAnchorId": "ch21.fact.2",
+        "context": "When you are about to crown the feature that took the most effort as the core",
+        "plan": "If you are calling the costliest feature the heart of the product, then run the Removal Test instead and keep as the core only the part whose removal would end the offer."
+      },
+      {
+        "sourceAnchorId": "ch21.fact.7",
+        "context": "When the core finally works and you are tempted to ship it bare forever",
+        "plan": "If the center now carries the promise, then run the Removal Test once more to confirm it holds, and reopen the surrounding experience as the next real work rather than neglecting it."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one project today and list every part you could build. Beside each, mark whether the product would still be itself with that part removed. Circle the single part that fails the test, and spend your next work block only on it.",
+    "weeklyPractice": "Each week, take one decision about what to build next and run it through the removal test before committing. Track which tasks you almost started that turned out to be removable edges, and note whether the core was carrying the promise yet."
+  },
+  "memorableLines": [
+    {
+      "text": "Take away the hot dogs and there is no stand at all.",
+      "location": "breakdown.fastRead",
+      "why": "It fixes the whole removal test in one concrete image the reader can replay instantly."
+    },
+    {
+      "text": "Removal works as a test because it sorts structure from decoration in one stroke.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism in a single clean line: deletion separates the core from the accessories."
+    },
+    {
+      "text": "Sequence is the point, not contempt for the edges.",
+      "location": "breakdown.fullRead",
+      "why": "It carries the hard edge of the chapter, that epicenter-first is about order rather than permanent neglect."
+    }
+  ]
+}

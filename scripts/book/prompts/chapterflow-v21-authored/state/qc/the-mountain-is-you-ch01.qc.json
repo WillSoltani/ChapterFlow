@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-mountain-is-you",
+  "chapterNumber": 1,
+  "chapterId": "the-mountain-is-you-ch01",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "7982e7d8eb8d7d4b",
+  "reviewer": "claude-qc:the-mountain-is-you-r2",
+  "reviewedAt": "2026-06-10T00:59:38.240Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~86/100 GREEN. 9/9 keys correct. Ticking-deadline skeleton REMOVED from all 6 scenes; openers varied. Hook no longer 'The'-opener. card[4] front fixed. Grounded (Jung). No corruption."
+}

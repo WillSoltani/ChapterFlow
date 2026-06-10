@@ -1,0 +1,357 @@
+{
+  "chapterId": "rework-ch18",
+  "number": 18,
+  "title": "Less mass",
+  "readingTimeMinutes": 11,
+  "hook": "Every signed lease and proud roadmap is weight you must drag before you can turn.",
+  "counterintuition": "More structure looks like proof a young company is serious. Each long contract, big payroll, and fixed plan is really mass, and the heavier the company gets, the more force any later change demands.",
+  "tryThisNow": "Pick one commitment you signed this month, a tool, a lease, a hire, a roadmap. Write the steps it would take to undo it, then circle whether a smaller promise could have taught you the same thing.",
+  "keyTakeaway": "Treat every commitment as weight that raises the force to change later; keep mass low so a mistake stays cheap to undo and a new priority does not drag a machine behind it.",
+  "breakdown": {
+    "fastRead": "Odd runs a six-person shop and gets handed a five-year office lease to sign. It feels grown-up. But that lease is mass: a promise he must unwind before the company can ever move.\n\nMass is anything that makes a company harder to change. A long lease, a large payroll, custom infrastructure, debt, old code, a fixed roadmap, even pride in a call that no longer works.\n\nThe heavier the company gets, the more energy it takes to turn. So the move is to add weight slowly. A young firm is the smallest and fastest it will ever be. Use that lightness before growth buries it.",
+    "deepRead": "Lightness pays off at the exact moment something goes wrong. A light company can reverse a bad call without dragging a large machine behind it, while a heavy one must migrate customers, coordinate staff, and unwind promises first. Low mass is what makes a mistake cheap to fix and a decision easy to revise. The same error costs the heavy firm far more to undo, so scale does not make a company better at correcting itself; it makes correction expensive.\n\nNanna sees this when her team debates a custom billing platform. Building it would lock months of work into code that resists every future change. A rented tool would teach the same lesson with a promise she could drop in an afternoon. The test she applies is whether the same learning can happen with a smaller commitment. When it can, the extra weight is being added casually, and casual weight is exactly what compounds.\n\n37signals chose this path on purpose. The company repeatedly favors fewer features, fewer people, and fewer obligations, not mainly to cut costs but to keep changing direction possible. Each thing it declines to carry is force it will not have to spend later. After the deep tier the reader can name a sharper distinction: weight is not just what you own, it is every promise, line of code, and meeting you would have to coordinate before you could turn.",
+    "fullRead": "Pride is the mass nobody puts on the balance sheet. Ragnhild championed a feature at launch and staked her reputation on it. A year later the data says drop it, yet the loudest weight in the room is not the code; it is her attachment to having been right. An emotional commitment to an old decision resists change as surely as a signed contract, and because it is invisible it is rarely counted. So a full accounting of mass has to include the mental commitments: the roadmap you defended in a board meeting, the assumption you built a quarter around, the bet you cannot let go of without admitting the first call was wrong.\n\nThe edge here is sharp and easy to miss. Less mass does not mean avoiding all commitment. That misreading turns lightness into indecision, and indecision builds nothing. Some commitments create trust and capability: a real guarantee to a customer, a key hire who anchors a craft, a standard the team holds. The skill is telling useful structure from weight that merely reduces future options. Useful structure earns its drag by giving the company something it could not do otherwise. Dead weight just makes turning expensive and buys nothing in return.\n\nStellan learns the boundary the hard way. Determined to stay pure and light, he refuses to sign any vendor contract, hire any specialist, or promise any delivery date. His agility curdles into paralysis; partners stop trusting a company that will commit to nothing, and the lightness that was supposed to preserve options ends up forfeiting them. Refusing all commitment is not the goal. The goal is to weigh each one and add it on purpose.\n\nThe working test stays simple. Before taking on weight, ask whether a smaller promise could produce the same learning. A month-long pilot instead of a year-long license. A contractor for one project instead of a permanent seat. A rented platform before a built one. When a lighter version teaches the same thing, the heavier version is mass added for no return, and that is the kind to refuse. When only the heavier commitment unlocks the capability, you take it knowing what it costs.\n\nGrowth will add weight on its own. Customers accumulate, headcount rises, code ages, and contracts stack up whether or not anyone is watching. That drift is the reason to resist unnecessary weight early, while resisting is still cheap. The early stage is uniquely light: a handful of customers, a small team to align, and very few signed promises holding the company in place. Spend that lightness well, and the company keeps the one thing that lets it survive a changing market, the freedom to turn before the turn becomes too expensive to make."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch18.fact.2",
+      "title": "The Five-Year Lease",
+      "tags": [
+        "lease",
+        "physical mass",
+        "commitment"
+      ],
+      "planSpec": {
+        "domain": "office real estate decision",
+        "audience": "founders equating long contracts with seriousness",
+        "stakes": "sign a long lease or keep the company able to move",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist treats a long contract as mass that resists change"
+      },
+      "scenario": "At 4:15 p.m. in a leasing office, Odd holds a five-year contract for a space his six-person shop would barely fill. The agent calls it the responsible step for a serious company. Odd knows mass is anything that makes a firm harder to change, and a five-year lease is a promise he would have to unwind before the team could ever turn. Before the agent slides over the pen, Odd must decide whether to lock in the weight or keep the lightness that lets a small team move.",
+      "whatToDo": "Odd declines the five-year term and signs a short, flexible arrangement instead, keeping the room to change locations as the small team learns what it actually needs.",
+      "whyItMatters": "A long lease looks serious but it is weight a young firm must drag before it can move, so trading it for a lighter promise protects the agility that smallness was supposed to give."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch18.fact.9",
+      "title": "Build It or Rent It",
+      "tags": [
+        "custom infrastructure",
+        "smaller promise",
+        "test"
+      ],
+      "planSpec": {
+        "domain": "software infrastructure choice",
+        "audience": "teams tempted to build heavy custom systems early",
+        "stakes": "build custom code or rent a tool that teaches the same thing",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist applies the smaller-promise test before adding mass"
+      },
+      "scenario": "Nanna's team wants to build a custom billing platform, months of code that would resist every future change. A rented tool would teach the same lesson with a promise she could drop in an afternoon. The roadmap meeting starts in twenty minutes, and her lead engineer is already sketching the schema. Nanna has to answer one question before the sprint locks: would a smaller promise produce the same learning, or does this commitment genuinely unlock something renting cannot?",
+      "whatToDo": "Nanna rents the billing tool for one quarter and ships, treating the build only as a later choice if the rented version proves the heavier commitment would unlock something it cannot.",
+      "whyItMatters": "When a lighter promise teaches the same thing, custom code is mass added casually; the smaller-promise test catches weight that buys no new capability before it is locked in."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch18.fact.3",
+      "title": "Pride On The Roadmap",
+      "tags": [
+        "mental commitment",
+        "pride",
+        "sunk decision"
+      ],
+      "planSpec": {
+        "domain": "product roadmap review",
+        "audience": "leaders attached to a decision that no longer works",
+        "stakes": "defend a proud past call or drop the dead weight",
+        "format": "reflection",
+        "requiredBeat": "the protagonist counts pride as mass alongside physical assets"
+      },
+      "scenario": "A year ago Ragnhild staked her reputation on a feature she pushed through at launch. Now the retention data is flat and the feature is the reason. Reviewing the quarter alone, she notices the heaviest thing in the room is not the code that runs the feature; it is her attachment to having been right about it. The pride resists the change as firmly as any signed contract would, and it never showed up on a single inventory of what the company owns.",
+      "whatToDo": "Ragnhild names her pride as mass out loud, then cuts the feature she championed, treating the emotional attachment as weight to unwind rather than a position to protect.",
+      "whyItMatters": "Mental commitments raise the force needed to change as surely as physical ones, so counting only assets and payroll undercounts the real weight a company is dragging."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch18.fact.8",
+      "title": "Light To The Point Of Nothing",
+      "tags": [
+        "hard edge",
+        "indecision",
+        "useful structure"
+      ],
+      "planSpec": {
+        "domain": "vendor and hiring commitments",
+        "audience": "founders confusing lightness with refusing to commit",
+        "stakes": "commit on purpose or refuse everything and stall",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist separates useful structure from dead weight"
+      },
+      "scenario": "Determined to stay pure and light, Stellan has refused every vendor contract, every specialist hire, and every promised delivery date for two quarters. A key partner now says they cannot work with a company that will commit to nothing. With the partnership about to collapse, Stellan must recover fast and tell the difference between weight that reduces options and structure that builds the trust and capability his company actually needs.",
+      "whatToDo": "Stellan signs the one commitment that earns its drag, a real delivery date the partner can trust, while still declining the contracts that would only reduce his future options.",
+      "whyItMatters": "Refusing all commitment confuses lightness with indecision and forfeits the trust some commitments create, so the skill is weighing each promise, not avoiding every promise."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch18.ex.smallest-fastest-earliest-stage",
+      "title": "Fewer Of Everything",
+      "tags": [
+        "37signals",
+        "fewer obligations",
+        "agility"
+      ],
+      "planSpec": {
+        "domain": "small-team product strategy",
+        "audience": "teams choosing how much to take on at the earliest stage",
+        "stakes": "match a bigger rival's footprint or stay deliberately lean",
+        "format": "contrast",
+        "requiredBeat": "the protagonist keeps fewer features, people, and obligations to stay agile"
+      },
+      "scenario": "Pernille studies how 37signals stayed small on purpose, repeatedly favoring fewer features, fewer people, and fewer obligations to keep changing direction possible. Her own board wants her to match a larger rival's headcount and feature list so the company looks established. She sees that each thing 37signals declined to carry was force it would not spend later, and that her early stage is the lightest her company will ever be.",
+      "whatToDo": "Pernille cuts the proposed feature list and headcount plan, choosing fewer obligations the way 37signals did so the early lightness stays available for the turn she cannot yet predict.",
+      "whyItMatters": "Fewer features, people, and obligations is not mainly a budget tactic; it is how a small team keeps the freedom to change, which is the one advantage smallness buys."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch18.fact.5",
+      "title": "Two Recalls, Two Bills",
+      "tags": [
+        "cheap to fix",
+        "scale cost",
+        "reverse course"
+      ],
+      "planSpec": {
+        "domain": "product mistake reversal",
+        "audience": "leaders assuming scale improves error correction",
+        "stakes": "carry heavy mass for safety or stay light to fix mistakes cheaply",
+        "format": "before_after",
+        "requiredBeat": "low mass makes the same mistake cheaper to undo"
+      },
+      "scenario": "Liv watched a heavy competitor spend six months unwinding one bad pricing call, migrating customers, retraining staff, and rewriting contracts. When her own light team made a similar pricing mistake, reversing it took an afternoon because there was no large machine to drag along. The contrast is stark: scale did not make the bigger firm better at correcting itself. The extra mass simply meant more to undo, so the same error cost the heavy company far more than it cost her.",
+      "whatToDo": "Liv keeps her team light by default, accepting that low mass is what let her reverse a pricing error in an afternoon while a heavier rival paid six months for the same correction.",
+      "whyItMatters": "Heavier companies pay more to fix the same mistake, not less, so low mass is the practical reason a light firm can revise decisions a large one cannot afford to touch."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch18.fact.2",
+        "prompt": "A six-person shop is offered a five-year office lease, pitched as the responsible step for a serious company. The founder wants to keep the firm able to change direction. Which move best fits organizational lightness?",
+        "choices": [
+          "Sign the five-year lease, since a long commitment signals to staff and partners that the company is serious.",
+          "Decline the long term and take a short, flexible arrangement so the lease does not become weight to unwind later.",
+          "Buy the building outright, because owning the space removes the landlord and gives the small team more control."
+        ],
+        "correctIndex": 1,
+        "explanation": "A five-year lease is mass: a promise the firm must unwind before it can move. A short, flexible term keeps the lightness a small team depends on, while owning the building adds even more weight.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch18.fact.9",
+        "prompt": "An engineering lead wants to build a custom billing platform that would take months and resist future changes, when a rented tool could teach the same lesson and be dropped in an afternoon. What is the soundest test to apply?",
+        "choices": [
+          "Build the custom platform, since owning the code means the team controls every part of its billing for good.",
+          "Ask whether a smaller promise could produce the same learning, and rent first if a lighter commitment would.",
+          "Pick whichever option the lead engineer prefers, because the person writing the code should decide the billing stack."
+        ],
+        "correctIndex": 1,
+        "explanation": "The test for adding mass is whether the same learning can happen with a smaller promise. If renting teaches it, the custom build is weight added casually, and casual weight is what compounds the cost of any later change.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch18.fact.3",
+        "prompt": "A product leader reviews a feature she championed at launch and staked her reputation on. The retention data now says drop it, yet she feels the pull to defend the call. What does organizational lightness say her pride is here?",
+        "choices": [
+          "A motivational asset, since caring about past decisions keeps a leader committed to seeing the work through.",
+          "Irrelevant to mass, because only physical things like code, payroll, and contracts count as weight a company carries.",
+          "Mass, because an emotional attachment to an old decision resists change as firmly as a signed contract does."
+        ],
+        "correctIndex": 2,
+        "explanation": "Mass includes mental commitments, not just assets. Pride in a decision that no longer works raises the force needed to change as surely as a contract, so counting only tangible things undercounts the real weight.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch18.fact.8",
+        "prompt": "Determined to stay light, a founder has refused every vendor contract, specialist hire, and delivery date for two quarters, and now a key partner is walking away. A colleague says he is finally living the less-mass idea. How should the founder judge that claim?",
+        "choices": [
+          "The colleague is wrong, because lightness means weighing each commitment, not refusing all of them and forfeiting trust.",
+          "The colleague is right, since a company that commits to nothing has perfectly preserved every one of its future options.",
+          "The colleague is partly right, because in most cases a startup grows fastest by avoiding the discipline of any contract."
+        ],
+        "correctIndex": 0,
+        "explanation": "The edge is that less mass does not mean avoiding all commitment. Refusing everything confuses lightness with indecision and forfeits the trust some commitments build, so the colleague misreads the idea.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch18.ex.smallest-fastest-earliest-stage",
+        "prompt": "A founder studies how 37signals repeatedly chose fewer features, fewer people, and fewer obligations. Her board reads this as a pure cost-cutting habit and wants her to bulk up to match a rival. Which reading of 37signals best fits the less-mass idea?",
+        "choices": [
+          "The board is correct, since 37signals stayed small mainly to spend less money rather than for any strategic reason.",
+          "She should match the rival's footprint, because looking established matters more than keeping the ability to change.",
+          "Choosing less in each dimension keeps changing direction possible, so fewer obligations preserves agility, not just budget."
+        ],
+        "correctIndex": 2,
+        "explanation": "37signals favored fewer features, people, and obligations to keep change possible, not primarily to cut costs. Each thing declined is force it will not have to spend later, which is agility, not just savings.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch18.fact.5",
+        "prompt": "A light team reverses a bad pricing call in an afternoon, while a heavy competitor needs six months to unwind a similar mistake by migrating customers and rewriting contracts. A manager concludes scale improves error correction. Is that conclusion right?",
+        "choices": [
+          "Yes, because a larger company has more staff and infrastructure available to repair any mistake it makes.",
+          "No, because more mass means more to undo, so a heavier firm pays more to fix the same mistake, not less.",
+          "Yes, in most cases, since built-up systems give a big firm tested procedures the small team has not yet written."
+        ],
+        "correctIndex": 1,
+        "explanation": "Low mass is what makes a mistake cheap to fix. A light company can reverse course without dragging a machine behind it, so heavier firms pay more to undo the same error; scale does not improve correction.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch18.fact.4",
+        "prompt": "Each commitment a young company takes on, a tool, a hire, a contract, seems individually reasonable, so its leaders assume adding them carries no real cost. Which judgment best reflects how mass actually accumulates?",
+        "choices": [
+          "Every added commitment can increase the force required to change direction, so individually reasonable promises still compound into weight.",
+          "Reasonable commitments cost nothing as long as each one is justified, since weight only comes from clearly wasteful spending.",
+          "The cost depends only on the dollar price of each commitment, so cheap promises never add meaningful weight to the company."
+        ],
+        "correctIndex": 0,
+        "explanation": "Commitments accumulate into mass even when each looks reasonable. The heavier the company becomes, the more energy it takes to turn, so the cost is the compounding weight, not the price of any single promise.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch18.fact.6",
+        "prompt": "Two founders run a brand-new company and worry it looks too small, so one urges taking on big obligations now to seem established. The other wants to use the early stage differently. Which move best protects organizational lightness?",
+        "choices": [
+          "Take on heavy obligations immediately, since looking established to outsiders is worth more than staying easy to change.",
+          "Wait to make any decisions at all until the company has grown large enough to handle commitments without strain.",
+          "Use the early stage well, because a new firm is the leanest it will ever be, and that lightness is cheapest to spend now."
+        ],
+        "correctIndex": 2,
+        "explanation": "A new company is the smallest, leanest, and fastest it will ever be, with fewer customers to migrate and promises to unwind. Burying that early lightness under premature weight wastes the one moment when change is cheapest.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch18.concept",
+        "prompt": "A team needs one question to decide, before each new commitment, whether it is taking on useful structure or just weight that will make future change expensive. Which question best reflects organizational lightness?",
+        "choices": [
+          "Will this commitment make the company look more serious and established to customers and investors right now?",
+          "Does this lock in enough process that nobody will have to revisit the decision again for several years?",
+          "Would a smaller promise teach us the same thing, and if not, does this commitment unlock a capability we genuinely need?"
+        ],
+        "correctIndex": 2,
+        "explanation": "Lightness is preserved by distinguishing useful structure from dead weight. If a smaller promise teaches the same thing, the heavier one is mass for no return; only a commitment that unlocks real capability earns its drag.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch18.concept",
+      "front": "What counts as mass in a company, and why does it matter?",
+      "back": "Mass is anything that makes a company harder to change: long leases, large payroll, debt, custom infrastructure, old code, fixed roadmaps, meetings, policies, even pride in a stale decision. The heavier the firm, the more force any change takes.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch18.fact.5",
+      "front": "Why does keeping a company light make mistakes cheaper to fix?",
+      "back": "A light firm can reverse a bad call without dragging a large machine behind it, while a heavy one must migrate customers and unwind contracts first. More mass means more to undo, so scale makes correcting the same error cost more, not less.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch18.fact.3",
+      "front": "How can pride in an old decision be a form of mass?",
+      "back": "An emotional attachment to a call that no longer works resists change as firmly as a signed contract, yet it never appears on any inventory of assets. Counting only physical things and payroll undercounts the real weight a company drags.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch18.fact.8",
+      "front": "Does staying light mean refusing to commit to anything?",
+      "back": "No. Refusing all commitment confuses lightness with indecision and forfeits the trust some commitments build. The skill is telling useful structure that unlocks capability from dead weight that only reduces future options, then committing on purpose.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch18.fact.9",
+      "front": "What single test tells you whether a commitment adds avoidable mass?",
+      "back": "Ask whether a smaller promise could produce the same learning. If a lighter version teaches the same thing, the heavier commitment is weight added casually. If only the heavier one unlocks a needed capability, you take it knowing the cost.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch18.ex.smallest-fastest-earliest-stage",
+      "front": "How does 37signals' small-team model show the less-mass idea at the earliest stage?",
+      "back": "By repeatedly favoring fewer features, fewer people, and fewer obligations, 37signals keeps the freedom to change direction. A new firm is the leanest it will ever be, so spending that early lightness on premature weight wastes the cheapest moment to stay light.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Mass Check",
+    "coreSkill": "Before taking on any commitment, weigh it as mass rather than waving it through because it seems reasonable. Ask one question: would a smaller promise produce the same learning or capability? If it would, refuse the heavier version; if only the heavier commitment unlocks something you genuinely need, take it knowing exactly what it will cost to change later.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch18.fact.9",
+        "context": "When someone proposes building or buying something custom and long-term",
+        "plan": "If a long-term build or contract lands on the table, then Run the Mass Check by asking whether a rented or short version would teach the same thing, and take the lighter one if it would."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.3",
+        "context": "When you feel the pull to defend a past call the data no longer supports",
+        "plan": "If you catch yourself protecting a decision because you championed it, then Run the Mass Check, name the pride as mass, and weigh dropping it on the same scale as a contract."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.8",
+        "context": "When a partner or hire asks for a real commitment and you want to stay light",
+        "plan": "If a commitment would build trust or capability you cannot get otherwise, then Run the Mass Check and sign it on purpose rather than refusing it to feel agile."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.6",
+        "context": "When the company is brand-new and tempted to take on weight to look established",
+        "plan": "If the urge is to load up early so the firm seems serious, then Run the Mass Check and spend the early lightness on a small promise instead of a premature one."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, list every commitment your team is about to add: a tool, a hire, a contract, a meeting series. Beside each, write whether a smaller promise would teach the same thing, and cancel or shrink the one with the heaviest weight for the least return.",
+    "weeklyPractice": "Each week, pick one existing commitment and run the smaller-promise test on it. Track which ones you would not sign again, and retire one piece of mass, physical or mental, that no longer unlocks a capability you need."
+  },
+  "memorableLines": [
+    {
+      "text": "The heavier the company gets, the more energy it takes to turn.",
+      "location": "breakdown.fastRead",
+      "why": "It states the chapter's whole physics in one line: weight equals the cost of changing direction."
+    },
+    {
+      "text": "Pride is the mass nobody puts on the balance sheet.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the surprising claim that mental commitments are weight, in a single sharp image."
+    },
+    {
+      "text": "The goal is to weigh each one and add it on purpose.",
+      "location": "breakdown.fullRead",
+      "why": "It carries the hard edge: lightness is deliberate commitment, not blanket refusal."
+    }
+  ]
+}

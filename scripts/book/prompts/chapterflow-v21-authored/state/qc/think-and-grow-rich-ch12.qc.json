@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 12,
+  "chapterId": "think-and-grow-rich-ch12",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "8c89ec379a4c6ff0",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T12:02:35.612Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~91 GREEN. 9/9 keys correct (2,1,0,2,0,1,1,0,2). 7 positive + 7 negative emotions enumerated exactly, subconscious as always-active link, prayer-needs-emotion accurate. No corruption."
+}

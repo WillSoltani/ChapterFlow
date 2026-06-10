@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 15,
+  "chapterId": "think-and-grow-rich-ch15",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "f0850c67ae3971d2",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T11:53:55.707Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~91/100, GREEN. All 9 quiz keys verified correct. Six basic fears, indecision->doubt->fear chain, negative influences, alibis, hypochondria-vs-care all accurate to source. Fear Audit plan gives varied concrete actions; lines aphoristic. name-the-fear-then-act recurs but is method-driven (the chapter's prescribed self-analysis), not lazy template. No corruption."
+}

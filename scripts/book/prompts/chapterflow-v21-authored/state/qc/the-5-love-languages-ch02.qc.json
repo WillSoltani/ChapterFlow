@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-5-love-languages",
+  "chapterNumber": 2,
+  "chapterId": "the-5-love-languages-ch02",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "cf167bcfa7b2adee",
+  "reviewer": "claude-qc:5ll-20260606",
+  "reviewedAt": "2026-06-06T11:53:14.839Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~93/100. 9/9 keys; Campbell/love-tank/0-10 gauge faithful; 6 varied scenes (parent conf, anniversary, fridge-text, clinic, bedroom, budget); plan 'Read the Love Gauge'. GREEN."
+}

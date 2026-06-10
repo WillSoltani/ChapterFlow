@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "drive-ch01",
+  "number": 1,
+  "title": "The Rise and Fall of Motivation 2.0",
+  "readingTimeMinutes": 8,
+  "hook": "Wikipedia beat Encarta because curiosity can organize work that control cannot see.",
+  "counterintuition": "External rewards still matter, but they are a weak map for work that needs judgment, originality, and social meaning.",
+  "tryThisNow": "Name one task on your desk as routine or heuristic, then ask whether the current incentive fits that task.",
+  "keyTakeaway": "Use rewards and rules where the path is clear; for creative work, design for curiosity, contribution, and self-direction.",
+  "breakdown": {
+    "fastRead": "In a late-1990s office, the safe bet would have been Microsoft Encarta. Paid experts, a famous company, and a conventional plan looked stronger than volunteers building Wikipedia in public. That reversal gives Motivation operating systems their bite: a system built for compliance can miss effort powered by interest and contribution. The rule is to diagnose the work before choosing the motivational tool. Routine tasks may tolerate external steering; knowledge work often needs room for internal commitment.",
+    "deepRead": "The failure starts when a workplace treats every human action as a response to a prize or a threat. A motivation operating system is the hidden model behind that habit: it tells a school, company, or manager what people are assumed to want and how behavior should be steered.\n\nPink's sequence is simple but demanding. Motivation 1.0 is survival. Motivation 2.0 is the industrial bargain of rewards and punishments. Motivation 3.0 starts from intrinsic drive: curiosity, contribution, self-direction, and the satisfaction of solving worthy problems. Wikipedia and Microsoft Encarta make the shift visible. The better-funded, professionally managed encyclopedia looked stronger on paper, yet volunteers built the reference work that became central to daily life because the work offered meaning, learning, reputation, and public usefulness.\n\nTaylor's scientific management still explains why the old model had power. Repetitive factory work can be measured and optimized from above. The trouble begins when leaders carry that same operating system into work that needs judgment, collaboration, ethical sense, and invention. The practical move is not to abolish pay or structure. It is to ask what kind of work is in front of you before choosing a motivational tool.",
+    "fullRead": "The limit is important: Drive is not asking leaders to toss pay, deadlines, or structure into the sea. Pay still has to be fair. Deadlines still matter. The sharper claim is that external control has a smaller useful range than many institutions assume, especially when the work calls for judgment or imagination.\n\nEncarta and Wikipedia show the blind spot. A conventional forecast would have favored Microsoft: paid experts, editorial process, brand, and budget. Wikipedia won by organizing a different motive. Volunteers could contribute to something public, learn as they worked, earn standing in a community, and improve a knowledge commons they cared about.\n\nTaylor's scientific management shows why Motivation 2.0 once felt so sensible. For repetitive labor, separating planning from doing and measuring every motion could raise output. That success made the model tempting far beyond its proper zone. When the work becomes open-ended, the same control logic can shrink initiative.\n\nThe Ultimatum Game adds one more warning. People often reject unfair money even at personal cost, which means human effort cannot be reduced to simple gain seeking. Fairness, dignity, and meaning are part of the motivational system.\n\nThe useful question is diagnostic. Is this work mostly routine, with a known path and low need for judgment? External steering may help. Is it knowledge work, creative work, relational work, or ethical work? Then the better design starts by making room for internal commitment.\n\nA useful operating-system check separates the surface tool from the motive it assumes. A leaderboard assumes people need comparison. A detailed script assumes people need control. An open contribution queue assumes people can bring judgment when the purpose and standards are clear. None of those assumptions is neutral. Each one teaches people what kind of effort the institution expects from them.\n\nThat is why the Encarta/Wikipedia contrast is still useful after the history is familiar. The point is not that volunteers always beat professionals. The point is that a model built only around paid control could not predict a large pool of unpaid, skilled, self-correcting contribution. It lacked categories for curiosity, belonging, reputation, learning, and public purpose.\n\nFor a manager or teacher, the practical error usually appears as overcontrol. The task needs initiative, but the system rewards only visible compliance. The task needs ethical judgment, but the metric rewards speed. The task needs collaboration, but the incentive isolates people. Motivation 3.0 starts by repairing that mismatch. It asks what the work requires from the human being, then chooses conditions that make that kind of effort more likely."
+  },
+  "examples": [
+    {
+      "exampleId": "drive-ch01-ex01",
+      "title": "A Misread Incentive",
+      "tags": [
+        "work design",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "product wiki review",
+        "audience": "Rowan, a product lead deciding how much control a wiki needs",
+        "stakes": "The team must decide whether a public contribution space needs tighter approval or clearer invitation.",
+        "format": "decision_point",
+        "requiredBeat": "Show the choice between Encarta-style control and a Wikipedia-style contribution path."
+      },
+      "scenario": "Rowan watches three useful wiki edits sit in review while support agents keep answering the same customer question by hand. The proposed fix is a stricter approval queue, but the real bottleneck is that contributors cannot see where their judgment is welcome.",
+      "whatToDo": "At the product wiki review, classify the work type and remove one control that blocks contribution.",
+      "whyItMatters": "The decision changes the operating system. A wiki that asks only for compliance will not get the voluntary care that makes shared knowledge useful."
+    },
+    {
+      "exampleId": "drive-ch01-ex02",
+      "title": "The Calendar Test",
+      "tags": [
+        "team choice",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "factory training room",
+        "audience": "Imani, a trainer separating routine work from judgment work",
+        "stakes": "New supervisors are about to apply one factory-style rule to every task.",
+        "format": "dialogue",
+        "requiredBeat": "Use Taylor as a useful but limited model."
+      },
+      "scenario": "Imani shows supervisors two tasks on the screen: a safety checklist and a customer complaint that does not fit the script. The checklist benefits from sequence and measurement; the complaint gets worse if the agent is punished for improvising.",
+      "whatToDo": "In the factory training room, ask where factory-style supervision helps and where it dulls creative judgment.",
+      "whyItMatters": "The same control habit can help repetition and harm judgment. Sorting the work prevents leaders from using an industrial tool on a modern problem."
+    },
+    {
+      "exampleId": "drive-ch01-ex03",
+      "title": "When Metrics Crowd Out Meaning",
+      "tags": [
+        "ethics",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "pricing ethics seminar",
+        "audience": "Soren, an ethics instructor making fairness visible",
+        "stakes": "A class is tempted to explain every pricing choice as simple self-interest.",
+        "format": "audit",
+        "requiredBeat": "Use the fairness lesson to complicate a pure incentive story."
+      },
+      "scenario": "Soren asks students whether they would accept a profitable contract that treats one partner as disposable. Several reject it even after calculating the gain, because the deal would make their own standards harder to defend.",
+      "whatToDo": "Audit the pricing ethics seminar for the social meaning people would defend, not just the payout math.",
+      "whyItMatters": "People protect dignity and fairness as well as money. A motivational model that misses that fact will misread real behavior."
+    },
+    {
+      "exampleId": "drive-ch01-ex04",
+      "title": "A Better Design Choice",
+      "tags": [
+        "autonomy",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "open-source release standup",
+        "audience": "Beatrice, a release lead opening work without losing standards",
+        "stakes": "An open-source team needs more contributors but cannot let quality collapse.",
+        "format": "planning_choice",
+        "requiredBeat": "Turn the Wikipedia lesson into a practical contribution design."
+      },
+      "scenario": "Beatrice replaces a vague call for help with three labeled starter issues, a review rota, and a visible changelog credit. Contributors still meet the release standard, but they can now see a path from interest to useful work.",
+      "whatToDo": "Use Wikipedia versus Microsoft Encarta to choose one contribution path for the open-source release standup that is easier to join.",
+      "whyItMatters": "Self-direction does not mean an empty field. People contribute more seriously when the path is open and the purpose of the work is visible."
+    },
+    {
+      "exampleId": "drive-ch01-ex05",
+      "title": "The Control Signal",
+      "tags": [
+        "management",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "university lab debrief",
+        "audience": "Keisha, a lab manager reading a short-term productivity jump carefully",
+        "stakes": "A lab gets more logged output after adding check-ins, but curiosity is dropping.",
+        "format": "postmortem",
+        "requiredBeat": "Show how the wrong operating system can suppress the behavior it wants."
+      },
+      "scenario": "Keisha's new dashboard shows more experiment notes and fewer original questions. Graduate students are optimizing for daily proof of activity, so the lab looks busier while the work becomes less exploratory.",
+      "whatToDo": "In the university lab debrief, compare compliance metrics with curiosity signals before changing the lab design.",
+      "whyItMatters": "The metric is not neutral. A control signal can increase visible motion while training people away from inquiry."
+    },
+    {
+      "exampleId": "drive-ch01-ex06",
+      "title": "After the Reward Debate",
+      "tags": [
+        "reflection",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "customer support redesign",
+        "audience": "Galen, a support manager redesigning scripts",
+        "stakes": "Agents need consistency without losing the ability to solve unusual customer problems.",
+        "format": "reflection",
+        "requiredBeat": "Apply the routine-versus-heuristic diagnosis to a service workflow."
+      },
+      "scenario": "Galen keeps required language for refunds and privacy, then removes the rule that forces every complex case through the same five lines. Agents must record their reasoning, but they can now choose a response that fits the customer.",
+      "whatToDo": "Write one support-script rule to loosen so agents can handle unusual problems with judgment.",
+      "whyItMatters": "Structure protects baseline quality. Choice protects judgment. The redesign works because it separates the two."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "drive-ch01-q01",
+        "prompt": "A product wiki has careful contributors, but every edit now waits days for approval. What should the team diagnose first?",
+        "choices": [
+          "Whether the work needs tighter compliance or a clearer path for voluntary contribution.",
+          "Whether a larger prize would make contributors submit more edits by Friday.",
+          "Whether the wiki should copy a factory checklist for every kind of article."
+        ],
+        "correctIndex": 0,
+        "explanation": "The stronger diagnosis matches the motivational system to the work. A reward or tighter queue may increase activity while weakening the contribution the wiki needs.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch01-q02",
+        "prompt": "Why does Wikipedia's success challenge a purely control-first view of serious work?",
+        "choices": [
+          "It proves paid experts are never useful in building reliable information.",
+          "It shows that open, meaningful knowledge work can organize skilled voluntary effort.",
+          "It shows that public projects succeed only when no standards exist."
+        ],
+        "correctIndex": 1,
+        "explanation": "The key is the kind of motive Wikipedia activated. The wrong answers overcorrect by dismissing expertise or standards.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch01-q03",
+        "prompt": "A manager says Drive means incentives are obsolete. What correction keeps the claim accurate?",
+        "choices": [
+          "All pay discussions should stop once a team has meaningful work.",
+          "Every task should be managed as if it were an assembly-line motion study.",
+          "External controls still have a place, but their range narrows when work requires judgment, creativity, or social meaning."
+        ],
+        "correctIndex": 2,
+        "explanation": "Pink is narrowing the use of control, not denying pay or structure. The useful question is work type.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch01-q04",
+        "prompt": "An open-source team wants more useful pull requests without hiring a command-and-control editor. Which move best fits the Encarta/Wikipedia lesson?",
+        "choices": [
+          "Create visible contribution paths, review support, and public credit for meaningful work.",
+          "Hide the roadmap so only managers can decide which problems matter.",
+          "Pay a small bounty for every pull request, regardless of usefulness."
+        ],
+        "correctIndex": 0,
+        "explanation": "The correct move makes contribution easier and meaningful. The distractors either close the work down or reward volume over judgment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch01-q05",
+        "prompt": "What does Taylor's scientific management help a leader remember?",
+        "choices": [
+          "Every modern workplace should abandon measurement and deadlines.",
+          "Factory methods are the best model for research, service, and design.",
+          "Control systems can fit repetitive work while failing work that depends on imagination."
+        ],
+        "correctIndex": 2,
+        "explanation": "Taylor is a boundary marker. His model explains routine efficiency but not the whole of human effort.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch01-q06",
+        "prompt": "A support redesign adds friendliness training but keeps every unusual case locked inside the same script. What is the likely problem?",
+        "choices": [
+          "The agents no longer need outcomes, standards, or customer follow-through.",
+          "The system softened the tone without changing the carrot-and-stick assumption underneath.",
+          "The script should become even more detailed so no one has to think."
+        ],
+        "correctIndex": 1,
+        "explanation": "A human-relations patch can leave the old operating system intact. The issue is not friendliness; it is whether agents have room for judgment.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "drive-ch01-q07",
+        "prompt": "Which product-wiki trial would reveal whether a better motivational design is working?",
+        "choices": [
+          "Announce a permanent bonus for the person with the most edits.",
+          "Open one low-risk article category to guided contributor edits, then compare quality, follow-through, and ownership.",
+          "Freeze outside contributions until managers finish a new control policy."
+        ],
+        "correctIndex": 1,
+        "explanation": "A reversible test changes the condition and reads the result. The wrong moves either chase volume or avoid testing contribution.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch01-q08",
+        "prompt": "A lab dashboard shows more daily entries after a strict reporting rule, but fewer original hypotheses. How should the result be read?",
+        "choices": [
+          "The strict rule is clearly working because every visible number rose.",
+          "The lab should stop tracking anything so creativity can appear on its own.",
+          "The operating system may be producing compliance while suppressing curiosity."
+        ],
+        "correctIndex": 2,
+        "explanation": "A mismatched system can suppress the behavior it wants. The answer is better diagnosis, not blind measurement or no measurement.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch01-q09",
+        "prompt": "Before choosing a motivator, which practical move comes first?",
+        "choices": [
+          "Classify the work as routine or judgment-heavy, then remove one control that blocks internal commitment.",
+          "Choose the reward amount first and define the work around it.",
+          "Assume every worker is already intrinsically motivated in every task."
+        ],
+        "correctIndex": 0,
+        "explanation": "The work diagnosis comes first. Both distractors skip that diagnosis in opposite directions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "drive-ch01-card01",
+      "front": "What is a motivation operating system?",
+      "back": "It is the background assumption about why people work and how behavior should be directed. Use it to ask whether the system fits the work in front of you.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "drive-ch01-card02",
+      "front": "Why does Wikipedia matter more than Encarta as a motivation lesson?",
+      "back": "It shows that skilled effort can come from interest, contribution, reputation, and learning, not only from paid control.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch01-card03",
+      "front": "When is a Taylor-style control model most useful?",
+      "back": "It is most useful for routine work with a known path. It becomes clumsy when the work needs judgment, invention, or care.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch01-card04",
+      "front": "What does the Ultimatum Game add to the motivation model?",
+      "back": "It shows that people care about fairness and dignity enough to reject money. Motivation is not just a price calculation.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "drive-ch01-card05",
+      "front": "What mistake should leaders avoid?",
+      "back": "Using one control-heavy system for every task. A design that raises compliance can still damage curiosity, ownership, and contribution.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Work-Type Fit Test",
+    "coreSkill": "Use the Work-Type Fit Test before changing incentives: name the task, mark it as routine or judgment-heavy, identify the current control signal, and choose one condition that would make useful contribution easier.",
+    "ifThenPlans": [
+      {
+        "context": "The path is known and repetition matters",
+        "plan": "Use clear standards, simple feedback, and modest external steering. Keep the design honest about the fact that the task is routine."
+      },
+      {
+        "context": "The work requires judgment, care, or invention",
+        "plan": "Shift attention from prizes to conditions: purpose, contribution paths, discretion, and visible learning."
+      },
+      {
+        "context": "A metric rises but ownership falls",
+        "plan": "Treat the result as a warning that the operating system may be buying compliance at the cost of commitment."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one task you influence today. Write Routine or Judgment-heavy at the top of a page, then remove or loosen one control that does not fit the label.",
+    "weeklyPractice": "For seven days, use the Work-Type Fit Test on one decision per day. Track whether your motivational tool fits the work type or merely feels familiar."
+  },
+  "memorableLines": [
+    {
+      "text": "In a late-1990s office, the safe bet would have been Microsoft Encarta.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the lesson through a concrete source scene."
+    },
+    {
+      "text": "The failure starts when a workplace treats every human action as a response to a prize or a threat.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism before adding detail."
+    },
+    {
+      "text": "The limit is important: Drive is not asking leaders to toss pay, deadlines, or structure into the sea.",
+      "location": "breakdown.fullRead",
+      "why": "It frames the limit that protects the lesson from overreach."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "four-thousand-weeks",
+  "chapterNumber": 4,
+  "chapterId": "four-thousand-weeks-ch04",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "dc26c863c0837359",
+  "reviewer": "claude-qc:4kw-20260609-r2",
+  "reviewedAt": "2026-06-10T01:05:42.570Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Full read. GREEN ~88. 9/9 quiz keys correct (hidden-key derived), prose coherent, facts accurate to source, examples coherent (0/6 staged source-props, names consistent), cards test understanding, plan uses named tool 'Choose the Neglect First' with clean context/plan, lines portable. No corruption, no templating."
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-4-hour-workweek",
+  "chapterNumber": 10,
+  "chapterId": "the-4-hour-workweek-ch10",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "1c3785923858ea81",
+  "reviewer": "claude-qc:4hww-20260604",
+  "reviewedAt": "2026-06-04T17:02:20.837Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Read breakdowns+full quiz. 9/9 keys correct; micro-testing best/test/divest, ready-fire-aim, PPC landing-page-before-inventory, no-deception moral limit accurate. Coherent; cards answer fronts; plan Run the Buyer Signal Test non-empty. No corruption."
+}

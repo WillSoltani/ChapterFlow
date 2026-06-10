@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "rich-dad-poor-dad",
+  "chapterNumber": 4,
+  "chapterId": "rich-dad-poor-dad-ch04",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "3b31da74914eeb38",
+  "reviewer": "claude-qc:rdpd-20260605-r2",
+  "reviewedAt": "2026-06-05T11:38:53.435Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Full 8-axis read. All 9 keys correct; Robin Hood tax history, corporation earn-expense-tax order, and four financial-IQ legs faithful to RDPD Lesson 4. Minor: orphan persona Hunter in q07 (not a bar failure). No corruption."
+}

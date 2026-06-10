@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-body-keeps-the-score",
+  "chapterNumber": 15,
+  "chapterId": "the-body-keeps-the-score-ch15",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "628d46990457044f",
+  "reviewer": "claude-qc:tbkts-r2-20260610",
+  "reviewedAt": "2026-06-10T00:47:33.791Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "R2 re-verify ~92 (EMDR). PRIOR clock-countdown skeleton RESOLVED — no clock times; 6 distinct formats. 9/9 keys correct. No new defect."
+}

@@ -1,0 +1,115 @@
+{
+  "bookId": "rework",
+  "fromChapter": 24,
+  "toChapter": 31,
+  "perChapter": 7,
+  "allocation": {
+    "24": [
+      "Norman",
+      "Matthew",
+      "Grant",
+      "Aaron",
+      "Medard",
+      "Firmin",
+      "Winnie"
+    ],
+    "25": [
+      "Juliana",
+      "Kendra",
+      "Violette",
+      "Maverick",
+      "Paige",
+      "Remi",
+      "Nikos"
+    ],
+    "26": [
+      "Sasha",
+      "Delphis",
+      "Isaac",
+      "Maddox",
+      "Yuri",
+      "Mason",
+      "Doreen"
+    ],
+    "27": [
+      "Ghislaine",
+      "Cody",
+      "Lincoln",
+      "Brady",
+      "Amrit",
+      "Adrien",
+      "Napoleon"
+    ],
+    "28": [
+      "Mariam",
+      "Kenji",
+      "Severine",
+      "Rita",
+      "Cora",
+      "Abel",
+      "Silas"
+    ],
+    "29": [
+      "Marion",
+      "Scott",
+      "Carlos",
+      "Nathalie",
+      "Grayson",
+      "Calvin",
+      "Trevor"
+    ],
+    "30": [
+      "Ishani",
+      "Scarlett",
+      "Vito",
+      "Omar",
+      "Keaton",
+      "Gianni",
+      "Lucien"
+    ],
+    "31": [
+      "Ludger",
+      "Wei",
+      "Ricardo",
+      "Liliane",
+      "Noemie",
+      "Cesaire",
+      "Lucy"
+    ]
+  },
+  "bannedConnectives": [
+    "has to decide whether to",
+    "now has to choose between",
+    "is trying to figure out",
+    "stares at the screen and",
+    "stops and looks at the",
+    "takes a deep breath and",
+    "leans back in the chair",
+    "glances at the clock and",
+    "stops arguing and points to",
+    "we cannot keep pretending this",
+    "catches the edge of the",
+    "the room goes quiet as",
+    "feels the weight of the",
+    "knows the answer but cannot",
+    "is about to find out",
+    "has been doing this for",
+    "looks up from the desk",
+    "the same thing happens again",
+    "wants nothing more than to",
+    "cannot shake the feeling that",
+    "is faced with a choice",
+    "has to make a call",
+    "sits down to write the",
+    "opens the laptop and starts",
+    "runs the numbers one more"
+  ],
+  "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
+  "diagnostics": {
+    "bankSize": 777,
+    "excludedCount": 224,
+    "availableCount": 747,
+    "shortChapters": [],
+    "alreadyAuthored": []
+  }
+}

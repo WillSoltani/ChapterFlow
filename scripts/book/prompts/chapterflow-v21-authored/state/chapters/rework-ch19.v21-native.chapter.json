@@ -1,0 +1,352 @@
+{
+  "chapterId": "rework-ch19",
+  "number": 19,
+  "title": "Embrace constraints",
+  "readingTimeMinutes": 10,
+  "hook": "Half the budget, half the staff, and the launch turns out cleaner than the fat version ever would have.",
+  "counterintuition": "Shortage reads as the thing blocking the work, so teams wait for it to lift. Yet a tight limit is what forces the essential choices, and the version made under pressure often beats the one made with room to spare.",
+  "tryThisNow": "Pick one thing you are stalled on for lack of money, time, or people. Write the limit as a question: what could you cut, borrow, or simplify to ship a smaller version this week?",
+  "keyTakeaway": "Read a real shortage as a design input rather than a stop sign; the limit forces the essential choices, so ask what to cut or simplify before asking for more.",
+  "breakdown": {
+    "fastRead": "37signals stayed small on purpose while rivals piled on engineers and budget. The shortage was supposed to be a weakness. Instead the small team refused to equate more with better, and the software came out cleaner.\n\nThe move is plain. Read a limit as a design input, not an excuse to wait. A tight boundary removes the lazy options, so every choice has to earn its place.\n\nThat pressure is the gift hiding inside the shortage. With no slack to absorb waste, scope cannot balloon and weak parts cannot hide. You stop asking for more and start asking what the work truly needs.",
+    "deepRead": "A constraint does its work by shrinking the menu. When you cannot do everything, you must name the one path that matters, and naming it is most of the design. Listing what you lack frames scarcity as a stop sign, so the team waits. Reading the same shortage as a brief flips it into pressure that sharpens the build.\n\nWatch the mechanism in a craft most people trust. A songwriter handed a four-line chorus and a single key cannot wander, so the melody has to commit. A filmmaker with three locations and a short shoot cuts every scene that does not pull its weight. Writers, musicians, designers, and filmmakers reach for limits on purpose, because infinite options invite indecision and lazy defaults. The boundary forces the inventive commitment that freedom keeps postponing.\n\nA business gets the same effect from the same source. Less money keeps a product smaller. A short runway keeps a launch faster. A thin team keeps the scope honest, because no one can afford to build the feature nobody asked for. The discrimination you can now make is this: the value is not in the deprivation itself. It lives in the choices the limit forces. A team handed unlimited budget tends to add bulk, and bulk is where waste and weak parts go to hide.",
+    "fullRead": "Romanticizing scarcity is the failure mode waiting at the other extreme. The point was never that less is always better, or that more deprivation makes stronger work. Some shortages are just shortages. A surgeon short of sterile supplies is not being handed a creative brief, and a team blocked by a real structural barrier needs the barrier removed, not admired. The honest reading is narrower: a real limit can be used as pressure for sharper design, and that is different from pretending every lack is a gift.\n\nHold that line and the idea stays useful. When 37signals chose to stay small, the constraint was real and the response was design, not complaint. The team treated fewer engineers as a reason to keep the product focused rather than a reason to ship late and blame headcount. More people and more budget tend to invite indulgent scope, while the limit forces the discipline that keeps the work tight. The cleaner software was the residue of choices the shortage made unavoidable.\n\nLeanness carries a second advantage that bulk cannot. A smaller footprint exposes every part to scrutiny, so an unnecessary or weak element is easy to spot and easy to cut. Add bulk and the same weak part disappears into the pile, protected by everything around it. This is why a lean solution often proves stronger than the feature-rich one: waste has nowhere to hide, so flaws get found and fixed instead of shipped and buried.\n\nThe practical question turns the idea into a habit. When a limit lands, the first response should be design thinking, not a request for more resources. Ask what can be cut, what can be simplified, what can be borrowed, what can be delayed, and what can be solved a different way. Each of those questions reframes the complaint as an advantage and surfaces an inventive tradeoff that abundance would have let you skip. Leading with a plea for budget skips the very work the constraint exists to provoke.\n\nThere is a sequencing point worth naming. Making do with what is available is not a concession; it is the engine. Because the missing resource cannot be conjured, the team has to reuse, borrow, or simplify within the real boundary, and that forced reuse is often where the inventive solution comes from. Waiting for ideal conditions forfeits the progress the constraint could have driven, and it removes the pressure that would have sharpened the design in the first place. The maker who starts now, inside the limit, learns more in a week than the one still waiting for the budget to clear. So name the shortage, write it as a brief, and let it carry you toward the essential version instead of the bloated one you would have built with room to spare."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch19.ex.37signals",
+      "title": "37signals Stays Small On Purpose",
+      "tags": [
+        "small company",
+        "software",
+        "focus"
+      ],
+      "planSpec": {
+        "domain": "B2B software company",
+        "audience": "founders who equate more headcount with better output",
+        "stakes": "hire up to match rivals or stay small and stay focused",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist treats a small team as focus rather than a deficiency"
+      },
+      "scenario": "Sverre runs a six-person software shop whose rivals each carry forty engineers. A board member wants him to triple the team to keep pace, warning that the product looks thin beside the bigger suites. Sverre keeps thinking about 37signals, who refused to equate more with better and shipped cleaner software with fewer people. Before the hiring plan goes to the board vote, he must choose: bulk up to look serious, or stay small and let the limit keep the product tight.",
+      "whatToDo": "Sverre holds the team small and reframes the headcount limit as focus, telling the board each feature must earn its place instead of riding in on extra hands.",
+      "whyItMatters": "A small team forces every choice to count, so scarcity becomes discipline; chasing headcount to match rivals tends to add the bloat that buries the product's strongest parts."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch19.ex.creative-constraints",
+      "title": "Three Locations And A Short Shoot",
+      "tags": [
+        "filmmaking",
+        "craft analogy",
+        "limits"
+      ],
+      "planSpec": {
+        "domain": "independent film production",
+        "audience": "makers who believe total freedom yields better work",
+        "stakes": "demand a bigger budget or build inside the tight one",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist uses a creative limit to force sharper choices"
+      },
+      "scenario": "\"We have three locations and twelve shooting days, not thirty,\" Thora tells her crew in the production office. Her instinct is to fight for more, the way she assumes the great directors must have had endless room. But filmmakers, like writers and musicians, often do their sharpest work precisely because boundaries kill the infinite options. With the shoot locked and the schedule fixed, Thora must tell her crew before the read-through which way they go: keep begging for scope, or cut every scene that does not pull its own weight.",
+      "whatToDo": "Thora stops lobbying for a bigger budget and cuts each scene that does not earn its place, using the tight shoot as the brief that forces a leaner, sharper film.",
+      "whyItMatters": "Unlimited options invite indecision and lazy defaults; the boundary forces the inventive commitment, which is why creative fields reach for constraints on purpose rather than escaping them."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch19.fact.2",
+      "title": "The List Of Everything Missing",
+      "tags": [
+        "complaints",
+        "delay",
+        "starting"
+      ],
+      "planSpec": {
+        "domain": "nonprofit operations",
+        "audience": "teams that inventory their shortages before starting",
+        "stakes": "wait until the gaps are filled or start with what is on hand",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist stops treating a list of lacks as a precondition"
+      },
+      "scenario": "Torstein opens the kickoff with a whiteboard headed Not Enough: not enough money, not enough staff, not enough time, not enough experience. The room nods, relieved to have named the obstacles. Then he notices the list has quietly become the reason nobody has begun. Listing what you lack frames the shortage as a stop sign. Before the meeting ends, Torstein has to choose whether to keep the inventory as a precondition or flip it into a brief and start the pilot with what the team already has on hand.",
+      "whatToDo": "Torstein erases the Not Enough list and rewrites each lack as a design question, then launches a small pilot using only the staff, time, and tools already in the room.",
+      "whyItMatters": "A list of missing resources becomes an excuse that delays useful action; reframing each lack as a design input turns the complaint into the first move instead of a reason to wait."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch19.fact.6",
+      "title": "Where The Weak Feature Hid",
+      "tags": [
+        "lean",
+        "waste visible",
+        "cut"
+      ],
+      "planSpec": {
+        "domain": "consumer software design",
+        "audience": "designers who assume more features mean more robustness",
+        "stakes": "ship the feature-heavy build or strip it to the lean core",
+        "format": "before_after",
+        "requiredBeat": "leanness makes a weak part visible and therefore fixable"
+      },
+      "scenario": "On Monday at the design review, Tuva inherits an app loaded with eleven panels, marketed as robust because it does so much. A tight retooling budget forces it down to the three panels people actually use, the way 37signals keeps software clean by refusing to equate more with better. The cut suddenly reveals a broken save flow that the crowded version had hidden behind its own clutter. The leaner build did not weaken the product; it surfaced a flaw that eleven panels had buried, and now Tuva can finally see and fix it.",
+      "whatToDo": "Tuva keeps the three-panel lean build, fixes the save flow the cut exposed, and resists adding panels back, since the smaller footprint is what made the weak part findable.",
+      "whyItMatters": "Extra bulk hides waste and weak parts, while leanness makes flaws visible and fixable, so a lean solution can end up stronger than the feature-rich one it replaced."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch19.fact.8",
+      "title": "The Shortage That Was Just A Shortage",
+      "tags": [
+        "hard edge",
+        "real barrier",
+        "limit of idea"
+      ],
+      "planSpec": {
+        "domain": "hospital supply management",
+        "audience": "leaders tempted to romanticize every shortage",
+        "stakes": "celebrate the deprivation or name the barrier that must be removed",
+        "format": "reflection",
+        "requiredBeat": "the protagonist distinguishes a creative limit from a real obstacle"
+      },
+      "scenario": "Vegard, a ward manager, reads a memo praising constraints as creative fuel and nearly applies it to a stockout of sterile kits. He has watched a tight rota sharpen scheduling, so the framing tempts him. But a missing sterile supply is not a design brief; it is a structural barrier that endangers patients and has to be removed, not admired. Some shortages really are just shortages. The honest reading is narrow: a real limit can pressure sharper design, yet not every lack is a gift to celebrate.",
+      "whatToDo": "Vegard refuses to romanticize the stockout, escalates the sterile-kit shortage as a barrier to remove, and reserves the constraint-as-brief move for limits that are actually about design choices.",
+      "whyItMatters": "The value lives in the choices a limit forces, not in scarcity itself, so treating every shortage as creative fuel misreads the idea and can leave a real obstacle dangerously unaddressed."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch19.fact.9",
+      "title": "Design First, Then Ask",
+      "tags": [
+        "design thinking",
+        "first response",
+        "cut or borrow"
+      ],
+      "planSpec": {
+        "domain": "civic event planning",
+        "audience": "organizers whose first instinct is to request more budget",
+        "stakes": "lead with a funding request or lead with design questions",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist makes design thinking the first response to a limit"
+      },
+      "scenario": "Yngve learns the town festival's grant has been cut in half, and his first instinct is to draft an urgent appeal for more money. Then he stops himself, recalling how filmmakers and designers treat a tight budget as a brief rather than a blocker. Leading with a plea for cash skips the work the constraint exists to provoke. Before the planning committee meets, Yngve must choose his opening move: send the funding request, or first ask what can be cut, simplified, borrowed from local vendors, delayed to next year, or solved a different way entirely.",
+      "whatToDo": "Yngve sets the funding appeal aside and runs the cut-simplify-borrow-delay questions first, redesigning the festival inside the smaller grant before deciding whether any request is even needed.",
+      "whyItMatters": "Reframing a limit as a design question turns the complaint into an advantage and surfaces inventive tradeoffs, whereas leading with a request for more resources skips the design work entirely."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch19.ex.37signals",
+        "prompt": "A six-person software shop faces rivals with forty engineers each, and a board member pushes the founder to triple the team to look serious. Mindful of how 37signals stayed small, which move best fits constraint creativity?",
+        "choices": [
+          "Hire up to match the rivals, since a larger team with more budget will naturally ship cleaner software.",
+          "Stay small and use the headcount limit to force every feature to earn its place in the product.",
+          "Pause shipping until the board approves enough engineers to cover the full rival feature list."
+        ],
+        "correctIndex": 1,
+        "explanation": "37signals refused to equate more with better, so a small team became focus. More headcount tends to add bloat; the limit is what forces the discipline that keeps the software clean.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch19.ex.creative-constraints",
+        "prompt": "A director is told she has three locations and twelve shooting days instead of thirty, and she assumes the best films must have come from endless freedom. Which reading of her limit matches how creative fields actually use constraints?",
+        "choices": [
+          "Total freedom would have produced the stronger film, so she should keep fighting for a bigger budget and longer schedule.",
+          "The shoot is too tight to work, so she should shelve the project until more locations and days are funded.",
+          "The tight shoot forces her to cut every scene that does not pull its weight, which sharpens the film."
+        ],
+        "correctIndex": 2,
+        "explanation": "Writers, musicians, and filmmakers reach for limits because infinite options invite indecision and lazy defaults. The boundary forces the inventive commitment that endless freedom keeps postponing.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch19.fact.2",
+        "prompt": "At a kickoff, a lead fills a whiteboard headed Not Enough with missing money, staff, time, and experience, and the team relaxes once the gaps are named. A week later nobody has started. What went wrong here?",
+        "choices": [
+          "Listing the lacks framed scarcity as a stop sign, so the inventory became an excuse instead of a starting brief.",
+          "The team named the resources too vaguely, and a more detailed shortage list would have unblocked the work.",
+          "Naming missing resources is the responsible first step, so the real error was not waiting longer for them."
+        ],
+        "correctIndex": 0,
+        "explanation": "Listing what you lack reads as a precondition, so the team waits. The fix is to flip each lack into a design question and start with what is already on hand.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch19.fact.6",
+        "prompt": "A kitchen gadget with eleven modes was sold as robust, but a tight budget strips it to the three modes people use, and a wobbly hinge suddenly becomes obvious. A teammate argues the cut made the product weaker. How should the builder respond?",
+        "choices": [
+          "The leaner build did not weaken it; the smaller footprint exposed a hinge flaw the clutter had hidden, so now it is fixable.",
+          "Agree and add the eight modes back, since a fuller, more feature-rich device is usually more robust than a stripped one.",
+          "Ignore the hinge and ship the eleven-mode version, because more features will reassure buyers worried about quality."
+        ],
+        "correctIndex": 0,
+        "explanation": "Extra bulk hides waste and weak parts. A smaller footprint puts every part under scrutiny, so the flaw surfaces and gets fixed instead of staying buried in the pile.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch19.fact.8",
+        "prompt": "A ward manager reads a memo praising constraints as creative fuel and is tempted to apply it to a stockout of sterile kits. Which judgment respects the limit of the constraint idea?",
+        "choices": [
+          "Celebrate the stockout as creative pressure, since every shortage sharpens the work and more deprivation is better still.",
+          "A missing sterile supply is a structural barrier to remove, not a design brief, so the constraint framing does not apply here.",
+          "Treat the stockout exactly like a tight schedule, because all limits are interchangeable sources of creative discipline."
+        ],
+        "correctIndex": 1,
+        "explanation": "The value lives in the choices a limit forces, not in scarcity itself. Some shortages are real obstacles; romanticizing every lack misreads the idea and can leave a danger unaddressed.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch19.fact.9",
+        "prompt": "An organizer learns the festival grant was halved and his first instinct is to fire off an urgent appeal for more money. Which first response better fits constraint creativity?",
+        "choices": [
+          "Send the funding appeal immediately, because securing more resources should come before any design work.",
+          "Cancel the festival, since a halved grant makes a worthwhile event out of reach this year.",
+          "First ask what can be cut, simplified, borrowed, delayed, or solved differently inside the smaller grant."
+        ],
+        "correctIndex": 2,
+        "explanation": "Reframing a limit as a design question turns the complaint into an advantage. Leading with a plea for budget skips the inventive tradeoffs the constraint exists to provoke.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch19.fact.3",
+        "prompt": "A relief crew cannot get the extra trucks it requested for weeks, and the supplies it needs simply are not coming. Which approach best makes do with the real boundary it faces right now?",
+        "choices": [
+          "Reuse, borrow, and simplify within the resources on hand now, since the missing trucks cannot be conjured.",
+          "Halt the work until the requested trucks finally arrive, so the job can be done properly later.",
+          "File a stronger requisition and treat the delay as the main obstacle worth solving for the crew."
+        ],
+        "correctIndex": 0,
+        "explanation": "Because the missing resource cannot be summoned, the crew must reuse, borrow, or simplify within the real limit. Waiting forfeits the progress the constraint could have driven now.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch19.fact.4",
+        "prompt": "Two teams build the same internal tool: one gets an open budget and a year, the other gets a thin budget and six weeks. A colleague predicts the well-funded team will avoid scope creep. Is that prediction sound?",
+        "choices": [
+          "Yes, because more time and budget tend to yield a tighter, better-scoped product than a constrained team can.",
+          "No clear difference, since scope creep depends mostly on the project manager rather than on the resources.",
+          "No; abundance invites indulgent scope, while the thin budget forces each choice to count and keeps the work focused."
+        ],
+        "correctIndex": 2,
+        "explanation": "With no slack to absorb waste, each decision must earn its place, which keeps scope from ballooning. Abundance lets indulgent scope creep in where the limit would have imposed discipline.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch19.concept",
+        "prompt": "A team keeps postponing a product because it lacks the ideal budget, staff, and timeline it believes the work requires. Which stance turns those limits into design pressure rather than a reason to wait?",
+        "choices": [
+          "Wait for ideal conditions, because building before the resources are in place produces sloppy, unfinished work.",
+          "Read the limits as design inputs and start now, letting the shortage force the essential path instead of bloat.",
+          "Copy a larger competitor's resourcing plan first, so the team knows exactly how much it must acquire to begin."
+        ],
+        "correctIndex": 1,
+        "explanation": "A constraint narrows the options, forcing the essential path over indulgent bloat. Waiting for ideal conditions delays useful action and removes the very pressure that sharpens the design.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch19.concept",
+      "front": "Why can a shortage of time, money, or people improve the work instead of ruining it?",
+      "back": "A limit narrows the range of options, so the team must choose the essential path instead of indulging bloat. That forced focus is what sharpens the design and keeps the work lean.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch19.ex.37signals",
+      "front": "What does 37signals' choice to stay small show about resources and software quality?",
+      "back": "Fewer resources can produce cleaner software when a team refuses to equate more with better. Staying small turned scarcity into focus, while extra headcount and budget tend to add bloat.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch19.ex.creative-constraints",
+      "front": "Why do writers, musicians, designers, and filmmakers often reach for limits on purpose?",
+      "back": "Boundaries prevent infinite options, so makers must commit to choices. That commitment removes lazy defaults and indecision, which is why a tight brief frequently produces sharper creative work than total freedom.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch19.fact.6",
+      "front": "How can a lean solution end up stronger than a fuller, more feature-rich one?",
+      "back": "A smaller footprint exposes every part to scrutiny, so weak or unnecessary elements are easy to spot and cut. Extra bulk hides waste, while leanness makes flaws visible and therefore fixable.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch19.fact.8",
+      "front": "What is the hard edge that keeps constraint creativity from becoming romanticizing scarcity?",
+      "back": "The value is in the inventive choices a limit forces, not in the scarcity itself. Some shortages are real structural barriers to remove, not creative fuel, so not every lack should be celebrated.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch19.fact.9",
+      "front": "When a limit lands, what should the first response be instead of asking for more resources?",
+      "back": "Run the limit as a design question: ask what can be cut, simplified, borrowed, delayed, or solved differently. That reframing surfaces inventive tradeoffs that leading with a budget request would skip.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Turn the Limit Into a Brief",
+    "coreSkill": "When a shortage shows up, rewrite it as a design question instead of a reason to wait. Ask what you can cut, simplify, borrow, delay, or solve a different way inside the real boundary, and start with what is already on hand. Reserve the move for limits that are genuinely about design choices, not for structural barriers that must simply be removed.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch19.fact.2",
+        "context": "When a kickoff opens by listing everything the team lacks",
+        "plan": "If the room starts inventorying missing money, staff, or time, then Turn the Limit Into a Brief by rewriting each lack as a design question and starting a small version with what is on hand."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.9",
+        "context": "When your first instinct after a budget cut is to ask for more money",
+        "plan": "If you reach for a funding appeal as the opening move, then Turn the Limit Into a Brief and first ask what to cut, borrow, or delay before deciding any request is needed."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.8",
+        "context": "When a shortage tempts you to praise it as creative fuel",
+        "plan": "If you catch yourself romanticizing a lack, then Turn the Limit Into a Brief only after checking the shortage is a design limit and not a structural barrier that endangers the work."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, catch three moments where you blame a shortage of time, money, or people. Beside each, write the limit as a design question and name one thing you could cut, borrow, or simplify to move forward now.",
+    "weeklyPractice": "End each week by reviewing one limit you treated as a stop sign and one you turned into a brief. Track which reframing shipped a smaller, sharper version, and repeat the move that worked."
+  },
+  "memorableLines": [
+    {
+      "text": "A tight boundary removes the lazy options, so every choice has to earn its place.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the whole idea into one line: the limit is what forces every decision to count."
+    },
+    {
+      "text": "The boundary forces the inventive commitment that freedom keeps postponing.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism behind the craft analogy in a single quotable turn."
+    },
+    {
+      "text": "Some shortages are just shortages.",
+      "location": "breakdown.fullRead",
+      "why": "It marks the hard edge sharply, guarding against romanticizing every lack as creative fuel."
+    }
+  ]
+}

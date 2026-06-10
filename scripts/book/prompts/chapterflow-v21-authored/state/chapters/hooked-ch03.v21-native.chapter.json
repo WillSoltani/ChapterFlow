@@ -1,0 +1,320 @@
+{
+  "chapterId": "hooked-ch03",
+  "number": 3,
+  "title": "Action",
+  "readingTimeMinutes": 12,
+  "hook": "BJ Fogg's equation fails the moment one ingredient goes missing.",
+  "counterintuition": "Persuasion is often the expensive lever. The cheaper path is making the desired action so easy that the trigger arrives above the action line.",
+  "tryThisNow": "Remove one step from a target action before writing any new motivational copy, then ask which simplicity factor improved.",
+  "keyTakeaway": "A triggered behavior happens only when motivation, ability, and timing meet, so reducing friction usually beats trying to manufacture stronger desire.",
+  "breakdown": {
+    "fastRead": "BJ Fogg's behavior model gives the idea its operating rule: behavior happens when motivation, ability, and a trigger converge. If one piece is missing, the action fails.\n\nGoogle versus Yahoo makes the point visible. Google's sparse page asked for one obvious action. Portal pages demanded scanning, choosing, and ignoring clutter. The searcher did not need a motivational speech. The searcher needed less mental effort. Action design begins by lowering the cost of doing.",
+    "deepRead": "Action is the simplest behavior performed in anticipation of a reward. A trigger can be perfectly timed and still fail if the user does not care enough or cannot act easily enough. Fogg's B equals MAT turns failure into diagnosis: motivation, ability, or trigger was not present at the same moment.\n\nMotivation has familiar sources. People seek pleasure and avoid pain, seek hope and avoid fear, seek social acceptance and avoid rejection. A product can speak to those motives, but raising motivation is often unstable and expensive.\n\nAbility is more directly designable. Fogg's simplicity factors ask whether the behavior costs too much time, money, physical effort, mental effort, social risk, or disruption to routine. Google reduced mental effort. Twitter's short-post constraint reduced the effort of broadcasting. Instagram, Pinterest, and Vine made creation feel smaller than older publishing tools.\n\nLinkedIn profile progress adds a motivational nudge without burying the user in persuasion. A completion meter frames the task as closing an already-started gap. The broader rule stays the same: if the action is too hard at the triggered moment, clever psychology will not save it.",
+    "fullRead": "The action framework is easy to flatten into a bag of tricks: scarcity, framing, anchoring, progress meters, social proof. The stricter reading starts earlier. Before any heuristic matters, the target behavior has to cross the action line.\n\nBJ Fogg's model gives product teams a humane diagnostic. When a user does not act, the explanation is not laziness by default. Perhaps the trigger arrived while the user was driving. Perhaps motivation was low because the reward felt distant. Perhaps ability was low because the action required money, time, social exposure, or too much thought. B equals MAT turns blame into design inquiry.\n\nGoogle versus Yahoo is the clean interface case. A crowded portal page can contain more options and still create less action because the user has to parse the page before doing the job. Google's single search field made the next step unmistakable. The page did not need to shout; it reduced mental effort.\n\nCreation tools show the same principle in a different domain. Twitter's character limit made public posting feel bounded. Instagram made photo sharing faster. Pinterest made contribution as simple as saving or repinning. Vine made short video creation less intimidating. Each design lowered the smallest behavior enough that more people could participate.\n\nMotivation still matters, but it is slippery. Pleasure, hope, fear, acceptance, and rejection can all move behavior. A team can write copy around those motives, yet the user may still bounce if the action is awkward. That is why ability is usually the first lever to inspect.\n\nThe six simplicity factors are practical because they describe different kinds of cost. Time and money are obvious. Physical effort appears when an action requires movement or setup. Mental effort appears in confusing forms and choices. Social acceptability appears when the user risks looking foolish. Routine fit appears when a behavior asks the user to break the flow of the day.\n\nLinkedIn profile progress shows that heuristics can help when the base action is already plausible. The meter makes incompletion visible and endowed progress makes the user feel partway there. But a progress bar on a painful form is not a miracle. It works only if adding the next piece is easy enough.\n\nThe strict warning is therefore anti-drama. Do not begin by trying to inflame desire. Begin by making the behavior easier to do than to avoid. If the cue appears at the wrong moment, fix timing. If the user is not motivated, clarify the reward. If the action is too hard, remove effort until the path is simple enough to cross."
+  },
+  "examples": [
+    {
+      "exampleId": "hooked-ch03-ex01",
+      "title": "Missed call diagnosis",
+      "tags": [
+        "Action",
+        "BJ Fogg",
+        "B equals MAT"
+      ],
+      "planSpec": {
+        "domain": "support call review",
+        "audience": "behavior designer",
+        "stakes": "why a prompted user still failed to act",
+        "format": "mechanism",
+        "requiredBeat": "Apply BJ Fogg to why a prompted user still failed to act without flattening the source case."
+      },
+      "scenario": "After a missed support call, Devon refuses to call the customer careless. BJ Fogg's B equals MAT gives three possible failures: the customer may not have wanted the call, may not have been able to answer, or may have received the trigger at a bad moment.",
+      "whatToDo": "Diagnose the failed behavior by motivation, ability, and timing. Change the weakest condition before blaming the user.",
+      "whyItMatters": "BJ Fogg turns non-action into a missing-condition problem. That keeps the team focused on design levers instead of moralizing."
+    },
+    {
+      "exampleId": "hooked-ch03-ex02",
+      "title": "Search page cleanup",
+      "tags": [
+        "Action",
+        "Google",
+        "Yahoo"
+      ],
+      "planSpec": {
+        "domain": "homepage redesign",
+        "audience": "UX lead",
+        "stakes": "whether a portal layout is suppressing action",
+        "format": "interface comparison",
+        "requiredBeat": "Apply Google to whether a portal layout is suppressing action without flattening the source case."
+      },
+      "scenario": "The UX lead places Google and Yahoo screenshots beside the new homepage. The team likes every module, but the search action is buried under choices. Google's sparse field wins because the user knows what to do before deliberation can interrupt.",
+      "whatToDo": "Cut the page until the target action is visually and mentally obvious. Add options only after the first behavior is protected.",
+      "whyItMatters": "Google versus Yahoo shows that mental effort is a real cost. A cluttered page can lower ability even when it offers more features."
+    },
+    {
+      "exampleId": "hooked-ch03-ex03",
+      "title": "Composer redesign",
+      "tags": [
+        "Action",
+        "Twitter",
+        "Instagram"
+      ],
+      "planSpec": {
+        "domain": "content composer sprint",
+        "audience": "creation tools team",
+        "stakes": "how lightweight creation expands participation",
+        "format": "sprint review",
+        "requiredBeat": "Apply Twitter to how lightweight creation expands participation without flattening the source case."
+      },
+      "scenario": "In a composer sprint, a team compares its long publishing form with Twitter's short messages and Instagram's quick photo flow. Their tool asks for title, tags, category, and settings before expression. The target action is not creation; it is paperwork.",
+      "whatToDo": "Define the smallest publishable act, then remove fields until creation feels lighter than hesitation.",
+      "whyItMatters": "Twitter and Instagram demonstrate ability by compression. Reducing the creation act invites users who would never complete a heavier workflow."
+    },
+    {
+      "exampleId": "hooked-ch03-ex04",
+      "title": "Profile meter",
+      "tags": [
+        "Action",
+        "LinkedIn",
+        "progress"
+      ],
+      "planSpec": {
+        "domain": "onboarding analytics",
+        "audience": "growth designer",
+        "stakes": "whether a progress meter clarifies the next action",
+        "format": "data review",
+        "requiredBeat": "Apply LinkedIn to whether a progress meter clarifies the next action without flattening the source case."
+      },
+      "scenario": "In onboarding analytics, Meera sees users abandon a long profile form. LinkedIn profile progress suggests a different frame: show that the person has already begun and name the next small missing piece. The work becomes gap-closing instead of form obedience.",
+      "whatToDo": "Use progress only to point at a concrete next step. The meter should shrink uncertainty, not decorate a still-confusing task.",
+      "whyItMatters": "LinkedIn's meter works because endowed progress raises motivation while the next action remains specific and manageable."
+    },
+    {
+      "exampleId": "hooked-ch03-ex05",
+      "title": "Scarcity banner",
+      "tags": [
+        "Action",
+        "scarcity",
+        "BJ Fogg"
+      ],
+      "planSpec": {
+        "domain": "checkout experiment",
+        "audience": "conversion analyst",
+        "stakes": "when a heuristic masks high friction",
+        "format": "experiment critique",
+        "requiredBeat": "Apply scarcity to when a heuristic masks high friction without flattening the source case."
+      },
+      "scenario": "A checkout experiment adds a scarcity banner, but completion barely moves. Sara returns to BJ Fogg: motivation rose for a few users, yet ability stayed low because the page still asks for unnecessary account setup and shipping details before payment.",
+      "whatToDo": "Do a friction pass before adding another motivational heuristic. Remove time, thought, or money costs that block the behavior.",
+      "whyItMatters": "Scarcity cannot rescue a hard action. The Fogg model keeps persuasion subordinate to ability at the moment of doing."
+    },
+    {
+      "exampleId": "hooked-ch03-ex06",
+      "title": "Routine fit test",
+      "tags": [
+        "Action",
+        "simplicity",
+        "Pinterest"
+      ],
+      "planSpec": {
+        "domain": "mobile usability lab",
+        "audience": "researcher",
+        "stakes": "why an action breaks the user's daily flow",
+        "format": "field observation",
+        "requiredBeat": "Apply simplicity to why an action breaks the user's daily flow without flattening the source case."
+      },
+      "scenario": "During a mobile usability lab, Andre watches a participant save ideas on Pinterest during a short break. His team's prototype requires opening a desktop editor later. The simplicity factor is routine fit: the behavior no longer matches the moment when motivation appears.",
+      "whatToDo": "Move the action into the user's existing routine or shorten it enough for the live moment. Ability includes fit with the day.",
+      "whyItMatters": "Pinterest-style saving works because the behavior can happen when discovery happens. Delayed effort weakens the action line."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "hooked-ch03-q01",
+        "prompt": "What does BJ Fogg's behavior model require for action?",
+        "choices": [
+          "A reward, a habit, and a business model occurring together.",
+          "A large emotional appeal before any trigger appears.",
+          "Motivation, ability, and a trigger occurring together."
+        ],
+        "correctIndex": 2,
+        "explanation": "B equals MAT is the idea's core diagnostic. Behavior fails when motivation, ability, or the trigger is missing at the moment.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch03-q02",
+        "prompt": "Why does Google beat a cluttered Yahoo-style portal in the idea's action logic?",
+        "choices": [
+          "It lowers mental effort and makes the next action obvious.",
+          "It increases social motivation by showing more options.",
+          "It forces users to browse before searching."
+        ],
+        "correctIndex": 0,
+        "explanation": "Google's sparse interface improves ability by reducing cognitive load. The user can act before scanning and deliberation get in the way.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch03-q03",
+        "prompt": "Which response best fits a failed triggered behavior?",
+        "choices": [
+          "Assume the user lacks discipline and increase emotional pressure.",
+          "Diagnose whether motivation, ability, or timing was insufficient.",
+          "Remove the trigger so the user does not feel bothered."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fogg's model gives three failure points. A team should inspect conditions, not default to blame or random pressure.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch03-q04",
+        "prompt": "What is the most practical first lever when motivation is costly to raise?",
+        "choices": [
+          "Add scarcity language to every screen so motivation appears higher than it is.",
+          "Hide the target action until curiosity grows enough to overcome friction.",
+          "Increase ability by reducing time, thought, money, effort, social risk, or routine disruption."
+        ],
+        "correctIndex": 2,
+        "explanation": "Ability is directly designable. Simplicity factors give teams concrete ways to move users above the action line.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch03-q05",
+        "prompt": "What do Twitter, Instagram, Pinterest, and Vine illustrate?",
+        "choices": [
+          "Lightweight creation tools can broaden participation by making the smallest action easier.",
+          "Creation habits require long setup flows to feel meaningful.",
+          "Users act more when every publishing choice is visible at once."
+        ],
+        "correctIndex": 0,
+        "explanation": "These examples reduce the cost of creating or sharing. Shorter, simpler actions let more users participate.",
+        "bloomsLevel": "remember",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch03-q06",
+        "prompt": "How does LinkedIn profile progress influence action?",
+        "choices": [
+          "It replaces ability with a purely social reward.",
+          "It frames the user as already partway through, making the next completion step more motivating.",
+          "It proves long forms should stay long if a meter is attached."
+        ],
+        "correctIndex": 1,
+        "explanation": "Endowed progress can motivate extra effort because the user feels a gap has already been opened. The next step still has to remain manageable.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch03-q07",
+        "prompt": "A checkout page adds urgency copy but keeps a long account setup. What is the likely problem?",
+        "choices": [
+          "The trigger arrived too early because scarcity always removes motivation.",
+          "The user needs a variable reward before entering payment details.",
+          "The team raised motivation while leaving ability too low."
+        ],
+        "correctIndex": 2,
+        "explanation": "Urgency can lift motivation, but a difficult action still fails. The model points back to ability costs in the checkout flow.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch03-q08",
+        "prompt": "Which set belongs to Fogg's simplicity factors?",
+        "choices": [
+          "Time, money, physical effort, mental effort, social acceptability, and routine fit.",
+          "Tribe, hunt, self, and autonomy inside a reward system.",
+          "Content, data, reputation, skill, and followers stored after reward."
+        ],
+        "correctIndex": 0,
+        "explanation": "The simplicity factors specify ability costs. They tell a team where the target action may be too hard.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch03-q09",
+        "prompt": "What is the idea's hard warning about heuristics?",
+        "choices": [
+          "They should replace interface work because motivation always dominates.",
+          "They can alter perception, but they cannot rescue an action that asks for too much effort.",
+          "They work only after a user has invested stored value."
+        ],
+        "correctIndex": 1,
+        "explanation": "Scarcity, framing, anchoring, and progress effects can help, but ease remains central. Clever psychology cannot compensate for a burdensome action.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "hooked-ch03-card01",
+      "front": "What does B equals MAT mean?",
+      "back": "Behavior happens when motivation, ability, and a trigger converge. Remove one element and the intended action fails.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch03-card02",
+      "front": "Why is Google a key action example?",
+      "back": "Its sparse search field lowers mental effort. The user can perform the target action without scanning a crowded portal page.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch03-card03",
+      "front": "Name the six simplicity factors.",
+      "back": "Time, money, physical effort, mental effort, social acceptability, and fit with routine. They describe the practical costs that lower ability.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "hooked-ch03-card04",
+      "front": "What does LinkedIn profile progress teach?",
+      "back": "A progress meter can make an unfinished task feel like closing a gap, but it works best when the next step is specific and easy enough.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Lower The Action Cost",
+    "coreSkill": "Treat every failed behavior as a condition diagnosis. Before writing stronger copy, inspect motivation, ability, and trigger timing.",
+    "ifThenPlans": [
+      {
+        "context": "When a prompt fails",
+        "plan": "If users ignore a cue, then identify which part of motivation, ability, or timing was missing."
+      },
+      {
+        "context": "When a screen feels busy",
+        "plan": "If the target action is hidden among options, then cut mental effort until the next move is obvious."
+      },
+      {
+        "context": "When persuasion feels tempting",
+        "plan": "If the team wants urgency language, then first remove one time, money, or setup cost."
+      },
+      {
+        "context": "When onboarding drags",
+        "plan": "If users quit during setup, then turn the next task into a small gap-closing action."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one failed action and list its motivation, ability, and trigger conditions. Remove one ability cost today.",
+    "weeklyPractice": "Run a simplicity review on one flow each week, naming the specific factor improved and the behavior it should unlock."
+  },
+  "memorableLines": [
+    {
+      "text": "BJ Fogg's behavior model gives the idea its operating rule: behavior happens when motivation, ability, and a trigger converge.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the model memorable without jargon."
+    },
+    {
+      "text": "Ability is more directly designable.",
+      "location": "breakdown.deepRead",
+      "why": "It names the idea's practical priority."
+    },
+    {
+      "text": "B equals MAT turns blame into design inquiry.",
+      "location": "breakdown.fullRead",
+      "why": "It reframes non-action as a solvable condition problem."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-4-hour-workweek",
+  "chapterNumber": 8,
+  "chapterId": "the-4-hour-workweek-ch08",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "61a3ca00dbb6534a",
+  "reviewer": "claude-qc:4hww-20260604",
+  "reviewedAt": "2026-06-04T17:02:08.844Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Read breakdowns+full quiz. 9/9 keys correct; delete-before-delegate, AskSunday/India VA, target hourly rate, geoarbitrage accurate. Coherent; cards answer fronts; plan Write the Delegation Receipt non-empty. No corruption."
+}

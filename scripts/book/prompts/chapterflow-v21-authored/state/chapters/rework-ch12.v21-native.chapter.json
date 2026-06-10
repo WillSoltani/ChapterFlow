@@ -1,0 +1,333 @@
+{
+  "chapterId": "rework-ch12",
+  "number": 12,
+  "title": "Draw a line in the sand",
+  "readingTimeMinutes": 11,
+  "hook": "Pleasing everyone left the product with no one who would defend it out loud.",
+  "counterintuition": "A company that refuses to push anyone away ends up forgettable to everyone. The customers who carry you are the ones who could name exactly what you refuse to be.",
+  "tryThisNow": "Write one sentence that starts with We refuse to and finish it with something a real competitor would happily do. If you cannot, your stance is still hiding.",
+  "keyTakeaway": "Pick a belief, then refuse the people it pushes away. A line you live in product, price, and words turns vague preference into a standard that decides for you.",
+  "breakdown": {
+    "fastRead": "37signals never marketed itself as software for everyone. It built against bloated software, against enterprise bloat, against the feature overload that made rival tools heavy. Customers who hated those tools saw the stance and felt understood. People who wanted every checkbox got irritated and left. Both reactions were the point. A stance that only attracts, and never repels, is not a stance at all. The rule is simple: name the belief you hold, then say out loud who you are not for. A line drawn in public lets the right customers find you and lets the wrong ones rule themselves out before they drain your roadmap.",
+    "deepRead": "A belief earns its keep only when it decides something. 37signals did not keep its taste for simplicity as a private mood. It made simplicity visible in product design, in pricing, in writing, and in how it talked about heavier competitors. Once that line was public, a thousand small choices answered themselves. Should this feature ship? Not if it adds enterprise bloat. Should the price model copy the giants? Not if it punishes simplicity. The stance worked as a filter, so the team stopped re-arguing its identity every week.\n\nWatch the same mechanism in a print shop. Priscilla runs a small bindery that swears off rush jobs and cheap paper. A walk-in waves a fat order with a next-day deadline, and her answer is already written on the wall. She turns it down without a meeting. Her loyal customers tell others about the shop that refuses to cut corners, and that word travels further than any ad she could buy. The people she turns away clarify who she serves. A genuine line cannot satisfy the feature-maximizer and the simplicity-seeker at once, because it openly favors one. Irritating the wrong fit is not a failure of messaging. It is the line doing its job.\n\nNotice what the public line buys her. Priscilla never debates whether to take a rush job, so her evenings stay free for the slow work she sells. The standard decides for her, which is the quiet payoff of a belief made visible. A stance is not only marketing. It is a filter that spends your attention once and then keeps paying back.",
+    "fullRead": "Drawing a line costs something real, which is why most companies quietly skip it. The harder case is not the team afraid to have an opinion. It is the team that manufactures one. Picking a public fight, staging outrage, posturing against a villain that the company does not actually oppose in how it operates, all of it can buy attention for a week. Then customers test the stance against the product and find nothing behind it. The line was paint, not a wall. 37signals could attack feature overload credibly because its products genuinely omitted features other tools shipped. The belief showed up where customers could touch it. Cheap provocation cannot do that, because there is no operating reality underneath to reward the people it attracted.\n\nConsider where the move breaks down. Dimitri leads a meal-kit startup and reads that strong opinions build fans. So he declares war on big grocery chains in a loud launch post. The trouble is that his kits ship in the same plastic, at a similar price, with produce from the same suppliers he just mocked. New buyers arrive, look closely, and feel tricked. The stance attracted them, then the product betrayed it. A line works only when product, pricing, communication, and refusal all point the same way. When one of them contradicts the others, the gap is the story customers tell, and it travels as fast as praise once did.\n\nThere is also a softer trap: trying to avoid all criticism. A founder who smooths every edge until no one complains usually ends with a product no one loves. Complaints from the wrong customers are a signal that the boundary is real. Silence from everyone often means the offering has been sanded into blandness. Distinctiveness always provokes someone. If your harshest critic cannot say what you stand for, neither can your biggest fan. The goal is not to be liked by all. It is to be chosen, hard, by the few who share the belief.\n\nSo the practice is plain. State the belief in words. Then live it in the four places customers can see: what you build, what you charge, how you speak, and what you turn down. Refusal is the proof. Anyone can claim a value in a tagline. Only the company that walks away from a tempting wrong-fit order has shown the line is load-bearing. The fans you keep this way will spread the word with more conviction than advertising, because they are not repeating a slogan. They are naming a belief they share, and a belief shared out loud is the most durable boundary a business can own."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch12.ex.37signals-bloat-stance",
+      "title": "Bloat Versus the Roadmap",
+      "tags": ["product stance", "refusal", "37signals"],
+      "planSpec": {
+        "domain": "B2B software product roadmap",
+        "audience": "founders weighing a big-customer feature request",
+        "stakes": "a contract that would add enterprise bloat",
+        "format": "decision_point",
+        "requiredBeat": "refuse a feature that contradicts the public stance against feature overload"
+      },
+      "scenario": "Twenty minutes before the roadmap call, Anselm rereads the request: a large prospect will sign if his team adds the same fourteen-tab admin panel 37signals built against. His whole pitch has been simplicity over enterprise bloat, posted publicly. The sales lead wants a yes now. Anselm has to tell the room whether this one contract is worth quietly adding the feature overload he told customers his product would never carry.",
+      "whatToDo": "Anselm points at the public stance and declines the panel, then offers the prospect a stripped-down version that fits the line. He sends the wrong-fit lead to a heavier rival.",
+      "whyItMatters": "Refusing the contract keeps the line load-bearing. A belief customers can see in the product is what made the loyal ones recommend it more credibly than any ad could."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch12.fact.3",
+      "title": "The Bindery That Says No",
+      "tags": ["refusal", "fit", "small business"],
+      "planSpec": {
+        "domain": "craft print bindery",
+        "audience": "owners pressured to take every order",
+        "stakes": "a lucrative rush job that violates the shop's standard",
+        "format": "dilemma",
+        "requiredBeat": "let a turned-away customer clarify the boundary"
+      },
+      "scenario": "On a Friday at closing, Priscilla faces a walk-in waving a thick rush order due tomorrow on the cheap paper she refuses to stock. Her bindery is known for slow, archival work, a line painted on the wall and meant. The customer offers double. Priscilla has to answer before he leaves whether one fat invoice is worth being, for one job, the shop she tells everyone she is not.",
+      "whatToDo": "Priscilla turns the order down and names the standard out loud, then refers him to a high-volume printer. She keeps the archival promise her regulars repeat to friends.",
+      "whyItMatters": "The customer she pushes away marks who the shop is for. Turning away poor fits is part of the value of a real stance, not a lost sale to mourn."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch12.fact.9",
+      "title": "Paint, Not a Wall",
+      "tags": ["manufactured controversy", "hard edge", "trust"],
+      "planSpec": {
+        "domain": "consumer meal-kit startup",
+        "audience": "founders tempted to stage a fight for buzz",
+        "stakes": "credibility once buyers inspect the product",
+        "format": "mistake_recovery",
+        "requiredBeat": "expose manufactured controversy with no operating belief behind it"
+      },
+      "scenario": "Dimitri's meal-kit launch post declares war on big grocery chains, and the signups spike overnight. By Tuesday the reviews land. The same plastic, similar prices, produce from the very suppliers he mocked, all of it visible in the first box. Buyers feel tricked. Before the next email goes out, Dimitri weighs whether to double down on the loud fight or admit the stance has nothing under it.",
+      "whatToDo": "Dimitri kills the war language and picks one belief he can actually live, low-waste packaging, then changes suppliers and price to match it before he speaks again.",
+      "whyItMatters": "A line must come from real operating beliefs customers can observe. Manufactured controversy buys attention, then collapses the moment the product contradicts the claim."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch12.fact.4",
+      "title": "The Product No One Hated",
+      "tags": ["blandness", "no complaints", "distinctiveness"],
+      "planSpec": {
+        "domain": "fitness app design",
+        "audience": "teams optimizing away every objection",
+        "stakes": "a launch with strong reviews but no advocates",
+        "format": "before_after",
+        "requiredBeat": "show that zero complaints signaled blandness, not excellence"
+      },
+      "scenario": "Beatriz spent a quarter removing every feature anyone disliked from her running app. The before version split testers loudly: half loved the spartan coach, half wanted more. The after version drew no complaints at all, and her team celebrated. Six weeks later the metric that mattered cratered. No one churned in anger, and no one recommended it either. The smoothing that erased the haters had erased the fans.",
+      "whatToDo": "Beatriz restores the opinionated spartan coach that some testers hated and stops chasing universal approval, accepting that the loud split is the price of being chosen hard.",
+      "whyItMatters": "Trying to avoid all criticism usually produces bland decisions. A complete absence of complaints means the product was sanded down, not perfected into something worth defending."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch12.fact.5",
+      "title": "The Belief Customers Never Saw",
+      "tags": ["visible belief", "pricing", "private values"],
+      "planSpec": {
+        "domain": "boutique accounting firm",
+        "audience": "owners who hold values privately",
+        "stakes": "a stance that changes nothing because no one can see it",
+        "format": "audit",
+        "requiredBeat": "make a private belief visible in pricing and refusal"
+      },
+      "scenario": "Thursday morning at his desk Delphine rereads his own contract and winces. He founded a boutique accounting firm on one belief: small businesses deserve plain, jargon-free advice. He says so in every internal meeting, yet the fee sheet on the screen reads like every other accountant's in the city. Referrals are flat. Before the next quarter's pricing locks, Delphine weighs whether to keep the belief in his head or finally put it where clients can see it.",
+      "whatToDo": "Delphine rewrites the fee page in plain words, drops the jargon-heavy retainer he secretly disliked, and turns away clients who want opaque billing, making the belief observable.",
+      "whyItMatters": "Beliefs matter only when they visibly shape product, pricing, communication, and refusal. A private value customers cannot see produces no attraction, no loyalty, and no clarity."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch12.fact.2",
+      "title": "Fans Louder Than Ads",
+      "tags": ["word of mouth", "conviction", "advocacy"],
+      "planSpec": {
+        "domain": "independent coffee roaster",
+        "audience": "marketers choosing between ads and advocates",
+        "stakes": "growth budget split between paid reach and a stance",
+        "format": "contrast",
+        "requiredBeat": "show conviction-driven word of mouth beating paid advertising"
+      },
+      "scenario": "Friday afternoon on a call with her co-founder, Asha defends a roaster that buys only from farms paying above-market wages and prints the policy on every bag. Her partner wants to pour the quarter's budget into ads for fast reach. Before the spend is approved, Asha pulls the numbers on the dashboard: most new customers came from regulars who could name the wage stance to friends, not from the last ad flight. She has to decide which bet grows the roaster.",
+      "whatToDo": "Asha shifts the budget toward making the wage policy easier for fans to share and explain, betting on conviction-driven recommendations over paid reach.",
+      "whyItMatters": "Supporters who can name a shared belief recommend out of genuine conviction, which carries more credibility than advertising audiences discount as self-interested."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch12.fact.1",
+        "prompt": "A design tool company debates every new feature from scratch, week after week, because it has never said in public what kind of tool it refuses to be. The founder wants the meetings to stop dragging. What is the underlying cause of the endless debate?",
+        "choices": [
+          "Without a stated belief there is no shared standard to defer to, so each request reopens the company's identity and gets argued again.",
+          "Staying neutral on what the tool stands for keeps the company nimble, so the long debates are the healthy price of pursuing any opportunity.",
+          "The meetings drag because the founder has not hired a strong enough product manager to make the calls more quickly."
+        ],
+        "correctIndex": 0,
+        "explanation": "A company without a fixed line has no standard to settle choices against, so every feature request relitigates identity. Neutrality does not free the team; it multiplies the same arguments forever.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch12.fact.2",
+        "prompt": "An independent bookshop has a tiny budget and two paths to grow. Its regulars already rave to friends about its fierce curation. A consultant pushes for a large social-ad campaign instead. Which move better fits how a clear stance actually grows a customer base?",
+        "choices": [
+          "Pour the budget into ads, since reaching the largest possible audience is the fastest reliable way to grow any customer base.",
+          "Split the budget evenly between ads and the regulars, because the curated stance and paid reach persuade buyers at about the same rate.",
+          "Back the regulars who can name the curation belief, since their conviction-driven word travels with more credibility than ads buyers discount."
+        ],
+        "correctIndex": 2,
+        "explanation": "A peer who identifies with the shop's stance recommends out of genuine conviction, which persuades more per impression than advertising audiences treat as self-interested. Reach alone does not carry that trust.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch12.fact.3",
+        "prompt": "A bakery known for sourdough only keeps fielding requests for soft sandwich bread, and a few annoyed customers leave one-star reviews vowing never to return. The owner feels each lost customer as a wound. How should she read the people her stance pushes away?",
+        "choices": [
+          "The repulsion is part of the stance's value, since the people it turns away mark who the bakery is not for and free it from chasing poor fits.",
+          "Each departure is a warning, so she should add soft sandwich loaves to stop losing any potential customer to a competitor.",
+          "The bad reviews prove the sourdough-only stance was a branding mistake she should quietly walk back before more customers leave."
+        ],
+        "correctIndex": 0,
+        "explanation": "A genuine line marks who the business is not for. The customers it repels clarify the boundary and spare the bakery from compromises that would weaken the loaves for the people who came for sourdough.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch12.fact.4",
+        "prompt": "After a redesign, a note-taking app receives almost no complaints, and the team treats the silence as proof the product is finally excellent. Usage and referrals quietly flatten. A new hire asks whether no-complaints really means great. What is the most accurate read?",
+        "choices": [
+          "Designing a product so that nobody complains is a dependable sign it has reached excellence, and the team should hold the line.",
+          "The flat referrals are unrelated to the redesign, so the team should keep the complaint-free version and buy ads to lift usage.",
+          "A complete absence of complaints often signals the product was smoothed into blandness, since distinctiveness always provokes some objection."
+        ],
+        "correctIndex": 2,
+        "explanation": "Eliminating every objection forces a company to sand off each distinctive choice until nothing remains to attack. The surviving product is generic, which is why no one complains and no one advocates either.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch12.fact.5",
+        "prompt": "A hosting company's founder privately despises hidden fees and believes in honest pricing, yet the firm's plans, contracts, and ads look identical to every rival's. Referrals stay flat. Which step would actually let the belief do work in the business?",
+        "choices": [
+          "Holding the honest-pricing value strongly in private is enough, and how it shows up in the plans and ads is a separate concern.",
+          "Make the belief observable by publishing a flat fee with no hidden charges and refusing the upsell tricks rivals use.",
+          "Keep the pricing identical to rivals for now and simply state the honest-pricing value more often in internal team meetings."
+        ],
+        "correctIndex": 1,
+        "explanation": "Customers can only act on beliefs they can see. A value kept private produces no attraction or repulsion until it shows up in what the company charges and what it declines to do.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch12.fact.6",
+        "prompt": "A new project-management tool wants to win the same buyers 37signals reached. Its team argues over whether to match the long feature lists of heavyweight enterprise rivals or to do something else. Which account best explains how 37signals actually built its identity?",
+        "choices": [
+          "37signals named feature overload as the enemy, so frustrated buyers recognized a shared grievance and treated it as an ally.",
+          "37signals won those customers mainly by matching the long feature lists of the heavyweight enterprise competitors it faced.",
+          "37signals avoided taking any clear position so it could appeal to both feature-lovers and simplicity-seekers without alienating either."
+        ],
+        "correctIndex": 0,
+        "explanation": "37signals positioned against complexity and enterprise bloat rather than competing on feature count. Naming a specific enemy let tired customers see a shared frustration and treat the company as an ally.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch12.fact.8",
+        "prompt": "A founder studies how 37signals positioned itself against feature overload and worries that some users felt irritated by the stance. He wants a version of the line that no one dislikes. What does his worry misunderstand about a genuine stance?",
+        "choices": [
+          "A well-positioned stance can win over the feature-maximizers as well as the simplicity-seekers if it is communicated clearly enough.",
+          "The irritation proves the stance was too aggressive, so softening it until the feature-lovers stop objecting would make it stronger.",
+          "A genuine line cannot please both camps because it openly favors one, so irritating the feature-maximizers is intended, not a failure."
+        ],
+        "correctIndex": 2,
+        "explanation": "The same visible boundary that pulled in simplicity-seekers pushed away those who wanted every feature. Because the line explicitly favors one set of values, repelling the other camp is the design working.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch12.fact.9",
+        "prompt": "A startup founder reads that strong opinions build fans, so he picks a loud public fight with an industry he secretly does not operate any differently from. Early attention spikes. A skeptical advisor asks whether this counts as drawing a real line. Who is right?",
+        "choices": [
+          "The founder is right, since stirring controversy is a smart growth tactic because any attention helps the brand grow.",
+          "The advisor is right, because a line must come from real operating beliefs customers can observe, and provocation with nothing behind it fails.",
+          "Both are partly right, so the founder should keep the fight loud now and quietly change how the company operates much later."
+        ],
+        "correctIndex": 1,
+        "explanation": "Controversy without real operating beliefs is cheap provocation. It guides nothing the company builds or refuses, so customers detect the mismatch and the manufactured stance fails to build durable trust.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch12.fact.10",
+        "prompt": "Your cofounder says the company's point of view is mainly a marketing message for the website and has little to do with which features ship or which clients you decline. Which response best captures where a stance actually earns its leverage?",
+        "choices": [
+          "Treat the point of view as a marketing message, since its real value is reach and it has little to do with internal product and customer calls.",
+          "The point of view is primarily a filter for what to build, omit, say, and decline, so each call resolves against one standard instead of from scratch.",
+          "Keep the stance vague on the website so the company stays free to chase any client without contradicting its own marketing later on."
+        ],
+        "correctIndex": 1,
+        "explanation": "A point of view earns its leverage inside the company first. It filters which features ship, which get cut, how the team talks, and which clients get declined, so the website copy is a result, not the source.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch12.fact.1",
+      "front": "Why does a company with no stated beliefs end up arguing every decision from scratch?",
+      "back": "With no fixed line, there is no shared standard to defer to. Each new feature, price, or partnership reopens the company's identity, so the team relitigates the same questions instead of settling them once.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch12.fact.3",
+      "front": "Why is turning some customers away a feature of a real stance rather than a loss?",
+      "back": "A genuine line marks who the business is not for. The people it repels clarify the boundary and free the company from chasing poor fits and from compromises that weaken the product for everyone who belongs.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch12.fact.7",
+      "front": "How did 37signals make its simplicity belief real instead of a private preference?",
+      "back": "It surfaced simplicity across product design, writing, pricing, and competitive positioning. Because the belief showed up where customers could see it, people tired of heavy tools could trust the stance was genuine.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch12.fact.4",
+      "front": "What does a complete absence of complaints usually reveal about a product?",
+      "back": "It usually signals blandness, not excellence. Avoiding every objection sands off each distinctive choice until nothing is left to attack, and a product no one objects to is also one no one fights to recommend.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch12.fact.9",
+      "front": "What separates a real line in the sand from manufactured controversy?",
+      "back": "A real line traces back to how the company genuinely operates, visible in its product, price, and what it declines. Staged outrage has no such backing, so buyers eventually notice the gap and the trust a true stance builds never forms.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch12.fact.10",
+      "front": "What four decisions does a useful point of view actually govern?",
+      "back": "It decides which features get built, which get left out, the way the team speaks, and which buyers it declines to serve. Working as a single filter, it settles each of those calls against one standard instead of reopening the argument every time.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Draw the Refusal Line",
+    "coreSkill": "Name one belief your business holds, then state out loud who it is not for. Make the line visible in the four places customers can touch it: what you build, what you charge, how you speak, and what you decline. The skill is treating refusal as proof, so a tempting wrong-fit order becomes the moment you show the line is load-bearing rather than decorative.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch12.fact.1",
+        "context": "A feature request reopens the same identity debate your team has had three times",
+        "plan": "If a request restarts the who-are-we argument, then check it against your written line and decide on the spot, refusing it if it adds the bloat you stand against."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.3",
+        "context": "A lucrative order arrives from a customer who clearly does not share your belief",
+        "plan": "If a wrong-fit buyer waves money at you, then turn the order down, name your standard out loud, and send them to a competitor that fits them better."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.5",
+        "context": "You notice a value you hold strongly that no customer could detect from outside",
+        "plan": "If a belief lives only in your head, then move it into your pricing, your words, or a public refusal so customers can finally see it and act on it."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.9",
+        "context": "You feel tempted to pick a loud fight purely for attention",
+        "plan": "If a provocation has no operating reality behind it, then drop it and instead make one belief you already live more visible, so the stance survives inspection."
+      }
+    ],
+    "twentyFourHourChallenge": "Within one day, write three sentences that each start with We refuse to and name something a real competitor would happily do. Pick the one you can prove in your product or pricing today, then change one visible surface, a page, a fee, a reply, to make that refusal observable.",
+    "weeklyPractice": "Each week, review one decision you made and one customer you turned away. Mark whether each matched your written line or quietly contradicted it. Track which surface, product, price, words, or refusal, still hides the belief, and fix that surface before the next week."
+  },
+  "memorableLines": [
+    {
+      "text": "A stance that only attracts, and never repels, is not a stance at all.",
+      "location": "breakdown.fastRead",
+      "why": "It states the chapter's hard edge as a clean reversal the reader can repeat in one breath."
+    },
+    {
+      "text": "The line was paint, not a wall.",
+      "location": "breakdown.fullRead",
+      "why": "A sharp, concrete image for manufactured controversy that collapses under inspection."
+    },
+    {
+      "text": "If your harshest critic cannot say what you stand for, neither can your biggest fan.",
+      "location": "breakdown.fullRead",
+      "why": "It links repulsion and loyalty in one symmetrical line that makes the tradeoff stick."
+    }
+  ]
+}

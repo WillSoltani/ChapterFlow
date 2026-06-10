@@ -1,0 +1,352 @@
+{
+  "chapterId": "rework-ch23",
+  "number": 23,
+  "title": "Making the call is making progress",
+  "readingTimeMinutes": 10,
+  "hook": "Three open questions sat in the doc for a month, and by then nobody wanted to touch any of them.",
+  "counterintuition": "Waiting on a decision feels careful, as if patience will hand you a cleaner answer. Yet the call itself is what moves the work, and a postponed choice just rots into a worse one made in a rush.",
+  "tryThisNow": "Find one item on your list that starts with think about, and rewrite it to start with decide on, then pick the smallest version of that call you can make in the next ten minutes.",
+  "keyTakeaway": "A decision is progress, not its setup: it turns doubt into movement and produces the next evidence, so choose at the smallest responsible scale instead of waiting for certainty.",
+  "breakdown": {
+    "fastRead": "At 37signals, a phrase did the heavy lifting. Instead of saying they would think about it, the team trained itself to decide on it. Same problem, different default. One stalls; one moves.\n\nThe move is small and concrete. When a choice can be made, make it now, at the smallest scale you can stand behind. The call converts a foggy question into a direction the work can follow.\n\nThat direction is the point. A decision made today gives the team something real to adjust against, because it exposes consequences from reality. Waiting only stacks the question on a pile that goes stale and gets handled in a rush.",
+    "deepRead": "Watch what a single call does to a stalled task. A choice reduces ambiguity, lets the work proceed, and teaches from what actually happens. Sitting on the question does none of that. It just keeps the project parked while the unresolved item quietly ages.\n\nWatch how the pile forms. Each deferral looks harmless on its own, since you tell yourself you will give it proper attention later. But the project cannot move cleanly around an unresolved choice, so the deferrals collect. By the time you return, the context is cold and the deadline is near, so the once-calm decision gets made hastily under pressure.\n\nPicture a launch dragging into its fifth month at a small studio. The interface, the pricing, the onboarding copy, all of it half-decided, all of it waiting for perfect confidence. Energy leaks out the longer it drags, not because the project is long, but because the choices stay open. The team feels stuck even though nobody is blocked. Resolving a few calls, even imperfectly, would let the work breathe again.\n\nThe discrimination the fast tier could not give you is this: perfect solutions rarely arrive just because the calendar advances. Time alone does not generate clarity. Only a call meeting reality exposes what the work truly requires. So the maker who keeps choosing learns faster than the one who keeps waiting, and the waiting one is not being careful, just frozen.",
+    "fullRead": "Picture a founder signing a huge irreversible contract just to look bold in the room. Decisiveness here does not mean macho certainty or a reckless bet placed for show. A call made to project confidence, with no way back, is the misreading the essay warns against. The edge is quieter: choose at the smallest responsible scale, and keep the choice revisable when you can.\n\nStart with why the language matters more than it seems. Swapping think about it for decide on it sounds cosmetic, a mere wording trick. It is not. The phrase sets the team's default action. When decide is the reflex word, the team reaches for a choice first and a delay second, and over weeks that reflex changes which behavior shows up in every meeting. The wording reframes the default from postponement to choice while the work is still alive.\n\nThe morale piece is easy to underrate. Frequent decisions make progress visible, and visible motion is what sustains a team. Each call moves the work in a way people can see, so a sense of momentum accumulates. The opposite also holds. Hoard decisions in the name of perfection and the work stalls, the wins go quiet, and the energy drains. A team rarely loses heart because one call was imperfect. It loses heart watching a backlog of unresolved questions sit there for weeks.\n\nThe small-team angle sharpens the lesson. 37signals runs lean, and a lean team has almost no slack to carry a backlog of stalled decisions. A big organization can let a choice float for a quarter and absorb the drag across many people. A small team cannot. So the rhythm of making calls is not a luxury for them, it is the thing the whole style depends on, and the momentum matters more, not less, than it would at scale.\n\nHere is the boundary, because the move has one. Sometimes more information truly is needed, and choosing blind would be worse than waiting. The test is not speed for its own sake. It is whether you are waiting because reality will soon hand you decisive evidence, or merely because the choice is uncomfortable and later feels safer. If a cheap small call would itself produce that evidence, then waiting is the expensive option dressed up as the prudent one. So make the responsible call, watch closely what reality returns, and adjust from there. Adjustment is the point here, not a failure of the original decision. The decision itself is the progress; everything after it is just learning out loud."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch23.ex.decide-on-it",
+      "title": "The Doc That Wouldn't Close",
+      "tags": [
+        "phrase swap",
+        "default action",
+        "team rhythm"
+      ],
+      "planSpec": {
+        "domain": "small software studio",
+        "audience": "team leads watching open questions pile up",
+        "stakes": "keep saying think about it or switch the default to decide on it",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist replaces postponement language with a choice"
+      },
+      "scenario": "Katarzyna runs the Monday sync at a four-person studio modeled on 37signals, and the shared doc holds nine items all marked think about it. The same items have carried over for three weeks. Before the next standup, she must decide between two paths: keep parking these for a calmer week that never comes, or rename each line decide on it and force the smallest version of every choice today, while the work is still warm enough to act on.",
+      "whatToDo": "Katarzyna rewrites every think about it line as decide on it, then walks the team through the smallest responsible call for each item before the sync ends.",
+      "whyItMatters": "Changing the default word from postpone to choose shifts which behavior the team reaches for first, so the rhythm moves toward momentum instead of a growing backlog."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch23.fact.2",
+      "title": "Five Cold Tabs",
+      "tags": [
+        "deferred pile",
+        "stale calls",
+        "rushed later"
+      ],
+      "planSpec": {
+        "domain": "consumer hardware roadmap",
+        "audience": "planners who defer choices believing they can return calmly",
+        "stakes": "defer once more or resolve the aging calls now",
+        "format": "before_after",
+        "requiredBeat": "the protagonist sees deferred decisions go stale and get rushed"
+      },
+      "scenario": "At 8 a.m. in her Krakow hardware office, Milena reopens five tickets she set aside last quarter, each marked think about it rather than decide on it. The context is cold now. The packaging vendor needs an answer by Friday, the firmware naming blocked two other tasks, and a pricing call she meant to weigh carefully ships this afternoon. What looked harmless to postpone has hardened into a stack she now handles in a hurry, the opposite of the calm attention she promised.",
+      "whatToDo": "Milena stops adding to the pile and clears the aging tickets in priority order, making each call at a responsible scale before any one of them forces a panicked, last-minute choice.",
+      "whyItMatters": "A deferred decision does not wait politely; the project cannot move around it, so it goes stale and gets rushed, trading a calm choice now for a worse one under pressure."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch23.fact.4",
+      "title": "Waiting For the Calendar",
+      "tags": [
+        "no clarity from time",
+        "evidence from reality",
+        "act to learn"
+      ],
+      "planSpec": {
+        "domain": "mobile app pricing",
+        "audience": "founders who expect waiting to reveal the answer",
+        "stakes": "wait for certainty to arrive or make a call that produces evidence",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist learns time alone does not generate clarity"
+      },
+      "scenario": "By Thursday afternoon at his Warsaw desk, Nikola has held the pricing call for six weeks, certain another fortnight will finally make the right number obvious. It has not. The spreadsheet looks the same as it did in week one, the launch slips again, and the think about it note never became a decide on it. Before the next sprint locks, he faces the fork: keep trusting the calendar, or set a price now, ship it small, and let real signups tell him what reality requires.",
+      "whatToDo": "Nikola picks a defensible price, releases it to a small cohort, and treats the live signup data as the evidence that waiting could never have produced on its own.",
+      "whyItMatters": "Time without action does not manufacture certainty; the missing clarity comes from a call meeting reality, so a small revisable choice teaches what another month of waiting cannot."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch23.fact.5",
+      "title": "The Quiet Launch Room",
+      "tags": [
+        "morale",
+        "visible progress",
+        "frequent calls"
+      ],
+      "planSpec": {
+        "domain": "editorial product team",
+        "audience": "leads watching team energy fade on a long build",
+        "stakes": "hoard decisions for quality or make frequent visible calls",
+        "format": "reflection",
+        "requiredBeat": "the protagonist links frequent decisions to visible morale"
+      },
+      "scenario": "Radmila notices the energy in her editorial tooling team has gone flat. Nobody is blocked, yet nothing feels like it is moving. Looking back, she realizes she has been hoarding every call for a perfect version, so weeks pass with no visible win. The team is not demoralized by a bad decision; it is demoralized by the silence of decisions never made. A backlog of unresolved questions sits in the tracker, draining the room she leads.",
+      "whatToDo": "Radmila starts making one visible call each day at a responsible scale, so the team can see forward motion accumulate instead of waiting on a flawless version that never arrives.",
+      "whyItMatters": "Visible forward motion is what sustains morale, so frequent imperfect calls keep a team energized, while hoarding decisions for perfection stalls the work and quietly drains it."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch23.fact.8",
+      "title": "Bold For the Photo",
+      "tags": [
+        "hard edge",
+        "scoped and revisable",
+        "not reckless"
+      ],
+      "planSpec": {
+        "domain": "logistics startup",
+        "audience": "leaders confusing decisiveness with irreversible bravado",
+        "stakes": "make a reckless irreversible bet or a scoped revisable call",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist scopes the call instead of betting big to look bold"
+      },
+      "scenario": "At 2 p.m. in the Gdansk depot office, Ostap wants to look decisive for his new logistics team, so he is tempted to sign a three-year warehouse lease and rip out the old routing system in one irreversible move. Minutes before he signs, he recalls that turning think about it into decide on it never meant a macho, unrevisable bet. He must choose between a bold gesture meant to project confidence and a smaller scoped call he can adjust once reality shows whether the new routing holds.",
+      "whatToDo": "Ostap drops the grand irreversible move and instead pilots the new routing on one lane with a short lease, keeping the call responsible, scoped, and revisable as evidence arrives.",
+      "whyItMatters": "Decisiveness means choosing at the smallest responsible scale and staying revisable, not betting irreversibly to look confident, which is exactly the misreading that turns a good call reckless."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch23.fact.6",
+      "title": "The Lean Team's Drag",
+      "tags": [
+        "small team",
+        "no slack",
+        "energy leak"
+      ],
+      "planSpec": {
+        "domain": "bootstrapped app studio",
+        "audience": "small teams carrying unresolved choices too long",
+        "stakes": "let choices float like a big org can or resolve them to keep moving",
+        "format": "postmortem",
+        "requiredBeat": "the protagonist sees a small team cannot absorb stalled decisions"
+      },
+      "scenario": "Vesna reviews why her three-person studio, run lean like 37signals, missed its launch window twice. The retro is clear: a handful of unresolved choices about scope and onboarding floated for months, the way a large org might let a call drift across a whole quarter. Her team had no slack to carry that backlog. Each open question pinned someone, energy bled out of the long project, and the launch kept sliding, not because the work was hard but because the calls stayed open.",
+      "whatToDo": "Vesna sets a rule that any choice within the team's authority gets decided in the same week it appears, so the lean studio never accumulates a backlog it has no slack to carry.",
+      "whyItMatters": "A small team has less room to absorb stalled choices than a big org, so the momentum rhythm matters more, not less, and resolving calls quickly is what keeps even a long project alive."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch23.ex.decide-on-it",
+        "prompt": "Katarzyna's four-person studio carries nine doc items marked think about it for three weeks running. She wants the team's rhythm to shift toward movement. Which move best uses the decide on it default?",
+        "choices": [
+          "Rename each line decide on it and force the smallest responsible call on every item today.",
+          "Keep the think about it labels until a calmer week arrives to give each item full attention.",
+          "Assign the nine items to one person to research thoroughly before anyone makes a choice."
+        ],
+        "correctIndex": 0,
+        "explanation": "The phrase swap sets the team's default from postponement to choice. Renaming the items and making the smallest call now moves the work, while parking them for a calmer week just grows the pile.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch23.fact.2",
+        "prompt": "Milena reopens five decision tickets she set aside last quarter as revisit later, and now the packaging vendor needs an answer by Friday while the context has gone cold. A teammate says the delay cost nothing. How should she read what happened?",
+        "choices": [
+          "The delay was free, since she had planned to give each ticket calm, careful attention later.",
+          "The deferred calls went stale because the project could not move around them, so they now get rushed under pressure.",
+          "The tickets simply needed more research time, and the looming Friday deadline is unrelated to the earlier postponements."
+        ],
+        "correctIndex": 1,
+        "explanation": "A deferred choice does not wait politely. The project cannot move cleanly around it, so the backlog grows stale and gets handled hastily, trading a calm decision then for a worse one now.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch23.fact.4",
+        "prompt": "Nikola has held a pricing call for six weeks, expecting that one more fortnight will finally make the right number obvious, but the spreadsheet looks identical to week one. What does decision momentum suggest he do?",
+        "choices": [
+          "Hold the price decision longer, since for this kind of call more calendar time tends to surface the answer.",
+          "Drop the pricing question for now and ship the app free until the market reveals a number on its own.",
+          "Set a defensible price now, release it to a small cohort, and let real signups expose what reality requires."
+        ],
+        "correctIndex": 2,
+        "explanation": "Time alone does not generate clarity. The missing evidence comes from a call meeting reality, so a small revisable price teaches Nikola what another month of waiting on the spreadsheet never could.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch23.fact.5",
+        "prompt": "Radmila's editorial tooling team has gone flat though nobody is blocked, and she has been hoarding every call for a perfect version, so weeks pass with no visible win. A colleague argues morale depends mainly on each decision's quality. Which judgment is most accurate?",
+        "choices": [
+          "Visible forward motion sustains morale, so frequent imperfect calls energize the team more than hoarding choices for perfection.",
+          "The colleague is right; for her team, fewer and more careful calls reliably keep morale higher than frequent ones.",
+          "Morale here is set by team size, so a larger team would feel energized regardless of how Radmila handles decisions."
+        ],
+        "correctIndex": 0,
+        "explanation": "A team rarely loses heart over one imperfect call; it loses heart watching a backlog sit untouched. Each visible decision moves the work people can see, so frequent calls keep morale alive.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch23.fact.8",
+        "prompt": "Ostap wants to look decisive for his new logistics team, so he is about to sign a three-year lease and rip out the routing system in one irreversible move. Which choice fits a responsible reading of decisiveness here?",
+        "choices": [
+          "Make the bold irreversible move now, because a leader who commits hard projects the confidence the team needs.",
+          "Pilot the new routing on one lane under a short lease, keeping the call scoped and revisable as evidence arrives.",
+          "Postpone the whole routing question until the team trusts him enough to accept a dramatic, all-at-once change."
+        ],
+        "correctIndex": 1,
+        "explanation": "The edge is choosing at the smallest responsible scale and staying revisable. A macho irreversible bet placed to look confident is the misreading; a scoped pilot keeps work moving without the reckless risk.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch23.fact.6",
+        "prompt": "Vesna's three-person studio let a handful of scope and onboarding choices float for months, the way a large org might let a call drift across a quarter, and the launch slipped twice. A peer says small teams can deliberate as long as big ones. How should she answer?",
+        "choices": [
+          "The peer is right, since a small studio has the same room to let decisions float that a large organization has.",
+          "The slipped launches came from the project's length, so the floating choices were not really the cause of the drag.",
+          "A small team has less slack to carry stalled choices, so the momentum rhythm matters more, not less, than at scale."
+        ],
+        "correctIndex": 2,
+        "explanation": "A lean team cannot absorb a backlog the way a big org can. With no slack, unresolved choices pin people and bleed energy, so making calls quickly matters more for the small studio, not less.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch23.fact.1",
+        "prompt": "A project lead insists nothing counts as real progress until every decision is settled and the finished output ships. While he waits, the build stays frozen on three unresolved calls. Which view best reflects decision momentum?",
+        "choices": [
+          "He is correct, because progress is only the visible output produced once all the decisions are fully settled.",
+          "Making a call is itself progress, since the decision unblocks the work and starts producing evidence to adjust against.",
+          "Progress here depends on how many people are assigned, so adding staff to the three calls would settle them faster."
+        ],
+        "correctIndex": 1,
+        "explanation": "A decision converts uncertainty into movement, so the work can proceed and produce evidence. Treating only finished output as progress leaves the project frozen on the very calls that would unblock it.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch23.fact.3",
+        "prompt": "A team lead doubts that simply replacing think about it with decide on it could change how anyone behaves, calling it a cosmetic word trick. Which response best captures why the swap works?",
+        "choices": [
+          "The lead is right; a phrase is surface decoration and cannot shift which action a team reaches for first.",
+          "The swap helps only because decide is a shorter word, so meetings end faster regardless of any behavior change.",
+          "The wording sets the default action, so making decide the reflex word nudges the team to choose while the work is still alive."
+        ],
+        "correctIndex": 2,
+        "explanation": "Language sets the default the team reaches for first. Making decide the reflex reframes the habit from postponement to choice, which over weeks changes the behavior that shows up in every meeting.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch23.fact.9",
+        "prompt": "Before committing, a designer wants to resolve every uncertainty so her layout choice never has to change afterward, and she keeps delaying to reach that state. A teammate offers a different test. Which question best reflects decision momentum?",
+        "choices": [
+          "Which option lets me defer longest, so the layout is fully certain before I commit to it at all?",
+          "Which small layout call can I make now that exposes real consequences I can then adjust against?",
+          "Which choice would look most polished in a portfolio, regardless of what live use reveals about it?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Adjustment is the point, not a failure. A decision made today exposes consequences from reality, so the team learns from what happens; chasing zero-uncertainty before deciding just keeps the work suspended.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch23.fact.1",
+      "front": "Why is making a decision itself a form of progress, not just the setup for it?",
+      "back": "Because the call converts uncertainty into movement, the work can proceed and start producing evidence to adjust against. Treating only finished output as progress leaves a project frozen on its unresolved choices.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch23.fact.2",
+      "front": "What happens to decisions a team keeps deferring for proper attention later?",
+      "back": "They pile up. Because the project cannot move cleanly around an unresolved choice, the deferrals go stale and get handled in a rush, trading a calm decision now for a worse one later under pressure.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch23.ex.decide-on-it",
+      "front": "How does swapping think about it for decide on it actually change a team?",
+      "back": "The wording sets the default action. Making decide the reflex word reframes the habit from postponement to choice, so over weeks the team reaches for a call first and a delay second while the work is still alive.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch23.fact.4",
+      "front": "Why does waiting longer rarely deliver the obviously correct answer?",
+      "back": "Time alone does not generate clarity. Only a call meeting reality exposes what the work requires, so the missing evidence comes from a decision colliding with consequences, never from the calendar simply advancing.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch23.fact.8",
+      "front": "What separates responsible decisiveness from a reckless irreversible bet?",
+      "back": "The edge is choosing at the smallest responsible scale and staying revisable when possible. A macho, unrevisable move placed to project confidence is the misreading to avoid, not the goal.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch23.fact.6",
+      "front": "Why does a small team need the decision rhythm even more than a big organization?",
+      "back": "A lean team has almost no slack to carry a backlog of stalled choices. A big org can let a call float across a quarter and absorb the drag; a small one cannot, so resolving calls fast keeps even a long project alive.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Swap Think-About-It for Decide-On-It",
+    "coreSkill": "Catch the moment a choice gets parked under think about it, and convert it into a decide on it call at the smallest responsible scale. Ask whether you are waiting for real decisive evidence or just for later to feel safer. When a small revisable call would itself produce the evidence, make it now and adjust from what reality returns.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch23.ex.decide-on-it",
+        "context": "When an item on the team doc has been marked think about it for more than a week",
+        "plan": "If a line still reads think about it after a week, then rename it decide on it and make the smallest responsible version of the call before the meeting ends."
+      },
+      {
+        "sourceAnchorId": "ch23.fact.4",
+        "context": "When you notice you are waiting for the answer to become obvious on its own",
+        "plan": "If you are stalling for the calendar to deliver clarity, then make a small revisable call now and treat its real consequences as the evidence the waiting could not produce."
+      },
+      {
+        "sourceAnchorId": "ch23.fact.8",
+        "context": "When a choice tempts you toward one big irreversible move to look decisive",
+        "plan": "If a call pulls you toward a bold unrevisable bet, then scope it down to the smallest piece you can adjust later and decide on that version instead."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, find three items where you wrote or said think about it. Rewrite each as decide on it, make the smallest responsible call on the spot, and note what evidence the choice exposed by the next morning.",
+    "weeklyPractice": "End each week by counting how many open choices carried over untouched. Decide on the two oldest at a responsible scale, and track whether the carry-over pile shrinks as the decide on it default takes hold."
+  },
+  "memorableLines": [
+    {
+      "text": "One stalls; one moves.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the whole chapter into a four-word contrast between postponing and deciding."
+    },
+    {
+      "text": "Time alone does not generate clarity.",
+      "location": "breakdown.deepRead",
+      "why": "It names the core error of waiting in a single quotable claim a reader can carry."
+    },
+    {
+      "text": "The decision itself is the progress; everything after it is just learning out loud.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the core thesis and reframes adjustment as the point rather than a failure."
+    }
+  ]
+}

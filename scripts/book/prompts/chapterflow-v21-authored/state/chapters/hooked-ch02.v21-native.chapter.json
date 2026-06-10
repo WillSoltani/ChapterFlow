@@ -1,0 +1,320 @@
+{
+  "chapterId": "hooked-ch02",
+  "number": 2,
+  "title": "Trigger",
+  "readingTimeMinutes": 12,
+  "hook": "Yin reaches for Instagram before any notification has to ask.",
+  "counterintuition": "The best trigger is eventually invisible. External cues matter because they teach the mind which product answers a recurring internal discomfort.",
+  "tryThisNow": "Choose one user action and write the feeling, place, or routine that could make the user want it before any alert appears.",
+  "keyTakeaway": "Habitual products move from external triggers to internal triggers by becoming the remembered relief for boredom, loneliness, uncertainty, or another recurring feeling.",
+  "breakdown": {
+    "fastRead": "Yin's Instagram habit does not begin as pure instinct. Photos from others, the app icon, and repeated exposure help teach the behavior. Over time, the cue changes. A visually interesting moment appears, and the urge to preserve it is enough.\n\nThat is the idea's rule: external triggers are scaffolding, not the finished habit. Paid ads, press, friends, app icons, and notifications can all point the user toward action. The durable loop forms when an internal trigger sends the user back without visible instruction.",
+    "deepRead": "An internal trigger is an association stored in the user's mind. The cue can be boredom, loneliness, fear of missing out, uncertainty, or the sudden wish to capture something beautiful. The product becomes the place the mind expects relief.\n\nFacebook and loneliness make the mechanism clear. A person who feels disconnected may check the feed without seeing an ad or hearing a ping. The uncomfortable feeling does the cueing. The product has become linked to a social itch.\n\nExternal triggers still matter, but each type has a different job. Paid triggers can buy attention, yet they are expensive to keep using forever. Earned triggers, such as press or app-store attention, can spike interest but are hard to control. Relationship triggers carry trust because another person is involved. Owned triggers, including an app icon or permission-based alert, give the company a repeated surface while the association develops.\n\nThe 5 Whys method keeps the designer from stopping at a surface request. A user may say they want photos, messages, or reminders. The deeper question is what feeling makes that object matter at that moment. Trigger design starts with that pain.",
+    "fullRead": "The easiest way to misread this idea is to make notifications louder. If the product has not learned the user's internal trigger, more prompts usually teach irritation instead of attachment.\n\nYin and Instagram show the migration from outside cue to inner cue. At first, the product can be encountered through shared photos, visible app surfaces, or friends who already use it. Repetition links the tool to a mental state: this moment is worth preserving, this scene might be shared, this image says something about me. Eventually the cue is not a banner. It is the felt urge to capture and broadcast a moment.\n\nFacebook and loneliness reveal a more uncomfortable version. Social products often become answers to disconnection, boredom, status anxiety, or missing out. The user does not necessarily name the feeling. The hand moves because past relief taught the association. That is why trigger work has to be morally serious: the product is joining a private emotional loop.\n\nThe external-trigger taxonomy helps a team choose its temporary supports. Paid triggers can start acquisition but usually cannot fund every return visit. Earned triggers can produce a burst but disappear unpredictably. Relationship triggers, such as a friend invitation or shared item, bring social trust. Owned triggers are more durable because the user has granted a continuing surface: an app icon, email subscription, or notification permission.\n\nYet owned does not mean unlimited. A permission is borrowed attention. Used well, it cues a simple action at a moment when the product can provide real relief. Used badly, it breaks trust and weakens the association the team hoped to build.\n\nThe 5 Whys method belongs here because the first stated desire is rarely the root. A user may want to post a photo. Why? To remember the meal. Why? Because it felt special. Why does that matter? Because sharing it keeps a friend group present. The emotional answer gives the designer a better trigger than a generic reminder.\n\nThe strict reading is not cynical. It does not say every product should exploit loneliness or boredom. It says the hook begins when a cue meets a real felt problem. Designers who cannot name that problem are just decorating alerts.\n\nA good trigger plan therefore asks when the user's discomfort appears, which external cue can responsibly meet it, and how quickly the product can prove itself useful. The endpoint is not a more crowded notification tray. It is a learned association between a recurring inner state and a product that genuinely helps."
+  },
+  "examples": [
+    {
+      "exampleId": "hooked-ch02-ex01",
+      "title": "Photo walk",
+      "tags": [
+        "Trigger",
+        "Instagram",
+        "Yin"
+      ],
+      "planSpec": {
+        "domain": "city photo walk",
+        "audience": "mobile product designer",
+        "stakes": "how Yin's moment becomes a cue before an alert",
+        "format": "place-first",
+        "requiredBeat": "Apply Instagram to how Yin's moment becomes a cue before an alert without flattening the source case."
+      },
+      "scenario": "On a Saturday photo walk, Yin stops under a mural and opens Instagram without checking notifications. The color, the friend beside her, and the wish to keep the scene do the prompting. The external app icon helped earlier, but now the interesting moment itself has become the internal trigger.",
+      "whatToDo": "Design around the moment before the tap. Ask what feeling or situation makes capture feel necessary, then make the first action obvious and light.",
+      "whyItMatters": "Yin shows that durable triggering is learned association. Instagram wins when the user's own impulse cues the product before an outside prompt arrives."
+    },
+    {
+      "exampleId": "hooked-ch02-ex02",
+      "title": "Lonely commute",
+      "tags": [
+        "Trigger",
+        "Facebook",
+        "loneliness"
+      ],
+      "planSpec": {
+        "domain": "train commute",
+        "audience": "social app researcher",
+        "stakes": "why a feed check happens with no visible cue",
+        "format": "time-first",
+        "requiredBeat": "Apply Facebook to why a feed check happens with no visible cue without flattening the source case."
+      },
+      "scenario": "At 7:40 a.m. on a delayed train, Darius opens Facebook after seeing no alert at all. The cue is the small loneliness of standing among strangers and wondering what friends are doing. The feed has become a remembered answer to that feeling.",
+      "whatToDo": "Interview for the emotion beneath the behavior. Do not ask only what feature was used; ask what discomfort made Facebook feel like relief.",
+      "whyItMatters": "Facebook and loneliness show why internal triggers are powerful and risky. The cue lives inside the user's mood, not on the screen."
+    },
+    {
+      "exampleId": "hooked-ch02-ex03",
+      "title": "Permission review",
+      "tags": [
+        "Trigger",
+        "notifications",
+        "app icon"
+      ],
+      "planSpec": {
+        "domain": "notification permission review",
+        "audience": "growth PM",
+        "stakes": "whether owned triggers are being used responsibly",
+        "format": "audit",
+        "requiredBeat": "Apply notifications to whether owned triggers are being used responsibly without flattening the source case."
+      },
+      "scenario": "Brielle reviews a dashboard of app icon taps and notification opt-ins. The team celebrates permission as if it were habit. She pauses: an owned trigger is only a temporary surface. If the alert does not connect to a real internal trigger, the user will learn annoyance.",
+      "whatToDo": "Audit each notification against the user feeling it serves. Keep the cue only when it leads to genuine relief or progress.",
+      "whyItMatters": "App icons and notification permissions are scaffolds. They help repeat the behavior while the product earns a deeper association."
+    },
+    {
+      "exampleId": "hooked-ch02-ex04",
+      "title": "Ad budget meeting",
+      "tags": [
+        "Trigger",
+        "paid triggers",
+        "Facebook"
+      ],
+      "planSpec": {
+        "domain": "marketing budget meeting",
+        "audience": "acquisition lead",
+        "stakes": "why ads cannot be the main return loop",
+        "format": "budget debate",
+        "requiredBeat": "Apply paid triggers to why ads cannot be the main return loop without flattening the source case."
+      },
+      "scenario": "In a budget meeting, Keira proposes buying more search ads for every return visit. A teammate brings up Facebook's internal-trigger logic: paid triggers can introduce the product, but paying forever means the habit never moved into the user's own routine.",
+      "whatToDo": "Separate acquisition from habit formation. Use paid triggers to start a loop, then measure whether users return from owned or internal cues.",
+      "whyItMatters": "Paid triggers can attract attention, but they are too expensive and shallow to be the durable source of repeat engagement."
+    },
+    {
+      "exampleId": "hooked-ch02-ex05",
+      "title": "Friend invitation",
+      "tags": [
+        "Trigger",
+        "relationship triggers",
+        "Instagram"
+      ],
+      "planSpec": {
+        "domain": "invite flow critique",
+        "audience": "product designer",
+        "stakes": "how a cue from another person carries trust",
+        "format": "critique",
+        "requiredBeat": "Apply relationship triggers to how a cue from another person carries trust without flattening the source case."
+      },
+      "scenario": "During an invite-flow critique, Jae notices that Instagram shares from friends outperform polished banners. The trigger is relational: a person the user trusts has sent something that carries social meaning, not just information about a button.",
+      "whatToDo": "Treat friend-originated cues differently from ads. Preserve the sender's context and make the next action feel socially relevant.",
+      "whyItMatters": "Relationship triggers work because another person is part of the cue. Trust and social relevance can start a hook more cleanly than broadcast persuasion."
+    },
+    {
+      "exampleId": "hooked-ch02-ex06",
+      "title": "Five Whys interview",
+      "tags": [
+        "Trigger",
+        "5 Whys",
+        "Yin"
+      ],
+      "planSpec": {
+        "domain": "user interview room",
+        "audience": "research lead",
+        "stakes": "how to uncover the emotional root under a photo request",
+        "format": "dialogue-led",
+        "requiredBeat": "Apply 5 Whys to how to uncover the emotional root under a photo request without flattening the source case."
+      },
+      "scenario": "In a user interview, Alina asks why someone wants better photo filters. The first answer is quality, then memory, then being seen by faraway friends. The 5 Whys turns a feature request into a trigger hypothesis that sounds much closer to Yin's Instagram loop.",
+      "whatToDo": "Push past the feature noun until the emotional situation appears. Then design the external cue around that moment, not around the team's wording.",
+      "whyItMatters": "The 5 Whys protects trigger design from surface wishes. It reveals the recurring discomfort or desire the product must answer."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "hooked-ch02-q01",
+        "prompt": "What changes when Yin's Instagram use becomes habitual?",
+        "choices": [
+          "The app no longer needs to provide any relief after she opens it.",
+          "The cue migrates from outside exposure toward the internal urge to capture and share a moment.",
+          "Paid advertising becomes the most reliable prompt for every return visit."
+        ],
+        "correctIndex": 1,
+        "explanation": "Yin's case shows trigger migration. Repeated external cues teach an association until the user's own moment or feeling starts the behavior.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch02-q02",
+        "prompt": "A user checks Facebook when lonely, with no notification visible. What kind of trigger is operating?",
+        "choices": [
+          "An earned trigger from press attention.",
+          "A paid trigger because the feed contains ads.",
+          "An internal trigger tied to emotional discomfort."
+        ],
+        "correctIndex": 2,
+        "explanation": "The cue is inside the user. Loneliness or disconnection can become the mental prompt that sends someone back to a social product.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch02-q03",
+        "prompt": "Which external trigger is most durable before a habit fully forms?",
+        "choices": [
+          "A permission-based owned trigger such as an app icon, subscription, or opted-in notification.",
+          "A single burst of earned press coverage that fades after the news cycle.",
+          "A paid advertisement bought repeatedly for every return session."
+        ],
+        "correctIndex": 0,
+        "explanation": "Owned triggers give the product a continuing surface after the user grants access. They can support repetition while the internal association forms.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch02-q04",
+        "prompt": "What is the danger of sending more notifications without understanding the internal trigger?",
+        "choices": [
+          "The user will immediately become addicted.",
+          "The product may train annoyance instead of attachment.",
+          "The notification becomes a relationship trigger automatically."
+        ],
+        "correctIndex": 1,
+        "explanation": "The idea's hard edge is association. External prompts only help when they connect a real internal discomfort to useful relief.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch02-q05",
+        "prompt": "Why are paid triggers weak as the main source of repeat engagement?",
+        "choices": [
+          "They always carry more trust than relationship triggers.",
+          "They become internal triggers as soon as the user sees them.",
+          "They are usually too expensive to fund every return visit."
+        ],
+        "correctIndex": 2,
+        "explanation": "Paid triggers can introduce a product, but a habit-forming business cannot usually buy every repeated action profitably.",
+        "bloomsLevel": "remember",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch02-q06",
+        "prompt": "What does the 5 Whys method help a product team find?",
+        "choices": [
+          "The emotional root beneath a stated desire or feature request.",
+          "The cheapest channel for buying first-time attention.",
+          "The exact number of notifications a user should receive."
+        ],
+        "correctIndex": 0,
+        "explanation": "The 5 Whys pushes past surface requests. It asks why the behavior matters until the recurring pain or desire becomes visible.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch02-q07",
+        "prompt": "A friend sends a product invitation. Why can that trigger be powerful?",
+        "choices": [
+          "It works because users cannot refuse a relationship trigger.",
+          "It includes social trust and personal relevance from another person.",
+          "It replaces the need for the product to solve a real problem."
+        ],
+        "correctIndex": 1,
+        "explanation": "Relationship triggers carry context and trust. A cue from a person often means more than the same instruction from a company.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch02-q08",
+        "prompt": "Which trigger plan best honors the idea's mechanism?",
+        "choices": [
+          "Buy broad awareness until users appear to stop leaving the product.",
+          "Send reminders at random so the user cannot predict the product's next interruption.",
+          "Identify the user's recurring discomfort, then choose an external cue that responsibly connects that moment to relief."
+        ],
+        "correctIndex": 2,
+        "explanation": "Trigger design starts with the internal state. The external cue should meet that moment and lead to a useful action, not merely interrupt.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch02-q09",
+        "prompt": "What is the endpoint of trigger design in Hooked?",
+        "choices": [
+          "A learned association where a feeling, place, routine, or thought cues the product.",
+          "A louder external prompt for every possible user action.",
+          "A dashboard showing that press coverage created a temporary spike."
+        ],
+        "correctIndex": 0,
+        "explanation": "The durable habit forms when the cue is internal. The product becomes the remembered response to a recurring state in the user's life.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "hooked-ch02-card01",
+      "front": "What is an internal trigger?",
+      "back": "A learned mental cue, such as boredom, loneliness, uncertainty, or a routine, that makes the user reach for the product without visible instruction.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch02-card02",
+      "front": "Why does Yin matter in the Instagram example?",
+      "back": "Yin shows the migration from external exposure to an inner cue: the wish to capture a moment becomes enough to open the app.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch02-card03",
+      "front": "How should a team treat notifications?",
+      "back": "As owned external triggers that support repetition while a habit forms. They must connect to real user relief or they become irritating noise.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "hooked-ch02-card04",
+      "front": "What does the 5 Whys add to trigger design?",
+      "back": "It uncovers the emotional reason beneath a request, helping the team design for the recurring feeling instead of a surface feature noun.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Find The Hidden Cue",
+    "coreSkill": "Map each visible prompt to the internal state it is supposed to serve. A trigger is strong only when the user feels the problem before the product speaks.",
+    "ifThenPlans": [
+      {
+        "context": "When notifications multiply",
+        "plan": "If an alert has no named user feeling behind it, then remove or rewrite it before sending."
+      },
+      {
+        "context": "When interviews stay feature-level",
+        "plan": "If a user asks for a feature, then run 5 Whys until the emotional situation appears."
+      },
+      {
+        "context": "When paid acquisition looks strong",
+        "plan": "If ads create first use, then check whether owned or internal cues create the next use."
+      },
+      {
+        "context": "When friends create the cue",
+        "plan": "If a trigger comes through another person, then protect that relationship context instead of making it feel like a broadcast."
+      }
+    ],
+    "twentyFourHourChallenge": "For one existing notification, write the internal trigger it serves and the relief the next action gives the user.",
+    "weeklyPractice": "Review one user interview each week and add a trigger note: feeling, situation, external cue, and evidence of relief."
+  },
+  "memorableLines": [
+    {
+      "text": "Yin's Instagram habit does not begin as pure instinct.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the endpoint of trigger design concrete."
+    },
+    {
+      "text": "An internal trigger is an association stored in the user's mind.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the concept a clear mechanism."
+    },
+    {
+      "text": "A permission is borrowed attention.",
+      "location": "breakdown.fullRead",
+      "why": "It captures the restraint around owned triggers."
+    }
+  ]
+}

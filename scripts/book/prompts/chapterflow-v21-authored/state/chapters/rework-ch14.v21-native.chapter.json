@@ -1,0 +1,357 @@
+{
+  "chapterId": "rework-ch14",
+  "number": 14,
+  "title": "Outside money is Plan Z",
+  "readingTimeMinutes": 11,
+  "hook": "Spending money you did not earn feels painless, and that is exactly the trap.",
+  "counterintuition": "Raising a round gets treated as the first proof that a startup is real. Early revenue from paying customers is the harder proof, and reaching for outside cash first trades control for a milestone that decides nothing.",
+  "tryThisNow": "Write your idea's full cost on one line, then list three cuts that let a paying customer fund the next step instead of an investor.",
+  "keyTakeaway": "Treat outside capital as Plan Z. First shrink the idea, charge customers earlier, and keep control, then raise only when the model truly cannot start without it.",
+  "breakdown": {
+    "fastRead": "37signals built Basecamp on customer-funded growth instead of a venture round. Paying users, not investors, financed the next step, so product decisions stayed close to the people who actually used the tool.\n\nA web-software or service business rarely needs factory-scale capital to begin. There is no plant to build, no inventory to stock. That weak case for big upfront money is easy to miss when raising a round looks like the official start.\n\nPut fundraising last. Ask first how to make the idea smaller and charge sooner. Reach for outside cash only after the cheaper, customer-funded paths have genuinely failed, not before they are tried.",
+    "deepRead": "Outside money changes who you answer to before it changes anything you build. Take a round and an investor gains a stake and a voice, so a new audience now sits beside customers and staff. Their expectations about growth and a future sale start steering choices that revenue alone never demanded.\n\nThat shift compounds in a quiet way. Cash you did not earn softens the discipline that scarcity used to enforce. When a payment came from a customer, spending it stung enough to stay honest. When it arrived from a backer, the sting fades and loose habits creep in, which is why easy money can become its own appetite.\n\nLook at where attention drifts once backers are in. A founder begins optimizing for the next financing event or an acquisition, and the customer slides down the priority list. The obligation to deliver a return can put exit thinking in direct competition with product quality, so a choice that flatters a future buyer crowds out the one that serves the user.\n\nRaising the money is itself a cost, not a free errand. Courting investors eats weeks that could have gone into making and selling. 37signals kept that time for the product and let Basecamp's customers fund the work, which is the discrimination to carry: control and focus are the price of the round, paid before the first dollar is ever spent.",
+    "fullRead": "Some businesses genuinely need outside capital, and pretending otherwise is its own mistake. A factory line, a regulated drug, a warehouse of inventory, or years of expensive research impose real upfront costs that no early customer can cover. The argument here is about sequence and skepticism, not purity. Refusing all capital on principle would be as foolish as raising it on reflex.\n\nThe reflex is the actual target. Many founders treat a funding round as the foundational first step, the thing that legitimizes the company before a product exists. That ranking is backwards. Securing money proves you can sell a story to investors; it does not prove anyone will pay for what you make. The marker of a viable business is a customer who returns, and chasing financing first skips the only test that matters.\n\nConsider what the money carries with it. People imagine investors hand over cash and stay out of the way, but money arrives attached to expectations and obligations. Ownership gets diluted, decision rights get shared, and the founder now serves another party whose interests must be weighed against the customer's. The control you give up does not come back when the bank balance grows; it is gone the day the term sheet is signed.\n\nThe pull toward an exit is the subtlest cost. Backers expect a liquidity event, so a founder starts asking what a future buyer would want. Sometimes that aligns with making the product better. Often it does not. A feature that pads acquisition metrics can beat a feature that helps the user, and the longer the company runs on investor expectations, the more those two goals pull apart.\n\nThere is a cleaner first move than raising. Make the idea smaller, cheaper, and customer-funded before reaching for outside cash. Shrinking the plan lets a customer finance the next increment, which keeps the spending honest and the loyalties clear. The right response to an idea that feels too big to self-fund is not to immediately raise money to match its full scope. It is to ask which piece a paying customer would fund today, ship that, and let revenue buy the next step.\n\n37signals is the anchor because it is a profitable, well-known software company that deliberately bootstrapped. The easy assumption is that any successful software firm must have been built on a large raise. Basecamp proves the opposite: customer-funded growth was enough, and the choice kept profitability and product decisions tied to the customer relationship rather than to a board.\n\nThe limit is worth naming so the rule does not harden into dogma. If the work truly cannot start without a plant, a license, or a research budget no customer will prepay, then capital is the right tool and Plan Z is the right plan. The discipline is not refusing the round. It is exhausting the smaller, cheaper, customer-funded paths first, and treating the day you raise as a last resort you reached honestly, not a milestone you grabbed early."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch14.ex.37signals-basecamp",
+      "title": "Lucia Reads the Term Sheet",
+      "tags": [
+        "software",
+        "fundraising",
+        "control"
+      ],
+      "planSpec": {
+        "domain": "B2B scheduling software",
+        "audience": "first-time SaaS founders",
+        "stakes": "keep control instead of trading it for a milestone",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist weighs a venture round against 37signals-style customer-funded growth"
+      },
+      "scenario": "Lucia sits in a Lisbon coworking loft at 8:50 a.m. with a term sheet on her screen and forty paying clinics already on her scheduling tool. The lead investor wants a board seat and a faster growth curve. Before the noon call, she is unsure whether to take the venture round or keep Basecamp-style customer-funded growth and let the clinics finance the next build.",
+      "whatToDo": "Lucia declines the seat-and-curve terms, keeps the forty clinics' revenue as her next-build budget, and raises later only if a feature the customers want cannot ship without it.",
+      "whyItMatters": "Funding restraint protects the founder's control and loyalties. A round is a milestone; a returning paying clinic is the proof that the product is worth building further."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch14.fact.9",
+      "title": "Idris Shrinks the Big Plan",
+      "tags": [
+        "services",
+        "scope",
+        "self-funding"
+      ],
+      "planSpec": {
+        "domain": "translation services agency",
+        "audience": "service founders with an ambitious roadmap",
+        "stakes": "avoid raising to match full scope before testing demand",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist cuts scope so a customer funds the next step"
+      },
+      "scenario": "Idris spreads a launch plan across a Nairobi cafe table at lunch, and the full version needs three hires and a year of runway he does not have. A mentor tells him to raise enough to build the whole platform now. The waiter is already clearing plates when Idris has to choose between matching the plan's full scope with outside cash or shrinking it to something his first clients could pay for this month.",
+      "whatToDo": "Idris carves out the one workflow two clients already asked for, prices it this week, and uses their payments to fund the next increment instead of raising for the full platform.",
+      "whyItMatters": "Shrinking the plan keeps spending honest and loyalties clear. An idea that feels too big to self-fund is a signal to cut scope, not a reason to immediately raise to its full size."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch14.fact.5",
+      "title": "Brenna Watches Attention Drift",
+      "tags": [
+        "marketplace",
+        "investor pressure",
+        "customer focus"
+      ],
+      "planSpec": {
+        "domain": "regional crafts marketplace",
+        "audience": "founders one year past a seed round",
+        "stakes": "notice the customer sliding down the priority list",
+        "format": "reflection",
+        "requiredBeat": "the protagonist sees post-raise attention reorient toward investors"
+      },
+      "scenario": "Brenna reviews last quarter at her Glasgow desk, a year after a seed round closed. The board deck is polished and the growth-metric slides are sharp, yet the support inbox has gone quiet on her calendar. She notices that every recent late night went to the next financing milestone, while the sellers who first made the marketplace work have not heard from her in weeks.",
+      "whatToDo": "Brenna blocks two mornings a week for seller calls, demotes the financing-milestone prep below product work, and measures the quarter by seller retention rather than the board's growth curve.",
+      "whyItMatters": "Once backers are involved, attention drifts toward the next raise and the customer slides down the list. Naming the drift early is how a founder pulls focus back before the product suffers."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch14.fact.10",
+      "title": "Fenna Maps the Real Costs",
+      "tags": [
+        "manufacturing",
+        "capital-intensive",
+        "exception"
+      ],
+      "planSpec": {
+        "domain": "battery-cell manufacturing",
+        "audience": "hardware founders facing genuine capital needs",
+        "stakes": "tell a true capital need from a reflex to raise",
+        "format": "decision_memo",
+        "requiredBeat": "the protagonist confirms the model truly requires capital"
+      },
+      "scenario": "Fenna drafts a one-page memo in a Stuttgart workshop, listing what his battery-cell line actually requires: a clean-room facility, certified equipment, regulatory testing, and a year of materials no customer will prepay. His cofounder wants to bootstrap on principle, the way Basecamp did. Before the partners meet at four, Fenna must say whether outside capital here is a reflex to resist or a genuine requirement of the model.",
+      "whatToDo": "Fenna writes that the clean-room, certification, and testing costs cannot be customer-funded, so capital is the right tool here, then sets the smallest raise that clears those specific gates rather than a round sized to ambition.",
+      "whyItMatters": "Funding restraint is about sequence and skepticism, not purity. When manufacturing, regulation, and research impose real upfront costs no customer can cover, refusing capital on principle would be its own mistake."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch14.fact.4",
+      "title": "Calla Feels the Sting Fade",
+      "tags": [
+        "consumer app",
+        "spending discipline",
+        "easy money"
+      ],
+      "planSpec": {
+        "domain": "consumer fitness app",
+        "audience": "founders managing a fresh raise",
+        "stakes": "keep spending discipline after the round lands",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist catches loosened discipline from unearned cash"
+      },
+      "scenario": "Calla approves a third unplanned tool subscription from her Denver office, two months after a round hit the account. With earned revenue she used to question every recurring charge; now the approvals feel painless. Before she signs the next vendor contract, she has to admit that the easy money has loosened the discipline that customer payments once forced, and decide how to get it back.",
+      "whatToDo": "Calla reinstates the old rule that every recurring charge must trace to a paying-customer need, cancels the two subscriptions no customer requires, and reviews spend against revenue, not the bank balance.",
+      "whyItMatters": "Cash you did not earn softens the scarcity that kept spending honest, which is how easy money becomes addictive. Tying spend back to customer need restores the discipline the round quietly removed."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch14.fact.6",
+      "title": "Renzo Faces the Exit Pull",
+      "tags": [
+        "analytics startup",
+        "exit thinking",
+        "product quality"
+      ],
+      "planSpec": {
+        "domain": "web analytics startup",
+        "audience": "venture-backed founders near a roadmap fork",
+        "stakes": "choose product quality over a buyer-friendly metric",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist sees exit thinking compete with product quality"
+      },
+      "scenario": "Renzo stands at a whiteboard in a Toronto office at 6 p.m., two roads drawn. One feature pads the signup numbers a likely acquirer loves; the other fixes the slow dashboard that long-time users keep flagging. His backers expect a liquidity event within two years. Minutes before the roadmap is locked, Renzo must choose between the metric that flatters a future buyer and the fix that serves the people using the product today.",
+      "whatToDo": "Renzo ships the dashboard fix the users flagged, logs the acquisition-metric feature as buyer-optics rather than product value, and tells his backers the customer fix protects the long-run worth of the company.",
+      "whyItMatters": "The obligation to deliver a return can put exit thinking in competition with product quality. A choice that flatters a buyer can quietly beat the choice that serves the user, so naming which is which keeps the product honest."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch14.fact.1",
+        "prompt": "A founder with a working prototype and a few paying users says the company is not real until it closes a funding round. How should a colleague reframe the sequence?",
+        "choices": [
+          "Agree that the round legitimizes the startup, so the founder should pursue financing before refining the product further.",
+          "Treat the round as Plan Z and point to the returning paying users as the real proof, raising only after cheaper paths are exhausted.",
+          "Suggest the founder delay charging users until the round closes so the company looks more fundable to the investors."
+        ],
+        "correctIndex": 1,
+        "explanation": "Financing proves you can sell a story to investors, not that anyone will pay for the product. A returning paying user is the viability marker, so the round belongs last, not first.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch14.fact.2",
+        "prompt": "An advisor tells a two-person web-software team it needs a large upfront raise before launch because every ambitious business does. Which response best holds the funding-restraint edge?",
+        "choices": [
+          "Point out that web software carries no plant or inventory burden, so the heavy-capital assumption does not generalize to this team.",
+          "Accept that ambition requires scale, so the team should match the advisor's raise to look serious to future buyers.",
+          "Have the team raise a smaller round than advised but still finance the launch before testing whether anyone pays."
+        ],
+        "correctIndex": 0,
+        "explanation": "The big-upfront-capital rule comes from manufacturing, not from capital-light software. With no factory or inventory, the team can ship and charge first, so the blanket assumption fails here.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch14.fact.3",
+        "prompt": "Before signing a term sheet, a founder assumes the investors will simply provide cash and stay out of how the company runs. What should the founder expect instead?",
+        "choices": [
+          "The investors will fund the work and leave decisions untouched, since their interest ends once the money transfers.",
+          "The investors will defer to the founder on every call as long as the growth numbers keep climbing each quarter.",
+          "The investors gain a stake and a voice, so the founder now answers to another party whose interests sit beside the customer's."
+        ],
+        "correctIndex": 2,
+        "explanation": "Money arrives attached to expectations and obligations. Ownership is diluted and decision rights are shared, so the founder serves an added audience rather than keeping full control.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch14.fact.4",
+        "prompt": "Two months after a round lands, a founder notices she now approves recurring charges she once questioned line by line. What does this pattern reveal?",
+        "choices": [
+          "The looser approvals show unearned cash softening the scarcity that kept her spending honest, a habit that feeds itself.",
+          "The looser approvals prove she manages investor money exactly as carefully as revenue, since the source of cash changes nothing.",
+          "The looser approvals mean the round was too small, so she should raise again to remove the pressure she still feels."
+        ],
+        "correctIndex": 0,
+        "explanation": "Spending money you did not earn stops stinging, so discipline erodes and the easy spending reinforces itself. Customer revenue keeps spending honest precisely because it was earned.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch14.fact.5",
+        "prompt": "A year after a seed round, a founder spends most late nights on the next financing milestone while the early customers go quiet. A teammate argues the raise will let them serve customers even harder. Which read is sound?",
+        "choices": [
+          "The teammate is right that more funding amplifies customer focus, so the quiet inbox will recover once the raise closes.",
+          "The drift toward financing is pulling attention off the customer, the opposite of the teammate's claim, so focus has to be deliberately reclaimed.",
+          "The quiet inbox is unrelated to the raise, so the founder should keep optimizing the milestone and revisit customers next year."
+        ],
+        "correctIndex": 1,
+        "explanation": "Once backers are involved, founders optimize for the next financing event and the customer slides down the list. The directional effect is displacement, not amplification.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch14.fact.6",
+        "prompt": "At a roadmap fork, a backed founder can ship a feature that pads acquisition metrics or fix a slow dashboard long-time users keep flagging. He assumes planning for an exit and improving the product always point the same way. Where does that assumption break?",
+        "choices": [
+          "It holds, because a buyer-friendly metric and a user-facing fix reinforce each other in nearly every roadmap call.",
+          "It holds, so he should ship the acquisition metric now and trust that pleased users will follow the eventual buyer.",
+          "It breaks here, since the return obligation can push the buyer-flattering metric ahead of the fix that actually serves the user."
+        ],
+        "correctIndex": 2,
+        "explanation": "Return obligations make exit thinking compete with product quality. A feature that looks good to a buyer can crowd out one that helps the user, so the two goals pull apart.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch14.fact.7",
+        "prompt": "A founder calls fundraising a quick background task that won't pull time from building. After a month of investor meetings, the product has barely moved. What did he misjudge?",
+        "choices": [
+          "Raising money is a demanding, time-intensive process, so the hours spent courting investors were hours not spent making and selling.",
+          "The product stalled because the team is too small, so closing the round and hiring is the only way to regain momentum.",
+          "Fundraising did run in the background, so the slow month points to a separate problem unrelated to the investor meetings."
+        ],
+        "correctIndex": 0,
+        "explanation": "Courting investors competes directly with making and selling. Treating the raise as free ignores that its real cost is the founder's focus, paid before any money arrives.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch14.fact.9",
+        "prompt": "A founder's roadmap feels too big to fund from revenue, and her first instinct is to raise enough outside money to match its full scope. Which first move fits funding restraint?",
+        "choices": [
+          "Raise to the full scope now, since matching the plan's size is the fastest way to prove the ambition is credible.",
+          "Pause the roadmap entirely until an investor validates the scope, then build only what the term sheet will fund.",
+          "Find the one piece a paying customer would fund today, ship that, and let revenue buy the next step before any raise."
+        ],
+        "correctIndex": 2,
+        "explanation": "The prescribed order is reverse the instinct: shrink scope and charge earlier first. Raising to match full scope skips the cheaper, customer-funded paths that should fail before capital is sought.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch14.fact.10",
+        "prompt": "A hardware founder's battery line needs a clean-room, certified equipment, and regulatory testing no customer will prepay. A peer insists raising capital is always a sign of weak discipline. How should the founder answer?",
+        "choices": [
+          "The peer is right in spirit, so the founder should bootstrap the clean-room and certification to keep the discipline intact.",
+          "Funding restraint is about sequence and skepticism, not purity; when the model genuinely requires capital no customer can cover, the round is the right tool.",
+          "The founder should raise the largest round available, since a capital-heavy business has no reason to limit the size of the raise."
+        ],
+        "correctIndex": 1,
+        "explanation": "Manufacturing, regulation, and research impose real upfront costs, so a blanket refusal would be wrong. The target is the reflex to raise first, not capital itself; here the raise is justified.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch14.fact.1",
+      "front": "Why does funding restraint put a raise last instead of first?",
+      "back": "Closing a round proves you can sell a story to investors, not that customers will pay. A returning paying user is the viability marker, so a raise is Plan Z, reached only after cheaper customer-funded paths fail.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch14.fact.3",
+      "front": "What does a founder actually give up the day a term sheet is signed?",
+      "back": "Control. Investors gain a stake and a voice, ownership is diluted, and decision rights are shared. The founder now answers to a party whose interests sit beside the customer's, and that control does not return as cash grows.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch14.fact.4",
+      "front": "How can spending other people's money become addictive?",
+      "back": "Cash you did not earn stops stinging when you spend it, so the scarcity that once enforced discipline fades. The loose habit reinforces itself, while customer revenue keeps spending honest because it was earned.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch14.fact.6",
+      "front": "How can exit thinking compete with product quality?",
+      "back": "Backers expect a liquidity event, so a founder optimizes for a future buyer. A feature that pads acquisition metrics can crowd out one that helps the user, and the longer the company runs on investor expectations, the more the two goals pull apart.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch14.fact.9",
+      "front": "What is the first move when an idea feels too big to fund from revenue?",
+      "back": "Make it smaller, cheaper, and customer-funded, not immediately raised to full scope. Find the piece a paying customer would fund today, ship it, and let revenue buy the next step, treating outside cash as a fallback.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch14.fact.10",
+      "front": "When is reaching for outside capital the right call rather than a reflex?",
+      "back": "When the model genuinely requires it: a factory line, regulatory approval, inventory, or research no customer will prepay. The rule is about sequence and skepticism, not purity, so refusing capital on principle would be its own mistake.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Plan Z Test",
+    "coreSkill": "Before reaching for outside money, run a short test that tries to fund the next step from a customer instead. Name the smallest version of the idea, the piece a paying customer would fund today, and the control you would surrender if you raised. Treat a round as the fallback you reach only after those cheaper paths have honestly failed.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch14.fact.9",
+        "context": "When an idea feels too big to fund from revenue",
+        "plan": "If your first instinct is to raise enough to match the full scope, then run the Plan Z Test: name the one piece a paying customer would fund today and ship that before any raise."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.3",
+        "context": "When a term sheet lands on your desk",
+        "plan": "If the terms feel like free momentum, then run the Plan Z Test on the control you surrender: write down the stake, the board voice, and the diluted decision rights before you sign."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.4",
+        "context": "When you approve a charge you would once have questioned",
+        "plan": "If unearned cash has made the approval feel painless, then run the Plan Z Test on the spend: trace it to a paying-customer need or cancel it."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.5",
+        "context": "When your late nights keep going to the next financing milestone",
+        "plan": "If the customer has slid down your list, then run the Plan Z Test on your calendar: block direct customer time and demote the milestone prep beneath product work."
+      }
+    ],
+    "twentyFourHourChallenge": "For one idea today, write its full cost on one line, then list three cuts that let a paying customer fund the next step. Mark which cut you could ship this week without raising a cent.",
+    "weeklyPractice": "Each week, take one decision you would fund with outside money and ask which paying customer could finance it instead. Track how often a smaller, customer-funded version turns out to be enough."
+  },
+  "memorableLines": [
+    {
+      "text": "Outside money changes who you answer to before it changes anything you build.",
+      "location": "breakdown.deepRead",
+      "why": "It names the real cost of a round as a shift in loyalty, not a number on the balance sheet."
+    },
+    {
+      "text": "The control you give up does not come back when the bank balance grows; it is gone the day the term sheet is signed.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the irreversibility of lost control vivid and timed to a single signature."
+    },
+    {
+      "text": "Securing money proves you can sell a story to investors; it does not prove anyone will pay for what you make.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the whole demotion of fundraising into one clean contrast a reader can repeat."
+    }
+  ]
+}

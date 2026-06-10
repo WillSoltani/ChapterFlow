@@ -1,0 +1,916 @@
+{
+  "bookId": "daring-greatly",
+  "fromChapter": 1,
+  "toChapter": 88,
+  "perChapter": 7,
+  "allocation": {
+    "1": [
+      "Aisha",
+      "Houston",
+      "Why",
+      "Rowan",
+      "Halifax",
+      "Lynne",
+      "Twist",
+      "Mei",
+      "Boston",
+      "Sofia",
+      "Queens",
+      "Nikhil",
+      "Dallas",
+      "Imani",
+      "Cleveland"
+    ],
+    "2": [
+      "Leandro",
+      "Providence",
+      "Survey",
+      "Kavya",
+      "Marble",
+      "Evelyn",
+      "Montreal",
+      "Sam",
+      "Love",
+      "Hiro",
+      "Kyoto",
+      "Zahra",
+      "Nairobi",
+      "Saying",
+      "Bastien",
+      "Lyon",
+      "Amara",
+      "Calling"
+    ],
+    "3": [
+      "Juliana",
+      "Toronto",
+      "Angry",
+      "Farah",
+      "Severus",
+      "Snape",
+      "People",
+      "Ingrid",
+      "Gendered",
+      "Tomas",
+      "Lisbon",
+      "Shame",
+      "Selin",
+      "Manchester",
+      "Graham",
+      "Portland"
+    ],
+    "4": [
+      "Dalia",
+      "Kenji",
+      "Seattle",
+      "Foreboding",
+      "Maren",
+      "Copenhagen",
+      "Rafael",
+      "Mexico",
+      "City",
+      "Shadow",
+      "Beatrice",
+      "Milan",
+      "Samir",
+      "Minneapolis",
+      "Oversharing",
+      "Seconds"
+    ],
+    "5": [
+      "Helena",
+      "London",
+      "Underground",
+      "Mind",
+      "Gap",
+      "Later",
+      "Quinn",
+      "Politics",
+      "Suresh",
+      "Calgary",
+      "Family",
+      "Marta",
+      "Warsaw",
+      "Noor",
+      "Detroit",
+      "Declan",
+      "Dublin",
+      "Senior"
+    ],
+    "6": [
+      "Tori",
+      "San",
+      "Jose",
+      "Kevin",
+      "Surace",
+      "Serious",
+      "Materials",
+      "Engineers",
+      "Luis",
+      "Phoenix",
+      "Creative",
+      "Seconds",
+      "Jin",
+      "Singapore",
+      "Feedback",
+      "Carla",
+      "Recife",
+      "Disruptive",
+      "Rina",
+      "Chicago",
+      "Shame",
+      "Wallace",
+      "Edinburgh"
+    ],
+    "7": [
+      "Petra",
+      "Parenting",
+      "Lyle",
+      "Omaha",
+      "How",
+      "Simran",
+      "Wholehearted",
+      "Manifesto",
+      "Adele",
+      "Queens",
+      "Hope",
+      "Byron",
+      "Vancouver",
+      "Huda",
+      "Abu",
+      "Dhabi"
+    ],
+    "8": [
+      "Ornella",
+      "Refilwe",
+      "Theunis",
+      "Nkosana",
+      "Nadezhda",
+      "Ila",
+      "Ingmar"
+    ],
+    "9": [
+      "Ivar",
+      "Aysel",
+      "Hatim",
+      "Benedetta",
+      "Dumisani",
+      "Bogdan",
+      "Carmel"
+    ],
+    "10": [
+      "Padraig",
+      "Ertan",
+      "Ilkay",
+      "Cesare",
+      "Kabir",
+      "Vlasta",
+      "Nikodimos"
+    ],
+    "11": [
+      "Noga",
+      "Lambros",
+      "Useni",
+      "Nawal",
+      "Joris",
+      "Jorunn",
+      "Janka"
+    ],
+    "12": [
+      "Buthaina",
+      "Hayat",
+      "Bilal",
+      "Adelina",
+      "Narin",
+      "Ottavio",
+      "Patrizio"
+    ],
+    "13": [
+      "Caterina",
+      "Astrid",
+      "Odd",
+      "Tadhg",
+      "Ignacio",
+      "Serena",
+      "Milena"
+    ],
+    "14": [
+      "Nasrin",
+      "Vegard",
+      "Ozan",
+      "Vukasin",
+      "Tendai",
+      "Graziella",
+      "Orlaith"
+    ],
+    "15": [
+      "Donato",
+      "Jelani",
+      "Odhran",
+      "Sorcha",
+      "Jawad",
+      "Gerda",
+      "Mehrdad"
+    ],
+    "16": [
+      "Danica",
+      "Mingyu",
+      "Lethabo",
+      "Itai",
+      "Haruki",
+      "Lautaro",
+      "Sibel"
+    ],
+    "17": [
+      "Wenli",
+      "Cornelis",
+      "Meirav",
+      "Pranav",
+      "Farhad",
+      "Meabh",
+      "Ketut"
+    ],
+    "18": [
+      "Emanuele",
+      "Rishi",
+      "Tuva",
+      "Agustin",
+      "Rosalba",
+      "Bozidar",
+      "Esha"
+    ],
+    "19": [
+      "Zdenka",
+      "Roosje",
+      "Amalia",
+      "Shai",
+      "Riordan",
+      "Wati",
+      "Catalina"
+    ],
+    "20": [
+      "Trang",
+      "Yagmur",
+      "Eshe",
+      "Bituin",
+      "Munir",
+      "Hyunwoo",
+      "Tahmineh"
+    ],
+    "21": [
+      "Mareike",
+      "Letizia",
+      "Xanthippe",
+      "Sinead",
+      "Jaleh",
+      "Okan",
+      "Otmar"
+    ],
+    "22": [
+      "Dunya",
+      "Hadar",
+      "Joko",
+      "Narges",
+      "Brinda",
+      "Kosmas",
+      "Pasquale"
+    ],
+    "23": [
+      "Estela",
+      "Matej",
+      "Heike",
+      "Lidija",
+      "Farzaneh",
+      "Emilia",
+      "Themistocles"
+    ],
+    "24": [
+      "Sefako",
+      "Dimosthenis",
+      "Salvador",
+      "Chesa",
+      "Oddny",
+      "Haldis",
+      "Aoife"
+    ],
+    "25": [
+      "Slavko",
+      "Dervla",
+      "Yasir",
+      "Mateo",
+      "Aikaterini",
+      "Lieselotte",
+      "Sjoerd"
+    ],
+    "26": [
+      "Gaurav",
+      "Gennaro",
+      "Sinan",
+      "Elke",
+      "Nevena",
+      "Gaspare",
+      "Peyman"
+    ],
+    "27": [
+      "Naomi",
+      "Yasaman",
+      "Vincenza",
+      "Mehves",
+      "Volker",
+      "Vahid",
+      "Saif"
+    ],
+    "28": [
+      "Touraj",
+      "Darya",
+      "Niran",
+      "Boaz",
+      "Agata",
+      "Guillermo",
+      "Bertram"
+    ],
+    "29": [
+      "Dmitri",
+      "Arash",
+      "Zaina",
+      "Khosro",
+      "Genki",
+      "Ishaan",
+      "Sabino"
+    ],
+    "30": [
+      "Evangelia",
+      "Dagfinn",
+      "Chenglei",
+      "Bratislav",
+      "Caoimhe",
+      "Nozomi",
+      "Panagiota"
+    ],
+    "31": [
+      "Kanya",
+      "Brage",
+      "Lennart",
+      "Keshet",
+      "Bhavna",
+      "Przemek",
+      "Dara"
+    ],
+    "32": [
+      "Fionnuala",
+      "Nuala",
+      "Eamon",
+      "Jameela",
+      "Mukami",
+      "Lestari",
+      "Maor"
+    ],
+    "33": [
+      "Renjie",
+      "Eugenia",
+      "Aarav",
+      "Akemi",
+      "Khalil",
+      "Hanh",
+      "Sarika"
+    ],
+    "34": [
+      "Nicoletta",
+      "Dario",
+      "Eunji",
+      "Sopheap",
+      "Setareh",
+      "Alejo",
+      "Deniz"
+    ],
+    "35": [
+      "Foteini",
+      "Anoosheh",
+      "Meindert",
+      "Darshan",
+      "Seamus",
+      "Yngve",
+      "Fabiola"
+    ],
+    "36": [
+      "Evka",
+      "Ravid",
+      "Seojun",
+      "Fadzai",
+      "Gusti",
+      "Husniyah",
+      "Thuy"
+    ],
+    "37": [
+      "Lasairiona",
+      "Abir",
+      "Drosoula",
+      "Ayanda",
+      "Baozhai",
+      "Junpei",
+      "Folke"
+    ],
+    "38": [
+      "Kamran",
+      "Santiago",
+      "Thuraya",
+      "Ramin",
+      "Jovan",
+      "Ailbhe",
+      "Naftali"
+    ],
+    "39": [
+      "Rosario",
+      "Putri",
+      "Aurelio",
+      "Wojciech",
+      "Naoki",
+      "Tullio",
+      "Gidon"
+    ],
+    "40": [
+      "Dayo",
+      "Garyfallia",
+      "Lugh",
+      "Qasim",
+      "Citra",
+      "Orit",
+      "Cuifen"
+    ],
+    "41": [
+      "Guanyu",
+      "Iordanis",
+      "Bharath",
+      "Dragana",
+      "Vidar",
+      "Sahar",
+      "Gokhan"
+    ],
+    "42": [
+      "Vidya",
+      "Eithne",
+      "Thekla",
+      "Eleftheria",
+      "Zoran",
+      "Zacharias",
+      "Liwei"
+    ],
+    "43": [
+      "Grania",
+      "Gauthier",
+      "Isadora",
+      "Nneka",
+      "Aengus",
+      "Idan",
+      "Jihoon"
+    ],
+    "44": [
+      "Yeliz",
+      "Marwan",
+      "Baris",
+      "Hodan",
+      "Mandla",
+      "Unni",
+      "Sahba"
+    ],
+    "45": [
+      "Ephraim",
+      "Nandini",
+      "Melike",
+      "Gerasimos",
+      "Manish",
+      "Eoin",
+      "Simphiwe"
+    ],
+    "46": [
+      "Stamatis",
+      "Efstathios",
+      "Signy",
+      "Ghedi",
+      "Nazli",
+      "Sander",
+      "Weicheng"
+    ],
+    "47": [
+      "Orso",
+      "Halili",
+      "Cveta",
+      "Melpomeni",
+      "Iniko",
+      "Abeni",
+      "Lavanya"
+    ],
+    "48": [
+      "Krystian",
+      "Parisa",
+      "Ragnhild",
+      "Eckhard",
+      "Tihomir",
+      "Pumla",
+      "Chetan"
+    ],
+    "49": [
+      "Iphigenia",
+      "Renzo",
+      "Esfandiar",
+      "Lieve",
+      "Frode",
+      "Bronagh",
+      "Jarle"
+    ],
+    "50": [
+      "Hulya",
+      "Lorcan",
+      "Hyejin",
+      "Rudo",
+      "Gottfried",
+      "Fergal",
+      "Andreas"
+    ],
+    "51": [
+      "Bongani",
+      "Turlough",
+      "Delfina",
+      "Dhruv",
+      "Gulsen",
+      "Yamini",
+      "Zhaleh"
+    ],
+    "52": [
+      "Torstein",
+      "Banafsheh",
+      "Liadan",
+      "Kagiso",
+      "Daichi",
+      "Gudrun",
+      "Realtin"
+    ],
+    "53": [
+      "Ihsan",
+      "Eilis",
+      "Zola",
+      "Donncha",
+      "Jaya",
+      "Golnaz",
+      "Shirin"
+    ],
+    "54": [
+      "Roni",
+      "Kerem",
+      "Charalampos",
+      "Wirote",
+      "Ondrej",
+      "Jamil",
+      "Aslaug"
+    ],
+    "55": [
+      "Joaquin",
+      "Aoi",
+      "Kefilwe",
+      "Wajdi",
+      "Esteban",
+      "Lien",
+      "Tilman"
+    ],
+    "56": [
+      "Birger",
+      "Tanvi",
+      "Ludmila",
+      "Gizem",
+      "Ulas",
+      "Finola",
+      "Houri"
+    ],
+    "57": [
+      "Aditya",
+      "Afshin",
+      "Grozdana",
+      "Cansu",
+      "Marcella",
+      "Eldrid",
+      "Lateefa"
+    ],
+    "58": [
+      "Bijan",
+      "Sora",
+      "Linhui",
+      "Bodil",
+      "Doyun",
+      "Leyla",
+      "Dorothea"
+    ],
+    "59": [
+      "Tehila",
+      "Markella",
+      "Niklas",
+      "Gali",
+      "Hilde",
+      "Eivind",
+      "Nuray"
+    ],
+    "60": [
+      "Gunnhild",
+      "Goh",
+      "Dietrich",
+      "Adisai",
+      "Roswitha",
+      "Chankrisna",
+      "Vasiliki"
+    ],
+    "61": [
+      "Doron",
+      "Chidi",
+      "Liv",
+      "Violeta",
+      "Ilona",
+      "Reuven",
+      "Lakshmi"
+    ],
+    "62": [
+      "Chrysanthi",
+      "Tugce",
+      "Fernanda",
+      "Chinara",
+      "Renya",
+      "Grainne",
+      "Smaragda"
+    ],
+    "63": [
+      "Myrto",
+      "Varun",
+      "Ourania",
+      "Emre",
+      "Lorenzo",
+      "Trygve",
+      "Zubair"
+    ],
+    "64": [
+      "Kyungsoo",
+      "Mayuni",
+      "Kari",
+      "Octavio",
+      "Nima",
+      "Sanjana",
+      "Hemant"
+    ],
+    "65": [
+      "Yolanda",
+      "Massimo",
+      "Kalliope",
+      "Dalal",
+      "Hedda",
+      "Indira",
+      "Wendeline"
+    ],
+    "66": [
+      "Ioanna",
+      "Sverre",
+      "Roya",
+      "Marit",
+      "Pallavi",
+      "Rastko",
+      "Borys"
+    ],
+    "67": [
+      "Endang",
+      "Tarun",
+      "Wadha",
+      "Alexios",
+      "Constanza",
+      "Miloslav",
+      "Eliav"
+    ],
+    "68": [
+      "Tomoko",
+      "Ghada",
+      "Brisa",
+      "Ibtisam",
+      "Annelies",
+      "Thora",
+      "Stellan"
+    ],
+    "69": [
+      "Anouk",
+      "Reyhan",
+      "Muireann",
+      "Klaas",
+      "Nabil",
+      "Casper",
+      "Adel"
+    ],
+    "70": [
+      "Triantafyllos",
+      "Dushan",
+      "Boipelo",
+      "Florencia",
+      "Eika",
+      "Polyxeni",
+      "Hasani"
+    ],
+    "71": [
+      "Meixiang",
+      "Vesna",
+      "Takeshi",
+      "Yaa",
+      "Teodoro",
+      "Indra",
+      "Minho"
+    ],
+    "72": [
+      "Zehra",
+      "Dimas",
+      "Njal",
+      "Gitanjali",
+      "Kjell",
+      "Wibke",
+      "Damian"
+    ],
+    "73": [
+      "Leonidas",
+      "Iskra",
+      "Facundo",
+      "Reyna",
+      "Almut",
+      "Anong",
+      "Katarzyna"
+    ],
+    "74": [
+      "Tomer",
+      "Somchai",
+      "Folami",
+      "Avigail",
+      "Rabia",
+      "Iarla",
+      "Aziza"
+    ],
+    "75": [
+      "Wandile",
+      "Periklis",
+      "Gavriel",
+      "Boram",
+      "Batya",
+      "Alessio",
+      "Roisin"
+    ],
+    "76": [
+      "Diarmuid",
+      "Mauro",
+      "Apinya",
+      "Basim",
+      "Spyridon",
+      "Gisela",
+      "Maolmhuire"
+    ],
+    "77": [
+      "Dante",
+      "Fabrizio",
+      "Anders",
+      "Julieta",
+      "Daiki",
+      "Ilse",
+      "Kaori"
+    ],
+    "78": [
+      "Ferit",
+      "Snezana",
+      "Yousef",
+      "Anselmo",
+      "Ekene",
+      "Dagny",
+      "Rashida"
+    ],
+    "79": [
+      "Yejin",
+      "Diwa",
+      "Defne",
+      "Pejman",
+      "Cormac",
+      "Uriel",
+      "Hanna"
+    ],
+    "80": [
+      "Reinhild",
+      "Kunthea",
+      "Helmut",
+      "Gabriela",
+      "Jurgen",
+      "Levent",
+      "Yonatan"
+    ],
+    "81": [
+      "Padma",
+      "Cillian",
+      "Hisham",
+      "Korkut",
+      "Sieglinde",
+      "Ruairi",
+      "Oisin"
+    ],
+    "82": [
+      "Lulama",
+      "Anaya",
+      "Galih",
+      "Mariela",
+      "Shira",
+      "Cengiz",
+      "Qiang"
+    ],
+    "83": [
+      "Behnaz",
+      "Manfred",
+      "Tamar",
+      "Jabari",
+      "Yash",
+      "Tarkan",
+      "Rodrigo"
+    ],
+    "84": [
+      "Kawthar",
+      "Cosimo",
+      "Sigrun",
+      "Tiernan",
+      "Niall",
+      "Gugulethu",
+      "Leonor"
+    ],
+    "85": [
+      "Kleanthis",
+      "Zohar",
+      "Kaveh",
+      "Berke",
+      "Radmila",
+      "Oluwaseun",
+      "Karthik"
+    ],
+    "86": [
+      "Hooman",
+      "Tawfiq",
+      "Despina",
+      "Asael",
+      "Ludovica",
+      "Brendan",
+      "Blathnaid"
+    ],
+    "87": [
+      "Bayani",
+      "Jingyi",
+      "Genaro",
+      "Ragnar",
+      "Rangsan",
+      "Dariush",
+      "Friedhelm"
+    ],
+    "88": [
+      "Umut",
+      "Detlef",
+      "Inaya",
+      "Pelin",
+      "Helle",
+      "Consuelo",
+      "Joost"
+    ]
+  },
+  "bannedConnectives": [
+    "has to decide whether to",
+    "now has to choose between",
+    "is trying to figure out",
+    "stares at the screen and",
+    "stops and looks at the",
+    "takes a deep breath and",
+    "leans back in the chair",
+    "glances at the clock and",
+    "stops arguing and points to",
+    "we cannot keep pretending this",
+    "catches the edge of the",
+    "the room goes quiet as",
+    "feels the weight of the",
+    "knows the answer but cannot",
+    "is about to find out",
+    "has been doing this for",
+    "looks up from the desk",
+    "the same thing happens again",
+    "wants nothing more than to",
+    "cannot shake the feeling that",
+    "is faced with a choice",
+    "has to make a call",
+    "sits down to write the",
+    "opens the laptop and starts",
+    "runs the numbers one more"
+  ],
+  "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
+  "diagnostics": {
+    "bankSize": 648,
+    "excludedCount": 1263,
+    "availableCount": 596,
+    "shortChapters": [],
+    "alreadyAuthored": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  }
+}

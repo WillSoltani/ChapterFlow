@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-5-love-languages",
+  "chapterNumber": 4,
+  "chapterId": "the-5-love-languages-ch04",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "35fb088d95778c99",
+  "reviewer": "claude-qc:5ll-20260606",
+  "reviewedAt": "2026-06-06T17:16:37.799Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Round 2 re-QC after example-slate revise. Bar ~92/100. Shared-skeleton FIXED: precise clock times 5/6 -> 0/6; uniform 'before-moment must-speak' frame removed; 6 varied scene shapes (concealment-habit, three-Friday pattern, live event flinch, mid-apology, chore realization, two-week practice). All 6 lessons + names + 'Sincere Words Check' preserved; quiz/breakdown/cards/plan untouched, 9/9 keys still correct. (Re-reviewed independently; supersedes writer self-attestation codex-qc.) GREEN."
+}

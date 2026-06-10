@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "drive-ch04",
+  "number": 4,
+  "title": "Type I and Type X",
+  "readingTimeMinutes": 8,
+  "hook": "Type I is not a personality trophy; it is behavior a climate can either feed or starve.",
+  "counterintuition": "The difference between Type I and Type X is a tendency shaped by context, not a permanent ranking of better and worse people.",
+  "tryThisNow": "Choose one recurring task and note whether it is fueled mostly by interest, progress, purpose, status, or approval.",
+  "keyTakeaway": "Shift behavior toward Type I by supporting autonomy, competence, and relatedness instead of relying on external pressure alone.",
+  "breakdown": {
+    "fastRead": "Edward Deci and Richard Ryan's Self-Determination Theory gives Type I behavior its foundation. People are more likely to thrive when autonomy, competence, and relatedness are supported. Type X behavior is not villainy; it is a pattern trained by environments that make pay, approval, and comparison the main signals. Meyer Friedman, Ray Rosenman, and Douglas McGregor supply useful contrasts, but Pink's point is practical. Change the climate and behavior can move toward internal drive.",
+    "deepRead": "The mechanism is basic need support, not motivational flattery. Type I behavior grows when environments support autonomy, competence, and relatedness; Type X behavior grows when environments keep attention fixed on external pressure, approval, comparison, or reward.\n\nSelf-Determination Theory gives the distinction structure. Autonomy is the experience of self-direction, competence is the sense of becoming more capable, and relatedness is connection to other people. These are not luxury feelings. They are the conditions under which people are more likely to persist, learn, and act with ownership.\n\nPink uses Type I and Type X as patterns, not permanent identities. A sales team, family, school, or practice room can train either orientation through its daily signals. Friedman and Rosenman's Type A/Type B labels show the usefulness and risk of naming behavior patterns. McGregor's Theory X and Theory Y show the management version: if leaders assume people must be controlled, they build systems that make control seem necessary. The practical question is what climate you are reinforcing today.",
+    "fullRead": "The useful guardrail is humility about labels. A shallow reading turns Type I into a flattering identity badge and Type X into an insult. The useful reading treats both as environmentally reinforced patterns, which means schools, workplaces, families, and personal routines can shift behavior over time.\n\nDeci and Ryan's Self-Determination Theory supplies the research foundation. People thrive when they have meaningful choice, a path to competence, and connection to others. Remove those nutrients and even capable people can become guarded, passive, or dependent on external rewards.\n\nThe Type A/Type B comparison helps explain why Pink uses labels at all. Labels can make a pattern discussable. They also become dangerous when they harden into destiny. Type I and Type X should be used to inspect conditions, not to rank human worth.\n\nMcGregor's Theory X and Theory Y sharpen the management implication. If a workplace assumes people naturally avoid responsibility, it will build surveillance and control. Those systems can then train the very passivity they feared. A more autonomy-supportive system does not deny standards; it creates conditions where responsibility has a place to grow.\n\nThe useful action is environmental. Before calling someone unmotivated, inspect the signals around them. What choices are real? Where can competence be seen? Who feels connected to whom?\n\nThis distinction is especially useful in conversations that normally become moral judgments. A student who works only for grades may have spent years in rooms where grades were the only visible signal. An employee who waits for approval may have learned that initiative is punished when it fails. A family member who asks what reward comes with every chore may be responding to the bargain adults created.\n\nThe design question is therefore generous and demanding at the same time. It is generous because it assumes behavior can move. It is demanding because it puts responsibility back on the environment. If a workplace wants Type I behavior, it has to provide real choice, visible growth, and connection to people or purpose. If a school wants curiosity, it cannot make every learning decision a performance ranking.\n\nType I does not mean soft. Competence requires feedback. Relatedness includes obligations. Autonomy includes responsibility. A Type I climate can still have deadlines, quality bars, and hard conversations. The difference is that those structures are used to support internal commitment, not to prove people will work only when pressured."
+  },
+  "examples": [
+    {
+      "exampleId": "drive-ch04-ex01",
+      "title": "A Misread Incentive",
+      "tags": [
+        "work design",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "performance review circle",
+        "audience": "Harper, a manager redesigning a performance conversation",
+        "stakes": "A review cycle may label employees before examining the conditions around them.",
+        "format": "decision_point",
+        "requiredBeat": "Show Type I and Type X as patterns shaped by environment."
+      },
+      "scenario": "Harper hears a supervisor call the team lazy because no one volunteers ideas in review meetings. She notices that every suggestion has been scored against bonus risk, so silence is not a personality trait; it is a trained response.",
+      "whatToDo": "In the performance review circle, change one condition before labeling the people as Type I or Type X.",
+      "whyItMatters": "Changing the room may change the behavior. The label is less useful than the conditions producing it."
+    },
+    {
+      "exampleId": "drive-ch04-ex02",
+      "title": "The Calendar Test",
+      "tags": [
+        "team choice",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "graduate advising session",
+        "audience": "Quentin, an adviser helping a graduate student regain agency",
+        "stakes": "A student is doing the minimum after months of vague criticism.",
+        "format": "dialogue",
+        "requiredBeat": "Use autonomy, competence, and relatedness as repair handles."
+      },
+      "scenario": "Quentin asks the student to choose between two research paths, then sets one visible skill target for the next meeting. He also pairs the student with a labmate who has solved a similar method problem.",
+      "whatToDo": "Ask the graduate advising session participant which choice, skill signal, or relationship would support better effort.",
+      "whyItMatters": "The fix supports all three needs. Effort becomes easier when choice, progress, and connection return."
+    },
+    {
+      "exampleId": "drive-ch04-ex03",
+      "title": "When Metrics Crowd Out Meaning",
+      "tags": [
+        "ethics",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "startup hiring panel",
+        "audience": "Bianca, a founder separating drive from status hunger",
+        "stakes": "A hiring panel is mistaking intensity for internal motivation.",
+        "format": "audit",
+        "requiredBeat": "Show the difference between Type I drive and Type X pressure."
+      },
+      "scenario": "Bianca watches one candidate talk only about titles and exit valuation while another describes the customer problem she kept working on after hours. Both are ambitious, but their fuel is different.",
+      "whatToDo": "At the startup hiring panel, look for internal drive instead of mistaking status hunger for motivation.",
+      "whyItMatters": "Status hunger can produce motion, but it may need constant external feeding. The company is hiring a motivational pattern, not just a resume."
+    },
+    {
+      "exampleId": "drive-ch04-ex04",
+      "title": "A Better Design Choice",
+      "tags": [
+        "autonomy",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "music conservatory practice wing",
+        "audience": "Darius, a conservatory coach reframing struggle",
+        "stakes": "A musician reads a difficult passage as proof of lacking talent.",
+        "format": "planning_choice",
+        "requiredBeat": "Use competence support without pretending the struggle is easy."
+      },
+      "scenario": "Darius stops the run-through after the same bar falls apart. He marks one fingering change, slows the tempo, and tells the student the measure is a strategy problem, not a verdict.",
+      "whatToDo": "Turn one struggle in the music conservatory practice wing into feedback about strategy, not talent.",
+      "whyItMatters": "Competence grows through usable feedback. The student gets a path back into effort."
+    },
+    {
+      "exampleId": "drive-ch04-ex05",
+      "title": "The Control Signal",
+      "tags": [
+        "management",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "regional sales reset",
+        "audience": "Iris, a sales director replacing pressure with need support",
+        "stakes": "A regional reset is pushing numbers up but burning people down.",
+        "format": "postmortem",
+        "requiredBeat": "Show Type X pressure being redesigned toward Type I conditions."
+      },
+      "scenario": "Iris keeps the revenue target but changes the weekly meeting. Reps choose one account strategy to present, get coaching on a specific skill, and share what they learned from a difficult customer call.",
+      "whatToDo": "For the regional sales reset, replace a pressure cue with a need-support cue.",
+      "whyItMatters": "Standards remain, but the motivational climate changes. The team now has autonomy, competence, and relatedness inside the work."
+    },
+    {
+      "exampleId": "drive-ch04-ex06",
+      "title": "After the Reward Debate",
+      "tags": [
+        "reflection",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "family business retreat",
+        "audience": "Rafael, a family-business successor naming an inherited reward habit",
+        "stakes": "A retreat has to separate family approval from good business judgment.",
+        "format": "reflection",
+        "requiredBeat": "Show Type X behavior as trained, not innate."
+      },
+      "scenario": "Rafael notices cousins waiting for the founder to praise every proposal before they commit. He suggests testing one decision by customer value and learning, not by who earns approval at dinner.",
+      "whatToDo": "In the family business retreat, identify the reward habit that trained external dependence.",
+      "whyItMatters": "External dependence can be inherited. Naming the pattern makes a different design possible."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "drive-ch04-q01",
+        "prompt": "A review team says employees are simply Type X because no one volunteers ideas. What should the manager inspect first?",
+        "choices": [
+          "Whether the review system supports autonomy, competence, and relatedness or trains people to protect themselves.",
+          "Whether the employees can be permanently sorted into good and bad motivation types.",
+          "Whether a larger bonus will make the label feel less harsh."
+        ],
+        "correctIndex": 0,
+        "explanation": "Type I and Type X are patterns shaped by conditions. The label should send attention to the environment.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch04-q02",
+        "prompt": "Why does Self-Determination Theory keep Type I from being vague inspiration?",
+        "choices": [
+          "It proves people need no feedback, standards, or connection.",
+          "It says motivation depends only on personality tests.",
+          "It names autonomy, competence, and relatedness as needs that support motivation and well-being."
+        ],
+        "correctIndex": 2,
+        "explanation": "The theory gives the concept structure. The wrong answers make it either weightless or fixed.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch04-q03",
+        "prompt": "A school calls some students Type X and stops redesigning the class. What is the better reading?",
+        "choices": [
+          "Accept that motivation labels are permanent once adults notice them.",
+          "Treat the behavior as environmentally reinforced and look for conditions that could shift it over time.",
+          "Remove expectations so students never face pressure."
+        ],
+        "correctIndex": 1,
+        "explanation": "The labels should guide design, not freeze people in place.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch04-q04",
+        "prompt": "A hiring panel wants to know whether Type I is a fixed identity. What answer fits Type I behavior?",
+        "choices": [
+          "Type I people never care about pay, approval, or achievement.",
+          "Type X people cannot learn unless every action is rewarded.",
+          "Type I and Type X describe tendencies that context can strengthen or weaken."
+        ],
+        "correctIndex": 2,
+        "explanation": "The distinction is practical and flexible. People are not reduced to one permanent motivational type.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch04-q05",
+        "prompt": "A team feels disconnected, micromanaged, and unsure whether it is improving. Which diagnosis fits Self-Determination Theory?",
+        "choices": [
+          "The environment is starving autonomy, competence, and relatedness.",
+          "The team needs more public comparison before it can care.",
+          "The work is healthy as long as output is temporarily high."
+        ],
+        "correctIndex": 0,
+        "explanation": "The theory names three needs. Temporary output does not prove the climate is sound.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch04-q06",
+        "prompt": "A sales group hits targets only when pressure is intense. What is the Type X risk?",
+        "choices": [
+          "The team should never be asked for results again.",
+          "The behavior may require constant external fuel and remain fragile when pressure drops.",
+          "The team is clearly self-directed because the number rose."
+        ],
+        "correctIndex": 1,
+        "explanation": "Type X can produce results, but the fuel source matters. The wrong answers miss that distinction.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "drive-ch04-q07",
+        "prompt": "In a performance review circle, which limited change would test Type I conditions?",
+        "choices": [
+          "Rank everyone publicly before asking why they are quiet.",
+          "Give employees one choice in the review focus, one skill target, and one peer learning connection.",
+          "Cancel all reviews and hope internal drive appears."
+        ],
+        "correctIndex": 1,
+        "explanation": "The test changes the motivational climate while keeping development visible.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch04-q08",
+        "prompt": "What is the design problem created by the Type I/Type X distinction?",
+        "choices": [
+          "Build better conditions rather than search for better bribes or permanent labels.",
+          "Find the people who never need management and ignore everyone else.",
+          "Use external pressure until people prove they deserve autonomy."
+        ],
+        "correctIndex": 0,
+        "explanation": "The distinction shifts the leader's attention to conditions. The distractors preserve the old control model.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch04-q09",
+        "prompt": "When approval or pressure is driving the task, where should the redesign begin?",
+        "choices": [
+          "Increase the approval signal so people chase it harder.",
+          "Tell people they are Type I now and leave the system alone.",
+          "Change one cue so the task supports choice, progress, or connection."
+        ],
+        "correctIndex": 2,
+        "explanation": "A real shift changes the environment. Words alone do not supply the motivational nutrients.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "drive-ch04-card01",
+      "front": "What does Type I behavior name?",
+      "back": "A pattern of acting from internal motives such as interest, self-direction, competence, connection, and purpose.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "drive-ch04-card02",
+      "front": "Why should Type X not be used as an insult?",
+      "back": "Because it often reflects conditions people have been trained by. The label should prompt redesign, not blame.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch04-card03",
+      "front": "What are the three needs in Self-Determination Theory?",
+      "back": "Autonomy, competence, and relatedness. They are practical handles for designing a healthier motivational climate.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch04-card04",
+      "front": "How does McGregor's Theory X connect to Type I and Type X?",
+      "back": "It shows how assumptions about people shape management systems, which then train the behavior those assumptions expect.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "drive-ch04-card05",
+      "front": "What should a leader inspect before calling people unmotivated?",
+      "back": "Whether the environment gives people real choice, a path to competence, and connection to others.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Need-Support Shift",
+    "coreSkill": "Use the Need-Support Shift on one low-motivation situation: name the pressure cue, then add one support for autonomy, competence, or relatedness.",
+    "ifThenPlans": [
+      {
+        "context": "People seem passive",
+        "plan": "Before labeling them, inspect which choices are real and which decisions are already made for them."
+      },
+      {
+        "context": "People seem anxious or defensive",
+        "plan": "Add a competence path: clearer feedback, a smaller next step, or a visible sign of progress."
+      },
+      {
+        "context": "People seem detached",
+        "plan": "Add relatedness by connecting the work to peers, customers, learners, or teammates who depend on it."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one person or team you are tempted to label. Write one environmental cue that may be training the behavior, then change it for the next interaction.",
+    "weeklyPractice": "For seven days, log one autonomy, competence, or relatedness support you added. Note whether initiative, candor, or persistence changes."
+  },
+  "memorableLines": [
+    {
+      "text": "Edward Deci and Richard Ryan's Self-Determination Theory gives Type I behavior its foundation.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the lesson through a concrete source scene."
+    },
+    {
+      "text": "The mechanism is basic need support, not motivational flattery.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism before adding detail."
+    },
+    {
+      "text": "The useful guardrail is humility about labels.",
+      "location": "breakdown.fullRead",
+      "why": "It frames the limit that protects the lesson from overreach."
+    }
+  ]
+}

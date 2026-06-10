@@ -1,0 +1,332 @@
+{
+  "chapterId": "rework-ch04",
+  "number": 4,
+  "title": "Planning is guessing",
+  "readingTimeMinutes": 10,
+  "hook": "A five-year plan can go stale before the first customer replies.",
+  "counterintuition": "Planning feels responsible because it puts dates and numbers on uncertainty. The responsible move is to admit the guess, choose the next useful work, and revise when evidence arrives.",
+  "tryThisNow": "Take one long-range plan line and rewrite it as a current-week decision with the evidence that would make you change course.",
+  "keyTakeaway": "Forecast humility treats plans as provisional bets, so current evidence can update the work before an old document becomes the boss.",
+  "breakdown": {
+    "fastRead": "37signals favored current-week decisions over thick documents about next year. That does not mean drifting. It means the team gives attention to the work that matters now, then adjusts when customers, deadlines, and technical facts change.\n\nA plan is a guess with formatting. It may help people think, but it should not pretend to know demand, costs, hiring, competitors, and customer behavior months in advance.\n\nForecast humility keeps motion honest. Choose the next important thing. Work with care. Read the response. Change the plan when reality earns the right to edit it.",
+    "deepRead": "A long plan can create a feeling of control without giving control. Dates line up. Revenue cells add neatly. Milestones look calm. Then the first customer asks for something different, the cost changes, a teammate leaves, or the build takes a strange turn. The old forecast suddenly has authority over facts it never met.\n\nThe 37signals stance is shorter and more alive. Decide what deserves attention now. Make the next useful choice. Keep the team close enough to the work that new information can change the direction without shame. Calling the plan a guess makes adjustment respectable.\n\nThe danger is not thinking about the future. Future thinking helps a team notice risk, prepare options, and avoid foolish promises. The danger is false precision. A twelve-month document may become a loyalty test, where people defend the estimate because changing it feels like admitting failure.\n\nForecast humility asks for disciplined provisionality. Pick a direction, but keep the guess visible. Ask what would make the plan wrong. Ask which decision must be made this week and which decision can wait for better evidence. Improvisation then becomes part of the work, not a panic move after the document breaks.",
+    "fullRead": "Planning has status because it looks like discipline. A document with dates, targets, staffing charts, and revenue lines seems more adult than a short list of next actions. The surface is reassuring. The problem is that most of the document is about conditions no one controls yet.\n\nMarkets shift. Customers surprise you. Costs move. Schedules slip for reasons that were not visible at the start. Competitors change the conversation. A technical choice that looked simple becomes the hard part. A feature that seemed central becomes noise after the first users arrive. The plan did not fail because planning is evil. It failed because prediction was treated as knowledge.\n\n37signals gives the alternative a concrete shape: current-week decisions. The team can still think ahead, but it does not have to build a throne for guesses about next year. Attention goes to what deserves work now. The plan stays light enough to be corrected by customer contact, deadlines, and technical reality.\n\nThat lightness is not laziness. A team still has to choose. It still has to ship, price, support, hire, or stop. Forecast humility does not excuse vague wandering. It asks for a cleaner kind of discipline: name the bet, act on the part that is knowable, and keep the rest open.\n\nThe emotional challenge is real. People like plans because plans reduce anxiety. A plan says the future has been handled. A revised plan can feel like embarrassment. Yet embarrassment is cheaper than obedience to a stale document. Once the work has new evidence, refusing to update is not strength. It is loyalty to yesterday's guess.\n\nShort-horizon judgment also protects attention. If the team must decide what matters this week, it cannot hide inside a giant forecast. It has to choose the customer call, the bug, the prototype, the invoice, the support issue, or the feature cut that will move the work. Near-term choices expose priorities faster than distant abstractions.\n\nThe limit matters. Some planning is necessary. Cash needs a view. Hiring has lead time. Legal duties have dates. A product launch needs coordination. The issue is not preparation; it is false authority. A useful plan keeps options visible and helps the team act. A harmful plan makes old assumptions harder to question.\n\nA practical review starts with three questions. What do we know now? What are we guessing? What decision is close enough to make honestly? Those questions keep the team from pretending and from drifting. They also make change less dramatic. When the guess is named as a guess, revision is not betrayal.\n\nPlanning is guessing lands as a call for humility in motion. Think ahead, but do not worship the forecast. Write enough to coordinate, then return to the work. Let the week, the customer, the cost, and the build correct the plan while the correction is still small."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Ansel Cuts the Year Deck",
+      "tags": [
+        "software roadmap",
+        "weekly choices",
+        "forecast humility"
+      ],
+      "planSpec": {
+        "domain": "inventory software",
+        "audience": "product leads with long roadmaps",
+        "stakes": "replace false annual certainty with current-week evidence",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist uses the 37signals current-week stance"
+      },
+      "scenario": "Ansel opens a forty-slide roadmap at 8:10 a.m. in a Cork warehouse office. A retailer's overnight support note says the barcode import, not the planned analytics suite, is blocking rollout. Before the board call, Ansel must decide whether to defend the annual deck or use 37signals-style current-week judgment to move the import first.",
+      "whatToDo": "Ansel should mark the annual deck as a forecast, shift this week's work to the import blocker, and name what evidence would reopen analytics.",
+      "whyItMatters": "Forecast humility lets a customer fact edit the plan early. The team still chooses, but it stops serving a stale slide."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Mei Revises the Hiring Date",
+      "tags": [
+        "hiring",
+        "cash",
+        "provisional bets"
+      ],
+      "planSpec": {
+        "domain": "independent publishing",
+        "audience": "operators balancing growth and cash",
+        "stakes": "avoid treating a staffing guess as a promise",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist adjusts a hiring plan after new cost evidence"
+      },
+      "scenario": "Mei studies a cash sheet at 2:45 p.m. in a Taipei editorial room. The plan says hire a production assistant in July. Paper costs just rose, and two launch dates moved. Minutes before payroll review, she has to tell the team whether the 37signals habit of deciding what deserves attention now beats the old hiring date.",
+      "whatToDo": "Mei should delay the hire decision two weeks, protect the launch work, and define the cash and schedule signals that would justify the role.",
+      "whyItMatters": "The July date was a prediction, not a moral duty. Naming it as a guess keeps adaptation from feeling like failure."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Tariq Updates the Festival Bet",
+      "tags": [
+        "events",
+        "ticket demand",
+        "improvisation"
+      ],
+      "planSpec": {
+        "domain": "community festival",
+        "audience": "event organizers",
+        "stakes": "respond to demand without losing direction",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist changes the plan after real ticket behavior"
+      },
+      "scenario": "Tariq checks ticket data at 6:20 p.m. in a Santa Fe community center. The six-month plan gives the main hall to lectures, but workshop tickets are selling twice as fast. Before the venue deposit is due, Tariq must choose whether 37signals-style forecast humility means drifting or moving rooms while demand is still clear.",
+      "whatToDo": "Tariq should swap the room plan for the next sales window and keep the lecture schedule open until another demand signal arrives.",
+      "whyItMatters": "Improvisation is disciplined when it responds to live evidence. The festival keeps direction while refusing to freeze an old guess."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Oona Names the Unknowns",
+      "tags": [
+        "manufacturing",
+        "unknowns",
+        "estimates"
+      ],
+      "planSpec": {
+        "domain": "furniture manufacturing",
+        "audience": "operations teams planning production",
+        "stakes": "keep estimates useful without making them binding",
+        "format": "audit",
+        "requiredBeat": "the protagonist marks which plan lines are guesses"
+      },
+      "scenario": "Oona walks the Galway shop floor at 7:35 a.m. with a production calendar in her hand. The oak supplier is late, and the prototype chair still squeaks. Before the foremen sign the quarter plan, she has to separate firm commitments from guesses, using the 37signals stance that uncertainty named early is easier to adjust.",
+      "whatToDo": "Oona should label supplier timing and prototype fixes as guesses, then make only the next week's cutting schedule firm.",
+      "whyItMatters": "The calendar remains useful because it stops pretending every line has the same certainty. People can act without worshiping the forecast."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Nora Rejects the Loyalty Test",
+      "tags": [
+        "strategy review",
+        "stale assumptions",
+        "team pressure"
+      ],
+      "planSpec": {
+        "domain": "mobile banking",
+        "audience": "strategy teams under executive pressure",
+        "stakes": "avoid defending a forecast after customer evidence changes",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist refuses to treat revision as embarrassment"
+      },
+      "scenario": "Nora sits at 4:00 p.m. in a Lagos conference room while an executive taps the printed plan. \"We promised account bundles for the third quarter,\" he says. The last twenty customer calls ask for fraud alerts first. Before the steering group votes, Nora must explain why 37signals-style current decisions are not disloyal to the forecast.",
+      "whatToDo": "Nora should move fraud alerts into the next sprint and record the account bundle as a guess awaiting stronger evidence.",
+      "whyItMatters": "A plan becomes dangerous when changing it feels like betrayal. Forecast humility makes revision a normal response to better facts."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Vikram Shrinks the Lab Plan",
+      "tags": [
+        "research",
+        "prototype",
+        "coordination"
+      ],
+      "planSpec": {
+        "domain": "materials research lab",
+        "audience": "technical leads coordinating uncertain work",
+        "stakes": "plan enough to coordinate while leaving room for discovery",
+        "format": "reset_moment",
+        "requiredBeat": "the protagonist keeps preparation but drops false precision"
+      },
+      "scenario": "Vikram reviews a six-month test matrix at 9:15 a.m. in a Pune materials lab. The first polymer sample behaves nothing like the forecast. Before technicians load the next batch, he must reset the plan: keep safety checks and lab slots, but use 37signals-style humility to choose the next two experiments from what the sample taught.",
+      "whatToDo": "Vikram should keep the coordination pieces and replace the detailed matrix with two near-term tests based on the sample's behavior.",
+      "whyItMatters": "Forecast humility does not kill preparation. It protects the lab from false precision while preserving the structure that keeps work safe."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A retailer's support note conflicts with a twelve-month software roadmap. Which response best applies forecast humility?",
+        "choices": [
+          "Protect the roadmap because changing it after one note would make the team look uncertain.",
+          "Treat the roadmap as a guess and move this week's work toward the rollout blocker.",
+          "Discard the roadmap entirely and wait for customers to define every future choice."
+        ],
+        "correctIndex": 1,
+        "explanation": "Forecast humility does not mean chaos. It means current evidence can update near-term work while the larger plan remains provisional.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A publishing plan says to hire in July, but costs and launch dates have changed. What should the operator do with the hiring date?",
+        "choices": [
+          "Keep the July date because it was written before the team became anxious.",
+          "Cancel hiring as a rule because plans about staffing create false control.",
+          "Mark the date as a prediction and define the cash and schedule signals needed for the role."
+        ],
+        "correctIndex": 2,
+        "explanation": "The date is not sacred. The operator can preserve direction while making the staffing decision answer to fresh cost and schedule evidence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Workshop tickets are outselling lecture tickets before a venue deposit. Which decision treats improvisation as disciplined?",
+        "choices": [
+          "Move the larger room to workshops for the next sales window and keep watching demand.",
+          "Follow the original room plan so the event does not look reactive.",
+          "Stop selling tickets until the full six-month plan can be rewritten."
+        ],
+        "correctIndex": 0,
+        "explanation": "The room change responds to live demand. It is not drifting because the organizer uses specific evidence and keeps the next decision open.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A shop-floor calendar mixes fixed delivery promises with guesses about a late supplier. What is the cleanest planning move?",
+        "choices": [
+          "Make the whole calendar firm so workers have fewer categories to track.",
+          "Move every delivery date until supplier timing becomes comfortable.",
+          "Label the uncertain lines as guesses and make only the next reliable schedule firm."
+        ],
+        "correctIndex": 2,
+        "explanation": "Not every line in a plan has the same certainty. Naming the guesses lets people act without pretending the unknowns are settled.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Customer calls now favor fraud alerts, but an executive points to a printed third-quarter bundle promise. Which reply fits current-week decisions?",
+        "choices": [
+          "Treat the printed promise as a loyalty test and keep bundles first.",
+          "Move fraud alerts into the next sprint and record the bundle as an unproven bet.",
+          "Avoid both items until leadership agrees that forecasts are guesses."
+        ],
+        "correctIndex": 1,
+        "explanation": "New customer evidence has earned attention. The team can revise without shame because the third-quarter line was a forecast, not revealed truth.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A lab sample behaves nothing like the six-month test matrix predicted. Which action avoids false precision without losing coordination?",
+        "choices": [
+          "Keep safety checks and lab slots, then choose the next two tests from the sample's behavior.",
+          "Run the entire matrix anyway because it was planned before the sample surprised anyone.",
+          "Drop lab scheduling so discovery can happen without constraints."
+        ],
+        "correctIndex": 0,
+        "explanation": "Useful planning remains. The detailed forecast changes, while safety and coordination still protect the work.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which sentence best captures the hard edge of planning as guessing?",
+        "choices": [
+          "Plans should be avoided when uncertainty is high.",
+          "A team should choose, work, learn, and update instead of treating the forecast as binding.",
+          "Improvisation works best when no one writes down future expectations."
+        ],
+        "correctIndex": 1,
+        "explanation": "The point is disciplined provisionality. Plans can help, but the team must keep them open to evidence from the work.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A founder says a long plan calms investors, so the team should defend it even as facts change. Which risk is most important?",
+        "choices": [
+          "The team may let the document outrank customers, costs, deadlines, or technical reality.",
+          "The founder may need a shorter slide deck with fewer projections.",
+          "Investors may ask for more frequent meetings about plan progress."
+        ],
+        "correctIndex": 0,
+        "explanation": "A plan becomes harmful when it gains authority over present evidence. Calm is not worth obedience to stale assumptions.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Before writing next quarter's plan, which question would keep the team honest?",
+        "choices": [
+          "How can we make the forecast sound more confident to outsiders?",
+          "Which guesses would be embarrassing to revise after the month starts?",
+          "What do we know now, what are we guessing, and what decision is close enough to make?"
+        ],
+        "correctIndex": 2,
+        "explanation": "Those questions separate evidence, guesses, and near-term decisions. That is the practical discipline behind forecast humility.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What is forecast humility?",
+      "back": "It is treating a plan as a prediction about changing conditions, then letting current evidence revise the work before the guess becomes a command.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What does 37signals replace thick planning with?",
+      "back": "The source stance favors current-week decisions: decide what deserves attention now, work, learn, and adjust when customers or technical facts change.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "front": "Why can a long plan become dangerous?",
+      "back": "It can create a false feeling of control and make old assumptions feel binding after demand, costs, schedules, or customers have changed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "What is the misreading to avoid?",
+      "back": "Do not turn planning as guessing into drifting. The sharper practice is to choose, work, learn, and update with discipline.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "When is planning still useful?",
+      "back": "Planning helps with coordination, cash, dates, legal duties, and visible options. It becomes harmful when it claims authority over future evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "front": "Which three questions keep a plan honest?",
+      "back": "Ask what is known now, what is being guessed, and which decision is close enough to make with current evidence.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Name the Guess",
+    "coreSkill": "Turn future-facing plans into visible bets. For each plan line, mark what you know, what you are guessing, and what evidence would change the next move. Keep enough structure to coordinate, but do not let the forecast outrank the work.",
+    "ifThenPlans": [
+      {
+        "context": "When a plan line feels certain",
+        "plan": "If the line depends on future demand, cost, timing, or behavior, then relabel it as a guess and name the first evidence check."
+      },
+      {
+        "context": "When new evidence conflicts with the document",
+        "plan": "If the evidence comes from customers, deadlines, or technical reality, then update the near-term work before defending the old forecast."
+      },
+      {
+        "context": "When the team fears looking inconsistent",
+        "plan": "If revision feels embarrassing, then restate the original assumption and the fact that changed it."
+      },
+      {
+        "context": "When planning turns vague",
+        "plan": "If the group starts drifting, then choose the current-week decision that can be made honestly with the evidence at hand."
+      }
+    ],
+    "twentyFourHourChallenge": "Review one active plan and mark each line as known, guessed, or waiting for evidence. Pick one current-week decision to update from that map.",
+    "weeklyPractice": "At the end of each week, choose one forecast that changed. Write the old guess, the new evidence, and the next decision it affected."
+  },
+  "memorableLines": [
+    {
+      "text": "A plan is a guess with formatting.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the chapter's punchy reversal into one plain sentence."
+    },
+    {
+      "text": "Calling the plan a guess makes adjustment respectable.",
+      "location": "breakdown.deepRead",
+      "why": "It explains why the language change matters in practice."
+    },
+    {
+      "text": "The plan did not fail because planning is evil.",
+      "location": "breakdown.fullRead",
+      "why": "It guards against the drift misreading while keeping the critique sharp."
+    }
+  ]
+}

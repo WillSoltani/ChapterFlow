@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-5-love-languages",
+  "chapterNumber": 1,
+  "chapterId": "the-5-love-languages-ch01",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "14c2134f69201567",
+  "reviewer": "claude-qc:5ll-20260606",
+  "reviewedAt": "2026-06-06T11:46:03.549Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~94/100. 9/9 keys verified correct; 6 distinct coherent scenes (no skeleton/location-stamp); cards answer fronts; plan uses named 'Translation Check'; 5 languages enumerated correctly. GREEN."
+}

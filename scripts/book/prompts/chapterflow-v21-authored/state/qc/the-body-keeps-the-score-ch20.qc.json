@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-body-keeps-the-score",
+  "chapterNumber": 20,
+  "chapterId": "the-body-keeps-the-score-ch20",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "6aebfbbed831853e",
+  "reviewer": "claude-qc:tbkts-20260606",
+  "reviewedAt": "2026-06-06T17:42:50.203Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~90/100 (strongest; gate-chapter 0 majors). 9/9 keys correct; programs grounded vs ch20 sidecar (Urban Improv, Trauma Drama, Possibility Project/Paul Griffin/NYC/9mo, Shakespeare & Company/Lenox, Tutu/TRC 1996). Examples vivid & domain-varied; strong aphorisms. No corruption."
+}

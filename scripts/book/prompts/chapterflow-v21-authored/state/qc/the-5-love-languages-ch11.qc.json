@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-5-love-languages",
+  "chapterNumber": 11,
+  "chapterId": "the-5-love-languages-ch11",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "77eca854e2d58c28",
+  "reviewer": "claude-qc:5ll-20260606",
+  "reviewedAt": "2026-06-06T11:53:29.941Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~94/100. 9/9 keys; security/significance/haven-vs-battlefield/false-communication faithful; couples 1:1 (Pierre/Everly, Daphne/Bryan, Delaney/Idris); 2/6 clock times; plan 'Build the Haven Before Solving'. GREEN."
+}

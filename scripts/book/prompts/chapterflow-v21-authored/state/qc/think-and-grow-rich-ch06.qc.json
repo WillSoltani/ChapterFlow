@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 6,
+  "chapterId": "think-and-grow-rich-ch06",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "ac3625148db4993c",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T12:02:32.914Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~91 GREEN. 9/9 keys correct (0,1,2,0,1,2,0,1,0). Coca-Cola/Candler, Gunsaulus/$1M sermon/Armour Institute, synthetic vs creative imagination accurate. No corruption."
+}

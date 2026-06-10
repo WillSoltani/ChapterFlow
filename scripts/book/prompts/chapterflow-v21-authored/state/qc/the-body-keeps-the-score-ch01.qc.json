@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-body-keeps-the-score",
+  "chapterNumber": 1,
+  "chapterId": "the-body-keeps-the-score-ch01",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "a2de6e89f26aff0f",
+  "reviewer": "claude-qc:tbkts-20260606",
+  "reviewedAt": "2026-06-06T17:42:38.762Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~87/100. 9/9 keys correct (derived); examples real scenes w/ domain-varied settings, one-name-one-person holds; prose teaches, no clause-loops; cards test understanding; grounded vs ch01 sidecar (Tom/Boston VA 1978/Rorschach/PTSD-1980/Kardiner). No corruption."
+}

@@ -1,0 +1,312 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "dare-to-lead-ch07",
+  "number": 7,
+  "title": "Braving Trust",
+  "readingTimeMinutes": 12,
+  "hook": "BRAVING turns trust repair into seven inspectable behaviors instead of one vague accusation.",
+  "counterintuition": "Trust is generous and boundaried; blanket suspicion and blanket forgiveness both miss the repair.",
+  "tryThisNow": "Choose one strained relationship and identify the exact BRAVING letter under pressure.",
+  "keyTakeaway": "Trust is built, broken, and repaired through specific behaviors.",
+  "breakdown": {
+    "fastRead": "Trust gets repairable when a vague accusation becomes a specific behavior. BRAVING gives seven names for that inspection: Boundaries, Reliability, Accountability, Vault, Integrity, Nonjudgment, and Generosity. A missed deadline points toward Reliability; gossip points toward the Vault; hidden data undercuts Integrity. Repair begins by naming the strained letter, the missed behavior, and the observable action that would rebuild trust. In a repair conversation, the leader can distinguish a delivery miss from a confidence breach or a values shortcut before choosing evidence of repair.",
+    "deepRead": "Brown uses BRAVING to break a global trust accusation into seven inspectable behaviors: Boundaries, Reliability, Accountability, Vault, Integrity, Nonjudgment, and Generosity. The inventory makes the conversation smaller without making it softer. Boundaries ask whether limits are clear and respected. Reliability tests whether commitments are realistic and repeatedly kept. Accountability requires ownership, apology, amends, and changed behavior. Vault protects information that is not ours to share. Integrity chooses values over convenience. Nonjudgment makes asking for help safe. Generosity gives the most charitable reading the available facts can honestly support. Trust problems become solvable when people can name the exact behavior that built, strained, or broke trust. A leader who says only, \"trust me,\" is asking for belief without evidence; a leader who names the strained behavior gives the other person something to inspect. The same inventory also exposes self-trust gaps where personal boundaries, follow-through, or judgment have slipped. That matters because leaders sometimes compensate for low self-trust by adding controls to everyone else's work. The repair sequence is practical: name the strain, pick the letter, describe the missed behavior, and choose evidence that would show repair. Trust repair starts with a nameable behavior. A blurred accusation cannot become a concrete repair. The Vault treats gossip as a breach, not bonding.",
+    "fullRead": "The inventory is most useful when trust feels too large to discuss. It lets a leader locate the break without turning the whole relationship into a verdict. The useful point is precise: trust is generous and boundaried, and repair begins by naming the behavior instead of offering blanket suspicion or blanket forgiveness. Trust is treated as operational infrastructure because it affects whether people share information, take risks, collaborate, and recover from mistakes. The problem is that trust language often becomes global and character-based: someone is trusted or not trusted. The BRAVING inventory makes the conversation smaller and therefore more usable: Boundaries, Reliability, Accountability, Vault, Integrity, Nonjudgment, and Generosity. Boundaries ask whether limits are clear and respected. Reliability means doing what was promised repeatedly and realistically, not overcommitting to earn approval. Accountability requires ownership, apology, amends, and changed behavior. Vault protects information that is not ours to share and refuses gossip as counterfeit intimacy. Integrity means choosing values over convenience. Nonjudgment creates room to ask for help without humiliation. Generosity gives the most charitable reading that available facts can honestly support. The repair changes depending on the letter. An overpromise needs a reliability reset with realistic commitments; a breach of confidence needs a vault correction and tighter sharing rules; a harsh assumption needs generosity bounded by evidence. An integrity strain is different again: the leader has to surface the value that was compromised, name the convenient shortcut, and choose the harder behavior in public enough that others can see the value restored. Naming the part prevents a damaged relationship from becoming one blurred accusation. It also keeps self-trust in view, because leaders who cannot rely on themselves often compensate by controlling other people. In that case, repair may start with removing unnecessary checkpoints, asking for help without contempt, or admitting where the leader's own follow-through has been thin. The inventory is equally helpful when the leader is the one asking for trust; instead of demanding belief, the leader can show the boundary, kept commitment, protected confidence, amends, value choice, help-seeking safety, or generous interpretation that would make belief reasonable. The conversation should end with observable evidence: a written access rule, a realistic promise, an apology paired with process change, a protected confidence, a value-honoring disclosure, a safer request for help, or a charitable interpretation held together with a clear limit."
+  },
+  "examples": [
+    {
+      "exampleId": "dare-to-lead-ch07-ex01",
+      "title": "Access Boundary",
+      "tags": [
+        "document access",
+        "BRAVING trust",
+        "BRAVING inventory"
+      ],
+      "planSpec": {
+        "domain": "document access",
+        "audience": "Marta and leaders facing document access",
+        "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use BRAVING inventory to practice BRAVING trust in document access"
+      },
+      "scenario": "Tuesday at 4:10 p.m. in a legal document access review. Marta finds confidential legal documents moving through vague access rules. The team is treating convenience as permission, and one wrong share could break client trust.",
+      "whatToDo": "She states who may see which files, what requires approval, and how exceptions will be logged for review.",
+      "whyItMatters": "The project protects trust because Marta turns a boundary concern into explicit operating rules."
+    },
+    {
+      "exampleId": "dare-to-lead-ch07-ex02",
+      "title": "Campaign Reliability",
+      "tags": [
+        "campaign delivery",
+        "BRAVING trust",
+        "Brent Ladd at Purdue University"
+      ],
+      "planSpec": {
+        "domain": "campaign delivery",
+        "audience": "Noor and leaders facing campaign delivery",
+        "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Brent Ladd at Purdue University to practice BRAVING trust in campaign delivery"
+      },
+      "scenario": "Monday morning beside a marketing campaign tracker. Noor keeps promising campaign approvals faster than the team can deliver. People still believe her motives, but the repeated misses are making her commitments less believable.",
+      "whatToDo": "She recalculates capacity, names the reliability strain, and replaces approval-seeking promises with commitments the team can keep.",
+      "whyItMatters": "The campaign gets more reliable because Noor addresses follow-through instead of defending good intent."
+    },
+    {
+      "exampleId": "dare-to-lead-ch07-ex03",
+      "title": "Advising Vault",
+      "tags": [
+        "advising office",
+        "BRAVING trust",
+        "Gossip as counterfeit closeness"
+      ],
+      "planSpec": {
+        "domain": "advising office",
+        "audience": "Oren and leaders facing advising office",
+        "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+        "format": "audit",
+        "requiredBeat": "use Gossip as counterfeit closeness to practice BRAVING trust in advising office"
+      },
+      "scenario": "Wednesday at 2:05 p.m. in a university advising office. Oren hears advising-office gossip offered as a shortcut to closeness. The story may feel bonding in the moment, but it teaches everyone that private information travels.",
+      "whatToDo": "He declines the story, names the Vault boundary, and redirects the conversation to the student's documented need.",
+      "whyItMatters": "Confidentiality becomes safer because Oren refuses counterfeit trust built on absent people."
+    },
+    {
+      "exampleId": "dare-to-lead-ch07-ex04",
+      "title": "Purdue Control",
+      "tags": [
+        "student success",
+        "BRAVING trust",
+        "BRAVING inventory"
+      ],
+      "planSpec": {
+        "domain": "student success",
+        "audience": "Petra and leaders facing student success",
+        "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use BRAVING inventory to practice BRAVING trust in student success"
+      },
+      "scenario": "Friday at 8:30 a.m. before a student success meeting. Petra notices her Purdue-style program controls increasing whenever she doubts her own judgment. Her self-trust gap is turning into extra approval layers for colleagues.",
+      "whatToDo": "She marks which controls protect students and which ones manage her anxiety, then removes one unnecessary checkpoint.",
+      "whyItMatters": "The team gets breathing room because Petra locates the control pattern before blaming commitment."
+    },
+    {
+      "exampleId": "dare-to-lead-ch07-ex05",
+      "title": "Migration Amends",
+      "tags": [
+        "data migration",
+        "BRAVING trust",
+        "Brent Ladd at Purdue University"
+      ],
+      "planSpec": {
+        "domain": "data migration",
+        "audience": "Quill and leaders facing data migration",
+        "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+        "format": "before_after",
+        "requiredBeat": "use Brent Ladd at Purdue University to practice BRAVING trust in data migration"
+      },
+      "scenario": "Thursday evening in a vendor migration postmortem. Quill's vendor migration failed after several warnings were minimized. The client needs more than regret; they need evidence that the failure path has changed.",
+      "whatToDo": "He owns the miss, apologizes, makes amends, and changes the review checkpoint before the next migration.",
+      "whyItMatters": "The client can judge repair because Quill pairs apology with altered process."
+    },
+    {
+      "exampleId": "dare-to-lead-ch07-ex06",
+      "title": "Partnership Generosity",
+      "tags": [
+        "research partnership",
+        "BRAVING trust",
+        "Gossip as counterfeit closeness"
+      ],
+      "planSpec": {
+        "domain": "research partnership",
+        "audience": "Rina and leaders facing research partnership",
+        "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Gossip as counterfeit closeness to practice BRAVING trust in research partnership"
+      },
+      "scenario": "Saturday afternoon across a research partnership table. Rina's research partner missed a deadline and the evidence about intent is thin. The partnership can neither excuse the miss nor invent a motive from limited facts.",
+      "whatToDo": "She chooses the kindest reading the facts support, names the delivery impact, and sets the next boundary.",
+      "whyItMatters": "The partnership stays generous without becoming naive because Rina keeps facts and limits together."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "dare-to-lead-ch07-q01",
+        "prompt": "A project attorney discovers vague access rules around confidential files.",
+        "choices": [
+          "Trust everyone broadly because the project is urgent.",
+          "Let the attorney decide privately who can see files.",
+          "Name the boundary problem and set access rules before sharing."
+        ],
+        "correctIndex": 2,
+        "explanation": "BRAVING begins with boundaries; the wrong choices avoid explicit limits.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch07-q02",
+        "prompt": "A creative operations lead keeps making approval-seeking promises.",
+        "choices": [
+          "Reliability is the issue because promises exceed real capacity.",
+          "Vault is the issue because campaign files are confidential.",
+          "Generosity is the issue because the lead means well."
+        ],
+        "correctIndex": 0,
+        "explanation": "The pattern is follow-through, not intent or secrecy; confidentiality and good motives do not fix repeated overcommitment.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "dare-to-lead-ch07-q03",
+        "prompt": "A coordinator hears gossip in a university advising office.",
+        "choices": [
+          "Listen quietly because the story creates quick trust.",
+          "Decline the gossip because the vault protects absent people.",
+          "Share a smaller secret so the exchange feels equal."
+        ],
+        "correctIndex": 1,
+        "explanation": "Gossip creates counterfeit closeness while teaching that confidentiality is unsafe.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch07-q04",
+        "prompt": "A Purdue program director notices control rising whenever self-trust drops.",
+        "choices": [
+          "Tighten approvals so the director feels less exposed.",
+          "Call the team uncommitted until they improve.",
+          "Ask where low self-trust is becoming control of colleagues."
+        ],
+        "correctIndex": 2,
+        "explanation": "Brent Ladd's example links control of others to self-trust gaps; tighter approvals and blame protect the director, not the work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch07-q05",
+        "prompt": "A vendor migration failed after repeated warning signs.",
+        "choices": [
+          "Send a polished apology and move to the next milestone.",
+          "Own the mistake, apologize, make amends, and change the process.",
+          "Explain that vendors often fail during migrations."
+        ],
+        "correctIndex": 1,
+        "explanation": "Accountability requires ownership plus changed behavior; polish and excuses leave the broken process untouched.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch07-q06",
+        "prompt": "A research partnership misunderstanding has thin evidence.",
+        "choices": [
+          "Choose the kindest reading the facts can honestly support.",
+          "Forgive everything so the partnership feels generous.",
+          "Assume bad intent until the other lab proves otherwise."
+        ],
+        "correctIndex": 0,
+        "explanation": "Generosity is bounded by available facts; blanket forgiveness ignores limits, while suspicion outruns evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch07-q07",
+        "prompt": "A leader says transparency matters but quietly hides unfavorable data before a board review. Which BRAVING behavior is under strain?",
+        "choices": [
+          "Vault, because all uncomfortable information must remain private.",
+          "Reliability, because the board meeting might run behind schedule.",
+          "Integrity, because convenience was chosen over a stated value."
+        ],
+        "correctIndex": 2,
+        "explanation": "Integrity is the issue because the leader violated a stated value when hiding data was more convenient. Vault concerns information that is not yours to share, and Reliability concerns kept commitments rather than the value-versus-convenience choice.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch07-q08",
+        "prompt": "Motivation is high on a campaign team, but delivery keeps slipping.",
+        "choices": [
+          "Discuss realistic commitments and follow-through instead of motivation.",
+          "Praise effort so reliability feels less harsh.",
+          "Move the deadline again to preserve enthusiasm."
+        ],
+        "correctIndex": 0,
+        "explanation": "Reliability is about repeated kept commitments; praise and deadline movement may feel kind while preserving the trust break.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch07-q09",
+        "prompt": "A leader judges colleagues who ask for help.",
+        "choices": [
+          "Vault is broken because people are asking questions.",
+          "Generosity means the leader should ignore the pattern.",
+          "Nonjudgment may be weak if help-seeking feels unsafe."
+        ],
+        "correctIndex": 2,
+        "explanation": "Nonjudgment creates room to need help without humiliation; vault and generosity are distractors because the issue is judgment around need.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "dare-to-lead-ch07-card01",
+      "front": "What does Reliability test?",
+      "back": "Whether commitments are realistic and repeatedly kept. Good intent does not repair a pattern of overpromising."
+    },
+    {
+      "cardId": "dare-to-lead-ch07-card02",
+      "front": "What does Accountability require?",
+      "back": "Own the mistake, apologize, make amends, and change the behavior. Repair has to be visible beyond regret."
+    },
+    {
+      "cardId": "dare-to-lead-ch07-card03",
+      "front": "What does the Vault protect?",
+      "back": "Information that is not yours to share. Gossip counts as a trust breach, even when it feels like bonding."
+    },
+    {
+      "cardId": "dare-to-lead-ch07-card04",
+      "front": "What does Generosity mean here?",
+      "back": "Choose the most charitable reading the available facts can honestly support. It is bounded kindness, not denial."
+    },
+    {
+      "cardId": "dare-to-lead-ch07-card05",
+      "front": "What does Integrity choose?",
+      "back": "Values over convenience, especially when hiding or bending the truth would be easier."
+    }
+  ],
+  "implementationPlan": {
+    "title": "Braving Trust practice",
+    "coreSkill": "Use BRAVING to name the strained trust behavior and choose one observable repair.",
+    "ifThenPlans": [
+      {
+        "context": "Confidential information is moving through unclear access rules",
+        "plan": "If sharing rules are blurry, then name the Boundary and Vault strain, define access, and log exceptions."
+      },
+      {
+        "context": "Motivation is high but delivery keeps slipping",
+        "plan": "If promises exceed capacity, then reset Reliability with fewer commitments, clearer owners, and a checkable date."
+      },
+      {
+        "context": "Thin evidence is turning into a story about intent",
+        "plan": "If motive is unclear, then choose Generosity within the facts and set the next boundary for behavior."
+      }
+    ],
+    "twentyFourHourChallenge": "Within one day, choose one strained relationship and mark the single BRAVING letter that needs repair.",
+    "weeklyPractice": "For a week, document kept promises, boundary misses, vault leaks, and repair attempts so trust becomes discussable evidence."
+  },
+  "memorableLines": [
+    {
+      "text": "Trust repair starts with a nameable behavior."
+    },
+    {
+      "text": "A blurred accusation cannot become a concrete repair."
+    },
+    {
+      "text": "The Vault treats gossip as a breach, not bonding."
+    }
+  ]
+}

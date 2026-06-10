@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-5-love-languages",
+  "chapterNumber": 10,
+  "chapterId": "the-5-love-languages-ch10",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "6235e050107d104d",
+  "reviewer": "claude-qc:5ll-20260606",
+  "reviewedAt": "2026-06-06T11:53:29.404Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~94/100. 9/9 keys; chosen-love-not-denial + empty-tank + unnatural-language faithful; couples map 1:1 (Sabrina/Paolo, Danielle/Bilal, Brynn/Gerald); plan 'Choice-First Translation'. GREEN."
+}

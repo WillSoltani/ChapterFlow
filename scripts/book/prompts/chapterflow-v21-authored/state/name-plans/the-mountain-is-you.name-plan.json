@@ -1,0 +1,106 @@
+{
+  "bookId": "the-mountain-is-you",
+  "fromChapter": 1,
+  "toChapter": 7,
+  "perChapter": 7,
+  "allocation": {
+    "1": [
+      "Brandon",
+      "Ming",
+      "Ephrem",
+      "Janet",
+      "Presley",
+      "Hazel",
+      "Chantal"
+    ],
+    "2": [
+      "Tobias",
+      "Cyrus",
+      "Magloire",
+      "Hamza",
+      "Lawrence",
+      "Asher",
+      "Aryan"
+    ],
+    "3": [
+      "Tessa",
+      "Mathias",
+      "Sebastien",
+      "Sarah",
+      "Berthe",
+      "Hyun",
+      "Severin"
+    ],
+    "4": [
+      "Lana",
+      "Peyton",
+      "Milo",
+      "Theophile",
+      "Hugo",
+      "Jordan",
+      "Anatole"
+    ],
+    "5": [
+      "Brigitte",
+      "Benoit",
+      "Zoe",
+      "Lane",
+      "Gerard",
+      "Veronique",
+      "Violet"
+    ],
+    "6": [
+      "Irina",
+      "Weston",
+      "Eileen",
+      "Finley",
+      "Diogo",
+      "Neha",
+      "Qing"
+    ],
+    "7": [
+      "Glenn",
+      "Nikhil",
+      "Minh",
+      "Marcel",
+      "Simon",
+      "Lucienne",
+      "Tatum"
+    ]
+  },
+  "bannedConnectives": [
+    "has to decide whether to",
+    "now has to choose between",
+    "is trying to figure out",
+    "stares at the screen and",
+    "stops and looks at the",
+    "takes a deep breath and",
+    "leans back in the chair",
+    "glances at the clock and",
+    "stops arguing and points to",
+    "we cannot keep pretending this",
+    "catches the edge of the",
+    "the room goes quiet as",
+    "feels the weight of the",
+    "knows the answer but cannot",
+    "is about to find out",
+    "has been doing this for",
+    "looks up from the desk",
+    "the same thing happens again",
+    "wants nothing more than to",
+    "cannot shake the feeling that",
+    "is faced with a choice",
+    "has to make a call",
+    "sits down to write the",
+    "opens the laptop and starts",
+    "runs the numbers one more"
+  ],
+  "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
+  "diagnostics": {
+    "bankSize": 777,
+    "excludedCount": 0,
+    "availableCount": 777,
+    "shortChapters": [],
+    "alreadyAuthored": []
+  }
+}

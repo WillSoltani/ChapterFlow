@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-body-keeps-the-score",
+  "chapterNumber": 14,
+  "chapterId": "the-body-keeps-the-score-ch14",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "4861620c676c2304",
+  "reviewer": "claude-qc:tbkts-20260606",
+  "reviewedAt": "2026-06-10T00:24:08.132Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~92. 9/9 keys correct (Pennebaker 1986/post-9/11 panels/NIH-Pfizer). Distinct scenes, fully grounded. No corruption."
+}

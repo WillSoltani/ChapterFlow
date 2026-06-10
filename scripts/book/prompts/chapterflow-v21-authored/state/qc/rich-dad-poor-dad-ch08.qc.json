@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "rich-dad-poor-dad",
+  "chapterNumber": 8,
+  "chapterId": "rich-dad-poor-dad-ch08",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "d6d4c9fd4e13c986",
+  "reviewer": "claude-qc:rdpd-20260605-r2",
+  "reviewedAt": "2026-06-05T11:40:17.863Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Full 8-axis read. All 9 keys correct; all ten Getting-Started steps faithful to RDPD; heroes Lynch/Buffett/Soros correct; Cheng consistent across steps. Minor: orphan persona Helene q07 (not a bar failure). No corruption."
+}

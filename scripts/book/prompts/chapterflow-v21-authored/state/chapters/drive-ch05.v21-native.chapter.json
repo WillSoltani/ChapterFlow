@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "drive-ch05",
+  "number": 5,
+  "title": "Autonomy",
+  "readingTimeMinutes": 8,
+  "hook": "Autonomy gets practical when someone can alter the task, time, technique, or team.",
+  "counterintuition": "Autonomy is not isolation or an absence of standards; it is accountable self-direction inside real commitments.",
+  "tryThisNow": "Pick one project and add a small choice over task, time, technique, or team before the next work block.",
+  "keyTakeaway": "Engagement rises when clear goals remain in place while people gain real choice over how work is shaped and pursued.",
+  "breakdown": {
+    "fastRead": "Jeff Gunther's Meddius offers a concrete doorway into autonomy. Control can produce compliance, but autonomy supports engagement because people have a say in task, time, technique, or team. Best Buy's ROWE experiment challenged the habit of equating presence with value. Atlassian FedEx Days and Google 20 percent time show task choice in a bounded form. The rule is to keep expectations visible while moving decision rights closer to the person doing the work.",
+    "deepRead": "The mechanism is ownership: people invest more attention when some part of the work is genuinely theirs to shape. Autonomy is not the absence of goals. It is meaningful choice inside a shared aim.\n\nThe four Ts make autonomy practical. Task asks what people work on. Time asks when they work. Technique asks how they do it. Team asks whom they work with. Jeff Gunther's Meddius and Best Buy's ROWE experiment show one version of the shift: judge completed work, not office presence. Atlassian FedEx Days and Google 20 percent time show another: give people bounded space to choose a problem and deliver something useful.\n\nThe guardrail is accountability. Autonomy is not isolation, drift, or immunity from standards. A clinic schedule still has patient-care requirements. An engineering roadmap still has shared outcomes. The point is to move some decision rights closer to the people doing the work, because engagement grows when people can shape the path as well as meet the target. The practical test is whether responsibility and choice are paired.",
+    "fullRead": "Autonomy has to be distinguished from everyone drifting in separate directions. The common misread is that autonomy means no management, no coordination, and everyone doing whatever they prefer. The stronger interpretation is accountable self-direction: clear goals and standards remain, while control over task, time, technique, or team expands.\n\nJeff Gunther's Meddius gives autonomy a workplace face. Employees gained more control over when and where they worked, and the company paid attention to results instead of mere presence. Best Buy's ROWE experiment pushed the same question at a larger scale: why treat being seen as proof of value if the real issue is whether work gets done?\n\nAtlassian's FedEx Days and Google's 20 percent time show task autonomy in bounded form. People get space to choose a problem, experiment, and deliver something. The freedom is real, but it is not vague. Delivery and usefulness still matter.\n\nThe four Ts help leaders avoid autonomy slogans. A team may not control all four, and it may not need to. A small shift in technique, schedule, collaborators, or task choice can change how the work feels.\n\nThe practical test is whether decision rights match responsibility. If people are accountable for outcomes but have no say over the path, autonomy is mostly rhetoric. If they have choice without standards, coordination breaks. The productive middle is clear outcomes with real room to act.\n\nThe four Ts also make autonomy adjustable. A hospital may not be able to give unlimited time autonomy because patients need coverage. It may still offer technique autonomy in how teams conduct handoffs. A school may share a curriculum goal while giving teachers method choice. A manufacturing floor may protect safety procedures while letting workers choose collaborators for an improvement test.\n\nThat adjustability matters because autonomy often fails when it is introduced as a grand promise. People hear freedom, managers fear chaos, and the system snaps back to control. A better start is one visible decision right. Who chooses the sequence? Who chooses the tool? Who chooses the partner? Who chooses the problem for a bounded experiment? Small changes show whether responsibility and choice can grow together.\n\nThe strongest autonomy designs also name the outcome clearly. If people are judged by presence, they will manage presence. If they are trusted with technique but the success measure is hidden, they will guess. Autonomy works when the goal is visible enough to coordinate effort and the path is open enough to invite ownership."
+  },
+  "examples": [
+    {
+      "exampleId": "drive-ch05-ex01",
+      "title": "A Misread Incentive",
+      "tags": [
+        "work design",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "clinic scheduling board",
+        "audience": "Jun, a clinic coordinator giving staff bounded time choice",
+        "stakes": "A scheduling board must protect patient care while reducing needless control.",
+        "format": "decision_point",
+        "requiredBeat": "Show one of the four Ts changing under clear standards."
+      },
+      "scenario": "Jun keeps the required coverage levels on the clinic board, then lets nurses trade two scheduling blocks without manager approval. The standard is fixed; the time choice moves closer to the people living with the schedule.",
+      "whatToDo": "Give the clinic scheduling board team one bounded choice over time while keeping patient-care standards visible.",
+      "whyItMatters": "Autonomy becomes concrete when one decision right changes hands. The patient-care goal keeps the freedom accountable."
+    },
+    {
+      "exampleId": "drive-ch05-ex02",
+      "title": "The Calendar Test",
+      "tags": [
+        "team choice",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "engineering roadmap review",
+        "audience": "Calla, an engineering lead opening task choice",
+        "stakes": "A roadmap review needs ownership without abandoning commitments.",
+        "format": "dialogue",
+        "requiredBeat": "Use task autonomy within a shared roadmap."
+      },
+      "scenario": "Calla marks three roadmap outcomes as nonnegotiable, then asks engineers to choose which technical debt slice they will own this cycle. The team cannot rewrite the strategy, but it can shape the route.",
+      "whatToDo": "For the engineering roadmap review, let engineers choose one task slice while preserving the shared roadmap outcome.",
+      "whyItMatters": "Choice over task can create ownership even inside constraints. The shared outcome prevents autonomy from becoming drift."
+    },
+    {
+      "exampleId": "drive-ch05-ex03",
+      "title": "When Metrics Crowd Out Meaning",
+      "tags": [
+        "ethics",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "remote service team",
+        "audience": "Ronan, a service manager moving from presence to outcomes",
+        "stakes": "A remote team is being judged by green status dots instead of customer resolution.",
+        "format": "audit",
+        "requiredBeat": "Apply results-only thinking to a service environment."
+      },
+      "scenario": "Ronan stops praising the agents who stay visibly online longest and starts reviewing solved cases, customer callbacks, and handoff quality. People can step away when coverage is protected, but the service result is visible.",
+      "whatToDo": "Judge the remote service team by completed service outcomes, not visible online presence.",
+      "whyItMatters": "Time autonomy works when results are clear. Presence is a weak substitute for value."
+    },
+    {
+      "exampleId": "drive-ch05-ex04",
+      "title": "A Better Design Choice",
+      "tags": [
+        "autonomy",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "school faculty planning day",
+        "audience": "Yvette, a faculty lead giving technique choice",
+        "stakes": "Teachers share a literacy goal but are being handed a script for every minute.",
+        "format": "planning_choice",
+        "requiredBeat": "Show technique autonomy under a common learning aim."
+      },
+      "scenario": "Yvette keeps the district reading target and assessment window. Then she asks each teacher to choose one discussion routine that fits their class and explain how they will check comprehension.",
+      "whatToDo": "Ask teachers in the school faculty planning day to choose one technique within the common goal.",
+      "whyItMatters": "Technique choice respects professional judgment. The learning target keeps the work coordinated."
+    },
+    {
+      "exampleId": "drive-ch05-ex05",
+      "title": "The Control Signal",
+      "tags": [
+        "management",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "agency creative brief",
+        "audience": "Briar, a creative director leaving room in a brief",
+        "stakes": "An agency brief is so scripted that the team can only decorate the answer.",
+        "format": "postmortem",
+        "requiredBeat": "Show autonomy over technique in creative work."
+      },
+      "scenario": "Briar removes three prescribed campaign executions from the brief and replaces them with the customer problem and brand constraints. The team must still solve the problem, but the creative route is open.",
+      "whatToDo": "In the agency creative brief, leave one creative route open instead of scripting every move.",
+      "whyItMatters": "Creative engagement needs room to choose the path. A script can produce compliance while killing originality."
+    },
+    {
+      "exampleId": "drive-ch05-ex06",
+      "title": "After the Reward Debate",
+      "tags": [
+        "reflection",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "manufacturing improvement huddle",
+        "audience": "Keaton, a plant manager giving team choice for one experiment",
+        "stakes": "An improvement huddle needs participation without losing safety rules.",
+        "format": "reflection",
+        "requiredBeat": "Use team autonomy in a bounded operational experiment."
+      },
+      "scenario": "Keaton asks line workers to choose the three-person group that will test a new tool-storage layout. Safety requirements and output checks stay fixed, but the collaborators and trial design come from the floor.",
+      "whatToDo": "Let the manufacturing improvement huddle team choose collaborators for one improvement experiment.",
+      "whyItMatters": "Team autonomy can make improvement feel owned. Bounded experiments keep the plant from trading coordination for freedom."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "drive-ch05-q01",
+        "prompt": "A clinic schedule must maintain coverage, but staff have no say over swaps. Which autonomy handle fits first?",
+        "choices": [
+          "Remove coverage standards so every person can choose freely.",
+          "Give bounded choice over time while keeping patient-care standards visible.",
+          "Add attendance prizes so staff stop asking for schedule input."
+        ],
+        "correctIndex": 1,
+        "explanation": "Autonomy expands choice inside standards. The wrong answers either drop accountability or replace choice with control.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch05-q02",
+        "prompt": "Why can a results-only work environment increase accountability?",
+        "choices": [
+          "It proves managers should never inspect work quality.",
+          "It makes deadlines unnecessary because people feel trusted.",
+          "It shifts attention from visible presence to agreed outcomes."
+        ],
+        "correctIndex": 2,
+        "explanation": "The key is clearer results, not no management. Presence stops pretending to be the main proof.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch05-q03",
+        "prompt": "A principal worries autonomy means chaos. What boundary keeps autonomy useful?",
+        "choices": [
+          "Clear goals and standards remain while choice expands over task, time, technique, or team.",
+          "Every person should set separate goals no one else can question.",
+          "Autonomy should wait until every task is already perfect."
+        ],
+        "correctIndex": 0,
+        "explanation": "Accountable self-direction keeps choice and standards together.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch05-q04",
+        "prompt": "A cross-functional team needs coordination. How is autonomy different from independence?",
+        "choices": [
+          "People can depend on one another and still have meaningful say over how work is done.",
+          "People need separate goals and private workflows before any autonomy can be real.",
+          "Autonomy exists only when shared outcomes are removed from the work."
+        ],
+        "correctIndex": 0,
+        "explanation": "Interdependence does not cancel self-direction. Teams can coordinate and still distribute decision rights.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch05-q05",
+        "prompt": "A manager gets compliance but little initiative after scripting every move. What does autonomy predict?",
+        "choices": [
+          "More scripting will automatically create ownership.",
+          "The team must be naturally uninterested in good work.",
+          "Control can produce compliance while autonomy supports deeper engagement."
+        ],
+        "correctIndex": 2,
+        "explanation": "The result may come from the design. Compliance is not the same as engagement.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch05-q06",
+        "prompt": "A remote team is measured by online status even though customer outcomes are clear. What would ROWE-style thinking change?",
+        "choices": [
+          "Stop measuring outcomes because people are remote.",
+          "Judge completed work and service quality instead of visible presence.",
+          "Require longer visible hours to prove trust."
+        ],
+        "correctIndex": 1,
+        "explanation": "Results-only thinking keeps accountability while removing a weak proxy.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "drive-ch05-q07",
+        "prompt": "Which one-week scheduling trial would test autonomy without dropping standards?",
+        "choices": [
+          "Make every scheduling choice optional for a week and avoid reviewing patient coverage.",
+          "Ban all staff swaps for a week so the board looks simpler and managers feel safer.",
+          "Let staff control one swap rule for a week, then review coverage, stress, and patient-care reliability."
+        ],
+        "correctIndex": 2,
+        "explanation": "A bounded autonomy trial changes one decision right and checks outcomes.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch05-q08",
+        "prompt": "How does the four-T frame keep autonomy from becoming a slogan?",
+        "choices": [
+          "It guarantees every person gets all four choices in every job.",
+          "It identifies specific places where control can move: task, time, technique, or team.",
+          "It replaces the need for goals with a list of preferences."
+        ],
+        "correctIndex": 1,
+        "explanation": "The four Ts are design handles. They do not erase constraints or standards.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch05-q09",
+        "prompt": "To apply autonomy today, which move makes choice real?",
+        "choices": [
+          "Pick one T and offer a bounded choice while keeping the desired outcome clear.",
+          "Announce autonomy without changing any decision rights.",
+          "Let everyone redesign the goal separately before work starts."
+        ],
+        "correctIndex": 0,
+        "explanation": "Autonomy becomes real through a changed choice. The target still matters.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "drive-ch05-card01",
+      "front": "What are the four Ts of autonomy?",
+      "back": "Task, time, technique, and team. They turn autonomy into specific design choices instead of a vague preference.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "drive-ch05-card02",
+      "front": "How is autonomy different from independence?",
+      "back": "Autonomy means meaningful self-direction. People can still coordinate, depend on others, and meet shared standards.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch05-card03",
+      "front": "What did ROWE challenge?",
+      "back": "The assumption that visible presence is the same as value. It asked whether results could replace attendance as the proof.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch05-card04",
+      "front": "Why are FedEx Days bounded?",
+      "back": "The freedom is paired with delivery. People choose the problem and approach, then show what they made or learned.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "drive-ch05-card05",
+      "front": "What is the autonomy audit question?",
+      "back": "Where can decision rights move closer to the people responsible for the outcome without losing standards?",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Four-T Autonomy Audit",
+    "coreSkill": "Use the Four-T Autonomy Audit on one task: mark current choice over task, time, technique, and team, then choose one T where a bounded decision right can move closer to the worker.",
+    "ifThenPlans": [
+      {
+        "context": "The goal is clear but ownership is low",
+        "plan": "Keep the goal fixed and add choice over technique, sequence, or collaborators."
+      },
+      {
+        "context": "People are measured by presence",
+        "plan": "Replace one presence proxy with an outcome measure that can be reviewed fairly."
+      },
+      {
+        "context": "Leaders fear chaos",
+        "plan": "Run the autonomy change as a short trial with standards, review date, and visible success criteria."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one recurring task. Circle the weakest T, then give yourself or someone else one bounded choice there today.",
+    "weeklyPractice": "For seven days, run one small autonomy audit per day. Track whether the change improves ownership without weakening the outcome."
+  },
+  "memorableLines": [
+    {
+      "text": "Jeff Gunther's Meddius offers a concrete doorway into autonomy.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the lesson through a concrete source scene."
+    },
+    {
+      "text": "The mechanism is ownership: people invest more attention when some part of the work is genuinely theirs to shape.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism before adding detail."
+    },
+    {
+      "text": "Autonomy has to be distinguished from everyone drifting in separate directions.",
+      "location": "breakdown.fullRead",
+      "why": "It frames the limit that protects the lesson from overreach."
+    }
+  ]
+}

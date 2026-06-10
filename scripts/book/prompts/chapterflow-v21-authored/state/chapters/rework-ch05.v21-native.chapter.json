@@ -1,0 +1,332 @@
+{
+  "chapterId": "rework-ch05",
+  "number": 5,
+  "title": "Why grow?",
+  "readingTimeMinutes": 10,
+  "hook": "A bigger payroll can be a trophy that eats the room.",
+  "counterintuition": "Business culture treats growth as proof of health. A company can be healthier when it stays at the size that protects profit, standards, speed, and customer usefulness.",
+  "tryThisNow": "List one growth move you are considering, then write the new coordination cost it would create before writing the upside.",
+  "keyTakeaway": "A right-sized company treats size as a design choice, adding people or layers only when they strengthen the work more than they slow it.",
+  "breakdown": {
+    "fastRead": "37signals stayed intentionally small while building profitable products. That choice was not a confession of weakness. It was a way to preserve speed, control, directness, and taste.\n\nGrowth adds more than opportunity. It adds communication cost, management, meetings, payroll pressure, and new reasons to invent work. More can help. More can also blur what made the company good.\n\nA right-sized company asks a blunt question: what size serves the work? If more people improve the product and customer relationship, grow. If more people mostly feed status anxiety, stay focused.",
+    "deepRead": "Size is often mistaken for score. A company with more employees sounds more successful. A company with more offices sounds more serious. A company with more customers may seem more important. Yet size is not the same as health. A larger business can become slower, less profitable, and less clear about its own standards.\n\n37signals gives the argument a lived reference. The company built useful products while resisting the reflex that more employees would automatically make the work better. Small scale was not a waiting room. It was part of the operating model: fewer layers, faster judgment, closer contact with the product, and less bureaucracy to fight.\n\nThe sharper question is cost. Each new hire can add skill, capacity, and service. That is real. Each new hire can also add handoffs, meetings, supervision, payroll risk, and distance from customers. Growth should face both sides of the ledger.\n\nThe hard edge matters. This is not a sermon against growth in every case. Demand may require more support. Quality may require a specialist. A good opportunity may need capacity the current team lacks. The right-sized company does not worship smallness. It asks whether expansion strengthens the work or merely makes the company look more impressive.\n\nGrowing slowly helps because strain becomes visible. A team can feel where the work is actually hurting before it hires for imagined prestige. The best size is the one that lets the business stay useful, profitable, and good to run.",
+    "fullRead": "Why grow? The question sounds almost rude because growth is usually treated as the default ambition. Founders are asked how many people they will hire, how fast they will scale, how many markets they will enter, and when the company will become much larger. The question underneath those questions is rarely examined. Larger for what?\n\n37signals is the anchor because it made smallness deliberate. The company built profitable products without accepting the idea that employee count was the scoreboard. That stance gave smallness a different meaning. It was not a stage before seriousness. It was a chosen shape for doing the work well.\n\nThe tradeoff is practical. More people can bring capacity, skill, coverage, and resilience. Those gains are worth taking when the work truly needs them. A support queue may grow beyond what the current team can handle. A product may need expertise no one has. A market may offer a chance that fits the company without breaking its standards.\n\nExpansion also brings drag. Decisions travel through more people. Communication gets heavier. Managers appear because coordination now needs its own job. Payroll creates pressure to chase revenue that may not fit the product. Layers can separate leaders from customers. A team that once solved problems directly may start solving the problems created by its own size.\n\nA right-sized company puts the burden of proof on expansion. The question is not whether growth sounds impressive. The question is whether this growth improves the product, service, profit, or customer relationship enough to justify the added complexity. If the answer is no, staying small is not fear. It is judgment.\n\nSmallness has real strengths. A small team can change direction quickly. It can keep standards visible. It can talk without a maze of meetings. It can know customers by name. It can avoid creating tasks whose only purpose is to feed the structure. Those strengths become easier to lose than to recover.\n\nThe mistake on the other side is turning small into a lifestyle badge. A tiny team can still be understaffed, brittle, or proud in a foolish way. Refusing every hire while quality drops is not discipline. It is neglect. The issue is fit. The company should be large enough to serve well and small enough to stay clear.\n\nThat is why slow growth can be wise. Let strain show itself. Notice where customers wait too long, where quality slips, where the same bottleneck keeps hurting the work. Hire for that pain, not for a number that sounds impressive in a press release. Add the role that makes the business better, not the layer that makes it look bigger.\n\nThe closing test is simple. Picture the company after the growth move. Are customers better served? Is the product stronger? Is profit still healthy? Are decisions clearer? Is the work better to do? If the main answer is, \"We will seem more successful,\" the growth is suspect. The right size is the size that strengthens the work instead of feeding status anxiety."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Carmen Counts the Handoffs",
+      "tags": [
+        "support team",
+        "handoffs",
+        "right size"
+      ],
+      "planSpec": {
+        "domain": "customer support software",
+        "audience": "founders considering a support expansion",
+        "stakes": "hire for real strain rather than staff-count prestige",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist measures whether new headcount strengthens the work"
+      },
+      "scenario": "Carmen reviews support logs at 9:05 a.m. in a Valencia office. A recruiter says the company should double the team before competitors do. The queue is calm except for one weekend spike, and 37signals' intentionally small model sits in her notes. Before approving interviews, she must decide whether more people would serve customers or just create handoffs.",
+      "whatToDo": "Carmen should solve the weekend spike first and hire only if the logs show sustained customer pain that the current team cannot absorb.",
+      "whyItMatters": "The right-sized company grows from strain in the work, not from a fear that a small team looks unimpressive."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Davi Questions the Second Office",
+      "tags": [
+        "office expansion",
+        "profit",
+        "status"
+      ],
+      "planSpec": {
+        "domain": "architecture studio",
+        "audience": "owners weighing location growth",
+        "stakes": "separate client value from visible bigness",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist treats size as a design choice"
+      },
+      "scenario": "Davi stands at 6:30 p.m. in a Recife architecture studio with a lease proposal for a second office. The partners like the prestige, but their best clients praise direct access to the three principals. Minutes before the vote, Davi has to ask whether 37signals-style smallness is a limit or the reason the studio still feels sharp.",
+      "whatToDo": "Davi should reject the lease for now and test whether client demand, not prestige, requires a second location.",
+      "whyItMatters": "Growth can weaken the exact relationship customers value. The visible trophy may cost more than rent."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Helene Hires for the Bottleneck",
+      "tags": [
+        "manufacturing",
+        "capacity",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "specialty ceramics",
+        "audience": "operators with quality bottlenecks",
+        "stakes": "show when growth is justified by real work pain",
+        "format": "before_after",
+        "requiredBeat": "the protagonist grows because quality requires it"
+      },
+      "scenario": "Helene checks kiln records at 5:45 a.m. in a Lyon ceramics workshop. Orders are profitable, but glazing defects rise whenever she rushes inspection. A 37signals note about right size keeps her from treating smallness as sacred. Before the next batch, she must decide whether one quality assistant is vanity or the hire that protects the work.",
+      "whatToDo": "Helene should hire one inspection assistant with a clear quality target and review whether defects, delays, and customer returns improve.",
+      "whyItMatters": "The hard edge matters: growth can be right when it strengthens quality. Right size is not automatic smallness."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Marek Refuses the Headcount Slide",
+      "tags": [
+        "investor update",
+        "metrics",
+        "profit"
+      ],
+      "planSpec": {
+        "domain": "SaaS investor communication",
+        "audience": "founders under investor pressure",
+        "stakes": "avoid using headcount as a success proxy",
+        "format": "dialogue",
+        "requiredBeat": "the protagonist replaces staff count with useful business outcomes"
+      },
+      "scenario": "Marek sits at 2:10 p.m. in a Warsaw boardroom while an investor asks why the hiring slide is flat. Revenue is up, churn is down, and the product shipped faster with eight people. Before the update ends, Marek has to say whether 37signals staying intentionally small is a defensible operating choice or a growth embarrassment.",
+      "whatToDo": "Marek should answer with profit, churn, ship speed, and customer outcomes rather than apologizing for a flat headcount chart.",
+      "whyItMatters": "Vanity metrics can bully a healthy business. A small profitable team deserves respect when the work is improving."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Priam Slows the Franchise Talk",
+      "tags": [
+        "restaurant",
+        "franchising",
+        "control"
+      ],
+      "planSpec": {
+        "domain": "independent restaurant",
+        "audience": "owners offered rapid expansion",
+        "stakes": "protect the customer experience from premature scale",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist notices the complexity cost of a bigger footprint"
+      },
+      "scenario": "Priam wipes the counter at 11:15 p.m. in a Bristol noodle shop after a franchise broker leaves a folder. The shop is profitable and regulars know the cooks. The broker promises five locations by next spring. Before calling back, Priam must decide whether the 37signals lesson about deliberate scale applies to broth, staff, and daily control.",
+      "whatToDo": "Priam should decline the five-location pitch and write the quality, training, and customer-contact costs of any future expansion.",
+      "whyItMatters": "More locations may bring revenue, but they also add distance from the work. Size should protect the experience, not dilute it."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Runa Tests the Agency Layer",
+      "tags": [
+        "agency",
+        "management",
+        "coordination cost"
+      ],
+      "planSpec": {
+        "domain": "digital design agency",
+        "audience": "small teams adding management layers",
+        "stakes": "identify whether a new layer helps delivery or feeds structure",
+        "format": "audit",
+        "requiredBeat": "the protagonist inspects communication cost before adding management"
+      },
+      "scenario": "Runa reviews project notes at 3:25 p.m. in a Bergen design agency. A consultant recommends an account-management layer because agencies of their revenue usually have one. Designers already speak directly with clients, and changes land fast. Before signing the consultant's proposal, Runa must test whether 37signals-style directness is a liability or the agency's edge.",
+      "whatToDo": "Runa should map current client handoffs and add a manager only if direct access is causing repeated quality or schedule failures.",
+      "whyItMatters": "A layer can solve coordination pain or create it. The right-sized company asks which is happening before copying a larger firm's shape."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A support queue is calm except for one weekend spike, but a recruiter urges the company to double headcount. Which response fits a right-sized company?",
+        "choices": [
+          "Double headcount before the queue changes so competitors see the company as serious.",
+          "Study the weekend spike and hire only if sustained customer pain exceeds the current team's capacity.",
+          "Keep the team fixed because intentional smallness means headcount should not change."
+        ],
+        "correctIndex": 1,
+        "explanation": "Right size is based on fit and strain. The company should inspect the actual support pain before adding people or refusing growth.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "An architecture studio is praised for direct principal access, yet a second office would look prestigious. What question should lead the vote?",
+        "choices": [
+          "Would the second office improve client value enough to justify distance, coordination, and rent?",
+          "Would the second office make the studio easier to describe at industry events?",
+          "Would the partners feel less small once the lease is signed?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The lease should be judged by its effect on the work and client relationship, not by the status signal of a larger footprint.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A ceramics shop has rising defects because inspection is rushed. Which move avoids treating smallness as sacred?",
+        "choices": [
+          "Refuse the hire so the workshop preserves its identity as a tiny team.",
+          "Add an inspection assistant with a quality target and review defects after the next batches.",
+          "Open a second workshop so the added size feels more ambitious."
+        ],
+        "correctIndex": 1,
+        "explanation": "Growth can be right when it strengthens quality. The hire is tied to a concrete bottleneck rather than vanity.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "An investor questions a flat hiring slide while revenue, churn, and ship speed are improving. What should the founder emphasize?",
+        "choices": [
+          "Promise faster hiring so the update looks more like a growth story.",
+          "Apologize for the small team before explaining the business results.",
+          "Point to profit, retention, customer outcomes, and speed as better signs of health than staff count."
+        ],
+        "correctIndex": 2,
+        "explanation": "Headcount can become a vanity metric. A profitable team that serves customers well does not need to apologize for staying small.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A restaurant broker proposes five locations, while regulars value the current cooks and owner presence. Which analysis is most Rework-aligned?",
+        "choices": [
+          "Accept the proposal because more locations prove the restaurant is no longer merely local.",
+          "List the quality, training, and customer-contact costs before deciding whether any expansion helps.",
+          "Reject every future location because a respected shop should never grow."
+        ],
+        "correctIndex": 1,
+        "explanation": "The question is not growth versus no growth. It is whether a larger footprint strengthens or dilutes the experience customers value.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A consultant says agencies at this revenue usually add account managers, but direct designer-client contact is working. What should the owner inspect?",
+        "choices": [
+          "Whether direct contact is causing repeated quality or schedule failures that a layer would solve.",
+          "Whether adding the layer would make the agency resemble firms with higher revenue.",
+          "Whether clients would be impressed by a more formal account structure."
+        ],
+        "correctIndex": 0,
+        "explanation": "A layer should solve a real coordination problem. Copying larger firms can create distance from the work without improving delivery.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which statement best captures the hard edge of \"Why grow?\"",
+        "choices": [
+          "Growth is suspicious whenever a company is already profitable.",
+          "Smallness is a virtue even when quality and service start to break.",
+          "Expansion should prove that it improves the work enough to justify added complexity."
+        ],
+        "correctIndex": 2,
+        "explanation": "The hard edge is cost awareness, not anti-growth ideology. Growth has to earn its complexity.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A founder says, \"We need more people because successful companies have more people.\" Which reply best challenges the assumption?",
+        "choices": [
+          "Which customer pain, quality issue, or capacity limit would the next person solve?",
+          "How many people would make the company sound serious in a press release?",
+          "Which competitor has the largest staff for us to benchmark against?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The next hire should answer a specific business need. Staff count alone is not proof that the company is healthier.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team wants a simple test for whether it is at the right size. Which review question is strongest?",
+        "choices": [
+          "Would a larger team make outsiders assume we are more ambitious?",
+          "Do our current size and layers help customers, profit, standards, speed, and the quality of daily work?",
+          "Can we keep headcount unchanged long enough to prove we are disciplined?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Right size is a fit question. The review should examine work quality and business health rather than status or stubbornness.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What is a right-sized company?",
+      "back": "It is a company whose size fits the work, customers, profit, standards, and daily operating needs rather than an automatic growth ideal.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "How does 37signals ground this lesson?",
+      "back": "37signals built profitable products while staying intentionally small, treating lean scale as a durable operating model rather than a waiting room for bigness.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "front": "What costs come with expansion?",
+      "back": "Expansion can add communication drag, management layers, payroll pressure, slower decisions, extra handoffs, and pressure to invent work.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "When is growth justified?",
+      "back": "Growth is justified when demand, quality, service, or capability requires it and the added size strengthens the work more than it slows the company.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "What is the false reading of smallness?",
+      "back": "The false reading treats smallness as sacred. Rework's sharper point is to choose size deliberately, not to reject every hire or opportunity.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "front": "Why is headcount a weak scorecard?",
+      "back": "Headcount says little about usefulness, profit, customer value, standards, or speed. It can become a prestige signal that hides operating drag.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Audit Growth Cost",
+    "coreSkill": "Before any growth move, write the work problem it solves and the complexity it adds. Judge the move by customer value, quality, profit, speed, and daily clarity. Treat status gains as weak evidence.",
+    "ifThenPlans": [
+      {
+        "context": "When a hire sounds impressive",
+        "plan": "If the role does not solve a repeated customer, quality, capacity, or skill problem, then pause the hire and inspect the actual strain."
+      },
+      {
+        "context": "When smallness becomes pride",
+        "plan": "If service or quality is slipping, then consider growth as a tool rather than defending a tiny-team identity."
+      },
+      {
+        "context": "When investors or peers ask about headcount",
+        "plan": "If staff count becomes the scorecard, then answer with profit, customer outcomes, speed, and product quality."
+      },
+      {
+        "context": "When a new layer is proposed",
+        "plan": "If the layer adds handoffs, then name the specific coordination failure it must fix before approving it."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one proposed growth move and write two lists: the customer or quality problem it solves, and the new coordination cost it creates.",
+    "weeklyPractice": "Each week, review one area of strain. Decide whether it needs a hire, a simpler process, a narrower promise, or no change yet."
+  },
+  "memorableLines": [
+    {
+      "text": "Growth adds more than opportunity.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the tradeoff in five plain words."
+    },
+    {
+      "text": "Size is often mistaken for score.",
+      "location": "breakdown.deepRead",
+      "why": "It names the status error behind automatic expansion."
+    },
+    {
+      "text": "Larger for what?",
+      "location": "breakdown.fullRead",
+      "why": "It turns the title into a practical test for every growth decision."
+    }
+  ]
+}

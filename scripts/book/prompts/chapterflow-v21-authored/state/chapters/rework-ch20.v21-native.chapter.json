@@ -1,0 +1,372 @@
+{
+  "chapterId": "rework-ch20",
+  "number": 20,
+  "title": "Build half a product, not a half-assed product",
+  "readingTimeMinutes": 11,
+  "hook": "Cutting a good feature can hurt, yet that cut is often where a great product starts.",
+  "counterintuition": "A long feature list reads as generosity to customers, but spreading finite effort across all of it turns quality into mush. Doing fewer things completely beats doing many things poorly, every time.",
+  "tryThisNow": "List your product's five features, then cross out the two that are merely good. Beside the survivors, write the one promise each must keep flawlessly for the customer to feel served.",
+  "keyTakeaway": "Shrink the promise until your team can honor it fully; partial excellence on a narrow scope beats broad mediocrity, so cut the merely good to make one thing great.",
+  "breakdown": {
+    "fastRead": "37signals could not match the feature bulk of the heavyweight enterprise tools it competed with. It had less time and a smaller team. So Basecamp did fewer things and did them clearly: project coordination, communication, a place to see what was happening.\n\nThat was a choice to build half a product, not a half-assed one. The promise got narrower on purpose. Within those chosen boundaries, the product felt whole.\n\nThe move is to sacrifice scope, not quality. Limited time and skill have to land somewhere. Concentrate them on the essential part, finish that part beautifully, and let the rest go. A narrow promise honored fully will always beat a wide promise broken everywhere.",
+    "deepRead": "Sacrifice is the hidden engine here, and it bites hardest on the ideas that are merely good. Bad ideas cut themselves; nobody fights for them. The good ones feel defensible, so the team keeps them, and keeping them all is exactly what prevents any single piece from reaching great. Removing the merely good frees the time and attention that push the remaining part from fine to excellent.\n\nWatch the difference between the two halves. A half product deliberately narrows what it promises and then delivers that fully. A half-assed product reaches for every attractive idea, runs out of time, skill, and care partway through each one, and ends up with broken promises scattered across the whole thing. One is coherent inside its boundaries. The other disappoints everywhere. They are opposites, not two framings of the same compromise.\n\nBasecamp shows why the narrowing works. Its value never came from matching competitors feature for feature. It came from doing essential project coordination so clearly that customers felt the product was complete for what they needed. Completeness, measured that way, is about your own promise, not a rival's checklist. A heavyweight tool could list ten things Basecamp lacked, and Basecamp still felt whole, because none of those ten were part of the promise it had chosen to keep.\n\nThe discrimination you can now make is this: a missing feature is not a broken promise. The useful question stops being how many features exist and becomes whether the central promise feels whole to the person using it.",
+    "fullRead": "Focus has a failure mode, and it is the most tempting misreading of the whole idea. A team hears build half a product and treats it as permission to ship something incomplete, then calls the gaps focus. That is not the move. Cutting the product in half does not mean leaving the surviving half rough, sloppy, or unfinished. It means shrinking the promise until the team can actually honor it, then honoring it completely. The chosen half must work beautifully for the people it serves, or the whole argument collapses into an excuse for laziness.\n\nSee where the effort is supposed to go. When a team concentrates craft on its central promise, the parts customers touch most are the parts built with the most care. Polish spread evenly across every feature is polish diluted until nothing stands out. A camera maker who perfects the shutter, the grip, and the autofocus, and ships a plain menu system, serves the photographer better than one who gives every screen a mediocre shine. Focus directs craft to where it is felt, which is the only place quality ever registers with a customer.\n\nThe hardest part is emotional, not analytical. Anyone can drop a weak idea. The discipline is dropping a strong one. A feature that three smart people championed, that demos well, that a competitor has, that you personally like, is the feature whose removal feels like loss. Yet that is precisely the cut that creates room. Greatness in one place is paid for by absence in several others. A team unwilling to feel that loss will keep everything, spread thin, and produce the broad mediocrity it was trying to avoid.\n\nThere is a real boundary on the idea, and naming it keeps the move honest. Narrowing is not the same as abandoning. Cut past the essential and you do not have a half product anymore; you have a fragment that breaks its own promise. The skill is to find the smallest promise that still matters to a customer and protect it absolutely, not to keep slicing until nothing useful remains. A note app that syncs reliably and searches instantly is a half product worth loving. The same app that syncs sometimes and searches slowly is half-assed, and no amount of reframing fixes that.\n\nSo the test at every scope meeting is simple and unforgiving. Do not ask how this stacks up against the competitor's feature grid. Ask whether the promise you have chosen feels complete to the person who relies on it. If it does, you have built half a product, and that is a finished thing. If it does not, more features will not rescue it; they will only spread the failure wider. Pick the part that matters, make it excellent, and let the rest be the cost you paid to get there."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch20.ex.basecamp",
+      "title": "The Feature Grid 37signals Refused",
+      "tags": [
+        "project tools",
+        "scope cut",
+        "narrow promise"
+      ],
+      "planSpec": {
+        "domain": "project management software",
+        "audience": "makers tempted to match a competitor's feature count",
+        "stakes": "match the enterprise feature bulk or honor a narrow promise",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist chooses narrow completeness over matching a rival's feature list"
+      },
+      "scenario": "In a Bergen office, Eldrid pins a printout of a heavyweight enterprise tool's feature grid beside the roadmap, the same kind of bulk 37signals never tried to match when it shipped Basecamp. Sales wants every box checked before launch; the team has eight weeks. Before the scope review ends, Eldrid must choose: chase the grid and finish nothing well, or hold the scope to clear project coordination and make that part feel complete.",
+      "whatToDo": "Eldrid should drop the grid as the target and define completeness against Basecamp's kind of narrow promise, polishing project coordination until customers feel it is whole.",
+      "whyItMatters": "Measuring completeness against a rival's checklist guarantees a thin spread; measuring it against your own chosen promise lets a smaller team ship something that actually feels finished."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch20.fact.3",
+      "title": "Cutting the Idea Everybody Liked",
+      "tags": [
+        "merely good",
+        "sacrifice",
+        "design"
+      ],
+      "planSpec": {
+        "domain": "branding and design studio",
+        "audience": "teams that protect every defensible idea",
+        "stakes": "keep three good features or cut two to perfect one",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist sacrifices a merely-good idea to make one piece great"
+      },
+      "scenario": "\"It demos beautifully, though,\" Folke admits in the studio review, staring at three features the team genuinely likes and a deadline that fits maybe one done well. The animated dashboard tests fine. So does the export wizard. But none of the three is excellent, and limited hands cannot lift all of them. Before the client sign-off, Folke has to decide whether to keep all three at fine, or cut the two merely-good ones so the core editor can become great.",
+      "whatToDo": "Folke should cut the dashboard and the wizard, both merely good, and pour the freed time into making the core editor excellent rather than leaving three features stuck at fine.",
+      "whyItMatters": "Good ideas resist cutting precisely because they feel defensible, yet keeping them all is what blocks any single piece from reaching great, so the hard cut is the start of excellence."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch20.fact.4",
+      "title": "The Menu That Promised Everything",
+      "tags": [
+        "finite effort",
+        "wishful scope",
+        "kitchen"
+      ],
+      "planSpec": {
+        "domain": "restaurant operations",
+        "audience": "operators who plan as if effort were unlimited",
+        "stakes": "keep a sprawling menu or sacrifice scope to a few dishes",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist accepts that limited capacity requires real sacrifice"
+      },
+      "scenario": "Forty dishes, one small line, and tickets backing up past twenty minutes: Gudrun reads the night's numbers in her Oslo kitchen and sees the truth in them. Every dish on the menu is a good idea. The team simply cannot execute forty of them well with the time, hands, and skill it has. Planning had assumed otherwise. As she sits to redraw tomorrow's menu, Gudrun must choose between wishful scope that disappoints everywhere and a short list the kitchen can actually nail.",
+      "whatToDo": "Gudrun should cut the menu to the eight dishes the line can execute flawlessly, treating limited capacity as a real constraint that demands sacrifice rather than wishful planning.",
+      "whyItMatters": "Time, skill, and attention are finite, so a menu sized by hope guarantees mediocre plates across the board, while a menu sized to true capacity lets every dish leave the pass excellent."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch20.fact.8",
+      "title": "Focus Was Not the Excuse",
+      "tags": [
+        "hard edge",
+        "broken promise",
+        "recovery"
+      ],
+      "planSpec": {
+        "domain": "consumer mobile app",
+        "audience": "teams that mistake sloppiness for focus",
+        "stakes": "ship a rough narrowed product or finish the chosen half well",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist fixes the misreading that focus excuses incompleteness"
+      },
+      "scenario": "The reviews landed hard: a budgeting app that cut to one feature and still shipped it broken. Helle had cheered the scope cut as focus, then let the single remaining tracker sync unreliably and crash on import. In a Trondheim postmortem, the team realizes narrowing the promise was right, but leaving the surviving half rough turned a half product into a half-assed one. They have one release window to make the chosen feature work beautifully or lose the early users for good.",
+      "whatToDo": "Helle should stop treating the scope cut as cover for rough edges, then spend the release window making the one remaining tracker sync and import flawlessly for the people who use it.",
+      "whyItMatters": "Cutting scope is only half the move; the surviving half must work beautifully, or focus becomes an excuse for sloppiness and the narrowed product breaks the one promise it kept."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch20.fact.7",
+      "title": "Where the Photographer Feels It",
+      "tags": [
+        "craft placement",
+        "felt quality",
+        "hardware"
+      ],
+      "planSpec": {
+        "domain": "camera hardware design",
+        "audience": "makers polishing every part equally",
+        "stakes": "spread polish evenly or concentrate craft where it is felt",
+        "format": "contrast",
+        "requiredBeat": "the protagonist directs craft to the parts customers actually experience"
+      },
+      "scenario": "At 7:40 a.m. before the design lock, Ivar lays two plans side by side at the Drammen workshop bench. One spreads a thin, equal polish across every screen, port, and menu. The other pours craft into the shutter feel, the grip, and the autofocus, and ships a plain settings menu. Photographers live in the first three; almost no one lingers in menus. Before the lock, Ivar must choose which plan the team builds, knowing it cannot perfect all of it.",
+      "whatToDo": "Ivar should concentrate the team's craft on the shutter, grip, and autofocus that photographers actually feel, and accept a plain menu rather than diluting polish evenly across everything.",
+      "whyItMatters": "Polish spread evenly is polish diluted until nothing stands out, so directing craft to the parts customers experience most is what makes quality register where it counts and ignored where it does not."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch20.fact.6",
+      "title": "The Box the Customer Never Checked",
+      "tags": [
+        "completeness",
+        "competitor list",
+        "saas"
+      ],
+      "planSpec": {
+        "domain": "accounting software",
+        "audience": "product leads chasing parity with rivals",
+        "stakes": "add a feature to match a rival or hold a whole promise",
+        "format": "decision_point",
+        "requiredBeat": "the protagonist measures completeness against the promise, not the rival"
+      },
+      "scenario": "A churned customer's note says a competitor has multi-currency, so Jarle's accounting tool must be incomplete. Reading it before the planning call, Jarle knows the product already does small-business bookkeeping cleanly and fully, the way Basecamp felt complete without matching enterprise feature counts. The team could scramble to bolt on multi-currency none of its core users requested. Before the call locks the quarter, Jarle has to decide whether a rival's checkbox actually breaks his own promise.",
+      "whatToDo": "Jarle should judge completeness against the bookkeeping promise his customers chose, not the rival's checkbox, and keep refining what already serves them rather than chasing parity.",
+      "whyItMatters": "A feature a competitor offers does not break your own promise; completeness comes from honoring the boundaries you chose, so chasing every rival's box only spreads effort off the part that matters."
+    },
+    {
+      "exampleId": "ex07",
+      "sourceAnchorId": "ch20.fact.9",
+      "title": "Forty Features, No Coherence",
+      "tags": [
+        "feature count",
+        "whole promise",
+        "note tool"
+      ],
+      "planSpec": {
+        "domain": "note-taking software",
+        "audience": "teams that gauge strength by feature count",
+        "stakes": "grow the feature count or make the core promise feel whole",
+        "format": "before_after",
+        "requiredBeat": "the protagonist replaces feature count with a wholeness test"
+      },
+      "scenario": "A year ago Kari shipped a note app with forty features and a changelog she was proud of. Today users describe it as bloated and leave for a tool that just syncs and searches well. The feature count kept climbing while coherence quietly collapsed. Sitting with the retention chart, Kari sees that no box on the list ever answered the real question: does writing and finding a note feel whole? The count grew; the promise never did.",
+      "whatToDo": "Kari should stop measuring strength by feature count and rebuild around one test, whether capturing and finding a note feels whole, then cut whatever does not serve that core promise.",
+      "whyItMatters": "Feature count can rise while coherence falls apart, so the meaningful gauge of a product is whether its central promise feels complete to the customer, not how long the changelog runs."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch20.ex.basecamp",
+        "prompt": "A small team building a project tool pins a heavyweight enterprise rival's feature grid beside its roadmap and has only eight weeks, the situation 37signals faced before Basecamp. Which move fits narrow excellence?",
+        "choices": [
+          "Match as many grid boxes as possible so the product looks competitive at launch, even if each lands rough.",
+          "Pause the build until the team is large enough to deliver the full enterprise feature set the rival offers.",
+          "Keep the scope to clear project coordination and make that promise feel complete, ignoring boxes outside it."
+        ],
+        "correctIndex": 2,
+        "explanation": "Basecamp's completeness came from a narrow promise honored fully, not from matching the rival's grid. Chasing every box with eight weeks spreads effort thin and finishes nothing well.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch20.fact.3",
+        "prompt": "A studio has three features it genuinely likes, all testing as merely fine, and time to make only one excellent before sign-off. A lead asks which path reaches great. Which reasoning fits narrow excellence?",
+        "choices": [
+          "Keep all three at fine, since each is a defensible good idea and cutting any one wastes finished work.",
+          "Cut the two merely-good features so the freed time can push the remaining one from fine to great.",
+          "Ship the three as they are and revisit quality later, since shipping more features matters more right now."
+        ],
+        "correctIndex": 1,
+        "explanation": "Good ideas resist cutting because they feel defensible, yet keeping them all blocks any single piece from reaching great. Removing the merely good frees the attention that makes one part excellent.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch20.fact.4",
+        "prompt": "A kitchen runs forty dishes through one small line and tickets back up past twenty minutes, with every dish a good idea. As the chef redraws tomorrow's menu, which planning choice respects finite capacity?",
+        "choices": [
+          "Cut the menu to the dishes the line can execute flawlessly, treating limited capacity as a constraint that demands sacrifice.",
+          "Keep all forty and add staff later, since a careful enough plan can serve every good dish without hurting quality.",
+          "Rotate the forty dishes by night so each appears sometimes, keeping the full range while easing the line's load."
+        ],
+        "correctIndex": 0,
+        "explanation": "Time, skill, and attention are finite, so wishful scope guarantees mediocre plates everywhere. Sizing the menu to true capacity is the sacrifice that lets each surviving dish leave the pass excellent.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch20.fact.8",
+        "prompt": "A budgeting app cut to one feature, then shipped that tracker syncing unreliably and crashing on import, and the team called the cut focus. A colleague says the focus was the problem. Which judgment is most accurate?",
+        "choices": [
+          "The colleague is wrong, since cutting scope is the whole move and the rough edges are an acceptable cost of focus.",
+          "Narrowing the promise was right, but leaving the surviving feature rough turned a half product into a half-assed one.",
+          "The team should add back the cut features, because one polished feature can never carry a product on its own."
+        ],
+        "correctIndex": 1,
+        "explanation": "Focus is not an excuse for sloppiness. Cutting to one feature was sound, but the chosen half must work beautifully; a broken tracker breaks the single promise the narrowing was meant to honor.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch20.fact.7",
+        "prompt": "A camera maker can spread a thin, equal polish across every screen and menu, or pour craft into the shutter, grip, and autofocus and ship a plain menu. Photographers live in the first three. Which choice best fits where craft should go?",
+        "choices": [
+          "Spread the polish evenly, since a uniformly refined product signals quality across the whole experience.",
+          "Delay the design lock until the team can perfect every screen, port, and menu to the same high standard.",
+          "Concentrate craft on the shutter, grip, and autofocus photographers actually feel, and accept a plain menu."
+        ],
+        "correctIndex": 2,
+        "explanation": "Polish spread evenly is polish diluted until nothing stands out. Directing craft to the parts customers experience most is what makes quality register where it is felt rather than nowhere.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch20.fact.6",
+        "prompt": "A churned user notes that a rival accounting tool has multi-currency, so a bookkeeping product whose core users never asked for it must be incomplete. Before the planning call, which read of completeness holds up?",
+        "choices": [
+          "A missing rival feature does not break your own promise; completeness comes from honoring the boundaries you chose.",
+          "The product is incomplete whenever a competitor offers a feature it lacks, so multi-currency must be added now.",
+          "The team should copy the rival's full feature list, since the market leader's checklist defines what complete means."
+        ],
+        "correctIndex": 0,
+        "explanation": "Completeness is measured against your own promise, not a rival's checklist. Bolting on multi-currency no core user wanted spreads effort off the bookkeeping promise that already feels whole.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch20.fact.9",
+        "prompt": "A note app grew to forty features and a long changelog, yet users now call it bloated and leave for a tool that just syncs and searches well. Rebuilding it, which test of product strength fits narrow excellence?",
+        "choices": [
+          "Count the features against the departing tool's count and add enough to win the comparison back.",
+          "Audit the changelog for the most-requested additions and ship those before touching the existing forty.",
+          "Ask whether capturing and finding a note feels whole, then cut whatever does not serve that core promise."
+        ],
+        "correctIndex": 2,
+        "explanation": "Feature count can climb while coherence collapses. The meaningful gauge is whether the central promise feels complete to the user, so the rebuild tests wholeness, not the length of the list.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch20.fact.1",
+        "prompt": "A founder argues that adding more features will always make the product more valuable, so the team should pursue every attractive idea at once. A teammate disagrees. Which warning best reflects narrow excellence?",
+        "choices": [
+          "The founder is right, since each added feature gives some customer one more reason to buy and keep the product.",
+          "Spreading finite effort across every idea turns quality into mush, so the product disappoints everywhere instead of excelling anywhere.",
+          "The team should add features only in the order rivals released theirs, matching the market's proven sequence."
+        ],
+        "correctIndex": 1,
+        "explanation": "More features do not automatically add value. Limited time and skill spread across everything leave each part mediocre, so doing fewer things completely beats doing many things poorly.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch20.fact.2",
+        "prompt": "Your colleague says a half product and a half-assed product are basically the same thing with nicer framing. You want to correct him using the distinction between the two. Which reply is most accurate?",
+        "choices": [
+          "He is essentially right, since both deliver less than a full product and the label just softens the same shortfall.",
+          "They differ only in marketing tone, because customers cannot tell a narrowed promise from a broken one anyway.",
+          "A half product narrows the promise and honors it fully; a half-assed one breaks promises everywhere, so they are opposites."
+        ],
+        "correctIndex": 2,
+        "explanation": "The two are opposites, not synonyms. One delivers a coherent promise inside chosen boundaries; the other scatters broken promises across everything, so framing is not what separates them.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch20.concept",
+      "front": "Why does doing fewer things completely beat doing many things poorly?",
+      "back": "Limited time and skill must be concentrated somewhere. Spread across every feature, effort turns quality into mush and the product disappoints everywhere; focused on the essential part, it can reach excellence where customers feel it.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch20.ex.basecamp",
+      "front": "How did Basecamp reach completeness without matching enterprise feature counts?",
+      "back": "37signals chose a narrow promise: clear project coordination and communication rather than the feature bulk of heavyweight tools. By honoring that boundary fully, Basecamp felt whole, because completeness is measured against the promise, not a rival's list.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch20.fact.3",
+      "front": "Why are merely-good ideas the hardest, and most important, ones to cut?",
+      "back": "Bad ideas cut themselves, but good ones feel defensible, so teams keep them all. Keeping every good idea blocks any single piece from reaching great; removing the merely good frees the time and attention that push the remaining part to excellent.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch20.fact.2",
+      "front": "What actually separates a half product from a half-assed product?",
+      "back": "A half product deliberately narrows its promise and then delivers that promise fully, staying coherent inside its boundaries. A half-assed product reaches for every idea, runs out of time and care, and ends with broken promises everywhere. They are opposites, not two framings.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch20.fact.8",
+      "front": "Why is shipping something incomplete and calling it focus a misreading?",
+      "back": "Narrowing scope is only half the move. The surviving half must work beautifully for the people it serves, or focus becomes an excuse for sloppiness. The real edge is shrinking the promise until the team can honor it fully, then honoring it.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch20.fact.9",
+      "front": "What question should replace counting features when judging a product?",
+      "back": "Ask whether the central promise feels whole to the person using it, not how many features the changelog lists. Feature count can climb while coherence collapses, so wholeness of the core promise is the meaningful test of product strength.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Shrink the Promise Until Whole",
+    "coreSkill": "Find the smallest promise that still matters to a customer, then protect it absolutely while cutting everything else. Score each feature by whether removing it lets the survivors reach excellent, and treat the merely-good ideas as your real cuts, not the bad ones. Judge done by whether the chosen promise feels whole, never by how it stacks against a rival's feature grid.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch20.fact.3",
+        "context": "When a feature you genuinely like is keeping the whole product stuck at merely fine",
+        "plan": "If a good idea is blocking the core from becoming great, then use Shrink the Promise Until Whole and cut it, moving its freed time onto the essential part."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.6",
+        "context": "When a competitor's feature makes your product suddenly feel incomplete",
+        "plan": "If a rival's checkbox tempts you to chase parity, then run Shrink the Promise Until Whole and judge completeness against your chosen promise, not their list, before adding anything."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.8",
+        "context": "When you have cut scope but the surviving half is still rough or half-finished",
+        "plan": "If you catch yourself calling a rough cut focus, then apply Shrink the Promise Until Whole and finish the remaining half beautifully before shipping it."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, take a product or project you own and pick the single promise that most matters to its user. Cut two merely-good parts in writing, then list the one thing the survivor must do flawlessly, and start that fix.",
+    "weeklyPractice": "Each week, review one scope decision by asking whether the central promise feels whole rather than counting features against a rival. Track which merely-good idea you cut and whether removing it let the core part get measurably better."
+  },
+  "memorableLines": [
+    {
+      "text": "A narrow promise honored fully will always beat a wide promise broken everywhere.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the half product versus half-assed contrast into one carryable line."
+    },
+    {
+      "text": "Bad ideas cut themselves; nobody fights for them.",
+      "location": "breakdown.deepRead",
+      "why": "It names why the painful cuts are the good ideas, in a sharp, repeatable form."
+    },
+    {
+      "text": "Greatness in one place is paid for by absence in several others.",
+      "location": "breakdown.fullRead",
+      "why": "It states the trade at the heart of sacrifice as a clean, quotable principle."
+    }
+  ]
+}

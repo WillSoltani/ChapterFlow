@@ -1,0 +1,351 @@
+{
+  "chapterId": "rework-ch13",
+  "number": 13,
+  "title": "Mission statement impossible",
+  "readingTimeMinutes": 11,
+  "hook": "A wall plaque says excellence, and the support line keeps customers waiting forty minutes.",
+  "counterintuition": "Words like excellence and integrity sound principled because they rule nothing out. A value that forces no refusal and changes no product is decoration, not a commitment.",
+  "tryThisNow": "Pull up your own values page. For each word, write one thing the company would refuse under pressure to keep it true. If a word yields no refusal, cross it out.",
+  "keyTakeaway": "Treat every stated value as a behavioral prediction: name what the company would refuse to honor it, then check the product and the refusals against the words.",
+  "breakdown": {
+    "fastRead": "A framed plaque in the lobby reads excellence, innovation, integrity. None of those words ever stopped a single decision. They fit any company because they cost nothing to print. That is the tell. A value that rules nothing out commits a company to nothing.\n\nThe sharper standard is live it or leave it. If a firm claims simplicity, its product should get simpler. If it claims service, support should prove it. The words only matter when they predict behavior.\n\n37signals worked the other way. Smallness, clarity, and calm work were not a sign on a wall. They showed up in what the company built and what it refused. So watch the conduct, not the slogan. Behavior is the only evidence anyone outside can trust.",
+    "deepRead": "Stating a value costs nothing, and that is exactly why it proves nothing. Announcing simplicity demands no tradeoff. The hard part is restructuring real work to honor it, and agreement at the top does not do that on its own. A leadership team can nod at integrity over coffee while the org keeps shipping the same complicated product. The gap between claiming a belief and organizing work around it is wide, and only deliberate structural effort closes it.\n\nSo where does the proof live? In conduct under pressure. Anyone can paint a word on a wall, which means an outsider can trust only what the company actually does when a choice costs something. Watch the refusals. A real commitment forces declining the opportunity that conflicts with it, and the chosen no exposes the value more sharply than any new feature does. Adding things is easy and rarely collides with a slogan; the deliberate tradeoff is what tests a mission.\n\n37signals shows the working version. Its public beliefs in staying small, in clarity, and in a calm pace of work were tied to how it actually built and operated, not confined to a plaque. The beliefs constrained product choices, so the stated values predicted concrete decisions instead of decorating an office. That is the difference between a credible mission and an inspirational poster: one shapes the build, the other hangs near the coffee machine. Run each value through one question. If the company claims this, what should the product visibly do, and what should it turn down?",
+    "fullRead": "Quieter than the empty plaque is the company that performs enoughness, and it survives most audits. Its leaders read the language, learn the lines, and recite simplicity and service on cue. The slogans now sound earned. Yet the product stays as tangled as a competitor's, and the support queue still runs forty minutes deep. Eloquent wording costs nothing and changes no decision, so the polish of the prose is never what makes a mission credible. The performance can be more durable than the plaque precisely because it is harder to catch.\n\nCustomers catch it anyway. They experience the product and the support directly, so they weigh the promise against the actual encounter rather than against the tagline. Messaging sets an expectation; the lived encounter overrides it. A heavily marketed values page can sit right beside conduct that contradicts it, and the page proves nothing on its own. People believe what they met, not what they were told to believe. That is why a publicized values page is weak evidence and a refused shortcut is strong evidence.\n\nThe test that cuts through all of it is a prediction. Ask what the company would do when honoring a value gets costly, and ask what it would decline. Pressure forces tradeoffs, and the choice made when the choice hurts reveals whether the stated value governs anything. Clarity of phrasing measures only the writing. A mission you can recite beautifully and never act on is still a decoration with good grammar.\n\nSkip the boundary here and you produce the opposite mistake. The fix for hollow language is not to drop purpose and turn cynical about every statement of belief. Purpose still guides behavior once it is embodied. The surface error is to sneer at all mission talk; the deeper error is to leave the language unembodied. The repair is to make purpose operational. Replace excellence, innovation, integrity, and leadership with concrete habits and concrete decisions, then let those decisions speak for the belief.\n\nWatch the test itself, because the live-it-or-leave-it standard has a limit too. A single honored refusal can be a coincidence, and one elegant product choice can be luck rather than principle. So look for the pattern, not the anecdote. Watch what the company refuses across many costly moments, and watch whether the simplicity claim keeps holding as the product grows. A value is credible when the refusals repeat under different kinds of pressure. Judge purpose the way a customer does. Not by the plaque, but by the encounter, and not by the promise, but by the no the company was willing to say out loud."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch13.ex.empty-abstractions",
+      "title": "Excellence Plaque Audit",
+      "tags": [
+        "mission",
+        "refusal test"
+      ],
+      "planSpec": {
+        "domain": "software company offsite",
+        "audience": "founders and leads",
+        "stakes": "credibility of stated values",
+        "format": "decision_point",
+        "requiredBeat": "convert a slogan into a refusal or reject it"
+      },
+      "scenario": "Renske stands at a Rotterdam offsite at 4 p.m., facing a printed slide that lists excellence, innovation, and integrity. The board wants the values ratified before the vote in ten minutes. She notices each word fits any company on earth and forces no decision. Renske must say now whether the team ratifies a slogan that rules nothing out, or rewrites it into something the product would actually have to do.",
+      "whatToDo": "Renske asks the room to name, for each word, one opportunity the company would refuse to keep it true. The two that yield no refusal get struck from the slide before the vote.",
+      "whyItMatters": "A value that cannot name a refusal commits the company to nothing. Forcing each word to predict a behavior separates a real stance from lobby decoration anyone could print."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch13.ex.live-it-or-leave-it",
+      "title": "Simpler Or It Stays",
+      "tags": [
+        "simplicity",
+        "live it test"
+      ],
+      "planSpec": {
+        "domain": "product roadmap review",
+        "audience": "product team",
+        "stakes": "a claimed value versus a feature",
+        "format": "dilemma",
+        "requiredBeat": "test the simplicity claim against the actual build"
+      },
+      "scenario": "On a Tuesday in a Lisbon co-working loft, Diego reviews a roadmap whose first line reads our value is simplicity. The proposed release adds nineteen settings toggles and a second dashboard. A sales lead pushes to ship it before the quarter closes. Diego sees the live it or leave it standard staring back: if the company claims simplicity, the product should get simpler, not heavier. He must decide before the release locks whether the toggle pile ships or the value does.",
+      "whatToDo": "Diego holds the release against the simplicity claim and cuts the second dashboard, shipping one default that removes settings instead of adding them, so the product visibly gets simpler.",
+      "whyItMatters": "A simplicity claim is a behavioral prediction. When the product never gets simpler, the claim fails the live-it-or-leave-it test, and customers feel the gap long before any plaque does."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch13.fact.5",
+      "title": "The Refused Account",
+      "tags": [
+        "service",
+        "what gets declined"
+      ],
+      "planSpec": {
+        "domain": "customer support operations",
+        "audience": "support and revenue leads",
+        "stakes": "a lucrative client against a stated value",
+        "format": "decision_point",
+        "requiredBeat": "let a refusal reveal the real value"
+      },
+      "scenario": "Hana runs a Nairobi support floor where the wall says we put service first. At 9 a.m. a huge account demands a custom rule that would route its tickets ahead of everyone else's, burying smaller customers for days. Revenue wants the deal signed before lunch. Hana realizes the slogan means nothing until a costly no proves it. She has to tell the account before lunch, minutes before the contract goes out: take the money, or refuse the queue-jump to keep service real.",
+      "whatToDo": "Hana declines the queue-jump clause and keeps the first-in-first-out rule, telling the account the service promise applies to every customer or it is just a wall sign.",
+      "whyItMatters": "A mission shows up in what a company refuses as much as in what it promotes. The deliberate no under real revenue pressure is stronger evidence of the value than any new feature could be."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch13.ex.37signals",
+      "title": "Calm Work, Real Hours",
+      "tags": [
+        "calm work",
+        "37signals"
+      ],
+      "planSpec": {
+        "domain": "engineering staffing policy",
+        "audience": "engineering manager",
+        "stakes": "a stated belief versus crunch",
+        "format": "mistake_recovery",
+        "requiredBeat": "embody a belief in an operating rule, not a slogan"
+      },
+      "scenario": "Espen manages a small team that copied a 37signals line about calm work onto its onboarding deck, then quietly ran three sixty-hour crunches in a row. A launch slips, and a senior engineer asks before standup whether calm work is a real practice or just deck copy. Espen sees the gap between the printed belief and the actual schedule. He has to tell the team, this morning, how the company will make smallness and calm work show up in the build instead of in the slide.",
+      "whatToDo": "Espen caps the team at a normal week, cuts launch scope to fit, and ties the calm-work belief to a staffing rule so the value constrains how the team builds, not how it markets.",
+      "whyItMatters": "Beliefs in smallness and calm work are credible only when they predict real product and staffing choices. Tied to a rule, the value shapes the build; left on a deck, it is a contradiction the team already noticed."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch13.fact.6",
+      "title": "The Marketed Values Page",
+      "tags": [
+        "customers detect",
+        "messaging gap"
+      ],
+      "planSpec": {
+        "domain": "consumer brand marketing",
+        "audience": "brand and CX leads",
+        "stakes": "publicity versus lived experience",
+        "format": "contrast",
+        "requiredBeat": "weigh the lived encounter over the messaging"
+      },
+      "scenario": "Beck heads brand at a Toronto meal-kit company whose new values page, integrity and customer focus front and center, just went live to glowing press. On Friday morning, churn data shows customers leaving after a billing dark pattern that traps renewals. A 10 a.m. meeting opens on whether to pour budget into amplifying the values page. Beck has to say before the spend is approved whether to amplify the page or fix the billing screen customers actually meet, knowing they trust the encounter over the slogan.",
+      "whatToDo": "Beck pauses the amplification spend and rewrites the renewal flow first, fixing the dark pattern so the lived billing experience matches the page before a cent goes to promoting it.",
+      "whyItMatters": "Customers compare the promise against the actual encounter, not the tagline. Publicity amplifies words, not conduct, so a marketed values page beside a trap proves nothing customers cannot already feel."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch13.fact.9",
+      "title": "Don't Drop Purpose",
+      "tags": [
+        "hard edge",
+        "embody not abandon"
+      ],
+      "planSpec": {
+        "domain": "startup leadership offsite",
+        "audience": "cofounders",
+        "stakes": "cynicism versus operational purpose",
+        "format": "predict_reveal",
+        "requiredBeat": "reject abandoning purpose for embodying it"
+      },
+      "scenario": "Camille and her cofounder sit in an Austin garage office after reading a stack of hollow corporate mission statements full of excellence and leadership. Burned by the cliches, her cofounder argues they should declare no purpose at all and just ship. Camille predicts that dropping purpose only trades empty words for no compass. Before they finalize the company handbook tonight, she must decide whether they skip mission entirely or rewrite it as concrete habits the work can prove.",
+      "whatToDo": "Camille rejects the no-purpose move and instead writes three operating rules the company will follow under pressure, turning the belief into decisions the product and refusals can demonstrate.",
+      "whyItMatters": "The surface mistake is cynicism about all statements of purpose. The real failure is unembodied language, fixed by making purpose operational, never by abandoning it and losing the compass entirely."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "At an offsite, a founder reviews a values slide listing excellence, innovation, and integrity, and asks why it feels weightless. A colleague says the words are too generic. What actually makes them weak as a mission?",
+        "choices": [
+          "Each word fits any company and forces no refusal, so it commits the firm to nothing concrete.",
+          "The words are unoriginal, and in most cases a more unusual vocabulary would make the same mission credible.",
+          "The slide lists only three values, when a serious mission for a firm like this usually needs five or more."
+        ],
+        "correctIndex": 0,
+        "explanation": "Abstractions like excellence apply to any choice, so they rule nothing out and never expose the firm to a hard decision. Credibility comes from forcing a refusal, not from rarer or more numerous words.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard",
+        "sourceAnchorId": "ch13.fact.3"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A product team's roadmap opens with our value is simplicity, then proposes adding nineteen toggles and a second dashboard this quarter. A lead wants to ship it. Under the live-it-or-leave-it standard, which read is correct?",
+        "choices": [
+          "Shipping the toggles is fine for now, because a team can honestly hold simplicity as a value while the product stays as complex as rivals'.",
+          "The simplicity claim is a behavioral prediction, so if the product does not get simpler the claim fails the test and is decoration.",
+          "Simplicity is satisfied as long as the toggles are documented clearly, since clear writing for that team's release proves the value holds."
+        ],
+        "correctIndex": 1,
+        "explanation": "A lived value predicts behavior; a simplicity claim is credible only when the product visibly reflects it. An unembodied value is decoration, and documenting complexity is not making the product simpler.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep",
+        "sourceAnchorId": "ch13.fact.8"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A support floor whose wall reads we put service first gets a lucrative account demanding a rule that jumps its tickets ahead of everyone, burying smaller customers. Which choice best demonstrates that the service value is real?",
+        "choices": [
+          "Sign the account and add a new premium support tier later, since launching extra service features for that floor is how a mission gets demonstrated.",
+          "Accept the queue-jump quietly to protect revenue, because for an account that size the tradeoff feels defensible to the support floor.",
+          "Refuse the queue-jump and keep the same rule for every customer, because the costly no proves the value better than any feature could."
+        ],
+        "correctIndex": 2,
+        "explanation": "A mission shows up in what a company refuses as much as in what it promotes. Adding a tier is easy and rarely conflicts with a slogan; the deliberate no under revenue pressure is what actually tests the value.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "sourceAnchorId": "ch13.fact.5"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "After a leadership team agrees over coffee that integrity is a core value, a manager assumes the rest of the organization will now fall into line behind it. Why is that assumption shaky?",
+        "choices": [
+          "Agreement at the top does not reorganize daily work, and aligning behavior takes deliberate structural effort that announcing the value never supplied.",
+          "The team should have voted on the value formally, since for a group that size an informal agreement carries no authority to set direction.",
+          "Integrity is the wrong value to start with, because a leadership team in most companies should align on customer focus before anything else."
+        ],
+        "correctIndex": 0,
+        "explanation": "Stating a value costs nothing and demands no tradeoff; the gap between claiming a belief and organizing work around it is wide. Only restructuring real work closes it, not a vote or a different word.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard",
+        "sourceAnchorId": "ch13.fact.2"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A small team copies a 37signals line about calm work onto its onboarding deck, then runs three sixty-hour crunches. An engineer asks if calm work is real or just deck copy. What would make the belief credible?",
+        "choices": [
+          "Keep the line on the deck and add smallness and clarity beside it, since stating the beliefs clearly as inspiration is what earns them credibility.",
+          "Tie calm work to a staffing rule that caps the week and cuts scope, so the belief constrains how the team actually builds.",
+          "Drop the calm-work line from the team's deck, because once this team has run a crunch the belief reads as hollow and is better left unstated."
+        ],
+        "correctIndex": 1,
+        "explanation": "37signals made smallness, clarity, and calm work credible by tying them to real product and operating choices, not a plaque. The belief is credible because it shows up in the build, not because it stays abstract.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep",
+        "sourceAnchorId": "ch13.fact.7"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A meal-kit brand launches a polished values page about integrity to glowing press, while a billing dark pattern keeps trapping customer renewals. A lead wants to amplify the page. What will customers most likely weigh?",
+        "choices": [
+          "Customers will mostly take their impression from the brand's advertising, so amplifying the values page should reshape how they judge the company.",
+          "Customers will reserve judgment until the page collects more press coverage, because for a launch this size publicity settles what people believe.",
+          "Customers will weigh the lived renewal experience over the slogan, so the trapped billing overrides the page no matter how loudly it is marketed."
+        ],
+        "correctIndex": 2,
+        "explanation": "Customers experience the product and support directly and compare the promise against the actual encounter. Messaging amplifies words, not conduct, so a marketed page beside a billing trap proves nothing on its own.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "sourceAnchorId": "ch13.fact.6"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Two cofounders, sick of hollow mission statements full of excellence and leadership, debate the handbook tonight. One argues they should declare no purpose at all and just ship. Which response best fits the embody-or-abandon edge?",
+        "choices": [
+          "Agree to skip purpose, because once most mission statements are hollow, declaring any purpose at all is the smart move to avoid.",
+          "Keep purpose but write it as concrete habits the product and refusals can prove, since the failure is unembodied language, not stating purpose.",
+          "Delay the handbook until they hire a copywriter, because for a launch this early the wording of the mission is what needs to be perfected first."
+        ],
+        "correctIndex": 1,
+        "explanation": "The surface mistake is cynicism about all statements of purpose; the real failure is unembodied language. The repair is to make purpose operational by embodying it, not to abandon it or polish the prose.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "sourceAnchorId": "ch13.fact.9"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Two investors want to judge whether a startup's stated mission is real before funding it. One proposes scoring how clearly and memorably the mission is phrased. What is the stronger test?",
+        "choices": [
+          "Score the phrasing for clarity and memorability, since for a pitch like this a crisply worded mission is the best available evidence of commitment.",
+          "Ask what the company would do under pressure and what it would decline, because the costly choice reveals whether the value governs behavior.",
+          "Count how many times the mission appears across the deck and the site, because for a startup that repetition signals how seriously the value is held."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pressure forces tradeoffs, so the choice made when honoring a value is costly exposes whether it governs anything. Clarity and repetition measure the writing and the marketing, not the commitment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep",
+        "sourceAnchorId": "ch13.fact.10"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A team posts a beautifully written values statement and recites it flawlessly, yet its product and support look identical to last year. A new hire calls the mission strong because the wording is inspiring. How should the team read this?",
+        "choices": [
+          "The mission is strong, because eloquent and inspiring wording is what makes a values statement credible to a new hire and the market.",
+          "The mission is fine as written, and in most cases the team can keep the wording and judge it again once the brand grows larger.",
+          "The mission is decoration so far, because polished language changes no decision and only the company's actual behavior can prove the belief."
+        ],
+        "correctIndex": 2,
+        "explanation": "A mission is meaningful only when daily behavior proves it. Eloquent wording costs nothing and changes no decision, so the quality of the prose is not what makes a mission credible; embodied behavior is.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep",
+        "sourceAnchorId": "ch13.fact.1"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch13.concept",
+      "front": "When is a stated value actually meaningful, and when is it just decoration?",
+      "back": "A value is meaningful only when daily decisions prove it. Polished words that change no choice and force no refusal are decoration; the behavior, not the prose, is what makes a mission credible.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch13.ex.empty-abstractions",
+      "front": "Why do words like excellence, innovation, and integrity make weak mission language?",
+      "back": "They apply to any choice, so they rule nothing out and never expose the company to a hard decision. Anything printable on any wall commits the firm to nothing and substitutes for prioritizing.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch13.fact.5",
+      "front": "Where does a real mission show up more sharply, in what a company adds or in what it refuses?",
+      "back": "In what it refuses. A genuine commitment forces declining the opportunity that conflicts with it, and adding a feature rarely tests a value. The costly, deliberate no exposes the mission most sharply.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch13.ex.37signals",
+      "front": "How did 37signals make beliefs like smallness and calm work credible instead of decorative?",
+      "back": "It tied smallness, clarity, and calm work to how it actually built and operated, not to a wall plaque. The beliefs constrained product choices, so the stated values predicted concrete decisions.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch13.fact.6",
+      "front": "Why is a heavily marketed values page weak evidence of what a company believes?",
+      "back": "Customers judge by the product and support they actually meet, not the slogan. Publicity amplifies words, not conduct, so a marketed page can sit right beside contradicting behavior and prove nothing.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch13.fact.9",
+      "front": "If most mission statements are hollow, why is dropping purpose the wrong fix?",
+      "back": "The surface mistake is cynicism about all purpose; the real failure is unembodied language. Purpose still guides behavior once embodied, so the repair is to make it operational, not to abandon it.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Live-It-or-Leave-It Test",
+    "coreSkill": "Treat every stated value as a behavioral prediction, then check the prediction against reality. For each word a company claims, name one opportunity it would refuse and one product change it would have to make to keep the word true. Watch the refusals and the build over time, not the plaque, and keep a value only if the conduct can prove it.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch13.ex.empty-abstractions",
+        "context": "When a values slide lists words that could belong to any company",
+        "plan": "If a value like excellence or integrity forces no refusal, then run the Live-It-or-Leave-It Test and strike the word unless you can name one opportunity the company would decline to keep it true."
+      },
+      {
+        "sourceAnchorId": "ch13.ex.live-it-or-leave-it",
+        "context": "When a release adds complexity under a banner of simplicity",
+        "plan": "If the roadmap claims simplicity or service while the product grows heavier, then run the Live-It-or-Leave-It Test and cut features until the product visibly gets simpler or drop the claim."
+      },
+      {
+        "sourceAnchorId": "ch13.fact.5",
+        "context": "When a lucrative deal conflicts with a value on the wall",
+        "plan": "If a costly opportunity clashes with a stated belief, then run the Live-It-or-Leave-It Test and let the deliberate refusal, not a new feature, be the proof the value is real."
+      },
+      {
+        "sourceAnchorId": "ch13.fact.9",
+        "context": "When hollow mission language tempts you to declare no purpose at all",
+        "plan": "If cynicism pushes you to drop purpose entirely, then run the Live-It-or-Leave-It Test and rewrite the belief as concrete habits the product and refusals can demonstrate instead."
+      }
+    ],
+    "twentyFourHourChallenge": "For one day, take three values your company or team states out loud. Beside each, write one opportunity the company would refuse and one product change it would make to keep the value true. Mark which of the three currently survives that test.",
+    "weeklyPractice": "Each week, pick one stated value and audit a single real decision against it. Record whether the choice honored the value under cost or contradicted it, and track which value keeps failing the refusal check."
+  },
+  "memorableLines": [
+    {
+      "text": "A value that rules nothing out commits a company to nothing.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the whole argument into one clause: a value with no refusal is empty."
+    },
+    {
+      "text": "Stating a value costs nothing, and that is exactly why it proves nothing.",
+      "location": "breakdown.deepRead",
+      "why": "A tight reversal that turns the cheapness of words into the reason they carry no evidence."
+    },
+    {
+      "text": "A mission you can recite beautifully and never act on is still a decoration with good grammar.",
+      "location": "breakdown.fullRead",
+      "why": "It names the performed-mission trap with a memorable, slightly mocking image."
+    }
+  ]
+}

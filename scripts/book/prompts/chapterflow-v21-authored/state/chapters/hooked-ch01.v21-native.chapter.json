@@ -1,0 +1,320 @@
+{
+  "chapterId": "hooked-ch01",
+  "number": 1,
+  "title": "The Habit Zone",
+  "readingTimeMinutes": 11,
+  "hook": "Google wins many tiny defaults before anyone bothers to compare.",
+  "counterintuition": "The Habit Zone works as a sorting tool before it becomes a growth tactic: frequency and perceived utility decide whether habit design is even the right game.",
+  "tryThisNow": "Pick one behavior in your product and rate it twice: how often it naturally happens, and how useful it feels when it happens.",
+  "keyTakeaway": "A product belongs in the Habit Zone only when a real behavior happens often enough and feels useful enough to become the user's default answer.",
+  "breakdown": {
+    "fastRead": "Google versus Bing makes the opening diagnosis vivid. A searcher may not run a formal quality comparison before every query; the familiar box appears, the question is typed, and the next question follows the same route. That frequency gives Google a kind of protection.\n\nThe rule is not that habit is magic. Habit needs recurrence and perceived utility. Amazon shows the other side: shopping may happen less often than search, but the everything-store expectation can still pull the user back when a buying need appears.",
+    "deepRead": "The Habit Zone works because automatic behavior conserves attention. When the mind has solved the same problem often enough, it stores the response and stops spending fresh effort on the choice. That is valuable to a company only when the behavior naturally repeats and the product gives the user a benefit they can feel.\n\nGoogle sits near the high-frequency edge. Search can happen many times in a day, and the marginal difference between Google and Bing may not matter enough for the user to reconsider the route. Repetition itself becomes an advantage because the default path is easier than a comparison.\n\nAmazon leans more on utility. A customer may not shop hourly, but the memory that almost anything can be found there makes Amazon the first place the mind visits when a purchase need appears. Less recurrence demands stronger usefulness.\n\nThe University College London habit-formation study adds a limit. Habits do not arrive on a universal schedule, and complexity changes the curve. A product team cannot declare a habit by calendar. It must ask whether the behavior is frequent enough, useful enough, and ethically worth making automatic.",
+    "fullRead": "The sharp boundary in this idea is category discipline. Many products would like the economics of habit: higher lifetime value, easier pricing, user-driven growth, and a moat against alternatives. Wanting those advantages does not place the product in the Habit Zone.\n\nGoogle versus Bing clarifies why frequency matters. Search has a repeating place in ordinary life. A person wonders about a restaurant, a symptom, a phrase, a route, or a product, and the same search habit answers each time. The result is not just loyalty in the emotional sense. It is a reduction in decision effort. The user does not need to decide which engine to use because the old route has become the low-friction route.\n\nAmazon shows why the second axis exists. Some behaviors are too rare to become automatic unless the utility is unusually strong. The everything-store promise gives Amazon recall even when the buying occasion is not constant. The mind learns, when I need to find a product, start there. That remembered usefulness can compensate for lower frequency, but only up to a point.\n\nThe University College London research pushes against the myth that habit formation has a fixed deadline. Simple routines can settle faster than complex ones. Personal importance changes the process. If a team treats every behavior as a thirty-day conversion target, it mistakes a variable behavioral curve for a project-management calendar.\n\nThe vitamin-versus-painkiller distinction also becomes subtler here. A product may begin as a nice extra, then become painful to lose after repeated use. The ache is learned. Still, the absence must matter to the user, not merely to the retention dashboard. A notification cannot invent utility that the product does not provide.\n\nThat is where the ethical warning enters. Habit is not addiction. Addiction is compulsive and harmful; a good habit may be automatic while still serving the user's interest. This distinction matters because the same business benefits that make habits attractive can tempt teams to chase compulsion.\n\nA clean Habit Zone reading leaves a product team with a diagnostic, not a slogan. Is the target behavior naturally recurring? Does the product solve a problem strongly enough to deserve automatic recall? If one axis is weak, should the team improve recurrence, increase usefulness, or accept that the business should not be built around habit?\n\nThe practical consequence is restraint. Google and Amazon can teach product economics without licensing every app to demand daily attention. Some products should be excellent occasional tools. Others can become defaults. The Habit Zone tells the difference before the team starts optimizing return visits."
+  },
+  "examples": [
+    {
+      "exampleId": "hooked-ch01-ex01",
+      "title": "Search default review",
+      "tags": [
+        "Habit Zone",
+        "Google",
+        "product strategy"
+      ],
+      "planSpec": {
+        "domain": "search analytics review",
+        "audience": "search product lead",
+        "stakes": "whether a rival can beat habit with marginal quality",
+        "format": "data-first",
+        "requiredBeat": "Apply Google to whether a rival can beat habit with marginal quality without flattening the source case."
+      },
+      "scenario": "During a search-quality review, Asha compares Google and Bing result samples. The score gap is real but small, while usage logs show people searching again before they ever discuss alternatives. The Habit Zone explains the stickiness: frequent questions make the familiar route feel cheaper than reconsideration.",
+      "whatToDo": "Treat the rival's problem as habit strength, not only ranking quality. Look for repeated moments where users choose before comparison even begins.",
+      "whyItMatters": "Google shows why high-frequency behaviors can harden into defaults. The advantage is not just better answers; it is the saved effort of not choosing again."
+    },
+    {
+      "exampleId": "hooked-ch01-ex02",
+      "title": "Marketplace planning",
+      "tags": [
+        "Habit Zone",
+        "Amazon",
+        "utility"
+      ],
+      "planSpec": {
+        "domain": "commerce roadmap meeting",
+        "audience": "marketplace founder",
+        "stakes": "how to compete with Amazon without faking daily use",
+        "format": "boardroom",
+        "requiredBeat": "Apply Amazon to how to compete with Amazon without faking daily use without flattening the source case."
+      },
+      "scenario": "In a commerce roadmap meeting, Ronan admits his marketplace will never be opened as often as Google. The team keeps proposing daily deals anyway. Amazon is the better comparison: the question is whether buyers believe this store has enough special utility to be remembered when the purchase need arrives.",
+      "whatToDo": "Stop forcing a daily rhythm. Define the buying occasions where your utility can beat Amazon's everything-store memory, then design for recall at those moments.",
+      "whyItMatters": "Amazon keeps the Habit Zone honest because high utility can matter, but it cannot excuse weak usefulness or invented recurrence."
+    },
+    {
+      "exampleId": "hooked-ch01-ex03",
+      "title": "Routine study calendar",
+      "tags": [
+        "Habit Zone",
+        "University College London",
+        "research"
+      ],
+      "planSpec": {
+        "domain": "behavior science workshop",
+        "audience": "research translator",
+        "stakes": "why a fixed habit deadline is misleading",
+        "format": "teaching scene",
+        "requiredBeat": "Apply University College London to why a fixed habit deadline is misleading without flattening the source case."
+      },
+      "scenario": "At a behavior science workshop, Kira hears a founder promise investors that every user routine will lock in after one month. She pulls up the University College London habit-formation study and points to the spread: simple acts and complex routines do not settle on the same timetable.",
+      "whatToDo": "Replace the countdown with a behavior-specific learning curve. Measure recurrence, missed days, and recovery after disruption instead of declaring a universal habit date.",
+      "whyItMatters": "The University College London anchor prevents calendar folklore. Habit formation depends on behavior complexity and personal relevance."
+    },
+    {
+      "exampleId": "hooked-ch01-ex04",
+      "title": "Pricing debate",
+      "tags": [
+        "Habit Zone",
+        "Google",
+        "lifetime value"
+      ],
+      "planSpec": {
+        "domain": "pricing committee",
+        "audience": "growth analyst",
+        "stakes": "whether habitual use can support pricing power",
+        "format": "economic case",
+        "requiredBeat": "Apply Google to whether habitual use can support pricing power without flattening the source case."
+      },
+      "scenario": "The pricing committee wants to raise fees because usage looks high. Nia separates Google-like frequency from true utility: users open the tool often, but only because the company requires it. The Habit Zone test exposes a gap between imposed recurrence and a personally useful default.",
+      "whatToDo": "Ask whether users would still return if the mandate disappeared. Price around voluntary utility, not usage produced by policy pressure.",
+      "whyItMatters": "Habit economics depend on chosen recurrence. Forced use can inflate activity without creating the defensible customer lifetime value Eyal describes."
+    },
+    {
+      "exampleId": "hooked-ch01-ex05",
+      "title": "Painkiller question",
+      "tags": [
+        "Habit Zone",
+        "Amazon",
+        "vitamin"
+      ],
+      "planSpec": {
+        "domain": "customer interview lab",
+        "audience": "product researcher",
+        "stakes": "whether a nice-to-have service has become painful to lose",
+        "format": "interview",
+        "requiredBeat": "Apply Amazon to whether a nice-to-have service has become painful to lose without flattening the source case."
+      },
+      "scenario": "In a customer interview lab, Soren asks why a user keeps renewing a small shopping assistant. She says it began as a vitamin, then became painful to lose because it remembered hard-to-find items better than Amazon. The ache came from repeated usefulness, not from louder reminders.",
+      "whatToDo": "Trace the exact absence that would bother the user. If losing the service creates no felt problem, keep improving utility before chasing habit loops.",
+      "whyItMatters": "The vitamin-to-painkiller move only counts when absence hurts in the user's life. Amazon sets a high utility bar for that claim."
+    },
+    {
+      "exampleId": "hooked-ch01-ex06",
+      "title": "Ethics check",
+      "tags": [
+        "Habit Zone",
+        "addiction",
+        "Google"
+      ],
+      "planSpec": {
+        "domain": "trust review",
+        "audience": "product ethicist",
+        "stakes": "how to separate useful habit from harmful compulsion",
+        "format": "boundary audit",
+        "requiredBeat": "Apply addiction to how to separate useful habit from harmful compulsion without flattening the source case."
+      },
+      "scenario": "At a trust review, Iris hears a slide celebrate addictive engagement. She rewrites it around the Habit Zone and Google: automatic use can be valuable when it saves effort and serves a real need. Addiction, by contrast, means compulsion and harm, not merely repeat behavior.",
+      "whatToDo": "Ban addiction language from success metrics. Define the user benefit that makes recurrence worth encouraging, then watch for harm signals.",
+      "whyItMatters": "The idea's hard edge is moral as well as strategic. Habit is only defensible when automatic return still serves genuine user value."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "hooked-ch01-q01",
+        "prompt": "Why does Google versus Bing matter to the Habit Zone diagnosis?",
+        "choices": [
+          "It shows that repeated search can make the familiar route default before users compare alternatives.",
+          "It proves that search habits require the largest possible utility gap on every query.",
+          "It shows that paid prompts are enough to preserve a search engine's advantage."
+        ],
+        "correctIndex": 0,
+        "explanation": "Google versus Bing teaches frequency. The repeated act of searching makes the familiar path feel easier, even when a single comparison might not show a dramatic difference.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch01-q02",
+        "prompt": "Amazon is less frequent than search but still belongs near habit territory when what condition holds?",
+        "choices": [
+          "Users receive constant notifications that make shopping feel urgent.",
+          "Users believe the everything store will be useful whenever a buying need appears.",
+          "Users forget other stores exist because Amazon blocks comparison."
+        ],
+        "correctIndex": 1,
+        "explanation": "Amazon illustrates perceived utility. Lower frequency can still support automatic recall when the product is remembered as unusually useful at the right moment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch01-q03",
+        "prompt": "A founder says every tool deserves daily engagement. Which Habit Zone reply is strictest?",
+        "choices": [
+          "Daily engagement is harmless if the company can afford enough reminders.",
+          "The founder should copy Google's frequency goal before studying user utility.",
+          "Some products should remain excellent occasional tools because weak frequency or weak utility keeps them outside habit design."
+        ],
+        "correctIndex": 2,
+        "explanation": "The Habit Zone is diagnostic. It tells teams when habit formation fits the behavior and when chasing daily use would waste effort or pressure users needlessly.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch01-q04",
+        "prompt": "In the University College London habit-formation study, what warning should a product team hear?",
+        "choices": [
+          "Habit timing varies by behavior, so a fixed calendar promise is not evidence of automatic use.",
+          "Habit formation is impossible unless a routine is completed every day for a year.",
+          "Research matters less than whether the team can increase notification volume."
+        ],
+        "correctIndex": 0,
+        "explanation": "The study blocks a universal countdown. Simple and complex behaviors settle differently, so teams must measure the actual behavior instead of recite a deadline.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch01-q05",
+        "prompt": "Which statement best separates habit from addiction in this idea?",
+        "choices": [
+          "Addiction is acceptable when lifetime value improves.",
+          "Habit can be automatic and useful; addiction is compulsive, harmful, and not the design goal.",
+          "Addiction and habit are identical words for repeat use."
+        ],
+        "correctIndex": 1,
+        "explanation": "Eyal's distinction keeps the ethics visible. Repeat use is not automatically bad, but compulsion that harms the user is outside the defensible aim.",
+        "bloomsLevel": "remember",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch01-q06",
+        "prompt": "A service begins as a vitamin and later feels like a painkiller. What changed?",
+        "choices": [
+          "The product advertised more heavily until users accepted the claim.",
+          "The company labeled ordinary convenience as pain relief.",
+          "Repeated usefulness taught users that absence creates a felt problem."
+        ],
+        "correctIndex": 2,
+        "explanation": "The painkiller shift must be learned through real utility. The user's discomfort when the service disappears is what matters, not the company's positioning.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch01-q07",
+        "prompt": "How should a team use the Habit Zone before building retention features?",
+        "choices": [
+          "Plot the target behavior by natural frequency and perceived utility, then decide which axis deserves work.",
+          "Start with daily notifications so the frequency axis rises automatically.",
+          "Choose the highest lifetime-value metric and call that the user's habit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The framework asks for a two-axis diagnosis first. Retention tactics make sense only after the team sees whether recurrence or usefulness is the binding constraint.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch01-q08",
+        "prompt": "A product is used often only because an employer requires it. What is the Habit Zone risk?",
+        "choices": [
+          "The product has proven enough utility to become an addiction.",
+          "The usage may not represent a voluntary default that survives when the mandate disappears.",
+          "The team should raise prices because frequency alone establishes habit strength."
+        ],
+        "correctIndex": 1,
+        "explanation": "Forced recurrence can look like habit in dashboards while lacking automatic user preference. The Habit Zone cares about real use in the user's life.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch01-q09",
+        "prompt": "What business benefits do strong user habits create according to the idea?",
+        "choices": [
+          "They eliminate the need to make the product useful after launch.",
+          "They mainly increase press coverage and earned triggers.",
+          "They can raise lifetime value, support pricing flexibility, aid growth, and make alternatives feel awkward."
+        ],
+        "correctIndex": 2,
+        "explanation": "The idea links habit to economics: repeat use can improve lifetime value, pricing power, growth through exposure, and defensibility against competitors.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "hooked-ch01-card01",
+      "front": "What are the two axes of the Habit Zone?",
+      "back": "Frequency of behavior and perceived utility. A product needs enough of both for the target behavior to become a default instead of a fresh choice.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch01-card02",
+      "front": "Why is Google the frequency example?",
+      "back": "Search happens repeatedly throughout ordinary life. The repeated path makes Google easier to use by default, even when the user could compare alternatives.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch01-card03",
+      "front": "What does Amazon add to the Habit Zone picture?",
+      "back": "Amazon shows that a less frequent behavior needs unusually strong perceived usefulness. The everything-store memory creates recall when a purchase need appears.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "hooked-ch01-card04",
+      "front": "What mistake does the idea warn product teams against?",
+      "back": "Do not chase automatic daily use for every product. Some tools should improve utility or accept occasional use instead of manufacturing unhealthy recurrence.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Plot The Habit Fit",
+    "coreSkill": "Use the Habit Zone as a diagnostic map. Name one target behavior, then judge whether frequency or perceived utility is the honest constraint.",
+    "ifThenPlans": [
+      {
+        "context": "When the team wants more engagement",
+        "plan": "If daily use is proposed, then ask whether the behavior naturally recurs often enough to deserve that rhythm."
+      },
+      {
+        "context": "When utility feels vague",
+        "plan": "If the product is called useful, then ask what absence would make the user miss it and why."
+      },
+      {
+        "context": "When dashboards show forced use",
+        "plan": "If recurrence comes from policy or pressure, then separate mandated activity from a voluntary default."
+      },
+      {
+        "context": "When a competitor looks similar",
+        "plan": "If switching seems easy on paper, then inspect whether habit makes the old route cheaper than comparison."
+      }
+    ],
+    "twentyFourHourChallenge": "Plot one product behavior on the Habit Zone and write the evidence for frequency, utility, and the weakest axis.",
+    "weeklyPractice": "Review one retention idea each week and classify it as increasing real recurrence, increasing perceived utility, or merely adding pressure."
+  },
+  "memorableLines": [
+    {
+      "text": "Google versus Bing makes the opening diagnosis vivid.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the frequency advantage in one concrete image."
+    },
+    {
+      "text": "The Habit Zone works because automatic behavior conserves attention.",
+      "location": "breakdown.deepRead",
+      "why": "It states the mechanism behind the framework."
+    },
+    {
+      "text": "Wanting those advantages does not place the product in the Habit Zone.",
+      "location": "breakdown.fullRead",
+      "why": "It preserves the idea's diagnostic edge."
+    }
+  ]
+}
