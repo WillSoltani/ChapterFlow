@@ -126,3 +126,34 @@ collisions. All of it was caught and reverted. Therefore:
    PRESENT in scene logic or breakdown.
 6. **Quiz openers must follow the dealt pedagogy-plan rotation** — replacing
    one uniform opener with another ("Two …" ×45) is the same defect.
+
+---
+
+## ROUND 3 FOLLOW-UP (2026-06-10) — two de-uniformization passes on outliers
+
+Round 2 was accepted on renames, distractor balance, opener rotation, and
+anchor relocation. Two bulk uniformity items remain (review findings F1/F2);
+the two single-instance items (ch9 Marita prop, ch7 q4 parallelism) are
+already fixed by the operator — do not re-edit them. Also: if a Part-1 item
+is already fixed when you arrive, SAY SO in the report — never manufacture
+edits to satisfy a deliverable.
+
+1. **Anchor-integration skeleton (~17×)**: the round-2 prop fix installed one
+   construction everywhere — "[Anchor] turns/makes/changes [thing] (into)
+   the [lesson/test/defect/mechanism]: [gloss]". Rewrite so NO TWO anchor
+   integrations in the book share their main verb construction. Vary the
+   grammatical position of the anchor (subject, object, possessive, clause),
+   the connector (colon, dash, plain sentence), and the relation (the anchor
+   can explain, contradict, predict, price, or time-stamp the scene — not
+   only "turn X into the lesson"). Substance must stay: the anchor keeps
+   doing logical work in the scene.
+2. **"weighs" (23×)**: a single decision-verb template across the book's
+   scenarios (left over from round 1). Replace with situation-specific
+   decision language — but do NOT rotate to one new verb, and do NOT
+   reintroduce the "must decide whether A or B" deadline frame R6 caps.
+   After the pass, no decision verb/construction should appear in more than
+   ~4 scenarios book-wide.
+
+Per chapter: gate-chapter to "Gate verdict: PASS — 0 blockers". Acceptance:
+paste `catalog-audit outliers` after-lines + the verb-distribution counts
+("weighs" ≤4; top anchor-integration construction ≤2).
