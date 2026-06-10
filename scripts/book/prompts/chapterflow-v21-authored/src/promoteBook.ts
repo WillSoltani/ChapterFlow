@@ -135,6 +135,35 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     });
   }
 
+  // Step 1.5: chapter-number integrity. The intra-book priors filter (Step
+  // 2.5) keys on the chapter's self-declared `number`; a duplicate or
+  // missing number makes chapters mutually invisible to AS5–AS12 — the
+  // silent-skip class again (verified 2026-06-10: identical quizzes across a
+  // duplicate-numbered pair produced zero findings). Agent-authored metadata
+  // drift is this pipeline's documented failure mode, so fail loud here.
+  const numberProblems: string[] = [];
+  const seenNumbers = new Map<number, string>();
+  for (let i = 0; i < loadedChapters.length; i++) {
+    const ch = loadedChapters[i];
+    const spec = chapters[i];
+    if (typeof ch.number !== "number" || !Number.isFinite(ch.number)) {
+      numberProblems.push(`${spec.chapterId}: chapter.number is ${JSON.stringify(ch.number)} (not a number)`);
+      continue;
+    }
+    if (spec.chapterNumber !== undefined && ch.number !== spec.chapterNumber) {
+      numberProblems.push(`${spec.chapterId}: chapter.number=${ch.number} disagrees with the index (${spec.chapterNumber})`);
+    }
+    const prior = seenNumbers.get(ch.number);
+    if (prior) numberProblems.push(`duplicate chapter.number=${ch.number} in ${prior} and ${spec.chapterId}`);
+    else seenNumbers.set(ch.number, spec.chapterId);
+  }
+  if (numberProblems.length > 0) {
+    return blockedResult({
+      bookId,
+      reason: `Chapter-number integrity failed (intra-book checks would silently skip): ${numberProblems.join("; ")}. Run fix-chapter-ids / repair the number fields before promoting.`,
+    });
+  }
+
   // Step 2: Re-run ship gate against every chapter.
   // Defense in depth: chapters in state/chapters/ should already have passed
   // the per-chapter ship gate at generation time, but re-validate before

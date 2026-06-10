@@ -8,7 +8,7 @@
  */
 
 import assert from "node:assert/strict";
-import { readdirSync, rmSync } from "fs";
+import { readdirSync, readFileSync, rmSync } from "fs";
 import { resolve } from "path";
 
 import { promoteBook, stripInternalFields } from "../src/promoteBook.js";
@@ -55,6 +55,15 @@ test("promoteBook runs the intra-book suite and blocks on planted card reuse", (
       result.intraBookBlockerCount > 0,
       `intra-book blockers must be counted at promote (got ${result.intraBookBlockerCount}) — ` +
         "if this is 0, promote is once again shipping what gate-chapter blocks",
+    );
+    // The count alone is hollow: clean fixtures already trip AS8/AS9/AS10/AS12
+    // (templated plans/examples across chapters), so the PLANTED defect — AS7
+    // card reuse, the UH incident class this test exists for — must be
+    // asserted specifically or its enforcement can regress without failing.
+    const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
+    assert.ok(
+      (report.intraBook?.findings ?? []).some((f: any) => String(f.checkId).startsWith("AS7")),
+      "the planted AS7 card-reuse must appear in promote's intra-book findings",
     );
   } finally {
     cleanupFixture();

@@ -49,9 +49,11 @@ lifts this constraint.
 ## 3. How to run
 
 - **Dir:** `scripts/book/prompts/chapterflow-v21-authored/`
-- **Run:** `npx tsx src/cli.ts <command>` — there is **no tsconfig**; `tsx` executes
-  TypeScript directly and **ignores types**. So type errors only surface in an IDE, not
-  at runtime (see Gotchas). "Running a module IS the typecheck."
+- **Run:** `npx tsx src/cli.ts <command>` — `tsx` executes TypeScript directly and
+  **ignores types** at runtime. Since Phase 0 there IS a tsconfig: typecheck with
+  `npx tsc -p . --noEmit` (zero-error baseline, held by CI/tests — see tests/README.md).
+  The repo-root Next.js tsconfig also sweeps this dir at ES2017/strict, so keep new
+  code compatible with both.
 - **Node:** 18+ for the pipeline; the **web app needs Node 20**.
 - **State dirs:** chapters in `state/chapters/`, indexes in `state/indexes/`, name plans
   in `state/name-plans/`, QC attestations in `state/qc/`, gate reports in `state/books/`.
@@ -264,7 +266,7 @@ verification across the gold corpus before trusting a calibration claim.**
 1. **Promote the AC1–AC11 authoring-contract critics** (concept-as-actor, templated loops,
    echo-template, word-salad) from advisory to blockers — they're the only content/JOB-level
    gates. Needs a **codified calibration harness** (the zero-FP claim is only in comments)
-   + `promote` doesn't currently run the AS5–AS12 cross-chapter checks that `gate-chapter` does.
+   + (CLOSED Phase 1a: `promote` now runs the AS5–AS12 cross-chapter checks via `src/critics/intraBook.ts`.)
 2. **Reduce the ~18% revision rate / reviewer miss rate** — e.g. a mandatory second
    independent QC pass, or sharpen R6 prevention. This is the throughput ceiling.
 3. **Finish content**: `rework` is ~25% authored (ch08 missing, v1/v2 sidecar mix).

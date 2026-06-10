@@ -23,13 +23,21 @@ const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/lib
 const BRIEFS_DIR = resolve(__dirname, "../../state/briefs");
 
 export function loadBrief(bookId: string): BookBrief | null {
-  const p = resolve(BRIEFS_DIR, `${bookId}.brief.json`);
-  if (!existsSync(p)) return null;
-  try {
-    return JSON.parse(readFileSync(p, "utf8")) as BookBrief;
-  } catch {
-    return null;
+  // Two brief shapes exist on disk: <bookId>.brief.json (the generate-book
+  // flow — only ~6 books) and <bookId>.manual-brief.json (the documented
+  // no-API operator flow — the other ~113, all carrying full charters).
+  // Reading only the former made the voice bible inert for the production
+  // catalog (verified 2026-06-10).
+  for (const name of [`${bookId}.brief.json`, `${bookId}.manual-brief.json`]) {
+    const p = resolve(BRIEFS_DIR, name);
+    if (!existsSync(p)) continue;
+    try {
+      return JSON.parse(readFileSync(p, "utf8")) as BookBrief;
+    } catch {
+      continue;
+    }
   }
+  return null;
 }
 
 /** Compact, paste-able voice block for an authoring prompt, or null when the

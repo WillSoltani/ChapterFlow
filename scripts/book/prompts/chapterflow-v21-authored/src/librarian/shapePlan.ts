@@ -86,7 +86,14 @@ function onDiskFormats(bookId: string, chapterNumber: number): string[] | null {
   }
 }
 
-export function planShapes(bookId: string, from: number, to: number, perChapter = 6): ShapePlan {
+export type PlanShapesOpts = {
+  /** Deal fresh shapes even for chapters already on disk. The REDO path
+   *  (fanout --all) needs this: carrying a templated chapter's own uniform
+   *  formats re-pins exactly the skeleton the redo exists to break. */
+  forceFresh?: boolean;
+};
+
+export function planShapes(bookId: string, from: number, to: number, perChapter = 6, opts: PlanShapesOpts = {}): ShapePlan {
   const shapes = loadSceneShapes();
   const L = shapes.length;
   if (perChapter > L) throw new Error(`perChapter ${perChapter} exceeds the ${L}-shape palette.`);
@@ -94,7 +101,7 @@ export function planShapes(bookId: string, from: number, to: number, perChapter 
   const allocation: Record<number, string[]> = {};
   const carried: number[] = [];
   for (let n = from; n <= to; n++) {
-    const disk = onDiskFormats(bookId, n);
+    const disk = opts.forceFresh ? null : onDiskFormats(bookId, n);
     if (disk) {
       allocation[n] = disk;
       carried.push(n);
@@ -105,6 +112,13 @@ export function planShapes(bookId: string, from: number, to: number, perChapter 
       dealt.push(shapes[(rotation + n * CHAPTER_STEP + i * SLOT_STEP) % L].id);
     }
     allocation[n] = dealt;
+    // The header's invariants depend on L=16 with steps 3/5; the config can
+    // change underneath. Cheap runtime check: dealt slots must be distinct.
+    if (new Set(dealt).size !== dealt.length) {
+      throw new Error(
+        `shape-plan invariant violated: duplicate shapes within ch${n} (palette size ${L} no longer satisfies the step math — see header).`,
+      );
+    }
   }
   return {
     schemaVersion: "shape-plan-v1",

@@ -46,7 +46,10 @@ import {
 } from "./critics/sourceCoherence.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const CHAPTERFLOW_RUNS = resolve(process.cwd(), ".chapterflow/runs");
+// Repo-root anchored like every READER (source-loader, sourceGrounding,
+// runDirs callers) — a cwd-relative anchor here meant research runs written
+// from the documented pipeline-dir cwd landed where no reader looks.
+const CHAPTERFLOW_RUNS = resolve(__dirname, "../../../../..", ".chapterflow/runs");
 const STATE = resolve(__dirname, "../state");
 
 export type ResearchBookOptions = {

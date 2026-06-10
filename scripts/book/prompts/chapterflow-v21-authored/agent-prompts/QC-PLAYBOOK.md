@@ -230,8 +230,10 @@ call.
 - 0 blockers, but >50 stylistic majors (e.g. F4 way over budget, D1 way
   over expected count) **or** SC9 firing on many chapters
 
-Recommendation: ship is fine, but list the technical debt so the user
-can decide whether to do a polish pass before promoting.
+Recommendation: shippable ONLY once `qc-status <bookId>` is all-PASS (the
+GREEN gate above applies to YELLOW too — gate tallies alone never ship);
+list the technical debt so the user can decide whether to do a polish pass
+before promoting.
 
 ### RED — needs redo
 

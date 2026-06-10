@@ -41,19 +41,48 @@ function runDirsNewestFirst(runsRoot: string, bookDirName: string): string[] {
     .map((d) => resolve(bookDir, d));
 }
 
-function candidateBookDirs(bookId: string): string[] {
-  const norm = normSlug(bookId);
-  return norm === bookId ? [bookId] : [bookId, norm];
+/** Every book dir under runsRoot whose normSlug equals the bookId's normSlug.
+ *  Two-way tolerant: a normalized caller finds raw-spelled dirs ("the hard
+ *  thing about hard things", capital-letter slugs) and vice versa — the old
+ *  one-way [raw, norm] candidate list left normalized callers blind to
+ *  raw-spelled dirs, producing false "no source run" findings. */
+function matchingBookDirs(runsRoot: string, bookId: string): string[] {
+  const want = normSlug(bookId);
+  let entries: string[] = [];
+  try {
+    entries = readdirSync(runsRoot);
+  } catch {
+    return [];
+  }
+  return entries.filter((d) => {
+    if (normSlug(d) !== want) return false;
+    try {
+      return statSync(resolve(runsRoot, d)).isDirectory();
+    } catch {
+      return false;
+    }
+  });
+}
+
+/** All run dirs across every matching book-dir spelling, sorted globally
+ *  newest-first by run-dir NAME (not per-spelling — an older run in one
+ *  spelling must not beat a strictly newer run in another). */
+function allRunDirsNewestFirst(runsRoot: string, bookId: string): string[] {
+  const runs: Array<{ name: string; path: string }> = [];
+  for (const dirName of matchingBookDirs(runsRoot, bookId)) {
+    for (const runPath of runDirsNewestFirst(runsRoot, dirName)) {
+      runs.push({ name: runPath.split("/").pop() ?? "", path: runPath });
+    }
+  }
+  return runs.sort((a, b) => (a.name < b.name ? 1 : a.name > b.name ? -1 : 0)).map((r) => r.path);
 }
 
 /** Absolute path of `relPath` inside the NEWEST run that contains it, across
- *  both raw and normalized bookId dir spellings. Null when no run has it. */
+ *  every normSlug-equivalent bookId dir spelling. Null when no run has it. */
 export function findRunArtifact(runsRoot: string, bookId: string, relPath: string): string | null {
-  for (const dirName of candidateBookDirs(bookId)) {
-    for (const runDir of runDirsNewestFirst(runsRoot, dirName)) {
-      const p = resolve(runDir, relPath);
-      if (existsSync(p)) return p;
-    }
+  for (const runDir of allRunDirsNewestFirst(runsRoot, bookId)) {
+    const p = resolve(runDir, relPath);
+    if (existsSync(p)) return p;
   }
   return null;
 }
@@ -62,9 +91,6 @@ export function findRunArtifact(runsRoot: string, bookId: string, relPath: strin
  *  (e.g. next-task appends artifacts to the run in progress). Readers should
  *  use findRunArtifact instead. */
 export function findLatestRunDir(runsRoot: string, bookId: string): string | null {
-  for (const dirName of candidateBookDirs(bookId)) {
-    const dirs = runDirsNewestFirst(runsRoot, dirName);
-    if (dirs.length > 0) return dirs[0];
-  }
-  return null;
+  const dirs = allRunDirsNewestFirst(runsRoot, bookId);
+  return dirs.length > 0 ? dirs[0] : null;
 }

@@ -124,7 +124,7 @@ patterns a per-scene read misses (they put 4HWW ch2/12/14 at REVISE after a firs
 attested them PASS) — each is a `example_coherence` DRAFT hit → **YELLOW**:
 1. **Location stamping** — is one place (a city, campus, building) the setting of most
    scenes? 4HWW ch2 stamped "Princeton University" on a nonprofit, a sales rep, AND an
-   agency — geographically implausible. The C18 gate now BLOCKS the egregious case
+   agency — geographically implausible. The C22 gate (example_setting_stamping; renumbered from C18 in Phase 4) now BLOCKS the egregious case
    (one location in ≥4 of 6 scenes); you catch the subtler 3-of-6 version. Each scene
    gets its own domain-appropriate setting.
 2. **Shared skeleton — THE most-missed defect.** Do ≥half the scenes share a structural

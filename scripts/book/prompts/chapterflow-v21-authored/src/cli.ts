@@ -458,6 +458,9 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
       manualTags,
     },
   );
+  // Failed chapters are a failure even when the book gate over the PARTIAL
+  // set passes — the model-gen guard's abort used to exit 0 here.
+  if (result.failed.length > 0) return 1;
   return result.bookGate.passed ? 0 : 1;
 }
 
@@ -751,6 +754,7 @@ async function runGenerate(args: string[], flags: Record<string, string | boolea
     chapters,
     { fromChapter, toChapter, continueOnError: false },
   );
+  if (result.failed.length > 0) return 1;
   return result.bookGate.passed ? 0 : 1;
 }
 
@@ -1107,6 +1111,12 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
       let blockers = 0;
       for (const ch of chapters) blockers += runShipGate(ch).blockers.length;
       blockers += runBookGate(bookId, chapters).findings.filter((f) => f.severity === "blocker").length;
+      // Intra-book AS5-AS12, same priors-only pass promote enforces — without
+      // it batch staged books as QC/SHIP that promote would then block.
+      const { runIntraBookChecks } = await import("./critics/intraBook.js");
+      for (const ch of chapters) {
+        blockers += runIntraBookChecks(ch, chapters.filter((o) => o.number < ch.number)).filter((f) => f.severity === "blocker").length;
+      }
       if (blockers > 0) {
         stage = "GATE_FIX"; detail = `${blockers} gate blocker(s)`; action = "gatefix";
       } else {
@@ -1349,13 +1359,21 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const idById = new Map(idx.map((c) => [c.chapterNumber, c.chapterId]));
   const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : flat[0].number;
   const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : flat[flat.length - 1].number;
+  const includeAll = flags["all"] === true;
   const plan = planNames(bookId, from, to);
   writeNamePlan(plan);
-  const shapePlan = planShapes(bookId, from, to);
+  // REDO path (--all): deal FRESH shapes — carrying a templated chapter's own
+  // uniform formats would re-pin the very skeleton the redo exists to break.
+  const shapePlan = planShapes(bookId, from, to, 6, { forceFresh: includeAll });
   writeShapePlan(shapePlan);
   const shapeDefs = new Map(loadSceneShapes().map((s) => [s.id, s.definition]));
+  // Carried name allocations for authored chapters include every capitalized
+  // token the extractor saw ("University", "All", "Tonight" — junk from
+  // scenario text). Pasting those as an exclusive allowlist breaks redo
+  // prompts; keep only entries that are actually in the name bank.
+  const { loadNameBank } = await import("./librarian/namePlan.js");
+  const bankSet = new Set(loadNameBank());
   const chaptersDir = resolve(PIPE, "state/chapters");
-  const includeAll = flags["all"] === true;
   const blocks: string[] = [];
   let pending = 0;
   let done = 0;
@@ -1369,7 +1387,11 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
       continue;
     }
     pending++;
-    const names = (plan.allocation[ch.number] ?? []).join(", ");
+    const allocated = plan.allocation[ch.number] ?? [];
+    const bankNames = allocated.filter((n) => bankSet.has(n));
+    // Prefer real bank names; an authored chapter whose carried tokens are all
+    // junk falls back to the raw allocation rather than an empty list.
+    const names = (bankNames.length >= 3 ? bankNames : allocated).join(", ");
 
     // Shape palette: slot-pinned structural variety (the anti-skeleton plan).
     const shapeIds = shapePlan.allocation[ch.number] ?? [];
@@ -1596,7 +1618,7 @@ async function runQcRehash(args: string[], flags: Record<string, string | boolea
     console.error("Usage: qc-rehash <bookId> | qc-rehash --all");
     return 2;
   }
-  const { QC_DIR, chapterContentHash, chapterContentHashV1, writeAttestation } =
+  const { QC_DIR, chapterContentHash, chapterContentHashV1, chapterContentHashV0, writeAttestation } =
     await import("./critics/qcAttestation.js");
   const chaptersDir = resolve(__dirname, "../state/chapters");
   let upgraded = 0, alreadyV2 = 0, stale = 0, missing = 0;
@@ -1615,8 +1637,10 @@ async function runQcRehash(args: string[], flags: Record<string, string | boolea
       continue;
     }
     const chapter = JSON.parse(readFileSync(chapterFile, "utf8")) as ChapterV21;
-    if (chapterContentHashV1(chapter) !== att.contentHash) {
-      console.log(`  STALE under v1 — left for re-review: ${f}`);
+    // Legacy attestations may carry either pre-v2 algorithm: v1 (2026-06-05+)
+    // or v0 (the original 2026-06-04 projection, no title/tryThisNow).
+    if (chapterContentHashV1(chapter) !== att.contentHash && chapterContentHashV0(chapter) !== att.contentHash) {
+      console.log(`  STALE under v1/v0 — left for re-review: ${f}`);
       stale++;
       continue;
     }
@@ -1682,6 +1706,7 @@ async function runQuizVerify(args: string[], flags: Record<string, string | bool
     console.error(`Could not read/parse ${file}: ${(err as Error).message}`);
     return 2;
   }
+  const questions = chapter.quiz?.questions ?? [];
   const derived = new Map<number, number>();
   for (const pair of answersRaw.split(",")) {
     const m = pair.trim().match(/^(\d+)\s*[:=]\s*(\d+)$/);
@@ -1689,25 +1714,38 @@ async function runQuizVerify(args: string[], flags: Record<string, string | bool
       console.error(`Bad --answers entry "${pair.trim()}" — expected <qIndex>:<choiceIndex>.`);
       return 2;
     }
-    derived.set(Number(m[1]), Number(m[2]));
+    const qi = Number(m[1]);
+    // Out-of-range and duplicate entries are usage errors, not noise to skip:
+    // silently ignoring them let "0:0,...,8:0,99:5" read as full clean coverage.
+    if (qi >= questions.length) {
+      console.error(`--answers entry "${pair.trim()}": question index ${qi} does not exist (quiz has ${questions.length} questions, 0-${questions.length - 1}).`);
+      return 2;
+    }
+    if (derived.has(qi)) {
+      console.error(`--answers entry "${pair.trim()}": duplicate answer for question ${qi}.`);
+      return 2;
+    }
+    derived.set(qi, Number(m[2]));
   }
-  const questions = chapter.quiz?.questions ?? [];
   let mismatches = 0;
   let missing = 0;
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
+    // Legacy quizzes key the answer as correctAnswerIndex; everything else in
+    // the pipeline (schema, quizQuality, the v1 hash) honors the alias.
+    const keyed = (q.correctIndex ?? (q as any).correctAnswerIndex) as number;
     const d = derived.get(i);
     if (d === undefined) {
       missing++;
       console.log(`q${i}: MISSING — no derived answer supplied (full coverage is required)`);
       continue;
     }
-    if (d === q.correctIndex) {
+    if (d === keyed) {
       console.log(`q${i}: MATCH (choice ${d})`);
     } else {
       mismatches++;
-      console.log(`q${i}: MISMATCH — derived ${d} ("${(q.choices[d] ?? "<no such choice>").slice(0, 70)}") vs keyed ${q.correctIndex} ("${(q.choices[q.correctIndex] ?? "").slice(0, 70)}")`);
-      console.log(`    keyed explanation: ${(q.explanation ?? "<none>").slice(0, 160)}`);
+      console.log(`q${i}: MISMATCH — derived ${d} ("${(q.choices[d] ?? "<no such choice>").slice(0, 70)}") vs keyed ${keyed} ("${(q.choices[keyed] ?? "").slice(0, 70)}")`);
+      console.log(`    keyed explanation: ${(typeof q.explanation === "string" ? q.explanation : JSON.stringify(q.explanation) ?? "<none>").slice(0, 160)}`);
     }
   }
   console.log(
@@ -1830,7 +1868,7 @@ async function runQcStats(args: string[]): Promise<number> {
     // reviewedAt (only contentHash/hashVersion changed) — that's bookkeeping,
     // not a review attempt; counting it would fake a 2.0 attempts floor.
     const history: any[] = (Array.isArray(att.history) ? att.history : []).filter(
-      (h) => h?.reviewedAt !== att.reviewedAt,
+      (h: any) => h?.reviewedAt !== att.reviewedAt,
     );
     const firstVerdict = history.length > 0 ? history[0]?.verdict : att.verdict;
     row.chapters++;

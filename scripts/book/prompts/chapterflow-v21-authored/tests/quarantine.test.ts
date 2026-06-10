@@ -25,6 +25,16 @@ function cleanup(): void {
       if (f.startsWith(`${BOOK}.`)) rmSync(resolve(QUARANTINE_DIR, f), { force: true });
     }
   } catch {}
+  // The released-tombstone test runs promoteBook, which gets gate-BLOCKED and
+  // writes a report + a timestamped _blocked quarantine copy — clean both, or
+  // every suite run leaks a file into real state.
+  const booksDir = resolve(PIPELINE_DIR, "state", "books");
+  rmSync(resolve(booksDir, `${BOOK}.gate.json`), { force: true });
+  try {
+    for (const f of readdirSync(resolve(booksDir, "_blocked"))) {
+      if (f.startsWith(`${BOOK}.`)) rmSync(resolve(booksDir, "_blocked", f), { force: true });
+    }
+  } catch {}
 }
 
 test("promoteBook refuses a quarantined book outright (tombstone is sticky)", () => {

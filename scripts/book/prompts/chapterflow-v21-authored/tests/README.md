@@ -30,16 +30,16 @@ fix the defect the test reports **XPASS, which fails the suite on purpose** —
 promote the `xfail()` to `test()` in the same change. This keeps every open
 defect pinned to code instead of to memory.
 
-Current xfails (all verified in the 2026-06-09 review):
+Current xfails: **none.** All defects documented during the 2026-06-09
+review (4 hash-coverage gaps + key-order wart, the AS5 questionId dead path,
+the C18/C19 catalog double-booking) were fixed in Phases 1–4 and their
+xfails promoted to passing tests. New verified-but-unfixed defects go in as
+new `xfail()` entries — that is the mechanism, keep using it.
 
-- 4 × hash-coverage gaps (`passingScorePercent`, `readingTimeMinutes`,
-  `examples[].tags`, `reviewCards[].difficulty`) + 1 key-order wart →
-  **Phase 1:** invert `canonicalContent` to an exclude-list with deep key sort.
-- AS5 dead under chapter-scoped questionIds (16 of 17 on-disk conventions) →
-  **Phase 1:** positional matching + a questionId-format invariant.
-- C18/C19 double-booked between `supportSectionAudit` and the narrative
-  checks routed through `finalGate` → **Phase 4:** renumber to C22/C23 +
-  single check-id registry.
+Known harness blind spot: `xfail` treats ANY throw (including an environment
+error like a missing file) as "the documented defect still fails". An xfail
+that breaks for an unrelated reason looks healthy — prefer asserting the
+specific failure inside the xfail body where practical.
 
 ## Fixture policy
 

@@ -173,7 +173,9 @@ const perChapter = await pipeline(
       LENSES.map((lens) => () =>
         agent(lensPrompt(lens, c), { label: `read-${lens.key}:ch${c.n}`, phase: 'Bar read', schema: LENS_SCHEMA }),
       ),
-    ).then((lenses) => ({ c, keys, lenses: lenses.filter(Boolean) })),
+      // Keep nulls IN PLACE: a dead lens agent must be visible as a missing
+      // read (DID-NOT-RUN), not silently filtered into "fewer findings".
+    ).then((lenses) => ({ c, keys, lenses })),
 )
 
 // ── Phase 3: cross-chapter sweep (the defect class per-chapter reads miss) ──
@@ -203,8 +205,9 @@ for (const f of (sweep?.findings ?? [])) {
 }
 
 function provisionalFor(r) {
+  const liveLenses = r.lenses.filter(Boolean)
   const axes = []
-  for (const lens of r.lenses) for (const a of lens.axes) axes.push(a)
+  for (const lens of liveLenses) for (const a of lens.axes) axes.push(a)
   const keyScore = r.keys
     ? Math.max(0, 1 - (r.keys.mismatches.length / Math.max(1, CONFIG.quizCounts[r.c.n] ?? 9)))
     : 0
@@ -213,7 +216,7 @@ function provisionalFor(r) {
   for (const m of r.keys?.mismatches ?? []) {
     corruptionClaims.push({ kind: 'key', chapter: r.c, m })
   }
-  for (const lens of r.lenses) {
+  for (const lens of liveLenses) {
     for (const a of lens.axes) {
       for (const h of a.hits) {
         if (h.corruption && CONFIG.corruptionAxes.includes(a.axis)) {
@@ -222,12 +225,27 @@ function provisionalFor(r) {
       }
     }
   }
-  return { axes, corruptionClaims }
+  // Read completeness: every lens returned AND each returned every axis it
+  // was assigned. A partial-axes response is a partial read — scoring only
+  // what a lens chose to return is the same DID-NOT-RUN laundering as a dead
+  // agent (weighted overall over 3 axes can hit 100 while 5 went unread).
+  const lensesComplete =
+    r.lenses.length === LENSES.length &&
+    r.lenses.every((lens, i) => {
+      if (!lens) return false
+      const returned = new Set((lens.axes ?? []).map((a) => a.axis))
+      return LENSES[i].axes.every((a) => returned.has(a))
+    })
+  return { axes, corruptionClaims, readComplete: Boolean(r.keys) && lensesComplete }
 }
 
 // ── Phase 4: adjudicate every corruption-class claim before it counts ────────
 
 phase('Adjudicate')
+// A dead sweep agent means the cross-chapter read DID NOT RUN — that must
+// cap every chapter (the sweep is the only stage that sees cross-chapter
+// templating), never read as "no findings".
+const sweepRan = sweep !== null && sweep !== undefined
 const adjudicated = await parallel(
   perChapter.filter(Boolean).map((r) => () => {
     const prov = provisionalFor(r)
@@ -241,7 +259,15 @@ Independently: run \`${CLI} quiz-blind ${claim.chapter.file}\`, derive YOUR answ
 Rubric (with its FP-guards — apply them): ${CONFIG.rubric[claim.axis]}
 Read the actual unit in context. upheld=true ONLY if the quote is real (verbatim or near), the defect matches the rubric's corruption tier, and no FP-guard excuses it. Default to upheld=false if uncertain.`,
           { label: `adjudicate:ch${r.c.n}`, phase: 'Adjudicate', schema: ADJUDICATE_SCHEMA },
-        ).then((v) => ({ claim, upheld: !!v?.upheld, note: v?.note ?? '' })),
+        ).then((v) => ({
+          claim,
+          // A dead adjudicator must NOT exonerate the claim it was supposed
+          // to verify (the one path that could attest PUBLISHABLE over an
+          // unverified wrong-key claim). null verdict = UNRESOLVED.
+          resolved: v !== null && v !== undefined,
+          upheld: !!v?.upheld,
+          note: v?.note ?? 'ADJUDICATOR DID NOT RUN — claim unresolved',
+        })),
       ),
     ).then((verdicts) => ({ r, prov, verdicts: verdicts.filter(Boolean) }))
   }),
@@ -249,14 +275,16 @@ Read the actual unit in context. upheld=true ONLY if the quote is real (verbatim
 
 function finalVerdict(entry) {
   const { r, prov, verdicts } = entry
-  const upheldKeys = verdicts.filter((v) => v.claim.kind === 'key' && v.upheld)
-  const upheldAxis = verdicts.filter((v) => v.claim.kind === 'axis' && v.upheld)
-  const sweepHits = sweepByChapter.get(r.c.n) ?? []
-  // publishableBar's hard rule: DID NOT RUN is never a pass. If any lens agent
-  // died (rate limit, error), the chapter was not fully read — a keys-only
-  // "overall" would print 100 and look perfect. Cap at REVISE with an explicit
-  // incomplete marker so the operator re-runs instead of trusting an artifact.
-  const incomplete = !r.keys || r.lenses.length < LENSES.length
+  const upheldKeys = verdicts.filter((v) => v.claim.kind === 'key' && v.resolved && v.upheld)
+  const upheldAxis = verdicts.filter((v) => v.claim.kind === 'axis' && v.resolved && v.upheld)
+  const unresolved = verdicts.filter((v) => !v.resolved)
+  const sweepHits = sweepRan ? (sweepByChapter.get(r.c.n) ?? []) : []
+  // publishableBar's hard rule: DID NOT RUN is never a pass. Missing keys
+  // stage, a dead/partial lens, a dead sweep, or an unresolved corruption
+  // claim all mean the chapter was not fully judged — such chapters are
+  // reported NEEDS_RERUN and are NOT attested (attesting a verdict nobody
+  // earned would arm the replay guard against the eventual real review).
+  const incomplete = !prov.readComplete || !sweepRan || unresolved.length > 0
   // Weighted overall (mirror of publishableBar.weightedOverall, weights from CONFIG)
   let num = 0, den = 0
   for (const a of prov.axes) {
@@ -273,7 +301,8 @@ function finalVerdict(entry) {
   // PUBLISHABLE).
   else if (incomplete || overall < CONFIG.publishableFloor || prov.axes.some((a) => a.score < CONFIG.axisFloor) || sweepHits.length > 0) verdict = 'REVISE'
   else verdict = 'PUBLISHABLE'
-  const booleans = Object.assign({ grounded: true, frameworkComplete: true, cardsAnswerFronts: true, distractorsReal: true }, ...r.lenses.map((l) => l.booleans ?? {}))
+  const liveLenses = r.lenses.filter(Boolean)
+  const booleans = Object.assign({ grounded: true, frameworkComplete: true, cardsAnswerFronts: true, distractorsReal: true }, ...liveLenses.map((l) => l.booleans ?? {}))
   const dims = {
     keysCorrect: upheldKeys.length === 0,
     grounded: !!booleans.grounded,
@@ -283,13 +312,19 @@ function finalVerdict(entry) {
     distractorsReal: !!booleans.distractorsReal,
   }
   const noteBits = [
-    incomplete ? `INCOMPLETE READ (${r.lenses.length}/${LENSES.length} lenses${r.keys ? '' : ', keys missing'}) — re-run qc-run for this chapter` : `overall=${overall}`,
+    incomplete
+      ? `INCOMPLETE READ (${liveLenses.length}/${LENSES.length} lenses${r.keys ? '' : ', keys missing'}${sweepRan ? '' : ', sweep missing'}${unresolved.length ? `, ${unresolved.length} unresolved claim(s)` : ''}) — NOT attested; re-run qc-run`
+      : `overall=${overall}`,
     upheldKeys.length ? `${upheldKeys.length} confirmed wrong key(s)` : null,
     upheldAxis.length ? `${upheldAxis.length} confirmed corruption hit(s)` : null,
     sweepHits.length ? `cross-chapter: ${sweepHits.map((f) => f.kind).join('/')}` : null,
-    r.lenses.map((l) => l.notes).filter(Boolean).join(' | ').slice(0, 120) || null,
+    liveLenses.map((l) => l.notes).filter(Boolean).join(' | ').slice(0, 120) || null,
   ].filter(Boolean)
-  return { n: r.c.n, file: r.c.file, verdict, overall: incomplete ? null : overall, dims, note: noteBits.join('; ').slice(0, 220), upheldKeys: upheldKeys.length }
+  // The note is embedded in a double-quoted shell argument by the attest
+  // agent — strip the characters bash would expand or execute ($ ` " \).
+  // The 4HWW run proved this live: "$500K-$1M" arrived as "00K-M".
+  const note = noteBits.join('; ').replace(/[$`"\\]/g, "'").slice(0, 220)
+  return { n: r.c.n, file: r.c.file, verdict, incomplete, overall: incomplete ? null : overall, dims, note, upheldKeys: upheldKeys.length }
 }
 
 const finals = adjudicated.filter(Boolean).map(finalVerdict)
@@ -297,28 +332,34 @@ const finals = adjudicated.filter(Boolean).map(finalVerdict)
 // ── Phase 5: attest ──────────────────────────────────────────────────────────
 
 phase('Attest')
-log(`Verdicts: ${finals.map((f) => `ch${f.n}=${f.verdict}(${f.overall})`).join(' ')}`)
+const toAttest = finals.filter((f) => !f.incomplete)
+const needsRerun = finals.filter((f) => f.incomplete)
+log(`Verdicts: ${finals.map((f) => `ch${f.n}=${f.incomplete ? 'NEEDS_RERUN' : `${f.verdict}(${f.overall})`}`).join(' ')}`)
+if (needsRerun.length > 0) {
+  log(`${needsRerun.length} chapter(s) NOT attested (incomplete read) — re-run: qc-run ${CONFIG.bookId} --chapters ${needsRerun.map((f) => f.n).join(',')}`)
+}
 const attested = await parallel(
-  finals.map((f) => () =>
+  toAttest.map((f) => () =>
     agent(
       `Record a QC verdict. Run EXACTLY this command and report its output verbatim:
 
 ${CLI} qc-attest ${f.file} --verdict ${f.verdict} --reviewer "${CONFIG.reviewer}" --dimensions "${Object.entries(f.dims).map(([k, v]) => `${k}=${v}`).join(',')}" --notes ${JSON.stringify(f.note)}
 
-If it prints "QC attestation written" → attested=true. If it prints REFUSED (the self-attest guard: a PUBLISHABLE flip over an unchanged non-PUBLISHABLE verdict) → attested=false and include the full refusal in cliOutput; do NOT retry with --supersede — that override is the OPERATOR's call, not yours.`,
+If it prints "QC attestation written" → attested=true. If it prints REFUSED (the self-attest guard: a PUBLISHABLE flip over an unchanged non-PUBLISHABLE verdict) → attested=false and put the COMPLETE refusal message in cliOutput; do NOT retry with --supersede — that override is the OPERATOR's call, not yours.`,
       { label: `attest:ch${f.n}`, phase: 'Attest', schema: ATTEST_SCHEMA },
     ),
   ),
 )
 
 const byVerdict = { PUBLISHABLE: [], REVISE: [], CORRUPTION: [] }
-for (const f of finals) byVerdict[f.verdict].push(f.n)
-log(`Attested ${attested.filter(Boolean).filter((a) => a.attested).length}/${finals.length} — PUBLISHABLE ${byVerdict.PUBLISHABLE.length}, REVISE ${byVerdict.REVISE.length}, CORRUPTION ${byVerdict.CORRUPTION.length}`)
+for (const f of toAttest) byVerdict[f.verdict].push(f.n)
+log(`Attested ${attested.filter(Boolean).filter((a) => a.attested).length}/${toAttest.length} — PUBLISHABLE ${byVerdict.PUBLISHABLE.length}, REVISE ${byVerdict.REVISE.length}, CORRUPTION ${byVerdict.CORRUPTION.length}; NEEDS_RERUN ${needsRerun.length}`)
 
 return {
   bookId: CONFIG.bookId,
   byVerdict,
+  needsRerun: needsRerun.map((f) => ({ chapter: f.n, note: f.note })),
   perChapter: finals,
   sweepFindings: sweep?.findings ?? [],
-  attested: attested.filter(Boolean).map((a) => ({ chapter: a.chapterNumber, attested: a.attested, output: a.cliOutput.slice(-200) })),
+  attested: attested.filter(Boolean).map((a) => ({ chapter: a.chapterNumber, attested: a.attested, output: a.cliOutput.slice(-600) })),
 }

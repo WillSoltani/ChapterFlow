@@ -79,3 +79,14 @@ test("handoff's catalog-id guidance matches the registry (C11–C21 support, C22
   assert.match(s, /use C24\+/, "the next-free-id guidance must clear BOTH owners' ranges");
   assert.doesNotMatch(s, /must\s+use C18\+/, "the old 'use C18+' guidance reproduced the collision it warned about");
 });
+
+test("handoff does not re-document fixed gaps as open (the next developer reads this first)", () => {
+  const s = doc("PIPELINE-HANDOFF.md");
+  assert.doesNotMatch(
+    s,
+    /promote.{0,20}doesn'?t currently run the AS5/i,
+    "promote HAS run AS5–AS12 since Phase 1a (src/critics/intraBook.ts)",
+  );
+  assert.doesNotMatch(s, /there is \*\*no tsconfig\*\*/, "Phase 0 added the tsconfig + typecheck baseline");
+  assert.match(s, /tsc -p \. --noEmit/, "the handoff must tell the next developer how to typecheck");
+});

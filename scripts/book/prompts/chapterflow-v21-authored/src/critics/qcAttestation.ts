@@ -118,6 +118,20 @@ export function chapterContentHashV1(chapter: ChapterV21): string {
   return createHash("sha256").update(JSON.stringify(canonicalContentV1(chapter))).digest("hex").slice(0, 16);
 }
 
+/** v0 — the ORIGINAL 2026-06-04 projection: v1 WITHOUT title/tryThisNow
+ *  (those were added 2026-06-05 in the "hash gap" fix). Verified 2026-06-10:
+ *  the 8 oldest live attestations (rework ch16-23, hashVersion absent) were
+ *  recorded with THIS algorithm — checking them only against v1 falsely
+ *  reported "chapter changed since review" for byte-identical content and
+ *  stranded them in qc-rehash. Legacy attestations (no hashVersion) are
+ *  fresh when they match v1 OR v0. */
+export function chapterContentHashV0(chapter: ChapterV21): string {
+  const projected = canonicalContentV1(chapter) as Record<string, unknown>;
+  delete projected["title"];
+  delete projected["tryThisNow"];
+  return createHash("sha256").update(JSON.stringify(projected)).digest("hex").slice(0, 16);
+}
+
 /** v2 — EXCLUDE-list projection: hash the whole chapter minus an explicit
  *  list of non-reader fields, with deep key sorting so semantically no-op
  *  reorders never stale an attestation. A new reader-facing field added to
@@ -162,9 +176,13 @@ export function hashForVersion(chapter: ChapterV21, version: QcHashVersion | und
 /** Whether an attestation's recorded hash still matches the chapter as it is
  *  now, using the hash version the attestation was RECORDED with. The single
  *  staleness predicate — qc-status and the promote gate must both use this,
- *  or they disagree the moment the hash algorithm evolves. */
+ *  or they disagree the moment the hash algorithm evolves.
+ *  Legacy attestations (hashVersion absent) predate version stamping and may
+ *  carry either pre-v2 algorithm — they are fresh when EITHER matches. */
 export function isAttestationFresh(att: QcAttestation, chapter: ChapterV21): boolean {
-  return att.contentHash === hashForVersion(chapter, att.hashVersion);
+  if (att.hashVersion === "v2") return att.contentHash === chapterContentHash(chapter);
+  if (att.hashVersion === "v1") return att.contentHash === chapterContentHashV1(chapter);
+  return att.contentHash === chapterContentHashV1(chapter) || att.contentHash === chapterContentHashV0(chapter);
 }
 
 export function attestationPath(bookId: string, chapterNumber: number): string {
