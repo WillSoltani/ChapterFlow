@@ -28,6 +28,12 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
 import { validateScenario, type ScenarioValidationResult } from "@/app/app/api/book/_lib/ai-service";
+import {
+  coarseReason,
+  getScenarioValidationModel,
+  scenarioValidationUnavailable,
+} from "@/app/app/api/book/_lib/ai-config";
+import { putOpsMetric } from "@/app/app/api/book/_lib/cloudwatch-metrics";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
@@ -186,7 +192,11 @@ export async function POST(
 
     // ── AI Validation ───────────────────────────────────────────────────────
     const apiKey = await getServerEnv("ANTHROPIC_API_KEY");
-    let aiResult: ScenarioValidationResult = { decision: "queue_for_review", reason: "AI unavailable" };
+    // Default to the queue-for-review fallback (records the configured model so
+    // the audit trail is honest even when the key is absent and validation never runs).
+    let aiResult: ScenarioValidationResult = scenarioValidationUnavailable(
+      await getScenarioValidationModel()
+    );
 
     if (apiKey) {
       let chapterTitle = `Chapter ${chapterNumberInt}`;
@@ -230,7 +240,7 @@ export async function POST(
       aiValidation: {
         decision: aiResult.decision,
         reason: aiResult.reason,
-        model: "claude-haiku-4-5-20251001",
+        model: aiResult.model,
         validatedAt: createdAt,
       },
       ...(initialStatus === "rejected" ? { reviewedAt: createdAt, reviewNotes: aiResult.reason } : {}),
@@ -346,6 +356,10 @@ export async function POST(
         putScenarioModerationItem(tableName, moderationItem),
         putScenarioLookup(tableName, lookupItem),
       ]);
+
+      // Track manual-review backlog inflow (rate + coarse cause). Complements the
+      // on-demand depth gauge in admin/metrics/moderation. Fire-and-forget.
+      void putOpsMetric("ScenarioModerationQueued", 1, { reason: coarseReason(aiResult.reason) });
 
       // Analytics — fire-and-forget
       getBookAnalyticsTableName().then((analyticsTable) => {
