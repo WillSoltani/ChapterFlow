@@ -81,3 +81,18 @@ test("cli: catalog-audit runs on the real corpus and reports the known fingerpri
   assert.match(out, /"the point is":\d+/);
   assert.match(out, /deadline tic: \d+%/);
 });
+
+test("name-plan excludes names other books already use (2026-06-10 policy reversal)", () => {
+  // zz-fixture book against the REAL catalog: every dealt name must be fresh
+  // catalog-wide (the bank comfortably covers one more book).
+  const { planNames, bankNamesUsedByOtherBooks } = require("../src/librarian/namePlan.js") as typeof import("../src/librarian/namePlan.js");
+  const plan = planNames("zz-fixture-fresh-names", 1, 3);
+  const taken = bankNamesUsedByOtherBooks("zz-fixture-fresh-names");
+  assert.ok(taken.size > 100, `cross-book scan should see the real catalog's used names (got ${taken.size})`);
+  for (const [ch, names] of Object.entries(plan.allocation)) {
+    for (const n of names) {
+      assert.ok(!taken.has(n), `ch${ch} dealt "${n}", which another book already uses — the Asha-in-two-books tell`);
+    }
+  }
+  assert.ok(plan.diagnostics.freshAvailable > 50, "the 777-name bank must leave real headroom after exclusion");
+});

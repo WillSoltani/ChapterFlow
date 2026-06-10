@@ -53,6 +53,7 @@ const VERB_HINT = /\b(is|are|was|were|be|been|being|has|have|had|do|does|did|can
  */
 const ALLOWED_QUESTION_KEYS = new Set([
   "questionId",
+  "sourceAnchorId", // Phase 3 (v2) provenance — required by SC11 on v2 chapters; stripped at promote so it never reaches the package validator
   "prompt",
   "choices",
   "correctIndex",
@@ -170,6 +171,46 @@ export function checkQuizAnswerLengthRatio(quiz: QuizV21): CriticFinding[] {
     }
   }
   return findings;
+}
+
+/**
+ * BP25 — statistical correct-is-longest rate (the "distractor tell").
+ * BP16 catches a single question whose key is 1.5-2× longer; this catches
+ * the subtler chapter-level pattern the 2026-06-10 reader review exposed:
+ * the keyed answer is merely the LONGEST choice, by any margin, in nearly
+ * every question — so a test-wise reader scores 9/9 without reading the
+ * chapter. Catalog baseline at introduction: 68% of all questions
+ * (drive 94%, dare-to-lead 82%); gold sits at ~68%, so the threshold is
+ * set ABOVE gold (advisory fires only on the worst offenders) while the
+ * refresh target (≤45%, ~chance for 3 choices) lives in catalog-audit and
+ * STEP-2 guidance. ADVISORY (minor) — campaign-mode signal, not a gate.
+ */
+const CORRECT_LONGEST_RATE_ADVISORY = 0.78;
+
+export function checkQuizCorrectLongestRate(quiz: QuizV21): CriticFinding[] {
+  let eligible = 0;
+  let longest = 0;
+  for (const q of quiz.questions ?? []) {
+    const correct = pickCorrectIndex(q);
+    if (correct == null) continue;
+    const choices = q.choices ?? [];
+    if (choices.length < 2 || typeof choices[correct] !== "string") continue;
+    eligible++;
+    if (choices.every((c, i) => i === correct || (typeof c === "string" ? c.length : 0) < choices[correct].length)) {
+      longest++;
+    }
+  }
+  if (eligible < 4) return [];
+  const rate = longest / eligible;
+  if (rate < CORRECT_LONGEST_RATE_ADVISORY) return [];
+  return [
+    finding(
+      "BP25.quiz_correct_longest_rate" as any,
+      "minor",
+      `keyed answer is the longest choice in ${longest}/${eligible} questions (${(rate * 100).toFixed(0)}%) — a test-wise reader can ace this quiz by length alone. Balance choice lengths: give distractors scenario-specific substance or trim the keys (refresh target ≤45%).`,
+      `${longest}/${eligible}`,
+    ),
+  ];
 }
 
 /**

@@ -99,6 +99,21 @@ Then these four rules are **authoring law**. They are not gate-dodges; they are 
 - Good (card back): "Because the cost lands on whoever spoke first, people stop speaking — and the team goes quiet exactly when it most needs the truth."
 - Bad (card back): "As the source cue notes, blame attribution suppresses upward information flow."
 
+**R2.5 — Write in THIS book's register, not the house voice.** The voice
+charter in your prompt (or the book's brief) sets the register — obey it.
+Catalog-wide tells to avoid (2026-06-10 review: "one ghostwriter wearing 26
+masks"):
+- Contractions and direct address are PERMITTED and expected where the
+  register is warm/plainspoken/blunt. The contraction-free "translated Stoic"
+  default is a bug, not a style.
+- Aphorism budget: at most ~1 closing maxim per 3 paragraphs. A maxim per
+  paragraph reads "like being tapped on the sternum" for twelve minutes.
+- Banned house tics (saturated catalog-wide): "The point is" (240×), "the
+  question is" (107×), "that is the …" (101×), "scoreboard" (48×), and the
+  triadic abstract-noun list ("shame, comparison, and disengagement" cadence)
+  more than once per chapter.
+
+
 **R3 — No fixed per-field skeleton across slots or chapters.** Compose each slot independently, from its own bit of source. A skeleton is the tell that you stopped writing and started filling blanks. The reader meets your fields in sequence; a rotating frame is obvious to them the second time they see it, and it teaches them that the book is generated, not authored. The diagnostic: if your six example scenarios share a clause, or your nine quiz prompts share an opener, or your card fronts share a stem with the concept swapped — you built a skeleton. Tear it out and write each from its own source moment.
 - Good: six scenarios with six different openers, roles, stakes, and scene shapes — each anchored in a different `namedExample`.
 - Bad: "<Name> leans over a clipboard at 8:10 a.m. in the <city> <place>…" six times with the nouns swapped.
@@ -407,6 +422,18 @@ Length floors are blocker-level. The ship gate fails closed if any tier is under
 
 ### Step 6 — `examples` (6-9 per chapter; A16 gate floor is 6 — fewer BLOCKS)
 
+**Anchors live in the LOGIC of the scene, never as set dressing.** The source's
+named cases must shape what happens or what a character realizes — not appear
+as props. The tell (2026-06-10 reader review: reads as "product placement,
+comic once seen"):
+- BAD: "On the plant wall, a case card reads Henry Ford, Model T, advisors,
+  automobile market." / "A Stoicism quote in the margin keeps him factual."
+- GOOD: "Liam had treated the refused pill as noncompliance; the case review
+  shows that the dream was also a vow." (the anchor IS the realization)
+If you cannot make the anchor do work inside the scene's logic, use it in the
+breakdown instead — never staple it to a wall, sticky note, or margin.
+
+
 The most error-prone section. The ship gate has 6+ critic checks here.
 
 **Per-example rules (every one matters):**
@@ -435,6 +462,14 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 - `whyItMatters`: 120-240 chars
 
 ### Step 7 — `quiz` (9-12 questions; A16 gate floor is 9 — fewer BLOCKS)
+
+**Choice-length balance (BP25):** the keyed answer must NOT be reliably the
+longest choice — at introduction, 68% of the catalog's questions could be
+aced by picking the longest option without reading. Target: the key is the
+longest in ≤45% of a chapter's questions (chance is ~33%). Give distractors
+scenario-specific substance; trim hedging from keys. Each distractor is a
+NAMED misconception, written with the same care as the key.
+
 
 **Read this section twice. This is where the most defects emerge.**
 

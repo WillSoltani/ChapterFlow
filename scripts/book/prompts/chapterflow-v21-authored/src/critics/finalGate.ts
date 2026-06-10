@@ -19,6 +19,7 @@ import { checkCardTestsRetrieval, checkQuizTestsApplication } from "./pedagogy.j
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkQuizAnswerLengthRatio,
+  checkQuizCorrectLongestRate,
   checkQuizBannedTailPhrase,
   checkQuizDuplicateChoices,
   checkQuizLabelShapedCorrect,
@@ -182,6 +183,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // measure-what-matters, the-12-week-year) — true positives, not noise.
   "AS13.within_chapter_quiz_template": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
+  // BP25 — statistical correct-is-longest rate (the distractor tell).
+  // ADVISORY: catalog baseline is 68% incl. gold; threshold 0.78 fires only
+  // on the worst offenders (drive 94%). Refresh target ≤45% lives in
+  // catalog-audit + STEP-2; promote to major only after the catalog refresh.
+  "BP25.quiz_correct_longest_rate": "minor",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
@@ -580,6 +586,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   }
   for (const f of checkQuizAnswerLengthRatio(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizCorrectLongestRate(chapter.quiz)) {
+    push(f.checkId as string, "quiz", f.message, f.evidence);
   }
   for (const f of checkQuizPromptOpenerMonotony(chapter.quiz)) {
     push(f.checkId as string, "quiz", f.message, f.evidence);
