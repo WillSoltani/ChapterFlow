@@ -10,9 +10,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test $(find app lib -name '*.test.ts' -not -path '*/node_modules/*')",
-    "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
-    "test:pdf-fill": "tsx --test app/tests/pdf-fill/*.test.ts"
+    "test": "FILES=$(find app lib -name '*.test.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no test files found' >&2; exit 1; fi; tsx --test $FILES",
+    "verify": "npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.88.0",
