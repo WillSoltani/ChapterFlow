@@ -1553,7 +1553,10 @@ async function runNamePlan(args: string[], flags: Record<string, string | boolea
     return 2;
   }
   const { planNames, writeNamePlan, formatNamePlan } = await import("./librarian/namePlan.js");
-  const plan = planNames(bookId, from, to, perChapter);
+  // --force-fresh: deal fresh catalog-exclusive names even for authored
+  // chapters — the refresh path uses this to build old→new RENAME maps
+  // (carried allocations only echo the on-disk names, collisions included).
+  const plan = planNames(bookId, from, to, perChapter, { forceFresh: flags["force-fresh"] === true });
   const path = writeNamePlan(plan);
   console.log(formatNamePlan(plan));
   console.log("");
@@ -1721,6 +1724,19 @@ async function runCatalogAudit(args: string[], flags: Record<string, string | bo
   }
   const report = auditCatalog(byBook);
   console.log(formatCatalogAudit(report));
+  // A single-book run structurally cannot see CROSS-book collisions, and its
+  // "collisions: 0" was quoted as an acceptance number by the first refresh
+  // pilot (reviewer-caught). When filtered, compute the real thing: this
+  // book's bank names vs the rest of the catalog.
+  if (args[0]) {
+    const targetId = report.books[0]?.bookId ?? args[0];
+    const full = auditCatalog(loadCatalog());
+    const mine = full.catalog.nameCollisions.filter((c) => c.books.includes(targetId));
+    console.log(`\n  CROSS-BOOK collisions involving "${targetId}" (vs the full catalog): ${mine.length}`);
+    for (const col of mine.slice(0, 12)) {
+      console.log(`    ${col.name}: also in ${col.books.filter((b) => b !== targetId).slice(0, 5).join(", ")}${col.books.length > 6 ? ", …" : ""}`);
+    }
+  }
   if (flags["save"] === true) {
     const outDir = resolve(__dirname, "../state/catalog-audit");
     mkdirSync(outDir, { recursive: true });

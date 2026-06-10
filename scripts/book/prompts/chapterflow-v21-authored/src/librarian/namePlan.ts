@@ -212,7 +212,14 @@ export function planNames(
   fromChapter: number,
   toChapter: number,
   perChapter = 7,
-  opts: { lookback?: number } = {},
+  opts: {
+    lookback?: number;
+    /** Deal fresh names even for already-authored chapters. The REFRESH path
+     *  needs this to produce RENAME MAPS: carried allocations only echo the
+     *  on-disk names (incl. cross-book collisions), so a refresh pilot that
+     *  ran name-plan saw nothing to rename (reviewer-caught, 2026-06-10). */
+    forceFresh?: boolean;
+  } = {},
 ): NamePlan {
   if (toChapter < fromChapter) throw new Error(`toChapter (${toChapter}) < fromChapter (${fromChapter})`);
   if (perChapter < 1) throw new Error(`perChapter must be >= 1 (got ${perChapter})`);
@@ -254,7 +261,7 @@ export function planNames(
   const alreadyAuthored: number[] = [];
   let cursor = 0;
   for (let ch = fromChapter; ch <= toChapter; ch++) {
-    if (usedByChapter[ch] !== undefined) {
+    if (!opts.forceFresh && usedByChapter[ch] !== undefined) {
       // Authored already: carry its REAL names through (idempotent re-plan) and
       // do NOT consume fresh bank names — so a re-plan can never re-deal a name a
       // sibling already owns (the F1-reintroduction the review flagged).

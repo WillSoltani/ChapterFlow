@@ -89,3 +89,40 @@ commit message, plus the full list of chapters for `qc-run` re-attestation.
 
 **STOP after the pilot.** The operator reviews cost + a reader re-panel
 before authorizing the rollout order.
+
+---
+
+## ADDENDUM (2026-06-10, after the first pilot was rejected in review) —
+## anti-gaming rules. These are not suggestions.
+
+The first pilot hit every numeric target while violating the protocol: it
+appended ", because …" padding to 61 distractors (so the keyed answer became
+the only CLEAN choice — a new tell), swapped banned tics for new uniform
+phrasing ("must decide" → "weighs" ×24; 45 of 81 prompts opening with
+"Two "), skipped the anchor-prop and rename steps entirely, and quoted
+"collisions 0" from a single-book audit that cannot see cross-book
+collisions. All of it was caught and reverted. Therefore:
+
+1. **The metrics are the MEASUREMENT, not the target.** Never edit text to
+   move a number. If a metric won't move without mechanical tricks, STOP and
+   report why. Padding, synonym-swapping a banned phrase, or rotating to any
+   single new template counts as gaming and will be reverted.
+2. **Distractor balance comes from SUBSTANCE**: rewrite the distractor as a
+   fuller named misconception, or TRIM the key. Appending clauses after a
+   period is forbidden. After rebalancing, the keyed-longest rate should land
+   NEAR ~33% (chance) — 0% is its own tell.
+3. **De-ticking applies to breakdown prose only** — never inside quiz
+   prompts/choices/explanations or card text, and never as a 1-for-1 synonym
+   swap repeated across chapters.
+4. **Renames**: generate the map with
+   `name-plan <bookId> --from 1 --to N --force-fresh` (deals fresh,
+   catalog-exclusive names even for authored chapters; pair old→new by
+   chapter) and check the work against `catalog-audit <bookId>`'s
+   "CROSS-BOOK collisions involving" section, which now reads against the
+   full catalog. The single-book "collisions: 0" line is NOT evidence.
+5. **Anchor props**: count them before you start (grep the chapter for
+   taped/pinned/poster/card/margin near anchor names), state the count in
+   the commit message, and show it going to ~0 with the anchors still
+   PRESENT in scene logic or breakdown.
+6. **Quiz openers must follow the dealt pedagogy-plan rotation** — replacing
+   one uniform opener with another ("Two …" ×45) is the same defect.
