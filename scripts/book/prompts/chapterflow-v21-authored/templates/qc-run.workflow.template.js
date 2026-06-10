@@ -252,6 +252,11 @@ function finalVerdict(entry) {
   const upheldKeys = verdicts.filter((v) => v.claim.kind === 'key' && v.upheld)
   const upheldAxis = verdicts.filter((v) => v.claim.kind === 'axis' && v.upheld)
   const sweepHits = sweepByChapter.get(r.c.n) ?? []
+  // publishableBar's hard rule: DID NOT RUN is never a pass. If any lens agent
+  // died (rate limit, error), the chapter was not fully read — a keys-only
+  // "overall" would print 100 and look perfect. Cap at REVISE with an explicit
+  // incomplete marker so the operator re-runs instead of trusting an artifact.
+  const incomplete = !r.keys || r.lenses.length < LENSES.length
   // Weighted overall (mirror of publishableBar.weightedOverall, weights from CONFIG)
   let num = 0, den = 0
   for (const a of prov.axes) {
@@ -263,8 +268,10 @@ function finalVerdict(entry) {
   // HARD RULE 1: confirmed corruption is a veto — the average never launders it.
   let verdict
   if (upheldKeys.length > 0 || upheldAxis.length > 0) verdict = 'CORRUPTION'
-  // HARD RULE 2: publishable ≠ not-corrupt; sweep templating also caps at REVISE.
-  else if (overall < CONFIG.publishableFloor || prov.axes.some((a) => a.score < CONFIG.axisFloor) || sweepHits.length > 0) verdict = 'REVISE'
+  // HARD RULE 2: publishable ≠ not-corrupt; sweep templating AND an incomplete
+  // read both cap at REVISE (a chapter nobody fully read cannot be attested
+  // PUBLISHABLE).
+  else if (incomplete || overall < CONFIG.publishableFloor || prov.axes.some((a) => a.score < CONFIG.axisFloor) || sweepHits.length > 0) verdict = 'REVISE'
   else verdict = 'PUBLISHABLE'
   const booleans = Object.assign({ grounded: true, frameworkComplete: true, cardsAnswerFronts: true, distractorsReal: true }, ...r.lenses.map((l) => l.booleans ?? {}))
   const dims = {
@@ -276,13 +283,13 @@ function finalVerdict(entry) {
     distractorsReal: !!booleans.distractorsReal,
   }
   const noteBits = [
-    `overall=${overall}`,
+    incomplete ? `INCOMPLETE READ (${r.lenses.length}/${LENSES.length} lenses${r.keys ? '' : ', keys missing'}) — re-run qc-run for this chapter` : `overall=${overall}`,
     upheldKeys.length ? `${upheldKeys.length} confirmed wrong key(s)` : null,
     upheldAxis.length ? `${upheldAxis.length} confirmed corruption hit(s)` : null,
     sweepHits.length ? `cross-chapter: ${sweepHits.map((f) => f.kind).join('/')}` : null,
     r.lenses.map((l) => l.notes).filter(Boolean).join(' | ').slice(0, 120) || null,
   ].filter(Boolean)
-  return { n: r.c.n, file: r.c.file, verdict, overall, dims, note: noteBits.join('; ').slice(0, 220), upheldKeys: upheldKeys.length }
+  return { n: r.c.n, file: r.c.file, verdict, overall: incomplete ? null : overall, dims, note: noteBits.join('; ').slice(0, 220), upheldKeys: upheldKeys.length }
 }
 
 const finals = adjudicated.filter(Boolean).map(finalVerdict)

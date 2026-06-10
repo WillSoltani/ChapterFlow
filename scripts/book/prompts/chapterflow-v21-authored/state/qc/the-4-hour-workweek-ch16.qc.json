@@ -3,17 +3,39 @@
   "bookId": "the-4-hour-workweek",
   "chapterNumber": 16,
   "chapterId": "the-4-hour-workweek-ch16",
-  "verdict": "PUBLISHABLE",
-  "contentHash": "433b09b190b81ad1",
-  "reviewer": "claude-qc:4hww-20260604",
-  "reviewedAt": "2026-06-04T17:02:23.804Z",
+  "verdict": "REVISE",
+  "contentHash": "a94e16bda8063df2",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:30:30.849Z",
   "dimensions": {
     "keysCorrect": true,
     "grounded": true,
-    "nonTemplated": true,
+    "nonTemplated": false,
     "frameworkComplete": true,
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Read breakdowns+full quiz. 9/9 keys correct; top mistakes, work-for-work's-sake, relapse audit, enough income, workspace boundary, social rewards accurate. Coherent; cards answer fronts; plan Run the Relapse Audit non-empty. No corruption."
+  "notes": "overall=100; cross-chapter: scene_skeleton/scene_skeleton/repeated_unit/repeated_unit",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 16,
+      "chapterId": "the-4-hour-workweek-ch16",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "433b09b190b81ad1",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:23.804Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; top mistakes, work-for-work's-sake, relapse audit, enough income, workspace boundary, social rewards accurate. Coherent; cards answer fronts; plan Run the Relapse Audit non-empty. No corruption."
+    }
+  ]
 }

@@ -3,17 +3,39 @@
   "bookId": "the-4-hour-workweek",
   "chapterNumber": 3,
   "chapterId": "the-4-hour-workweek-ch03",
-  "verdict": "PUBLISHABLE",
-  "contentHash": "17c68da3f9dee633",
-  "reviewer": "claude-qc:4hww-20260604",
-  "reviewedAt": "2026-06-04T17:02:06.293Z",
+  "verdict": "REVISE",
+  "contentHash": "2d8147ae49f762b3",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:29:45.612Z",
   "dimensions": {
     "keysCorrect": true,
     "grounded": true,
-    "nonTemplated": true,
+    "nonTemplated": false,
     "frameworkComplete": true,
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Read breakdowns+full quiz. 9/9 keys correct; fear-setting (worst/prevention/repair/cost-of-inaction), Seneca/Stoicism accurate. Coherent; cards answer fronts; plan Price the Fear Ledger non-empty. No corruption."
+  "notes": "overall=92; cross-chapter: scene_skeleton/persona_drift/repeated_unit/repeated_unit; Near-anchor quality: prose, memorable lines, and plans are publishable; draft-tier defects are named-character continuit",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 3,
+      "chapterId": "the-4-hour-workweek-ch03",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "17c68da3f9dee633",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:06.293Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; fear-setting (worst/prevention/repair/cost-of-inaction), Seneca/Stoicism accurate. Coherent; cards answer fronts; plan Price the Fear Ledger non-empty. No corruption."
+    }
+  ]
 }

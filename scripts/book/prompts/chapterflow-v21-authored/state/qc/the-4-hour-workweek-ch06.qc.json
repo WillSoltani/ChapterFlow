@@ -3,17 +3,39 @@
   "bookId": "the-4-hour-workweek",
   "chapterNumber": 6,
   "chapterId": "the-4-hour-workweek-ch06",
-  "verdict": "PUBLISHABLE",
-  "contentHash": "d54d0966b631d0a3",
-  "reviewer": "claude-qc:4hww-20260604",
-  "reviewedAt": "2026-06-04T17:02:07.853Z",
+  "verdict": "REVISE",
+  "contentHash": "009438e49d33c8f1",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:29:45.247Z",
   "dimensions": {
     "keysCorrect": true,
     "grounded": true,
-    "nonTemplated": true,
+    "nonTemplated": false,
     "frameworkComplete": true,
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Read breakdowns+full quiz. 9/9 keys correct; low-info diet, one-week media fast, just-in-time vs just-in-case accurate. Coherent; cards answer fronts; plan Ask What This Changes non-empty. No corruption."
+  "notes": "overall=88; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/repeated_unit; Near anchor quality, all defects draft-tier: uniform 'must choose' scene closers, Murray/Adeline scene cross-bleed betwe",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 6,
+      "chapterId": "the-4-hour-workweek-ch06",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "d54d0966b631d0a3",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:07.853Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; low-info diet, one-week media fast, just-in-time vs just-in-case accurate. Coherent; cards answer fronts; plan Ask What This Changes non-empty. No corruption."
+    }
+  ]
 }

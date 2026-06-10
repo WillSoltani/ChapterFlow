@@ -3,17 +3,39 @@
   "bookId": "the-4-hour-workweek",
   "chapterNumber": 13,
   "chapterId": "the-4-hour-workweek-ch13",
-  "verdict": "PUBLISHABLE",
-  "contentHash": "fcfac7dfd2070909",
-  "reviewer": "claude-qc:4hww-20260604",
-  "reviewedAt": "2026-06-04T17:02:22.332Z",
+  "verdict": "REVISE",
+  "contentHash": "fcff6d8df1b44509",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:30:31.659Z",
   "dimensions": {
     "keysCorrect": true,
     "grounded": true,
-    "nonTemplated": true,
+    "nonTemplated": false,
     "frameworkComplete": true,
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Read breakdowns+full quiz. 9/9 keys correct; strategic quitting, repair log, runway, sunk-cost, fear-setting-on-exit accurate. Coherent; cards answer fronts; plan Build the Repair-Failure Ledger non-empty. No corruption."
+  "notes": "overall=100; cross-chapter: scene_skeleton/scene_skeleton/repeated_unit/persona_drift/repeated_unit",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 13,
+      "chapterId": "the-4-hour-workweek-ch13",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "fcfac7dfd2070909",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:22.332Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; strategic quitting, repair log, runway, sunk-cost, fear-setting-on-exit accurate. Coherent; cards answer fronts; plan Build the Repair-Failure Ledger non-empty. No corruption."
+    }
+  ]
 }

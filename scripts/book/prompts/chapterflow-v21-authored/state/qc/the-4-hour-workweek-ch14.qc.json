@@ -3,17 +3,39 @@
   "bookId": "the-4-hour-workweek",
   "chapterNumber": 14,
   "chapterId": "the-4-hour-workweek-ch14",
-  "verdict": "PUBLISHABLE",
-  "contentHash": "3eb5a3a73946e147",
-  "reviewer": "claude-qc:4hww-20260604",
-  "reviewedAt": "2026-06-04T17:02:22.819Z",
+  "verdict": "REVISE",
+  "contentHash": "823c7adde45d6257",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:30:29.949Z",
   "dimensions": {
     "keysCorrect": true,
     "grounded": true,
-    "nonTemplated": true,
+    "nonTemplated": false,
     "frameworkComplete": true,
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "Read breakdowns+full quiz. 9/9 keys correct; mini-retirements, Buenos Aires/Spanish/tango, geographic arbitrage, RTW, redistribution accurate. Coherent; cards answer fronts (5 cards, gate-OK); plan Build the Living Season Map non-empty. Minor: 'Evelyn' in fastRead/EX1 only. No corruption."
+  "notes": "overall=100; cross-chapter: scene_skeleton/repeated_unit/repeated_unit",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 14,
+      "chapterId": "the-4-hour-workweek-ch14",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "3eb5a3a73946e147",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:22.819Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; mini-retirements, Buenos Aires/Spanish/tango, geographic arbitrage, RTW, redistribution accurate. Coherent; cards answer fronts (5 cards, gate-OK); plan Build the Living Season Map non-empty. Minor: 'Evelyn' in fastRead/EX1 only. No corruption."
+    }
+  ]
 }

@@ -1789,6 +1789,12 @@ async function runQcRun(args: string[], flags: Record<string, string | boolean>)
   console.log("Launch from a Claude Code session (the harness is the no-API semantic judge):");
   console.log(`  Workflow({ scriptPath: "${outPath}" })`);
   console.log("Then review the returned verdicts; REVISE/CORRUPTION chapters go back to authoring.");
+  if (chapters.length > 10) {
+    console.log(
+      `NOTE: ${chapters.length} chapters ≈ ${chapters.length * 3 + 2}+ agents in one run — a session rate limit mid-fleet ` +
+        `leaves chapters incomplete (they fail safe to REVISE, but must be re-run). Consider batches: --chapters 1,2,...,8 then the rest.`,
+    );
+  }
   return 0;
 }
 
