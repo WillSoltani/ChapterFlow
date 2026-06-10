@@ -11,7 +11,8 @@ import assert from "node:assert/strict";
 import { readdirSync, rmSync } from "fs";
 import { resolve } from "path";
 
-import { promoteBook } from "../src/promoteBook.js";
+import { promoteBook, stripInternalFields } from "../src/promoteBook.js";
+import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import { test } from "./harness.js";
 import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
 
@@ -58,4 +59,21 @@ test("promoteBook runs the intra-book suite and blocks on planted card reuse", (
   } finally {
     cleanupFixture();
   }
+});
+
+test("stripInternalFields removes planSpec + sourceAnchorId everywhere, without staling the attestation hash", () => {
+  const ch = makeChapter(BOOK, 9);
+  for (const ex of ch.examples) ex.sourceAnchorId = "a1";
+  for (const q of ch.quiz.questions) q.sourceAnchorId = "a2";
+  for (const card of ch.reviewCards) card.sourceAnchorId = "a3";
+
+  const before = chapterContentHash(ch);
+  const shipped = stripInternalFields(ch);
+
+  const json = JSON.stringify(shipped);
+  assert.doesNotMatch(json, /planSpec/, "writer scaffolding must not ship to readers");
+  assert.doesNotMatch(json, /sourceAnchorId/, "gate provenance must not ship to readers");
+  assert.equal(shipped.examples[0].scenario, ch.examples[0].scenario, "reader content untouched");
+  assert.equal(chapterContentHash(shipped), before, "the strip must never stale a QC attestation");
+  assert.ok((ch.examples[0] as any).planSpec, "strip works on a copy — state chapters are not mutated");
 });

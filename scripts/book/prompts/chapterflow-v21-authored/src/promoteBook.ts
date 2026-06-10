@@ -83,6 +83,17 @@ function stripKeyDeep<T>(value: T, key: string): T {
   return value;
 }
 
+/** Authoring-internal fields that must never reach the shipped package:
+ *  sourceAnchorId (gate-time provenance) and planSpec (the planner's design
+ *  rationale — types.ts: "Not shown to readers", but it shipped anyway until
+ *  Phase 1 because only sourceAnchorId was stripped). Pure copy — the
+ *  state/chapters files are never mutated, and the v2 content hash excludes
+ *  both keys, so stripping cannot stale a QC attestation
+ *  (tests/promote-gate.test.ts pins both properties). */
+export function stripInternalFields(chapter: ChapterV21): ChapterV21 {
+  return stripKeyDeep(stripKeyDeep(chapter, "sourceAnchorId"), "planSpec");
+}
+
 export function promoteBook(input: PromotionInput): PromotionResult {
   const { bookId, title, author, chapters } = input;
 
@@ -229,9 +240,10 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       categories: input.categories,
       tags: input.tags,
     },
-    // Strip the v2-only sourceAnchorId provenance (gate-time metadata) so it
-    // never ships into book-packages/ or reaches the web package validator.
-    chapters: loadedChapters.map((c) => stripKeyDeep(c, "sourceAnchorId")).sort((a, b) => a.number - b.number),
+    // Strip authoring-internal fields (sourceAnchorId provenance + planSpec
+    // scaffolding) so they never ship into book-packages/ or reach the web
+    // package validator / reader.
+    chapters: loadedChapters.map((c) => stripInternalFields(c)).sort((a, b) => a.number - b.number),
   };
 
   mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });

@@ -745,6 +745,8 @@ async function runGenerate(args: string[], flags: Record<string, string | boolea
 }
 
 async function runPromoteBook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: promote-book <bookId> --title X --author Y");
@@ -1047,6 +1049,8 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
  *  QC is complete. The AI steps (research, authoring, QC) are surfaced as a work
  *  queue with the exact command to run. Re-run it as books progress. */
 async function runBatch(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const guard = shadowGuard();
+  if (guard) return guard;
   const manifestPath = args[0];
   if (!manifestPath) {
     console.error('Usage: batch <manifest.json> [--run]\n  manifest = [{ "bookId": "...", "title": "...", "author": "..." }, ...]');
@@ -1064,7 +1068,7 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
   const { computeNextTask } = await import("./next-task.js");
   const { runShipGate } = await import("./critics/finalGate.js");
   const { runBookGate } = await import("./critics/bookGate.js");
-  const { loadAttestation, chapterContentHash } = await import("./critics/qcAttestation.js");
+  const { loadAttestation, isAttestationFresh } = await import("./critics/qcAttestation.js");
   const STATE = resolve(__dirname, "../state");
   const REPO = resolve(__dirname, "../../../../..");
   const chaptersDir = resolve(STATE, "chapters");
@@ -1098,7 +1102,9 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
       } else {
         const qcPassed = chapters.filter((ch) => {
           const a = loadAttestation(bookId, ch.number);
-          return a && a.verdict === "PUBLISHABLE" && a.contentHash === chapterContentHash(ch);
+          // isAttestationFresh, NOT a raw hash compare — attestations carry a
+          // hashVersion and a raw compare goes wrong the moment the hash evolves.
+          return a && a.verdict === "PUBLISHABLE" && isAttestationFresh(a, ch);
         }).length;
         if (chapters.length === 0 || qcPassed < chapters.length) {
           stage = "QC"; detail = `${qcPassed}/${chapters.length} chapters QC-passed`; action = "qc";
@@ -1111,6 +1117,11 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
   }
 
   // --run: auto-advance the terminal steps (promote + register) for SHIP books.
+  // Exit contract: status mode (no --run) is a WORK-QUEUE REPORT and exits 0
+  // unless the manifest itself is unusable; --run mode exits 1 if ANY attempted
+  // promote/register failed (it previously always exited 0 and printed
+  // "DONE — promoted + registered" even when register-web had failed).
+  let runFailures = 0;
   if (doRun) {
     for (const r of rows.filter((x) => x.action === "ship")) {
       const b = books.find((x) => (parseChapterId(`${x.bookId}-ch01`)?.bookId ?? x.bookId) === r.bookId)!;
@@ -1121,11 +1132,17 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
         const chapters = loadChapterIndex(r.bookId);
         const auto = deriveCategoriesAndTags(r.bookId, { title: b.title, chapterTitles: chapters.map((c) => c.chapterTitle) });
         const res = promoteBook({ bookId: r.bookId, title: b.title, author: b.author, chapters, categories: auto.categories, tags: auto.tags });
-        if (!res.promoted) { r.stage = "SHIP_BLOCKED"; r.detail = (res.reason ?? "promote blocked").slice(0, 90); continue; }
-        await runRegisterWeb([r.bookId], {});
+        if (!res.promoted) { r.stage = "SHIP_BLOCKED"; r.detail = (res.reason ?? "promote blocked").slice(0, 90); runFailures++; continue; }
+        const regCode = await runRegisterWeb([r.bookId], {});
+        if (regCode !== 0) {
+          r.stage = "REGISTER_FAILED";
+          r.detail = `promoted, but register-web exited ${regCode} — run \`register-web ${r.bookId}\` manually`;
+          runFailures++;
+          continue;
+        }
         r.stage = "DONE"; r.detail = "promoted + registered";
       } catch (err) {
-        r.stage = "SHIP_BLOCKED"; r.detail = (err as Error).message.slice(0, 90);
+        r.stage = "SHIP_BLOCKED"; r.detail = (err as Error).message.slice(0, 90); runFailures++;
       }
     }
   }
@@ -1145,6 +1162,10 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
   if (qc.length) console.log(`  QC (${qc.length}): ${qc.join(", ")}\n     → per book: a Claude QC session (agent-prompts/QC-SESSION-PROMPT.md), qc-attest each chapter`);
   if (!doRun && ship.length) console.log(`  SHIP (${ship.length}): ${ship.join(", ")}\n     → re-run with --run to auto promote + register these`);
   if (![research, author, gatefix, qc, ship].some((g) => g.length)) console.log(`  (nothing pending — all books DONE)`);
+  if (runFailures > 0) {
+    console.log(`\n${runFailures} --run action(s) FAILED (see SHIP_BLOCKED / REGISTER_FAILED rows above). (exit 1)`);
+    return 1;
+  }
   return 0;
 }
 
@@ -1398,6 +1419,8 @@ async function runNamePlan(args: string[], flags: Record<string, string | boolea
  *  promote requires a fresh PUBLISHABLE attestation per chapter (the no-API
  *  semantic gate); editing the chapter afterward makes it stale. */
 async function runQcAttest(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const file = args[0];
   const verdict = typeof flags["verdict"] === "string" ? (flags["verdict"] as string).toUpperCase() : "";
   const reviewer = typeof flags["reviewer"] === "string" ? (flags["reviewer"] as string) : "";
@@ -1481,6 +1504,8 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
  *  matches is already stale and is left alone — it needs re-review, not a
  *  re-pin. The prior record is preserved in the attestation's history. */
 async function runQcRehash(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const bookFilter = args[0];
   if (!bookFilter && flags["all"] !== true) {
     console.error("Usage: qc-rehash <bookId> | qc-rehash --all");
@@ -1529,6 +1554,8 @@ async function runQcRehash(args: string[], flags: Record<string, string | boolea
  *  gate's readiness for promote): PASS (fresh PUBLISHABLE), STALE, REVISE/
  *  CORRUPTION, or MISSING. */
 async function runQcStatus(args: string[]): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: qc-status <bookId>");

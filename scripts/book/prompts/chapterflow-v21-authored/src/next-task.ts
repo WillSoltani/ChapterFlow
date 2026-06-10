@@ -25,7 +25,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, "../../../../..");
 const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
 const STATE_DIR = resolve(__dirname, "../state");
-const PROMPTS_DIR = resolve(__dirname, "../prompts");
+const PROMPTS_DIR = resolve(__dirname, "../agent-prompts");
 
 type NextTask =
   | { kind: "research-bibliography"; bookId: string; path: string; playbook: string }
@@ -63,7 +63,7 @@ export function computeNextTask(bookId: string): NextTask {
       kind: "research-bibliography",
       bookId,
       path,
-      playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-RESEARCH.md"),
+      playbook: resolve(PROMPTS_DIR, "STEP-1-RESEARCH.md"),
     };
   }
 
@@ -73,7 +73,7 @@ export function computeNextTask(bookId: string): NextTask {
       kind: "research-bibliography",
       bookId,
       path: tocPath,
-      playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-RESEARCH.md"),
+      playbook: resolve(PROMPTS_DIR, "STEP-1-RESEARCH.md"),
     };
   }
 
@@ -101,7 +101,7 @@ export function computeNextTask(bookId: string): NextTask {
         chapterNumber: ch.number,
         chapterTitle: ch.title,
         path: sourcePath,
-        playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-RESEARCH.md"),
+        playbook: resolve(PROMPTS_DIR, "STEP-1-RESEARCH.md"),
       };
     }
   }
@@ -134,7 +134,7 @@ export function computeNextTask(bookId: string): NextTask {
         chapterId,
         sourcePath,
         outputPath,
-        playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-CHAPTER.md"),
+        playbook: resolve(PROMPTS_DIR, "STEP-2-WRITE-CHAPTERS.md"),
       };
     }
   }
@@ -173,7 +173,7 @@ export function computeNextTask(bookId: string): NextTask {
     return {
       kind: "finalize",
       bookId,
-      playbook: resolve(PROMPTS_DIR, "PLAYBOOK-OPERATOR-FINALIZE.md"),
+      playbook: resolve(PROMPTS_DIR, "STEP-3-FINALIZE.md"),
     };
   }
 
@@ -264,7 +264,10 @@ export function formatNextTask(task: NextTask): string {
       lines.push("");
       lines.push(`Read playbook: ${task.playbook}`);
       lines.push("");
-      lines.push(`Every chapter is generated and ship-gated. Run the book gate + assembly + promotion via:`);
+      // Honesty: this ladder is file-EXISTENCE based — it has not run any gate.
+      // Promotion re-runs the full stack (ship + intra-book + book + QC
+      // attestations) and may block; don't promise "ship-gated" here.
+      lines.push(`Every chapter file exists on disk (NOT gate-verified — promotion re-runs the full gate stack). Finalize via:`);
       lines.push(`  npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate-book ${task.bookId} \\`);
       lines.push(`    --title "<title>" --author "<author>" \\`);
       lines.push(`    --no-categorizer \\`);

@@ -149,6 +149,20 @@ export async function generateChapter(
     return cached;
   }
 
+  // No authored chapter on disk → the only way forward from here is the
+  // legacy model-subprocess pipeline (editor-in-chief, writers, voice passes
+  // — every step a paid model call). Under the no-API operating model that is
+  // never what the operator meant: generate-book is the ASSEMBLER for
+  // chapters Codex already authored, and silently falling through here was a
+  // verified surprise-API-spend bug. Hard-error unless explicitly enabled.
+  if (!process.env.CHAPTERFLOW_ALLOW_MODEL_GEN) {
+    throw new Error(
+      `${chapter.chapterId}: no authored chapter at ${chapterOutPath} and model generation is disabled ` +
+        `(no-API operating model). Author the missing chapter via \`fanout ${book.bookId}\` + Codex, or set ` +
+        `CHAPTERFLOW_ALLOW_MODEL_GEN=1 to deliberately invoke the legacy model pipeline.`,
+    );
+  }
+
   const briefFromDisk = await loadOrBuild<BookBrief>(
     resolve(STATE, "briefs", `${book.bookId}.brief.json`),
     () => runEditorInChief(book),
