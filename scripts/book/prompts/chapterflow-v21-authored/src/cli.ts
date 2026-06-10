@@ -127,6 +127,8 @@ Commands:
   qc-rehash <bookId>|--all           Upgrade unchanged v1-hash attestations to the v2 content hash
   qc-run <bookId> [--chapters 1,2]   Generate the harness QC workflow (blind keys + dual-lens bar reads
                                      + cross-chapter sweep + adjudication + qc-attest)
+  catalog-audit [bookId] [--save]    Cross-book fingerprint metrics (hook/exercise/quiz monoculture,
+                                     house tics, name collisions, distractor tell) + variety score
   quiz-blind <chapter.json>          Print the quiz with the answer key stripped (hidden-key protocol)
   quiz-verify <chapter.json> --answers "0:1,..."  Diff blind-derived answers against the real key
   qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
@@ -1659,6 +1661,32 @@ async function runQcRehash(args: string[], flags: Record<string, string | boolea
   return 0;
 }
 
+/** `catalog-audit [bookId] [--save]` — measure the cross-book fingerprints no
+ *  per-book gate sees (hook-shape monoculture, tryThisNow grammar, quiz-opener
+ *  family, house tics, the scenario deadline tic, cross-book name collisions,
+ *  the distractor length tell). --save writes state/catalog-audit/latest.json
+ *  so the remediation campaign has a committed before/after. */
+async function runCatalogAudit(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const { loadCatalog, auditCatalog, formatCatalogAudit } = await import("./critics/catalogAudit.js");
+  const byBook = loadCatalog(args[0]);
+  if (byBook.size === 0) {
+    console.error(args[0] ? `No chapters found for "${args[0]}".` : "No chapters in state/chapters/.");
+    return 2;
+  }
+  const report = auditCatalog(byBook);
+  console.log(formatCatalogAudit(report));
+  if (flags["save"] === true) {
+    const outDir = resolve(__dirname, "../state/catalog-audit");
+    mkdirSync(outDir, { recursive: true });
+    const outPath = resolve(outDir, "latest.json");
+    writeFileSync(outPath, JSON.stringify(report, null, 2), "utf8");
+    console.log(`\nSaved: ${outPath}`);
+  }
+  return 0;
+}
+
 /** `quiz-blind <chapter.json>` — print the chapter's quiz with the answer key
  *  STRIPPED (no correctIndex / explanation / sourceAnchorId). The tooled half
  *  of the hidden-key protocol: a reviewer derives answers from THIS output
@@ -2275,6 +2303,8 @@ async function main() {
       return runQcRun(args, flags);
     case "quiz-blind":
       return runQuizBlind(args);
+    case "catalog-audit":
+      return runCatalogAudit(args, flags);
     case "quiz-verify":
       return runQuizVerify(args, flags);
     case "fanout":
