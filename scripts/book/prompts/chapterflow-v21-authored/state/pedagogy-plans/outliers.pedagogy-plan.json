@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "pedagogy-plan-v1",
+  "bookId": "outliers",
+  "fromChapter": 1,
+  "toChapter": 9,
+  "bookMix": {
+    "hookShapes": [
+      "object-in-motion",
+      "counterfactual-question",
+      "one-number-contrast"
+    ],
+    "dominantHookShape": "object-in-motion",
+    "tryThisNowGrammars": [
+      "count-observations",
+      "schedule-event",
+      "ten-minute-timer"
+    ],
+    "quizOpeners": [
+      "compare-two-responses",
+      "what-happens-next"
+    ]
+  },
+  "allocation": {
+    "1": {
+      "hookShape": "object-in-motion",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "compare-two-responses",
+        "what-happens-next"
+      ]
+    },
+    "2": {
+      "hookShape": "one-number-contrast",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "what-happens-next",
+        "compare-two-responses"
+      ]
+    },
+    "3": {
+      "hookShape": "object-in-motion",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "compare-two-responses",
+        "what-happens-next"
+      ]
+    },
+    "4": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "what-happens-next",
+        "compare-two-responses"
+      ]
+    },
+    "5": {
+      "hookShape": "object-in-motion",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "compare-two-responses",
+        "what-happens-next"
+      ]
+    },
+    "6": {
+      "hookShape": "one-number-contrast",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "what-happens-next",
+        "compare-two-responses"
+      ]
+    },
+    "7": {
+      "hookShape": "object-in-motion",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "compare-two-responses",
+        "what-happens-next"
+      ]
+    },
+    "8": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "what-happens-next",
+        "compare-two-responses"
+      ]
+    },
+    "9": {
+      "hookShape": "object-in-motion",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "compare-two-responses",
+        "what-happens-next"
+      ]
+    }
+  },
+  "carriedChapters": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ]
+}

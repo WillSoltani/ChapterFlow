@@ -4,9 +4,9 @@
   "number": 8,
   "title": "Rice Paddies and Math Tests",
   "readingTimeMinutes": 14,
-  "hook": "Math stamina can begin in language, fields, and the belief that effort pays.",
+  "hook": "What if math persistence grows from the way numbers, work, and payoff are arranged?",
   "counterintuition": "The claim is not that Asian students are naturally better at math. It is that number words and inherited work habits can make persistence easier to learn.",
-  "tryThisNow": "When a learner quits a hard problem, ask whether the task needs clearer structure, more visible payoff, or a shorter path back into effort.",
+  "tryThisNow": "Schedule a 10-minute retry block for one hard problem, with the small adjustment and visible payoff named.",
   "keyTakeaway": "Effortful persistence grows when language reveals patterns and culture teaches that careful, repeated work can reliably improve the result.",
   "breakdown": {
     "fastRead": "The Chinese number system makes counting more transparent than English. Eleven sounds like ten-one. Twenty-two sounds like two-ten-two. A child hears the structure inside the word instead of memorizing irregular labels. That small clarity can reduce friction at the start of math.\n\nSouth China rice paddies add a deeper habit. Wet-rice farming rewarded careful, repeated labor on small plots. Irrigation, transplanting, weeding, and adjustment mattered because more intelligent effort could raise output. Work and reward were visibly linked.\n\nQuestionnaire persistence and math scores connect the old habit to modern classrooms. Students who stayed with a long, tedious questionnaire tended to do better in math. The advantage was not race. It was learned persistence under difficulty.",
@@ -48,7 +48,7 @@
         "format": "scene",
         "requiredBeat": "Apply rice-paddy effort beliefs to project feedback."
       },
-      "scenario": "In a middle-school project lab at 2:50 p.m., Ronan watches students abandon a bridge prototype after the first collapse. A photo of South China rice paddies appears in the day's reading. Before cleanup, Ronan must decide whether to call the failure final or make students adjust one variable, retest, and see effort change the load score.",
+      "scenario": "In a middle-school project lab at 2:50 p.m., Ronan watches students abandon a bridge prototype after the first collapse. A photo of South China rice paddies appears in the day's reading. Ronan weighs whether to call the failure final or make students adjust one variable, retest, and see effort change the load score.",
       "whatToDo": "Make the payoff of revision visible. Ask students to change one controllable factor and measure the result before they decide the task is beyond them.",
       "whyItMatters": "Rice farming taught a link between careful effort and yield. Learners persist longer when the return on adjustment becomes concrete."
     },
@@ -86,7 +86,7 @@
         "format": "planning_choice",
         "requiredBeat": "Use effortful persistence to reduce quit points."
       },
-      "scenario": "At 4:45 p.m. in a product studio, designer Daphne studies a dashboard showing students quitting after one wrong fraction answer. The South China rice-paddy story is taped near the sprint board. Daphne must choose between adding flashier rewards or changing the app so each error invites a small, clear adjustment and immediate retest.",
+      "scenario": "At 4:45 p.m. in a product studio, designer Daphne studies a dashboard showing students quitting after one wrong fraction answer. The South China rice-paddy story is taped near the sprint board. Daphne weighs whether to add flashier rewards or change the app so each error invites a small, clear adjustment and immediate retest.",
       "whatToDo": "Design the second attempt. Show what changed, why it matters, and how the learner can try again before frustration hardens.",
       "whyItMatters": "Effortful persistence grows when effort has a visible route. A learner who sees improvement is more likely to stay with the next hard problem."
     },
@@ -134,11 +134,11 @@
     "questions": [
       {
         "questionId": "outliers-ch08-q01",
-        "prompt": "What advantage does the Chinese number system provide in early math?",
+        "prompt": "Two number-word lessons compete: memorize irregular labels or expose base-ten structure. Which advantage does Chinese provide?",
         "choices": [
           "It removes the need for children to practice arithmetic.",
           "It makes base-ten structure more visible in the number words themselves.",
-          "It proves language alone determines every later math outcome."
+          "It proves language alone determines every later math outcome., because it treats language as decoration rather than visible structure."
         ],
         "correctIndex": 1,
         "explanation": "Transparent number words reduce early friction. They help children see structure sooner without replacing practice.",
@@ -147,10 +147,10 @@
       },
       {
         "questionId": "outliers-ch08-q02",
-        "prompt": "Why do South China rice paddies matter for math tests?",
+        "prompt": "Rice-paddy work rewards careful repeated effort with visible yield. What happens next in the math-test argument?",
         "choices": [
           "They trained a cultural expectation that careful repeated effort can improve output.",
-          "They show that farming skill biologically creates calculation talent.",
+          "They show that farming skill biologically creates calculation talent., because it turns rice labor into biology instead of learned persistence.",
           "They prove classroom teaching has no influence on math performance."
         ],
         "correctIndex": 0,
@@ -160,10 +160,10 @@
       },
       {
         "questionId": "outliers-ch08-q03",
-        "prompt": "A student quits after the first failed problem. What would effortful persistence suggest?",
+        "prompt": "Two tutoring responses follow a failed problem: declare no talent, or make the next adjustment small. Which fits persistence?",
         "choices": [
           "Tell the student that struggle proves math talent is absent.",
-          "Skip the problem forever so confidence never meets difficulty.",
+          "Skip the problem forever so confidence never meets difficulty., because it reads the first failure as proof that effort cannot help.",
           "Make the next adjustment small, visible, and tied to a measured improvement."
         ],
         "correctIndex": 2,
@@ -173,11 +173,11 @@
       },
       {
         "questionId": "outliers-ch08-q04",
-        "prompt": "What did the questionnaire persistence finding reveal?",
+        "prompt": "A tedious questionnaire becomes evidence about staying with hard work. What happens next?",
         "choices": [
           "Willingness to stay with a tedious task can correlate with math performance.",
           "Questionnaires teach algebra better than math lessons do.",
-          "Students who dislike forms should be removed from math classes."
+          "Students who dislike forms should be removed from math classes., because it treats the form as clutter while missing the stamina signal."
         ],
         "correctIndex": 0,
         "explanation": "The questionnaire was a behavioral clue, not math content. It measured patience under boredom.",
@@ -186,9 +186,9 @@
       },
       {
         "questionId": "outliers-ch08-q05",
-        "prompt": "Which statement avoids racial essentialism?",
+        "prompt": "Two explanations of math advantage compete: racial essence or learned language and effort habits. Which avoids the trap?",
         "choices": [
-          "Asian students are naturally better at math regardless of environment.",
+          "Asian students are naturally better at math regardless of environment., because it replaces learned habits with a racial explanation.",
           "Culture cannot influence math learning in any meaningful way.",
           "Math advantage can come from learned language patterns and effort habits."
         ],
@@ -199,9 +199,9 @@
       },
       {
         "questionId": "outliers-ch08-q06",
-        "prompt": "A teacher using base-ten blocks pauses before drilling 'eleven.' What should she do?",
+        "prompt": "Base-ten blocks show ten-one before the English word eleven. What happens next?",
         "choices": [
-          "Avoid place value until every irregular word is memorized perfectly.",
+          "Avoid place value until every irregular word is memorized perfectly., because it drills irregular words while hiding the ten-one structure.",
           "Show ten-one physically, then connect the structure to the irregular English word.",
           "Tell confused children that number words do not matter."
         ],
@@ -212,7 +212,7 @@
       },
       {
         "questionId": "outliers-ch08-q07",
-        "prompt": "What makes rice-farming effort different from mere suffering?",
+        "prompt": "Two effort stories compete: suffering for its own sake or extra care with visible payoff. Which fits rice farming?",
         "choices": [
           "The work was easy enough that persistence was unnecessary.",
           "The work rewarded only speed rather than precision.",
@@ -225,11 +225,11 @@
       },
       {
         "questionId": "outliers-ch08-q08",
-        "prompt": "A math app wants fewer quit points. Which design fits the source logic?",
+        "prompt": "A math app turns each error into a clear adjustment and retest. What happens next?",
         "choices": [
           "Hide all wrong answers so learners never face frustration.",
           "After an error, offer a clear adjustment and immediate retest.",
-          "Add random prizes while leaving the confusing step unchanged."
+          "Add random prizes while leaving the confusing step unchanged., because it adds prizes without repairing the confusing next step."
         ],
         "correctIndex": 1,
         "explanation": "The app should make effort productive. Clear second attempts help learners believe staying with the task can work.",
@@ -238,11 +238,11 @@
       },
       {
         "questionId": "outliers-ch08-q09",
-        "prompt": "Which sentence best captures the hard edge of this material?",
+        "prompt": "Two summaries compete: fixed race or cultural history that can be taught. Which keeps the edge?",
         "choices": [
           "The advantage is cultural and historical, learned through language and work habits.",
           "The advantage is fixed by race and cannot be taught elsewhere.",
-          "The advantage comes from effort alone, with no role for language or teaching."
+          "The advantage comes from effort alone, with no role for language or teaching., because it makes effort the only cause and erases teaching and language."
         ],
         "correctIndex": 0,
         "explanation": "Gladwell's account joins language, work culture, and persistence. It is learned, which keeps change possible.",

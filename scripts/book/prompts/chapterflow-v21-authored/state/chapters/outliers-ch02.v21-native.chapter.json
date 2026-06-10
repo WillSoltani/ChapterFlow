@@ -4,9 +4,9 @@
   "number": 2,
   "title": "The 10,000-Hour Rule",
   "readingTimeMinutes": 14,
-  "hook": "Practice counts, but the first miracle is getting a place to practice.",
+  "hook": "10,000 hours sound personal until the lab key, club stage, and terminal schedule appear.",
   "counterintuition": "The famous number is not a motivational slogan. It is a clue about rare access, early permission, and environments that let hours pile up.",
-  "tryThisNow": "Name one skill you want to grow, then identify the machine, room, mentor, or schedule that would let practice actually accumulate.",
+  "tryThisNow": "Schedule a 20-minute practice block tomorrow with the room, tool, or mentor named in the calendar note.",
   "keyTakeaway": "The 10,000-hour rule teaches that mastery requires deep practice, but deep practice depends on access to tools, feedback, time, and timing.",
   "breakdown": {
     "fastRead": "Bill Joy did not become a great programmer by merely wanting it more. At Michigan, he found an interactive computer system when most students still lived in the slow world of punch cards. The machine answered quickly. The lab stayed open. Joy could keep trying, failing, correcting, and trying again.\n\nThe Beatles got a different kind of laboratory in Hamburg. Night after night, they played long club sets for demanding crowds. The work was tiring and unglamorous, but it forced repertoire, timing, stamina, and ensemble feel. Their hours were not abstract. They were stage hours.\n\nThe 10,000-hour rule is therefore a practice story with an opportunity core. Effort matters, but it must have somewhere to go. Tools, permission, mentors, and historical timing decide who can gather enough repetitions for talent to harden into expertise.",
@@ -29,7 +29,7 @@
         "format": "decision_point",
         "requiredBeat": "Use Bill Joy at Michigan to allocate scarce coding lab access."
       },
-      "scenario": "At 7:05 p.m. in a community college lab, director Leonie checks a reservation sheet taped beside eight old monitors. A note about Bill Joy at Michigan is tucked under her laptop. The day students have taken the best slots again. Leonie must decide whether to reward the fastest coders with more machine time or open late sessions for working students who can practice only after shifts.",
+      "scenario": "At 7:05 p.m. in a community college lab, director Leonie checks a reservation sheet taped beside eight old monitors. A note about Bill Joy at Michigan is tucked under her laptop. The day students have taken the best slots again. Leonie weighs whether to reward the fastest coders with more machine time or open late sessions for working students who can practice only after shifts.",
       "whatToDo": "Move the lab schedule toward unused learners, not just proven learners. Protect blocks of machine time where feedback is fast and beginners can return often.",
       "whyItMatters": "Joy's hours depended on a responsive system he could actually use. Practice talk is hollow when the tool is available only to those already inside."
     },
@@ -67,7 +67,7 @@
         "format": "dilemma",
         "requiredBeat": "Use Bill Gates and Lakeside to choose access over awards."
       },
-      "scenario": "Inside a school boardroom after lunch, donor Cedric studies two proposals: trophies for top science students or a shared terminal in the library. The Bill Gates and Lakeside story keeps troubling him. Before the vote, he needs to decide whether the fund should celebrate winners who already surfaced or buy the scarce tool that lets hidden students discover whether coding grips them.",
+      "scenario": "Inside a school boardroom after lunch, donor Cedric studies two proposals: trophies for top science students or a shared terminal in the library. The Bill Gates and Lakeside story keeps troubling him. As the vote nears, he weighs whether the fund should celebrate winners who already surfaced or buy the scarce tool that lets hidden students discover whether coding grips them.",
       "whatToDo": "Spend on access before applause. A prize recognizes existing performance, while a working tool can create the first serious hours that reveal skill.",
       "whyItMatters": "Lakeside's terminal mattered because it arrived early. Timely access can turn curiosity into a practice path before a student has a resume."
     },
@@ -86,7 +86,7 @@
         "format": "audit",
         "requiredBeat": "Apply practice opportunity to mentor time in chess."
       },
-      "scenario": "Wednesday at 4:10 p.m., coach Sorrel walks between chess tables in the library and sees the same three children getting every post-game review. A poster about Bill Joy at Michigan hangs near the door for career week. Sorrel counts mentor minutes, then must decide whether elite players keep the analysis board or beginners receive structured feedback before they quit.",
+      "scenario": "Wednesday at 4:10 p.m., coach Sorrel walks between chess tables in the library and sees the same three children getting every post-game review. A poster about Bill Joy at Michigan hangs near the door for career week. Sorrel counts mentor minutes and weighs whether elite players keep the analysis board or beginners receive structured feedback before they quit.",
       "whatToDo": "Track feedback minutes, not just attendance. Rotate analysis toward newer players so mistakes become lessons instead of quiet reasons to leave.",
       "whyItMatters": "Mastery needs corrected repetitions. If feedback follows only the already skilled, the club converts an early lead into a lasting one."
     },
@@ -124,7 +124,7 @@
         "format": "scene",
         "requiredBeat": "Use practice opportunity to widen maker-space access."
       },
-      "scenario": "At 10:30 a.m. in the public library maker-space, librarian Marcel watches confident hobbyists line up at the 3D printers before the doors fully open. A display mentions Bill Gates and Lakeside beside an old computer terminal. Minutes before posting new rules, Marcel must decide whether open signup is fair or whether first-time builders need protected practice hours.",
+      "scenario": "At 10:30 a.m. in the public library maker-space, librarian Marcel watches confident hobbyists line up at the 3D printers before the doors fully open. A display mentions Bill Gates and Lakeside beside an old computer terminal. As new rules go up, Marcel weighs whether open signup is fair or whether first-time builders need protected practice hours.",
       "whatToDo": "Hold beginner blocks with staff nearby, then reserve advanced blocks later. Access should create new practice histories, not merely extend old ones.",
       "whyItMatters": "The tool is part of the opportunity. When confident users occupy every slot, the library repeats the scarcity that Gladwell is asking us to notice."
     }
@@ -134,7 +134,7 @@
     "questions": [
       {
         "questionId": "outliers-ch02-q01",
-        "prompt": "Bill Joy finds interactive computing at Michigan. What made that access unusually powerful?",
+        "prompt": "Two accounts of Bill Joy's lab time compete: one credits hours alone, the other credits fast feedback. Which one fits?",
         "choices": [
           "The machine removed the need for mathematical skill or sustained concentration.",
           "Fast feedback let many programming attempts fit into each hour of practice.",
@@ -147,7 +147,7 @@
       },
       {
         "questionId": "outliers-ch02-q02",
-        "prompt": "A student band wants a Hamburg-style apprenticeship. Which schedule best matches the Beatles example?",
+        "prompt": "A student band swaps one polished showcase for repeated long cafeteria sets. What happens next under the Hamburg logic?",
         "choices": [
           "Long, repeated live sets that force repertoire, stamina, timing, and recovery.",
           "One polished concert each semester with the same three strongest songs.",
@@ -160,20 +160,20 @@
       },
       {
         "questionId": "outliers-ch02-q03",
-        "prompt": "The Lakeside terminal matters in the Gates story because it supplied what?",
+        "prompt": "Two explanations of the Lakeside terminal compete. Which one matches the Gates opportunity story?",
         "choices": [
           "A guarantee that any teenager with a terminal would build Microsoft.",
           "A reason to treat family background as irrelevant to technical mastery.",
           "Early access to scarce equipment while the field was still young."
         ],
         "correctIndex": 2,
-        "explanation": "Gates still had to practice intensely. The point is that rare early access gave his intensity a place to accumulate.",
+        "explanation": "Gates still had to practice intensely. The aim is that rare early access gave his intensity a place to accumulate.",
         "bloomsLevel": "analyze",
         "depthLevel": "deep"
       },
       {
         "questionId": "outliers-ch02-q04",
-        "prompt": "A nonprofit can fund trophies or evening lab hours. What would the practice-opportunity lens favor?",
+        "prompt": "A nonprofit funds evening lab hours instead of trophies. What happens next through the practice-opportunity lens?",
         "choices": [
           "Trophies, because public praise produces expertise without changing access.",
           "Neither option, because deliberate practice cannot be shaped by institutions.",
@@ -186,9 +186,9 @@
       },
       {
         "questionId": "outliers-ch02-q05",
-        "prompt": "Why is 'just do 10,000 hours' a weak reading of the rule?",
+        "prompt": "Two readings of the 10,000-hour rule are on the table. Which one avoids the hours-only shortcut?",
         "choices": [
-          "It denies that any long practice history can improve performance.",
+          "It denies that any long practice history can improve performance., because it counts hours while ignoring rooms, tools, mentors, and timing.",
           "It ignores equipment, feedback, time, mentors, and historical timing.",
           "It claims that talent alone explains Joy, Gates, and the Beatles."
         ],
@@ -199,7 +199,7 @@
       },
       {
         "questionId": "outliers-ch02-q06",
-        "prompt": "A city wants to build software talent among teenagers. Which design follows from Joy and Gates?",
+        "prompt": "A city designs teen software labs around recurring staffed access. What happens next if Joy and Gates guide the plan?",
         "choices": [
           "Open staffed labs with enough recurring hours for sustained coding attempts.",
           "Offer a one-day lecture on famous programmers and then rank interest levels.",
@@ -212,7 +212,7 @@
       },
       {
         "questionId": "outliers-ch02-q07",
-        "prompt": "In the Beatles story, why do the club conditions matter as much as the hours?",
+        "prompt": "Two Beatles practice plans compete: protected rehearsal or demanding club conditions. Which one fits Hamburg?",
         "choices": [
           "The setting made the hours demanding, varied, public, and corrective.",
           "The setting protected them from fatigue and audience pressure.",
@@ -225,7 +225,7 @@
       },
       {
         "questionId": "outliers-ch02-q08",
-        "prompt": "A chess club gives all coach analysis to the strongest players. What pattern is forming?",
+        "prompt": "Chess feedback keeps flowing only to the strongest children. What happens next to the club's opportunity structure?",
         "choices": [
           "Feedback is being wasted because advanced players cannot benefit from review.",
           "Feedback should be removed from everyone so competition stays pure.",
@@ -238,11 +238,11 @@
       },
       {
         "questionId": "outliers-ch02-q09",
-        "prompt": "Which statement keeps the 10,000-hour rule closest to Gladwell's argument?",
+        "prompt": "Two summaries of mastery compete. Which stays closest to Gladwell's practice-opportunity argument?",
         "choices": [
           "Mastery arrives after a fixed count of repetitions in any setting.",
           "Mastery requires immense practice, and opportunity shapes who can gather it.",
-          "Mastery belongs mainly to those born with enough genius to avoid practice."
+          "Mastery belongs mainly to those born with enough genius to avoid practice., because it makes mastery sound like arithmetic rather than accumulated access."
         ],
         "correctIndex": 1,
         "explanation": "The rule joins practice and access. It is about the conditions that let effort compound, not about a magic number by itself.",

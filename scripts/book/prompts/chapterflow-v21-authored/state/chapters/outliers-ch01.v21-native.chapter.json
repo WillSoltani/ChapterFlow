@@ -4,9 +4,9 @@
   "number": 1,
   "title": "The Matthew Effect",
   "readingTimeMinutes": 14,
-  "hook": "The hockey roster looks like a merit list until the birthdays start talking.",
+  "hook": "A yellow birthday mark moves from the roster margin to the tryout sheet, and the merit list starts to tilt.",
   "counterintuition": "The best children are not being invented by the calendar. The calendar is deciding who gets the first serious chance to become visibly good.",
-  "tryThisNow": "Pick one selection process you know and list the hidden cutoff, cohort rule, or early-access perk before judging the winners.",
+  "tryThisNow": "Count five selection decisions you see this week, and mark the cutoff or early-access advantage behind each winner.",
   "keyTakeaway": "Accumulative advantage begins as a small head start, then grows when institutions hand the early winners more coaching, time, attention, and belief.",
   "breakdown": {
     "fastRead": "The Medicine Hat Tigers roster looks, at first, like proof that Canadian hockey finds talent cleanly. Then Roger Barnsley notices the birthdays. January, February, and March show up far too often. The roster is not only a record of hard skating. It is also a record of an age-class rule.\n\nThe January 1 cutoff makes some nine-year-olds almost a year older than others in the same tryout pool. At that age, a year can mean stronger legs, better balance, more confidence, and a coach's first nod. The nod leads to better teams. Better teams bring more ice time and sharper instruction. The early lead grows.\n\nThe Matthew Effect is not a claim that talent is fake. It says talent needs a fair field in which to appear. When schools or sports programs sort children too early, they may reward birth timing and call it merit.",
@@ -29,7 +29,7 @@
         "format": "decision_point",
         "requiredBeat": "Use the Medicine Hat Tigers roster to question an early hockey selection decision."
       },
-      "scenario": "At 6:40 p.m. in the rink office, coach Renee studies a clipboard of ten-year-old tryout scores. A parent has circled the Medicine Hat Tigers roster in a printed article, then marked every January birthday in yellow. Renee must decide whether the top line gets all six extra development slots or whether the December skaters receive a second look after growth and balance catch up.",
+      "scenario": "At 6:40 p.m. in the rink office, coach Renee studies a clipboard of ten-year-old tryout scores. A parent has circled the Medicine Hat Tigers roster in a printed article, then marked every January birthday in yellow. Renee weighs two paths: send all six extra development slots to the top line, or give December skaters a second look after growth and balance catch up.",
       "whatToDo": "Split the ranking into birth-window groups before awarding scarce coaching. Keep the standard high, but compare children against peers who have had a similar development clock.",
       "whyItMatters": "The Medicine Hat pattern shows how an early label can become the reason for later skill. A fairer first gate protects talent that needs more time to show."
     },
@@ -124,9 +124,9 @@
         "format": "scene",
         "requiredBeat": "Use the Matthew Effect to distribute music coaching."
       },
-      "scenario": "At 4:55 p.m. in the practice room, director Iris listens while the youth orchestra's first-chair candidates tune under fluorescent lights. A note about Roger Barnsley and the Medicine Hat Tigers is taped to her folder. Minutes before assigning private coaching vouchers, she notices that the most confident players all began lessons two years earlier.",
+      "scenario": "At 4:55 p.m. in the practice room, director Iris listens while the youth orchestra's first-chair candidates tune under fluorescent lights. A note about Roger Barnsley and the Medicine Hat Tigers is taped to her folder. As private coaching vouchers are assigned, she notices that the most confident players all began lessons two years earlier.",
       "whatToDo": "Separate present performance from prior access. Award some coaching vouchers to promising players who have had fewer lessons, then measure growth after instruction.",
-      "whyItMatters": "The point is not to punish early starters. It is to avoid giving all new resources to the students who already received the old ones."
+      "whyItMatters": "The aim is not to punish early starters. It is to avoid giving all new resources to the students who already received the old ones."
     }
   ],
   "quiz": {
@@ -134,7 +134,7 @@
     "questions": [
       {
         "questionId": "outliers-ch01-q01",
-        "prompt": "A hockey board sees January birthdays filling its elite roster. What reading best follows the Medicine Hat Tigers case?",
+        "prompt": "Two coaches read the January-heavy roster differently: one sees pure merit, the other sees accumulated access. Which reading fits the Medicine Hat case?",
         "choices": [
           "The roster may reflect age-linked access to better training, not pure ability alone.",
           "The roster proves scouts should ignore performance whenever birth months look uneven.",
@@ -147,10 +147,10 @@
       },
       {
         "questionId": "outliers-ch01-q02",
-        "prompt": "Before gifted letters go out, a principal notices youngest fourth graders just below the line. What should change?",
+        "prompt": "The gifted letters are ready and the youngest children sit just below the cutoff. What happens next if Nolan applies the Matthew Effect lens?",
         "choices": [
           "Raise the cutoff so only the most polished children enter the gifted track.",
-          "Treat every score gap as a family effort problem and leave placement unchanged.",
+          "Treat every score gap as a family effort problem and leave placement unchanged., because it mistakes the posted cutoff for equal access to development.",
           "Add age-aware review for students near the cutoff before enrichment access is denied."
         ],
         "correctIndex": 2,
@@ -160,7 +160,7 @@
       },
       {
         "questionId": "outliers-ch01-q03",
-        "prompt": "A soccer academy wants merit without repeating the hockey cutoff trap. Which policy fits?",
+        "prompt": "Two academy policies compete after the hockey cutoff story. Which one avoids turning an early date advantage into proof of permanent talent?",
         "choices": [
           "Select the largest children early because growth predicts permanent competitive quality.",
           "Create later review points and compare players inside narrower birth windows.",
@@ -173,9 +173,9 @@
       },
       {
         "questionId": "outliers-ch01-q04",
-        "prompt": "A coach says, 'Our best players got extra ice because they were best.' What hidden loop is he missing?",
+        "prompt": "A coach credits extra ice only to early skill. What happens next when the hidden feedback loop is named?",
         "choices": [
-          "Extra ice matters only after adulthood, when age differences have vanished.",
+          "Extra ice matters only after adulthood, when age differences have vanished., because it separates the reward of extra ice from its later effects.",
           "Extra ice can be both the reward for early readiness and the cause of later superiority.",
           "Extra ice replaces skill, so player effort has no meaningful role."
         ],
@@ -186,10 +186,10 @@
       },
       {
         "questionId": "outliers-ch01-q05",
-        "prompt": "A clinic review finds that a young child was labeled behind after one cohort-based screen. What is the safest inference?",
+        "prompt": "Two clinic interpretations compete after one cohort screen: durable deficit or developmental timing. Which inference is safest?",
         "choices": [
           "The label may have captured developmental timing rather than a durable deficit.",
-          "The screen must be ignored because measurement is incompatible with fairness.",
+          "The screen must be ignored because measurement is incompatible with fairness., because it turns one age-weighted screen into a durable label.",
           "The family should wait years before asking for any follow-up evidence."
         ],
         "correctIndex": 0,
@@ -199,7 +199,7 @@
       },
       {
         "questionId": "outliers-ch01-q06",
-        "prompt": "Design a fairer youth orchestra coaching plan after reading the hockey roster evidence. Which feature matters most?",
+        "prompt": "Two orchestra voucher plans compete: reward the top chairs again or protect access for promising late starters. Which plan better widens development?",
         "choices": [
           "Give every voucher to the current top chairs so public concerts sound stronger.",
           "Choose students by random draw and stop listening to auditions altogether.",
@@ -212,9 +212,9 @@
       },
       {
         "questionId": "outliers-ch01-q07",
-        "prompt": "Why does Gladwell treat an age cutoff as an institutional fact rather than a small statistical curiosity?",
+        "prompt": "An age cutoff looks like a small calendar detail. What happens next when Gladwell treats it as an institutional fact?",
         "choices": [
-          "Because the cutoff directly creates the same athletic potential in every selected child.",
+          "Because the cutoff directly creates the same athletic potential in every selected child., because it calls the calendar rule too small to shape opportunity.",
           "Because the cutoff matters only for sports and has no classroom parallel.",
           "Because the cutoff channels children into different training environments at a sensitive age."
         ],
@@ -225,9 +225,9 @@
       },
       {
         "questionId": "outliers-ch01-q08",
-        "prompt": "A league proposes rotating cutoffs every few years. What problem would that mostly address?",
+        "prompt": "A league rotates youth-sports cutoffs across seasons. Which Matthew Effect problem does that policy target?",
         "choices": [
-          "It would remove the need for skill evaluation during childhood sports.",
+          "It would remove the need for skill evaluation during childhood sports., because it expects rotating dates to replace skill evaluation itself.",
           "It would prevent one calendar slice from repeatedly receiving the earliest developmental edge.",
           "It would make every team equally strong by the end of one season."
         ],
@@ -238,10 +238,10 @@
       },
       {
         "questionId": "outliers-ch01-q09",
-        "prompt": "Which statement keeps the hard edge of the Matthew Effect intact?",
+        "prompt": "Two Matthew Effect summaries compete, one merit-only and one opportunity-aware. Which keeps the hard edge intact?",
         "choices": [
           "Talent is real, but institutions decide who gets the practice that lets talent show.",
-          "Luck replaces talent, so personal effort should be ignored in every success story.",
+          "Luck replaces talent, so personal effort should be ignored in every success story., because it swaps institutional access for luck as the whole story.",
           "Merit systems are fair whenever participants compete under the same posted rule."
         ],
         "correctIndex": 0,
@@ -301,7 +301,7 @@
     {
       "text": "The door is not neutral.",
       "location": "breakdown.fullRead",
-      "why": "It compresses the chapter's institutional critique into a plain image."
+      "why": "It compresses the institutional critique into a plain image."
     },
     {
       "text": "The calendar is easy to ignore because it looks too ordinary to matter.",

@@ -4,9 +4,9 @@
   "number": 3,
   "title": "The Trouble with Geniuses, Part 1",
   "readingTimeMinutes": 14,
-  "hook": "A towering IQ can open the gate, but it does not explain the race after the gate.",
+  "hook": "The test score climbs past the cutoff, then stops explaining who turns ability into work.",
   "counterintuition": "Intelligence matters most until it clears a threshold. Past that point, tiny score differences can distract from the conditions that decide achievement.",
-  "tryThisNow": "For one high-stakes ranking, mark the minimum ability bar, then list three factors beyond the bar that should influence the decision.",
+  "tryThisNow": "Set a 10-minute timer and review one ranking; mark the ability threshold, then add two factors that matter after it.",
   "keyTakeaway": "The threshold effect means intelligence is crucial up to a point, but beyond that point success depends on other traits, supports, and opportunities.",
   "breakdown": {
     "fastRead": "Chris Langan enters the story as a dazzling mind, the kind of person whose test scores invite awe. Yet the awe does not solve the puzzle. His intelligence is real, but his life does not match the simple myth that the highest measured IQ should automatically become the highest achievement.\n\nLewis Terman built a similar hope into his study of gifted California children, the Termites. Many did well. The group did not produce the harvest of towering genius that a pure IQ theory would predict. High scores found smart children, but they did not explain everything that happened next.\n\nThe basketball height analogy gives the rule its plain shape. A player must be tall enough for elite basketball, but extra inches after the threshold do not decide greatness. Once the bar is cleared, other differences start to matter more.",
@@ -29,7 +29,7 @@
         "format": "decision_point",
         "requiredBeat": "Use Chris Langan to challenge a score-heavy hiring decision."
       },
-      "scenario": "At 2:25 p.m. in a glass interview room, hiring lead Vera compares data-science test scores on a laptop. The top three candidates are all strong, but one score is slightly higher. A note about Chris Langan sits beside the rubric. Vera must decide whether the tiny gap controls the offer or whether the panel now weighs project evidence, collaboration, and support needs.",
+      "scenario": "At 2:25 p.m. in a glass interview room, hiring lead Vera compares data-science test scores on a laptop. The top three candidates are all strong, but one score is slightly higher. A note about Chris Langan sits beside the rubric. Vera weighs whether the tiny gap controls the offer or whether the panel now considers project evidence, collaboration, and support needs.",
       "whatToDo": "Set a qualified score range, then stop ranking inside it by decimals. Move attention to samples of work, feedback behavior, and fit with the team's real problems.",
       "whyItMatters": "Langan's case warns that a dazzling number does not explain achievement. Once the bar is cleared, other conditions deserve serious weight."
     },
@@ -86,7 +86,7 @@
         "format": "planning_choice",
         "requiredBeat": "Apply threshold reasoning to scholarship awards."
       },
-      "scenario": "At 5:35 p.m. in city hall, committee chair Maren stacks scholarship files beside a cooling coffee. Two finalists have scores that differ by a sliver. Chris Langan's profile is quoted in the meeting packet. Before the vote, Maren must choose whether the higher number wins or whether the committee considers work history, family duties, and evidence of turning chances into output.",
+      "scenario": "At 5:35 p.m. in city hall, committee chair Maren stacks scholarship files beside a cooling coffee. Two finalists have scores that differ by a sliver. Chris Langan's profile is quoted in the meeting packet. At voting time, Maren weighs whether the higher number wins or whether the committee considers work history, family duties, and evidence of turning chances into output.",
       "whatToDo": "Create a threshold for academic readiness, then judge finalists through broader evidence. Let the score open the door without letting it own the room.",
       "whyItMatters": "A scholarship can change the conditions around a capable person. Threshold thinking keeps the committee from worshiping a difference too small to bear that burden."
     },
@@ -134,7 +134,7 @@
     "questions": [
       {
         "questionId": "outliers-ch03-q01",
-        "prompt": "What does the Chris Langan case challenge most directly?",
+        "prompt": "Two readers interpret Chris Langan differently: extreme IQ as destiny or high ability without enough supporting conditions. Which claim is challenged?",
         "choices": [
           "The claim that measured intelligence can matter for difficult intellectual work.",
           "The need to consider any evidence beyond family background.",
@@ -147,9 +147,9 @@
       },
       {
         "questionId": "outliers-ch03-q02",
-        "prompt": "A fellowship panel is choosing among candidates who all clear a demanding test bar. What should threshold thinking do?",
+        "prompt": "A fellowship panel sees all finalists clear the demanding ability bar. What happens next under threshold thinking?",
         "choices": [
-          "Treat the smallest score difference as the most scientific basis for selection.",
+          "Treat the smallest score difference as the most scientific basis for selection., because it keeps ranking tiny gaps after readiness has been established.",
           "Shift attention toward output, support, persistence, and fit after the bar is met.",
           "Discard all evidence of ability because tests are never useful."
         ],
@@ -160,10 +160,10 @@
       },
       {
         "questionId": "outliers-ch03-q03",
-        "prompt": "Why did Terman's Termites matter to Gladwell's argument?",
+        "prompt": "Two conclusions from Terman's Termites compete. Which one fits Gladwell's threshold argument?",
         "choices": [
           "They showed high IQ could identify capable children without predicting extraordinary outcomes by itself.",
-          "They showed that low test scores are the main route to creative achievement.",
+          "They showed that low test scores are the main route to creative achievement., because it mistakes capable identification for a prediction of eminence.",
           "They proved that schools should stop offering advanced instruction."
         ],
         "correctIndex": 0,
@@ -173,7 +173,7 @@
       },
       {
         "questionId": "outliers-ch03-q04",
-        "prompt": "The basketball height analogy says what about useful traits?",
+        "prompt": "Basketball height is treated as a threshold rather than an endless ranking. What happens to the extra inches?",
         "choices": [
           "A trait can be essential up to a minimum and less decisive beyond it.",
           "A trait becomes harmful as soon as a person has enough of it.",
@@ -186,10 +186,10 @@
       },
       {
         "questionId": "outliers-ch03-q05",
-        "prompt": "A school ranks gifted students by tiny test-score gaps. What is the central risk?",
+        "prompt": "Two gifted-program policies compete after score gaps shrink to tiny differences. Which risk matters most?",
         "choices": [
           "The ranking will make every student less intelligent over time.",
-          "The ranking proves all students should receive the same curriculum.",
+          "The ranking proves all students should receive the same curriculum., because it lets tiny score differences crowd out stronger evidence.",
           "The ranking may ignore stronger evidence once students are already above the readiness threshold."
         ],
         "correctIndex": 2,
@@ -199,11 +199,11 @@
       },
       {
         "questionId": "outliers-ch03-q06",
-        "prompt": "Which admissions policy best respects the threshold effect?",
+        "prompt": "Admissions sets a readiness bar and then looks beyond the test. What happens next?",
         "choices": [
           "Admit the highest test score each year without reviewing anything else.",
           "Set a readiness bar, then compare qualified applicants through work samples and context.",
-          "Use essays alone and avoid checking whether applicants can handle the work."
+          "Use essays alone and avoid checking whether applicants can handle the work., because it abandons the readiness check instead of using it as a bar."
         ],
         "correctIndex": 1,
         "explanation": "A threshold bar protects standards, while the second step recognizes that achievement depends on more than extra points at the top.",
@@ -212,9 +212,9 @@
       },
       {
         "questionId": "outliers-ch03-q07",
-        "prompt": "Why is the shallow claim 'intelligence does not matter' wrong here?",
+        "prompt": "Two shallow slogans are rejected: intelligence is everything, or intelligence is nothing. Which correction fits?",
         "choices": [
-          "Intelligence is the only trait that survives serious analysis.",
+          "Intelligence is the only trait that survives serious analysis., because it turns a threshold argument into an intelligence-does-not-matter slogan.",
           "Intelligence matters enough to clear a bar for demanding fields.",
           "Intelligence matters only for children, not adults."
         ],
@@ -225,7 +225,7 @@
       },
       {
         "questionId": "outliers-ch03-q08",
-        "prompt": "A lab director admires a brilliant researcher whose projects stall. What should threshold thinking ask?",
+        "prompt": "A brilliant researcher's projects stall after the ability threshold is already clear. What happens next?",
         "choices": [
           "What conditions would help that capacity become finished, recognized work?",
           "How can the lab raise the researcher's IQ before assigning projects?",
@@ -238,9 +238,9 @@
       },
       {
         "questionId": "outliers-ch03-q09",
-        "prompt": "Which sentence best preserves the hard edge of the threshold argument?",
+        "prompt": "Two summaries of threshold thinking compete. Which one keeps the hard edge?",
         "choices": [
-          "Because IQ is imperfect, institutions should ignore all measures of cognitive ability.",
+          "Because IQ is imperfect, institutions should ignore all measures of cognitive ability., because it expects the highest number to explain achievement alone.",
           "The smartest person in any room should be expected to achieve the most.",
           "After sufficient intelligence is present, other factors often explain achievement better than tiny IQ differences."
         ],
@@ -306,7 +306,7 @@
     {
       "text": "A score can help find the pool. It should not become a religion.",
       "location": "breakdown.deepRead",
-      "why": "It captures the chapter's respect for tests and warning against worship."
+      "why": "It captures the respect for tests and warning against worship."
     }
   ]
 }
