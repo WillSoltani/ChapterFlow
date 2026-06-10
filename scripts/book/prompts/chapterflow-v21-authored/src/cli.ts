@@ -122,6 +122,8 @@ Commands:
                                      stamped with the chapter's content hash, to state/qc/. promote
                                      requires a fresh PUBLISHABLE attestation per chapter; editing the
                                      chapter afterward makes it stale and forces re-review.
+  qc-stats [bookId]                  Revision-rate instrumentation: first-pass PUBLISHABLE rate,
+                                     attempts per chapter, verdict mix, human-vs-harness reviewers
   qc-rehash <bookId>|--all           Upgrade unchanged v1-hash attestations to the v2 content hash
   qc-run <bookId> [--chapters 1,2]   Generate the harness QC workflow (blind keys + dual-lens bar reads
                                      + cross-chapter sweep + adjudication + qc-attest)
@@ -1318,6 +1320,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
   const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
   const { findRunArtifact } = await import("./lib/runDirs.js");
+  const { formatVoiceBible } = await import("./lib/voiceBible.js");
   const REPO = resolve(__dirname, "../../../../..");
   const PIPE = resolve(__dirname, "..");
   const RUNS = resolve(REPO, ".chapterflow/runs");
@@ -1376,23 +1379,36 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
 
     // Source specifics: the sidecar's real anchors, pasted so the writer
     // grounds scenes in them instead of inventing interchangeable ones (SC9's
-    // root cause). Artifact-aware lookup per chapter.
+    // root cause). Artifact-aware lookup per chapter. A THIN sidecar gets a
+    // loud warning instead of silence — weak source reliably predicts
+    // templated/ungrounded chapters, and the writer must flag, not invent.
     const sidecarPath = findRunArtifact(RUNS, bookId, `sidecars/source/ch${numStr}.source.json`);
     let specificsLine = "";
     if (sidecarPath) {
       try {
         const sc = JSON.parse(readFileSync(sidecarPath, "utf8"));
         const specs: string[] = [];
+        let hardCount = 0;
         for (const ex of (sc?.namedExamples ?? []).slice(0, 5)) {
           const label = typeof ex === "string" ? ex : ex?.label;
           const hard = Array.isArray(ex?.hardSpecifics) ? ex.hardSpecifics[0] : undefined;
+          if (hard) hardCount++;
           if (label) specs.push(hard ? `${label} (${String(hard).slice(0, 60)})` : String(label));
         }
-        if (specs.length > 0) {
+        if (specs.length >= 2) {
           specificsLine = `• Ground the scenes in the source's REAL cases — use at least 2 of these meaningfully: ${specs.join("; ")}\n`;
+        } else {
+          specificsLine =
+            `• ⚠️ THIN SOURCE: this chapter's sidecar has ${specs.length} named example(s) and ${hardCount} hard specific(s). ` +
+            `Do NOT invent cases to compensate — write what the source supports and tell the operator the sidecar needs a Step-1 re-research pass.\n`;
         }
       } catch { /* unreadable sidecar → omit the line; STEP-2 still requires grounding */ }
     }
+
+    // Voice bible: the book's charter from the editor-in-chief brief, pinned
+    // BEFORE authoring so parallel agents share one register.
+    const voice = formatVoiceBible(bookId);
+    const voiceLine = voice ? `• VOICE (the book's charter — every field obeys it):\n    ${voice}\n` : "";
 
     const recallLine = ch.number > 1
       ? `• Spaced recall: make 1–2 review cards explicitly resurface a concept from an EARLIER chapter of this book (name the concept on the card front).\n`
@@ -1407,6 +1423,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
         `${shapeLines}\n` +
         specificsLine +
+        voiceLine +
         `• Quiz distractors: each distractor is a NAMED plausible misconception (what a hasty reader of THIS chapter would actually believe) — never a junk-prefix mutation or rephrasing of the correct choice.\n` +
         recallLine +
         `• One name = one person across breakdown→examples→quiz.\n` +
@@ -1775,6 +1792,72 @@ async function runQcRun(args: string[], flags: Record<string, string | boolean>)
   return 0;
 }
 
+/** `qc-stats [bookId]` — revision-rate instrumentation from the attestation
+ *  record. The plan's throughput ceiling is the ~18% reviewer-revision rate;
+ *  this measures it instead of assuming it: first-pass PUBLISHABLE rate
+ *  (initial verdict in each attestation's history), attempts per chapter,
+ *  final verdict mix, and human-vs-harness reviewer split. History only
+ *  accumulates from Phase 1b onward, so early numbers under-count redos. */
+async function runQcStats(args: string[]): Promise<number> {
+  const bookFilter = args[0] ?? null;
+  const { QC_DIR } = await import("./critics/qcAttestation.js");
+  let files: string[] = [];
+  try {
+    files = readdirSync(QC_DIR).filter((f) => f.endsWith(".qc.json")).sort();
+  } catch {
+    console.error(`No attestation dir at ${QC_DIR}.`);
+    return 2;
+  }
+  type Row = { chapters: number; firstPass: number; attempts: number; finals: Record<string, number>; reviewers: Record<string, number> };
+  const byBook = new Map<string, Row>();
+  for (const f of files) {
+    let att: any;
+    try {
+      att = JSON.parse(readFileSync(resolve(QC_DIR, f), "utf8"));
+    } catch {
+      continue;
+    }
+    if (bookFilter && att.bookId !== bookFilter) continue;
+    if (!byBook.has(att.bookId)) byBook.set(att.bookId, { chapters: 0, firstPass: 0, attempts: 0, finals: {}, reviewers: {} });
+    const row = byBook.get(att.bookId)!;
+    // A qc-rehash hash migration appends a history entry with the SAME
+    // reviewedAt (only contentHash/hashVersion changed) — that's bookkeeping,
+    // not a review attempt; counting it would fake a 2.0 attempts floor.
+    const history: any[] = (Array.isArray(att.history) ? att.history : []).filter(
+      (h) => h?.reviewedAt !== att.reviewedAt,
+    );
+    const firstVerdict = history.length > 0 ? history[0]?.verdict : att.verdict;
+    row.chapters++;
+    if (firstVerdict === "PUBLISHABLE") row.firstPass++;
+    row.attempts += 1 + history.length;
+    row.finals[att.verdict] = (row.finals[att.verdict] ?? 0) + 1;
+    const kind = typeof att.reviewer === "string" && att.reviewer.includes(":") ? att.reviewer.split(":")[0] : "other";
+    row.reviewers[kind] = (row.reviewers[kind] ?? 0) + 1;
+  }
+  if (byBook.size === 0) {
+    console.error(bookFilter ? `No attestations for "${bookFilter}".` : "No attestations on disk.");
+    return 2;
+  }
+  const fmtFinals = (r: Row) =>
+    Object.entries(r.finals).sort().map(([v, c]) => `${v[0]}${v === "PUBLISHABLE" ? "" : ""}:${c}`).join(" ");
+  let chapters = 0, firstPass = 0, attempts = 0;
+  console.log(`QC stats${bookFilter ? ` — ${bookFilter}` : ""} (first-pass = initial verdict was PUBLISHABLE; attempts = 1 + history length)`);
+  const w = Math.max(...[...byBook.keys()].map((b) => b.length), 8);
+  for (const [book, r] of [...byBook.entries()].sort()) {
+    chapters += r.chapters; firstPass += r.firstPass; attempts += r.attempts;
+    console.log(
+      `  ${book.padEnd(w)}  ch:${String(r.chapters).padStart(3)}  first-pass:${String(Math.round((r.firstPass / r.chapters) * 100)).padStart(3)}%` +
+        `  avg-attempts:${(r.attempts / r.chapters).toFixed(2)}  finals[${fmtFinals(r)}]  reviewers[${Object.entries(r.reviewers).map(([k, c]) => `${k}:${c}`).join(" ")}]`,
+    );
+  }
+  console.log(
+    `\n  OVERALL: ${chapters} attested chapter(s), first-pass PUBLISHABLE ${Math.round((firstPass / chapters) * 100)}% ` +
+      `(revision rate ${Math.round(((chapters - firstPass) / chapters) * 100)}%), avg attempts ${(attempts / chapters).toFixed(2)}.`,
+  );
+  console.log("  Phase 3's prevention layer (shape plan, grounding anchors, two-pass) should push first-pass UP over time — re-run after each book ships.");
+  return 0;
+}
+
 /** `qc-status <bookId>` — show per-chapter QC-attestation coverage (the semantic
  *  gate's readiness for promote): PASS (fresh PUBLISHABLE), STALE, REVISE/
  *  CORRUPTION, or MISSING. */
@@ -2140,6 +2223,8 @@ async function main() {
       return runQcAttest(args, flags);
     case "qc-status":
       return runQcStatus(args);
+    case "qc-stats":
+      return runQcStats(args);
     case "qc-rehash":
       return runQcRehash(args, flags);
     case "qc-run":

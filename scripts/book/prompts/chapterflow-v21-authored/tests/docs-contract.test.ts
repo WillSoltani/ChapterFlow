@@ -57,7 +57,7 @@ test("no authoring/finalize doc teaches the chapter-only 'Ship gate:' line as su
 
 test("QC-PLAYBOOK's GREEN requires the semantic layer, not gate tallies alone", () => {
   const s = doc("agent-prompts/QC-PLAYBOOK.md");
-  assert.match(s, /qc-status <bookId>.*PASS/s, "GREEN must require all-PASS attestations");
+  assert.match(s, /qc-status <bookId>[\s\S]*?PASS/, "GREEN must require all-PASS attestations");
   assert.match(s, /qc-run/, "the playbook must point at the harness review fleet");
 });
 
