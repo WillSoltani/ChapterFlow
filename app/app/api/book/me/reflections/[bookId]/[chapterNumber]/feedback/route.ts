@@ -7,6 +7,7 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { GetCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { bookUserPk, reflectionFeedbackSk, feedbackLimitSk, nowIso } from "@/app/app/api/book/_lib/keys";
 import { streamReflectionFeedback } from "@/app/app/api/book/_lib/ai-service";
+import { getReflectionFeedbackModel } from "@/app/app/api/book/_lib/ai-config";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 
 export const runtime = "nodejs";
@@ -72,6 +73,7 @@ export async function POST(req: Request, ctx: Params) {
     if (!apiKey) {
       return bookErr(req, 503, "ai_unavailable", "AI feedback is not available");
     }
+    const model = await getReflectionFeedbackModel();
 
     // Stream the response
     const encoder = new TextEncoder();
@@ -87,6 +89,7 @@ export async function POST(req: Request, ctx: Params) {
             whyItMatters,
             chapterTitle,
             apiKey,
+            model,
           })) {
             fullText += chunk;
             controller.enqueue(
@@ -118,7 +121,7 @@ export async function POST(req: Request, ctx: Params) {
                   exampleId,
                   reflectionHash: currentHash,
                   feedbackText: fullText,
-                  model: "claude-sonnet-4-20250514",
+                  model,
                   createdAt: now,
                   updatedAt: now,
                   ttl,

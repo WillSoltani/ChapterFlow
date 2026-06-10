@@ -40,24 +40,28 @@ export const OPS_METRIC_NAMESPACE = "ChapterFlow/Ops";
  * emit would make those alarms silently never fire. When `dimensions` are
  * supplied we additionally emit a dimensioned copy for per-cause breakdown in
  * the console — but the alarm-bearing rollup is always present.
+ *
+ * `unit` defaults to "Count"; pass "None" for dollar values, "Milliseconds" for
+ * latencies, etc. It is applied to BOTH the rollup and the dimensioned copy.
  */
 export async function putOpsMetric(
   metricName: string,
   value = 1,
-  dimensions?: Record<string, string>
+  dimensions?: Record<string, string>,
+  unit: MetricDatum["Unit"] = "Count"
 ): Promise<void> {
   try {
     const timestamp = new Date();
     const metricData: MetricDatum[] = [
       // Dimensionless rollup — the series the CloudWatch alarms watch.
-      { MetricName: metricName, Value: value, Unit: "Count", Timestamp: timestamp },
+      { MetricName: metricName, Value: value, Unit: unit, Timestamp: timestamp },
     ];
     if (dimensions && Object.keys(dimensions).length > 0) {
       // Dimensioned copy — for slicing by cause in the CloudWatch console.
       metricData.push({
         MetricName: metricName,
         Value: value,
-        Unit: "Count",
+        Unit: unit,
         Timestamp: timestamp,
         Dimensions: Object.entries(dimensions).map(([Name, Value]) => ({ Name, Value })),
       });
