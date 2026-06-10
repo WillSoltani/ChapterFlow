@@ -58,31 +58,27 @@
   ],
   "targetReader": "Professionals, students, leaders, and thoughtful adults who make choices with incomplete information and then punish themselves or others too quickly when the ending arrives. They care because their careers, relationships, forecasts, and group decisions all depend on learning from noisy feedback without hiding behind luck.",
   "voiceCharter": {
-    "register": "plainspoken",
+    "register": "analytical",
     "person": "second",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "make uncertainty feel exact rather than vague",
-      "hold humility and accountability in the same paragraph"
+      "uses poker, bets, result quality, and probabilistic thinking as teaching tools",
+      "separates decision quality from outcome luck with dry discipline",
+      "keeps the voice conversational but mathematically alert",
+      "turns hindsight into a trap the reader can audit"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no casino swagger or motivational certainty talk"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not judge decisions only by outcomes.",
+      "Do not make probability sound like lack of conviction."
     ]
   },
   "voiceSpecimens": [
-    "The invoice came after the decision, so it cannot be allowed to pretend it was in the room before the decision.",
-    "You do not need a louder opinion. You need a cleaner price on the opinion you already have.",
-    "A bad ending can teach you something without earning the right to rewrite the whole story.",
-    "The useful friend is not the one who makes your explanation prettier. It is the one who asks where the missing evidence went.",
-    "A group that cannot hold an objection before the vote will usually meet the objection afterward in a more expensive form.",
-    "The future does not become visible because you imagine it. The present becomes less bossy."
+    "A good decision can still lose the hand.",
+    "State the odds before the outcome starts rewriting history."
   ],
   "voiceAntiSpecimens": [
     "This chapter explains that decision-making is important in uncertain environments.",
@@ -97,6 +93,8 @@
     "Do not glamorize gambling or make literal wagers feel required.",
     "Do not repeat the poker-versus-chess contrast as filler once the chapter has a narrower job.",
     "Do not invent named studies, researchers, or anecdotes beyond the frozen source bundle.",
-    "Do not let mental time travel become manifestation, prophecy, or generic visualization."
+    "Do not let mental time travel become manifestation, prophecy, or generic visualization.",
+    "Do not results-orient the lesson.",
+    "Do not skip the bet, odds, or uncertainty in the choice."
   ]
 }

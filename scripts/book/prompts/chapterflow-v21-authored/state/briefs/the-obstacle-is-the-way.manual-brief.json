@@ -48,33 +48,27 @@
   ],
   "targetReader": "A capable reader under professional, creative, academic, civic, or personal pressure who does not need vague encouragement; they need a disciplined way to convert setbacks into clearer decisions, cleaner action, and steadier endurance.",
   "voiceCharter": {
-    "register": "plainspoken",
+    "register": "literary",
     "person": "second",
-    "cadence": "medium",
+    "cadence": "short",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "let Stoic pressure show through conduct rather than exposition",
-      "make agency feel sober, not triumphant"
+      "uses Stoic compression, historical miniature, and moral self-command",
+      "turns ego or obstacle into a discipline of perception, action, and will",
+      "keeps sentences spare, grave, and oriented toward conduct",
+      "uses old stories to pressure the reader toward present restraint"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no pretending every hardship is secretly pleasant",
-      "no fake named studies or historical anecdotes"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make Stoicism sound like motivational toughness.",
+      "Do not use ancient references as decoration without a present test."
     ]
   },
   "voiceSpecimens": [
-    "The fact is smaller than the story your fear wants to staple to it.",
-    "Do not argue with weather. Check the door, move the table, make the call.",
-    "A hard day still leaves you one clean sentence, one clean choice, one clean next move.",
-    "Panic spends tomorrow's strength on a picture that may never arrive.",
-    "The side door is not cowardice when the front wall was built to waste your force.",
-    "Acceptance is not lying down. It is stopping the argument with the floor so you can stand on it.",
-    "You do not need the obstacle to be fair before you can be useful."
+    "The fact is small.",
+    "Judgment makes it heavy."
   ],
   "voiceAntiSpecimens": [
     "In this chapter, Ryan Holiday teaches us that obstacles are opportunities.",
@@ -90,6 +84,8 @@
     "Do not overstate source support where only the frozen TOC or partial sidecars exist.",
     "Do not invent ancient Stoic quotations, modern studies, or biographical scenes.",
     "Do not make action chapters sound like productivity hacks detached from obstacles.",
-    "Do not make will chapters sound like numbness, resignation, or self-erasure."
+    "Do not make will chapters sound like numbness, resignation, or self-erasure.",
+    "Do not confuse calm with passivity.",
+    "Do not turn humility into self-erasure or ambition into vanity by default."
   ]
 }

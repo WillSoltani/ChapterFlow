@@ -40,31 +40,27 @@
   ],
   "targetReader": "A thoughtful general reader who is tired of political and religious contempt, recognizes their own side's certainty, and wants a practical mental model for understanding why sincere people reach clashing moral conclusions.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "long",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "treat opponents as morally serious before challenging their frame",
-      "make psychological mechanisms visible in ordinary rooms"
+      "uses moral psychology, elephant-and-rider imagery, and tribal intuition with patience",
+      "treats opponents as moral systems before arguing with them",
+      "keeps the tone explanatory, pluralistic, and empirically curious",
+      "moves from intuition to post-hoc reasoning to group binding"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no partisan scorekeeping or sneering at religious belief"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make one moral tribe the obvious adult in the room.",
+      "Do not treat reasons as first causes when intuition moved first."
     ]
   },
   "voiceSpecimens": [
-    "The reason feels clean because it arrived wearing a suit, but the verdict had already walked into the room.",
-    "You do not have to excuse a reaction to understand the alarm it came from.",
-    "A political slogan is often a small moral machine: press one word and a whole team wakes up.",
-    "The harder move is not winning the argument in your head; it is hearing the sacred thing the other person thinks you are about to break.",
-    "When the elephant leans, the rider can still help, but it should stop pretending it chose the slope.",
-    "Some disagreements stay real after you understand them. That is not failure. That is adulthood with better eyesight."
+    "The rider writes reasons for an elephant already leaning.",
+    "Moral judgment feels private until the tribe applauds."
   ],
   "voiceAntiSpecimens": [
     "This chapter will explain why moral foundations are important in today's polarized society.",
@@ -78,6 +74,8 @@
     "Do not turn the book into generic civility advice; every chapter must preserve the machinery of intuition, foundations, and group binding.",
     "Do not make the politics chapters a partisan scoreboard; the teaching point is moral translation, not team victory.",
     "Do not invent named experiments, field studies, or anecdotes beyond the frozen source sidecars.",
-    "Do not make religion merely false belief or merely social glue; keep the coordination frame narrow and non-reductive."
+    "Do not make religion merely false belief or merely social glue; keep the coordination frame narrow and non-reductive.",
+    "Do not flatten moral foundations into personality types.",
+    "Do not use contempt where Haidt asks for moral curiosity."
   ]
 }

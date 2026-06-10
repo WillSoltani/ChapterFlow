@@ -1,0 +1,41 @@
+{
+  "bookId": "blink",
+  "title": "Blink",
+  "author": "Malcolm Gladwell",
+  "thesisParagraph": "Fast judgment is neither magic nor nonsense: it is a real form of cognition that can extract meaning from tiny signals, but only when the signals are the right ones and the judging environment has not been corrupted by bias, pressure, or misleading context.",
+  "coreIdeas": [],
+  "targetReader": "",
+  "voiceCharter": {
+    "register": "literary",
+    "person": "third",
+    "cadence": "medium",
+    "signatureMoves": [
+      "braids social science with named cases until the pattern flips common sense",
+      "lets one surprising anecdote carry the reader into a larger social mechanism",
+      "uses memorable labels for thresholds, connectors, thin-slicing, and hidden context",
+      "moves from ordinary detail to a counterintuitive public claim",
+      "opens concepts through vivid reported scenes before naming the psychological principle"
+    ],
+    "avoidMoves": [
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not bury the narrative under methods language.",
+      "Do not turn one case into a universal law without the limiting condition.",
+      "does not build formal proofs or step-by-step experimental methods",
+      "does not maintain a detached academic register"
+    ]
+  },
+  "voiceSpecimens": [
+    "The mind has already moved; the evidence is still finding its shoes.",
+    "A glance can be wise, but only when the room has been trained to see."
+  ],
+  "teachingArc": "The opening chapters establish rapid cognition and thin-slicing, then show why the mind often cannot explain its own snap decisions. The middle turns to failure modes: unconscious association, stereotype, overload, and forced explanation can distort intuition. The closing movement shows how structure, expertise, context, training, and blind procedures can make first impressions more trustworthy.",
+  "forbiddenMoves": [
+    "Do not make Gladwell sound like a textbook summary.",
+    "Do not remove the reversal that makes the example worth telling."
+  ],
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:07:46.117Z"
+}

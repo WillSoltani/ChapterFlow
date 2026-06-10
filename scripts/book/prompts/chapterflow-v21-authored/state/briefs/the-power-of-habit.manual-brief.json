@@ -61,32 +61,27 @@
   ],
   "targetReader": "A reader who already knows habits matter but keeps drifting between moral blame, vague motivation, and quick hacks. They need a diagnostic language for repeated behavior, practical levers for change, and a sharper sense of when habit knowledge becomes an ethical responsibility.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
+    "register": "analytical",
+    "person": "third",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "make the loop visible as a pressure system, not a slogan",
-      "show the cost of weak diagnosis before offering the better move"
+      "uses narrative case studies to expose loops of cue, routine, reward, and decision design",
+      "moves from story to mechanism to practical redesign",
+      "keeps the prose journalistic, explanatory, and paced by reveal",
+      "shows how invisible patterns become visible once named"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic self-improvement coaching language",
-      "no treating willpower as the single answer",
-      "no turning every lesson into cue-routine-reward recitation"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make the story do all the teaching without the loop.",
+      "Do not treat habits or productivity as willpower alone."
     ]
   },
   "voiceSpecimens": [
-    "The first question is not why did I do that again. It is what told me to start.",
-    "A craving is the reward arriving early, before your hand has even reached for the routine.",
-    "If the old cue still rings and the old reward still matters, an empty promise to stop has no middle.",
-    "Pick the habit that changes the meeting, the report, the handoff, and the way people tell the truth.",
-    "A script written before the customer yells is not fake calm. It is calm with rehearsal behind it.",
-    "Once the pattern is visible, you no longer get to call it mysterious."
+    "The habit begins before the routine, at the cue.",
+    "Change the reward, and the loop starts confessing."
   ],
   "voiceAntiSpecimens": [
     "This chapter will teach you how to unlock your potential through the science of habits.",
@@ -102,6 +97,8 @@
     "Do not treat craving, keystone habits, crisis, and social ties as interchangeable motivation labels.",
     "Do not write Target or marketing examples as omniscient surveillance horror without the chapter's narrower point about partial prediction and familiar placement.",
     "Do not turn the final chapter into a broad free-will essay; keep it tied to awareness, foreseeability, and redesigned loops.",
-    "Do not use the book's famous cases as decorative name-drops without making their mechanism visible."
+    "Do not use the book's famous cases as decorative name-drops without making their mechanism visible.",
+    "Do not omit the mechanism after the anecdote.",
+    "Do not turn Duhigg into generic productivity narration."
   ]
 }

@@ -37,32 +37,27 @@
   ],
   "targetReader": "Managers, strategists, product teams, and founders who want to understand why smart organizations miss disruption — and what organizational, strategic, and resource decisions can change the outcome.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
+    "register": "analytical",
+    "person": "third",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete organizational moment before naming the structural rule",
-      "use industry examples as pressure tests, not as proof by association",
-      "name the rational logic of the wrong move before showing why it fails",
-      "teach through resource allocation decisions the reader recognizes from their own work"
+      "turns management choices into resource-allocation and customer-demand puzzles",
+      "shows capable managers trapped by margins, incentives, and the wrong customers",
+      "uses jobs, disruption, and causal mechanisms before offering prescriptions",
+      "makes innovation theory answer to a concrete business decision"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no startup triumphalism or Silicon Valley framing",
-      "no management consultant jargon (paradigm shift, leverage, synergy)",
-      "do not celebrate disruption as inherently good or disrupting companies as inherently smart"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make disruption a synonym for novelty.",
+      "Do not portray incumbent managers as fools when the trap is structural."
     ]
   },
   "voiceSpecimens": [
-    "The meeting where they killed the project was not a failure of nerve. It was good management applied to the wrong problem.",
-    "Your most profitable customers are not hiding information from you. They are telling you the truth about their world, which is not the same as the truth about the next one.",
-    "A product looks weak until the market that values its tradeoffs grows large enough to matter.",
-    "The low end of the market is not a waiting room for customers who can't afford better. It is where the next version of the industry often begins.",
-    "When the same budget meeting that protects next quarter's margins also kills the only team building for next decade, neither decision feels wrong.",
-    "The organization is not ignoring the new technology. It is listening to the customers who don't need it yet.",
-    "Fit means the market is real enough for this team, not that the market is large enough for the whole company."
+    "Good management can fail when the customer set is wrong.",
+    "The disruptive threat begins below the margin line."
   ],
   "voiceAntiSpecimens": [
     "In this chapter, we will explore the disruptive innovation framework and how it can unlock your company's competitive advantage.",
@@ -77,6 +72,8 @@
     "Do not frame the book's lesson as 'incumbents are slow and startups are smart' — Christensen's point is that incumbents are rational, not lazy.",
     "Do not treat every chapter as a new disruption playbook entry; the second half of the book is about organizational design and learning, not attack strategy.",
     "Do not use the word 'disruption' as a synonym for any competitive change; the book is precise about what qualifies.",
-    "Do not import named anchors from the disk drive or excavator industries into chapters where those industries are not the source material."
+    "Do not import named anchors from the disk drive or excavator industries into chapters where those industries are not the source material.",
+    "Do not use startup gloss where the source is explaining causality.",
+    "Do not discuss innovation without the customer job or resource tradeoff."
   ]
 }

@@ -60,32 +60,27 @@
   ],
   "targetReader": "A thoughtful adult under ordinary pressure: work conflict, family irritation, civic duty, ambition, fatigue, aging, and the steady pull of other people's opinions. They care because the book gives them a way to stay useful and inwardly governed when circumstances are noisy, unfair, or short-lived.",
   "voiceCharter": {
-    "register": "plainspoken",
+    "register": "literary",
     "person": "second",
-    "cadence": "medium",
+    "cadence": "short",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "let mortality shorten the sentence rather than darken it",
-      "keep duty social, not self-improving in a private mirror"
+      "uses inward address, clipped moral reminders, and imperial self-restraint",
+      "turns irritation, praise, and fear into exercises in judgment",
+      "keeps sentences spare, almost private, and aimed at conduct",
+      "returns to mortality, duty, nature, and the smallness of reputation"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no treating Stoicism as cold detachment or productivity branding"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make Stoic self-command sound like productivity advice.",
+      "Do not turn private admonition into public sermonizing."
     ]
   },
   "voiceSpecimens": [
-    "The insult is already small. Your rehearsal is what gives it furniture.",
-    "Before you answer, strip the scene down to what happened, who was harmed, and what justice asks next.",
-    "The bed is warm, but warmth is not a reason to hand the morning your name.",
-    "A difficult person can be wrong without becoming your permission to be worse.",
-    "Death does not have to frighten you for it to clarify the work in front of your hands.",
-    "Do the useful act cleanly, then let it leave you.",
-    "If the thought would shame you in public, do not let it govern you in private."
+    "The insult is small.",
+    "Your rehearsal feeds it."
   ],
   "voiceAntiSpecimens": [
     "This chapter shows that Stoicism is basically a mindset hack for modern productivity.",
@@ -101,6 +96,8 @@
     "do not turn providence and nature into sentimental reassurance",
     "do not invent modern studies, Roman scenes, or biographical details not present in the source sidecars",
     "do not treat social duty as pleasing everyone or absorbing every demand",
-    "do not use Marcus as a quoted authority inside reader-facing prose"
+    "do not use Marcus as a quoted authority inside reader-facing prose",
+    "Do not add modern motivational polish to Marcus-style restraint.",
+    "Do not use fate language to excuse bad conduct."
   ]
 }

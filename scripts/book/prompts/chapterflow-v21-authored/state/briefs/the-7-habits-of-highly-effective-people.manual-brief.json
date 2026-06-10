@@ -7,24 +7,35 @@
   "targetReader": "",
   "voiceCharter": {
     "register": "warm",
-    "person": "third",
+    "person": "second",
     "cadence": "medium",
     "signatureMoves": [
-      "opens major ideas with family, classroom, workplace, or fable-like scenes before naming the principle",
-      "uses capitalized frameworks such as Character Ethic, Maturity Continuum, P/PC Balance, and Emotional Bank Account",
-      "pairs moral language with management diagrams, two-by-two matrices, continuums, and numbered application suggestions",
-      "addresses readers directly with reflective exercises that ask them to diagnose their own language, roles, relationships, and schedules",
-      "returns repeatedly to organic root-and-fruit metaphors to distinguish deep character work from superficial technique"
+      "uses principle-centered language, paradigms, circles, and private victory before public victory",
+      "sounds earnest, structured, and morally serious about character",
+      "moves from inner choice to relationship habit to renewal",
+      "keeps effectiveness tied to integrity rather than efficiency alone",
+      "opens major ideas with family, classroom, workplace, or fable-like scenes before naming the principle"
     ],
     "avoidMoves": [
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make habits into productivity tricks.",
+      "Do not use principle language without a concrete choice under pressure.",
       "does not treat effectiveness as a shortcut, trick, or charisma play",
-      "does not present habits as isolated productivity hacks disconnected from character",
-      "does not rely on irony, cynicism, or detached academic distance",
-      "does not reduce relationships to transactional tactics without trust or principle"
+      "does not present habits as isolated productivity hacks disconnected from character"
     ]
   },
+  "voiceSpecimens": [
+    "You don't get public trust by skipping private choice.",
+    "Begin with the principle, then let the calendar show whether you meant it."
+  ],
   "teachingArc": "Part One establishes paradigms, principles, habits, and the P/PC balance as the foundation. Part Two builds Private Victory through responsibility, life direction, and priority management. Part Three builds Public Victory through trust, mutual benefit, empathic communication, and creative cooperation; Part Four renews the whole system and returns the reader to inside-out change.",
-  "forbiddenMoves": [],
+  "forbiddenMoves": [
+    "Do not flatten Covey into time-management advice.",
+    "Do not skip character when discussing effectiveness."
+  ],
   "derivedFromInlineMode": true,
   "derivedAt": "2026-05-21T03:03:10.117Z"
 }

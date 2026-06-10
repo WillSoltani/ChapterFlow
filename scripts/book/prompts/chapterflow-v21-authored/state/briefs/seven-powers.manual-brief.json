@@ -61,30 +61,27 @@
   ],
   "targetReader": "Founders, operators, investors, product leaders, and managers who need to tell the difference between a business that merely performs well today and a business protected against future competition. They care because capital, hiring, and product choices change once the actual source of power is named.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "short",
     "signatureMoves": [
-      "open ideas in a concrete operating choice before naming the power",
-      "use plain sentences with one sharp business object or record",
-      "teach through tradeoffs a founder, operator, or manager would recognize",
-      "keep benefit and barrier visible in the same paragraph"
+      "uses strategy capital, power types, and benefit-barrier logic",
+      "keeps examples tied to durable differential returns",
+      "sounds mathematical, compressed, and investor-adjacent",
+      "forces every advantage claim through a barrier test"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no fake company histories or invented source anchors"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not call scale or brand a power without the barrier.",
+      "Do not make strategy sound like ordinary competitiveness."
     ]
   },
   "voiceSpecimens": [
-    "A bigger order is not power until the next unit costs less to serve.",
-    "The rival does not care that your process is tidy. It cares whether copying one step would still leave the machine broken.",
-    "A network is real when one more user improves the product for the users already there.",
-    "The painful question is not whether the entrant is clever. It is what the incumbent would have to wound in order to copy it.",
-    "Trust becomes strategy only when the buyer pays for it while a similar option sits nearby.",
-    "Timing turns some powers into open doors and others into locked ones."
+    "No barrier, no power.",
+    "Benefit needs protection."
   ],
   "voiceAntiSpecimens": [
     "In this chapter, readers will learn about the importance of strategic moats.",
@@ -98,6 +95,8 @@
     "Do not turn every chapter into generic moat language; each power needs its own benefit, barrier, and failure test.",
     "Do not treat operational excellence, growth, user count, branding, or patents as Power without proving the protective mechanism.",
     "Do not invent detailed company case histories beyond Netflix, Intel, Facebook, and LinkedIn as supported in the sidecars.",
-    "Do not let examples collapse into boardroom decks, generic startups, classrooms, kitchens, or repeated spreadsheet scenes."
+    "Do not let examples collapse into boardroom decks, generic startups, classrooms, kitchens, or repeated spreadsheet scenes.",
+    "Do not discuss power without benefit and barrier.",
+    "Do not soften Helmer into generic strategy advice."
   ]
 }

@@ -74,30 +74,27 @@
   ],
   "targetReader": "Managers, founders, operators, program leads, and ambitious individual contributors who already care about results but need a sharper way to choose priorities, measure progress, align teams, and keep goals alive after the planning meeting ends.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
+    "register": "analytical",
+    "person": "third",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "treat measurement as an operating pressure, not a productivity slogan"
+      "uses OKRs, alignment, focus, tracking, and CFRs as operating language",
+      "links ambition to measurable commitments and public cadence",
+      "uses company stories to show how objectives change behavior",
+      "keeps the tone optimistic but boardroom-specific"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no invented company metrics or internal scenes for thin-source case chapters"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make OKRs into ordinary goal setting.",
+      "Do not celebrate measurement without focus and conversation."
     ]
   },
   "voiceSpecimens": [
-    "A priority earns its name only after something else loses the calendar slot.",
-    "The goal on the wall is not the system. The system is the proof you agree to look at when the week gets noisy.",
-    "If three teams can all say yes while steering by private maps, you do not have alignment yet.",
-    "Tracking should make correction possible, not make excuses prettier after the quarter closes.",
-    "Stretch is useful when it pulls the team past comfort and still leaves a rope tied to reality.",
-    "Culture is what people learn from the signal that repeats, not from the sentence that sounds best."
+    "An objective becomes serious when the key results can embarrass it.",
+    "Commitment improves when progress is visible, public, and reviewed."
   ],
   "voiceAntiSpecimens": [
     "This chapter will show you how OKRs can transform your entire life and business.",
@@ -111,6 +108,8 @@
     "Do not turn OKRs into generic SMART-goal advice; preserve the operating pressure of visibility, ownership, and tradeoffs.",
     "Do not invent internal details for thin-source company chapters; use named companies as anchors and keep claims narrow.",
     "Do not make measurement punitive or surveillance-flavored unless the plan is explicitly warning against that misread.",
-    "Do not let every chapter use a meeting, roadmap, dashboard, or executive room as its example shell."
+    "Do not let every chapter use a meeting, roadmap, dashboard, or executive room as its example shell.",
+    "Do not let every metric become a key result.",
+    "Do not praise stretch without the review rhythm that makes it honest."
   ]
 }

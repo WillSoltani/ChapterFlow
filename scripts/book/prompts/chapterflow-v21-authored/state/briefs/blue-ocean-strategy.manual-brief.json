@@ -68,30 +68,27 @@
   ],
   "targetReader": "Managers, founders, product leads, civic operators, and team leaders who know their current market is crowded but need a concrete way to find new demand without drifting into vague innovation talk.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
+    "register": "analytical",
+    "person": "third",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "turn strategy terms into visible operating decisions"
+      "keeps strategy anchored in value curves, buyer utility, and tradeoff maps",
+      "contrasts red-ocean imitation with demand created by different choices",
+      "uses eliminate-reduce-raise-create as a practical design grammar",
+      "turns market boundaries into something managers can redraw on a page"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no battlefield metaphors as the default business register"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make blue ocean strategy into generic innovation cheerleading.",
+      "Do not discuss competition without naming the buyer-value tradeoff."
     ]
   },
   "voiceSpecimens": [
-    "The copycat move often looks responsible because every number on the page has a rival beside it.",
-    "A value curve is useful when it makes the room uncomfortable enough to stop adding features.",
-    "You do not find noncustomers by asking loyal buyers what else they want.",
-    "The hard part is not naming a blue ocean. The hard part is removing the factors that keep you tied to the red one.",
-    "A useful idea still has to survive price, cost, and adoption before it deserves a launch date.",
-    "When people were not engaged, execution becomes a private referendum on a public decision."
+    "A different value curve is not decoration; it changes who buys.",
+    "Stop benchmarking the rival long enough to redraw the buyer's tradeoff."
   ],
   "voiceAntiSpecimens": [
     "This chapter teaches readers that innovation is important in modern business.",
@@ -106,6 +103,8 @@
     "Do not invent detailed company anecdotes beyond the frozen source anchors.",
     "Do not treat tools as forms to fill out; they must force tradeoffs visible in buyer value.",
     "Do not make every chapter a generic anti-competition sermon.",
-    "Do not use technology novelty as a proxy for blue-ocean strategy."
+    "Do not use technology novelty as a proxy for blue-ocean strategy.",
+    "Do not use battlefield metaphors as the default business register.",
+    "Do not call every differentiation move a blue ocean."
   ]
 }

@@ -55,30 +55,27 @@
   ],
   "targetReader": "Builders, product leaders, operators, founders, program managers, and internal innovators who are under pressure to show progress before the real uncertainties have been tested.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
+    "register": "analytical",
+    "person": "third",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "make management feel like decisions under pressure, not theory"
+      "uses build-measure-learn, MVPs, validated learning, and innovation accounting",
+      "turns startup uncertainty into experiments and feedback loops",
+      "sounds systematic, lean, and suspicious of vanity progress",
+      "keeps the product question tied to what customers prove by behavior"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no invented famous startup anecdotes"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make lean startup mean cheap or small.",
+      "Do not celebrate shipping without learning."
     ]
   },
   "voiceSpecimens": [
-    "The full roadmap can be a beautiful way to avoid the one question that matters.",
-    "A metric earns trust when it can change what you do next.",
-    "If the assumption can kill the business, it goes first.",
-    "A small test is not a lack of ambition. It is respect for the cost of being wrong.",
-    "The work is only lean when feedback is close enough to interrupt it.",
-    "A team does not need more confidence when the evidence is thin. It needs a cleaner way to be surprised."
+    "The MVP is not a small product; it is a small question.",
+    "Learning counts only when customer behavior answers back."
   ],
   "voiceAntiSpecimens": [
     "In this chapter, readers will learn why entrepreneurship is important.",
@@ -93,6 +90,8 @@
     "Do not invent famous company stories when the frozen source sidecars say no detailed named case studies are available.",
     "Do not make MVP mean cheap product or low standards.",
     "Do not let every chapter use the same startup dashboard, founder pitch, or sprint-review scene.",
-    "Do not make the final chapters sound like motivational movement copy."
+    "Do not make the final chapters sound like motivational movement copy.",
+    "Do not confuse activity with validated learning.",
+    "Do not use MVP without a testable hypothesis."
   ]
 }
