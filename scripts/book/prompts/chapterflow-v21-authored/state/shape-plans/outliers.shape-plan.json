@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "shape-plan-v1",
+  "bookId": "outliers",
+  "createdAt": "2026-06-10T21:11:09.920Z",
+  "perChapter": 6,
+  "allocation": {
+    "1": [
+      "decision_point",
+      "audit",
+      "dilemma",
+      "planning_choice",
+      "postmortem",
+      "scene"
+    ],
+    "2": [
+      "decision_point",
+      "planning_choice",
+      "dilemma",
+      "audit",
+      "before_after",
+      "scene"
+    ],
+    "3": [
+      "decision_point",
+      "audit",
+      "dilemma",
+      "planning_choice",
+      "postmortem",
+      "reflection"
+    ],
+    "4": [
+      "decision_point",
+      "analysis",
+      "scene",
+      "planning_choice",
+      "postmortem",
+      "before_after"
+    ],
+    "5": [
+      "decision_point",
+      "audit",
+      "scene",
+      "postmortem",
+      "planning_choice",
+      "reflection"
+    ],
+    "6": [
+      "decision_point",
+      "scene",
+      "planning_choice",
+      "audit",
+      "postmortem",
+      "before_after"
+    ],
+    "7": [
+      "decision_point",
+      "audit",
+      "scene",
+      "planning_choice",
+      "before_after",
+      "reflection"
+    ],
+    "8": [
+      "decision_point",
+      "scene",
+      "audit",
+      "planning_choice",
+      "before_after",
+      "postmortem"
+    ],
+    "9": [
+      "decision_point",
+      "audit",
+      "scene",
+      "planning_choice",
+      "dilemma",
+      "reflection"
+    ]
+  },
+  "carriedChapters": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ]
+}

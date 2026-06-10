@@ -4,9 +4,9 @@
   "number": 7,
   "title": "The Ethnic Theory of Plane Crashes",
   "readingTimeMinutes": 14,
-  "hook": "The warning moves through the cockpit as a hint, and danger keeps descending.",
+  "hook": "The warning crosses the cockpit as a hint while the runway keeps rising.",
   "counterintuition": "Plane crashes are rarely pure technical failures. Small errors can become fatal when hierarchy makes urgent speech sound like a hint.",
-  "tryThisNow": "Count the next five safety warnings you hear, and mark whether each one names the risk plainly enough to stop action.",
+  "tryThisNow": "Count the next five safety warnings you hear; mark whether each names the risk plainly enough to stop action.",
   "keyTakeaway": "Power distance becomes dangerous when deference softens warnings, so reliable systems train people to speak clearly when hierarchy would mute them.",
   "breakdown": {
     "fastRead": "Korean Air Flight 801 did not crash because the crew lacked intelligence or courage. Bad weather, fatigue, equipment issues, and cockpit hierarchy combined. The first officer and flight engineer saw danger, but their warnings stayed indirect. The captain did not hear the urgency in time.\n\nAvianca Flight 052 shows the same linguistic risk outside Korea. The crew was critically low on fuel near New York, yet the message to air traffic control did not land as an emergency. In aviation, a soft phrase can be too weak for the system to act.\n\nPower distance names the hierarchy problem. High-reliability work cannot depend on hints when lives are at stake. Korean Air's later safety reform matters because it treated communication as trainable, not as a fixed national fate.",
@@ -29,7 +29,7 @@
         "format": "decision_point",
         "requiredBeat": "Use Korean Air Flight 801 to teach direct cockpit warnings."
       },
-      "scenario": "At 6:55 a.m. inside an airline simulator, instructor Edda watches a trainee first officer say, 'Weather looks tricky,' while the captain continues descent. Korean Air Flight 801 is printed on the training card. Edda weighs whether to praise politeness or stop the session and require the phrase, 'Go around now; approach is unsafe.'",
+      "scenario": "At 6:55 a.m. inside an airline simulator, instructor Edda watches a trainee first officer say, 'Weather looks tricky,' while the captain continues descent. Korean Air Flight 801 turns that mild phrase into the test: if the warning cannot stop descent, it is not yet safety language. Edda weighs whether to praise politeness or stop the session and require the phrase, 'Go around now; approach is unsafe.'",
       "whatToDo": "Train the exact escalation sentence before the emergency. Make the safe phrase short, direct, and legitimate for a junior crew member to use.",
       "whyItMatters": "Flight 801 shows that hints can fail under hierarchy. A rehearsed command gives concern enough force to change action."
     },
@@ -48,7 +48,7 @@
         "format": "audit",
         "requiredBeat": "Use Avianca Flight 052 to audit emergency language."
       },
-      "scenario": "At 1:40 p.m. in a rail dispatch center, supervisor Bastien reviews transcripts after a train lost power outside the city. Operators used mild language, and no one heard emergency. Avianca Flight 052 sits in the safety binder. Bastien's decision is to keep the old script or add one unmistakable word that triggers priority handling.",
+      "scenario": "At 1:40 p.m. in a rail dispatch center, supervisor Bastien reviews transcripts after a train lost power outside the city. Avianca Flight 052 makes the transcript read differently: operators used mild language, and no one heard emergency. Bastien's decision is to keep the old script or add one unmistakable word that triggers priority handling.",
       "whatToDo": "Define the emergency word and the required response. Do not let operators improvise urgency when time, fuel, or power is nearly gone.",
       "whyItMatters": "Avianca's crew needed the system to understand their margin. Ambiguous language can make a crisis sound routine until the margin disappears."
     },
@@ -67,7 +67,7 @@
         "format": "scene",
         "requiredBeat": "Apply power distance to an operating-room huddle."
       },
-      "scenario": "Inside an operating room at 8:25 a.m., resident Livia notices the patient's pressure falling while a senior surgeon continues. The power distance note from aviation safety training is clipped to the huddle sheet. As the next incision approaches, Livia chooses between another soft hint and the direct line the team agreed to practice.",
+      "scenario": "Inside an operating room at 8:25 a.m., resident Livia notices the patient's pressure falling while a senior surgeon continues. Power-distance training gives her a concrete speech problem: a hint preserves hierarchy, while a stop phrase protects the patient. As the next incision approaches, Livia chooses between another soft hint and the direct line the team agreed to practice.",
       "whatToDo": "Use the agreed safety phrase and state the requested action. The huddle rule should make direct challenge sound professional, not rude.",
       "whyItMatters": "Power distance is not limited to cockpits. Any ranked team needs language that lets the person with data interrupt the person with authority."
     },
@@ -86,7 +86,7 @@
         "format": "planning_choice",
         "requiredBeat": "Use Korean Air reform to improve maintenance handoffs."
       },
-      "scenario": "At midnight in an aircraft maintenance bay, lead Orson reads a handoff note that says a vibration is 'probably worth watching.' Korean Air's safety reform is on the training poster beside the tool cart. Orson weighs whether that wording can release the next crew or whether the note has to state the defect, risk, and grounding decision plainly.",
+      "scenario": "At midnight in an aircraft maintenance bay, lead Orson reads a handoff note that says a vibration is 'probably worth watching.' Korean Air's safety reform makes the wording the defect: a crew cannot act on a hint that hides accountability. Orson weighs whether that note can release the next crew or whether it has to state the defect, risk, and grounding decision plainly.",
       "whatToDo": "Replace watchful wording with accountable wording. The handoff should name the defect, the risk, the test needed, and who can clear it.",
       "whyItMatters": "Korean Air improved by redesigning professional speech. Maintenance handoffs need the same escape from deferential ambiguity."
     },
@@ -124,7 +124,7 @@
         "format": "reflection",
         "requiredBeat": "Apply power distance to financial risk meetings."
       },
-      "scenario": "In a boardroom at 4:05 p.m., analyst Hale watches executives celebrate a fast-growing portfolio. His model shows a dangerous liquidity squeeze, but the last meeting punished bad news. Avianca Flight 052 is in a case-study packet on the table. Hale reflects on whether a warning hidden in cautious language will be heard before the firm runs out of options.",
+      "scenario": "In a boardroom at 4:05 p.m., analyst Hale watches executives celebrate a fast-growing portfolio. His model shows a dangerous liquidity squeeze, but the last meeting punished bad news. Avianca Flight 052 changes the risk question: a warning hidden in cautious language may not be heard as an emergency. Hale reflects on whether his phrasing will be clear before the firm runs out of options.",
       "whatToDo": "Create a challenge round where risk owners must state concern, evidence, and requested action. Senior leaders should ask for plain warnings before momentum wins.",
       "whyItMatters": "Power distance can make analysts protect rank instead of capital. A formal challenge norm gives bad news a safe path upward."
     }
@@ -134,7 +134,7 @@
     "questions": [
       {
         "questionId": "outliers-ch07-q01",
-        "prompt": "Two cockpit responses compete: keep hinting politely or force a safety decision. Which fits Flight 801?",
+        "prompt": "A cockpit warning can remain polite or force a safety decision. Which response fits Flight 801?",
         "choices": [
           "The warning must become direct enough to force a safety decision.",
           "The first officer should stay indirect because rank matters more than altitude.",
@@ -150,8 +150,8 @@
         "prompt": "A fuel crisis is described without the emergency words controllers recognize. What happens next?",
         "choices": [
           "The crew used too much blunt language and offended air traffic control.",
-          "The crash showed that fuel status is irrelevant to communication design.",
-          "The crew's fuel crisis was not communicated in terms controllers treated as an emergency."
+          "Fuel status became irrelevant once controllers heard routine phrasing instead.",
+          "The fuel crisis was not communicated in emergency terms controllers recognized."
         ],
         "correctIndex": 2,
         "explanation": "Urgency has to be unmistakable in a shared system. Ambiguous wording can leave listeners acting as if the problem is routine.",
@@ -160,7 +160,7 @@
       },
       {
         "questionId": "outliers-ch07-q03",
-        "prompt": "Two definitions of power distance are offered. Which one matches the cockpit cases?",
+        "prompt": "Power distance can mean miles, authority, or error counts. Which definition matches the cockpit cases?",
         "choices": [
           "How far an aircraft is from its assigned destination.",
           "How strongly a culture accepts hierarchy and unequal authority.",
@@ -186,10 +186,10 @@
       },
       {
         "questionId": "outliers-ch07-q05",
-        "prompt": "Two culture readings compete: fixed ethnic ranking or trainable communication defaults. Which avoids the crude version?",
+        "prompt": "Culture can be framed as ethnic ranking or trainable communication default. Which reading avoids the crude version?",
         "choices": [
           "The point is that culture has no effect on professional behavior.",
-          "The point is trainable communication defaults, not fixed ethnic safety rankings.",
+          "Trainable communication defaults, not fixed ethnic safety rankings.",
           "The point is that only one airline has ever needed safety reform."
         ],
         "correctIndex": 1,
@@ -201,7 +201,7 @@
         "questionId": "outliers-ch07-q06",
         "prompt": "Korean Air retrains cockpit language and expectations. What happens next?",
         "choices": [
-          "Cockpit communication norms can be deliberately retrained when safety requires it.",
+          "Cockpit communication norms can be deliberately retrained for safety.",
           "Airlines improve only by replacing technical training with cultural lectures.",
           "Pilots cannot change inherited speech habits after adulthood."
         ],
@@ -212,7 +212,7 @@
       },
       {
         "questionId": "outliers-ch07-q07",
-        "prompt": "Two contrasts for Suren Ratwatte's landing compete. Which one fits the source logic?",
+        "prompt": "Suren Ratwatte's landing can be compared with polite hints or clear coordination. Which contrast fits the source logic?",
         "choices": [
           "A case where polite hints worked better than explicit instructions.",
           "Clear authority, coordination, and direct requests under pressure.",
@@ -238,7 +238,7 @@
       },
       {
         "questionId": "outliers-ch07-q09",
-        "prompt": "Two aviation lessons compete: manners first, or urgent speech outranks deference. Which keeps the hard edge?",
+        "prompt": "Aviation lessons can put manners first or make urgent speech outrank deference. Which keeps the hard edge?",
         "choices": [
           "Technical skill is irrelevant once a cockpit has good manners.",
           "Hierarchy should be removed from every professional setting.",

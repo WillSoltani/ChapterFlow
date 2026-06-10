@@ -4,9 +4,9 @@
   "number": 8,
   "title": "Rice Paddies and Math Tests",
   "readingTimeMinutes": 14,
-  "hook": "What if math persistence grows from the way numbers, work, and payoff are arranged?",
+  "hook": "What if persistence grows where language, work, and payoff make effort visible?",
   "counterintuition": "The claim is not that Asian students are naturally better at math. It is that number words and inherited work habits can make persistence easier to learn.",
-  "tryThisNow": "Schedule a 10-minute retry block for one hard problem, with the small adjustment and visible payoff named.",
+  "tryThisNow": "Schedule a 10-minute retry block for one hard problem; name the small adjustment and visible payoff.",
   "keyTakeaway": "Effortful persistence grows when language reveals patterns and culture teaches that careful, repeated work can reliably improve the result.",
   "breakdown": {
     "fastRead": "The Chinese number system makes counting more transparent than English. Eleven sounds like ten-one. Twenty-two sounds like two-ten-two. A child hears the structure inside the word instead of memorizing irregular labels. That small clarity can reduce friction at the start of math.\n\nSouth China rice paddies add a deeper habit. Wet-rice farming rewarded careful, repeated labor on small plots. Irrigation, transplanting, weeding, and adjustment mattered because more intelligent effort could raise output. Work and reward were visibly linked.\n\nQuestionnaire persistence and math scores connect the old habit to modern classrooms. Students who stayed with a long, tedious questionnaire tended to do better in math. The advantage was not race. It was learned persistence under difficulty.",
@@ -29,7 +29,7 @@
         "format": "decision_point",
         "requiredBeat": "Use Chinese number system transparency in a math lesson."
       },
-      "scenario": "At 9:15 a.m. in a first-grade classroom, teacher Meilin watches two children stumble over eleven and twelve while the base-ten blocks sit untouched. The Chinese number system example is on her lesson card. Her choice is concrete: push more memorization, or show ten-one and ten-two with blocks before returning to English labels.",
+      "scenario": "At 9:15 a.m. in a first-grade classroom, teacher Meilin watches two children stumble over eleven and twelve while the base-ten blocks sit untouched. The Chinese number system example changes the move: make ten-one and ten-two visible before returning to English labels. Her choice is concrete: push more memorization, or show the structure with blocks first.",
       "whatToDo": "Expose the structure before drilling the irregular word. Let students see tens and ones with objects, then connect the clear pattern back to vocabulary.",
       "whyItMatters": "Transparent number language reduces early friction. A child should not confuse awkward words with weak mathematical sense."
     },
@@ -67,13 +67,13 @@
         "format": "audit",
         "requiredBeat": "Use questionnaire persistence to interpret math scores."
       },
-      "scenario": "At 11:20 a.m. in an education research lab, analyst Petra compares math scores with completion times from a tedious student survey. The questionnaire persistence finding from Outliers is written on the board. Petra must classify the long form: administrative clutter, or a behavioral clue about staying with hard work.",
+      "scenario": "At 11:20 a.m. in an education research lab, analyst Petra compares math scores with completion times from a tedious student survey. The questionnaire persistence finding makes the long form behavioral evidence rather than paperwork. Petra must classify the pattern: administrative clutter, or a clue about staying with hard work.",
       "whatToDo": "Treat persistence data as a separate signal, then test it carefully. Do not confuse it with content mastery, but do not throw it away as noise.",
       "whyItMatters": "The questionnaire link suggests that endurance under boredom can shape math outcomes. It reveals a habit that ordinary tests may hide."
     },
     {
       "exampleId": "outliers-ch08-ex04",
-      "title": "Daphne Repairs the Quit Point",
+      "title": "Paige Repairs the Quit Point",
       "tags": [
         "app",
         "product",
@@ -86,7 +86,7 @@
         "format": "planning_choice",
         "requiredBeat": "Use effortful persistence to reduce quit points."
       },
-      "scenario": "At 4:45 p.m. in a product studio, designer Daphne studies a dashboard showing students quitting after one wrong fraction answer. The South China rice-paddy story is taped near the sprint board. Daphne weighs whether to add flashier rewards or change the app so each error invites a small, clear adjustment and immediate retest.",
+      "scenario": "At 4:45 p.m. in a product studio, designer Paige studies a dashboard showing students quitting after one wrong fraction answer. The South China rice-paddy story changes the app logic: effort has to show a visible payoff quickly enough to be trusted. Paige weighs whether to add flashier rewards or change each error into a small, clear adjustment and immediate retest.",
       "whatToDo": "Design the second attempt. Show what changed, why it matters, and how the learner can try again before frustration hardens.",
       "whyItMatters": "Effortful persistence grows when effort has a visible route. A learner who sees improvement is more likely to stay with the next hard problem."
     },
@@ -124,7 +124,7 @@
         "format": "postmortem",
         "requiredBeat": "Use persistence to diagnose math avoidance."
       },
-      "scenario": "After tutoring, director Yuna reviews a sign-out sheet and notices one student leaving whenever multi-step problems begin. The questionnaire persistence study sits in the training binder. Looking back at the session, Yuna asks whether tutors labeled the student unable when the immediate issue was stamina, boredom, and no visible reward for staying.",
+      "scenario": "After tutoring, director Yuna reviews a sign-out sheet and notices one student leaving whenever multi-step problems begin. The questionnaire persistence study turns the exit time into a stamina signal. Looking back at the session, Yuna asks whether tutors labeled the student unable when the immediate issue was boredom, endurance, and no visible reward for staying.",
       "whatToDo": "Diagnose the exit point. Build a shorter persistence ladder with quick feedback before concluding the student lacks the underlying math ability.",
       "whyItMatters": "Math avoidance can hide a broken effort loop. If tutors repair the loop, ability may have enough time to appear."
     }
@@ -134,10 +134,10 @@
     "questions": [
       {
         "questionId": "outliers-ch08-q01",
-        "prompt": "Two number-word lessons compete: memorize irregular labels or expose base-ten structure. Which advantage does Chinese provide?",
+        "prompt": "Number-word teaching can push memorized labels or expose base-ten structure. Which advantage does Chinese provide?",
         "choices": [
           "It removes the need for children to practice arithmetic.",
-          "It makes base-ten structure more visible in the number words themselves.",
+          "It makes base-ten structure visible in the number words.",
           "It proves language alone determines every later math outcome."
         ],
         "correctIndex": 1,
@@ -149,8 +149,8 @@
         "questionId": "outliers-ch08-q02",
         "prompt": "Rice-paddy work rewards careful repeated effort with visible yield. What happens next in the math-test argument?",
         "choices": [
-          "They trained a cultural expectation that careful repeated effort can improve output.",
-          "They show that farming skill biologically creates calculation talent.",
+          "They trained the expectation that careful repeated effort can improve output.",
+          "They show farming skill biologically creates calculation talent in every classroom.",
           "They prove classroom teaching has no influence on math performance."
         ],
         "correctIndex": 0,
@@ -160,11 +160,11 @@
       },
       {
         "questionId": "outliers-ch08-q03",
-        "prompt": "Two tutoring responses follow a failed problem: declare no talent, or make the next adjustment small. Which fits persistence?",
+        "prompt": "A failed problem can trigger a talent judgment or a small next adjustment. Which response fits persistence?",
         "choices": [
-          "Tell the student that struggle proves math talent is absent.",
+          "Tell the student that struggle proves math talent is absent for good.",
           "Skip the problem forever so confidence never meets difficulty.",
-          "Make the next adjustment small, visible, and tied to a measured improvement."
+          "Make the next adjustment small, visible, and tied to improvement."
         ],
         "correctIndex": 2,
         "explanation": "Persistence grows when effort has a path back into progress. Small feedback loops help learners stay engaged.",
@@ -175,7 +175,7 @@
         "questionId": "outliers-ch08-q04",
         "prompt": "A tedious questionnaire becomes evidence about staying with hard work. What happens next?",
         "choices": [
-          "Willingness to stay with a tedious task can correlate with math performance.",
+          "Staying with a tedious task can correlate with math performance.",
           "Questionnaires teach algebra better than math lessons do.",
           "Students who dislike forms should be removed from math classes."
         ],
@@ -186,7 +186,7 @@
       },
       {
         "questionId": "outliers-ch08-q05",
-        "prompt": "Two explanations of math advantage compete: racial essence or learned language and effort habits. Which avoids the trap?",
+        "prompt": "Math advantage can be explained as racial essence or learned language and effort habits. Which avoids the trap?",
         "choices": [
           "Asian students are naturally better at math regardless of environment.",
           "Culture cannot influence math learning in any meaningful way.",
@@ -212,7 +212,7 @@
       },
       {
         "questionId": "outliers-ch08-q07",
-        "prompt": "Two effort stories compete: suffering for its own sake or extra care with visible payoff. Which fits rice farming?",
+        "prompt": "Rice-farming effort can be misread as suffering or understood as care with payoff. Which fits?",
         "choices": [
           "The work was easy enough that persistence was unnecessary.",
           "The work rewarded only speed rather than precision.",
@@ -238,7 +238,7 @@
       },
       {
         "questionId": "outliers-ch08-q09",
-        "prompt": "Two summaries compete: fixed race or cultural history that can be taught. Which keeps the edge?",
+        "prompt": "Math advantage can be treated as fixed race or teachable cultural history. Which keeps the edge?",
         "choices": [
           "The advantage is cultural and historical, learned through language and work habits.",
           "The advantage is fixed by race and cannot be taught elsewhere.",

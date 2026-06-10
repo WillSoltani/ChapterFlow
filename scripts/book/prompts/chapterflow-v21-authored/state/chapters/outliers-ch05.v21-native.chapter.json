@@ -4,9 +4,9 @@
   "number": 5,
   "title": "The Three Lessons of Joe Flom",
   "readingTimeMinutes": 14,
-  "hook": "The unwanted case file slides to the outsider's desk before the market realizes what it is worth.",
+  "hook": "The unwanted case file lands on the outsider's desk before the market knows its price.",
   "counterintuition": "The advantage was not discrimination itself. It was the strange fit between exclusion, timing, family work habits, and a market that later prized the rejected niche.",
-  "tryThisNow": "Schedule 15 minutes to inspect one low-status task and note the market shift that could make its skill valuable.",
+  "tryThisNow": "Schedule 15 minutes to inspect one low-status task; note the market shift that could make its skill valuable.",
   "keyTakeaway": "Historical fit appears when background, exclusion, birth cohort, and market timing converge so yesterday's unwanted work becomes tomorrow's central skill.",
   "breakdown": {
     "fastRead": "Joe Flom graduated near the top of his Harvard Law class, yet the elite white Protestant firms did not want him. He joined Skadden, Arps, a small outsider firm, and took matters the old firms considered rough or beneath them. That rejection mattered because it directed practice.\n\nHostile takeover work was once low-status legal labor. Outsider lawyers accepted it, learned it, and built expertise while the establishment looked away. When corporate battles later became lucrative, Flom had the exact skill the market suddenly needed.\n\nLouis and Regina Borgenicht add the family layer. Their garment business trained habits of initiative, long hours, problem-solving, and reward tied to effort. Flom's success came from talent meeting a historical moment that made inherited tools unusually useful.",
@@ -16,7 +16,7 @@
   "examples": [
     {
       "exampleId": "outliers-ch05-ex01",
-      "title": "Graham Studies the Unwanted Desk",
+      "title": "Brayden Studies the Unwanted Desk",
       "tags": [
         "law",
         "niche",
@@ -29,7 +29,7 @@
         "format": "decision_point",
         "requiredBeat": "Use Joe Flom and Skadden Arps to choose practice work."
       },
-      "scenario": "At 6:10 p.m. in a law-firm staffing room, associate Graham looks at a whiteboard where glamorous merger work is full and the messy restructuring desk is open. Joe Flom and Skadden, Arps sit in the case packet from orientation. Graham weighs whether to chase the crowded prestige path or take the unwanted desk that may teach rare judgment.",
+      "scenario": "At 6:10 p.m. in a law-firm staffing room, associate Brayden looks at a whiteboard where glamorous merger work is full and the messy restructuring desk is open. Joe Flom and Skadden, Arps make the unwanted desk look different: the rejected work may train judgment before the market prices it. Brayden weighs whether to chase the crowded prestige path or take the desk that may teach rare skill.",
       "whatToDo": "Evaluate the work for learning density, not status. If the neglected desk offers real repetitions in hard problems, treat it as an apprenticeship.",
       "whyItMatters": "Flom's path shows that exclusion can concentrate practice in a niche. The task is to spot skill-building work before the market applauds it."
     },
@@ -48,7 +48,7 @@
         "format": "audit",
         "requiredBeat": "Apply hostile takeover work to neglected startup services."
       },
-      "scenario": "Tuesday at 9:00 a.m., founder Noelle scrolls through customer requests in a warehouse office. The fashionable product line gets all the praise, but the ugly compliance service keeps growing. The hostile takeover work in Flom's story is circled in her notebook. The live question: is low-status demand noise, or is it a signal of coming value?",
+      "scenario": "Tuesday at 9:00 a.m., founder Noelle scrolls through customer requests in a warehouse office. The fashionable product line gets all the praise, but the ugly compliance service keeps growing. Flom's hostile-takeover niche gives the pattern a name: low-status demand can become future value when conditions change. The live question is whether the service is noise or a signal of coming value.",
       "whatToDo": "Audit the rejected service for repeatable complexity and rising demand. If both are present, assign strong people before competitors decide it looks prestigious.",
       "whyItMatters": "Outsider expertise becomes powerful when a market turns. The unlovely backlog may be where tomorrow's core capability is being built."
     },
@@ -92,7 +92,7 @@
     },
     {
       "exampleId": "outliers-ch05-ex05",
-      "title": "Tobias Builds the Takeover Lab",
+      "title": "Anna Builds the Takeover Lab",
       "tags": [
         "training",
         "legal reps",
@@ -105,7 +105,7 @@
         "format": "planning_choice",
         "requiredBeat": "Use hostile takeover practice to design legal training."
       },
-      "scenario": "At 7:30 a.m. in a regional firm's training room, partner Tobias lays case files across a conference table. Associates avoid the contentious takeover simulations because clients are difficult and hours are long. The hostile takeover work from Flom's story is on the first slide. Tobias weighs whether to soften training for morale or build a lab around hard, repeatable contests.",
+      "scenario": "At 7:30 a.m. in a regional firm's training room, partner Anna lays case files across a conference table. Associates avoid the contentious takeover simulations because clients are difficult and hours are long. Flom's hostile-takeover work makes the discomfort part of the training logic. Anna weighs whether to soften training for morale or build a lab around hard, repeatable contests.",
       "whatToDo": "Create supervised repetitions in the hard niche and explain why they matter. Apprentices need to know when difficulty is building rare judgment.",
       "whyItMatters": "Low-status practice became high-value expertise for Flom because it was repeated before demand surged. Training should preserve that learning curve."
     },
@@ -134,10 +134,10 @@
     "questions": [
       {
         "questionId": "outliers-ch05-q01",
-        "prompt": "Two career moves face Graham: chase prestige or learn the unwanted desk. Which question would the Flom lens ask?",
+        "prompt": "Brayden can chase prestige or learn the unwanted desk. Which question would the Flom lens ask?",
         "choices": [
           "Whether the desk has enough prestige to impress old-line firms immediately.",
-          "Whether the desk teaches hard, repeatable skills that a changing market may later need.",
+          "Whether the desk builds hard skills a changing market may need.",
           "Whether low-status work is valuable simply because people dislike it."
         ],
         "correctIndex": 1,
@@ -151,7 +151,7 @@
         "choices": [
           "Discrimination was harmless because talented lawyers could easily choose any firm.",
           "Discrimination mattered only emotionally and had no effect on legal careers.",
-          "Discrimination harmed people while also pushing some outsiders into a niche that later rose."
+          "Discrimination harmed people while pushing some outsiders into a niche that later rose."
         ],
         "correctIndex": 2,
         "explanation": "The hard edge preserves moral clarity. The advantage came from a painful constraint meeting talent, timing, and market change.",
@@ -160,10 +160,10 @@
       },
       {
         "questionId": "outliers-ch05-q03",
-        "prompt": "Two explanations of hostile-takeover expertise compete. Which names historical fit?",
+        "prompt": "Hostile-takeover expertise can look like luck or historical fit. Which explanation names the mechanism?",
         "choices": [
           "Historical fit between accumulated skill and a later market shift.",
-          "A threshold effect where IQ stops mattering after a minimum.",
+          "A threshold effect where IQ stops mattering after a minimum score is cleared.",
           "Power distance inside professional communication."
         ],
         "correctIndex": 0,
@@ -186,9 +186,9 @@
       },
       {
         "questionId": "outliers-ch05-q05",
-        "prompt": "Two Borgenicht lessons compete: garment destiny or meaningful work habits. Which one belongs?",
+        "prompt": "The Borgenicht lesson can become garment destiny or meaningful work habits. Which one belongs?",
         "choices": [
-          "A family work culture that linked initiative, long hours, judgment, and reward.",
+          "Family work culture linked initiative, judgment, long hours, and reward.",
           "A guarantee that every garment family produces elite lawyers.",
           "A claim that professional success has nothing to do with market timing."
         ],
@@ -212,9 +212,9 @@
       },
       {
         "questionId": "outliers-ch05-q07",
-        "prompt": "Two bundles of causes are proposed for Flom's rise. Which captures the three lessons?",
+        "prompt": "Flom's rise has several proposed cause bundles. Which captures the three lessons?",
         "choices": [
-          "Exclusion into a niche, demographic timing, and inherited habits of meaningful work.",
+          "Exclusion into a niche, demographic timing, and meaningful-work habits.",
           "Pure luck, effortless talent, and rejection of all professional standards.",
           "IQ threshold, cockpit speech, and summer school time."
         ],
@@ -238,7 +238,7 @@
       },
       {
         "questionId": "outliers-ch05-q09",
-        "prompt": "Two moral readings of constraint compete. Which one keeps the guardrail?",
+        "prompt": "Constraint can be romanticized or treated carefully. Which moral reading keeps the guardrail?",
         "choices": [
           "A harmful barrier becomes good whenever one person later succeeds.",
           "Market success proves that exclusion was exaggerated.",

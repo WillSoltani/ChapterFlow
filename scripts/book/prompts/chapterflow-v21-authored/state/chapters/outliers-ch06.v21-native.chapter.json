@@ -4,9 +4,9 @@
   "number": 6,
   "title": "Harlan, Kentucky",
   "readingTimeMinutes": 14,
-  "hook": "1 public insult can turn a safety correction into a status contest.",
+  "hook": "1 public insult can turn a safety correction into a contest over status.",
   "counterintuition": "Culture is not a decorative background. Old economic conditions can leave codes of honor that shape automatic reactions long after the original setting has faded.",
-  "tryThisNow": "Set a 10-minute timer and map one oversized conflict: public insult, reputation rule, and safer response.",
+  "tryThisNow": "Set a 10-minute timer; map one oversized conflict by public insult, reputation rule, and safer response.",
   "keyTakeaway": "A culture of honor turns reputation into a fragile asset, so insult can trigger public defense even when modern conditions no longer require it.",
   "breakdown": {
     "fastRead": "Harlan County's family feuds look, on the surface, like personal violence. Gladwell asks readers to see a pattern. The conflicts followed a code in which insult, reputation, and retaliation were socially legible. People were not simply erupting at random.\n\nThe Scots-Irish herder background gives the code an economic source. Herds could be stolen. Law was weak. A reputation for toughness protected portable wealth. In that world, backing down invited danger, so honor became practical.\n\nThe Southern insult experiments show the legacy persisting in a modern setting. Young men from honor cultures reacted more strongly to insult. The lesson is explanation without fatalism: inherited norms matter, but naming their origin gives people a chance to redesign responses.",
@@ -54,7 +54,7 @@
     },
     {
       "exampleId": "outliers-ch06-ex03",
-      "title": "Luca Changes the Taunt Rule",
+      "title": "Maureen Changes the Taunt Rule",
       "tags": [
         "sports",
         "coaching",
@@ -67,13 +67,13 @@
         "format": "planning_choice",
         "requiredBeat": "Apply Southern insult experiments to a sports program."
       },
-      "scenario": "Friday at 5:00 p.m. in the gym, coach Luca reviews video of a player shoving back after a bench taunt. The Southern insult experiments are taped to his clipboard. He weighs punishing only the shove against redesigning practice so players rehearse what to do when an insult tries to turn a game into a public honor test.",
+      "scenario": "Friday at 5:00 p.m. in the gym, coach Maureen reviews video of a player shoving back after a bench taunt. The Southern insult experiments make the clip more than a discipline case: the insult is public, fast, and tied to reputation. Maureen weighs punishing only the shove against redesigning practice so players rehearse what to do when an insult tries to turn a game into an honor test.",
       "whatToDo": "Practice the response before the next game. Give players a script, a reset signal, and a way to preserve dignity without retaliation.",
       "whyItMatters": "The insult experiments show that the body can react before reflection catches up. Rehearsal creates a new response path under pressure."
     },
     {
       "exampleId": "outliers-ch06-ex04",
-      "title": "Greta Rewrites the Forum Rule",
+      "title": "Colette Rewrites the Forum Rule",
       "tags": [
         "online",
         "moderation",
@@ -86,7 +86,7 @@
         "format": "audit",
         "requiredBeat": "Use honor triggers to audit online moderation."
       },
-      "scenario": "At 10:40 p.m., moderator Greta watches an online forum thread turn from a technical disagreement into public name-calling. The Scots-Irish herder example is in her notes from a culture workshop. Her next moderation call is sharp: delete only the last threat, or change the rule that lets visible insults sit long enough to demand an answer.",
+      "scenario": "At 10:40 p.m., moderator Colette watches an online forum thread turn from a technical disagreement into public name-calling. The Scots-Irish herder example explains why visible insults can demand an answer where reputation is fragile. Her next moderation call is sharp: delete only the last threat, or change the rule that lets visible insults sit long enough to demand an answer.",
       "whatToDo": "Intervene at the first public contempt cue. Move disputes into structured channels before the audience becomes part of the reward.",
       "whyItMatters": "Honor responses grow stronger when spectators are present. Moderation that reduces public insult can prevent a cycle from becoming entertainment."
     },
@@ -111,7 +111,7 @@
     },
     {
       "exampleId": "outliers-ch06-ex06",
-      "title": "Nico Refuses the Stereotype Slide",
+      "title": "Blanche Refuses the Stereotype Slide",
       "tags": [
         "college",
         "teaching",
@@ -124,7 +124,7 @@
         "format": "before_after",
         "requiredBeat": "Teach cultural legacy without determinism."
       },
-      "scenario": "Before class, professor Nico deletes a slide that made Southern honor culture sound like a permanent flaw. After rereading the Scots-Irish herders and Southern insult experiments, he rebuilds the lesson around ecology, learned norms, and change. By afternoon, students compare old survival codes with modern settings where different responses can be practiced.",
+      "scenario": "Before class, professor Blanche deletes a slide that made Southern honor culture sound like a permanent flaw. After rereading the Scots-Irish herders and Southern insult experiments, he rebuilds the lesson around ecology, learned norms, and change. By afternoon, students compare old survival codes with modern settings where different responses can be practiced.",
       "whatToDo": "Teach origin, mechanism, and choice together. Pair every cultural pattern with the conditions that produced it and the practices that can alter it.",
       "whyItMatters": "Historical explanation should widen agency. Without that guardrail, culture talk becomes stereotype instead of understanding."
     }
@@ -134,11 +134,11 @@
     "questions": [
       {
         "questionId": "outliers-ch06-q01",
-        "prompt": "Two supervisor corrections are possible: public escalation or private safety focus. Which fits the Harlan lens?",
+        "prompt": "A supervisor can correct publicly or move the safety warning private. Which response fits the Harlan lens?",
         "choices": [
           "Ignore the safety problem because honor concerns make standards unusable.",
           "Escalate loudly so everyone learns that insult is the supervisor's right.",
-          "Handle the correction privately when possible so safety does not become public humiliation."
+          "Handle the correction privately so safety does not become public humiliation."
         ],
         "correctIndex": 2,
         "explanation": "A culture of honor makes public disrespect volatile. Private correction preserves the standard while reducing a reputation threat.",
@@ -149,7 +149,7 @@
         "questionId": "outliers-ch06-q02",
         "prompt": "Portable herds and weak law make reputation a practical defense. What happens next culturally?",
         "choices": [
-          "Portable herds, weak law, and the need for a reputation that deterred theft.",
+          "Portable herds, weak law, and reputation as theft defense.",
           "Stable factory wages and strong courts that made reputation irrelevant.",
           "Urban schooling systems that rewarded silent compliance."
         ],
@@ -160,7 +160,7 @@
       },
       {
         "questionId": "outliers-ch06-q03",
-        "prompt": "Two readings of the Southern insult experiments compete. Which one fits the evidence?",
+        "prompt": "The Southern insult experiments can be misread as destiny or read as learned readiness. Which fits the evidence?",
         "choices": [
           "They prove that every Southern participant will choose violence in any dispute.",
           "They show inherited honor responses appearing in modern bodies and behavior.",
@@ -186,10 +186,10 @@
       },
       {
         "questionId": "outliers-ch06-q05",
-        "prompt": "Two cultural explanations compete: fixed ancestry or learned norms that can be redesigned. Which avoids determinism?",
+        "prompt": "Honor culture can be treated as fixed ancestry or learned norms that can change. Which avoids determinism?",
         "choices": [
           "Ancestry fixes behavior so intervention is pointless.",
-          "Inherited norms can shape reactions, but understanding their origin can create new choices.",
+          "Inherited norms can shape reactions, but origins create new choices.",
           "Culture is imaginary, so only individual personality should be considered."
         ],
         "correctIndex": 1,
@@ -203,7 +203,7 @@
         "choices": [
           "Tell players that physiological reactions are fake and require no practice.",
           "Praise retaliation when it protects the team's image.",
-          "Rehearse a response script and reset signal before the next public provocation."
+          "Rehearse a response script and reset signal before public provocation."
         ],
         "correctIndex": 2,
         "explanation": "The experiments suggest insult can trigger fast responses. Rehearsal builds an alternative before the heated moment.",
@@ -212,7 +212,7 @@
       },
       {
         "questionId": "outliers-ch06-q07",
-        "prompt": "Two Harlan County readings compete: isolated crime story or repeated honor code. Which one fits?",
+        "prompt": "Harlan County can look like isolated crime or a repeated honor code. Which reading fits?",
         "choices": [
           "Its feuds prove law never affects community behavior.",
           "Its feuds reveal a repeated code of reputation, insult, and retaliation.",
@@ -229,7 +229,7 @@
         "choices": [
           "Visibility makes insults harmless because everyone sees the facts.",
           "Public insults reduce retaliation because reputation is no longer involved.",
-          "An audience turns disrespect into a public challenge that users feel pressed to answer."
+          "An audience turns disrespect into a public challenge."
         ],
         "correctIndex": 2,
         "explanation": "Honor reactions intensify when reputation is at stake before witnesses. The audience can become part of the trigger.",
@@ -238,7 +238,7 @@
       },
       {
         "questionId": "outliers-ch06-q09",
-        "prompt": "Two uses of the honor-culture explanation compete. Which practical value follows?",
+        "prompt": "The honor-culture explanation can excuse aggression or guide safer design. Which practical value follows?",
         "choices": [
           "It helps design settings that reduce needless status threats while keeping standards.",
           "It lets leaders excuse aggression whenever history is mentioned.",
