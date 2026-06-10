@@ -27,18 +27,24 @@ The app focuses on chapter based learning with summaries, examples, quizzes, not
 - CDK for infrastructure
 
 ## Important routes
-- `/` ChapterFlow product home
-- `/book` onboarding entry
-- `/book/workspace` dashboard
+- `/` ChapterFlow product home (public marketing)
+- `/pricing` plans & pricing (public)
+- `/books` public catalog browse (public, ISR)
+- `/onboarding` onboarding entry (also `/book` when signed in, then redirects)
+- `/dashboard` authenticated home / workspace (the real post-login landing)
 - `/book/library` library
-- `/book/profile` profile
+- `/book/library/[bookId]/chapter/[chapterId]` chapter reader (Summary → Examples → Quiz)
 - `/book/progress` progress
+- `/book/profile` profile
 - `/book/settings` settings
 - `/book/badges` badges
 - `/book/saved` saved queue
-- `/auth/login`
-- `/auth/callback`
-- `/auth/logout`
+- `/book/admin` admin console (Cognito admin group only)
+- `/auth/login`, `/auth/callback`, `/auth/logout` OAuth route handlers
+
+> Permanent redirects (`next.config.ts`): `/book/workspace`, `/book/workspace/*`,
+> and `/book/home` → `/dashboard`. The old `/book/workspace` route no longer
+> renders a page.
 
 ## Local development
 
@@ -71,38 +77,36 @@ npm run lint     # advisory — known in-scope debt, not a blocking gate
 ## Deployment & environments
 Three environments run in one AWS account, suffixed `dev` / `staging` / `prod`
 (prod is the unsuffixed, data-bearing set). Push to `main` auto-deploys **dev**;
-`staging`/`prod` are manual and prod is approval-gated. See
-[docs/CI_CD.md](docs/CI_CD.md) and [docs/OPERATIONS.md](docs/OPERATIONS.md).
+`staging`/`prod` are manual and prod is approval-gated. See:
+
+- [docs/CI_CD.md](docs/CI_CD.md) — pipeline mechanics & one-time setup
+- [docs/OPERATIONS.md](docs/OPERATIONS.md) — runbook, health checks, rollback
+- [docs/ENVIRONMENT.md](docs/ENVIRONMENT.md) — **the complete env-var matrix** (what's required, and whether it's CDK-injected, a deploy secret, or an SSM param)
+- [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) — production launch checklist
 
 ## Required environment
-At minimum configure:
+Configuration is **not** a single flat `.env` — see
+[docs/ENVIRONMENT.md](docs/ENVIRONMENT.md) for the full matrix and resolution
+order. In short:
 
-```text
-CHAPTERFLOW_DEPLOYMENT_MODE=standalone
-NEXT_PUBLIC_CHAPTERFLOW_SITE_URL=https://siliconx.ca
-NEXT_PUBLIC_CHAPTERFLOW_APP_URL=https://chapterflow.siliconx.ca
-NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL=https://auth.siliconx.ca
-CHAPTERFLOW_SITE_BASE_URL=https://siliconx.ca
-CHAPTERFLOW_APP_BASE_URL=https://chapterflow.siliconx.ca
-CHAPTERFLOW_AUTH_BASE_URL=https://auth.siliconx.ca
-AUTH_COOKIE_DOMAIN=.siliconx.ca
-CHAPTERFLOW_COOKIE_DOMAIN=.siliconx.ca
-```
+- **Local dev:** `npm run dev` injects the standalone single-host URLs and
+  `DEV_AUTH_BYPASS=1`, so the UI loads with no AWS and no login. To hit real
+  data locally, add AWS credentials + either the `BOOK_*` table/bucket names or
+  `SSM_PARAMETER_PREFIX=/chapterflow/dev` to a gitignored `.env.local`.
+- **Deployed envs:** the data-plane names (`BOOK_TABLE_NAME`,
+  `BOOK_CONTENT_BUCKET`, …) are auto-injected by CDK; secrets (Cognito, Stripe,
+  `AUTH_STATE_SECRET`, `ANTHROPIC_API_KEY`, …) come from per-environment GitHub
+  secrets; and SSM-only config (`VAPID_*`, `SES_SENDER_EMAIL`, optional tuning)
+  must be set as `/chapterflow/<env>/<KEY>` parameters. The canonical list of
+  app-injected secrets is `infra/bin/app.ts`.
 
-Recommended Cognito shape:
-
-```text
-COGNITO_DOMAIN=https://login.siliconx.ca
-COGNITO_CUSTOM_DOMAIN=https://login.siliconx.ca
-COGNITO_REDIRECT_URI=https://siliconx.ca/auth/callback
-COGNITO_LOGOUT_REDIRECT_URI=https://siliconx.ca/
-```
-
-## Deployment model
-- `siliconx.ca` serves the ChapterFlow front page
-- `chapterflow.siliconx.ca` serves the app workspace
-- `auth.siliconx.ca` serves the auth shell
-- `login.siliconx.ca` is reserved for Cognito Hosted UI if you use a custom domain
+> **Deployment model:** the app runs **standalone single-host** today — the
+> `site` / `app` / `auth` URL helpers all resolve to one origin
+> (`app/_lib/chapterflow-brand.ts`); `middleware.ts` / `next.config.ts` do no
+> host routing. The multi-subdomain shape in older docs is config-only. Note the
+> domain inconsistency called out in [docs/ENVIRONMENT.md §5](docs/ENVIRONMENT.md)
+> (`siliconx.ca` vs `chapterflow.ca`) — pin the real origin with
+> `CHAPTERFLOW_APP_BASE_URL` rather than relying on a default.
 
 ## Notes
 - Book JSON package contents under `book-packages/` are source content and should not be refactored casually
