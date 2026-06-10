@@ -202,9 +202,17 @@ for (const f of r.findings) if (f.severity === 'blocker') console.log('    [bloc
 
 After Steps 1–3, tally the result:
 
+> **Gate tallies alone can NEVER produce GREEN.** The deterministic gates pass
+> corrupted quizzes, templated cards, and plausible-false prose (the
+> hooked/range/5-am-club incidents all gated clean). GREEN additionally
+> requires the SEMANTIC layer: every chapter carries a fresh PUBLISHABLE
+> attestation — run `qc-run <bookId>` (the harness review fleet) or a manual
+> QC-SESSION-PROMPT.md read, then confirm `qc-status <bookId>` is all-PASS.
+
 ### GREEN — ship it
 
 - 0 blockers (chapter + intra + book)
+- `qc-status <bookId>` shows EVERY chapter PASS (fresh PUBLISHABLE attestation)
 - 0 majors **or** only the known-acceptable majors below
 
 Known-acceptable majors that do not block ship:

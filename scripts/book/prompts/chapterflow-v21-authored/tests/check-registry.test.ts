@@ -72,17 +72,17 @@ function narrativeCatalogIds(): Set<string> {
   return out;
 }
 
-xfail(
-  "catalog-id namespace: narrative's gate ids do not collide with supportSectionAudit's",
-  "VERIFIED COLLISION: supportSectionAudit owns C11–C21 (C18.answer_length_telegraphed, C19.quiz_opener_lock, …) while finalGate routes the narrative example checks to push(\"C18\")/push(\"C19\") — the same prefixes mean two different checks, and the handoff's 'use C18+' guidance reproduces the collision class it warns about. Phase 4: renumber narrative C18/C19 → C22/C23 and add a single check-id registry",
-  () => {
-    const support = catalogPrefixes("supportSectionAudit.ts");
-    const narrative = narrativeCatalogIds();
-    assert.ok(narrative.size >= 2, "parser drift: expected to find the narrative push() catalog ids in finalGate.ts");
-    const shared = [...narrative].filter((p) => support.has(p));
-    assert.deepEqual(shared, [], `catalog prefixes meaning two different checks: ${shared.join(", ")}`);
-  },
-);
+test("catalog-id namespace: narrative's gate ids do not collide with supportSectionAudit's", () => {
+  // Was the last open collision: supportSectionAudit owns C11–C21, and the
+  // narrative checks were first renamed onto C18/C19 anyway — reproducing the
+  // exact class the inline comment said was "caught in review". Renumbered to
+  // C22/C23 in Phase 4; this test keeps the namespace honest (next free: C24+).
+  const support = catalogPrefixes("supportSectionAudit.ts");
+  const narrative = narrativeCatalogIds();
+  assert.ok(narrative.size >= 2, "parser drift: expected to find the narrative push() catalog ids in finalGate.ts");
+  const shared = [...narrative].filter((p) => support.has(p));
+  assert.deepEqual(shared, [], `catalog prefixes meaning two different checks: ${shared.join(", ")}`);
+});
 
 test("severity map carries every AS5–AS12 intra-book check id", () => {
   // These are the checks promote currently skips (Phase 1 wires them in);

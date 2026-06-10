@@ -69,7 +69,7 @@ This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs th
 
 ## Bind before you write
 
-Every templating defect is a field that drifted off its source. So before you compose a single field, write a **Chapter Bind Block** from this chapter's source sidecar (`.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`). It is four lines plus one invention, and it stays in front of you while you write every field:
+Every templating defect is a field that drifted off its source. So before you compose a single field, write a **Chapter Bind Block** from this chapter's source sidecar (`.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`). It is five lines plus one invention, and it stays in front of you while you write every field:
 
 ```
 BIND — ch<NN>
@@ -77,9 +77,17 @@ BIND — ch<NN>
   namedExamples  : <3–6 real cases from the sidecar: companies, people, studies, places>
   hardEdge       : <the strict reading you must preserve — the thing a lazy summary gets wrong>
   readerTool     : <the ONE named move you invent for this chapter and use in the plan>
+  protagonists   : <THIS chapter's allocated names — copy from the name plan, see below>
 ```
 
 The Bind Block is not paperwork. It is the answer to "what am I reasoning FROM" for every field below it. A scenario that doesn't trace to a `namedExample`, a quiz that doesn't test the `hardEdge`, a card that doesn't pull on the `centralConcept` — those are the fields that, having nothing real to say, fall back on a skeleton. Bind first and the skeleton has nowhere to live.
+
+**Name plan — bind your protagonists before you write (prevents F1 / BP13).** Chapters in a book are authored in parallel, blind to each other, so independent agents reach for the same protagonist names and the same stock connectives — and book-gate blocks the whole book on the collision (F1: a name in ≥2 chapters; BP13: a verbatim 5-word run across ≥3 chapters). The pre-authoring name plan removes the guesswork. Before authoring:
+
+1. Run (or have the orchestrator run) `npx tsx src/cli.ts name-plan <bookId> --from <N> --to <M>`. It writes `state/name-plans/<bookId>.name-plan.json`.
+2. Read `allocation["<thisChapterNumber>"]` from that file. **Use ONLY those names as your scenario protagonists** — they are disjoint from every other chapter's allocation and from every name already used in the book and the cross-book ledger. Do not invent names outside your slice; do not borrow a name you saw in another chapter.
+3. Read `bannedConnectives` from the same file (sourced from `config/banned-connectives.json`). Never use any listed phrase, and obey the stated principle: **never let a 5-word run repeat across chapters — vary the grammar of how a scene opens, how a decision is framed, how a consequence lands.**
+4. **One name = one person, everywhere in the chapter.** The breakdown sections (`fastRead`/`deepRead`/`fullRead`) and `memorableLines` also name characters — draw those from the SAME allocated slice, and never reuse one name for two different people. If `deepRead` illustrates with "Trygve" and an example also stars "Trygve", they must be the *same* person doing consistent things; otherwise give the second one a different name from your slice. A name that means two people inside one chapter reads as a continuity error.
 
 Then these four rules are **authoring law**. They are not gate-dodges; they are how each field does its job.
 
@@ -107,6 +115,23 @@ its concrete tokens). This is declare-then-write: grounding becomes a forward ac
 post-hoc check. `SC11` verifies the unit actually uses the anchor it claims — a generic
 sentence that merely name-drops the anchor fails. (v1 sidecars: no `sourceAnchorId`
 needed; SC11 skips them.)
+
+**R6 — Vary the SHAPE of each scene, not just the nouns (the systemic templating
+defect).** This is the single defect that put whole books at REVISE (Rich Dad Poor Dad:
+nearly every scene across every chapter opened the same way). The gates CANNOT catch it
+(clock times and decision language are legitimate — gold books use them), so it is on
+YOU. A reader meeting six scenes built on one frame knows instantly the book was
+generated. The frame to BREAK:
+> ❌ `[Name] [does X] at [clock time] in [place]; [pressure/deadline]; must decide whether A or B.`
+> repeated across 5–6 of 6 scenes, with only the name, time, place, and the A/B swapped.
+Concretely: a clock-time opener is fine in *one or two* scenes, never as the default for
+all six. The "must decide whether A or B" / "one option is X, the other is Y" binary is a
+frame, not a scene — use it at most once. Give each of the six scenes a genuinely
+different **construction**: one opens mid-action, one on a line of dialogue, one on a
+number, one on an aftermath, one on a place, one on a decision already made. If you can
+describe all six scenes with one sentence template, you have failed R6 — tear them out
+and rebuild each from a different `namedExample`. (And per the name plan: one name = one
+person across breakdown → examples → quiz; never reuse a name for a second character.)
 
 ---
 
@@ -250,9 +275,9 @@ type ChapterV21 = {
     deepRead: string;             // ≥1000 chars (target 1200-1800); see Step 5
     fullRead: string;             // ≥2400 chars (target 2500-3500); see Step 5
   };
-  examples: ExampleV21[];         // 3-9 per chapter, see Step 6
-  quiz: QuizV21;                  // 6-12 questions, see Step 7
-  reviewCards: ReviewCardV21[];   // 5-9 cards, see Step 8
+  examples: ExampleV21[];         // 6-9 per chapter (GATE FLOOR 6), see Step 6
+  quiz: QuizV21;                  // 9-12 questions (GATE FLOOR 9), see Step 7
+  reviewCards: ReviewCardV21[];   // 4-9 cards (GATE FLOOR 4; most ship 5-6), see Step 8
   implementationPlan: ImplementationPlanV21;  // 1 plan, see Step 9
   memorableLines: Array<{         // exactly 3, see Step 10
     text: string;                 // EXACT verbatim sentence from the breakdown
@@ -380,13 +405,13 @@ Length floors are blocker-level. The ship gate fails closed if any tier is under
 - **deepRead** — mechanism + second scene. Why the move works + a second example that stress-tests it.
 - **fullRead** — depth + third angle + limits. Third example, the boundary case, the failure mode of the move, and a closing line.
 
-### Step 6 — `examples` (3-9 per chapter; default 5-6)
+### Step 6 — `examples` (6-9 per chapter; A16 gate floor is 6 — fewer BLOCKS)
 
 The most error-prone section. The ship gate has 6+ critic checks here.
 
 **Per-example rules (every one matters):**
 
-1. **C1 — Named protagonist.** Every scenario opens with a named person. NOT "a manager", NOT "an engineer". Use names that have NOT appeared in any prior chapter of this book AND are NOT in this banned name pool: `Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi`. Pick names that fit the cultural setting.
+1. **C1 — Named protagonist.** Every scenario opens with a named person. NOT "a manager", NOT "an engineer". **Draw names ONLY from this chapter's name-plan slice** (`allocation["<thisChapterNumber>"]` in `state/name-plans/<bookId>.name-plan.json` — see the name-plan step in the authoring law above). That slice is already guaranteed disjoint from every other chapter and from the cross-book ledger, so it is the F1-safe source of truth. If no name plan exists, fall back to names that have NOT appeared in any prior chapter of this book AND are NOT in this banned pool: `Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi`. Pick names that fit the cultural setting.
 
 2. **C2 — Specific scene.** Name a time, a place, a role, a concrete artifact. "On Tuesday at 4 PM in the Berlin warehouse, Hanna sees the manifest on her tablet…" NOT "A manager reviews paperwork…".
 
@@ -409,7 +434,7 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 - `whatToDo`: 120-240 chars
 - `whyItMatters`: 120-240 chars
 
-### Step 7 — `quiz` (6-12 questions; default 9)
+### Step 7 — `quiz` (9-12 questions; A16 gate floor is 9 — fewer BLOCKS)
 
 **Read this section twice. This is where the most defects emerge.**
 
@@ -506,9 +531,11 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter \
   scripts/book/prompts/chapterflow-v21-authored/state/chapters/<chapterId>.v21-native.chapter.json
 ```
 
-The gate prints:
-- `Ship gate: PASS` → chapter is ready
-- `Ship gate: BLOCK` → list of findings; fix the offending fields and re-run
+The gate prints a chapter-only `Ship gate:` headline first — IGNORE IT. The
+authoritative result is the FINAL line (it adds the intra-book AS5–AS12 blockers
+the headline does not count, and it matches the exit code):
+- `Gate verdict: PASS — 0 blockers` → chapter is ready
+- `Gate verdict: BLOCK — …` → fix the listed blockers and re-run
 
 **Common blocker fixes:**
 

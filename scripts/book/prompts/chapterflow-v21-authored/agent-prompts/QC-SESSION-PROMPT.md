@@ -42,10 +42,13 @@ All `npx tsx` commands below run from this directory.
 Required on-disk files for book `<bookId>`:
 - `state/chapters/<bookId>-ch{NN}.v21-native.chapter.json` × N (the chapters)
 - `state/indexes/<bookId>.json` (chapter index)
-- `.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch{NN}.source.json` × N (source notes)
+- `.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch{NN}.source.json` × N (source notes).
+  **Find `<runId>` first** — it's a timestamp dir, so list it before concluding sidecars are absent:
+  `ls .chapterflow/runs/<bookId>/*/sidecars/source/` (run from the repo root, where `.chapterflow` lives — NOT the pipeline subdir). Do not claim "no sidecars" without running this.
 
 If chapters are missing → Codex hasn't finished Step 2; tell the user.
-If sidecars are missing → source-grounding checks are weakened; tell the user.
+If sidecars are genuinely absent (the `ls` above is empty) → source-grounding was unverifiable
+against notes; grade grounding cautiously and flag it.
 
 ---
 
@@ -93,8 +96,13 @@ corrupt."** Two failure tiers:
   recall cards / planning-note examples — the ~61/100 chapter) → **YELLOW**. Passes
   the gate AND a naive read; still not publishable.
 
-**Which chapters to score:** read **ch01, one middle, one late** in full, PLUS any
-chapter the gates or `author-check` flagged. Target the read; don't blanket 20 chapters.
+**Which chapters to score:** promote requires a fresh PUBLISHABLE attestation on
+**EVERY chapter** (`qc-status <bookId>` must be all-PASS) — partial coverage cannot
+ship a book, and you must NEVER attest a chapter that wasn't read. For full coverage,
+generate the harness review fleet: `npx tsx src/cli.ts qc-run <bookId>` (blind-key
+verification + two bar-read lenses per chapter + a cross-chapter sweep + adjudication,
+attesting as `harness:<id>`). Your manual deep-reads then target ch01, one middle, one
+late, PLUS anything the gates, `author-check`, or the qc-run sweep flagged.
 
 **Score these 8 axes (0–1), citing a verbatim quote for any hit** (cite-or-it-didn't-happen).
 Full rubric text is `AXIS_RUBRIC` in publishableBar.ts; the essentials:
@@ -110,12 +118,42 @@ Full rubric text is `AXIS_RUBRIC` in publishableBar.ts; the essentials:
 | factual_accuracy (8) | named-framework enumerations complete & correct vs source | CORRUPTION |
 | memorable_line_quality (6) | portable aphorisms, not 20-word explanations | DRAFT |
 
+**Example-slate coherence (the 4HWW miss — read the 6 scenes TOGETHER, not one at a
+time).** A chapter can be clean scene-by-scene yet fail at the slate level. Three
+patterns a per-scene read misses (they put 4HWW ch2/12/14 at REVISE after a first pass
+attested them PASS) — each is a `example_coherence` DRAFT hit → **YELLOW**:
+1. **Location stamping** — is one place (a city, campus, building) the setting of most
+   scenes? 4HWW ch2 stamped "Princeton University" on a nonprofit, a sales rep, AND an
+   agency — geographically implausible. The C18 gate now BLOCKS the egregious case
+   (one location in ≥4 of 6 scenes); you catch the subtler 3-of-6 version. Each scene
+   gets its own domain-appropriate setting.
+2. **Shared skeleton — THE most-missed defect.** Do ≥half the scenes share a structural
+   shape even with different words? The deterministic gates CANNOT catch this (clock times
+   and decision language are legitimate and common in gold books — so there is no gate for
+   it; you are the only catch). The frame that sank Rich Dad Poor Dad, in nearly every
+   chapter: **"[Name] [does X] at [clock time] in [place]; [pressure]; must decide whether
+   A or B"** ×5–6 of 6, with only the name/time/place/A-B swapped. Also 4HWW ch12:
+   "[Name] [task] at [time]; the manager [fear]; must [verb] before [deadline]: [3-item
+   list]" ×3. A clock-time opener in one or two scenes is fine; the SAME frame across most
+   scenes is GENERATED_DRAFT → YELLOW. Diagnostic: if one sentence template describes all
+   six scenes, it fails — cite the template and the scene numbers.
+3. **One name = one person** — does any name denote two different people/roles across
+   the breakdown vs the examples vs the quiz? (4HWW ch14: the remote-income role was
+   "Wendy" in the breakdown but "Alice" in the example; ch5 used "Holden" for two
+   people.) Each name maps to exactly one person doing consistent things everywhere.
+
 **Hidden-key protocol (mandatory — the only way to catch a wrong key behind a clean
-explanation, the hooked / dare-to-lead defect):** for every question the gate /
-`author-check` flagged, PLUS ~4 random questions per chapter — cover `correctIndex`,
-derive the answer yourself from prompt + choices + source, THEN reveal. A mismatch is a
-`quiz_key_correctness` CORRUPTION hit. (FP-guard: a misconception keyed correct IS
-correct when the stem asks for it.)
+explanation, the hooked / dare-to-lead defect). It is TOOLED — do not rely on
+self-restraint:**
+
+1. `npx tsx src/cli.ts quiz-blind <chapter.json>` — prints the questions with the key
+   and explanations STRIPPED. Derive every answer from this output (+ the source
+   sidecar) WITHOUT opening the chapter file.
+2. `npx tsx src/cli.ts quiz-verify <chapter.json> --answers "0:1,1:2,…"` — mechanical
+   diff; full coverage required. Each MISMATCH prints the keyed explanation so you can
+   adjudicate whether the KEY or YOUR DERIVATION is wrong before calling it a
+   `quiz_key_correctness` CORRUPTION hit. (FP-guard: a misconception keyed correct IS
+   correct when the stem asks for it.)
 
 **Fast corruption sweep across ALL chapters** (narrows where to look; the READ is authoritative — fixed greps rot):
 ```bash
@@ -148,7 +186,7 @@ A chapter's verdict is the **worst** of the deterministic gate and your bar scor
   recall cards, planning-note examples — the ~61/100 chapter). List the sub-0.6
   axes; it needs a quality pass before promote, not just an absence of defects.
 - **GREEN — ship** → 0 blockers, no corruption, overall ≥ 85, no axis < 0.6. Only
-  then tell the user it's ready for `promote-book`.
+  then record a PUBLISHABLE attestation (§3b).
 
 **The book ships GREEN only if EVERY scored chapter is GREEN.** Do not average across
 chapters — one RED chapter is a RED book.
@@ -156,6 +194,32 @@ chapters — one RED chapter is a RED book.
 Known-acceptable majors that do NOT block ship (stylistic debt, not bar failures):
 `F4` (soft-banned phrase overuse), a reasonable `D1` count, `F1` on real
 company/person names, `SC9` on an already-shipped book. See QC-PLAYBOOK §4.
+
+---
+
+## 3b. Record your verdict — REQUIRED (`qc-attest`)
+
+Your read does nothing until it is recorded. `promote-book` **blocks** any chapter
+without a fresh `PUBLISHABLE` attestation — this is the no-API semantic gate, the
+whole reason this session exists. For **every chapter you scored**, write the verdict:
+
+```
+npx tsx src/cli.ts qc-attest state/chapters/<bookId>-ch<NN>.v21-native.chapter.json \
+  --verdict PUBLISHABLE|REVISE|CORRUPTION \
+  --reviewer "claude-qc:<your-session-id>" \
+  --dimensions "keysCorrect=true,grounded=true,nonTemplated=true,frameworkComplete=true,cardsAnswerFronts=true,distractorsReal=true" \
+  --notes "<bar score; the one-line reason; any cited corruption>"
+```
+
+Verdict mapping: **GREEN → `PUBLISHABLE`**, **YELLOW → `REVISE`**, **RED → `CORRUPTION`**
+(if you cited a corruption hit) else `REVISE`. Set each `--dimensions` flag to what you
+actually verified — `keysCorrect=false` if you found a wrong key, etc.
+
+The attestation is stamped with a hash of the chapter's reader-facing content. If Codex
+edits the chapter afterward, the hash no longer matches and the attestation goes **STALE**
+— `promote` blocks again and the chapter must be re-reviewed. So: review, then attest, and
+never attest a chapter you have not actually read. Check coverage any time with
+`npx tsx src/cli.ts qc-status <bookId>` (PASS / STALE / REVISE / CORRUPTION / MISSING).
 
 ---
 
@@ -197,7 +261,7 @@ Verdict: GREEN ship | YELLOW not-publishable-yet | RED redo
 
 ## 6. Hard rules — do NOT
 
-- **Do NOT write or edit chapter JSONs** (not even to fix a typo). Surface it; Codex fixes it.
+- **Do NOT write or edit chapter JSONs** (not even to fix a typo). Surface it; Codex fixes it. (Writing your verdict with `qc-attest` (§3b) is REQUIRED and is not a chapter edit — it only writes to `state/qc/`.)
 - **Do NOT run `promote-book`, `generate`, `generate-book`, or `research`.** Those are the user's / writer's.
 - **Do NOT push to git.**
 - **Do NOT report GREEN without reading content** (see §0).

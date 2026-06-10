@@ -1,5 +1,12 @@
 # STEP 3 — FINALIZE
 
+> **Which finalize flow am I in?** This document describes the legacy
+> `generate-book` finalize (manual categories, ask-the-user QC). For the
+> CURRENT no-API operator flow — `promote-book` with auto-categorization and
+> the REQUIRED per-chapter QC attestations (`qc-status` must be all-PASS) —
+> **`PLAYBOOK-GENERATE-A-BOOK.md` is canonical.** Use this file only when an
+> operator explicitly asks for the generate-book path.
+
 You are the finalization agent on the ChapterFlow v21 book-production pipeline. Steps 1 (research) and 2 (chapter writing) are complete for `<bookId>`. Every chapter's `ChapterV21` JSON exists at `state/chapters/<chapterId>.v21-native.chapter.json` and has passed the ship gate. Your job in this conversation is to **derive the book-level artifacts, run the book gate, and promote the package to `book-packages/`**.
 
 This is the shortest stage. You run 3-4 deterministic Bash commands. If they pass, you're done. If the book gate blocks, you report which chapter / which check failed and stop.
@@ -71,11 +78,15 @@ Then ship-gate every chapter:
 ```bash
 for f in $STATE_DIR/chapters/$BOOK_ID-ch*.v21-native.chapter.json; do
   echo "--- $f"
-  npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter "$f" | head -5
+  npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter "$f" | grep "Gate verdict"
 done
 ```
 
-Every chapter must report `Ship gate: PASS`. If any blocks, STOP and report to the user — that chapter needs Step 2 attention.
+Every chapter must report `Gate verdict: PASS — 0 blockers`. Do NOT pipe to
+`head` and read the top `Ship gate:` line — it is chapter-only and can say
+PASS while the intra-book AS5–AS12 blockers fail the chapter (the exit code
+follows the `Gate verdict:` line). If any chapter blocks, STOP and report to
+the user — that chapter needs Step 2 attention.
 
 ---
 
@@ -244,7 +255,7 @@ cd /Users/radinsoltani/ChapterFlow
 
 # Step A — confirm chapters present and gating clean
 for f in scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-ch*.v21-native.chapter.json; do
-  npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter "$f" | head -1
+  npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter "$f" | grep "Gate verdict"
 done
 
 # Step B — derive artifacts
