@@ -110,6 +110,11 @@ Commands:
                                      PRE-AUTHORING: deal each chapter a slot-pinned palette of
                                      structurally distinct scene shapes (the anti-skeleton plan;
                                      fanout runs it automatically)
+  pedagogy-plan <bookId> --from N --to M
+                                     PRE-AUTHORING: deal each book/chapter a hook shape,
+                                     try-this-now grammar, and quiz-opener pair so catalog-level
+                                     pedagogy slots vary before parallel authoring. Writes
+                                     state/pedagogy-plans/<bookId>.pedagogy-plan.json.
   name-plan <bookId> --from N --to M [--per-chapter K]
                                      PRE-AUTHORING: deal each upcoming chapter a disjoint
                                      protagonist-name slice (excludes cross-book + already-authored
@@ -136,8 +141,9 @@ Commands:
   fanout <bookId> [--from N --to M] [--all]
                                      Print a ready-to-paste authoring prompt for each chapter still to
                                      write — title, real source-notes path, allocated names, save path,
-                                     and self-gate command all filled in. Paste each block into its own
-                                     Codex agent to write the book in parallel. Runs name-plan for you.
+                                     pedagogy slots, and self-gate command all filled in. Paste each block into its own
+                                     Codex agent to write the book in parallel. Runs name-plan, shape-plan,
+                                     and pedagogy-plan for you.
                                      Skips already-written chapters unless --all.
   categorize <bookId>                Preview the no-API auto-categorizer's pick (categories + tags from
                                      the book's own content). promote-book applies it automatically when
@@ -1331,6 +1337,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   }
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
   const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
+  const { planPedagogy, writePedagogyPlan, loadPedagogyPalettes } = await import("./librarian/pedagogyPlan.js");
   const { findRunArtifact } = await import("./lib/runDirs.js");
   const { formatVoiceBible } = await import("./lib/voiceBible.js");
   const REPO = resolve(__dirname, "../../../../..");
@@ -1369,6 +1376,12 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const shapePlan = planShapes(bookId, from, to, 6, { forceFresh: includeAll });
   writeShapePlan(shapePlan);
   const shapeDefs = new Map(loadSceneShapes().map((s) => [s.id, s.definition]));
+  const pedagogyPlan = planPedagogy(bookId, from, to, { forceFresh: includeAll });
+  writePedagogyPlan(pedagogyPlan);
+  const pedagogyPalettes = loadPedagogyPalettes();
+  const hookDefs = new Map(pedagogyPalettes.hookShapes.map((s) => [s.id, s.definition]));
+  const tryDefs = new Map(pedagogyPalettes.tryThisNowGrammars.map((g) => [g.id, g]));
+  const quizDefs = new Map(pedagogyPalettes.quizOpeners.map((q) => [q.id, q]));
   // Carried name allocations for authored chapters include every capitalized
   // token the extractor saw ("University", "All", "Tonight" — junk from
   // scenario text). Pasting those as an exclusive allowlist breaks redo
@@ -1400,6 +1413,15 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const shapeLines = shapeIds
       .map((id, i) => `    ${i + 1}. ${id} — ${shapeDefs.get(id) ?? "use the format the planSpec names"}`)
       .join("\n");
+    const pedagogy = pedagogyPlan.allocation[ch.number];
+    const tryGrammar = pedagogy ? tryDefs.get(pedagogy.tryThisNowGrammar) : undefined;
+    const quizA = pedagogy ? quizDefs.get(pedagogy.quizOpeners[0]) : undefined;
+    const quizB = pedagogy ? quizDefs.get(pedagogy.quizOpeners[1]) : undefined;
+    const pedagogyLines = pedagogy
+      ? `• HOOK SHAPE: ${pedagogy.hookShape} — ${hookDefs.get(pedagogy.hookShape) ?? "follow the dealt hook shape."}\n` +
+        `• TRY-THIS-NOW GRAMMAR: ${pedagogy.tryThisNowGrammar} — ${tryGrammar?.definition ?? "follow the dealt exercise grammar."} (example: ${tryGrammar?.example ?? "keep it concrete."})\n` +
+        `• QUIZ OPENERS: rotate between ${pedagogy.quizOpeners[0]} (${quizA?.example ?? "use the dealt opener."}) and ${pedagogy.quizOpeners[1]} (${quizB?.example ?? "use the dealt opener."}); keyed answer must NOT be reliably the longest choice (BP25 — target ≤45% of questions).\n`
+      : "";
 
     // Source specifics: the sidecar's real anchors, pasted so the writer
     // grounds scenes in them instead of inventing interchangeable ones (SC9's
@@ -1446,6 +1468,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• Use ONLY these character names: ${names}\n` +
         `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
         `${shapeLines}\n` +
+        pedagogyLines +
         specificsLine +
         voiceLine +
         `• Quiz distractors: each distractor is a NAMED plausible misconception (what a hasty reader of THIS chapter would actually believe) — never a junk-prefix mutation or rephrasing of the correct choice.\n` +
@@ -1486,6 +1509,27 @@ async function runShapePlan(args: string[], flags: Record<string, string | boole
   const plan = planShapes(bookId, from, to);
   const path = writeShapePlan(plan);
   console.log(formatShapePlan(plan));
+  console.log(`\nWritten: ${path}`);
+  return 0;
+}
+
+/** `pedagogy-plan <bookId> --from N --to M` — pre-authoring allocator for
+ *  catalog-level slot variety. Deals a hook-shape, try-this-now grammar, and
+ *  alternating quiz-opener pair per chapter so parallel STEP-2 agents don't all
+ *  reuse the same pedagogical surface. fanout runs this automatically; the
+ *  command exists to preview/regenerate. */
+async function runPedagogyPlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: pedagogy-plan <bookId> --from N --to M");
+    return 2;
+  }
+  const { planPedagogy, writePedagogyPlan, formatPedagogyPlan } = await import("./librarian/pedagogyPlan.js");
+  const plan = planPedagogy(bookId, from, to);
+  const path = writePedagogyPlan(plan);
+  console.log(formatPedagogyPlan(plan));
   console.log(`\nWritten: ${path}`);
   return 0;
 }
@@ -2291,6 +2335,8 @@ async function main() {
       return runNamePlan(args, flags);
     case "shape-plan":
       return runShapePlan(args, flags);
+    case "pedagogy-plan":
+      return runPedagogyPlan(args, flags);
     case "qc-attest":
       return runQcAttest(args, flags);
     case "qc-status":

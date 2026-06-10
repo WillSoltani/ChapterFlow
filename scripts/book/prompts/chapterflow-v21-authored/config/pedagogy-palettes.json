@@ -1,0 +1,129 @@
+{
+  "comment": "Pedagogy-slot palettes for pre-authoring variety planning (catalog campaign Phase B2). Definitions are written to paste directly into STEP-2 authoring prompts. hookShapes.auditClass names the category that src/critics/catalogAudit.ts classifyHook should see when the author follows the definition.",
+  "hookShapes": [
+    {
+      "id": "pressure-test-question",
+      "definition": "Open with a single practical question that puts pressure on the chapter's main idea. The hook must end with a question mark and should make the reader test their own next move. Miniature example: \"What breaks first when your careful plan meets the first interruption?\"",
+      "auditClass": "question"
+    },
+    {
+      "id": "counterfactual-question",
+      "definition": "Ask a what-if question that reverses the obvious instinct. Keep it concrete, not philosophical, and end with the question itself. Miniature example: \"What if the delay is not the obstacle, but the warning light you paid for?\"",
+      "auditClass": "question"
+    },
+    {
+      "id": "you-threshold",
+      "definition": "Put the reader at the exact threshold where the chapter's habit would matter. Use second person immediately; make the situation feel like it could happen today. Miniature example: \"You open the inbox to solve one problem and your whole morning starts negotiating with you.\"",
+      "auditClass": "direct_address"
+    },
+    {
+      "id": "your-hidden-default",
+      "definition": "Name a default the reader may not realize they are carrying. Use \"your\" early, then show the cost of letting that default run. Miniature example: \"Your calendar is not neutral; it quietly votes for the loudest person in the room.\"",
+      "auditClass": "direct_address"
+    },
+    {
+      "id": "one-number-contrast",
+      "definition": "Lead with one number that creates contrast before the lesson arrives. The number should measure time, count, money, or frequency, not decorate the sentence. Miniature example: \"Three minutes of checking saves the 30-minute apology nobody planned to make.\"",
+      "auditClass": "numeric"
+    },
+    {
+      "id": "ratio-reversal",
+      "definition": "Use a small ratio or percentage to reveal that the visible problem is not where most of the damage lives. Avoid second person and avoid a question ending. Miniature example: \"Two of the ten errors caused almost all of the rework.\"",
+      "auditClass": "numeric"
+    },
+    {
+      "id": "first-person-confession",
+      "definition": "Start with a brief first-person admission that exposes the misconception the chapter will correct. It should sound like a human learning, not an author lecturing. Miniature example: \"I used to treat preparation as the boring part until the boring part saved the work.\"",
+      "auditClass": "first_person"
+    },
+    {
+      "id": "concrete-ironic-image",
+      "definition": "Use the current house shape sparingly: a vivid concrete image with an ironic turn. The image must teach, not merely decorate. Miniature example: \"The whiteboard looked decisive, but the real decision was hiding in the erased corner.\"",
+      "auditClass": "declarative_image"
+    },
+    {
+      "id": "object-in-motion",
+      "definition": "Begin with an object or artifact moving through a process, and let its path reveal the chapter's tension. No questions, digits, first person, or second person. Miniature example: \"The receipt traveled from pocket to drawer to apology before anyone read it.\"",
+      "auditClass": "declarative_image"
+    },
+    {
+      "id": "room-after-action",
+      "definition": "Open after the decisive action, with the room or workspace showing what the people have not yet understood. Keep it observational and image-led. Miniature example: \"The conference room was quiet except for the marker cap left open beside the wrong chart.\"",
+      "auditClass": "declarative_image"
+    }
+  ],
+  "tryThisNowGrammars": [
+    {
+      "id": "ten-minute-timer",
+      "definition": "Time-box the practice first, then give one narrow action to perform inside the time window. The clock is part of the exercise structure, not flavor.",
+      "example": "For the next 10 minutes, audit one recurring task and mark the first step where attention usually leaks."
+    },
+    {
+      "id": "ask-one-person",
+      "definition": "Turn the exercise into a conversation with one real person. The reader must ask, listen, and capture the answer rather than inventing it alone.",
+      "example": "Ask one person who sees your work often, \"Where do I make this harder than it needs to be?\" Record the exact phrase they use."
+    },
+    {
+      "id": "count-observations",
+      "definition": "Make the reader collect a small count from ordinary life before drawing a conclusion. The count should be visible and finite.",
+      "example": "Count the next five times a plan changes today, and note what triggered each change."
+    },
+    {
+      "id": "change-environment",
+      "definition": "Ask the reader to alter one physical or digital environment so the desired behavior becomes easier or the default mistake becomes harder.",
+      "example": "Move the tool you need for tomorrow's first task into plain sight before you end work today."
+    },
+    {
+      "id": "deliberate-abstention",
+      "definition": "Have the reader intentionally refrain from a familiar move long enough to notice what the urge was protecting.",
+      "example": "For one meeting, do not offer the first solution; write down what you wanted to say and what happened without it."
+    },
+    {
+      "id": "schedule-event",
+      "definition": "Convert the lesson into a specific future event on the calendar. The exercise succeeds only if time, place, and trigger are named.",
+      "example": "Schedule a 15-minute review tomorrow at 9:30 and attach the one document you will inspect."
+    },
+    {
+      "id": "notice-and-record",
+      "definition": "Use a noticing prompt plus a lightweight record. The reader is not changing behavior yet; they are learning to see the pattern reliably.",
+      "example": "Today, whenever you feel rushed, note the cue, the shortcut you wanted, and the cost you were trying to avoid."
+    },
+    {
+      "id": "write-one",
+      "definition": "Keep the old write-one grammar, but cap its use. It should ask for one concrete sentence, choice, or boundary, then one label or next step.",
+      "example": "Write one sentence that names the tradeoff you are avoiding, then label the next action it requires."
+    }
+  ],
+  "quizOpeners": [
+    {
+      "id": "you-situation",
+      "definition": "Open by placing the reader directly inside a practical situation where the chapter's concept must be applied.",
+      "example": "You notice the weekly review keeps slipping because urgent messages arrive first. What should you change?"
+    },
+    {
+      "id": "quote-interpretation",
+      "definition": "Open with a short quoted claim from a fictional learner or colleague, then ask what the claim misunderstands or implies.",
+      "example": "\"I will fix the system once the busy season ends.\" What does this response miss?"
+    },
+    {
+      "id": "what-happens-next",
+      "definition": "Ask the reader to predict the likely next consequence after a setup. The right answer should follow from the chapter's causal logic.",
+      "example": "A team removes the review step because nothing failed last month. What is most likely to happen next?"
+    },
+    {
+      "id": "compare-two-responses",
+      "definition": "Present two plausible responses and ask which one better fits the chapter's principle, or why one fails.",
+      "example": "Two managers see the same warning sign: one adds a checklist, the other asks for more effort. Which response fits the chapter best?"
+    },
+    {
+      "id": "data-reading",
+      "definition": "Open with a small number, tally, or trend and ask what interpretation the chapter supports. The data should matter to the answer.",
+      "example": "A log shows 4 missed handoffs in 6 days, all after schedule changes. What should the reader infer first?"
+    },
+    {
+      "id": "scenario-role",
+      "definition": "Keep the current role-scenario opener as a capped option: name a role facing a practical choice, then ask what they should do.",
+      "example": "A manager inherits a reliable process that people quietly skip. What should the manager do first?"
+    }
+  ]
+}
