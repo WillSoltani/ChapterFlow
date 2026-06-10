@@ -150,7 +150,7 @@
         "prompt": "A fuel crisis is described without the emergency words controllers recognize. What happens next?",
         "choices": [
           "The crew used too much blunt language and offended air traffic control.",
-          "The crash showed that fuel status is irrelevant to communication design., because it assumes controllers will infer crisis without standardized urgency.",
+          "The crash showed that fuel status is irrelevant to communication design.",
           "The crew's fuel crisis was not communicated in terms controllers treated as an emergency."
         ],
         "correctIndex": 2,
@@ -164,7 +164,7 @@
         "choices": [
           "How far an aircraft is from its assigned destination.",
           "How strongly a culture accepts hierarchy and unequal authority.",
-          "How many technical errors occur before a flight crew notices., because it mistakes aircraft distance for a hierarchy measure."
+          "How many technical errors occur before a flight crew notices."
         ],
         "correctIndex": 1,
         "explanation": "Power distance names a social default around rank. In high-stakes work, that default can shape whether warnings are direct.",
@@ -175,7 +175,7 @@
         "questionId": "outliers-ch07-q04",
         "prompt": "A hospital gives junior staff an agreed stop phrase. What happens next?",
         "choices": [
-          "Tell junior staff to wait until senior clinicians invite disagreement., because it changes the slogan of caution without changing speech rules.",
+          "Tell junior staff to wait until senior clinicians invite disagreement.",
           "Ask everyone to be generally careful without changing speech rules.",
           "Give junior staff an agreed phrase that requires the team to stop and reassess."
         ],
@@ -188,9 +188,9 @@
         "questionId": "outliers-ch07-q05",
         "prompt": "Two culture readings compete: fixed ethnic ranking or trainable communication defaults. Which avoids the crude version?",
         "choices": [
-          "The aim is that culture has no effect on professional behavior., because it turns culture into destiny instead of retrainable defaults.",
-          "The aim is trainable communication defaults, not fixed ethnic safety rankings.",
-          "The aim is that only one airline has ever needed safety reform."
+          "The point is that culture has no effect on professional behavior.",
+          "The point is trainable communication defaults, not fixed ethnic safety rankings.",
+          "The point is that only one airline has ever needed safety reform."
         ],
         "correctIndex": 1,
         "explanation": "The cases take culture seriously without making it destiny. Training can redesign how people speak under pressure.",
@@ -202,7 +202,7 @@
         "prompt": "Korean Air retrains cockpit language and expectations. What happens next?",
         "choices": [
           "Cockpit communication norms can be deliberately retrained when safety requires it.",
-          "Airlines improve only by replacing technical training with cultural lectures., because it makes reform sound like replacing technical skill with lectures.",
+          "Airlines improve only by replacing technical training with cultural lectures.",
           "Pilots cannot change inherited speech habits after adulthood."
         ],
         "correctIndex": 0,
@@ -240,7 +240,7 @@
         "questionId": "outliers-ch07-q09",
         "prompt": "Two aviation lessons compete: manners first, or urgent speech outranks deference. Which keeps the hard edge?",
         "choices": [
-          "Technical skill is irrelevant once a cockpit has good manners., because it keeps deference above clarity at the dangerous moment.",
+          "Technical skill is irrelevant once a cockpit has good manners.",
           "Hierarchy should be removed from every professional setting.",
           "Reliable systems must make urgent speech strong enough to outrank deference."
         ],

@@ -136,7 +136,7 @@
         "questionId": "outliers-ch09-q01",
         "prompt": "Two seasonal stories compete: school-year failure or summer separation. Which finding did the data reveal?",
         "choices": [
-          "Low-income children learn less every month they are inside school., because it blames the school year while hiding the summer separation.",
+          "Low-income children learn less every month they are inside school.",
           "Summer has no measurable effect on achievement gaps.",
           "Class gaps can widen during summer even when school-year learning is similar."
         ],
@@ -149,7 +149,7 @@
         "questionId": "outliers-ch09-q02",
         "prompt": "KIPP adds long days and shorter summers for students lacking private enrichment. What happens next?",
         "choices": [
-          "To prove children learn only when leisure is removed., because it treats added time as punishment rather than structured opportunity.",
+          "To prove children learn only when leisure is removed.",
           "To supply structured learning time that many students do not receive privately.",
           "To replace teaching quality with exhaustion."
         ],
@@ -163,7 +163,7 @@
         "prompt": "Two readings of Marita's schedule compete: free gift or real bargain. Which one fits?",
         "choices": [
           "She gains a real path forward while giving up sleep, leisure, and ordinary time.",
-          "She receives no academic benefit from the demanding schedule., because it calls the schedule a gift without counting what Marita gives up.",
+          "She receives no academic benefit from the demanding schedule.",
           "She is choosing between identical amounts of free time."
         ],
         "correctIndex": 0,
@@ -190,7 +190,7 @@
         "choices": [
           "A daily summer reading and math block with outreach to students most likely to lose ground.",
           "A single celebratory workshop at the end of August.",
-          "A brochure telling families to create enrichment on their own., because it substitutes celebration for daily practice during the risky season."
+          "A brochure telling families to create enrichment on their own."
         ],
         "correctIndex": 0,
         "explanation": "The mechanism is recurring structured learning time. One-time encouragement does not replace missing exposure.",
@@ -201,7 +201,7 @@
         "questionId": "outliers-ch09-q06",
         "prompt": "Leaders reduce the lesson to stricter discipline and longer days. What happens next?",
         "choices": [
-          "Learning time outside school can influence achievement., because it turns unequal learning time into a character lecture.",
+          "Learning time outside school can influence achievement.",
           "Affluent children often receive private enrichment.",
           "Poor children merely need stricter discipline and longer days."
         ],
@@ -215,7 +215,7 @@
         "prompt": "Two grants compete: monthly inspiration or recurring tutoring sessions. Which criterion should guide the choice?",
         "choices": [
           "Whether the program adds enough recurring practice for learning to compound.",
-          "Whether the program looks pleasant in a short promotional video., because it buys inspiration without enough recurrence for compounding.",
+          "Whether the program looks pleasant in a short promotional video.",
           "Whether the program avoids measuring student attendance."
         ],
         "correctIndex": 0,
@@ -228,7 +228,7 @@
         "prompt": "Leaders track fatigue, family time, and strain alongside added learning hours. What happens next?",
         "choices": [
           "Ignore fatigue because sacrifice proves commitment.",
-          "Remove all extra time even where summer loss is severe., because it treats sacrifice as proof instead of measuring strain.",
+          "Remove all extra time even where summer loss is severe.",
           "Measure rest, family time, and student strain while preserving useful learning hours."
         ],
         "correctIndex": 2,
@@ -240,7 +240,7 @@
         "questionId": "outliers-ch09-q09",
         "prompt": "Two final lessons compete: motivational speech or visible unequal learning time. Which one fits?",
         "choices": [
-          "Achievement gaps vanish once every child hears the same motivational speech., because it uses motivation talk to cover unequal calendars and resources.",
+          "Achievement gaps vanish once every child hears the same motivational speech.",
           "Achievement gaps become more solvable when unequal learning time is made visible.",
           "Achievement gaps are unrelated to calendars, summers, or family resources."
         ],

@@ -149,7 +149,7 @@
         "questionId": "outliers-ch03-q02",
         "prompt": "A fellowship panel sees all finalists clear the demanding ability bar. What happens next under threshold thinking?",
         "choices": [
-          "Treat the smallest score difference as the most scientific basis for selection., because it keeps ranking tiny gaps after readiness has been established.",
+          "Treat the smallest score difference as the most scientific basis for selection.",
           "Shift attention toward output, support, persistence, and fit after the bar is met.",
           "Discard all evidence of ability because tests are never useful."
         ],
@@ -163,7 +163,7 @@
         "prompt": "Two conclusions from Terman's Termites compete. Which one fits Gladwell's threshold argument?",
         "choices": [
           "They showed high IQ could identify capable children without predicting extraordinary outcomes by itself.",
-          "They showed that low test scores are the main route to creative achievement., because it mistakes capable identification for a prediction of eminence.",
+          "They showed that low test scores are the main route to creative achievement.",
           "They proved that schools should stop offering advanced instruction."
         ],
         "correctIndex": 0,
@@ -189,7 +189,7 @@
         "prompt": "Two gifted-program policies compete after score gaps shrink to tiny differences. Which risk matters most?",
         "choices": [
           "The ranking will make every student less intelligent over time.",
-          "The ranking proves all students should receive the same curriculum., because it lets tiny score differences crowd out stronger evidence.",
+          "The ranking proves all students should receive the same curriculum.",
           "The ranking may ignore stronger evidence once students are already above the readiness threshold."
         ],
         "correctIndex": 2,
@@ -203,7 +203,7 @@
         "choices": [
           "Admit the highest test score each year without reviewing anything else.",
           "Set a readiness bar, then compare qualified applicants through work samples and context.",
-          "Use essays alone and avoid checking whether applicants can handle the work., because it abandons the readiness check instead of using it as a bar."
+          "Use essays alone and avoid checking whether applicants can handle the work."
         ],
         "correctIndex": 1,
         "explanation": "A threshold bar protects standards, while the second step recognizes that achievement depends on more than extra points at the top.",
@@ -214,7 +214,7 @@
         "questionId": "outliers-ch03-q07",
         "prompt": "Two shallow slogans are rejected: intelligence is everything, or intelligence is nothing. Which correction fits?",
         "choices": [
-          "Intelligence is the only trait that survives serious analysis., because it turns a threshold argument into an intelligence-does-not-matter slogan.",
+          "Intelligence is the only trait that survives serious analysis.",
           "Intelligence matters enough to clear a bar for demanding fields.",
           "Intelligence matters only for children, not adults."
         ],
@@ -240,7 +240,7 @@
         "questionId": "outliers-ch03-q09",
         "prompt": "Two summaries of threshold thinking compete. Which one keeps the hard edge?",
         "choices": [
-          "Because IQ is imperfect, institutions should ignore all measures of cognitive ability., because it expects the highest number to explain achievement alone.",
+          "Because IQ is imperfect, institutions should ignore all measures of cognitive ability.",
           "The smartest person in any room should be expected to achieve the most.",
           "After sufficient intelligence is present, other factors often explain achievement better than tiny IQ differences."
         ],
