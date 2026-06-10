@@ -126,3 +126,20 @@ jobs:
 
       - name: CDK synth (backend, dev context — frontend needs OpenNext artifacts)
         run: npm run cdk -- synth -c env=dev ChapterFlowBackend-dev
+
+  # ── Hard gate: no committed build artifacts or hardcoded secrets ─────────
+  # Public repo. A committed Turbopack cache once leaked a live Stripe key;
+  # this is the un-bypassable backstop for the local pre-commit hook.
+  secret-artifact-scan:
+    name: Secret & Artifact Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify detection patterns (selftest)
+        run: bash scripts/ci/scan-secrets-and-artifacts.sh --selftest
+
+      - name: Scan tracked files for secrets & artifacts
+        run: bash scripts/ci/scan-secrets-and-artifacts.sh --all

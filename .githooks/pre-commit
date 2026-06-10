@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Pre-commit guard: block committed build artifacts and hardcoded secrets.
+# Logic lives in scripts/ci/scan-secrets-and-artifacts.sh (shared with CI).
+# Installed automatically by package.json "prepare" (git config core.hooksPath .githooks).
+# Emergency bypass (local only): git commit --no-verify
+set -u
+ROOT="$(git rev-parse --show-toplevel)"
+exec "$ROOT/scripts/ci/scan-secrets-and-artifacts.sh" --staged
