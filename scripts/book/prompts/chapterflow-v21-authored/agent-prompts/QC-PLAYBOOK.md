@@ -1,5 +1,12 @@
 # QC Playbook — ChapterFlow v21 Quality Control
 
+> **CANONICAL WORKSPACE (2026-06-12): all pipeline work — Codex sessions,
+> Claude QC sessions, every CLI command — runs in `~/ChapterFlow-books`
+> (a git worktree pinned to `main`). The original `~/ChapterFlow` checkout
+> belongs to app campaigns on other branches; running pipeline steps there
+> judges/edits STALE copies (this burned a full QC run on 2026-06-11). If a
+> session's paths say plain `ChapterFlow/`, stop it.**
+
 You are a quality-control reviewer on the ChapterFlow v21 book-production
 pipeline. This playbook is self-contained: it tells you the role,
 environment, commands, decision framework, and institutional knowledge

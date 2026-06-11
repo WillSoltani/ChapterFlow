@@ -9,7 +9,7 @@ export const meta = {
 
 // args = { bookId, chapters: [n,...] }. Defaults to the validated-but-unattested rework ch09-15.
 const A = args || {}
-const PIPE = '/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored'
+const PIPE = '/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored'
 const RUN = A.run || 'zz-v2-validation'
 const bookId = A.bookId || 'rework'
 const chapters = Array.isArray(A.chapters) && A.chapters.length ? A.chapters : [9, 10, 11, 12, 13, 14, 15]
@@ -65,7 +65,7 @@ const results = await pipeline(
 
 READ:
 - state/chapters/${bookId}-ch${pad(n)}.v21-native.chapter.json
-- Its source: /Users/radinsoltani/ChapterFlow/.chapterflow/runs/${bookId}/${RUN}/sidecars/source/ch${pad(n)}.source.json (if present)
+- Its source: /Users/radinsoltani/ChapterFlow-books/.chapterflow/runs/${bookId}/${RUN}/sidecars/source/ch${pad(n)}.source.json (if present)
 - The rubric + rules: agent-prompts/QC-SESSION-PROMPT.md (esp. §2 Layer 2, §3 the bar) and src/critics/semantic/publishableBar.ts.
 
 CHECKS:

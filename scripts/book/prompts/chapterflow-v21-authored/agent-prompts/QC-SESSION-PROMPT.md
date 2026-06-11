@@ -31,7 +31,7 @@ read raw content, you did not do QC.
 ## 1. Setup
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored
+cd /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored
 node --version            # need >= 18
 npx tsx src/cli.ts book-gate start-with-why   # calibration: must print "Book gate: PASS (start-with-why, 14 chapters)"
 ```

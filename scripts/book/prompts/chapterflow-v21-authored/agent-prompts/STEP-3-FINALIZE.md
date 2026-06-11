@@ -159,7 +159,7 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate-book $
 [HH:MM:SS] manual tags: <your tags>
 [HH:MM:SS] === Library promotion ===
 [HH:MM:SS] ✓ PROMOTED: <bookId>
-  Package: /Users/radinsoltani/ChapterFlow/book-packages/<bookId>.v21.json
+  Package: /Users/radinsoltani/ChapterFlow-books/book-packages/<bookId>.v21.json
   Ship gate: 0 blockers, 0 majors
   Book gate: 0 blockers, ...
 ```

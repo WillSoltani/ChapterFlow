@@ -10,7 +10,7 @@ export const meta = {
 // Batch params are hardcoded for this one-off ch16-23 Rework run (args plumbing
 // is overridden if provided). allocation/titles mirror state/name-plans/rework.name-plan.json.
 const A = args || {}
-const PIPE = '/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored'
+const PIPE = '/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored'
 const bookId = A.bookId || 'rework'
 const runId = A.runId || 'zz-v2-validation'           // where v2 sidecars + gating read from (findLatestRun picks "zz...")
 const v1RunId = A.v1RunId || '20260601-083527'        // where the rich-v1 sidecars live

@@ -1,5 +1,12 @@
 # Playbook — Generate a New Book (end to end)
 
+> **CANONICAL WORKSPACE (2026-06-12): all pipeline work — Codex sessions,
+> Claude QC sessions, every CLI command — runs in `~/ChapterFlow-books`
+> (a git worktree pinned to `main`). The original `~/ChapterFlow` checkout
+> belongs to app campaigns on other branches; running pipeline steps there
+> judges/edits STALE copies (this burned a full QC run on 2026-06-11). If a
+> session's paths say plain `ChapterFlow/`, stop it.**
+
 The operating model: **Codex (inline) generates, a separate Claude session QCs,
 the gates + promote enforce.** Nothing ships that the deterministic gates reject
 or that a Claude reviewer hasn't signed off on.

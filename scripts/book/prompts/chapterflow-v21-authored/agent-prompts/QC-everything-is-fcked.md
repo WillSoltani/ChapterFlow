@@ -37,7 +37,7 @@ You ship a GREEN verdict only if **both** pass:
 ## 1. Setup & prerequisite
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored
+cd /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored
 node --version                                  # need >= 18
 npx tsx src/cli.ts book-gate start-with-why     # calibration: MUST print "Book gate: PASS (start-with-why, 14 chapters)"
 ls state/chapters/everything-is-fcked-ch*.v21-native.chapter.json   # must list ch01..ch09
