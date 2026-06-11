@@ -98,15 +98,15 @@ export function HowItWorks() {
   const renderCard = (step: (typeof steps)[number]) => (
     <div
       key={step.number}
-      className={`group relative overflow-hidden rounded-xl border bg-[--bg-glass] backdrop-blur-[16px] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[--border-medium] ${
+      className={`group relative overflow-hidden rounded-xl border bg-(--bg-glass) backdrop-blur-[16px] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-(--border-medium) ${
         step.number === "01"
-          ? "border-[--accent-teal]/30 shadow-[0_0_24px_rgba(34,211,238,0.08)]"
-          : "border-[--border-subtle]"
+          ? "border-(--accent-teal)/30 shadow-[0_0_24px_rgba(34,211,238,0.08)]"
+          : "border-(--border-subtle)"
       }`}
     >
       {/* Watermark number */}
       <span
-        className="pointer-events-none absolute top-4 right-4 select-none text-[6rem] font-bold leading-none opacity-[0.10] text-[--accent-teal]"
+        className="pointer-events-none absolute top-4 right-4 select-none text-[6rem] font-bold leading-none opacity-[0.10] text-(--accent-teal)"
         style={{ fontFamily: "var(--font-display)" }}
         aria-hidden="true"
       >
@@ -114,13 +114,13 @@ export function HowItWorks() {
       </span>
 
       {/* Icon */}
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[--accent-teal]/10 text-[--accent-teal]">
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-(--accent-teal)/10 text-(--accent-teal)">
         {step.icon}
       </div>
 
       {/* Label */}
       <p
-        className="mt-4 text-[12px] font-semibold uppercase tracking-[0.15em] text-[--accent-teal]"
+        className="mt-4 text-[12px] font-semibold uppercase tracking-[0.15em] text-(--accent-teal)"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {step.label}
@@ -128,7 +128,7 @@ export function HowItWorks() {
 
       {/* Title */}
       <h3
-        className="mt-2 text-[18px] font-semibold leading-snug text-[--text-heading] lg:text-[20px]"
+        className="mt-2 text-[18px] font-semibold leading-snug text-(--text-heading) lg:text-[20px]"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {step.title}
@@ -136,7 +136,7 @@ export function HowItWorks() {
 
       {/* Description */}
       <p
-        className="mt-2 text-[14px] leading-[1.6] text-[--text-secondary]"
+        className="mt-2 text-[14px] leading-[1.6] text-(--text-secondary)"
         style={{ fontFamily: "var(--font-body)" }}
       >
         {step.description}
@@ -152,14 +152,14 @@ export function HowItWorks() {
           <SectionLabel>HOW IT WORKS</SectionLabel>
 
           <h2
-            className="mt-4 text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-[--text-heading]"
+            className="mt-4 text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-(--text-heading)"
             style={{ fontFamily: "var(--font-display)" }}
           >
             One chapter. Four steps. Real understanding.
           </h2>
 
           <p
-            className="mt-4 max-w-[600px] text-[--text-secondary]"
+            className="mt-4 max-w-[600px] text-(--text-secondary)"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Every chapter follows the same structured loop — designed around how

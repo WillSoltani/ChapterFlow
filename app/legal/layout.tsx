@@ -9,7 +9,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         <div className="max-w-3xl mx-auto px-6 py-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[14px] font-medium transition-colors hover:text-[--text-heading]"
+            className="inline-flex items-center gap-2 text-[14px] font-medium transition-colors hover:text-(--text-heading)"
             style={{ color: "var(--text-secondary)" }}
           >
             <ArrowLeft size={16} />

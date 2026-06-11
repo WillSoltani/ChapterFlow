@@ -259,7 +259,7 @@ export function RewardsPageClient() {
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
           <Link
             href="/dashboard"
-            className="flex items-center gap-1.5 text-[14px] font-medium transition-colors hover:text-[--text-heading]"
+            className="flex items-center gap-1.5 text-[14px] font-medium transition-colors hover:text-(--text-heading)"
             style={{ color: "var(--text-secondary)" }}
           >
             <ArrowLeft size={16} />

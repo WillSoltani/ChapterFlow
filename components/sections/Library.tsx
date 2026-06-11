@@ -79,7 +79,7 @@ export function Library() {
               <Link
                 href="/books"
                 onClick={() => track("browse_library_click", { source: "landing_library" })}
-                className="inline-flex items-center gap-1.5 border rounded-lg px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 hover:bg-[--bg-glass] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-1.5 border rounded-lg px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 style={{
                   borderColor: "rgba(34,211,238,0.35)",
                   color: "var(--text-heading)",

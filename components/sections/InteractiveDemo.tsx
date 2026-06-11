@@ -21,11 +21,11 @@ export function InteractiveDemo() {
           <div className="text-center mb-12 md:mb-16">
             <SectionLabel>SEE IT IN ACTION</SectionLabel>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[--text-heading] mt-4 font-[family-name:var(--font-display)]">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-(--text-heading) mt-4 font-[family-name:var(--font-display)]">
               This is what reading looks like on ChapterFlow.
             </h2>
 
-            <p className="text-[--text-secondary] mt-4 text-lg font-[family-name:var(--font-body)]">
+            <p className="text-(--text-secondary) mt-4 text-lg font-[family-name:var(--font-body)]">
               Summary. Examples. Quiz. Practice. Every chapter, every book.
             </p>
           </div>
@@ -42,7 +42,7 @@ export function InteractiveDemo() {
             <a
               href={AUTH_LOGIN_BOOK_URL}
               onClick={() => track("cta_click", { source: "interactive_demo" })}
-              className="text-[--accent-teal] hover:underline underline-offset-4 text-sm font-medium transition-colors font-[family-name:var(--font-body)] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+              className="text-(--accent-teal) hover:underline underline-offset-4 text-sm font-medium transition-colors font-[family-name:var(--font-body)] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
             >
               Start reading free &rarr;
             </a>

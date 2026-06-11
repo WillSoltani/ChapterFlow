@@ -16,13 +16,13 @@ import { PRICING, ANNUAL_SAVINGS_PCT, formatAmount, TRIAL_CTA_LABEL } from "@/li
 
 function CheckIcon() {
   return (
-    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[--accent-green]/15">
+    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--accent-green)/15">
       <svg
         width="12"
         height="12"
         viewBox="0 0 12 12"
         fill="none"
-        className="text-[--accent-green]"
+        className="text-(--accent-green)"
       >
         <path
           d="M2.5 6.5L4.5 8.5L9.5 3.5"
@@ -38,13 +38,13 @@ function CheckIcon() {
 
 function DashIcon() {
   return (
-    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[--text-muted]/10">
+    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--text-muted)/10">
       <svg
         width="10"
         height="10"
         viewBox="0 0 10 10"
         fill="none"
-        className="text-[--text-muted]"
+        className="text-(--text-muted)"
       >
         <path
           d="M2.5 5H7.5"
@@ -64,7 +64,7 @@ function ChevronIcon({ open }: { open: boolean }) {
       height="20"
       viewBox="0 0 20 20"
       fill="none"
-      className="shrink-0 text-[--text-muted]"
+      className="shrink-0 text-(--text-muted)"
       animate={{ rotate: open ? 180 : 0 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
     >
@@ -153,21 +153,21 @@ export function Pricing() {
             <SectionLabel>PRICING</SectionLabel>
 
             <h2
-              className="mt-4 text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-[--text-heading]"
+              className="mt-4 text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-(--text-heading)"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Start free. Go deeper when you&apos;re ready.
             </h2>
 
             <p
-              className="mt-3 text-[--text-secondary]"
+              className="mt-3 text-(--text-secondary)"
               style={{ fontFamily: "var(--font-body)" }}
             >
               No annual lock-in. No confusing tiers. Two plans, one purpose.
             </p>
 
             <p
-              className="mt-2 text-[14px] text-[--text-muted]"
+              className="mt-2 text-[14px] text-(--text-muted)"
               style={{ fontFamily: "var(--font-body)" }}
             >
               The average non-fiction book costs $18. ChapterFlow Pro gives you
@@ -218,35 +218,35 @@ export function Pricing() {
           {/* FREE card */}
           <SectionReveal delay={0.1}>
             <div
-              className="relative flex flex-col bg-[--bg-glass] border border-[--border-subtle] rounded-xl p-8 w-full max-w-[380px]"
+              className="relative flex flex-col bg-(--bg-glass) border border-(--border-subtle) rounded-xl p-8 w-full max-w-[380px]"
               style={{ backdropFilter: "blur(12px)" }}
             >
-              <span className="text-[12px] uppercase tracking-[0.1em] text-[--text-secondary] font-semibold">
+              <span className="text-[12px] uppercase tracking-[0.1em] text-(--text-secondary) font-semibold">
                 Free
               </span>
 
               <span
-                className="mt-4 text-[48px] font-bold leading-none text-[--text-heading]"
+                className="mt-4 text-[48px] font-bold leading-none text-(--text-heading)"
                 style={{ fontFamily: "var(--font-jetbrains)" }}
               >
                 $0
               </span>
 
               <p
-                className="mt-3 text-[14px] text-[--text-secondary]"
+                className="mt-3 text-[14px] text-(--text-secondary)"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Try ChapterFlow with two complete books.
               </p>
 
-              <hr className="my-6 border-[--border-subtle]" />
+              <hr className="my-6 border-(--border-subtle)" />
 
               {/* Features */}
               <ul className="flex flex-col gap-3 flex-1">
                 {freeFeatures.map((f) => (
                   <li
                     key={f}
-                    className="flex items-center gap-3 text-[14px] text-[--text-secondary]"
+                    className="flex items-center gap-3 text-[14px] text-(--text-secondary)"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     <CheckIcon />
@@ -256,7 +256,7 @@ export function Pricing() {
                 {freeMissing.map((f) => (
                   <li
                     key={f}
-                    className="flex items-center gap-3 text-[14px] text-[--text-muted]"
+                    className="flex items-center gap-3 text-[14px] text-(--text-muted)"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     <DashIcon />
@@ -269,7 +269,7 @@ export function Pricing() {
               <Link
                 href={freeHref}
                 onClick={() => track("cta_click", { source: "pricing_free" })}
-                className="mt-8 block w-full text-center border border-[--border-medium] text-[--text-heading] hover:bg-[--bg-glass] rounded-xl py-3.5 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                className="mt-8 block w-full text-center border border-(--border-medium) text-(--text-heading) hover:bg-(--bg-glass) rounded-xl py-3.5 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Get 2 free books
@@ -300,44 +300,44 @@ export function Pricing() {
                 Most popular
               </span>
 
-              <span className="text-[12px] uppercase tracking-[0.1em] text-[--accent-teal] font-semibold">
+              <span className="text-[12px] uppercase tracking-[0.1em] text-(--accent-teal) font-semibold">
                 Pro
               </span>
 
               <div className="mt-4 flex items-baseline">
                 <span
-                  className="text-[48px] font-bold leading-none text-[--text-heading]"
+                  className="text-[48px] font-bold leading-none text-(--text-heading)"
                   style={{ fontFamily: "var(--font-jetbrains)" }}
                 >
                   {formatAmount(perMonthAmount)}
                 </span>
-                <span className="ml-1 text-[16px] text-[--text-muted]">
+                <span className="ml-1 text-[16px] text-(--text-muted)">
                   {PRICING.currency} / month{isAnnual ? " · billed annually" : ""}
                 </span>
               </div>
 
-              <p className="mt-1 text-[13px] text-[--accent-teal]">
+              <p className="mt-1 text-[13px] text-(--accent-teal)">
                 That&apos;s {formatAmount(perMonthAmount / 30)}/day
                 {isAnnual && (
-                  <span className="text-[--text-muted]"> &middot; {annualTotal} {PRICING.currency} billed today</span>
+                  <span className="text-(--text-muted)"> &middot; {annualTotal} {PRICING.currency} billed today</span>
                 )}
               </p>
 
               <p
-                className="mt-3 text-[14px] text-[--text-secondary]"
+                className="mt-3 text-[14px] text-(--text-secondary)"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Unlimited books and the deepest reading mode.
               </p>
 
-              <hr className="my-6 border-[--border-subtle]" />
+              <hr className="my-6 border-(--border-subtle)" />
 
               {/* Features */}
               <ul className="flex flex-col gap-3 flex-1">
                 {proFeatures.map((f) => (
                   <li
                     key={f}
-                    className="flex items-center gap-3 text-[14px] text-[--text-secondary]"
+                    className="flex items-center gap-3 text-[14px] text-(--text-secondary)"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     <CheckIcon />
@@ -347,7 +347,7 @@ export function Pricing() {
               </ul>
 
               <p
-                className="mt-6 mb-3 text-[12px] text-[--text-muted] text-center leading-[1.6]"
+                className="mt-6 mb-3 text-[12px] text-(--text-muted) text-center leading-[1.6]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {PRICING.trialDays}-day free trial, then {formatAmount(perMonthAmount)}{" "}
@@ -357,7 +357,7 @@ export function Pricing() {
                 anytime before then.{" "}
                 <Link
                   href="/legal/refund"
-                  className="underline hover:text-[--text-secondary]"
+                  className="underline hover:text-(--text-secondary)"
                 >
                   Refund policy
                 </Link>
@@ -368,7 +368,7 @@ export function Pricing() {
               <Link
                 href={proHref}
                 onClick={() => track("cta_click", { source: "pricing_pro" })}
-                className="block w-full text-center bg-[--accent-teal] text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                className="block w-full text-center bg-(--accent-teal) text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {TRIAL_CTA_LABEL}
@@ -381,7 +381,7 @@ export function Pricing() {
         <SectionReveal delay={0.3}>
           <div className="max-w-2xl mx-auto mt-10">
             {faqs.map((faq, index) => (
-              <div key={index} className="border-b border-[--border-subtle]">
+              <div key={index} className="border-b border-(--border-subtle)">
                 <button
                   onClick={() => toggleFaq(index)}
                   onKeyDown={(e) => {
@@ -395,7 +395,7 @@ export function Pricing() {
                   className="flex w-full items-center justify-between py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 >
                   <span
-                    className="text-[16px] text-[--text-heading] font-medium"
+                    className="text-[16px] text-(--text-heading) font-medium"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {faq.question}
@@ -416,7 +416,7 @@ export function Pricing() {
                       className="overflow-hidden"
                     >
                       <p
-                        className="pb-4 text-[14px] text-[--text-secondary] leading-[1.6]"
+                        className="pb-4 text-[14px] text-(--text-secondary) leading-[1.6]"
                         style={{ fontFamily: "var(--font-body)" }}
                       >
                         {faq.answer}

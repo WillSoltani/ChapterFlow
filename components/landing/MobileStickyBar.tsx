@@ -72,7 +72,7 @@ export function MobileStickyBar() {
         <button
           type="button"
           onClick={handleDismiss}
-          className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-[--text-muted] hover:text-[--text-heading] hover:bg-[--bg-glass] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+          className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-(--text-muted) hover:text-(--text-heading) hover:bg-(--bg-glass) transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
           aria-label="Dismiss"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">

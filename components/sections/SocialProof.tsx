@@ -90,7 +90,7 @@ function TestimonialCard({
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="bg-[--bg-glass] backdrop-blur-[16px] border border-[--border-subtle] rounded-xl p-6 md:p-8 text-left"
+      className="bg-(--bg-glass) backdrop-blur-[16px] border border-(--border-subtle) rounded-xl p-6 md:p-8 text-left"
     >
       {/* Stars */}
       <div className="flex gap-1">
@@ -100,7 +100,7 @@ function TestimonialCard({
       </div>
 
       {/* Quote */}
-      <p className="text-[15px] md:text-[16px] text-[--text-heading] italic leading-[1.6] mt-4 font-[family-name:--font-body]">
+      <p className="text-[15px] md:text-[16px] text-(--text-heading) italic leading-[1.6] mt-4 font-(family-name:--font-body)">
         &ldquo;{quote}&rdquo;
       </p>
 
@@ -117,11 +117,11 @@ function TestimonialCard({
           {initials}
         </div>
         <div>
-          <p className="text-[14px] font-semibold text-[--text-heading]">
+          <p className="text-[14px] font-semibold text-(--text-heading)">
             {name}
           </p>
-          <p className="text-[12px] text-[--text-muted]">{context}</p>
-          <p className="text-[12px] text-[--text-muted]">{role}</p>
+          <p className="text-[12px] text-(--text-muted)">{context}</p>
+          <p className="text-[12px] text-(--text-muted)">{role}</p>
         </div>
       </div>
     </motion.div>
@@ -134,7 +134,7 @@ export function SocialProof() {
       {/* Header */}
       <div className="text-center">
         <SectionReveal>
-          <h2 className="text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-[--text-heading] font-[family-name:--font-display] max-w-2xl mx-auto mt-4">
+          <h2 className="text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-(--text-heading) font-(family-name:--font-display) max-w-2xl mx-auto mt-4">
             They started for the summaries. They stayed for the retention.
           </h2>
         </SectionReveal>
@@ -162,7 +162,7 @@ export function SocialProof() {
 
       {/* Credibility line */}
       <SectionReveal delay={0.5}>
-        <p className="text-[14px] text-[--text-muted] italic max-w-lg mx-auto text-center mt-10">
+        <p className="text-[14px] text-(--text-muted) italic max-w-lg mx-auto text-center mt-10">
           Built on spaced repetition and active recall — the same science behind
           Anki and Duolingo.
         </p>

@@ -244,14 +244,14 @@ function SearchBar({
             setTimeout(() => setFocused(false), 200);
           }}
           placeholder="Search by title, author, or topic..."
-          className="flex-1 bg-transparent outline-none text-[14px] placeholder:text-[--text-muted]"
+          className="flex-1 bg-transparent outline-none text-[14px] placeholder:text-(--text-muted)"
           style={{ color: "var(--text-heading)", fontFamily: "var(--font-body)" }}
           aria-label="Search books"
         />
         {query && (
           <button
             onClick={() => onChange("")}
-            className="text-[--text-muted] hover:text-[--text-heading] transition-colors text-sm"
+            className="text-(--text-muted) hover:text-(--text-heading) transition-colors text-sm"
           >
             ✕
           </button>
