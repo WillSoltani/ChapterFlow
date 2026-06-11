@@ -123,6 +123,9 @@ Commands:
                                      state/name-plans/<bookId>.name-plan.json. Default K=7.
                                      Exit 1 if the name bank ran dry for any chapter.
   qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."]
+  qc-verdict <chapterId> --scores '<json>'|--scores-file <path>
+                                     Reduce per-axis scores to the verdict via the REAL computeVerdict
+                                     (corruption veto + floors are mechanical — exit 0 GREEN / 1 YELLOW / 2 RED)
                                      SEMANTIC GATE (no-API): record a Claude reviewer's verdict,
                                      stamped with the chapter's content hash, to state/qc/. promote
                                      requires a fresh PUBLISHABLE attestation per chapter; editing the
@@ -1719,6 +1722,69 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
  *  still matches the chapter on disk). A v1 attestation that no longer
  *  matches is already stale and is left alone — it needs re-review, not a
  *  re-pin. The prior record is preserved in the attestation's history. */
+/** `qc-verdict <chapterId> --scores '<json>' | --scores-file <path>` — reduce
+ *  per-axis scores to a verdict through the REAL computeVerdict, so ANY QC
+ *  reader (Claude session, Codex session) gets the same mechanical reduction:
+ *  the corruption veto and the 85/0.6 floors cannot be fudged by the reader.
+ *  scores JSON: [{ axis, score, tier?, hits? }] — tier defaults to
+ *  PUBLISHABLE, hits to []. Exit 0=GREEN, 1=YELLOW, 2=RED, 3=input error. */
+async function runQcVerdict(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const chapterId = args[0];
+  if (!chapterId) {
+    console.error("Usage: qc-verdict <chapterId> --scores '<json>' | --scores-file <path>");
+    return 3;
+  }
+  let raw = typeof flags["scores"] === "string" ? (flags["scores"] as string) : "";
+  const fromFile = typeof flags["scores-file"] === "string" ? (flags["scores-file"] as string) : "";
+  if (!raw && fromFile) {
+    try {
+      raw = readFileSync(resolve(fromFile), "utf8");
+    } catch (err) {
+      console.error(`scores file unreadable: ${(err as Error).message}`);
+      return 3;
+    }
+  }
+  if (!raw) {
+    console.error("Provide --scores '<json>' or --scores-file <path>.");
+    return 3;
+  }
+  const { computeVerdict, AXIS_WEIGHTS, formatVerdict } = await import("./critics/semantic/publishableBar.js");
+  let parsed: any;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    console.error(`scores JSON invalid: ${(err as Error).message}`);
+    return 3;
+  }
+  if (!Array.isArray(parsed)) {
+    console.error("scores must be a JSON array of { axis, score, tier?, hits? }.");
+    return 3;
+  }
+  const known = new Set(Object.keys(AXIS_WEIGHTS));
+  const axes = [];
+  for (const a of parsed) {
+    if (!a || typeof a.axis !== "string" || typeof a.score !== "number") {
+      console.error(`bad axis entry: ${JSON.stringify(a).slice(0, 120)} — need { axis: string, score: number }`);
+      return 3;
+    }
+    if (!known.has(a.axis)) {
+      console.error(`unknown axis "${a.axis}" — valid: ${[...known].join(", ")}`);
+      return 3;
+    }
+    axes.push({ axis: a.axis, score: a.score, tier: a.tier ?? "PUBLISHABLE", hits: Array.isArray(a.hits) ? a.hits : [] });
+  }
+  // Missing axes are NOT defaulted — an unread axis is a partial read, and a
+  // partial read is never a pass (the DID-NOT-RUN rule).
+  const missing = [...known].filter((k) => !axes.some((a) => a.axis === k));
+  if (missing.length > 0) {
+    console.error(`INCOMPLETE READ — missing axes: ${missing.join(", ")}. Score every axis (mark unverifiable facts 'could not verify' per the rubric, but SCORE the axis).`);
+    return 3;
+  }
+  const v = computeVerdict(chapterId, axes as any, true);
+  console.log(formatVerdict(v));
+  return v.gate === "GREEN" ? 0 : v.gate === "YELLOW" ? 1 : 2;
+}
+
 async function runQcRehash(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
@@ -2419,6 +2485,8 @@ async function main() {
       return runPedagogyPlan(args, flags);
     case "qc-attest":
       return runQcAttest(args, flags);
+    case "qc-verdict":
+      return runQcVerdict(args, flags);
     case "qc-status":
       return runQcStatus(args);
     case "qc-stats":

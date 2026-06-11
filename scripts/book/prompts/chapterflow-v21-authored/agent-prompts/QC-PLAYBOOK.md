@@ -1,5 +1,21 @@
 # QC Playbook — ChapterFlow v21 Quality Control
 
+## Two ways to run QC (same protocol, same trust guarantees)
+
+1. **Claude Workflow fleet** (fast, parallel): `qc-run <bookId>` generates a
+   workflow file; a Claude session launches it. Sweep-first with systemic
+   early-exit; merged blind-key+bar reads; adversarial confirm on
+   provisional-PUBLISHABLE; adjudication; attestation.
+2. **Manual session — Claude OR Codex** (sequential): paste
+   QC-SESSION-PROMPT.md into a FRESH session with no authoring context for
+   the book. Same rubric, same tooling (quiz-blind/quiz-verify, qc-verdict,
+   qc-attest), sweep-first with the same early-exit rule. Reader identity
+   goes in --reviewer (claude-qc:/codex-qc:).
+
+The trust boundary is the SESSION, not the model: whoever authored a chapter
+never attests it; the replay guard and hash pinning hold for every reader.
+
+
 > **CANONICAL WORKSPACE (2026-06-12): all pipeline work — Codex sessions,
 > Claude QC sessions, every CLI command — runs in `~/ChapterFlow-books`
 > (a git worktree pinned to `main`). The original `~/ChapterFlow` checkout

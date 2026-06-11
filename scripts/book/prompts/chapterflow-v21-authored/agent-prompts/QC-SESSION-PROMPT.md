@@ -10,6 +10,28 @@ other instruction, follow this prompt.
 
 ---
 
+## 0a. WHO MAY RUN THIS — independence rule (Claude OR Codex)
+
+This protocol is **reader-agnostic**: a Claude session or a Codex session may
+run it — every judgment is anchored to tooling (`quiz-blind`/`quiz-verify`,
+`qc-verdict`, `qc-attest`) and the rubric, not to a particular model. Two
+hard conditions:
+
+1. **You must be a FRESH session with NO authoring context for this book.**
+   If your session (or its conversation lineage) wrote, fixed, or remediated
+   ANY chapter of this book, you are the author — stop; authors never grade
+   their own work. (This is the self-attest trap that shipped corrupted
+   redos: the author-session always believes its own fixes.)
+2. **Identify your reader in the attestation**: `--reviewer claude-qc:<bookId>-<date>`
+   or `--reviewer codex-qc:<bookId>-<date>`. Reader identity is part of the
+   audit trail; the operator periodically spot-checks a sample of each
+   reader's attestations.
+
+Batching: for books over ~10 chapters, run multiple sessions
+(`--chapters`-style splits), but the TEMPLATING SWEEP (§2.0) must always
+cover ALL chapters of the book — a batched sweep is blind to cross-batch
+reuse and has produced a false PUBLISHABLE before.
+
 ## 0. THE GOLDEN RULE (read this first)
 
 **A GREEN gate is necessary but NOT sufficient. The deterministic gates check
@@ -51,6 +73,31 @@ If sidecars are genuinely absent (the `ls` above is empty) → source-grounding 
 against notes; grade grounding cautiously and flag it.
 
 ---
+
+## 2.0 TEMPLATING SWEEP — FIRST, before any per-chapter work
+
+Read ALL of the book's chapters in one pass looking ONLY for cross-chapter
+repetition (this is the defect class per-chapter reads structurally miss):
+
+1. **scene_skeleton** — example scenes sharing one frame across chapters,
+   even with different nouns.
+2. **persona_drift** — one name, different people across chapters (incl. a
+   source figure's first name on a fictional protagonist).
+3. **repeated_unit** — near-identical cards/plans/quiz stems/hooks/tactics/
+   marquee exemplars across chapters (an exemplar anchoring 2+ chapters with
+   date/place stamping counts).
+4. **location_stamping** — one venue stamped across many chapters.
+
+Every finding needs a verbatim quote + every chapter number involved.
+FP-guards: shared CONCEPT terms are the book's vocabulary; a consistent
+pedagogical opener with differing content is a convention.
+
+**EARLY EXIT:** if ≥3 structural families each span ≥⅓ of the chapters, the
+book is systemically templated — STOP. Report the families as the fix brief,
+attest NOTHING (per-chapter reads would just re-confirm the cap 30 times),
+and hand back to the author. Otherwise carry your findings forward: any
+chapter touched by a sweep finding caps at REVISE regardless of its
+per-chapter quality.
 
 ## 2. The QC procedure — three layers, in order
 
@@ -196,6 +243,21 @@ Known-acceptable majors that do NOT block ship (stylistic debt, not bar failures
 company/person names, `SC9` on an already-shipped book. See QC-PLAYBOOK §4.
 
 ---
+
+## 3a-bis. Reduce scores mechanically — REQUIRED (`qc-verdict`)
+
+Never compute the verdict yourself. Score every axis 0..1 per the rubric,
+then run:
+
+```
+npx tsx src/cli.ts qc-verdict <chapterId> --scores '[{"axis":"quiz_key_correctness","score":1,"tier":"PUBLISHABLE","hits":[]}, ...all 8 axes...]'
+```
+
+It applies the REAL computeVerdict — the corruption veto and the 85/0.6
+floors are mechanical and cannot be argued with. It refuses partial reads
+(every axis must be scored). Exit code: 0 GREEN, 1 YELLOW (REVISE),
+2 RED (CORRUPTION). The verdict you attest in §3b must be the one this
+command printed.
 
 ## 3b. Record your verdict — REQUIRED (`qc-attest`)
 
