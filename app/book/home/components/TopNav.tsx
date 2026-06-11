@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type MutableRefObject } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState, type KeyboardEventHandler, type MutableRefObject } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Bookmark,
   ChevronDown,
@@ -76,10 +76,14 @@ export function TopNav({
   logoVariant = "default",
 }: TopNavProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showSearchPanel, setShowSearchPanel] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  // Keyboard navigation over the GlobalSearchPanel results (combobox + listbox).
+  const [searchActiveIndex, setSearchActiveIndex] = useState(-1);
+  const [searchResultHrefs, setSearchResultHrefs] = useState<string[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -142,6 +146,34 @@ export function TopNav({
     }
     setShowSearchPanel(searchQuery.trim().length > 0);
   }, [searchQuery, showGlobalSearchPanel]);
+
+  // Reset the keyboard highlight whenever the query changes or the panel closes.
+  useEffect(() => {
+    setSearchActiveIndex(-1);
+  }, [searchQuery]);
+  useEffect(() => {
+    if (!showSearchPanel) setSearchActiveIndex(-1);
+  }, [showSearchPanel]);
+
+  const onSearchKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if (!showGlobalSearchPanel || !showSearchPanel) return;
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setSearchActiveIndex((i) =>
+        searchResultHrefs.length === 0 ? -1 : Math.min(i + 1, searchResultHrefs.length - 1),
+      );
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setSearchActiveIndex((i) => Math.max(i - 1, -1));
+    } else if (event.key === "Enter") {
+      const trimmed = searchQuery.trim();
+      if (!trimmed) return;
+      event.preventDefault();
+      const href = searchActiveIndex >= 0 ? searchResultHrefs[searchActiveIndex] : null;
+      setShowSearchPanel(false);
+      router.push(href ?? `/book/library?q=${encodeURIComponent(trimmed)}`);
+    }
+  };
 
   useEffect(() => {
     function onPointerDown(event: MouseEvent) {
@@ -257,13 +289,22 @@ export function TopNav({
                     searchInputRef.current = desktopSearchRef.current;
                     setShowSearchPanel(true);
                   }}
+                  onKeyDown={onSearchKeyDown}
                   placeholder={searchPlaceholder}
+                  expanded={showGlobalSearchPanel && showSearchPanel}
+                  controlsId="desktop-global-search-listbox"
+                  activeDescendantId={
+                    searchActiveIndex >= 0 ? `desktop-gs-opt-${searchActiveIndex}` : undefined
+                  }
                 />
                 {showGlobalSearchPanel ? (
                   <GlobalSearchPanel
                     open={showSearchPanel}
                     query={searchQuery}
                     onClose={() => setShowSearchPanel(false)}
+                    idPrefix="desktop"
+                    activeIndex={searchActiveIndex}
+                    onResultsChange={setSearchResultHrefs}
                   />
                 ) : null}
               </div>
@@ -394,13 +435,22 @@ export function TopNav({
                   searchInputRef.current = mobileSearchRef.current;
                   setShowSearchPanel(true);
                 }}
+                onKeyDown={onSearchKeyDown}
                 placeholder={searchPlaceholder}
+                expanded={showGlobalSearchPanel && showSearchPanel}
+                controlsId="mobile-global-search-listbox"
+                activeDescendantId={
+                  searchActiveIndex >= 0 ? `mobile-gs-opt-${searchActiveIndex}` : undefined
+                }
               />
               {showGlobalSearchPanel ? (
                 <GlobalSearchPanel
                   open={showSearchPanel}
                   query={searchQuery}
                   onClose={() => setShowSearchPanel(false)}
+                  idPrefix="mobile"
+                  activeIndex={searchActiveIndex}
+                  onResultsChange={setSearchResultHrefs}
                 />
               ) : null}
             </div>

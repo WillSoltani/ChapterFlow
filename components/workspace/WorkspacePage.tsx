@@ -19,10 +19,8 @@ import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
 import { getBookRating } from "@/app/book/data/bookRatings";
 import { getBookCoverPath } from "@/lib/book-covers";
-import { matchesBookQuery, normalizeQuery } from "@/lib/book-search";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { evaluateBadges } from "@/app/book/badges/lib/badge-ui-definitions";
-import { BookCardWorkspace } from "./BookCardWorkspace";
 import { INSIGHT_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
@@ -107,17 +105,6 @@ interface WorkspaceData {
     category: string;
     gradient?: string;
     reason?: string;
-  }>;
-  /** Full catalog mapped for in-place dashboard search. */
-  allBooks: Array<{
-    id: string;
-    title: string;
-    author: string;
-    coverUrl: string;
-    category: string;
-    categories: string[];
-    progressPercent: number;
-    status: "not_started" | "in_progress" | "completed";
   }>;
   nextReward: {
     name: string;
@@ -342,16 +329,6 @@ function mapAnalyticsToWorkspaceData(
       .filter(({ snap }) => !recommendedProBookIds.has(snap.book.id))
       .slice(0, 4)
       .map(({ snap, reason }) => toRecommendationCard(snap, reason)),
-    allBooks: analytics.bookSnapshots.map((snap) => ({
-      id: snap.book.id,
-      title: snap.book.title,
-      author: snap.book.author ?? "",
-      coverUrl: getBookCoverPath(snap.book.id),
-      category: snap.book.category ?? "General",
-      categories: snap.book.categories ?? [],
-      progressPercent: snap.progressPercent,
-      status: snap.status,
-    })),
     nextReward: {
       name: INSIGHT_POINTS_REWARDS[0]?.name ?? "Bonus Book Unlock",
       pointsRequired: INSIGHT_POINTS_REWARDS[0]?.costPoints ?? 900,
@@ -567,74 +544,15 @@ const itemVariants = {
    Dashboard Content (rendered after data loads)
    ──────────────────────────────────────────── */
 
-function DashboardSearchResults({
-  query,
-  books,
-}: {
-  query: string;
-  books: WorkspaceData["allBooks"];
-}) {
-  const normalized = normalizeQuery(query);
-  const results = books.filter((book) =>
-    matchesBookQuery(
-      {
-        title: book.title,
-        author: book.author,
-        category: book.category,
-        categories: book.categories,
-      },
-      normalized,
-    ),
-  );
-
-  return (
-    <div className="mt-2">
-      <h2
-        className="mb-4 font-(family-name:--font-display) text-xl font-semibold"
-        style={{ color: "var(--cf-text-1)" }}
-      >
-        {results.length > 0
-          ? `Results for “${query.trim()}”`
-          : `No books match “${query.trim()}”`}
-      </h2>
-      {results.length > 0 && (
-        <div className="flex flex-wrap gap-3">
-          {results.map((book) => (
-            <BookCardWorkspace
-              key={book.id}
-              variant="user"
-              book={{
-                id: book.id,
-                title: book.title,
-                author: book.author,
-                coverUrl: book.coverUrl,
-                progressPercent: book.progressPercent,
-                status: book.status,
-              }}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 function DashboardContent({
   data,
   prefersReducedMotion,
-  searchQuery,
 }: {
   data: WorkspaceData;
   prefersReducedMotion: boolean | null;
-  searchQuery: string;
 }) {
   const userState = deriveUserState(data);
   const subtitle = getSubtitle(userState, data);
-  const isSearching = normalizeQuery(searchQuery).length > 0;
-
-  if (isSearching) {
-    return <DashboardSearchResults query={searchQuery} books={data.allBooks} />;
-  }
   const dailyProgress = Math.min(
     (data.user.dailyProgressMinutes / (data.user.dailyGoalMinutes || 20)) * 100,
     100
@@ -827,7 +745,6 @@ export function WorkspacePage() {
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           searchInputRef={searchRef}
-          showGlobalSearchPanel={false}
           logoVariant="dashboard"
         />
 
@@ -847,7 +764,6 @@ export function WorkspacePage() {
             <DashboardContent
               data={data}
               prefersReducedMotion={prefersReducedMotion}
-              searchQuery={searchQuery}
             />
           )}
 
