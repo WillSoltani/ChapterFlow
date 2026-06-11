@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Sparkles, X } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
@@ -566,91 +565,6 @@ const itemVariants = {
 };
 
 /* ────────────────────────────────────────────
-   Mobile Bottom Nav
-   ──────────────────────────────────────────── */
-
-function MobileBottomNav() {
-  const tabs = [
-    { label: "Home", icon: HomeIcon, active: true, href: "/dashboard" },
-    { label: "Library", icon: LibraryIcon, active: false, href: "/book/library" },
-    { label: "Progress", icon: ProgressIcon, active: false, href: "/book/progress" },
-    { label: "Profile", icon: ProfileIcon, active: false, href: "/book/profile" },
-  ];
-
-  return (
-    <nav
-      className="fixed bottom-0 left-0 right-0 z-40 flex h-14 items-center justify-around md:hidden"
-      style={{
-        background: "var(--cf-topbar-bg)",
-        backdropFilter: "blur(20px) saturate(1.4)",
-        WebkitBackdropFilter: "blur(20px) saturate(1.4)",
-        borderTop: "1px solid var(--cf-border)",
-      }}
-    >
-      {tabs.map((tab) => (
-        <Link
-          key={tab.label}
-          href={tab.href}
-          className="flex min-h-11 min-w-11 flex-col items-center gap-1"
-        >
-          <tab.icon active={tab.active} />
-          <span
-            className="text-[10px]"
-            style={{
-              color: tab.active ? "var(--cf-text-1)" : "var(--cf-text-soft)",
-            }}
-          >
-            {tab.label}
-          </span>
-        </Link>
-      ))}
-    </nav>
-  );
-}
-
-function HomeIcon({ active }: { active: boolean }) {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-    </svg>
-  );
-}
-
-function LibraryIcon({ active }: { active: boolean }) {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
-    </svg>
-  );
-}
-
-function ProgressIcon({ active }: { active: boolean }) {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 20V10M12 20V4M6 20v-6" />
-    </svg>
-  );
-}
-
-function ProfileIcon({ active }: { active: boolean }) {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-      <circle cx={12} cy={7} r={4} />
-    </svg>
-  );
-}
-
-/* ────────────────────────────────────────────
    Dashboard Content (rendered after data loads)
    ──────────────────────────────────────────── */
 
@@ -929,11 +843,13 @@ export function WorkspacePage() {
             />
           )}
 
-          {/* Bottom spacer for mobile nav */}
-          <div className="h-20 md:hidden" />
+          {/* Spacer so content clears TopNav's fixed mobile bottom bar (~4.5rem + safe-area) */}
+          <div
+            aria-hidden="true"
+            className="md:hidden"
+            style={{ height: "calc(4.5rem + env(safe-area-inset-bottom, 0px))" }}
+          />
         </main>
-
-        <MobileBottomNav />
       </div>
     </div>
   );
