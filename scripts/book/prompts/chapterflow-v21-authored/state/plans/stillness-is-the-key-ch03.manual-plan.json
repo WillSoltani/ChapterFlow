@@ -23,8 +23,8 @@
       "domain": "morning writing routine",
       "audience": "people whose first work block gets split by phone alerts",
       "stakes": "the first paragraph may inherit the mood of the alerts",
-      "format": "reset_moment",
-      "requiredBeat": "An interrupted routine stops and restarts differently."
+      "format": "vignette",
+      "requiredBeat": "A worker changes the work surface before alerts can choose the first paragraph."
     },
     {
       "domain": "office desk triage",
@@ -37,15 +37,15 @@
       "domain": "customer launch communication",
       "audience": "teams reviewing a communication failure after the fact",
       "stakes": "a false line reached customers because noise sat beside the draft",
-      "format": "postmortem",
-      "requiredBeat": "Open after the failure and locate the decisive misstep."
+      "format": "decision_point",
+      "requiredBeat": "The protagonist catches an unverified line before it reaches customers."
     },
     {
       "domain": "sales forecast preparation",
       "audience": "workers who notice their own inbox error midstream",
       "stakes": "a forecast may be late because reply momentum feels like work",
-      "format": "mistake_recovery",
-      "requiredBeat": "The protagonist notices his own error and corrects course."
+      "format": "text_thread",
+      "requiredBeat": "A compressed exchange shows a worker refusing reply momentum until the forecast is named."
     }
   ],
   "quizFocus": {
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 10,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.911Z"
+  "derivedAt": "2026-06-11T20:03:37.107Z"
 }

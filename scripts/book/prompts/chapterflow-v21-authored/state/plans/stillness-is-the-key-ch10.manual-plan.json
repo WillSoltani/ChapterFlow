@@ -16,8 +16,8 @@
       "domain": "morning revenue forecast",
       "audience": "operators who confuse care with constant tracking",
       "stakes": "A red number can pull a person from clean action into compulsive control.",
-      "format": "reset_moment",
-      "requiredBeat": "Interrupt a routine, pause, and restart by sorting action from externals."
+      "format": "vignette",
+      "requiredBeat": "A forecast scene separates action from externals before the tracker can take over."
     },
     {
       "domain": "pharmacy queue",
@@ -30,22 +30,22 @@
       "domain": "product launch postmortem",
       "audience": "leaders reviewing a failure after public reaction",
       "stakes": "A failed launch leaves traces of the grip that made the work worse.",
-      "format": "postmortem",
-      "requiredBeat": "Open after the failure and locate the decisive misstep in attachment to status."
+      "format": "coach_talk",
+      "requiredBeat": "A peer helps a launch lead separate repair work from status repayment."
     },
     {
       "domain": "nonprofit donor call",
       "audience": "fundraisers who want a response to prove the work mattered",
       "stakes": "A live ask can turn care for the cause into hunger for reassurance.",
-      "format": "mistake_recovery",
-      "requiredBeat": "Notice the protagonist's own error mid-stream and correct the grip before finishing the call."
+      "format": "dialogue",
+      "requiredBeat": "A donor call turns when the speaker lets another person pull the ask back to the real need."
     },
     {
       "domain": "board decision memo",
       "audience": "executives preparing a recommendation under scrutiny",
       "stakes": "A memo can carry clean effort while refusing to manage praise in advance.",
-      "format": "decision_memo",
-      "requiredBeat": "Let the written artifact show the action and the release of ownership over the reaction."
+      "format": "dilemma",
+      "requiredBeat": "A board packet forces a choice between clean analysis and chasing approval."
     }
   ],
   "quizFocus": {
@@ -64,5 +64,5 @@
   },
   "readingTimeMinutes": 9,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.913Z"
+  "derivedAt": "2026-06-11T20:03:37.111Z"
 }

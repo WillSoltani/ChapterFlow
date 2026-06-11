@@ -14,10 +14,10 @@
     },
     {
       "domain": "home office interruption",
-      "audience": "people whose routine breaks before the day begins",
+      "audience": "people whose morning is interrupted before the day begins",
       "stakes": "one interruption could turn the whole morning into reaction",
-      "format": "reset_moment",
-      "requiredBeat": "Qing pauses after an interruption and restarts with Benjamin Franklin's morning question."
+      "format": "vignette",
+      "requiredBeat": "An interrupted morning is rebuilt around one useful block."
     },
     {
       "domain": "children's library story hour",
@@ -30,22 +30,22 @@
       "domain": "weekly grant review",
       "audience": "workers who confuse intentions with scheduled practice",
       "stakes": "a missed review could be blamed on character instead of design",
-      "format": "postmortem",
-      "requiredBeat": "The failed week reveals one missing protected slot, not a lack of moral language."
+      "format": "dilemma",
+      "requiredBeat": "A calendar export forces a choice between value language and protected time."
     },
     {
       "domain": "workplace wellness kickoff",
       "audience": "leaders teaching routine without making it performative",
       "stakes": "discipline could become image management instead of support",
-      "format": "mistake_recovery",
-      "requiredBeat": "Minh notices his own performative reading of Fred Rogers and corrects while speaking."
+      "format": "school_case",
+      "requiredBeat": "A wellness slide becomes a question about whom the routine protects."
     },
     {
       "domain": "small studio operating memo",
       "audience": "team leads building a humane work rhythm",
       "stakes": "the team could confuse stricter scheduling with better work",
-      "format": "decision_memo",
-      "requiredBeat": "A memo turns Franklin's review and Rogers's care into one team routine."
+      "format": "dialogue",
+      "requiredBeat": "A small studio chooses one shared rhythm instead of a memo artifact."
     }
   ],
   "quizFocus": {
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 11,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.917Z"
+  "derivedAt": "2026-06-11T20:03:37.118Z"
 }

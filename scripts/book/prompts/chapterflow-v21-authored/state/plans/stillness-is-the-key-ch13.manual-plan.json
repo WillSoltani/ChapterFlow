@@ -9,15 +9,15 @@
       "domain": "Catholic Worker donor response",
       "audience": "Mederic drafting an internal decision memo",
       "stakes": "a restricted gift could fund beds while excluding the hardest guests",
-      "format": "decision_memo",
-      "requiredBeat": "The written memo refuses a donor condition that would make service cleaner but less just."
+      "format": "dialogue",
+      "requiredBeat": "A donor condition is refused in a spoken exchange before the soup line opens."
     },
     {
       "domain": "city emergency food routing",
       "audience": "Edmund and Carter handling the same staff shortage",
       "stakes": "public image could outrun the duty to serve the oldest residents first",
-      "format": "contrast",
-      "requiredBeat": "Edmund protects image while Carter uses the imperial duty standard to serve the common good."
+      "format": "vignette",
+      "requiredBeat": "A city operations brief shows calm serving duty rather than image."
     },
     {
       "domain": "Catholic Worker volunteer shift",
@@ -37,8 +37,8 @@
       "domain": "shelter operations inbox",
       "audience": "Vivian changing the order of her morning replies",
       "stakes": "pleasant praise could keep urgent repair work out of sight",
-      "format": "before_after",
-      "requiredBeat": "The same inbox routine is shown before and after the goodness-first change."
+      "format": "vignette",
+      "requiredBeat": "One inbox order changes when service, not praise, gets first claim."
     },
     {
       "domain": "library reference counter",
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 10,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.914Z"
+  "derivedAt": "2026-06-11T20:03:37.112Z"
 }

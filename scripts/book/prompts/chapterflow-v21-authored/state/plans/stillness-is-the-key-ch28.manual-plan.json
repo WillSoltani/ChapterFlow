@@ -31,10 +31,10 @@
       "audience": "readers whose first quiet minutes get invaded by alerts",
       "stakes": "the routine can be rescued only if the interruption is handled physically",
       "format": "reset_moment",
-      "requiredBeat": "a routine gets interrupted and restarts with Thoreau, 1845, Concord, and Walden Pond as the live model"
+      "requiredBeat": "A reading scene changes the room when the first interruption arrives."
     },
     {
-      "domain": "quiet kitchen table",
+      "domain": "plain reading chair",
       "audience": "readers who expect solitude to feel grand",
       "stakes": "a small room can teach the body before any large insight arrives",
       "format": "vignette",
@@ -44,8 +44,8 @@
       "domain": "product memo postmortem",
       "audience": "leaders who copy retreat language while keeping the same digital crowd",
       "stakes": "the team must locate why the offsite produced a reactive memo",
-      "format": "postmortem",
-      "requiredBeat": "open after the failure and find the decisive misstep in a copied Think Week"
+      "format": "coach_talk",
+      "requiredBeat": "A product lead learns that a solitude practice cannot keep live audience channels open."
     }
   ],
   "quizFocus": {
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 9,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.917Z"
+  "derivedAt": "2026-06-11T20:03:37.119Z"
 }

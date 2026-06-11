@@ -16,29 +16,29 @@
       "domain": "school dismissal review",
       "audience": "an administrator repairing a failed rule",
       "stakes": "a wise line was admired but not enacted",
-      "format": "postmortem",
-      "requiredBeat": "The failure is already over, and the misstep is treating Confucius as decoration."
+      "format": "school_case",
+      "requiredBeat": "A dismissal rule is revised while the hallway evidence is still visible."
     },
     {
       "domain": "staff workshop",
       "audience": "a facilitator who notices ego in real time",
       "stakes": "the session can become performance instead of inquiry",
-      "format": "mistake_recovery",
-      "requiredBeat": "The center is the moment Monique notices her own quote collecting."
+      "format": "school_case",
+      "requiredBeat": "A learner-facing exercise changes when the room reveals that a quote has become display."
     },
     {
       "domain": "clinic board memo",
       "audience": "a director turning reading into policy",
       "stakes": "an old idea must become a concrete front-desk act",
-      "format": "decision_memo",
-      "requiredBeat": "The written artifact carries the scene and turns Confucius into a test."
+      "format": "coach_talk",
+      "requiredBeat": "A board member turns Confucius into one behavioral test for the waiting room."
     },
     {
       "domain": "relief center intake",
       "audience": "two coordinators choosing what will guide volunteers",
-      "stakes": "the same pressure can produce quote theater or changed conduct",
-      "format": "contrast",
-      "requiredBeat": "Diya and Sylvie face the same intake problem with opposite approaches and different outcomes."
+      "stakes": "one intake problem can produce quote theater or changed conduct",
+      "format": "vignette",
+      "requiredBeat": "One volunteer turns checked counsel into a changed intake script."
     },
     {
       "domain": "conference room coaching",
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 11,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.912Z"
+  "derivedAt": "2026-06-11T20:03:37.109Z"
 }

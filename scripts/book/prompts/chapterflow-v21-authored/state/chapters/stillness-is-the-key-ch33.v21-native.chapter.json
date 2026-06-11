@@ -16,22 +16,22 @@
     {
       "exampleId": "ex01",
       "sourceAnchorId": "ch33.ex.john-f-kennedy-blockade-decision",
-      "title": "Hadley's Restarted Outage Call",
+      "title": "Hadley Counts Three Breaths on the Outage Call",
       "tags": [
-        "reset moment",
-        "restraint",
-        "crisis"
+        "vignette",
+        "incident response",
+        "courage"
       ],
       "planSpec": {
         "domain": "software incident response",
         "audience": "team leads under executive pressure",
         "stakes": "respond to a visible failure without letting speed replace judgment",
-        "format": "reset_moment",
-        "requiredBeat": "a routine is interrupted and the pause itself becomes the brave move"
+        "format": "vignette",
+        "requiredBeat": "A public blame request is slowed by confirmed facts and restraint."
       },
-      "scenario": "Hadley is reading the usual outage checklist when the chief executive enters the call and asks for a public blame statement. The routine breaks. Hadley closes the checklist, counts three breaths, and restarts with John F. Kennedy in October 1962 in mind: not the air strike, the naval quarantine. She asks for confirmed facts before any name goes outside.",
-      "whatToDo": "Hadley stops the old call rhythm and restarts with a fact-first pause. She names what is known, what is not known, and what duty requires before blame leaves the room.",
-      "whyItMatters": "The pause is not delay for its own sake. Kennedy's blockade decision shows how restraint can protect action from fear when everyone wants a louder move."
+      "scenario": "Hadley is reading the outage checklist when the chief executive enters the call and asks for a public blame statement. John F. Kennedy in October 1962 gives her the model she needs: not the air strike, the naval quarantine. She counts three breaths and asks for confirmed facts before any name goes outside.",
+      "whatToDo": "Hadley names what is known, what is not known, and what duty requires before blame leaves the room.",
+      "whyItMatters": "Kennedy's blockade decision shows how restraint can protect action from fear when everyone wants a louder move."
     },
     {
       "exampleId": "ex02",
@@ -56,82 +56,82 @@
     {
       "exampleId": "ex03",
       "sourceAnchorId": "ch33.ex.john-f-kennedy-blockade-decision",
-      "title": "Zachary's Strike Memo Aftermath",
+      "title": "Zachary Rebuilds the School Response",
       "tags": [
-        "postmortem",
-        "failure",
+        "school case",
+        "security review",
         "restraint"
       ],
       "planSpec": {
         "domain": "school security review",
         "audience": "administrators reviewing a failed response",
         "stakes": "locate the one moment when dramatic action replaced judgment",
-        "format": "postmortem",
-        "requiredBeat": "open after the failure and trace the decisive misstep"
+        "format": "school_case",
+        "requiredBeat": "A school security lesson rebuilds a response around evidence instead of accusation."
       },
-      "scenario": "Zachary's emergency memo has already failed. Parents are angry, staff are split, and the hallway cameras show no new facts. The postmortem finds the break: Zachary copied the air-strike impulse from the Cuban Missile Crisis instead of Kennedy's naval quarantine. He published names before the review had evidence.",
-      "whatToDo": "Zachary marks the exact sentence where accusation outran proof. He rewrites the response around confirmed facts, open questions, and one next review step.",
-      "whyItMatters": "A postmortem makes courage less theatrical. The brave repair begins by admitting where fear borrowed the costume of fast leadership."
+      "scenario": "Parents are angry, staff are split, and the hallway cameras show no new facts. Zachary had copied the air-strike impulse from the Cuban Missile Crisis instead of Kennedy's naval quarantine and published names before review. In the debrief, the class identifies the sentence where accusation outran proof and rewrites the response around confirmed facts.",
+      "whatToDo": "Zachary rewrites the response around confirmed facts, open questions, and one next review step.",
+      "whyItMatters": "The brave repair begins where fear borrowed the costume of fast leadership."
     },
     {
       "exampleId": "ex04",
       "sourceAnchorId": "ch33.ex.dorothy-day-public-dissent",
-      "title": "Albertine Hears Her Own Heat",
+      "title": "Albertine Lowers the Next Sentence",
       "tags": [
-        "mistake recovery",
-        "dissent",
-        "voice"
+        "dialogue",
+        "testimony",
+        "courage"
       ],
       "planSpec": {
         "domain": "city council testimony",
         "audience": "advocates speaking under pressure",
         "stakes": "correct a performative speech before it harms the cause",
-        "format": "mistake_recovery",
-        "requiredBeat": "the center is the instant the speaker notices her own error"
+        "format": "dialogue",
+        "requiredBeat": "A council speaker keeps dissent firm by changing the next sentence."
       },
-      "scenario": "Albertine is halfway through city council testimony when her voice sharpens and the front row stiffens. The timer shows thirty seconds. She notices the mistake before the hearing moves on: she is using Dorothy Day's arrests and pacifism as fuel for contempt, not service. Her hand leaves the lectern, and her next sentence gets smaller.",
-      "whatToDo": "Albertine names the people harmed, drops the insult she was about to use, and asks for one shelter bed policy to change that night.",
-      "whyItMatters": "The key turn is noticing the body heat in time. Quiet courage lets dissent stay firm without letting anger become the speaker."
+      "scenario": "Albertine is giving city council testimony when her voice sharpens and the front row stiffens. The timer shows thirty seconds. Dorothy Day's arrests and pacifism are supposed to teach service, not contempt. Albertine drops the insult she was about to use and asks for one shelter bed policy to change that night.",
+      "whatToDo": "Albertine names the people harmed, drops the insult, and asks for one shelter bed policy to change that night.",
+      "whyItMatters": "Quiet courage lets dissent stay firm without letting anger become the speaker."
     },
     {
       "exampleId": "ex05",
       "sourceAnchorId": "ch33.ex.john-f-kennedy-blockade-decision",
-      "title": "Antonio's Quarantine Memo",
+      "title": "Antonio Builds the Ward C Checklist",
       "tags": [
-        "decision memo",
-        "policy",
-        "risk"
+        "decision point",
+        "hospital operations",
+        "restraint"
       ],
       "planSpec": {
         "domain": "hospital operations memo",
         "audience": "leaders choosing a measured emergency response",
         "stakes": "make the written recommendation brave without making it flashy",
-        "format": "decision_memo",
-        "requiredBeat": "the written artifact carries the action"
+        "format": "decision_point",
+        "requiredBeat": "A hospital operations lead chooses a narrow pause with named duties."
       },
-      "scenario": "Antonio's memo opens: \"Subject: Temporary quarantine of Ward C transfers.\" The next line cites John F. Kennedy, October 1962, and the naval quarantine as a model for firm restraint. He writes that transfers pause for four hours, families get a plain update, and the infection team reviews each case before anyone blames the night staff.",
-      "whatToDo": "Antonio writes the action into the memo as a narrow pause with named duties. The document gives fear a boundary without turning the ward into a spectacle.",
-      "whyItMatters": "A brave memo can slow a chain reaction. Kennedy's example helps Antonio choose a firm line that keeps judgment alive under pressure."
+      "scenario": "Antonio has Ward C transfer notes open after a possible infection exposure. John F. Kennedy, October 1962, and the naval quarantine give him the restraint model. He can blame the night staff, or set a narrow four-hour pause: families get a plain update, the infection team reviews each case, and transfers resume only with evidence.",
+      "whatToDo": "Antonio writes the action as a narrow pause with named duties, giving fear a boundary without turning the ward into a spectacle.",
+      "whyItMatters": "A firm line can slow a chain reaction while keeping judgment alive under pressure."
     },
     {
       "exampleId": "ex06",
       "sourceAnchorId": "ch33.ex.dorothy-day-public-dissent",
-      "title": "Marshall and Willow at the Statement",
+      "title": "Willow Signs With the Shelter Facts",
       "tags": [
-        "contrast",
-        "public dissent",
-        "service"
+        "vignette",
+        "public statement",
+        "courage"
       ],
       "planSpec": {
         "domain": "nonprofit public statement",
         "audience": "staff deciding how to carry public commitments",
         "stakes": "see how waiting for fear to vanish differs from acting with steadiness",
-        "format": "contrast",
-        "requiredBeat": "two named people face the same situation with opposite approaches"
+        "format": "vignette",
+        "requiredBeat": "A public statement is signed while discomfort remains present."
       },
-      "scenario": "Marshall and Willow receive the same draft statement on the eviction sweep. Marshall waits for his fear to clear, then misses the filing window and spends the afternoon defending silence. Willow reads the same Dorothy Day line about Catholic Worker pacifism and arrests, then adds two facts from the shelter desk and signs. One protects his image; one protects the work.",
-      "whatToDo": "Willow lets fear come along while she adds facts and signs the statement. Marshall's silence shows the cost of waiting for a clean inner weather report.",
-      "whyItMatters": "The contrast keeps courage honest. Day's public dissent was not comfort first and action later; it was duty repeated while discomfort stayed present."
+      "scenario": "Willow reads the draft statement on the eviction sweep and feels fear asking for a cleaner mood before action. The Dorothy Day line about Catholic Worker pacifism and arrests points the other way. She adds two facts from the shelter desk and signs while discomfort is still in the room.",
+      "whatToDo": "Willow lets fear come along while she adds facts and signs the statement.",
+      "whyItMatters": "Day's public dissent was not comfort first and action later; it was duty repeated while discomfort stayed present."
     }
   ],
   "quiz": {

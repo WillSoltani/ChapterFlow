@@ -5,7 +5,7 @@
   "readingTimeMinutes": 12,
   "hook": "Your angry first draft is not neutral; send it too soon and it starts making choices for you.",
   "counterintuition": "Anger can point at a real wrong and still ruin the response. It wears the costume of strength while it borrows your hands, as one sharp email keeps working long after the heat leaves your face.",
-  "tryThisNow": "Block 10 minutes tomorrow at 8:30 at your desk for a hot-letter review; use the first face-heating message as the trigger.",
+  "tryThisNow": "When the first face-heating message lands, draft the hot reply in a private note and wait one meal before sending the repairable point.",
   "keyTakeaway": "Treat anger as a hot draft instead of an order: write it, wait, then check whether justice or pride is speaking before you answer in public or in private.",
   "breakdown": {
     "fastRead": "Nancy reads a customer email twice, then opens a blank reply she should not send yet. Her face is hot. Her first sentence would feel honest and sound cruel by dinner.\n\nAbraham Lincoln knew that danger during the Civil War. He wrote angry letters, then left them unsent. The paper carried the heat so policy did not have to. Anger restraint means giving the surge a place to go before it gets a vote. Write the heat. Wait for your mind to come back. Then decide what justice actually needs.",
@@ -16,22 +16,22 @@
     {
       "exampleId": "ch20-ex01-nancy-hailey-contrast",
       "sourceAnchorId": "ch20.ex.abraham-lincoln-hot-letters",
-      "title": "Two Drafts Diverge",
+      "title": "Nancy Parks the Hot Draft",
       "tags": [
-        "contrast",
-        "hot letters",
-        "email"
+        "vignette",
+        "complaint",
+        "delay"
       ],
       "planSpec": {
         "domain": "support inbox complaint review",
         "audience": "two leads facing the same angry customer thread",
         "stakes": "one reply repairs the issue while the other spreads damage",
-        "format": "contrast",
-        "requiredBeat": "Two different people face the same provocation, one using Lincoln's unsent-letter delay and one sending in heat."
+        "format": "vignette",
+        "requiredBeat": "One draft is parked long enough for repair to survive anger."
       },
-      "scenario": "On Monday morning, Nancy and Hailey receive the same forwarded complaint above an article about Abraham Lincoln's unsent letters from the Civil War. Nancy drafts a reply in the shared inbox, leaves it through lunch, and needs to decide which lines should survive. Hailey sends her version from the break room before the coffee cools. By 3 p.m., Nancy has a repair call scheduled; Hailey has a screenshot in four inboxes and a manager asking why the White House lesson stayed in the article.",
-      "whatToDo": "Nancy writes the hot version, parks it, and later sends only the facts and repair step. Hailey's half shows what happens when the draft is treated as final.",
-      "whyItMatters": "The same anger produced two futures. Delay did not make Nancy weaker; it kept a real complaint from becoming a second problem."
+      "scenario": "On Monday morning, Nancy receives a forwarded complaint above an article about Abraham Lincoln's unsent letters from the Civil War. She writes the hot version in the shared inbox, parks it through lunch, and later sends only the facts and repair step. By 3 p.m., the repair call is scheduled instead of a second fight.",
+      "whatToDo": "Nancy writes the hot version, parks it, and later sends only the facts and repair step.",
+      "whyItMatters": "Delay does not make Nancy weaker. It keeps a real complaint from becoming a second problem."
     },
     {
       "exampleId": "ch20-ex02-bryce-coach-talk",
@@ -49,7 +49,7 @@
         "format": "coach_talk",
         "requiredBeat": "A peer reframes Bryce's anger with one quotable sentence before the review call."
       },
-      "scenario": "At the conference room table, Bryce brings a printed complaint to his peer mentor with three sentences underlined hard enough to dent the page. He has just read Seneca's De Ira in a Stoicism seminar and thinks Rome sounds far away from this vendor thread. The mentor taps the margin and gives him one line to keep: \"If anger is driving, truth is only a passenger.\" Bryce has eight minutes before the review call, so the reframe must change the first words out of his mouth.",
+      "scenario": "At the conference room table, Bryce brings a printed complaint to his peer mentor with three sentences underlined hard enough to dent the page. He has just read Seneca's De Ira in a Stoicism seminar and thinks Rome sounds far away from this vendor thread. The mentor taps the margin and gives him one line to keep: \"If anger is driving, truth is only a passenger.\" The review call is close, so the reframe has to change the first words out of his mouth.",
       "whatToDo": "Bryce rewrites the opening into one fact, one consequence, and one requested fix. He leaves the pride sentence crossed out on the page.",
       "whyItMatters": "The mentor does not ask him to deny the damage. The reframe keeps truth in the car while moving anger out of the driver's seat."
     },
@@ -76,42 +76,42 @@
     {
       "exampleId": "ch20-ex04-brandon-before-after",
       "sourceAnchorId": "ch20.ex.abraham-lincoln-hot-letters",
-      "title": "The Same Table Twice",
+      "title": "Brandon Uses the Breakfast Rule",
       "tags": [
-        "before after",
-        "family",
+        "vignette",
+        "family thread",
         "delay"
       ],
       "planSpec": {
         "domain": "family budget text thread",
         "audience": "Brandon changing the way he answers a provocation",
         "stakes": "a recurring family argument could be changed by one pause",
-        "format": "before_after",
-        "requiredBeat": "The same person and table appear before and after adopting Lincoln's unsent-letter practice."
+        "format": "vignette",
+        "requiredBeat": "A reply rule changes the words that reach another person."
       },
-      "scenario": "Before the change, Brandon wrote replies at the kitchen table the moment a relative mocked his budget, and the thread lasted until midnight. After reading about Abraham Lincoln's unsent letters from the Civil War, he uses the same table differently. The first draft goes into a folder labeled White House pause; the second draft waits until breakfast. The facts stay. The little stab about character disappears before the message leaves.",
-      "whatToDo": "Brandon keeps the table, the issue, and the facts, but changes the delivery rule: draft at night, review at breakfast, send only the repairable point.",
-      "whyItMatters": "The parallel view shows the practice clearly. Nothing magical changed except the space between provocation and the words that reached another person."
+      "scenario": "Brandon writes replies the moment a relative mocks his budget, and the thread keeps burning late. After reading about Abraham Lincoln's unsent letters from the Civil War, he gives himself a new delivery rule: draft at night, review at breakfast, send only the repairable point. The little stab about character stays out of the final message.",
+      "whatToDo": "Brandon keeps the issue and the facts, but changes the delivery rule: draft at night, review at breakfast, send only the repairable point.",
+      "whyItMatters": "The space between provocation and delivery changes the words another person has to receive."
     },
     {
       "exampleId": "ch20-ex05-ephrem-audit",
       "sourceAnchorId": "ch20.ex.abraham-lincoln-hot-letters",
       "title": "Raoul Writes the Cooling Rule",
       "tags": [
-        "decision memo",
+        "decision point",
         "anger",
-        "Lincoln"
+        "delay"
       ],
       "planSpec": {
         "domain": "baseball dugout bench",
         "audience": "people tempted to send hot objections while they still feel righteous",
         "stakes": "anger may turn a valid objection into a cleanup problem",
-        "format": "decision_memo",
-        "requiredBeat": "A written rule carries the decision to cool public replies before sending."
+        "format": "decision_point",
+        "requiredBeat": "A one-line rule forces a choice between hot reply and overnight repair."
       },
-      "scenario": "On the baseball dugout bench, Raoul writes a one-line rule under the Abraham Lincoln White House note about unsent letters: \"Hot public replies wait overnight unless safety is at stake.\" He decides the next complaint response will sit in drafts until justice and pride can be told apart.",
+      "scenario": "On the baseball dugout bench, Raoul writes one line under the Abraham Lincoln White House note about unsent letters: hot public replies wait overnight unless safety is at stake. The next complaint response will sit in drafts until justice and pride can be told apart.",
       "whatToDo": "Raoul adds the cooling rule to the training sheet and requires one overnight draft for messages written under provocation.",
-      "whyItMatters": "A written rule can slow anger before it borrows the voice of justice. Waiting is useful when it protects the truth from the heat around it."
+      "whyItMatters": "A plain rule can slow anger before it borrows the voice of justice."
     },
     {
       "exampleId": "ch20-ex06-janet-inner-monologue",

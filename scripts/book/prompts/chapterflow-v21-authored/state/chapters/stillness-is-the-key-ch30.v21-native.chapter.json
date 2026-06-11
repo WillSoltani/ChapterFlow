@@ -116,22 +116,22 @@
     {
       "exampleId": "ch30-ex06-madeline-restarts-tea",
       "sourceAnchorId": "ch30.ex.william-dement-sleep-research",
-      "title": "Madeline Begins the Tea Again",
+      "title": "Madeline Parks the Morning Reply",
       "tags": [
-        "reset_moment",
-        "routine",
-        "screens"
+        "vignette",
+        "sleep",
+        "boundary"
       ],
       "planSpec": {
         "domain": "a bedtime routine interrupted by a quick request for feedback",
         "audience": "a designer trying to protect the end of the night",
         "stakes": "whether one small reply reopens work inside a sleep routine",
-        "format": "reset_moment",
-        "requiredBeat": "the interruption is met with a deliberate stop and a different restart"
+        "format": "vignette",
+        "requiredBeat": "A bedtime request is parked for morning without repeating the stop-restart machine."
       },
-      "scenario": "Madeline's nightly routine is tea, dishwasher, William Dement's Stanford sleep medicine notes, and bed. At 9:42 p.m., a message from Rocco asks for quick feedback on a REM sleep graphic. Her thumb starts typing. She stops, puts the phone face down, writes \"Rocco: answer at 8:30\" on tomorrow's pad, and begins the tea again from the sink.",
-      "whatToDo": "Madeline interrupts the reply before it becomes work, parks the request on tomorrow's pad, and restarts the bedtime cue from the first step.",
-      "whyItMatters": "A reset works because it treats the first slip as a cue, not a defeat. The routine is protected by returning to it while the body still knows the path."
+      "scenario": "Madeline's nightly sequence is tea, dishwasher, William Dement's Stanford sleep medicine notes, and bed. A message from Rocco asks for quick feedback on a REM sleep graphic. She writes Rocco: answer at 8:30 on tomorrow's pad, puts the phone in the hallway, and returns to the tea from the sink.",
+      "whatToDo": "Madeline parks the request on tomorrow's pad and keeps the bedtime cue intact.",
+      "whyItMatters": "The first slip becomes information, not defeat. The body can continue toward sleep because the request has a named place."
     }
   ],
   "quiz": {

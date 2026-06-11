@@ -9,15 +9,15 @@
       "domain": "personal calendar practice",
       "audience": "Benjamin, a consultant who turns every break into prep",
       "stakes": "A scheduled rest block may become another productivity tactic.",
-      "format": "decision_memo",
-      "requiredBeat": "A written memo carries the action and treats Sabbath time as sacred, not useful."
+      "format": "vignette",
+      "requiredBeat": "A visible rule protects Sabbath time from being recruited by work."
     },
     {
       "domain": "neighborhood walk",
       "audience": "Derek and Nadine, two friends leaving the same poetry group",
       "stakes": "The same open hour becomes either another metric or a real pause.",
-      "format": "contrast",
-      "requiredBeat": "Two people face one situation with opposite approaches and different outcomes."
+      "format": "vignette",
+      "requiredBeat": "A walk is allowed to remain unproductive instead of becoming content."
     },
     {
       "domain": "studio coaching session",
@@ -37,8 +37,8 @@
       "domain": "fitness and work tracking",
       "audience": "Christophe, a manager who measures every private hour",
       "stakes": "The same evening routine either treats the body as equipment or as a life.",
-      "format": "before_after",
-      "requiredBeat": "Show the same person before and after protecting unmeasured time."
+      "format": "vignette",
+      "requiredBeat": "An evening routine drops one private metric so rest can remain rest."
     },
     {
       "domain": "podcast studio console",
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 10,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.917Z"
+  "derivedAt": "2026-06-11T20:03:37.119Z"
 }

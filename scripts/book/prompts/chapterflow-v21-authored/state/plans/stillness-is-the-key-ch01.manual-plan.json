@@ -10,7 +10,7 @@
       "audience": "operators who start the day by obeying every alert",
       "stakes": "A routine built for speed is pulling attention away from the one route that matters.",
       "format": "reset_moment",
-      "requiredBeat": "The protagonist stops an alert-clearing routine and restarts from the hinge question."
+      "requiredBeat": "The protagonist interrupts an alert sweep and starts from the hinge question."
     },
     {
       "domain": "state policy office before a budget hearing",
@@ -24,28 +24,28 @@
       "audience": "teams reviewing a failure after chasing visible fires",
       "stakes": "The review can blame effort levels or find the missed hinge.",
       "format": "postmortem",
-      "requiredBeat": "Open after the failure and locate the one misstep that scattered attention."
+      "requiredBeat": "Open after the failure and locate the hinge that scattered attention."
     },
     {
       "domain": "quarterly planning meeting with too many priorities",
       "audience": "team leads who notice their own scattered attention while speaking",
       "stakes": "The meeting can keep rewarding volume or return to the strategic key.",
-      "format": "mistake_recovery",
-      "requiredBeat": "The protagonist notices her own error mid-stream and corrects the frame."
+      "format": "coach_talk",
+      "requiredBeat": "A colleague uses one question to move a crowded plan back to the strategic key."
     },
     {
       "domain": "nonprofit fundraising team choosing a campaign focus",
       "audience": "leaders who need a written artifact to protect attention",
       "stakes": "A scattered campaign will look active while missing the lever that funds the year.",
       "format": "decision_memo",
-      "requiredBeat": "The memo carries the action and shows the source case inside its written logic."
+      "requiredBeat": "A short written rule protects attention around the source case."
     },
     {
       "domain": "hospital bed-control desk during a discharge delay",
       "audience": "operators comparing frantic response with commanded attention",
-      "stakes": "Two approaches to the same pressure will either scatter the desk or release capacity.",
-      "format": "contrast",
-      "requiredBeat": "Two named people face the same situation with opposite approaches and diverging outcomes."
+      "stakes": "Two approaches to one bed-control shift will either scatter the desk or release capacity.",
+      "format": "vignette",
+      "requiredBeat": "One operator shows command by keeping the desk pointed at the controlling delay."
     }
   ],
   "quizFocus": {
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 12,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.911Z"
+  "derivedAt": "2026-06-11T20:03:37.106Z"
 }

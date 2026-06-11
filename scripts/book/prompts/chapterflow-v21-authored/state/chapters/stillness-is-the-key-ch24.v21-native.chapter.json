@@ -29,7 +29,7 @@
         "format": "vignette",
         "requiredBeat": "A close desk moment shows Jordan using Buffett-like selectivity without a live decision."
       },
-      "scenario": "Jordan lines up four index cards beside a chipped mug at the community kitchen table before the board meeting starts. One card says Warren Buffett, one says Berkshire Hathaway, one says Omaha investing. The fourth stays blank for the grant he will not chase. The blank edge reminds him that most offers must stay outside the chosen work.",
+      "scenario": "Jordan lines up four index cards beside a chipped mug at the campground ranger desk before the board meeting starts. One card says Warren Buffett, one says Berkshire Hathaway, one says Omaha investing. The fourth stays blank for the grant he will not chase. The blank edge reminds him that most offers must stay outside the chosen work.",
       "whatToDo": "Jordan leaves the fourth card blank and lets the board see it. He treats refusal as part of the grant review, not as a private apology after the room fills.",
       "whyItMatters": "The blank card makes selectivity visible. A no that is counted before praise arrives protects the one project that already deserves full attention."
     },
@@ -39,19 +39,19 @@
       "title": "Anatole Finds the Extra Panel",
       "tags": [
         "postmortem",
-        "event",
+        "fundraiser",
         "focus"
       ],
       "planSpec": {
         "domain": "fundraising gala failure review",
         "audience": "event lead locating the first overcommitment",
-        "stakes": "the decisive misstep was one attractive addition after the program was full",
+        "stakes": "focus was spent by one attractive addition after the program was full",
         "format": "postmortem",
-        "requiredBeat": "The scene opens after the event has failed and traces the failure to the first extra yes."
+        "requiredBeat": "Open after the event and locate the first extra yes that spent focus."
       },
-      "scenario": "Anatole's fundraiser is over; the dessert table ran late, the student showcase was cut short, and two donors left before the final thank-you. The postmortem marks one decisive misstep. He had admired Steve Jobs and Apple for focus, then ignored the product strategy lesson by adding a sponsor panel after the evening was full.",
-      "whatToDo": "Anatole names the first extra yes in the review notes. He does not blame the team; he marks the sponsor panel as the moment focus was spent.",
-      "whyItMatters": "A postmortem is useful only when it finds the first leak. The event did not fail from one busy hour; it failed when an attractive add-on displaced the main promise."
+      "scenario": "Anatole reviews the fundraiser after the dessert table ran late, the student showcase was cut short, and two donors left early. He had admired Steve Jobs and Apple for focus, then ignored the product strategy lesson by adding a sponsor panel after the evening was full. The first extra yes is the point the review must name.",
+      "whatToDo": "Anatole names the sponsor panel as the moment focus was spent and removes that slot from the next program.",
+      "whyItMatters": "A review is useful when it finds the first extra yes. The event failed when an attractive add-on displaced the main promise."
     },
     {
       "exampleId": "ex03",
@@ -59,59 +59,59 @@
       "title": "Brigitte Deletes the Cheerful Yes",
       "tags": [
         "mistake recovery",
-        "email",
-        "calendar"
+        "client reply",
+        "boundary"
       ],
       "planSpec": {
         "domain": "consulting email written during a crowded client week",
         "audience": "consultant catching her own people-pleasing mid-message",
-        "stakes": "the noticing matters more than the polished refusal",
+        "stakes": "the early catch matters more than the polished refusal",
         "format": "mistake_recovery",
-        "requiredBeat": "Brigitte notices her own mistake mid-stream and corrects before sending."
+        "requiredBeat": "The protagonist catches a false yes in the draft before it becomes debt."
       },
-      "scenario": "Brigitte is typing, \"Happy to help,\" minutes before sending a client reply. Halfway through the sentence, she sees the two hidden days behind that cheerful yes. Warren Buffett would not call every Berkshire Hathaway lead an Omaha investing fit, and she has just treated flattery as fit. Her cursor sits after the comma while she notices the error.",
+      "scenario": "Brigitte is typing, Happy to help, and reaches the comma when she sees the two hidden days behind that cheerful yes. Warren Buffett would not call every Berkshire Hathaway lead an Omaha investing fit, and she has just treated flattery as fit. The cursor sits there long enough for the cost to become visible.",
       "whatToDo": "Brigitte deletes the promise and writes one clean sentence: the week is full, and the client can have a later date or a referral.",
-      "whyItMatters": "The recovery starts when she catches the false yes inside her own hand. Noticing the cost before sending keeps politeness from becoming debt."
+      "whyItMatters": "Catching the cost before sending keeps politeness from becoming debt."
     },
     {
       "exampleId": "ex04",
       "sourceAnchorId": "ch24.ex.steve-jobs-focus-by-refusal",
-      "title": "Benoit's Budget Memo",
+      "title": "Benoit Writes the Protected Yes",
       "tags": [
         "decision memo",
-        "budget",
-        "board"
+        "clinic budget",
+        "focus"
       ],
       "planSpec": {
         "domain": "clinic budget memo refusing an added program",
         "audience": "director using a written artifact to carry the no",
         "stakes": "the memo refuses a good-looking program to protect current care",
         "format": "decision_memo",
-        "requiredBeat": "The written memo contains the action and names the protected yes."
+        "requiredBeat": "A written refusal names the good request and the better yes it protects."
       },
-      "scenario": "Benoit writes the Friday memo before the board packet closes: \"Steve Jobs made Apple focus by cutting good product strategy ideas. Our clinic has the same problem. The mobile fair is worthy, but it takes nurses from Tuesday follow-ups. Recommendation: decline this quarter and protect the current care list.\"",
-      "whatToDo": "Benoit lets the memo say no in plain words. He names the good request, the staff cost, and the patient promise that must stay funded first.",
-      "whyItMatters": "A written no can lower the drama. The memo keeps refusal tied to the protected yes, so the board is weighing care instead of taste."
+      "scenario": "Benoit writes the Friday budget note before the board packet closes. Steve Jobs made Apple focus by cutting good product strategy ideas; the clinic has the same problem. The mobile fair is worthy, but it takes nurses from Tuesday follow-ups, so this quarter the care list gets protected first.",
+      "whatToDo": "Benoit says no in plain words. He names the good request, the staff cost, and the patient promise that must stay funded.",
+      "whyItMatters": "A plain no can lower the drama when it stays tied to the protected yes."
     },
     {
       "exampleId": "ex05",
       "sourceAnchorId": "ch24.ex.steve-jobs-focus-by-refusal",
-      "title": "Zoe and Lane Split the Roadmap",
+      "title": "Zoe Protects the Roadmap Promise",
       "tags": [
-        "contrast",
-        "product",
-        "roadmap"
+        "vignette",
+        "product roadmap",
+        "focus"
       ],
       "planSpec": {
         "domain": "two product leads responding to the same investor feature request",
-        "audience": "leaders comparing opposite approaches to the same pressure",
+        "audience": "leaders comparing focus and appeasement under investor pressure",
         "stakes": "one refusal protects focus while one agreeable yes fractures the product",
-        "format": "contrast",
-        "requiredBeat": "Two named people face the same request with equal-weight opposite approaches and diverging outcomes."
+        "format": "vignette",
+        "requiredBeat": "A product lead turns an attractive request into a focus test."
       },
-      "scenario": "Zoe and Lane receive the same investor request before the next product review. Zoe cites Steve Jobs, Apple, focus, and product strategy, then removes two shiny features from the roadmap. Lane accepts both features to keep the investor warm. Zoe ships a clearer release; Lane's team spends Friday explaining why the main tool now feels crowded.",
-      "whatToDo": "Zoe protects the product promise and lets the investor hear a respectful no. Lane's result becomes the contrast: friendliness without refusal can tax the whole team.",
-      "whyItMatters": "The same pressure can reveal two calendars. A good option may still be the threat when it steals the focus that made the product worth backing."
+      "scenario": "Zoe reads the investor feature request before the next product review. Steve Jobs, Apple, focus, and product strategy give her the test: a good option can still crowd the main promise. She removes two shiny features from the roadmap and prepares a respectful no for the investor.",
+      "whatToDo": "Zoe protects the product promise and lets the investor hear a respectful no.",
+      "whyItMatters": "A good option may still be the threat when it steals the focus that made the product worth backing."
     },
     {
       "exampleId": "ex06",
@@ -184,12 +184,12 @@
         "sourceAnchorId": "ch24.fact.7",
         "prompt": "Anatole's event team keeps saying yes to small sponsor favors, then shows up resentful and late. What should the postmortem identify?",
         "choices": [
-          "The First Leaking Yes: Mark the earliest favor that displaced the main event promise.",
+          "The First Extra Yes: Mark the earliest favor that displaced the main event promise.",
           "The Morale Speech: Tell the tired event team to be more positive during sponsor week after the gala.",
           "The Gratitude Cover: Thank sponsors harder so the added favors feel worthwhile."
         ],
         "correctIndex": 0,
-        "explanation": "The resentment began when service lost its boundary. A speech or gratitude cover treats the mood, while the first leaking yes names the cause.",
+        "explanation": "The resentment began when service lost its boundary. A speech or gratitude cover treats the mood, while the first extra yes names the cause.",
         "bloomsLevel": "analyze",
         "depthLevel": "standard"
       },

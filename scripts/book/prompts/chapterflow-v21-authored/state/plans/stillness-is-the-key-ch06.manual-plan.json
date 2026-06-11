@@ -16,15 +16,15 @@
       "domain": "museum education program memo",
       "audience": "Wallace, an education coordinator deciding how to frame a student writing exercise",
       "stakes": "Students may treat journaling as performance unless the assignment protects honest private attention.",
-      "format": "decision_memo",
-      "requiredBeat": "A memo carries the scene by showing Wallace choose privacy over display after studying Anne Frank's diary in Amsterdam."
+      "format": "school_case",
+      "requiredBeat": "A teacher turns Anne Frank diary study into a privacy rule for students."
     },
     {
       "domain": "community clinic scheduling review",
       "audience": "Tristan and Chiara, two coordinators facing the same recurring missed handoff",
       "stakes": "Memory may excuse a pattern that written records would reveal.",
-      "format": "contrast",
-      "requiredBeat": "Two named people face the same missed handoff, one trusts memory and one checks a journal, with different outcomes."
+      "format": "vignette",
+      "requiredBeat": "One person finds an unflattering pattern in her own notes before the next handoff."
     },
     {
       "domain": "architecture studio desk critique",
@@ -44,8 +44,8 @@
       "domain": "municipal emergency operations log",
       "audience": "Bashir, an emergency operations chief reviewing his own leadership log",
       "stakes": "The same log can either defend an ego or train steadier public judgment.",
-      "format": "before_after",
-      "requiredBeat": "Show Bashir before and after changing how he writes, with Meditations as the model of private self-instruction."
+      "format": "inner_monologue",
+      "requiredBeat": "A private log moves from defense to self-instruction in one working session."
     }
   ],
   "quizFocus": {
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 10,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.912Z"
+  "derivedAt": "2026-06-11T20:03:37.108Z"
 }

@@ -28,28 +28,29 @@
         "format": "school_case",
         "requiredBeat": "Carmen uses Meditations to answer a learner's confusion about memento mori."
       },
-      "scenario": "Carmen writes memento mori on the whiteboard in an adult night class on Stoicism. A learner circles the words and asks why Meditations would put death inside a calm life. Carmen opens a second century passage and has three minutes before the break to make the confusion useful: death is not a threat in the lesson; it is a filter for the next word, grudge, and hour.",
+      "scenario": "Carmen writes memento mori on the whiteboard in an adult night class on Stoicism. A learner circles the words and asks why Meditations would put death inside a calm life. Carmen opens a second century passage and has the break approaching to make the confusion useful: death is not a threat in the lesson; it is a filter for the next word, grudge, and hour.",
       "whatToDo": "Carmen asks the learner to name one petty fight that would look smaller beside a finite life. She turns confusion into a test the class can use tonight.",
       "whyItMatters": "The teaching lands because the learner's doubt stays visible. Memento mori becomes a question for conduct, not an antique phrase to admire."
     },
     {
       "exampleId": "ex02",
       "sourceAnchorId": "ch34.ex.ryan-holiday-memento-mori-coin",
-      "title": "Douglas Moves the Coin",
+      "title": "Douglas Puts the Coin Beside the Keyboard",
       "tags": [
-        "before_after",
-        "environment cue"
+        "before after",
+        "memento mori",
+        "environment"
       ],
       "planSpec": {
         "domain": "home office writing routine",
         "audience": "readers whose reminders stay hidden from the moment of choice",
         "stakes": "a meaningful object becomes decoration unless it interrupts a habit",
         "format": "before_after",
-        "requiredBeat": "Douglas changes the place of a Daily Stoic memento mori coin so it can shape a real reply."
+        "requiredBeat": "The same reminder changes behavior when moved into the place of choice."
       },
-      "scenario": "Before: Douglas keeps the Daily Stoic memento mori coin in a drawer with its quote facing down. His first email each morning still snaps at whoever delayed him. After: the same coin sits beside the keyboard, part of modern Stoicism made physical. His first email now meets the reminder before it reaches the send button.",
-      "whatToDo": "Douglas moves the coin from storage to the place where the habit begins. He lets the object make the default mistake a little harder.",
-      "whyItMatters": "The contrast carries the lesson: a reminder works when it changes the setting of the choice, not when it stays meaningful but out of reach."
+      "scenario": "Douglas has kept the Daily Stoic memento mori coin in a drawer with its quote facing down. His first email each morning still snaps at whoever delayed him. Now the coin sits beside the keyboard, part of modern Stoicism made physical, and the first email meets the reminder before it reaches send.",
+      "whatToDo": "Douglas moves the coin from storage to the place where the habit begins, making the default mistake a little harder.",
+      "whyItMatters": "A reminder works when it changes the setting of the choice, not when it stays meaningful but out of reach."
     },
     {
       "exampleId": "ex03",
@@ -150,7 +151,7 @@
       {
         "questionId": "q02",
         "sourceAnchorId": "ch34.concept",
-        "prompt": "You open tomorrow's calendar and see the first hour already swallowed by stray messages. Which change best fits memento mori integration?",
+        "prompt": "You open the schedule and see the first hour swallowed by stray messages. Which change best fits memento mori integration?",
         "choices": [
           "The Environment Cue: Put a plain death reminder where the first choice starts.",
           "The Drama Misread: Rewrite the day as a race against death and hurry.",
@@ -178,7 +179,7 @@
       {
         "questionId": "q04",
         "sourceAnchorId": "ch34.fact.4",
-        "prompt": "You are halfway through an angry message and notice the sentence would eat twenty minutes of your night. Which test belongs there?",
+        "prompt": "You are writing an angry message and notice the sentence would eat twenty minutes of your night. Which test belongs there?",
         "choices": [
           "The Righteous-Anger Misread: Send the hot message because heat makes the night feel honest and brave.",
           "The Stoic-Silence Misread: Delete every line so the conflict looks calm while resentment stays.",

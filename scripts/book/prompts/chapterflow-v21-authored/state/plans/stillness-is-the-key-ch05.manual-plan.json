@@ -37,8 +37,8 @@
       "domain": "research grant review",
       "audience": "scientists asked for fast approval",
       "stakes": "whether a claim enters a grant before its support is tested",
-      "format": "reset_moment",
-      "requiredBeat": "A routine is interrupted, then restarted with a slower question."
+      "format": "decision_point",
+      "requiredBeat": "A grant reviewer chooses whether to approve quickly or test the weakest evidence first."
     },
     {
       "domain": "archive reading room",
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 11,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.912Z"
+  "derivedAt": "2026-06-11T20:03:37.108Z"
 }

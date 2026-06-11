@@ -23,8 +23,8 @@
       "domain": "bedtime routine interrupted by a child's question",
       "audience": "caregivers whose routines make them rush past feelings",
       "stakes": "A repeated household routine can train either hurry or presence.",
-      "format": "reset_moment",
-      "requiredBeat": "Interrupt a routine and make the pause itself the relational technique."
+      "format": "dialogue",
+      "requiredBeat": "A parent changes posture and pace when a child asks for real attention."
     },
     {
       "domain": "museum case with mourning objects",
@@ -37,15 +37,15 @@
       "domain": "team debrief after a failed listening session",
       "audience": "leaders who borrow calm language while rushing people",
       "stakes": "A group can quote neighborly attention and still deny it in practice.",
-      "format": "postmortem",
-      "requiredBeat": "Open after failure and locate the decisive misstep."
+      "format": "dialogue",
+      "requiredBeat": "A listening session changes its rule after one hurried answer is named."
     },
     {
       "domain": "phone call during a grief spiral",
       "audience": "friends and partners who notice their own demand midstream",
       "stakes": "A need for comfort can turn another person into a tool.",
-      "format": "mistake_recovery",
-      "requiredBeat": "Make the center of gravity the protagonist noticing her own error."
+      "format": "dialogue",
+      "requiredBeat": "A friend changes a rescue demand into a request for presence."
     }
   ],
   "quizFocus": {
@@ -65,5 +65,5 @@
   },
   "readingTimeMinutes": 8,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.915Z"
+  "derivedAt": "2026-06-11T20:03:37.115Z"
 }

@@ -24,7 +24,7 @@
         "patience"
       ],
       "planSpec": {
-        "domain": "media class watching a children\u0027s television clip",
+        "domain": "media class watching a children's television clip",
         "audience": "teachers and parents who mistake slow attention for weak engagement",
         "stakes": "A child may learn whether calm attention is offered to them or used to manage them.",
         "format": "predict_reveal",
@@ -57,22 +57,22 @@
     {
       "exampleId": "ex03",
       "sourceAnchorId": "ch19.ex.fred-rogers-neighborly-attention",
-      "title": "Renata Restarts Bedtime",
+      "title": "Renata Comes Back to the Bedside",
       "tags": [
-        "home",
-        "routine",
-        "listening"
+        "dialogue",
+        "bedtime",
+        "attention"
       ],
       "planSpec": {
-        "domain": "bedtime routine interrupted by a child\u0027s question",
+        "domain": "bedtime routine interrupted by a child's question",
         "audience": "caregivers whose routines make them rush past feelings",
         "stakes": "A repeated household routine can train either hurry or presence.",
-        "format": "reset_moment",
-        "requiredBeat": "Interrupt a routine and make the pause itself the relational technique."
+        "format": "dialogue",
+        "requiredBeat": "A parent changes posture and pace when a child asks for real attention."
       },
-      "scenario": "Pajamas, toothbrush, light off: Renata has the routine memorized. Rejean interrupts it with a question about why the 1968 Pittsburgh host talked to children as if their feelings were serious. Renata nearly answers from the hallway. Her hand is already on the switch, and the kitchen sink is still running. She stops the routine, turns off the water, returns to the bed, sits low enough for eye contact, and starts again carefully with one sentence: \"Tell me which feeling made you ask.\"",
-      "whatToDo": "Renata restarts bedtime by changing her posture and pace. She gives Rejean the same kind of direct attention that made the neighborhood program feel safe.",
-      "whyItMatters": "The stopped routine matters because love begins again there. A routine can serve love only when the person inside it is not treated as an obstacle to finishing."
+      "scenario": "Pajamas, toothbrush, light off: Renata knows the bedtime sequence. Rejean asks why the 1968 Pittsburgh host talked to children as if their feelings were serious. Renata nearly answers from the hallway, then turns off the sink and comes back to the bed. Sitting low enough for eye contact, she says, Tell me which feeling made you ask.",
+      "whatToDo": "Renata changes her posture and pace so Rejean receives direct attention, not an answer tossed from the doorway.",
+      "whyItMatters": "A routine serves love only when the person inside it is not treated as an obstacle to finishing."
     },
     {
       "exampleId": "ex04",
@@ -97,42 +97,42 @@
     {
       "exampleId": "ex05",
       "sourceAnchorId": "ch19.ex.fred-rogers-neighborly-attention",
-      "title": "Deepak Finds the Missed Minute",
+      "title": "Deepak Protects the Full Answer",
       "tags": [
-        "work",
-        "failure",
+        "dialogue",
+        "listening session",
         "attention"
       ],
       "planSpec": {
         "domain": "team debrief after a failed listening session",
         "audience": "leaders who borrow calm language while rushing people",
         "stakes": "A group can quote neighborly attention and still deny it in practice.",
-        "format": "postmortem",
-        "requiredBeat": "Open after failure and locate the decisive misstep."
+        "format": "dialogue",
+        "requiredBeat": "A listening session changes its rule after one hurried answer is named."
       },
-      "scenario": "By Thursday morning, Deepak's listening session has already failed. The notes say people felt \"processed,\" a word no one wants near trust. The agenda had praised the 1968 Pittsburgh host and the patience of the studio. The slide deck had even used a still from the neighborhood program. The trace of the failure sits in one line of the transcript: Deepak answered Rachel after nine seconds. The decisive misstep was not bad intent. It was rushing the very person the session claimed to honor.",
-      "whatToDo": "Deepak rewrites the debrief around the missed minute. He names the nine-second interruption and asks the team to protect a full answer before offering help.",
-      "whyItMatters": "A postmortem prevents calm language from hiding hurried conduct. Neighborly attention becomes real only when someone receives time, not just respectful words."
+      "scenario": "Deepak brings the listening-session transcript to Rachel. The agenda had praised the 1968 Pittsburgh host and the patience of the studio, but one line embarrasses him: he answered Rachel after nine seconds. Then I was processed, not heard, she says. Deepak changes the next session rule before the team meets again.",
+      "whatToDo": "Deepak names the nine-second interruption and asks the team to protect a full answer before offering help.",
+      "whyItMatters": "Neighborly attention becomes real only when someone receives time, not just respectful words."
     },
     {
       "exampleId": "ex06",
       "sourceAnchorId": "ch19.ex.queen-victoria-prince-albert",
-      "title": "Rachel Catches the Rescue Demand",
+      "title": "Rachel Makes the Request Smaller",
       "tags": [
-        "friendship",
+        "dialogue",
         "grief",
-        "self-soothing"
+        "friendship"
       ],
       "planSpec": {
         "domain": "phone call during a grief spiral",
         "audience": "friends and partners who notice their own demand midstream",
         "stakes": "A need for comfort can turn another person into a tool.",
-        "format": "mistake_recovery",
-        "requiredBeat": "Make the center of gravity the protagonist noticing her own error."
+        "format": "dialogue",
+        "requiredBeat": "A friend changes a rescue demand into a request for presence."
       },
-      "scenario": "Rachel is halfway through telling Yann about Queen Victoria, Prince Albert, and the grief that followed 1861 at Windsor when she hears her own sentence: \"You have to make this stop.\" The words do not sound like love. They sound like a job no friend can survive. The line hangs there before Yann can rescue or retreat. She pauses, embarrassed, and corrects the request before he answers. \"Stay with me while I feel it now\" is smaller, truer, and kinder.",
-      "whatToDo": "Rachel names the rescue demand out loud and replaces it with a request for presence. She lets Yann be a friend instead of making him responsible for ending grief.",
-      "whyItMatters": "Mistake recovery protects both people. The need is still real, but the other person is no longer used as a tool for self-soothing."
+      "scenario": "Rachel is telling Yann about Queen Victoria, Prince Albert, and the grief that followed 1861 at Windsor. The sentence You have to make this stop lands badly before Yann can rescue or retreat. Rachel pauses, embarrassed, and makes the request smaller: Stay with me while I feel it now.",
+      "whatToDo": "Rachel names the rescue demand and replaces it with a request for presence.",
+      "whyItMatters": "The need is still real, but the other person is no longer used as a tool for self-soothing."
     }
   ],
   "quiz": {
@@ -171,7 +171,7 @@
         "sourceAnchorId": "ch19.fact.6",
         "prompt": "Your phone stays beside you during talks with Yann, and you call that availability. Which environment change fits the hard edge?",
         "choices": [
-          "Productive Distance: keep the phone face down so you can still catch urgent pings.",
+          "Productive Distance: keep the phone nearby but unanswered so you can still catch urgent pings.",
           "Self-Soothing Setup: leave the phone nearby because seeing it keeps you relaxed.",
           "Attention Clearing: put the phone in another room before Yann starts speaking."
         ],
@@ -197,7 +197,7 @@
       {
         "questionId": "q05",
         "sourceAnchorId": "ch19.ex.fred-rogers-neighborly-attention",
-        "prompt": "The debrief has already failed: Deepak praised the 1968 Pittsburgh host, yet Rachel felt processed. Which misstep explains it?",
+        "prompt": "The debrief shows the problem: Deepak praised the 1968 Pittsburgh host, yet Rachel felt processed. Which repair fits it?",
         "choices": [
           "Brand Borrowing: he should have shown more clips so the lesson felt official.",
           "Tone Polishing: he should have sounded warmer while keeping the same pace.",
@@ -321,7 +321,7 @@
       },
       {
         "sourceAnchorId": "ch19.ex.fred-rogers-neighborly-attention",
-      "context": "When a child or colleague needs the kind of slow attention modeled in Pittsburgh in 1968",
+        "context": "When a child or colleague needs the kind of slow attention modeled in Pittsburgh in 1968",
         "plan": "If you feel tempted to hurry them, then Make Room Before Replying by lowering your pace and giving one full minute before advice."
       },
       {

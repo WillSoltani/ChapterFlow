@@ -10,7 +10,7 @@
       "audience": "readers whose inbox thoughts start acting like commands",
       "stakes": "one person lets the thread own the hour while another clears enough room to answer the real request",
       "format": "contrast",
-      "requiredBeat": "two named people face the same noisy thread and opposite approaches produce opposite outcomes"
+      "requiredBeat": "Two replies to one noisy thread show opposite uses of attention without a boilerplate setup."
     },
     {
       "domain": "software design review",
@@ -30,8 +30,8 @@
       "domain": "site reliability incident reporting",
       "audience": "readers who let alerts and guesses merge under pressure",
       "stakes": "the same report either spreads panic or separates facts from mental residue",
-      "format": "before_after",
-      "requiredBeat": "the same person repeats the same process before and after clearing the mind"
+      "format": "coach_talk",
+      "requiredBeat": "A peer helps the report separate confirmed steps from anxious guesses."
     },
     {
       "domain": "radiology reading room",
@@ -64,5 +64,5 @@
   },
   "readingTimeMinutes": 11,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T19:27:22.911Z"
+  "derivedAt": "2026-06-11T20:03:37.107Z"
 }

@@ -15,43 +15,43 @@
   "examples": [
     {
       "exampleId": "ch13-ex01-mederic-memo",
-      "title": "Mederic's Refusal Memo",
+      "title": "Mederic Says No at the Soup Line",
       "tags": [
-        "memo",
+        "dialogue",
         "service",
-        "donor"
+        "refusal"
       ],
       "sourceAnchorId": "ch13.ex.dorothy-day-catholic-worker-houses",
       "planSpec": {
         "domain": "Catholic Worker donor response",
         "audience": "Mederic drafting an internal decision memo",
         "stakes": "a restricted gift could fund beds while excluding the hardest guests",
-        "format": "decision_memo",
-        "requiredBeat": "The written memo refuses a donor condition that would make service cleaner but less just."
+        "format": "dialogue",
+        "requiredBeat": "A donor condition is refused in a spoken exchange before the soup line opens."
       },
-      "scenario": "Mederic's memo, saved at 11:18 p.m. on the Catholic Worker office laptop, begins: \"New York, Great Depression file. The donor will fund beds only if we stop serving the men who smell of the street.\" Three lines later he writes the answer: no restricted gift, no clean conscience. The soup line opens at dawn, and the memo carries the choice before anyone speaks.",
-      "whatToDo": "Mederic writes the refusal plainly, names the condition that would hide the hardest guests, and leaves the memo ready for the morning reply.",
-      "whyItMatters": "The written choice keeps calm from becoming a funding tactic. Service stays tied to the people most likely to be pushed aside."
+      "scenario": "Before dawn at the Catholic Worker office in New York, Mederic reads the donor condition aloud: beds funded only if the men who smell of the street are turned away. Natalia points to Dorothy Day and the Great Depression notes on the shelf, then looks toward the soup line and asks who calm is supposed to serve. Mederic answers with the refusal plainly: no restricted gift, no clean conscience.",
+      "whatToDo": "Mederic names the condition that would hide the hardest guests and prepares the morning reply without softening the no.",
+      "whyItMatters": "Service stays tied to the people most likely to be pushed aside. Calm is not useful if it becomes a funding tactic."
     },
     {
       "exampleId": "ch13-ex02-edmund-carter-route",
-      "title": "Two Plague Briefs",
+      "title": "Carter Moves the Oldest Addresses First",
       "tags": [
-        "contrast",
-        "public-duty",
-        "restraint"
+        "vignette",
+        "city operations",
+        "common good"
       ],
       "sourceAnchorId": "ch13.ex.marcus-aurelius-imperial-duty",
       "planSpec": {
         "domain": "city emergency food routing",
         "audience": "Edmund and Carter handling the same staff shortage",
         "stakes": "public image could outrun the duty to serve the oldest residents first",
-        "format": "contrast",
-        "requiredBeat": "Edmund protects image while Carter uses the imperial duty standard to serve the common good."
+        "format": "vignette",
+        "requiredBeat": "A city operations brief shows calm serving duty rather than image."
       },
-      "scenario": "Edmund and Carter receive the same emergency brief in the city operations room: staff illness has thinned the crew, like the Roman Empire under the Antonine Plague. Edmund protects his image, hides missed deliveries, and the food route fails by noon. Carter uses the Meditations rule: serve the common good, restrain panic, and move workers to the oldest addresses first. One pressure splits into two outcomes.",
-      "whatToDo": "Carter names the shortage, limits public claims, and sends the first workers to the oldest addresses while Edmund's image plan collapses.",
-      "whyItMatters": "The same calm can serve pride or duty. The difference shows up in who gets helped when pressure arrives and who is left waiting."
+      "scenario": "Staff illness has thinned the city crew, and the emergency brief compares the strain to the Roman Empire under the Antonine Plague. Edmund wants the public dashboard to hide missed deliveries. Carter uses the Meditations rule instead: serve the common good, restrain panic, and move workers to the oldest addresses first.",
+      "whatToDo": "Carter names the shortage, limits public claims, and sends the first workers to the oldest addresses.",
+      "whyItMatters": "Calm proves itself by who gets helped when pressure arrives, not by how protected the leader looks."
     },
     {
       "exampleId": "ch13-ex03-bruno-maelle-door",
@@ -95,23 +95,23 @@
     },
     {
       "exampleId": "ch13-ex05-vivian-inbox",
-      "title": "Vivian's Inbox Turn",
+      "title": "Vivian Opens With the Repair Email",
       "tags": [
-        "before-after",
-        "inbox",
-        "duty"
+        "vignette",
+        "shelter",
+        "service"
       ],
       "sourceAnchorId": "ch13.ex.dorothy-day-catholic-worker-houses",
       "planSpec": {
         "domain": "shelter operations inbox",
         "audience": "Vivian changing the order of her morning replies",
         "stakes": "pleasant praise could keep urgent repair work out of sight",
-        "format": "before_after",
-        "requiredBeat": "The same inbox routine is shown before and after the goodness-first change."
+        "format": "vignette",
+        "requiredBeat": "One inbox order changes when service, not praise, gets first claim."
       },
-      "scenario": "Before the change, Vivian closes the Catholic Worker inbox by answering praise first: donor thanks, photo request, easy note. The New York shelter repair email waits. After the change, she opens the same inbox with one question from Dorothy Day's world: who needs the good act most? The repair request gets the first call, and the pleasant thank-you waits ten minutes.",
-      "whatToDo": "Vivian moves the repair email to the top, makes the first call, and lets praise wait until duty has a real next step in motion.",
-      "whyItMatters": "The two inboxes look almost the same from the outside. The order changes who benefits from her quiet morning and who waits."
+      "scenario": "Vivian opens the Catholic Worker inbox and sees donor thanks, a photo request, an easy note, and a New York shelter repair email. Dorothy Day's world gives her one question: who needs the good act most? The repair request gets the first call, and the pleasant thank-you waits.",
+      "whatToDo": "Vivian moves the repair email to the top, makes the first call, and lets praise wait until duty has a real next step.",
+      "whyItMatters": "The order changes who benefits from her quiet morning and who waits."
     },
     {
       "exampleId": "ch13-ex06-maelle-audit",

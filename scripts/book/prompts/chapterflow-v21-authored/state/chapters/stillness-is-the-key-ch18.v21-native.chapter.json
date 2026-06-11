@@ -36,22 +36,22 @@
     {
       "exampleId": "ex02",
       "sourceAnchorId": "ch18.ex.reinhold-niebuhr-serenity-prayer",
-      "title": "Tamar Rewrites the Page",
+      "title": "Tamar Draws Three Lines",
       "tags": [
-        "before-after",
-        "medical wait",
-        "prayer"
+        "vignette",
+        "medical portal",
+        "serenity"
       ],
       "planSpec": {
         "domain": "family medical waiting period",
         "audience": "readers trying to control outcomes through more checking",
         "stakes": "a worry list can become a false claim of control",
-        "format": "before_after",
-        "requiredBeat": "The same worry page changes after Tamar applies the serenity prayer."
+        "format": "vignette",
+        "requiredBeat": "A page turns worry into three named jobs without a two-panel scaffold."
       },
-      "scenario": "Before the change, Tamar refreshes the medical portal, circles the same blank lab field, and calls worry a plan. Reinhold Niebuhr's serenity prayer sits unread beside the keyboard. After the change, Tamar draws three lines: accept the result window, change the appointment and meal plan, ask wisdom before the next call. The facts on the screen stay the same; the job on the page changes.",
+      "scenario": "Tamar refreshes the medical portal and circles the blank lab field until worry starts calling itself a plan. Reinhold Niebuhr's serenity prayer sits beside the keyboard. She draws three lines on the page: accept the result window, change the appointment and meal plan, ask wisdom before the next call.",
       "whatToDo": "Tamar rewrites the page into what can be changed, what must be accepted, and where wisdom is needed before she makes another call.",
-      "whyItMatters": "The parallel before and after shows acceptance without drift. Nothing external moves, but Tamar stops assigning herself the lab's job."
+      "whyItMatters": "Nothing external moves, but Tamar stops assigning herself the lab's job."
     },
     {
       "exampleId": "ex03",
@@ -89,7 +89,7 @@
         "format": "inner_monologue",
         "requiredBeat": "Thought by thought, Rosaire catches the false link between care and control."
       },
-      "scenario": "Rosaire reads Reinhold Niebuhr's serenity prayer at the kitchen table. Lazy, the first thought says. No, careful, the second thought argues. If I accept this, I will stop caring. Before he touches the draft, the next thought has to sort care from control. An hour spent replaying the vote has not changed one vote. Wisdom might mean sending the clean note and closing the file.",
+      "scenario": "Rosaire reads Reinhold Niebuhr's serenity prayer at the laundromat folding table. Lazy, the first thought says. No, careful, the second thought argues. If I accept this, I will stop caring. Before he touches the draft, the next thought has to sort care from control. An hour spent replaying the vote has not changed one vote. Wisdom might mean sending the clean note and closing the file.",
       "whatToDo": "Rosaire names the wrong turn in his own thinking, then separates the clean note from the vote he cannot command before closing the file.",
       "whyItMatters": "The inner monologue shows how control hides as care. Surrender begins when the mind stops praising a loop that changes nothing."
     },

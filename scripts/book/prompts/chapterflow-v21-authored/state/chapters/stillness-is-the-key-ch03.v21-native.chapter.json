@@ -57,22 +57,22 @@
     {
       "exampleId": "ex03",
       "sourceAnchorId": "ch03.ex.modern-notifications-always-reachable-work",
-      "title": "The Restarted Draft",
+      "title": "Mateus Builds the Input Gate",
       "tags": [
-        "routine",
-        "pause",
-        "reset"
+        "vignette",
+        "inputs",
+        "drafting"
       ],
       "planSpec": {
         "domain": "morning writing routine",
         "audience": "people whose first work block gets split by phone alerts",
         "stakes": "the first paragraph may inherit the mood of the alerts",
-        "format": "reset_moment",
-        "requiredBeat": "An interrupted routine stops and restarts differently."
+        "format": "vignette",
+        "requiredBeat": "A worker changes the work surface before alerts can choose the first paragraph."
       },
-      "scenario": "Mateus pours coffee, opens the draft, and hears cell phone alarms ripple across the kitchen counter. A social media notification promises one quick look; the email inbox badge follows. His routine has already split. Before typing the first paragraph, Mateus closes the tabs, sets the phone face down, waits for one slow count of ten, and restarts with only the draft on screen.",
-      "whatToDo": "Mateus stops the broken routine, removes the three live inputs from view, and restarts the work block from the blank draft rather than trying to concentrate over them.",
-      "whyItMatters": "Restarting deliberately teaches the mind that interruption is not the boss of the next minute. The first clean move is how presence returns."
+      "scenario": "Mateus pours coffee and opens the draft while cell phone alarms ripple across the counter. A social media notification offers one quick look; the email inbox badge follows. Instead of testing willpower, he moves the phone to a closed drawer, shuts the extra tabs, and puts the draft alone on the screen.",
+      "whatToDo": "Mateus removes the three live inputs from view and writes the first paragraph before any channel gets another vote.",
+      "whyItMatters": "The first clean move teaches the mind that interruption is not the boss of the next minute."
     },
     {
       "exampleId": "ex04",
@@ -97,9 +97,9 @@
     {
       "exampleId": "ex05",
       "sourceAnchorId": "ch03.ex.modern-notifications-always-reachable-work",
-      "title": "The Rumor In The Note",
+      "title": "Aanya Checks the Rumor Before Send",
       "tags": [
-        "postmortem",
+        "decision point",
         "launch",
         "noise"
       ],
@@ -107,19 +107,19 @@
         "domain": "customer launch communication",
         "audience": "teams reviewing a communication failure after the fact",
         "stakes": "a false line reached customers because noise sat beside the draft",
-        "format": "postmortem",
-        "requiredBeat": "Open after the failure and locate the decisive misstep."
+        "format": "decision_point",
+        "requiredBeat": "The protagonist catches an unverified line before it reaches customers."
       },
-      "scenario": "Aanya's launch note failed before anyone argued. The audit found the first misstep: she drafted with the email inbox open, 24/7 news refreshing, and social media notifications stacking beside the copy. One rumor slipped in as if it were confirmed. By the time the correction arrived, the team had already sent the wrong line to customers.",
-      "whatToDo": "Aanya marks the open-input draft as the decisive error and rewrites the launch checklist so writing happens with only verified source material in view.",
-      "whyItMatters": "Postmortems help when they find the first leak, not just the final typo. Her failure began when noise was allowed beside the work."
+      "scenario": "Aanya is polishing the launch note with the email inbox open, 24/7 news refreshing, and social media notifications stacking beside the copy. One rumor has slipped into the second paragraph as if it were confirmed. Before the note leaves, she compares the line with the verified source sheet and sees the problem while it can still be fixed.",
+      "whatToDo": "Aanya deletes the rumor, closes the live feeds, and rewrites the launch checklist so drafting happens with only verified source material in view.",
+      "whyItMatters": "The useful lesson arrives before damage spreads. Noise loses power when the source sheet has the final word."
     },
     {
       "exampleId": "ex06",
       "sourceAnchorId": "ch03.ex.modern-notifications-always-reachable-work",
-      "title": "The Fourth Reply Pause",
+      "title": "Armande Sends the Forecast Number First",
       "tags": [
-        "mistake recovery",
+        "text thread",
         "inbox",
         "forecast"
       ],
@@ -127,12 +127,12 @@
         "domain": "sales forecast preparation",
         "audience": "workers who notice their own inbox error midstream",
         "stakes": "a forecast may be late because reply momentum feels like work",
-        "format": "mistake_recovery",
-        "requiredBeat": "The protagonist notices his own error and corrects course."
+        "format": "text_thread",
+        "requiredBeat": "A compressed exchange shows a worker refusing reply momentum until the forecast is named."
       },
-      "scenario": "Armande is halfway through answering the third email inbox ping when he notices the pattern: each reply is making the next cell phone alarm feel more important. The sales forecast is still untouched. Before sending the fourth answer, he catches his own mistake, closes the inbox window, silences social media notifications, and writes the forecast number first.",
-      "whatToDo": "Armande names the error midstream, stops the reply chain, and finishes the one forecast number before reopening the inbox window.",
-      "whyItMatters": "Recovery begins at the noticing point. He does not need a perfect system; he needs one honest pause before the next ping recruits him."
+      "scenario": "Armande writes the rule into the team chat while the forecast cell is still blank. Email inbox: third ping? Armande: after the number. Cell phone alarms: quick reply? Armande: after the number. Social media notifications: later. The 24/7 news tab stays closed. Armande enters the forecast number, then reopens the inbox with the work no longer held hostage.",
+      "whatToDo": "Armande stops the reply chain long enough to finish the one forecast number before reopening the inbox window.",
+      "whyItMatters": "He does not need a perfect system; he needs one honest ordering rule before the next ping recruits him."
     }
   ],
   "quiz": {

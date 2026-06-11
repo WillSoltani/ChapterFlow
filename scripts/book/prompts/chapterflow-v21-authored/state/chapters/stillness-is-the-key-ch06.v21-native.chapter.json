@@ -37,42 +37,42 @@
     {
       "exampleId": "stillness-is-the-key-ch06-ex02",
       "sourceAnchorId": "ch06.ex.anne-frank-diary-in-amsterdam",
-      "title": "Wallace Sends the Private Memo",
+      "title": "Wallace Protects One Sealed Page",
       "tags": [
-        "decision_memo",
-        "diary",
-        "privacy"
+        "school case",
+        "privacy",
+        "diary"
       ],
       "planSpec": {
         "domain": "museum education program memo",
         "audience": "Wallace, an education coordinator deciding how to frame a student writing exercise",
         "stakes": "Students may treat journaling as performance unless the assignment protects honest private attention.",
-        "format": "decision_memo",
-        "requiredBeat": "A memo carries the scene by showing Wallace choose privacy over display after studying Anne Frank's diary in Amsterdam."
+        "format": "school_case",
+        "requiredBeat": "A teacher turns Anne Frank diary study into a privacy rule for students."
       },
-      "scenario": "Wallace's memo begins: \"After reading Anne Frank's 1942 diary from Amsterdam, we will not grade these pages for style. Students may seal one entry. The prompt is simple: write what fear is doing to your attention before you write what you believe.\" The class starts in the next hour, and Wallace has to choose whether the exercise will ask for polish or protect truth.",
-      "whatToDo": "Wallace revises the assignment memo so one entry stays sealed and the grade rests on completion, not on eloquence or public sharing.",
-      "whyItMatters": "The written artifact sets the moral weather. A private page can hold truth only when the teacher stops turning every sentence into a performance."
+      "scenario": "Wallace teaches Anne Frank's 1942 diary from Amsterdam and notices the class treating every page as something to perform. He changes the assignment on the board: one entry may be sealed, and the grade rests on completion rather than eloquence. The prompt stays simple: write what fear is doing to your attention before you write what you believe.",
+      "whatToDo": "Wallace revises the assignment so one entry stays sealed and the grade rests on completion, not public sharing.",
+      "whyItMatters": "A private page can hold truth only when the teacher stops turning every sentence into a performance."
     },
     {
       "exampleId": "stillness-is-the-key-ch06-ex03",
       "sourceAnchorId": "ch06.fact.6",
-      "title": "Tristan and Chiara Compare Notes",
+      "title": "Chiara Reads the Friday Pattern",
       "tags": [
-        "contrast",
-        "pattern",
-        "memory"
+        "vignette",
+        "clinic",
+        "journal"
       ],
       "planSpec": {
         "domain": "community clinic scheduling review",
         "audience": "Tristan and Chiara, two coordinators facing the same recurring missed handoff",
         "stakes": "Memory may excuse a pattern that written records would reveal.",
-        "format": "contrast",
-        "requiredBeat": "Two named people face the same missed handoff, one trusts memory and one checks a journal, with different outcomes."
+        "format": "vignette",
+        "requiredBeat": "One person finds an unflattering pattern in her own notes before the next handoff."
       },
-      "scenario": "Tristan and Chiara both handle the clinic handoff after the third late chart this month. Tristan tells the nurse manager, \"It was just a rough week,\" and moves on before the next shift. Chiara opens her notebook, where a Meditations line reminds her to examine herself first, and finds the same note on three Fridays: she waits too long to ask Bao for the lab list. Tristan forgets the pattern; Chiara has to name hers before the next handoff.",
+      "scenario": "After the third late clinic chart this month, Chiara opens the notebook she keeps beside a Meditations line about examining herself first. The same note appears on three Fridays: she waits too long to ask Bao for the lab list. The pattern is less flattering than memory, and it is useful before the next shift turns busy.",
       "whatToDo": "Chiara reads the old Friday entries aloud to herself, names the repeated delay, and asks Bao for the lab list before the shift turns busy.",
-      "whyItMatters": "Written records are less flattering than memory. Tristan gets relief for an hour; Chiara gets a pattern she can change before it hurts another handoff."
+      "whyItMatters": "Written records are less flattering than memory. A pattern she can name is a pattern she can change before it hurts another handoff."
     },
     {
       "exampleId": "stillness-is-the-key-ch06-ex04",
@@ -90,7 +90,7 @@
         "format": "coach_talk",
         "requiredBeat": "A mentor reframes Bao's stuck view in one conversation and gives a quotable line about naming heat."
       },
-      "scenario": "Bao stands beside the model table after the critique, jaw tight, pencil still in his hand. Zuri, the studio mentor, has been teaching Anne Frank's Amsterdam diary as private attention under pressure. She asks Bao to write the exact sentence in his head before he redraws the plan. He writes, \"They think I am useless.\" Zuri taps the line and says, \"A feeling gets quieter when you give it a smaller name.\" Bao has twenty minutes before the next pinup starts.",
+      "scenario": "Bao stands beside the model table after the critique, jaw tight, pencil still in his hand. Zuri, the studio mentor, has been teaching Anne Frank's Amsterdam diary as private attention under pressure. She asks Bao to write the exact sentence in his head before he redraws the plan. He writes, \"They think I am useless.\" Zuri taps the line and says, \"A feeling gets quieter when you give it a smaller name.\" The next pinup is close enough that the smaller sentence has to guide the next mark.",
       "whatToDo": "Bao writes the hot sentence, changes it to a smaller claim, and redraws one wall instead of defending his whole worth.",
       "whyItMatters": "The conversation turns anger into material Bao can handle. Naming the heat does not deny it; it stops the feeling from running the whole design."
     },
@@ -117,22 +117,22 @@
     {
       "exampleId": "stillness-is-the-key-ch06-ex06",
       "sourceAnchorId": "ch06.ex.marcus-aurelius-meditations",
-      "title": "Bashir Reopens the Log",
+      "title": "Bashir Lets the Log Correct Him",
       "tags": [
-        "before_after",
-        "leadership",
-        "revision"
+        "inner monologue",
+        "emergency operations",
+        "self-instruction"
       ],
       "planSpec": {
         "domain": "municipal emergency operations log",
         "audience": "Bashir, an emergency operations chief reviewing his own leadership log",
         "stakes": "The same log can either defend an ego or train steadier public judgment.",
-        "format": "before_after",
-        "requiredBeat": "Show Bashir before and after changing how he writes, with Meditations as the model of private self-instruction."
+        "format": "inner_monologue",
+        "requiredBeat": "A private log moves from defense to self-instruction in one working session."
       },
-      "scenario": "Before the change, Bashir's storm log reads like a defense brief: every delay belongs to a contractor, a radio fault, or a council order. After a week with Meditations, Roman Empire, and second century notes in his folder, the log changes shape. One page says, \"I raised my voice when the generator update was late.\" The old log protects him; the new log has to train him before the next storm briefing.",
-      "whatToDo": "Bashir keeps the old defensive entry, writes the plainer second entry under it, and reviews the pair before the next briefing.",
-      "whyItMatters": "The parallel pages show the difference between recording events and governing oneself. A private log becomes useful when it can correct its writer."
+      "scenario": "Bashir rereads his storm log and sees the old shape: contractor blamed, radio fault blamed, council order blamed. With Meditations, Roman Empire, and second century notes in his folder, he adds a plainer line underneath: I raised my voice when the generator update was late. The old entry protects him. The new entry can train him before the next briefing.",
+      "whatToDo": "Bashir keeps the defensive entry, writes the plainer second entry under it, and reviews the pair before the next briefing.",
+      "whyItMatters": "A private log becomes useful when it can correct its writer, not only record the weather around him."
     }
   ],
   "quiz": {
@@ -253,7 +253,7 @@
       {
         "questionId": "q09",
         "sourceAnchorId": "ch06.concept",
-        "prompt": "You are alone at the kitchen table, and your first line says, \"I am failing at everything.\" Which revision best uses the page to test the thought?",
+        "prompt": "You are alone at the desk, and your first line says, \"I am failing at everything.\" Which revision best uses the page to test the thought?",
         "choices": [
           "Write three facts from the day and circle the one that supports the fear.",
           "Exposure Loop: repeat the sentence until it loses force through familiarity.",

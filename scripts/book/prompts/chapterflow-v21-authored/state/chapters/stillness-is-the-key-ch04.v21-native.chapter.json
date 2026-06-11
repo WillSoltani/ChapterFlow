@@ -16,7 +16,7 @@
     {
       "exampleId": "ex01",
       "sourceAnchorId": "ch04.ex.buddhist-upekkha-equanimity",
-      "title": "Two Replies, One Thread",
+      "title": "One Thread, Two Replies",
       "tags": [
         "contrast",
         "clinic",
@@ -27,11 +27,11 @@
         "audience": "readers whose inbox thoughts start acting like commands",
         "stakes": "one person lets the thread own the hour while another clears enough room to answer the real request",
         "format": "contrast",
-        "requiredBeat": "two named people face the same noisy thread and opposite approaches produce opposite outcomes"
+        "requiredBeat": "Two replies to one noisy thread show opposite uses of attention without a boilerplate setup."
       },
-      "scenario": "Hermine and Fatima face the same 40-message clinic thread before the next reply goes out. Hermine, the nurse manager, treats each line as a command: she opens five tabs, rewrites one defensive email, and the patient question still waits. Fatima names the Buddhist drill of upekkha from ancient India. She lets the heat pass, answers the dated medication question first, and closes the thread with one clear reply.",
+      "scenario": "The clinic thread is forty messages long before the next reply goes out. Hermine treats each line as a command: five tabs, one defensive email, and the patient question still waiting. Fatima names the Buddhist drill of upekkha from ancient India, lets the heat pass, answers the dated medication question first, and closes the thread with one clear reply.",
       "whatToDo": "Fatima marks the hot lines as mental weather, then answers the one dated medication question before touching the angry side comments.",
-      "whyItMatters": "The same input can own the hour or shrink to its real size. Upekkha gives Fatima a way to see the heat without obeying it."
+      "whyItMatters": "One thread can own the hour or shrink to its real size. Upekkha gives Fatima a way to see the heat without obeying it."
     },
     {
       "exampleId": "ex02",
@@ -76,9 +76,9 @@
     {
       "exampleId": "ex04",
       "sourceAnchorId": "ch04.ex.seneca-noisy-rome",
-      "title": "Thanh Rewrites the Report",
+      "title": "Thanh Separates Alert From Guess",
       "tags": [
-        "before after",
+        "coach talk",
         "incident report",
         "Rome"
       ],
@@ -86,12 +86,12 @@
         "domain": "site reliability incident reporting",
         "audience": "readers who let alerts and guesses merge under pressure",
         "stakes": "the same report either spreads panic or separates facts from mental residue",
-        "format": "before_after",
-        "requiredBeat": "the same person repeats the same process before and after clearing the mind"
+        "format": "coach_talk",
+        "requiredBeat": "A peer helps the report separate confirmed steps from anxious guesses."
       },
-      "scenario": "Before: site engineer Thanh starts the incident report at 8:05 a.m. in the control room, reads three alerts, recalls Lucius Annaeus Seneca in Rome as a trivia line, and adds two anxious guesses. After: Thanh starts the same report at 8:05 a.m., marks the alerts as outside noise, reads the Nero-era lesson as practice, and writes only the confirmed outage steps.",
+      "scenario": "Thanh starts the incident report in the control room after three alerts arrive close together. The first draft mixes confirmed outage steps with two anxious guesses. Erin points to the Lucius Annaeus Seneca note about noisy Rome under Nero and asks, Which line came from evidence, and which line came from the room? Thanh moves the guesses into follow-up and leaves the summary clean.",
       "whatToDo": "Thanh reruns the report from confirmed steps first, leaving guesses in a separate follow-up line instead of the incident summary.",
-      "whyItMatters": "Parallel reports show the change clearly. The outside noise stays, but the report no longer lets that noise choose the story."
+      "whyItMatters": "The outside noise stays, but the report no longer lets that noise choose the story."
     },
     {
       "exampleId": "ex05",
