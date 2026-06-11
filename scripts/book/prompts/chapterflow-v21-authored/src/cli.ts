@@ -1339,6 +1339,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
   const { planPedagogy, writePedagogyPlan, loadPedagogyPalettes } = await import("./librarian/pedagogyPlan.js");
   const { planExemplars, writeExemplarPlan } = await import("./librarian/exemplarPlan.js");
+  const { planVenues, writeVenuePlan } = await import("./librarian/venuePlan.js");
   const { findRunArtifact } = await import("./lib/runDirs.js");
   const { formatVoiceBible } = await import("./lib/voiceBible.js");
   const REPO = resolve(__dirname, "../../../../..");
@@ -1385,6 +1386,8 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const quizDefs = new Map(pedagogyPalettes.quizOpeners.map((q) => [q.id, q]));
   const exemplarPlan = planExemplars(bookId, from, to);
   writeExemplarPlan(exemplarPlan);
+  const venuePlan = planVenues(bookId, from, to);
+  writeVenuePlan(venuePlan);
   // Carried name allocations for authored chapters include every capitalized
   // token the extractor saw ("University", "All", "Tonight" — junk from
   // scenario text). Pasting those as an exclusive allowlist breaks redo
@@ -1432,6 +1435,11 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
           exemplar.forbidden.length ? exemplar.forbidden.map((item) => `${item.name} (ch${item.ownerChapter})`).join(", ") : "none"
         } — at most a passing mention, never with date/place stamping, never as a teaching unit, never in quiz/cards.\n`
       : "";
+    const venueIds = venuePlan.allocation[ch.number] ?? [];
+    const venueLines = venueIds.map((venue, i) => `    ${i + 1}. ${venue}`).join("\n");
+    const venueLine = venueIds.length
+      ? `• VENUES: example[i] is set at the dealt venue[i] (a venue is a PLACE, not a script — furnish it from the scene's own logic). Never relocate two examples to the same venue.\n${venueLines}\n`
+      : "";
 
     // Source specifics: the sidecar's real anchors, pasted so the writer
     // grounds scenes in them instead of inventing interchangeable ones (SC9's
@@ -1478,6 +1486,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• Use ONLY these character names: ${names}\n` +
         `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
         `${shapeLines}\n` +
+        venueLine +
         pedagogyLines +
         specificsLine +
         exemplarLine +
@@ -1561,6 +1570,25 @@ async function runExemplarPlan(args: string[], flags: Record<string, string | bo
   const plan = planExemplars(bookId, from, to);
   const path = writeExemplarPlan(plan);
   console.log(formatExemplarPlan(plan));
+  console.log(`\nWritten: ${path}`);
+  return 0;
+}
+
+/** `venue-plan <bookId> --from N --to M` — pre-authoring allocator for example
+ *  venues. Deals six distinct places per chapter, with no overlap between
+ *  consecutive chapters and a book-wide cap of two chapters per venue. */
+async function runVenuePlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: venue-plan <bookId> --from N --to M");
+    return 2;
+  }
+  const { planVenues, writeVenuePlan, formatVenuePlan } = await import("./librarian/venuePlan.js");
+  const plan = planVenues(bookId, from, to);
+  const path = writeVenuePlan(plan);
+  console.log(formatVenuePlan(plan));
   console.log(`\nWritten: ${path}`);
   return 0;
 }
@@ -2384,6 +2412,8 @@ async function main() {
       return runShapePlan(args, flags);
     case "exemplar-plan":
       return runExemplarPlan(args, flags);
+    case "venue-plan":
+      return runVenuePlan(args, flags);
     case "pedagogy-plan":
       return runPedagogyPlan(args, flags);
     case "qc-attest":
