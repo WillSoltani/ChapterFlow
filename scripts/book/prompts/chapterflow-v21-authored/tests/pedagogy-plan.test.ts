@@ -34,6 +34,7 @@ test("pedagogy palettes load with unique ids, substantial definitions, and valid
   const palettes = loadPedagogyPalettes();
   assert.ok(palettes.hookShapes.length >= 10, `hook palette has ${palettes.hookShapes.length} shapes`);
   assert.ok(palettes.tryThisNowGrammars.length >= 8, `tryThisNow palette has ${palettes.tryThisNowGrammars.length} grammars`);
+  assert.ok(palettes.tacticFamilies.length >= 24, `tactic family palette has ${palettes.tacticFamilies.length} families`);
   assert.ok(palettes.quizOpeners.length >= 6, `quiz opener palette has ${palettes.quizOpeners.length} openers`);
 
   assert.equal(new Set(palettes.hookShapes.map((entry) => entry.id)).size, palettes.hookShapes.length, "hook ids must be unique");
@@ -41,6 +42,11 @@ test("pedagogy palettes load with unique ids, substantial definitions, and valid
     new Set(palettes.tryThisNowGrammars.map((entry) => entry.id)).size,
     palettes.tryThisNowGrammars.length,
     "tryThisNow ids must be unique",
+  );
+  assert.equal(
+    new Set(palettes.tacticFamilies.map((entry) => entry.id)).size,
+    palettes.tacticFamilies.length,
+    "tactic family ids must be unique",
   );
   assert.equal(new Set(palettes.quizOpeners.map((entry) => entry.id)).size, palettes.quizOpeners.length, "quiz opener ids must be unique");
 
@@ -80,6 +86,10 @@ test("pedagogy palettes load with unique ids, substantial definitions, and valid
     assert.ok(entry.definition.length > 50, `${entry.id} needs a paste-able grammar definition`);
     assert.ok(entry.example.length > 30, `${entry.id} needs a concrete example`);
   }
+  for (const entry of palettes.tacticFamilies) {
+    assert.ok(entry.definition.length > 60, `${entry.id} needs a paste-able tactic family definition`);
+    assert.ok(entry.example.length > 40, `${entry.id} needs an illustrative example`);
+  }
   for (const entry of palettes.quizOpeners) {
     assert.ok(entry.definition.length > 50, `${entry.id} needs a paste-able opener definition`);
     assert.ok(entry.example.length > 30, `${entry.id} needs a concrete example`);
@@ -111,6 +121,24 @@ test("no two consecutive chapters get the same hook shape in a 20-chapter plan",
       `hook repeats across ch${chapterNumber}->ch${chapterNumber + 1}`,
     );
   }
+});
+
+test("tactic families do not repeat within a 12-chapter window and cap at 2 in 34 chapters", () => {
+  const plan = planPedagogy(BOOK, 1, 34, { forceFresh: true });
+  const counts = new Map<string, number>();
+  for (let chapterNumber = 1; chapterNumber <= 34; chapterNumber++) {
+    const family = plan.allocation[chapterNumber].tacticFamily;
+    counts.set(family, (counts.get(family) ?? 0) + 1);
+    for (let other = chapterNumber + 1; other < chapterNumber + 12 && other <= 34; other++) {
+      assert.notEqual(
+        family,
+        plan.allocation[other].tacticFamily,
+        `${family} repeats within a 12-chapter window (ch${chapterNumber}->ch${other})`,
+      );
+    }
+  }
+  const over = Array.from(counts.entries()).filter(([, count]) => count > 2);
+  assert.deepEqual(over, [], `families over cap: ${over.map(([family, count]) => `${family}:${count}`).join(", ")}`);
 });
 
 test("authored chapters are carried unless forceFresh is set, with case-tolerant file detection", () => {
@@ -174,6 +202,7 @@ test("pedagogy-plan CLI writes the plan and prints allocations", () => {
     assert.match(out, /Pedagogy plan/);
     assert.match(out, /ch01:/);
     assert.match(out, /Hook definitions:/);
+    assert.match(out, /Tactic family definitions:/);
   } finally {
     rmSync(planPath, { force: true });
   }
