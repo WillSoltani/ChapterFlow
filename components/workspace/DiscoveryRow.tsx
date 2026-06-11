@@ -150,7 +150,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
             className="mt-2 text-xs"
             style={{ color: "var(--cf-text-soft)" }}
           >
-            Join 2,400+ Pro readers
+            Cancel anytime — no penalties or lock-in
           </p>
         </motion.div>
       )}

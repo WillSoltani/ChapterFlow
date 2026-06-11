@@ -24,6 +24,7 @@ import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { evaluateBadges } from "@/app/book/badges/lib/badge-ui-definitions";
 import { BookCardWorkspace } from "./BookCardWorkspace";
 import { INSIGHT_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
+import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -530,7 +531,7 @@ function getSubtitle(state: UserState, data: WorkspaceData): string {
     case "returning":
       return "Welcome back — your books are waiting";
     case "free_limit_reached":
-      return "Unlock 93 more books with Pro";
+      return `Go Pro to unlock all ${CATALOG_BOOK_COUNT_DISPLAY} books`;
     default:
       return "";
   }

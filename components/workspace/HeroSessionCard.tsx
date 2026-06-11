@@ -145,7 +145,7 @@ function getHeroSubtitle(
     case "quiz_pending":
       return book ? `by ${book.author}` : null;
     case "free_limit_reached":
-      return "Unlock 93 more books with Pro";
+      return `Go Pro to unlock all ${CATALOG_BOOK_COUNT_DISPLAY} books`;
     default:
       return null;
   }
