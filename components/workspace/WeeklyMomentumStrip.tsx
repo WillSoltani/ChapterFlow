@@ -98,18 +98,10 @@ export function WeeklyMomentumStrip({
                         ? "2px solid var(--accent-cyan)"
                         : "none",
                       boxShadow: isActive
-                        ? "0 0 8px 2px rgba(16, 185, 129, 0.55)"
+                        ? "0 0 8px 2px color-mix(in srgb, var(--accent-emerald) 40%, transparent)"
                         : "none",
                     }}
                   />
-                  {isToday && !isActive && !prefersReducedMotion && (
-                    <motion.div
-                      className="absolute inset-0 rounded-full"
-                      style={{ border: "1px solid rgba(34,211,238,0.4)" }}
-                      animate={{ scale: [1, 1.6, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  )}
                   {isToday && isActive && (
                     <div
                       className="absolute -bottom-1 left-1/2 h-[2px] w-[2px] -translate-x-1/2 rounded-full"

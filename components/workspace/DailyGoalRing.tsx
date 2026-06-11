@@ -6,14 +6,12 @@ interface DailyGoalRingProps {
   size?: number;
   strokeWidth?: number;
   progress: number;
-  todayPulse?: boolean;
 }
 
 export function DailyGoalRing({
   size = 22,
   strokeWidth = 2.5,
   progress,
-  todayPulse = false,
 }: DailyGoalRingProps) {
   const prefersReducedMotion = useReducedMotion();
   const radius = (size - strokeWidth) / 2;
@@ -57,14 +55,6 @@ export function DailyGoalRing({
           }
         />
       </svg>
-      {todayPulse && !prefersReducedMotion && progress < 100 && (
-        <motion.div
-          className="absolute inset-0 rounded-full"
-          style={{ border: "1px solid rgba(34, 211, 238, 0.3)" }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.6, 0, 0.6] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      )}
     </div>
   );
 }

@@ -32,7 +32,6 @@ interface CurrentBook {
   currentLoopStep: LoopStep | null;
   estimatedMinutes: number;
   gradient?: string;
-  glowColor?: string;
 }
 
 interface StarterShelfBook {
@@ -189,9 +188,10 @@ export function HeroSessionCard({
         backdropFilter: "blur(24px) saturate(140%)",
         WebkitBackdropFilter: "blur(24px) saturate(140%)",
         border: "1px solid var(--cf-border-strong)",
-        boxShadow:
-          "0 0 100px -20px rgba(139, 92, 246, 0.30), 0 0 40px -10px rgba(139, 92, 246, 0.15)",
-        transition: "box-shadow 500ms ease-out",
+        // Single cyan brand glow (theme-aware) + neutral elevation. Was a
+        // hardcoded violet glow that fought the cyan accent and stayed dark in
+        // light mode.
+        boxShadow: "0 0 80px -24px var(--cf-accent-shadow), var(--shadow-hero)",
       }}
       initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
       animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -200,14 +200,6 @@ export function HeroSessionCard({
           ? undefined
           : { duration: 0.6, delay: 0.1, ease }
       }
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow =
-          "0 0 120px -20px rgba(139, 92, 246, 0.45), 0 0 50px -10px rgba(139, 92, 246, 0.25)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow =
-          "0 0 100px -20px rgba(139, 92, 246, 0.30), 0 0 40px -10px rgba(139, 92, 246, 0.15)";
-      }}
     >
       <div className="flex flex-col lg:flex-row">
         {/* LEFT: Book info + CTA */}
@@ -239,7 +231,7 @@ export function HeroSessionCard({
           {currentBook && userState !== "new_user" && userState !== "between_books" ? (
             <Link href={`/book/library/${currentBook.id}`}>
               <h2
-                className="mt-4 font-(family-name:--font-display) text-3xl font-bold lg:text-4xl transition-colors hover:text-accent-violet"
+                className="mt-4 font-(family-name:--font-display) text-3xl font-bold lg:text-4xl transition-colors hover:text-(--cf-accent)"
                 style={{ color: "var(--cf-text-1)" }}
               >
                 {title}
@@ -283,7 +275,7 @@ export function HeroSessionCard({
                 <motion.div
                   className="h-full rounded-full"
                   style={{
-                    background: "linear-gradient(90deg, var(--accent-violet), var(--accent-cyan))",
+                    background: "linear-gradient(90deg, var(--cf-accent), var(--cf-accent-strong))",
                   }}
                   initial={prefersReducedMotion ? undefined : { width: 0 }}
                   animate={{ width: `${currentBook.progressPercent}%` }}
@@ -321,12 +313,10 @@ export function HeroSessionCard({
           <div className="mt-6">
             <Link href={ctaHref}>
               <motion.span
-                className="cta-shine cta-shimmer inline-flex cursor-pointer items-center rounded-xl px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                className="cta-shine inline-flex cursor-pointer items-center rounded-xl px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                 style={{
-                  background: "linear-gradient(135deg, var(--accent-violet), #6D28D9)",
-                  boxShadow:
-                    "0 0 30px -5px rgba(139, 92, 246, 0.60), 0 4px 15px -3px rgba(139, 92, 246, 0.30)",
-                  transition: "box-shadow 300ms ease",
+                  background: "linear-gradient(135deg, var(--cf-accent), var(--cf-accent-strong))",
+                  boxShadow: "0 8px 24px var(--cf-accent-shadow), 0 2px 6px var(--cf-accent-shadow)",
                 }}
                 whileHover={
                   prefersReducedMotion ? undefined : { scale: 1.02 }
@@ -341,14 +331,6 @@ export function HeroSessionCard({
                     ? `Continue reading chapter ${currentBook.currentChapter} of ${currentBook.title}`
                     : ctaText
                 }
-                onMouseOver={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 0 45px -5px rgba(139, 92, 246, 0.80), 0 4px 20px -3px rgba(139, 92, 246, 0.40)";
-                }}
-                onMouseOut={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 0 30px -5px rgba(139, 92, 246, 0.60), 0 4px 15px -3px rgba(139, 92, 246, 0.30)";
-                }}
               >
                 <span className="flex items-center gap-2.5">
                   {ctaText}
@@ -367,7 +349,7 @@ export function HeroSessionCard({
             <div className="flex flex-col items-center gap-5">
               {/* Book cover with ambient glow */}
               <div className="relative">
-                {/* Ambient glow behind book — matches cover's dominant color */}
+                {/* Ambient cyan glow behind book (theme-aware token) */}
                 <div
                   style={{
                     position: "absolute",
@@ -376,7 +358,7 @@ export function HeroSessionCard({
                     right: "10%",
                     bottom: "10%",
                     borderRadius: 16,
-                    background: `radial-gradient(ellipse at center, rgba(255, 160, 0, 0.35) 0%, transparent 70%)`,
+                    background: "radial-gradient(ellipse at center, var(--accent-cyan-glow) 0%, transparent 70%)",
                     filter: "blur(30px)",
                     zIndex: 0,
                   }}
@@ -391,7 +373,7 @@ export function HeroSessionCard({
                     width: "100%",
                     height: "100%",
                     borderRadius: 16,
-                    boxShadow: "0 0 60px 20px rgba(34,211,238,0.08)",
+                    boxShadow: "0 0 60px 20px var(--accent-cyan-glow)",
                     zIndex: 0,
                     pointerEvents: "none",
                   }}
@@ -434,7 +416,7 @@ export function HeroSessionCard({
                       className="rounded-lg object-cover ring-1 ring-white/[0.08]"
                       style={{
                         boxShadow:
-                          "0 25px 50px -12px rgba(0,0,0,0.6), 0 0 30px -5px rgba(255,160,0,0.15)",
+                          "0 25px 50px -12px rgba(0,0,0,0.6), 0 0 30px -5px var(--accent-cyan-glow)",
                       }}
                     />
                   </Link>

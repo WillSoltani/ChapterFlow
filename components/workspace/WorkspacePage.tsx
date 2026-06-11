@@ -65,7 +65,6 @@ interface WorkspaceData {
     currentLoopStep: "summary" | "scenarios" | "quiz" | "unlock" | null;
     estimatedMinutes: number;
     gradient?: string;
-    glowColor?: string;
   } | null;
   starterShelfBooks: Array<{
     id: string;
@@ -275,7 +274,6 @@ function mapAnalyticsToWorkspaceData(
       progressPercent: lead.progressPercent,
       currentLoopStep: lead.currentLoopStep ?? "summary",
       estimatedMinutes: avgChapterMinutes,
-      glowColor: lead.book.coverImage ? undefined : "rgba(139,92,246,0.35)",
     };
   }
 
