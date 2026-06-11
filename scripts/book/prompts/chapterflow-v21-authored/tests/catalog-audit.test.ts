@@ -106,3 +106,17 @@ test("name-plan cross-book exclusion: fresh names dealt FIRST, reuse only as the
   }
   assert.equal(typeof plan.diagnostics.crossBookExcluded, "number", "diagnostics must expose the exclusion size");
 });
+
+test("plainness meters: abstraction-dense prose scores higher nominalization than concrete prose", () => {
+  const { plainnessMeters } = require("../src/critics/catalogAudit.js") as typeof import("../src/critics/catalogAudit.js");
+  const abstract = plainnessMeters(
+    "Scarcity culture shrinks courage by teaching deficiency first. Worthiness requires the dissolution of comparison, disengagement, and the persistent insufficiency of external validation. Authenticity emerges through the integration of vulnerability and intention.",
+  );
+  const concrete = plainnessMeters(
+    "Maya checks her phone before her feet hit the floor. Forty new emails. She picks the one from her boss, answers it in bed, and the day belongs to other people before she has brushed her teeth.",
+  );
+  assert.ok(
+    abstract.nomPer100 > concrete.nomPer100 + 5,
+    `abstract prose must meter higher (abstract ${abstract.nomPer100.toFixed(1)} vs concrete ${concrete.nomPer100.toFixed(1)})`,
+  );
+});

@@ -114,6 +114,36 @@ masks"):
   more than once per chapter.
 
 
+**R2.7 — Plain language beats abstraction (2026-06-11 product direction).** The
+catalog's reader panel scored interest lowest of all axes and named the cause:
+"wall-to-wall abstraction with no narrative inside", paragraphs of abstract
+nouns trading places ("Scarcity culture shrinks courage by teaching lack
+first; enoughness grows when you name shame, comparison, and disengagement").
+ChapterFlow is for a WIDE audience. The rules:
+
+- **Concrete within two sentences.** Every abstract claim must be followed,
+  within two sentences, by something the reader can SEE: a person doing
+  something, a scene, a number, a familiar object. If two abstract sentences
+  ever touch, one of them changes.
+- **Say it like you'd say it to a friend.** First phrasing test: would you say
+  this sentence out loud to a smart friend at lunch? "Worthiness no longer
+  waits for proof" fails that test; "you stop needing to earn the right to
+  feel okay" passes.
+- **Define every term-of-art in everyday words the first time it appears** —
+  then you may use it freely. Never stack two undefined abstractions in one
+  sentence.
+- **Prefer the short common word**: use/not utilize, enough/not sufficiency,
+  blame/not attribution. Nominalizations (-tion/-ness/-ity words) are a
+  budget, not a style: if a sentence has two, rewrite one as a verb with a
+  subject ("she compared" not "comparison occurred").
+- **Each breakdown tier opens with something concrete** — a person, a moment,
+  a number — never with a thesis abstraction. The reader earns the concept by
+  seeing it first.
+- FP-guard: precise technical terms from the source (PET scan, compound
+  interest, attachment) are GOOD — explain them plainly once and keep them.
+  Plain language is not dumbing down; it is the concept with the fog removed.
+
+
 **R3 — No fixed per-field skeleton across slots or chapters.** Compose each slot independently, from its own bit of source. A skeleton is the tell that you stopped writing and started filling blanks. The reader meets your fields in sequence; a rotating frame is obvious to them the second time they see it, and it teaches them that the book is generated, not authored. The diagnostic: if your six example scenarios share a clause, or your nine quiz prompts share an opener, or your card fronts share a stem with the concept swapped — you built a skeleton. Tear it out and write each from its own source moment.
 - Good: six scenarios with six different openers, roles, stakes, and scene shapes — each anchored in a different `namedExample`.
 - Bad: "<Name> leans over a clipboard at 8:10 a.m. in the <city> <place>…" six times with the nouns swapped.

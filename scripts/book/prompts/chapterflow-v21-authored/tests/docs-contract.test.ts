@@ -90,3 +90,11 @@ test("handoff does not re-document fixed gaps as open (the next developer reads 
   assert.doesNotMatch(s, /there is \*\*no tsconfig\*\*/, "Phase 0 added the tsconfig + typecheck baseline");
   assert.match(s, /tsc -p \. --noEmit/, "the handoff must tell the next developer how to typecheck");
 });
+
+test("STEP-2 carries the plain-language direction (R2.7) and fanout pins it", () => {
+  const s = doc("agent-prompts/STEP-2-WRITE-CHAPTERS.md");
+  assert.match(s, /R2\.7 — Plain language beats abstraction/);
+  assert.match(s, /Concrete within two sentences/);
+  const cli = readFileSync(resolve(PIPELINE_DIR, "src/cli.ts"), "utf8");
+  assert.match(cli, /PLAIN LANGUAGE \(R2\.7/, "fanout must pin the plain-language rule into every authoring prompt");
+});

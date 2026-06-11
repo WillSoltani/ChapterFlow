@@ -56,5 +56,12 @@ export function formatVoiceBible(bookId: string): string | null {
   if (avoid.length > 0) lines.push(`never: ${avoid.join("; ")}`);
   const specimen = (brief?.voiceSpecimens ?? [])[0];
   if (specimen) lines.push(`sounds like: "${String(specimen).slice(0, 140)}"`);
+  // Catalog-wide plainness floor (2026-06-11 product direction): applies to
+  // EVERY register — clinical stays precise, warm stays warm, but all of
+  // them explain in plain words. Appended here so every fanout prompt
+  // carries it regardless of which charter is in play.
+  lines.push(
+    "always: plain language beats abstraction — follow every abstract claim with something the reader can SEE (a person, a scene, a number) within two sentences; say it like you'd say it to a smart friend; define terms-of-art in everyday words on first use (STEP-2 R2.7)",
+  );
   return lines.join("\n    ");
 }
