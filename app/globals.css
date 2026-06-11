@@ -224,11 +224,11 @@ body {
   --accent-violet-glow: rgba(139, 92, 246, 0.15);
   --accent-rose-glow: rgba(244, 63, 94, 0.15);
 
-  /* ── Accent aliases (backward compat) ── */
+  /* ── Accent aliases (backward compat — DEPRECATED; migrate to --accent-*) ──
+     Survivors still have live consumers (teal, green, green-hover, red, blue,
+     blue-glow, flame, flame-glow, gold). The 5 unused aliases
+     (teal-hover, teal-glow, orange, gold-glow, green-glow) were removed. */
   --accent-teal: var(--accent-cyan);
-  --accent-teal-hover: #0EA5E9;
-  --accent-teal-glow: rgba(34, 211, 238, 0.15);
-  --accent-orange: var(--accent-amber);
   --accent-green: var(--accent-emerald);
   --accent-green-hover: #059669;
   --accent-red: var(--accent-rose);
@@ -237,8 +237,6 @@ body {
   --accent-flame: var(--accent-amber);
   --accent-flame-glow: rgba(245, 158, 11, 0.15);
   --accent-gold: #E8B931;
-  --accent-gold-glow: rgba(232, 185, 49, 0.12);
-  --accent-green-glow: rgba(16, 185, 129, 0.2);
 
   /* ── Functional ── */
   --border-subtle: rgba(255, 255, 255, 0.08);
@@ -455,11 +453,8 @@ html:not(.dark) {
   --accent-violet-glow: rgba(124, 58, 237, 0.12);
   --accent-rose-glow: rgba(225, 29, 72, 0.12);
 
-  /* ── Accent aliases (backward compat) ── */
+  /* ── Accent aliases (backward compat — DEPRECATED; migrate to --accent-*) ── */
   --accent-teal: var(--accent-cyan);
-  --accent-teal-hover: #0E7490;
-  --accent-teal-glow: rgba(8, 145, 178, 0.1);
-  --accent-orange: var(--accent-amber);
   --accent-green: var(--accent-emerald);
   --accent-green-hover: #047857;
   --accent-red: var(--accent-rose);
@@ -468,8 +463,6 @@ html:not(.dark) {
   --accent-flame: var(--accent-amber);
   --accent-flame-glow: rgba(217, 119, 6, 0.1);
   --accent-gold: #E8B931;
-  --accent-gold-glow: rgba(232, 185, 49, 0.08);
-  --accent-green-glow: rgba(5, 150, 105, 0.12);
 
   /* ── Functional ── */
   --border-subtle: #E7E5E4;
@@ -618,19 +611,7 @@ html.transitioning *::after {
   background-repeat: repeat;
 }
 
-/* ─────────────────────────────────────────
-   SCROLL PROGRESS BAR
-   ───────────────────────────────────────── */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--accent-cyan);
-  z-index: 51;
-  transform-origin: left;
-  will-change: transform;
-}
+/* (dead rule .scroll-progress removed — zero TSX consumers) */
 
 /* ─────────────────────────────────────────
    NAV LINK HOVER UNDERLINE
@@ -764,19 +745,7 @@ html.transitioning *::after {
   display: none;
 }
 
-/* ─────────────────────────────────────────
-   STAT CARD TOP ACCENT LINE
-   ───────────────────────────────────────── */
-.stat-card-accent::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-teal), transparent);
-  border-radius: var(--radius-lg-val) var(--radius-lg-val) 0 0;
-}
+/* (dead rule .stat-card-accent::before removed — zero TSX consumers) */
 
 /* ─────────────────────────────────────────
    TOOLTIP (CSS-ONLY)
@@ -1244,6 +1213,7 @@ html[data-motion="reduced"] [class*="animate-[proShimmer"] {
   animation: none !important;
 }
 
+/* WAVE2: extract — page-scoped settings premium-slider CSS */
 /* ── Settings slider (premium glassmorphic) ── */
 input[type="range"].premium-slider {
   -webkit-appearance: none;
@@ -1376,21 +1346,8 @@ html:not(.dark) .cf-icon-wrap {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-/* ─────────────────────────────────────────
-   SMOOTH THEME TRANSITION
-   ───────────────────────────────────────── */
-html.transitioning,
-html.transitioning *,
-html.transitioning *::before,
-html.transitioning *::after {
-  transition: background-color 0.3s ease,
-              color 0.2s ease,
-              border-color 0.2s ease,
-              box-shadow 0.3s ease,
-              fill 0.2s ease,
-              stroke 0.2s ease !important;
-  transition-delay: 0s !important;
-}
+/* (duplicate SMOOTH THEME TRANSITION block removed — see the canonical one
+   right after the light-theme block above.) */
 
 /* ─────────────────────────────────────────
    BASE LAYER
@@ -1406,7 +1363,7 @@ html.transitioning *::after {
   }
 
   ::selection {
-    background: rgba(45, 212, 191, 0.3);
+    background: rgba(34, 211, 238, 0.3); /* brand --accent-cyan @ 30% (was off-palette teal) */
     color: var(--text-heading);
   }
 }
@@ -1461,6 +1418,7 @@ html.transitioning *::after {
   }
 }
 
+/* WAVE2: extract — page-scoped book-detail (bd-*) CSS lives below */
 /* ─────────────────────────────────────────
    BOOK DETAIL — Chapter Card Shimmer
    ───────────────────────────────────────── */
@@ -1631,6 +1589,7 @@ html:not(.dark) {
   --cr-text-disabled: #78716C;                  /* ≥4.5:1 on light surfaces */
 }
 
+/* WAVE2: extract — page-scoped reader (cr-*) component CSS lives below */
 /* ─────────────────────────────────────────
    CHAPTER READER — Component Classes
    ───────────────────────────────────────── */
