@@ -10,6 +10,7 @@
     "start": "next start",
     "prepare": "git config core.hooksPath .githooks || true",
     "scan:secrets": "bash scripts/ci/scan-secrets-and-artifacts.sh --all && bash scripts/ci/scan-secrets-and-artifacts.sh --selftest",
+    "scan:style": "node scripts/ci/scan-style-drift.mjs --selftest && node scripts/ci/scan-style-drift.mjs --all",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "verify": "npm run typecheck && npm run test && npm run build",
