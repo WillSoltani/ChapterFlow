@@ -70,7 +70,7 @@
         "format": "vignette",
         "requiredBeat": "A worker changes the work surface before alerts can choose the first paragraph."
       },
-      "scenario": "Mateus pours coffee and opens the draft while cell phone alarms ripple across the counter. A social media notification offers one quick look; the email inbox badge follows. Instead of testing willpower, he moves the phone to a closed drawer, shuts the extra tabs, and puts the draft alone on the screen.",
+      "scenario": "Mateus pours coffee and opens the draft while cell phone alarms ripple across the counter. A social media notification offers one quick look; the email inbox badge follows. Instead of testing willpower, he silences nonessential alerts, shuts the extra tabs, and puts the draft alone on the screen.",
       "whatToDo": "Mateus removes the three live inputs from view and writes the first paragraph before any channel gets another vote.",
       "whyItMatters": "The first clean move teaches the mind that interruption is not the boss of the next minute."
     },
@@ -229,7 +229,7 @@
         "choices": [
           "Reward Scroll: Open social media notifications as a prize because the task earned quick relief.",
           "Urgency Hunt: Check the email inbox to see who might need a fast answer right now.",
-          "Silent Minute: Leave the phone down and choose the next input on purpose."
+          "Silent Minute: let the first urge pass and choose the next input on purpose."
         ],
         "correctIndex": 2,
         "explanation": "The first input after effort can set the next mood. A short gap lets you choose what enters, while scrolling or inbox hunting hands the moment away.",
@@ -269,9 +269,9 @@
   "reviewCards": [
     {
       "cardId": "card01",
-      "sourceAnchorId": "ch03.concept",
-      "front": "What does a reader do when practicing input discipline?",
-      "back": "They choose ahead of time which news, messages, advice, entertainment, and gossip may enter, and when. The habit treats attention as limited, so arrival alone does not decide importance.",
+      "sourceAnchorId": "ch03.fact.1",
+      "front": "Earlier concept: Become Present. How does presence change what you let in?",
+      "back": "Presence gives attention a home before inputs compete for it. Fewer inputs help because the mind can stay with the person, page, or duty already here.",
       "difficulty": "easy"
     },
     {
