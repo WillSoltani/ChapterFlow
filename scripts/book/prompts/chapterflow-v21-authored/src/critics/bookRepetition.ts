@@ -90,7 +90,7 @@ export function checkBookExemplarChapterReuse(bookId: string, chapters: ChapterV
     if (chaptersWithHit.length < 2) continue;
     findings.push(
       finding(
-        "BP26.exemplar_chapter_reuse" as any,
+        "BP26.exemplar_chapter_reuse",
         "minor",
         `marquee exemplar/proper noun "${record.display}" appears in ${chaptersWithHit.length} chapters (${chaptersWithHit.map((n) => `ch${n}`).join(", ")}). Deal it to one chapter as a teaching unit; other chapters may mention it only in passing.`,
         record.hits.slice(0, 6).map((hit) => `ch${hit.chapter}: ${hit.evidence}`).join("; "),
@@ -147,7 +147,7 @@ export function checkBookVenueStamping(chapters: ChapterV21[]): CriticFinding[] 
     if (chaptersWithHit.length <= 2) continue;
     findings.push(
       finding(
-        "BP27.venue_stamping" as any,
+        "BP27.venue_stamping",
         "major",
         `venue "${venue}" appears as an example setting in ${chaptersWithHit.length} chapters (${chaptersWithHit.map((n) => `ch${n}`).join(", ")}). No venue should anchor more than two chapters in a book.`,
         truncate(chaptersWithHit.map((n) => `ch${n}`).join(", "), 180),

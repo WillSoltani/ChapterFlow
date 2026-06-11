@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "exemplar-plan-v1",
+  "bookId": "stillness-is-the-key",
+  "createdAt": "2026-06-11T17:54:26.435Z",
+  "fromChapter": 1,
+  "toChapter": 34,
+  "allocation": {
+    "1": {
+      "assigned": [
+        "Abraham Lincoln",
+        "Abraham Lincoln Vicksburg",
+        "Civil War",
+        "Mississippi River",
+        "Vicksburg Mississippi",
+        "Grant's 1863",
+        "July 1863",
+        "Ulysses S Grant",
+        "Union Army",
+        "Abraham",
+        "Lincoln",
+        "Vicksburg",
+        "Mississippi",
+        "River",
+        "Grant",
+        "Ulysses",
+        "Army",
+        "Union",
+        "July"
+      ],
+      "forbidden": []
+    },
+    "2": {
+      "assigned": [
+        "Cuba Deliberation",
+        "John F Kennedy",
+        "John F Kennedy Cuban Missile Crisis",
+        "October 1962",
+        "October 1962 Kennedy",
+        "Blaise Pascal",
+        "Crisis",
+        "Cuban",
+        "John",
+        "Kennedy",
+        "Missile",
+        "Cuba",
+        "October",
+        "Blaise",
+        "Pascal"
+      ],
+      "forbidden": []
+    },
+    "3": {
+      "assigned": [
+        "Napoleon Bonaparte",
+        "Bonaparte",
+        "Napoleon"
+      ],
+      "forbidden": []
+    },
+    "4": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Lucius Annaeus Seneca",
+          "ownerChapter": 11
+        },
+        {
+          "name": "Seneca",
+          "ownerChapter": 11
+        },
+        {
+          "name": "Annaeus",
+          "ownerChapter": 11
+        },
+        {
+          "name": "Lucius",
+          "ownerChapter": 11
+        }
+      ]
+    },
+    "5": {
+      "assigned": [
+        "Charles Darwin",
+        "HMS Beagle",
+        "Charles",
+        "Darwin",
+        "Beagle"
+      ],
+      "forbidden": []
+    },
+    "6": {
+      "assigned": [
+        "Marcus Aurelius",
+        "Marcus Aurelius Meditations",
+        "Roman Empire",
+        "Aurelius",
+        "Marcus",
+        "Meditations",
+        "Empire",
+        "Roman"
+      ],
+      "forbidden": [
+        {
+          "name": "Anne Frank",
+          "ownerChapter": 17
+        },
+        {
+          "name": "Amsterdam",
+          "ownerChapter": 17
+        },
+        {
+          "name": "Anne",
+          "ownerChapter": 17
+        },
+        {
+          "name": "Frank",
+          "ownerChapter": 17
+        }
+      ]
+    },
+    "7": {
+      "assigned": [
+        "Woodstock New York",
+        "Religious Society of Friends",
+        "Woodstock",
+        "York",
+        "Friends",
+        "Religious",
+        "Society"
+      ],
+      "forbidden": [
+        {
+          "name": "Cage's 1952",
+          "ownerChapter": 2
+        },
+        {
+          "name": "John Cage",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Cage",
+          "ownerChapter": 2
+        },
+        {
+          "name": "John",
+          "ownerChapter": 2
+        }
+      ]
+    },
+    "8": {
+      "assigned": [
+        "Athens His",
+        "Confucius Analects",
+        "Athens",
+        "Analects",
+        "Confucius"
+      ],
+      "forbidden": []
+    },
+    "9": {
+      "assigned": [
+        "PGA Tour",
+        "Tiger Woods",
+        "George Washington",
+        "Mount Vernon",
+        "Tiger",
+        "Woods",
+        "Tour",
+        "George",
+        "Washington",
+        "Mount",
+        "Vernon"
+      ],
+      "forbidden": [
+        {
+          "name": "Continental Army",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Army",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Continental",
+          "ownerChapter": 1
+        }
+      ]
+    },
+    "10": {
+      "assigned": [
+        "Four Noble Truths",
+        "Four",
+        "Noble",
+        "Truths"
+      ],
+      "forbidden": []
+    },
+    "11": {
+      "assigned": [
+        "Seneca Stoic",
+        "Bhagavad Gita",
+        "Bhagavad Gita Arjuna",
+        "Seneca",
+        "Stoic",
+        "Arjuna",
+        "Bhagavad",
+        "Gita"
+      ],
+      "forbidden": []
+    },
+    "12": {
+      "assigned": [
+        "Fred Rogers",
+        "Mister Rogers Neighborhood",
+        "Fred",
+        "Rogers",
+        "Mister",
+        "Neighborhood"
+      ],
+      "forbidden": [
+        {
+          "name": "Catholic Worker",
+          "ownerChapter": 13
+        },
+        {
+          "name": "Dorothy Day",
+          "ownerChapter": 13
+        },
+        {
+          "name": "Dorothy Day Catholic Worker",
+          "ownerChapter": 13
+        },
+        {
+          "name": "New York City",
+          "ownerChapter": 7
+        },
+        {
+          "name": "Catholic",
+          "ownerChapter": 13
+        },
+        {
+          "name": "Dorothy",
+          "ownerChapter": 13
+        },
+        {
+          "name": "Worker",
+          "ownerChapter": 13
+        },
+        {
+          "name": "City",
+          "ownerChapter": 7
+        },
+        {
+          "name": "York",
+          "ownerChapter": 7
+        }
+      ]
+    },
+    "13": {
+      "assigned": [
+        "Catholic Worker",
+        "Day's Catholic Worker",
+        "Dorothy Day",
+        "Dorothy Day Catholic Worker",
+        "Great Depression",
+        "Antonine Plague",
+        "Catholic",
+        "Dorothy",
+        "Worker",
+        "Depression",
+        "Great",
+        "Antonine",
+        "Plague"
+      ],
+      "forbidden": [
+        {
+          "name": "New York",
+          "ownerChapter": 7
+        },
+        {
+          "name": "Marcus Aurelius",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Roman Empire",
+          "ownerChapter": 6
+        },
+        {
+          "name": "York",
+          "ownerChapter": 7
+        },
+        {
+          "name": "Aurelius",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Marcus",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Empire",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Roman",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Meditations",
+          "ownerChapter": 6
+        }
+      ]
+    },
+    "14": {
+      "assigned": [
+        "Buckingham Palace",
+        "Kensington System",
+        "Queen Victoria",
+        "Queen Victoria Kensington System",
+        "Kensington",
+        "Queen",
+        "System",
+        "Victoria",
+        "Buckingham",
+        "Palace"
+      ],
+      "forbidden": [
+        {
+          "name": "Earl Woods",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Tiger Woods",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Tiger Woods Earl Woods",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Earl",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Tiger",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Woods",
+          "ownerChapter": 9
+        }
+      ]
+    },
+    "15": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "PGA Tour",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Tiger Woods",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Woods's 2009",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Tiger",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Woods",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Tour",
+          "ownerChapter": 9
+        },
+        {
+          "name": "Athens",
+          "ownerChapter": 8
+        }
+      ]
+    },
+    "16": {
+      "assigned": [
+        "Joseph Heller",
+        "Kurt Vonnegut",
+        "Heller",
+        "Joseph",
+        "Kurt",
+        "Vonnegut"
+      ],
+      "forbidden": [
+        {
+          "name": "John Stuart Mill",
+          "ownerChapter": 2
+        },
+        {
+          "name": "John",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Mill",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Stuart",
+          "ownerChapter": 2
+        }
+      ]
+    },
+    "17": {
+      "assigned": [
+        "Amsterdam Anne Frank",
+        "Anne Frank",
+        "Secret Annex",
+        "Rainer Maria Rilke",
+        "Young Poet",
+        "Anne",
+        "Frank",
+        "Annex",
+        "Secret",
+        "Amsterdam",
+        "Maria",
+        "Rainer",
+        "Rilke",
+        "Poet",
+        "Young"
+      ],
+      "forbidden": []
+    },
+    "18": {
+      "assigned": [
+        "Alcoholics Anonymous",
+        "Alcoholics Anonymous Twelve Steps",
+        "Bill W",
+        "Twelve Steps",
+        "Reinhold Niebuhr",
+        "United States",
+        "Alcoholics",
+        "Anonymous",
+        "Steps",
+        "Twelve",
+        "Bill",
+        "Niebuhr",
+        "Reinhold",
+        "States",
+        "United"
+      ],
+      "forbidden": []
+    },
+    "19": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Fred Rogers",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Mister Rogers Neighborhood",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Prince Albert",
+          "ownerChapter": 14
+        },
+        {
+          "name": "Queen Victoria",
+          "ownerChapter": 14
+        },
+        {
+          "name": "Queen Victoria Prince Albert",
+          "ownerChapter": 14
+        },
+        {
+          "name": "Fred",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Rogers",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Mister",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Neighborhood",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Albert",
+          "ownerChapter": 14
+        },
+        {
+          "name": "Prince",
+          "ownerChapter": 14
+        },
+        {
+          "name": "Queen",
+          "ownerChapter": 14
+        },
+        {
+          "name": "Victoria",
+          "ownerChapter": 14
+        }
+      ]
+    },
+    "20": {
+      "assigned": [
+        "White House",
+        "House",
+        "White"
+      ],
+      "forbidden": [
+        {
+          "name": "Abraham Lincoln",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Civil War",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Abraham",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Lincoln",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Civil",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Seneca",
+          "ownerChapter": 11
+        }
+      ]
+    },
+    "21": {
+      "assigned": [
+        "Apollo Earthrise",
+        "December 1968",
+        "December 1968 Apollo",
+        "Apollo",
+        "Earthrise",
+        "December"
+      ],
+      "forbidden": [
+        {
+          "name": "Marcus Aurelius",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Roman Empire",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Aurelius",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Marcus",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Empire",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Roman",
+          "ownerChapter": 6
+        }
+      ]
+    },
+    "22": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "23": {
+      "assigned": [
+        "Sadaharu Oh",
+        "Sadaharu Oh Zen",
+        "Yomiuri Giants",
+        "Book of Five Rings",
+        "Miyamoto Musashi",
+        "Sadaharu",
+        "Giants",
+        "Yomiuri",
+        "Miyamoto",
+        "Musashi",
+        "Book",
+        "Five",
+        "Rings"
+      ],
+      "forbidden": []
+    },
+    "24": {
+      "assigned": [
+        "Berkshire Hathaway",
+        "Warren Buffett",
+        "Steve Jobs",
+        "Buffett",
+        "Warren",
+        "Berkshire",
+        "Hathaway",
+        "Jobs",
+        "Steve"
+      ],
+      "forbidden": []
+    },
+    "25": {
+      "assigned": [
+        "Søren Kierkegaard",
+        "Søren Kierkegaard Copenhagen",
+        "Friedrich Nietzsche",
+        "Swiss Alps",
+        "Copenhagen",
+        "Kierkegaard",
+        "Søren",
+        "Friedrich",
+        "Nietzsche",
+        "Alps",
+        "Swiss"
+      ],
+      "forbidden": [
+        {
+          "name": "Sils-Maria Philosophy",
+          "ownerChapter": 17
+        },
+        {
+          "name": "Sils-Maria",
+          "ownerChapter": 17
+        }
+      ]
+    },
+    "26": {
+      "assigned": [
+        "Benjamin Franklin",
+        "Benjamin",
+        "Franklin"
+      ],
+      "forbidden": [
+        {
+          "name": "Fred Rogers",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Fred",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Rogers",
+          "ownerChapter": 12
+        }
+      ]
+    },
+    "27": {
+      "assigned": [
+        "Diogenes the Cynic",
+        "Diogenes"
+      ],
+      "forbidden": [
+        {
+          "name": "Athens",
+          "ownerChapter": 8
+        }
+      ]
+    },
+    "28": {
+      "assigned": [
+        "Henry David Thoreau",
+        "Henry David Thoreau Walden",
+        "Walden Pond",
+        "Pacific Northwest",
+        "David",
+        "Henry",
+        "Thoreau",
+        "Walden",
+        "Pond",
+        "Northwest",
+        "Pacific"
+      ],
+      "forbidden": [
+        {
+          "name": "Bill Gates",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Bill Gates Think Week",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Think Week",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Bill",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Gates",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Think",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Week",
+          "ownerChapter": 18
+        }
+      ]
+    },
+    "29": {
+      "assigned": [
+        "Leaves of Grass",
+        "Walt Whitman",
+        "Walt",
+        "Whitman",
+        "Grass",
+        "Leaves"
+      ],
+      "forbidden": [
+        {
+          "name": "Abraham Joshua Heschel",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Abraham Joshua Heschel Sabbath",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Abraham",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Heschel",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Joshua",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Sabbath",
+          "ownerChapter": 1
+        }
+      ]
+    },
+    "30": {
+      "assigned": [
+        "Arianna Huffington",
+        "Huffington's 2007",
+        "William Dement",
+        "Arianna",
+        "Huffington",
+        "Dement",
+        "William"
+      ],
+      "forbidden": []
+    },
+    "31": {
+      "assigned": [
+        "Winston Churchill",
+        "Winston Churchill Chartwell",
+        "Grammy Awards",
+        "Rosanne Cash",
+        "Chartwell",
+        "Churchill",
+        "Winston",
+        "Cash",
+        "Rosanne",
+        "Awards",
+        "Grammy"
+      ],
+      "forbidden": [
+        {
+          "name": "River & the Thread",
+          "ownerChapter": 1
+        },
+        {
+          "name": "River",
+          "ownerChapter": 1
+        },
+        {
+          "name": "Thread",
+          "ownerChapter": 1
+        }
+      ]
+    },
+    "32": {
+      "assigned": [
+        "Infinite Jest",
+        "Infinite",
+        "Jest"
+      ],
+      "forbidden": [
+        {
+          "name": "Alcoholics Anonymous",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Bill W",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Twelve Steps",
+          "ownerChapter": 18
+        },
+        {
+          "name": "David Foster Wallace",
+          "ownerChapter": 28
+        },
+        {
+          "name": "Alcoholics",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Anonymous",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Bill",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Steps",
+          "ownerChapter": 18
+        },
+        {
+          "name": "Twelve",
+          "ownerChapter": 18
+        },
+        {
+          "name": "David",
+          "ownerChapter": 28
+        },
+        {
+          "name": "Foster",
+          "ownerChapter": 28
+        },
+        {
+          "name": "Wallace",
+          "ownerChapter": 28
+        }
+      ]
+    },
+    "33": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Cuban Missile Crisis",
+          "ownerChapter": 2
+        },
+        {
+          "name": "John F Kennedy",
+          "ownerChapter": 2
+        },
+        {
+          "name": "October 1962",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Catholic Worker",
+          "ownerChapter": 13
+        },
+        {
+          "name": "Dorothy Day",
+          "ownerChapter": 13
+        },
+        {
+          "name": "John",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Kennedy",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Crisis",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Cuban",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Missile",
+          "ownerChapter": 2
+        },
+        {
+          "name": "October",
+          "ownerChapter": 2
+        },
+        {
+          "name": "Dorothy",
+          "ownerChapter": 13
+        },
+        {
+          "name": "Catholic",
+          "ownerChapter": 13
+        },
+        {
+          "name": "Worker",
+          "ownerChapter": 13
+        }
+      ]
+    },
+    "34": {
+      "assigned": [
+        "Ryan Holiday",
+        "Holiday",
+        "Ryan"
+      ],
+      "forbidden": [
+        {
+          "name": "Marcus Aurelius",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Daily Stoic",
+          "ownerChapter": 11
+        },
+        {
+          "name": "Aurelius",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Marcus",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Meditations",
+          "ownerChapter": 6
+        },
+        {
+          "name": "Daily",
+          "ownerChapter": 11
+        },
+        {
+          "name": "Stoic",
+          "ownerChapter": 11
+        }
+      ]
+    }
+  },
+  "diagnostics": {
+    "contested": 66,
+    "chaptersWithoutSidecar": []
+  }
+}

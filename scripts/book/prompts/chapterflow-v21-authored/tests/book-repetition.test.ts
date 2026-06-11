@@ -59,5 +59,19 @@ for (const { bookId, files } of goldChapterFiles()) {
       [],
       `book-gate blocker false-positives on gold corpus`,
     );
+    // Pin MAJORS too (2026-06-11 review): BP26 is minor and BP27 major, so a
+    // blockers-only pin could never catch a BP27 gold false-positive.
+    // Baseline at pin time: daring-greatly 0 majors; start-with-why 1 major
+    // (pre-existing F4, unrelated to BP26/BP27).
+    const majorBaseline: Record<string, number> = { "daring-greatly": 0, "start-with-why": 1 };
+    const majors = report.findings.filter((finding) => finding.severity === "major");
+    const allowed = majorBaseline[bookId];
+    if (allowed !== undefined) {
+      assert.ok(
+        majors.length <= allowed,
+        `gold majors regressed (${majors.length} > baseline ${allowed}):\n` +
+          majors.map((finding) => `${finding.catalogId}: ${finding.message.slice(0, 120)}`).join("\n"),
+      );
+    }
   });
 }

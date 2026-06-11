@@ -10,7 +10,11 @@
  * catalog must have a corresponding check here.
  */
 
+import { readFileSync } from "fs";
+import { resolve } from "path";
+
 import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
+import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity } from "./integrity.js";
@@ -69,6 +73,25 @@ export type GateReport = {
     minorsCount: number;
   };
 };
+
+function allocatedNamesForChapter(chapter: ChapterV21): Set<string> {
+  const parsed = parseChapterId(chapter.chapterId);
+  if (!parsed) return new Set();
+  try {
+    const raw = readFileSync(resolve(CANONICAL_STATE, "name-plans", `${parsed.bookId}.name-plan.json`), "utf8");
+    const plan = JSON.parse(raw) as { allocation?: Record<string, string[]>; diagnostics?: { alreadyAuthored?: number[] } };
+    // ECHO-LOOPHOLE GUARD (2026-06-11 review): a re-planned ALREADY-AUTHORED
+    // chapter carries its on-disk names verbatim, so honoring its allocation
+    // would whitelist any banned-pool name the chapter used illegitimately —
+    // permanently silencing the C7 blocker for it. Only pre-authoring FRESH
+    // deals license a banned-pool name.
+    const carried = new Set(plan.diagnostics?.alreadyAuthored ?? []);
+    if (carried.has(chapter.number) || carried.has(parsed.num)) return new Set();
+    return new Set(plan.allocation?.[String(chapter.number)] ?? plan.allocation?.[String(parsed.num)] ?? []);
+  } catch {
+    return new Set();
+  }
+}
 
 const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // Schema (A)
@@ -324,6 +347,7 @@ function checkBreakdownSentenceCapitalization(
 
 export function runShipGate(chapter: ChapterV21): GateReport {
   const findings: GateFinding[] = [];
+  const allocatedNames = allocatedNamesForChapter(chapter);
 
   const push = (catalogId: string, unit: string, message: string, evidence?: string) => {
     const severity = SEVERITY_FROM_CATALOG[catalogId];
@@ -551,6 +575,7 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     // C7 — banned-pool name in scenario
     const bannedPool = ["Priya","Omar","Maya","Marcus","Elena","Lena","Victor","Theo","Jonah","Mateo","Tessa","Owen","Mira","Malik","Nadia","Felix","Caleb","Talia","Elise","Naomi"];
     for (const name of bannedPool) {
+      if (allocatedNames.has(name)) continue;
       if (new RegExp(`\\b${name}\\b`).test(ex.scenario) || new RegExp(`\\b${name}\\b`).test(ex.title)) {
         push("C7", unit, `banned-pool protagonist name "${name}" used`, ex.scenario);
         break;

@@ -231,17 +231,68 @@ export function planExemplars(bookId: string, from: number, to: number): Exempla
     }
   }
 
+  // ── Entity unification (2026-06-11 review fix) ──────────────────────────
+  // Per-key ownership let the same person be owned by two chapters under
+  // different surface forms: the stillness plan dealt "Tiger Woods" to ch9
+  // and "Tiger Woods Earl Woods" to ch14, so ch14's prompt simultaneously
+  // owned and forbade Tiger Woods. Candidates whose token sets are in a
+  // subset relation are the same ENTITY (union-find, transitive: "Kennedy"
+  // bridges "John F Kennedy Cuban Missile Crisis" and "October 1962
+  // Kennedy"), and an entity gets exactly ONE owner across all its forms.
+  // Entities with no multi-word form ("California", "Garden") are noise
+  // from single-token properNouns — dropped entirely.
+  const keys = Array.from(byCandidate.keys());
+  const tokenSets = new Map<string, Set<string>>(keys.map((k) => [k, new Set(candidateTokens(k))]));
+  const parent = new Map<string, string>(keys.map((k) => [k, k]));
+  const find = (k: string): string => {
+    let root = k;
+    while (parent.get(root) !== root) root = parent.get(root)!;
+    parent.set(k, root);
+    return root;
+  };
+  const union = (a: string, b: string): void => {
+    const ra = find(a), rb = find(b);
+    if (ra !== rb) parent.set(ra, rb);
+  };
+  const isSubset = (a: Set<string>, b: Set<string>): boolean => {
+    if (a.size > b.size) return false;
+    for (const t of a) if (!b.has(t)) return false;
+    return true;
+  };
+  for (let i = 0; i < keys.length; i++) {
+    for (let j = i + 1; j < keys.length; j++) {
+      const ta = tokenSets.get(keys[i])!, tb = tokenSets.get(keys[j])!;
+      if (isSubset(ta, tb) || isSubset(tb, ta)) union(keys[i], keys[j]);
+    }
+  }
+  const entityMembers = new Map<string, string[]>();
+  for (const k of keys) {
+    const root = find(k);
+    if (!entityMembers.has(root)) entityMembers.set(root, []);
+    entityMembers.get(root)!.push(k);
+  }
+
   const ownerByCandidate = new Map<string, number>();
-  for (const [key, record] of byCandidate) {
+  const droppedNoise = new Set<string>();
+  for (const members of entityMembers.values()) {
+    // Pure single-token entities are extraction noise, not exemplars.
+    if (!members.some((m) => tokenSets.get(m)!.size >= 2)) {
+      for (const m of members) droppedNoise.add(m);
+      continue;
+    }
+    // One owner for the whole entity: earliest namedExamples order across
+    // every member form's occurrences, tie → lowest chapter.
     let ownerChapter = Number.POSITIVE_INFINITY;
     let ownerOrder = Number.POSITIVE_INFINITY;
-    for (const [chapter, order] of record.chapters) {
-      if (order < ownerOrder || (order === ownerOrder && chapter < ownerChapter)) {
-        ownerChapter = chapter;
-        ownerOrder = order;
+    for (const m of members) {
+      for (const [chapter, order] of byCandidate.get(m)!.chapters) {
+        if (order < ownerOrder || (order === ownerOrder && chapter < ownerChapter)) {
+          ownerChapter = chapter;
+          ownerOrder = order;
+        }
       }
     }
-    ownerByCandidate.set(key, ownerChapter);
+    for (const m of members) ownerByCandidate.set(m, ownerChapter);
   }
 
   const allocation: Record<number, ExemplarChapterPlan> = {};
@@ -252,6 +303,7 @@ export function planExemplars(bookId: string, from: number, to: number): Exempla
   for (const [chapterKey, perChapter] of Array.from(chapterCandidates.entries()).sort((a, b) => a[0] - b[0])) {
     const chapter = Number(chapterKey);
     for (const [key, value] of Array.from(perChapter.entries()).sort((a, b) => a[1].order - b[1].order || a[1].display.localeCompare(b[1].display))) {
+      if (droppedNoise.has(key)) continue;
       const ownerChapter = ownerByCandidate.get(key);
       const record = byCandidate.get(key);
       const display = record?.display ?? value.display;

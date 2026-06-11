@@ -139,3 +139,68 @@ test("exemplar-plan CLI writes the plan and prints ownership", () => {
     resetFixture();
   }
 });
+
+test("entity unification: superstring forms share ONE owner; single-token noise dropped", () => {
+  try {
+    resetFixture();
+    // ch1 treats Tiger Woods most centrally (order 0); ch2's sidecar carries
+    // the SUPERSTRING form "Tiger Woods Earl Woods" — pre-unification this
+    // dealt two owners for one person (the stillness ch9/ch14 contradiction).
+    writeSidecar(1, {
+      namedExamples: [
+        { label: "Tiger Woods comeback", summary: "Tiger Woods rebuilt the swing.", teachesWhat: "practice" },
+      ],
+    });
+    writeSidecar(2, {
+      namedExamples: [
+        { label: "Quiet fairway drill", summary: "A practice green at dawn.", teachesWhat: "focus" },
+        { label: "Tiger Woods Earl Woods lessons", summary: "Earl Woods drilled Tiger Woods on exits.", teachesWhat: "pressure" },
+      ],
+      properNouns: ["California"],
+    });
+    const plan = planExemplars(BOOK, 1, 2);
+    const ch1 = plan.allocation[1], ch2 = plan.allocation[2];
+    // every Woods-family form is owned by ch1; ch2 only forbids, never owns
+    const ch2WoodsOwned = ch2.assigned.filter((a) => a.includes("Woods"));
+    assert.deepEqual(ch2WoodsOwned, [], `ch2 must not own any Woods form (got ${JSON.stringify(ch2WoodsOwned)})`);
+    assert.ok(ch1.assigned.some((a) => a.includes("Tiger Woods")), "ch1 owns the Tiger Woods entity");
+    assert.ok(ch2.forbidden.some((f) => f.name.includes("Woods") && f.ownerChapter === 1), "ch2 forbids the Woods entity, owner ch1");
+    // standalone single-token properNouns are noise, not exemplars
+    const everywhere = [...ch1.assigned, ...ch2.assigned, ...ch1.forbidden.map((f) => f.name), ...ch2.forbidden.map((f) => f.name)];
+    assert.ok(!everywhere.includes("California"), "single-token-only entity must be dropped");
+  } finally {
+    resetFixture();
+  }
+});
+
+test("C7 plan-skip honors FRESH deals only — carried (already-authored) allocations never license a banned-pool name", () => {
+  const { runShipGate } = require("../src/critics/finalGate.js") as typeof import("../src/critics/finalGate.js");
+  const { makeChapter } = require("./helpers.js") as typeof import("./helpers.js");
+  const NAME_PLAN = resolve(PIPELINE_DIR, "state", "name-plans", "zz-fixture-cseven.name-plan.json");
+  try {
+    writeFileSync(
+      NAME_PLAN,
+      JSON.stringify({
+        bookId: "zz-fixture-cseven",
+        allocation: { 1: ["Priya"], 2: ["Omar"] },
+        diagnostics: { alreadyAuthored: [2] },
+      }),
+      "utf8",
+    );
+    // ch1: Priya was FRESH-dealt -> C7 skip applies, no blocker for Priya.
+    const ch1 = makeChapter("zz-fixture-cseven", 1);
+    ch1.examples[0].scenario = "Priya reviews the intake queue while the clinic empties out, and she rewrites the triage order before the next arrival reaches the desk today.";
+    const r1 = runShipGate(ch1);
+    const all1 = [...r1.blockers, ...r1.majors, ...r1.minors];
+    assert.ok(!all1.some((f) => f.catalogId === "C7" && f.message.includes("Priya")), "fresh-dealt Priya must not trip C7");
+    // ch2 is listed alreadyAuthored: its allocation is an ECHO of on-disk
+    // text, not a license — C7 must still fire on Omar.
+    const ch2 = makeChapter("zz-fixture-cseven", 2);
+    ch2.examples[0].scenario = "Omar reviews the intake queue while the clinic empties out, and he rewrites the triage order before the next arrival reaches the desk today.";
+    const r2 = runShipGate(ch2);
+    const all2 = [...r2.blockers, ...r2.majors, ...r2.minors];
+    assert.ok(all2.some((f) => f.catalogId === "C7" && f.message.includes("Omar")), "carried-chapter Omar must still trip C7 (echo loophole)");
+  } finally {
+    rmSync(NAME_PLAN, { force: true });
+  }
+});
