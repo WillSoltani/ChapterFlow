@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch06",
+  "number": 6,
+  "title": "Start Journaling",
+  "coreMove": "Put the mind on paper before it hardens into a script; a private sentence can be checked, crossed out, thanked, or changed.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software release incident note",
+      "audience": "Fabrice, a release lead writing after a strained incident call",
+      "stakes": "A private note can become blame before the team has the facts.",
+      "format": "mistake_recovery",
+      "requiredBeat": "Fabrice notices his own blaming sentence mid-stream and catches the error before sending the incident summary."
+    },
+    {
+      "domain": "museum education program memo",
+      "audience": "Wallace, an education coordinator deciding how to frame a student writing exercise",
+      "stakes": "Students may treat journaling as performance unless the assignment protects honest private attention.",
+      "format": "decision_memo",
+      "requiredBeat": "A memo carries the scene by showing Wallace choose privacy over display after studying Anne Frank's diary in Amsterdam."
+    },
+    {
+      "domain": "community clinic scheduling review",
+      "audience": "Tristan and Chiara, two coordinators facing the same recurring missed handoff",
+      "stakes": "Memory may excuse a pattern that written records would reveal.",
+      "format": "contrast",
+      "requiredBeat": "Two named people face the same missed handoff, one trusts memory and one checks a journal, with different outcomes."
+    },
+    {
+      "domain": "architecture studio desk critique",
+      "audience": "Bao, a junior designer stuck after a harsh critique",
+      "stakes": "An angry story may harden into identity before the next revision.",
+      "format": "coach_talk",
+      "requiredBeat": "A mentor reframes Bao's stuck view in one conversation and gives a quotable line about naming heat."
+    },
+    {
+      "domain": "high school history seminar",
+      "audience": "Zuri, a teacher guiding students through a diary-based lesson",
+      "stakes": "A student may mistake journaling for neat moral summaries instead of honest observation.",
+      "format": "school_case",
+      "requiredBeat": "The learner's confusion becomes the material of the lesson, grounded in Anne Frank's diary in Amsterdam."
+    },
+    {
+      "domain": "municipal emergency operations log",
+      "audience": "Bashir, an emergency operations chief reviewing his own leadership log",
+      "stakes": "The same log can either defend an ego or train steadier public judgment.",
+      "format": "before_after",
+      "requiredBeat": "Show Bashir before and after changing how he writes, with Meditations as the model of private self-instruction."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "understand": 2,
+      "evaluate": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T15:36:56.478Z"
+}

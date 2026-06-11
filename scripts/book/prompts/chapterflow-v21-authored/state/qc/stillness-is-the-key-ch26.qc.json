@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 26,
+  "chapterId": "stillness-is-the-key-ch26",
+  "verdict": "REVISE",
+  "contentHash": "fa0384e4502b7cfb",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T16:03:26.318Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=86; cross-chapter: scene_skeleton/repeated_unit/scene_skeleton/repeated_unit/repeated_unit/repeated_unit; Finished, human, non-templated; all 6 scenes have named humans acting on real anchors (Rogers/Franklin), t"
+}

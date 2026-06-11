@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 24,
+  "chapterId": "stillness-is-the-key-ch24",
+  "verdict": "CORRUPTION",
+  "contentHash": "a1dcc5c60c2582d9",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T16:03:14.048Z",
+  "dimensions": {
+    "keysCorrect": false,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=87; 1 confirmed wrong key(s); cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit; Solid human prose and actionable plan; main weakness is source hard-specifics recited as index-card/pointed"
+}

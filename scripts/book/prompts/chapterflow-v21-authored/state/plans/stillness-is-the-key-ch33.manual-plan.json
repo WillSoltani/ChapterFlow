@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch33",
+  "number": 33,
+  "title": "Act Bravely",
+  "coreMove": "Quiet courage means letting the body feel fear, then doing the needed thing with less heat: pause, name the duty, and step without needing drama.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software incident response",
+      "audience": "team leads under executive pressure",
+      "stakes": "respond to a visible failure without letting speed replace judgment",
+      "format": "reset_moment",
+      "requiredBeat": "a routine is interrupted and the pause itself becomes the brave move"
+    },
+    {
+      "domain": "community kitchen service",
+      "audience": "volunteers who want courage to feel dramatic",
+      "stakes": "see repeated service as courage instead of mere helpfulness",
+      "format": "vignette",
+      "requiredBeat": "one closely observed kitchen moment teaches repeated bodily duty"
+    },
+    {
+      "domain": "school security review",
+      "audience": "administrators reviewing a failed response",
+      "stakes": "locate the one moment when dramatic action replaced judgment",
+      "format": "postmortem",
+      "requiredBeat": "open after the failure and trace the decisive misstep"
+    },
+    {
+      "domain": "city council testimony",
+      "audience": "advocates speaking under pressure",
+      "stakes": "correct a performative speech before it harms the cause",
+      "format": "mistake_recovery",
+      "requiredBeat": "the center is the instant the speaker notices her own error"
+    },
+    {
+      "domain": "hospital operations memo",
+      "audience": "leaders choosing a measured emergency response",
+      "stakes": "make the written recommendation brave without making it flashy",
+      "format": "decision_memo",
+      "requiredBeat": "the written artifact carries the action"
+    },
+    {
+      "domain": "nonprofit public statement",
+      "audience": "staff deciding how to carry public commitments",
+      "stakes": "see how waiting for fear to vanish differs from acting with steadiness",
+      "format": "contrast",
+      "requiredBeat": "two named people face the same situation with opposite approaches"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "understand": 1,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T15:36:56.487Z"
+}

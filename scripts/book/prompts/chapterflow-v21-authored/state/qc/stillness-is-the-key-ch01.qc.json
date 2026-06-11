@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 1,
+  "chapterId": "stillness-is-the-key-ch01",
+  "verdict": "REVISE",
+  "contentHash": "b3c73a6bbfbb32eb",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T15:47:53.927Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=80; cross-chapter: scene_skeleton/repeated_unit/scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit/location_stamping/repeated_unit; Strong, near-anchor chapter (prose/lines/plan/cards all clean; all 6 car"
+}

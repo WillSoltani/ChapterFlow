@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 20,
+  "chapterId": "stillness-is-the-key-ch20",
+  "verdict": "REVISE",
+  "contentHash": "17714964c164dab2",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T16:03:14.048Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=88; cross-chapter: scene_skeleton/scene_skeleton/repeated_unit; Strong human prose and clean aphorisms; main weakness is systematic anchor-as-prop placement (Lincoln/Seneca pinned as a"
+}

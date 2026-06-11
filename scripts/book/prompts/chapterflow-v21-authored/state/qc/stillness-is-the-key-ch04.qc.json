@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 4,
+  "chapterId": "stillness-is-the-key-ch04",
+  "verdict": "REVISE",
+  "contentHash": "21d763ddc652559b",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T15:47:53.746Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=85; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/location_stamping/repeated_unit; Near-publishable: 6 named-human scenes, plain concrete prose, portable lines, situational If-Then plans using one nam"
+}

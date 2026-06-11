@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch30",
+  "number": 30,
+  "title": "Go to Sleep",
+  "coreMove": "Protecting sleep is not softness; it keeps your temper, appetite, focus, and honesty fit for the people who meet you tomorrow, so treat bedtime as a promise, not a leftover.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a Sunday evening planning page after reading the Arianna Huffington exhaustion case",
+      "audience": "a student with one quiet block before Monday",
+      "stakes": "whether he spends scarce attention on extra polish or on protecting sleep",
+      "format": "planning_choice",
+      "requiredBeat": "the whole scene stays inside the time allocation, with no execution shown"
+    },
+    {
+      "domain": "a late-night departure after a Stanford sleep medicine event",
+      "audience": "an exhausted organizer with a ride problem",
+      "stakes": "whether she risks a drowsy drive or wakes someone who needs rest too",
+      "format": "dilemma",
+      "requiredBeat": "both available choices carry a cost, making this the only two-bad-options scene"
+    },
+    {
+      "domain": "two coworkers talking over a late pitch deck",
+      "audience": "a team member tempted to turn exhaustion into status",
+      "stakes": "whether the deck gets one more tired hour or a clean stop",
+      "format": "dialogue",
+      "requiredBeat": "the lesson lands through the exchange, with Arianna Huffington's 2007 collapse doing real work in the talk"
+    },
+    {
+      "domain": "a training cohort adding a late study block before a quiz",
+      "audience": "a supervisor who assumes more study time will lift scores",
+      "stakes": "whether extra effort helps learning or steals the sleep that stores it",
+      "format": "predict_reveal",
+      "requiredBeat": "the reader expects a quiz gain, then sees the drop caused by lost sleep"
+    },
+    {
+      "domain": "a late message exchange about finishing a sleep advocacy slide deck",
+      "audience": "a presenter caught in the irony of overworking a rest talk",
+      "stakes": "whether she keeps polishing or accepts a rougher deck and a clearer morning",
+      "format": "text_thread",
+      "requiredBeat": "the short chat lands the lesson between lines rather than in a lecture"
+    },
+    {
+      "domain": "a bedtime routine interrupted by a quick request for feedback",
+      "audience": "a designer trying to protect the end of the night",
+      "stakes": "whether one small reply reopens work inside a sleep routine",
+      "format": "reset_moment",
+      "requiredBeat": "the interruption is met with a deliberate stop and a different restart"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "understand": 1,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T15:36:56.486Z"
+}

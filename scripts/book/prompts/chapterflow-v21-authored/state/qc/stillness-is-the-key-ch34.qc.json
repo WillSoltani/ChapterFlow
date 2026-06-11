@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 34,
+  "chapterId": "stillness-is-the-key-ch34",
+  "verdict": "REVISE",
+  "contentHash": "4d0f58e48531d406",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T16:09:27.195Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=87; cross-chapter: scene_skeleton/scene_skeleton/persona_drift; Anchor-level chapter: real named-human scenes reasoning about the coin/Meditations (not anchor-as-prop), concrete plain-"
+}

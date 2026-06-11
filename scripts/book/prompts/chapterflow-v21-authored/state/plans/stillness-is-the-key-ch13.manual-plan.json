@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch13",
+  "number": 13,
+  "title": "Choose Virtue",
+  "coreMove": "Stillness needs a moral aim: put goodness before ease, applause, and appetite, so your calm makes you more honest, useful, brave, restrained, and just.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "Catholic Worker donor response",
+      "audience": "Mederic drafting an internal decision memo",
+      "stakes": "a restricted gift could fund beds while excluding the hardest guests",
+      "format": "decision_memo",
+      "requiredBeat": "The written memo refuses a donor condition that would make service cleaner but less just."
+    },
+    {
+      "domain": "city emergency food routing",
+      "audience": "Edmund and Carter handling the same staff shortage",
+      "stakes": "public image could outrun the duty to serve the oldest residents first",
+      "format": "contrast",
+      "requiredBeat": "Edmund protects image while Carter uses the imperial duty standard to serve the common good."
+    },
+    {
+      "domain": "Catholic Worker volunteer shift",
+      "audience": "Maelle freezing before a hard hospitality task",
+      "stakes": "private calm could become distance from the people at the door",
+      "format": "coach_talk",
+      "requiredBeat": "Bruno gives a quotable reframe that sends Maelle back into service."
+    },
+    {
+      "domain": "adult ethics training class",
+      "audience": "Odilon learning how virtue guides calm",
+      "stakes": "a learner could treat calm as the answer instead of testing the act",
+      "format": "school_case",
+      "requiredBeat": "The learner's confusion becomes a four-column test of courage, justice, temperance, and wisdom."
+    },
+    {
+      "domain": "shelter operations inbox",
+      "audience": "Vivian changing the order of her morning replies",
+      "stakes": "pleasant praise could keep urgent repair work out of sight",
+      "format": "before_after",
+      "requiredBeat": "The same inbox routine is shown before and after the goodness-first change."
+    },
+    {
+      "domain": "Catholic Worker hospitality records",
+      "audience": "Maelle reviewing whether the house serves guests fairly",
+      "stakes": "a quiet system may be favoring applause over need",
+      "format": "audit",
+      "requiredBeat": "The audit finds a small record detail showing that service drifted toward public approval."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T15:36:56.480Z"
+}

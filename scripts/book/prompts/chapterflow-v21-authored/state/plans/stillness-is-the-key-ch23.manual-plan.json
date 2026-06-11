@@ -1,0 +1,68 @@
+{
+  "chapterId": "stillness-is-the-key-ch23",
+  "number": 23,
+  "title": "The Domain of the Body",
+  "coreMove": "Train your body to help your values: sleep, movement, food, and limits turn stillness from a clear thought into steady conduct when pressure arrives.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "clinical simulation",
+      "audience": "care workers who rely on adrenaline before pressure",
+      "stakes": "a clear handoff under pressure or a jittery performance covered by caffeine",
+      "format": "inner_monologue",
+      "requiredBeat": "Hyun replaces coffee and pep talk with physical rehearsal, using Sadaharu Oh as the model"
+    },
+    {
+      "domain": "executive preparation",
+      "audience": "leaders who spend every spare minute polishing output",
+      "stakes": "enter the call with timing and attention or arrive polished but brittle",
+      "format": "planning_choice",
+      "requiredBeat": "Severin allocates scarce time to body support before any action starts"
+    },
+    {
+      "domain": "martial arts seminar",
+      "audience": "instructors under social pressure to prove toughness",
+      "stakes": "protect a hurt body or preserve a public display",
+      "format": "dilemma",
+      "requiredBeat": "Lana faces two bad options and lets the injured body set the limit"
+    },
+    {
+      "domain": "batting cage coaching",
+      "audience": "coaches who confuse volume with discipline",
+      "stakes": "protect attention and the wrist or let extra reps hide poor form",
+      "format": "dialogue",
+      "requiredBeat": "Peyton and Milo discover that Oh's practice means clean restraint, not endless swings"
+    },
+    {
+      "domain": "fencing school practice",
+      "audience": "athletes who treat exhaustion as proof of seriousness",
+      "stakes": "train timing that sees clearly or practice past the point of learning",
+      "format": "predict_reveal",
+      "requiredBeat": "The expected winner loses because fatigue blunts perception"
+    },
+    {
+      "domain": "youth sports routine",
+      "audience": "students copying famous routines without copying the support system",
+      "stakes": "learn from practice or turn a model into panic reps",
+      "format": "text_thread",
+      "requiredBeat": "Hugo and Theophile turn Oh's example into rest, food, and ten clean swings"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 4,
+      "analyze": 2,
+      "understand": 1,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T15:36:56.484Z"
+}

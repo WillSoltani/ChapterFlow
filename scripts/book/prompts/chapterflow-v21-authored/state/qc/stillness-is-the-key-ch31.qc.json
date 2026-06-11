@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 31,
+  "chapterId": "stillness-is-the-key-ch31",
+  "verdict": "REVISE",
+  "contentHash": "4cd311199db0474d",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T16:09:15.221Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=82; Strong human prose and concrete imperative plans (near anchor quality); main craft weakness is recurring anchor-as-prop "
+}

@@ -1,0 +1,68 @@
+{
+  "chapterId": "stillness-is-the-key-ch04",
+  "number": 4,
+  "title": "Empty the Mind",
+  "coreMove": "Emptying the mind means treating thoughts as visitors, not orders: notice the noise, release what is useless, and return before reaction spends the room you need for choice.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "clinic message triage",
+      "audience": "readers whose inbox thoughts start acting like commands",
+      "stakes": "one person lets the thread own the hour while another clears enough room to answer the real request",
+      "format": "contrast",
+      "requiredBeat": "two named people face the same noisy thread and opposite approaches produce opposite outcomes"
+    },
+    {
+      "domain": "software design review",
+      "audience": "readers who wait for ideal conditions before thinking clearly",
+      "stakes": "the review can stall while the protagonist blames the room or move once he separates outer noise from inner command",
+      "format": "coach_talk",
+      "requiredBeat": "a peer gives one quotable reframe that changes the protagonist's first move"
+    },
+    {
+      "domain": "high school philosophy class",
+      "audience": "readers who think mental clearing means having no thoughts",
+      "stakes": "a confused learner either quits the exercise or learns what the confusion is teaching",
+      "format": "school_case",
+      "requiredBeat": "the learner's mistaken blank-mind standard becomes the material of the lesson"
+    },
+    {
+      "domain": "site reliability incident reporting",
+      "audience": "readers who let alerts and guesses merge under pressure",
+      "stakes": "the same report either spreads panic or separates facts from mental residue",
+      "format": "before_after",
+      "requiredBeat": "the same person repeats the same process before and after clearing the mind"
+    },
+    {
+      "domain": "engineering support audit",
+      "audience": "readers reviewing a messy failure after the fact",
+      "stakes": "understanding depends on finding the small record that shows where noise became command",
+      "format": "audit",
+      "requiredBeat": "nothing new happens except a reviewer discovers the telling detail in existing files"
+    },
+    {
+      "domain": "late-night executive email",
+      "audience": "readers whose thoughts argue while the work is open",
+      "stakes": "the protagonist can obey the surge or clear enough room to leave the reply for better judgment",
+      "format": "inner_monologue",
+      "requiredBeat": "the whole scene stays inside one mind and includes wrong turns before the release"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 4,
+      "understand": 2,
+      "analyze": 2,
+      "evaluate": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T15:36:56.477Z"
+}

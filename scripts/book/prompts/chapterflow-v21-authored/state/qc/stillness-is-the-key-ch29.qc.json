@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 29,
+  "chapterId": "stillness-is-the-key-ch29",
+  "verdict": "REVISE",
+  "contentHash": "7323b2e8faf6e288",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T16:09:15.330Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=81; cross-chapter: scene_skeleton/repeated_unit/repeated_unit; Distinct, well-built scenes and strong plain-language prose, near anchor quality; two examples lean on anchor-as-prop se"
+}

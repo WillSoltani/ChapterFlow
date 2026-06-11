@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch03",
+  "number": 3,
+  "title": "Limit Your Inputs",
+  "coreMove": "Stillness grows when you choose which inputs may enter and when; scheduled email, muted alerts, and delayed news protect judgment from borrowed urgency.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "executive correspondence review",
+      "audience": "leaders who feel guilty delaying low-stakes inputs",
+      "stakes": "a meeting may waste attention on demands that time would sort",
+      "format": "predict_reveal",
+      "requiredBeat": "Set up expected harm from delay, then reveal that waiting sorted the inputs."
+    },
+    {
+      "domain": "client-pricing work block",
+      "audience": "workers whose chats and alerts keep taking over planned work",
+      "stakes": "a quote may be late because every channel claims the morning",
+      "format": "text_thread",
+      "requiredBeat": "Use a compressed message exchange to show an access rule."
+    },
+    {
+      "domain": "morning writing routine",
+      "audience": "people whose first work block gets split by phone alerts",
+      "stakes": "the first paragraph may inherit the mood of the alerts",
+      "format": "reset_moment",
+      "requiredBeat": "An interrupted routine stops and restarts differently."
+    },
+    {
+      "domain": "office desk triage",
+      "audience": "operators who want a physical handle for incoming paper",
+      "stakes": "morning judgment can be spent by whichever envelope sits on top",
+      "format": "vignette",
+      "requiredBeat": "A small desk detail makes delay visible without a live decision."
+    },
+    {
+      "domain": "customer launch communication",
+      "audience": "teams reviewing a communication failure after the fact",
+      "stakes": "a false line reached customers because noise sat beside the draft",
+      "format": "postmortem",
+      "requiredBeat": "Open after the failure and locate the decisive misstep."
+    },
+    {
+      "domain": "sales forecast preparation",
+      "audience": "workers who notice their own inbox error midstream",
+      "stakes": "a forecast may be late because reply momentum feels like work",
+      "format": "mistake_recovery",
+      "requiredBeat": "The protagonist notices his own error and corrects course."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "understand": 2,
+      "evaluate": 2,
+      "analyze": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T15:36:56.477Z"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 9,
+  "chapterId": "stillness-is-the-key-ch09",
+  "verdict": "REVISE",
+  "contentHash": "5a50fad4adcc1781",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T15:48:05.643Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=89; cross-chapter: repeated_unit/location_stamping; Strong, near-anchor chapter; only soft spot is a recurring anchor-as-prop tendency (hardSpecifics dumped as packet/slide"
+}

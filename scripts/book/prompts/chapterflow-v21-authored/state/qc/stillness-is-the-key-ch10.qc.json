@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 10,
+  "chapterId": "stillness-is-the-key-ch10",
+  "verdict": "REVISE",
+  "contentHash": "919abd68f9e94cc4",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewedAt": "2026-06-11T15:55:58.635Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=89; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/repeated_unit/persona_drift; Strong, near-publishable chapter; main blemish is repeated citation-triad-as-prop in several examples (Epictetus/Enchiri"
+}

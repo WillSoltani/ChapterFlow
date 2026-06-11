@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "pedagogy-plan-v1",
+  "bookId": "stillness-is-the-key",
+  "fromChapter": 1,
+  "toChapter": 34,
+  "bookMix": {
+    "hookShapes": [
+      "your-hidden-default",
+      "first-person-confession",
+      "room-after-action"
+    ],
+    "dominantHookShape": "your-hidden-default",
+    "tryThisNowGrammars": [
+      "schedule-event",
+      "ten-minute-timer",
+      "change-environment"
+    ],
+    "quizOpeners": [
+      "you-situation",
+      "scenario-role"
+    ]
+  },
+  "allocation": {
+    "1": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "2": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "3": {
+      "hookShape": "first-person-confession",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "4": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "5": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "6": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "7": {
+      "hookShape": "first-person-confession",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "8": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "9": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "10": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "11": {
+      "hookShape": "first-person-confession",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "12": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "13": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "14": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "15": {
+      "hookShape": "first-person-confession",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "16": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "17": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "18": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "19": {
+      "hookShape": "first-person-confession",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "20": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "21": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "22": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "23": {
+      "hookShape": "first-person-confession",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "24": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "25": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "26": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "27": {
+      "hookShape": "first-person-confession",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "28": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "29": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "30": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "31": {
+      "hookShape": "first-person-confession",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "32": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    },
+    "33": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "ten-minute-timer",
+      "quizOpeners": [
+        "you-situation",
+        "scenario-role"
+      ]
+    },
+    "34": {
+      "hookShape": "your-hidden-default",
+      "tryThisNowGrammar": "change-environment",
+      "quizOpeners": [
+        "scenario-role",
+        "you-situation"
+      ]
+    }
+  },
+  "carriedChapters": []
+}
