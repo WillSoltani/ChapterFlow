@@ -1524,8 +1524,8 @@ html:not(.dark) .bd-chapter-shimmer::before {
 
 /* ─────────────────────────────────────────
    CHAPTER READER — Design Tokens
-   Re-pointed onto the canonical brand tokens (--accent-*/--bg-*/--text-*)
-   so the reader is no longer a teal/purple island. The solid aliases below
+   Re-pointed onto the canonical brand tokens (the --accent, --bg and --text
+   families) so the reader is no longer a teal/purple island. The aliases below
    resolve per-theme automatically (the canonical tokens redefine themselves
    under html:not(.dark)), so the light block only needs the few theme-specific
    translucent literals.
