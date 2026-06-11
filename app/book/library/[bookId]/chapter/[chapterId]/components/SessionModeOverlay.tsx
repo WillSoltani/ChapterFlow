@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { ArrowRight, BookOpen, Brain, Lightbulb } from "lucide-react";
 
 const STEPS = [
@@ -29,6 +30,7 @@ type Props = {
 };
 
 export function SessionModeOverlay({ onDone }: Props) {
+  const prefersReducedMotion = useReducedMotion();
   const [activeStep, setActiveStep] = useState(0);
   const [tourComplete, setTourComplete] = useState(false);
 
@@ -44,14 +46,19 @@ export function SessionModeOverlay({ onDone }: Props) {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center bg-(--cf-overlay) px-4 sm:px-6">
+    <div
+      className="fixed inset-0 z-40 flex items-center justify-center bg-(--cf-overlay) px-4 sm:px-6"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Session mode introduction"
+    >
       <div className="w-full max-w-sm">
-        <div className="rounded-[28px] border border-(--cf-accent-border) bg-(--cf-surface-strong) p-6 shadow-shadow-book">
+        <div className="rounded-[28px] border border-(--cr-glass-border-teal) bg-(--cr-bg-surface-2) p-6 shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
           <div className="text-center">
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-(--cf-accent)">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-(--cr-accent)">
               Session Mode
             </p>
-            <p className="mt-1 text-base font-semibold text-(--cf-text-1)">
+            <p className="mt-1 text-base font-semibold text-(--cr-text-heading)">
               Here&apos;s how it works
             </p>
           </div>
@@ -66,20 +73,20 @@ export function SessionModeOverlay({ onDone }: Props) {
                   className={[
                     "flex items-center gap-3 rounded-2xl border px-3.5 py-3 transition-all duration-500",
                     isActive
-                      ? "scale-[1.02] border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_3px_var(--cf-accent-muted)]"
+                      ? "scale-[1.02] border-(--cr-glass-border-teal) bg-(--cr-accent-muted) shadow-[0_0_0_3px_var(--cr-accent-glow)]"
                       : isPast
-                        ? "border-(--cf-success-border) bg-(--cf-success-soft) opacity-70"
-                        : "border-(--cf-border) bg-(--cf-surface-muted) opacity-30",
+                        ? "border-(--cr-success)/30 bg-(--cr-success-bg) opacity-70"
+                        : "border-(--cr-glass-border) bg-(--cr-bg-surface-3) opacity-30",
                   ].join(" ")}
                 >
                   <span
                     className={[
                       "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-500",
                       isActive
-                        ? "bg-(--cf-accent) text-white shadow-[0_2px_8px_var(--cf-accent-shadow)]"
+                        ? "bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_2px_8px_color-mix(in_srgb,var(--cr-accent)_35%,transparent)]"
                         : isPast
-                          ? "bg-(--cf-success-soft) text-(--cf-success-text)"
-                          : "bg-(--cf-surface) text-(--cf-text-3)",
+                          ? "bg-(--cr-success-bg) text-(--cr-success)"
+                          : "bg-(--cr-bg-surface-1) text-(--cr-text-disabled)",
                     ].join(" ")}
                   >
                     <Icon className="h-4 w-4" />
@@ -89,10 +96,10 @@ export function SessionModeOverlay({ onDone }: Props) {
                       className={[
                         "text-sm font-semibold transition-colors duration-300",
                         isActive
-                          ? "text-(--cf-info-text)"
+                          ? "text-(--cr-accent)"
                           : isPast
-                            ? "text-(--cf-success-text)"
-                            : "text-(--cf-text-3)",
+                            ? "text-(--cr-success)"
+                            : "text-(--cr-text-disabled)",
                       ].join(" ")}
                     >
                       {label}
@@ -101,17 +108,22 @@ export function SessionModeOverlay({ onDone }: Props) {
                       className={[
                         "mt-0.5 text-xs transition-colors duration-300",
                         isActive
-                          ? "text-(--cf-info-text) opacity-80"
+                          ? "text-(--cr-text-secondary)"
                           : isPast
-                            ? "text-(--cf-success-text) opacity-70"
-                            : "text-(--cf-text-3)",
+                            ? "text-(--cr-success) opacity-70"
+                            : "text-(--cr-text-disabled)",
                       ].join(" ")}
                     >
                       {desc}
                     </p>
                   </div>
                   {isActive && (
-                    <span className="ml-auto h-2 w-2 flex-shrink-0 animate-pulse rounded-full bg-(--cf-accent)" />
+                    <span
+                      className={[
+                        "ml-auto h-2 w-2 flex-shrink-0 rounded-full bg-(--cr-accent)",
+                        prefersReducedMotion ? "" : "animate-pulse",
+                      ].join(" ")}
+                    />
                   )}
                 </div>
               );
@@ -123,7 +135,7 @@ export function SessionModeOverlay({ onDone }: Props) {
               <button
                 type="button"
                 onClick={onDone}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-(--cf-accent) px-4 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_var(--cf-accent-shadow)] transition-opacity hover:opacity-90"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-(--cr-accent) px-4 py-3 text-sm font-semibold text-(--cr-text-inverse) shadow-[0_4px_16px_color-mix(in_srgb,var(--cr-accent)_35%,transparent)] transition-opacity hover:opacity-90"
               >
                 Start Reading
                 <ArrowRight className="h-4 w-4" />
@@ -133,7 +145,7 @@ export function SessionModeOverlay({ onDone }: Props) {
                 <button
                   type="button"
                   onClick={onDone}
-                  className="text-xs text-(--cf-text-3) transition hover:text-(--cf-text-2)"
+                  className="text-xs text-(--cr-text-disabled) transition hover:text-(--cr-text-secondary)"
                 >
                   Skip intro
                 </button>

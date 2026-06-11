@@ -123,6 +123,7 @@ export function ChapterReaderClient({
   const [userSubmissions, setUserSubmissions] = useState<UserScenarioSubmission[]>([]);
   const [scenariosFetchFailed, setScenariosFetchFailed] = useState(false);
   const [scenariosRefetchKey, setScenariosRefetchKey] = useState(0);
+  const [contentRefetchKey, setContentRefetchKey] = useState(0);
   const [engagementPoints, setEngagementPoints] = useState(0);
   const [bookAccessStatus, setBookAccessStatus] = useState<"loading" | "ready" | "blocked">(
     "loading"
@@ -206,6 +207,7 @@ export function ChapterReaderClient({
     chapterNumber,
     book: bookMeta,
     localFallback,
+    refetchKey: contentRefetchKey,
   });
   // Force the chapter's id to the manifest/route chapterId. The content payload
   // can carry a different internal chapterId (e.g. "ch02-identity-driven-change")
@@ -396,14 +398,9 @@ export function ChapterReaderClient({
     if (!onboarding.setupComplete) router.replace("/book");
   }, [onboarding.setupComplete, onboardingHydrated, router]);
 
-  useEffect(() => {
-    // Content loads asynchronously now — only bounce to the library once the
-    // fetch has settled and there is genuinely no chapter (not while loading).
-    if (!contentHydrated) return;
-    if (!entry || !chapter) {
-      router.replace("/book/library");
-    }
-  }, [chapter, entry, contentHydrated, router]);
+  // Content-fetch failure no longer ejects to the library — when the fetch has
+  // settled with no chapter we render an in-place error card (below) with a
+  // retry, so the user keeps their place and gets an explanation.
 
   useEffect(() => {
     if (!chapter || !hydrated) return;
@@ -572,6 +569,52 @@ export function ChapterReaderClient({
     },
     [],
   );
+
+  // The content fetch has settled but there is genuinely no chapter to show
+  // (e.g. the API failed and there's no local fallback). Render an in-place
+  // error card instead of silently ejecting to the library — the user keeps
+  // their URL and can retry. Must precede the skeleton guard, which also fires
+  // on `!chapter` and would otherwise spin forever.
+  if (
+    onboardingHydrated &&
+    onboarding.setupComplete &&
+    bookAccessStatus === "ready" &&
+    contentHydrated &&
+    !chapter
+  ) {
+    return (
+      <main className="relative min-h-screen overflow-x-hidden">
+        <ChapterBackgroundOrbs />
+        <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
+          <div role="alert" className="w-full cr-glass-reading p-8 text-center">
+            <CloudOff className="mx-auto h-10 w-10 text-(--cr-text-disabled)" />
+            <h1 className="mt-4 text-3xl font-bold text-(--cr-text-heading)">
+              Couldn&apos;t load this chapter
+            </h1>
+            <p className="mt-2 text-(--cr-text-secondary)">
+              We hit a problem loading this chapter&apos;s content. Check your connection and try
+              again.
+            </p>
+            <div className="mt-5 flex flex-col items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setContentRefetchKey((k) => k + 1)}
+                className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
+              >
+                Try again
+              </button>
+              <Link
+                href={`/book/library/${encodeURIComponent(bookId)}`}
+                className="inline-flex min-h-11 items-center rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-4 py-2 text-sm font-medium text-(--cr-accent)"
+              >
+                Back to book
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   if (
     !entry ||
@@ -811,25 +854,29 @@ export function ChapterReaderClient({
       </div>
       {!state.focusMode && <ChapterBackgroundOrbs />}
 
-      {/* Floating audio surface — accessible from anywhere in the chapter.
-       *  Stacked vertically ABOVE the AskBookDrawer's chat button. Both buttons
-       *  sit near the bottom edge (chat at bottom-6 mobile / md:bottom-8
-       *  desktop, audio ~64px above that). The collapsed AudioPlayer is now
-       *  also a 48x48 round icon button so the two floating controls visually
-       *  match. Visible only on Summary phase. */}
-      {state.activeTab === "summary" && !state.focusMode && (
-        <div className="pointer-events-none fixed right-6 bottom-24 z-40">
-          <div className="pointer-events-auto">
-            <AudioPlayer
-              bookId={bookId}
-              chapterNumber={chapter.order}
-              chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
-              tone={contentTone}
-              variant={activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"}
-            />
-          </div>
+      {/* Floating audio surface — persists across ALL phases so playback,
+       *  scrub position, speed, and the fetched buffer survive when you
+       *  continue past Summary (it used to unmount and re-download). Hidden via
+       *  CSS (display:none, NOT unmounted) in focus mode so the buffer is kept.
+       *  Stacks ABOVE the Ask-the-book launcher with a safe-area-aware offset
+       *  so the two FABs never collide at the bottom edge (incl. ≤390px). */}
+      <div
+        className={[
+          "pointer-events-none fixed right-4 z-50 md:right-6",
+          "bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] md:bottom-[calc(env(safe-area-inset-bottom)+5rem)]",
+          state.focusMode ? "hidden" : "",
+        ].join(" ")}
+      >
+        <div className="pointer-events-auto">
+          <AudioPlayer
+            bookId={bookId}
+            chapterNumber={chapter.order}
+            chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
+            tone={contentTone}
+            variant={activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"}
+          />
         </div>
-      )}
+      </div>
 
 
       <section
@@ -1226,21 +1273,25 @@ export function ChapterReaderClient({
 
 
 
+      {/* Bottom-CENTER lane (sync pill above the toast) — kept clear of the
+       *  bottom-right FAB column and padded for the iOS home indicator. */}
       {syncFailed && !toast && (
-        <div className="pointer-events-none fixed bottom-20 left-1/2 z-40 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
+        <div className="pointer-events-none fixed bottom-[calc(env(safe-area-inset-bottom)+5rem)] left-1/2 z-40 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
           <CloudOff className="h-3.5 w-3.5" />
           Changes saved locally only
         </div>
       )}
 
       {toast && (
-        <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
+        <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] left-1/2 z-50 -translate-x-1/2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
           {toast}
         </div>
       )}
 
+      {/* Focus-mode indicator anchored bottom-LEFT so it never sits under the
+       *  bottom-right FAB column (the Ask launcher stays visible in focus mode). */}
       {state.focusMode && (
-        <div className="pointer-events-none fixed bottom-6 right-6 hidden rounded-xl border border-(--cr-success)/30 bg-(--cr-success-bg) px-3 py-1.5 text-xs text-(--cr-success) md:inline-flex md:items-center md:gap-1.5">
+        <div className="pointer-events-none fixed bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] left-6 hidden rounded-xl border border-(--cr-success)/30 bg-(--cr-success-bg) px-3 py-1.5 text-xs text-(--cr-success) md:inline-flex md:items-center md:gap-1.5">
           <CheckCircle2 className="h-4 w-4" />
           Focus mode enabled
         </div>

@@ -54,8 +54,10 @@ export function useChapterContent(params: {
   book: BookMeta;
   enabled?: boolean;
   localFallback?: () => BookChapter | undefined;
+  /** Bump to force a refetch (e.g. a "Try again" button after a failure). */
+  refetchKey?: number;
 }): ChapterContentState {
-  const { bookId, chapterNumber, enabled = true } = params;
+  const { bookId, chapterNumber, enabled = true, refetchKey = 0 } = params;
 
   // Keep the latest book meta + fallback in refs so changing their identity
   // doesn't retrigger the fetch (only bookId/chapterNumber/enabled do). Refs
@@ -133,7 +135,7 @@ export function useChapterContent(params: {
     return () => {
       mounted = false;
     };
-  }, [enabled, bookId, chapterNumber]);
+  }, [enabled, bookId, chapterNumber, refetchKey]);
 
   return state;
 }
