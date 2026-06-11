@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { getBookCoverCandidates } from "@/lib/book-covers";
 
 interface BookCoverProps {
@@ -58,6 +58,14 @@ export function BookCover({
   }, [bookId, coverImage]);
 
   const [index, setIndex] = useState(0);
+  // Reset the fallback cursor when the source set changes (e.g. an un-keyed
+  // BookCover instance swaps to a different book on a dashboard refetch) so a
+  // previously-exhausted cover doesn't show the wrong candidate / gradient.
+  const prevCandidates = useRef(candidates);
+  if (prevCandidates.current !== candidates) {
+    prevCandidates.current = candidates;
+    if (index !== 0) setIndex(0);
+  }
   const src = candidates[index];
   const resolvedSizes = sizes ?? (fill ? "(max-width: 768px) 40vw, 200px" : `${width ?? 160}px`);
 

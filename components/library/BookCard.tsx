@@ -25,10 +25,8 @@ const DIFFICULTY_COLORS: Record<string, string> = {
 };
 
 const BADGE_CONFIG: Record<string, { label: string; color: string; glow?: boolean }> = {
-  trending: { label: "Trending", color: "var(--accent-cyan)", glow: true },
   "staff-pick": { label: "Staff Pick ★", color: "var(--accent-gold)" },
   new: { label: "New", color: "var(--accent-red)" },
-  "most-completed": { label: "Reader favorite", color: "var(--accent-emerald)" },
 };
 
 export function BookCard({ book, index = 0, layout = "grid", showProLock = false }: BookCardProps) {
@@ -194,7 +192,7 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
         aria-expanded={expanded}
         aria-controls={panelId}
         onClick={() => setExpanded((v) => !v)}
-        className="mt-2.5 flex cursor-pointer items-center gap-1 text-[12px] font-medium transition-colors"
+        className="mt-1.5 flex min-h-11 cursor-pointer items-center gap-1 text-[12px] font-medium transition-colors"
         style={{ color: "var(--accent-cyan)" }}
       >
         {expanded ? "Hide details" : "What you'll learn"}

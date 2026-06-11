@@ -19,7 +19,9 @@ export type Category =
   | "Philosophy";
 
 export type Difficulty = "easy" | "medium" | "hard";
-export type BadgeType = "trending" | "staff-pick" | "new" | "most-completed";
+// Only badges backed by real signals: "new" (recently added) and "staff-pick"
+// (editorial). "trending"/"most-completed" were dropped — no popularity data.
+export type BadgeType = "staff-pick" | "new";
 
 export interface UserProgress {
   currentChapter: number;
@@ -68,11 +70,12 @@ export interface UserStats {
   freeBooksLimit: number;
 }
 
+// An honest weekly reading suggestion. No reward/progress fields: there is no
+// challenge-tracking backend, so a fabricated IP reward or progress bar would
+// have no source. The UI renders only the category nudge + a browse CTA.
 export interface WeeklyChallenge {
   description: string;
   category?: Category;
-  reward: { xp: number; badge?: string };
-  progress: { current: number; target: number };
 }
 
 type LibraryBookOverride = Partial<
@@ -98,8 +101,6 @@ export const MOCK_USER_STATS: UserStats = {
 export const MOCK_WEEKLY_CHALLENGE: WeeklyChallenge = {
   description: "Start a book in Psychology",
   category: "Psychology",
-  reward: { xp: 100, badge: "Explorer" },
-  progress: { current: 1, target: 2 },
 };
 
 function inferLibraryCategory(categories: string[]): Category {

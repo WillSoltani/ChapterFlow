@@ -92,8 +92,7 @@ export function HeroRecommendation({
               width: 200,
               height: 300,
               borderRadius: "var(--radius-lg-val)",
-              boxShadow:
-                "0 20px 60px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1) inset",
+              boxShadow: "var(--shadow-hero)",
             }}
           >
             <BookCover
@@ -248,6 +247,7 @@ export function HeroRecommendation({
               >
                 <Link
                   href={`/book/library/${encodeURIComponent(book.id)}`}
+                  aria-label={`${book.title} by ${book.author}`}
                   className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
                   style={{ border: "1px solid transparent" }}
                   onMouseEnter={(e) => {

@@ -19,6 +19,10 @@ export function CuratedSection({
 }: CuratedSectionProps) {
   const prefersReduced = useReducedMotion();
 
+  // A section whose curated ids don't resolve against the live catalog (partial
+  // / unpublished catalog) renders nothing rather than "0 books · Avg. ~NaNh".
+  if (books.length === 0) return null;
+
   // Section meta
   const avgTime = Math.round(
     books.reduce((sum, b) => sum + b.estimatedReadingTimeMinutes, 0) /

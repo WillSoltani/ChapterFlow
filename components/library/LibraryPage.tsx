@@ -48,7 +48,7 @@ function CelebrationToast({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed right-5 top-20 z-50 max-w-sm overflow-hidden rounded-xl"
+          className="fixed right-4 top-20 z-50 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl sm:right-5 sm:max-w-sm"
           style={{
             background: "var(--bg-glass)",
             backdropFilter: "blur(12px)",
@@ -352,8 +352,10 @@ export function LibraryPage() {
             {/* Section 3: Weekly focus */}
             <WeeklyChallenge challenge={weeklyChallenge} onBrowseCategory={handleBrowseCategory} />
 
-            {/* Sections 4-7: Curated Discovery */}
-            {curatedSections.map((section) => (
+            {/* Sections 4-7: Curated Discovery (skip sections with no resolvable books) */}
+            {curatedSections
+              .filter((section) => section.books.length > 0)
+              .map((section) => (
               <CuratedSection
                 key={section.narrativeTitle}
                 narrativeTitle={section.narrativeTitle}
