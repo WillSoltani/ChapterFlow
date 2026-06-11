@@ -151,30 +151,30 @@ const EXPLORATION_ACHIEVEMENTS: AchievementDefinition[] = [
     id: "cross-disciplinary",
     name: "Cross-Disciplinary",
     track: "exploration",
-    criteria: "Complete loops in 7 different categories",
+    criteria: "Complete loops in 6 different categories",
     ipValue: 50,
     celebrationCopy:
-      "Seven categories. You're building the kind of broad foundation that makes deep work possible.",
+      "Six categories. You're building the kind of broad foundation that makes deep work possible.",
     isHidden: false,
   },
   {
     id: "renaissance-reader",
     name: "Renaissance Reader",
     track: "exploration",
-    criteria: "Complete loops in 12 different categories",
+    criteria: "Complete loops in 8 different categories",
     ipValue: 80,
     celebrationCopy:
-      "Twelve domains. The connections between fields — that's where the real insights live.",
+      "Eight domains. The connections between fields — that's where the real insights live.",
     isHidden: false,
   },
   {
     id: "omnivore",
     name: "Omnivore",
     track: "exploration",
-    criteria: "Complete loops in 18+ different categories",
+    criteria: "Complete loops in 10+ different categories",
     ipValue: 150,
     celebrationCopy:
-      "Eighteen categories. Very few readers venture this wide. The mental models you're accumulating are compounding.",
+      "Ten categories. Very few readers venture this wide. The mental models you're accumulating are compounding.",
     isHidden: false,
   },
   {
