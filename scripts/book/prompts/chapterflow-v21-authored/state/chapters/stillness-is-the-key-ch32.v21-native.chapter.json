@@ -16,22 +16,22 @@
     {
       "exampleId": "ex01",
       "sourceAnchorId": "ch32.ex.alcoholics-anonymous-recovery-distinction",
-      "title": "Blank Line Audit",
+      "title": "Simonne Finds the Same Ticket",
       "tags": [
-        "audit",
+        "predict reveal",
         "recovery",
-        "work"
+        "escapism"
       ],
       "planSpec": {
-        "domain": "help-desk wellness review",
-        "audience": "team leads checking a recovery habit",
-        "stakes": "Relief can look successful while the avoided work stays untouched.",
-        "format": "audit",
-        "requiredBeat": "A record review finds the residue that separates recovery from escape."
+        "domain": "campus advising desk",
+        "audience": "people checking whether relief actually returns them to life",
+        "stakes": "escape may feel like recovery while leaving the hard task untouched",
+        "format": "predict_reveal",
+        "requiredBeat": "The expected proof of recovery fails when the same hard ticket remains untouched."
       },
-      "scenario": "Gwen reviews six weeks of help-desk notes before the Monday wellness review. The telling detail is not the word recovery; it is the blank line after each streaming break. Alcoholics Anonymous, Bill W., and the Twelve Steps treated the false cure as part of the illness. Gwen sees the same small pattern: the breaks lower panic for an hour and leave every hard ticket untouched.",
-      "whatToDo": "Gwen marks the blank follow-up line as the issue and changes the review question from \"Did you feel relief?\" to \"What did you return able to face?\"",
-      "whyItMatters": "Relief can be a false positive. The record that matters is the residue: clearer work, kinder replies, or another loop around the same task."
+      "scenario": "At the campus advising desk, Simonne expects the streaming break to make Monday's help-desk ticket easier. The Alcoholics Anonymous card in her folder names Bill W., the Twelve Steps, and 1935, then points to a harder test: what can she face afterward? She opens the queue and sees the same ticket, same draft, same avoidance.",
+      "whatToDo": "Simonne changes the review question from \"Did I feel relief?\" to \"What did I return able to face?\"",
+      "whyItMatters": "Escapism often imitates recovery for an hour. The aftermath tells the truth more plainly than the feeling during the break."
     },
     {
       "exampleId": "ex02",
@@ -56,22 +56,22 @@
     {
       "exampleId": "ex03",
       "sourceAnchorId": "ch32.ex.alcoholics-anonymous-recovery-distinction",
-      "title": "Forty-Minute Allocation",
+      "title": "Eveline and Gordon Test the Break",
       "tags": [
-        "planning_choice",
-        "money",
+        "dialogue",
+        "recovery",
         "attention"
       ],
       "planSpec": {
-        "domain": "household budgeting",
-        "audience": "readers with too little energy for every need",
-        "stakes": "Scarce attention must be assigned before a break becomes disappearance.",
-        "format": "planning_choice",
-        "requiredBeat": "Before action, the protagonist allocates time by the aftermath each option is likely to return."
+        "domain": "bike-share rack",
+        "audience": "people trying to tell rest from disappearance",
+        "stakes": "a soothing activity may become escape if it never returns attention to the problem",
+        "format": "dialogue",
+        "requiredBeat": "Two people use recovery language to test whether a break returns the person to the task."
       },
-      "scenario": "Maxime has forty minutes at the kitchen table before the house gets noisy. On the table: a budget page, a guitar, and the Alcoholics Anonymous meeting schedule her brother sent after 1935 and Bill W. came up in their call. She is not doing any of them yet. She must pick the first block by aftermath: which use will send her back to the bill steadier?",
-      "whatToDo": "Maxime assigns the first ten minutes to the activity most likely to return clarity, then places the budget page beside it so recovery points back to life.",
-      "whyItMatters": "Planning protects rest from becoming disappearance. The scarce resource is not just time; it is attention that has to come back ready for the real bill."
+      "scenario": "At the bike-share rack, Eveline says the guitar break helped because she felt calmer. Gordon points to the Alcoholics Anonymous meeting card in her bag: Bill W., Twelve Steps, 1935. \"Good,\" he says, \"but did it return you to the bill or only away from it?\"",
+      "whatToDo": "Eveline takes the ride, then places the bill on the table before opening another escape route.",
+      "whyItMatters": "Honest rest gives life back to the person who rested. Escape asks for another dose while the real task waits untouched."
     },
     {
       "exampleId": "ex04",

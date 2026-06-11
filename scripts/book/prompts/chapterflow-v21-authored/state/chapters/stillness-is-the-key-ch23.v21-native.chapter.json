@@ -36,22 +36,22 @@
     {
       "exampleId": "ex02",
       "sourceAnchorId": "ch23.ex.miyamoto-musashi-martial-practice",
-      "title": "Forty-Minute Allocation",
+      "title": "Elaine Places the Body First",
       "tags": [
-        "planning",
-        "calendar",
-        "movement"
+        "planning choice",
+        "movement",
+        "timing"
       ],
       "planSpec": {
-        "domain": "executive preparation",
-        "audience": "leaders who spend every spare minute polishing output",
-        "stakes": "enter the call with timing and attention or arrive polished but brittle",
+        "domain": "cafeteria tray return",
+        "audience": "leaders whose preparation ignores the body carrying it",
+        "stakes": "the body may enter pressure brittle while the plan looks polished",
         "format": "planning_choice",
-        "requiredBeat": "Severin allocates scarce time to body support before any action starts"
+        "requiredBeat": "Before the call, the protagonist assigns attention to stance, water, and one question instead of treating the body as an afterthought."
       },
-      "scenario": "Severin has forty minutes before the board call and a blank calendar square in the training room. The old plan spends all of it on slides. Miyamoto Musashi's Japan swordsmanship points elsewhere: timing needs a body, not a frantic deck. He budgets ten minutes for a walk, ten for one hard slide, five for water, and the rest for silence. No work begins yet; the choice is the work.",
-      "whatToDo": "Severin protects the calendar square before the call, assigning minutes to movement, water, one slide, and silence instead of letting slide polish take every minute.",
-      "whyItMatters": "Planning the body first lowers the price of good judgment. Musashi's lesson is timing, not frantic output; attention needs a stance before action."
+      "scenario": "At the cafeteria tray return before a board call, Elaine sets a Miyamoto Musashi note beside her agenda: Japan, swordsmanship, and Book of Five Rings. The open block can feed more polish, or it can give the body a steadier start: walk the corridor, drink water, choose one question, sit down with breath back in range.",
+      "whatToDo": "Elaine marks the preparation block for movement, water, one question, and a short quiet landing before the call begins.",
+      "whyItMatters": "The body is part of judgment, not packaging around it. Timing improves when attention enters the room with a stance instead of a frantic shine."
     },
     {
       "exampleId": "ex03",
@@ -154,7 +154,7 @@
       {
         "questionId": "q02",
         "sourceAnchorId": "ch23.ex.miyamoto-musashi-martial-practice",
-        "prompt": "Severin has forty minutes before a board call, and Miyamoto Musashi's Japan swordsmanship note reminds him that timing needs a body. What should he do with the empty calendar square?",
+        "prompt": "Severin has the open block before a board call, and Miyamoto Musashi's Japan swordsmanship note reminds him that timing needs a body. What should he do with the empty calendar square?",
         "choices": [
           "The Body Ally Move: reserve minutes for movement, water, one slide, and silence before the call.",
           "The Slide Polish Misread: spend every minute making the deck look calmer than Severin feels.",

@@ -6,11 +6,11 @@
   "exampleCount": 6,
   "exampleSpecs": [
     {
-      "domain": "help-desk wellness review",
-      "audience": "team leads checking a recovery habit",
-      "stakes": "Relief can look successful while the avoided work stays untouched.",
-      "format": "audit",
-      "requiredBeat": "A record review finds the residue that separates recovery from escape."
+      "domain": "campus advising desk",
+      "audience": "people checking whether relief actually returns them to life",
+      "stakes": "escape may feel like recovery while leaving the hard task untouched",
+      "format": "predict_reveal",
+      "requiredBeat": "The expected proof of recovery fails when the same hard ticket remains untouched."
     },
     {
       "domain": "product design review",
@@ -20,11 +20,11 @@
       "requiredBeat": "The protagonist's thoughts expose the difference between a break and a hiding place."
     },
     {
-      "domain": "household budgeting",
-      "audience": "readers with too little energy for every need",
-      "stakes": "Scarce attention must be assigned before a break becomes disappearance.",
-      "format": "planning_choice",
-      "requiredBeat": "Before action, the protagonist allocates time by the aftermath each option is likely to return."
+      "domain": "bike-share rack",
+      "audience": "people trying to tell rest from disappearance",
+      "stakes": "a soothing activity may become escape if it never returns attention to the problem",
+      "format": "dialogue",
+      "requiredBeat": "Two people use recovery language to test whether a break returns the person to the task."
     },
     {
       "domain": "hospital shift recovery",
@@ -66,5 +66,5 @@
   },
   "readingTimeMinutes": 10,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-11T15:36:56.486Z"
+  "derivedAt": "2026-06-11T19:27:22.918Z"
 }

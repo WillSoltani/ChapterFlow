@@ -37,22 +37,22 @@
     {
       "exampleId": "ex02",
       "sourceAnchorId": "ch25.ex.friedrich-nietzsche-mountain-walks",
-      "title": "Violet Finds the Route",
+      "title": "Helene Checks the Stair Note",
       "tags": [
         "audit",
         "clinic",
-        "records"
+        "walking"
       ],
       "planSpec": {
-        "domain": "clinic note-quality review",
-        "audience": "operations analysts and clinical trainers",
-        "stakes": "staff may blame weak writing while missing the conditions that clear thought",
+        "domain": "food truck service window",
+        "audience": "clinicians testing whether movement changes thought quality",
+        "stakes": "better thinking may be blamed on talent while the simple condition is missed",
         "format": "audit",
-        "requiredBeat": "find the telling detail in existing records without staging an action scene"
+        "requiredBeat": "A current note check reveals that walking changed the draft's quality."
       },
-      "scenario": "Violet reviews 38 clinic notes, timestamp by timestamp. The best three were drafted after residents walked the service stairs between rounds. Her margin note names Friedrich Nietzsche, Sils-Maria, the Swiss Alps, and walking because the pattern is the same: thought improved after rhythm and space entered the work.",
-      "whatToDo": "Violet marks the walking gap in the record and recommends a short stair loop before the hardest notes are drafted.",
-      "whyItMatters": "The audit keeps the claim practical. Better thought showed up in the records only after the body had a simple rhythm to follow."
+      "scenario": "At the food truck service window after rounds, Helene places two clinic note drafts beside a stairwell route card. The cleaner draft came after the resident walked the service stairs. Nietzsche, Sils-Maria, the Swiss Alps, and walking give the pattern a name without turning it into romance.",
+      "whatToDo": "Helene adds a short stair loop before the hardest note block and asks residents to compare the next draft with the one written in a rush.",
+      "whyItMatters": "Walking helps only if it returns thought to the work. The body gives the mind a rhythm, then the note has to show the difference."
     },
     {
       "exampleId": "ex03",
@@ -77,22 +77,22 @@
     {
       "exampleId": "ex04",
       "sourceAnchorId": "ch25.ex.s-ren-kierkegaard-copenhagen-walks",
-      "title": "Weston Budgets the Walk",
+      "title": "Clarisse Leaves the Window",
       "tags": [
-        "planning choice",
-        "founder",
-        "attention"
+        "inner monologue",
+        "Kierkegaard",
+        "walking"
       ],
       "planSpec": {
-        "domain": "small-business weekly planning",
-        "audience": "owners allocating scarce attention",
-        "stakes": "all open time may get swallowed by shallow fixes",
-        "format": "planning_choice",
-        "requiredBeat": "show the tradeoff before execution, with no action after the choice"
+        "domain": "laundry room lint screen",
+        "audience": "people trying to force insight from the same stuck position",
+        "stakes": "movement may be reduced to productivity if the person never lets the knot loosen",
+        "format": "inner_monologue",
+        "requiredBeat": "The protagonist notices that the walk is not a productivity hack but a change in relation to the problem."
       },
-      "scenario": "Weston has 40 open minutes before the supplier review locks. The calendar offers three claims on that space: polish slides, answer small messages, or reserve a quiet walk with the pricing problem. Søren Kierkegaard's Copenhagen walking gives the planning test. Which use of time lets thought move before the room demands an answer?",
-      "whatToDo": "Weston blocks the 40 minutes as a walking review and writes the pricing question at the top of the agenda.",
-      "whyItMatters": "The planning choice protects the walk before urgency spends the time. Stillness often begins as a calendar decision made early."
+      "scenario": "At the laundry room lint screen, Clarisse keeps rereading the same pricing paragraph and calling it discipline. Søren Kierkegaard's nineteenth century Copenhagen walking sits in her notebook, but she hears the cheap version first: walk so the answer comes faster. No. Walk so the room stops squeezing the question into the same shape.",
+      "whatToDo": "Clarisse closes the washer lid, writes the pricing question on one card, and walks outside without carrying the draft in her hand.",
+      "whyItMatters": "A walk is not another way to force output. It changes the conditions around thought so the mind can return less clenched."
     },
     {
       "exampleId": "ex05",
@@ -155,11 +155,11 @@
       {
         "questionId": "q02",
         "sourceAnchorId": "ch25.fact.6",
-        "prompt": "Violet audits clinic notes and sees the clearest drafts came after residents walked the stairs between rounds. What should her recommendation protect?",
+        "prompt": "Helene checks clinic note drafts and sees the clearest one came after the resident walked the stairs between rounds. What should her recommendation protect?",
         "choices": [
-          "Documentation myth: Tell Violet's residents to write more rules for each note.",
-          "Tool-upgrade bias: Buy Violet a cleaner template before changing the work pace.",
-          "Telling-detail move: Keep a short walking gap before the hardest notes."
+          "Documentation myth: Tell Helene's residents to write more rules for each note.",
+          "Tool-upgrade bias: Buy Helene a cleaner template before changing the work pace.",
+          "Rhythm cue: Keep a short walking gap before the hardest notes."
         ],
         "correctIndex": 2,
         "explanation": "The audit found a rhythm cue, not a software problem. A short walking gap protects the condition that helped the notes become clearer.",
@@ -183,14 +183,14 @@
       {
         "questionId": "q04",
         "sourceAnchorId": "ch25.fact.1",
-        "prompt": "Weston has one open block before a pricing review. As the owner, what should he do with that scarce attention if the problem keeps knotting at the desk?",
+        "prompt": "Clarisse keeps forcing the same pricing paragraph from the laundry room counter. What should she do when the problem keeps knotting in the same place?",
         "choices": [
-          "Cosmetic-fix bias: Weston should polish the slides so the review feels calmer on screen.",
-          "Walking-review move: Weston should carry the pricing question through a quiet route.",
-          "Message-triage myth: Weston should clear small requests so the block looks productive."
+          "Force-output bias: Clarisse should keep rereading the paragraph until effort proves she is serious.",
+          "Walking-question move: Clarisse should carry one pricing question through a quiet route.",
+          "Message-triage myth: Clarisse should clear small requests so the work feels productive."
         ],
         "correctIndex": 1,
-        "explanation": "A knotting problem needs motion and space before more polish. The walk gives Weston a body rhythm that can settle thought before the review.",
+        "explanation": "A knotting problem needs motion and space before more force. The walk gives Clarisse a body rhythm that can settle thought before she returns to the paragraph.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },

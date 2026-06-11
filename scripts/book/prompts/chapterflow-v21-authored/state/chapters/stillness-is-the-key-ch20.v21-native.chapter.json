@@ -96,22 +96,22 @@
     {
       "exampleId": "ch20-ex05-ephrem-audit",
       "sourceAnchorId": "ch20.ex.abraham-lincoln-hot-letters",
-      "title": "The Timing Trail",
+      "title": "Raoul Writes the Cooling Rule",
       "tags": [
-        "audit",
-        "records",
-        "unsent letters"
+        "decision memo",
+        "anger",
+        "Lincoln"
       ],
       "planSpec": {
-        "domain": "complaint file audit",
-        "audience": "Ephrem reviewing prior messages for the hidden pattern",
-        "stakes": "the team may blame tone while missing the timing detail",
-        "format": "audit",
-        "requiredBeat": "Review existing files and discover that timing, not vocabulary alone, predicted damage."
+        "domain": "baseball dugout bench",
+        "audience": "people tempted to send hot objections while they still feel righteous",
+        "stakes": "anger may turn a valid objection into a cleanup problem",
+        "format": "decision_memo",
+        "requiredBeat": "A written rule carries the decision to cool public replies before sending."
       },
-      "scenario": "Ephrem reviews six months of complaint files after a training note on Abraham Lincoln's unsent letters in the White House. Nothing new happens in the room; the records do the talking. The Civil War anecdote sends him looking for timing, not tone. Before the next report, Ephrem needs to decide what the files are measuring. Five apologies followed messages sent within ten minutes of a provocation. The calmer replies all sat overnight in drafts.",
-      "whatToDo": "Ephrem marks the send-time gap beside each thread and reports that the repair risk rises when hot replies leave before cooling.",
-      "whyItMatters": "The audit finds the small detail anger hides. A ten-minute send window can turn a correct objection into a public cleanup."
+      "scenario": "On the baseball dugout bench, Raoul writes a one-line rule under the Abraham Lincoln White House note about unsent letters: \"Hot public replies wait overnight unless safety is at stake.\" He decides the next complaint response will sit in drafts until justice and pride can be told apart.",
+      "whatToDo": "Raoul adds the cooling rule to the training sheet and requires one overnight draft for messages written under provocation.",
+      "whyItMatters": "A written rule can slow anger before it borrows the voice of justice. Waiting is useful when it protects the truth from the heat around it."
     },
     {
       "exampleId": "ch20-ex06-janet-inner-monologue",
