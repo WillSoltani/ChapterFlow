@@ -20,7 +20,7 @@ export async function GET(req: Request) {
     try {
       snapshots = await scanAllUserSnapshots(
         analyticsTable,
-        "userId, countryCode, countryName, regionCode, regionName, city, viewerTimezone, plan, lastActiveAt",
+        "userId, countryCode, countryName, regionCode, regionName, city, viewerTimezone, plan, lastActiveAt, latitude, longitude",
       );
     } catch (err) {
       console.warn("[admin-geography] scan failed:", err);
@@ -39,6 +39,9 @@ export async function GET(req: Request) {
     >();
     const cityMap = new Map<string, { city: string; country: string; count: number }>();
     const tzMap = new Map<string, number>();
+    // Approximate location clusters: users grouped by their coarse (~city-level,
+    // ~11km) coordinate. Stored coordinates are already coarsened at collection.
+    const clusterMap = new Map<string, { lat: number; lng: number; country: string | null; count: number }>();
 
     const sevenDaysAgo = Date.now() - 7 * 86_400_000;
 
@@ -73,6 +76,15 @@ export async function GET(req: Request) {
       if (tz) {
         tzMap.set(tz, (tzMap.get(tz) ?? 0) + 1);
       }
+
+      const lat = typeof s.latitude === "string" ? Number(s.latitude) : null;
+      const lng = typeof s.longitude === "string" ? Number(s.longitude) : null;
+      if (lat != null && lng != null && Number.isFinite(lat) && Number.isFinite(lng)) {
+        const key = `${lat},${lng}`;
+        const cluster = clusterMap.get(key) ?? { lat, lng, country: code, count: 0 };
+        cluster.count += 1;
+        clusterMap.set(key, cluster);
+      }
     }
 
     const countries = Array.from(countryMap.values()).sort((a, b) => b.count - a.count);
@@ -81,6 +93,9 @@ export async function GET(req: Request) {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 20)
       .map(([tz, count]) => ({ tz, count }));
+    const locationClusters = Array.from(clusterMap.values())
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 50);
 
     return bookOk({
       generatedAt: new Date().toISOString(),
@@ -89,6 +104,7 @@ export async function GET(req: Request) {
       countries,
       topCities,
       topTimezones,
+      locationClusters,
       warnings,
     });
   });

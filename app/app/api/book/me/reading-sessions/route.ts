@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
   requireBodyObject,
@@ -36,7 +36,7 @@ function toDayKey(value: string): string {
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
 
     let bodyRaw: unknown;
@@ -124,14 +124,11 @@ export async function POST(req: Request) {
             loc.timezone ??
             headersSnapshot.get("cloudfront-viewer-time-zone") ??
             undefined,
-          latitude:
-            loc.latitude ??
-            headersSnapshot.get("cloudfront-viewer-latitude") ??
-            undefined,
-          longitude:
-            loc.longitude ??
-            headersSnapshot.get("cloudfront-viewer-longitude") ??
-            undefined,
+          // loc.latitude/longitude are already coarsened to ~city level in
+          // location.ts. Do NOT fall back to the raw cloudfront-viewer-*
+          // headers — those are precise and would defeat the coarsening.
+          latitude: loc.latitude ?? undefined,
+          longitude: loc.longitude ?? undefined,
           acceptLanguage,
         }).catch(() => {});
       }

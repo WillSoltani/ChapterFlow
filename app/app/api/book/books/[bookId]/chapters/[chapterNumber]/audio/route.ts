@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
@@ -253,7 +253,7 @@ async function generateAndCacheBodySegment(
 
 export async function GET(req: Request, ctx: Params) {
   try {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const { bookId, chapterNumber: chapterStr } = await ctx.params;
     const chapterNumber = Number(chapterStr);

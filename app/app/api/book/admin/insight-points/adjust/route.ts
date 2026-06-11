@@ -4,7 +4,7 @@ import "server-only";
 // POST /api/book/admin/insight-points/adjust
 // Capped at ±10,000 IP. Requires admin auth. All adjustments logged.
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
@@ -35,7 +35,7 @@ const MAX_ADJUSTMENT = 10_000; // §9.4 — capped at ±10,000
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
-    const admin = await requireUser();
+    const admin = await requireActiveBookUser();
 
     // Verify admin authorization
     const adminGroup = await getBookAdminGroupName();

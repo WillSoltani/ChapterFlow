@@ -1,3 +1,0 @@
-- Apply the smallest fix that resolves the named issue and preserve all unaffected material.
-- Do not broaden scope, rewrite the chapter wholesale, or smuggle in new unsupported content.
-- After patching, the failed gate should be rerun against the same target artifact.

@@ -3,6 +3,9 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as acm from "aws-cdk-lib/aws-certificatemanager";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as cloudwatch from "aws-cdk-lib/aws-cloudwatch";
+import * as cloudwatchActions from "aws-cdk-lib/aws-cloudwatch-actions";
+import * as sns from "aws-cdk-lib/aws-sns";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as events from "aws-cdk-lib/aws-events";
@@ -15,11 +18,16 @@ import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
+import { type EnvName } from "./env-config";
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
 
 export interface ChapterFlowFrontendStackProps extends cdk.StackProps {
+  /** dev | staging | prod. Injected into the server Lambda as CHAPTERFLOW_ENV. */
+  readonly envName: EnvName;
+  /** "" for prod, "-dev"/"-staging" otherwise — appended to named resources. */
+  readonly resourceSuffix: string;
   /**
    * Names/ARNs of backend resources. Using explicit strings instead of
    * cross-stack references so the backend stack can be deployed independently
@@ -58,8 +66,14 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
   ) {
     super(scope, id, props);
 
-    const domainName = props.domainName ?? "chapterflow.ca";
-    const appDomain = `app.${domainName}`;
+    const suffix = props.resourceSuffix;
+    // Append the env suffix to every explicitly-named (globally-unique) resource
+    // so dev/staging never collide with prod. "" for prod => identical names.
+    const name = (base: string) => `${base}${suffix}`;
+    // prod has a domain; dev/staging may have none (serve on the CloudFront
+    // domain — the deploy health check uses that domain regardless).
+    const domainName = props.domainName;
+    const appDomain = domainName ? `app.${domainName}` : undefined;
     const openNextDir = path.join(__dirname, "../../.open-next");
 
     // Construct ARNs from known names to avoid cross-stack references
@@ -77,6 +91,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     cdk.Tags.of(this).add("App", "ChapterFlow");
     cdk.Tags.of(this).add("System", "Frontend");
     cdk.Tags.of(this).add("ManagedBy", "CDK");
+    cdk.Tags.of(this).add("Environment", props.envName);
 
     // -------------------------------------------------------------------
     // S3 — static assets + ISR cache
@@ -94,7 +109,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const cacheTable = new dynamodb.Table(this, "CacheTable", {
-      tableName: "ChapterFlowNextCache",
+      tableName: name("ChapterFlowNextCache"),
       partitionKey: { name: "tag", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "path", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
@@ -117,12 +132,23 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // SQS — ISR revalidation queue
     // -------------------------------------------------------------------
 
+    // Dead-letter queue for revalidation messages that repeatedly fail to
+    // process. A FIFO source requires a FIFO DLQ. Messages landing here mean ISR
+    // revalidation is silently broken — a CloudWatch alarm (below) pages on it.
+    const revalidationDlq = new sqs.Queue(this, "RevalidationDlq", {
+      queueName: `ChapterFlowRevalidationDlq${suffix}.fifo`,
+      fifo: true,
+      contentBasedDeduplication: true,
+      retentionPeriod: cdk.Duration.days(14),
+    });
+
     const revalidationQueue = new sqs.Queue(this, "RevalidationQueue", {
-      queueName: "ChapterFlowRevalidation.fifo",
+      queueName: `ChapterFlowRevalidation${suffix}.fifo`,
       fifo: true,
       contentBasedDeduplication: true,
       visibilityTimeout: cdk.Duration.seconds(30),
       retentionPeriod: cdk.Duration.days(1),
+      deadLetterQueue: { queue: revalidationDlq, maxReceiveCount: 5 },
     });
 
     // -------------------------------------------------------------------
@@ -130,7 +156,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const lambdaRole = new iam.Role(this, "LambdaRole", {
-      roleName: "ChapterFlowLambdaRole",
+      roleName: name("ChapterFlowLambdaRole"),
       assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
       managedPolicies: [
         iam.ManagedPolicy.fromAwsManagedPolicyName(
@@ -139,7 +165,14 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       ],
     });
 
-    // DynamoDB access — app tables (same as App Runner role)
+    // DynamoDB access — app + analytics tables, scoped to their exact ARNs.
+    // `dynamodb:Scan` is intentionally retained: the admin metrics routes plus
+    // economy-health and soft-decay full-table-Scan to compute aggregates, and
+    // OpenNext runs EVERY route (user + admin) in this single server Lambda, so
+    // the role can't drop Scan without breaking those dashboards. Resource scope
+    // (no `*`) keeps the blast radius to these two tables. Future hardening:
+    // move admin/Scan paths to a dedicated least-privilege function and remove
+    // Scan from this role.
     const ddbResources = [
       appTableArn,
       `${appTableArn}/index/*`,
@@ -179,6 +212,21 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           "cloudwatch:GetMetricData",
         ],
         resources: ["*"],
+      }),
+    );
+
+    // CloudWatch metrics write access — the server emits custom operational
+    // metrics (e.g. StripeCancellationFailure via putOpsMetric) that a backend
+    // alarm pages on. PutMetricData isn't resource-scoped, so we constrain it to
+    // the ChapterFlow/Ops namespace instead.
+    lambdaRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "CloudWatchMetricsWrite",
+        actions: ["cloudwatch:PutMetricData"],
+        resources: ["*"],
+        conditions: {
+          StringEquals: { "cloudwatch:namespace": "ChapterFlow/Ops" },
+        },
       }),
     );
 
@@ -235,24 +283,56 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
     );
 
-    // SSM access — the app's getServerEnv() tries multiple candidate paths
-    // (prefixed, bare name, lowercase) so we grant access to all parameters.
+    // SSM access — scoped to THIS env's parameter namespace only.
+    // getServerEnv() (app/app/api/_lib/server-env.ts) resolves every value from
+    // process.env first and only falls back to SSM; when it does, it tries the
+    // prefixed parameter (`${SSM_PARAMETER_PREFIX}/<KEY>`) BEFORE any bare-name
+    // candidate, so the role never needs access outside the prefix. The
+    // unreachable bare-name fallbacks now return AccessDenied instead of
+    // ParameterNotFound — server-env treats both as skippable (isMissingParameterError).
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "SsmConfigAccess",
         actions: ["ssm:GetParameter", "ssm:GetParameters"],
         resources: [
-          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter/*`,
+          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
         ],
       }),
     );
 
-    // SES access — notification emails
+    // SES access — transactional/notification emails are sent from an address
+    // on the app's verified domain (e.g. info@chapterflow.ca via SES_SENDER_EMAIL).
+    // Scope SendEmail to that domain's SES identity so the role can't send as an
+    // arbitrary identity. dev/staging without a verified domain have no identity
+    // to scope to, so they fall back to "*" — same conditional shape as the
+    // Cognito statement above.
+    const sesIdentityResources = props.domainName
+      ? [
+          `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${props.domainName}`,
+        ]
+      : ["*"];
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "SesSendAccess",
         actions: ["ses:SendEmail", "sesv2:SendEmail"],
-        resources: ["*"],
+        resources: sesIdentityResources,
+      }),
+    );
+
+    // Cognito admin access — the admin "erase user" tool resolves a user by
+    // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
+    // of a GDPR-style complete erasure. Scoped to the configured pool when its
+    // id is known at synth, otherwise to all pools.
+    const cognitoUserPoolId = process.env.COGNITO_USER_POOL_ID;
+    lambdaRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "CognitoAdminUserErasure",
+        actions: ["cognito-idp:ListUsers", "cognito-idp:AdminDeleteUser"],
+        resources: cognitoUserPoolId
+          ? [
+              `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
+            ]
+          : ["*"],
       }),
     );
 
@@ -290,6 +370,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       REVALIDATION_QUEUE_REGION: this.region,
       // App config
       CHAPTERFLOW_DEPLOYMENT_MODE: "standalone",
+      CHAPTERFLOW_ENV: props.envName,
       NODE_ENV: "production",
       // Merge caller-provided env vars (secrets come from here)
       ...(props.serverEnv ?? {}),
@@ -300,7 +381,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     this.serverFunction = new lambda.Function(this, "ServerFn", {
-      functionName: "ChapterFlowServer",
+      functionName: name("ChapterFlowServer"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
@@ -323,7 +404,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const imageFn = new lambda.Function(this, "ImageFn", {
-      functionName: "ChapterFlowImage",
+      functionName: name("ChapterFlowImage"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
@@ -349,7 +430,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const revalidationFn = new lambda.Function(this, "RevalidationFn", {
-      functionName: "ChapterFlowRevalidation",
+      functionName: name("ChapterFlowRevalidation"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
@@ -371,7 +452,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const dynamoProviderFn = new lambda.Function(this, "DynamoProviderFn", {
-      functionName: "ChapterFlowDynamoProvider",
+      functionName: name("ChapterFlowDynamoProvider"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(
@@ -389,7 +470,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // -------------------------------------------------------------------
 
     const warmerFn = new lambda.Function(this, "WarmerFn", {
-      functionName: "ChapterFlowWarmer",
+      functionName: name("ChapterFlowWarmer"),
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset(path.join(openNextDir, "warmer-function")),
@@ -397,7 +478,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       timeout: cdk.Duration.minutes(1),
       role: lambdaRole,
       environment: {
-        FUNCTION_NAME: "ChapterFlowServer",
+        FUNCTION_NAME: name("ChapterFlowServer"),
         CONCURRENCY: "1",
         ...commonEnv,
       },
@@ -422,7 +503,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
             {
               service: "lambda",
               resource: "function",
-              resourceName: "ChapterFlowServer",
+              resourceName: name("ChapterFlowServer"),
             },
             this,
           ),
@@ -466,7 +547,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       });
 
       certificate = new acm.Certificate(this, "Certificate", {
-        domainName: appDomain,
+        domainName: `app.${domainName}`,
         subjectAlternativeNames: [domainName, `www.${domainName}`],
         validation: acm.CertificateValidation.fromDns(hostedZone),
       });
@@ -497,7 +578,11 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     const serverOrigin = new origins.HttpOrigin(serverOriginDomain, {
       protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
-      customHeaders: { "x-forwarded-host": appDomain },
+      // Tell OpenNext the public host (custom domain). With no custom domain
+      // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
+      ...(appDomain
+        ? { customHeaders: { "x-forwarded-host": appDomain } }
+        : {}),
     });
 
     const imageOrigin = new origins.HttpOrigin(imageOriginDomain, {
@@ -509,7 +594,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this,
       "ServerCachePolicy",
       {
-        cachePolicyName: "ChapterFlowServerPolicy",
+        cachePolicyName: name("ChapterFlowServerPolicy"),
         defaultTtl: cdk.Duration.seconds(0),
         maxTtl: cdk.Duration.days(365),
         minTtl: cdk.Duration.seconds(0),
@@ -533,7 +618,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this,
       "StaticCachePolicy",
       {
-        cachePolicyName: "ChapterFlowStaticPolicy",
+        cachePolicyName: name("ChapterFlowStaticPolicy"),
         defaultTtl: cdk.Duration.days(30),
         maxTtl: cdk.Duration.days(365),
         minTtl: cdk.Duration.days(1),
@@ -644,7 +729,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           cachePolicy: staticCachePolicy,
         },
       },
-      ...(certificate
+      ...(certificate && appDomain && domainName
         ? {
             certificate,
             domainNames: [appDomain, domainName, `www.${domainName}`],
@@ -722,6 +807,118 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         ),
       });
     }
+
+    // -------------------------------------------------------------------
+    // CloudWatch alarms — Lambda / SQS / CloudFront / billing webhook
+    // -------------------------------------------------------------------
+
+    // Reuse the backend stack's ops SNS topic (same account/region) by
+    // reconstructing its ARN by name. This matches the codebase's
+    // reference-by-name convention (the backend OpsFailure alarm references a
+    // CloudWatch metric by name across stacks the same way) and avoids
+    // CloudFormation cross-stack export coupling. Email subscriptions are
+    // managed on the backend topic (CHAPTERFLOW_OPS_ALERT_EMAIL).
+    const opsTopic = sns.Topic.fromTopicArn(
+      this,
+      "OpsAlertsTopic",
+      `arn:${cdk.Aws.PARTITION}:sns:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:ChapterFlowOpsAlerts${suffix}`,
+    );
+    const opsAction = new cloudwatchActions.SnsAction(opsTopic);
+
+    const makeAlarm = (
+      id: string,
+      metric: cloudwatch.IMetric,
+      threshold: number,
+      alarmDescription: string,
+      opts?: { evaluationPeriods?: number; datapointsToAlarm?: number },
+    ): cloudwatch.Alarm => {
+      const alarm = new cloudwatch.Alarm(this, id, {
+        metric,
+        threshold,
+        evaluationPeriods: opts?.evaluationPeriods ?? 1,
+        datapointsToAlarm: opts?.datapointsToAlarm ?? 1,
+        comparisonOperator:
+          cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+        treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+        alarmDescription,
+      });
+      alarm.addAlarmAction(opsAction);
+      return alarm;
+    };
+
+    const alarmPeriod = cdk.Duration.minutes(5);
+
+    // Server Lambda — errors, throttles, and latency approaching the 30s timeout.
+    makeAlarm(
+      "ServerFnErrorsAlarm",
+      this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      5,
+      "ChapterFlow server Lambda returned ≥5 errors in 5 minutes (elevated 5xx).",
+    );
+    makeAlarm(
+      "ServerFnThrottlesAlarm",
+      this.serverFunction.metricThrottles({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "ChapterFlow server Lambda is being throttled (concurrency limit hit).",
+    );
+    makeAlarm(
+      "ServerFnDurationAlarm",
+      this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p99" }),
+      20000,
+      "ChapterFlow server Lambda p99 duration ≥20s — approaching the 30s timeout.",
+      { evaluationPeriods: 3, datapointsToAlarm: 2 },
+    );
+
+    // Revalidation Lambda errors + dead-letter / stuck-queue depth.
+    makeAlarm(
+      "RevalidationFnErrorsAlarm",
+      revalidationFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "ISR revalidation Lambda is erroring — cached pages may be stale.",
+    );
+    makeAlarm(
+      "RevalidationDlqDepthAlarm",
+      revalidationDlq.metricApproximateNumberOfMessagesVisible({
+        period: alarmPeriod,
+        statistic: "max",
+      }),
+      1,
+      "Revalidation messages have landed in the DLQ — ISR revalidation is failing.",
+    );
+    makeAlarm(
+      "RevalidationQueueAgeAlarm",
+      revalidationQueue.metricApproximateAgeOfOldestMessage({
+        period: alarmPeriod,
+        statistic: "max",
+      }),
+      300,
+      "Oldest revalidation message is >5 min old — the queue is backing up.",
+    );
+
+    // CloudFront edge 5xx rate (percent). Sustained over 3 periods to avoid
+    // paging on a transient blip.
+    makeAlarm(
+      "CloudFront5xxAlarm",
+      this.distribution.metric5xxErrorRate({ period: alarmPeriod, statistic: "Average" }),
+      1,
+      "CloudFront is serving >1% 5xx responses at the edge.",
+      { evaluationPeriods: 3, datapointsToAlarm: 3 },
+    );
+
+    // Stripe webhook processing failures — the server emits this custom metric
+    // (putOpsMetric, ChapterFlow/Ops namespace) when a delivery fails after
+    // signature verification. Referenced by name, like the backend OpsFailure alarm.
+    makeAlarm(
+      "StripeWebhookFailureAlarm",
+      new cloudwatch.Metric({
+        namespace: "ChapterFlow/Ops",
+        metricName: "StripeWebhookFailure",
+        statistic: "Sum",
+        period: alarmPeriod,
+      }),
+      1,
+      "A Stripe webhook delivery failed to process (post-signature). Stripe will retry; check the billing webhook logs and reconciliation tool.",
+    );
 
     // -------------------------------------------------------------------
     // Stack Outputs

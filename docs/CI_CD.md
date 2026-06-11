@@ -1,158 +1,99 @@
-# Author: Will Soltani
+# CI/CD Guide
 
-# CI/CD Setup Guide
+How ChapterFlow is tested and deployed. The web app (Next.js via OpenNext) and
+its AWS infrastructure (CDK) run **three environments in one AWS account**,
+separated by a resource-name suffix: `dev`, `staging`, `prod`.
 
-This guide explains the CI/CD pipeline added to this repository and how to run it safely as a beginner.
+## 1) Workflows
 
-## 1) What was added
+| File | Trigger | What it does |
+|------|---------|--------------|
+| `.github/workflows/ci.yml` | PRs + push to `main` | **Hard gate:** typecheck, unit tests, `next build`, OpenNext bundle, and CDK backend synth. **Advisory:** an ESLint job that reports problems but never blocks. |
+| `.github/workflows/deploy.yml` | push to `main` (auto → **dev**); `workflow_dispatch` (pick env) | Orchestrates a deploy. Push keeps **dev** in sync. Manual dispatch chooses `dev`/`staging`/`prod` and what to run. |
+| `.github/workflows/_deploy-infra.yml` | reusable (`workflow_call`) | Deploys the CDK **backend** stack for one env, then optionally seeds book data (names resolved from SSM — never hardcoded). |
+| `.github/workflows/_deploy-app.yml` | reusable (`workflow_call`) | Builds OpenNext, deploys the CDK **frontend** stack, invalidates CloudFront, runs a **blocking health gate**, and opens a failure issue on prod. |
 
-Two GitHub Actions workflows were added:
+The reusable workflows bind to the GitHub **Environment** of the same name, so
+`prod` inherits its required-reviewer approval gate and environment-scoped
+secrets automatically.
 
-- `.github/workflows/ci.yml`
-  - Runs on pull requests and pushes to `main` and `codex/**`.
-  - Job 1: app checks (`npm ci`, `npm run build`, `npm run test:pdf-fill`).
-  - Job 2: infra checks (`npm ci` in `infra`, `npm run build`, `cdk synth`).
+## 2) The environment model
 
-- `.github/workflows/deploy-infra-dev.yml`
-  - Deploys infra to AWS on pushes to `main` when `infra/**` changes.
-  - Can also run manually from GitHub Actions (`workflow_dispatch`).
-  - Uses GitHub OIDC + an IAM role (`AWS_ROLE_TO_ASSUME_DEV`).
-  - Deploy command: `cdk deploy ChapterFlowBackend --require-approval never`.
+One AWS account; `-c env=<env>` (or `CHAPTERFLOW_ENV`) selects names via
+`infra/lib/env-config.ts`:
 
-## 2) CI/CD flow in plain language
+| | prod | dev | staging |
+|---|---|---|---|
+| Stacks | `ChapterFlowBackend` / `ChapterFlowFrontend` | `…-dev` | `…-staging` |
+| Tables | `ChapterFlowApp` / `ChapterFlowInsights` | `…-dev` | `…-staging` |
+| SSM prefix | `/chapterflow/prod` | `/chapterflow/dev` | `/chapterflow/staging` |
+| Data lifecycle | RETAIN + deletion-protected | disposable (DESTROY) | RETAIN |
 
-1. You push code or open a PR.
-2. GitHub starts the CI workflow.
-3. If build/tests/synth fail, merge is blocked (recommended branch protection).
-4. After merge to `main` with infra changes, deploy workflow runs and updates AWS.
+**prod uses an empty suffix**, so its stack ids and every physical resource name
+are byte-identical to what is already deployed — `cdk deploy -c env=prod` is a
+zero-diff on the live data. dev/staging stand up as fresh, independent stacks.
 
-This reduces manual deploy risk and catches regressions earlier.
+Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
 
-## 3) One-time AWS setup (required for deploy workflow)
+## 3) Day-to-day
 
-You need to set up GitHub OIDC trust in AWS once.
+- **PR:** open a PR → `ci.yml` runs. The required checks (`App Build + Tests`,
+  `Infra Build + CDK Synth`) must pass; the `Lint (advisory)` job is *not*
+  required (see §6).
+- **Ship to dev:** merge to `main` → `deploy.yml` auto-deploys dev (infra sync +
+  app; no re-seed).
+- **Ship to staging/prod:** `Actions → Deploy → Run workflow`, choose the
+  environment and toggles (`deploy_infra`, `deploy_app`, `seed`). A **prod** run
+  pauses for approval before anything is applied.
 
-### Step A: Create GitHub OIDC provider in IAM (if not already created)
+## 4) One-time AWS / GitHub setup
 
-- Provider URL: `https://token.actions.githubusercontent.com`
-- Audience: `sts.amazonaws.com`
+1. **GitHub Environments** (repo Settings → Environments): create `dev`,
+   `staging`, `prod`. On `prod`, add yourself as a **required reviewer** (this is
+   the manual-approval gate) and optionally restrict deployments to `main`/tags.
+2. **Environment-scoped secrets** (per environment): `AWS_DEPLOY_ROLE_ARN`,
+   `AWS_ACCOUNT_ID`, `CHAPTERFLOW_DOMAIN_NAME` (omit for dev/staging to serve on
+   the CloudFront domain), `CHAPTERFLOW_APP_BASE_URL`, `CHAPTERFLOW_OPS_ALERT_EMAIL`,
+   the `COGNITO_*`, `AUTH_*`, `BOOK_STRIPE_*`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`,
+   `ANTHROPIC_API_KEY`, `ELEVENLABS_API_KEY`. prod uses today's live values.
+3. **OIDC role** (`AWS_DEPLOY_ROLE_ARN`): an IAM role trusting GitHub OIDC
+   (`token.actions.githubusercontent.com`, aud `sts.amazonaws.com`) scoped to
+   `repo:WillSoltani/ChapterFlow:*`, with CDK-deploy permissions. One role per
+   account is fine since all envs share the account.
+4. **Bootstrap** is already done for the account. A brand-new env's **backend
+   must deploy before its app** (the app reads bucket names the backend
+   publishes to SSM): dispatch with `deploy_infra=true, seed=true` once, then
+   normal app deploys.
 
-### Step B: Create IAM role for GitHub Actions deploys
+## 5) Health gate & rollback
 
-Create a role (example name: `GitHubActionsChapterFlowDevDeployRole`) that trusts GitHub OIDC.
+`_deploy-app.yml` curls `/`, `/pricing`, and `/api/health` on the CloudFront
+domain after every deploy and **fails the job on any non-2xx**. On failure it
+writes rollback steps to the run summary and (for prod) opens a `deploy-failure`
+issue. **Rollback** = re-run `Deploy` on the last good commit/tag (OpenNext
+bundles are immutable per-commit, so this restores the prior Lambda + assets).
+Stateful RETAIN resources are not rolled back by an app redeploy.
 
-Example trust policy (replace placeholders):
+## 6) Lint policy (advisory)
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::<AWS_ACCOUNT_ID>:oidc-provider/token.actions.githubusercontent.com"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
-        },
-        "StringLike": {
-          "token.actions.githubusercontent.com:sub": [
-            "repo:<GITHUB_OWNER>/<GITHUB_REPO>:ref:refs/heads/main",
-            "repo:<GITHUB_OWNER>/<GITHUB_REPO>:pull_request",
-            "repo:<GITHUB_OWNER>/<GITHUB_REPO>:ref:refs/heads/codex/*"
-          ]
-        }
-      }
-    }
-  ]
-}
-```
-
-Attach permissions required for CDK deploy of this stack.
-
-For least privilege, start with a scoped policy for resources this stack manages. If you are just getting started, use an admin-level deploy role temporarily in dev, then tighten it.
-
-### Step C: Bootstrap CDK environment (one time per account/region)
-
-Run locally:
-
-```bash
-npm --prefix infra ci
-npm --prefix infra run cdk -- bootstrap aws://<AWS_ACCOUNT_ID>/us-east-1
-```
-
-## 4) GitHub repository settings you must add
-
-In GitHub:
-
-- Go to `Settings -> Secrets and variables -> Actions -> New repository secret`
-  - Add secret:
-  - `AWS_ROLE_TO_ASSUME_DEV` = full role ARN
-  - Example: `arn:aws:iam::<AWS_ACCOUNT_ID>:role/GitHubActionsChapterFlowDevDeployRole`
-
-Optional variables (if you later make workflows env-driven):
-- `AWS_REGION`
-- `CDK_STACK_NAME`
-
-## 5) Recommended branch protection
-
-In GitHub branch protection for `main`:
-
-- Require pull request before merging.
-- Require status checks to pass before merging.
-- Select checks from `CI` workflow:
-  - `App Build + Tests`
-  - `Infra Build + CDK Synth`
-
-## 6) How to use it day-to-day
-
-- Feature branch flow:
-  1. Create branch.
-  2. Push commits.
-  3. Open PR.
-  4. Wait for `CI` checks to pass.
-  5. Merge PR.
-
-- Infra deploy flow:
-  1. Merge infra changes to `main`.
-  2. `Deploy Infra (Dev)` runs automatically.
-  3. Verify resources in AWS console / CloudWatch.
-
-- Manual deploy:
-  - Open `Actions -> Deploy Infra (Dev) -> Run workflow`.
+`npm run verify` = `typecheck && test && build` (the enforced gate). ESLint is
+run separately and is **advisory** — the web-app lint surface (`app/`,
+`components/`, `lib/`) carries pre-existing debt, so the CI lint job reports it
+without blocking. Pay it down, then promote `Lint (advisory)` to a required
+check. The offline v21 pipeline (`scripts/**`) and the CDK package (`infra/**`)
+are excluded from the app lint surface.
 
 ## 7) Troubleshooting
 
-### Deploy fails with "Could not assume role"
-
-- Check `AWS_ROLE_TO_ASSUME_DEV` secret value.
-- Check trust policy `sub` matches your repo and branch.
-- Confirm OIDC provider exists in IAM.
-
-### CDK deploy fails with bootstrap error
-
-- Run CDK bootstrap command from section 3C.
-
-### CI fails on build/tests
-
-- Reproduce locally:
-
-```bash
-npm ci
-npm run build
-npm run test:pdf-fill
-npm --prefix infra ci
-npm --prefix infra run build
-npm --prefix infra run cdk -- synth
-```
-
-## 8) Safe next steps
-
-Once this is stable, expand gradually:
-
-1. Add a separate production deploy workflow with manual approval.
-2. Add integration tests for book ingestion and ChapterFlow backend migrations.
-3. Add notifications (Slack/email) for deploy failures.
-4. Tighten IAM policies for the deploy role.
+- **"Could not assume role"** — check `AWS_DEPLOY_ROLE_ARN` (environment-scoped),
+  the OIDC trust policy `sub`, and that the OIDC provider exists.
+- **Frontend deploy throws "requires BOOK_INGEST_BUCKET/BOOK_CONTENT_BUCKET"** —
+  the backend stack for that env hasn't been deployed yet (no SSM params).
+  Deploy infra first.
+- **Reproduce CI locally:**
+  ```bash
+  npm ci && npm run verify          # typecheck + test + build
+  npx open-next build
+  npm --prefix infra ci && npm --prefix infra run build
+  cd infra && npx cdk synth -c env=dev ChapterFlowBackend-dev
+  ```

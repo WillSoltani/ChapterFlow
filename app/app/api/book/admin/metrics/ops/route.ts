@@ -18,6 +18,7 @@ import {
   type DdbHealth,
   type LambdaHealth,
 } from "@/app/app/api/book/_lib/cloudwatch-metrics";
+import { listRecentOpsFailures } from "@/app/app/api/book/_lib/ops-failure-repo";
 
 export const runtime = "nodejs";
 
@@ -53,6 +54,7 @@ export async function GET(req: Request) {
       eventsYesterdayResult,
       lambdaHealth,
       ddbHealth,
+      opsFailures,
     ] = await Promise.all([
       dailySeries(analyticsTable, days, "beacon_performance").catch(() => []),
       fetchIngestionJobs(tableName).catch((err) => {
@@ -83,6 +85,11 @@ export async function GET(req: Request) {
         getDdbHealth(tableName),
         getDdbHealth(analyticsTable),
       ]),
+      // Unresolved operational failures (e.g. swallowed Stripe cancellations)
+      listRecentOpsFailures(tableName, { limit: 25 }).catch((err) => {
+        console.warn("[admin-ops] ops failures query failed:", err);
+        return [];
+      }),
     ]);
 
     // Tally subscription cancellations
@@ -112,6 +119,12 @@ export async function GET(req: Request) {
       );
     }
 
+    if (opsFailures.length > 0) {
+      warnings.push(
+        `${opsFailures.length} unresolved operational failure${opsFailures.length === 1 ? "" : "s"} need follow-up (e.g. Stripe cancellation failures during account delete/deactivate).`,
+      );
+    }
+
     return bookOk({
       generatedAt: new Date().toISOString(),
       eventsToday: eventsTodayResult.events.length,
@@ -122,6 +135,7 @@ export async function GET(req: Request) {
       lambdaHealth,
       ddbHealth,
       costEstimate,
+      opsFailures,
       warnings,
     });
   });

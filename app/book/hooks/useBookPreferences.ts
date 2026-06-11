@@ -129,7 +129,6 @@ export type BookPreferencesState = {
     readingRulerMode: boolean;
   };
   privacy: {
-    analyticsParticipation: boolean;
     personalizedRecommendations: boolean;
     saveReadingHistory: boolean;
     saveQuizHistory: boolean;
@@ -237,7 +236,6 @@ export const defaultBookPreferencesState: BookPreferencesState = {
     readingRulerMode: false,
   },
   privacy: {
-    analyticsParticipation: true,
     personalizedRecommendations: true,
     saveReadingHistory: true,
     saveQuizHistory: true,
@@ -722,10 +720,6 @@ function parseStored(raw: string | null): BookPreferencesState | null {
         ),
       },
       privacy: {
-        analyticsParticipation: parseBoolean(
-          privacy.analyticsParticipation,
-          defaultBookPreferencesState.privacy.analyticsParticipation
-        ),
         personalizedRecommendations: parseBoolean(
           privacy.personalizedRecommendations,
           defaultBookPreferencesState.privacy.personalizedRecommendations

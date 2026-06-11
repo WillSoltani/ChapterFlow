@@ -1,6 +1,6 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookErr,
   bookOk,
@@ -268,7 +268,7 @@ function sanitizeProfileForResponse(
 
 function buildProfileResponse(
   req: Request,
-  user: Awaited<ReturnType<typeof requireUser>>,
+  user: Awaited<ReturnType<typeof requireActiveBookUser>>,
   profile: Record<string, unknown> | null,
   updatedAt: string | null,
   options?: { deviceId?: string; issuedDeviceId?: boolean }
@@ -293,7 +293,7 @@ export const runtime = "nodejs";
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const item = await getUserProfileItem(tableName, user.sub);
     return buildProfileResponse(req, user, item?.profile ?? null, item?.updatedAt ?? null);
@@ -302,7 +302,7 @@ export async function GET(req: Request) {
 
 export async function PATCH(req: Request) {
   return withBookApiErrors(req, async () => {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const existing = await getUserProfileItem(tableName, user.sub);
 

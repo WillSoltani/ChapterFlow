@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckCircle2, AlertCircle, AlertTriangle, Loader2, Gauge, Database, Zap, DollarSign } from "lucide-react";
-import { adminGet } from "@/app/book/admin/_components/admin-api";
+import { CheckCircle2, AlertCircle, AlertTriangle, Loader2, Gauge, Database, Zap, DollarSign, RefreshCw, ShieldCheck } from "lucide-react";
+import { adminGet, adminPost } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
@@ -44,6 +44,19 @@ type CostEstimate = {
   totalMonthlyUsd: number;
 };
 
+type OpsFailure = {
+  ref: string;
+  id: string;
+  kind: string;
+  context: string;
+  userId: string;
+  subscriptionId?: string;
+  errorCode?: string;
+  errorMessage?: string;
+  createdAt: string;
+  resolvedAt?: string;
+};
+
 type OpsResponse = {
   generatedAt: string;
   eventsToday: number;
@@ -54,6 +67,7 @@ type OpsResponse = {
   lambdaHealth: LambdaHealth[];
   ddbHealth: DdbHealth[];
   costEstimate: CostEstimate;
+  opsFailures?: OpsFailure[];
   warnings?: string[];
 };
 
@@ -62,6 +76,9 @@ export function OpsClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [actioningRef, setActioningRef] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
+
   const reload = () => {
     setLoading(true);
     setError(null);
@@ -69,6 +86,19 @@ export function OpsClient() {
       .then(setData)
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Failed"))
       .finally(() => setLoading(false));
+  };
+
+  const runFailureAction = async (ref: string, action: "retry" | "resolve") => {
+    setActioningRef(ref);
+    setActionError(null);
+    try {
+      await adminPost("/ops-failures", { ref, action });
+      reload();
+    } catch (err) {
+      setActionError(err instanceof Error ? err.message : "Action failed");
+    } finally {
+      setActioningRef(null);
+    }
   };
 
   useEffect(() => {
@@ -96,6 +126,76 @@ export function OpsClient() {
               <span>{w}</span>
             </div>
           ))}
+        </div>
+      ) : null}
+
+      {data?.opsFailures?.length ? (
+        <div className="mb-6">
+          <AdminCard
+            title={`Operational failures (${data.opsFailures.length})`}
+            description="Unresolved failures needing follow-up — e.g. Stripe cancellations that failed during account delete/deactivate"
+          >
+            {actionError && (
+              <div className="mb-3 rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) p-2 text-[12px] text-(--cf-danger-text)">
+                {actionError}
+              </div>
+            )}
+            <div className="space-y-2">
+              {data.opsFailures.map((f) => (
+                <div key={f.ref} className="cf-panel-muted rounded-xl p-3">
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-1.5 py-0.5 text-[11px] font-medium text-(--cf-danger-text)">
+                          {f.kind}
+                        </span>
+                        <span className="text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                          {f.context}
+                        </span>
+                        <span className="text-[11px] text-(--cf-text-3)">{fmt(f.createdAt)}</span>
+                      </div>
+                      <p className="mt-1 font-mono text-[11px] text-(--cf-text-2)" title={f.userId}>
+                        user {f.userId.slice(0, 12)}…
+                        {f.subscriptionId ? ` · sub ${f.subscriptionId}` : ""}
+                      </p>
+                      {(f.errorCode || f.errorMessage) && (
+                        <p className="mt-1 text-[12px] text-(--cf-danger-text)">
+                          {f.errorCode ? `[${f.errorCode}] ` : ""}
+                          {f.errorMessage}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex shrink-0 items-center gap-2">
+                      <button
+                        type="button"
+                        disabled={actioningRef === f.ref || !f.subscriptionId}
+                        onClick={() => runFailureAction(f.ref, "retry")}
+                        className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-text-1) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
+                        title={f.subscriptionId ? "Re-attempt the Stripe cancellation" : "No subscription id to retry"}
+                      >
+                        {actioningRef === f.ref ? (
+                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                        ) : (
+                          <RefreshCw className="h-3.5 w-3.5" />
+                        )}
+                        Retry
+                      </button>
+                      <button
+                        type="button"
+                        disabled={actioningRef === f.ref}
+                        onClick={() => runFailureAction(f.ref, "resolve")}
+                        className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
+                        title="Mark as handled without retrying"
+                      >
+                        <ShieldCheck className="h-3.5 w-3.5" />
+                        Resolve
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </AdminCard>
         </div>
       ) : null}
 

@@ -58,8 +58,19 @@ node_modules/
 # CDK build artifacts — compiled TS output from infra/tsconfig.json
 infra/dist/
 
+# Editor swap/backup cruft (never commit — these can leak file contents)
+*.swp
+*.swo
+*~
+
 # Claude Code local working state — worktrees, agent cache, todos, MCP config
 .claude/
+
+# ChapterFlow v21 pipeline working tree — generation scratch (runs/), source
+# texts (sources/), and logs. NOT part of the web-app product; only scripts/book/**
+# reads it, and that runs locally. Kept on disk, never tracked. (History still
+# contains the old copies — purge via git filter-repo + force-push to fully remove.)
+/.chapterflow/
 
 # ChapterFlow v21 pipeline state (durability hygiene — Phase 0).
 # Chapters + indexes ARE the product of Step-2 work and MUST stay tracked
