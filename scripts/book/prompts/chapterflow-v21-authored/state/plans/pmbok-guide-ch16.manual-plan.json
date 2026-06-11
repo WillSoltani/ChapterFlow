@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch16",
+  "number": 16,
+  "title": "Optimize Risk Responses",
+  "coreMove": "Optimize risk responses by matching threats and opportunities to exposure, value, cost, appetite, and context, then changing the next delivery choice accordingly.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "PMI onboarding class",
+      "audience": "new project coordinators learning the principle set",
+      "stakes": "learners may memorize the title without seeing the behavior",
+      "format": "school_case",
+      "requiredBeat": "learner confusion becomes the material for distinguishing vocabulary from response choices"
+    },
+    {
+      "domain": "release status reporting",
+      "audience": "project leads defending dates under pressure",
+      "stakes": "schedule pressure may turn risk acceptance into avoidance of conflict",
+      "format": "before_after",
+      "requiredBeat": "the same status process changes once risk appetite and response fit are added"
+    },
+    {
+      "domain": "project risk-file audit",
+      "audience": "PMO reviewers checking whether risk work changed choices",
+      "stakes": "a tidy register may hide pressure-driven acceptance",
+      "format": "audit",
+      "requiredBeat": "a single detail reveals that acceptance is being used to defend the baseline"
+    },
+    {
+      "domain": "product pilot review",
+      "audience": "project managers working through pressure alone",
+      "stakes": "short-term convenience can crowd out a fitted risk response",
+      "format": "inner_monologue",
+      "requiredBeat": "the protagonist works through wrong turns before selecting a fitted response"
+    },
+    {
+      "domain": "sponsor planning session",
+      "audience": "project leads allocating scarce time and money before work starts",
+      "stakes": "limited attention may go to the loudest risk instead of the best-fit response",
+      "format": "planning_choice",
+      "requiredBeat": "scarce time, reserve, and sponsor attention are allocated before any action happens"
+    },
+    {
+      "domain": "go-live readiness call",
+      "audience": "leaders facing a pressure test of the principle",
+      "stakes": "both available responses carry visible cost",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist faces one true two-bad-options decision"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 3,
+      "evaluate": 2,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.321Z"
+}

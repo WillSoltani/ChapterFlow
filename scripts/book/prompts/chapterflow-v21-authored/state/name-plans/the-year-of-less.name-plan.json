@@ -1,0 +1,151 @@
+{
+  "bookId": "the-year-of-less",
+  "fromChapter": 1,
+  "toChapter": 12,
+  "perChapter": 7,
+  "allocation": {
+    "1": [
+      "Samira",
+      "Linh",
+      "Sienna",
+      "Emma",
+      "Fabien",
+      "Eudore",
+      "Maeve"
+    ],
+    "2": [
+      "Tate",
+      "Pamela",
+      "Riya",
+      "Colton",
+      "Urbain",
+      "Solange",
+      "Elena"
+    ],
+    "3": [
+      "Laurent",
+      "Anastasia",
+      "Philippe",
+      "Aurora",
+      "Arjun",
+      "Maeva",
+      "Therese"
+    ],
+    "4": [
+      "Dmytro",
+      "Jasper",
+      "Philomene",
+      "Garrett",
+      "Whitney",
+      "Domenic",
+      "Lorne"
+    ],
+    "5": [
+      "Aurore",
+      "Aiden",
+      "Ines",
+      "Lina",
+      "Adelaide",
+      "Mariana",
+      "Rosa"
+    ],
+    "6": [
+      "Jack",
+      "Nikolai",
+      "Aditya",
+      "Seraphine",
+      "Mabel",
+      "Roman",
+      "Gage"
+    ],
+    "7": [
+      "Eleni",
+      "Navid",
+      "Hassan",
+      "Sora",
+      "Megan",
+      "Lia",
+      "Samantha"
+    ],
+    "8": [
+      "Lloyd",
+      "Bianca",
+      "Wilder",
+      "Stephane",
+      "Guillaume",
+      "Lin",
+      "Ananya"
+    ],
+    "9": [
+      "Noa",
+      "Emily",
+      "Gail",
+      "Ling",
+      "Mireille",
+      "Salvatore",
+      "Ruby"
+    ],
+    "10": [
+      "Nico",
+      "Dina",
+      "Ibrahim",
+      "Roxane",
+      "Tara",
+      "Erin",
+      "Santino"
+    ],
+    "11": [
+      "Michel",
+      "Fernande",
+      "Jacob",
+      "Lea",
+      "Damien",
+      "Knox",
+      "Florence"
+    ],
+    "12": [
+      "Chidi",
+      "Cecile",
+      "Shannon",
+      "Sung",
+      "Marie",
+      "Ross",
+      "Nadia"
+    ]
+  },
+  "bannedConnectives": [
+    "has to decide whether to",
+    "now has to choose between",
+    "is trying to figure out",
+    "stares at the screen and",
+    "stops and looks at the",
+    "takes a deep breath and",
+    "leans back in the chair",
+    "glances at the clock and",
+    "stops arguing and points to",
+    "we cannot keep pretending this",
+    "catches the edge of the",
+    "the room goes quiet as",
+    "feels the weight of the",
+    "knows the answer but cannot",
+    "is about to find out",
+    "has been doing this for",
+    "looks up from the desk",
+    "the same thing happens again",
+    "wants nothing more than to",
+    "cannot shake the feeling that",
+    "is faced with a choice",
+    "has to make a call",
+    "sits down to write the",
+    "opens the laptop and starts",
+    "runs the numbers one more"
+  ],
+  "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
+  "diagnostics": {
+    "bankSize": 777,
+    "excludedCount": 0,
+    "availableCount": 777,
+    "shortChapters": [],
+    "alreadyAuthored": []
+  }
+}

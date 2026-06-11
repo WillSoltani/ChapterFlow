@@ -1,0 +1,369 @@
+{
+  "chapterId": "pmbok-guide-ch04",
+  "number": 4,
+  "title": "Functions Associated with Projects",
+  "readingTimeMinutes": 12,
+  "hook": "You reach for the role chart, and the missing work is already hiding between titles.",
+  "counterintuition": "A full role chart can still leave work uncovered. People get clarity after they name the coordination, communication, decision support, facilitation, and learning work beside the title.",
+  "tryThisNow": "Track the next five handoffs you touch today; beside each, write which function made it clear or messy: coordination, communication, decision support, or learning.",
+  "keyTakeaway": "Start with the project functions that must be performed, then assign titles, authority, and records so coordination, communication, decisions, facilitation, and learning actually happen.",
+  "breakdown": {
+    "fastRead": "Bernard is halfway through a kickoff slide when he sees his mistake. The table lists a project manager, a product owner, a scrum master, and a technical lead. It does not list who keeps the decision log current or who warns the sponsor when an assumption record changes.\n\nThe room has titles. It lacks coverage.\n\nBernard changes the slide to one question: what work must be performed so value can move? Handoffs, messages, group sessions, decisions, oversight, and learning need owners. Titles can vary, but the work cannot vanish.",
+    "deepRead": "A blank owner column can do more harm than a missing role name. The schedule can show assigned tasks while decisions still drift. The org chart can show a project manager while the product owner, scrum master, and technical lead each assume someone else is handling coordination.\n\nYvon sees the failure in a release-planning session. The product owner has priority calls. The scrum master clears team flow. The technical lead tracks architecture risk. No one is updating the decision log after tradeoffs change. No one is turning the issue log into options for the sponsor.\n\nA decision without a keeper becomes a rumor with dates.\n\nYvon does not add a new title. He writes six functions on the board: coordination, communication, facilitation, decision support, oversight, and learning. Then the team names the person with enough context and authority for each one. The product owner owns priority tradeoff notes. The technical lead owns technical assumption updates. The scrum master owns facilitation for blocked meetings. Yvon owns sponsor escalation until the next review.\n\nThis is the function-first move. A project manager may perform many functions on a predictive capital project. An adaptive product team may spread them across product, flow, technical, sponsor, and team roles. The test is not whether the expected title appears. The test is whether the needed work is covered, understood, and connected to value.",
+    "fullRead": "A lessons learned page can be written perfectly and still arrive too late. Folake sees that after a pilot team repeats the same vendor-access confusion for the third week. The decision log named the lab choice. The issue log named delayed equipment. The assumption record named vendor access. None of those records changed the next decision because no one treated learning as a live function.\n\nRecords do not learn. People use records to learn.\n\nThat is the harder edge of project functions. The Standard is not asking a team to admire a catalog of responsibilities. It is asking people to see the work that keeps value delivery coherent when titles, methods, and structures differ. A project manager can coordinate dependencies, prepare decision choices, brief governance, and protect learning. In another setting, those same functions may sit with product leadership, flow support, technical authority, sponsors, a PMO analyst, vendors, and team members.\n\nA title can be present while the function is absent.\n\nMargot finds this during a supplier review. The project manager has a weekly report. The backlog sits with the product owner. The technical lead has test data. The sponsor has funding authority. Yet the supplier delay still surprises everyone because communication was treated as sending status, not keeping the right people able to act. Margot changes the review packet. Each dependency gets an owner, a decision needed, an issue-log link, and a stakeholder who must hear it before the next meeting.\n\nThe limit matters. Function mapping is not a license to make a new bureaucracy. A tiny internal experiment does not need six committees and four registers. A safety-sensitive project may need clearer oversight and more formal decision support. The move is scaled coverage, not paperwork. Ask what has to happen for this project, in this environment, to keep decisions, information, work, and learning connected.\n\nAgathe learns the same point in an onboarding class. She expects the instructor to say the project manager owns every project function. The class compares a planned capital build with a product team using adaptive work. The answer changes by context. The capital project concentrates coordination. The adaptive team distributes planning, facilitation, and technical decisions. Both still need learning, oversight, decision support, communication, facilitation, and coordination.\n\nA record that no one consults is storage, not learning.\n\nStart with the function. Then attach a person, authority, cadence, and record only as far as the work requires. If the function is covered, the title can flex. If the function is missing, the title cannot rescue the project by standing there."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch04.ex.role-flexibility",
+      "title": "Bernard Notices the Owner Column",
+      "tags": [
+        "mistake recovery",
+        "kickoff",
+        "role coverage"
+      ],
+      "planSpec": {
+        "domain": "kickoff responsibility map",
+        "audience": "project manager starting a mixed delivery effort",
+        "stakes": "a clean role slide may hide uncovered decision support",
+        "format": "mistake_recovery",
+        "requiredBeat": "Bernard notices his own title-first error before the sponsor joins"
+      },
+      "scenario": "Bernard stops mid-sentence in the kickoff room, marker still against the whiteboard. He has written project manager in the owner column and let the rest of the line go blank. The product owner, scrum master, and technical lead are all named on another slide, but no one is tied to decision support. Minutes before the sponsor joins, Bernard notices the error is his: he mapped titles before checking which functions needed coverage.",
+      "whatToDo": "Bernard crosses out the owner column, writes coordination, facilitation, decision support, communication, and learning, then attaches the existing roles to each function.",
+      "whyItMatters": "The useful correction begins when Bernard sees the role chart hiding work. A project manager title does not prove that product, flow, technical, and learning duties connect."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch04.ex.lessons-and-decision-logs",
+      "title": "Cassidy Sends the Log Entry",
+      "tags": [
+        "decision memo",
+        "records",
+        "continuity"
+      ],
+      "planSpec": {
+        "domain": "lab selection governance note",
+        "audience": "project coordinator preserving decision context",
+        "stakes": "a steering call may reopen settled reasoning",
+        "format": "decision_memo",
+        "requiredBeat": "Cassidy writes the action into the decision log instead of relying on hallway memory"
+      },
+      "scenario": "Cassidy writes in the PMO decision log, minutes before the steering call: \"Decision: use the leased lab for pilot testing. Reason: the issue log shows repeated equipment delays. Assumption record updated: vendor access by May 3. Lessons learned: future lab choices need access proof before estimates.\" The memo must answer the budget question after everyone leaves the call.",
+      "whatToDo": "Cassidy records the decision, reason, issue-log link, changed assumption, and lesson in one place before the call can turn memory into debate.",
+      "whyItMatters": "A decision log preserves the reasoning that later people need. Lessons learned, issue logs, and assumption records support action only when they stay connected."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch04.ex.role-flexibility",
+      "title": "Yvon and Margot Split the Same Delay",
+      "tags": [
+        "contrast",
+        "adaptive team",
+        "vendor delay"
+      ],
+      "planSpec": {
+        "domain": "adaptive release blocked by vendor delay",
+        "audience": "team lead comparing title-first and function-first responses",
+        "stakes": "the same delay can become confusion or coordinated action",
+        "format": "contrast",
+        "requiredBeat": "Yvon waits on the project manager title while Margot distributes functions"
+      },
+      "scenario": "Yvon and Margot face the same vendor delay. Each has to choose a response before the release review. Yvon points to the project manager line and waits for one person to chase approvals; by standup, the product owner has not reset priorities and the technical lead is guessing. Margot starts with functions: the scrum master clears meeting blockers, the product owner revises priority, and the technical lead updates dependency risk. Her team brings one story; Yvon's brings three.",
+      "whatToDo": "Margot names the missing functions first, then gives each role one clear contribution to the delay response instead of waiting for a single title to absorb all work.",
+      "whyItMatters": "Role flexibility is not vagueness. The same delay improves when planning, facilitation, and technical decision support are visible across the team."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch04.fact.6",
+      "title": "Serge Gets Coached Past Status",
+      "tags": [
+        "coach talk",
+        "decision support",
+        "governance"
+      ],
+      "planSpec": {
+        "domain": "sponsor packet preparation",
+        "audience": "workstream lead who confuses status with decision support",
+        "stakes": "governance may receive data without options or consequences",
+        "format": "coach_talk",
+        "requiredBeat": "Folake reframes Serge's packet from raw status to decision support"
+      },
+      "scenario": "Serge tells Folake in a conference alcove that the project manager should bring the steering group \"the schedule and a recommendation.\" Folake taps the decision log. \"Do not ask who has the title; ask what decision the work needs next.\" Serge has to choose the packet shape before sponsor office hours, changing raw status into options, impacts, and an escalation signal.",
+      "whatToDo": "Serge rewrites the packet around the decision needed, the options available, the effects on value, and the point that needs escalation.",
+      "whyItMatters": "Governance needs decision support, not just schedule data. A sponsor can act faster when the packet names choices, consequences, and the signal to escalate."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch04.fact.1",
+      "title": "Agathe Learns the Title Is Not the Work",
+      "tags": [
+        "school case",
+        "onboarding",
+        "role flexibility"
+      ],
+      "planSpec": {
+        "domain": "project management onboarding class",
+        "audience": "learner new to PMBOK role-neutral language",
+        "stakes": "confusing the project manager title with every project function",
+        "format": "school_case",
+        "requiredBeat": "Agathe's confusion about the project manager role becomes the lesson"
+      },
+      "scenario": "Agathe folds her worksheet during an onboarding class. The case compares a predictive capital project with an adaptive product team, and she has circled project manager beside every function. Before she speaks, the instructor points to product owner, scrum master, and technical lead on the second case. Agathe's confusion becomes the exercise: the same work remains, but different roles can perform it.",
+      "whatToDo": "Agathe redraws the worksheet by function first, then marks which role performs each one in the predictive case and in the adaptive product case.",
+      "whyItMatters": "The learner's mistake is common and useful. Project functions are necessary work, not a private checklist for the project manager title."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch04.ex.lessons-and-decision-logs",
+      "title": "Folake Changes the Learning Loop",
+      "tags": [
+        "before after",
+        "learning records",
+        "assumptions"
+      ],
+      "planSpec": {
+        "domain": "pilot retrofit learning process",
+        "audience": "delivery lead trying to prevent repeated confusion",
+        "stakes": "lessons may arrive after the team has already repeated the error",
+        "format": "before_after",
+        "requiredBeat": "Folake shows the same learning process before and after records are used during delivery"
+      },
+      "scenario": "Before the retrofit pilot, Folake's team held one lessons learned meeting after closure, while the decision log, issue log, and assumption record sat in separate folders. After the third access delay, Folake changed the loop: each Friday, the team reads one open issue, one decision, and one assumption before planning next week. Before, the records archived confusion. After, they guide the next choice.",
+      "whatToDo": "Folake moves learning into the weekly planning rhythm by connecting lessons learned, decision log entries, issue log items, and assumption record changes.",
+      "whyItMatters": "Knowledge work supports continuity only when records influence later action. Learning at closure is useful, but learning during delivery prevents repeat mistakes."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch04.fact.9",
+        "prompt": "Bernard inherits a role chart with a project manager, product owner, scrum master, and technical lead, yet decisions still stall. Which first move best fits the function-first standard?",
+        "choices": [
+          "Coverage Map: list the coordination, facilitation, decision support, communication, and learning work before changing titles.",
+          "Role Checklist Misread: assign the stalled decisions to Bernard because the project manager title already appears.",
+          "Org Chart Comfort: add another reviewer line so the role chart looks complete before the next kickoff."
+        ],
+        "correctIndex": 0,
+        "explanation": "Function coverage matters more than title completeness. The role checklist and org-chart fixes stay near names while the stalled work remains unnamed.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch04.fact.8",
+        "prompt": "A decision log shows three reversed lab choices in ten days, each after an issue log update and an assumption record change. What should Cassidy infer first?",
+        "choices": [
+          "Archive Drawer Misread: the logs are only evidence for the final lessons learned session after closure.",
+          "Status Report Substitute: the team needs a longer weekly update so the lab changes sound more orderly.",
+          "Record-to-Decision Link: the records are not feeding current choices, so learning is failing during delivery."
+        ],
+        "correctIndex": 2,
+        "explanation": "The pattern points to records disconnected from action. Treating logs as archives or longer status text misses the decision support function they should serve.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch04.fact.7",
+        "prompt": "During adaptive release planning, Yvon sees the product owner, scrum master, and technical lead each waiting for the project manager to resolve a dependency. Which response is strongest?",
+        "choices": [
+          "Project Manager Monopoly: route every dependency through the project manager so the team has one visible owner.",
+          "Distributed Coverage: assign priority, facilitation, and technical risk work to the roles closest to those decisions.",
+          "Ceremony Misread: add another standup for Yvon's team so waiting becomes more visible to everyone."
+        ],
+        "correctIndex": 1,
+        "explanation": "Adaptive teams can distribute functions across roles. A project-manager monopoly overloads one title, and another ceremony exposes waiting without covering the work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch04.fact.2",
+        "prompt": "An issue log for Margot's supplier work lists five open approvals, all crossing teams and resources. Which reading should guide the next meeting?",
+        "choices": [
+          "Coordination Check: identify owners for dependencies, approvals, information flow, and resource timing before discussing new tasks.",
+          "Task Assignment Myth: the approvals will clear once every action item has a name beside it in the tracker.",
+          "Local Efficiency Bias: let each team handle its own approval path so Margot's meeting stays shorter."
+        ],
+        "correctIndex": 0,
+        "explanation": "Coordination is active work across dependencies. Named tasks help, but approvals, resources, and information still need someone connecting the pieces.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch04.fact.1",
+        "prompt": "In Agathe's onboarding case, a predictive capital project has one project manager while an adaptive product team has product, flow, and technical roles. What should Agathe learn?",
+        "choices": [
+          "Single-Title Shortcut: the predictive case is mature because one project manager can hold every useful function.",
+          "Adaptive Role Drift: the adaptive case lacks discipline because functions are split among several roles.",
+          "Function-First Reading: both cases need the same work covered, even when the role names differ."
+        ],
+        "correctIndex": 2,
+        "explanation": "The work remains necessary in both structures. Single-title and role-drift readings confuse different role designs with the presence or absence of discipline.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch04.fact.6",
+        "prompt": "Serge prepares a sponsor packet with schedule variance but no options, impacts, or escalation signal. Which edit would make the packet more useful?",
+        "choices": [
+          "Schedule-Only Governance: keep the packet centered on variance because governance mainly needs dates.",
+          "Decision Support Edit: add the choices available, consequences for value, and the point needing sponsor action.",
+          "Recommendation Theater: include one preferred answer for Serge's sponsor without showing tradeoffs."
+        ],
+        "correctIndex": 1,
+        "explanation": "Governance needs context for action. Schedule-only data and unsupported recommendations leave decision makers without options, effects, or escalation meaning.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch04.fact.5",
+        "prompt": "Folake's assumption record changes on Monday, but the lessons learned page waits until closure and the issue log is reviewed only monthly. What is the best diagnosis?",
+        "choices": [
+          "Live Learning Gap: useful information is being captured, but the learning function is not shaping current work.",
+          "Closure Ritual Misread: waiting until the final meeting gives Folake cleaner lessons with fewer interruptions.",
+          "Documentation Sufficiency: the project is learning because each record exists somewhere in the folder set."
+        ],
+        "correctIndex": 0,
+        "explanation": "Learning has to affect delivery while it can still prevent repeat mistakes. Existing records and clean closure notes do not prove the function is active.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch04.fact.4",
+        "prompt": "Cassidy argues that facilitation is optional because the work is technical and the technical lead knows the answer. Which reply best uses a function-first lens?",
+        "choices": [
+          "Expert Shortcut: let the technical lead decide alone so meetings do not slow the technical answer.",
+          "Soft-Skill Dismissal: keep facilitation outside the plan since Cassidy's engineers dislike structured sessions.",
+          "Progress Structure: use facilitation when a group decision, conflict, workshop, or problem session needs movement."
+        ],
+        "correctIndex": 2,
+        "explanation": "Facilitation is not decoration; it structures group progress. Expert answers may matter, but group decisions still need a way through drift and conflict.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch04.fact.3",
+        "prompt": "Margot sends one status report to every stakeholder group, then learns the sponsor missed a decision and the vendor missed a change. What should change?",
+        "choices": [
+          "Broadcast Confidence: keep one report because identical information treats all stakeholders equally.",
+          "Communication Fit: tailor the message and feedback loop so each group can act on current decisions and progress.",
+          "Volume Substitute: send the same report twice each week so missed action becomes less likely."
+        ],
+        "correctIndex": 1,
+        "explanation": "Communication connects groups to action. Equal broadcasts and higher volume can still leave sponsors, vendors, and teams without the context they need.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch04.fact.9",
+      "front": "What question should come before asking which title owns a project responsibility?",
+      "back": "Ask which function has to be performed: coordination, communication, facilitation, decision support, oversight, or learning. Then attach the right person and authority.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch04.fact.7",
+      "front": "How does role flexibility change the way you read a project manager title?",
+      "back": "A project manager may perform many functions, but the title is not the whole map. Product owners, scrum masters, technical leads, sponsors, and teams can carry functions too.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch04.fact.8",
+      "front": "Why do decision logs, issue logs, lessons learned, and assumption records matter during delivery?",
+      "back": "They preserve reasoning, open problems, changed assumptions, and learning so later choices do not restart from confusion. They are useful when someone consults them before acting.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch04.fact.6",
+      "front": "Earlier concept, governance for value delivery: how do project functions help governance work?",
+      "back": "Governance needs usable decision support. Functions turn status into options, impacts, escalation signals, and accountability so decision makers can act with current context.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch04.concept",
+      "front": "Earlier concept, principle-based standard: why does the functions guidance avoid one universal role recipe?",
+      "back": "A principle-based standard travels across predictive, adaptive, and hybrid work. It names responsibilities that must be covered while leaving role design to context.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch04.fact.2",
+      "front": "What symptoms suggest a coordination function is missing?",
+      "back": "Look for unresolved dependencies, stale approvals, resource surprises, repeated handoff questions, and people waiting because information has not reached the next decision point.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card07",
+      "sourceAnchorId": "ch04.fact.5",
+      "front": "Why is a final lessons learned meeting not enough by itself?",
+      "back": "Closure learning can help future work, but current work needs learning while choices are still open. Capture decisions, assumptions, issues, and lessons soon enough to prevent repeat mistakes.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Map the Function Before the Title",
+    "coreSkill": "Practice reading project responsibility by function before role. Name the work that must happen, then attach a person, authority, cadence, and record only where the project needs them. Use the map to reveal gaps that a formal role chart can hide.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch04.fact.9",
+        "context": "A responsibility chart looks complete but work still stalls",
+        "plan": "If the role chart looks complete while decisions stall, then use Map the Function Before the Title to list the missing work before adding another role."
+      },
+      {
+        "sourceAnchorId": "ch04.fact.7",
+        "context": "An adaptive team waits for one project manager title to solve every dependency",
+        "plan": "If product owner, scrum master, or technical lead work is waiting on one title, then map priority, facilitation, and technical decision functions separately."
+      },
+      {
+        "sourceAnchorId": "ch04.fact.8",
+        "context": "A decision log, issue log, or assumption record exists but people keep reopening the same question",
+        "plan": "If records exist but confusion repeats, then connect each record to the next decision where someone must use it."
+      },
+      {
+        "sourceAnchorId": "ch04.fact.6",
+        "context": "A governance packet shows status but no choice for the sponsor",
+        "plan": "If a sponsor packet has data without action, then add options, impacts, and the escalation signal before the meeting."
+      },
+      {
+        "sourceAnchorId": "ch04.fact.4",
+        "context": "A meeting drifts because the group has no structure for choosing",
+        "plan": "If a session starts circling, then name facilitation as the uncovered function and give someone the job of framing the next decision."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, pick one active project or household effort and list six functions: coordination, communication, facilitation, decision support, oversight, and learning. Mark an owner for each.",
+    "weeklyPractice": "Once this week, review one decision log, issue log, or assumption record before a planning conversation. Note one choice that improved because the record was current."
+  },
+  "memorableLines": [
+    {
+      "text": "Titles can vary, but the work cannot vanish.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the role-neutral lesson into one plain test."
+    },
+    {
+      "text": "A decision without a keeper becomes a rumor with dates.",
+      "location": "breakdown.deepRead",
+      "why": "It makes decision support feel concrete and costly."
+    },
+    {
+      "text": "A record that no one consults is storage, not learning.",
+      "location": "breakdown.fullRead",
+      "why": "It separates useful knowledge work from archival paperwork."
+    }
+  ]
+}

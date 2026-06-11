@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 1,
+  "chapterId": "think-and-grow-rich-ch01",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "25745b7eaf4e2dd0",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T11:53:54.566Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~92/100, GREEN. All 9 quiz keys verified correct. 6 examples are distinct coherent scenes grounded in real TGR anchors (Barnes/Edison, Darby Colorado mine + engineer, fifty-cent child, withheld Carnegie secret); no location-stamp/shared-skeleton. Cards test understanding; Purpose Receipt plan actionable; lines aphoristic. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 1,
+      "chapterId": "think-and-grow-rich-ch01",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "8960accdbd40ec86",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T11:53:54.566Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~92/100, GREEN. All 9 quiz keys verified correct. 6 examples are distinct coherent scenes grounded in real TGR anchors (Barnes/Edison, Darby Colorado mine + engineer, fifty-cent child, withheld Carnegie secret); no location-stamp/shared-skeleton. Cards test understanding; Purpose Receipt plan actionable; lines aphoristic. No corruption."
+    }
+  ]
+}

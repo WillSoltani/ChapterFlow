@@ -55,33 +55,27 @@
   ],
   "targetReader": "A reflective adult reader who feels the pressure of work, relationships, status, illness, aging, belief, or ambition and wants a deeper language for why ordinary life can feel loaded with more than ordinary stakes.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium",
+    "register": "literary",
+    "person": "third",
+    "cadence": "long",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "let mortality pressure stay quiet and practical rather than theatrical",
-      "move from visible behavior to the hidden need for significance"
+      "uses psychoanalytic, theological, and existential language with grave force",
+      "treats heroism, denial, and mortality as hidden engines of culture",
+      "keeps sentences dense, searching, and morally uneasy",
+      "connects personal striving to the terror of finitude"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no glib death-awareness productivity slogans",
-      "no unsupported psychoanalytic quotation or diagnosis"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make death anxiety into a simple fear-management tip.",
+      "Do not brighten Becker into inspirational meaning talk."
     ]
   },
   "voiceSpecimens": [
-    "The argument in the room is not really about the agenda item. It is about who gets to feel necessary when the room is done with them.",
-    "You can tell a defense by the way it makes one truth impossible to say.",
-    "A calendar can become a small immortality project when every square promises that your importance will keep renewing itself.",
-    "The person who needs a leader to be flawless is usually asking for shelter, not information.",
-    "Love becomes heavier when it is asked to defeat loneliness, time, and death all at once.",
-    "Courage begins when the fear is still present and the costume is no longer useful.",
-    "The self wants a stage. The body keeps reminding it where the exits are."
+    "The argument is often a petition against mortality.",
+    "Heroism gives the self a costume sturdy enough to face the grave."
   ],
   "voiceAntiSpecimens": [
     "This chapter explains the theory of mortality and why it is important for modern readers.",
@@ -97,6 +91,8 @@
     "Do not flatten psychoanalysis into modern therapy tips.",
     "Do not present religion, love, creativity, or culture as simple cures.",
     "Do not invent named studies, clinical cases, or historical anecdotes beyond the frozen source sidecars.",
-    "Do not diagnose fictional protagonists with modern labels unless the source specifically supports that language."
+    "Do not diagnose fictional protagonists with modern labels unless the source specifically supports that language.",
+    "Do not remove the existential dread from the analysis.",
+    "Do not use psychoanalytic terms as decoration."
   ]
 }

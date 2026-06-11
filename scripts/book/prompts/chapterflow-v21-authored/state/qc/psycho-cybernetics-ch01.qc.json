@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "psycho-cybernetics",
+  "chapterNumber": 1,
+  "chapterId": "psycho-cybernetics-ch01",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "a82ebf1685a5285b",
+  "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+  "reviewedAt": "2026-06-10T01:11:21.337Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN ~91 (round2). Counterintuition reworded off the negation shell, claim intact; example slate already varied; all 9 keys unchanged & correct.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 1,
+      "chapterId": "psycho-cybernetics-ch01",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "7f534e34f11fb195",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:11:21.337Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~91 (round2). Counterintuition reworded off the negation shell, claim intact; example slate already varied; all 9 keys unchanged & correct."
+    }
+  ]
+}

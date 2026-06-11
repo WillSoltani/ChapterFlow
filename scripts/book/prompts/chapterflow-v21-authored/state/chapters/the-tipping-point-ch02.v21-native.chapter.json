@@ -1,0 +1,308 @@
+{
+  "chapterId": "the-tipping-point-ch02",
+  "number": 2,
+  "title": "The Law of the Few: Connectors, Mavens, and Salesmen",
+  "readingTimeMinutes": 12,
+  "hook": "Two riders left with the same alarm, but only one woke the countryside.",
+  "counterintuition": "Word of mouth is not a fair relay. The same message can stall or race depending on whether it finds people with reach, trusted knowledge, or emotional force.",
+  "tryThisNow": "Write the name of one person who bridges groups, one who knows the details, and one who changes the room's mood. Do not put the same name in all three slots.",
+  "keyTakeaway": "Match the job to the few: Connectors move messages across groups, Mavens make them credible, and Salesmen turn attention into assent.",
+  "breakdown": {
+    "fastRead": "Paul Revere and William Dawes carried similar warnings on April 18, 1775. The difference was not the sentence they spoke. Revere knew the right towns, the right leaders, and the trust routes that made alarm spread. Dawes rode too, but his warning did not travel with the same force.\n\n+That contrast names the Law of the Few. Connectors bridge many worlds. Mavens collect useful facts and pass them on as help. Salesmen make people feel the force of a choice. A message that needs reach should not be handed to the person who only has charm. A message that needs trust should not be carried by a celebrity with no facts. Influence has jobs.",
+    "deepRead": "Social distance is not spread evenly across a town, a market, or a company. Some people hold many weak ties. They belong lightly to several worlds, so information can jump from one circle to another. Roger Horchow and Lois Weisberg make that role visible. Their power is not command. It is the number of doors they can open without making the visit feel forced.\n\n+Mavens solve a different problem. Mark Alpert does not matter because he knows everyone. He matters because he gathers prices, features, and practical warnings, then gives them away in a helpful spirit. His advice travels because it feels like service. The receiver does not smell a pitch.\n\n+Salesmen bring the third force. Tom Gau, the Torrance financial planner, shows persuasion as rhythm and rapport. Donald Moine's analysis focuses on mimicry, timing, and emotional alignment. Facts can sit inert until a listener feels safe enough to agree.\n\n+The midnight ride works because it joins message and messenger. Revere had social routes that Dawes did not activate with the same strength. The lesson is exacting: before spending to reach everyone, ask which human function is missing. Need distance crossed? Find a Connector. Need trust in the content? Find a Maven. Need action from the undecided? Find a Salesman.",
+    "fullRead": "Stanley Milgram's small-world work and the Six Degrees of Kevin Bacon game make one fact hard to ignore: the social world is short because a few people bridge long gaps. Most people know a set of people like themselves. A Connector knows people from many scenes, and that light membership can move news farther than a dense clique can.\n\n+Paul Revere's ride becomes clearer through that lens. The warning about British movement was urgent, but urgency did not spread itself. Revere had standing among colonial groups and a path into local leadership. William Dawes carried a similar alarm, yet the response was weaker. The message was not enough. The messenger's network gave the words reach.\n\n+Roger Horchow and Lois Weisberg show the quieter form of the same gift. They collect relationships across business, art, civic life, politics, and neighborhood worlds. A Connector is not merely popular. Popular people can sit at the center of one circle. A Connector links circles that would otherwise remain apart.\n\n+Mark Alpert gives the Maven role its shape. A Maven watches the market with pleasure. He remembers which stereo is priced fairly, which deal hides a flaw, and which product solves a real problem. The key is motive. Advice from a Maven feels useful because it is offered as a gift, not a trap. That credibility can make a message safe to repeat.\n\n+Tom Gau gives Salesmanship a different texture. The persuasive force comes through warmth, pacing, and small cues that bring the listener into sync. Donald Moine's reading of Gau points to mimicry and emotional timing. This is not mere charm. It is the felt sense that the speaker is with you, so action becomes less cold.\n\n+The hard part is keeping the roles distinct. A famous person may lack bridge ties. A careful Maven may dislike persuading. A natural Salesman may not know enough to be trusted on technical detail. Some rare people overlap, but a campaign fails when it assumes influence is one trait.\n\n+Role confusion is the common failure mode. A team hires a well-known face when it needs a bridge into another community. A manager asks an expert to persuade a frightened room when that expert can only add facts. A founder picks a charming advocate who cannot answer practical buyer doubts. Each error looks like outreach, yet each misses the human channel the message needs.\n\n+The useful test is functional. If the message is trapped inside one group, seek a Connector. If people doubt the content, recruit a Maven. If people understand but hesitate, put a Salesman near the decision. The Law of the Few turns influence from a vague hunt for buzz into a match between social job and human gift."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Soren chooses the alarm rider",
+      "tags": ["emergency", "Revere", "messengers"],
+      "planSpec": {
+        "domain": "emergency neighborhood mobilization",
+        "audience": "organizers choosing messengers under time pressure",
+        "stakes": "a correct warning may fail if the messenger lacks trust routes",
+        "format": "decision_point",
+        "requiredBeat": "Soren contrasts Revere-style ties with a weaker Dawes-style route"
+      },
+      "scenario": "Soren stands at 5:50 a.m. in a Somerville church basement with a flood map, a phone tree, and fifteen minutes before sirens start. One volunteer has the loudest voice, but another knows the landlords, coaches, and cafe owners. Remembering Paul Revere and William Dawes, Soren has to choose the messenger whose ties will wake the most blocks.",
+      "whatToDo": "Soren should send the volunteer with Revere-like trust routes, because the warning needs social reach more than volume.",
+      "whyItMatters": "The same alarm can spread unevenly. A Connector turns a correct message into many trusted handoffs."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Helena gives Maven advice",
+      "tags": ["retail", "Mark Alpert", "trust"],
+      "planSpec": {
+        "domain": "independent electronics store advice",
+        "audience": "retail teams trying to earn customer referrals",
+        "stakes": "paid promotion could sound hollow if buyers need credible detail",
+        "format": "dialogue",
+        "requiredBeat": "Helena uses Mark Alpert's Maven role to make advice useful"
+      },
+      "scenario": "Helena opens the display case at 11:10 a.m. in her Portland audio shop as a customer compares two headphones. The register prompt offers a rebate script, but the customer asks which model fails after a year. Helena must answer before the buyer leaves. She channels Mark Alpert's Maven role and names the cheaper model's real strength and flaw.",
+      "whatToDo": "Helena should give the precise comparison even when it lowers the sale, making her advice worth repeating.",
+      "whyItMatters": "A Maven spreads trust by serving the buyer's problem. Useful knowledge travels farther than a polished pitch."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Ibrahim coaches rapport",
+      "tags": ["finance", "Tom Gau", "persuasion"],
+      "planSpec": {
+        "domain": "retirement planning consultation",
+        "audience": "advisers learning ethical persuasion",
+        "stakes": "facts may not move a nervous client without emotional alignment",
+        "format": "coach_talk",
+        "requiredBeat": "Ibrahim separates Tom Gau-style rapport from more data"
+      },
+      "scenario": "Ibrahim pauses a 2:25 p.m. training video in a Torrance advisory office while a new planner floods a widow with charts. The planner has to call the client back before markets close. Ibrahim points to Tom Gau's Salesman pattern: match pace, lower tension, and let the client feel understood before adding another figure.",
+      "whatToDo": "Ibrahim should coach the planner to earn emotional alignment first, then use the data only after the client can hear it.",
+      "whyItMatters": "Salesmanship is not more information. Rapport, timing, and emotional sync can decide whether facts become action."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Mei finds the civic bridge",
+      "tags": ["museum", "Lois Weisberg", "Connector"],
+      "planSpec": {
+        "domain": "museum membership drive",
+        "audience": "cultural institutions seeking new communities",
+        "stakes": "an elegant invitation may stay inside the same donor circle",
+        "format": "decision_point",
+        "requiredBeat": "Mei looks for a Lois Weisberg-style civic bridge"
+      },
+      "scenario": "Mei reviews the 8:00 p.m. guest list in a Chicago museum office and sees the same patrons as last spring. The director wants a prettier invitation by morning. Mei has to decide before the printer locks files. She thinks of Lois Weisberg and searches for a civic bridge who belongs lightly to arts, schools, neighborhood councils, and city hall.",
+      "whatToDo": "Mei should recruit the cross-domain bridge before redesigning the invitation, because the problem is trapped reach.",
+      "whyItMatters": "Connectors help messages leave their home circle. A refined appeal can still fail if it never crosses social distance."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Lucia repairs the supply list",
+      "tags": ["school", "Maven", "guidance"],
+      "planSpec": {
+        "domain": "parent purchasing guide",
+        "audience": "school administrators reducing bad purchases",
+        "stakes": "families may ignore advice that sounds like a school sales pitch",
+        "format": "before_after",
+        "requiredBeat": "Lucia turns a supply list into Maven-style guidance"
+      },
+      "scenario": "Lucia reads parent emails at 7:35 a.m. in a San Antonio elementary office. Last year's tablet supply list sent families toward costly bundles that broke by winter. Before posting the new list, she adds Maven-style notes: the durable case, the model to avoid, and the store that honors repairs without a fee.",
+      "whatToDo": "Lucia should publish the guide as practical buyer help, not as a command from school staff.",
+      "whyItMatters": "Maven credibility grows when advice saves people effort or money. The helper motive makes the message safer to share."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Anika splits beta roles",
+      "tags": ["software", "role matching", "few"],
+      "planSpec": {
+        "domain": "software beta rollout",
+        "audience": "product managers choosing early advocates",
+        "stakes": "one admired employee may not supply every social function",
+        "format": "planning_choice",
+        "requiredBeat": "Anika assigns Connector, Maven, and Salesman jobs separately"
+      },
+      "scenario": "Anika watches a 4:45 p.m. beta dashboard in a Berlin software office while signups stall outside engineering. The CEO wants the most admired designer to promote it alone. Anika has to answer before the launch standup. She assigns a Connector for departments, a Maven for feature proof, and a Salesman for hesitant managers.",
+      "whatToDo": "Anika should split the rollout jobs across three people, matching each person to reach, credibility, or persuasion.",
+      "whyItMatters": "Role matching is functional. One admired person may not solve every diffusion problem."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A neighborhood warning must travel before a storm hits. One volunteer knows every agency head, coach, and shop owner; another has a louder megaphone. Which choice follows the Revere lesson?",
+        "choices": [
+          "Choose the louder volunteer because the storm warning needs to sound urgent.",
+          "Choose the bridge volunteer because trusted routes move the warning across groups.",
+          "Ask both volunteers to repeat the same script from the same street corner."
+        ],
+        "correctIndex": 1,
+        "explanation": "Revere's advantage was network position and trust, not just the warning itself. The bridge volunteer can move the message through many local paths before the storm arrives.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "When a museum invitation keeps reaching the same patrons, which sign would point to a Connector problem?",
+        "choices": [
+          "The invitation copy lists benefits but does not include the museum's newest exhibit.",
+          "The donor chair dislikes the invitation color and asks for a more formal design.",
+          "The guest list has few people who belong to several civic worlds at once."
+        ],
+        "correctIndex": 2,
+        "explanation": "A Connector problem appears when the message cannot jump circles. People who belong lightly to several civic worlds can carry the invitation beyond the usual donor group.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A parent asks which tablet will survive the school year. The administrator knows one cheaper model has better repairs. What would a Maven-like response do?",
+        "choices": [
+          "Share the repair detail plainly so the parent can make the better purchase.",
+          "Repeat the official supply list because parents may distrust extra detail.",
+          "Steer the parent to the premium bundle because it makes the school look prepared."
+        ],
+        "correctIndex": 0,
+        "explanation": "Mavens gain influence by giving useful, specific information as help. The repair detail solves the parent's problem and builds trust better than official polish.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Your team has a technical report that people trust but do not act on. Which missing role should you test before rewriting every chart?",
+        "choices": [
+          "A Maven who can add more comparative facts to the report's appendix.",
+          "A Salesman who can create emotional assent around the decision.",
+          "A Connector who can send the report to a larger mailing list."
+        ],
+        "correctIndex": 1,
+        "explanation": "Trust in the report suggests Maven work may already be present. If people understand but hesitate, the Salesman role may convert passive agreement into action.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Which hiring brief best avoids treating influence as one vague trait?",
+        "choices": [
+          "Find the most charismatic person available and let that person handle all public contact.",
+          "Select the person with the largest follower count and ask them to publish each update.",
+          "Assign reach, knowledge, and persuasion to people who actually show those separate strengths."
+        ],
+        "correctIndex": 2,
+        "explanation": "The Law of the Few distinguishes social functions. Reach, credibility, and persuasion can overlap, but a strong plan checks each role instead of naming one generic influencer.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A financial planner keeps adding facts while a nervous client grows quieter. What Tom Gau-style adjustment fits the Salesman role?",
+        "choices": [
+          "Slow the pace, mirror the client's concern, and rebuild rapport before adding numbers.",
+          "Bring a longer projection so the client sees the technical case in more detail.",
+          "Ask a colleague with more contacts to introduce the planner again next week."
+        ],
+        "correctIndex": 0,
+        "explanation": "Tom Gau's persuasive force lies in rapport, timing, and emotional alignment. More figures or a bigger network does not address the client's immediate resistance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "If a campaign has a trusted product expert and a warm speaker but still cannot leave one social circle, which role is most likely missing?",
+        "choices": [
+          "A Maven who can add more details about price, quality, and hidden tradeoffs.",
+          "A Salesman who can make the speaker sound more confident during meetings.",
+          "A Connector who can bridge the campaign into communities it does not already touch."
+        ],
+        "correctIndex": 2,
+        "explanation": "The campaign has credibility and persuasion but lacks cross-group movement. A Connector solves the distance problem by linking otherwise separate circles.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A manager says Kevin Bacon-style network distance is just trivia. Which practical use best answers that objection?",
+        "choices": [
+          "Use network distance to find bridge people who shorten the path between groups.",
+          "Use network distance to rank employees by popularity for every internal message.",
+          "Use network distance to replace product quality research with social mapping."
+        ],
+        "correctIndex": 0,
+        "explanation": "The practical use is identifying bridge people. Small-world examples make social distance concrete, but they do not reduce all influence to popularity or replace product work.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A launch team wants one famous employee to handle the beta. Which question would best test whether that employee fits the Law of the Few?",
+        "choices": [
+          "Can the famous employee make the beta feel more exciting in the launch meeting?",
+          "Which function does the famous employee actually perform: bridge, expert helper, or persuader?",
+          "Will the famous employee agree to send the beta link at least three times?"
+        ],
+        "correctIndex": 1,
+        "explanation": "The key is function. Fame may help one part of diffusion, but the team needs to know whether the person supplies reach, Maven credibility, or Salesman energy.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What does the Law of the Few claim about influence?",
+      "back": "Influence is uneven. A small number of people can move messages faster because they supply reach, trusted knowledge, or persuasion.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why does Paul Revere outperform William Dawes as a diffusion example?",
+      "back": "Revere had stronger trust routes and social ties into the right communities, so a similar warning spread with greater force.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What is a Connector's distinct job?",
+      "back": "A Connector bridges social worlds through many weak ties, letting information cross boundaries that would stop a normal message.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card04",
+      "front": "What makes Mark Alpert a Maven rather than a salesperson?",
+      "back": "His influence comes from collecting useful market knowledge and sharing it as help, not from closing a sale.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "What does Tom Gau reveal about Salesmen?",
+      "back": "Persuasion can come through rhythm, mimicry, timing, and emotional alignment that make the listener ready to act.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "front": "What failure does role matching prevent?",
+      "back": "It prevents handing every diffusion problem to one admired person when the message needs a bridge, an expert helper, or a persuader.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Match The Human Channel",
+    "coreSkill": "Name the social job before choosing the messenger. Reach, credibility, and persuasion are different needs. The right few are the people whose actual ties, knowledge, or emotional skill match the message's bottleneck.",
+    "ifThenPlans": [
+      {
+        "context": "The message is trapped in one circle",
+        "plan": "If the same audience keeps hearing the message, then find a Connector. Choose someone with real ties across groups, not just status inside one group."
+      },
+      {
+        "context": "People doubt the recommendation",
+        "plan": "If listeners suspect a pitch, then use a Maven. Let the most helpful expert share the practical details."
+      },
+      {
+        "context": "People agree but delay",
+        "plan": "If the facts are accepted but action stalls, then bring in a Salesman. Use rapport and timing to help people cross the decision line."
+      },
+      {
+        "context": "One influencer is asked to do every job",
+        "plan": "If one person is assigned the whole campaign, then split the role map. Mark whether that person actually bridges, informs, or persuades."
+      }
+    ],
+    "twentyFourHourChallenge": "For one message you need to spread, write the bottleneck as reach, trust, or assent. Ask one person who fits that exact job to help with a small test.",
+    "weeklyPractice": "During the week, track three recommendations you accept. Label the source as Connector, Maven, or Salesman, and note which social job moved you."
+  },
+  "memorableLines": [
+    {
+      "text": "Influence has jobs.",
+      "location": "breakdown.fastRead",
+      "why": "The line turns a vague social trait into a practical sorting rule."
+    },
+    {
+      "text": "Advice from a Maven feels useful because it is offered as a gift, not a trap.",
+      "location": "breakdown.fullRead",
+      "why": "It captures why Maven credibility travels without sounding like a pitch."
+    },
+    {
+      "text": "The message was not enough.",
+      "location": "breakdown.fullRead",
+      "why": "The sentence makes Revere and Dawes a clean warning about messenger fit."
+    }
+  ]
+}

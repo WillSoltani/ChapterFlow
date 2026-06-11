@@ -72,31 +72,25 @@
   "voiceCharter": {
     "register": "plainspoken",
     "person": "second",
-    "cadence": "medium",
+    "cadence": "short",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "make the cost of a yes visible before offering the better move",
-      "distinguish essentialism from comfort, avoidance, and generic minimalism"
+      "frames every yes as a visible tradeoff against the vital few",
+      "uses clean subtraction, protected space, and deliberate no as the teaching moves",
+      "keeps the prose uncluttered so the form models the argument",
+      "asks what will be displaced before praising a new commitment"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic self-improvement coaching language",
-      "no treating essentialism as simple decluttering or aesthetic minimalism",
-      "no pretending every trade-off has a painless resolution"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make essentialism into minimalist lifestyle aesthetics.",
+      "Do not praise focus without showing the tradeoff it requires."
     ]
   },
   "voiceSpecimens": [
-    "The request sounds small until you put it beside the thing it will replace.",
-    "A crowded calendar does not prove commitment. It may only prove that no one has been asked to choose.",
-    "You do not need a stronger personality to say no. You need a clearer picture of what the yes would cost.",
-    "The useful question is not whether the opportunity is good. Many good things are still wrong for this season.",
-    "Space looks empty from the outside, but inside it is where judgment gets its eyesight back.",
-    "A routine is not a cage when it carries the work you keep claiming matters.",
-    "The essentialist does not worship subtraction. The essentialist removes what keeps the real contribution from moving."
+    "Every yes spends something.",
+    "Name what it replaces before you accept it."
   ],
   "voiceAntiSpecimens": [
     "This chapter will teach you how to become more productive by prioritizing your goals.",
@@ -112,6 +106,8 @@
     "Do not flatten the book into saying no; the early chapters are about agency and discernment, the middle chapters are about elimination, and the later chapters are about making the essential easier to execute.",
     "Do not present essentialism as selfish withdrawal; the point is higher contribution, clearer relationships, and more honest trade-offs.",
     "Do not write painless choices; every real yes carries a no, and every real no protects something specific.",
-    "Do not reuse the current v21 package's repeated frame that every chapter starts with a useful yes or no and ends with pressure spending attention."
+    "Do not reuse the current v21 package's repeated frame that every chapter starts with a useful yes or no and ends with pressure spending attention.",
+    "Do not add decorative productivity systems.",
+    "Do not let urgency outrank discernment without challenging it."
   ]
 }

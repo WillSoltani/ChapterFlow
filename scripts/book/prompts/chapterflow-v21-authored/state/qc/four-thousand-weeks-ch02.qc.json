@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "four-thousand-weeks",
+  "chapterNumber": 2,
+  "chapterId": "four-thousand-weeks-ch02",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "cbe555b21c613c2b",
+  "reviewer": "claude-qc:4kw-20260609-r2",
+  "reviewedAt": "2026-06-10T01:05:41.917Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Full read. GREEN ~88. 9/9 quiz keys correct (hidden-key derived), prose coherent, facts accurate to source, examples coherent (0/6 staged source-props, names consistent), cards test understanding, plan uses named tool 'Choose the Honest Loss' with clean context/plan, lines portable. No corruption, no templating.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "four-thousand-weeks",
+      "chapterNumber": 2,
+      "chapterId": "four-thousand-weeks-ch02",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "17bef4d899b88c4e",
+      "reviewer": "claude-qc:4kw-20260609-r2",
+      "reviewedAt": "2026-06-10T01:05:41.917Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Full read. GREEN ~88. 9/9 quiz keys correct (hidden-key derived), prose coherent, facts accurate to source, examples coherent (0/6 staged source-props, names consistent), cards test understanding, plan uses named tool 'Choose the Honest Loss' with clean context/plan, lines portable. No corruption, no templating."
+    }
+  ]
+}

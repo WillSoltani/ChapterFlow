@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "outliers",
+  "chapterNumber": 7,
+  "chapterId": "outliers-ch07",
+  "verdict": "REVISE",
+  "contentHash": "1a747af931b523bc",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-outliers-2026-06-10",
+  "reviewedAt": "2026-06-11T00:19:55.680Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=65; cross-chapter: scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/repeated_unit/repeated_unit/other; Strong grounded prose (~0.62 weighted, below anchor): memorableLines section missing entirely; 4/6 s"
+}

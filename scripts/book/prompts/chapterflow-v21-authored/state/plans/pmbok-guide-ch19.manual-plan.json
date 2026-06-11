@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch19",
+  "number": 19,
+  "title": "Introduction to A Guide to the Project Management Body of Knowledge",
+  "coreMove": "Use the Standard for principles; use the Guide for domains, tailoring, and assets; bring in PMIstandards+ when context needs practice support.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "portfolio audit rehearsal",
+      "audience": "PMO leads",
+      "stakes": "a sponsor trusts the old process grid while the team must learn performance-domain navigation",
+      "format": "dilemma",
+      "requiredBeat": "Napoleon faces two bad teaching maps and chooses the one that preserves truth over comfort"
+    },
+    {
+      "domain": "client review preparation",
+      "audience": "project managers and analysts",
+      "stakes": "the team may treat PMIstandards+ as a replacement for the Guide instead of companion application support",
+      "format": "dialogue",
+      "requiredBeat": "Mariam and Severine separate the Standard, the Guide, and PMIstandards+ through a spare exchange"
+    },
+    {
+      "domain": "steering packet correction",
+      "audience": "schedule leads",
+      "stakes": "a missing familiar table may be mistaken for missing operational guidance",
+      "format": "predict_reveal",
+      "requiredBeat": "Abel expects the gap log to prove guidance was removed, then discovers the map changed"
+    },
+    {
+      "domain": "steering committee response",
+      "audience": "governance leads",
+      "stakes": "a short reply could imply that the digital platform replaces the Guide",
+      "format": "text_thread",
+      "requiredBeat": "Marion and Scott land the complementary role of PMIstandards+ in compressed messages"
+    },
+    {
+      "domain": "status packet preparation",
+      "audience": "project managers",
+      "stakes": "a routine PDF search keeps pulling the reader back to a process-entry habit",
+      "format": "reset_moment",
+      "requiredBeat": "Nathalie interrupts the search routine and restarts from the performance-domain list"
+    },
+    {
+      "domain": "quiet desk practice",
+      "audience": "project coordinators",
+      "stakes": "the new map must become visible in ordinary preparation, not only in training talk",
+      "format": "vignette",
+      "requiredBeat": "Scott's desk shows the old ITTO note losing authority beside a domain list"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 3,
+      "apply": 3,
+      "evaluate": 2,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.323Z"
+}

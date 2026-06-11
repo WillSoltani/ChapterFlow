@@ -79,33 +79,27 @@
   ],
   "targetReader": "Managers, analysts, policy thinkers, and anyone who makes decisions under uncertainty and suspects their confident gut is not as reliable as it feels.",
   "voiceCharter": {
-    "register": "plainspoken, analytically precise",
-    "person": "second",
-    "cadence": "medium — varies between tight declarative punches and longer diagnostic sequences",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "medium",
     "signatureMoves": [
-      "open each idea in a concrete scene before naming the principle",
-      "use specific numbers and percentages where the book does — they create precision, not pedantry",
-      "let the visible action carry the lesson; the reader should see it happen before you name it",
-      "challenge the reader's prior confidence gently, then supply a better tool",
-      "end paragraphs with the sharpest version of the claim, not the softest"
+      "uses fox-versus-hedgehog contrast, calibration, base rates, and updating",
+      "keeps claims probabilistic and allergic to pundit certainty",
+      "turns forecasting into scored habits rather than genius",
+      "sounds empirical, modest, and exacting about evidence quality"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language ('unlock your potential', 'transform the way you think')",
-      "no hedge phrases that cannot be checked ('things are developing', 'probably likely')",
-      "no sentences that praise forecasting without showing it in action"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not let confidence outrun track record.",
+      "Do not make uncertainty sound like indecision."
     ]
   },
   "voiceSpecimens": [
-    "A confident prediction from someone with no track record is just a confident story.",
-    "When you say probably, write down a number — otherwise you will never know if you were right.",
-    "The forecast that sends you from 60 to 85 on one news item is almost certainly an overreaction.",
-    "Your base rate is not the interesting part of the problem. It is the part you have to nail before the interesting part begins.",
-    "Cochrane wanted a number. The specialist wanted a story. The story was wrong.",
-    "What you are actually forecasting matters more than how well you forecast it.",
-    "The team that reaches consensus fastest is not always the team that reaches it best."
+    "A prediction without a probability is still wearing costume jewelry.",
+    "Update early, score honestly, and let the fox stay restless."
   ],
   "voiceAntiSpecimens": [
     "In this chapter, we will explore the fascinating world of probabilistic thinking and what it means for modern decision-making.",
@@ -121,6 +115,8 @@
     "Using the word 'probably' in examples without attaching a number — every hedge word in this book demands a percentage",
     "Treating superforecasters as geniuses or special talents — the book explicitly rejects that frame",
     "Letting 'black swan' become an excuse to dismiss all forecasting — the book defends careful prediction while accepting limits",
-    "Collapsing epistemic and aleatory uncertainty into one vague 'things are uncertain' gesture"
+    "Collapsing epistemic and aleatory uncertainty into one vague 'things are uncertain' gesture",
+    "Do not make predictions without probabilities.",
+    "Do not praise expertise without feedback and calibration."
   ]
 }

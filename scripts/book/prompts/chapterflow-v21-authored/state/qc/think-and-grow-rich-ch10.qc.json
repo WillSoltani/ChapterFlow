@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 10,
+  "chapterId": "think-and-grow-rich-ch10",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "4b181686d8283965",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T12:02:34.586Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~91 GREEN. 9/9 keys correct (1,0,2,1,0,2,2,0,1). Power=organized directed knowledge, Carnegie alliance, Ford-Edison-Firestone-Burroughs, intangible third mind accurate. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 10,
+      "chapterId": "think-and-grow-rich-ch10",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "6eebba2abafb9e17",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T12:02:34.586Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~91 GREEN. 9/9 keys correct (1,0,2,1,0,2,2,0,1). Power=organized directed knowledge, Carnegie alliance, Ford-Edison-Firestone-Burroughs, intangible third mind accurate. No corruption."
+    }
+  ]
+}

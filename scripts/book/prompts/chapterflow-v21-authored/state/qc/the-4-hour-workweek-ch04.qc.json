@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-4-hour-workweek",
+  "chapterNumber": 4,
+  "chapterId": "the-4-hour-workweek-ch04",
+  "verdict": "REVISE",
+  "contentHash": "987ce833a7d9a53e",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:29:45.244Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=91; cross-chapter: scene_skeleton/repeated_unit/persona_drift/repeated_unit/repeated_unit; Publishable at anchor level (~0.90 weighted): six concrete unique-named scenes, teaching prose with the hard edge covere",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 4,
+      "chapterId": "the-4-hour-workweek-ch04",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "6c9a4bbb5f5f3322",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:06.844Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; dreamlining have/be/do, target monthly income, 15-min conversation accurate. Coherent; cards answer fronts; plan Write the Dreamline Invoice non-empty. No corruption."
+    }
+  ]
+}

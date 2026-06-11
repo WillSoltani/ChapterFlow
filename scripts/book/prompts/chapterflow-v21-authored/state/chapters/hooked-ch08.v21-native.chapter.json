@@ -1,0 +1,321 @@
+{
+  "chapterId": "hooked-ch08",
+  "number": 8,
+  "title": "Habit Testing and Where To Look For Habit-Forming Opportunities",
+  "readingTimeMinutes": 13,
+  "hook": "Twitter's thirty-follows clue turns retention from hunch into path.",
+  "counterintuition": "Habit Testing begins with discipline: define the right rhythm, find a real cluster, codify the path, and modify with evidence.",
+  "tryThisNow": "Define what devoted use means for one product, then find one behavior shared by retained users that newcomers do not yet do.",
+  "keyTakeaway": "Habit Testing identifies habitual users, codifies their shared path, and modifies the product so more users can reach that path through measured behavior.",
+  "breakdown": {
+    "fastRead": "Twitter's 30 follows became a concrete habit clue. Users who followed enough accounts early were more likely to stay, so onboarding could guide newcomers toward that condition.\n\nThe closing framework is Habit Testing: identify devoted users, codify the behavior path they share, and modify the product to help more users follow it. Instagram and Rotten Tomatoes should not share the same frequency threshold. The test begins by respecting the product's natural rhythm.",
+    "deepRead": "Habit Testing turns the Hook Model into measurement. The first step is defining what devoted use should mean for the category. A social-photo app may need frequent use; a movie-review site like Rotten Tomatoes can have a slower cadence and still serve its purpose.\n\nOnce the threshold is defined, the team identifies habitual users. A rough five percent signal gives enough of a cluster to study. If too few users qualify, the product may need rethinking before optimization.\n\nCodifying means looking for the path loyal users share: source channel, registration choices, number of friends or follows, content interactions, and timing of repeat use. Twitter's 30 follows insight made the path concrete. It gave the team something to emphasize in onboarding.\n\nModification is then tested, not assumed. The team may change registration, simplify an interface, emphasize certain features, adjust content, or remove friction.\n\nOpportunity search broadens the method. Personal frustration points to real pain. Facebook at Harvard shows a nascent behavior in a small community. Google, Yahoo, and Lycos show interface change. Instagram filters, Google Glass, and Oculus Rift show how new technologies or surfaces can make old motivations easier to act on.",
+    "fullRead": "The final framework matters because it protects habit design from becoming armchair psychology. A team can name triggers, actions, rewards, and investments and still be guessing. Habit Testing asks the product to prove where a habit is forming.\n\nThe first move is threshold discipline. Instagram and Rotten Tomatoes cannot use the same devoted-use definition. A social-photo app may reasonably expect daily or near-daily behavior because photos, friends, and moments recur constantly. A movie-review site belongs to a different rhythm. Defining devotion without category context produces bad data.\n\nAfter the threshold comes identification. The team looks for users who meet the chosen definition. The rough five percent benchmark is not a victory parade. It is a signal that there may be enough habitual users to study. If the group is too small, the team may need to revisit the value proposition instead of polish onboarding.\n\nCodifying the habit path is the investigative step. Where did devoted users come from? What did they do during registration? How many accounts did they follow? Which features did they touch? When did repeat use begin? Twitter's 30 follows finding is memorable because it turned retention into a concrete early behavior. New users who reached that social graph threshold were more likely to stay, so the product could be modified to help them get there.\n\nModification should remain experimental. A team might change sign-up, recommend follows, simplify first actions, surface content differently, or remove confusing steps. The point is not to worship a correlation. It is to create a plausible path and test whether more users can travel it.\n\nThe opportunity lens widens the search beyond current products. Personal frustration is a serious source because direct irritation reveals pain the builder understands. That also reduces ethical distance. A maker who feels the problem is less likely to invent a fake need.\n\nNascent behaviors deserve attention. Facebook at Harvard began with a narrow campus behavior before expanding outward. Small groups can reveal a universal motivation early, especially when outsiders dismiss the behavior as niche.\n\nInterface change can expose demand. Google, Yahoo, and Lycos show how search behavior changed when the interface got simpler. Instagram filters made mobile photos more shareable by improving their look with little effort. Google Glass and Oculus Rift point to the possibility that new surfaces can alter when and how old desires become actionable.\n\nThe hard edge is discipline. Do not copy retained users mechanically. Do not treat five percent as proof of health. Do not mistake correlation for a cause. Define the rhythm, find the cluster, codify the path, modify carefully, and keep measuring whether the behavior genuinely becomes easier, more frequent, or more rewarding."
+  },
+  "examples": [
+    {
+      "exampleId": "hooked-ch08-ex01",
+      "title": "Follow threshold",
+      "tags": [
+        "Habit Testing",
+        "Twitter",
+        "30 follows"
+      ],
+      "planSpec": {
+        "domain": "onboarding analytics",
+        "audience": "growth lead",
+        "stakes": "how a retained-user path becomes a product change",
+        "format": "data-first",
+        "requiredBeat": "Apply Twitter to how a retained-user path becomes a product change without flattening the source case."
+      },
+      "scenario": "In an onboarding analytics review, Zara sees the Twitter 30 follows pattern: newcomers who connect enough accounts are more likely to stay. The finding turns retention from a vague goal into a concrete path the product can help new users reach.",
+      "whatToDo": "Modify onboarding to guide users toward meaningful follows, then test whether retention improves instead of assuming the threshold is magic.",
+      "whyItMatters": "Twitter's 30 follows clue shows Habit Testing at work: identify devoted users, codify their path, and modify the product around evidence."
+    },
+    {
+      "exampleId": "hooked-ch08-ex02",
+      "title": "Threshold debate",
+      "tags": [
+        "Habit Testing",
+        "Instagram",
+        "Rotten Tomatoes"
+      ],
+      "planSpec": {
+        "domain": "metrics definition meeting",
+        "audience": "data scientist",
+        "stakes": "why devoted use must fit the category",
+        "format": "definition debate",
+        "requiredBeat": "Apply Instagram to why devoted use must fit the category without flattening the source case."
+      },
+      "scenario": "At a metrics definition meeting, Ken rejects a single daily-use target for Instagram and Rotten Tomatoes. A photo-sharing app and a movie-review site serve different rhythms. Habit Testing begins by defining devotion in the context of the behavior.",
+      "whatToDo": "Set the frequency threshold from the product's natural use case. Do not borrow another category's cadence because it sounds ambitious.",
+      "whyItMatters": "Instagram versus Rotten Tomatoes keeps the method calibrated. Devoted use must match what the product actually helps users do."
+    },
+    {
+      "exampleId": "hooked-ch08-ex03",
+      "title": "Campus signal",
+      "tags": [
+        "Habit Testing",
+        "Facebook",
+        "Harvard"
+      ],
+      "planSpec": {
+        "domain": "startup idea review",
+        "audience": "founder",
+        "stakes": "how a small nascent behavior can point to a larger need",
+        "format": "origin case",
+        "requiredBeat": "Apply Facebook to how a small nascent behavior can point to a larger need without flattening the source case."
+      },
+      "scenario": "In a startup idea review, Lina studies Facebook at Harvard. The early market was narrow, but the behavior was familiar: students wanted a digital way to see and connect with people around them. The small community signaled a broader social motivation.",
+      "whatToDo": "Look for tiny groups already improvising the behavior. Study whether the motivation is local trivia or a wider human need.",
+      "whyItMatters": "Facebook at Harvard shows why nascent behavior matters. Small adoption can reveal a large motivation before the mass market sees it."
+    },
+    {
+      "exampleId": "hooked-ch08-ex04",
+      "title": "Search interface lesson",
+      "tags": [
+        "Habit Testing",
+        "Google",
+        "Yahoo",
+        "Lycos"
+      ],
+      "planSpec": {
+        "domain": "search prototype critique",
+        "audience": "interface designer",
+        "stakes": "how interface change can unlock behavior",
+        "format": "interface critique",
+        "requiredBeat": "Apply Google to how interface change can unlock behavior without flattening the source case."
+      },
+      "scenario": "At a search prototype critique, Arman compares Google with Yahoo and Lycos. The sparse interface was not cosmetic; it lowered effort and exposed how much people wanted direct access to answers. Interface change made the behavior easier and more frequent.",
+      "whatToDo": "Treat interface simplicity as an opportunity lens. Ask whether a desired behavior is waiting behind unnecessary effort.",
+      "whyItMatters": "Google, Yahoo, and Lycos show that changing the surface can reveal latent demand by making the action simpler."
+    },
+    {
+      "exampleId": "hooked-ch08-ex05",
+      "title": "Filter opportunity",
+      "tags": [
+        "Habit Testing",
+        "Instagram filters",
+        "Google Glass"
+      ],
+      "planSpec": {
+        "domain": "new-technology scan",
+        "audience": "product scout",
+        "stakes": "how technology shifts can make old motives easier",
+        "format": "trend scan",
+        "requiredBeat": "Apply Instagram filters to how technology shifts can make old motives easier without flattening the source case."
+      },
+      "scenario": "During a technology scan, Ivy compares Instagram filters with Google Glass prototypes. Filters made ordinary mobile photos more shareable immediately. Glass was a bet on a new surface. Both cases ask whether technology changes can make an old motivation easier to act on.",
+      "whatToDo": "Separate proven friction removal from speculative surface change. Look for the old desire that the new tool makes faster, easier, or more rewarding.",
+      "whyItMatters": "Instagram filters, Google Glass, and similar shifts matter when they change the cost or timing of a behavior users already value."
+    },
+    {
+      "exampleId": "hooked-ch08-ex06",
+      "title": "Five percent pause",
+      "tags": [
+        "Habit Testing",
+        "five percent",
+        "Twitter"
+      ],
+      "planSpec": {
+        "domain": "cohort analysis desk",
+        "audience": "product analyst",
+        "stakes": "why a benchmark is a starting signal, not proof",
+        "format": "analytics caution",
+        "requiredBeat": "Apply five percent to why a benchmark is a starting signal, not proof without flattening the source case."
+      },
+      "scenario": "At a cohort analysis desk, Ronan finds just over five percent of users meet the team's devoted-use definition. The room cheers. He points back to Habit Testing: the number is enough to study, not enough to declare the product healthy or ethical.",
+      "whatToDo": "Use the cluster as a research sample. Codify the path, test modifications, and keep checking whether the behavior benefits users.",
+      "whyItMatters": "The five percent benchmark is a starting threshold. It gives a team something to study, not a guarantee that a habit is healthy."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "hooked-ch08-q01",
+        "prompt": "What are the three moves of Habit Testing?",
+        "choices": [
+          "Trigger users, randomize rewards, and collect investment before value appears.",
+          "Advertise heavily, copy competitors, and raise notification volume.",
+          "Identify habitual users, codify their shared path, and modify the product to guide more users there."
+        ],
+        "correctIndex": 2,
+        "explanation": "Habit Testing is a behavior-data loop. It studies devoted users, extracts a path, and tests product changes.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch08-q02",
+        "prompt": "Why should Instagram and Rotten Tomatoes use different devoted-use thresholds?",
+        "choices": [
+          "Their natural behavior rhythms differ, so the same frequency target would distort the test.",
+          "Rotten Tomatoes should always copy social-photo frequency.",
+          "Instagram cannot form habits because photos are optional."
+        ],
+        "correctIndex": 0,
+        "explanation": "Habit Testing starts by defining devotion for the product's category. A social-photo app and a movie-review site should not share one cadence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch08-q03",
+        "prompt": "What did Twitter's 30 follows finding provide?",
+        "choices": [
+          "Proof that every product needs exactly thirty connections.",
+          "A concrete early behavior linked to retention that onboarding could emphasize.",
+          "A moral test for the Manipulation Matrix."
+        ],
+        "correctIndex": 1,
+        "explanation": "The 30 follows clue codified part of the retained-user path. It gave the team a behavior to guide newcomers toward and test.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch08-q04",
+        "prompt": "How should a team treat the rough five percent benchmark?",
+        "choices": [
+          "As a starting signal that there may be enough habitual users to study.",
+          "As proof that the product is healthy and ethical.",
+          "As a requirement that every product must exceed daily use."
+        ],
+        "correctIndex": 0,
+        "explanation": "Five percent is not a finish line. It indicates whether there may be a cluster worth investigating.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch08-q05",
+        "prompt": "What does codifying a habit path involve?",
+        "choices": [
+          "Writing a slogan for the product's mission and using it as the retention explanation.",
+          "Finding shared behaviors among loyal users, such as source, sign-up choices, follows, feature use, and repeat timing.",
+          "Copying every retained user's behavior without testing whether the pattern is causal."
+        ],
+        "correctIndex": 1,
+        "explanation": "Codifying is investigative. It looks for recurring behaviors that plausibly help explain retention.",
+        "bloomsLevel": "remember",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch08-q06",
+        "prompt": "Why is Facebook at Harvard important to opportunity search?",
+        "choices": [
+          "It proves products should avoid narrow early markets.",
+          "It shows interface simplicity is irrelevant to adoption.",
+          "It shows that a small nascent behavior can reveal a broader motivation."
+        ],
+        "correctIndex": 2,
+        "explanation": "A tiny initial community can expose a behavior that later expands. Nascent behavior is one place to look for opportunity.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch08-q07",
+        "prompt": "What opportunity lesson comes from Google, Yahoo, and Lycos?",
+        "choices": [
+          "More portal content always makes action easier.",
+          "Interface simplification can uncover latent demand by lowering effort.",
+          "Search adoption depends mainly on reputation investment."
+        ],
+        "correctIndex": 1,
+        "explanation": "Google's simpler surface made the search action easier. Interface change can make a desired behavior more frequent.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch08-q08",
+        "prompt": "How should teams use personal frustration in opportunity search?",
+        "choices": [
+          "As proof that no user research is needed after the founder feels annoyed.",
+          "As a reason to ignore ethical distance and skip validation with users.",
+          "As evidence of a real pain the maker understands, then test whether others share it."
+        ],
+        "correctIndex": 2,
+        "explanation": "Personal frustration can reveal authentic pain, but it still needs validation. It is a starting point, not a substitute for evidence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch08-q09",
+        "prompt": "What is the hard warning about copying retained users?",
+        "choices": [
+          "Do not worship correlation; define the rhythm, test the path, and keep measuring after modifications.",
+          "Copy every behavior of loyal users because retention proves causality.",
+          "Ignore retained users because their behavior cannot teach anything."
+        ],
+        "correctIndex": 0,
+        "explanation": "Habit Testing needs discipline. Retained-user patterns are hypotheses to test, not automatic proof of cause.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "hooked-ch08-card01",
+      "front": "What is Habit Testing?",
+      "back": "An iterative process: identify habitual users, codify their shared path, and modify the product so more users can follow that path.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch08-card02",
+      "front": "Why did Twitter's thirty follows matter?",
+      "back": "It gave Twitter a concrete early behavior associated with retention, making onboarding changes more targeted and testable.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch08-card03",
+      "front": "Why compare Instagram with Rotten Tomatoes?",
+      "back": "They should not share the same devoted-use threshold. Habit Testing begins with the natural rhythm of the behavior.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "hooked-ch08-card04",
+      "front": "Where should teams look for habit opportunities?",
+      "back": "Personal frustration, nascent behaviors, enabling technologies, and interface changes that make a valued action easier, faster, more frequent, or more rewarding.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Test The Habit Path",
+    "coreSkill": "Turn habit design into measured learning. Define devoted use, find retained-user patterns, modify the product carefully, and keep testing.",
+    "ifThenPlans": [
+      {
+        "context": "When setting metrics",
+        "plan": "If the product category has a natural rhythm, then define devoted use from that rhythm before analyzing cohorts."
+      },
+      {
+        "context": "When a loyal cluster appears",
+        "plan": "If enough users meet the threshold, then codify their shared path instead of celebrating the percentage."
+      },
+      {
+        "context": "When a pattern looks causal",
+        "plan": "If retained users share a behavior, then modify onboarding and test whether new users benefit from that path."
+      },
+      {
+        "context": "When searching for ideas",
+        "plan": "If you feel a recurring frustration, then check for nascent communities, new interfaces, or technologies that lower effort."
+      }
+    ],
+    "twentyFourHourChallenge": "Define devoted use for one product, find a retained-user segment, and list three shared behaviors worth testing.",
+    "weeklyPractice": "Run a Habit Testing review each week: threshold, cluster size, shared path, modification, and evidence after the change."
+  },
+  "memorableLines": [
+    {
+      "text": "Twitter's 30 follows became a concrete habit clue.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the idea's measurement move."
+    },
+    {
+      "text": "Habit Testing turns the Hook Model into measurement.",
+      "location": "breakdown.deepRead",
+      "why": "It states the closing framework cleanly."
+    },
+    {
+      "text": "The final framework matters because it protects habit design from becoming armchair psychology.",
+      "location": "breakdown.fullRead",
+      "why": "It explains why the process matters after the model."
+    }
+  ]
+}

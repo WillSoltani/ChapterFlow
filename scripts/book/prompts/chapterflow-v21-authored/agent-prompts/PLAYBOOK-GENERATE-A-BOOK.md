@@ -4,8 +4,8 @@ The operating model: **Codex (inline) generates, a separate Claude session QCs,
 the gates + promote enforce.** Nothing ships that the deterministic gates reject
 or that a Claude reviewer hasn't signed off on.
 
-All commands run from `scripts/book/prompts/chapterflow-v21-authored/` on the
-`v21-redesign` branch, Node 20+. Pick a lowercase-hyphen `<bookId>` (e.g.
+All commands run from `scripts/book/prompts/chapterflow-v21-authored/` (the
+pipeline lives on `main` since the v21-redesign merge), Node 20+. Pick a lowercase-hyphen `<bookId>` (e.g.
 `deep-work`).
 
 `next-task <bookId>` is your compass: it scans on-disk state and prints the next
@@ -52,7 +52,7 @@ warns SHORT, lower `--per-chapter` or grow `config/name-bank.json`.)
 npx tsx src/cli.ts next-task <bookId>     # prints the next chapter to write
 ```
 For each chapter, author it inline (Codex) against:
-- `STEP-2-WRITE-CHAPTERS.md` (authoring law: the Bind Block, R1–R5, the field rules),
+- `STEP-2-WRITE-CHAPTERS.md` (authoring law: the Bind Block, R1–R6 — R6 is the anti-templating rule: vary the SHAPE of every scene; `fanout` deals each chapter its scene-shape palette),
 - the chapter's v2 sidecar,
 - its name-plan slice (use ONLY those protagonist names; one name = one person).
 

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 14,
+  "chapterId": "pmbok-guide-ch14",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "d6e0bb7993961694",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:55:52.518Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "93/100, read full ch14, quiz keys matched quality principle, examples coherent, cards and plan actionable, no corruption found"
+}

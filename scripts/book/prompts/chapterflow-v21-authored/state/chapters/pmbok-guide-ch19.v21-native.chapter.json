@@ -1,0 +1,350 @@
+{
+  "chapterId": "pmbok-guide-ch19",
+  "number": 19,
+  "title": "Introduction to A Guide to the Project Management Body of Knowledge",
+  "readingTimeMinutes": 12,
+  "hook": "The war room kept the abandoned ITTO grid on the wall after everyone had moved to domains.",
+  "counterintuition": "Operational guidance did not vanish when the process grid stopped being the first map. It moved into domains, tailoring, assets, and PMIstandards+.",
+  "tryThisNow": "Before your next break, mark four moments when you look for an old template. Beside each mark, write what cue sent you there.",
+  "keyTakeaway": "Use the Standard for principles; use the Guide for domains, tailoring, and assets; bring in PMIstandards+ when context needs practice support.",
+  "breakdown": {
+    "fastRead": "The war room kept the abandoned ITTO grid on the wall after Napoleon moved the working group to domain tabs. Nobody objected to the new labels. That was the problem. The paper on the wall still told them where practice used to live, so every silence felt like missing guidance.\n\nThe opening teaches a new reading habit. The Standard sets principles. The Guide turns those principles into practice through domains, fit choices, and optional models, methods, and assets. PMIstandards+ adds web help by project kind, work approach, and industry.\n\nThe old grid was not the only doorway into practice.",
+    "deepRead": "Guidance changes shape when the organizing question changes. A process entry asks, \"Which input, tool, technique, or output belongs here?\" A performance-domain reading asks, \"What area of project performance needs attention, and which practice fits this context?\" That shift does not make the Guide less operational. It makes the reader responsible for navigation.\n\nMariam and Severine find the mechanism during a client review. Severine wants a single table to prove the project team has a communication plan. Mariam opens the Stakeholders material instead, then checks whether the Team and Delivery concerns change the practice choice. The printed Guide gives the map of performance areas. PMIstandards+ gives application support that can vary by project type, development approach, and industry. Neither reference replaces professional judgment.\n\nA printed table can preserve memory and still mislead navigation.\n\nThe hard edge is the difference between absence and relocation. If Abel searches only for the Sixth Edition pattern, he may conclude that guidance disappeared. If he reads the introduction on its own terms, he sees a new sequence: principles in the Standard, practice architecture in the Guide, tailoring to decide fit, and assets to choose concrete support. Predictive, adaptive, and hybrid work all remain available. The test is not whether a familiar table appears. The test is whether the chosen practice has a reason.",
+    "fullRead": "The limit appears when the new architecture becomes a slogan. Marion can say \"domains\" fluently and still treat every project the same. Scott can bookmark PMIstandards+ and still paste the first artifact that looks official. Nathalie can praise tailoring and still avoid the uncomfortable question of fit. The introduction does not trade one mechanical reading for another. It asks the reader to stop outsourcing judgment to the shape of a page.\n\nThat boundary matters because the PMBOK redesign creates two opposite mistakes. One mistake is nostalgia: keep searching for the old process grid, treat every missing ITTO table as a defect, and ignore the guidance that is now organized around performance. The other mistake is decorative flexibility: talk about adaptive and hybrid approaches as if method-neutral language means anything goes. Both moves dodge the same responsibility. They avoid explaining why a practice belongs in this project.\n\nNapoleon's audit room shows the first mistake. The sponsors trust the old grid because it feels inspectable. He does not insult it; the Sixth Edition habit helped many teams remember work. But he cannot let memory become the navigation system. He has to show how a stakeholder concern can lead into the Stakeholders domain, how a delivery concern can move into Delivery, and how Measurement or Uncertainty can change the artifact that belongs in the packet. The work is still operational. The route is different.\n\nMariam's tablet shows the second mistake. PMIstandards+ can feel like a shortcut because filters for project category, delivery style, and sector produce context-rich help. But a filter is not a verdict. Digital application content extends the standards ecosystem; it does not excuse a team from reading the Standard's principles or the Guide's tailoring logic. A practice found online still needs a reason in the project record.\n\nThe introduction is therefore a navigation lesson before it is a content lesson. Start with purpose. Identify the performance area that is actually under strain. Choose predictive, adaptive, or hybrid practices for the work as it is, not for the method identity the team prefers. Use models, methods, and artifacts as options, not trophies. Selection with reasons is the professional act.\n\nThat also links backward to earlier principles. Tailor Based on Context prepared the reader to fit rigor to uncertainty, risk, governance, and stakeholder need. Embrace Adaptability and Resiliency prepared the reader to adjust without abandoning value. The Guide's introduction gathers those principles into a reading stance: use the new map deliberately, then leave a trail of reasons others can inspect."
+  },
+  "examples": [
+    {
+      "exampleId": "ch19-ex01-two-bad-maps",
+      "sourceAnchorId": "ch19.ex.domain-navigation",
+      "title": "Two Bad Maps",
+      "tags": [
+        "dilemma",
+        "domains",
+        "audit"
+      ],
+      "planSpec": {
+        "domain": "portfolio audit rehearsal",
+        "audience": "PMO leads",
+        "stakes": "a sponsor trusts the old process grid while the team must learn performance-domain navigation",
+        "format": "dilemma",
+        "requiredBeat": "Napoleon faces two bad teaching maps and chooses the one that preserves truth over comfort"
+      },
+      "scenario": "Napoleon has two bad maps on the conference table: a copied Sixth Edition ITTO grid that every sponsor recognizes, and a blank domain wall that will slow the audit rehearsal. Performance-domain navigation is not yet trusted. The sponsor asks where Stakeholders and Delivery guidance went. Napoleon needs to choose before the rehearsal opens: preserve comfort and teach the wrong map, or use the new map and absorb the groans.",
+      "whatToDo": "Napoleon keeps the old grid visible as a translation aid, then walks the room from Stakeholders to Delivery and writes why each practice choice fits the audit rehearsal.",
+      "whyItMatters": "A familiar map can calm the room while misdirecting the work. Translation helps people move from process memory into domain-based practice without pretending nothing changed."
+    },
+    {
+      "exampleId": "ch19-ex02-tablet-filters",
+      "sourceAnchorId": "ch19.ex.pmistandards-plus",
+      "title": "Tablet Filters",
+      "tags": [
+        "dialogue",
+        "PMIstandards+",
+        "references"
+      ],
+      "planSpec": {
+        "domain": "client review preparation",
+        "audience": "project managers and analysts",
+        "stakes": "the team may treat PMIstandards+ as a replacement for the Guide instead of companion application support",
+        "format": "dialogue",
+        "requiredBeat": "Mariam and Severine separate the Standard, the Guide, and PMIstandards+ through a spare exchange"
+      },
+      "scenario": "In the review room, Severine taps the tablet. \"So PMIstandards+ replaces the printed Guide?\" Mariam turns the screen so the filters show project type, development approach, and industry. \"No. The Standard tells us what good judgment owes the project.\" \"Then the Guide?\" \"Practice architecture.\" The question is which reference to open during the client review, not which one wins.",
+      "whatToDo": "Mariam cites the Standard for the principle, the Guide for the practice architecture, and PMIstandards+ for context-sensitive application support.",
+      "whyItMatters": "The references become useful when their jobs stay distinct. Digital support extends application guidance; it does not replace the printed Standard or the Guide."
+    },
+    {
+      "exampleId": "ch19-ex03-missing-grid-reveal",
+      "sourceAnchorId": "ch19.ex.domain-navigation",
+      "title": "The Missing Grid Reveal",
+      "tags": [
+        "predict-reveal",
+        "ITTO",
+        "navigation"
+      ],
+      "planSpec": {
+        "domain": "steering packet correction",
+        "audience": "schedule leads",
+        "stakes": "a missing familiar table may be mistaken for missing operational guidance",
+        "format": "predict_reveal",
+        "requiredBeat": "Abel expects the gap log to prove guidance was removed, then discovers the map changed"
+      },
+      "scenario": "Across the table in the PMO dry run, everyone expects Abel's gap log to prove the new Guide is thinner. He has highlighted missing ITTO tables, and the steering packet already says \"guidance removed.\" He maps the same concern through Stakeholders, Team, Measurement, and Uncertainty. The reveal is awkward: the issue was not missing guidance, but a reader using the old doorway. The real decision is to revise the legend before the packet leaves.",
+      "whatToDo": "Abel rewrites the packet legend from missing-table language to domain navigation, then points each concern to the performance area where practice guidance now lives.",
+      "whyItMatters": "The surprise teaches the hard edge. A missing old structure is not proof of missing practice support when the Guide has changed its navigation system."
+    },
+    {
+      "exampleId": "ch19-ex04-message-thread",
+      "sourceAnchorId": "ch19.ex.pmistandards-plus",
+      "title": "The Steering Reply Thread",
+      "tags": [
+        "text-thread",
+        "PMIstandards+",
+        "application"
+      ],
+      "planSpec": {
+        "domain": "steering committee response",
+        "audience": "governance leads",
+        "stakes": "a short reply could imply that the digital platform replaces the Guide",
+        "format": "text_thread",
+        "requiredBeat": "Marion and Scott land the complementary role of PMIstandards+ in compressed messages"
+      },
+      "scenario": "4:42 p.m., governance chat.\nMarion: Steering wants the method list.\nScott: From the printed Guide?\nMarion: From PMIstandards+ first. Filters: project type, development approach, industry.\nScott: So the Guide is background?\nMarion: No, the Guide gives the map. The platform gives application help.\nScott: Before the next reply, we cite both.",
+      "whatToDo": "Marion sends a reply that names the Guide as the practice map and PMIstandards+ as the application companion filtered to the project's context.",
+      "whyItMatters": "Compressed communication can flatten reference roles. Naming both sources keeps the steering reply from turning digital convenience into replacement logic."
+    },
+    {
+      "exampleId": "ch19-ex05-search-box-reset",
+      "sourceAnchorId": "ch19.ex.domain-navigation",
+      "title": "Search Box Reset",
+      "tags": [
+        "reset",
+        "domain-list",
+        "artifact-choice"
+      ],
+      "planSpec": {
+        "domain": "status packet preparation",
+        "audience": "project managers",
+        "stakes": "a routine PDF search keeps pulling the reader back to a process-entry habit",
+        "format": "reset_moment",
+        "requiredBeat": "Nathalie interrupts the search routine and restarts from the performance-domain list"
+      },
+      "scenario": "Nathalie's morning routine is to search the PDF for the process name, paste the closest table into her notes, and move on. The search box returns nothing useful. She closes it, puts both hands flat beside the keyboard, and restarts with the domain list: Stakeholders, Team, Delivery, Measurement, Uncertainty. In the next ten minutes, she traces the performance area before choosing an artifact.",
+      "whatToDo": "Nathalie stops the failed search routine, names the relevant domain first, then chooses an artifact only after the performance area is clear.",
+      "whyItMatters": "The pause prevents old navigation from masquerading as efficiency. Restarting from domains makes the artifact serve the project instead of the search habit."
+    },
+    {
+      "exampleId": "ch19-ex06-sticky-note-map",
+      "sourceAnchorId": "ch19.ex.domain-navigation",
+      "title": "Sticky Note Map",
+      "tags": [
+        "vignette",
+        "desk",
+        "navigation"
+      ],
+      "planSpec": {
+        "domain": "quiet desk practice",
+        "audience": "project coordinators",
+        "stakes": "the new map must become visible in ordinary preparation, not only in training talk",
+        "format": "vignette",
+        "requiredBeat": "Scott's desk shows the old ITTO note losing authority beside a domain list"
+      },
+      "scenario": "Scott's desk has two sticky notes stuck to the monitor bezel. One says ITTO? in blue ink. The other lists Stakeholders, Team, Delivery, Measurement, Uncertainty, with tiny check marks beside the words he used during the status packet. Before the next page loads, the old note curls loose at one corner. The new map is quieter than a process table, but it is doing work.",
+      "whatToDo": "Scott leaves the domain note where his eyes land first, then checks the packet against those performance areas before attaching any familiar template.",
+      "whyItMatters": "Ordinary cues train navigation. A visible domain list helps the Guide become a working map instead of a sentence the team agrees with and forgets."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch19.fact.5",
+        "prompt": "A log on Abel's desk shows four failed searches for familiar ITTO entries in one afternoon, followed by notes marked Stakeholders and Measurement. What should Abel infer first?",
+        "choices": [
+          "ITTO-Only Misread: the old process grid is the only usable practice guide.",
+          "Thin-Book Misread: fewer familiar tables prove operational help was removed.",
+          "Domain-Navigation Reading: guidance is being found through performance areas instead."
+        ],
+        "correctIndex": 2,
+        "explanation": "The searches failed because Abel used the old doorway. The later Stakeholders and Measurement notes show guidance relocated into domains, not that operational help vanished.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch19.fact.2",
+        "prompt": "Mariam inherits a team that quotes the Standard and the Guide as if they duplicate each other. Which correction should she make before the next review?",
+        "choices": [
+          "Complementary-Reference Reading: use the Standard for principles and the Guide for practice support.",
+          "Duplication Misread: pick whichever volume has the shorter wording for the same rule.",
+          "Replacement Misread: drop the Standard once the Guide gives enough project detail."
+        ],
+        "correctIndex": 0,
+        "explanation": "The two references are connected but not duplicates. Treating one as a shorter copy or a replacement hides the principle-to-practice relationship.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch19.fact.6",
+        "prompt": "In six project files, Marion sees every listed artifact copied into the packet even when half do not answer a current risk. Which reading fits the Guide best?",
+        "choices": [
+          "Asset-Hoarding Misread: include every official artifact to prove maturity.",
+          "Tailored-Selection Reading: choose assets only when context gives them a job.",
+          "Minimum-Packet Misread: avoid artifacts so the team appears adaptive."
+        ],
+        "correctIndex": 1,
+        "explanation": "The Guide asks for selection with reasons. Copying every artifact and avoiding artifacts both dodge the fit question that tailoring is meant to answer.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch19.fact.3",
+        "prompt": "Napoleon is asked to justify a practice for a regulated project in a new industry. Which reference move should come first?",
+        "choices": [
+          "Companion-Platform Reading: use PMIstandards+ for application help while keeping the Guide's map.",
+          "Print-Only Misread: stay inside the static volume so the answer looks official.",
+          "Platform-Replacement Misread: let PMIstandards+ settle the decision by itself."
+        ],
+        "correctIndex": 0,
+        "explanation": "PMIstandards+ extends application support, especially by context. It is useful precisely when it complements the Guide instead of replacing judgment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch19.fact.4",
+        "prompt": "A dashboard for Scott's program shows predictive release planning beside adaptive discovery work and one hybrid vendor stream. Which conclusion is most faithful?",
+        "choices": [
+          "Agile-Replacement Misread: the redesign quietly favors adaptive work over predictive work.",
+          "Method-Neutral Reading: predictive, adaptive, and hybrid choices can all fit when justified.",
+          "One-Lifecycle Misread: the team should force the streams into a single delivery approach."
+        ],
+        "correctIndex": 1,
+        "explanation": "The introduction does not crown one lifecycle. It supports approaches that fit the work, so the issue is the justification for each stream.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch19.fact.1",
+        "prompt": "Severine says, \"I cannot find the old matrix, so the Guide must be less practical.\" Which reply best corrects the misconception?",
+        "choices": [
+          "Nostalgia Misread: restore the matrix mentally and use it as the real structure.",
+          "Vocabulary Misread: memorize the new labels and leave practice selection unchanged.",
+          "Architecture Reading: practice now appears through domains, tailoring, and models, methods, and artifacts."
+        ],
+        "correctIndex": 2,
+        "explanation": "The practical material is organized differently. Restoring the old grid or only memorizing labels misses how the Guide structures use.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch19.fact.8",
+        "prompt": "Four handoff issues land in Nathalie's queue: sponsor confusion, team overload, delayed deliverables, and weak metrics. Where should she look first?",
+        "choices": [
+          "Process-Entry Misread: search for one process name that covers every issue.",
+          "Artifact-First Misread: pick the most familiar template and backfill the reason.",
+          "Performance-Domain Reading: separate the issues into Stakeholders, Team, Delivery, and Measurement."
+        ],
+        "correctIndex": 2,
+        "explanation": "The issues point to different performance areas. A single process search or artifact-first habit would flatten the distinctions the domain map is built to preserve.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch19.fact.9",
+        "prompt": "Scott takes over a PMO library where people say the new Guide is a process-grid replacement with the same job and layout. What should he repair?",
+        "choices": [
+          "Map-Change Reading: teach that operational guidance now uses domains, tailoring, and selectable assets.",
+          "Layout-Same Misread: relabel the old process shelves with new domain names.",
+          "Guidance-Vanished Misread: warn teams that less structure means less practice support."
+        ],
+        "correctIndex": 0,
+        "explanation": "The Guide is application support for principles, not the same grid with new headings. Relabeling old shelves preserves the error.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch19.fact.7",
+        "prompt": "The printed guide, a tailoring note, and a PMIstandards+ filter all point Marion toward different artifacts. How should she resolve the tension?",
+        "choices": [
+          "Digital-Deference Misread: follow the PMIstandards+ filter because it feels most current.",
+          "Reasoned-Selection Reading: choose the artifact whose use best fits the project context.",
+          "Checklist-Compliance Misread: attach all artifacts so no reference appears ignored."
+        ],
+        "correctIndex": 1,
+        "explanation": "PMIstandards+ extends guidance, but the final choice still needs a fit reason. Deference to one source or attaching everything avoids selection.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch19.fact.2",
+      "front": "How do the Standard and the Guide divide the work for a reader?",
+      "back": "The Standard supplies principle-level expectations. The Guide supports application through performance domains, tailoring, and practice assets, so the two references connect without duplicating each other.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch19.fact.5",
+      "front": "Why can a missing ITTO table mislead a reader of the Seventh Edition Guide?",
+      "back": "It tempts the reader to treat an old navigation pattern as the only sign of practical help. The Guide moves practice guidance into performance domains, tailoring choices, and selectable assets.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch19.fact.3",
+      "front": "What role does PMIstandards+ play when the printed Guide is not detailed enough?",
+      "back": "PMIstandards+ extends application guidance with digital content that can vary by project type, development approach, and industry. It complements the Guide instead of replacing it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch19.fact.6",
+      "front": "Earlier principle: Tailor Based on Context. How does it prepare you to read the Guide introduction?",
+      "back": "It trains the same habit the introduction requires: fit practices, artifacts, rigor, and governance to the project instead of copying a familiar package or calling weak management flexibility.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch19.fact.4",
+      "front": "Earlier principle: Embrace Adaptability and Resiliency. Why does it matter for predictive, adaptive, and hybrid choices?",
+      "back": "It reminds the reader that approach is a fit decision, not an identity badge. The Guide can support predictive, adaptive, and hybrid work when each choice protects value under real conditions.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Use the New Map Deliberately",
+    "coreSkill": "Practice moving from old process-grid memory into the Guide's new navigation path. Use the New Map Deliberately by naming the performance area under strain, recording the tailoring reason, and choosing only the model, method, or artifact that helps. PMIstandards+ can enrich the choice, but the project still needs a visible fit reason.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch19.fact.5",
+        "context": "If a sponsor asks for the old ITTO table",
+        "plan": "If a sponsor asks for the old ITTO table, then Use the New Map Deliberately: translate the request into a performance domain and show where the practical guidance now lives."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.3",
+        "context": "When PMIstandards+ offers several filtered options",
+        "plan": "When PMIstandards+ offers several filtered options, then Use the New Map Deliberately by naming the project type, development approach, and industry reason before selecting one option."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.6",
+        "context": "Before attaching a familiar artifact to a packet",
+        "plan": "Before attaching a familiar artifact to a packet, then Use the New Map Deliberately: write the problem it solves and delete it if the fit reason is only habit."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.4",
+        "context": "If a method argument turns into predictive versus adaptive identity talk",
+        "plan": "If a method argument turns into predictive versus adaptive identity talk, then Use the New Map Deliberately: ask which approach fits the work characteristics and stakeholder need."
+      }
+    ],
+    "twentyFourHourChallenge": "Use the New Map Deliberately on one active project today. Pick one concern, name the relevant performance domain, write the tailoring reason, and select one useful asset.",
+    "weeklyPractice": "Once this week, review three recent practice choices. For each one, record the domain, the fit reason, and whether PMIstandards+ would add useful context or only decorate the file."
+  },
+  "memorableLines": [
+    {
+      "text": "The old grid was not the only doorway into practice.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the edition shift without dismissing the old structure."
+    },
+    {
+      "text": "A printed table can preserve memory and still mislead navigation.",
+      "location": "breakdown.deepRead",
+      "why": "It names the trap of treating a familiar artifact as the map."
+    },
+    {
+      "text": "Selection with reasons is the professional act.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader the practical rule for using the Guide."
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "chapterId": "pmbok-guide-ch30",
+  "number": 30,
+  "title": "Methods",
+  "readingTimeMinutes": 11,
+  "hook": "2 of 18 feature requests carried most of the delay, while the loudest 16 filled the meeting.",
+  "counterintuition": "A crowded toolbox can make project work less clear. The useful technique is the one that answers the live question, not the one that looks most mature on a list.",
+  "tryThisNow": "Draft one sentence naming the project question a technique must answer, then label the next step analyze, prioritize, decide, estimate, or facilitate.",
+  "keyTakeaway": "Choose a project technique by the work question it improves: analysis, participation, estimates, tradeoffs, priority, or control.",
+  "breakdown": {
+    "fastRead": "Lin opens the release notes after the steering meeting and counts 18 requested changes. The loud items are not the ones doing the damage. Two requests carry most of the delay, and both sit at points where no one had sorted value from urgency. A sharper habit starts by naming the project question first.\n\nA team should pick a technique for the job it must do. A decision tree helps when options, odds, consequences, and expected value need to be seen together. MoSCoW helps when scope must be sorted by business need, deadline, payoff, and deferral. A technique earns its time by making work clearer.",
+    "deepRead": "Project work gets blurry when a group reaches for a tool before naming the work problem. A vote can hide weak analysis. A workshop can produce agreement without a decision. A matrix can turn poor inputs into tidy scores. The mechanism is simple: the chosen technique shapes attention. If attention is pointed at the wrong question, the group becomes more organized around the wrong thing.\n\nDecision tree analysis is useful when uncertainty is the main knot. Gail has four alternatives for a supplier recovery plan. The cheapest option looks clean until probabilities and expected value sit beside the outcomes. A plan with a higher visible cost may carry less expected loss once schedule risk is counted. The decision tree does not remove judgment; it makes the judgment visible enough to test.\n\nMoSCoW solves a different problem. Ling hears every stakeholder call a requested feature urgent. That word has stopped sorting anything. Once the list is split into Must have, Should have, Could have, and Won't have for now, the argument changes. People can still disagree, but they must name necessity, timing, value, and risk. The technique changes the quality of the conversation.\n\nThis is the hard edge of the method inventory. More technique names do not prove better project management. A team is better served by one fitting technique used with care than by five ceremonies that create motion without sharper action.",
+    "fullRead": "A practice asset can fail in two ways. The first failure is obvious: no one uses a technique when it would help. The second failure is quieter: a team uses a technique as proof that work is under control. Both failures come from the same source. The group has stopped asking what kind of question is in front of it.\n\nAnanya sees the pattern in backlog refinement. The product group has a MoSCoW column, but the labels have become social signals. Must have means a sponsor is watching. Should have means a quieter team asked for it. Could have means no one wants to defend the item. MoSCoW fails when every sponsor is allowed to call a favorite item Must have. The technique only helps when the group agrees what necessity, value, timing, and risk mean before the labels are applied.\n\nDecision tree analysis has its own limit. Noa can map alternatives, probabilities, outcomes, and expected value, but the map is only as useful as the assumptions behind it. If the probabilities come from wishful guesses, the tree gives false confidence. If the outcomes omit a regulatory cost, the expected value looks cleaner than the real choice. A decision tree improves judgment when it exposes assumptions for review; it misleads when the team treats the calculation as authority.\n\nEstimating techniques carry the same demand for fit. Analogous estimation works when the new work is close to past work. Parametric estimation helps when the team has reliable units and rates. Bottom-up estimation is worth the effort when detail is known and the cost of being wrong is high. Relative estimation can help adaptive teams compare size when exact hours would pretend to know too much. Expert judgment is useful when the experts name their assumptions and limits.\n\nFacilitation techniques also need a purpose. A workshop can draw out knowledge that a status meeting would miss. Brainstorming can widen options before a group narrows them. A retrospective can turn delivery pain into a change in behavior. Conflict resolution can move a stuck team from position-taking toward workable agreement. None of these gains come from the calendar invite. They come from a facilitator matching the group process to the decision, learning, or coordination need.\n\nThe practical test is effort. A technique costs attention. It asks people to prepare, discuss, estimate, score, vote, map, or revise. That cost is worth paying when the technique improves analysis, participation, clarity, or control. It is waste when the outcome would have been just as clear without it, or when the chosen form hides the real dispute.\n\nMature project work does not collect techniques. It selects, adapts, and retires them. The team asks what is uncertain, what needs priority, who must participate, what evidence is trusted, and what decision will change after the work is done. A fitting method is a temporary aid to better action."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch30.ex.decision-tree",
+      "title": "Release Note Audit",
+      "tags": ["decision tree", "analysis", "expected value"],
+      "planSpec": {
+        "domain": "software release governance",
+        "audience": "delivery leads and analysts",
+        "stakes": "a release delay blamed on the wrong requests",
+        "format": "audit",
+        "requiredBeat": "finding the telling detail inside existing release records"
+      },
+      "scenario": "Lin reviews the Jira export at 7:10 p.m. in the release room, not the meeting transcript. The decision tree from the risk review lists four alternatives, but only two rows have probabilities and expected value attached. The question is which missing estimate explains why the release kept sliding while the loudest requests stayed in the status deck.",
+      "whatToDo": "Lin marks the two unestimated alternatives and asks the team to rebuild the decision tree before any new workshop is scheduled.",
+      "whyItMatters": "The audit shows how a technique earns attention. The issue was not more discussion; it was missing analysis where uncertainty shaped the choice."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch30.ex.moscow",
+      "title": "Backlog Thought Loop",
+      "tags": ["MoSCoW", "scope", "priority"],
+      "planSpec": {
+        "domain": "product backlog refinement",
+        "audience": "product owners and scrum teams",
+        "stakes": "scope labels have stopped sorting value from pressure",
+        "format": "inner_monologue",
+        "requiredBeat": "one person's private reasoning corrects a false start"
+      },
+      "scenario": "Product owner Ananya sits at her desk at 8:20 a.m. before the backlog review, pencil above the MoSCoW sheet. First thought: move the sponsor's request to must have and avoid the argument. Wrong. That only rewards volume. Next thought: push it to could have. Also lazy. Before the room fills, she needs to choose one test for must have, should have, and could have that the group can use without turning priority into politics.",
+      "whatToDo": "Ananya writes one priority test beside each MoSCoW label and brings those tests to the review before moving any backlog item.",
+      "whyItMatters": "The scene keeps prioritization from becoming mood tracking. Labels help only when the team shares the rule that turns pressure into a reasoned choice."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch30.ex.decision-tree",
+      "title": "Forty-Five Minute Budget",
+      "tags": ["planning choice", "probabilities", "alternatives"],
+      "planSpec": {
+        "domain": "supplier recovery planning",
+        "audience": "portfolio leads",
+        "stakes": "too little time to run every analysis before the executive review",
+        "format": "planning_choice",
+        "requiredBeat": "allocating scarce attention before any analysis happens"
+      },
+      "scenario": "Portfolio lead Noa sits at her desk at 4:15 p.m. with 45 minutes before the executive packet locks. Three requests compete for that time: clean the slide deck, call a supplier expert, or build a decision tree with alternatives, probabilities, and expected value. Nothing has happened yet. The planning choice is where scarce attention goes before the room starts treating a weak estimate as fact.",
+      "whatToDo": "Noa reserves the 45 minutes for the decision tree and delays cosmetic edits until the recovery alternatives have numbers attached.",
+      "whyItMatters": "Planning a technique is itself a management act. The team protects decision quality by spending scarce time where uncertainty can change the recommendation."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch30.ex.moscow",
+      "title": "Sponsor Must Conflict",
+      "tags": ["dilemma", "MoSCoW", "scope control"],
+      "planSpec": {
+        "domain": "public-sector portal launch",
+        "audience": "project sponsors and delivery managers",
+        "stakes": "a public launch can slip or a sponsor can feel overruled",
+        "format": "dilemma",
+        "requiredBeat": "one genuine two-bad-options choice"
+      },
+      "scenario": "Project manager Emily stands at 3:40 p.m. beside the city portal whiteboard with MoSCoW cards in three colors. A sponsor has marked nine items must have, including two that the delivery team sees as should have and could have. Before the vote, Emily must decide whether to accept the sponsor's labels and risk a late launch or challenge them and risk losing support.",
+      "whatToDo": "Emily asks the sponsor to defend each Must have against launch viability, then moves two items to Should have with the risk owner present.",
+      "whyItMatters": "MoSCoW works only when priority categories carry consequences. Without a real tradeoff, Must have becomes a political shield for every request."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch30.ex.decision-tree",
+      "title": "Tree In Conversation",
+      "tags": ["dialogue", "decision tree", "facilitation"],
+      "planSpec": {
+        "domain": "manufacturing quality recovery",
+        "audience": "facilitators and engineering leads",
+        "stakes": "a quality fix could protect output or hide a costly assumption",
+        "format": "dialogue",
+        "requiredBeat": "two people uncover the lesson through exchange"
+      },
+      "scenario": "Facilitator Gail stands in the control room at 9:05 a.m. with Ling beside the quality screen. Gail says, \"The decision tree shows the cheaper rework path.\" Ling points to the probabilities column. \"Only if the defect rate stays at 2 percent.\" Gail taps the expected value row. \"Then the question is which alternatives need fresh data before we recommend a fix.\" Ling nods. \"The tree is not the answer; it is the argument we can inspect.\"",
+      "whatToDo": "Gail pauses the recommendation and sends Ling to refresh the defect probability before the expected value row is used.",
+      "whyItMatters": "The dialogue shows a method as shared reasoning. The tree helps because two people can see the assumption, test it, and improve the decision."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch30.ex.moscow",
+      "title": "Priority Surprise",
+      "tags": ["predict reveal", "MoSCoW", "scope"],
+      "planSpec": {
+        "domain": "health app release planning",
+        "audience": "release managers and stakeholders",
+        "stakes": "a release plan looks overloaded until priorities are tested",
+        "format": "predict_reveal",
+        "requiredBeat": "the expected result breaks after the labels are applied"
+      },
+      "scenario": "Release manager Mireille stands in the review at 10:30 a.m. with 14 sticky notes on the board. She expects the health app review to end with 14 must have items. The mood in the room points that way, and the deadline is in the next planning cycle. Then the MoSCoW test starts. Seven items drop to should have, four become could have, and only three survive as must have once value, timing, and risk are named.",
+      "whatToDo": "Mireille records the three Must have items and asks each sponsor to state the condition that would move a Should have item upward.",
+      "whyItMatters": "The reveal teaches why prioritization needs a method. A loud list can look fixed until a shared test exposes what is truly necessary now."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch30.fact.9",
+        "prompt": "Lin inherits a reliable process that adds a workshop, a vote, and a matrix before each scope change. The team still cannot say what decision improves. What should Lin do first?",
+        "choices": [
+          "Ceremony maturity myth: Keep all three steps because the process looks disciplined.",
+          "Fit-for-question selection: Name the decision need before keeping any technique.",
+          "Artifact confusion: Request a cleaner report so the scope change feels governed."
+        ],
+        "correctIndex": 1,
+        "explanation": "A technique should earn its effort by improving analysis, participation, clarity, or control. Lin first needs the decision need; then the team can keep, change, or drop the extra steps.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch30.fact.4",
+        "prompt": "A meeting log shows 5 unresolved conflicts in 8 days, all after cross-team design reviews. Attendance is high, but no one leaves with shared actions. Which inference fits best?",
+        "choices": [
+          "Attendance-count misconception: The reviews mainly need more people in the room.",
+          "Calendar cure myth: The design group should add a standing meeting after each review.",
+          "Facilitation gap reading: The reviews need a structure for conflict and shared action."
+        ],
+        "correctIndex": 2,
+        "explanation": "The data points to group work without enough structure. Facilitation techniques help workshops and reviews produce shared decisions, not just conversation and attendance.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch30.fact.7",
+        "prompt": "Noa has three supplier recovery options with different costs, schedule risks, and uncertain outcomes. Which choice best uses decision tree analysis?",
+        "choices": [
+          "Uncertainty mapping move: Compare alternatives, probabilities, outcomes, and expected value.",
+          "Calculation authority myth: Let the tree pick the supplier path without review.",
+          "Intuition speed shortcut: Ask the loudest expert which option feels safest."
+        ],
+        "correctIndex": 0,
+        "explanation": "Decision tree analysis makes uncertainty visible by mapping alternatives, probabilities, outcomes, and expected value. People still test assumptions and make the accountable choice.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch30.fact.8",
+        "prompt": "A release board lists 22 requested features, and 19 are marked urgent. Capacity covers 8. How should the team read this data before planning the sprint?",
+        "choices": [
+          "Urgency-label drift: Treat all 19 urgent items as the same planning class.",
+          "Sponsor-volume bias: Start with requests from the group that sent the longest list.",
+          "MoSCoW sorting move: Separate Must have, Should have, Could have, and Won't have for now."
+        ],
+        "correctIndex": 2,
+        "explanation": "When everything is urgent, urgency has stopped sorting. MoSCoW forces a discussion about necessity, value, timing, and constraint instead of treating all requests alike.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch30.fact.2",
+        "prompt": "Ananya's team has little detail for a new compliance feature but strong data from a similar feature shipped last quarter. Which estimating move fits the information quality?",
+        "choices": [
+          "Precision theater mistake: Build a bottom-up estimate from details the team lacks.",
+          "Analogous fit move: Use the similar feature as a starting estimate and mark assumptions.",
+          "Single-method habit: Use the team's usual estimate style to keep comparison simple."
+        ],
+        "correctIndex": 1,
+        "explanation": "Estimating choices should fit available data and uncertainty. A similar past feature can support analogous estimation, while assumptions keep the estimate from pretending to be exact.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch30.fact.3",
+        "prompt": "A director in Emily's funding review says the weighted scoring matrix will make the portfolio choice objective. Gail sees hidden assumptions in the criteria weights. What correction should Gail offer?",
+        "choices": [
+          "Judgment-organizing correction: The matrix exposes preferences but does not remove accountability.",
+          "Objectivity-machine myth: The scoring matrix can settle the funding decision by itself.",
+          "Consensus-cover habit: Gail should average stakeholder scores and avoid naming tradeoffs."
+        ],
+        "correctIndex": 0,
+        "explanation": "Decision techniques make assumptions and preferences easier to see. They organize judgment so people can inspect it; they do not replace accountability for the final choice.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch30.fact.6",
+        "prompt": "Ling copies a voting technique from another team, but the new group has weak trust and unclear decision rights. Which response fits the PMBOK view of practice assets?",
+        "choices": [
+          "Copy-success bias: Reuse the vote because it worked in the other team.",
+          "Context-tailoring move: Adjust the technique to trust, skills, and decision rights.",
+          "Tool-neutrality myth: Expect the vote to work the same way in the new setting."
+        ],
+        "correctIndex": 1,
+        "explanation": "A technique depends on context and facilitation quality. Culture, data, skills, and decision rights shape whether a borrowed approach helps or creates confusion.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch30.fact.5",
+        "prompt": "The backlog shows 6 dependency-heavy items and 10 small requests. Value scores are uneven, and the release window is tight. What should Mireille infer first?",
+        "choices": [
+          "Value-connection reading: Prioritization should expose value, risk, urgency, and dependencies.",
+          "Small-item lure: Mireille should clear the 10 small requests to show fast progress.",
+          "Equal-scope habit: The backlog should be handled in request order to avoid debate."
+        ],
+        "correctIndex": 0,
+        "explanation": "Prioritization techniques connect work to value under constraint. The dependency-heavy items may matter more than size alone shows, so the method should reveal value and risk.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch30.fact.1",
+        "prompt": "A project office asks why a retrospective, a decision tree, and MoSCoW are not deliverables. Which distinction answers the question?",
+        "choices": [
+          "Document-output confusion: Treat each technique as a required project product.",
+          "Template inventory habit: File the techniques beside plans, logs, and reports.",
+          "Way-of-working distinction: Use the techniques to structure activity and decisions."
+        ],
+        "correctIndex": 2,
+        "explanation": "Methods are ways of working, while artifacts are outputs or information containers. These techniques structure analysis, learning, priority, or decisions rather than becoming deliverables.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch30.fact.9",
+      "front": "What test should come before adding a project technique?",
+      "back": "Ask what work question the technique will improve. If it does not sharpen analysis, participation, clarity, control, or a decision, it is likely ceremony.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch30.fact.7",
+      "front": "How does a decision tree help when uncertainty is high?",
+      "back": "It lays out alternatives, probabilities, outcomes, and expected value so assumptions become visible. People still interpret the map and choose.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch30.fact.8",
+      "front": "What problem does MoSCoW solve when scope is crowded?",
+      "back": "It stops every request from sounding equally urgent by separating Must have, Should have, Could have, and Won't have for now under real constraints.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch30.fact.2",
+      "front": "Why should estimating techniques vary by available information?",
+      "back": "Different evidence supports different estimates. Analogous, parametric, bottom-up, relative, and expert judgment approaches fit different uncertainty levels.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch30.fact.6",
+      "front": "How does the earlier Tailoring concept change method selection?",
+      "back": "Tailoring means a technique must fit context. Data quality, trust, culture, skill, and decision rights affect whether the same approach helps or harms.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch30.fact.5",
+      "front": "How does the earlier Focus on Value principle test MoSCoW labels?",
+      "back": "Focus on Value asks whether a priority label connects to outcomes, risk, timing, or dependency effects. A label without value logic is only pressure.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card07",
+      "sourceAnchorId": "ch30.fact.3",
+      "front": "Why does a decision technique not remove human judgment?",
+      "back": "A technique can expose tradeoffs, assumptions, and preferences, but people still choose criteria, interpret results, and accept accountability.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Ask the Work Question",
+    "coreSkill": "Practice selecting techniques by purpose before habit. Ask the Work Question: what analysis, estimate, priority, group process, control signal, or decision must improve? Then choose the lightest technique that can improve that work.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch30.fact.9",
+        "context": "When someone proposes a new workshop or matrix",
+        "plan": "If the purpose is unclear, then ask the Work Question before accepting the technique into the project routine."
+      },
+      {
+        "sourceAnchorId": "ch30.fact.7",
+        "context": "When alternatives carry uncertain costs or outcomes",
+        "plan": "If uncertainty drives the choice, then sketch a decision tree with alternatives, probabilities, outcomes, and expected value."
+      },
+      {
+        "sourceAnchorId": "ch30.fact.8",
+        "context": "When every request sounds urgent",
+        "plan": "If capacity cannot cover the list, then run MoSCoW and require a reason for each Must have label."
+      },
+      {
+        "sourceAnchorId": "ch30.fact.6",
+        "context": "When a borrowed technique feels awkward",
+        "plan": "If the technique worked elsewhere but stalls here, then adapt it to trust, skill, data quality, and decision rights."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, pick one active meeting or analysis step. Write the Work Question it serves, then keep, change, or drop one technique based on that sentence.",
+    "weeklyPractice": "For one week, end each day by listing one technique used, the question it answered, and one adjustment that would make it lighter or clearer next time."
+  },
+  "memorableLines": [
+    {
+      "text": "The decision tree does not remove judgment; it makes the judgment visible enough to test.",
+      "location": "breakdown.deepRead",
+      "why": "It captures the boundary between structured analysis and accountable choice."
+    },
+    {
+      "text": "MoSCoW fails when every sponsor is allowed to call a favorite item Must have.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the prioritization failure concrete and easy to recognize."
+    },
+    {
+      "text": "A fitting method is a temporary aid to better action.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the whole catalog a purpose filter in one portable sentence."
+    }
+  ]
+}

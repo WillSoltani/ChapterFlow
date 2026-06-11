@@ -1,0 +1,298 @@
+{
+  "chapterId": "range-ch08",
+  "number": 8,
+  "title": "The Outsider Advantage",
+  "readingTimeMinutes": 14,
+  "hook": "The solver closest to a problem can be too close to see which distant tool fits.",
+  "counterintuition": "The outsider helps only after the problem can travel. Insiders keep the local facts, while distant solvers may see a shape the room has missed.",
+  "tryThisNow": "Rewrite one stuck problem without local jargon, then name three fields where someone might have solved that shape before.",
+  "keyTakeaway": "Outside-in thinking works when insiders frame a problem clearly enough for distant expertise to travel into it.",
+  "breakdown": {
+    "fastRead": "In a pharmaceutical lab, senior chemists stare at the same purification problem until Dana strips away the company language and writes what physically has to happen.\n\nThat is when the problem can travel. An outsider in a distant field may recognize the structure: a coating, mechanics, dentistry, materials, or flow problem hiding inside chemistry jargon.\n\nOutsiders do not replace insiders. They help when insiders frame the problem clearly enough for different expertise to enter without losing local judgment.\n\nRewrite one stuck problem without local jargon, name the function and constraints, then list three distant fields that already solve that shape.",
+    "deepRead": "The innovation problem shifts from having enough expertise to having the right distance. Eli Lilly's internal scientists had deep knowledge, yet some problems resisted local methods. Alph Bingham's controversial move was to let outsiders see carefully framed challenges, eventually through Innocentive. The platform's logic depended on translation.\n\nThe working distinction is outside-in thinking: Outside-in thinking brings knowledge from a distant domain to bear on a local problem. It depends on reframing the problem so people outside the specialty can recognize a shape they already know.\n\nInnocentive solvers: The platform matched posted scientific and skilled challenges with a broad population of problem solvers. Successful answers often came from people whose own field made the problem look familiar in a different way.\n\nA chemistry obstacle might resemble a problem from materials science, dentistry, mechanics, or another field once stripped to its functional shape. Karim Lakhani's research on solver distance supports the how it works: the people likeliest to solve a challenge were often not closest to the sponsor's specialty but close to a different domain that contained a relevant tool. The Einstellung effect explains why insiders stall.\n\nReaders can seek solutions beyond the nearest experts and learn to phrase problems in ways that attract useful cognitive diversity.\n\nBingham opens the wall. Innocentive widens the search. Einstellung names the groove. The useful outsider sees a different version of the same problem.",
+    "fullRead": "Dana's lab has reviewed the purification problem three times, and every meeting has become more fluent in the same local language. The senior chemists know the equipment, the compounds, and the embarrassment risk of letting a hard problem leave the company. What they no longer know is how the problem sounds to someone who has never worked inside their walls.\n\nAlph Bingham's work at Eli Lilly challenged the assumption that proprietary specialists should solve every hard chemistry problem internally. The point was not that outsiders were wiser than chemists. It was that some stalled problems needed to be translated into a form that could travel. Innocentive made that translation operational by broadcasting carefully framed challenges to a wide pool of solvers whose backgrounds often looked irrelevant on paper.\n\nKarim Lakhani's research on solver distance explains why this can work. A solver far from the sponsor's home domain may be close to a different domain that contains the needed tool. A chemistry obstacle might look like a materials problem, a dentistry problem, a mechanics problem, or a coating problem once stripped to its functional shape. The Einstellung effect explains the inside risk: experts can keep reaching for familiar methods even when a better route is available.\n\nSo Dana rewrites the challenge. She removes company acronyms, names the physical behavior that must change, preserves the cost and safety constraints, and asks which distant fields already solve that shape. The posted version does not dump confusion on a crowd; it gives outsiders a clean structure and keeps insiders responsible for judgment. When a solver recognizes the problem as familiar from another field, the lab has something testable instead of another internal review.\n\nThe simplistic takeaway is that outsiders are smarter than experts. The real claim is interactional: insiders know the local details, outsiders bring different search tools, and careful framing is the bridge between them.\n\nDana's scene also shows why the inside role remains essential. The outsiders do not know the company's safety rules, manufacturing realities, or which secrets must remain protected. If the lab posts a vague plea, the crowd receives confusion. If the lab posts a careless disclosure, the company creates risk. The work is to translate enough structure for recognition while keeping enough judgment at home.\n\nThat is the difference between distance and randomness. Outside-in thinking does not mean asking strangers to brainstorm around an undefined mess. It means stripping the problem to function, constraints, and testable behavior so a person from another knowledge neighborhood can say, \"We solve that kind of shape all the time.\" The solver's field may look irrelevant until the structure is named.\n\nWhen the lab tests the outside suggestion, both sides matter. The outsider supplies a search tool the insiders lacked; the insiders decide whether it survives chemistry, safety, cost, scale, and ethics. The advantage is not outsider purity. It is a better exchange between local knowledge and distant pattern recognition."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Eli Lilly Posting",
+      "tags": [
+        "outside-in",
+        "pharma",
+        "problem-framing"
+      ],
+      "planSpec": {
+        "domain": "eli lilly posting",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "decision_point",
+        "requiredBeat": "Eli Lilly Posting"
+      },
+      "scenario": "Dana works inside a pharmaceutical lab with a purification problem that has resisted three internal reviews. At a 10:00 a.m. research council, senior chemists worry that posting the challenge beyond the company will make the lab look stuck. Dana rewrites the problem without company acronyms, names the physical separation that has to happen, and preserves the safety constraints before proposing a limited outside posting.",
+      "whatToDo": "Dana posts the reframed challenge only after insiders agree on function, constraints, and review criteria. When an outside solver recognizes a related materials problem, the lab tests the suggestion without surrendering judgment.",
+      "whyItMatters": "Outside-in thinking works when the problem can travel. The bridge is disciplined translation, not blind faith in outsiders."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Innocentive Filter",
+      "tags": [
+        "open-innovation",
+        "filter"
+      ],
+      "planSpec": {
+        "domain": "innocentive filter",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "reflection",
+        "requiredBeat": "Innocentive Filter"
+      },
+      "scenario": "Yusuf manages an Innocentive-style challenge for a water sensor. The draft is packed with company acronyms. A retired materials engineer would never see that the core issue resembles a coating problem from another industry. Yusuf stops the upload and asks for a version a distant solver can enter.",
+      "whatToDo": "Yusuf removes local jargon and names the physical behavior clearly. The post protects secrets but exposes the transferable structure.",
+      "whyItMatters": "Outside-in thinking depends on translation. A broad crowd can help only when the problem travels across boundaries."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Einstellung Chess Room",
+      "tags": [
+        "einstellung",
+        "chess",
+        "room"
+      ],
+      "planSpec": {
+        "domain": "einstellung chess room",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "business_case",
+        "requiredBeat": "Einstellung Chess Room"
+      },
+      "scenario": "Hannah coaches senior engineers through an Einstellung effect exercise. They keep solving with the familiar tool even after a simpler route appears. Later, a production outage arrives, and the same habit shows up: everyone reaches for the established script before asking what changed.",
+      "whatToDo": "Hannah inserts a forced alternative step into incident review. Someone must propose a nonstandard route before the old method is approved.",
+      "whyItMatters": "Expertise can deepen a groove. The Einstellung effect makes familiar success part of the risk in new conditions."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Dental Solver Surprise",
+      "tags": [
+        "dental",
+        "solver",
+        "surprise"
+      ],
+      "planSpec": {
+        "domain": "dental solver surprise",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "scene",
+        "requiredBeat": "Dental Solver Surprise"
+      },
+      "scenario": "Luis runs an R&D group after reading Karim Lakhani on solver distance. A challenge about powder flow attracts a dentist who recognizes a similar material behavior from clinical work. The lab first dismisses the source, then tests the suggestion and finds a cheaper path.",
+      "whatToDo": "Luis scores submissions by mechanism, not by the prestige of the solver's field. The team asks what background made the answer visible.",
+      "whyItMatters": "Distant expertise can look irrelevant until the structure is named. Solver distance broadens the search space."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Hospital Infection Frame",
+      "tags": [
+        "hospital",
+        "infection",
+        "frame"
+      ],
+      "planSpec": {
+        "domain": "hospital infection frame",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "planning_choice",
+        "requiredBeat": "Hospital Infection Frame"
+      },
+      "scenario": "Anika's hospital infection team has exhausted standard protocols. She remembers Eli Lilly and reframes the problem for people in food safety and clean-room manufacturing. The first meeting feels awkward because hospital language no longer controls the room.",
+      "whatToDo": "Anika states the contamination pathway in plain terms and invites outsiders to challenge assumptions. Clinicians retain judgment over patient realities.",
+      "whyItMatters": "Insiders know consequences; outsiders may know a matching pattern. Good framing lets both forms of knowledge meet."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Startup Technical Wall",
+      "tags": [
+        "startup",
+        "technical",
+        "wall"
+      ],
+      "planSpec": {
+        "domain": "startup technical wall",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "audit",
+        "requiredBeat": "Startup Technical Wall"
+      },
+      "scenario": "Callum's robotics startup cannot stop a gripper from damaging soft fruit. The mechanical team keeps refining pressure curves. Callum posts a carefully framed version to a bio-inspired design forum, and a textile researcher sees a weave-and-release analogy the team had missed.",
+      "whatToDo": "Callum tests the outside suggestion beside internal designs. The useful question becomes which domain already handles gentle contact.",
+      "whyItMatters": "The outsider advantage is a search advantage. A remote field may have spent years with a cousin of the problem."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What is outside-in thinking?",
+        "choices": [
+          "Replacing local expertise with outsiders who know nothing about the problem details.",
+          "Bringing knowledge from a distant domain to a local problem by reframing it into transferable structure.",
+          "Keeping every hard problem inside the organization until specialists exhaust all options."
+        ],
+        "correctIndex": 1,
+        "explanation": "Outside-in thinking depends on translation. Outsiders can help when the problem is framed so their tools apply.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "What assumption did Alph Bingham challenge at Eli Lilly?",
+        "choices": [
+          "That proprietary specialists should solve every hard chemistry problem internally.",
+          "That every chemistry problem should be posted publicly before internal scientists examine it.",
+          "That outsiders can help only when they already work in the same specialty as insiders."
+        ],
+        "correctIndex": 0,
+        "explanation": "Bingham pushed against the default of internal-only search. Some exhausted problems became solvable outside the firm's walls.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "What did Karim Lakhani's research find about solver distance?",
+        "choices": [
+          "Solvers farther from a problem's home domain were always less useful.",
+          "Solver distance mattered only for simple problems with no technical content.",
+          "Solvers farther from the home domain could be more likely to solve a problem when it mapped onto their own expertise."
+        ],
+        "correctIndex": 2,
+        "explanation": "Distance becomes useful when the structure fits a solver's background. The outsider is not magic; the mapping matters.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "What is the Einstellung effect?",
+        "choices": [
+          "The ability of experts to avoid all local assumptions during problem solving.",
+          "The habit of outsiders refusing to use their own domain knowledge.",
+          "The tendency to apply familiar methods even when a better route is available."
+        ],
+        "correctIndex": 2,
+        "explanation": "Einstellung is a familiarity trap. Existing knowledge makes one path feel obvious even when another path is better.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "When is local search most limited?",
+        "choices": [
+          "When a problem can be solved by incremental improvement inside a familiar knowledge neighborhood.",
+          "When the needed tool sits outside the organization's existing knowledge neighborhood.",
+          "When insiders and outsiders both understand the problem's transferable structure."
+        ],
+        "correctIndex": 1,
+        "explanation": "Local search is efficient nearby but weak when the solution lives elsewhere. That is where outside-in framing helps.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "What made the open solver model work in the examples?",
+        "choices": [
+          "It broadcast carefully framed challenges to solvers whose own fields could make the problem familiar.",
+          "It rewarded outsiders for ignoring the posted problem statement.",
+          "It showed that irrelevant-looking backgrounds are useless for technical work."
+        ],
+        "correctIndex": 0,
+        "explanation": "The platform did not just invite random guesses. It translated problems so distant solvers could recognize useful structure.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which claim would overstate the outsider advantage?",
+        "choices": [
+          "Outsiders are smarter than experts.",
+          "Careful problem framing matters.",
+          "Insiders and outsiders bring different resources."
+        ],
+        "correctIndex": 0,
+        "explanation": "Epstein is not anti-expert. It argues that insider detail and outsider tools work best when bridged by framing.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "What do insiders contribute in Epstein's real claim?",
+        "choices": [
+          "They contribute nothing once a problem is broadcast externally.",
+          "They are useful only if they abandon all specialty knowledge.",
+          "They know local details that outsiders often lack."
+        ],
+        "correctIndex": 2,
+        "explanation": "Insiders still matter because they understand local constraints. The advantage comes from combining that knowledge with distant search tools.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "How can a well-framed problem transform outsider distance?",
+        "choices": [
+          "It turns distance into ignorance by removing all technical detail.",
+          "It turns distance into advantage by letting outsiders recognize a structure their own tools can handle.",
+          "It guarantees that the farthest outsider will always solve the problem first."
+        ],
+        "correctIndex": 1,
+        "explanation": "Good framing is the bridge. It lets an outsider see the problem as a version of something they know.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "Why did Bingham's Eli Lilly experiment challenge the insiders-only assumption?",
+      "back": "It showed that carefully framed research problems could sometimes be solved by people outside the firm after internal experts had exhausted familiar approaches.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why must a problem travel to benefit from outsiders?",
+      "back": "A problem travels when it is stripped of local jargon and framed by function and constraints, so distant solvers can recognize a structure their own field already knows.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What does local jargon hide?",
+      "back": "Local jargon can hide the transferable shape of a problem: the physical, behavioral, or logical function that another field may already solve.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "What is a distant analogy, and when does it help?",
+      "back": "A distant analogy borrows a matching structure from another field. It helps when the relation fits the constraints and insiders still test it against local reality.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Outside-In Problem Frame",
+    "coreSkill": "Turn a stuck insider problem into a framed challenge that can travel to distant expertise while preserving local judgment.",
+    "ifThenPlans": [
+      {
+        "context": "When a stuck problem is buried in local language",
+        "plan": "If the description depends on company or field jargon, then I will rewrite it in plain functional terms before asking for help."
+      },
+      {
+        "context": "When insiders have tried the same path twice",
+        "plan": "If the same expert move keeps returning, then I will name the function and search for distant fields that solve that shape."
+      },
+      {
+        "context": "When an outsider idea sounds promising",
+        "plan": "If a distant analogy appears, then I will test whether it fits the constraints before letting enthusiasm outrun insider judgment."
+      }
+    ],
+    "twentyFourHourChallenge": "Apply the Outside-In Problem Frame to one stuck problem:\n1. Strip jargon - How would I describe the problem with no company- or field-specific terms?\n2. Name the function - What physical, behavioral, or logical thing must happen?\n3. Name constraints - What must stay true: cost, safety, speed, material, scale?\n4. Search distant fields - Which fields already solve this shape?\n5. Test translation - What outsider idea can we try without losing insider judgment?",
+    "weeklyPractice": "This week, choose one stalled problem and run a thirty-minute outside-in review with at least one person from a distant field; end with one small translation test."
+  }
+}

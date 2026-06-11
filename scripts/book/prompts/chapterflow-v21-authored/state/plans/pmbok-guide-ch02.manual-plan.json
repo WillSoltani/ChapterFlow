@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch02",
+  "number": 2,
+  "title": "Creating Value",
+  "coreMove": "A project creates value when its outputs are used, outcomes change, benefits matter, and tradeoffs keep the work tied to strategy after the baseline looks done.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "city service dashboard adoption review",
+      "audience": "project managers checking deliverables after launch",
+      "stakes": "a completed dashboard can hide weak use and weak benefits",
+      "format": "contrast",
+      "requiredBeat": "Two people read the same output report differently and get different value results"
+    },
+    {
+      "domain": "software portfolio funding review",
+      "audience": "product and project leads balancing local delivery with strategy",
+      "stakes": "funding may keep flowing to tidy work with weak strategic fit",
+      "format": "coach_talk",
+      "requiredBeat": "A peer reframes a stuck project lead's delivery view around strategic fit"
+    },
+    {
+      "domain": "project coordinator onboarding class",
+      "audience": "new project coordinators learning value terms",
+      "stakes": "learners may memorize labels without seeing how outputs differ from outcomes and benefits",
+      "format": "school_case",
+      "requiredBeat": "A learner's confusion becomes the teaching material for the output to benefit chain"
+    },
+    {
+      "domain": "regulatory evidence package update",
+      "audience": "teams handling compliance-heavy projects",
+      "stakes": "a late feature request can distract from the strategic obligation behind approval",
+      "format": "before_after",
+      "requiredBeat": "The same review changes after strategic alignment is added to the acceptance check"
+    },
+    {
+      "domain": "benefits audit of a process change archive",
+      "audience": "PMO analysts reviewing closed project files",
+      "stakes": "closure records may prove outputs while hiding failed outcomes",
+      "format": "audit",
+      "requiredBeat": "An auditor finds the telling detail in existing records rather than a new event"
+    },
+    {
+      "domain": "software release note before a portfolio check",
+      "audience": "project leads preparing status narratives",
+      "stakes": "a tidy release note may hide a strategic tradeoff",
+      "format": "inner_monologue",
+      "requiredBeat": "A project lead thinks through the tradeoff without external dialogue"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 3,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.309Z"
+}

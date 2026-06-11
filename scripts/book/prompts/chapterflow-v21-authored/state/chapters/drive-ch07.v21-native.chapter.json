@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "drive-ch07",
+  "number": 7,
+  "title": "Purpose",
+  "readingTimeMinutes": 8,
+  "hook": "Purpose gives autonomy and mastery a direction larger than private achievement.",
+  "counterintuition": "Purpose cannot be a wall slogan or a substitute for fair pay; it has to shape choices people can notice.",
+  "tryThisNow": "Rewrite one current goal so it names who benefits besides you and what decision would prove that benefit matters.",
+  "keyTakeaway": "Purpose motivates when profit is paired with contribution, daily choices, and goals that connect work to something beyond status.",
+  "breakdown": {
+    "fastRead": "TOMS Shoes, the Mayo Clinic, and research by Tim Kasser and Richard Ryan make purpose more concrete than inspiration. A purpose motive connects effort to service, contribution, or meaning beyond the self. Profit does not disappear, but it stops being the only organizing aim. The rule is to look for proof in decisions, language, and daily behavior. If a mission never changes tradeoffs, it is decoration, not motivation.",
+    "deepRead": "The mechanism is direction: people can persist longer when effort belongs to a cause they recognize. The purpose motive connects work to service, contribution, or meaning beyond the self, while still admitting that profit, pay, and competent management matter.\n\nTOMS Shoes makes purpose operational by tying the business model to a visible contribution. The Mayo Clinic example shows purpose as a decision rule: patient needs come first when expertise, pressure, and institutional complexity collide. Kasser and Ryan's research on life goals adds the individual side. Goals centered on wealth, image, and status do not nourish well-being in the same way as growth, relationships, and contribution.\n\nPurpose is not a poster. It has to show up in budgets, calendars, policies, language, and tradeoffs. A company can say community matters while cutting the work that serves the community. A professional can claim service while chasing only status. The practical test is the receipt: what decision proves that the purpose had power?",
+    "fullRead": "Purpose becomes suspicious when it is used as packaging for the same old control system. The obvious misread turns purpose into inspirational branding or a substitute for fair pay and competent management. The precise claim is tougher: purpose must be embedded in decisions and paired with autonomy and mastery, or it becomes decoration.\n\nTOMS Shoes gives purpose a business-model example. Contribution was not treated as a separate charity note after the sale; it was built into the operating logic customers and employees could see. That visibility matters because purpose needs proof.\n\nThe Mayo Clinic example shows purpose under professional pressure. A mission such as the patient's needs come first can guide choices only when it disciplines daily behavior. It has to affect meetings, handoffs, priorities, and tradeoffs, not only public language.\n\nKasser and Ryan's work on life goals explains why the content of a goal matters. People can pursue goals intensely and still be poorly nourished by them if the goals center only on wealth, image, or status. Growth, relationships, and contribution carry a different psychological weight.\n\nPurpose completes autonomy and mastery by asking what the effort serves. Profit remains necessary, but it is no longer the only reason for the organization to exist. The danger is cosmetic purpose. The cure is evidence: show the budget, calendar, policy, customer outcome, or behavior that changed because the purpose mattered.\n\nPurpose also has to survive ordinary management pressure. It is easy to honor contribution when nothing expensive is at stake. The test comes when the budget tightens, the schedule slips, or a metric offers a cleaner win than the mission. A purpose that never disciplines those moments is not yet a motive; it is a label.\n\nThe purpose motive becomes more reliable when people can see their own agency inside it. If leaders announce a noble cause but give workers no room to act, purpose becomes another form of control. If people can improve at work that clearly benefits someone, purpose connects with mastery. If they can make real choices on behalf of that contribution, purpose connects with autonomy.\n\nFor an individual, the same receipt test applies. A person can say family, health, craft, or service matters. The more revealing question is where the calendar, spending, attention, and tradeoffs prove it. Purpose does not need to be grand to be motivational. It needs to be credible enough that effort can point somewhere larger than status or reward."
+  },
+  "examples": [
+    {
+      "exampleId": "drive-ch07-ex01",
+      "title": "A Misread Incentive",
+      "tags": [
+        "work design",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "nonprofit board meeting",
+        "audience": "Ilya, a board member deciding whether money follows the mission",
+        "stakes": "A nonprofit claims community health as its purpose while shifting money away from outreach.",
+        "format": "decision_point",
+        "requiredBeat": "Show purpose being tested by a budget tradeoff."
+      },
+      "scenario": "Ilya watches the board approve a larger rebrand while cutting the mobile clinic that actually reaches uninsured families. The question in the room is not whether the mission sounds noble; it is whether the budget proves community health matters.",
+      "whatToDo": "At the nonprofit board meeting, make one budget choice that proves the mission has tradeoff power.",
+      "whyItMatters": "Purpose motivates when it has tradeoff power. If the money never follows the mission, the mission becomes decoration."
+    },
+    {
+      "exampleId": "drive-ch07-ex02",
+      "title": "The Calendar Test",
+      "tags": [
+        "team choice",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "hospital shift huddle",
+        "audience": "Seren, a charge nurse connecting a huddle to patient purpose",
+        "stakes": "A hospital shift risks becoming only a throughput conversation.",
+        "format": "dialogue",
+        "requiredBeat": "Use the Mayo Clinic lesson as a daily decision rule."
+      },
+      "scenario": "Seren has eight minutes before the ward fills. Instead of reading only bed counts, she names the two patients most likely to be confused by handoffs and asks who will own the first conversation.",
+      "whatToDo": "In the hospital shift huddle, connect the next task to the patient or person it serves.",
+      "whyItMatters": "A patient-first mission becomes real when it changes the next choice under pressure. The huddle turns purpose into behavior."
+    },
+    {
+      "exampleId": "drive-ch07-ex03",
+      "title": "When Metrics Crowd Out Meaning",
+      "tags": [
+        "ethics",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "shoe company launch review",
+        "audience": "Bruno, a launch lead deciding whether contribution is built in",
+        "stakes": "A shoe company can add charity after the sale or design contribution into the model.",
+        "format": "audit",
+        "requiredBeat": "Show TOMS as an operating-logic lesson, not a marketing label."
+      },
+      "scenario": "Bruno's launch deck has a donation slide at the end and no operational plan for delivering the promise. He moves the contribution metric into the production calendar, supplier review, and customer reporting.",
+      "whatToDo": "For the shoe company launch review, build contribution into the operating plan instead of adding charity afterward.",
+      "whyItMatters": "Contribution that lives only in the campaign can be dropped when pressure rises. Built-in purpose has a place to survive."
+    },
+    {
+      "exampleId": "drive-ch07-ex04",
+      "title": "A Better Design Choice",
+      "tags": [
+        "autonomy",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "career coaching session",
+        "audience": "Cassia, a coach helping a client define contribution",
+        "stakes": "A career plan is drifting toward status goals without a beneficiary.",
+        "format": "planning_choice",
+        "requiredBeat": "Use life-goal research to make purpose concrete."
+      },
+      "scenario": "Cassia's client wants a more impressive title but cannot name whose life the work improves. Cassia asks her to rewrite the plan around one person, group, or problem the next role would genuinely serve.",
+      "whatToDo": "Ask the career coaching session client who benefits beyond private achievement.",
+      "whyItMatters": "Purpose is not a prettier ambition. It connects effort to contribution beyond private achievement."
+    },
+    {
+      "exampleId": "drive-ch07-ex05",
+      "title": "The Control Signal",
+      "tags": [
+        "management",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "benefits committee debate",
+        "audience": "Leif, a benefits-committee member testing whom the policy serves",
+        "stakes": "A benefits proposal protects the spreadsheet while claiming to support people.",
+        "format": "postmortem",
+        "requiredBeat": "Show purpose being checked against the people named by it."
+      },
+      "scenario": "Leif reads a proposal that saves money by moving mental-health visits out of network. The committee still says employee well-being is central, so he asks where that purpose appears in the actual policy.",
+      "whatToDo": "In the benefits committee debate, test the benefits proposal against the people it claims to serve.",
+      "whyItMatters": "Purpose must discipline decisions when tradeoffs are uncomfortable. Otherwise people learn that the stated value has no teeth."
+    },
+    {
+      "exampleId": "drive-ch07-ex06",
+      "title": "After the Reward Debate",
+      "tags": [
+        "reflection",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "city service redesign",
+        "audience": "Noor, a civic designer making public contribution visible",
+        "stakes": "A city service redesign needs a purpose residents can see.",
+        "format": "reflection",
+        "requiredBeat": "Translate purpose into a public proof point."
+      },
+      "scenario": "Noor's redesign team wants a cleaner website, but residents keep missing food-assistance deadlines. She changes the success measure from page views to completed applications before the cutoff.",
+      "whatToDo": "For the city service redesign, name the public contribution the redesign should make visible.",
+      "whyItMatters": "A public purpose becomes credible when the outcome reflects the people served. The receipt is behavior, not polish."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "drive-ch07-q01",
+        "prompt": "A nonprofit says community health is its purpose, but the budget cuts outreach and increases branding. What should the board inspect first?",
+        "choices": [
+          "Whether the budget proves the mission or treats it as decoration.",
+          "Whether the new branding tests well with donors.",
+          "Whether outreach can be deferred without changing the mission statement."
+        ],
+        "correctIndex": 0,
+        "explanation": "The key asks for proof in decisions. The tempting branding answers avoid the tradeoff that reveals whether purpose has power.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch07-q02",
+        "prompt": "What does TOMS Shoes show about purpose at its strongest?",
+        "choices": [
+          "A noble story removes the need to manage profit or delivery.",
+          "Contribution is built into the operating logic, not tacked on as charity after the fact.",
+          "Customers only need to hear the mission once for the model to work."
+        ],
+        "correctIndex": 1,
+        "explanation": "The lesson is built-in contribution. The wrong choices turn purpose into a story without operational discipline.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch07-q03",
+        "prompt": "A company puts purpose language on every wall but keeps the same controlling work design. What is the problem?",
+        "choices": [
+          "Purpose language is enough if leaders repeat it consistently.",
+          "Purpose should replace fair pay and competent management.",
+          "Purpose needs decisions, autonomy, and mastery behind it or it becomes decoration."
+        ],
+        "correctIndex": 2,
+        "explanation": "Proof is the guardrail. Purpose cannot compensate for unchanged control or unfair basics.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch07-q04",
+        "prompt": "A career client wants only wealth, image, and status goals. What question would purpose maximization add?",
+        "choices": [
+          "Which title will create the strongest public impression?",
+          "Who benefits beyond the client, and what contribution would the work make?",
+          "How can the client remove all financial constraints from the plan?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Purpose does not deny ambition or money. It asks what the ambition serves.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch07-q05",
+        "prompt": "A hospital says the patient's needs come first. What would make that mission motivational?",
+        "choices": [
+          "It appears in a polished poster near the elevators.",
+          "It is invoked after decisions are already made.",
+          "It shapes handoffs, priorities, resource choices, and daily behavior."
+        ],
+        "correctIndex": 2,
+        "explanation": "A mission motivates when it guides action under pressure. The poster alone is not proof.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch07-q06",
+        "prompt": "What does the research on life goals warn against?",
+        "choices": [
+          "Goals centered only on wealth, image, or status can nourish people less than goals tied to growth, relationships, and contribution.",
+          "Any career goal that includes money should be dropped before a person can pursue meaningful work.",
+          "People should avoid measuring progress once they choose a purpose because measurement makes purpose external."
+        ],
+        "correctIndex": 0,
+        "explanation": "The research is about goal content, not a ban on money or measurement.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "drive-ch07-q07",
+        "prompt": "Which budget experiment would test purpose in a nonprofit board meeting?",
+        "choices": [
+          "Rewrite the mission statement first and keep the outreach and branding budgets unchanged until next year.",
+          "Ask donors whether the new campaign language feels inspiring before reviewing any service tradeoffs.",
+          "Change one budget choice to protect the named contribution, then review what tradeoff the board accepted."
+        ],
+        "correctIndex": 2,
+        "explanation": "A purpose test needs a receipt. The wrong options stay in language and optics.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch07-q08",
+        "prompt": "A benefits committee saves money by weakening the support it claims to value. What should worry the committee?",
+        "choices": [
+          "People will read the tradeoff as evidence that the purpose does not actually guide decisions.",
+          "Employees will care only if the policy uses purpose language.",
+          "The committee can repair the signal later with a stronger poster."
+        ],
+        "correctIndex": 0,
+        "explanation": "Purpose is learned from tradeoffs. A later slogan cannot fully erase a contrary decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch07-q09",
+        "prompt": "To apply purpose today, which action creates proof?",
+        "choices": [
+          "Choose a more inspiring phrase before touching the work.",
+          "Name who benefits beyond you and change one decision so that benefit becomes visible.",
+          "Wait until every financial constraint disappears."
+        ],
+        "correctIndex": 1,
+        "explanation": "Purpose becomes credible through a visible decision. It does not require perfect conditions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "drive-ch07-card01",
+      "front": "When a mission sits on the wall but never changes a budget, what is it?",
+      "back": "Decoration, not motivation. Purpose has to shape decisions people can notice.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "drive-ch07-card02",
+      "front": "What is the purpose motive?",
+      "back": "The need to connect effort to contribution, service, or meaning beyond private gain.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch07-card03",
+      "front": "What is a purpose receipt?",
+      "back": "A concrete proof point such as a budget choice, calendar priority, policy, customer outcome, or behavior that changed because the purpose mattered.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch07-card04",
+      "front": "How does purpose relate to profit?",
+      "back": "Profit remains necessary, but it stops being the only organizing aim. Purpose asks what the work serves.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "drive-ch07-card05",
+      "front": "Why does purpose need autonomy and mastery?",
+      "back": "A noble mission paired with controlling work or no path to improvement can still drain people. Purpose needs room to act and grow.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Purpose Receipt Check",
+    "coreSkill": "Use the Purpose Receipt Check: Contribution - who benefits beyond us? Decision - what choice proves that benefit matters? Tradeoff - what would we give up to protect it? Autonomy - do people have room to act on it? Mastery - does the work help people improve at meaningful contribution? Proof - where is the receipt?",
+    "ifThenPlans": [
+      {
+        "context": "The purpose sounds inspiring but vague",
+        "plan": "Ask for the receipt: budget, calendar, policy, customer outcome, or repeated behavior."
+      },
+      {
+        "context": "A tradeoff contradicts the mission",
+        "plan": "Name the contradiction plainly and decide whether the mission or the tradeoff will govern."
+      },
+      {
+        "context": "People cannot act on the purpose",
+        "plan": "Add one autonomy or mastery support so the purpose becomes usable in daily work."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one mission, value, or personal purpose. Run the six Purpose Receipt questions and change one small decision so the purpose leaves evidence.",
+    "weeklyPractice": "For seven days, collect one purpose receipt per day. If you cannot find one, write the decision that would create it."
+  },
+  "memorableLines": [
+    {
+      "text": "TOMS Shoes, the Mayo Clinic, and research by Tim Kasser and Richard Ryan make purpose more concrete than inspiration.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the lesson through a concrete source scene."
+    },
+    {
+      "text": "The mechanism is direction: people can persist longer when effort belongs to a cause they recognize.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism before adding detail."
+    },
+    {
+      "text": "Purpose becomes suspicious when it is used as packaging for the same old control system.",
+      "location": "breakdown.fullRead",
+      "why": "It frames the limit that protects the lesson from overreach."
+    }
+  ]
+}

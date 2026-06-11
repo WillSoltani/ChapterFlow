@@ -1,0 +1,67 @@
+{
+  "chapterId": "pmbok-guide-ch23",
+  "number": 23,
+  "title": "Planning Performance Domain",
+  "coreMove": "Planning performance is healthy when scope, schedule, budget, and resource signals stay current enough to guide choices across all eight PMBOK Guide domains.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "Planning Performance Domain signals after a scope change",
+      "audience": "project managers who treat an approved schedule as stable after scope moves",
+      "stakes": "the team may keep executing against a schedule that no longer matches scope, budget, or resources",
+      "format": "before_after",
+      "requiredBeat": "The same wall plan appears before and after the scope change, with the contrast showing whether planning information stayed useful."
+    },
+    {
+      "domain": "Eight-domain system around the Planning Performance Domain",
+      "audience": "PMO reviewers checking whether planning has become isolated from other domains",
+      "stakes": "a file can look complete while stakeholder, delivery, measurement, and uncertainty effects remain disconnected",
+      "format": "audit",
+      "requiredBeat": "The reviewer studies records and finds the detail that proves Planning Performance Domain is not being read with the other seven domains."
+    },
+    {
+      "domain": "Planning Performance Domain signal interpretation",
+      "audience": "workstream leads who feel pressure to keep a plan looking settled",
+      "stakes": "a plan can stay polished while budget and resources quietly contradict schedule promises",
+      "format": "inner_monologue",
+      "requiredBeat": "The protagonist works through the wrong turns internally before choosing how to read scope, schedule, budget, and resources together."
+    },
+    {
+      "domain": "Planning Performance Domain interaction with other PMBOK Guide domains",
+      "audience": "planning leads allocating scarce review time before work begins",
+      "stakes": "attention spent on artifact cleanup may leave domain interactions invisible",
+      "format": "planning_choice",
+      "requiredBeat": "Before action begins, the protagonist allocates scarce attention across planning signals and the eight-domain map."
+    },
+    {
+      "domain": "Planning Performance Domain hard tradeoff",
+      "audience": "project leads facing two damaging planning choices",
+      "stakes": "protecting one signal may damage value, while reopening another may damage trust",
+      "format": "dilemma",
+      "requiredBeat": "The protagonist faces one genuine two-bad-options decision about scope and schedule."
+    },
+    {
+      "domain": "Planning Performance Domain dialogue across the eight-domain system",
+      "audience": "teams learning to talk about planning as current coordination",
+      "stakes": "a plan review can become artifact checking instead of domain interaction",
+      "format": "dialogue",
+      "requiredBeat": "Two named people talk, and the lesson emerges through their exchange rather than a summary."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 4,
+      "evaluate": 3,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.327Z"
+}

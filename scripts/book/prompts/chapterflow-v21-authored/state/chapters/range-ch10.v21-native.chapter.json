@@ -1,0 +1,298 @@
+{
+  "chapterId": "range-ch10",
+  "number": 10,
+  "title": "Fooled by Expertise",
+  "readingTimeMinutes": 14,
+  "hook": "A confident expert can lose to a careful fox who keeps updating the odds.",
+  "counterintuition": "Expertise becomes risky when it hardens into identity and one grand theory. Expertise disciplined by probability, doubt, and challenge remains valuable.",
+  "tryThisNow": "Write one forecast as a probability, then list what evidence would move it up, down, or make you abandon it.",
+  "keyTakeaway": "Fox-like judgment beats hedgehog certainty in uncertain predictions because it uses many partial models and updates without humiliation.",
+  "breakdown": {
+    "fastRead": "On a forecasting call, Beth lowers her probability in public after a teammate shows new trade data, and the room treats the update as progress instead of defeat.\n\nExpertise can become brittle when it fuses with identity and one grand theory. Tetlock found that fox-like habits beat confident hedgehog certainty.\n\nThe Ehrlich-Simon bet is a warning about proxies: one clean wager can answer a narrow question without settling the whole debate.\n\nTrack one prediction this week with probability, time horizon, outside view, update rule, and what would change your mind.",
+    "deepRead": "Prediction is where expertise can become most visibly brittle. Paul Ehrlich and Julian Simon stand on opposite sides of population anxiety and resource optimism, each with a framework that explains too much too easily. Simon's victory in the famous metals bet looks decisive only until the proxy is inspected. Commodity prices over a selected decade cannot settle the larger question of ecological limits, innovation, substitution, and human welfare.\n\nThe working distinction is foxes and hedgehogs: Hedgehogs organize the world through one big explanatory idea. Foxes use many partial models and update them as evidence changes. The fox style is messier but better suited to uncertain predictions.\n\nPhilip Tetlock's expert prediction research: Tetlock gathered thousands of expert political and economic forecasts over decades. Specialists with strong single frameworks often failed to update, while integrative thinkers performed better.\n\nPhilip Tetlock's forecasting research gives the anecdote a broader test. Over many predictions, the average expert did poorly, and the most confident, famous, one-big-idea thinkers tended to be especially vulnerable. The fox and hedgehog distinction names the difference in cognitive style.\n\nReaders can improve judgment by seeking disconfirming evidence, combining models, and treating confidence as something earned through odds skill not just status.\n\nTetlock gives the scorecard. Good Judgment gives the habit. Ehrlich and Simon show the proxy trap. Update the odds as facts move.\n\nUse odds. Check base rates. Invite a challenge. Move the number when facts move. That is the fox habit in work clothes.",
+    "fullRead": "Prediction is where expertise can sound most impressive and fail most visibly. Paul Ehrlich and Julian Simon stood on opposite sides of population anxiety and resource optimism, and their famous metals bet created a clean result. But a proxy can be narrow: winning a wager about selected commodity prices over a period does not settle every ecological, technological, or resource question.\n\nPhilip Tetlock's expert prediction research explains why confidence is not enough. Some credentialed experts become hedgehogs, organizing the world through one big explanatory idea and defending it as identity. Others behave more like foxes: they update, use many small models, state probabilities, and let evidence weaken their favorite view.\n\nThe Good Judgment Project turns that temperament into practice. Forecasts improve when people track predictions, invite outside views, break questions into parts, and revise probabilities without treating revision as humiliation. Accuracy depends less on status than on habits of calibration.\n\nThe claim is not that expertise is useless. Prediction punishes expertise that refuses feedback. The disciplined expert keeps records, makes uncertainty explicit, and welcomes the evidence that would make a confident story smaller.\n\nA reader can make this brutally simple with a forecast log. Write the claim, the probability, the deadline, and the reason. Add the outside view: what usually happens in cases like this? Add the update trigger: what fact would move the number by ten points? Without those pieces, prediction easily becomes performance, especially when an expert identity is onstage.\n\nThe Ehrlich-Simon wager belongs here because it tempts people to overread clean outcomes. A clean result is valuable, but only for the question it actually measured. Tetlock's work generalizes the warning: the more a person needs one theory to explain everything, the harder it becomes to hear disconfirming evidence.\n\nGood forecasting is humble in a very specific way. It does not mumble that anything could happen. It makes uncertainty measurable, invites challenge, and moves the number when facts move. Expertise remains valuable when it is disciplined by calibration; it becomes dangerous when it turns prediction into identity defense.\n\nThe log creates memory outside the ego. Once the forecast is written down, the question changes from \"Was I impressive?\" to \"Did I update, calibrate, and learn?\""
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Ehrlich Simon Proxy",
+      "tags": [
+        "ehrlich",
+        "simon",
+        "proxy"
+      ],
+      "planSpec": {
+        "domain": "ehrlich simon proxy",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "decision_point",
+        "requiredBeat": "Ehrlich Simon Proxy"
+      },
+      "scenario": "Clara moderates an investment debate where one analyst treats a single commodity chart as proof of permanent scarcity. Another cites Julian Simon as if one bet settled every ecological concern Paul Ehrlich raised. Clara pauses the slide deck and asks what the proxy can and cannot answer.",
+      "whatToDo": "Clara separates the narrow forecast from the broad question. The team assigns probabilities to several outcomes and identifies evidence that would change them.",
+      "whyItMatters": "The Ehrlich-Simon bet warns against overreading a clean contest. A vivid proxy can hide unresolved complexity."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Tetlock Forecast Board",
+      "tags": [
+        "tetlock",
+        "forecast",
+        "board"
+      ],
+      "planSpec": {
+        "domain": "tetlock forecast board",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "reflection",
+        "requiredBeat": "Tetlock Forecast Board"
+      },
+      "scenario": "Imran runs a geopolitical risk team with Philip Tetlock's expert prediction research on the wall. The loudest analyst has one theory for every election. Imran asks each forecaster to write odds, base rates, and disconfirming evidence before the Monday call.",
+      "whatToDo": "Imran rewards calibration and updating, not rhetorical dominance. The team records probability changes and reasons for movement.",
+      "whyItMatters": "Tetlock found confident specialists vulnerable when theories became identities. Forecasting improves when beliefs stay adjustable."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Good Judgment Standup",
+      "tags": [
+        "good",
+        "judgment",
+        "standup"
+      ],
+      "planSpec": {
+        "domain": "good judgment standup",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "business_case",
+        "requiredBeat": "Good Judgment Standup"
+      },
+      "scenario": "Beth joins a Good Judgment Project-style forecasting group. Volunteers challenge her estimate about a trade dispute, and her first reaction is embarrassment. At the next standup, she lowers her probability and explains which new data mattered.",
+      "whatToDo": "Beth treats revision as performance, not retreat. She asks teammates to find the strongest contrary evidence before locking a forecast.",
+      "whyItMatters": "Good forecasters make updating ordinary. The fox habit turns disagreement into information."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Hedgehog Product Roadmap",
+      "tags": [
+        "hedgehog",
+        "product",
+        "roadmap"
+      ],
+      "planSpec": {
+        "domain": "hedgehog product roadmap",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "scene",
+        "requiredBeat": "Hedgehog Product Roadmap"
+      },
+      "scenario": "Vikram's founder insists every adoption problem comes from one cause: customers hate complexity. Support logs point to pricing, integration, and training. Vikram writes fox and hedgehog on the board and asks the team to test three models instead of defending one slogan.",
+      "whatToDo": "Vikram builds a roadmap with separate hypotheses and measures. Each release tests a partial explanation.",
+      "whyItMatters": "A hedgehog story feels powerful because it is simple. A fox map is less elegant but better fitted to messy evidence."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Pundit Scorecard",
+      "tags": [
+        "pundit",
+        "scorecard"
+      ],
+      "planSpec": {
+        "domain": "pundit scorecard",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "planning_choice",
+        "requiredBeat": "Pundit Scorecard"
+      },
+      "scenario": "Helia's newsroom books a famous commentator who speaks with certainty about the next election. She brings Tetlock's findings to the editorial meeting and proposes a scorecard of past forecasts, probability language, and update history before another segment is scheduled.",
+      "whatToDo": "Helia asks for track records and calibrated claims. The booking decision weighs accuracy habits beside audience appeal.",
+      "whyItMatters": "Fame can reward confidence more than accuracy. Forecast quality needs memory and accountability."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Climate Scenario Review",
+      "tags": [
+        "climate",
+        "scenario",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "climate scenario review",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "audit",
+        "requiredBeat": "Climate Scenario Review"
+      },
+      "scenario": "Dr. Ellis leads a climate adaptation panel split between catastrophe and techno-optimism. Ehrlich and Simon appear in the opening brief. Ellis asks each expert to specify time horizon, uncertainty, and what would make their view weaker. At the climate panel, Dr. Ellis must choose whether the population-resource bet becomes a slogan or a prompt for conditional forecasts.",
+      "whatToDo": "Ellis turns positions into conditional forecasts. The plan uses ranges and triggers not a single victorious theory.",
+      "whyItMatters": "Expertise remains useful when it stays porous. Fox-like planning can act without pretending uncertainty has vanished."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What is the fox style of forecasting?",
+        "choices": [
+          "Using many partial models and updating beliefs as evidence changes.",
+          "Explaining the world through one grand idea and defending it with confidence.",
+          "Avoiding probability estimates because uncertain domains cannot be judged."
+        ],
+        "correctIndex": 0,
+        "explanation": "Foxes are integrative and revisable. They combine partial models instead of forcing everything through one theory.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "What did the Ehrlich-Simon bet show and not show?",
+        "choices": [
+          "It proved that Simon's grand theory permanently settled population and resource questions.",
+          "It showed that market prices can never be used as evidence in forecasting.",
+          "It made Simon look victorious on the chosen metals-price window but did not cleanly answer the larger problem."
+        ],
+        "correctIndex": 2,
+        "explanation": "Simon won the bet as framed, but the proxy and time window were too narrow to settle the deeper resource debate.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "What did Philip Tetlock's long forecasting research find?",
+        "choices": [
+          "Credentialed specialists always outperformed broader integrative thinkers.",
+          "Experts often performed poorly when attached to one explanatory frame and resistant to updating.",
+          "Experts became more accurate as their public fame and confidence increased."
+        ],
+        "correctIndex": 1,
+        "explanation": "Tetlock found cognitive style mattered. Strong single-framework specialists were vulnerable when they failed to update.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Why can public fame worsen forecasting?",
+        "choices": [
+          "Fame forces forecasters to use many models and admit uncertainty.",
+          "Public attention prevents forecasters from becoming overconfident.",
+          "A bold claim can become part of identity, making updating feel like self-betrayal."
+        ],
+        "correctIndex": 2,
+        "explanation": "Once identity forms around a claim, revision becomes harder. Confidence and publicity can trap the forecaster.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "What did the Good Judgment Project demonstrate?",
+        "choices": [
+          "Professional authority always beats volunteer teams on uncertain predictions.",
+          "Broad, curious forecasters who updated beliefs and collaborated well could beat specialist teams.",
+          "Forecasting improves when people avoid falsifying their own ideas."
+        ],
+        "correctIndex": 1,
+        "explanation": "Good Judgment rewarded updating, curiosity, and collaborative challenge. Those habits outperformed isolated authority.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "What is active open-mindedness?",
+        "choices": [
+          "Trying to test and falsify one's own ideas instead of only defending them.",
+          "Treating one's first explanation as a possession to defend.",
+          "Avoiding strong evidence because it might change a forecast."
+        ],
+        "correctIndex": 0,
+        "explanation": "Active open-mindedness is disciplined self-challenge. It looks for ways a belief might be wrong.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which conclusion about expertise does Epstein reject?",
+        "choices": [
+          "Expertise can become dangerous when fused with identity and one grand theory.",
+          "Expertise makes people bad at prediction.",
+          "Expertise disciplined by fox-like habits remains valuable."
+        ],
+        "correctIndex": 1,
+        "explanation": "Epstein does not attack expertise itself. It attacks overconfident, identity-bound expertise that resists updating.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "How do hedgehogs differ from foxes in Tetlock's frame?",
+        "choices": [
+          "Hedgehogs organize the world through one big explanatory idea, while foxes use many partial models.",
+          "Hedgehogs update more often because they avoid any central theory.",
+          "Hedgehogs outperform foxes because they make bolder claims."
+        ],
+        "correctIndex": 0,
+        "explanation": "Hedgehogs rely on one grand frame. Foxes accept messier partial models and adjust as evidence changes.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Why did the argument treat the metals-price bet as a poor test of a complex claim?",
+        "choices": [
+          "Because metals prices have no relationship to resource questions under any circumstances.",
+          "Because Ehrlich and Simon agreed on every part of the underlying theory before betting.",
+          "Because the chosen proxy and time window could not settle the larger population-resource argument."
+        ],
+        "correctIndex": 2,
+        "explanation": "A narrow bet can produce a winner without resolving the real system. The proxy did not carry the whole argument.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What did Tetlock's expert prediction research reveal about confident expertise?",
+      "back": "It found that credentials and confidence did not guarantee accuracy; forecasters improved when they updated, used multiple models, and treated uncertainty explicitly.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why can a proxy mislead a forecast?",
+      "back": "A proxy can answer a narrow measurable question while being mistaken for proof about a larger, messier issue.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What is forecasting hygiene?",
+      "back": "Forecasting hygiene means recording probabilities, time horizons, evidence, outside views, and updates so prediction becomes accountable instead of rhetorical.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "How does a fox-like forecaster behave?",
+      "back": "A fox-like forecaster uses several models, updates with new evidence, breaks questions apart, and treats revision as accuracy work instead of defeat.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Forecasting Hygiene Check",
+    "coreSkill": "Make predictions accountable by tracking probabilities, time horizons, outside views, updates, and evidence that would change your mind.",
+    "ifThenPlans": [
+      {
+        "context": "When I make a confident prediction",
+        "plan": "If I feel certain, then I will write a probability, time horizon, and what evidence would lower my confidence."
+      },
+      {
+        "context": "When a proxy settles the room",
+        "plan": "If one metric or wager seems decisive, then I will ask which question it actually answers and which questions remain open."
+      },
+      {
+        "context": "When updating feels embarrassing",
+        "plan": "If new evidence changes the odds, then I will revise the forecast publicly and record why."
+      }
+    ],
+    "twentyFourHourChallenge": "Write one live prediction with probability, deadline, outside-view comparison, and an update trigger.",
+    "weeklyPractice": "This week, keep a forecast log for three decisions; review which estimates changed and whether you updated like a fox or defended like a hedgehog."
+  }
+}

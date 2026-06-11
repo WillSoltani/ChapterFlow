@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-body-keeps-the-score",
+  "chapterNumber": 13,
+  "chapterId": "the-body-keeps-the-score-ch13",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "e1f109e9974c8b8e",
+  "reviewer": "claude-qc:tbkts-20260606",
+  "reviewedAt": "2026-06-10T00:24:07.473Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~90. 9/9 keys correct (limbic therapy/SSRI-benzo-MDMA/social support/bodywork). Names consistent, no stats. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-body-keeps-the-score",
+      "chapterNumber": 13,
+      "chapterId": "the-body-keeps-the-score-ch13",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "9715db12ad374ee1",
+      "reviewer": "claude-qc:tbkts-20260606",
+      "reviewedAt": "2026-06-10T00:24:07.473Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~90. 9/9 keys correct (limbic therapy/SSRI-benzo-MDMA/social support/bodywork). Names consistent, no stats. No corruption."
+    }
+  ]
+}

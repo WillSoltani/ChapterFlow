@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "outliers",
+  "chapterNumber": 8,
+  "chapterId": "outliers-ch08",
+  "verdict": "REVISE",
+  "contentHash": "f4c8be5ec59a4d16",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-outliers-2026-06-10",
+  "reviewedAt": "2026-06-11T00:19:55.681Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=68; cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/repeated_unit/repeated_unit/other; memorableLines section entirely missing (axis 0); 5/6 scenarios insert the source via"
+}

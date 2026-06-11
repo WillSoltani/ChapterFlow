@@ -76,29 +76,27 @@
   ],
   "targetReader": "A serious adult reader who wants sharper judgment in work, family, leadership, friendship, and public life, and who is willing to turn the same severity inward before using it on other people.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium",
+    "register": "literary",
+    "person": "third",
+    "cadence": "long",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "land examples with protagonist names that read naturally to Canadian, American, and European readers — 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+      "uses courtly caution, historical miniatures, reversals, and power diagnostics",
+      "keeps moral discomfort visible instead of apologizing for it",
+      "turns human motives into patterns of timing, display, and leverage",
+      "sounds elegant, cold-eyed, and theatrical without becoming purple"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not glamorize cruelty when the supported point is narrower.",
+      "Do not sand Greene into ethical office advice."
     ]
   },
   "voiceSpecimens": [
-    "The smile is not the evidence. The timing of the smile is the evidence.",
-    "You are most certain when the first story protects you from embarrassment.",
-    "A person can mean well and still be defending the image they need you to see.",
-    "Do not call it character until you have watched the same pressure arrive twice.",
-    "The group does not ask you to surrender judgment all at once. It asks for one small silence, then another.",
-    "Mortality is not there to make you gloomy. It is there to make vanity look expensive."
+    "The smile is evidence only after timing has testified.",
+    "Character leaks where performance thinks no one is watching."
   ],
   "voiceAntiSpecimens": [
     "This chapter will teach you how to understand people better in everyday life.",
@@ -114,6 +112,8 @@
     "Do not flatten the book into generic emotional intelligence or leadership advice.",
     "Do not reuse work, school, and personal rotations when the law needs a more exact social pressure.",
     "Do not invent historical anecdotes or source-specific scenes beyond the frozen source bundle.",
-    "Do not treat human nature as an excuse for fatalism; every law must create a mental move."
+    "Do not treat human nature as an excuse for fatalism; every law must create a mental move.",
+    "Do not remove the danger from power analysis.",
+    "Do not use historical color without the strategic mechanism."
   ]
 }

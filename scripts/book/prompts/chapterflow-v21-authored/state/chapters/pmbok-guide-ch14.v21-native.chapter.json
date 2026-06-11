@@ -1,0 +1,333 @@
+{
+  "chapterId": "pmbok-guide-ch14",
+  "number": 14,
+  "title": "Build Quality into Processes and Deliverables",
+  "readingTimeMinutes": 10,
+  "hook": "2 of 10 defects appeared at signoff; 8 were baked in when checks got skipped.",
+  "counterintuition": "The principle sounds like a review step until pressure arrives. In PMBOK terms, quality is working when fitness for use and prevention change the next tradeoff.",
+  "tryThisNow": "Create a calendar hold for tomorrow at 9:00 a.m. in the project room; trigger it when the baseline opens, then inspect acceptance criteria first.",
+  "keyTakeaway": "Quality is built when teams define fitness for use, prevent defects in the workflow, and let those standards guide tradeoffs under pressure.",
+  "breakdown": {
+    "fastRead": "Grace reads the defect log after a clean signoff. Only 2 items were found in the review room. The other 8 came from skipped peer checks and loose acceptance criteria. The visible problem looked like late testing. The damage sat earlier in the flow.\n\nPMI's quality principle makes that clue practical. A team does not wait for a final inspector to rescue the work. It defines fitness for use, builds prevention into daily steps, and keeps those steps alive when schedule pressure makes shortcuts look cheap.",
+    "deepRead": "Prevention begins before the test report exists. It starts when a team names what fit for purpose means, then designs the work so common defects have fewer places to form. Requirements help. Acceptance criteria help. Peer checks, design reviews, supplier checks, and a clear definition of done help. None of them matter as labels. They matter when people use them while the work is still changeable.\n\nCyrielle keeps the checklist open and lets the thought run without saying it out loud. The PMI principle is one of 12 principles, which means it sits beside stewardship, value, risk, change, and stakeholders. That placement matters. If the schedule slips, quality cannot be a private preference in her head. It has to speak through a tradeoff. Does this handoff still protect fitness for use? Does this shortcut remove a prevention step? Does the stakeholder know what acceptance evidence will be missing?\n\nHer first draft of the status note praises progress. That is the wrong center of gravity. The second draft names the missing peer review and the thin acceptance criteria. It also names the value at risk if the team treats final inspection as the rescue plan. Nothing dramatic happens in the room. The work changes because the evidence used to judge it changes.\n\nThat is why the principle fits predictive plans, adaptive cycles, and mixed delivery. One team may use planned reviews and baselined criteria. Another may use a definition of done, fast feedback, and repeated validation. A third may need both. The lifecycle is not the point. The visible behavior is the point: people prevent defects while they can still be prevented.",
+    "fullRead": "A prototype and a regulated device should not wear the same control plan. One may need a light review and quick user feedback. The other may need formal tests, traceable evidence, supplier checks, and strict validation. PMBOK does not ask teams to make every project heavy. It asks them to make fitness for use clear enough that the process fits the risk.\n\nDuc sees the limit during planning. He has 90 minutes before the steering packet closes. The team can spend the time polishing the milestone slide, reviewing a risky handoff, or calling the stakeholder who will accept the deliverable. No action has started yet. The whole scene is allocation. Time is the scarce material, and quality will be built or weakened by where attention goes before anyone touches the work.\n\nHe marks three boxes. Fitness for use gets the first one. Prevention gets the second. Acceptance evidence gets the third. The slide can wait. That small choice keeps quality from turning into a word that appears after the plan is already spent.\n\nPressure is the useful test. When the baseline looks fragile, teams often protect the date by cutting the check that would expose the weakness. Ophelie faces that Friday problem with a migration package. One option keeps the date and releases with a known gap in acceptance criteria. The other option protects the criteria and forces a hard conversation about the baseline. Neither option is painless. The principle has force only if it changes which pain the team is willing to carry.\n\nThat edge separates professional judgment from vocabulary. A team can recite Build Quality into Processes and Deliverables while handing defects to reviewers at the end. A better team turns the phrase into evidence: the requirement is testable, the review happens while correction is cheap, the user need is checked before acceptance, and the process itself is improved after a miss.\n\nPredictive work can hide behind documents. Adaptive work can hide behind speed. Hybrid work can hide behind the claim that each side of the project is someone else's problem. None of those escapes removes the responsibility. The team still has to ask what fit for purpose means here, which step prevents avoidable rework, and which signal proves the deliverable can be used.\n\nShirley and Lydia show the quieter version in a meeting. Shirley points to a baseline that looks clean. Lydia points to acceptance criteria that are too vague to protect use. The argument is not about being strict for its own sake. It is about trust. Stakeholders do not receive value from a tidy plan that delivers a fragile result. They receive value when the work can do what it was meant to do.\n\nThe final caution is overbuilding. Some teams hear quality and add ceremonies, approvals, and checklists until the process becomes the burden. That misses the principle from the other side. Prevention should reduce waste, not create a museum of controls. The check is plain: does this step catch a likely defect early, clarify acceptance, protect stakeholder use, or teach the team how to improve the flow? If it does none of those, it may be paperwork wearing a quality badge.\n\nQuality belongs where choices are still open. Once a defect is expensive, the team can inspect, explain, and repair. Earlier, it can prevent."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch14.ex.principle-14-pmi",
+      "title": "Defect Trail in the Log",
+      "tags": ["audit", "PMI", "prevention"],
+      "planSpec": {
+        "domain": "software defect review",
+        "audience": "project managers reviewing late rework",
+        "stakes": "the team may blame testers instead of the process that created the defects",
+        "format": "audit",
+        "requiredBeat": "trace a signoff defect pattern back to skipped prevention work"
+      },
+      "scenario": "The defect log is the only thing moving on Grace's screen after signoff. Grace sorts the last 10 items and finds the telling detail: 2 came from final testing, while 8 began in a missed peer check or unclear acceptance note. PMI's 12 principles sit in her desk copy, with fitness for use and prevention underlined in the margin. The question is now where the review belongs.",
+      "whatToDo": "Grace shifts the review upstream. She asks for the skipped peer check, the unclear acceptance note, and the point where prevention could have stopped the rework.",
+      "whyItMatters": "The audit keeps the team from blaming the last reviewer. The pattern shows that quality was lost while the work was still cheap to correct."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch14.ex.principle-14-tradeoff",
+      "title": "Cyrielle's Quiet Checklist",
+      "tags": ["inner monologue", "schedule pressure", "criteria"],
+      "planSpec": {
+        "domain": "release readiness note",
+        "audience": "quality leads under schedule pressure",
+        "stakes": "a status note may hide a weak acceptance standard",
+        "format": "inner_monologue",
+        "requiredBeat": "show the mental shift from schedule defense to quality evidence"
+      },
+      "scenario": "Cyrielle keeps the release note open and reads the sentence again. Schedule pressure is loud in her head: call the baseline stable, praise velocity, avoid trouble. Then the acceptance criteria line stings. It says reviewed, not usable. Tradeoff is the word she keeps avoiding. No one speaks. The PMI page on the desk names the standard, but the note in front of her has to carry it before the baseline hardens.",
+      "whatToDo": "Cyrielle rewrites the note around the weak acceptance evidence and names the missing review before the release package is treated as stable.",
+      "whyItMatters": "The inner check turns a phrase into behavior. Under pressure, the first quality act may be refusing to let a status sentence hide the real risk."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch14.ex.principle-14-pmi",
+      "title": "Duc's Ninety Minutes",
+      "tags": ["planning choice", "time allocation", "fitness for use"],
+      "planSpec": {
+        "domain": "steering packet preparation",
+        "audience": "project leads allocating scarce review time",
+        "stakes": "polishing the visible packet could consume time needed for prevention",
+        "format": "planning_choice",
+        "requiredBeat": "allocate limited attention before action starts"
+      },
+      "scenario": "Only 90 minutes remain before Duc's steering packet locks. The PMI principle set is open to the 12 principles, and the margin notes pair fitness for use with prevention. No one has started editing. Duc has to allocate attention: polish the milestone slide, inspect the handoff that causes rework, or call the future approver about prevention evidence. The planning choice spends quality before any task begins.",
+      "whatToDo": "Duc protects the handoff review and the approver call, then leaves cosmetic slide polish for leftover time. He spends the scarce window on prevention evidence.",
+      "whyItMatters": "Quality is built during allocation, not after the calendar is gone. The project gets safer when scarce attention goes to the place defects form."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch14.ex.principle-14-tradeoff",
+      "title": "Ophelie's Friday Gap",
+      "tags": ["dilemma", "baseline", "acceptance criteria"],
+      "planSpec": {
+        "domain": "data migration readiness",
+        "audience": "delivery managers facing a bad deadline tradeoff",
+        "stakes": "either the date slips or the deliverable ships with a known use gap",
+        "format": "dilemma",
+        "requiredBeat": "force the two-bad-options moment where quality changes the decision"
+      },
+      "scenario": "Ophelie has two bad facts on Friday morning: the baseline date matters, and the acceptance criteria for the migration are too thin to prove fitness for use. Schedule pressure has turned every meeting into a tradeoff. PMI gives her the principle language, but language will not carry the release. Ophelie has to choose the pain: hold the date with a known use gap, or reopen the baseline conversation around the criteria.",
+      "whatToDo": "Ophelie escalates the gap as a quality tradeoff, not as a delay excuse. She asks the sponsor to choose with the acceptance risk visible.",
+      "whyItMatters": "The dilemma tests whether the principle has force. Built-in quality shows up when the team refuses to let a baseline date hide weak use evidence."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch14.ex.principle-14-pmi",
+      "title": "Shirley and Lydia Trade Lines",
+      "tags": ["dialogue", "PMI", "principles"],
+      "planSpec": {
+        "domain": "quality review conversation",
+        "audience": "team members checking a thin quality claim",
+        "stakes": "a team may treat the principle as words instead of shared work",
+        "format": "dialogue",
+        "requiredBeat": "let two people expose the gap between vocabulary and process evidence"
+      },
+      "scenario": "Shirley: PMI lists 12 principles, and our slide names the quality principle. Lydia: The slide says it, but the checklist does not show prevention. Shirley: We have a final review. Lydia: Final review is not fitness for use. Where does the process catch the defect before the deliverable reaches me? The room goes quiet around the marked checklist.",
+      "whatToDo": "Shirley and Lydia move from the principle slide to the checklist. They mark the missing prevention step and add the acceptance evidence Lydia needs.",
+      "whyItMatters": "The exchange makes the lesson practical without a speech. A team owns quality when the words lead to a changed check in the work."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch14.ex.principle-14-tradeoff",
+      "title": "Lydia's Expected Failure",
+      "tags": ["predict reveal", "schedule pressure", "baseline"],
+      "planSpec": {
+        "domain": "validation trend review",
+        "audience": "project analysts reading defect data",
+        "stakes": "the team may expect test execution to be the source when criteria are the source",
+        "format": "predict_reveal",
+        "requiredBeat": "lead the reader toward a test-capacity explanation, then reveal acceptance criteria as the cause"
+      },
+      "scenario": "Everyone expects Lydia's validation trend to blame test capacity. Schedule pressure cut the test window, and the baseline stayed fixed. Then Lydia opens the chart: the failed checks cluster around acceptance criteria that changed three times. The tradeoff was not only fewer test hours. The real leak was criteria churn hidden under a steady baseline, the point PMI's pressure case is meant to surface.",
+      "whatToDo": "Lydia redirects the review from test capacity to criteria churn. She asks the team to stabilize acceptance language before arguing about more testers.",
+      "whyItMatters": "The reveal breaks the obvious diagnosis. A team cannot protect fitness for use by adding inspection when the acceptance target keeps moving."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch14.fact.9",
+        "prompt": "A project lead can recite Build Quality into Processes and Deliverables, but the same late defects keep reaching signoff. Which response best shows the principle being applied?",
+        "choices": [
+          "Late-Inspection Myth: keep the workflow intact and ask final review to catch a larger share of defects.",
+          "Prevention Standard: change the flow so peer checks and acceptance criteria catch defects before signoff.",
+          "Vocabulary Myth: add the PMI phrase to the status report while the same handoffs continue."
+        ],
+        "correctIndex": 1,
+        "explanation": "The principle is a decision standard, not a phrase. Application appears when the team changes the process so defects are prevented before final review.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch14.fact.1",
+        "prompt": "The defect log shows 8 rework items from skipped peer checks and 2 from final testing. What should the reader infer first?",
+        "choices": [
+          "Process-Source Reading: look upstream at skipped checks and unclear criteria, not just at the final reviewers.",
+          "Reviewer-Blame Myth: the final testers caused the rework because they were closest to signoff.",
+          "One-Document Myth: an early quality plan would have settled the pattern without further action."
+        ],
+        "correctIndex": 0,
+        "explanation": "Most defects in the data formed before final review. Built-in quality is continuous, so the first investigation belongs in the flow that created them.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch14.fact.2",
+        "prompt": "Grace inherits a hybrid project with a staged procurement path and short adaptive build cycles. The team asks which side owns quality. Which answer fits PMBOK's principle view?",
+        "choices": [
+          "Lifecycle-Silo Myth: predictive controls own quality, while adaptive cycles focus mainly on speed.",
+          "Method-Purity Myth: choose one lifecycle first, then apply quality only through that method's favorite tool.",
+          "Cross-Approach Standard: make fitness for use and prevention visible in both the staged work and the cycles."
+        ],
+        "correctIndex": 2,
+        "explanation": "The principle describes behavior across predictive, adaptive, and hybrid work. Each approach needs practices that prevent defects and prove fit for purpose.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch14.fact.5",
+        "prompt": "A dashboard shows the baseline date still green after the team cut validation steps during schedule pressure. Which interpretation is strongest?",
+        "choices": [
+          "Schedule-Color Myth: a green date means quality is protected if the dashboard still looks controlled.",
+          "Inspection-Later Myth: validation can be moved to the end as long as the final review is stricter.",
+          "Pressure-Test Reading: the shortcut may have weakened prevention even though the baseline still looks safe."
+        ],
+        "correctIndex": 2,
+        "explanation": "Pressure is exactly where the principle is tested. A green date can hide the loss of a prevention step, so the quality evidence must be checked.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch14.fact.8",
+        "prompt": "Under schedule pressure, Ophelie's team can keep the release date by accepting vague criteria or pause to clarify use evidence. What should guide the call?",
+        "choices": [
+          "Tradeoff Evidence: make the acceptance risk visible and let fitness for use shape the release decision.",
+          "Baseline Defense Myth: protect the date first because a stable baseline proves the project is healthy.",
+          "Quiet-Quality Myth: let the quality lead absorb the concern so the sponsor avoids a difficult choice."
+        ],
+        "correctIndex": 0,
+        "explanation": "The pressure case asks whether the principle changes the tradeoff. The team should surface the acceptance risk instead of hiding it behind the date.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch14.fact.6",
+        "prompt": "Cyrielle's team is building a low-risk prototype, while another group is delivering a regulated component. How should quality practices be tailored?",
+        "choices": [
+          "Uniform-Control Myth: use the heavier control set for both efforts so quality looks consistent.",
+          "Convenience-Tailoring Myth: reduce controls whenever the team wants speed, even if acceptance evidence disappears.",
+          "Context-Fit Standard: choose different controls while keeping prevention and fitness for use explicit in each effort."
+        ],
+        "correctIndex": 2,
+        "explanation": "Tailoring changes the practice, not the responsibility. Both efforts need fit-for-purpose evidence, but the control level should match risk and context.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch14.fact.4",
+        "prompt": "Which statement best connects built-in quality to value delivery?",
+        "choices": [
+          "Review-After-Value Myth: value is created first, then quality is inspected as a separate support activity.",
+          "Use-Proof Standard: value is protected when the deliverable can do what stakeholders accepted it to do.",
+          "Document-Value Myth: a complete quality document is the same as a useful project outcome."
+        ],
+        "correctIndex": 1,
+        "explanation": "Value depends on usable outcomes, benefits, trust, and learning. Quality work protects those results by proving the deliverable is fit for use.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch14.fact.3",
+        "prompt": "A trend line improves after the team adds more status language about quality, but no priority, communication path, or governance call changes. What is still missing?",
+        "choices": [
+          "Evidence of Behavior: the principle has to change decisions about priorities, communication, governance, or tradeoffs.",
+          "Language-Volume Myth: more quality wording will work once the team repeats it in several meetings.",
+          "Scoreboard Myth: an improving trend line removes the need to inspect how decisions are being made."
+        ],
+        "correctIndex": 0,
+        "explanation": "The fact pattern shows vocabulary without changed behavior. PMBOK principles matter when they alter what the team does next.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch14.fact.7",
+        "prompt": "Duc is studying the Seventh Edition principle set and sees Build Quality into Processes and Deliverables listed with 11 other principles. What should that placement tell him?",
+        "choices": [
+          "Optional-Theme Myth: the quality principle sits outside the Standard as a useful side topic.",
+          "Method-Appendix Myth: the principle belongs mainly to one delivery method and its preferred artifacts.",
+          "Principle-Set Reading: PMI treats it as part of the 12-principle behavior standard for project work."
+        ],
+        "correctIndex": 2,
+        "explanation": "The principle is part of the Seventh Edition's principle architecture. Its placement signals a behavioral standard that travels across contexts.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch14.fact.9",
+      "front": "What proves the PMI quality principle has been applied beyond naming the phrase?",
+      "back": "Look for observable choices: clearer fitness-for-use evidence, prevention steps in the workflow, stronger acceptance criteria, and tradeoffs that change because quality evidence is visible.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch14.fact.1",
+      "front": "Why is one early quality document not enough to satisfy built-in quality?",
+      "back": "Conditions change during delivery. A plan written once cannot prevent new defects unless the team keeps using quality criteria, checks, and reviews while the work is still adjustable.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch14.fact.2",
+      "front": "How does the quality principle travel across predictive, adaptive, and hybrid approaches?",
+      "back": "It names professional behavior, not one lifecycle tool. Predictive work may use planned reviews, adaptive work may use definitions of done, and hybrid work may use both.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch14.fact.8",
+      "front": "Under schedule pressure, what is the warning sign that quality has become vocabulary?",
+      "back": "The date stays protected while acceptance evidence gets weaker. If the team can recite the principle but hides the tradeoff, the principle has not changed behavior.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch14.fact.4",
+      "front": "Earlier concept, Focus on Value: how does built-in quality protect value delivery?",
+      "back": "Value depends on a deliverable that can be used for its intended purpose. Prevention, validation, and acceptance clarity protect outcomes, benefits, stakeholder trust, and learning.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch14.fact.6",
+      "front": "Earlier concept, Tailor Based on Context: what changes and what stays fixed for quality?",
+      "back": "The controls can change by context, risk, and lifecycle. The responsibility stays fixed: the team still defines fitness for use and builds prevention into the way work is done.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Prevention Fit Check Before Release",
+    "coreSkill": "Practice pausing at the point where speed asks for a shortcut. Use the Prevention Fit Check: name fitness for use, name one process step that prevents rework, and name the deliverable evidence that will show it. The skill is making quality visible in the next decision, not in a slogan after the fact.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch14.fact.5",
+        "context": "When schedule pressure makes a review step look optional",
+        "plan": "If speed is being used to skip a peer check, then run the Prevention Fit Check and show which defect the check prevents before changing the baseline."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.6",
+        "context": "When a lightweight prototype does not need heavy controls",
+        "plan": "If the project context is low risk, then tailor the control down to the smallest review that still names fitness for use and acceptance evidence."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.3",
+        "context": "When someone recites the principle in a meeting but no work changes",
+        "plan": "If the PMI wording appears without a decision, then ask which priority, communication path, or governance call will change before the next handoff."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.8",
+        "context": "When the baseline date is protected by cutting validation",
+        "plan": "If the baseline survives by weakening acceptance criteria, then escalate the tradeoff and reset the next review around use, not paperwork."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, run the Prevention Fit Check on one active deliverable. Write the fitness-for-use sentence, the process step that prevents a defect, and the acceptance evidence; send it to one reviewer before the next handoff.",
+    "weeklyPractice": "For one week, pick one project decision each day and mark whether it protected fitness for use, prevention, and acceptance evidence. On Friday, revise the weakest process step before the next delivery cycle."
+  },
+  "memorableLines": [
+    {
+      "text": "The visible problem looked like late testing.",
+      "location": "breakdown.fastRead",
+      "why": "It carries the ratio-reversal hook into a short sentence the reader can test against their own defect reviews."
+    },
+    {
+      "text": "Nothing dramatic happens in the room.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the behavioral standard feel practical: the work changes when evidence changes."
+    },
+    {
+      "text": "Quality belongs where choices are still open.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses prevention, timing, and tradeoff discipline into one reusable line."
+    }
+  ]
+}

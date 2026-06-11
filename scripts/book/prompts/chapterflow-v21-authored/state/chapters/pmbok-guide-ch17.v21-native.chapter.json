@@ -1,0 +1,364 @@
+{
+  "chapterId": "pmbok-guide-ch17",
+  "number": 17,
+  "title": "Embrace Adaptability and Resiliency",
+  "readingTimeMinutes": 11,
+  "hook": "The war room still showed yesterday's baseline while outage notes covered the value board.",
+  "counterintuition": "A resilient project is not the one that protects the first plan from every fact. It keeps enough structure for recovery while fresh evidence changes the next choice.",
+  "tryThisNow": "Put a 15-minute recovery review on tomorrow's calendar at 9:20 in the team channel, triggered by the next baseline change, and attach the risk log.",
+  "keyTakeaway": "Use the PMBOK principle as a decision test: when evidence shifts, adjust approach, protect recovery capacity, and keep value steadier than the original baseline.",
+  "breakdown": {
+    "fastRead": "The war room looks finished after Aaron's steering call. The baseline chart is still taped under the monitor, but three red outage notes now cover Friday's demo date. He thought resilience meant asking the team to absorb the hit. The real signal was different: the plan had stopped listening.\n\nWhen a team adapts, it changes the approach after evidence changes. When it builds resiliency, it leaves room to recover without losing value. Recovery is a design choice, not a mood. The PMBOK principle is behavioral, not vocabulary. Under schedule pressure, Aaron uses it when he escalates the risk, invites feedback, and changes the next decision instead of defending the old date.",
+    "deepRead": "Pressure makes a plan reveal its hidden job. In a calm week, a baseline can coordinate work, surface risk, and make tradeoffs visible. In a hard week, the same baseline can become a shield. People stop asking what evidence changed. They ask how to keep the date looking untouched.\n\nThe mechanism is simple. A team adapts by noticing the signal, such as a supplier slip, a failed test, or stakeholder feedback. A resilient setup protects the capacity to respond, such as reserve time, cross-trained people, clear escalation, and a team that is not already spent. One move adjusts the route; the other keeps the project from cracking while the route changes. A baseline is useful until it becomes a hiding place.\n\nMedard sees the point in the PMO chat. Someone wants to paste Embrace Adaptability and Resiliency into the status deck because PMI lists it among the 12 principles. Medard asks what decision the phrase will change before noon. The answers get specific: Firmin will show the quality risk, Winnie will gather field feedback, and Aaron will ask the sponsor which value must be protected if Friday moves. The team moves the principle from slide text into governance.\n\nThe useful distinction is method-free. Predictive work can still adapt through controlled change, risk response, and staged decisions. Adaptive work can still be brittle if people ignore feedback or burn down the team. Hybrid work may need both forms in the same week. The test is not the lifecycle label. The test is whether new evidence can alter priorities while the project keeps moving toward value.",
+    "fullRead": "Novelty is the easy case to sell and the hard case to govern. When scope is unstable, everyone nods at flexibility. The more difficult case is a project that looks routine until the outside world moves. A market rule changes. A supplier misses a batch. A stakeholder sees a prototype and learns what the request should have been. The old plan did its job up to that point. Then it needs a path for learning.\n\nKendra's desk shows the quiet version. Three purchase orders sit in a neat queue, each stamped against the original date. The supplier note says a component is late by nine days. Nothing on the desk looks dramatic. Yet the next decision will decide whether the project absorbs the shock or passes it downstream. If Kendra only pushes the vendor harder, she may protect the date on paper and destroy recovery in the build room.\n\nRecovery has a human side that planning language can hide. A team cannot recover if every reserve has been consumed, every specialist is a single point of failure, and every bad fact must climb through foggy governance. Recovery capacity is built before the disruption arrives. Cross-training, clear thresholds, honest stakeholder communication, and technical options all buy room to move later.\n\nThere is a limit to adapting, too. A team does not practice this principle by chasing every request. Adaptation without value is churn; resilience without rest is denial. The project keeps its value purpose in view while evidence changes the route. If the new move protects no outcome, benefit, trust, or learning, it may just be noise with better language.\n\nViolette's failed release makes the boundary plain. The team had a schedule slip, but nobody named the tradeoff. They kept the baseline date, skipped the feedback review, and cut a quality check that would have caught the integration fault. After the failure, the trace was easy to read. They had treated the principle as a phrase for the status report, not as a standard for decisions under pressure.\n\nMaverick later catches the same pattern in himself. During a migration rehearsal, he starts telling the team to work the weekend so the baseline can stay intact. Halfway through the sentence, he notices he has used resilience to mean endurance. He stops, pulls up the risk log, and asks which part of the approach can change before fatigue becomes the next defect. The correction is small, but the meaning is large.\n\nPMI places Embrace Adaptability and Resiliency inside a set of 12 principles for a reason. The standard places it beside stewardship, value, stakeholders, risk, quality, and change. It is not a private attitude. It is part of professional behavior in a value delivery system. Good teams do not worship the first plan or celebrate change for its own sake. They design enough structure to notice reality, enough slack to recover, and enough judgment to change the next decision."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch17.ex.principle-17-tradeoff",
+      "title": "The Demo Date Surprise",
+      "tags": [
+        "schedule pressure",
+        "baseline",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "municipal permit portal",
+        "audience": "project managers facing a slipping public demo",
+        "stakes": "protect value while schedule pressure rises",
+        "format": "predict_reveal",
+        "requiredBeat": "expect resistance to a changed baseline, then reveal feedback that protects higher value"
+      },
+      "scenario": "Aaron walks into the steering room expecting the sponsor to punish any change to the baseline. The portal team is under schedule pressure, and the outage log says Friday's demo will miss two workflows. When Aaron shows the tradeoff and asks for feedback, the surprise is not anger. The sponsor drops the less valuable workflow and protects the field inspection path. Aaron uses the PMI principle before the date hardens.",
+      "whatToDo": "Aaron presents the schedule pressure as a tradeoff, asks for feedback on value, and moves the baseline only after the sponsor names what must still work.",
+      "whyItMatters": "The reveal teaches that resilience is not hiding bad news. Under pressure, the useful move is to make changed evidence visible before the plan becomes a performance."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch17.ex.principle-17-pmi",
+      "title": "The PMO Chat Thread",
+      "tags": [
+        "PMI",
+        "12 principles",
+        "governance"
+      ],
+      "planSpec": {
+        "domain": "PMO status review",
+        "audience": "facilitators turning principle language into action",
+        "stakes": "avoid reciting principle titles without changing a decision",
+        "format": "text_thread",
+        "requiredBeat": "compressed messages make the lesson land between the lines"
+      },
+      "scenario": "Medard reads the PMO chat while the status deck is still blank. Violette: Can we cite PMI and move on? Medard: Only if the 12 principles change a call today. Firmin: Quality check or baseline date? Medard: Name the adaptation, name the resilience reserve, then ask for feedback before noon. The thread stays short, but the decision gets sharper.",
+      "whatToDo": "Medard refuses to let the PMI line sit alone. He turns the chat toward the decision it must change: quality timing, baseline movement, and feedback before noon.",
+      "whyItMatters": "A text thread can expose whether the principle is alive. If nobody can name the adaptation or resilience move, the 12 principles have become decoration."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch17.ex.principle-17-tradeoff",
+      "title": "The Restarted Workback",
+      "tags": [
+        "reset",
+        "vendor delay",
+        "schedule pressure"
+      ],
+      "planSpec": {
+        "domain": "field device rollout",
+        "audience": "operations coordinators updating a workback plan",
+        "stakes": "restart the routine when new feedback changes the work",
+        "format": "reset_moment",
+        "requiredBeat": "a routine is interrupted and restarted with a better trigger"
+      },
+      "scenario": "Winnie starts the weekly workback by copying last week's dates into the spreadsheet. A vendor alert interrupts the routine: two test devices will arrive late. Her hand is already on the baseline column. She stops, closes the old view, and restarts with the trigger written at the top: schedule pressure plus new feedback. The reset keeps PMI's Embrace Adaptability and Resiliency from becoming a slogan.",
+      "whatToDo": "Winnie pauses the routine, names the new trigger, and rebuilds the workback from the late devices and feedback instead of copying the baseline forward.",
+      "whyItMatters": "The reset has teeth. A team cannot adapt while its hands keep repeating yesterday's plan after today's evidence has already arrived."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch17.ex.principle-17-pmi",
+      "title": "The Reserved Yellow Note",
+      "tags": [
+        "vignette",
+        "reserve",
+        "resilience"
+      ],
+      "planSpec": {
+        "domain": "procurement desk",
+        "audience": "coordinators guarding recovery capacity",
+        "stakes": "preserve slack for disruption rather than casual convenience",
+        "format": "vignette",
+        "requiredBeat": "one close observed desk detail carries the lesson"
+      },
+      "scenario": "Kendra's desk has a binder tabbed PMI 12 principles, a chipped mug, and a yellow sticky note reading, resilience reserve: two days. The office printer warms behind her while the team standup hums through a laptop speaker. No one makes a speech about adaptation. The lived detail is the spare slot she refuses to spend casually, so the project can absorb disruption without drama.",
+      "whatToDo": "Kendra keeps the two-day reserve visible and unspent, treating it as recovery capacity rather than an easy place to hide minor overruns.",
+      "whyItMatters": "Resiliency often looks ordinary before trouble arrives. The small reserve on the desk is what later gives the project room to respond."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch17.ex.principle-17-tradeoff",
+      "title": "The Skipped Check Trace",
+      "tags": [
+        "postmortem",
+        "quality",
+        "baseline"
+      ],
+      "planSpec": {
+        "domain": "software release postmortem",
+        "audience": "release managers tracing a failure after rollback",
+        "stakes": "locate the misstep that made recovery weaker",
+        "format": "postmortem",
+        "requiredBeat": "open after failure and find the decisive misstep"
+      },
+      "scenario": "Violette's release has already failed when the postmortem opens. The error log shows a skipped integration check, then a customer complaint, then a rollback notice. The team had schedule pressure, a warning from feedback, and a baseline nobody wanted to reopen. The defect was not the core failure. The failure was cutting the quality check while calling the unchanged date resilience.",
+      "whatToDo": "Violette marks the skipped integration check as the recovery failure and ties it to the tradeoff nobody was willing to name before release.",
+      "whyItMatters": "Postmortems should find the decision that made the system brittle. Here the team protected the baseline by weakening the very check that could have helped it recover."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch17.ex.principle-17-tradeoff",
+      "title": "The Sentence Maverick Stops",
+      "tags": [
+        "mistake recovery",
+        "migration",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "banking data migration",
+        "audience": "technical leads correcting their own pressure response",
+        "stakes": "notice endurance language before it harms recovery",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist catches his own error mid-stream"
+      },
+      "scenario": "Maverick is halfway through telling the migration team to add Saturday hours when his own sentence sounds wrong. He has framed resilience as endurance and adaptation as extra effort, while the risk log shows a cleaner tradeoff: move a low-value report and protect the data cutover. He stops mid-stream, names the error, and asks for feedback before the baseline becomes the excuse.",
+      "whatToDo": "Maverick interrupts himself, names the endurance error, and shifts the conversation to the low-value report that can move without hurting the cutover.",
+      "whyItMatters": "The center is the noticing. Resiliency fails when leaders call fatigue recovery, then miss the easier adaptation sitting in the risk log."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch17.fact.8",
+        "prompt": "Aaron reads a delivery log with four handoff failures over the week after schedule changes. He says the team has been resilient because the baseline dates still show green. Which first inference fits the PMBOK principle?",
+        "choices": [
+          "Green-Board Misread: Aaron should treat the green baseline as proof the handoff misses are separate noise.",
+          "Recovery Signal: Aaron should read the misses as evidence that the approach is not absorbing schedule pressure.",
+          "Method-Switch Reflex: Aaron should rename the work adaptive and leave the handoff pattern for later."
+        ],
+        "correctIndex": 1,
+        "explanation": "Green dates can hide brittle recovery. The handoff cluster after schedule changes is feedback that the approach is not absorbing pressure, so Aaron should inspect decisions, not celebrate the baseline.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch17.fact.7",
+        "prompt": "Medard inherits a PMO checklist where teams recite PMI's 12 principles at kickoff, then stop mentioning them during delivery reviews. What should he change first?",
+        "choices": [
+          "Kickoff Theater: Medard should add a longer opening slide that defines each principle in formal language.",
+          "Certification Comfort: Medard should keep the checklist as-is since accurate vocabulary proves shared understanding.",
+          "Decision Link: Medard should ask each review which principle changed a tradeoff, escalation, or feedback loop."
+        ],
+        "correctIndex": 2,
+        "explanation": "The issue is not whether teams can name the principle. Medard needs evidence that PMI's 12-principle standard changes behavior during delivery, when pressure and tradeoffs appear.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch17.fact.3",
+        "prompt": "Violette's dashboard shows a schedule slip, two rejected test runs, and no stakeholder feedback since the date moved. Which response best uses adaptability and resiliency?",
+        "choices": [
+          "Pressure Replan: Violette should reopen the tradeoff, gather feedback, and protect the quality check before confirming the date.",
+          "Date Armor: Violette should hold the moved date steady and ask testers to compress the rejected runs.",
+          "Silence Premium: Violette should limit stakeholder contact so the team has fewer voices during recovery."
+        ],
+        "correctIndex": 0,
+        "explanation": "The dashboard shows risk to value, quality, and learning. Violette should make the tradeoff visible and use feedback before confirming a date, while Date Armor hides the signal.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch17.fact.4",
+        "prompt": "During a campus renovation, Kendra's team can keep the baseline by spending its two-day resilience reserve on a cosmetic lobby task. Which reading of the principle should guide her?",
+        "choices": [
+          "Reserve Vanity: Kendra should spend the reserve on the lobby task because visible progress calms sponsors.",
+          "Value Guard: Kendra should save recovery capacity for work tied to safety, approval, or stakeholder value.",
+          "Plan Purity: Kendra should refuse any use of reserves so the original plan appears disciplined."
+        ],
+        "correctIndex": 1,
+        "explanation": "Recovery capacity exists to protect value, not to smooth cosmetic work or worship the original plan. Kendra should guard the reserve for disruptions that threaten outcomes.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch17.fact.9",
+        "prompt": "A supplier report gives Winnie three facts: a nine-day component delay, a still-valid prototype path, and a sponsor who will accept a smaller first release. Which move fits the hard edge?",
+        "choices": [
+          "Baseline Loyalty: Winnie should hide the smaller-release option to keep the original scope from drifting.",
+          "Pressure Heroics: Winnie should ask the team to recover the nine days through extra hours.",
+          "Behavioral Principle: Winnie should adapt scope through governance and protect the prototype value path."
+        ],
+        "correctIndex": 2,
+        "explanation": "The hard edge is behavior under pressure. Winnie has evidence, feedback, and a value path, so the right move changes the decision instead of reciting the principle or forcing heroics.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch17.fact.9",
+        "prompt": "Which sentence would worry Medard most during a PMO review?",
+        "choices": [
+          "Vocabulary Pass: We listed Embrace Adaptability and Resiliency, so the principle is covered.",
+          "Tradeoff Check: The risk changed, so we need to revisit the baseline and feedback path.",
+          "Recovery Check: The team can absorb this if we protect quality and rest."
+        ],
+        "correctIndex": 0,
+        "explanation": "This item asks for the worrying sentence. Vocabulary Pass is the exact hard-edge error: the phrase appears, but no delivery choice changes. The other lines show applied judgment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch17.fact.2",
+        "prompt": "Maverick leads a hybrid migration where software work adapts weekly but the training team follows a predictive rollout. A late defect hits the shared launch. Which application is strongest?",
+        "choices": [
+          "Method Silo: Maverick should say adaptability belongs to software, while training keeps its plan separate.",
+          "Hybrid Blur: Maverick should drop both approaches into one informal workflow until the launch feels calmer.",
+          "Shared Standard: Maverick should adjust the software path, revisit training impacts, and keep value delivery visible."
+        ],
+        "correctIndex": 2,
+        "explanation": "The principle travels across predictive, adaptive, and hybrid work. Maverick should not isolate one method or blur control; he should coordinate changes around shared value.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch17.fact.5",
+        "prompt": "Firmin's quality log shows that every time schedule pressure rises, the team skips peer review and later spends more time on defects. What should Firmin infer first?",
+        "choices": [
+          "Speed Mirage: Firmin should view skipped review as a necessary shortcut when dates get tight.",
+          "Recovery Debt: Firmin should treat the pattern as lost resilience and protect quality before the next rush.",
+          "Blame Search: Firmin should identify who approved each skipped review before discussing the delivery pattern."
+        ],
+        "correctIndex": 1,
+        "explanation": "The log shows a pressure habit that weakens recovery. Firmin should address the quality pattern before the next rush, while blame search delays the system fix.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch17.fact.4",
+        "prompt": "Your project board shows a new stakeholder request that adds no value but is easy to absorb. Aaron wants to approve it to prove the team is adaptable. Which correction fits?",
+        "choices": [
+          "Value Filter: Aaron should decline or defer the request unless it protects outcomes, trust, or learning.",
+          "Flexibility Theater: Aaron should approve the request so stakeholders see the team welcomes change.",
+          "Convenience Tailoring: Aaron should treat easy work as worth doing when spare capacity appears."
+        ],
+        "correctIndex": 0,
+        "explanation": "Adaptation is not churn. Aaron should keep value as the filter, since a change that protects no outcome, trust, or learning just spends capacity with better language.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch17.fact.3",
+      "front": "What evidence shows Embrace Adaptability and Resiliency has moved beyond vocabulary?",
+      "back": "It changes a visible decision: a tradeoff is escalated, feedback is used, quality is protected, or the approach shifts while value stays in view.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch17.fact.1",
+      "front": "Why is a kickoff document too weak to satisfy this PMBOK principle?",
+      "back": "Project conditions keep changing after kickoff. The principle has to guide delivery choices throughout the work, not sit inside one early artifact.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch17.fact.2",
+      "front": "How can predictive and adaptive teams both practice the same principle?",
+      "back": "Predictive teams may adapt through controlled change, reserves, and escalation. Adaptive teams may adapt through frequent feedback. In both cases, the behavior is learning and recovery toward value.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch17.fact.8",
+      "front": "When schedule pressure rises, what should a team inspect before defending the baseline?",
+      "back": "Inspect the tradeoff the pressure is creating: what value is at risk, what feedback has arrived, what recovery capacity remains, and what decision should change.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch17.fact.6",
+      "front": "How does Tailor Based on Context connect to adaptability and resiliency?",
+      "back": "Tailoring changes the practice, not the responsibility. The team may use predictive controls, adaptive feedback, or hybrid governance, but it still has to learn and recover toward value.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch17.fact.4",
+      "front": "How does Focus on Value limit a team's willingness to adapt?",
+      "back": "Focus on Value keeps adaptation from becoming churn. A change should protect an outcome, benefit, trust, or learning, not merely prove the team can accept more work.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card07",
+      "sourceAnchorId": "ch17.fact.5",
+      "front": "Why can team exhaustion make a project less resilient?",
+      "back": "Exhausted teams have less recovery capacity. When pressure consumes rest, quality checks, or cross-training, the next disruption lands on a brittle system.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Turn Pressure Into Recovery Choices",
+    "coreSkill": "Practice turning pressure into a visible recovery choice before the team defaults to endurance. Use Turn Pressure Into Recovery Choices by naming the changed evidence, the tradeoff it creates, the feedback needed, and the value to protect. The skill is not changing for its own sake; it is keeping recovery capacity available while decisions stay tied to value.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch17.ex.principle-17-tradeoff",
+        "context": "A schedule update turns a green baseline red within a day.",
+        "plan": "If schedule pressure turns the baseline red, then use Turn Pressure Into Recovery Choices before the next status note: name the tradeoff, request feedback, and pick the value to protect."
+      },
+      {
+        "sourceAnchorId": "ch17.ex.principle-17-pmi",
+        "context": "A review meeting starts with PMI vocabulary but no changed decision.",
+        "plan": "If PMI's 12 principles are being recited without action, then use Turn Pressure Into Recovery Choices by asking which adaptation or resilience choice changes today."
+      },
+      {
+        "sourceAnchorId": "ch17.fact.5",
+        "context": "A deadline tempts the team to skip quality or stakeholder contact.",
+        "plan": "If the deadline tempts a shortcut, then use Turn Pressure Into Recovery Choices and ask what recovery capacity the shortcut would spend before approving it."
+      },
+      {
+        "sourceAnchorId": "ch17.fact.6",
+        "context": "A lifecycle debate turns into predictive versus adaptive posturing.",
+        "plan": "If the debate becomes method labeling, then use Turn Pressure Into Recovery Choices and ask which practice fits the context while preserving the same responsibility to learn and recover."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, choose one active project and complete a recovery-choice note with four lines: changed evidence, tradeoff, feedback source, and recovery capacity.",
+    "weeklyPractice": "For one week, hold a 15-minute Friday recovery-choice review in the same place. Review one pressure event, one baseline change, one feedback signal, and one value protected."
+  },
+  "memorableLines": [
+    {
+      "text": "Recovery is a design choice, not a mood.",
+      "location": "breakdown.fastRead",
+      "why": "It makes resiliency concrete without turning it into bravado."
+    },
+    {
+      "text": "A baseline is useful until it becomes a hiding place.",
+      "location": "breakdown.deepRead",
+      "why": "It names the moment planning stops helping and starts concealing."
+    },
+    {
+      "text": "Adaptation without value is churn; resilience without rest is denial.",
+      "location": "breakdown.fullRead",
+      "why": "It captures both limits of the principle in one balanced line."
+    }
+  ]
+}

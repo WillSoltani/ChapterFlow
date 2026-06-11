@@ -66,30 +66,27 @@
   ],
   "targetReader": "Managers, founders, operators, civic leaders, consultants, and ambitious individual contributors who are tired of plans that sound impressive but do not change outcomes. They care because the book gives them a way to distinguish real strategic work from activity, consensus, and slogans.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
+    "register": "analytical",
+    "person": "third",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "make tradeoffs visible instead of abstract"
+      "distinguishes diagnosis, guiding policy, and coherent action with dry precision",
+      "spots fluff, proximate objectives, and bad strategy hiding in big words",
+      "uses business and policy cases as tests of leverage",
+      "keeps the prose skeptical of goals that do not force choices"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no fake case studies or invented source anchors"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not call ambition a strategy.",
+      "Do not let a list of initiatives stand in for a kernel."
     ]
   },
   "voiceSpecimens": [
-    "The plan looked serious because every department had a line in it. That was the warning sign.",
-    "A real diagnosis makes someone uncomfortable because it closes doors.",
-    "You can call it focus only after you name what will not be funded.",
-    "The weak link does not care how strong the rest of the chain feels in the meeting.",
-    "A strategy is not a mood of confidence. It is a response to a problem that has teeth.",
-    "When the source of power is hidden, copying the visible move gives you the costume without the engine."
+    "A strategy starts with the obstacle, not the ambition.",
+    "If the actions do not cohere, the slogan is doing theater."
   ],
   "voiceAntiSpecimens": [
     "In this chapter, readers will learn the importance of strategic alignment.",
@@ -103,6 +100,8 @@
     "Do not turn the book into generic leadership advice about vision, alignment, or execution.",
     "Do not treat every chapter as a synonym for focus; leverage, proximate objectives, design, growth, dynamics, and disciplined thinking each need their own move.",
     "Do not invent detailed Rumelt anecdotes for thin-source chapters.",
-    "Do not make examples default to boardrooms, whiteboards, coffee cups, classrooms, or spreadsheet scenes."
+    "Do not make examples default to boardrooms, whiteboards, coffee cups, classrooms, or spreadsheet scenes.",
+    "Do not use strategy theater vocabulary.",
+    "Do not praise alignment without a diagnosis of the obstacle."
   ]
 }

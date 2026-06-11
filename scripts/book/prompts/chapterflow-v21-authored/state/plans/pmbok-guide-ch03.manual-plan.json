@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch03",
+  "number": 3,
+  "title": "Organizational Governance Systems",
+  "coreMove": "Teams protect value when their governance system maps authority to risk: local calls stay local, sponsor calls are explicit, and portfolio escalation happens early.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "a clinic scheduling replacement with a funding gap and a sponsor away at an offsite",
+      "audience": "project managers who need authority before a risky change hardens",
+      "stakes": "patients may wait longer if the rollout pauses, but unauthorized scope change can break the portfolio promise",
+      "format": "dilemma",
+      "requiredBeat": "two poor choices expose why decision rights and escalation must be visible before scope, funding, risk, or benefits shift"
+    },
+    {
+      "domain": "a PMO review room where a project sponsor wants the team to decide a benefit tradeoff",
+      "audience": "sponsors and PMO analysts clarifying authority before a steering meeting",
+      "stakes": "a local choice could change a benefit forecast that the portfolio office already promised",
+      "format": "dialogue",
+      "requiredBeat": "the exchange itself distinguishes local decision rights from sponsor and portfolio escalation"
+    },
+    {
+      "domain": "a rail control software patch that looks smaller than an office refresh",
+      "audience": "technical leads balancing speed with regulated safety exposure",
+      "stakes": "a cheap change may deserve heavier oversight than a larger but low-risk effort",
+      "format": "predict_reveal",
+      "requiredBeat": "the expected light review is overturned when safety-critical regulation and strategic importance surface"
+    },
+    {
+      "domain": "a mobile product update where adoption metrics changed after a schedule slip",
+      "audience": "product owners and portfolio coordinators handling fast, informal escalations",
+      "stakes": "a team may keep moving locally after a benefit assumption has shifted",
+      "format": "text_thread",
+      "requiredBeat": "a compressed chat shows when decision rights leave the team and move to sponsor and portfolio escalation"
+    },
+    {
+      "domain": "a compliance intake desk that sorts change requests by default templates",
+      "audience": "governance leads who need to stop a routine when risk signals appear",
+      "stakes": "a routine low-review stamp could miss a regulated safety exposure",
+      "format": "reset_moment",
+      "requiredBeat": "an ordinary intake routine is interrupted, paused, and restarted around risk-based governance intensity"
+    },
+    {
+      "domain": "a portfolio coordinator's desk on the morning of a review",
+      "audience": "readers learning to see governance intensity in ordinary artifacts",
+      "stakes": "two projects look similar in paperwork but different in exposure",
+      "format": "vignette",
+      "requiredBeat": "a close observed desk scene shows governance rigor as a match to risk, not a one-size ritual"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 2,
+      "evaluate": 3,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.310Z"
+}

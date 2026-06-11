@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-4-hour-workweek",
+  "chapterNumber": 11,
+  "chapterId": "the-4-hour-workweek-ch11",
+  "verdict": "REVISE",
+  "contentHash": "fcbadf34ca8bba8d",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:30:07.924Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=100; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/repeated_unit",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 11,
+      "chapterId": "the-4-hour-workweek-ch11",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "1be8fee1f101ace2",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:21.337Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; management by absence, fulfillment provider, scripts, thresholds, exception reports; BrainQUICKEN accurate. Coherent; cards answer fronts; plan Write the Absence Rules non-empty. No corruption."
+    }
+  ]
+}

@@ -43,32 +43,27 @@
   ],
   "targetReader": "Professionals who make or influence high-stakes assessments — hiring managers, clinicians, judges, underwriters, analysts, executives, policy designers — and who assume their expertise makes their judgment reliable without realizing that reliability requires measurement.",
   "voiceCharter": {
-    "register": "plainspoken-precise",
-    "person": "second",
-    "cadence": "medium-short",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "long",
     "signatureMoves": [
-      "open on a concrete institutional moment before naming the principle",
-      "use a sharp comparison between two matched cases to expose the scatter",
-      "state distinctions cleanly: this is X, not Y, and here is what that difference costs",
-      "let the numbers speak: quantities and proportions rather than adjectives like 'large' or 'significant'",
-      "close a section with one sentence that reframes what the reader thought they already understood"
+      "uses judgment hygiene, error decomposition, and decision audits",
+      "separates bias from unwanted variability with clinical patience",
+      "turns professional judgment into something measurable and correctable",
+      "keeps examples institutional: judges, underwriters, doctors, forecasters"
     ],
     "avoidMoves": [
-      "no chapter, book, or author meta-references in prose",
-      "no em dashes",
-      "no reusable hook, counter, or tryThisNow stems across chapters",
-      "no coaching language (try to, it is important to, keep in mind)",
-      "no passive constructions that hide the judging human (decisions were made, variability was found)"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not call all judgment error bias.",
+      "Do not make noise sound like personality difference."
     ]
   },
   "voiceSpecimens": [
-    "Two underwriters pricing the same policy should not land forty points apart. They did.",
-    "Your judgment on Tuesday is not the same instrument as your judgment on Friday afternoon. The case has not changed. You have.",
-    "Bias is a lean. Noise is a scatter. A team that leans together can still scatter individually, and no amount of diversity training fixes a scatter.",
-    "The measure of a good judgment system is not whether one expert gets it right. It is whether any expert gets the same answer twice.",
-    "Replacing a noisy judge with a consistent rule feels like a loss of human touch. The math suggests it is often a gain in human fairness.",
-    "You cannot correct for noise by subtracting the average. You can only correct for it by reducing the spread.",
-    "Agreement in a group is not accuracy in a group. It is frequently the quieter voice conceding to the louder one."
+    "Two experts should not become two lotteries.",
+    "Measure the spread before arguing about the average."
   ],
   "voiceAntiSpecimens": [
     "This section explores how noise and bias are important concepts that affect decision-making in many areas of life.",
@@ -84,6 +79,8 @@
     "implying that noise can be fully eliminated rather than meaningfully reduced",
     "equating less noise with better judgment in all contexts without acknowledging tradeoffs",
     "using individual moral failure as the explanation for noise rather than systemic process conditions",
-    "framing disagreement between experts as one expert being right and one being wrong, rather than both being noisy"
+    "framing disagreement between experts as one expert being right and one being wrong, rather than both being noisy",
+    "Do not skip the measurement of disagreement.",
+    "Do not solve noise with individual confidence."
   ]
 }

@@ -51,33 +51,27 @@
   ],
   "targetReader": "A thoughtful general reader who suspects polite explanations are incomplete but does not want a cheap cynical theory of everyone else. They care because the book gives them a practical way to read workplaces, families, institutions, politics, and their own motives with more honesty and less self-flattery.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
+    "register": "wry",
+    "person": "third",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "keep mixed motives alive instead of choosing purity or fraud",
-      "make the social payoff visible in ordinary behavior"
+      "uses hidden motives, status games, and institutional incentives with dry mischief",
+      "treats noble explanations as hypotheses that need an audience check",
+      "keeps the tone clever, skeptical, and faintly uncomfortable",
+      "turns social behavior into signaling without sneering at every motive"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no blanket cynicism that says every good act is fake",
-      "no invented named studies, statistics, or historical anecdotes"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make every motive cynically fake.",
+      "Do not hide the audience or status payoff."
     ]
   },
   "voiceSpecimens": [
-    "The favor may be real, and the audience may still be part of the favor.",
-    "A clean reason often arrives after the messy choice has already found a chair.",
-    "You do not have to sneer at the gift to notice the donor wall behind it.",
-    "The rule holds because the group can remember who made it expensive to break.",
-    "A signal works best when it looks like something else you were doing anyway.",
-    "The uncomfortable question is not whether the motive is ugly. It is what the motive gets to hide behind.",
-    "Once you see the second game, the first game does not disappear; it only stops being alone."
+    "The donation may help, and the audience may still be part of the transaction.",
+    "Public virtue rarely travels without luggage."
   ],
   "voiceAntiSpecimens": [
     "This chapter explores the complex psychology of hidden motives in society.",
@@ -93,6 +87,8 @@
     "Do not invent famous experiments, historical anecdotes, election figures, medical trials, nonprofit statistics, or artist case studies beyond the frozen source.",
     "Do not turn the institutional chapters into culture-war arguments; keep the signal mechanism central.",
     "Do not make the reader feel superior to everyone else; the elephant is also in the reader's own brain.",
-    "Do not reuse the same reveal shell across chapters where a protagonist realizes the official reason was only a mask."
+    "Do not reuse the same reveal shell across chapters where a protagonist realizes the official reason was only a mask.",
+    "Do not let public reasons pass unexamined.",
+    "Do not turn hidden motives into cheap gotchas."
   ]
 }

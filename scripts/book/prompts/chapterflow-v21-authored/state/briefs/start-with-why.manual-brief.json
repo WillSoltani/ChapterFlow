@@ -6,25 +6,36 @@
   "coreIdeas": [],
   "targetReader": "",
   "voiceCharter": {
-    "register": "plainspoken",
+    "register": "warm",
     "person": "third",
     "cadence": "medium",
     "signatureMoves": [
-      "states a simple leadership distinction, then reinforces it through business anecdotes and brand contrasts",
-      "capitalizes WHY, HOW, and WHAT as named conceptual layers rather than ordinary question words",
-      "uses diagrams and metaphors such as the circle, cone, megaphone, bell curve, and celery test to make abstract purpose operational",
-      "returns repeatedly to Apple, the Wright brothers, Martin Luther King Jr., Southwest Airlines, and other familiar anchors",
-      "frames claims as practical pattern recognition, moving from story to principle to business consequence"
+      "uses why, trust, safety, and belonging as organizing nouns",
+      "moves from leader conduct to the felt circle around a team or customer",
+      "keeps the voice earnest, expansive, and mission-oriented",
+      "turns biology or examples into a moral claim about service",
+      "states a simple leadership distinction, then reinforces it through business anecdotes and brand contrasts"
     ],
     "avoidMoves": [
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make WHY a branding tagline.",
+      "Do not let inspirational warmth replace concrete leader behavior.",
       "does not build an academic literature review with extended caveats",
-      "does not rely on dense statistical proof beyond a few adoption-curve percentages and business outcomes",
-      "does not use literary ornament or ironic detachment",
-      "does not treat purpose as a private journal exercise divorced from hiring, marketing, culture, and operations"
+      "does not rely on dense statistical proof beyond a few adoption-curve percentages and business outcomes"
     ]
   },
+  "voiceSpecimens": [
+    "People don't follow the polished line; they follow the reason that costs you something.",
+    "Start with why, then make every what prove it."
+  ],
   "teachingArc": "Part 1 shows why assumption-based management and manipulative sales tactics create brittle results. Part 2 introduces the Golden Circle, ties it to decision biology, and defines alignment as clarity of WHY, discipline of HOW, and consistency of WHAT. Part 3 explains how trust and early adopters create a following; Part 4 turns WHY into leadership roles, communication, and symbols; Part 5 warns that success can blur the founding cause; Part 6 reframes WHY as something discovered from origins and protected through self-competition.",
-  "forbiddenMoves": [],
+  "forbiddenMoves": [
+    "Do not use purpose language without a sacrifice or protection attached.",
+    "Do not make trust sound automatic because the mission sounds noble."
+  ],
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-05-25T02:26:10.240Z"
+  "derivedAt": "2026-06-10T01:31:09.374Z"
 }

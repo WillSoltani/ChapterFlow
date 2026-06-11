@@ -1,0 +1,320 @@
+{
+  "chapterId": "hooked-ch06",
+  "number": 6,
+  "title": "What Are You Going To Do With This?",
+  "readingTimeMinutes": 11,
+  "hook": "The Manipulation Matrix asks whether you would live with your own hook.",
+  "counterintuition": "Ethics starts from ownership of influence: the maker must understand the behavior and defend the user's benefit.",
+  "tryThisNow": "Place your product in the Manipulation Matrix by answering two questions honestly: would you use it, and does it materially improve users' lives?",
+  "keyTakeaway": "The morality of habit design depends on the maker's relationship to the product and the product's real effect on users, not on engagement alone.",
+  "breakdown": {
+    "fastRead": "The Manipulation Matrix stops habit mechanics from looking like morally neutral craft. It asks two questions: would the maker use the product, and does the product materially improve users' lives?\n\nA yes to both creates the Facilitator. A Peddler believes in the benefit but does not use the product. An Entertainer uses the product without claiming deep improvement. A Dealer neither uses it nor believes it helps. The same hook mechanics look different in each quadrant.",
+    "deepRead": "Habit-forming design is manipulation in the plain sense: it deliberately shapes behavior. The idea refuses to hide that fact. The ethical task is to decide what kind of influence the builder is applying.\n\nThe Facilitator quadrant is strongest because the maker's own need overlaps with the user's need. Direct use creates empathy, and belief in real benefit gives the work a defensible aim.\n\nThe Peddler quadrant is more fragile. A builder may believe a product helps others while never using it personally. Good intentions remain possible, but the distance from the user's lived problem increases the risk of hubris.\n\nThe Entertainer quadrant is not automatically bad. Entertainment can be worthy, and a maker may enjoy the product. The danger is pretending amusement is material life improvement or relying on novelty that constantly has to be refreshed.\n\nThe Dealer quadrant carries the harshest warning. If the maker would not use the product and does not believe it improves life, the tools become extraction. Engagement metrics cannot rescue that posture.",
+    "fullRead": "The idea's title is a direct challenge because the Hook Model has now become powerful enough to require judgment. A team that can trigger, simplify, reward, and invite investment can help users build constructive routines or can exploit predictable vulnerabilities.\n\nThe Manipulation Matrix gives the ethical screen. It does not begin with a press release, a mission statement, or a retention graph. It asks whether the maker would use the product and whether the product materially improves users' lives. Those answers create four roles.\n\nThe Facilitator uses the product and believes it helps. This is the strongest posture because empathy and benefit point in the same direction. The maker has felt the problem, wants the solution, and can recognize when the design begins to serve or betray the user.\n\nThe Peddler believes the product improves life but does not use it personally. That is not automatically corrupt, but it is dangerous. The builder can start imagining another group's needs from a distance. Without first-hand use, research and humility have to work harder.\n\nThe Entertainer uses the product but does not claim material improvement. Games, media, and light social products may sit here honestly. The ethical danger is category inflation: calling entertainment medicine, productivity, or deep flourishing because those labels make engagement look nobler. Another business risk is novelty. Entertainment often needs renewal because delight fades.\n\nThe Dealer neither uses the product nor believes it helps. This is where habit design becomes closest to extraction. The team understands the behavior well enough to shape it but not well enough, or not honestly enough, to defend the user's welfare.\n\nThe hard edge is that labels do not settle the matter. A team can call itself a Facilitator and still create harm. A product can intend benefit and still produce unhealthy behavior. The matrix should start ongoing scrutiny, not end it.\n\nThe practical audit is personal and uncomfortable. Would you recommend the product to someone you love? Are you proud of the behavior you are making easier? Do the metrics celebrate a user outcome or only a company outcome? Are you using the same product under the same conditions as the people you influence?\n\nThe framework does not ask builders to stop influencing behavior. It asks them to own the influence. Habit design is strongest when creator empathy, real user benefit, and behavioral mechanics line up. Without that alignment, a hook may still work, but the maker should be honest about what kind of work it is doing."
+  },
+  "examples": [
+    {
+      "exampleId": "hooked-ch06-ex01",
+      "title": "Founder self-audit",
+      "tags": [
+        "Manipulation Matrix",
+        "Facilitator",
+        "ethics"
+      ],
+      "planSpec": {
+        "domain": "founder offsite",
+        "audience": "startup founder",
+        "stakes": "whether the team belongs in the Facilitator quadrant",
+        "format": "self-audit",
+        "requiredBeat": "Apply Facilitator to whether the team belongs in the Facilitator quadrant without flattening the source case."
+      },
+      "scenario": "At a founder offsite, Anika places her own wellness product in the Manipulation Matrix. She uses it daily and believes it improves a problem she has personally felt. That does not end the ethics, but it gives the Facilitator quadrant a real footing.",
+      "whatToDo": "Write the two matrix answers in plain language, then add the harm you will monitor even if both answers are yes.",
+      "whyItMatters": "The Facilitator quadrant is strongest when personal use and user benefit overlap, but it still requires ongoing scrutiny."
+    },
+    {
+      "exampleId": "hooked-ch06-ex02",
+      "title": "Distant good intentions",
+      "tags": [
+        "Manipulation Matrix",
+        "Peddler",
+        "users"
+      ],
+      "planSpec": {
+        "domain": "edtech roadmap",
+        "audience": "product lead",
+        "stakes": "why belief in benefit is not enough",
+        "format": "roadmap review",
+        "requiredBeat": "Apply Peddler to why belief in benefit is not enough without flattening the source case."
+      },
+      "scenario": "In an edtech roadmap review, the team insists their app helps students, but no one uses it or studies with it. The Manipulation Matrix names the Peddler risk: they may be right about benefit, yet far from the student's lived friction.",
+      "whatToDo": "Pair the benefit claim with direct user immersion. If you do not use the product, increase humility through observation and evidence.",
+      "whyItMatters": "The Peddler quadrant warns that good intentions can drift when builders do not personally feel the user's problem."
+    },
+    {
+      "exampleId": "hooked-ch06-ex03",
+      "title": "Entertainment honesty",
+      "tags": [
+        "Manipulation Matrix",
+        "Entertainer",
+        "novelty"
+      ],
+      "planSpec": {
+        "domain": "game publishing meeting",
+        "audience": "game producer",
+        "stakes": "whether fun is being mislabeled as life improvement",
+        "format": "category check",
+        "requiredBeat": "Apply Entertainer to whether fun is being mislabeled as life improvement without flattening the source case."
+      },
+      "scenario": "At a game publishing meeting, Brennan enjoys the product and knows players do too. The Manipulation Matrix places it near Entertainer, not Facilitator. The honest claim is fun, challenge, and social play, not a grand promise of material life improvement.",
+      "whatToDo": "Keep the value claim honest. Design for enjoyment without dressing novelty as medicine or moral rescue.",
+      "whyItMatters": "The Entertainer quadrant legitimizes pleasure while warning against inflated claims and the constant need for fresh novelty."
+    },
+    {
+      "exampleId": "hooked-ch06-ex04",
+      "title": "Extraction dashboard",
+      "tags": [
+        "Manipulation Matrix",
+        "Dealer",
+        "engagement"
+      ],
+      "planSpec": {
+        "domain": "adtech metrics review",
+        "audience": "ethics reviewer",
+        "stakes": "when engagement hides lack of user benefit",
+        "format": "metrics challenge",
+        "requiredBeat": "Apply Dealer to when engagement hides lack of user benefit without flattening the source case."
+      },
+      "scenario": "In an adtech metrics review, Farah asks whether anyone would use the product themselves or believes it improves users' lives. The room talks only about session length. The Manipulation Matrix gives the uncomfortable name: Dealer risk.",
+      "whatToDo": "Do not let engagement answer ethical questions. Require a user-benefit claim that the team can defend outside the dashboard.",
+      "whyItMatters": "The Dealer quadrant shows how hook mechanics become extraction when neither maker use nor user benefit is present."
+    },
+    {
+      "exampleId": "hooked-ch06-ex05",
+      "title": "Family recommendation test",
+      "tags": [
+        "Manipulation Matrix",
+        "Facilitator",
+        "Dealer"
+      ],
+      "planSpec": {
+        "domain": "trust council",
+        "audience": "product counsel",
+        "stakes": "whether a team is proud of the behavior it shapes",
+        "format": "question-led",
+        "requiredBeat": "Apply Facilitator to whether a team is proud of the behavior it shapes without flattening the source case."
+      },
+      "scenario": "At a trust council, Amira asks whether the team would recommend the product to a younger sibling. The question cuts through quadrant theater. A product called beneficial can still encourage behavior the builders would not want near their own family.",
+      "whatToDo": "Use the family recommendation as a pressure test, then return to the matrix answers and the behavior being encouraged.",
+      "whyItMatters": "The Manipulation Matrix is not public relations. It asks for honesty about pride, use, benefit, and possible harm."
+    },
+    {
+      "exampleId": "hooked-ch06-ex06",
+      "title": "Mission statement gap",
+      "tags": [
+        "Manipulation Matrix",
+        "Peddler",
+        "Facilitator"
+      ],
+      "planSpec": {
+        "domain": "nonprofit app review",
+        "audience": "program director",
+        "stakes": "why mission language cannot settle the quadrant",
+        "format": "mission review",
+        "requiredBeat": "Apply Peddler to why mission language cannot settle the quadrant without flattening the source case."
+      },
+      "scenario": "In a nonprofit app review, the mission statement sounds noble, but field users ignore the feature and staff do not use it either. The team wants Facilitator status; the Manipulation Matrix says the evidence looks closer to Peddler distance.",
+      "whatToDo": "Test the quadrant with behavior, not mission language. Ask who uses it, who benefits, and what evidence shows improvement.",
+      "whyItMatters": "The matrix keeps ethics grounded in actual use and material benefit instead of a flattering label."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "hooked-ch06-q01",
+        "prompt": "What two questions define the Manipulation Matrix?",
+        "choices": [
+          "How many users return daily, and how much revenue does each user produce?",
+          "Is the product entertaining, and can it generate press attention?",
+          "Would the maker use the product, and does it materially improve users' lives?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The matrix asks about maker use and user benefit. Engagement metrics alone cannot answer the ethical question.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch06-q02",
+        "prompt": "Who is a Facilitator in the matrix?",
+        "choices": [
+          "A maker who never uses the product but thinks others should.",
+          "A maker who uses the product and believes it improves users' lives.",
+          "A maker who enjoys the product but makes no benefit claim."
+        ],
+        "correctIndex": 1,
+        "explanation": "Facilitators have personal use and belief in benefit. The overlap gives empathy and a defensible aim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch06-q03",
+        "prompt": "What is the Peddler risk?",
+        "choices": [
+          "The builder believes in the benefit but lacks first-hand use, creating distance from the user's reality.",
+          "The builder uses the product but refuses to add novelty.",
+          "The builder neither uses the product nor believes it helps."
+        ],
+        "correctIndex": 0,
+        "explanation": "Peddlers may have good intentions, but not using the product can produce hubris and weak understanding.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch06-q04",
+        "prompt": "Which claim best describes the Entertainer quadrant?",
+        "choices": [
+          "It is always unethical because fun has no value.",
+          "It is the same as the Facilitator quadrant.",
+          "It uses the product but does not claim material life improvement."
+        ],
+        "correctIndex": 2,
+        "explanation": "Entertainers can create legitimate enjoyment, but they should not pretend fun is deep material improvement.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch06-q05",
+        "prompt": "Why is the Dealer quadrant ethically dangerous?",
+        "choices": [
+          "The maker uses the product too often and enjoys it.",
+          "The maker neither uses the product nor believes it improves users' lives.",
+          "The maker believes in the product but asks too many research questions."
+        ],
+        "correctIndex": 1,
+        "explanation": "Dealer posture places habit mechanics closest to extraction because empathy and user benefit are both missing.",
+        "bloomsLevel": "remember",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch06-q06",
+        "prompt": "What is the idea's view of manipulation?",
+        "choices": [
+          "Behavior design deliberately influences users, so the ethical issue is whether that influence is defensible.",
+          "Manipulation disappears when retention is high enough to make users return every week.",
+          "Only paid advertising counts as manipulation because product design is neutral."
+        ],
+        "correctIndex": 0,
+        "explanation": "The idea uses manipulation broadly. The question is not whether influence exists, but whether it serves users responsibly.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch06-q07",
+        "prompt": "A team calls itself beneficial but would not recommend the product to family. What should happen?",
+        "choices": [
+          "Ignore the discomfort because the label already settled the ethics.",
+          "Move the product automatically into Facilitator status.",
+          "Treat that discomfort as evidence for a deeper matrix audit."
+        ],
+        "correctIndex": 2,
+        "explanation": "The matrix asks for honesty. Pride in the encouraged behavior matters more than a flattering label.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch06-q08",
+        "prompt": "What does the matrix do with engagement metrics?",
+        "choices": [
+          "It makes them the only test of user benefit.",
+          "It treats them as useful business data but insufficient for ethics.",
+          "It rejects all products with repeat use."
+        ],
+        "correctIndex": 1,
+        "explanation": "Retention can show behavior change, not whether that change helps users. The matrix asks a different set of questions.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch06-q09",
+        "prompt": "Which builder posture is most durable according to the idea?",
+        "choices": [
+          "Building for a problem the maker understands personally and can defend as beneficial.",
+          "Building for users the maker never studies because distance increases objectivity.",
+          "Building products the maker dislikes as long as novelty is high."
+        ],
+        "correctIndex": 0,
+        "explanation": "The strongest posture joins maker empathy with real user benefit. That combination supports both ethics and product judgment.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "hooked-ch06-card01",
+      "front": "What are the Manipulation Matrix questions?",
+      "back": "Would the maker use the product, and does it materially improve users' lives? The answers sort the builder into four ethical postures.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch06-card02",
+      "front": "What defines a Facilitator?",
+      "back": "A Facilitator uses the product and believes it improves users' lives. The maker's own need overlaps with the user's need.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch06-card03",
+      "front": "Why is the Peddler quadrant risky?",
+      "back": "The maker may believe in the benefit but lacks first-hand use. That distance can produce hubris and weak understanding of user pain.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "hooked-ch06-card04",
+      "front": "What makes Dealer the warning quadrant?",
+      "back": "The maker neither uses the product nor believes it helps users. Habit mechanics then become extraction tools instead of service tools.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Audit Your Influence",
+    "coreSkill": "Use the Manipulation Matrix before optimizing behavior. Answer maker use and user benefit honestly, then identify the harm signals you will watch.",
+    "ifThenPlans": [
+      {
+        "context": "When a metric looks exciting",
+        "plan": "If engagement rises, then ask whether the encouraged behavior improves users' lives."
+      },
+      {
+        "context": "When the team lacks first-hand use",
+        "plan": "If no builder uses the product, then add direct user immersion before making benefit claims."
+      },
+      {
+        "context": "When entertainment is the real value",
+        "plan": "If the product is mainly fun, then describe it honestly instead of inflating the claim."
+      },
+      {
+        "context": "When ethics feels settled",
+        "plan": "If the quadrant label sounds flattering, then test it with family recommendation and harm monitoring."
+      }
+    ],
+    "twentyFourHourChallenge": "Place your product in the matrix and write one sentence you would be willing to defend to a user you care about.",
+    "weeklyPractice": "Revisit the matrix each week with one behavior metric and one user-benefit metric side by side."
+  },
+  "memorableLines": [
+    {
+      "text": "The Manipulation Matrix stops habit mechanics from looking like morally neutral craft.",
+      "location": "breakdown.fastRead",
+      "why": "It personalizes the ethical audit."
+    },
+    {
+      "text": "Engagement metrics cannot rescue that posture.",
+      "location": "breakdown.deepRead",
+      "why": "It names the limit of dashboards."
+    },
+    {
+      "text": "The framework does not ask builders to stop influencing behavior.",
+      "location": "breakdown.fullRead",
+      "why": "It clarifies that responsibility, not abstention, is the demand."
+    }
+  ]
+}

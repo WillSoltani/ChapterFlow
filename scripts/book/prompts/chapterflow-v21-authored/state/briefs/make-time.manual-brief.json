@@ -49,28 +49,25 @@
   "voiceCharter": {
     "register": "plainspoken",
     "person": "second",
-    "cadence": "medium",
+    "cadence": "short",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "land examples with protagonist names that read naturally to Canadian, American, and European readers -- 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+      "uses friendly design-sprint language around Highlight, Laser, Energize, and Reflect",
+      "keeps tactics small, testable, and forgiving",
+      "treats phones, calendars, and defaults as design materials",
+      "sounds like two product designers helping a busy friend run an experiment"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make Make Time into monkish discipline.",
+      "Do not add heavy productivity machinery where a small default change is the point."
     ]
   },
   "voiceSpecimens": [
-    "The day did not explode. It just started without you.",
-    "A full calendar can look like proof until you ask what it protected.",
-    "The feed feels relaxing because it never asks you to choose.",
-    "Pick the thing you would be glad to remember tonight, then give it a place on the day before the day fills itself.",
-    "Focus gets easier when the phone has to cross the room before it can reach you.",
-    "Your body is not a side project. It is the battery your attention keeps borrowing from.",
-    "A rough day is still useful if it tells you which small setting to change tomorrow."
+    "Pick one highlight.",
+    "Design the day around it."
   ],
   "voiceAntiSpecimens": [
     "In this chapter, readers will explore a transformational productivity framework.",
@@ -85,6 +82,8 @@
     "Do not make every problem a phone addiction problem; the Busy Bandwagon matters as much as Infinity Pools.",
     "Do not promise total control over the day or total escape from modern work.",
     "Do not turn Energize into medical or wellness claims beyond modest attention support.",
-    "Do not turn Reflect into elaborate tracking, scoring, or self-surveillance."
+    "Do not turn Reflect into elaborate tracking, scoring, or self-surveillance.",
+    "Do not confuse a Highlight with a full task list.",
+    "Do not make the method punitive when it is experimental."
   ]
 }

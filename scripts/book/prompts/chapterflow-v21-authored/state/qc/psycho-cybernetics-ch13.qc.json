@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "psycho-cybernetics",
+  "chapterNumber": 13,
+  "chapterId": "psycho-cybernetics-ch13",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "66c17aaee2bc8b4e",
+  "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+  "reviewedAt": "2026-06-10T01:25:01.933Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN ~89. 9/9 keys correct; crisis=Greek 'decision' accurate; three crisis practices (calm practice/crisis energy/worst-outcome) grounded; de-templated; cards good.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 13,
+      "chapterId": "psycho-cybernetics-ch13",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "05a29b0a9617ff16",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:25:01.933Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~89. 9/9 keys correct; crisis=Greek 'decision' accurate; three crisis practices (calm practice/crisis energy/worst-outcome) grounded; de-templated; cards good."
+    }
+  ]
+}

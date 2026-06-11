@@ -1,0 +1,41 @@
+{
+  "bookId": "hooked",
+  "title": "Hooked",
+  "author": "Nir Eyal",
+  "thesisParagraph": "Products become habitual when they repeatedly connect a user's felt problem to a simple action, an unpredictable reward, and a small investment that makes returning more likely. Habit design is strongest when it is measured, ethically bounded, and tied to a real user need rather than mere attention capture.",
+  "coreIdeas": [],
+  "targetReader": "",
+  "voiceCharter": {
+    "register": "analytical",
+    "person": "third",
+    "cadence": "medium",
+    "signatureMoves": [
+      "uses triggers, traction, distraction, investment, and pacts as named mechanisms",
+      "moves quickly from user psychology to product or attention design",
+      "asks what internal trigger is being relieved before blaming the tool",
+      "keeps diagrams and acronyms close to real behavior loops",
+      "opens concepts with familiar consumer-technology scenarios before naming the behavioral mechanism"
+    ],
+    "avoidMoves": [
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not blame technology before naming the internal trigger.",
+      "Do not make behavior design sound like manipulation without mechanism.",
+      "does not linger in abstract theory after introducing a behavioral concept",
+      "does not write in a literary or memoir-heavy register"
+    ]
+  },
+  "voiceSpecimens": [
+    "A product becomes habit when the itch and the trigger learn each other's address.",
+    "The loop works only after the user invests a little of themselves."
+  ],
+  "teachingArc": "The opening establishes why habits matter commercially and how to tell whether a product belongs in the Habit Zone. The middle four stages teach the Hook Model in order: trigger, action, variable reward, and investment. The ending adds ethical screening, demonstrates the full loop through YouVersion, and turns the framework into a testing and opportunity-finding process.",
+  "forbiddenMoves": [
+    "Do not turn Eyal into generic focus advice.",
+    "Do not skip the loop structure when explaining habit or distraction."
+  ],
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:55:57.481Z"
+}

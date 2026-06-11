@@ -103,33 +103,27 @@
   ],
   "targetReader": "A thoughtful adult facing charged workplace, family, friendship, or partner conversations where being right is not enough and avoiding the subject has started to cost more than raising it.",
   "voiceCharter": {
-    "register": "plainspoken",
+    "register": "warm",
     "person": "second",
     "cadence": "medium",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "qualify limits without sounding evasive",
-      "let compassion and rigor sit in the same paragraph"
+      "separates what happened, feelings, and identity as distinct conversations",
+      "uses both-sides fairness without pretending harm and impact are identical",
+      "turns conflict into contribution, intent, impact, and learning questions",
+      "keeps the prose humane, procedural, and careful with blame"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no victory language about winning the hard talk",
-      "no scripts that make a person sound managed instead of real"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make listening sound like surrender.",
+      "Do not resolve the conversation before the identity stakes are named."
     ]
   },
   "voiceSpecimens": [
-    "You can be accurate about the facts and still be in the wrong conversation.",
-    "The sentence that feels most urgent is often the sentence protecting your pride.",
-    "A feeling you refuse to name does not leave the room. It finds another door.",
-    "The other person may be defending a self-image you cannot see, and so may you.",
-    "A good opener gives both people a place to stand before either person has to defend themselves.",
-    "Say the hard thing cleanly enough that it can be discussed, not so sharply that it has to be survived.",
-    "The point is not to sound skilled. The point is to be more available to reality than you were ten minutes ago."
+    "You don't have to choose between truth and care.",
+    "Start with what each person thinks happened, then listen for what it meant."
   ],
   "voiceAntiSpecimens": [
     "This chapter will teach you the communication strategy you need to succeed.",
@@ -145,6 +139,8 @@
     "Do not confuse this with Crucial Conversations vocabulary such as shared meaning or silence and violence.",
     "Do not promise reconciliation, agreement, safety, or control where the source names limits.",
     "Do not reuse the book signature examples named in source guidance, including the Jack-Michael dispute, the Sydney vignette, or author-family examples.",
-    "Do not invent research studies, named experiments, or famous anecdotes; the available source is mostly framework and practitioner context."
+    "Do not invent research studies, named experiments, or famous anecdotes; the available source is mostly framework and practitioner context.",
+    "Do not use therapy fog where a clean conversation distinction is needed.",
+    "Do not turn conflict into a winner-loser debate frame."
   ]
 }

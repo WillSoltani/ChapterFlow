@@ -1,0 +1,333 @@
+{
+  "chapterId": "pmbok-guide-ch18",
+  "number": 18,
+  "title": "Enable Change to Achieve the Envisioned Future State",
+  "readingTimeMinutes": 12,
+  "hook": "2 of 12 principles fill the slide, but 0 adoption steps protect the future state.",
+  "counterintuition": "A clean baseline can hide a failing transition. Under pressure, change enablement is measured by which decisions shift toward adoption, not by the phrase the team can recite.",
+  "tryThisNow": "Draft one sentence that names the adoption risk your current plan is avoiding, then label the next decision it changes.",
+  "keyTakeaway": "Change enablement turns a deliverable into sustained value by making teams protect adoption, transition, and the future state when pressure tempts them to defend only the baseline.",
+  "breakdown": {
+    "fastRead": "Remi has 2 slides ready for the steering meeting: one names PMI's 12 principles, one repeats the future state principle. The launch plan below them has no owner for adoption, no training slot, and no check after transition. That mismatch is the point. Change enablement is not proof that a team knows the phrase. It is proof that the future state changed today's work. When schedule pressure rises, the team protects the moves that help people use the output: readiness, support, ownership, and benefits tracking. A baseline can be controlled and still leave the change unused.",
+    "deepRead": "Adoption fails when the handoff treats people as an afterthought. A project output may be correct, tested, and approved, yet still fail to create value if users keep the old routine. Change enablement works by connecting current state to future state through visible support. People need to know what is changing, why it makes sense, who owns the new process, how they will learn it, and how the benefit will be checked after launch.\n\nNikos finds the pressure point in a schedule review. The team can meet the date by cutting a clinic training session and skipping the transition owner handoff. The baseline stays clean on the chart. The adoption path disappears in real life. Nikos does not argue for more ceremony. He asks which future-state behavior the project exists to make possible, then marks the decisions that either support or block that behavior. The team protects the training hour and moves a less critical status report.\n\nPMI places Enable Change to Achieve the Envisioned Future State inside a set of 12 principles, not as a lone slogan. It sits near value, stakeholders, systems, quality, risk, and resilience because change lives among those concerns. Predictive, adaptive, and hybrid teams can all apply it, but none can satisfy it with a stored plan alone. The useful test is visible: did the principle alter a tradeoff, a message, an owner, or a risk response before the project crossed into transition?",
+    "fullRead": "Mason finds the limit in an adoption log. The new dispatch system has been live for three weeks, and the dashboard says the project is finished. The file tells a different story. Supervisors keep exporting work to the old spreadsheet. The rollout notes blamed resistance, but the timestamps show why: the new queue hides urgent repairs after a schedule change. Treating resistance as attitude would miss the design risk. Treating it as information points to the transition gap.\n\nThis is where the principle becomes behavioral. A team may love the future state in a slide deck and still fail the people asked to live in it. Change enablement asks for decisions that make movement possible: explain the reason, prepare the users, adjust the process, assign operational ownership, and measure benefits after launch. Those acts can be small. A message may need a sharper audience. A training plan may need one more shift. A risk log may need an adoption risk, not just a delivery risk. The size of the act matters less than whether it changes what the team does next.\n\nSchedule pressure exposes the difference. Defending the baseline can feel professional. It may also protect the wrong thing. If the date is held by cutting support, skipping a stakeholder, or leaving governance unclear, the project has saved the visible promise while spending the hidden value. The future state is not the go-live event. It is the changed behavior, process, system, service, policy, role, facility, or ownership pattern that keeps producing value after the team leaves. A decision that helps that state take root belongs inside the project, even when the calendar is tight.\n\nThe limit is also important. Enabling change does not mean selling every decision as progress. Some resistance reveals a weak target state, a missing benefit, a real loss, or a conflict with existing operations. A team should not train people harder into a bad process. It should use the signal to adjust the path or challenge the target. PMI's principle set leaves room for judgment because stewardship, stakeholders, risk, quality, and value all speak at once. When those concerns collide, the principle does not hand the team a script. It asks them to make the tradeoff visible and choose in favor of sustained value.\n\nMason closes the log and changes the recovery plan. He does not mark adoption as communications work only. He gives supervisors a repair view, names an operations owner, and schedules a benefits check after the next cycle. The project output was already delivered. The change was not yet enabled. Success is not the artifact entering service, but people using it well enough for the promised future state to endure."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch18.ex.principle-18-pmi",
+      "title": "Slide Pair Split",
+      "tags": ["contrast", "PMI principles", "adoption"],
+      "planSpec": {
+        "domain": "regional operations rollout",
+        "audience": "project leads preparing stakeholder launch meetings",
+        "stakes": "whether a principle changes adoption work or stays on a slide",
+        "format": "contrast",
+        "requiredBeat": "show two leads using the same PMI 12-principle material with opposite results"
+      },
+      "scenario": "Remi and Nikos each inherit the same PMI slide deck on the 12 principles before the meeting starts. Remi reads the future state line, leaves adoption questions for later, and the team keeps the old workaround. Nikos adds an owner and support hour to his agenda; three days later the first group uses the new intake form without a rescue call.",
+      "whatToDo": "Nikos changes the agenda before launch, naming the adoption owner and the first support hour instead of treating the PMI principle as a line to recite.",
+      "whyItMatters": "The contrast shows where the principle becomes real. The same words produce value only when someone turns them into adoption support and ownership."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch18.ex.principle-18-tradeoff",
+      "title": "Date Cost Moved",
+      "tags": ["coach talk", "schedule pressure", "transition"],
+      "planSpec": {
+        "domain": "public-sector records migration",
+        "audience": "delivery managers under deadline pressure",
+        "stakes": "a transition handoff may be cut to keep the baseline date",
+        "format": "coach_talk",
+        "requiredBeat": "a peer reframes the schedule-pressure choice so transition cannot be hidden"
+      },
+      "scenario": "Delphis has one answer ready for the 4:00 p.m. status call: keep the baseline date by cutting the transition rehearsal. Schedule pressure fills the conference room. Mason listens, then gives the reframe. A date held by cutting transition is a cost moved, not a cost saved. Before the meeting starts, Delphis marks the rehearsal as the tradeoff the sponsor must see.",
+      "whatToDo": "Delphis carries Mason's reframe into the call, shows the transition rehearsal as a named tradeoff, and asks for a sponsor choice instead of burying it.",
+      "whyItMatters": "The conversation turns pressure into evidence. A visible tradeoff lets leaders choose with the adoption cost named, rather than hiding it inside the baseline."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch18.ex.principle-18-pmi",
+      "title": "Onboarding Blank Box",
+      "tags": ["school case", "PMI", "future state"],
+      "planSpec": {
+        "domain": "project-management onboarding class",
+        "audience": "new project coordinators learning the principle set",
+        "stakes": "a learner confuses memorization with application",
+        "format": "school_case",
+        "requiredBeat": "use the learner's confusion to distinguish principle recall from adoption planning"
+      },
+      "scenario": "Yuri sits in an onboarding classroom with a worksheet listing PMI's 12 principles. In the next five minutes, the class must fill the blank under future state. Yuri writes adoption, then pauses. The teacher asks for evidence, not a definition. Yuri changes the answer to name the first user group, the training cue, and the support owner.",
+      "whatToDo": "Yuri replaces a single vocabulary word with three pieces of evidence: who must adopt the change, what they need to learn, and who supports them after launch.",
+      "whyItMatters": "The school setting makes the confusion visible. Knowing the PMI term is useful only when the learner can name the adoption path it requires."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch18.ex.principle-18-tradeoff",
+      "title": "Same Review, Different Evidence",
+      "tags": ["before after", "baseline", "transition"],
+      "planSpec": {
+        "domain": "manufacturing equipment installation",
+        "audience": "project managers comparing status-report habits",
+        "stakes": "green schedule reporting may hide an unsupported operating transition",
+        "format": "before_after",
+        "requiredBeat": "show the same review before and after the adoption tradeoff check"
+      },
+      "scenario": "Before the adoption check, Mason's Tuesday review has three green bars: scope, cost, baseline. Schedule pressure appears only as a footnote, and transition gets no owner. After the check, the same page has three parallel entries: who changes work, what support they receive, and which tradeoff protects the baseline without starving transition.",
+      "whatToDo": "Mason rewrites the review page so the baseline sits beside transition evidence, then asks the team to explain any tradeoff that weakens adoption.",
+      "whyItMatters": "The before-after contrast keeps status from becoming cosmetic. Green schedule data is useful only when transition and adoption are visible too."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch18.ex.principle-18-tradeoff",
+      "title": "Timestamp Underline",
+      "tags": ["audit", "records", "schedule pressure"],
+      "planSpec": {
+        "domain": "field-service software recovery",
+        "audience": "analysts reviewing rollout evidence",
+        "stakes": "support records may reveal the real transition failure",
+        "format": "audit",
+        "requiredBeat": "find the telling detail in existing files rather than stage a new event"
+      },
+      "scenario": "Adrien reviews support tickets, release notes, and a baseline change log before the next steering call. Nothing moves except the evidence. Schedule pressure appears in the date column after the training shift was cut. The telling detail is a timestamp cluster: every urgent ticket arrived after transition support ended, not after the software changed.",
+      "whatToDo": "Adrien underlines the timestamp cluster and reports the missed transition support, not a vague user-resistance story, as the adoption risk to fix.",
+      "whyItMatters": "The audit shows how evidence changes the recovery plan. Existing records can reveal whether pressure harmed transition long before blame hardens."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch18.ex.principle-18-pmi",
+      "title": "Quiet Before Go Live",
+      "tags": ["inner monologue", "PMI", "adoption"],
+      "planSpec": {
+        "domain": "health-clinic scheduling rollout",
+        "audience": "project leads making final go-live recommendations",
+        "stakes": "a leader must sort through pressure without external dialogue",
+        "format": "inner_monologue",
+        "requiredBeat": "keep the scene inside one person's thoughts while the PMI principle tests the go-live call"
+      },
+      "scenario": "Maddox rereads the PMI checklist at his desk before the meeting starts. 12 principles, future state, adoption. The words look clean. The clinic queue will not. He thinks first about the go-live date, then about the nurses' first hour using the new screen. If support is gone, the future state is a poster. His cursor moves to the launch note.",
+      "whatToDo": "Maddox changes the launch note to include first-hour support and an adoption check, making the final recommendation depend on use, not only readiness.",
+      "whyItMatters": "The inner monologue exposes the private pressure point. The principle helps when it interrupts a neat date with the people who must live the change."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch18.fact.3",
+        "prompt": "A release manager inherits a go-live plan with a green baseline, a signed scope sheet, and no named owner for user support after launch. What should the manager inspect first?",
+        "choices": [
+          "Baseline Shield Misread: Treat the green date as the main proof and ask support staff to catch adoption issues after launch.",
+          "Adoption Evidence Read: Check which future-state behavior lacks an owner, training cue, or support path before the plan is called ready.",
+          "Vocabulary Proof Misread: Add the PMI principle label to the status slide so leaders see the team knows the right standard."
+        ],
+        "correctIndex": 1,
+        "explanation": "The plan has delivery evidence but weak transition evidence. The manager should look for the missing adoption path, since the principle must alter ownership and support decisions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch18.fact.5",
+        "prompt": "A support log shows 7 repeated help requests in 5 days, all from users whose training session was cut during schedule pressure. Which inference fits the evidence best?",
+        "choices": [
+          "User Resistance Misread: The repeated requests show those users oppose the new process and need a firmer launch message.",
+          "Training Volume Misread: The 7 requests show the team should add a larger manual while keeping the cut training session unchanged.",
+          "Transition Gap Read: The pattern points to a schedule-pressure tradeoff that weakened adoption support, not merely a user attitude problem."
+        ],
+        "correctIndex": 2,
+        "explanation": "The timing links the requests to the lost training. Resistance may carry information, and here it points to a transition support gap created by the schedule decision.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch18.fact.8",
+        "prompt": "A project lead is told to protect the baseline by dropping a stakeholder walkthrough two days before launch. Which response best applies the principle under pressure?",
+        "choices": [
+          "Tradeoff Behavior Read: Show the dropped walkthrough as an adoption risk and ask which future-state outcome the sponsor wants to protect.",
+          "Scope Freeze Misread: Drop the walkthrough quietly because the approved baseline matters more than stakeholder readiness at this stage.",
+          "Stakeholder Delay Misread: Delay the launch until every stakeholder is fully comfortable with the new process and no concern remains."
+        ],
+        "correctIndex": 0,
+        "explanation": "Pressure tests whether the principle changes behavior. The lead should make the tradeoff visible and connect it to the future-state outcome, rather than hide or overcorrect it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch18.fact.2",
+        "prompt": "An adaptive team says change enablement belongs to predictive projects because adaptive teams already adjust every sprint. How should that claim be read?",
+        "choices": [
+          "Methodology Box Misread: The claim is right for this team because sprint adjustment already covers adoption and transition decisions.",
+          "Ceremony Copy Misread: The team should add predictive change-control forms to every sprint so the principle has a visible artifact.",
+          "Principle Across Approaches Read: The claim is too narrow because the principle guides behavior in predictive, adaptive, and hybrid work."
+        ],
+        "correctIndex": 2,
+        "explanation": "The principle is not a lifecycle technique. Adaptive teams still need visible choices about adoption, support, and future-state value, even when their delivery cadence changes often.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch18.fact.4",
+        "prompt": "A clinic installs a new scheduling screen on time, but nurses return to paper notes by Friday because no one changed the first-hour workflow. What is the value-delivery issue?",
+        "choices": [
+          "Launch Event Misread: The installation date proves value was delivered, and the paper notes are a separate operations preference.",
+          "Future State Read: The output was delivered, but the future-state behavior did not take root, so sustained value is still at risk.",
+          "Benefits Later Misread: The team should wait for monthly metrics before treating the paper notes as relevant adoption evidence."
+        ],
+        "correctIndex": 1,
+        "explanation": "Value depends on use, not only installation. The paper notes show the desired behavior did not stick, so the project output has not yet produced the intended future state.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch18.fact.9",
+        "prompt": "Which evidence would convince a reviewer that a team applied Enable Change to Achieve the Envisioned Future State rather than memorized it?",
+        "choices": [
+          "Decision Standard Read: A deadline tradeoff changed after the team identified the adoption support needed for the future state.",
+          "Phrase Recall Misread: The status report quotes the principle correctly and places it beside other PMI principle names.",
+          "Artifact Count Misread: The project folder contains more transition documents than the previous release folder contained."
+        ],
+        "correctIndex": 0,
+        "explanation": "Application shows up in changed decisions. Correct wording and more documents can help, but the stronger evidence is a tradeoff altered to protect adoption.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch18.fact.1",
+        "prompt": "A dashboard stays green for scope, cost, and schedule while adoption risks are reviewed only once at kickoff. What should the reader notice first?",
+        "choices": [
+          "Green Baseline Misread: The green dashboard shows the early adoption review was enough for this delivery cycle.",
+          "Late Support Misread: Adoption should be checked after users complain, since early reviews can distract from delivery.",
+          "Continuous Practice Read: Change enablement needs review during delivery, because conditions and adoption risks shift after kickoff."
+        ],
+        "correctIndex": 2,
+        "explanation": "A one-time review cannot manage changing conditions. If adoption risk is not revisited, the green delivery measures may hide a future-state problem.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch18.fact.6",
+        "prompt": "A governance lead says the organization is small, so tailoring means the team can ignore adoption planning and keep the rollout informal. Which reply is strongest?",
+        "choices": [
+          "Tailored Responsibility Read: Keep the practice light, but still name the user change, owner, support cue, and benefit check.",
+          "Governance Paper Misread: Use the full enterprise change package so the small team can prove it did not tailor too much.",
+          "Sponsor Comfort Misread: Let the sponsor decide informally after launch whether adoption planning was necessary for this team."
+        ],
+        "correctIndex": 0,
+        "explanation": "Tailoring changes the form, not the responsibility. A small team can use a lighter practice while still protecting adoption and value.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch18.fact.7",
+        "prompt": "Your team can recite all 12 PMI principles in a review, but the launch decision still drops training to keep the date. What is the most accurate diagnosis?",
+        "choices": [
+          "Recitation Success Misread: Knowing all 12 principles shows the team has met the professional behavior standard for this launch.",
+          "Adoption Tradeoff Read: The principle has not shaped the launch decision if training is cut without naming the adoption cost.",
+          "Deadline First Misread: Keeping the date is the clearest sign the team honored the principle under real delivery pressure."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hard edge is behavioral. Reciting the principle set is not enough when a pressure decision cuts adoption support without making the cost visible.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch18.fact.3",
+      "front": "What proves that change enablement has affected a project decision?",
+      "back": "Evidence appears when a team changes what it does next: names an adoption owner, protects transition support, escalates a risk, adjusts communication, or changes a tradeoff to support the future state.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch18.fact.5",
+      "front": "Why can a controlled baseline still fail to deliver the intended future state?",
+      "back": "A baseline can track scope, schedule, and cost while adoption is weak. If users lack readiness, support, ownership, or a workable process, the deliverable may go live without sustained value.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch18.fact.4",
+      "front": "Earlier concept: Focus on Value. How does adoption change the value test after go-live?",
+      "back": "Focus on Value asks whether outcomes and benefits are being realized. Adoption supplies the proof: people must use the new behavior, process, or system well enough for value to continue after delivery.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch18.fact.6",
+      "front": "Earlier concept: Engage Stakeholders. What should resistance reveal before the team labels it obstruction?",
+      "back": "Resistance can reveal loss, confusion, risk, or competing priorities. Treating it as information helps the team adapt the transition instead of pushing harder on a plan that may not fit.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch18.fact.2",
+      "front": "How do predictive, adaptive, and hybrid teams share the same responsibility here?",
+      "back": "Each approach still has to help people move from current work to the intended future state. The practices differ by context, but the duty to support adoption and value remains.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch18.fact.9",
+      "front": "What is the danger of treating the future-state principle as vocabulary?",
+      "back": "Vocabulary can pass a review while behavior stays unchanged. The danger is a team that recites the principle but still cuts training, hides tradeoffs, or ignores transition evidence.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Adoption Tradeoff Check",
+    "coreSkill": "Use the Adoption Tradeoff Check before a delivery decision is locked. Name the future-state behavior, the person or group that must adopt it, and the support that could be weakened by pressure. Then make one tradeoff visible so the team chooses with transition and value in view.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch18.fact.5",
+        "context": "When schedule pressure tempts the team to cut training, walkthroughs, or support",
+        "plan": "If a support step is about to be cut, then state the adoption cost in the decision note and ask which future-state outcome the cut puts at risk."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.3",
+        "context": "When a status report shows the baseline as green but says nothing about use after launch",
+        "plan": "If the report is green without adoption evidence, then add one line naming the user group, owner, support cue, and next benefit check."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.6",
+        "context": "When tailoring makes a formal change plan feel too heavy for the project",
+        "plan": "If the full practice is too large, then keep the smallest version that still names the change, the owner, the support path, and the value check."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.1",
+        "context": "When adoption was discussed at kickoff and has not been reviewed since",
+        "plan": "If conditions have changed since kickoff, then rerun the Adoption Tradeoff Check before the next decision that could affect transition."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one active project decision and run the Adoption Tradeoff Check in writing: future-state behavior, adopting group, support risk, and one tradeoff to surface.",
+    "weeklyPractice": "Once a week, review one green status item beside one adoption signal. Record where the baseline and transition evidence disagree, then adjust one decision before the next review."
+  },
+  "memorableLines": [
+    {
+      "text": "A baseline can be controlled and still leave the change unused.",
+      "location": "breakdown.fastRead",
+      "why": "It separates delivery control from adoption in one compact warning."
+    },
+    {
+      "text": "The future state is not the go-live event.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader a clean boundary between output and sustained change."
+    },
+    {
+      "text": "Success is not the artifact entering service, but people using it well enough for the promised future state to endure.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the principle as evidence of use rather than artifact completion."
+    }
+  ]
+}

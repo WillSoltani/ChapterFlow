@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-book-of-boundaries",
+  "chapterNumber": 5,
+  "chapterId": "the-book-of-boundaries-ch05",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "af228caf9454508a",
+  "reviewer": "claude-qc:boundaries-20260609",
+  "reviewedAt": "2026-06-10T00:50:45.731Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~90/100. 9/9 keys correct; chosen-relationship capacity (energy/privacy can justify no even with open calendar); examples varied.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-book-of-boundaries",
+      "chapterNumber": 5,
+      "chapterId": "the-book-of-boundaries-ch05",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "3fdd52978b85e771",
+      "reviewer": "claude-qc:boundaries-20260609",
+      "reviewedAt": "2026-06-10T00:50:45.731Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~90/100. 9/9 keys correct; chosen-relationship capacity (energy/privacy can justify no even with open calendar); examples varied."
+    }
+  ]
+}

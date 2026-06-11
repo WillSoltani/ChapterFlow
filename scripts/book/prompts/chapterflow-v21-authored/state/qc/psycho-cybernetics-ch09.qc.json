@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "psycho-cybernetics",
+  "chapterNumber": 9,
+  "chapterId": "psycho-cybernetics-ch09",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "6606b8c1d5e15fdc",
+  "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+  "reviewedAt": "2026-06-10T01:11:22.492Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN ~88 (round2, fresh read). FAILURE acronym complete & source-matched; Konrad Lorenz grounded in sidecar; 6 scenes de-templated/coherent; spot-checked 6/9 keys correct; cards answer fronts.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 9,
+      "chapterId": "psycho-cybernetics-ch09",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "da28af27a51ce390",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:11:22.492Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~88 (round2, fresh read). FAILURE acronym complete & source-matched; Konrad Lorenz grounded in sidecar; 6 scenes de-templated/coherent; spot-checked 6/9 keys correct; cards answer fronts."
+    }
+  ]
+}

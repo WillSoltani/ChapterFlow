@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "rich-dad-poor-dad",
+  "chapterNumber": 9,
+  "chapterId": "rich-dad-poor-dad-ch09",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "0cdbbe57257d22df",
+  "reviewer": "claude-qc:rdpd-20260605-r2",
+  "reviewedAt": "2026-06-05T11:36:10.933Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "All 9 keys correct, distractors real, no skeleton templating. Round-1 pronoun mismatch FIXED: breakdown.fullRead now reads 'the checklist slows her down' for Darya. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "rich-dad-poor-dad",
+      "chapterNumber": 9,
+      "chapterId": "rich-dad-poor-dad-ch09",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "3e10ffcf20b750e7",
+      "reviewer": "claude-qc:rdpd-20260605-r2",
+      "reviewedAt": "2026-06-05T11:36:10.933Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "All 9 keys correct, distractors real, no skeleton templating. Round-1 pronoun mismatch FIXED: breakdown.fullRead now reads 'the checklist slows her down' for Darya. No corruption."
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "chapterId": "pmbok-guide-ch22",
+  "number": 22,
+  "title": "Development Approach and Life Cycle Performance Domain",
+  "readingTimeMinutes": 11,
+  "hook": "2 of 8 complaints named lifecycle, but those 2 carried nearly all rework.",
+  "counterintuition": "A lifecycle choice can look like a method preference while acting like a system constraint. The warning sign is pain moving elsewhere: late feedback, idle approvals, excess rework, or missing traceability.",
+  "tryThisNow": "Track 5 plan changes today; mark each trigger as stable requirements, new feedback, cadence mismatch, or governance delay before judging lifecycle fit.",
+  "keyTakeaway": "Choose predictive, adaptive, or hybrid work by fit: match uncertainty, cadence, governance, and feedback needs, then keep checking whether the lifecycle still helps value flow.",
+  "breakdown": {
+    "fastRead": "Mathis pins a red note beside the release calendar: feedback came after build freeze again. The work looked late, yet the deeper issue sat in the chosen rhythm. Predictive gates gave control, but the product still needed faster learning.\n\nFit is the rule. A team chooses predictive, adaptive, or hybrid work by product traits, risk, cadence, and governance need. Lifecycle choice is a pressure setting, not a badge.\n\nPain often appears outside the place that caused it. Stakeholders complain, plans slip, measures turn noisy, and uncertainty grows. The Development Approach and Life Cycle Performance Domain asks the team to read those traces across the PMBOK Guide map of 8 domains.",
+    "deepRead": "A team sees lifecycle fit in the way feedback, control, and learning move through work. Stable requirements can support predictive phases because the team benefits from clear sequence, formal reviews, and traceable approval. Changing needs push for adaptive cadence because the team needs short cycles, review, and course correction before sunk effort piles up. Mixed work often calls for a hybrid shape, with stable pieces controlled one way and uncertain pieces learned another way.\n\nRosemary catches this during a museum app review. She had called the whole effort adaptive because the team ran demos every other Friday. Then the security signoff table exposes a different truth: privacy work needs a predictive trail, while visitor-flow experiments need fast feedback. Her error was not choosing adaptive. Her error was treating one signal as the whole project.\n\nThe PMBOK Guide places this domain inside a system, not a row of steps. Stakeholders and Team concerns sit beside the approach choice. Delivery, Measurement, Planning, Uncertainty, and Project Work shift around it too. If the lifecycle slows feedback, planning gets false confidence. If governance is too light, delivery may move quickly while acceptance suffers. If cadence is too rigid, uncertainty arrives late and costs more.\n\nA lifecycle is chosen by fit, then watched for drift. The first choice matters, but later evidence matters too. Late rework, repeated approval waits, unclear increments, and feedback after release all say the same thing in different accents: the way work moves may no longer match the way value is learned.",
+    "fullRead": "Bridget's failed payroll migration shows the cost of treating lifecycle as a label. The team called the project predictive, so every review waited for a phase gate. That sounded disciplined. Yet tax-rule questions, employee self-service screens, and union reporting needs kept changing after each checkpoint. The plan did not lack effort. It lacked a rhythm for learning soon enough.\n\nDevelopment approach is not a contest between old and new. Predictive work can be exactly right when requirements are stable, sequencing matters, compliance needs traceability, and formal control protects value. Adaptive work can be exactly right when the product is discovered through feedback, stakeholders learn by seeing increments, or technical options need trials. Hybrid work can be the cleanest answer when one part of the project needs audit-grade control and another part needs rapid review. The mature move is fit, not allegiance.\n\nThe harder case is the project that starts with a good fit and drifts. Early facts can change. Stakeholders may ask for a different release pattern. A vendor may add lead times. Regulators may require firmer evidence. Users may reject an increment that looked sound in planning. When those signals appear, the domain is still active. It does not end after kickoff. It stays in the conversation as new information changes what control, feedback, and delivery should look like.\n\nThe 8 domains make the drift visible. Stakeholder resistance may point to a release cadence that hides feedback. Team conflict may point to unclear decision rights inside a hybrid model. Planning churn may point to an adaptive effort forced into too much early detail. Delivery delays may point to predictive reviews placed where learning should happen sooner. Measurement noise may point to outputs being counted while outcomes remain weak. Uncertainty may point to risk being handled after the lifecycle has already locked in too much work.\n\nArtifacts help only when they support those judgments. A roadmap, backlog, release plan, phase gate, milestone chart, or review record can guide decisions. More artifacts can hide weak outcomes. A team can hold ten lifecycle meetings and still miss that users are learning too late, approvals are queuing, or traceability is thin where compliance risk is high. Activity volume is not domain health. Outcomes and signals are.\n\nThe boundary is important. Not every delay proves the lifecycle is wrong. A skilled team still has defects, holidays, vendor misses, and hard tradeoffs. The scan should not turn every bump into a method switch. It should ask whether the same kind of pain repeats in places tied to feedback, cadence, governance, sequencing, or evidence. One late approval is a problem to handle. Five late approvals after the same review point to a system to adjust.\n\nKatherine gives Mathis the shortest version: lifecycle is not a lane; it is how the whole project breathes. That line keeps the domain practical. Select an approach by fit. Watch how the other domains respond. Change the rhythm when evidence shows the current one no longer helps value move."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch22.ex.domain-22-eight",
+      "title": "Red Note at the Release Wall",
+      "tags": [
+        "vignette",
+        "8 domains",
+        "feedback timing"
+      ],
+      "planSpec": {
+        "domain": "software release governance",
+        "audience": "project leads reading domain interactions",
+        "stakes": "visible delay may hide lifecycle damage across the project system",
+        "format": "vignette",
+        "requiredBeat": "one lived detail shows the Development Approach and Life Cycle Performance Domain inside the PMBOK Guide map of 8 domains"
+      },
+      "scenario": "Mathis presses a red sticky note beside the release wall, beside a PMBOK Guide sketch labeled \"8 domains.\" The note says, \"feedback after freeze.\" Coffee rings mark the old predictive milestone chart below it. No one argues. The Development Approach and Life Cycle Performance Domain is suddenly visible in the smudge between Planning, Delivery, Measurement, and Uncertainty.",
+      "whatToDo": "Mathis leaves the red note in place and traces which other domain marks it touches, using the wall to show that lifecycle fit is a project-system signal, not a private scheduling issue.",
+      "whyItMatters": "The small wall detail teaches the domain's hard edge: a lifecycle concern becomes real when its effects show up across the 8 domains, not when a team merely names an approach."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch22.ex.domain-22-artifact",
+      "title": "Payroll Failure Trace",
+      "tags": [
+        "postmortem",
+        "cadence",
+        "late feedback"
+      ],
+      "planSpec": {
+        "domain": "payroll system migration",
+        "audience": "teams reviewing delivery failure after release",
+        "stakes": "postmortem must locate the decisive lifecycle misfit behind rework",
+        "format": "postmortem",
+        "requiredBeat": "the failure is already visible, and the trace points to predictive control used where adaptive feedback was needed"
+      },
+      "scenario": "Bridget's postmortem opens after the payroll release has already failed. The defect list is sorted by date, not blame. Five tax-rule gaps appear after phase signoff; three self-service issues appear after user review. The decisive misstep is clear in the trace: predictive gates controlled documents, while adaptive feedback and cadence were needed before configuration hardened.",
+      "whatToDo": "Bridget names the one misfit in the postmortem, separating useful predictive control from the missed adaptive feedback loop that let payroll defects arrive after the build was hard to change.",
+      "whyItMatters": "A postmortem should not worship activity volume. It should identify the lifecycle signal that explains rework, so the next project changes rhythm rather than adding more meetings."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch22.concept",
+      "title": "Rosemary Catches the One-Word Error",
+      "tags": [
+        "mistake recovery",
+        "hybrid fit",
+        "course correction"
+      ],
+      "planSpec": {
+        "domain": "museum visitor app",
+        "audience": "product owners choosing an approach under mixed uncertainty",
+        "stakes": "one method label may flatten different parts of the work",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist notices her own lifecycle-label error midstream and corrects the frame"
+      },
+      "scenario": "Rosemary is halfway through a museum app review when her own slide bothers her. It says the PMBOK Guide effort is adaptive because demos happen every other Friday. Then she sees the privacy table beside the visitor-flow sketches. One part needs predictive traceability; another needs fast feedback. The mistake is the word \"the\" before approach, as if the whole project had only one profile.",
+      "whatToDo": "Rosemary stops on the slide and corrects the frame aloud, naming a hybrid fit with predictive controls for privacy work and adaptive cycles for visitor-flow learning.",
+      "whyItMatters": "The noticing matters more than the fix. A team can recover when it catches the moment a single lifecycle label starts hiding different uncertainty, cadence, and governance needs."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch22.ex.domain-22-artifact",
+      "title": "Pamphile's Fit Memo",
+      "tags": [
+        "decision memo",
+        "signals",
+        "governance"
+      ],
+      "planSpec": {
+        "domain": "airport baggage upgrade",
+        "audience": "project sponsors asking for lifecycle rationale",
+        "stakes": "the artifact must justify approach by signals rather than method preference",
+        "format": "decision_memo",
+        "requiredBeat": "a written memo carries the scene and weighs predictive, adaptive, hybrid, and cadence signals"
+      },
+      "scenario": "Pamphile's memo begins: \"Lifecycle recommendation for the airport baggage upgrade: hybrid. Predictive control remains for safety certification, procurement dates, and gate shutdowns. Adaptive review cadence applies to passenger messaging and staff screens. The signals are stable compliance rules, uncertain user workflow, and governance events that cannot wait for one final reveal.\"",
+      "whatToDo": "Pamphile writes the recommendation as a signal-based memo, tying each part of the work to the cadence, governance, and feedback pattern it needs.",
+      "whyItMatters": "A decision memo is useful when it shows why the approach fits. It prevents sponsors from reading hybrid as compromise or predictive and adaptive as identity claims."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch22.ex.domain-22-artifact",
+      "title": "Charlotte and Chloe Split the Same Portal",
+      "tags": [
+        "contrast",
+        "same situation",
+        "different outcomes"
+      ],
+      "planSpec": {
+        "domain": "finance reporting portal",
+        "audience": "program leads comparing lifecycle choices",
+        "stakes": "same project request produces different outcomes under copied method versus fit-based design",
+        "format": "contrast",
+        "requiredBeat": "two people face the same situation with opposite approaches and equal weight"
+      },
+      "scenario": "Charlotte and Chloe receive the same finance portal brief. Charlotte copies last year's predictive plan, locking cadence before analysts test report layouts; approval is neat and rework grows. Chloe keeps predictive checkpoints for audit rules and adds adaptive reviews for dashboard use; governance stays visible and feedback arrives while changes are still cheap.",
+      "whatToDo": "Chloe separates stable control needs from uncertain user-learning needs, while Charlotte's copied plan gives a clean schedule that cannot hear feedback soon enough.",
+      "whyItMatters": "The contrast shows why lifecycle fit is not a template choice. The same situation can need predictive control in one stream and adaptive learning in another."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch22.ex.domain-22-eight",
+      "title": "Katherine's Breath Line",
+      "tags": [
+        "coach talk",
+        "domain system",
+        "reframe"
+      ],
+      "planSpec": {
+        "domain": "city permitting workflow",
+        "audience": "project managers stuck on method identity",
+        "stakes": "a peer conversation reframes lifecycle as a whole-system performance setting",
+        "format": "coach_talk",
+        "requiredBeat": "the coach gives a quotable reframe tied to the PMBOK Guide map of 8 domains"
+      },
+      "scenario": "Katherine listens while Mathis defends the predictive plan for a city permitting workflow. He points to the PMBOK Guide page with 8 domains and says the Development Approach and Life Cycle Performance Domain is already covered. Katherine taps the margins around Delivery and Uncertainty. \"A lifecycle is not a lane; it is how the whole project breathes.\"",
+      "whatToDo": "Katherine reframes the discussion from method defense to domain interaction, asking Mathis to look at how feedback, delivery, measurement, and uncertainty are responding.",
+      "whyItMatters": "The coaching line keeps the domain practical. It moves the team away from treating lifecycle as a box and toward reading how the 8 domains behave together."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch22.fact.1",
+        "prompt": "Mathis inherits a release plan whose lifecycle was chosen at kickoff. Stakeholder feedback now arrives after freeze, and Planning keeps absorbing rework. Which response best matches the domain's always-on role?",
+        "choices": [
+          "Phase-box misconception: Leave the kickoff lifecycle untouched, since the domain finished once Planning approved the approach.",
+          "Kickoff-freeze misconception: Record the late feedback as variance only, so the baseline remains the center of attention.",
+          "Ongoing fit check: Reassess how the lifecycle is affecting feedback, Planning, Delivery, and Uncertainty now."
+        ],
+        "correctIndex": 2,
+        "explanation": "A performance domain does not close after the first approach choice. Late feedback after freeze is evidence that the lifecycle may be shaping other domains in ways the team needs to examine.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch22.fact.8",
+        "prompt": "A log from Bridget's payroll project shows 5 defects found after phase signoff, 3 user issues after release, and no review cadence until final acceptance. What should she infer first?",
+        "choices": [
+          "Intuition-only misconception: Bridget should rely on team confidence, since the log cannot reveal lifecycle drift.",
+          "Signal reading: Predictive control helped documents, but adaptive feedback cadence was missing before payroll hardening.",
+          "Artifact-stack misconception: Bridget should add more signoff forms, since the defect dates mainly show weak paperwork."
+        ],
+        "correctIndex": 1,
+        "explanation": "The pattern points to observable signals: predictive gates existed, but feedback arrived too late. A useful reading separates control from learning instead of treating all defects as paperwork gaps.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch22.fact.4",
+        "prompt": "Rosemary's museum app has stable privacy obligations and uncertain visitor-flow screens. The team wants one approach label for the whole effort. Which guidance fits the PMBOK view?",
+        "choices": [
+          "Context fit: Use predictive traceability for privacy work and adaptive cycles for visitor-flow learning.",
+          "Method-loyalty misconception: Pick adaptive for every stream, since demos make the project sound modern.",
+          "Uniform-practice misconception: Apply the same cadence to every task so the team can avoid mixed governance."
+        ],
+        "correctIndex": 0,
+        "explanation": "Different uncertainty profiles can require different levels of formality, cadence, and feedback. The sound move is fit across the work, not one label applied for neatness.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch22.fact.2",
+        "prompt": "Pamphile reports 12 lifecycle meetings, 9 updated artifacts, and 4 sponsor reviews, yet passenger messaging still changes after installation. Which reading is strongest?",
+        "choices": [
+          "Activity-volume misconception: The high meeting count proves the domain is healthy enough for airport work.",
+          "Artifact-count misconception: The 9 updates matter more than whether they improved feedback timing.",
+          "Outcome check: Domain health is weak if the activities did not improve learning before installation."
+        ],
+        "correctIndex": 2,
+        "explanation": "Healthy domain performance is shown by outcomes, not the amount of activity. Meetings and artifacts matter only if they improve control, learning, communication, or decisions.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch22.fact.3",
+        "prompt": "Which test best reveals whether Charlotte's copied predictive plan is harming the finance portal beyond the schedule page?",
+        "choices": [
+          "Interaction trace: Follow one lifecycle choice into stakeholder feedback, team handoffs, delivery timing, and measurement quality.",
+          "Schedule-only misconception: Inspect milestone dates by themselves, since other domains would only distract from control.",
+          "Local-tuning misconception: Improve the reporting team's tasks first, while leaving stakeholder and measurement effects unexamined."
+        ],
+        "correctIndex": 0,
+        "explanation": "The domain interacts with other areas of project performance. A lifecycle choice that looks tidy on a schedule can create late feedback, weak measures, or handoff trouble elsewhere.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch22.fact.6",
+        "prompt": "Katherine sees a project deliver all planned outputs, but users reject the release because reviews came too late for useful changes. How should she connect lifecycle to value?",
+        "choices": [
+          "Output-only misconception: Treat delivered outputs as sufficient, since value starts after project closure.",
+          "Value link: Review whether cadence and feedback let outputs become accepted outcomes and benefits.",
+          "Handoff-closure misconception: Move the issue to operations, since lifecycle choices stop mattering at delivery."
+        ],
+        "correctIndex": 1,
+        "explanation": "Lifecycle fit affects whether outputs become accepted outcomes. If users learn too late to shape the result, the domain has weakened value delivery even when output delivery looks complete.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch22.fact.7",
+        "prompt": "A study sheet lists Stakeholders, Team, Delivery, Measurement, Planning, Project Work, and Uncertainty, but omits Development Approach and Life Cycle. Which correction matters?",
+        "choices": [
+          "Domain map correction: Development Approach and Life Cycle belongs in the PMBOK Guide map of 8 domains.",
+          "Optional-topic misconception: The omitted domain is a side topic, so the 8-domain map still functions for review.",
+          "Old-area misconception: The omitted item belongs only to older process groups, not to the PMBOK Guide domains."
+        ],
+        "correctIndex": 0,
+        "explanation": "The domain is a main organizing unit in the PMBOK Guide's domain structure. Leaving it out breaks the 8-domain map and hides a core area of performance.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch22.fact.9",
+        "prompt": "Chloe hears that the finance portal is safe because the team completed every predictive checklist item. Rework still rises after each analyst review. Which reply best applies the hard edge?",
+        "choices": [
+          "Checklist-sufficiency misconception: Finished predictive items should settle the question unless sponsors complain.",
+          "Volume-comfort misconception: More completed tasks should count as domain health even when rework grows.",
+          "Outcome-signal reply: Completed activities do not prove fit when feedback timing keeps producing rework."
+        ],
+        "correctIndex": 2,
+        "explanation": "Activity volume can look impressive while lifecycle fit remains poor. Rework after analyst review is a signal to assess outcomes and fit, not a reason to trust the checklist alone.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch22.fact.5",
+        "prompt": "Pamphile proposes a roadmap, a milestone chart, and a release plan for the airport project. Katherine asks what would make those artifacts worth keeping. Which answer fits?",
+        "choices": [
+          "Documentation-display misconception: Keep them all so sponsors can see that lifecycle management is visibly busy.",
+          "Purpose test: Keep each artifact only if it improves a decision, handoff, review, control point, or learning loop.",
+          "Tool-collection misconception: Add a backlog and phase gate record too, since more tools show stronger management."
+        ],
+        "correctIndex": 1,
+        "explanation": "Artifacts are useful when they support the domain's outcomes. If a roadmap or chart does not improve decisions, control, communication, or learning, it adds work without improving performance.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch22.ex.domain-22-eight",
+      "front": "What does the PMBOK Guide map of 8 domains prevent when teams discuss lifecycle?",
+      "back": "It prevents the Development Approach and Life Cycle Performance Domain from being treated as a box by itself. The 8 domains show that approach choices affect stakeholders, team work, planning, delivery, measurement, and uncertainty.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch22.ex.domain-22-artifact",
+      "front": "How do predictive, adaptive, hybrid, and cadence signals help a team read this domain?",
+      "back": "They turn lifecycle talk into evidence. Predictive signals point to control and traceability needs; adaptive signals point to learning and feedback; hybrid and cadence cues show where different parts of the work need different rhythms.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch22.fact.1",
+      "front": "Why does lifecycle attention continue after an approach is chosen?",
+      "back": "New information keeps arriving. Stakeholder response, risk, feedback timing, vendor lead times, and acceptance evidence can all show that the original approach no longer fits the way value is being learned.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch22.fact.2",
+      "front": "What separates healthy domain performance from busy lifecycle activity?",
+      "back": "Healthy performance shows in outcomes: useful feedback, sound control, timely decisions, clear increments, and value movement. Busy activity may only add meetings or artifacts without improving how work flows.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch22.fact.3",
+      "front": "Earlier concept, systems thinking: how does it change lifecycle selection?",
+      "back": "The habit is to ask what else moves when one approach changes. A lifecycle choice can affect stakeholder trust, team handoffs, planning churn, delivery timing, measures, and uncertainty response.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch22.fact.4",
+      "front": "Earlier concept, Tailor Based on Context: what does it add to approach choice?",
+      "back": "It reminds the team to fit rigor to the work. Stable, regulated pieces may need formality, while uncertain discovery work may need faster feedback, and both can belong in one disciplined project.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card07",
+      "sourceAnchorId": "ch22.fact.5",
+      "front": "When should a lifecycle artifact be kept rather than retired?",
+      "back": "Keep it when it improves a decision, handoff, review, control point, communication, or learning loop. Retire or revise it when it only proves activity and does not support domain outcomes.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Match Rhythm to Evidence",
+    "coreSkill": "Practice reading development approach as evidence, not identity. Match Rhythm to Evidence by naming the work's uncertainty, feedback need, cadence, governance, and value path, then comparing those signals with the current predictive, adaptive, or hybrid shape. Treat repeated pain in another domain as a clue that the lifecycle may need adjustment.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch22.ex.domain-22-eight",
+        "context": "When one domain in the PMBOK Guide map of 8 domains reports repeated pain",
+        "plan": "If the PMBOK Guide wall shows repeated pain outside the Development Approach and Life Cycle Performance Domain, then Match Rhythm to Evidence and trace how the current approach affects that domain."
+      },
+      {
+        "sourceAnchorId": "ch22.ex.domain-22-artifact",
+        "context": "When predictive milestones pass but adaptive feedback arrives late",
+        "plan": "If predictive control is visible while adaptive feedback and cadence are weak, then Match Rhythm to Evidence before adding more status meetings."
+      },
+      {
+        "sourceAnchorId": "ch22.fact.4",
+        "context": "When one project contains both stable compliance work and uncertain user behavior",
+        "plan": "If the work has different uncertainty profiles, then Match Rhythm to Evidence and separate the parts that need formality from the parts that need faster learning."
+      },
+      {
+        "sourceAnchorId": "ch22.fact.5",
+        "context": "When a roadmap, backlog, phase gate, or release plan feels like proof by itself",
+        "plan": "If an artifact is being kept as evidence of discipline, then Match Rhythm to Evidence and ask what decision, control point, handoff, or learning loop it improves."
+      },
+      {
+        "sourceAnchorId": "ch22.fact.9",
+        "context": "When lifecycle activity is high but rework, approval waits, or late feedback keep recurring",
+        "plan": "If activity is high and outcomes stay weak, then Match Rhythm to Evidence against the repeated signal rather than counting the meetings again."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, list 5 recent project pains and mark each as feedback timing, cadence, governance, sequencing, or evidence. Circle any repeated mark and write one lifecycle adjustment to test.",
+    "weeklyPractice": "Once a week, review one predictive, adaptive, or hybrid signal from live work. Record whether cadence, control, and feedback still fit, then adjust one artifact or meeting that no longer helps outcomes."
+  },
+  "memorableLines": [
+    {
+      "text": "Lifecycle choice is a pressure setting, not a badge.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the method-neutral stance short enough to remember under pressure."
+    },
+    {
+      "text": "A lifecycle is chosen by fit, then watched for drift.",
+      "location": "breakdown.deepRead",
+      "why": "It joins the initial selection and ongoing performance check in one line."
+    },
+    {
+      "text": "More artifacts can hide weak outcomes.",
+      "location": "breakdown.fullRead",
+      "why": "It catches the warning against mistaking activity volume for domain health."
+    }
+  ]
+}

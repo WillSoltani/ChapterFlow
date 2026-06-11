@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "four-thousand-weeks",
+  "chapterNumber": 10,
+  "chapterId": "four-thousand-weeks-ch10",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "dd5d4030daede4e9",
+  "reviewer": "claude-qc:4kw-20260609-r2",
+  "reviewedAt": "2026-06-10T01:05:45.739Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Full read. GREEN ~88. 9/9 quiz keys correct (hidden-key derived), prose coherent, facts accurate to source, examples coherent (0/6 staged source-props, names consistent), cards test understanding, plan uses named tool 'Pace Surrender Check' with clean context/plan, lines portable. No corruption, no templating.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "four-thousand-weeks",
+      "chapterNumber": 10,
+      "chapterId": "four-thousand-weeks-ch10",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "0a59faa5e8c0972e",
+      "reviewer": "claude-qc:4kw-20260609-r2",
+      "reviewedAt": "2026-06-10T01:05:45.739Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Full read. GREEN ~88. 9/9 quiz keys correct (hidden-key derived), prose coherent, facts accurate to source, examples coherent (0/6 staged source-props, names consistent), cards test understanding, plan uses named tool 'Pace Surrender Check' with clean context/plan, lines portable. No corruption, no templating."
+    }
+  ]
+}

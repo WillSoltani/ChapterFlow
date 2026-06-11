@@ -27,6 +27,7 @@ import { fileURLToPath } from "url";
 import { BookPackageV21, ChapterV21, V21_SCHEMA_VERSION } from "./types.js";
 import { runShipGate, GateReport, formatGateReport } from "./critics/finalGate.js";
 import { runBookGate, BookGateReport, formatBookGateReport } from "./critics/bookGate.js";
+import { runIntraBookChecks } from "./critics/intraBook.js";
 import { checkQcAttestation } from "./critics/qcAttestation.js";
 import { ChapterSpec } from "./generateChapter.js";
 
@@ -43,6 +44,9 @@ export type PromotionResult = {
   reportPath: string;            // always set; contains the gate findings
   shipGateBlockerCount: number;
   bookGateBlockerCount: number;
+  /** AS5–AS12 cross-chapter blockers. Until Phase 1 these ran ONLY in
+   *  gate-chapter, so promote shipped books the authoring gate would block. */
+  intraBookBlockerCount: number;
   shipGateMajorCount: number;
   bookGateMajorCount: number;
   reason: string;                // human-readable explanation
@@ -79,8 +83,38 @@ function stripKeyDeep<T>(value: T, key: string): T {
   return value;
 }
 
+/** Authoring-internal fields that must never reach the shipped package:
+ *  sourceAnchorId (gate-time provenance) and planSpec (the planner's design
+ *  rationale — types.ts: "Not shown to readers", but it shipped anyway until
+ *  Phase 1 because only sourceAnchorId was stripped). Pure copy — the
+ *  state/chapters files are never mutated, and the v2 content hash excludes
+ *  both keys, so stripping cannot stale a QC attestation
+ *  (tests/promote-gate.test.ts pins both properties). */
+export function stripInternalFields(chapter: ChapterV21): ChapterV21 {
+  return stripKeyDeep(stripKeyDeep(chapter, "sourceAnchorId"), "planSpec");
+}
+
 export function promoteBook(input: PromotionInput): PromotionResult {
   const { bookId, title, author, chapters } = input;
+
+  // Step 0: Quarantine tombstone. quarantine-book used to only MOVE the
+  // shipped package aside — every piece of state that made the book
+  // promotable survived, so the next promote/batch --run silently re-shipped
+  // a book an operator had explicitly pulled (verified 2026-06-09). The
+  // tombstone makes quarantine sticky until `unquarantine-book` releases it.
+  const tombstonePath = resolve(STATE, "books", "_quarantined", `${bookId}.json`);
+  if (existsSync(tombstonePath)) {
+    let why = "";
+    try {
+      why = (JSON.parse(readFileSync(tombstonePath, "utf8")) as { reason?: string }).reason ?? "";
+    } catch { /* unreadable tombstone still blocks */ }
+    return blockedResult({
+      bookId,
+      reason:
+        `QUARANTINED: ${bookId} was explicitly quarantined${why ? ` (${why})` : ""}. ` +
+        `Promote refuses until \`unquarantine-book ${bookId}\` releases it (after the defect is fixed and re-QC'd).`,
+    });
+  }
 
   // Step 1: Load every expected chapter from state/chapters/
   const loadedChapters: ChapterV21[] = [];
@@ -101,6 +135,35 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     });
   }
 
+  // Step 1.5: chapter-number integrity. The intra-book priors filter (Step
+  // 2.5) keys on the chapter's self-declared `number`; a duplicate or
+  // missing number makes chapters mutually invisible to AS5–AS12 — the
+  // silent-skip class again (verified 2026-06-10: identical quizzes across a
+  // duplicate-numbered pair produced zero findings). Agent-authored metadata
+  // drift is this pipeline's documented failure mode, so fail loud here.
+  const numberProblems: string[] = [];
+  const seenNumbers = new Map<number, string>();
+  for (let i = 0; i < loadedChapters.length; i++) {
+    const ch = loadedChapters[i];
+    const spec = chapters[i];
+    if (typeof ch.number !== "number" || !Number.isFinite(ch.number)) {
+      numberProblems.push(`${spec.chapterId}: chapter.number is ${JSON.stringify(ch.number)} (not a number)`);
+      continue;
+    }
+    if (spec.chapterNumber !== undefined && ch.number !== spec.chapterNumber) {
+      numberProblems.push(`${spec.chapterId}: chapter.number=${ch.number} disagrees with the index (${spec.chapterNumber})`);
+    }
+    const prior = seenNumbers.get(ch.number);
+    if (prior) numberProblems.push(`duplicate chapter.number=${ch.number} in ${prior} and ${spec.chapterId}`);
+    else seenNumbers.set(ch.number, spec.chapterId);
+  }
+  if (numberProblems.length > 0) {
+    return blockedResult({
+      bookId,
+      reason: `Chapter-number integrity failed (intra-book checks would silently skip): ${numberProblems.join("; ")}. Run fix-chapter-ids / repair the number fields before promoting.`,
+    });
+  }
+
   // Step 2: Re-run ship gate against every chapter.
   // Defense in depth: chapters in state/chapters/ should already have passed
   // the per-chapter ship gate at generation time, but re-validate before
@@ -111,6 +174,21 @@ export function promoteBook(input: PromotionInput): PromotionResult {
   }
   const shipBlockerCount = perChapterGates.reduce((acc, g) => acc + g.report.blockers.length, 0);
   const shipMajorCount = perChapterGates.reduce((acc, g) => acc + g.report.majors.length, 0);
+
+  // Step 2.5: Intra-book AS5–AS12 cross-chapter checks, against the SAME
+  // in-memory chapter set being shipped (no disk re-discovery, so no slug/
+  // casing mismatch can silently skip them — the gate-chapter bug class).
+  // Until Phase 1 this suite ran only in gate-chapter; the identical-card-
+  // backs incident class passed promote cleanly.
+  // Priors-only so each pairwise collision reports exactly once, from the
+  // later chapter (the finding messages read "matches prior Ch<N>").
+  const intraFindings = loadedChapters.flatMap((ch) =>
+    runIntraBookChecks(ch, loadedChapters.filter((other) => other.number < ch.number)).map((f) => ({
+      chapter: ch.number,
+      ...f,
+    })),
+  );
+  const intraBlockerCount = intraFindings.filter((f) => f.severity === "blocker").length;
 
   // Step 3: Run book gate across all chapters.
   const bookGate = runBookGate(bookId, loadedChapters);
@@ -148,18 +226,22 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       totalMajors: shipMajorCount,
     },
     bookGate,
+    intraBook: { totalBlockers: intraBlockerCount, findings: intraFindings },
     qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
   };
   writeFileSync(reportPath, JSON.stringify(fullReport, null, 2), "utf8");
 
   // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
-  // gates AND the QC-attestation (semantic) gate.
-  if (shipBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0) {
+  // gates (per-chapter + intra-book + book) AND the QC-attestation gate.
+  if (shipBlockerCount > 0 || intraBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${Date.now()}.report.json`);
     writeFileSync(quarantinePath, JSON.stringify(fullReport, null, 2), "utf8");
     const qcSummary = qcBlockerCount > 0
       ? ` + ${qcBlockerCount} QC-attestation blocker(s): ${qcFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${qcFindings.length > 3 ? ", …" : ""}`
+      : "";
+    const intraSummary = intraBlockerCount > 0
+      ? ` + ${intraBlockerCount} intra-book blocker(s): ${intraFindings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${intraBlockerCount > 3 ? ", …" : ""}`
       : "";
     return {
       promoted: false,
@@ -167,9 +249,10 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       reportPath,
       shipGateBlockerCount: shipBlockerCount,
       bookGateBlockerCount: bookBlockerCount,
+      intraBookBlockerCount: intraBlockerCount,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s) + ${bookBlockerCount} book-gate blocker(s)${qcSummary}. Quarantined at ${quarantinePath}.`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}. Quarantined at ${quarantinePath}.`,
     };
   }
 
@@ -186,9 +269,10 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       categories: input.categories,
       tags: input.tags,
     },
-    // Strip the v2-only sourceAnchorId provenance (gate-time metadata) so it
-    // never ships into book-packages/ or reaches the web package validator.
-    chapters: loadedChapters.map((c) => stripKeyDeep(c, "sourceAnchorId")).sort((a, b) => a.number - b.number),
+    // Strip authoring-internal fields (sourceAnchorId provenance + planSpec
+    // scaffolding) so they never ship into book-packages/ or reach the web
+    // package validator / reader.
+    chapters: loadedChapters.map((c) => stripInternalFields(c)).sort((a, b) => a.number - b.number),
   };
 
   mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
@@ -202,6 +286,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     reportPath,
     shipGateBlockerCount: 0,
     bookGateBlockerCount: 0,
+    intraBookBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
     reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Majors logged: ${shipMajorCount} ship + ${bookMajorCount} book.`,
@@ -215,6 +300,7 @@ function blockedResult(args: { bookId: string; reason: string; missingChapters?:
     reportPath: "",
     shipGateBlockerCount: 0,
     bookGateBlockerCount: 0,
+    intraBookBlockerCount: 0,
     shipGateMajorCount: 0,
     bookGateMajorCount: 0,
     reason: args.reason,
@@ -228,6 +314,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   if (r.packagePath) lines.push(`  Package: ${r.packagePath}`);
   if (r.reportPath) lines.push(`  Report: ${r.reportPath}`);
   lines.push(`  Ship gate: ${r.shipGateBlockerCount} blockers, ${r.shipGateMajorCount} majors`);
+  lines.push(`  Intra-book (AS5–AS12): ${r.intraBookBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
   return lines.join("\n");
 }

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "outliers",
+  "chapterNumber": 1,
+  "chapterId": "outliers-ch01",
+  "verdict": "REVISE",
+  "contentHash": "3464069ecf5cc923",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-outliers-2026-06-10",
+  "reviewedAt": "2026-06-11T00:19:33.585Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=83; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/repeated_unit/repeated_unit/other; Near anchor quality — grounded acted scenes, teaching prose, portable lines; main DRAFT defect is book-wide ifThenP"
+}

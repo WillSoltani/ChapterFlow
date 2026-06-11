@@ -1,0 +1,350 @@
+{
+  "chapterId": "pmbok-guide-ch27",
+  "number": 27,
+  "title": "Uncertainty Performance Domain",
+  "readingTimeMinutes": 11,
+  "hook": "The conference room sat quiet after the vote, with the risk register still open to yesterday.",
+  "keyTakeaway": "Manage uncertainty as a live domain: use the risk register, ambiguity signals, probes, reserves, and escalations to adjust the whole project system around value.",
+  "counterintuition": "A full risk register can be a weak uncertainty system. If ambiguity, complexity, or volatility is changing decisions elsewhere, the domain is unhealthy even while the artifact looks current.",
+  "tryThisNow": "Draft one sentence naming the uncertainty your plan is treating as solved, then label the next signal you will watch.",
+  "breakdown": {
+    "fastRead": "The conference room is empty after Mariana's steering vote. On the wall, the PMBOK Guide's 8 domains still circle the project name. Below it, the risk register sits open to a supplier threat marked green. No one has written the new ambiguity beside it: the sponsor now disagrees about value.\n\nA green risk register can still hide a red project.\n\nUncertainty performance asks the team to read the whole room, not one sheet. Track threats and opportunities, but also ask what ambiguity, complexity, and volatility are doing to planning, stakeholders, delivery, and measurement.",
+    "deepRead": "A team performs well with uncertainty when signals change decisions. A risk register can hold threats, owners, probability, impact, reserves, and response plans. That is useful when the unknown can be sized. Other unknowns refuse that treatment. Ambiguity needs discovery. Complexity needs probing and sensemaking. Volatility needs shorter decision cycles, buffers, or faster escalation.\n\nNikolai brings a neat risk register to Mabel after the weekly review. Every listed risk has an owner, but the delivery dates keep sliding because the team cannot tell whether the design problem is technical, stakeholder-driven, or caused by a late lifecycle choice. Mabel listens, then draws three boxes on the whiteboard: risk, ambiguity, volatility. She says, \"A risk you can score gets an owner; an ambiguity you cannot score gets a probe.\"\n\nThat sentence changes the work. Nikolai keeps the owned risks, but he also adds a two-day prototype, a sponsor question, and a volatility check on supplier lead times. The PMBOK Guide's 8 domains matter here because uncertainty is touching planning cadence, stakeholder clarity, delivery confidence, and measurement evidence at the same time. Healthy domain performance is not the number of rows in the register. It is the quality of the response those rows, gaps, and signals provoke.",
+    "fullRead": "A domain is not a department. The Uncertainty Performance Domain loses force when it is handed to one risk owner while the rest of the project keeps moving as if nothing changed. That handoff can look efficient, but it hides the PMBOK Guide's integrated map: the other seven domains keep tugging on the uncertainty signal even after the register looks current.\n\nSeraphine's intake process shows the difference. Before the change, every new concern was converted into a risk register row. The form asked for probability, impact, owner, and response. It worked for familiar threats, such as a vendor delay or a testing environment outage. It failed when the team wrote \"unclear acceptance path\" as if ambiguity were only another risk. The row had an owner, but the project still lacked a shared way to learn what acceptance meant.\n\nAfter the change, Seraphine keeps the risk register, then adds a signal note beside each uncertain item. A threat gets scoring and a response plan. An opportunity gets an owner and a value question. Ambiguity gets a discovery action. Complexity gets a probe that can reveal cause and effect. Volatility gets a cadence decision, a buffer, or an escalation path. An artifact matters only after it moves a decision.\n\nThe limit matters. Not every unknown deserves a meeting, and not every surprise means the plan was careless. Some uncertainty is ordinary project weather. The discipline is to separate noise from signals that should alter behavior. If a risk row stays stable while stakeholder feedback changes the value target, the signal belongs partly in stakeholder engagement and partly in measurement. If a delivery forecast shifts after each supplier call, the signal belongs in planning cadence and reserves. If a prototype reveals a technical pattern no one expected, the signal belongs in project work and development approach.\n\nRosa and Jack see the same supplier update and produce different project health. Rosa updates the risk register, changes the probability score, and leaves the next planning review untouched. Jack updates the row, then asks which domain has been disturbed. The schedule buffer, stakeholder message, delivery promise, and measurement dashboard all need a fresh look. Rosa has documentation. Jack has uncertainty performance.\n\nThis is why the domain is practice-neutral. Predictive work may need formal reserves, escalation thresholds, and disciplined registers. Adaptive work may need experiments, backlog signals, and stakeholder feedback loops. Hybrid work may need both: a stable control path for known exposures and fast learning cycles for ambiguity. The PMBOK Guide does not make the risk register vanish. It puts the register back inside a wider performance question: what evidence shows the project can notice uncertainty, respond to it, and still deliver value?"
+  },
+  "examples": [
+    {
+      "exampleId": "ch27-ex01-mariana-memo",
+      "sourceAnchorId": "ch27.ex.domain-27-eight",
+      "title": "Memo After the Vote",
+      "tags": [
+        "memo",
+        "domain map",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "Mariana writes a decision memo after a steering vote",
+        "audience": "project leads who treat risk work as separate from domain performance",
+        "stakes": "a documented risk looks controlled while other PMBOK Guide domains are shifting",
+        "format": "decision_memo",
+        "requiredBeat": "Mariana uses the memo to connect the Uncertainty Performance Domain, 8 domains, and risk register before the next steering update"
+      },
+      "scenario": "Decision memo, drafted by Mariana after the steering vote: \"The wall sketch from the PMBOK Guide still shows 8 domains around the project name. The risk register says supplier delay is green, but the Uncertainty Performance Domain is not green. Stakeholder expectations changed in the vote, the delivery promise now carries a different meaning, and measurement has no signal for that drift. I need to decide what goes in tomorrow's steering note before the team treats the old row as proof of health.\"",
+      "whatToDo": "Mariana writes the steering note around the domain interaction, not the color of one row. She keeps the risk register, then adds the stakeholder, delivery, and measurement signals.",
+      "whyItMatters": "A memo can make the system visible. When the artifact says calm and the 8 domains say drift, leaders need the integrated reading before they approve the next plan."
+    },
+    {
+      "exampleId": "ch27-ex02-rosa-jack-contrast",
+      "sourceAnchorId": "ch27.ex.domain-27-artifact",
+      "title": "Two Readings of One Delay",
+      "tags": [
+        "contrast",
+        "volatility",
+        "planning"
+      ],
+      "planSpec": {
+        "domain": "Rosa and Jack respond to the same supplier delay",
+        "audience": "teams deciding whether a register update is enough",
+        "stakes": "one project records uncertainty while the other changes behavior",
+        "format": "contrast",
+        "requiredBeat": "Rosa and Jack face the same risk register, ambiguity, complexity, and volatility signals with opposite responses"
+      },
+      "scenario": "The supplier email lands in Rosa's and Jack's inboxes with the same news: two delivery dates have slipped, the cause is unclear, and the workaround may affect testing. Rosa opens the risk register, raises the impact score, and files the update before the planning review. Her team later discovers that ambiguity about the workaround changed the test path. Jack reads the same volatility and complexity signals, then pauses the review to add a probe, a stakeholder note, and a reserve discussion. His team still slips, but it slips knowingly.",
+      "whatToDo": "Jack treats the register update as the start of response work. He connects the delay to a probe, a stakeholder message, and a planning reserve before the review continues.",
+      "whyItMatters": "The same signal can become paperwork or learning. Uncertainty performance improves when an update changes the project, not when it merely decorates the file."
+    },
+    {
+      "exampleId": "ch27-ex03-nikolai-coach-talk",
+      "sourceAnchorId": "ch27.ex.domain-27-artifact",
+      "title": "Mabel Names the Probe",
+      "tags": [
+        "coach talk",
+        "ambiguity",
+        "complexity"
+      ],
+      "planSpec": {
+        "domain": "Nikolai gets coached by Mabel after a tidy risk review",
+        "audience": "analysts who confuse scored risk with managed uncertainty",
+        "stakes": "a clean review may hide ambiguity, complexity, and volatility",
+        "format": "coach_talk",
+        "requiredBeat": "Mabel gives Nikolai a quotable reframe that separates risk register work from ambiguity probes"
+      },
+      "scenario": "\"Every risk has an owner,\" Nikolai says, tapping the risk register on Mabel's desk. \"Why does the project still feel unstable?\" Mabel turns the page and points to three blank margins labeled ambiguity, complexity, and volatility. Nikolai needs to decide how to report the review without making the register look like the whole truth. Mabel says, \"A risk you can score gets an owner; an ambiguity you cannot score gets a probe.\" The sentence gives Nikolai a new report structure before he walks back to the team.",
+      "whatToDo": "Nikolai keeps the scored risks, then adds a probe for the unclear design cause, a complexity note, and a volatility trigger for the next supplier update.",
+      "whyItMatters": "Coaching helps him stop treating every unknown as the same kind of work. The response changes once the team names the signal it is facing."
+    },
+    {
+      "exampleId": "ch27-ex04-aditya-school-case",
+      "sourceAnchorId": "ch27.ex.domain-27-eight",
+      "title": "Training Room Domain Map",
+      "tags": [
+        "school",
+        "8 domains",
+        "learning"
+      ],
+      "planSpec": {
+        "domain": "Aditya learns the domain map in a training session",
+        "audience": "learners who expect PMBOK Guide domains to act like sequence steps",
+        "stakes": "the learner may memorize labels without understanding interaction",
+        "format": "school_case",
+        "requiredBeat": "Aditya works through the PMBOK Guide's 8 domains and sees why the Uncertainty Performance Domain is not a risk register phase"
+      },
+      "scenario": "In Mabel's certification class, Aditya draws 8 PMBOK Guide domains as a ladder and puts the Uncertainty Performance Domain at the bottom, right beside \"risk register.\" Mabel hands him a marker and asks why a stakeholder disagreement would wait for the ladder step. Aditya pauses before answering the practice question. His confusion becomes the lesson: if uncertainty touches planning, delivery, measurement, and stakeholders at once, then the domain cannot be a box at the end of a sequence.",
+      "whatToDo": "Aditya redraws the 8 domains as a connected map. He leaves the risk register on the page, but he links it to stakeholder feedback, planning cadence, and delivery evidence.",
+      "whyItMatters": "The training case protects him from memorizing the map as a sequence. He learns to read domain interaction, which is the habit the Guide is trying to build."
+    },
+    {
+      "exampleId": "ch27-ex05-seraphine-before-after",
+      "sourceAnchorId": "ch27.concept",
+      "title": "Seraphine Changes Intake",
+      "tags": [
+        "before after",
+        "tailoring",
+        "signals"
+      ],
+      "planSpec": {
+        "domain": "Seraphine revises uncertainty intake for a hybrid project",
+        "audience": "process owners who turn every unknown into the same artifact",
+        "stakes": "the process may score uncertainty instead of selecting the right response",
+        "format": "before_after",
+        "requiredBeat": "Seraphine shows the same intake before and after it distinguishes threats, opportunities, ambiguity, complexity, and volatility"
+      },
+      "scenario": "Before, Seraphine's intake process turned every unknown into one risk register row. A threat, an opportunity, a fuzzy requirement, and a fast-moving vendor all received probability, impact, owner, and response. The form looked fair, but ambiguity and volatility kept returning as surprises. After, Seraphine keeps the row only when scoring helps. She adds a discovery action for ambiguity, a probe for complexity, a value question for opportunity, and a cadence trigger for volatility. The same intake desk now sorts signals before it assigns paperwork.",
+      "whatToDo": "Seraphine keeps formal risk work for exposures that can be scored, then routes the other uncertainty signals to discovery, probes, value review, or faster cadence.",
+      "whyItMatters": "Tailoring starts at the signal. The team avoids forcing every unknown into one form, so the response fits the uncertainty instead of the other way around."
+    },
+    {
+      "exampleId": "ch27-ex06-mabel-audit",
+      "sourceAnchorId": "ch27.ex.domain-27-artifact",
+      "title": "Audit of the Quiet Rows",
+      "tags": [
+        "audit",
+        "records",
+        "ambiguity"
+      ],
+      "planSpec": {
+        "domain": "Mabel audits existing project records for uncertainty signals",
+        "audience": "leaders reviewing artifacts after a project review feels strangely calm",
+        "stakes": "the records may show activity while the uncertainty outcome stays weak",
+        "format": "audit",
+        "requiredBeat": "Mabel reviews records and finds the telling detail in risk register rows, ambiguity notes, complexity notes, and volatility patterns"
+      },
+      "scenario": "Mabel reviews six weeks of records after the delivery review ends early. Nothing dramatic happens in the room; only the files speak. The risk register has nineteen updates, but twelve close with \"monitor\" and no owner change. Ambiguity notes from stakeholder interviews sit in a folder that never reaches planning. Complexity appears in architecture comments, while volatility shows up as supplier dates revised every Friday. The question is why the project sounded calm. The telling detail is that signals were collected in separate files and never turned into response.",
+      "whatToDo": "Mabel marks the rows and notes that never changed a decision. She groups them by risk, ambiguity, complexity, and volatility, then names where the response path broke.",
+      "whyItMatters": "An audit can reveal weak performance without a new incident. The files show whether uncertainty information traveled far enough to affect project behavior."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch27.fact.3",
+        "prompt": "A risk register in Mariana's file shows four new threats in six days, all after stakeholder scope comments changed. What should she infer first?",
+        "choices": [
+          "Artifact-count misconception: the register is busy, so uncertainty performance looks healthy.",
+          "Signal-interaction reading: stakeholder change is altering risk exposure and needs joint review.",
+          "Phase-gate misconception: the risk work can wait for the next planning pass."
+        ],
+        "correctIndex": 1,
+        "explanation": "The pattern links stakeholder movement to risk exposure. A busy register is only useful if it drives review across the domains now being disturbed.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch27.fact.2",
+        "prompt": "Rosa inherits a project with weekly risk meetings, fresh minutes, and no change in responses after new supplier volatility. Which reading fits the domain?",
+        "choices": [
+          "Outcome reading: activity is present, but the response outcome is weak.",
+          "Calendar misconception: meeting cadence proves the uncertainty work is functioning.",
+          "Archive misconception: complete minutes matter more than adjusted decisions."
+        ],
+        "correctIndex": 0,
+        "explanation": "Domain health is assessed by outcomes. Meetings and minutes can be active while the project still fails to respond to supplier volatility.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch27.fact.8",
+        "prompt": "Jack reviews a dashboard where defect causes are unclear, vendor dates swing weekly, and the risk register has no matching entries. Which first response reads the data best?",
+        "choices": [
+          "Register-only misconception: wait until the unclear items can be scored as risks.",
+          "Certainty-first misconception: postpone action until the causes stop changing.",
+          "Signal-sorting response: separate ambiguity, volatility, and scored risks before acting."
+        ],
+        "correctIndex": 2,
+        "explanation": "The dashboard contains different kinds of uncertainty. Sorting the signals prevents Jack from forcing ambiguity and volatility into one risk format.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch27.fact.7",
+        "prompt": "Mabel teaches the PMBOK Guide's 8 domains, and Aditya draws them as steps with Uncertainty after Measurement. How should she correct the model?",
+        "choices": [
+          "Sequence misconception: keep the ladder but move Uncertainty before Planning.",
+          "Domain-map correction: redraw the domains as interacting areas of attention.",
+          "Tool-list misconception: replace the map with a larger risk register template."
+        ],
+        "correctIndex": 1,
+        "explanation": "The 8-domain structure is integrated, not sequential. Moving the box on a ladder preserves the wrong model of project performance.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch27.fact.5",
+        "prompt": "A log in Nikolai's review folder shows more artifacts each week, while decision notes repeat the same response plan. What should Nikolai challenge?",
+        "choices": [
+          "Artifact-volume assumption: more tools do not show better performance by themselves.",
+          "Lean-document misconception: fewer artifacts would solve the uncertainty problem.",
+          "Ownership-only misconception: assigning names matters more than learning from signals."
+        ],
+        "correctIndex": 0,
+        "explanation": "Artifacts earn their place by improving decisions, coordination, control, or learning. More files can hide a stalled response loop.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch27.fact.4",
+        "prompt": "Aditya joins a hybrid project where known regulatory risks need control, but user behavior remains ambiguous. Which plan best fits the domain?",
+        "choices": [
+          "Uniform-practice misconception: use one formal register process for both kinds of uncertainty.",
+          "Agile-exception misconception: treat ambiguity as outside project management practice.",
+          "Tailored-domain plan: pair formal controls with experiments and feedback loops."
+        ],
+        "correctIndex": 2,
+        "explanation": "Hybrid work may need both control and learning. The domain is tailored by context, so regulatory exposure and user ambiguity need different cadences.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch27.fact.6",
+        "prompt": "Measurement notes show Seraphine's team shipping outputs on time, but stakeholder feedback says the benefit target shifted. Where should uncertainty performance connect?",
+        "choices": [
+          "Value-connection reading: the signal belongs in value, measurement, and delivery decisions.",
+          "Output-count misconception: shipped deliverables settle the uncertainty question.",
+          "Stakeholder-silo misconception: feedback belongs outside uncertainty work."
+        ],
+        "correctIndex": 0,
+        "explanation": "Uncertainty performance is tied to value delivery. A changed benefit target can make on-time outputs less useful unless measurement and delivery adjust.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch27.fact.1",
+        "prompt": "Seraphine takes over after planning is approved, and the team says uncertainty work is finished until the next phase. What should she do first?",
+        "choices": [
+          "Milestone misconception: respect the phase boundary and reopen uncertainty later.",
+          "Ongoing-domain response: restart signal review as new information appears.",
+          "Control-board misconception: move all uncertainty questions to governance."
+        ],
+        "correctIndex": 1,
+        "explanation": "Performance domains operate throughout the project. New information after planning can change exposure, response, and value assumptions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch27.fact.9",
+        "prompt": "During a sponsor review, Mariana hears that every risk row was updated, yet no owner can name what changed because of the update. Which conclusion is strongest?",
+        "choices": [
+          "Completion misconception: updated rows are enough evidence of domain performance.",
+          "Ownership misconception: the only missing item is stricter name assignment.",
+          "Outcome-signal conclusion: activity occurred, but performance evidence is missing."
+        ],
+        "correctIndex": 2,
+        "explanation": "The hard test is response, fit, and decision impact. Updating rows without changed behavior shows activity volume, not healthy uncertainty performance.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "implementationPlan": {
+    "title": "Map the Uncertainty Signals",
+    "coreSkill": "Practice treating uncertainty as system evidence, not paperwork. Use Map the Uncertainty Signals to classify what you are seeing: scored risk, opportunity, ambiguity, complexity, volatility, or stale assumption. Then connect the signal to the domain it should change next.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch27.fact.8",
+        "context": "When a risk row changes but no decision changes",
+        "plan": "If the register updates without an action shift, then Map the Uncertainty Signals and name which response is missing."
+      },
+      {
+        "sourceAnchorId": "ch27.fact.3",
+        "context": "When stakeholder feedback alters the value target",
+        "plan": "If feedback changes value expectations, then map the signal to stakeholder, delivery, measurement, and planning decisions before closing the review."
+      },
+      {
+        "sourceAnchorId": "ch27.fact.4",
+        "context": "When the project mixes stable controls with discovery work",
+        "plan": "If predictive control and adaptive learning both appear, then Map the Uncertainty Signals and assign each one the cadence it needs."
+      },
+      {
+        "sourceAnchorId": "ch27.fact.2",
+        "context": "When uncertainty meetings feel active but outcomes do not move",
+        "plan": "If activity is high and responses stay unchanged, then test the domain by asking what decision, owner, reserve, probe, or escalation changed."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, choose one active uncertainty item. Map the signal, name the domain it touches next, and write the decision or learning action it should trigger.",
+    "weeklyPractice": "For one week, review three uncertainty signals at the end of each day. Track whether each signal changed a decision, created a probe, or exposed a stale assumption."
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch27.fact.7",
+      "front": "What does the PMBOK Guide's 8-domain map require you to check when uncertainty changes?",
+      "back": "Check how Uncertainty interacts with Stakeholders, Team, Development Approach and Life Cycle, Planning, Project Work, Delivery, and Measurement. A domain change rarely stays in one box.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch27.fact.8",
+      "front": "How do risk register rows differ from ambiguity, complexity, and volatility signals?",
+      "back": "A risk register is strongest when exposure can be scored and owned. Ambiguity needs discovery, complexity needs probes and sensemaking, and volatility may need faster cadence, buffers, or escalation.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch27.fact.2",
+      "front": "Why can a busy uncertainty routine still show weak domain performance?",
+      "back": "Activity does not prove outcomes. If meetings, registers, and notes do not change ownership, response, monitoring, escalation, or learning, the domain is busy but not healthy.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch27.fact.6",
+      "front": "Earlier concept: Focus on Value. How does uncertainty performance protect value delivery?",
+      "back": "It keeps outputs connected to accepted outcomes and benefits. When uncertainty changes stakeholder expectations, delivery confidence, or measurement evidence, value delivery may need a different response.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch27.fact.4",
+      "front": "Earlier concept: Tailor Based on Context. Why should uncertainty work differ across predictive, adaptive, and hybrid projects?",
+      "back": "Different contexts need different levels of formality, cadence, and feedback. Predictive work may lean on controls and reserves, while adaptive work may need experiments and frequent signal review.",
+      "difficulty": "hard"
+    }
+  ],
+  "memorableLines": [
+    {
+      "text": "A green risk register can still hide a red project.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the difference between artifact status and domain health."
+    },
+    {
+      "text": "A risk you can score gets an owner; an ambiguity you cannot score gets a probe.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a clean distinction between risk response and discovery."
+    },
+    {
+      "text": "An artifact matters only after it moves a decision.",
+      "location": "breakdown.fullRead",
+      "why": "It turns artifact guidance into a test the reader can use."
+    }
+  ]
+}

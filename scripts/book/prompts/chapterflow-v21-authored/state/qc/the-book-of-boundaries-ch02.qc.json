@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-book-of-boundaries",
+  "chapterNumber": 2,
+  "chapterId": "the-book-of-boundaries-ch02",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "d3987044686bbfb4",
+  "reviewer": "claude-qc:boundaries-20260609-r2",
+  "reviewedAt": "2026-06-10T01:01:47.849Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~88/100 (round 2, independent re-read; replaces writer self-attestation). Skeleton FIXED: example openers now diversified (ex01 dialogue / ex02 object / ex03 context / ex04 mid-action / ex05 object); clock-time openers cut 5->1. Quiz byte-identical, 9/9 keys still correct; breakdown unchanged; rewritten cards answer fronts (no corruption). Green/Yellow/Red+24h-maybe grounded.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-book-of-boundaries",
+      "chapterNumber": 2,
+      "chapterId": "the-book-of-boundaries-ch02",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "decb03870b08015b",
+      "reviewer": "claude-qc:boundaries-20260609-r2",
+      "reviewedAt": "2026-06-10T01:01:47.849Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~88/100 (round 2, independent re-read; replaces writer self-attestation). Skeleton FIXED: example openers now diversified (ex01 dialogue / ex02 object / ex03 context / ex04 mid-action / ex05 object); clock-time openers cut 5->1. Quiz byte-identical, 9/9 keys still correct; breakdown unchanged; rewritten cards answer fronts (no corruption). Green/Yellow/Red+24h-maybe grounded."
+    }
+  ]
+}

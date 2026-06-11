@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-4-hour-workweek",
+  "chapterNumber": 12,
+  "chapterId": "the-4-hour-workweek-ch12",
+  "verdict": "REVISE",
+  "contentHash": "15bdcd686817dfff",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:30:09.414Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=89; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/repeated_unit",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 12,
+      "chapterId": "the-4-hour-workweek-ch12",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "e705c606d68da66a",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:21.844Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; remote-work trial, risk transfer, reversibility, lead-with-employer-benefit accurate. Coherent; cards answer fronts; plan Run the Reversible Remote Trial non-empty. No corruption."
+    }
+  ]
+}

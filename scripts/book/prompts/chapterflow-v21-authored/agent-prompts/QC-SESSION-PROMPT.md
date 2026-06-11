@@ -96,8 +96,13 @@ corrupt."** Two failure tiers:
   recall cards / planning-note examples — the ~61/100 chapter) → **YELLOW**. Passes
   the gate AND a naive read; still not publishable.
 
-**Which chapters to score:** read **ch01, one middle, one late** in full, PLUS any
-chapter the gates or `author-check` flagged. Target the read; don't blanket 20 chapters.
+**Which chapters to score:** promote requires a fresh PUBLISHABLE attestation on
+**EVERY chapter** (`qc-status <bookId>` must be all-PASS) — partial coverage cannot
+ship a book, and you must NEVER attest a chapter that wasn't read. For full coverage,
+generate the harness review fleet: `npx tsx src/cli.ts qc-run <bookId>` (blind-key
+verification + two bar-read lenses per chapter + a cross-chapter sweep + adjudication,
+attesting as `harness:<id>`). Your manual deep-reads then target ch01, one middle, one
+late, PLUS anything the gates, `author-check`, or the qc-run sweep flagged.
 
 **Score these 8 axes (0–1), citing a verbatim quote for any hit** (cite-or-it-didn't-happen).
 Full rubric text is `AXIS_RUBRIC` in publishableBar.ts; the essentials:
@@ -119,7 +124,7 @@ patterns a per-scene read misses (they put 4HWW ch2/12/14 at REVISE after a firs
 attested them PASS) — each is a `example_coherence` DRAFT hit → **YELLOW**:
 1. **Location stamping** — is one place (a city, campus, building) the setting of most
    scenes? 4HWW ch2 stamped "Princeton University" on a nonprofit, a sales rep, AND an
-   agency — geographically implausible. The C18 gate now BLOCKS the egregious case
+   agency — geographically implausible. The C22 gate (example_setting_stamping; renumbered from C18 in Phase 4) now BLOCKS the egregious case
    (one location in ≥4 of 6 scenes); you catch the subtler 3-of-6 version. Each scene
    gets its own domain-appropriate setting.
 2. **Shared skeleton — THE most-missed defect.** Do ≥half the scenes share a structural
@@ -138,11 +143,17 @@ attested them PASS) — each is a `example_coherence` DRAFT hit → **YELLOW**:
    people.) Each name maps to exactly one person doing consistent things everywhere.
 
 **Hidden-key protocol (mandatory — the only way to catch a wrong key behind a clean
-explanation, the hooked / dare-to-lead defect):** for every question the gate /
-`author-check` flagged, PLUS ~4 random questions per chapter — cover `correctIndex`,
-derive the answer yourself from prompt + choices + source, THEN reveal. A mismatch is a
-`quiz_key_correctness` CORRUPTION hit. (FP-guard: a misconception keyed correct IS
-correct when the stem asks for it.)
+explanation, the hooked / dare-to-lead defect). It is TOOLED — do not rely on
+self-restraint:**
+
+1. `npx tsx src/cli.ts quiz-blind <chapter.json>` — prints the questions with the key
+   and explanations STRIPPED. Derive every answer from this output (+ the source
+   sidecar) WITHOUT opening the chapter file.
+2. `npx tsx src/cli.ts quiz-verify <chapter.json> --answers "0:1,1:2,…"` — mechanical
+   diff; full coverage required. Each MISMATCH prints the keyed explanation so you can
+   adjudicate whether the KEY or YOUR DERIVATION is wrong before calling it a
+   `quiz_key_correctness` CORRUPTION hit. (FP-guard: a misconception keyed correct IS
+   correct when the stem asks for it.)
 
 **Fast corruption sweep across ALL chapters** (narrows where to look; the READ is authoritative — fixed greps rot):
 ```bash

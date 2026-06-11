@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "drive-ch02",
+  "number": 2,
+  "title": "Seven Reasons Carrots and Sticks Often Do Not Work",
+  "readingTimeMinutes": 8,
+  "hook": "Tom Sawyer's fence turns payment into a warning: a prize can make play feel like labor.",
+  "counterintuition": "A reward can raise effort while quietly narrowing attention, reducing candor, and draining the original appetite for the task.",
+  "tryThisNow": "Pick one reward you use or chase; write whether it invites curiosity or merely purchases compliance.",
+  "keyTakeaway": "Conditional rewards are risky when the work needs insight, persistence, or ethics, because control can crowd out the motive you wanted.",
+  "breakdown": {
+    "fastRead": "Tom Sawyer's fence begins as a chore and becomes desirable only because other boys are allowed to treat painting as play. The Sawyer Effect names the darker reversal: add a controlling prize and an interesting activity can become a transaction. Edward Deci's Soma puzzles, Karl Duncker's candle problem, and day-care fines all show a similar fracture. The rule is not that every reward fails. The rule is to beware of if-then control when creativity, care, or moral judgment is the point.",
+    "deepRead": "The mechanism is crowding out: attention shifts from the work itself to the bargain attached to it. The Sawyer Effect names the moment when an activity that could carry interest, pride, or care becomes a transaction because a reward or control changes what the activity feels like.\n\nTom Sawyer's fence shows the bright side of framing: painting becomes desirable when the boys experience it as a privilege. Deci's Soma puzzle experiment shows the darker side. Students who were paid for puzzle work later spent less free-choice time with the puzzles, because the payment had taught them to read the activity as paid labor. Duncker's candle problem adds a cognitive cost: incentives can narrow attention exactly when the task needs a wider search.\n\nThe Sawyer Effect does not claim that every reward fails. It is warning against conditional control in work that needs creativity, ethics, care, or lasting interest. Day-care fines, sales targets, and performance bonuses can all move behavior while changing its meaning. The practical question is whether the incentive supports the reason people care or replaces that reason with a deal.",
+    "fullRead": "The warning has a narrow target, and that narrowness makes it more useful. Pink is not saying goals, pay, or recognition are poisonous. He is saying that if-then control can damage the motive you hoped to strengthen when the task already carries interest or requires judgment.\n\nTom Sawyer's fence captures the reversal. Tom makes a chore look like chosen play, and effort appears. The Sawyer Effect runs in the other direction: attach a controlling prize to an interesting activity and the activity can start to feel like labor.\n\nDeci's Soma puzzle experiment gives the effect research teeth. Paid participants showed less voluntary puzzle interest after the payment disappeared. The reward did not only add value; it changed the meaning of the activity. Duncker's candle problem shows a separate cost. Creative problem solving needs a broad search, while a prize can tighten attention around speed and payoff.\n\nThe day-care fine example brings the point into social life. A late pickup once violated a norm of responsibility to teachers. When the center added a fee, some parents treated lateness as a purchasable service. The incentive did not just price the behavior; it changed the relationship.\n\nThe useful lesson is restraint. Before adding a prize, ask what motive is already present and what kind of thinking the work requires. If the work depends on curiosity, trust, care, or insight, a controlling reward may solve the visible problem while weakening the deeper one.\n\nThe seven failures of if-then rewards are different faces of the same problem. They can reduce intrinsic motivation, narrow performance, crush creativity, crowd out good behavior, encourage cheating or shortcuts, become addictive, and promote short-term thinking. The pattern is not that rewards have mystical negative power. The pattern is that controlling rewards change attention and meaning.\n\nA prize can make people ask, What do I have to do to get paid? That question is sometimes useful. It can also displace better questions: What is interesting here? What does the customer need? What would be fair? What solution have we not tried yet? Once the reward becomes the center, people often optimize for the reward's shape, not for the work's purpose.\n\nThe repair is not sentimental. A museum desk still needs staffing. A design sprint still needs decisions. A preschool still needs parents on time. The repair is to protect the motive the work depends on. Use information-rich feedback, clearer reasons, autonomy, and social norms before reaching for a controlling bargain. If a reward is necessary, keep it modest, bounded, and honest about the behavior it may distort."
+  },
+  "examples": [
+    {
+      "exampleId": "drive-ch02-ex01",
+      "title": "A Misread Incentive",
+      "tags": [
+        "work design",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "museum education desk",
+        "audience": "Claudia, a museum educator deciding whether to prize every answer",
+        "stakes": "A children's desk needs energy without turning curiosity into a contest.",
+        "format": "decision_point",
+        "requiredBeat": "Show the reward crowding out the museum's learning motive."
+      },
+      "scenario": "Claudia watches children linger over a fossil drawer until a donor suggests points for correct answers. The room gets louder, but the questions get thinner as kids start hunting for the fastest badge.",
+      "whatToDo": "Before the museum education desk, name the motive a prize could crowd out and design around that risk.",
+      "whyItMatters": "The reward may raise participation while making the exhibit feel like a quiz booth. The lost motive is curiosity."
+    },
+    {
+      "exampleId": "drive-ch02-ex02",
+      "title": "The Calendar Test",
+      "tags": [
+        "team choice",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "design sprint room",
+        "audience": "Niko, a design lead protecting exploratory work",
+        "stakes": "A sprint team wants speed, but the problem needs a wider search.",
+        "format": "dialogue",
+        "requiredBeat": "Use the candle-problem warning in a design sprint."
+      },
+      "scenario": "Niko's team is stuck on a checkout issue. A manager offers a bonus for the first solution by noon, and the group immediately narrows to small button changes instead of studying why customers abandon the page.",
+      "whatToDo": "In the design sprint room, protect a block of exploratory time before discussing any bonus.",
+      "whyItMatters": "For insight work, pressure can make the team faster at the wrong search. Exploration needs room before the prize appears."
+    },
+    {
+      "exampleId": "drive-ch02-ex03",
+      "title": "When Metrics Crowd Out Meaning",
+      "tags": [
+        "ethics",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "preschool pickup counter",
+        "audience": "Yara, a preschool director reading a fee as a social signal",
+        "stakes": "A pickup policy could turn responsibility into a purchasable delay.",
+        "format": "audit",
+        "requiredBeat": "Show a social norm becoming a market bargain."
+      },
+      "scenario": "Yara hears one parent say the late fee is cheaper than leaving a meeting early. The old norm was apology and repair; the new one sounds like paying for extra child care.",
+      "whatToDo": "Audit the preschool pickup counter for the social norm a fee might convert into a market bargain.",
+      "whyItMatters": "The fee changes what lateness means. A policy that prices a violation can make the violation easier to choose."
+    },
+    {
+      "exampleId": "drive-ch02-ex04",
+      "title": "A Better Design Choice",
+      "tags": [
+        "autonomy",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "sales compensation review",
+        "audience": "Hassan, a sales leader deciding whether a target invites gaming",
+        "stakes": "A compensation review has to distinguish healthy direction from a narrow scoreboard.",
+        "format": "planning_choice",
+        "requiredBeat": "Show a reward that improves numbers while corrupting judgment."
+      },
+      "scenario": "Hassan sees reps pushing upgrades to customers who do not need them because the quarterly bonus pays for product count. Revenue is up, but trust tickets are rising behind it.",
+      "whatToDo": "For the sales compensation review, check whether the target invites learning or encourages gaming the number.",
+      "whyItMatters": "The incentive focuses effort, but it also teaches people which value to ignore. A good metric cannot make a bad motive harmless."
+    },
+    {
+      "exampleId": "drive-ch02-ex05",
+      "title": "The Control Signal",
+      "tags": [
+        "management",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "community volunteer table",
+        "audience": "Marta, a volunteer coordinator preserving choice",
+        "stakes": "A community table needs commitments without making service feel bought.",
+        "format": "postmortem",
+        "requiredBeat": "Show how autonomy protects volunteer motive."
+      },
+      "scenario": "Marta considers gift cards for volunteers who take the least popular shifts. She instead asks people to choose between two useful roles and explains exactly who the evening shift helps.",
+      "whatToDo": "At the community volunteer table, make the volunteer choice feel self-directed before offering a reward.",
+      "whyItMatters": "The redesign keeps the act voluntary and meaningful. That matters more than a small prize when care is the resource."
+    },
+    {
+      "exampleId": "drive-ch02-ex06",
+      "title": "After the Reward Debate",
+      "tags": [
+        "reflection",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "software bug bounty meeting",
+        "audience": "Ellis, a security lead designing a bug bounty carefully",
+        "stakes": "A bounty should find flaws without training people to chase payout at any cost.",
+        "format": "reflection",
+        "requiredBeat": "Show reward design with guardrails."
+      },
+      "scenario": "Ellis adds a bounty for a tedious bug sweep, but he caps duplicate payouts and requires a clear reproduction note. Hunters can earn money, but the rules reward usable fixes, not noisy submissions.",
+      "whatToDo": "In the software bug bounty meeting, cap the bounty and add a quality review so attention does not narrow to payout.",
+      "whyItMatters": "Some rewards can help routine work. The guardrail keeps attention on quality instead of pure payout."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "drive-ch02-q01",
+        "prompt": "A museum wants children to ask more questions at an exhibit. What should staff inspect before adding points for every answer?",
+        "choices": [
+          "Whether the prize table is colorful enough to attract a crowd.",
+          "Whether the points would replace curiosity with a contest.",
+          "Whether all open-ended questions can be removed from the exhibit."
+        ],
+        "correctIndex": 1,
+        "explanation": "The Sawyer Effect asks what motive a reward may crowd out. A livelier contest can still make the learning thinner.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch02-q02",
+        "prompt": "What does Tom Sawyer's fence reveal about motivation?",
+        "choices": [
+          "The meaning around a task can make effort feel chosen, interesting, and worth joining.",
+          "Children work hardest when every chore carries a cash bonus.",
+          "A task becomes motivating only when no one benefits from it."
+        ],
+        "correctIndex": 0,
+        "explanation": "Tom changes the frame of the work. The point is not payment or uselessness; it is the felt meaning of the activity.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch02-q03",
+        "prompt": "A manager says all rewards are harmful. What boundary keeps the warning honest?",
+        "choices": [
+          "Rewards are safe whenever leaders announce them confidently.",
+          "Pay should be removed from every job that includes any creativity.",
+          "The strongest warning applies to conditional control in work that needs creativity, care, ethics, or lasting interest."
+        ],
+        "correctIndex": 2,
+        "explanation": "The warning targets a specific danger. The wrong answers either ignore the danger or turn it into an absolute rule.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch02-q04",
+        "prompt": "A sales bonus is pushing reps to sell upgrades customers do not need. Which diagnosis fits Deci's puzzle lesson?",
+        "choices": [
+          "The reps need a larger bonus so the number feels more exciting.",
+          "Customer fit no longer matters because the team is producing activity.",
+          "The payoff is shifting attention from the work's purpose to the reward."
+        ],
+        "correctIndex": 2,
+        "explanation": "The problem is not low effort. It is effort redirected by the reward.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch02-q05",
+        "prompt": "A design sprint needs a new way to solve checkout abandonment. Why might a winner-take-all prize backfire?",
+        "choices": [
+          "It will make every designer forget how checkout works.",
+          "It can narrow attention around speed when the team needs broad problem solving.",
+          "It proves deadlines are never useful in creative work."
+        ],
+        "correctIndex": 1,
+        "explanation": "The candle-problem lesson is about attention. The prize may make people rush past the better search.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch02-q06",
+        "prompt": "A team feels evaluated on every draft, so people avoid strange ideas. What correction follows?",
+        "choices": [
+          "Creativity needs enough safety from control, rush, and external judgment to explore.",
+          "The team should stop giving any feedback until the project ships.",
+          "The manager should judge drafts more publicly so people try harder."
+        ],
+        "correctIndex": 0,
+        "explanation": "The point is not a feedback blackout. It is feedback and structure that do not turn exploration into threat.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "drive-ch02-q07",
+        "prompt": "How could the museum test whether a prize helps curiosity or harms it?",
+        "choices": [
+          "Make the prize permanent for a month, then judge success by how many children line up for tokens.",
+          "Remove all adult prompts from the exhibit, then assume any drop in questions means curiosity was fake.",
+          "Run one exhibit hour with no prize and one with a prize, then compare return visits, question quality, and engagement."
+        ],
+        "correctIndex": 2,
+        "explanation": "A reversible test reads the motive, not just the crowd size. The wrong moves are too blunt.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch02-q08",
+        "prompt": "Volunteers sign up faster after gift cards are introduced, but fewer return without reminders. What should worry the coordinator?",
+        "choices": [
+          "The reward may have weakened the service motive that made people come back on their own.",
+          "The gift cards should be framed as proof that volunteering is not meaningful.",
+          "The coordinator should ignore the drop in return visits because the first signup rose."
+        ],
+        "correctIndex": 0,
+        "explanation": "Short-term behavior can hide damage to the underlying motive. Return behavior matters.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch02-q09",
+        "prompt": "Before adding a reward to cared-about work, which move comes first?",
+        "choices": [
+          "Pick a prize large enough to dominate the task.",
+          "Name the intrinsic motive the reward might crowd out.",
+          "Assume interest will survive any control system."
+        ],
+        "correctIndex": 1,
+        "explanation": "Good incentive design protects the motive first. Both distractors skip that protection.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "drive-ch02-card01",
+      "front": "What is the Sawyer Effect?",
+      "back": "It is the shift that happens when a reward or control turns an activity from something chosen into something bargained for.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "drive-ch02-card02",
+      "front": "Why does Deci's puzzle study matter?",
+      "back": "It shows that a reward can buy temporary effort while reducing later voluntary interest in the same activity.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch02-card03",
+      "front": "When can a reward narrow performance?",
+      "back": "When the task needs insight or exploration. The prize can focus attention so tightly that people miss the better solution.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch02-card04",
+      "front": "What did the day-care fine reveal?",
+      "back": "A fee can turn a social responsibility into a purchase. The same behavior then feels easier to justify.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "drive-ch02-card05",
+      "front": "What question should come before an if-then reward?",
+      "back": "What motive might this reward replace, and does the work need that motive to stay healthy?",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Reward Damage Scan",
+    "coreSkill": "Use the Reward Damage Scan before adding an incentive: write the existing motive, the behavior you want, the kind of work involved, and the motive the reward might crowd out.",
+    "ifThenPlans": [
+      {
+        "context": "The task already has curiosity, care, or pride inside it",
+        "plan": "Protect the motive first. Use autonomy, feedback, or clearer purpose before reaching for an if-then prize."
+      },
+      {
+        "context": "The task needs creative search",
+        "plan": "Delay rewards until after exploration, or reward learning quality instead of speed alone."
+      },
+      {
+        "context": "A policy changes a social norm into a price",
+        "plan": "Revise the policy so repair, responsibility, or relationship stays visible."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one reward, fine, badge, or target you use or face. Write the motive it may be replacing, then adjust one detail to protect that motive.",
+    "weeklyPractice": "For seven days, note one moment when a reward, score, or penalty changes how an activity feels. Keep the scan focused on meaning, not only output."
+  },
+  "memorableLines": [
+    {
+      "text": "Tom Sawyer's fence begins as a chore and becomes desirable only because other boys are allowed to treat painting as play.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the lesson through a concrete source scene."
+    },
+    {
+      "text": "The mechanism is crowding out: attention shifts from the work itself to the bargain attached to it.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism before adding detail."
+    },
+    {
+      "text": "The warning has a narrow target, and that narrowness makes it more useful.",
+      "location": "breakdown.fullRead",
+      "why": "It frames the limit that protects the lesson from overreach."
+    }
+  ]
+}

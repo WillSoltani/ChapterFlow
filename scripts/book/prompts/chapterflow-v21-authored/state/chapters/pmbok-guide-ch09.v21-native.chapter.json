@@ -1,0 +1,340 @@
+{
+  "chapterId": "pmbok-guide-ch09",
+  "number": 9,
+  "title": "Effectively Engage with Stakeholders",
+  "readingTimeMinutes": 11,
+  "hook": "The empty room keeps the stakeholder map faceup beside the schedule no one should have cut.",
+  "counterintuition": "The quiet risk is that a full stakeholder register can make a team feel done before anyone has been heard. Engagement earns its name when it changes a tradeoff under pressure.",
+  "tryThisNow": "Draft one sentence naming whose input would change today's decision, then label the next conversation it requires.",
+  "keyTakeaway": "Stakeholder engagement becomes real when analysis, influence, and communication change tradeoffs under pressure, not when a register proves the phrase was memorized.",
+  "breakdown": {
+    "fastRead": "The empty room tells on the project. Noella has left the schedule vote, but the stakeholder map is still faceup beside the cut date. Nobody moved a pin before the baseline changed. The team can recite Effectively Engage with Stakeholders. The room shows a harder truth: no affected person changed the choice.\n\nA stakeholder principle has only reached the work when it changes the next decision. PMI places the idea among 12 principles because people, value, risk, quality, and change move together. A register can list people while the project still fails to hear them.",
+    "deepRead": "Engagement works by keeping influence close to the decision, not after it. A project team identifies affected groups, learns what they need, tests who can support or resist the work, and changes communication when the facts change. That loop matters whether delivery follows a fixed plan, short feedback cycles, or a blended path, because attitudes and impacts do not stay still.\n\nWilfrid learns this in a training classroom, not a crisis. The workbook asks where Effectively Engage with Stakeholders fits among the PMI 12 principles. He keeps drawing a straight line from stakeholder analysis to a status report. The trainer erases the arrow and draws a loop through influence, decision, and feedback. The point lands when Wilfrid sees that the update is only one possible act. The principle is broader: involve the right people early enough that their knowledge can alter the path.\n\nPressure does not suspend stakeholder engagement; it reveals whether engagement was real.\n\nThat is why schedule pressure is such a clean test. When a date slips, a team can defend the baseline and broadcast a new plan, or it can ask whose trust, adoption, evidence, or operations will be affected by the change. The second path may still protect the date. It simply refuses to treat communication as a late announcement. Stakeholders can support, oppose, redirect, or quietly drain value from the work. The team has to keep listening while it is still possible to decide.",
+    "fullRead": "The limit is important: engaging stakeholders does not mean every person gets a vote on every choice. Projects still need governance, judgment, and speed. The principle asks for the right people in the right decisions, with communication matched to impact and influence.\n\nMustafa shows the before and after in a release process. Before the change, schedule pressure sends the team into baseline defense. The slide says the date is fixed. Operations receives a short note after the decision. Users hear the message from a supervisor who cannot answer adoption questions. After the change, the same pressure starts with a different act. The team names who will absorb the impact, asks operations for transition risk, gives users a demonstration, and escalates the one tradeoff the sponsor must own.\n\nBoth halves still care about delivery. The difference is evidence. One process treats stakeholders as an audience for communication. The other treats them as sources of risk, need, trust, and value. That difference is the behavioral standard behind Effectively Engage with Stakeholders.\n\nAmir sees the same pattern in an audit. The project file looks neat: register complete, meeting notes stored, baseline approved. The telling detail sits in the communication log. Every message after the schedule cut starts with the new date. None asks who needs a prototype, proof, training, or an escalation path. The team had artifacts, but the artifacts did not make people matter inside the decision.\n\nLandon catches the temptation inside his own head. First thought: the sponsor wants speed, so keep the meeting small. Second thought: the user group will slow everything down. Third thought: maybe that is the wrong test. The question is not whether stakeholders make the work easier. The question is whose knowledge would prevent a bad delivery from looking efficient.\n\nAmelie faces the planning version before any action begins. One hour remains before the schedule review. She can spend it polishing the baseline slide, calling the operations lead, or writing the risk escalation note. The choice is not about being nice. It is about allocating scarce attention to the contact most likely to change a decision. Stakeholder work costs time before it saves value.\n\nThere is also a misuse to avoid. Engagement can become performance. A team can invite too many people, turn every concern into a forum, and call the delay respect. That misses the principle as badly as silence does. The standard is not maximum participation. It is fit participation: enough analysis, influence, and communication for the decision at hand.\n\nA register helps when it stays alive. It should change as power, interest, support, resistance, and impact change. It should point to conversations, demonstrations, evidence, and escalation choices. It should not become a certificate that the team has already cared.\n\nPMI's broad language matters here. The Seventh Edition principle set does not belong to one lifecycle. Predictive work still needs current expectations. Adaptive work still needs clear sponsor and user alignment. Hybrid work still needs communication that fits the different rhythms in the same project. Stakeholder engagement travels because affected people travel with every way of delivering.\n\nThe final test is plain. When pressure rises, does the team ask who will be affected before it locks the answer? Does new information change governance, priority, or message? Does the baseline serve value, or does it hide from the people who know value is at risk? Recitation is easy. Behavioral evidence is harder, and much more useful."
+  },
+  "examples": [
+    {
+      "exampleId": "pmbok-ch09-ex01-noella-coach-map",
+      "sourceAnchorId": "ch09.ex.principle-9-pmi",
+      "title": "Noella hears the map talk back",
+      "tags": ["mentoring", "stakeholder map", "influence"],
+      "planSpec": {
+        "domain": "project leadership mentoring conversation",
+        "audience": "a project lead who treats the stakeholder map as a finished document",
+        "stakes": "the team may recite the principle while ignoring influence inside the next decision",
+        "format": "coach_talk",
+        "requiredBeat": "a peer reframes the PMI 12-principle language so Noella sees stakeholder analysis as decision contact"
+      },
+      "scenario": "Noella keeps the stakeholder map open on the conference room screen after lunch while her peer points to PMI's 12 principles and the phrase Effectively Engage with Stakeholders. Noella says the stakeholder analysis is done. Her peer has to tell her before the review starts: \"A name on the map is not engagement until influence can change the call.\"",
+      "whatToDo": "Noella turns the map into three decision contacts, then asks which stakeholder can change the schedule, risk response, or adoption plan before the review.",
+      "whyItMatters": "The coaching shift moves the work from vocabulary to behavior. Stakeholder analysis starts to matter when influence can reach a live choice."
+    },
+    {
+      "exampleId": "pmbok-ch09-ex02-wilfrid-class-loop",
+      "sourceAnchorId": "ch09.ex.principle-9-pmi",
+      "title": "Wilfrid redraws the class arrow",
+      "tags": ["training", "PMI principles", "learning"],
+      "planSpec": {
+        "domain": "project management onboarding classroom",
+        "audience": "new project coordinators learning the Seventh Edition principle set",
+        "stakes": "learners may confuse stakeholder engagement with sending status updates",
+        "format": "school_case",
+        "requiredBeat": "the student's confusion becomes the teaching material for stakeholder analysis, influence, and communication"
+      },
+      "scenario": "Wilfrid sits in a classroom at 9:30 a.m. with a worksheet titled PMI 12 principles. He draws Effectively Engage with Stakeholders as one arrow from stakeholder analysis to communication. The trainer does not correct the answer at once. Before the exercise closes, Wilfrid has to explain why influence should loop back into the project choice, not stop at the update.",
+      "whatToDo": "Wilfrid redraws the worksheet as a loop from analysis to influence to communication to decision, then marks where learner confusion hid the missing step.",
+      "whyItMatters": "A school case removes workplace drama and exposes the concept error. Engagement is not broadcasting; it is learning that can alter the work."
+    },
+    {
+      "exampleId": "pmbok-ch09-ex03-mustafa-before-after",
+      "sourceAnchorId": "ch09.ex.principle-9-tradeoff",
+      "title": "Mustafa splits the release page",
+      "tags": ["before-after", "release", "schedule"],
+      "planSpec": {
+        "domain": "software release governance under compression",
+        "audience": "a release manager comparing two versions of the same schedule process",
+        "stakes": "schedule pressure can turn stakeholder communication into a late announcement",
+        "format": "before_after",
+        "requiredBeat": "the same release process appears before and after stakeholder engagement changes the tradeoff"
+      },
+      "scenario": "Mustafa divides the release page in the war room. Before: schedule pressure protects the baseline, and communication reaches operations after the cut date is approved. After: the same baseline is shown beside an operations risk note and a user demo slot. The tradeoff stays visible in both halves, but only the second half lets stakeholders change the answer.",
+      "whatToDo": "Mustafa rewrites the release review so operations risk and user adoption evidence sit beside the date before the sponsor approves the cut.",
+      "whyItMatters": "The parallel view makes the behavioral change visible. The date can still matter without turning affected groups into an audience for news."
+    },
+    {
+      "exampleId": "pmbok-ch09-ex04-amir-audit-log",
+      "sourceAnchorId": "ch09.ex.principle-9-tradeoff",
+      "title": "Amir finds the silent log",
+      "tags": ["audit", "communication", "records"],
+      "planSpec": {
+        "domain": "project assurance file review",
+        "audience": "an internal reviewer checking whether engagement affected delivery choices",
+        "stakes": "a complete file may hide the absence of stakeholder input under schedule pressure",
+        "format": "audit",
+        "requiredBeat": "the reviewer finds the telling detail in communication records after a baseline change"
+      },
+      "scenario": "Amir reviews the project file alone at 7:10 p.m. in the assurance office. The register is complete, the baseline change is signed, and schedule pressure appears in three meeting notes. The telling detail is in the communication log: every message announces the new date, while none asks operations which tradeoff will break adoption.",
+      "whatToDo": "Amir records the absence of decision-seeking communication and asks for evidence that operations, users, or sponsors influenced the baseline change.",
+      "whyItMatters": "An audit can separate document completeness from engagement. The useful detail is whether communication gathered judgment before the choice hardened."
+    },
+    {
+      "exampleId": "pmbok-ch09-ex05-landon-inner-check",
+      "sourceAnchorId": "ch09.ex.principle-9-pmi",
+      "title": "Landon argues with speed",
+      "tags": ["reflection", "pressure", "judgment"],
+      "planSpec": {
+        "domain": "hybrid delivery team planning reflection",
+        "audience": "a project manager noticing his own shortcut under pressure",
+        "stakes": "speed may be used to excuse skipping stakeholder influence",
+        "format": "inner_monologue",
+        "requiredBeat": "the protagonist works through wrong turns without dialogue and returns to PMI's behavioral standard"
+      },
+      "scenario": "Landon stares at his laptop before dinner. PMI says Effectively Engage with Stakeholders is one of 12 principles. Fine, he thinks, but the stakeholder analysis will slow the hybrid team. Wrong turn. Speed is not the test. Another wrong turn: send a summary after the call. The question is whose influence could keep the next decision from being fast and wrong.",
+      "whatToDo": "Landon names the stakeholder whose knowledge could change the decision, then blocks ten minutes for that contact before he edits the summary.",
+      "whyItMatters": "The internal argument shows the pressure point. The principle is tested where speed feels reasonable and listening feels expensive."
+    },
+    {
+      "exampleId": "pmbok-ch09-ex06-amelie-hour-choice",
+      "sourceAnchorId": "ch09.ex.principle-9-tradeoff",
+      "title": "Amelie spends the last hour",
+      "tags": ["planning", "attention", "governance"],
+      "planSpec": {
+        "domain": "infrastructure project schedule review preparation",
+        "audience": "a project controller allocating the final preparation hour",
+        "stakes": "scarce attention before a review may go to polish instead of stakeholder evidence",
+        "format": "planning_choice",
+        "requiredBeat": "the entire scene is the pre-action choice of where to spend scarce time before the schedule review"
+      },
+      "scenario": "Amelie has one hour before the boardroom schedule review. Three tabs are open: a cleaner baseline slide, a communication note to the permitting office, and a sponsor memo naming the adoption tradeoff. Schedule pressure makes polish tempting. She needs to choose where attention goes before any action starts.",
+      "whatToDo": "Amelie assigns the hour to the contact and memo that can change the review, leaving slide polish for later if time remains.",
+      "whyItMatters": "Planning engagement means budgeting attention before the room fills. A stakeholder voice cannot shape a tradeoff after the choice is already locked."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch09.fact.8",
+        "prompt": "After schedule changes were announced to operations, Noella finds four handoff misses in a six-day log. What should she infer before approving another baseline update?",
+        "choices": [
+          "Baseline Shield: Noella should protect the date and add a firmer reminder to the handoff email.",
+          "Decision Contact: Noella should involve operations before the update so their risks can alter the tradeoff.",
+          "Register Closure: Noella should mark operations as informed because the handoff group received the notice."
+        ],
+        "correctIndex": 1,
+        "explanation": "The pattern points to late engagement, not weak reminders. Operations needs a chance to affect the tradeoff before another baseline change hardens.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch09.fact.7",
+        "prompt": "Wilfrid is teaching an onboarding class and a learner says Effectively Engage with Stakeholders is a useful add-on after the real PMBOK work. Which response fits the principle set?",
+        "choices": [
+          "Optional Theme: Wilfrid can treat the topic as extra polish once the class understands scope and schedule.",
+          "Method Box: Wilfrid should attach the topic only to adaptive projects where users attend reviews.",
+          "Principle Spine: Wilfrid should place it inside the 12 principles and connect it to value, risk, change, and governance."
+        ],
+        "correctIndex": 2,
+        "explanation": "PMI treats the item as part of the Seventh Edition principle architecture. The add-on and method-only readings shrink a behavioral standard into a side topic.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch09.fact.3",
+        "prompt": "Sierra inherits a stakeholder register with every name filled in, yet design choices keep surprising the user group. Which first move tests whether engagement is behavioral?",
+        "choices": [
+          "Decision Trace: Sierra should ask which recent design choice changed because stakeholder input reached the team.",
+          "List Completion: Sierra should verify the user group titles and archive the register as current.",
+          "Status Volume: Sierra should increase update frequency so the user group hears about more choices."
+        ],
+        "correctIndex": 0,
+        "explanation": "The test is whether input changed a decision. More complete lists or louder updates can still leave stakeholder knowledge outside the work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch09.fact.5",
+        "prompt": "A schedule dashboard shows red for two milestones, and Mustafa's team wants to skip the user demo to save a week. Which reading should guide the pressure call?",
+        "choices": [
+          "Convenience Lens: Mustafa should skip the demo because pressure makes engagement a later adoption task.",
+          "Pressure Test: Mustafa should ask what the demo might reveal before the team trades learning for speed.",
+          "Ceremony Lens: Mustafa should invite every stakeholder to a full-day forum before any milestone discussion."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pressure is when the principle is tested. Skipping learning treats engagement as optional, while a broad forum may waste time without improving the choice.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch09.fact.1",
+        "prompt": "During an audit, Amir finds stakeholder analysis done once at kickoff, with no updates after scope, risk, and adoption concerns changed. What should he flag first?",
+        "choices": [
+          "Static Artifact: Amir should flag that a one-time document cannot manage changing stakeholder needs.",
+          "Early Certainty: Amir should accept kickoff analysis because stakeholder positions were captured before delivery began.",
+          "Meeting Count: Amir should count meetings rather than ask whether attitudes, influence, or impacts shifted."
+        ],
+        "correctIndex": 0,
+        "explanation": "Stakeholder engagement is continuous. A kickoff artifact and meeting count miss the changes in attitude, influence, and need that affect delivery.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch09.fact.2",
+        "prompt": "Landon's hybrid team argues that stakeholder engagement belongs to predictive planning, while adaptive work can rely on sprint feedback. How should he answer?",
+        "choices": [
+          "Lifecycle Fence: Landon should reserve formal engagement for predictive phases and let adaptive feedback cover the rest.",
+          "Sprint Shortcut: Landon should replace stakeholder analysis with review attendance because users can comment later.",
+          "Cross-Method Standard: Landon should keep engagement active across predictive, adaptive, and hybrid choices."
+        ],
+        "correctIndex": 2,
+        "explanation": "The principle describes professional behavior across lifecycles. Sprint feedback can help, but it does not replace analysis of influence, need, and impact.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch09.fact.9",
+        "prompt": "Which evidence would best show Amelie that the phrase Effectively Engage with Stakeholders has moved beyond vocabulary?",
+        "choices": [
+          "Glossary Fluency: Amelie's team can recite the principle title during the review.",
+          "Artifact Comfort: Amelie's folder contains a signed register and a communication matrix.",
+          "Behavioral Evidence: Amelie's team changes a priority after stakeholder input exposes adoption risk."
+        ],
+        "correctIndex": 2,
+        "explanation": "Application shows up in changed behavior and tradeoffs. Recitation and tidy artifacts can coexist with decisions that ignore stakeholder evidence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch09.fact.6",
+        "prompt": "Your sponsor tells Sierra to tailor engagement by dropping community conversations from a low-budget public project. What boundary should Sierra name?",
+        "choices": [
+          "Tailoring Escape: Sierra can remove the principle when the budget is tight and record the omission.",
+          "Intent Boundary: Sierra can scale the method, but she still owes a way to understand affected people.",
+          "Forum Expansion: Sierra should add a large meeting series so every concern receives the same attention."
+        ],
+        "correctIndex": 1,
+        "explanation": "Tailoring changes how engagement is done, not the duty behind it. Dropping the principle or overbuilding forums both miss fit-for-context judgment.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch09.fact.4",
+        "prompt": "An adoption report shows users are complying with a new tool but workarounds are rising each week. What link should Landon make before declaring value delivered?",
+        "choices": [
+          "Value Signal: Landon should connect workaround data to stakeholder trust and ask what outcome is being missed.",
+          "Compliance Comfort: Landon should treat tool usage as proof that value delivery is on track.",
+          "Announcement Fix: Landon should send a clearer message about the tool and wait for workaround counts to settle."
+        ],
+        "correctIndex": 0,
+        "explanation": "Stakeholder response can reveal whether value is landing. Usage alone and clearer announcements may hide the outcome problem workarounds are signaling.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "pmbok-ch09-card01",
+      "sourceAnchorId": "ch09.fact.3",
+      "front": "What evidence shows stakeholder engagement has changed from vocabulary into behavior?",
+      "back": "Look for a decision that changed because stakeholder analysis, influence, or communication reached the team before the choice hardened.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "pmbok-ch09-card02",
+      "sourceAnchorId": "ch09.fact.1",
+      "front": "Why is one kickoff stakeholder document not enough?",
+      "back": "Stakeholder needs, power, support, resistance, and impact can shift as scope, risk, value, and delivery facts change.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "pmbok-ch09-card03",
+      "sourceAnchorId": "ch09.fact.8",
+      "front": "How does schedule pressure test Effectively Engage with Stakeholders?",
+      "back": "Pressure reveals whether the team still lets affected people shape tradeoffs, or only receives announcements after baseline choices are made.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "pmbok-ch09-card04",
+      "sourceAnchorId": "ch09.fact.2",
+      "front": "Which delivery approaches does the stakeholder principle travel across?",
+      "back": "Predictive, adaptive, and hybrid approaches all need current understanding of affected people because the principle describes professional behavior, not one technique.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "pmbok-ch09-card05",
+      "sourceAnchorId": "ch09.fact.6",
+      "front": "What is the difference between tailoring engagement and abandoning it?",
+      "back": "Tailoring changes the form, scale, and channel. Abandoning it removes the responsibility to understand people affected by the outcome.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "pmbok-ch09-card06",
+      "sourceAnchorId": "ch09.fact.4",
+      "front": "Earlier concept: creating value. How does stakeholder engagement protect value delivery?",
+      "back": "It keeps outcomes tied to people who use, approve, operate, trust, or resist the result, so completed work does not drift away from benefit.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "pmbok-ch09-card07",
+      "sourceAnchorId": "ch09.fact.5",
+      "front": "Earlier concept: collaborative team environment. Why does it matter for stakeholder engagement?",
+      "back": "A team that shares uncomfortable signals early is more likely to surface stakeholder risk before a schedule or scope choice becomes expensive.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Decision Contact Check",
+    "coreSkill": "Practice turning stakeholder names into decision contact. Before a choice hardens, ask which affected person or group could change the tradeoff, the evidence, or the message. The Decision Contact Check keeps engagement tied to action rather than to a finished register.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch09.fact.8",
+        "context": "A schedule date is being cut under pressure.",
+        "plan": "If schedule pressure pushes the team toward a quick baseline change, then run the Decision Contact Check and call the stakeholder whose risk could alter the tradeoff."
+      },
+      {
+        "sourceAnchorId": "ch09.fact.1",
+        "context": "The stakeholder register has not changed since kickoff.",
+        "plan": "If the register still matches kickoff, then run the Decision Contact Check against the last scope, risk, or adoption change and update one contact."
+      },
+      {
+        "sourceAnchorId": "ch09.fact.3",
+        "context": "A status update is being drafted after a decision is already made.",
+        "plan": "If communication starts after the decision, then run the Decision Contact Check and ask what input should have reached the team earlier."
+      },
+      {
+        "sourceAnchorId": "ch09.fact.6",
+        "context": "A low-budget project cannot support broad engagement sessions.",
+        "plan": "If resources are tight, then run the Decision Contact Check to choose the smallest contact that still preserves the duty to understand affected people."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one pending project decision and write the stakeholder contact most likely to change it, plus the question you will ask.",
+    "weeklyPractice": "For one week, run the Decision Contact Check before each schedule, scope, risk, or adoption choice and record whether stakeholder input changed the next step."
+  },
+  "memorableLines": [
+    {
+      "text": "A stakeholder principle has only reached the work when it changes the next decision.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the chapter's hard edge into a test the reader can apply."
+    },
+    {
+      "text": "Pressure does not suspend stakeholder engagement; it reveals whether engagement was real.",
+      "location": "breakdown.deepRead",
+      "why": "It makes schedule pressure the proof point instead of an excuse."
+    },
+    {
+      "text": "A register can list people while the project still fails to hear them.",
+      "location": "breakdown.fastRead",
+      "why": "It separates document completion from actual engagement."
+    }
+  ]
+}

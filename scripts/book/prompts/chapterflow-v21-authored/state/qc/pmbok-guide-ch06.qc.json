@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 6,
+  "chapterId": "pmbok-guide-ch06",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "9f5811bf0c2f0610",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:55:27.871Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "93/100, read full ch06, quiz keys matched product-management considerations, examples coherent, cards and plan actionable, no corruption found"
+}

@@ -38,6 +38,8 @@ export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 
 export type QcVerdict = "PUBLISHABLE" | "REVISE" | "CORRUPTION";
 
+export type QcHashVersion = "v1" | "v2";
+
 export type QcAttestation = {
   schemaVersion: "qc-attest-v1";
   bookId: string;
@@ -46,6 +48,10 @@ export type QcAttestation = {
   verdict: QcVerdict;
   /** chapterContentHash() captured at review time. */
   contentHash: string;
+  /** Which hash algorithm contentHash was computed with. Absent = "v1"
+   *  (the original include-list projection — see chapterContentHashV1).
+   *  New attestations are always "v2" (exclude-list, full coverage). */
+  hashVersion?: QcHashVersion;
   /** who/what produced the verdict, e.g. "claude-qc:wf_93f0a1dd" or a session id. */
   reviewer: string;
   reviewedAt: string;
@@ -53,6 +59,13 @@ export type QcAttestation = {
   dimensions?: Record<string, boolean>;
   findings?: string[];
   notes?: string;
+  /** Prior attestations for this chapter, newest last (capped). Overwrites
+   *  append the previous record here so verdict flips are auditable —
+   *  qc-attest previously overwrote a reviewer's REVISE silently. */
+  history?: Array<Omit<QcAttestation, "history">>;
+  /** Required free-text reason when --supersede forced an overwrite that the
+   *  same-content guard would otherwise refuse. */
+  supersededReason?: string;
 };
 
 /** Remove every `sourceAnchorId` (and any other excluded key) so the hash is
@@ -70,10 +83,14 @@ function stripKeyDeep<T>(value: T, key: string): T {
   return value;
 }
 
-/** Canonical reader-facing projection of a chapter, in a fixed key order so
- *  JSON.stringify is deterministic. Anything a reader sees and the reviewer
- *  judged goes here; ids / metadata / provenance do not. */
-function canonicalContent(ch: any): unknown {
+/** v1 projection — the ORIGINAL include-list. Kept verbatim so attestations
+ *  recorded before the v2 switch still verify (hashVersion absent = v1).
+ *  KNOWN GAPS (why v2 exists): misses quiz.passingScorePercent,
+ *  readingTimeMinutes, examples[].tags, reviewCards[].difficulty; picks a
+ *  nonexistent top-level `format` off examples; and hashes
+ *  implementationPlan/memorableLines with on-disk key order. Do not extend —
+ *  new coverage goes in v2. */
+function canonicalContentV1(ch: any): unknown {
   const pick = (o: any, keys: string[]) => {
     const r: Record<string, unknown> = {};
     for (const k of keys) if (o?.[k] !== undefined) r[k] = o[k];
@@ -97,9 +114,75 @@ function canonicalContent(ch: any): unknown {
   return stripKeyDeep(projected, "sourceAnchorId");
 }
 
-/** Short stable content hash of a chapter's reader-facing fields. */
+export function chapterContentHashV1(chapter: ChapterV21): string {
+  return createHash("sha256").update(JSON.stringify(canonicalContentV1(chapter))).digest("hex").slice(0, 16);
+}
+
+/** v0 — the ORIGINAL 2026-06-04 projection: v1 WITHOUT title/tryThisNow
+ *  (those were added 2026-06-05 in the "hash gap" fix). Verified 2026-06-10:
+ *  the 8 oldest live attestations (rework ch16-23, hashVersion absent) were
+ *  recorded with THIS algorithm — checking them only against v1 falsely
+ *  reported "chapter changed since review" for byte-identical content and
+ *  stranded them in qc-rehash. Legacy attestations (no hashVersion) are
+ *  fresh when they match v1 OR v0. */
+export function chapterContentHashV0(chapter: ChapterV21): string {
+  const projected = canonicalContentV1(chapter) as Record<string, unknown>;
+  delete projected["title"];
+  delete projected["tryThisNow"];
+  return createHash("sha256").update(JSON.stringify(projected)).digest("hex").slice(0, 16);
+}
+
+/** v2 — EXCLUDE-list projection: hash the whole chapter minus an explicit
+ *  list of non-reader fields, with deep key sorting so semantically no-op
+ *  reorders never stale an attestation. A new reader-facing field added to
+ *  ChapterV21 is covered BY DEFAULT (the v1 include-list silently missed
+ *  additions; that's how passingScorePercent etc. escaped).
+ *  tests/hash-coverage.test.ts pins the coverage to the type. */
+const V2_EXCLUDE_DEEP = new Set([
+  "sourceAnchorId", // gate-time provenance, stripped at promote
+  "planSpec",       // writer scaffolding — "not shown to readers" (types.ts)
+  "exampleId",      // unit identity, not content
+  "questionId",
+  "cardId",
+]);
+const V2_EXCLUDE_TOP = new Set([
+  "chapterId",      // identity metadata — renames must not force re-review
+  "number",
+]);
+
+function sortAndStrip(value: unknown, topLevel: boolean): unknown {
+  if (Array.isArray(value)) return value.map((v) => sortAndStrip(v, false));
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const k of Object.keys(value as Record<string, unknown>).sort()) {
+      if (V2_EXCLUDE_DEEP.has(k)) continue;
+      if (topLevel && V2_EXCLUDE_TOP.has(k)) continue;
+      out[k] = sortAndStrip((value as Record<string, unknown>)[k], false);
+    }
+    return out;
+  }
+  return value;
+}
+
+/** Short stable content hash of a chapter's reader-facing fields (v2). */
 export function chapterContentHash(chapter: ChapterV21): string {
-  return createHash("sha256").update(JSON.stringify(canonicalContent(chapter))).digest("hex").slice(0, 16);
+  return createHash("sha256").update(JSON.stringify(sortAndStrip(chapter, true))).digest("hex").slice(0, 16);
+}
+
+export function hashForVersion(chapter: ChapterV21, version: QcHashVersion | undefined): string {
+  return version === "v2" ? chapterContentHash(chapter) : chapterContentHashV1(chapter);
+}
+
+/** Whether an attestation's recorded hash still matches the chapter as it is
+ *  now, using the hash version the attestation was RECORDED with. The single
+ *  staleness predicate — qc-status and the promote gate must both use this,
+ *  or they disagree the moment the hash algorithm evolves.
+ *  Legacy attestations (hashVersion absent) predate version stamping and may
+ *  carry either pre-v2 algorithm — they are fresh when EITHER matches. */
+export function isAttestationFresh(att: QcAttestation, chapter: ChapterV21): boolean {
+  if (att.hashVersion === "v2") return att.contentHash === chapterContentHash(chapter);
+  if (att.hashVersion === "v1") return att.contentHash === chapterContentHashV1(chapter);
+  return att.contentHash === chapterContentHashV1(chapter) || att.contentHash === chapterContentHashV0(chapter);
 }
 
 export function attestationPath(bookId: string, chapterNumber: number): string {
@@ -145,10 +228,10 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
     return [{ checkId: "QC0.not_publishable", severity: sev,
       message: `QC verdict is ${att.verdict}, not PUBLISHABLE${att.findings?.length ? ` — ${att.findings.slice(0, 3).join("; ")}` : ""}. Fix and re-review.` }];
   }
-  const now = chapterContentHash(chapter);
-  if (att.contentHash !== now) {
+  if (!isAttestationFresh(att, chapter)) {
+    const now = hashForVersion(chapter, att.hashVersion);
     return [{ checkId: "QC0.stale_attestation", severity: sev,
-      message: `QC attestation is STALE: the chapter changed since review (attested ${att.contentHash}, now ${now}). Re-review before shipping.` }];
+      message: `QC attestation is STALE: the chapter changed since review (attested ${att.contentHash}, now ${now}, hash ${att.hashVersion ?? "v1"}). Re-review before shipping.` }];
   }
   return [];
 }

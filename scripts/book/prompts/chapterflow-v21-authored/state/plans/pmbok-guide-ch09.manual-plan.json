@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch09",
+  "number": 9,
+  "title": "Effectively Engage with Stakeholders",
+  "coreMove": "Stakeholder engagement becomes real when analysis, influence, and communication change tradeoffs under pressure, not when a register proves the phrase was memorized.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "project leadership mentoring conversation",
+      "audience": "a project lead who treats the stakeholder map as a finished document",
+      "stakes": "the team may recite the principle while ignoring influence inside the next decision",
+      "format": "coach_talk",
+      "requiredBeat": "a peer reframes the PMI 12-principle language so Noella sees stakeholder analysis as decision contact"
+    },
+    {
+      "domain": "project management onboarding classroom",
+      "audience": "new project coordinators learning the Seventh Edition principle set",
+      "stakes": "learners may confuse stakeholder engagement with sending status updates",
+      "format": "school_case",
+      "requiredBeat": "the student's confusion becomes the teaching material for stakeholder analysis, influence, and communication"
+    },
+    {
+      "domain": "software release governance under compression",
+      "audience": "a release manager comparing two versions of the same schedule process",
+      "stakes": "schedule pressure can turn stakeholder communication into a late announcement",
+      "format": "before_after",
+      "requiredBeat": "the same release process appears before and after stakeholder engagement changes the tradeoff"
+    },
+    {
+      "domain": "project assurance file review",
+      "audience": "an internal reviewer checking whether engagement affected delivery choices",
+      "stakes": "a complete file may hide the absence of stakeholder input under schedule pressure",
+      "format": "audit",
+      "requiredBeat": "the reviewer finds the telling detail in communication records after a baseline change"
+    },
+    {
+      "domain": "hybrid delivery team planning reflection",
+      "audience": "a project manager noticing his own shortcut under pressure",
+      "stakes": "speed may be used to excuse skipping stakeholder influence",
+      "format": "inner_monologue",
+      "requiredBeat": "the protagonist works through wrong turns without dialogue and returns to PMI's behavioral standard"
+    },
+    {
+      "domain": "infrastructure project schedule review preparation",
+      "audience": "a project controller allocating the final preparation hour",
+      "stakes": "scarce attention before a review may go to polish instead of stakeholder evidence",
+      "format": "planning_choice",
+      "requiredBeat": "the entire scene is the pre-action choice of where to spend scarce time before the schedule review"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "understand": 2,
+      "apply": 2,
+      "evaluate": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.314Z"
+}

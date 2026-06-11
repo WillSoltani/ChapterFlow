@@ -54,6 +54,10 @@ export type NamePlan = {
   diagnostics: {
     bankSize: number;
     excludedCount: number;
+    /** bank names already used by OTHER books (cross-book exclusion, 2026-06-10 policy). */
+    crossBookExcluded: number;
+    /** names that are fresh catalog-wide; the fallback pool reuses cross-book names when this runs short. */
+    freshAvailable: number;
     availableCount: number;
     /** chapters that got fewer than perChapter names because the bank ran dry */
     shortChapters: number[];
@@ -174,12 +178,48 @@ export function usedNamesInBook(bookId: string): Set<string> {
   return used;
 }
 
+/** Bank names already used by any OTHER book in state/chapters — the
+ *  cross-book exclusion set. Scans every chapter file once (~325 files,
+ *  fast enough for plan time). Only BANK members count: junk capitalized
+ *  tokens from prose must not poison the exclusion. */
+export function bankNamesUsedByOtherBooks(bookId: string): Set<string> {
+  const bank = new Set(loadNameBank());
+  const used = new Set<string>();
+  let files: string[] = [];
+  try {
+    files = readdirSync(CHAPTERS_DIR).filter((f) => f.endsWith(".chapter.json"));
+  } catch {
+    return used;
+  }
+  for (const f of files) {
+    if (isSiblingFile(f, bookId)) continue; // this book's own names are handled separately
+    try {
+      const ch = JSON.parse(readFileSync(resolve(CHAPTERS_DIR, f), "utf8")) as ChapterV21;
+      for (const ex of ch.examples ?? []) {
+        for (const n of extractNamesFromText(ex.scenario ?? "")) {
+          if (bank.has(n)) used.add(n);
+        }
+      }
+    } catch {
+      // unreadable chapter — skip
+    }
+  }
+  return used;
+}
+
 export function planNames(
   rawBookId: string,
   fromChapter: number,
   toChapter: number,
   perChapter = 7,
-  opts: { lookback?: number } = {},
+  opts: {
+    lookback?: number;
+    /** Deal fresh names even for already-authored chapters. The REFRESH path
+     *  needs this to produce RENAME MAPS: carried allocations only echo the
+     *  on-disk names (incl. cross-book collisions), so a refresh pilot that
+     *  ran name-plan saw nothing to rename (reviewer-caught, 2026-06-10). */
+    forceFresh?: boolean;
+  } = {},
 ): NamePlan {
   if (toChapter < fromChapter) throw new Error(`toChapter (${toChapter}) < fromChapter (${fromChapter})`);
   if (perChapter < 1) throw new Error(`perChapter must be >= 1 (got ${perChapter})`);
@@ -191,23 +231,37 @@ export function planNames(
   const usedAll = new Set<string>();
   for (const names of Object.values(usedByChapter)) for (const n of names) usedAll.add(n);
 
-  // Names MAY repeat across books (owner's policy), so exclude ONLY names already
-  // used WITHIN this book — no cross-book ledger exclusion. The bank therefore
-  // never exhausts under volume (every book draws the full bank), which is what
-  // makes mass production scale. To still give different books different opening
-  // casts, rotate the bank by a per-book deterministic offset.
-  const excluded = usedAll;
+  // POLICY REVERSED (2026-06-10, catalog campaign): names are now excluded
+  // CROSS-BOOK too. The old "names may repeat across books" call produced the
+  // catalog's single worst churn tell — 358 bank names shared across books,
+  // Farah in 10, and "Asha" starring in chapter 1 of two different books a
+  // subscriber could open in the same week (reader-experience review). The
+  // bank holds 777 names; the whole catalog uses a few hundred, so exclusion
+  // is comfortably affordable. SCALE GUARD: if exclusion leaves fewer names
+  // than this plan needs, fall back to cross-book reuse for the shortfall
+  // (still excluding THIS book's own names) with a loud diagnostic — a dry
+  // bank must degrade to the old policy, never brick authoring.
   const bank = loadNameBank();
+  const crossBook = bankNamesUsedByOtherBooks(bookId);
   const offset = bank.length ? nameHash(bookId) % bank.length : 0;
   const rotated = bank.slice(offset).concat(bank.slice(0, offset));
-  const available = rotated.filter((n) => !excluded.has(n));
+  const fresh = rotated.filter((n) => !usedAll.has(n) && !crossBook.has(n));
+  const reusable = rotated.filter((n) => !usedAll.has(n) && crossBook.has(n));
+  const needed = perChapter * Math.max(0, toChapter - fromChapter + 1);
+  const available = fresh.length >= needed ? fresh : [...fresh, ...reusable];
+  if (fresh.length < needed) {
+    console.warn(
+      `name-plan: cross-book exclusion leaves ${fresh.length}/${needed} fresh names for "${bookId}" — ` +
+        `falling back to cross-book reuse for the shortfall (grow config/name-bank.json to restore full exclusion).`,
+    );
+  }
 
   const allocation: Record<number, string[]> = {};
   const shortChapters: number[] = [];
   const alreadyAuthored: number[] = [];
   let cursor = 0;
   for (let ch = fromChapter; ch <= toChapter; ch++) {
-    if (usedByChapter[ch] !== undefined) {
+    if (!opts.forceFresh && usedByChapter[ch] !== undefined) {
       // Authored already: carry its REAL names through (idempotent re-plan) and
       // do NOT consume fresh bank names — so a re-plan can never re-deal a name a
       // sibling already owns (the F1-reintroduction the review flagged).
@@ -233,7 +287,9 @@ export function planNames(
     connectivePrinciple: principle,
     diagnostics: {
       bankSize: bank.length,
-      excludedCount: excluded.size,
+      excludedCount: usedAll.size,
+      crossBookExcluded: crossBook.size,
+      freshAvailable: fresh.length,
       availableCount: available.length,
       shortChapters,
       alreadyAuthored,

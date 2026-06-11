@@ -1,0 +1,308 @@
+{
+  "chapterId": "the-tipping-point-ch01",
+  "number": 1,
+  "title": "The Three Rules of Epidemics",
+  "readingTimeMinutes": 11,
+  "hook": "Baltimore's syphilis map changed before the city understood what had moved.",
+  "counterintuition": "A sudden outbreak can begin with a tiny shift in who carries it, what clings to memory, or where people meet. Big social change often asks for narrow diagnosis before broad force.",
+  "tryThisNow": "Pick one stalled change and write three headings on a note: carrier, message, setting. Put one concrete fact under each before choosing your next move.",
+  "keyTakeaway": "Diagnose fast change by separating carriers, contagious features, and setting; a small shift in one lever can push a whole pattern past threshold.",
+  "breakdown": {
+    "fastRead": "Baltimore saw syphilis rise in the 1990s, and no single cause explained the jump. Crack markets changed where people met. Clinics had less room to treat cases fast. Housing demolition scattered old networks across new blocks. Each fact was small beside the city. Together they changed the map.\n\n+The rule is simple: treat social spread like an epidemic. Ask who carries the agent, what makes it lodge, and where the setting lowers resistance. John Potterat's work on core transmitters shows why average cases mislead. Hush Puppies shows how a fad can leap after the right carriers notice it. The point is not mystery. It is diagnosis before action.",
+    "deepRead": "Transmission is uneven, so averages hide the path of spread. In a disease outbreak, one person with many contacts can matter more than dozens of isolated cases. In a social fad, one small group can move a style from odd to coveted. The three epidemic levers keep those facts apart: carrier, agent, and setting.\n\n+John Potterat's research on sexually transmitted disease makes the first lever vivid. The task is not to blame one person. It is to see network position. A core transmitter touches enough paths that a slow infection can keep moving. The Gaetan Dugas AIDS tracing story has the same danger. It can tempt people into moral judgment, when the useful lesson is structural: some people sit at intersections.\n\n+Baltimore adds the other two levers. Crack cocaine changed movement and risk. Clinic cuts slowed treatment. Housing demolition moved residents and altered contact patterns. None of those causes had to look huge at first. Their force came from timing and fit.\n\n+Hush Puppies extends the model beyond disease. A quiet shoe can become a signal when the carrier group gives it status and the setting makes that signal visible. The practical move is to resist one-cause stories. First split the outbreak into people, message, and place. Then decide where a small change could do the most work.",
+    "fullRead": "Hush Puppies looked like a fashion surprise, not a public health case. A shoe that had seemed dated began to appear on the feet of downtown style carriers, and then the signal moved. The lesson is not that shoes behave exactly like bacteria. It is that social spread can cross a threshold after a small change in attention, status, or setting.\n\n+Baltimore gives the harder version of the same logic. Syphilis did not rise because one neat cause arrived. Crack cocaine markets drew people into different patterns of contact. Public clinics lost some power to diagnose and treat quickly. Housing demolition broke up old blocks and sent people into new neighborhoods. The visible outbreak was one curve. Under it sat several moving parts.\n\n+The first lever is the carrier. John Potterat's work on core transmitters shows why a few people can hold a network together. In many epidemics, the average infected person is not the main unit. The critical unit is the person with reach, frequency, and placement. Gaetan Dugas became a famous AIDS tracing figure for this reason, though the useful claim is not blame. Network position can make a carrier look outsized.\n\n+The second lever is the agent. Some messages pass through people with no grip. Others remain in mind long enough to be retold, tried, worn, or acted on. In the opening frame, this is the Stickiness Factor waiting to be named. Reach without retention leaks away. A fad, warning, habit, or health prompt must stay alive after first contact.\n\n+The third lever is context. Behavior bends when the setting changes the cost, cue, stress, or timing around a choice. A city block, a clinic waiting room, a crowded party, or a school hallway can make the same person act in a new way. Context is easy to miss because it looks like background. In an epidemic frame, background can be a cause.\n\n+Good diagnosis keeps the levers separate before joining them again. A clinic delay may matter only because a network has active carriers. A memorable warning may fail if the room gives no cue to act. A visible setting may matter only after a small group gives the behavior status. The frame protects the reader from treating one true detail as the whole story.\n\n+The limit is important. The model does not promise a clever hidden cause for every large shift. It asks for disciplined sorting. Some outbreaks need carrier targeting. Some need a stickier message. Some need a changed setting. Many need more than one. The power comes from testing small, specific levers before spending all effort on broad pressure."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Rina's clinic memo",
+      "tags": ["health", "network spread", "Baltimore"],
+      "planSpec": {
+        "domain": "city clinic triage during an STI rise",
+        "audience": "health directors diagnosing sudden case growth",
+        "stakes": "a broad campaign could miss the network that is keeping syphilis active",
+        "format": "decision_memo",
+        "requiredBeat": "Rina separates core transmitters, clinic delay, and neighborhood movement"
+      },
+      "scenario": "Rina opens the 7:15 a.m. case board in a Baltimore health office and sees syphilis visits clustered near two closed clinics. As deputy director, she has to brief the mayor before the noon budget call. The easy memo blames low awareness. Her second pass marks three columns: core transmitters, treatment delay, and housing moves after demolition.",
+      "whatToDo": "Rina should frame the memo around the three epidemic levers, then ask for one test in each column before funding a citywide awareness push.",
+      "whyItMatters": "The Baltimore pattern shows why one broad cause can mislead. Sorting people, agent, and context helps public health action meet the actual path of spread."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Desmond tests the shoe signal",
+      "tags": ["product", "Hush Puppies", "carriers"],
+      "planSpec": {
+        "domain": "consumer product relaunch",
+        "audience": "founders reading weak adoption signals",
+        "stakes": "money may go into ads before the right carrier group is found",
+        "format": "planning_choice",
+        "requiredBeat": "Desmond uses Hush Puppies to look for carriers and context before spend"
+      },
+      "scenario": "Desmond stands at 9:40 p.m. outside a Nolita sample sale with photos of old Hush Puppies on his phone. His footwear startup has cash for one campaign, and the board wants subway ads by Friday. He has to choose between reach and diagnosis. He counts who wears the odd style, where they gather, and which story makes the shoe feel scarce.",
+      "whatToDo": "Desmond should study the carrier group and the setting before buying ads, using Hush Puppies as a warning that status can move through narrow paths.",
+      "whyItMatters": "A product can fail with broad reach if the right transmitters never make it visible. The carrier lever can matter before mass attention."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Kavita redraws the rumor path",
+      "tags": ["communications", "Dugas", "network tracing"],
+      "planSpec": {
+        "domain": "nonprofit reputation response",
+        "audience": "communications leads tracing a damaging rumor",
+        "stakes": "a search for blame could miss the network path that keeps the rumor alive",
+        "format": "mistake_recovery",
+        "requiredBeat": "Kavita treats apparent centrality like the Dugas tracing problem"
+      },
+      "scenario": "Kavita sits in a Chicago conference room at 3:05 p.m. with a donor Slack thread projected on the wall. One volunteer appears in every screenshot, so the director wants a public reprimand. Kavita must answer before the board meeting starts. She treats the case like Gaetan Dugas network tracing: central on the map does not mean sole cause.",
+      "whatToDo": "Kavita should map the rumor's intersections before assigning blame, then address the rooms and handoffs that keep repeating the claim.",
+      "whyItMatters": "The Dugas example warns against turning network position into moral certainty. The useful question is how the path works."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Noor rewrites the reminder",
+      "tags": ["student health", "stickiness", "message"],
+      "planSpec": {
+        "domain": "college vaccination reminder",
+        "audience": "student health teams improving uptake",
+        "stakes": "a broad reminder may be noticed once and forgotten before action",
+        "format": "predict_reveal",
+        "requiredBeat": "Noor treats message persistence as its own lever"
+      },
+      "scenario": "Noor checks a 10:30 a.m. dashboard at the Rutgers student health desk and sees that vaccine emails are opened but appointments stay flat. Her supervisor asks for a larger mailing list by lunch. Noor has to decide before the portal batch closes. She predicts the problem is not reach but stickiness: the note vanishes before students pick a time.",
+      "whatToDo": "Noor should alter the message so it carries one visible next step, then test whether appointment clicks rise before expanding the list.",
+      "whyItMatters": "The Stickiness Factor separates contact from action. A message that fails to lodge can touch many people and still leave behavior unchanged."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Gideon audits the platform",
+      "tags": ["transit", "context", "behavior"],
+      "planSpec": {
+        "domain": "public transit safety campaign",
+        "audience": "operations teams watching rider behavior",
+        "stakes": "behavior may be blamed on riders while the setting keeps cueing disorder",
+        "format": "audit",
+        "requiredBeat": "Gideon studies context before blaming average riders"
+      },
+      "scenario": "Gideon walks the Queensboro platform at 6:20 p.m. with a clipboard, a radio, and three complaint logs. Riders keep crossing the yellow line near one stairwell. The poster draft blames carelessness, but he must approve it before the print window. He notes crowding, glare, and a broken sign as context cues, not rider traits.",
+      "whatToDo": "Gideon should fix the platform cues before scolding riders, because the Power of Context asks what the setting is inviting people to do.",
+      "whyItMatters": "Context can make behavior look like character. A small environmental cue may be the cheapest point of intervention."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Marisol separates hallway talk",
+      "tags": ["school", "rumor", "diagnosis"],
+      "planSpec": {
+        "domain": "middle school attendance rumor",
+        "audience": "principals responding to fast-moving student talk",
+        "stakes": "punishing the loudest student could leave the rumor's path intact",
+        "format": "dilemma",
+        "requiredBeat": "Marisol separates carrier path from message content"
+      },
+      "scenario": "Marisol hears the first chant at 8:02 a.m. beside the eighth-grade lockers in Fresno. Students say Friday attendance will not count, and three homerooms are already repeating it. As principal, she has to speak before first period ends. Punishing the loudest student is tempting, but she separates the carrier path from the sticky false claim.",
+      "whatToDo": "Marisol should correct the claim at the hallway junction where it travels fastest, using the carrier route and message wording as separate facts.",
+      "whyItMatters": "A rumor spreads through both people and content. Treating the loudest voice as the whole cause misses the epidemic structure."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A city sees a sudden rise in clinic visits after two neighborhood health offices close and several housing blocks are demolished. Which first diagnosis best fits the epidemic frame?",
+        "choices": [
+          "Separate carriers, message features, and setting changes before choosing the intervention.",
+          "Fund a general awareness campaign because the clinic rise proves residents need more warnings.",
+          "Search for the single resident who appears in the most clinic files and center the response there."
+        ],
+        "correctIndex": 0,
+        "explanation": "The epidemic frame starts by sorting the levers. Clinic access and housing movement point to context, while carrier patterns may still matter. A broad campaign or a single culprit skips the diagnosis.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "When a startup notices that its niche shoe is worn by a few downtown stylists, the team wants to buy national ads. What should the Hush Puppies lesson make them check first?",
+        "choices": [
+          "Whether the national ads can mention every feature customers listed in interviews.",
+          "Whether the stylists are carriers who make the shoe visible in the right setting.",
+          "Whether the company can lower the price enough for large retailers to accept it."
+        ],
+        "correctIndex": 1,
+        "explanation": "Hush Puppies points to carrier position and social setting before mass reach. The stylists may create the signal that lets the product tip; price and feature lists do not test that path.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A donor rumor map shows one volunteer near many message paths. The director wants to blame that volunteer by name. Which response best preserves the Gaetan Dugas lesson?",
+        "choices": [
+          "Ask the volunteer to deny the rumor publicly so donors can see a clear response.",
+          "Remove the volunteer from all donor channels while the nonprofit drafts a statement.",
+          "Treat centrality as network evidence and inspect the handoffs that make the rumor travel."
+        ],
+        "correctIndex": 2,
+        "explanation": "The Dugas story warns that a central node can be mistaken for sole cause or moral blame. Network position tells the team where to inspect transmission, not whom to condemn first.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Your campus email about flu shots gets opened often, but appointments do not rise. Which change tests the agent lever rather than the carrier or context lever?",
+        "choices": [
+          "Rewrite the email around one appointment action that students can remember after closing it.",
+          "Ask resident advisers with many friendships to forward the same email in their halls.",
+          "Move the clinic table to the dining hall so students pass it after lunch."
+        ],
+        "correctIndex": 0,
+        "explanation": "The agent lever asks whether the message sticks after contact. Resident advisers test carriers, and the dining hall tests context. A clearer appointment action tests retention.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Which test best reveals whether a transit safety problem is a Power of Context issue?",
+        "choices": [
+          "Compare riders who break the rule with riders who obey it and rank their attitudes.",
+          "Change the confusing platform cue for one week and watch whether the same riders behave differently.",
+          "Print a stronger warning poster that tells riders the rule has been ignored too often."
+        ],
+        "correctIndex": 1,
+        "explanation": "Context is tested by altering the setting around the same behavior. If the platform cue changes conduct, the issue was not just rider attitude or weak warning language.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A health team keeps asking for the average patient's behavior during an outbreak. What does John Potterat's core transmitter work challenge in that habit?",
+        "choices": [
+          "The team should focus only on medical treatment because network data can distract the clinic.",
+          "The team should count public fear because emotion explains why patients avoid treatment.",
+          "The team should inspect high-contact positions because average cases can hide the active path."
+        ],
+        "correctIndex": 2,
+        "explanation": "Potterat's work makes uneven transmission visible. Averages can blur the few highly connected cases that keep spread alive, so contact position belongs in the diagnosis.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "If a school rumor moves through one hallway, one catchy sentence, and three socially active students, which plan fits the three-lever frame?",
+        "choices": [
+          "Map the students, replace the sentence, and correct the hallway handoff where the rumor travels.",
+          "Call an assembly so the principal can warn every grade about repeating unverified claims.",
+          "Discipline the three students in private and let teachers decide how to handle hallway talk."
+        ],
+        "correctIndex": 0,
+        "explanation": "The three-lever frame separates carrier, agent, and context. The school plan addresses all three without assuming one assembly or private discipline will reach the actual route.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A colleague says large public shifts must have large public causes. Which Baltimore detail most directly weakens that claim?",
+        "choices": [
+          "The city had more than one expert explanation, so no diagnosis could be useful.",
+          "Several small changes in clinics, crack markets, and housing movement combined into one spike.",
+          "The syphilis rise was medical, so the lesson should stay inside public health."
+        ],
+        "correctIndex": 1,
+        "explanation": "Baltimore weakens proportional thinking. Clinic capacity, drug-market movement, and housing disruption were separate shifts that combined into a sudden public outcome.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A product team has reach, a memorable slogan, and no setting where customers see one another using the product. What is the missing diagnostic question?",
+        "choices": [
+          "Can the team make the slogan longer so customers receive more reasons to buy?",
+          "Can the team survey a broader sample before deciding whether the product has appeal?",
+          "Where does the setting make use visible enough for the behavior to spread?"
+        ],
+        "correctIndex": 2,
+        "explanation": "Reach and message do not settle the context lever. The team needs to find where use becomes visible and socially meaningful enough for spread to build.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What are the three epidemic levers?",
+      "back": "Carrier, agent, and context: who transmits, what sticks, and where the setting makes spread easier or harder.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why does the Baltimore syphilis case resist a one-cause explanation?",
+      "back": "Crack markets, clinic capacity, and housing demolition changed different parts of the system at once, so the visible spike came from interacting levers.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What does John Potterat's core transmitter work add to diagnosis?",
+      "back": "It shows that spread is uneven. The average participant may matter less than a few highly connected people who keep paths open.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "What is the useful reading of the Gaetan Dugas tracing story?",
+      "back": "Network centrality is evidence about transmission paths, not proof of personal blame or a single source.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "front": "How does Hush Puppies fit the epidemic model?",
+      "back": "The shoe revival shows that a social signal can tip when the right carriers make it visible in the right places.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "front": "What mistake does the three-lever frame prevent?",
+      "back": "It prevents jumping from a large outcome to one large cause. The frame asks which small lever changed before choosing action.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run A Three Lever Diagnosis",
+    "coreSkill": "Before reacting to a fast change, split the pattern into carrier, agent, and context. Name one observable fact for each lever. Then choose the smallest test that would show which lever is doing real work.",
+    "ifThenPlans": [
+      {
+        "context": "A trend rises faster than expected",
+        "plan": "If the curve jumps, then list the carrier group before debating the message. Ask who touches more paths than an average participant."
+      },
+      {
+        "context": "A message reaches people but action stays flat",
+        "plan": "If contact is high and behavior is low, then test stickiness. Rewrite the message around one remembered action."
+      },
+      {
+        "context": "People act differently in one place",
+        "plan": "If the same people change behavior by location, then inspect context. Alter one cue in the setting before blaming character."
+      },
+      {
+        "context": "The team wants one simple culprit",
+        "plan": "If the room hunts for a single cause, then pause the decision. Require one fact for each epidemic lever."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one active problem at work or home. Write a carrier fact, an agent fact, and a context fact, then run one low-cost test on the weakest column.",
+    "weeklyPractice": "Once this week, review a fast-moving pattern and update the three columns with evidence. Keep only facts you could point to in a scene, log, map, or message."
+  },
+  "memorableLines": [
+    {
+      "text": "The point is not mystery.",
+      "location": "breakdown.fastRead",
+      "why": "The short sentence strips the idea down to diagnosis rather than fascination."
+    },
+    {
+      "text": "Transmission is uneven, so averages hide the path of spread.",
+      "location": "breakdown.deepRead",
+      "why": "It names why the Law of the Few changes how a reader looks at data."
+    },
+    {
+      "text": "Context is easy to miss because it looks like background.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the setting lever memorable without overexplaining it."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "chapterId": "daring-greatly-ch02",
+  "number": 2,
+  "title": "Debunking the Vulnerability Myths",
+  "coreMove": "Vulnerability with boundaries means risking real exposure for love, creativity, integrity, or help while refusing both armor and indiscriminate disclosure.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "medical uncertainty",
+      "audience": "patients and friends",
+      "stakes": "facing test results alone",
+      "format": "decision_point",
+      "requiredBeat": "Treat asking for support as courage, not weakness"
+    },
+    {
+      "domain": "work friendship",
+      "audience": "new managers",
+      "stakes": "private pain shared too fast",
+      "format": "dilemma",
+      "requiredBeat": "Use earned trust before disclosure"
+    },
+    {
+      "domain": "dating relationship",
+      "audience": "partners",
+      "stakes": "trying to control an uncertain answer",
+      "format": "inner_monologue",
+      "requiredBeat": "Accept exposure without turning love into a control project"
+    },
+    {
+      "domain": "design school",
+      "audience": "creative students",
+      "stakes": "hiding unfinished work",
+      "format": "predict_reveal",
+      "requiredBeat": "Expose creative work without calling the fear weakness"
+    },
+    {
+      "domain": "nonprofit operations",
+      "audience": "project coordinators",
+      "stakes": "resentment hidden as toughness",
+      "format": "decision_memo",
+      "requiredBeat": "Show that refusing vulnerability only moves it underground"
+    },
+    {
+      "domain": "friendship",
+      "audience": "support networks",
+      "stakes": "avoiding an awkward grief call",
+      "format": "text_thread",
+      "requiredBeat": "Reject solo heroism and reach toward grief"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 1,
+      "remember": 1,
+      "understand": 1,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T05:33:59.115Z"
+}

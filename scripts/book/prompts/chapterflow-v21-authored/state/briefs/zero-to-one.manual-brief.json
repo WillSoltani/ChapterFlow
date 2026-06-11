@@ -70,32 +70,27 @@
   ],
   "targetReader": "Builders, founders, operators, investors, product leaders, and ambitious students who suspect that copying the market is not enough and need a sharper way to judge whether a project deserves focused commitment.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "short",
     "signatureMoves": [
-      "open ideas in a concrete business or building decision before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "keep contrarian claims tied to operating consequences",
-      "name the cost of drift, imitation, and false caution"
+      "uses contrarian questions, monopoly logic, secrets, and definite optimism",
+      "sounds austere, sharp, and skeptical of competition worship",
+      "turns startup advice into first-principles claims about value creation",
+      "keeps the argument narrow, provocative, and economically precise"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no founder mythology or startup-poster language"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make zero-to-one thinking generic innovation talk.",
+      "Do not praise competition when the book is testing monopoly advantage."
     ]
   },
   "voiceSpecimens": [
-    "The copy looks safer because somebody else already paid for the first mistake.",
-    "A crowded market can make motion feel like proof, but all that motion may be a cage.",
-    "The useful question is not whether the plan is bold. It is whether reality gives the plan a reason to exist.",
-    "When every customer gets averaged, the one customer who teaches the business disappears.",
-    "A founding agreement is not paperwork when it decides what every later argument will cost.",
-    "The machine should take the part it can carry cleanly, then hand the judgment back to a person with context.",
-    "Founder intensity is fuel and heat at the same time."
+    "Competition is not proof of value.",
+    "Find the secret."
   ],
   "voiceAntiSpecimens": [
     "This chapter teaches readers to think more strategically about innovation in their lives.",
@@ -112,6 +107,8 @@
     "Do not use unsupported company anecdotes or famous-founder stories absent from the frozen source.",
     "Do not make contrarianism sound like edginess detached from reality.",
     "Do not treat sales, culture, or foundations as soft afterthoughts.",
-    "Do not collapse clean-tech diagnosis into anti-green hindsight."
+    "Do not collapse clean-tech diagnosis into anti-green hindsight.",
+    "Do not use contrarianism as attitude without a specific secret.",
+    "Do not flatten Thiel into startup motivation."
   ]
 }

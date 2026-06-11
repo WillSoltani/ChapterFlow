@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-mountain-is-you",
+  "chapterNumber": 5,
+  "chapterId": "the-mountain-is-you-ch05",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "80a13e2d1ef7c30e",
+  "reviewer": "claude-qc:the-mountain-is-you-r2",
+  "reviewedAt": "2026-06-10T00:59:44.531Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~85/100 GREEN. 9/9 keys correct (first full review of ch05). Examples varied (elevator/garden/coaching). Grounded (Ryan Holiday epiphany, Bremner 2006, Maslow). Minor: a few source-recall cards. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-mountain-is-you",
+      "chapterNumber": 5,
+      "chapterId": "the-mountain-is-you-ch05",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "72fd4971ba2fbb29",
+      "reviewer": "claude-qc:the-mountain-is-you-r2",
+      "reviewedAt": "2026-06-10T00:59:44.531Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~85/100 GREEN. 9/9 keys correct (first full review of ch05). Examples varied (elevator/garden/coaching). Grounded (Ryan Holiday epiphany, Bremner 2006, Maslow). Minor: a few source-recall cards. No corruption."
+    }
+  ]
+}

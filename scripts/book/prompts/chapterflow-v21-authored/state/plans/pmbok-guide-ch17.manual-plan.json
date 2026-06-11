@@ -1,0 +1,67 @@
+{
+  "chapterId": "pmbok-guide-ch17",
+  "number": 17,
+  "title": "Embrace Adaptability and Resiliency",
+  "coreMove": "Use the PMBOK principle as a decision test: when evidence shifts, adjust approach, protect recovery capacity, and keep value steadier than the original baseline.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "municipal permit portal",
+      "audience": "project managers facing a slipping public demo",
+      "stakes": "protect value while schedule pressure rises",
+      "format": "predict_reveal",
+      "requiredBeat": "expect resistance to a changed baseline, then reveal feedback that protects higher value"
+    },
+    {
+      "domain": "PMO status review",
+      "audience": "facilitators turning principle language into action",
+      "stakes": "avoid reciting principle titles without changing a decision",
+      "format": "text_thread",
+      "requiredBeat": "compressed messages make the lesson land between the lines"
+    },
+    {
+      "domain": "field device rollout",
+      "audience": "operations coordinators updating a workback plan",
+      "stakes": "restart the routine when new feedback changes the work",
+      "format": "reset_moment",
+      "requiredBeat": "a routine is interrupted and restarted with a better trigger"
+    },
+    {
+      "domain": "procurement desk",
+      "audience": "coordinators guarding recovery capacity",
+      "stakes": "preserve slack for disruption rather than casual convenience",
+      "format": "vignette",
+      "requiredBeat": "one close observed desk detail carries the lesson"
+    },
+    {
+      "domain": "software release postmortem",
+      "audience": "release managers tracing a failure after rollback",
+      "stakes": "locate the misstep that made recovery weaker",
+      "format": "postmortem",
+      "requiredBeat": "open after failure and find the decisive misstep"
+    },
+    {
+      "domain": "banking data migration",
+      "audience": "technical leads correcting their own pressure response",
+      "stakes": "notice endurance language before it harms recovery",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist catches his own error mid-stream"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 3,
+      "apply": 3,
+      "evaluate": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.322Z"
+}

@@ -1,0 +1,30 @@
+{
+  "bookId": "pmbok-guide",
+  "title": "A Guide to the Project Management Body of Knowledge (PMBOK Guide)",
+  "author": "Project Management Institute",
+  "thesisParagraph": "Project management is the disciplined adaptation of people, practices, governance, and tools to deliver value in changing systems. The Seventh Edition replaces a single process-first reading path with principles, performance domains, tailoring, and selectable practice assets.",
+  "coreIdeas": [],
+  "targetReader": "",
+  "voiceCharter": {
+    "register": "analytical",
+    "person": "third",
+    "cadence": "medium",
+    "signatureMoves": [
+      "defines terms before giving application guidance",
+      "uses numbered principle and domain structures as the main teaching spine",
+      "repeats value, outcomes, tailoring, context, and systems language",
+      "contrasts predictive, adaptive, and hybrid approaches without making one universal",
+      "frames tools and artifacts by purpose rather than by mandatory use"
+    ],
+    "avoidMoves": [
+      "does not use memoir or dramatic narrative scenes",
+      "does not prescribe one lifecycle for every project",
+      "does not equate document production with project success",
+      "does not treat project work as isolated from governance, products, operations, or stakeholders"
+    ]
+  },
+  "teachingArc": "The expanded opening teaches value delivery as a system, including governance, project functions, environment, and product considerations. The middle turns the 12 PMBOK principles into individual behavioral units, then maps the 8 performance domains as ongoing areas of project health. The close explains tailoring and the three practice-asset categories so readers can select models, methods, and artifacts for context rather than copy a checklist.",
+  "forbiddenMoves": [],
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.308Z"
+}

@@ -187,7 +187,7 @@ export async function withLibraryState(
     const before = existsSync(LEDGER_PATH)
       ? (JSON.parse(readFileSync(LEDGER_PATH, "utf8")) as LibraryState)
       : emptyState();
-    const after = (await mutate(before)) ?? before;
+    const after = ((await mutate(before)) ?? before) as LibraryState;
     saveLibraryStateUnlocked(after);
     return after;
   } finally {

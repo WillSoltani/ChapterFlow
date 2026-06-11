@@ -43,31 +43,27 @@
   ],
   "targetReader": "Product managers, team leads, founders, and anyone who has watched a well-resourced team build something nobody hired — and wants a causal explanation for why innovation keeps missing.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second and third, alternating",
-    "cadence": "medium to short; punchy conclusions after longer build",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "medium",
     "signatureMoves": [
-      "open on a concrete moment where a product fails or succeeds before naming the reason",
-      "use the hiring/firing metaphor naturally, not as jargon",
-      "expose the gap between what teams measure and what buyers actually experience",
-      "end sections with a single short sentence that names the discipline, not a rallying cry"
+      "turns management choices into resource-allocation and customer-demand puzzles",
+      "shows capable managers trapped by margins, incentives, and the wrong customers",
+      "uses jobs, disruption, and causal mechanisms before offering prescriptions",
+      "makes innovation theory answer to a concrete business decision"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no vague calls for empathy or customer love — keep it causal"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not make disruption a synonym for novelty.",
+      "Do not portray incumbent managers as fools when the trap is structural."
     ]
   },
   "voiceSpecimens": [
-    "The shake was not competing with other shakes. It was competing with anything that could get a commuter through a boring drive with one hand and no crumbs.",
-    "A product resume is not what the company says. It is the pattern of why the same buyers keep coming back.",
-    "The four forces are not a framework for understanding customers. They are a way to hear what behavior shows and words hide.",
-    "Teams that integrate around the job stop asking which department owns a tradeoff and start asking what the buyer hired them to protect.",
-    "You cannot drift-proof a company by repeating the job statement. The job has to filter the next decision, then the one after.",
-    "One interpreted hire is a theory. A recurring pattern of hires is evidence.",
-    "The question is not what should we build. The question is what progress is someone failing to make right now."
+    "The customer did not buy a product; the customer hired progress.",
+    "Find the job, and the market map changes shape."
   ],
   "voiceAntiSpecimens": [
     "In this chapter, we will explore the powerful concept of Jobs to Be Done and how it can transform your innovation process.",
@@ -82,6 +78,8 @@
     "using 'hire' as a filler metaphor without showing the circumstance that activates it",
     "flattening functional, social, and emotional progress into 'what customers want' without naming the forces",
     "presenting product resume as branding rather than as an evidence-based record",
-    "vague empathy language where the chapter needs a specific causal claim about circumstance and progress"
+    "vague empathy language where the chapter needs a specific causal claim about circumstance and progress",
+    "Do not use startup gloss where the source is explaining causality.",
+    "Do not discuss innovation without the customer job or resource tradeoff."
   ]
 }

@@ -1,0 +1,299 @@
+{
+  "chapterId": "range-ch09",
+  "number": 9,
+  "title": "Lateral Thinking with Withered Technology",
+  "readingTimeMinutes": 14,
+  "hook": "Nintendo turned mature parts into play because reliability can free imagination.",
+  "counterintuition": "Mature technology can beat novelty when cost, familiarity, and reliability free designers to recombine around a real user need.",
+  "tryThisNow": "List three boring, reliable tools near your problem. For each, write one new job it could do if freed from its usual label.",
+  "keyTakeaway": "Lateral innovation often comes from recombining proven components so attention moves from technical novelty to use, constraint, and experience.",
+  "breakdown": {
+    "fastRead": "At a prototype bench, Rina pushes aside an expensive new sensor and picks up a cheap calculator display that already survives rough handling.\n\nGunpei Yokoi saw mature parts as design material, not leftovers. Old technology can become fresh when cost, reliability, and user need line up.\n\nThe candle problem and 3M's broad integrators point to the same habit: stop seeing an object only as its usual label.\n\nList three boring tools near your problem. For each, write one new job it could do if freed from its default use.",
+    "deepRead": "The innovation lesson begins with Nintendo before it was a synonym for video games. Gunpei Yokoi's strength was playful recombination. He did not chase the newest components; he looked for mature, cheap, reliable technologies that could be used laterally. Ultra Hand emerged from tinkering.\n\nThe working distinction is lateral thinking with withered technology: Lateral thinking with withered technology means using well-understood, widely available tools in fresh contexts. The novelty lies in the recombination and user experience in place of in the skilled component itself.\n\nCandle problem: People given a candle, matches, and a box of tacks often fail until they stop seeing the box only as a container. The solution requires using the box as a platform.\n\nGame & Watch drew on calculator displays. Game Boy succeeded despite modest graphics because it was affordable, durable, portable, and fun. The concept is not nostalgia for old tools.\n\nReaders can look for innovation in overlooked mature tools, adjacent domains, and playful constraints instead of assuming newness requires cutting-edge inputs.",
+    "fullRead": "Gunpei Yokoi's Nintendo philosophy began with respect for technology that no longer looked glamorous. Cheap, familiar components could become playful products because their limits were known, their costs were low, and designers could build around users instead of around novelty.\n\nThat is not nostalgia. The candle problem shows how functional fixedness blocks people from seeing a box as a platform instead of merely a container. Yokoi's strength was similar: look at a calculator display, a simple control, or an old part and ask what new job it can do when removed from its usual label.\n\nAndy Ouderkirk's work at 3M adds the organizational version. On uncertain innovation projects, broad connectors can matter because they know enough across adhesives, packaging, displays, and medical materials to import a proven-but-underused tool. They are not shallow generalists; they are translators among mature possibilities.\n\nThe lazy takeaway is that old technology is better. The useful lesson is strategic fit. A withered technology helps when reliability, price, availability, trust, or user context make it the right material for a new combination.\n\nA reader can run the scan with objects already in reach. Name the component, then refuse its usual label for a moment. A scanner is not only a scanner; it is a rugged input device with a trigger, a display, a sound, and a known training burden. A crate is not only storage; it is a surface, a divider, a seat, a mount, or a baffle. Properties travel more easily than labels.\n\nThe candle problem is useful because it makes the block visible. People see the box as the container for tacks, not as the platform that solves the problem. In product work, the same blindness can make teams buy sophistication while ignoring the cheap part that already has the needed property.\n\nThe practice should still face user reality. Mature technology is not good because it is old; it is good when the oldness creates trust, availability, durability, or price advantages that fit the job. Lateral thinking with withered technology is a disciplined reuse of proven materials, not a costume party for outdated tools.\n\nThis is also a budget habit. Constraints can make the search more creative because they force the team to ask what is already reliable enough to try before complexity is purchased. The first prototype does not need to be elegant; it needs to reveal whether the humble component has the property the new use requires."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Yokoi Toy Bench",
+      "tags": [
+        "yokoi",
+        "toy",
+        "bench"
+      ],
+      "planSpec": {
+        "domain": "yokoi toy bench",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "decision_point",
+        "requiredBeat": "Yokoi Toy Bench"
+      },
+      "scenario": "Rina leads a hardware team chasing a costly sensor for a children's device. A Gunpei Yokoi biography lies beside a pile of calculator displays and radio parts.",
+      "whatToDo": "Rina builds a prototype from reliable commodity parts before approving frontier hardware. User delight, battery life, and durability decide the next step.",
+      "whyItMatters": "Yokoi's philosophy turns technological modesty into leverage. Mature tools can leave more attention for the experience."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Candle Box Drill",
+      "tags": [
+        "candle",
+        "box",
+        "drill"
+      ],
+      "planSpec": {
+        "domain": "candle box drill",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "reflection",
+        "requiredBeat": "Candle Box Drill"
+      },
+      "scenario": "Marco runs a product workshop with the candle problem on the table: candle, matches, tacks, and box. Designers keep treating the box as packaging. When someone mounts the candle with the box as a platform, Marco connects the moment to the team's unused inventory of old components.",
+      "whatToDo": "Marco has the team rename each object by function over label. The next concept review rewards fresh uses of familiar parts.",
+      "whyItMatters": "Functional fixedness traps tools inside their normal job. Lateral thinking begins when the box stops being only a container."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "3M Integrator Review",
+      "tags": [
+        "3m",
+        "integrator",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "3m integrator review",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "business_case",
+        "requiredBeat": "3M Integrator Review"
+      },
+      "scenario": "Laurel studies Andy Ouderkirk's 3M inventor research before staffing a high-uncertainty project. The deep specialists know adhesives better than anyone. The broad integrator knows packaging, displays, and medical tapes well enough to import options. The staffing decision lands at 5:30 p.m..",
+      "whatToDo": "Laurel pairs specialists with connectors from adjacent groups. The project map includes imported components, not only new chemistry.",
+      "whyItMatters": "3M's evidence shows why uncertain projects need breadth. A useful solution may already exist under another department's label."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Game Boy Battery Choice",
+      "tags": [
+        "game",
+        "boy",
+        "battery"
+      ],
+      "planSpec": {
+        "domain": "game boy battery choice",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "scene",
+        "requiredBeat": "Game Boy Battery Choice"
+      },
+      "scenario": "Sam's game startup wants high-end graphics for a handheld prototype. The battery dies in under an hour. Sam brings up Game Boy's modest screen and sturdy portability. The team runs a playtest with a simpler display and discovers that reliability beats visual spectacle for commuters.",
+      "whatToDo": "Sam ranks features by the player's situation. Mature display technology stays in the prototype if it improves cost, portability, and play time.",
+      "whyItMatters": "Nintendo's success was not technical laziness. It was fit between mature parts and the user's actual context."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Warehouse Scanner Reuse",
+      "tags": [
+        "warehouse",
+        "scanner",
+        "reuse"
+      ],
+      "planSpec": {
+        "domain": "warehouse scanner reuse",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "planning_choice",
+        "requiredBeat": "Warehouse Scanner Reuse"
+      },
+      "scenario": "Valeria's fulfillment center needs a new training tool. A vendor proposes custom headsets, but old barcode scanners already sit in a cabinet. Remembering Yokoi, Valeria prototypes a scavenger-style onboarding game with the scanners and cheap labels.",
+      "whatToDo": "Valeria tests the repurposed scanner flow before buying new equipment. The team measures learning speed and error recovery.",
+      "whyItMatters": "Withered technology can lower the price of experimentation. Familiar tools become interesting when assigned a new job."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Museum Exhibit Mount",
+      "tags": [
+        "museum",
+        "exhibit",
+        "mount"
+      ],
+      "planSpec": {
+        "domain": "museum exhibit mount",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "audit",
+        "requiredBeat": "Museum Exhibit Mount"
+      },
+      "scenario": "Gabe designs a museum exhibit and cannot afford interactive walls. The candle problem pushes him to view storage crates as mounts, seats, and light baffles. A small gallery walk shows visitors using the crates naturally, while the expensive option remains a sketch.",
+      "whatToDo": "Gabe catalogs old materials by possible function. He prototypes combinations before asking for a larger budget.",
+      "whyItMatters": "The fresh act is recombination. Mature materials can carry invention when the designer sees beyond the standard label."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What does lateral thinking with withered technology mean?",
+        "choices": [
+          "Choosing old technology because new technology is always less reliable and less creative.",
+          "Rejecting user experience so designers can focus only on technical sophistication.",
+          "Using well-understood, widely available tools in fresh contexts where recombination creates the novelty."
+        ],
+        "correctIndex": 2,
+        "explanation": "The novelty lies in recombining mature components around a use. Epstein is about fit and play, not nostalgia.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "What did Gunpei Yokoi's Nintendo philosophy emphasize?",
+        "choices": [
+          "Pursuing the most technically advanced components before considering the user.",
+          "Using cheap, mature technology to make durable, accessible, surprising products.",
+          "Avoiding toys and games unless they depended on new scientific breakthroughs."
+        ],
+        "correctIndex": 1,
+        "explanation": "Yokoi's approach favored reliable mature parts recombined into playful experiences. Technical novelty was not the main point.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "What does the candle problem illustrate?",
+        "choices": [
+          "Functional fixedness can keep people from seeing that the tack box can be used as a platform.",
+          "People solve object-use problems best when labels tell them exactly what each object is for.",
+          "The newest technology is usually necessary to overcome ordinary design blocks."
+        ],
+        "correctIndex": 0,
+        "explanation": "The challenge is to stop seeing the box only as a container. Reframing its function unlocks the solution.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Why could Game & Watch and Game Boy beat technically superior rivals?",
+        "choices": [
+          "Simple components were recombined around reliability, access, and play rather than raw technical power.",
+          "Nintendo products succeeded because mature technology made user experience irrelevant.",
+          "They avoided recombination and copied the most advanced hardware strategy available."
+        ],
+        "correctIndex": 0,
+        "explanation": "The Nintendo examples show that user experience and recombination can matter more than the newest component.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "How did Andy Ouderkirk's 3M taxonomy distinguish valuable innovation roles?",
+        "choices": [
+          "It treated specialists, generalists, and polymaths as identical in uncertain projects.",
+          "It showed that breadth is harmful whenever technical uncertainty is high.",
+          "It separated deep specialists from broader integrators who move technologies across boundaries."
+        ],
+        "correctIndex": 2,
+        "explanation": "Ouderkirk valued both depth and transfer. In uncertainty, connectors can import tools from elsewhere.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "What does patent and innovation research suggest about high-uncertainty domains?",
+        "choices": [
+          "They benefit only from isolated experts who avoid cross-domain influence.",
+          "They often benefit from team members who can bridge technologies and recombine ideas.",
+          "They become easier when teams remove anyone who bridges technological areas."
+        ],
+        "correctIndex": 1,
+        "explanation": "Uncertain projects need more than local depth. Cross-domain bridges expand the search space.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which conclusion would turn Yokoi's lesson into nostalgia rather than strategy?",
+        "choices": [
+          "Mature parts can be useful when they fit a real need.",
+          "Old technology is better than new technology.",
+          "Functional fixedness can hide new uses for familiar objects."
+        ],
+        "correctIndex": 1,
+        "explanation": "Epstein does not claim old is inherently better. It says mature components can be strategically powerful in the right recombination.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Why are mature components sometimes powerful for designers?",
+        "choices": [
+          "Their reliability, cost, and familiarity can free designers to focus on creative recombination and user need.",
+          "They prevent designers from making anything surprising because familiar parts lock products into old uses.",
+          "They prove that technical performance never matters, even when a user need depends on capability."
+        ],
+        "correctIndex": 0,
+        "explanation": "Cheap, reliable parts can lower technical risk and let designers build a playful or useful whole.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "What does functional fixedness prevent?",
+        "choices": [
+          "It prevents people from learning the normal use of an object.",
+          "It forces people to combine objects in random ways.",
+          "It prevents people from seeing new uses for familiar objects or technologies."
+        ],
+        "correctIndex": 2,
+        "explanation": "Functional fixedness is the grip of usual use. It makes the alternative function hard to see.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "How did Yokoi's Nintendo philosophy treat mature components?",
+      "back": "It treated cheap, familiar, reliable parts as design advantages when they could be recombined around a real user need.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What is functional fixedness?",
+      "back": "Functional fixedness is the habit of seeing an object only through its usual label, which can hide other useful properties or roles.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "When is old technology strategically useful?",
+      "back": "Old technology helps when its low cost, reliability, availability, trust, or known limits fit the problem better than a novel alternative.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "What should you list before repurposing a tool?",
+      "back": "List the tool's properties, constraints, proven contexts, costs, and the new function those properties might serve.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Withered-Technology Reuse Scan",
+    "coreSkill": "Find mature, cheap, reliable tools whose proven properties can be recombined for a new user need.",
+    "ifThenPlans": [
+      {
+        "context": "When novelty becomes the default",
+        "plan": "If the team reaches first for a new technology, then I will list mature tools that already meet the key constraint."
+      },
+      {
+        "context": "When an object has one obvious label",
+        "plan": "If I see a tool only by its usual use, then I will name its properties and ask what other job those properties could do."
+      },
+      {
+        "context": "When old tech looks too humble",
+        "plan": "If a proven tool seems unimpressive, then I will test whether cost, reliability, or familiarity makes it strategically stronger."
+      }
+    ],
+    "twentyFourHourChallenge": "Inventory five boring tools or components near your problem. For each, list properties, current use, and one new job it could perform.",
+    "weeklyPractice": "This week, prototype one solution with a mature or underused tool before buying or inventing a new one."
+  }
+}

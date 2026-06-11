@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-body-keeps-the-score",
+  "chapterNumber": 19,
+  "chapterId": "the-body-keeps-the-score-ch19",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "35ada3d6447452d5",
+  "reviewer": "claude-qc:tbkts-20260606",
+  "reviewedAt": "2026-06-10T00:24:09.416Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~89. 9/9 keys correct (Hartmann sleep lab/Fisher+Lisa/McFarlane 2000 filtering/EEG bands). Minor: '2007' Fisher year unsourced-but-not-false. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-body-keeps-the-score",
+      "chapterNumber": 19,
+      "chapterId": "the-body-keeps-the-score-ch19",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "b7c3736f2a12f9dc",
+      "reviewer": "claude-qc:tbkts-20260606",
+      "reviewedAt": "2026-06-10T00:24:09.416Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~89. 9/9 keys correct (Hartmann sleep lab/Fisher+Lisa/McFarlane 2000 filtering/EEG bands). Minor: '2007' Fisher year unsourced-but-not-false. No corruption."
+    }
+  ]
+}

@@ -19,6 +19,7 @@ import { checkCardTestsRetrieval, checkQuizTestsApplication } from "./pedagogy.j
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkQuizAnswerLengthRatio,
+  checkQuizCorrectLongestRate,
   checkQuizBannedTailPhrase,
   checkQuizDuplicateChoices,
   checkQuizLabelShapedCorrect,
@@ -97,14 +98,16 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // zero false-positives across the gold corpus (daring-greatly + start-with-why,
   // 21 ch), rework (v2), and the 14 clean 4HWW chapters; the location-context
   // narrowing spares central concepts/entities (Golden Circle, Basecamp, Rogers).
-  // (Uses C18/C19, NOT C11/C12 — those are taken by the support-section checks
-  // below; the original C11/C12 reuse was a catalog collision caught in review.)
-  C18: "blocker",
-  // C19 — same protagonist leads multiple example scenes. SHADOW=major: precise
+  // (C22/C23: renumbered from C18/C19 in Phase 4 — supportSectionAudit already
+  // owned C11–C21, so the first rename onto C18/C19 reproduced the exact
+  // catalog-collision class it was meant to fix. The check-registry test now
+  // guards the namespace; next free id is C24+.)
+  C22: "blocker",
+  // C23 — same protagonist leads multiple example scenes. SHADOW=major: precise
   // and zero-FP in calibration, but no confirmed true-positive yet (the ch5/ch14
-  // reuse is breakdown-vs-example, which C19 doesn't see), so it surfaces rather
+  // reuse is breakdown-vs-example, which C23 doesn't see), so it surfaces rather
   // than blocks until a real example-vs-example reuse confirms it.
-  C19: "major",
+  C23: "major",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -180,6 +183,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // measure-what-matters, the-12-week-year) — true positives, not noise.
   "AS13.within_chapter_quiz_template": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
+  // BP25 — statistical correct-is-longest rate (the distractor tell).
+  // ADVISORY: catalog baseline is 68% incl. gold; threshold 0.78 fires only
+  // on the worst offenders (drive 94%). Refresh target ≤45% lives in
+  // catalog-audit + STEP-2; promote to major only after the catalog refresh.
+  "BP25.quiz_correct_longest_rate": "minor",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
@@ -476,10 +484,10 @@ export function runShipGate(chapter: ChapterV21): GateReport {
       sc.coreClaim ?? "",
     ].join(" \n ");
     for (const f of checkExampleSettingStamping(chapter.examples, coreTeachingText)) {
-      push("C18", "examples", f.message, f.evidence);
+      push("C22", "examples", f.message, f.evidence);
     }
     for (const f of checkExampleProtagonistReuse(chapter.examples)) {
-      push("C19", "examples", f.message, f.evidence);
+      push("C23", "examples", f.message, f.evidence);
     }
   }
 
@@ -578,6 +586,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   }
   for (const f of checkQuizAnswerLengthRatio(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizCorrectLongestRate(chapter.quiz)) {
+    push(f.checkId as string, "quiz", f.message, f.evidence);
   }
   for (const f of checkQuizPromptOpenerMonotony(chapter.quiz)) {
     push(f.checkId as string, "quiz", f.message, f.evidence);

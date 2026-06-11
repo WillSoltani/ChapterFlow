@@ -27,7 +27,7 @@
         "format": "decision_point",
         "requiredBeat": "Premise before repair"
       },
-      "scenario": "Defect rates are flat, yet the final-fit bay is full of mechanics tapping door seams into place. The plant manager stands beside the door-fit gauge with finance waiting for a staffing request. She needs to decide before the capital review: add more repair labor, or trace why the door reaches the end of the line misaligned at all.",
+      "scenario": "Defect rates are flat, yet the final-fit bay is full of mechanics tapping door seams into place. The plant manager stands beside the door-fit gauge while finance waits for a staffing request. She needs to decide before the capital review: add more repair labor, or trace why the door reaches the end of the line misaligned at all.",
       "whatToDo": "The plant manager moves the door-fit review to the design and tooling decision. The late repair log becomes evidence for changing the first premise, not a reason to hire more finishers.",
       "whyItMatters": "Source assumptions shape the whole line. When the start is questioned, the team can prevent the defect instead of building pride around a cleaner rescue."
     },
@@ -63,7 +63,7 @@
         "format": "decision_point",
         "requiredBeat": "Design review before QA patch"
       },
-      "scenario": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint. The release manager has a new gate ready, and the engineering lead can implement it by Monday. Before sprint planning closes, the manager is deciding whether the car-door lesson points to another checkpoint or to the design review where the bug first becomes likely.",
+      "scenario": "An American assembly lesson reframes a Friday release report that shows the same defect escaping through final QA for the third sprint. The release manager has a new gate ready, and the engineering lead can implement it by Monday. Before sprint planning closes, the manager has to decide whether the car-door lesson points to another checkpoint or to the design review where the bug first becomes likely.",
       "whatToDo": "The release manager shifts the bug conversation into design review. The final QA gate stays, but the recurring issue is traced to the moment the weak assumption entered the sprint.",
       "whyItMatters": "A defect caught late still teaches where work began wrong. Treating QA as the answer lets the same source assumption keep producing rework."
     },
@@ -117,7 +117,7 @@
         "format": "decision_point",
         "requiredBeat": "Lesson model before extra drills"
       },
-      "scenario": "A Japanese assembly report sits beside a simulator report shows pilots repeating the same landing-sequence mistake after extra drills. The training director studies the syllabus beside a printed cockpit flow. Before the next class begins, she needs to choose: add repetitions to prove seriousness, or change the first explanation students receive about the failure.",
+      "scenario": "A Japanese assembly report sits beside a simulator report showing pilots repeating the same landing-sequence mistake after extra drills. The training director studies the syllabus beside a printed cockpit flow. Before the next class begins, she needs to choose: add repetitions to prove seriousness, or change the first explanation students receive about the failure.",
       "whatToDo": "The training director repairs the lesson before adding simulator time. Practice remains useful, but the first explanation for the landing error gets corrected.",
       "whyItMatters": "More repetitions strengthen whatever premise the syllabus teaches. A pilot learns faster when the root explanation is sound before practice begins."
     }
@@ -224,7 +224,7 @@
           "The old factory must have hidden a better version of the same checklist.",
           "The copied practice needs more pressure from senior leadership to work."
         ],
-        "correctIndex": 1,
+        "correctIndex": 0,
         "explanation": "A practice carries hidden assumptions. When the setting changes, the visible move can lose the premise that made it effective in the original system.",
         "bloomsLevel": "evaluate",
         "depthLevel": "deep"

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 3,
+  "chapterId": "think-and-grow-rich-ch03",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "d7a9f9237602788a",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T12:02:31.128Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~91 GREEN. 9/9 keys correct (1,2,0,1,0,2,2,1,0). Schwab/US Steel/Morgan, 5-point self-confidence formula, Gandhi, negative self-suggestion accurate; honestly flags dated vibration vocab. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 3,
+      "chapterId": "think-and-grow-rich-ch03",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "2cf0149967436da0",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T12:02:31.128Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~91 GREEN. 9/9 keys correct (1,2,0,1,0,2,2,1,0). Schwab/US Steel/Morgan, 5-point self-confidence formula, Gandhi, negative self-suggestion accurate; honestly flags dated vibration vocab. No corruption."
+    }
+  ]
+}

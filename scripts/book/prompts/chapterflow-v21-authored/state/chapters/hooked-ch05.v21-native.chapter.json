@@ -1,0 +1,320 @@
+{
+  "chapterId": "hooked-ch05",
+  "number": 5,
+  "title": "Investment",
+  "readingTimeMinutes": 12,
+  "hook": "An iTunes library makes yesterday's effort wait inside today's choice.",
+  "counterintuition": "Investment depends on timing: ask for a small contribution after reward, when the user is willing and the product can store future value.",
+  "tryThisNow": "After one rewarding user moment, identify the smallest contribution that would make the next visit easier, more personal, or more socially alive.",
+  "keyTakeaway": "Investment strengthens the next hook when user effort becomes stored value, such as content, data, followers, reputation, skill, or a future trigger.",
+  "breakdown": {
+    "fastRead": "The IKEA effect explains why investment can change value. People often value what they helped build more than an equivalent object they merely received. In product terms, the user's effort can become attachment.\n\nAn iTunes music library is not just a pile of files. It is past choosing stored inside the product. The eBay and Airbnb reputations work differently but follow the same logic: trust built through use becomes costly to rebuild elsewhere. Investment makes the next return more valuable than the first visit.",
+    "deepRead": "Investment comes after the reward, not before it. The user has already received something satisfying, so a small request for effort can feel reasonable. That effort should improve the next cycle.\n\nStored value gives the idea its practical vocabulary. Content investments include music libraries, posts, photos, documents, and playlists. Data investments personalize the next visit. Followers and social graphs increase future reach. Reputation on eBay or Airbnb changes what other people will trust. Skill investments, such as learning Adobe Photoshop, make switching costly because expertise does not transfer instantly.\n\nThe mechanism is partly psychological. The IKEA effect makes self-made things feel more valuable. Consistency pressure and cognitive dissonance push people to treat past effort as evidence of commitment. If I built this, chose this, rated this, learned this, or earned this, then staying can feel sensible.\n\nSnapchat photo exchange shows the forward-looking version. Sending a photo is a small investment that gives another person a reason to respond. That response becomes a future trigger. A good investment does not merely end the session; it loads the next loop.",
+    "fullRead": "The idea's timing rule is the piece many teams miss. Investment is not the first hurdle. If the user is asked to create an account, enter preferences, invite friends, and upload data before any reward arrives, the product has added friction instead of commitment.\n\nThe IKEA effect provides the psychological foundation. Effort can change valuation. A person who helps build something may prize it more because the work becomes part of the object's meaning. Product investment borrows that effect, but it has to be paired with actual future usefulness. The user should not merely work; the product should get better because of the work.\n\nThe iTunes example demonstrates stored content. A curated music library reflects taste, money, organization, and memory. Leaving means losing or rebuilding a personal collection. The value is not abstract loyalty. It is the stock of past choices that makes the current product easier and richer to use.\n\nThe eBay and Airbnb examples show reputation as stored value. A seller rating or host reputation affects future transactions because other people use it to judge trust. That value is attached to the platform context. A user can carry identity elsewhere, but the marketplace proof does not simply reappear in a new system.\n\nAdobe Photoshop shows skill investment. Years of shortcuts, habits, and judgment make the tool feel natural. A rival may be cheaper or cleaner, but switching asks the user to pay a relearning cost. Skill is a form of stored value inside the relationship between user and product.\n\nContent, data, followers, reputation, and skill are not the same, and that matters. A reading app may store highlights. A marketplace may store trust. A design tool may store competence. A social app may store followers or message history. The correct investment depends on what makes later use more valuable for that specific behavior.\n\nSnapchat's photo exchange adds the next-trigger idea. The user sends something, which invites a reply. The reply becomes a cue. The investment phase therefore connects the current reward to the next cycle instead of leaving the loop cold.\n\nThe hard edge is restraint. Do not demand labor simply because commitment sounds useful. Ask after reward, ask for something small, and make sure the contribution stores value the user can feel later. Otherwise investment becomes setup friction wearing strategic clothes.\n\nA useful investment question is simple: what can the user add now that makes tomorrow's product easier to enter, more personal, more trusted, more skilled, or more likely to cue a return?"
+  },
+  "examples": [
+    {
+      "exampleId": "hooked-ch05-ex01",
+      "title": "Library migration",
+      "tags": [
+        "Investment",
+        "iTunes",
+        "stored value"
+      ],
+      "planSpec": {
+        "domain": "music app migration",
+        "audience": "product strategist",
+        "stakes": "why a user resists leaving a familiar library",
+        "format": "migration case",
+        "requiredBeat": "Apply iTunes to why a user resists leaving a familiar library without flattening the source case."
+      },
+      "scenario": "During a music app migration, Elian says the competitor has cleaner audio but his iTunes library holds years of choices. Playlists, purchases, and organization make the old service feel personally built. The investment is stored content, not nostalgia alone.",
+      "whatToDo": "List the user's accumulated content before estimating switching risk. Treat stored libraries as product value created over many cycles.",
+      "whyItMatters": "iTunes shows how past effort stays inside the product. A library makes return easier and departure more costly."
+    },
+    {
+      "exampleId": "hooked-ch05-ex02",
+      "title": "Marketplace trust",
+      "tags": [
+        "Investment",
+        "eBay",
+        "Airbnb"
+      ],
+      "planSpec": {
+        "domain": "marketplace seller review",
+        "audience": "operations lead",
+        "stakes": "why reputation changes switching cost",
+        "format": "trust audit",
+        "requiredBeat": "Apply eBay to why reputation changes switching cost without flattening the source case."
+      },
+      "scenario": "In a marketplace seller review, Kira compares a trusted eBay profile with a new account elsewhere. The products may both list goods, but ratings change buyer confidence. Airbnb hosts face the same economics: reputation is value that lives where transactions happen.",
+      "whatToDo": "Treat reputation as stored value. If switching asks users to rebuild trust from zero, the product has attachment beyond features.",
+      "whyItMatters": "eBay and Airbnb demonstrate reputation investment. Trust scores affect future outcomes and do not transfer easily."
+    },
+    {
+      "exampleId": "hooked-ch05-ex03",
+      "title": "Design tool renewal",
+      "tags": [
+        "Investment",
+        "Adobe Photoshop",
+        "skill"
+      ],
+      "planSpec": {
+        "domain": "software renewal desk",
+        "audience": "creative director",
+        "stakes": "why skill can be a durable investment",
+        "format": "renewal decision",
+        "requiredBeat": "Apply Adobe Photoshop to why skill can be a durable investment without flattening the source case."
+      },
+      "scenario": "At renewal time, Noor considers replacing Adobe Photoshop with a cheaper tool. The feature list is close, but her team's years of shortcuts, file habits, and editing judgment live in Photoshop. The switching cost is skill, not just subscription inertia.",
+      "whatToDo": "Measure learned workflow as part of product value. A rival must beat the tool and the cost of rebuilding expertise.",
+      "whyItMatters": "Adobe Photoshop shows skill as stored value. Expertise makes the familiar product faster and harder to abandon."
+    },
+    {
+      "exampleId": "hooked-ch05-ex04",
+      "title": "Photo reply loop",
+      "tags": [
+        "Investment",
+        "Snapchat",
+        "next trigger"
+      ],
+      "planSpec": {
+        "domain": "messaging feature review",
+        "audience": "consumer app PM",
+        "stakes": "how a sent photo plants a later cue",
+        "format": "loop analysis",
+        "requiredBeat": "Apply Snapchat to how a sent photo plants a later cue without flattening the source case."
+      },
+      "scenario": "During a messaging feature review, Noah diagrams a Snapchat photo exchange. The user sends a picture after a rewarding moment, and the recipient's reply becomes tomorrow's cue. The investment is social because the action loads the next trigger.",
+      "whatToDo": "Ask what user contribution can create a future prompt from another person or from the product's improved state.",
+      "whyItMatters": "Snapchat makes investment forward-looking. The best small effort prepares another hook instead of merely recording the current session."
+    },
+    {
+      "exampleId": "hooked-ch05-ex05",
+      "title": "Furniture lab",
+      "tags": [
+        "Investment",
+        "IKEA",
+        "research"
+      ],
+      "planSpec": {
+        "domain": "consumer psychology seminar",
+        "audience": "behavioral researcher",
+        "stakes": "why effort changes perceived value",
+        "format": "research translation",
+        "requiredBeat": "Apply IKEA to why effort changes perceived value without flattening the source case."
+      },
+      "scenario": "In a consumer psychology seminar, Cora uses the IKEA effect craft research to explain why a simple assembled object can feel special. The labor is part of the valuation. Product investment works only if that labor also improves later use.",
+      "whatToDo": "Use effort carefully. Ask for user work only when it can become ownership, personalization, trust, skill, or another future benefit.",
+      "whyItMatters": "The IKEA effect explains attachment through effort, but the product still needs stored value instead of busywork."
+    },
+    {
+      "exampleId": "hooked-ch05-ex06",
+      "title": "Preference setup",
+      "tags": [
+        "Investment",
+        "data",
+        "stored value"
+      ],
+      "planSpec": {
+        "domain": "personalization setup test",
+        "audience": "data product lead",
+        "stakes": "why asking for preferences too early fails",
+        "format": "usability test",
+        "requiredBeat": "Apply data to why asking for preferences too early fails without flattening the source case."
+      },
+      "scenario": "In a personalization setup test, Lin asks users for ten preferences before any reward. Completion collapses. The investment idea says the timing is wrong: data can store value, but the user is more willing after seeing the product help.",
+      "whatToDo": "Move preference capture after a satisfying result and ask for the smallest data point that improves the next visit.",
+      "whyItMatters": "Data can be stored value, but only when the user sees why giving it will make future use easier or more personal."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "hooked-ch05-q01",
+        "prompt": "When should investment usually happen in the hook cycle?",
+        "choices": [
+          "Before the first useful experience so commitment starts immediately.",
+          "After the user has received a reward and is more willing to contribute.",
+          "Only after the user has already left the product."
+        ],
+        "correctIndex": 1,
+        "explanation": "Investment follows reward. Asking too early turns useful contribution into front-loaded friction.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch05-q02",
+        "prompt": "What is stored value?",
+        "choices": [
+          "User effort that remains in the product and improves later experiences.",
+          "A random payoff that keeps the user searching.",
+          "A paid trigger that stores marketing attention."
+        ],
+        "correctIndex": 0,
+        "explanation": "Stored value is the durable result of user investment: content, data, followers, reputation, skill, or future triggers.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch05-q03",
+        "prompt": "How does an iTunes library create attachment?",
+        "choices": [
+          "It uses social reputation to make every song public.",
+          "It relies mainly on unpredictable rewards from other listeners.",
+          "It stores past choices, purchases, and organization that would be costly to rebuild."
+        ],
+        "correctIndex": 2,
+        "explanation": "The iTunes example is stored content. The user's collection reflects effort and becomes part of the product's value.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch05-q04",
+        "prompt": "Why do eBay and Airbnb reputations matter?",
+        "choices": [
+          "They are decorative badges with no effect on future transactions.",
+          "They create platform-specific trust that is difficult to transfer elsewhere.",
+          "They replace the need for user trust."
+        ],
+        "correctIndex": 1,
+        "explanation": "Marketplace reputation affects whether other people will transact. That trust is valuable and sticky inside the platform.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch05-q05",
+        "prompt": "Adobe Photoshop illustrates which investment type?",
+        "choices": [
+          "Skill investment, because learned expertise makes switching costly.",
+          "Paid-trigger investment, because users buy ads to return.",
+          "Tribe reward, because every shortcut is social validation."
+        ],
+        "correctIndex": 0,
+        "explanation": "Photoshop's durability often comes from learned skill. Users have invested in fluency that competitors must overcome.",
+        "bloomsLevel": "remember",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch05-q06",
+        "prompt": "What does Snapchat photo exchange show about investment?",
+        "choices": [
+          "Photos should be requested before any reward so the user feels committed.",
+          "Investment works only when content disappears quickly.",
+          "A sent photo can create a future reply, which becomes the next trigger."
+        ],
+        "correctIndex": 2,
+        "explanation": "Snapchat shows investment loading the next loop. A user's contribution gives someone else a reason to respond.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch05-q07",
+        "prompt": "What is the IKEA effect's role in this idea?",
+        "choices": [
+          "It proves all user labor is good for retention.",
+          "It shows that effort can increase perceived ownership and value.",
+          "It explains why variable rewards must be random."
+        ],
+        "correctIndex": 1,
+        "explanation": "The IKEA effect supports the psychology of investment: people often value what they helped build.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch05-q08",
+        "prompt": "Which request would violate the idea's hard edge?",
+        "choices": [
+          "Ask for ten preferences before the product has delivered any reward.",
+          "Ask a satisfied user to save one useful preference for next time.",
+          "Invite a user to bookmark a result after it helped them."
+        ],
+        "correctIndex": 0,
+        "explanation": "Demanding work before reward creates friction. Investment should follow satisfaction and store value.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch05-q09",
+        "prompt": "Which list best matches stored-value categories?",
+        "choices": [
+          "Paid, earned, relationship, and owned triggers.",
+          "Tribe, hunt, self, and reactance.",
+          "Content, data, followers, reputation, and skill."
+        ],
+        "correctIndex": 2,
+        "explanation": "The idea identifies several forms of stored value. Each can make future use better and switching more costly.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "hooked-ch05-card01",
+      "front": "How is investment different from action?",
+      "back": "Action is the small behavior before reward. Investment is the small contribution after reward that stores value for future use.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch05-card02",
+      "front": "What does stored value include?",
+      "back": "Content, data, followers, reputation, and skill. These user contributions make the product more personal, useful, trusted, or costly to leave.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch05-card03",
+      "front": "Why does Photoshop fit the investment idea?",
+      "back": "Photoshop stores skill. Years of learned shortcuts and workflow make switching to a rival tool costly even when features overlap.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "hooked-ch05-card04",
+      "front": "What is the timing rule for investment?",
+      "back": "Ask after a reward, keep the effort small, and make the contribution improve the next cycle. Early demands feel like setup friction.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Store The Next Return",
+    "coreSkill": "Ask for user effort only when it can become future value. The investment should personalize, preserve, connect, build trust, build skill, or prepare the next trigger.",
+    "ifThenPlans": [
+      {
+        "context": "When onboarding asks too much",
+        "plan": "If setup appears before reward, then defer the request until the user has received value."
+      },
+      {
+        "context": "When switching seems easy",
+        "plan": "If a competitor looks similar, then inventory stored content, reputation, data, and skill."
+      },
+      {
+        "context": "When a feature collects data",
+        "plan": "If you ask for a preference, then show how it improves the next visit."
+      },
+      {
+        "context": "When a social action occurs",
+        "plan": "If the user sends or shares something, then check whether it naturally creates a future trigger."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one rewarding moment and design one small follow-up contribution that stores future value without adding early friction.",
+    "weeklyPractice": "Each week, classify one user contribution as content, data, reputation, followers, skill, or next-trigger loading."
+  },
+  "memorableLines": [
+    {
+      "text": "An iTunes music library is not just a pile of files.",
+      "location": "breakdown.fastRead",
+      "why": "It makes stored content vivid."
+    },
+    {
+      "text": "Investment comes after the reward, not before it.",
+      "location": "breakdown.deepRead",
+      "why": "It states the timing rule directly."
+    },
+    {
+      "text": "Investment is not the first hurdle.",
+      "location": "breakdown.fullRead",
+      "why": "It guards against the most common product mistake."
+    }
+  ]
+}

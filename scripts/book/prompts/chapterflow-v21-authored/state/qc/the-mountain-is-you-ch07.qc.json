@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-mountain-is-you",
+  "chapterNumber": 7,
+  "chapterId": "the-mountain-is-you-ch07",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "32bc778437e78365",
+  "reviewer": "claude-qc:the-mountain-is-you-r2",
+  "reviewedAt": "2026-06-10T00:59:48.015Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "~87/100 GREEN. 9/9 keys correct. Both deadline+citation-prop skeletons REMOVED. 'Meik' Wiking spelling fixed. Grounded (Camus, Amy Morin, Eightfold Path, Pomeroy). No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-mountain-is-you",
+      "chapterNumber": 7,
+      "chapterId": "the-mountain-is-you-ch07",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "c6b61850bc622b0f",
+      "reviewer": "claude-qc:the-mountain-is-you-r2",
+      "reviewedAt": "2026-06-10T00:59:48.015Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "~87/100 GREEN. 9/9 keys correct. Both deadline+citation-prop skeletons REMOVED. 'Meik' Wiking spelling fixed. Grounded (Camus, Amy Morin, Eightfold Path, Pomeroy). No corruption."
+    }
+  ]
+}

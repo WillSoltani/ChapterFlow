@@ -1,0 +1,364 @@
+{
+  "chapterId": "pmbok-guide-ch03",
+  "number": 3,
+  "title": "Organizational Governance Systems",
+  "readingTimeMinutes": 11,
+  "hook": "The boardroom was empty after the pause vote; the escalation chart still had no names.",
+  "counterintuition": "Approval gates can slow a project; absent authority can slow it more. A team moves faster when people can see who may decide, who must sponsor, and when portfolio attention is required.",
+  "tryThisNow": "Draft one sentence naming who can approve, pause, or escalate the next risky tradeoff, then label the next authority it needs.",
+  "keyTakeaway": "Teams protect value when their governance system maps authority to risk: local calls stay local, sponsor calls are explicit, and portfolio escalation happens early.",
+  "breakdown": {
+    "fastRead": "Isabela leaves the boardroom with the project paused, not fixed. The schedule wall still has red tape over three workstreams. The blank space is the clue: nobody knows who owns the next call. A team can work hard and still stall when authority is fog. A useful governance system makes the path visible. It shows what the team can decide, when the sponsor must step in, and which change belongs with the portfolio group. The point is not extra ceremony. It is usable authority matched to risk, strategy, and constraint.",
+    "deepRead": "Between Eric's status call and Hubert's portfolio review, a defect changes shape. At 9:30 it looks like a design issue. By noon it touches funding, a promised benefit, and a vendor clause. Ferdinand can write a report, but the report cannot decide.\n\nThat is the mechanism. Governance works when it converts vague hierarchy into usable authority. Decision rights say which choices stay with the team. Sponsor authority covers tradeoffs that change scope, money, benefits, or risk. Portfolio oversight handles work that now competes with other investments. Escalation is not failure when the issue has outgrown the room.\n\nVernon sees the same logic on a safety-critical signaling upgrade. The investment size is not the only clue. A small software patch can still trigger regulation if it touches a live control path. A large office refresh may need less scrutiny if it has low safety exposure. The right amount of oversight is the amount the risk can justify.\n\nGood project leaders do not ask for more governance by reflex. They ask for clearer governance. Who can approve? Who can redirect? Who can pause? Who must hear bad news before delay becomes drift? Those questions reduce waiting, not by hiding risk, but by routing it to the level that can act.",
+    "fullRead": "Donatienne's intake table is built for speed. Every Friday, she sorts requests into three piles: team decision, sponsor decision, portfolio review. It is a quiet routine until a thin request mentions safety-critical testing, a new regulation date, and a change in strategic importance. Her hand stops above the stamp. She closes the old template and starts a risk check instead.\n\nThe pause matters. Governance fails in two opposite ways. It can smother small work with review rituals that add no protection. It can also leave critical work alone until a team is making choices it has no right to make. Both failures waste time. One creates delay. The other creates rework, compliance trouble, or a project that delivers speed in the wrong direction.\n\nA good system separates intensity from status. A project does not need heavier oversight because it is visible or loud. It needs stronger review when the exposure is real: regulation, safety, investment size, strategic importance, financial policy, security, procurement rules, or ethical duty. That is why Vernon's infrastructure patch deserves more care than a dashboard color change, even if the patch is smaller.\n\nDecision rights are the hinge. If Eden's team can change a screen label locally, no sponsor meeting should be needed. If the same label change weakens a promised benefit or alters a regulated disclosure, Eric has to own the tradeoff. If that tradeoff affects the portfolio promise, Hubert needs it before the next funding review. The work has not become less agile. It has become more honest about where authority lives.\n\nCulture can still break the written system. If people treat escalation as weakness, they will keep problems in the room that cannot solve them. If sponsors punish bad news, teams will protect the report instead of the value. If portfolio boards only ask for status colors, they will miss the change in assumptions that those colors hide. Formal routes need a norm that makes early escalation respectable.\n\nThe boundary is simple. Do not confuse governance with a preference for permission. A team should not ask above its level just to avoid owning a local call. The point is to keep authority close to the work until the issue crosses a real threshold. Then it moves up with a clear reason. The reader's test is practical: name the decision, name the risk, name the level that can bear the consequence. If those three names are visible, governance has become a delivery aid rather than a waiting room."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch03.ex.decision-rights",
+      "title": "Isabela's Pause Vote",
+      "tags": [
+        "dilemma",
+        "decision rights",
+        "escalation"
+      ],
+      "planSpec": {
+        "domain": "a clinic scheduling replacement with a funding gap and a sponsor away at an offsite",
+        "audience": "project managers who need authority before a risky change hardens",
+        "stakes": "patients may wait longer if the rollout pauses, but unauthorized scope change can break the portfolio promise",
+        "format": "dilemma",
+        "requiredBeat": "two poor choices expose why decision rights and escalation must be visible before scope, funding, risk, or benefits shift"
+      },
+      "scenario": "Isabela stands beside a printed change request in a clinic boardroom. The sponsor is offsite, the portfolio review is tomorrow, and the vendor says the scheduling rollout needs extra funds by 3 p.m. One route lets the team spend money it does not have authority to spend. The other freezes patient access work for a week. She must choose which pain to take while the decision rights chart shows no escalation owner.",
+      "whatToDo": "Isabela names the blocked authority, records the two risks in one note, and routes the request to the sponsor and portfolio chair before the 3 p.m. vendor window closes.",
+      "whyItMatters": "The scene shows governance as usable authority. Without named decision rights and escalation, a team can be both reckless and delayed at the same time."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch03.ex.decision-rights",
+      "title": "Ferdinand Draws the Line",
+      "tags": [
+        "dialogue",
+        "sponsor",
+        "portfolio"
+      ],
+      "planSpec": {
+        "domain": "a PMO review room where a project sponsor wants the team to decide a benefit tradeoff",
+        "audience": "sponsors and PMO analysts clarifying authority before a steering meeting",
+        "stakes": "a local choice could change a benefit forecast that the portfolio office already promised",
+        "format": "dialogue",
+        "requiredBeat": "the exchange itself distinguishes local decision rights from sponsor and portfolio escalation"
+      },
+      "scenario": "Ferdinand puts a one-page decision rights map between two coffee cups before the steering meeting starts. Eric reads the line about benefit changes.\n\n\"So the team can approve the screen swap?\"\n\n\"Yes, if the promised benefit stays intact.\"\n\n\"And if adoption drops?\"\n\n\"That is sponsor authority first. If the benefit forecast changes, Hubert sees it at portfolio review.\"\n\nEric circles the word escalation and stops asking for a status slide.",
+      "whatToDo": "Ferdinand keeps the talk on the authority line. He separates a local design call from a sponsor tradeoff and a portfolio promise before the room can blur them together.",
+      "whyItMatters": "The exchange prevents status reporting from pretending to be governance. Clear authority tells each role which decision it actually owns."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch03.ex.risk-based-governance",
+      "title": "Vernon's Small Patch Surprise",
+      "tags": [
+        "predict reveal",
+        "safety-critical",
+        "regulation"
+      ],
+      "planSpec": {
+        "domain": "a rail control software patch that looks smaller than an office refresh",
+        "audience": "technical leads balancing speed with regulated safety exposure",
+        "stakes": "a cheap change may deserve heavier oversight than a larger but low-risk effort",
+        "format": "predict_reveal",
+        "requiredBeat": "the expected light review is overturned when safety-critical regulation and strategic importance surface"
+      },
+      "scenario": "Vernon expects the tiny rail-control patch to pass before lunch. The investment size is modest, and the office refresh across town costs ten times more. The reveal comes on line four of the test note: safety-critical relay timing, new regulation date, strategic importance to the regional service pledge. The vote is no longer about size. The small patch gets the heavier governance lane.",
+      "whatToDo": "Vernon changes the review request from budget tier to exposure tier. He asks for safety, regulation, investment size, and strategic importance to be scored before scheduling approval.",
+      "whyItMatters": "The outcome breaks the common guess that bigger spend means heavier governance. Rigor should follow exposure, not only the price tag."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch03.ex.decision-rights",
+      "title": "Eden's Escalation Thread",
+      "tags": [
+        "text thread",
+        "decision rights",
+        "sponsor"
+      ],
+      "planSpec": {
+        "domain": "a mobile product update where adoption metrics changed after a schedule slip",
+        "audience": "product owners and portfolio coordinators handling fast, informal escalations",
+        "stakes": "a team may keep moving locally after a benefit assumption has shifted",
+        "format": "text_thread",
+        "requiredBeat": "a compressed chat shows when decision rights leave the team and move to sponsor and portfolio escalation"
+      },
+      "scenario": "Eden's phone lights up during the release huddle.\n\nEden: Adoption target just moved. Team can still ship Friday?\nHubert: Screen fixes, yes. Benefit change, no.\nEden: Sponsor?\nHubert: Eric first. Portfolio if the forecast drops.\nEden: So escalation now, not after demo?\nHubert: Now. Decision rights changed when the benefit changed.\n\nEden needs to decide which message goes out before the huddle ends.",
+      "whatToDo": "Eden sends the sponsor a two-line escalation note and pauses the benefit claim in the release update until Eric and Hubert confirm the authority path.",
+      "whyItMatters": "The chat makes governance small enough to use in real time. A benefit shift moves the choice out of local control before the team drifts into unauthorized speed."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch03.ex.risk-based-governance",
+      "title": "Donatienne Restarts the Intake",
+      "tags": [
+        "reset moment",
+        "risk based",
+        "strategic"
+      ],
+      "planSpec": {
+        "domain": "a compliance intake desk that sorts change requests by default templates",
+        "audience": "governance leads who need to stop a routine when risk signals appear",
+        "stakes": "a routine low-review stamp could miss a regulated safety exposure",
+        "format": "reset_moment",
+        "requiredBeat": "an ordinary intake routine is interrupted, paused, and restarted around risk-based governance intensity"
+      },
+      "scenario": "Donatienne's Friday intake has a rhythm: stamp the low-risk items, flag the funding items, send the rest to Eric. A thin request interrupts it with four words: safety-critical trial data. She stops the stamp midair. The regulation date sits in the margin, the investment size is small, and the strategic importance is high. Before the next pile moves, she restarts the intake as a risk screen, not a paperwork queue.",
+      "whatToDo": "Donatienne deliberately resets the routine. She scores exposure first, then assigns review intensity after safety, regulation, investment size, and strategic importance are visible.",
+      "whyItMatters": "The deliberate stop does the work. Risk-based governance requires enough attention to notice when an easy workflow is about to under-control a serious obligation."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch03.ex.risk-based-governance",
+      "title": "Hubert's Two Trays",
+      "tags": [
+        "vignette",
+        "oversight",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "a portfolio coordinator's desk on the morning of a review",
+        "audience": "readers learning to see governance intensity in ordinary artifacts",
+        "stakes": "two projects look similar in paperwork but different in exposure",
+        "format": "vignette",
+        "requiredBeat": "a close observed desk scene shows governance rigor as a match to risk, not a one-size ritual"
+      },
+      "scenario": "Hubert's desk has two trays before the next portfolio review. One holds a thick office-refresh binder with color samples and a high investment size. The other holds a single page for a safety-critical patch, clipped to a regulation memo and a note on strategic importance. His pencil rests beside both. The small page has more flags than the fat binder. No one in the room has arrived yet.",
+      "whatToDo": "Hubert keeps the two trays separate by exposure, not volume. He marks the patch for stronger oversight and leaves the office refresh in the lighter review lane.",
+      "whyItMatters": "The desk scene makes tailoring concrete. Governance intensity should fit risk and obligation; document thickness and project noise are poor substitutes for exposure."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch03.fact.4",
+        "prompt": "A log from Isabela's clinic rollout shows four missed handoffs in six days, each after a scope or funding change. Which inference should Ferdinand make first?",
+        "choices": [
+          "Status Cadence Misread: Add another Friday report so missed handoffs become visible after the week ends.",
+          "Escalation Path Move: Check whether each change had a named route to the sponsor or portfolio level.",
+          "Team Ownership Misread: Tell Isabela's group to decide locally so the vendor window does not close again."
+        ],
+        "correctIndex": 1,
+        "explanation": "Repeated misses after authority-changing events point to unclear escalation, not weak reporting alone. The first check is whether the issue had a route to someone able to decide.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch03.fact.1",
+        "prompt": "Eric inherits a project that delivers clean status slides but waits ten days for every scope answer. In his sponsor role, which first repair best fits the governance lens?",
+        "choices": [
+          "Authority Map Move: Name who can approve, redirect, pause, or stop each class of project choice.",
+          "Reporting Comfort Misread: Keep the slide deck stable so leaders do not feel a process change.",
+          "Autonomy Romance Misread: Remove sponsor review so the team can treat all scope calls as local."
+        ],
+        "correctIndex": 0,
+        "explanation": "The delay is about authority, not slide polish. Eric should clarify decision rights for the choices that exceed the team's remit, while local calls stay close to the work.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch03.fact.5",
+        "prompt": "Vernon's dashboard lists two requests: a costly office redesign and a cheap safety patch tied to a regulation date. Which governance response reads the data best?",
+        "choices": [
+          "Budget-Tier Misread: Send the office redesign to the heavier lane because its cost is more visible.",
+          "Uniform Fairness Misread: Put both requests through the same review path so the process looks evenhanded.",
+          "Exposure-Based Move: Give the safety patch stronger oversight because risk and regulation outweigh spend."
+        ],
+        "correctIndex": 2,
+        "explanation": "Governance rigor should follow exposure. Cost matters, but a small safety-critical regulated change can justify closer review than a larger low-risk request.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch03.fact.3",
+        "prompt": "When Hubert's portfolio board sees a green project whose expected benefit has dropped, which question should come before praise for schedule performance?",
+        "choices": [
+          "Baseline Loyalty Misread: Ask how to preserve the original plan so the green status remains credible.",
+          "Alignment Check Move: Ask whether the work still supports the strategy and expected benefits that justified funding.",
+          "Ceremony Reduction Misread: Skip governance review because the team is hitting every near-term milestone."
+        ],
+        "correctIndex": 1,
+        "explanation": "Green delivery metrics do not prove strategic alignment. Oversight should compare current work with the value case, especially after expected benefits shift.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch03.fact.2",
+        "prompt": "Donatienne notices a fast internal experiment wants to bypass security approval because no customer will see the prototype. How should she frame the governance issue?",
+        "choices": [
+          "Prototype Exception Misread: Let the experiment skip policy since external users are not involved yet.",
+          "Speed Premium Misread: Approve the shortcut if the team can show the prototype will finish this week.",
+          "Policy Constraint Move: Test the work against security, financial, legal, and ethical rules before speed wins."
+        ],
+        "correctIndex": 2,
+        "explanation": "Internal speed does not erase organizational obligations. Policies and standards shape acceptable practice even when the work looks small or temporary.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch03.fact.6",
+        "prompt": "A survey after Eden's release finds people know the escalation policy but avoid using it because leaders call escalation 'panic.' What should the first diagnosis be?",
+        "choices": [
+          "Culture-Blocks-System Move: Treat the written route as real only after norms make early bad news acceptable.",
+          "Training-Only Misread: Send the policy again, since knowledge of the route is the missing ingredient.",
+          "Heroic Silence Misread: Praise Eden's team for absorbing pressure instead of moving the issue upward."
+        ],
+        "correctIndex": 0,
+        "explanation": "Formal governance depends on culture. If escalation is punished socially, the written route will not move risk to the right authority in time.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch03.fact.7",
+        "prompt": "Which sign tells Ferdinand that a meeting cadence is being mistaken for governance on Eric's project?",
+        "choices": [
+          "Decision-Rights Move: The room leaves knowing which choices belong to the team, sponsor, and portfolio.",
+          "Status-Meeting Misread: The calendar has weekly reviews, but nobody can say who owns benefit changes.",
+          "Attendance Misread: Senior leaders appear on the invite, so the meeting is treated as authority."
+        ],
+        "correctIndex": 1,
+        "explanation": "A meeting can inform governance without defining authority. If people still cannot place benefit changes with the right decision owner, cadence is masking the gap.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch03.fact.8",
+        "prompt": "Your PMO wants one approval template for every effort, from Eden's two-week experiment to Vernon's regulated rail patch. Which objection best uses risk-based governance?",
+        "choices": [
+          "Tool Minimalism Misread: Templates are paperwork, so both efforts should proceed with informal chat only.",
+          "Executive Preference Misread: The rail patch should get more review mainly because senior leaders notice it.",
+          "Context-Fit Move: A single template can overburden low-risk work while under-controlling critical exposure."
+        ],
+        "correctIndex": 2,
+        "explanation": "Sameness is not the same as fairness. Risk, regulation, investment size, and strategic importance determine useful rigor better than one fixed form.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch03.fact.9",
+        "prompt": "A colleague argues that less governance will always speed delivery after Isabela's pause vote. Which answer best corrects the claim without defending needless approvals?",
+        "choices": [
+          "Clarity-Not-Volume Move: Reduce duplicate approvals while naming the authority path for risky changes.",
+          "Anti-Governance Misread: Remove sponsor and portfolio review so teams never wait for external calls.",
+          "Approval-Stack Misread: Add more committees so every future pause has a larger audience."
+        ],
+        "correctIndex": 0,
+        "explanation": "The useful contrast is not more versus less. Good governance removes empty waiting while keeping real authority, compliance, and value decisions visible.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch03.fact.1",
+      "front": "What authority questions should governance answer before a project tradeoff grows?",
+      "back": "It should make clear who can approve, redirect, pause, or stop work. The answer may sit with the team, the sponsor, or a portfolio body depending on scope, money, risk, and benefits.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch03.fact.4",
+      "front": "Why can escalation reduce delay instead of adding it?",
+      "back": "Escalation reduces delay when a team has reached the edge of its authority. Moving the issue to the right decision owner is faster than waiting, hiding, or making an unauthorized call.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch03.fact.8",
+      "front": "How should risk-based governance treat a small safety-critical change?",
+      "back": "It should look beyond size. A small change tied to safety, regulation, strategic importance, or serious investment exposure may need stronger oversight than a larger low-risk effort.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch03.fact.6",
+      "front": "Why can written decision rights fail inside a punished-escalation culture?",
+      "back": "People may know the route and still avoid it when bad news is treated as weakness. Governance needs norms that make early escalation acceptable, or the map stays unused.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch03.concept",
+      "front": "Principle-based standard recall: what does governance borrow from that idea?",
+      "back": "A principle-based standard gives durable judgment criteria, not a single recipe. Governance applies that idea by clarifying authority and tailoring controls to context.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch03.concept",
+      "front": "Outputs-outcomes-benefits chain recall: what should oversight test after delivery looks green?",
+      "back": "Oversight should not stop at completed outputs. It tests whether current work still supports the intended outcomes and benefits that justified the project.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card07",
+      "sourceAnchorId": "ch03.fact.9",
+      "front": "What is the difference between useful governance and approval clutter?",
+      "back": "Useful governance clarifies authority, accountability, compliance, and alignment. Approval clutter adds waiting without improving a decision, reducing risk, or protecting value.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Map the Authority Line",
+    "coreSkill": "Practice drawing the authority line before a project decision gets hot. Name the decision, the risk it creates, and the level that can bear the consequence. Map the Authority Line keeps local work local and moves only real thresholds to sponsor or portfolio attention.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch03.fact.1",
+        "context": "If a scope, funding, benefit, or risk tradeoff appears in a meeting",
+        "plan": "If the tradeoff appears, then Map the Authority Line in one sentence: team, sponsor, or portfolio. Do not leave until the owner is named."
+      },
+      {
+        "sourceAnchorId": "ch03.fact.4",
+        "context": "When a team says it is waiting but cannot name who has the call",
+        "plan": "If waiting has no named owner, then Map the Authority Line and send a two-line escalation note to the lowest level that can decide."
+      },
+      {
+        "sourceAnchorId": "ch03.fact.5",
+        "context": "If a small change touches safety, regulation, strategic importance, or major investment exposure",
+        "plan": "If exposure is higher than size suggests, then Map the Authority Line by risk tier before approving the review lane."
+      },
+      {
+        "sourceAnchorId": "ch03.fact.6",
+        "context": "When people avoid escalation because it may look weak",
+        "plan": "If escalation feels politically risky, then Map the Authority Line in neutral terms: decision, consequence, owner. Make the route about authority, not blame."
+      }
+    ],
+    "twentyFourHourChallenge": "Within one workday, choose one active project decision and write a three-line Authority Line: decision, risk, owner. Send it to the relevant teammate or sponsor.",
+    "weeklyPractice": "For one week, review every escalated item on Friday. Mark whether the owner was team, sponsor, or portfolio, then adjust one unclear route before the next meeting."
+  },
+  "memorableLines": [
+    {
+      "text": "A team can work hard and still stall when authority is fog.",
+      "location": "breakdown.fastRead",
+      "why": "It separates effort from authority and makes the cost of unclear governance easy to remember."
+    },
+    {
+      "text": "Escalation is not failure when the issue has outgrown the room.",
+      "location": "breakdown.deepRead",
+      "why": "It turns escalation from shame into a routing rule."
+    },
+    {
+      "text": "The right amount of oversight is the amount the risk can justify.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses risk-based governance into one practical test."
+    }
+  ]
+}

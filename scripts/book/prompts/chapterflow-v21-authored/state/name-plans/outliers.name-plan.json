@@ -1,0 +1,132 @@
+{
+  "bookId": "outliers",
+  "fromChapter": 1,
+  "toChapter": 9,
+  "perChapter": 7,
+  "allocation": {
+    "1": [
+      "Hunter",
+      "Justine",
+      "Jacqueline",
+      "Grace",
+      "Lola",
+      "Nathan",
+      "Theodore"
+    ],
+    "2": [
+      "Hong",
+      "Sylvain",
+      "Spencer",
+      "Phyllis",
+      "Severine",
+      "Abel",
+      "Cyrielle"
+    ],
+    "3": [
+      "Curtis",
+      "Clemence",
+      "Reagan",
+      "Duc",
+      "Ophelie",
+      "Shirley",
+      "Lydia"
+    ],
+    "4": [
+      "Sami",
+      "Georgette",
+      "Dylan",
+      "Anil",
+      "Denis",
+      "Eugenie",
+      "Mai"
+    ],
+    "5": [
+      "Brayden",
+      "Anna",
+      "Simonne",
+      "Mohammed",
+      "Eveline",
+      "Gordon",
+      "Aldo"
+    ],
+    "6": [
+      "Colette",
+      "Maureen",
+      "Blanche",
+      "Jasmine",
+      "Veronica",
+      "Karen",
+      "Norman"
+    ],
+    "7": [
+      "Aaron",
+      "Medard",
+      "Firmin",
+      "Winnie",
+      "Kendra",
+      "Violette",
+      "Maverick"
+    ],
+    "8": [
+      "Paige",
+      "Remi",
+      "Nikos",
+      "Delphis",
+      "Maddox",
+      "Yuri",
+      "Mason"
+    ],
+    "9": [
+      "Doreen",
+      "Ghislaine",
+      "Cody",
+      "Amrit",
+      "Adrien",
+      "Napoleon",
+      "Mariam"
+    ]
+  },
+  "bannedConnectives": [
+    "has to decide whether to",
+    "now has to choose between",
+    "is trying to figure out",
+    "stares at the screen and",
+    "stops and looks at the",
+    "takes a deep breath and",
+    "leans back in the chair",
+    "glances at the clock and",
+    "stops arguing and points to",
+    "we cannot keep pretending this",
+    "catches the edge of the",
+    "the room goes quiet as",
+    "feels the weight of the",
+    "knows the answer but cannot",
+    "is about to find out",
+    "has been doing this for",
+    "looks up from the desk",
+    "the same thing happens again",
+    "wants nothing more than to",
+    "cannot shake the feeling that",
+    "is faced with a choice",
+    "has to make a call",
+    "sits down to write the",
+    "opens the laptop and starts",
+    "runs the numbers one more",
+    "the point is",
+    "the question is whether",
+    "that is the lesson",
+    "that is the move",
+    "a louder scoreboard",
+    "the scoreboard"
+  ],
+  "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
+  "diagnostics": {
+    "bankSize": 777,
+    "excludedCount": 116,
+    "crossBookExcluded": 587,
+    "freshAvailable": 189,
+    "availableCount": 189,
+    "shortChapters": [],
+    "alreadyAuthored": []
+  }
+}

@@ -55,31 +55,27 @@
   ],
   "targetReader": "Managers, leaders, entrepreneurs, and operators who run something — a team, a practice, a business, a department — and want to move from vague ambition or busy planning toward choices that actually create an advantage in a defined field.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium-tight",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "medium",
     "signatureMoves": [
-      "open with a choice the protagonist has to make before naming the strategic rule",
-      "use concrete stakes — a market position at risk, a capability gap visible right now, a review that drifted into theater",
-      "let the cascade logic reveal itself through a specific decision, not through an explanation of the framework",
-      "treat strategy as a craft the reader can practice: name the move, show the constraint, make the decision visible"
+      "uses where-to-play and how-to-win as disciplined strategic choices",
+      "keeps winning tied to capabilities, systems, and tradeoffs",
+      "turns strategy into a cascade rather than a theme deck",
+      "uses managerial clarity without hype"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic leadership or management coaching language",
-      "no abstract framework-talk disconnected from a real visible decision"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not call a preference a strategic choice.",
+      "Do not separate winning from the capabilities required to win."
     ]
   },
   "voiceSpecimens": [
-    "The plan looked confident, but nothing in it required the team to stop doing anything.",
-    "A winning aspiration names the customer you are trying to delight and the alternative you are trying to beat — not the version of yourselves you hope to become.",
-    "Three departments each believed they were the company's core competence. None of them had asked whether the strategy actually needed what they were offering.",
-    "The review took ninety minutes and told the leadership team what they already believed. That is not a strategy review. That is attendance.",
-    "Glad did not win the trash-bag market by making a stronger bag than the competitor made. It won by solving a problem the competitor was not even optimizing for.",
-    "The acquisition brought a capability P&G needed and had spent a decade trying to build internally. The price was high. So was the cost of not having it.",
-    "Before the analysis begins, the most important question is whether the options on the table are actually different from each other."
+    "A choice is not strategic until it excludes attractive alternatives.",
+    "Where to play matters because capability is not universal."
   ],
   "voiceAntiSpecimens": [
     "In today's rapidly changing business environment, strategic alignment has never been more critical for organizational success.",
@@ -92,6 +88,8 @@
   "forbiddenMoves": [
     "treating the five-choice cascade as a checklist to complete rather than a test of internal coherence — the point is whether the choices reinforce each other, not whether all five boxes have entries",
     "importing generic strategy-consulting language (core competency, synergy, blue-sky thinking, value chain) without grounding it in the specific choice being made",
-    "letting Olay, Saturn, Bounty, Glad, or Gillette become historical case-study recaps rather than precision anchors for one specific strategic principle"
+    "letting Olay, Saturn, Bounty, Glad, or Gillette become historical case-study recaps rather than precision anchors for one specific strategic principle",
+    "Do not make the cascade into a checklist without tradeoffs.",
+    "Do not praise ambition where the playing field is undefined."
   ]
 }

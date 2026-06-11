@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 9,
+  "chapterId": "pmbok-guide-ch09",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "7266e81491f4aa29",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:55:52.520Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "93/100, read full ch09, quiz keys matched stakeholder-engagement principle, examples coherent, cards and plan actionable, no corruption found"
+}

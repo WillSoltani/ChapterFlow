@@ -1,0 +1,308 @@
+{
+  "chapterId": "the-tipping-point-ch03",
+  "number": 3,
+  "title": "The Stickiness Factor: Sesame Street, Blue's Clues, and the Educational Virus",
+  "readingTimeMinutes": 12,
+  "hook": "A child can stare at the screen and still miss the lesson hiding in plain sight.",
+  "counterintuition": "Attention is only the first gate. A message spreads when its form helps the intended audience notice, remember, rehearse, and use it.",
+  "tryThisNow": "Take one instruction you repeat often and circle the action verb. Move that verb to the first line, then add one deliberate repeat before the next handoff.",
+  "keyTakeaway": "Make the message itself carry the lesson: test attention, remove distraction, repeat the useful step, and give the audience time to respond.",
+  "breakdown": {
+    "fastRead": "Joan Ganz Cooney wanted television to teach preschool children, but reach was not the win. Sesame Street had to hold a child's eye and point that eye toward letters, numbers, and meaning. A funny scene could win attention while the learning target slipped past.\n\n+The Stickiness Factor is the craft of making content lodge. Children's Television Workshop testing treated stickiness as something visible. Blue's Clues pushed the idea further. It slowed the pace, asked direct questions, repeated episodes, and let children feel mastery. Adults may crave novelty. The audience in front of the screen may need a clear path back to the same lesson.",
+    "deepRead": "Stickiness begins with a hard split: looking is not learning. A child may watch a loud puppet, a moving prop, or a joke and still miss the letter on the screen. Sesame Street became powerful because Joan Ganz Cooney and the Children's Television Workshop treated that split as a design problem. They watched real children, measured attention, and changed the show when the lesson lost the child's eye.\n\n+Blue's Clues made the design rule sharper. Instead of fast variety, it used one host, one animated dog, one puzzle, and repeated clues. The pause after a question was not dead air. It gave the child room to answer. The rerun was not laziness. It gave the child the joy of knowing what came next.\n\n+That lesson travels outside children's television. A safety video, medical instruction, app tutorial, or public notice can reach people and still fail if the key action is buried. The fix is not just more distribution. Put the important bit where the audience looks. Cut the joke that steals attention. Repeat the step that must survive memory. Then test the result with the people who must act, not with the adults who approve the script.",
+    "fullRead": "Children's Television Workshop began with a bold premise: television could do more than amuse preschool children. It could teach. Joan Ganz Cooney's project joined entertainment craft with research because the medium's reach was not enough. A child could sit in front of the set, laugh at the right moment, and still fail to grasp the educational target.\n\n+That gap makes stickiness practical. Attention is a doorway, not the room. Sesame Street had to learn where children looked, when they drifted, and which production choices helped letters and numbers stay visible. A busy scene might satisfy an adult producer while pulling a child's attention away from the learning cue. Testing made that failure plain.\n\n+Blue's Clues took the insight in a spare direction. The cast was simple. The story moved through one puzzle. The host asked the viewer to help. The pause after each question invited participation. The same episode ran across a week, which would bore many adults. For preschool viewers, the repeat could create mastery. They knew the clue before it arrived. That recognition was part of the learning.\n\n+The deeper point is humility before the audience. Adults are poor judges of what children retain. Experts can love wit, pace, and variety while children need focus, placement, and return. Stickiness is not the producer's feeling that a segment is clever. It is the observed fact that the intended audience can remember and use what the segment was meant to teach.\n\n+The same failure happens in grown-up settings. A hospital handoff video can look polished and leave nurses unsure which sentence to say. A discharge sheet can include every warning and still leave a patient unclear about the evening dose. A factory poster can sit beside the machine while the lockout step hides in the bottom corner. Reach, polish, and approval do not prove stickiness.\n\n+Design has to carry action. Put the clue where the eye already goes. Slow the moment that needs a response. Repeat the exact step that must move from screen to memory. Remove the flourish that wins attention from the wrong object. Test with the people who will use the message under real pressure.\n\n+The limit is that repetition alone is not a cure. Repeating a muddy instruction makes the mud familiar. Pausing after a vague question only lets confusion last longer. Stickiness works when clarity, placement, and rehearsal point toward one usable move. The question is not whether the audience was exposed. The question is what survived exposure."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Farah slows the handoff",
+      "tags": ["hospital", "Blue's Clues", "practice"],
+      "planSpec": {
+        "domain": "hospital handoff training",
+        "audience": "nurse educators simplifying a safety behavior",
+        "stakes": "staff may watch the video without practicing the handoff phrase",
+        "format": "decision_point",
+        "requiredBeat": "Farah borrows Blue's Clues pacing for adult practice"
+      },
+      "scenario": "Farah stands at 6:05 a.m. in a Cleveland simulation lab with a paused handoff video and twelve nurses waiting for shift change. The old clip explains five risks in one rush. She must choose before training starts. Borrowing from Blue's Clues, she slows the key phrase, asks the room to say it, and repeats the exact handoff twice.",
+      "whatToDo": "Farah should design the handoff around rehearsal, not viewing, so the phrase survives the next noisy shift.",
+      "whyItMatters": "Blue's Clues used pauses and repetition to create participation. Safety messages need the same path from attention to usable memory."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Jamal catches the stolen glance",
+      "tags": ["edtech", "Sesame Street", "testing"],
+      "planSpec": {
+        "domain": "math app lesson design",
+        "audience": "edtech teams testing child attention",
+        "stakes": "a funny animation may steal focus from the number relation",
+        "format": "mistake_recovery",
+        "requiredBeat": "Jamal uses Sesame Street testing logic to separate looking from learning"
+      },
+      "scenario": "Jamal watches a 2:15 p.m. screen recording in a Brooklyn edtech office as first graders laugh at a skateboard frog. The lesson is supposed to teach greater-than signs, but eye tracking shows the children miss the numbers. Before the sprint review, he has to admit the app won looking and lost learning, the same split Sesame Street testing exposed.",
+      "whatToDo": "Jamal should move the animation away from the number relation and retest whether children notice the actual math target.",
+      "whyItMatters": "Children's Television Workshop treated attention as evidence to inspect. A delightful moment can still steal focus from the lesson."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Leonie repeats the dose",
+      "tags": ["clinic", "memory", "instruction"],
+      "planSpec": {
+        "domain": "clinic discharge instruction",
+        "audience": "patient educators reducing medication confusion",
+        "stakes": "patients may hear the instruction once and forget the exact sequence",
+        "format": "before_after",
+        "requiredBeat": "Leonie treats repetition as a memory tool"
+      },
+      "scenario": "Leonie sits beside a 4:30 p.m. discharge cart in Marseille with a pill bottle, a paper schedule, and a tired patient who nods at every sentence. The old script names side effects first and dosage last. She rewrites it before evening rounds: morning blue pill, dinner white pill, then asks the patient to repeat the sequence back.",
+      "whatToDo": "Leonie should put the dose sequence first and ask for one repeat, making the key action the part that sticks.",
+      "whyItMatters": "Repetition is useful when it rehearses the needed behavior. Hearing a fact once is not the same as being ready to act."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Bastien watches story hour",
+      "tags": ["library", "audience", "early reading"],
+      "planSpec": {
+        "domain": "library story-hour redesign",
+        "audience": "librarians teaching early reading habits",
+        "stakes": "adult enthusiasm may hide that children cannot retell the sound pattern",
+        "format": "audit",
+        "requiredBeat": "Bastien observes the actual audience before trusting adult taste"
+      },
+      "scenario": "Bastien kneels at 10:00 a.m. beside the carpet in a Lyon library while parents praise the rhyming show. When he asks the children to repeat the sound pattern, most remember the puppet's hat instead. Before next week's program, he audits the scene like a Workshop test and moves the rhyme card beside the puppet's mouth.",
+      "whatToDo": "Bastien should trust the children's recall test over adult applause, then place the sound cue where their attention already goes.",
+      "whyItMatters": "Stickiness belongs to the intended audience. Adult delight can hide the fact that children retained the wrong object."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Celeste centers the lockout cue",
+      "tags": ["factory", "visual cue", "safety"],
+      "planSpec": {
+        "domain": "factory lockout reminder",
+        "audience": "safety managers designing floor prompts",
+        "stakes": "workers may see the poster but miss the action before maintenance",
+        "format": "planning_choice",
+        "requiredBeat": "Celeste makes the cue visually central like a tested clue"
+      },
+      "scenario": "Celeste checks the 1:20 p.m. maintenance bay in Toledo and sees a lockout poster half hidden behind spare belts. A supervisor wants a harsher slogan before the audit team arrives. She has to decide before the print order closes. Thinking of Blue's Clues, she makes the lock and tag the visual center, not a footnote.",
+      "whatToDo": "Celeste should redesign the prompt so the required lockout action sits at eye level beside the machine.",
+      "whyItMatters": "A message can be present and still miss attention. Placement decides whether the action becomes visible at the needed moment."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Hiro reruns the first win",
+      "tags": ["software", "mastery", "onboarding"],
+      "planSpec": {
+        "domain": "software onboarding sequence",
+        "audience": "product teams reducing first-week churn",
+        "stakes": "new users may complete a tutorial once without gaining confidence",
+        "format": "predict_reveal",
+        "requiredBeat": "Hiro uses rerun logic to create mastery"
+      },
+      "scenario": "Hiro reviews a 9:10 a.m. activation chart in a Tokyo product room and sees new users finish the tutorial once, then vanish. The team wants three new features in onboarding. Hiro has to answer before roadmap lock. He predicts a Blue's Clues-style repeat of the first successful task will build confidence better than more novelty.",
+      "whatToDo": "Hiro should rerun the first core task with a small variation, letting users recognize the pattern and feel control.",
+      "whyItMatters": "Repetition can build mastery when it returns to the action users must own. Novelty can distract before confidence forms."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A safety video gets high completion, but nurses cannot repeat the handoff phrase afterward. Which redesign best tests stickiness?",
+        "choices": [
+          "Add a more dramatic opening scene so nurses watch the whole video with more interest.",
+          "Send the video to more units so completion data includes a larger staff sample.",
+          "Pause on the handoff phrase, ask nurses to say it, and repeat it in the same words."
+        ],
+        "correctIndex": 2,
+        "explanation": "Completion shows exposure, not retention. Pausing, saying the phrase, and repeating it test whether the key action moves into usable memory.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "When an app's funny animation draws children's eyes away from the number relation, what did Sesame Street-style testing reveal?",
+        "choices": [
+          "Looking at the screen can hide a failure to learn the intended target.",
+          "Animation should be removed from children's lessons whenever math is involved.",
+          "Children prefer jokes, so the app should make the number relation less central."
+        ],
+        "correctIndex": 0,
+        "explanation": "The testing logic separates attention from learning. The animation may be engaging, but the design fails if it pulls children away from the educational cue.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A discharge sheet lists every warning, but patients forget the evening dose. Which change fits the Stickiness Factor?",
+        "choices": [
+          "Add more warnings to the sheet so patients see how serious the medicine is.",
+          "Place the dose sequence first and ask patients to repeat the sequence once.",
+          "Give the sheet to a family member and skip the repeat because the text is complete."
+        ],
+        "correctIndex": 1,
+        "explanation": "Stickiness asks what survives into action. Moving the dose and rehearsing it makes the needed behavior easier to remember than a full warning list does.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Your training team says adults will dislike repeated modules. Which Blue's Clues insight should shape the reply?",
+        "choices": [
+          "Adult preference is a useful signal when the same adults approve the training budget.",
+          "Repeated modules work mainly when the topic is meant for preschool viewers.",
+          "The audience's mastery matters more than the producer's appetite for novelty."
+        ],
+        "correctIndex": 2,
+        "explanation": "Blue's Clues shows that repetition can support prediction and mastery even when adults find it dull. The design should be judged by the intended audience's learning.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A factory poster is visible near a machine, yet workers miss the lockout step before maintenance. Which test best fits sticky message design?",
+        "choices": [
+          "Move the lockout cue to the worker's eye path and compare behavior for a week.",
+          "Ask workers to sign a form saying they saw the poster near the machine.",
+          "Replace the poster with a longer policy summary for the maintenance bay."
+        ],
+        "correctIndex": 0,
+        "explanation": "Visibility is not the same as attention to the right action. Moving the cue tests whether placement helps the lockout step survive real work pressure.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A product tutorial shows every feature once, and users leave after finishing it. Which change borrows the useful rerun logic?",
+        "choices": [
+          "Add a survey after the tutorial so users can rank which feature seemed most polished.",
+          "Repeat the first core task with a small variation so users recognize and practice it.",
+          "Shorten each feature explanation so the tutorial feels faster on the first attempt."
+        ],
+        "correctIndex": 1,
+        "explanation": "The rerun logic builds mastery through recognition and rehearsal. A survey or faster tour may improve feedback or pace without helping users own the core task.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Which claim would be weakest under the Children's Television Workshop approach?",
+        "choices": [
+          "The workshop should watch children because producer taste may misread their attention.",
+          "The segment is strong because the adult review panel laughed at the clever scene.",
+          "The team should revise if children look at the joke but miss the letter."
+        ],
+        "correctIndex": 1,
+        "explanation": "Adult approval does not prove child learning. The Workshop approach gives weight to observed child behavior, especially whether attention lands on the intended learning target.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "If a public message has wide reach but people do not remember what to do, which lever is failing?",
+        "choices": [
+          "The Connector role, because a wider bridge would make the message reach more groups.",
+          "The context lever, because people need a different physical place to hear it.",
+          "The Stickiness Factor, because contact is not turning into memory or action."
+        ],
+        "correctIndex": 2,
+        "explanation": "The problem is not reach. The message is touching people but failing to lodge, so the content's structure, clarity, or rehearsal needs redesign.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "A library story hour delights parents, but children cannot retell the sound pattern. What should the librarian do first?",
+        "choices": [
+          "Observe what children remember and move the sound cue into their attention path.",
+          "Keep the story hour unchanged because parent enthusiasm is the audience signal.",
+          "Add more puppets so children have several routes into the same reading habit."
+        ],
+        "correctIndex": 0,
+        "explanation": "Stickiness belongs to the learner, not the approving adult. The librarian should test child recall and redesign the cue around where children actually look.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What does the Stickiness Factor add to reach?",
+      "back": "It asks whether the message is memorable, repeatable, and usable after contact, not merely whether many people saw it.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why was Sesame Street a design and research problem?",
+      "back": "Joan Ganz Cooney and the Children's Television Workshop had to learn which production choices held children's attention on the educational target.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What is the danger in equating attention with learning?",
+      "back": "The audience can look at a funny or busy moment while missing the exact idea or action the message was meant to teach.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How did Blue's Clues use repetition differently from adult variety television?",
+      "back": "It repeated episodes, patterns, questions, and clues so children could predict, answer, and feel mastery.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card05",
+      "front": "What should be tested when a message seems polished but behavior does not change?",
+      "back": "Test whether the intended audience notices, remembers, and can use the key action under realistic conditions.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "front": "Why can adult taste mislead message design?",
+      "back": "Adults may value wit, speed, and novelty while the intended audience needs focus, placement, pause, and repeatable structure.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Make The Message Stick",
+    "coreSkill": "Treat the message as a designed object. Identify the exact action or idea that must survive contact. Then test whether the intended audience notices it, remembers it, and can use it without help.",
+    "ifThenPlans": [
+      {
+        "context": "People saw the message but forgot the action",
+        "plan": "If exposure is high and recall is low, then move the action earlier and repeat it once in the same words."
+      },
+      {
+        "context": "A clever element draws attention away",
+        "plan": "If the audience remembers the flourish instead of the lesson, then remove or reposition the flourish. Put the clue beside the target."
+      },
+      {
+        "context": "Adults dislike a useful repeat",
+        "plan": "If reviewers call the repeat boring, then test mastery with the intended audience before cutting it."
+      },
+      {
+        "context": "A tutorial feels complete but users stall",
+        "plan": "If users finish once and do not return, then rerun the core task with a small change. Let recognition build confidence."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one recurring instruction. Test it with one real user or colleague by asking them to repeat the action after thirty seconds.",
+    "weeklyPractice": "For one week, collect three places where people saw a message but missed the action. Redesign one for placement, pause, or repetition."
+  },
+  "memorableLines": [
+    {
+      "text": "Attention is a doorway, not the room.",
+      "location": "breakdown.fullRead",
+      "why": "It sharply separates seeing from learning."
+    },
+    {
+      "text": "Repeating a muddy instruction makes the mud familiar.",
+      "location": "breakdown.fullRead",
+      "why": "It keeps repetition from becoming a lazy cure-all."
+    },
+    {
+      "text": "The rerun was not laziness.",
+      "location": "breakdown.deepRead",
+      "why": "It recasts a production choice as a learning mechanism."
+    }
+  ]
+}

@@ -17,12 +17,13 @@
  * generic decision scenes — they have to use real source material.
  */
 
-import { existsSync, readFileSync, readdirSync, statSync } from "fs";
+import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { ChapterV21, CriticFinding } from "../types.js";
 import { finding } from "./shared.js";
 import { parseChapterId } from "../lib/chapterPaths.js";
+import { findLatestRunDir, findRunArtifact } from "../lib/runDirs.js";
 import { detectSidecarShape } from "../source/sidecarSchema.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -31,31 +32,20 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, "../../../../../..");
 const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
 
-function findLatestRun(bookId: string): string | null {
-  const bookDir = resolve(RUNS_DIR, bookId);
-  if (!existsSync(bookDir)) return null;
-  const runs = readdirSync(bookDir)
-    .filter((d) => {
-      try {
-        return statSync(resolve(bookDir, d)).isDirectory();
-      } catch {
-        return false;
-      }
-    })
-    .sort();
-  return runs.length > 0 ? runs[runs.length - 1] : null;
-}
-
 /** Shared sidecar loader (Phase 1) — resolves a chapter's source sidecar via the
  *  casing-normalized bookId, returns the parsed object or null. Used by SC9 and
- *  by author-check (so AC1/AC2 can read the real centralConcept + source text). */
+ *  by author-check (so AC1/AC2 can read the real centralConcept + source text).
+ *  Artifact-aware (runDirs.findRunArtifact): falls through past run dirs that
+ *  don't contain this chapter's sidecar — the rework/zz- burial bug class. */
 export function loadChapterSidecar(chapterId: string): any | null {
   const parsed = parseChapterId(chapterId);
   if (!parsed) return null;
-  const runId = findLatestRun(parsed.bookId);
-  if (!runId) return null;
-  const sidecarPath = resolve(RUNS_DIR, parsed.bookId, runId, "sidecars/source", `ch${String(parsed.num).padStart(2, "0")}.source.json`);
-  if (!existsSync(sidecarPath)) return null;
+  const sidecarPath = findRunArtifact(
+    RUNS_DIR,
+    parsed.bookId,
+    `sidecars/source/ch${String(parsed.num).padStart(2, "0")}.source.json`,
+  );
+  if (!sidecarPath) return null;
   try {
     return JSON.parse(readFileSync(sidecarPath, "utf8"));
   } catch {
@@ -207,8 +197,8 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
   const bookId = parsed.bookId;
   const chNum = String(parsed.num).padStart(2, "0");
 
-  const runId = findLatestRun(bookId);
-  if (!runId) {
+  const latestRun = findLatestRunDir(RUNS_DIR, bookId);
+  if (!latestRun) {
     // SC11.0 (Phase 0, SHADOW = major) — no source run on disk. Missing source
     // reliably predicts word-salad; surface it loudly instead of the old silent
     // pass (`return findings`). Promotes to BLOCKER in Phase 3 once every active
@@ -221,14 +211,10 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
       ),
     ];
   }
-  const sidecarPath = resolve(
-    RUNS_DIR,
-    bookId,
-    runId,
-    "sidecars/source",
-    `ch${chNum}.source.json`,
-  );
-  if (!existsSync(sidecarPath)) {
+  // Artifact-aware: take the sidecar from the NEWEST run that actually has it
+  // (a rework run dir without ch01-08 sidecars must not hide the originals).
+  const sidecarPath = findRunArtifact(RUNS_DIR, bookId, `sidecars/source/ch${chNum}.source.json`);
+  if (!sidecarPath) {
     return [
       finding(
         "SC11.0.no_source_run" as any,

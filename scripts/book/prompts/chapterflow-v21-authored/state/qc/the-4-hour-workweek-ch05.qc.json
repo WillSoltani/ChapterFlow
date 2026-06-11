@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-4-hour-workweek",
+  "chapterNumber": 5,
+  "chapterId": "the-4-hour-workweek-ch05",
+  "verdict": "CORRUPTION",
+  "contentHash": "523c30c7966195a7",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:29:45.243Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=85; 3 confirmed corruption hit(s); cross-chapter: scene_skeleton/persona_drift/repeated_unit/repeated_unit; Prose/plan/cards at anchor level and fully grounded, but all 6 example scenes paste the sidecar hardSpec",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 5,
+      "chapterId": "the-4-hour-workweek-ch05",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "2d640f4af9289cc2",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:02:07.349Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Read breakdowns+full quiz. 9/9 keys correct; Pareto 80/20, Parkinson's Law 1955, effectiveness>efficiency accurate. Coherent; cards answer fronts; plan Run The Leverage Guillotine non-empty. No corruption."
+    }
+  ]
+}

@@ -92,33 +92,27 @@
   ],
   "targetReader": "A thoughtful professional, student, or decision maker who wants to become harder to fool by their own certainty, especially when judging people, forecasts, risks, money, projects, and happiness.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium",
+    "register": "clinical",
+    "person": "third",
+    "cadence": "long",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "show the mental handoff from impression to check",
-      "keep technical terms tied to visible decisions",
-      "land examples with protagonist names that read naturally to Canadian, American, and European readers — 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+      "uses experiments, cognitive systems, biases, and statistical correction with clinical patience",
+      "separates intuition from slow analysis without villainizing either",
+      "keeps examples precise enough to expose the mental operation",
+      "sounds measured, skeptical, and careful about overclaiming"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no brain-as-computer gimmicks",
-      "no treating bias as stupidity"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not turn biases into personality insults.",
+      "Do not skip base rates, uncertainty, or regression when they matter."
     ]
   },
   "voiceSpecimens": [
-    "The number on the first line is already pulling your estimate before you have begun to think.",
-    "A story can feel complete because every piece fits, even when the missing pieces are the ones that matter.",
-    "If the answer arrived too easily, slow down long enough to ask what question it actually answered.",
-    "The loss is not sitting in the spreadsheet. It is sitting at the reference point you have quietly chosen.",
-    "A memory keeps the peak and the ending, then speaks as if it kept the whole afternoon.",
-    "When confidence feels clean, check whether the world ever gave that confidence a fair test."
+    "The anchor changes the estimate before deliberation feels involved.",
+    "Slow thinking earns its keep by checking the story intuition already likes."
   ],
   "voiceAntiSpecimens": [
     "This chapter teaches us that we should all be more mindful about cognitive bias.",
@@ -134,6 +128,8 @@
     "do not write every chapter as a warning to slow down and think harder",
     "do not flatten prospect theory into generic risk aversion",
     "do not end the book as vague happiness advice",
-    "do not repeat the same courtroom, classroom, kitchen, or meeting-room examples"
+    "do not repeat the same courtroom, classroom, kitchen, or meeting-room examples",
+    "Do not make System 1 and System 2 cartoon characters.",
+    "Do not use a bias label as the whole explanation."
   ]
 }

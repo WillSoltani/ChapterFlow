@@ -53,31 +53,27 @@
   ],
   "targetReader": "Smart professionals, founders, analysts, students, and household decision-makers who are surrounded by forecasts, expert claims, dashboards, and success stories, and need a practical way to act without becoming either gullible or frozen.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "long",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "make certainty feel physically expensive when it outruns evidence",
-      "turn abstract probability into domain diagnosis and visible stakes"
+      "argues through barbell choices, convexity, asymmetry, and hidden fragility",
+      "uses trader-scholar impatience to puncture tidy expert stories",
+      "coins enemy labels for people who mistake models for reality",
+      "prefers via negativa: remove the harmful before adding cleverness"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no anti-math swagger or fatalistic uncertainty slogans"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not reduce disorder to generic resilience language.",
+      "Do not soften the combat with expert overconfidence into polite balance."
     ]
   },
   "voiceSpecimens": [
-    "The chart is calm because the storm it fears has not been invited onto the page.",
-    "A survivor can teach you something, but first you have to ask who did not survive the lesson.",
-    "Do not let a number speak louder than the domain that produced it.",
-    "You can act without pretending the map reaches the edge of the world.",
-    "The cheap kind of certainty arrives polished, confident, and far from the bill.",
-    "When one outcome can carry the whole ledger, the average is no longer the adult in the room."
+    "The chart is calm because the missing event has not entered the sample.",
+    "Robustness asks what survives the surprise, not what predicts it."
   ],
   "voiceAntiSpecimens": [
     "This chapter explains why uncertainty is important in our lives.",
@@ -91,6 +87,8 @@
     "Do not flatten Black Swans into ordinary surprises or generic risk management.",
     "Do not make Taleb sound like he hates math, expertise, ambition, or action.",
     "Do not invent named studies or famous anecdotes where the frozen source only supports conceptual anchors.",
-    "Do not turn every chapter into the same beware certainty sermon; each chapter has a distinct mechanism."
+    "Do not turn every chapter into the same beware certainty sermon; each chapter has a distinct mechanism.",
+    "Do not make Taleb sound like a neutral risk consultant.",
+    "Do not praise volatility unless the upside, downside, and exposure are named."
   ]
 }

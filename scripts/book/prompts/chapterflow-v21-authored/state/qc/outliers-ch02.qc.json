@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "outliers",
+  "chapterNumber": 2,
+  "chapterId": "outliers-ch02",
+  "verdict": "REVISE",
+  "contentHash": "b5a07a30c68ab349",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-outliers-2026-06-10",
+  "reviewedAt": "2026-06-11T00:19:32.675Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=73; cross-chapter: scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/repeated_unit/repeated_unit/other; Draft, not corrupt: 5/6 scenarios share an anchor-as-narrator-lens skeleton and all 3 if-then contex",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "outliers",
+      "chapterNumber": 2,
+      "chapterId": "outliers-ch02",
+      "verdict": "REVISE",
+      "contentHash": "b5a07a30c68ab349",
+      "hashVersion": "v2",
+      "reviewer": "harness:qc-run-outliers-2026-06-10",
+      "reviewedAt": "2026-06-10T23:38:25.233Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "overall=76; cross-chapter: scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/repeated_unit/other; ~73 vs 85+ anchor: prose near-anchor and grounding clean, but 5/6 scenarios share a templated narrator anchor-spli"
+    }
+  ]
+}

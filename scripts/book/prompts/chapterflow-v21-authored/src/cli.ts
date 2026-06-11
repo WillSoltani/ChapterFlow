@@ -106,6 +106,15 @@ Commands:
                                      plan checks (BP7) don't false-fire. The default standalone
                                      way to QC an assembled book without invoking generate-book.
                                      Exits 0 if no blockers; non-zero otherwise.
+  shape-plan <bookId> --from N --to M
+                                     PRE-AUTHORING: deal each chapter a slot-pinned palette of
+                                     structurally distinct scene shapes (the anti-skeleton plan;
+                                     fanout runs it automatically)
+  pedagogy-plan <bookId> --from N --to M
+                                     PRE-AUTHORING: deal each book/chapter a hook shape,
+                                     try-this-now grammar, and quiz-opener pair so catalog-level
+                                     pedagogy slots vary before parallel authoring. Writes
+                                     state/pedagogy-plans/<bookId>.pedagogy-plan.json.
   name-plan <bookId> --from N --to M [--per-chapter K]
                                      PRE-AUTHORING: deal each upcoming chapter a disjoint
                                      protagonist-name slice (excludes cross-book + already-authored
@@ -118,13 +127,23 @@ Commands:
                                      stamped with the chapter's content hash, to state/qc/. promote
                                      requires a fresh PUBLISHABLE attestation per chapter; editing the
                                      chapter afterward makes it stale and forces re-review.
+  qc-stats [bookId]                  Revision-rate instrumentation: first-pass PUBLISHABLE rate,
+                                     attempts per chapter, verdict mix, human-vs-harness reviewers
+  qc-rehash <bookId>|--all           Upgrade unchanged v1-hash attestations to the v2 content hash
+  qc-run <bookId> [--chapters 1,2]   Generate the harness QC workflow (blind keys + dual-lens bar reads
+                                     + cross-chapter sweep + adjudication + qc-attest)
+  catalog-audit [bookId] [--save]    Cross-book fingerprint metrics (hook/exercise/quiz monoculture,
+                                     house tics, name collisions, distractor tell) + variety score
+  quiz-blind <chapter.json>          Print the quiz with the answer key stripped (hidden-key protocol)
+  quiz-verify <chapter.json> --answers "0:1,..."  Diff blind-derived answers against the real key
   qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
                                      CORRUPTION / MISSING. Exit 0 iff every chapter is ship-ready.
   fanout <bookId> [--from N --to M] [--all]
                                      Print a ready-to-paste authoring prompt for each chapter still to
                                      write — title, real source-notes path, allocated names, save path,
-                                     and self-gate command all filled in. Paste each block into its own
-                                     Codex agent to write the book in parallel. Runs name-plan for you.
+                                     pedagogy slots, and self-gate command all filled in. Paste each block into its own
+                                     Codex agent to write the book in parallel. Runs name-plan, shape-plan,
+                                     and pedagogy-plan for you.
                                      Skips already-written chapters unless --all.
   categorize <bookId>                Preview the no-API auto-categorizer's pick (categories + tags from
                                      the book's own content). promote-book applies it automatically when
@@ -145,7 +164,8 @@ Commands:
   migrate-state [--apply]            Reconcile the repo-root shadow state/chapters into the canonical dir.
                                      [--prefer-canonical|--prefer-shadow] to resolve divergent files.
   fix-chapter-ids [<bookId>]         Normalize chapterId to match filename stem (--dry-run to preview).
-  quarantine-book <bookId>           Move a shipped-but-corrupt package out of book-packages/ (reversible).
+  quarantine-book <bookId>           Pull a shipped-but-corrupt package; promote/register refuse until released
+  unquarantine-book <bookId>         Release a quarantine tombstone (book must then re-pass the full gate)
 
   help                               This message
 
@@ -446,6 +466,9 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
       manualTags,
     },
   );
+  // Failed chapters are a failure even when the book gate over the PARTIAL
+  // set passes — the model-gen guard's abort used to exit 0 here.
+  if (result.failed.length > 0) return 1;
   return result.bookGate.passed ? 0 : 1;
 }
 
@@ -739,10 +762,13 @@ async function runGenerate(args: string[], flags: Record<string, string | boolea
     chapters,
     { fromChapter, toChapter, continueOnError: false },
   );
+  if (result.failed.length > 0) return 1;
   return result.bookGate.passed ? 0 : 1;
 }
 
 async function runPromoteBook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: promote-book <bookId> --title X --author Y");
@@ -843,7 +869,32 @@ async function runQuarantineBook(args: string[], flags: Record<string, string | 
   console.log(`  package moved: ${pkg}\n             ->  ${dest}`);
   console.log(`  reason: ${reason}`);
   console.log(`  record: ${recPath}`);
-  console.log(`  (reversible — move the file back to re-ship, after the book re-passes the gate.)`);
+  console.log(`  promote-book and register-web now REFUSE this book until \`unquarantine-book ${bookId}\` releases it.`);
+  return 0;
+}
+
+/** `unquarantine-book <bookId>` — explicit release of a quarantine tombstone.
+ *  The record is archived (not deleted) so the quarantine history survives.
+ *  Releasing does NOT re-ship anything: the book still has to pass promote's
+ *  full gate stack (ship + intra-book + book + QC attestations) again. */
+async function runUnquarantineBook(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: unquarantine-book <bookId>");
+    return 2;
+  }
+  const recDir = resolve(__dirname, "../state/books/_quarantined");
+  const recPath = resolve(recDir, `${bookId}.json`);
+  if (!existsSyncFs(recPath)) {
+    console.error(`No quarantine record for "${bookId}" at ${recPath} — nothing to release.`);
+    return 2;
+  }
+  const ts = new Date().toISOString().replace(/[:.]/g, "-");
+  const archived = resolve(recDir, `${bookId}.released.${ts}.json`);
+  renameSync(recPath, archived);
+  console.log(`Released quarantine for ${bookId}.`);
+  console.log(`  record archived: ${archived}`);
+  console.log(`  Next: the book must re-pass the full gate stack — \`promote-book ${bookId} --title … --author …\`.`);
   return 0;
 }
 
@@ -1020,6 +1071,8 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
  *  QC is complete. The AI steps (research, authoring, QC) are surfaced as a work
  *  queue with the exact command to run. Re-run it as books progress. */
 async function runBatch(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const guard = shadowGuard();
+  if (guard) return guard;
   const manifestPath = args[0];
   if (!manifestPath) {
     console.error('Usage: batch <manifest.json> [--run]\n  manifest = [{ "bookId": "...", "title": "...", "author": "..." }, ...]');
@@ -1037,7 +1090,7 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
   const { computeNextTask } = await import("./next-task.js");
   const { runShipGate } = await import("./critics/finalGate.js");
   const { runBookGate } = await import("./critics/bookGate.js");
-  const { loadAttestation, chapterContentHash } = await import("./critics/qcAttestation.js");
+  const { loadAttestation, isAttestationFresh } = await import("./critics/qcAttestation.js");
   const STATE = resolve(__dirname, "../state");
   const REPO = resolve(__dirname, "../../../../..");
   const chaptersDir = resolve(STATE, "chapters");
@@ -1066,12 +1119,20 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
       let blockers = 0;
       for (const ch of chapters) blockers += runShipGate(ch).blockers.length;
       blockers += runBookGate(bookId, chapters).findings.filter((f) => f.severity === "blocker").length;
+      // Intra-book AS5-AS12, same priors-only pass promote enforces — without
+      // it batch staged books as QC/SHIP that promote would then block.
+      const { runIntraBookChecks } = await import("./critics/intraBook.js");
+      for (const ch of chapters) {
+        blockers += runIntraBookChecks(ch, chapters.filter((o) => o.number < ch.number)).filter((f) => f.severity === "blocker").length;
+      }
       if (blockers > 0) {
         stage = "GATE_FIX"; detail = `${blockers} gate blocker(s)`; action = "gatefix";
       } else {
         const qcPassed = chapters.filter((ch) => {
           const a = loadAttestation(bookId, ch.number);
-          return a && a.verdict === "PUBLISHABLE" && a.contentHash === chapterContentHash(ch);
+          // isAttestationFresh, NOT a raw hash compare — attestations carry a
+          // hashVersion and a raw compare goes wrong the moment the hash evolves.
+          return a && a.verdict === "PUBLISHABLE" && isAttestationFresh(a, ch);
         }).length;
         if (chapters.length === 0 || qcPassed < chapters.length) {
           stage = "QC"; detail = `${qcPassed}/${chapters.length} chapters QC-passed`; action = "qc";
@@ -1084,6 +1145,11 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
   }
 
   // --run: auto-advance the terminal steps (promote + register) for SHIP books.
+  // Exit contract: status mode (no --run) is a WORK-QUEUE REPORT and exits 0
+  // unless the manifest itself is unusable; --run mode exits 1 if ANY attempted
+  // promote/register failed (it previously always exited 0 and printed
+  // "DONE — promoted + registered" even when register-web had failed).
+  let runFailures = 0;
   if (doRun) {
     for (const r of rows.filter((x) => x.action === "ship")) {
       const b = books.find((x) => (parseChapterId(`${x.bookId}-ch01`)?.bookId ?? x.bookId) === r.bookId)!;
@@ -1094,11 +1160,17 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
         const chapters = loadChapterIndex(r.bookId);
         const auto = deriveCategoriesAndTags(r.bookId, { title: b.title, chapterTitles: chapters.map((c) => c.chapterTitle) });
         const res = promoteBook({ bookId: r.bookId, title: b.title, author: b.author, chapters, categories: auto.categories, tags: auto.tags });
-        if (!res.promoted) { r.stage = "SHIP_BLOCKED"; r.detail = (res.reason ?? "promote blocked").slice(0, 90); continue; }
-        await runRegisterWeb([r.bookId], {});
+        if (!res.promoted) { r.stage = "SHIP_BLOCKED"; r.detail = (res.reason ?? "promote blocked").slice(0, 90); runFailures++; continue; }
+        const regCode = await runRegisterWeb([r.bookId], {});
+        if (regCode !== 0) {
+          r.stage = "REGISTER_FAILED";
+          r.detail = `promoted, but register-web exited ${regCode} — run \`register-web ${r.bookId}\` manually`;
+          runFailures++;
+          continue;
+        }
         r.stage = "DONE"; r.detail = "promoted + registered";
       } catch (err) {
-        r.stage = "SHIP_BLOCKED"; r.detail = (err as Error).message.slice(0, 90);
+        r.stage = "SHIP_BLOCKED"; r.detail = (err as Error).message.slice(0, 90); runFailures++;
       }
     }
   }
@@ -1118,6 +1190,10 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
   if (qc.length) console.log(`  QC (${qc.length}): ${qc.join(", ")}\n     → per book: a Claude QC session (agent-prompts/QC-SESSION-PROMPT.md), qc-attest each chapter`);
   if (!doRun && ship.length) console.log(`  SHIP (${ship.length}): ${ship.join(", ")}\n     → re-run with --run to auto promote + register these`);
   if (![research, author, gatefix, qc, ship].some((g) => g.length)) console.log(`  (nothing pending — all books DONE)`);
+  if (runFailures > 0) {
+    console.log(`\n${runFailures} --run action(s) FAILED (see SHIP_BLOCKED / REGISTER_FAILED rows above). (exit 1)`);
+    return 1;
+  }
   return 0;
 }
 
@@ -1135,6 +1211,14 @@ async function runRegisterWeb(args: string[], flags: Record<string, string | boo
     return 2;
   }
   const REPO = resolve(__dirname, "../../../../..");
+  const tombstone = resolve(__dirname, "../state/books/_quarantined", `${bookId}.json`);
+  if (existsSyncFs(tombstone)) {
+    console.error(
+      `QUARANTINED: ${bookId} was explicitly quarantined — refusing to register it for the web. ` +
+        `Run \`unquarantine-book ${bookId}\` first (after the defect is fixed and re-QC'd).`,
+    );
+    return 2;
+  }
   const pkgPath = resolve(REPO, "book-packages", `${bookId}.v21.json`);
   if (!existsSyncFs(pkgPath)) {
     console.error(`No package at ${pkgPath}. Run \`promote-book ${bookId} ...\` first.`);
@@ -1251,18 +1335,19 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     console.error("Usage: fanout <bookId> [--from N --to M] [--all]");
     return 2;
   }
-  const { findLatestRun } = await import("./next-task.js");
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
+  const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
+  const { planPedagogy, writePedagogyPlan, loadPedagogyPalettes } = await import("./librarian/pedagogyPlan.js");
+  const { findRunArtifact } = await import("./lib/runDirs.js");
+  const { formatVoiceBible } = await import("./lib/voiceBible.js");
   const REPO = resolve(__dirname, "../../../../..");
   const PIPE = resolve(__dirname, "..");
-  const runId = findLatestRun(bookId);
-  if (!runId) {
-    console.error(`No research run for "${bookId}". Do Step 1 (research) first:  npx tsx src/cli.ts next-task ${bookId}`);
-    return 2;
-  }
-  const tocPath = resolve(REPO, ".chapterflow/runs", bookId, runId, "source-freeze", "toc.json");
-  if (!existsSyncFs(tocPath)) {
-    console.error(`No chapter list yet at ${tocPath}. Finish the research step first.`);
+  const RUNS = resolve(REPO, ".chapterflow/runs");
+  // Artifact-aware: the toc comes from the newest run that HAS one (a rework
+  // run dir without a toc must not hide the original — the zz- burial class).
+  const tocPath = findRunArtifact(RUNS, bookId, "source-freeze/toc.json");
+  if (!tocPath) {
+    console.error(`No research run with a toc.json for "${bookId}". Do Step 1 (research) first:  npx tsx src/cli.ts next-task ${bookId}`);
     return 2;
   }
   const toc = JSON.parse(readFileSync(tocPath, "utf8"));
@@ -1283,11 +1368,27 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const idById = new Map(idx.map((c) => [c.chapterNumber, c.chapterId]));
   const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : flat[0].number;
   const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : flat[flat.length - 1].number;
+  const includeAll = flags["all"] === true;
   const plan = planNames(bookId, from, to);
   writeNamePlan(plan);
-  const sourceDir = resolve(REPO, ".chapterflow/runs", bookId, runId, "sidecars", "source");
+  // REDO path (--all): deal FRESH shapes — carrying a templated chapter's own
+  // uniform formats would re-pin the very skeleton the redo exists to break.
+  const shapePlan = planShapes(bookId, from, to, 6, { forceFresh: includeAll });
+  writeShapePlan(shapePlan);
+  const shapeDefs = new Map(loadSceneShapes().map((s) => [s.id, s.definition]));
+  const pedagogyPlan = planPedagogy(bookId, from, to, { forceFresh: includeAll });
+  writePedagogyPlan(pedagogyPlan);
+  const pedagogyPalettes = loadPedagogyPalettes();
+  const hookDefs = new Map(pedagogyPalettes.hookShapes.map((s) => [s.id, s.definition]));
+  const tryDefs = new Map(pedagogyPalettes.tryThisNowGrammars.map((g) => [g.id, g]));
+  const quizDefs = new Map(pedagogyPalettes.quizOpeners.map((q) => [q.id, q]));
+  // Carried name allocations for authored chapters include every capitalized
+  // token the extractor saw ("University", "All", "Tonight" — junk from
+  // scenario text). Pasting those as an exclusive allowlist breaks redo
+  // prompts; keep only entries that are actually in the name bank.
+  const { loadNameBank } = await import("./librarian/namePlan.js");
+  const bankSet = new Set(loadNameBank());
   const chaptersDir = resolve(PIPE, "state/chapters");
-  const includeAll = flags["all"] === true;
   const blocks: string[] = [];
   let pending = 0;
   let done = 0;
@@ -1301,16 +1402,81 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
       continue;
     }
     pending++;
-    const names = (plan.allocation[ch.number] ?? []).join(", ");
+    const allocated = plan.allocation[ch.number] ?? [];
+    const bankNames = allocated.filter((n) => bankSet.has(n));
+    // Prefer real bank names; an authored chapter whose carried tokens are all
+    // junk falls back to the raw allocation rather than an empty list.
+    const names = (bankNames.length >= 3 ? bankNames : allocated).join(", ");
+
+    // Shape palette: slot-pinned structural variety (the anti-skeleton plan).
+    const shapeIds = shapePlan.allocation[ch.number] ?? [];
+    const shapeLines = shapeIds
+      .map((id, i) => `    ${i + 1}. ${id} — ${shapeDefs.get(id) ?? "use the format the planSpec names"}`)
+      .join("\n");
+    const pedagogy = pedagogyPlan.allocation[ch.number];
+    const tryGrammar = pedagogy ? tryDefs.get(pedagogy.tryThisNowGrammar) : undefined;
+    const quizA = pedagogy ? quizDefs.get(pedagogy.quizOpeners[0]) : undefined;
+    const quizB = pedagogy ? quizDefs.get(pedagogy.quizOpeners[1]) : undefined;
+    const pedagogyLines = pedagogy
+      ? `• HOOK SHAPE: ${pedagogy.hookShape} — ${hookDefs.get(pedagogy.hookShape) ?? "follow the dealt hook shape."}\n` +
+        `• TRY-THIS-NOW GRAMMAR: ${pedagogy.tryThisNowGrammar} — ${tryGrammar?.definition ?? "follow the dealt exercise grammar."} (example: ${tryGrammar?.example ?? "keep it concrete."}) This is a FORM, not a stamp: write a fresh opening for it — do not copy the example's first words (the outliers fleet caught identical grammar stamps recycling every third chapter).\n` +
+        `• QUIZ OPENERS: draw from two FORMS — ${pedagogy.quizOpeners[0]} (e.g. ${quizA?.example ?? "use the dealt opener."}) and ${pedagogy.quizOpeners[1]} (e.g. ${quizB?.example ?? "use the dealt opener."}). These are question SHAPES, not sentences: never reuse a literal stem twice in the chapter (the first qc-run sweep caught "What happens next" stamped 34× book-wide), vary the phrasing inside each form, and let 1-2 questions per chapter break form entirely. Keyed answer must NOT be reliably the longest choice (BP25 — target ≤45% of questions, ~33% ideal).\n`
+      : "";
+
+    // Source specifics: the sidecar's real anchors, pasted so the writer
+    // grounds scenes in them instead of inventing interchangeable ones (SC9's
+    // root cause). Artifact-aware lookup per chapter. A THIN sidecar gets a
+    // loud warning instead of silence — weak source reliably predicts
+    // templated/ungrounded chapters, and the writer must flag, not invent.
+    const sidecarPath = findRunArtifact(RUNS, bookId, `sidecars/source/ch${numStr}.source.json`);
+    let specificsLine = "";
+    if (sidecarPath) {
+      try {
+        const sc = JSON.parse(readFileSync(sidecarPath, "utf8"));
+        const specs: string[] = [];
+        let hardCount = 0;
+        for (const ex of (sc?.namedExamples ?? []).slice(0, 5)) {
+          const label = typeof ex === "string" ? ex : ex?.label;
+          const hard = Array.isArray(ex?.hardSpecifics) ? ex.hardSpecifics[0] : undefined;
+          if (hard) hardCount++;
+          if (label) specs.push(hard ? `${label} (${String(hard).slice(0, 60)})` : String(label));
+        }
+        if (specs.length >= 2) {
+          specificsLine = `• Ground the scenes in the source's REAL cases — use at least 2 of these meaningfully: ${specs.join("; ")}\n`;
+        } else {
+          specificsLine =
+            `• ⚠️ THIN SOURCE: this chapter's sidecar has ${specs.length} named example(s) and ${hardCount} hard specific(s). ` +
+            `Do NOT invent cases to compensate — write what the source supports and tell the operator the sidecar needs a Step-1 re-research pass.\n`;
+        }
+      } catch { /* unreadable sidecar → omit the line; STEP-2 still requires grounding */ }
+    }
+
+    // Voice bible: the book's charter from the editor-in-chief brief, pinned
+    // BEFORE authoring so parallel agents share one register.
+    const voice = formatVoiceBible(bookId);
+    const voiceLine = voice ? `• VOICE (the book's charter — every field obeys it):\n    ${voice}\n` : "";
+
+    const recallLine = ch.number > 1
+      ? `• Spaced recall: make 1–2 review cards explicitly resurface a concept from an EARLIER chapter of this book (name the concept on the card front).\n`
+      : "";
+
     blocks.push(
       `─── Chapter ${ch.number} — "${ch.title}"${written ? "  (already written — re-do)" : ""} ───\n` +
         `Write chapter ${ch.number} of "${title}" for ChapterFlow. Work in this folder:\n` +
         `  ${PIPE}\n` +
-        `• Read its source notes: ${resolve(sourceDir, `ch${numStr}.source.json`)}\n` +
+        `• Read its source notes: ${sidecarPath ?? "(no sidecar found — STOP and run Step-1 research for this chapter first)"}\n` +
         `• Use ONLY these character names: ${names}\n` +
-        `• Give each of the 6 example scenes a DIFFERENT SHAPE (R6): do NOT open every scene "[Name] does X at [clock time] in [place]…", and use a binary "must decide whether A or B" frame at most ONCE. Vary opener, structure, and stakes per scene. One name = one person across breakdown→examples→quiz.\n` +
-        `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring rules)\n` +
+        `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
+        `${shapeLines}\n` +
+        pedagogyLines +
+        specificsLine +
+        voiceLine +
+        `• Quiz distractors: each distractor is a NAMED plausible misconception (what a hasty reader of THIS chapter would actually believe) — never a junk-prefix mutation or rephrasing of the correct choice.\n` +
+        recallLine +
+        `• One name = one person across breakdown→examples→quiz.\n` +
+        `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring law).\n` +
         `• Save to state/chapters/${chapterId}.v21-native.chapter.json\n` +
+        `• TWO-PASS: after drafting, self-critique against agent-prompts/FIELD-PURPOSE-CONTRACTS.md (concept-as-actor, templated loops, echo-template explanations, bare-label card fronts, proposition-not-action whatToDo) and FIX what you find before gating.\n` +
         `• Then run: npx tsx src/cli.ts gate-chapter state/chapters/${chapterId}.v21-native.chapter.json\n` +
         `  Fix every blocker it reports and re-run until it prints "Gate verdict: PASS — 0 blockers". Only stop when it is clean.`,
     );
@@ -1322,6 +1488,49 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   );
   console.log(blocks.join("\n\n"));
   console.log(`\nPaste each block above into its own Codex agent (run them in parallel). When they finish, check the batch:\n  npx tsx src/cli.ts book-gate ${bookId}`);
+  return 0;
+}
+
+/** `shape-plan <bookId> --from N --to M` — pre-authoring scene-shape allocator
+ *  (name-plan's pattern applied to example STRUCTURE). Deals each chapter a
+ *  slot-pinned palette of structurally distinct scene shapes so parallel
+ *  authoring agents can't converge on one frame — the skeleton class that has
+ *  no viable deterministic gate. fanout runs this automatically; the command
+ *  exists to preview/regenerate. */
+async function runShapePlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: shape-plan <bookId> --from N --to M");
+    return 2;
+  }
+  const { planShapes, writeShapePlan, formatShapePlan } = await import("./librarian/shapePlan.js");
+  const plan = planShapes(bookId, from, to);
+  const path = writeShapePlan(plan);
+  console.log(formatShapePlan(plan));
+  console.log(`\nWritten: ${path}`);
+  return 0;
+}
+
+/** `pedagogy-plan <bookId> --from N --to M` — pre-authoring allocator for
+ *  catalog-level slot variety. Deals a hook-shape, try-this-now grammar, and
+ *  alternating quiz-opener pair per chapter so parallel STEP-2 agents don't all
+ *  reuse the same pedagogical surface. fanout runs this automatically; the
+ *  command exists to preview/regenerate. */
+async function runPedagogyPlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: pedagogy-plan <bookId> --from N --to M");
+    return 2;
+  }
+  const { planPedagogy, writePedagogyPlan, formatPedagogyPlan } = await import("./librarian/pedagogyPlan.js");
+  const plan = planPedagogy(bookId, from, to);
+  const path = writePedagogyPlan(plan);
+  console.log(formatPedagogyPlan(plan));
+  console.log(`\nWritten: ${path}`);
   return 0;
 }
 
@@ -1344,7 +1553,10 @@ async function runNamePlan(args: string[], flags: Record<string, string | boolea
     return 2;
   }
   const { planNames, writeNamePlan, formatNamePlan } = await import("./librarian/namePlan.js");
-  const plan = planNames(bookId, from, to, perChapter);
+  // --force-fresh: deal fresh catalog-exclusive names even for authored
+  // chapters — the refresh path uses this to build old→new RENAME maps
+  // (carried allocations only echo the on-disk names, collisions included).
+  const plan = planNames(bookId, from, to, perChapter, { forceFresh: flags["force-fresh"] === true });
   const path = writeNamePlan(plan);
   console.log(formatNamePlan(plan));
   console.log("");
@@ -1363,11 +1575,13 @@ async function runNamePlan(args: string[], flags: Record<string, string | boolea
  *  promote requires a fresh PUBLISHABLE attestation per chapter (the no-API
  *  semantic gate); editing the chapter afterward makes it stale. */
 async function runQcAttest(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const file = args[0];
   const verdict = typeof flags["verdict"] === "string" ? (flags["verdict"] as string).toUpperCase() : "";
   const reviewer = typeof flags["reviewer"] === "string" ? (flags["reviewer"] as string) : "";
   if (!file || !["PUBLISHABLE", "REVISE", "CORRUPTION"].includes(verdict) || !reviewer) {
-    console.error(`Usage: qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."] [--dimensions k=true,k2=false]`);
+    console.error(`Usage: qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."] [--dimensions k=true,k2=false] [--supersede "<reason>"]`);
     return 2;
   }
   const chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
@@ -1376,7 +1590,8 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
     console.error(`Could not parse chapterId "${chapter.chapterId}" — cannot attest.`);
     return 2;
   }
-  const { chapterContentHash, writeAttestation } = await import("./critics/qcAttestation.js");
+  const { chapterContentHash, writeAttestation, loadAttestation, isAttestationFresh } =
+    await import("./critics/qcAttestation.js");
   const dimensions: Record<string, boolean> = {};
   for (const kv of parseCsvFlag(flags["dimensions"]) ?? []) {
     const [k, v] = kv.split("=");
@@ -1384,6 +1599,39 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
   }
   const notes = typeof flags["notes"] === "string" ? (flags["notes"] as string) : undefined;
   const findings = parseCsvFlag(flags["findings"]) ?? undefined;
+  const supersede = typeof flags["supersede"] === "string" ? (flags["supersede"] as string) : null;
+
+  // Self-attest replay guard. The verified failure mode (rich-dad redo loop):
+  // a reviewer records REVISE, the AUTHORING agent re-runs qc-attest with
+  // verdict PUBLISHABLE on the UNCHANGED chapter, silently overwriting the
+  // human verdict. A PUBLISHABLE flip over a non-PUBLISHABLE attestation is
+  // only legitimate when the content actually changed since that review
+  // (hash differs → the redo loop worked). Same content → refuse, unless
+  // --supersede "<reason>" records an explicit, auditable override.
+  const existing = loadAttestation(parsed.bookId, chapter.number);
+  if (
+    existing &&
+    existing.verdict !== "PUBLISHABLE" &&
+    verdict === "PUBLISHABLE" &&
+    isAttestationFresh(existing, chapter) &&
+    !supersede
+  ) {
+    console.error(
+      `REFUSED: ${parsed.bookId}-ch${chapter.number} carries a ${existing.verdict} verdict ` +
+        `(reviewer=${existing.reviewer}, ${existing.reviewedAt.slice(0, 10)}) and the chapter is UNCHANGED ` +
+        `since that review. Flipping to PUBLISHABLE without changing the content is the self-attest ` +
+        `replay this gate exists to stop. Fix the chapter (the hash will change), or — if the ` +
+        `${existing.verdict} was itself wrong — re-run with --supersede "<why the prior verdict was wrong>".`,
+    );
+    return 1;
+  }
+  if (existing) {
+    console.log(
+      `Overwriting prior attestation (verdict=${existing.verdict}, reviewer=${existing.reviewer}, ` +
+        `${existing.reviewedAt.slice(0, 10)}) — it is preserved in the attestation's history.`,
+    );
+  }
+  const { history: _prevHistory, ...existingSansHistory } = existing ?? {};
   const path = writeAttestation({
     schemaVersion: "qc-attest-v1",
     bookId: parsed.bookId,
@@ -1391,13 +1639,354 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
     chapterId: chapter.chapterId!,
     verdict: verdict as "PUBLISHABLE" | "REVISE" | "CORRUPTION",
     contentHash: chapterContentHash(chapter),
+    hashVersion: "v2",
     reviewer,
     reviewedAt: new Date().toISOString(),
     dimensions: Object.keys(dimensions).length ? dimensions : undefined,
     findings,
     notes,
+    history: existing
+      ? [...(existing.history ?? []), existingSansHistory as any].slice(-10)
+      : undefined,
+    supersededReason: supersede ?? undefined,
   });
-  console.log(`QC attestation written: ${path}\n  ${parsed.bookId}-ch${chapter.number}  verdict=${verdict}  hash=${chapterContentHash(chapter)}  reviewer=${reviewer}`);
+  console.log(`QC attestation written: ${path}\n  ${parsed.bookId}-ch${chapter.number}  verdict=${verdict}  hash=${chapterContentHash(chapter)} (v2)  reviewer=${reviewer}`);
+  return 0;
+}
+
+/** `qc-rehash [--all | <bookId>]` — one-time migration: upgrade v1-hash
+ *  attestations to v2 WHERE THE CONTENT IS UNCHANGED since review (v1 hash
+ *  still matches the chapter on disk). A v1 attestation that no longer
+ *  matches is already stale and is left alone — it needs re-review, not a
+ *  re-pin. The prior record is preserved in the attestation's history. */
+async function runQcRehash(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookFilter = args[0];
+  if (!bookFilter && flags["all"] !== true) {
+    console.error("Usage: qc-rehash <bookId> | qc-rehash --all");
+    return 2;
+  }
+  const { QC_DIR, chapterContentHash, chapterContentHashV1, chapterContentHashV0, writeAttestation } =
+    await import("./critics/qcAttestation.js");
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  let upgraded = 0, alreadyV2 = 0, stale = 0, missing = 0;
+  const files = readdirSync(QC_DIR).filter((f) => f.endsWith(".qc.json")).sort();
+  for (const f of files) {
+    const att = JSON.parse(readFileSync(resolve(QC_DIR, f), "utf8"));
+    if (bookFilter && att.bookId !== bookFilter) continue;
+    if (att.hashVersion === "v2") { alreadyV2++; continue; }
+    const chapterFile = resolve(
+      chaptersDir,
+      `${att.bookId}-ch${String(att.chapterNumber).padStart(2, "0")}.v21-native.chapter.json`,
+    );
+    if (!existsSyncFs(chapterFile)) {
+      console.log(`  SKIP (no chapter on disk): ${f}`);
+      missing++;
+      continue;
+    }
+    const chapter = JSON.parse(readFileSync(chapterFile, "utf8")) as ChapterV21;
+    // Legacy attestations may carry either pre-v2 algorithm: v1 (2026-06-05+)
+    // or v0 (the original 2026-06-04 projection, no title/tryThisNow).
+    if (chapterContentHashV1(chapter) !== att.contentHash && chapterContentHashV0(chapter) !== att.contentHash) {
+      console.log(`  STALE under v1/v0 — left for re-review: ${f}`);
+      stale++;
+      continue;
+    }
+    const { history: _h, ...prior } = att;
+    writeAttestation({
+      ...att,
+      contentHash: chapterContentHash(chapter),
+      hashVersion: "v2",
+      history: [...(att.history ?? []), prior].slice(-10),
+    });
+    upgraded++;
+  }
+  console.log(
+    `qc-rehash: ${upgraded} upgraded to v2, ${alreadyV2} already v2, ${stale} stale (need re-review), ${missing} missing chapters.`,
+  );
+  return 0;
+}
+
+/** `catalog-audit [bookId] [--save]` — measure the cross-book fingerprints no
+ *  per-book gate sees (hook-shape monoculture, tryThisNow grammar, quiz-opener
+ *  family, house tics, the scenario deadline tic, cross-book name collisions,
+ *  the distractor length tell). --save writes state/catalog-audit/latest.json
+ *  so the remediation campaign has a committed before/after. */
+async function runCatalogAudit(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const { loadCatalog, auditCatalog, formatCatalogAudit } = await import("./critics/catalogAudit.js");
+  const byBook = loadCatalog(args[0]);
+  if (byBook.size === 0) {
+    console.error(args[0] ? `No chapters found for "${args[0]}".` : "No chapters in state/chapters/.");
+    return 2;
+  }
+  const report = auditCatalog(byBook);
+  console.log(formatCatalogAudit(report));
+  // A single-book run structurally cannot see CROSS-book collisions, and its
+  // "collisions: 0" was quoted as an acceptance number by the first refresh
+  // pilot (reviewer-caught). When filtered, compute the real thing: this
+  // book's bank names vs the rest of the catalog.
+  if (args[0]) {
+    const targetId = report.books[0]?.bookId ?? args[0];
+    const full = auditCatalog(loadCatalog());
+    const mine = full.catalog.nameCollisions.filter((c) => c.books.includes(targetId));
+    console.log(`\n  CROSS-BOOK collisions involving "${targetId}" (vs the full catalog): ${mine.length}`);
+    for (const col of mine.slice(0, 12)) {
+      console.log(`    ${col.name}: also in ${col.books.filter((b) => b !== targetId).slice(0, 5).join(", ")}${col.books.length > 6 ? ", …" : ""}`);
+    }
+  }
+  if (flags["save"] === true) {
+    const outDir = resolve(__dirname, "../state/catalog-audit");
+    mkdirSync(outDir, { recursive: true });
+    const outPath = resolve(outDir, "latest.json");
+    writeFileSync(outPath, JSON.stringify(report, null, 2), "utf8");
+    console.log(`\nSaved: ${outPath}`);
+  }
+  return 0;
+}
+
+/** `quiz-blind <chapter.json>` — print the chapter's quiz with the answer key
+ *  STRIPPED (no correctIndex / explanation / sourceAnchorId). The tooled half
+ *  of the hidden-key protocol: a reviewer derives answers from THIS output
+ *  only, then `quiz-verify` diffs the derivation against the real key — the
+ *  honor-system "cover correctIndex with your hand" becomes mechanical. */
+async function runQuizBlind(args: string[]): Promise<number> {
+  const file = args[0];
+  if (!file) {
+    console.error("Usage: quiz-blind <chapter.json>");
+    return 2;
+  }
+  let chapter: ChapterV21;
+  try {
+    chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
+  } catch (err) {
+    console.error(`Could not read/parse ${file}: ${(err as Error).message}`);
+    return 2;
+  }
+  const questions = (chapter.quiz?.questions ?? []).map((q, i) => ({
+    questionIndex: i,
+    prompt: q.prompt,
+    choices: q.choices,
+  }));
+  console.log(JSON.stringify({ chapterId: chapter.chapterId, questionCount: questions.length, questions }, null, 2));
+  return 0;
+}
+
+/** `quiz-verify <chapter.json> --answers "0:1,1:2,..."` — diff blind-derived
+ *  answers (qIndex:choiceIndex pairs) against the chapter's real key. Requires
+ *  FULL coverage (every question answered) so a reviewer can't pass by only
+ *  answering the easy ones. Exit 0 = all match; 1 = mismatch/missing; 2 usage.
+ *  Mismatch output includes the keyed explanation so an adjudicator can judge
+ *  whether the KEY or the DERIVATION is wrong. */
+async function runQuizVerify(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const file = args[0];
+  const answersRaw = typeof flags["answers"] === "string" ? (flags["answers"] as string) : "";
+  if (!file || !answersRaw) {
+    console.error('Usage: quiz-verify <chapter.json> --answers "<qIndex>:<choiceIndex>,..."');
+    return 2;
+  }
+  let chapter: ChapterV21;
+  try {
+    chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
+  } catch (err) {
+    console.error(`Could not read/parse ${file}: ${(err as Error).message}`);
+    return 2;
+  }
+  const questions = chapter.quiz?.questions ?? [];
+  const derived = new Map<number, number>();
+  for (const pair of answersRaw.split(",")) {
+    const m = pair.trim().match(/^(\d+)\s*[:=]\s*(\d+)$/);
+    if (!m) {
+      console.error(`Bad --answers entry "${pair.trim()}" — expected <qIndex>:<choiceIndex>.`);
+      return 2;
+    }
+    const qi = Number(m[1]);
+    // Out-of-range and duplicate entries are usage errors, not noise to skip:
+    // silently ignoring them let "0:0,...,8:0,99:5" read as full clean coverage.
+    if (qi >= questions.length) {
+      console.error(`--answers entry "${pair.trim()}": question index ${qi} does not exist (quiz has ${questions.length} questions, 0-${questions.length - 1}).`);
+      return 2;
+    }
+    if (derived.has(qi)) {
+      console.error(`--answers entry "${pair.trim()}": duplicate answer for question ${qi}.`);
+      return 2;
+    }
+    derived.set(qi, Number(m[2]));
+  }
+  let mismatches = 0;
+  let missing = 0;
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
+    // Legacy quizzes key the answer as correctAnswerIndex; everything else in
+    // the pipeline (schema, quizQuality, the v1 hash) honors the alias.
+    const keyed = (q.correctIndex ?? (q as any).correctAnswerIndex) as number;
+    const d = derived.get(i);
+    if (d === undefined) {
+      missing++;
+      console.log(`q${i}: MISSING — no derived answer supplied (full coverage is required)`);
+      continue;
+    }
+    if (d === keyed) {
+      console.log(`q${i}: MATCH (choice ${d})`);
+    } else {
+      mismatches++;
+      console.log(`q${i}: MISMATCH — derived ${d} ("${(q.choices[d] ?? "<no such choice>").slice(0, 70)}") vs keyed ${keyed} ("${(q.choices[keyed] ?? "").slice(0, 70)}")`);
+      console.log(`    keyed explanation: ${(typeof q.explanation === "string" ? q.explanation : JSON.stringify(q.explanation) ?? "<none>").slice(0, 160)}`);
+    }
+  }
+  console.log(
+    `quiz-verify: ${questions.length - mismatches - missing}/${questions.length} match, ${mismatches} mismatch(es), ${missing} missing.` +
+      (mismatches > 0 ? " A mismatch is a CLAIM (key OR derivation may be wrong) — adjudicate before calling it corruption." : ""),
+  );
+  return mismatches === 0 && missing === 0 ? 0 : 1;
+}
+
+/** `qc-run <bookId> [--chapters 1,2,3]` — generate the harness QC workflow for
+ *  a book: tooled blind-key verification, dual-lens publishable-bar reads, a
+ *  cross-chapter sweep, adversarial adjudication of every corruption claim,
+ *  and qc-attest with reviewer=harness:<id>. The generated script embeds the
+ *  LIVE rubric/weights/floors from publishableBar.ts (no prompt drift) and is
+ *  launched from a Claude Code session via the Workflow tool. */
+async function runQcRun(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: qc-run <bookId> [--chapters 1,2,3]");
+    return 2;
+  }
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  const files = readdirSync(chaptersDir).filter((f) => isSiblingFile(f, bookId)).sort();
+  if (files.length === 0) {
+    console.error(`No chapters found for "${bookId}" in state/chapters/.`);
+    return 2;
+  }
+  const only = (parseCsvFlag(flags["chapters"]) ?? []).map((s) => Number(s)).filter((n) => Number.isFinite(n));
+  const { findRunArtifact } = await import("./lib/runDirs.js");
+  const { AXIS_RUBRIC, AXIS_WEIGHTS, CORRUPTION_AXES, PUBLISHABLE_FLOOR, AXIS_FLOOR } =
+    await import("./critics/semantic/publishableBar.js");
+  const RUNS = resolve(__dirname, "../../../../..", ".chapterflow/runs");
+
+  const quizCounts: Record<number, number> = {};
+  const chapters = files
+    .map((f) => {
+      const ch = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
+      quizCounts[ch.number] = ch.quiz?.questions?.length ?? 0;
+      return {
+        n: ch.number,
+        file: resolve(chaptersDir, f),
+        sidecar: findRunArtifact(RUNS, bookId, `sidecars/source/ch${String(ch.number).padStart(2, "0")}.source.json`),
+      };
+    })
+    .filter((c) => only.length === 0 || only.includes(c.n))
+    .sort((a, b) => a.n - b.n);
+
+  // Gold anchor: judges skim one reference-quality chapter so "85+" is
+  // calibrated against the corpus every blocker is calibrated against.
+  const goldCandidate = resolve(chaptersDir, "daring-greatly-ch01.v21-native.chapter.json");
+  const config = {
+    bookId,
+    pipelineDir: resolve(__dirname, ".."),
+    reviewer: `harness:qc-run-${bookId}-${new Date().toISOString().slice(0, 10)}`,
+    chapters,
+    quizCounts,
+    goldFile: existsSyncFs(goldCandidate) && !bookId.startsWith("daring-greatly") ? goldCandidate : null,
+    rubric: AXIS_RUBRIC,
+    weights: AXIS_WEIGHTS,
+    corruptionAxes: [...CORRUPTION_AXES],
+    publishableFloor: PUBLISHABLE_FLOOR,
+    axisFloor: AXIS_FLOOR,
+  };
+
+  const template = readFileSync(resolve(__dirname, "../templates/qc-run.workflow.template.js"), "utf8");
+  const script = template.replace("__CONFIG__", JSON.stringify(config, null, 2));
+  const outDir = resolve(__dirname, "../state/qc-runs");
+  mkdirSync(outDir, { recursive: true });
+  const outPath = resolve(outDir, `${bookId}.workflow.js`);
+  writeFileSync(outPath, script, "utf8");
+
+  console.log(`QC workflow generated: ${outPath}`);
+  console.log(`  book: ${bookId} — ${chapters.length} chapter(s); sidecars resolved for ${chapters.filter((c) => c.sidecar).length}/${chapters.length}`);
+  console.log(`  reviewer id: ${config.reviewer}`);
+  console.log(`  agents: ~${chapters.length * 3 + 2}+ (blind-keys + 2 lenses per chapter, sweep, adjudication, attest)`);
+  console.log("");
+  console.log("Launch from a Claude Code session (the harness is the no-API semantic judge):");
+  console.log(`  Workflow({ scriptPath: "${outPath}" })`);
+  console.log("Then review the returned verdicts; REVISE/CORRUPTION chapters go back to authoring.");
+  if (chapters.length > 10) {
+    console.log(
+      `NOTE: ${chapters.length} chapters ≈ ${chapters.length * 3 + 2}+ agents in one run — a session rate limit mid-fleet ` +
+        `leaves chapters incomplete (they fail safe to REVISE, but must be re-run). Consider batches: --chapters 1,2,...,8 then the rest.`,
+    );
+  }
+  return 0;
+}
+
+/** `qc-stats [bookId]` — revision-rate instrumentation from the attestation
+ *  record. The plan's throughput ceiling is the ~18% reviewer-revision rate;
+ *  this measures it instead of assuming it: first-pass PUBLISHABLE rate
+ *  (initial verdict in each attestation's history), attempts per chapter,
+ *  final verdict mix, and human-vs-harness reviewer split. History only
+ *  accumulates from Phase 1b onward, so early numbers under-count redos. */
+async function runQcStats(args: string[]): Promise<number> {
+  const bookFilter = args[0] ?? null;
+  const { QC_DIR } = await import("./critics/qcAttestation.js");
+  let files: string[] = [];
+  try {
+    files = readdirSync(QC_DIR).filter((f) => f.endsWith(".qc.json")).sort();
+  } catch {
+    console.error(`No attestation dir at ${QC_DIR}.`);
+    return 2;
+  }
+  type Row = { chapters: number; firstPass: number; attempts: number; finals: Record<string, number>; reviewers: Record<string, number> };
+  const byBook = new Map<string, Row>();
+  for (const f of files) {
+    let att: any;
+    try {
+      att = JSON.parse(readFileSync(resolve(QC_DIR, f), "utf8"));
+    } catch {
+      continue;
+    }
+    if (bookFilter && att.bookId !== bookFilter) continue;
+    if (!byBook.has(att.bookId)) byBook.set(att.bookId, { chapters: 0, firstPass: 0, attempts: 0, finals: {}, reviewers: {} });
+    const row = byBook.get(att.bookId)!;
+    // A qc-rehash hash migration appends a history entry with the SAME
+    // reviewedAt (only contentHash/hashVersion changed) — that's bookkeeping,
+    // not a review attempt; counting it would fake a 2.0 attempts floor.
+    const history: any[] = (Array.isArray(att.history) ? att.history : []).filter(
+      (h: any) => h?.reviewedAt !== att.reviewedAt,
+    );
+    const firstVerdict = history.length > 0 ? history[0]?.verdict : att.verdict;
+    row.chapters++;
+    if (firstVerdict === "PUBLISHABLE") row.firstPass++;
+    row.attempts += 1 + history.length;
+    row.finals[att.verdict] = (row.finals[att.verdict] ?? 0) + 1;
+    const kind = typeof att.reviewer === "string" && att.reviewer.includes(":") ? att.reviewer.split(":")[0] : "other";
+    row.reviewers[kind] = (row.reviewers[kind] ?? 0) + 1;
+  }
+  if (byBook.size === 0) {
+    console.error(bookFilter ? `No attestations for "${bookFilter}".` : "No attestations on disk.");
+    return 2;
+  }
+  const fmtFinals = (r: Row) =>
+    Object.entries(r.finals).sort().map(([v, c]) => `${v[0]}${v === "PUBLISHABLE" ? "" : ""}:${c}`).join(" ");
+  let chapters = 0, firstPass = 0, attempts = 0;
+  console.log(`QC stats${bookFilter ? ` — ${bookFilter}` : ""} (first-pass = initial verdict was PUBLISHABLE; attempts = 1 + history length)`);
+  const w = Math.max(...[...byBook.keys()].map((b) => b.length), 8);
+  for (const [book, r] of [...byBook.entries()].sort()) {
+    chapters += r.chapters; firstPass += r.firstPass; attempts += r.attempts;
+    console.log(
+      `  ${book.padEnd(w)}  ch:${String(r.chapters).padStart(3)}  first-pass:${String(Math.round((r.firstPass / r.chapters) * 100)).padStart(3)}%` +
+        `  avg-attempts:${(r.attempts / r.chapters).toFixed(2)}  finals[${fmtFinals(r)}]  reviewers[${Object.entries(r.reviewers).map(([k, c]) => `${k}:${c}`).join(" ")}]`,
+    );
+  }
+  console.log(
+    `\n  OVERALL: ${chapters} attested chapter(s), first-pass PUBLISHABLE ${Math.round((firstPass / chapters) * 100)}% ` +
+      `(revision rate ${Math.round(((chapters - firstPass) / chapters) * 100)}%), avg attempts ${(attempts / chapters).toFixed(2)}.`,
+  );
+  console.log("  Phase 3's prevention layer (shape plan, grounding anchors, two-pass) should push first-pass UP over time — re-run after each book ships.");
   return 0;
 }
 
@@ -1405,6 +1994,8 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
  *  gate's readiness for promote): PASS (fresh PUBLISHABLE), STALE, REVISE/
  *  CORRUPTION, or MISSING. */
 async function runQcStatus(args: string[]): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: qc-status <bookId>");
@@ -1416,7 +2007,7 @@ async function runQcStatus(args: string[]): Promise<number> {
     console.error(`No chapters found for "${bookId}".`);
     return 2;
   }
-  const { chapterContentHash, loadAttestation } = await import("./critics/qcAttestation.js");
+  const { isAttestationFresh, loadAttestation } = await import("./critics/qcAttestation.js");
   let ready = 0;
   const lines: string[] = [];
   for (const f of files) {
@@ -1425,7 +2016,7 @@ async function runQcStatus(args: string[]): Promise<number> {
     let status: string;
     if (!att) status = "MISSING";
     else if (att.verdict !== "PUBLISHABLE") status = att.verdict;
-    else if (att.contentHash !== chapterContentHash(ch)) status = "STALE";
+    else if (!isAttestationFresh(att, ch)) status = "STALE";
     else { status = "PASS"; ready++; }
     lines.push(`  ch${String(ch.number).padStart(2, "0")}: ${status}${att ? `  (reviewer=${att.reviewer}, ${att.reviewedAt.slice(0, 10)})` : ""}`);
   }
@@ -1551,7 +2142,10 @@ async function runGateChapter(args: string[]): Promise<number> {
   // writer agents producing one quiz and reusing it across chapters with
   // name substitution. Without this, the writer wastes 10+ chapters of work
   // before book-gate surfaces the structural issue.
-  const intraFindings = await runIntraBookCheck(chapter, chapterFile);
+  const { runIntraBookChecks, loadSiblingChapters } = await import("./critics/intraBook.js");
+  const siblingLoad = loadSiblingChapters(chapter, chapterFile);
+  if (siblingLoad.warning) console.log(`  WARN: ${siblingLoad.warning}`);
+  const intraFindings = runIntraBookChecks(chapter, siblingLoad.siblings);
   let extraBlockers = 0;
   let extraMajors = 0;
   if (intraFindings.length > 0) {
@@ -1670,87 +2264,6 @@ async function runGateChapter(args: string[]): Promise<number> {
   return report.blockers.length === 0 && extraBlockers === 0 ? 0 : 1;
 }
 
-/** Load every sibling chapter of the same book from state/chapters/ and run
- *  the intra-book quiz similarity critic against them. The book ID is derived
- *  from the chapter file's chapterId (which is `<bookId>-ch<NN>`). Returns
- *  an empty array if there are no siblings (first chapter of a book) or if
- *  any I/O fails (non-fatal — the ship gate still ran). */
-async function runIntraBookCheck(
-  chapter: ChapterV21,
-  chapterFile: string,
-): Promise<Array<{ checkId: string; severity: string; message: string; evidence?: string }>> {
-  // Phase 0 casing fix: parse the book id case-insensitively and match siblings
-  // via the shared resolver. The old code built a CASE-SENSITIVE regex from the
-  // raw chapterId, so a capital chapterId (e.g. "Unreasonable-hospitality-ch01")
-  // matched 0 lowercase files → AS5–AS12 silently skipped.
-  const parsed = parseChapterId(chapter.chapterId);
-  if (!parsed) return [];
-  const bookId = parsed.bookId;
-  const dir = dirname(resolve(chapterFile));
-  let siblings: ChapterV21[] = [];
-  try {
-    const entries = readdirSync(dir);
-    for (const entry of entries) {
-      if (!isSiblingFile(entry, bookId)) continue;
-      const full = resolve(dir, entry);
-      if (full === resolve(chapterFile)) continue; // skip the chapter being gated
-      try {
-        siblings.push(JSON.parse(readFileSync(full, "utf8")) as ChapterV21);
-      } catch {
-        // skip unreadable siblings
-      }
-    }
-  } catch {
-    return [];
-  }
-  if (siblings.length === 0) {
-    // Loud fail-open: for chapter 2+ there SHOULD be prior siblings. Zero means
-    // either a genuine first chapter, or (the bug class) a slug/casing mismatch
-    // that excluded them — which would silently skip AS5–AS12. Warn so it's
-    // never mistaken for "intra-book critics passed".
-    if (parsed.num > 1) {
-      console.log(
-        `  WARN: intra-book critics DID NOT RUN — 0 sibling chapters found for "${bookId}" in ${dir} ` +
-          `(expected priors for ch${parsed.num}). This is NOT a pass; check chapterId/filename slug.`,
-      );
-    }
-    return [];
-  }
-  const { checkIntraBookQuizSimilarity } = await import("./critics/intraBookQuizSimilarity.js");
-  const {
-    checkIntraBookCardSimilarity,
-    checkIntraBookPlanSimilarity,
-    checkIntraBookExampleSimilarity,
-    checkIntraBookLiteralNgrams,
-    checkIntraBookBreakdownParagraphVerbatim,
-    checkIntraBookQuizPositionMatch,
-  } = await import("./critics/intraBookFieldSimilarity.js");
-  // AS5/AS6 (quiz prompt+distractor) + AS7 (cards) + AS8 (plan)
-  // + AS9 (example word-multiset) + AS10 (literal 5-gram in examples
-  // + breakdown) + AS11 (breakdown paragraph verbatim) + AS12 (quiz
-  // correctIndex sequence) — all chapter-time intra-book detectors.
-  // Built incrementally as the writer-agent gaming pattern moved across
-  // fields in successive incidents:
-  //   round 1: salting (AS1-AS4)
-  //   round 2: quiz template (AS5-AS6)
-  //   round 3: card/plan template (AS7-AS8)
-  //   round 4: example scenario template (AS9)
-  //   round 5: stock-phrase n-grams in whatToDo/whyItMatters under AS9's
-  //            70% multiset floor; whole-paragraph reuse in breakdown;
-  //            fixed correctIndex rotation (AS10-AS12)
-  // Together they cover the literal-verbatim, paragraph-verbatim, and
-  // structural-position gaps that AS5-AS9's multiset-similarity floor
-  // can't reach.
-  return [
-    ...checkIntraBookQuizSimilarity(chapter, siblings),
-    ...checkIntraBookCardSimilarity(chapter, siblings),
-    ...checkIntraBookPlanSimilarity(chapter, siblings),
-    ...checkIntraBookExampleSimilarity(chapter, siblings),
-    ...checkIntraBookLiteralNgrams(chapter, siblings),
-    ...checkIntraBookBreakdownParagraphVerbatim(chapter, siblings),
-    ...checkIntraBookQuizPositionMatch(chapter, siblings),
-  ] as any;
-}
 
 function escapeRegex(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -1836,10 +2349,26 @@ async function main() {
       return runBookGate(args);
     case "name-plan":
       return runNamePlan(args, flags);
+    case "shape-plan":
+      return runShapePlan(args, flags);
+    case "pedagogy-plan":
+      return runPedagogyPlan(args, flags);
     case "qc-attest":
       return runQcAttest(args, flags);
     case "qc-status":
       return runQcStatus(args);
+    case "qc-stats":
+      return runQcStats(args);
+    case "qc-rehash":
+      return runQcRehash(args, flags);
+    case "qc-run":
+      return runQcRun(args, flags);
+    case "quiz-blind":
+      return runQuizBlind(args);
+    case "catalog-audit":
+      return runCatalogAudit(args, flags);
+    case "quiz-verify":
+      return runQuizVerify(args, flags);
     case "fanout":
       return runFanout(args, flags);
     case "categorize":
@@ -1858,6 +2387,8 @@ async function main() {
       return runStateStatus(args, flags);
     case "quarantine-book":
       return runQuarantineBook(args, flags);
+    case "unquarantine-book":
+      return runUnquarantineBook(args);
     case "help":
     case undefined:
     case "--help":

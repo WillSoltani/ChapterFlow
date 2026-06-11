@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "four-thousand-weeks",
+  "chapterNumber": 3,
+  "chapterId": "four-thousand-weeks-ch03",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "817060fc01f8acb8",
+  "reviewer": "claude-qc:4kw-20260609-r3",
+  "reviewedAt": "2026-06-10T01:20:43.631Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Round 3, independent re-review after Codex's Hägglund fix (superseding the writer's own codex-qc self-attestation, which the QC model says not to trust). Verified surgical: Haggland->Hägglund x5 in chapter (+ source .json); 9/9 quiz keys unchanged & correct (0,1,2,0,1,2,0,1,2); example names unchanged (Honore/Craig/Sawyer/Eitan/Brett/Florentine); prose/cards/plan('Finite Yes Audit')/lines = the round-2 GREEN read. gate-chapter + book-gate 0 blockers. Note: ch03.source.txt mirror still has 'Haggland' (cosmetic; .json is authoritative).",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "four-thousand-weeks",
+      "chapterNumber": 3,
+      "chapterId": "four-thousand-weeks-ch03",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "ab02143f1f15c1d4",
+      "reviewer": "claude-qc:4kw-20260609-r3",
+      "reviewedAt": "2026-06-10T01:20:43.631Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Round 3, independent re-review after Codex's Hägglund fix (superseding the writer's own codex-qc self-attestation, which the QC model says not to trust). Verified surgical: Haggland->Hägglund x5 in chapter (+ source .json); 9/9 quiz keys unchanged & correct (0,1,2,0,1,2,0,1,2); example names unchanged (Honore/Craig/Sawyer/Eitan/Brett/Florentine); prose/cards/plan('Finite Yes Audit')/lines = the round-2 GREEN read. gate-chapter + book-gate 0 blockers. Note: ch03.source.txt mirror still has 'Haggland' (cosmetic; .json is authoritative)."
+    }
+  ]
+}

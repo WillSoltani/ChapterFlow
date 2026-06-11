@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "drive-ch10",
+  "number": 10,
+  "title": "The Zen of Compensation",
+  "readingTimeMinutes": 8,
+  "hook": "The best pay system often does its work by becoming less distracting.",
+  "counterintuition": "Intrinsic motivation is not an excuse to underpay people; unfair money keeps everyone staring at money.",
+  "tryThisNow": "Look at one role and ask whether pay feels fair internally, fair externally, and simple enough to stop obsessing over.",
+  "keyTakeaway": "Take money off the table by making pay fair, sufficient, and low-drama so autonomy, mastery, and purpose can breathe.",
+  "breakdown": {
+    "fastRead": "George Akerlof's gift-exchange idea points to a simple truth: pay carries social meaning. Red Gate Software and equity checks show why compensation has to feel fair before deeper motivation can take hold. Taking money off the table means reducing insecurity, resentment, and comparison, not pretending money is irrelevant. The rule is to pay enough, check internal and external fairness, and avoid incentive designs that turn complex work into bounty hunting.",
+    "deepRead": "The mechanism is attention: unfair pay colonizes the mind before autonomy or purpose can do much work. Taking money off the table means making compensation fair, sufficient, and low-drama enough that people are not forced to obsess over insecurity, comparison, or resentment.\n\nAkerlof's gift-exchange idea shows that pay is relational as well as economic. A generous or fair pay decision can signal trust and invite reciprocity. Red Gate Software shows the opposite of bounty logic by moving away from traditional commissions toward healthier base pay and broader customer focus. Internal and external equity checks keep the system honest: people compare pay with colleagues and with the market.\n\nTaking money off the table is not saying money does not matter. It says money matters enough to settle carefully. Underpay people and purpose talk sounds manipulative. Overemphasize contingent pay and complex work starts to look like bounty hunting. Good compensation creates a stable floor so autonomy, mastery, and purpose can receive attention.",
+    "fullRead": "This principle runs opposite to a lazy reading of Type I motivation. The easy misread is that Type I workplaces should pay less because people are intrinsically motivated. The real principle runs the other way: unfair or inadequate pay poisons motivation, while healthy pay lets nonfinancial motives breathe.\n\nAkerlof's gift-exchange idea helps explain why compensation carries social meaning. Pay can say, We trust you and value the relationship, or it can say, We will purchase only the narrow behavior we can count. People often respond to the signal as much as the amount.\n\nRed Gate Software gives compensation design a sales example. Moving away from commissions reduced pressure to chase narrow transactions and supported longer-term customer value. The goal was not to make money invisible. It was to stop money from dominating every judgment.\n\nEquity checks are the practical discipline. Internal fairness asks whether people with similar responsibility and contribution are treated reasonably compared with one another. External fairness asks whether pay holds up against the broader market. Either failure pulls attention back to compensation.\n\nThe test is attention. If people keep scanning for unfairness, insecurity, or comparison, money is not off the table. Fix the floor, simplify incentives, and let the work's deeper motives have a chance.\n\nTaking money off the table also requires reducing drama. A pay system can be technically generous and still motivationally noisy if no one understands it, if exceptions appear arbitrary, or if every outcome triggers a side bargain. People then spend attention interpreting the system instead of doing the work.\n\nThis is why simple, fair compensation can be more supportive than an elaborate incentive plan. Complex incentives may look sophisticated, but they often teach people to scan for loopholes, compare formulas, and protect their own payout. In work that needs collaboration or long-term customer trust, that mental load is expensive.\n\nThe goal is not emotional purity around money. People should care about compensation because compensation affects security, dignity, and choice. The goal is to remove unnecessary obsession. Once sufficiency and fairness are credible, leaders can ask better motivational questions: Do people have autonomy? Are they growing? Does the work serve something they can respect?\n\nA good pay system therefore aims for boring credibility. People should be able to understand the basis of pay, see that obvious inequities are addressed, and trust that incentives will not punish the judgment the organization claims to need."
+  },
+  "examples": [
+    {
+      "exampleId": "drive-ch10-ex01",
+      "title": "A Misread Incentive",
+      "tags": [
+        "work design",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "salary calibration meeting",
+        "audience": "Lin, an HR lead finding the pay issue before the purpose issue",
+        "stakes": "A salary meeting risks discussing engagement while people are focused on fairness.",
+        "format": "decision_point",
+        "requiredBeat": "Show pay fairness as a precondition."
+      },
+      "scenario": "Lin sees two project leads with similar scope separated by a large salary gap. The agenda says purpose and retention, but she moves equity calibration to the first item because no speech will survive that comparison.",
+      "whatToDo": "In the salary calibration meeting, check internal and external fairness before discussing purpose.",
+      "whyItMatters": "Unfair pay captures attention. Motivation work begins by removing the distraction leaders created."
+    },
+    {
+      "exampleId": "drive-ch10-ex02",
+      "title": "The Calendar Test",
+      "tags": [
+        "team choice",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "startup offer negotiation",
+        "audience": "Gareth, a founder using pay as a trust signal",
+        "stakes": "A startup offer can invite commitment or teach bargain hunting.",
+        "format": "dialogue",
+        "requiredBeat": "Use gift exchange without turning it into manipulation."
+      },
+      "scenario": "Gareth cannot match a giant company's salary, but he can offer a transparent range, meaningful equity terms, and no surprise clawbacks. The candidate hears a relationship signal, not a squeeze.",
+      "whatToDo": "For the startup offer negotiation, make the offer signal trust without turning every result into a bargain.",
+      "whyItMatters": "Compensation communicates how the organization sees the person. Trust is part of the offer."
+    },
+    {
+      "exampleId": "drive-ch10-ex03",
+      "title": "When Metrics Crowd Out Meaning",
+      "tags": [
+        "ethics",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "department equity review",
+        "audience": "Uma, a department head spotting corrosive comparison",
+        "stakes": "An equity review reveals that people are tracking pay more than the work.",
+        "format": "audit",
+        "requiredBeat": "Show internal fairness drawing attention back to money."
+      },
+      "scenario": "Uma learns that senior analysts are comparing old offer letters in a private chat. The work is still getting done, but every assignment is being read through the pay gap.",
+      "whatToDo": "Use the department equity review to find one comparison that keeps people staring at pay.",
+      "whyItMatters": "When comparison dominates attention, autonomy and purpose have little room. Internal fairness is motivational infrastructure."
+    },
+    {
+      "exampleId": "drive-ch10-ex04",
+      "title": "A Better Design Choice",
+      "tags": [
+        "autonomy",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "bonus redesign workshop",
+        "audience": "Cedric, a sales leader simplifying a bonus system",
+        "stakes": "A bonus design rewards narrow transactions at the expense of customer value.",
+        "format": "planning_choice",
+        "requiredBeat": "Show Red Gate's commission lesson in a redesign."
+      },
+      "scenario": "Cedric removes a commission spike for add-on sales after seeing reps push features customers later cancel. He raises base pay and rewards retention quality at the team level.",
+      "whatToDo": "In the bonus redesign workshop, remove one commission pressure that harms long-term customer value.",
+      "whyItMatters": "The pay system stops making every customer a bounty. Money becomes less distracting and judgment improves."
+    },
+    {
+      "exampleId": "drive-ch10-ex05",
+      "title": "The Control Signal",
+      "tags": [
+        "management",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "employee retention interview",
+        "audience": "Anika, a manager hearing pay beneath a retention story",
+        "stakes": "An exit-risk conversation is being framed as lack of purpose.",
+        "format": "postmortem",
+        "requiredBeat": "Show a pay problem being named before purpose language."
+      },
+      "scenario": "Anika asks why a strong employee is interviewing elsewhere and hears about rent, market offers, and a promotion delay. She does not answer with mission language; she starts with compensation reality.",
+      "whatToDo": "Ask the employee retention interview whether compensation, not purpose, is driving the departure risk.",
+      "whyItMatters": "Purpose cannot cover insecurity. Taking money off the table sometimes means admitting money is still on it."
+    },
+    {
+      "exampleId": "drive-ch10-ex06",
+      "title": "After the Reward Debate",
+      "tags": [
+        "reflection",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "board compensation committee",
+        "audience": "Rhea, a board member reducing incentive noise",
+        "stakes": "A compensation committee must decide whether another metric will help or distract.",
+        "format": "reflection",
+        "requiredBeat": "Show simpler pay supporting deeper motivation."
+      },
+      "scenario": "Rhea reviews a plan with six overlapping executive bonuses and no clear connection to durable value. She pushes for a fair base, fewer triggers, and measures that do not reward short-term theater.",
+      "whatToDo": "At the board compensation committee, simplify one incentive so money becomes less distracting.",
+      "whyItMatters": "Complex incentives can keep everyone staring at money. Simpler fairness lets attention return to the work."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "drive-ch10-q01",
+        "prompt": "A salary calibration meeting reveals large unexplained gaps between similar roles. What is the first motivational issue?",
+        "choices": [
+          "Pay is still on the table because unfairness is capturing attention.",
+          "The team needs a stronger purpose speech before discussing salary.",
+          "People should ignore comparison if the work is meaningful."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fairness is a motivational floor. Purpose language cannot erase a visible pay gap.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch10-q02",
+        "prompt": "What does Akerlof's gift-exchange idea add to compensation design?",
+        "choices": [
+          "Workers respond only to the largest possible commission.",
+          "A trust signal makes market fairness irrelevant.",
+          "Pay can signal trust and relationship, not only purchase a unit of labor."
+        ],
+        "correctIndex": 2,
+        "explanation": "Gift exchange adds social meaning to pay. It does not deny market realities.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch10-q03",
+        "prompt": "A department wants to talk autonomy while employees worry about rent and market pay. What boundary fits the principle?",
+        "choices": [
+          "Intrinsic motivation is a reason to pay people below market.",
+          "Healthy pay lets nonfinancial motives breathe; unfair or inadequate pay poisons them.",
+          "Money should dominate every decision once fairness is mentioned."
+        ],
+        "correctIndex": 1,
+        "explanation": "Money matters enough to settle. It should neither be ignored nor made the whole system.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch10-q04",
+        "prompt": "A startup wants its offer to communicate trust. What policy signal fits gift exchange?",
+        "choices": [
+          "A fair, transparent offer that avoids squeezing people over every term.",
+          "A low offer wrapped in mission language.",
+          "A complicated bonus that pays only if every narrow target is hit."
+        ],
+        "correctIndex": 0,
+        "explanation": "The compensation signal has to be credible. Trust cannot be faked by slogans or traps.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch10-q05",
+        "prompt": "What does internal fairness compare?",
+        "choices": [
+          "Pay only against distant competitors in the market.",
+          "Pay among colleagues with similar responsibility and contribution.",
+          "Pay against how inspiring the mission statement sounds."
+        ],
+        "correctIndex": 1,
+        "explanation": "Internal fairness is about comparison inside the organization. External fairness is the market check.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch10-q06",
+        "prompt": "What does external fairness compare?",
+        "choices": [
+          "Pay with the loudest person's sense of effort.",
+          "Pay with the number of purpose posters in the office.",
+          "Pay with similar roles in the broader labor market."
+        ],
+        "correctIndex": 2,
+        "explanation": "External equity asks whether the organization is credible in the market for similar work.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "drive-ch10-q07",
+        "prompt": "Which salary-calibration test could reduce pay distraction this month?",
+        "choices": [
+          "Add a new performance bonus before checking whether similar roles are already paid fairly.",
+          "Delay all pay questions until morale improves and then survey whether people still feel inspired.",
+          "Review one role family for internal gaps and market drift, then fix the clearest source of pay salience."
+        ],
+        "correctIndex": 2,
+        "explanation": "The test aims at the distraction. The wrong choices leave money on the table.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch10-q08",
+        "prompt": "Output improves after a sharp commission plan, but customer trust weakens. What should worry the manager?",
+        "choices": [
+          "The manager should ignore customer trust if sales rose.",
+          "The incentive may be turning complex work into bounty hunting.",
+          "The team clearly no longer needs fair base pay."
+        ],
+        "correctIndex": 1,
+        "explanation": "A contingent plan can narrow judgment. Output alone is not the full motivational result.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch10-q09",
+        "prompt": "When taking money off the table, which check comes first?",
+        "choices": [
+          "Check internal and external fairness before leaning on purpose or incentives.",
+          "Use purpose language to make compensation feel less important.",
+          "Add more pay triggers so people think about money constantly."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fairness comes first. The goal is to reduce money's mental noise, not amplify it.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "drive-ch10-card01",
+      "front": "What does taking money off the table mean?",
+      "back": "Make pay fair, sufficient, and low-drama enough that people are not preoccupied with insecurity, resentment, or comparison.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "drive-ch10-card02",
+      "front": "Why is underpaying Type I workers a misread?",
+      "back": "Intrinsic motivation is not an excuse for unfair pay. Unfairness steals attention from autonomy, mastery, and purpose.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch10-card03",
+      "front": "What does gift exchange say about pay?",
+      "back": "Pay can signal trust and relationship. People respond to that meaning, not only to the amount.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch10-card04",
+      "front": "What is the difference between internal and external equity?",
+      "back": "Internal equity compares colleagues with similar responsibility. External equity compares similar roles in the market.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "drive-ch10-card05",
+      "front": "When do incentives become corrosive?",
+      "back": "When they keep people focused on the payout and narrow judgment in work that needs trust, care, or long-term value.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Pay Distraction Audit",
+    "coreSkill": "Use the Pay Distraction Audit: check sufficiency, internal fairness, external fairness, incentive noise, and whether pay is pulling attention away from the work.",
+    "ifThenPlans": [
+      {
+        "context": "People keep comparing pay",
+        "plan": "Run an internal equity check before discussing culture or purpose."
+      },
+      {
+        "context": "People are leaving for market offers",
+        "plan": "Run an external equity check and name the gap honestly."
+      },
+      {
+        "context": "A bonus drives narrow behavior",
+        "plan": "Simplify the incentive and protect measures of customer value, quality, or long-term contribution."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one role, team, or personal work arrangement. Write the five audit items and identify the strongest pay distraction.",
+    "weeklyPractice": "For seven days, notice when money becomes mentally loud. Ask whether the cause is sufficiency, fairness, comparison, or incentive design."
+  },
+  "memorableLines": [
+    {
+      "text": "George Akerlof's gift-exchange idea points to a simple truth: pay carries social meaning.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the lesson through a concrete source scene."
+    },
+    {
+      "text": "The mechanism is attention: unfair pay colonizes the mind before autonomy or purpose can do much work.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism before adding detail."
+    },
+    {
+      "text": "This principle runs opposite to a lazy reading of Type I motivation.",
+      "location": "breakdown.fullRead",
+      "why": "It frames the limit that protects the lesson from overreach."
+    }
+  ]
+}

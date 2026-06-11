@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch11",
+  "number": 11,
+  "title": "Recognize, Evaluate, and Respond to System Interactions",
+  "readingTimeMinutes": 11,
+  "hook": "The schedule was approved; the wall behind it was still crowded with red dependency notes.",
+  "counterintuition": "The local fix can be the system failure. A team may protect one date, metric, or component while hidden interfaces, feedback loops, and dependencies absorb the damage.",
+  "tryThisNow": "Add a 15-minute systems review to your calendar for 9:10 a.m. in the team room on your next workday; trigger it after any deadline change moves a dependency.",
+  "keyTakeaway": "A PMBOK principle becomes real when a project team traces what else moves, evaluates dependencies and feedback loops, and changes the next decision before local speed damages value.",
+  "breakdown": {
+    "fastRead": "The steering group has already approved the shorter date, and the project room still shows what the vote did not settle: red notes around vendor testing, support training, and a regulatory review. Malvina reads the wall as evidence. One schedule change has moved interfaces, feedback loops, dependencies, and value.\n\nPMI places Recognize, Evaluate, and Respond to System Interactions inside the 12 principles because project work lives in relationships. The practical move is not to recite the title. It is to ask which other parts moved when one lever was pulled, then alter communication, sequencing, governance, or quality checks before a clean local decision becomes hidden rework.",
+    "deepRead": "The mechanism is propagation. A date changes, then the change travels through handoffs, constraints, waiting queues, stakeholder expectations, and measurement. If nobody traces that travel, the first team may look efficient while the next team receives delay, defects, or adoption trouble. The project still has a baseline, but the baseline no longer describes the system honestly.\n\nColby and Deborah show the split. Colby keeps his component green during schedule pressure by trimming review steps and promising that an interface will be ready by Friday. The cell in his tracker stays clean, but testing opens against a blocked API. Deborah handles the same pressure by pulling the supplier, test owner, and support lead into one review. Her status turns yellow, yet the handoff survives because the affected owners see the tradeoff before work crosses the boundary.\n\nThat is why Rolande's coaching line lands: A principle counts when a handoff changes. The PMBOK phrase names a standard of professional behavior, not a decoration for a status note. To recognize is to notice a relationship, delay, dependency, feedback loop, or side effect. To evaluate is to judge what that interaction now means for value, risk, quality, governance, and adoption. To respond is to change the next action while the system is still recoverable.",
+    "fullRead": "The hard case is not a team that ignores the principle outright. It is a capable team that uses the right words while preserving the old motion. Connor can write Recognize, Evaluate, and Respond to System Interactions in a steering note and still leave every handoff untouched. Malvina can list dependencies in a register and still protect a baseline that no longer matches the work. The cleanest baseline can still hide broken interfaces.\n\nThe discipline also has a boundary. Tracing interactions does not mean modeling every possible consequence until delivery freezes. A small adaptive team, a predictive capital project, and a hybrid rollout all need different practices. The common responsibility is narrower and sharper: when a project decision changes one part of the value delivery system, someone checks what else is now different enough to require a response. On a low-risk change, that may be a five-minute owner check. Under schedule pressure, it may require escalation, resequencing, stakeholder involvement, or a visible quality tradeoff.\n\nThe PMI principle set matters because the 12 principles reinforce each other. A team acting as a steward cares about consequences beyond the task. When it engages stakeholders, it includes the people who will feel the change. When it focuses on value, it protects benefits rather than merely output. Risk, quality, resilience, and change become more practical when the team can see the web of relationships instead of defending one local number.\n\nThis is where convenience usually fights the standard. A shortened deadline invites everyone to compress their own lane and hope the pain lands somewhere else. Colby can remove a review and preserve the status color. Deborah can expose the same pressure and make the project look less tidy for a day. The second choice serves the system because it gives the team time to adjust before an interface fails. Schedule pressure is where the principle stops being vocabulary.\n\nThe response should be visible. If the team recognized a dependency but nothing changed in the meeting invite, the sequence, the risk response, the quality check, the stakeholder message, or the governance path, the recognition did not yet become project management. The question is simple enough to use in real work: what moved, who receives the movement, what feedback will return, and what decision changes now? Answer those questions while the wall still has red notes on it, and the principle has entered the work."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch11.ex.principle-11-tradeoff",
+      "title": "Malvina's Interface Memo",
+      "tags": [
+        "schedule pressure",
+        "interfaces",
+        "decision memo"
+      ],
+      "planSpec": {
+        "domain": "regulated software rollout",
+        "audience": "project managers under deadline pressure",
+        "stakes": "record the tradeoff before a compressed baseline hides interface risk",
+        "format": "decision_memo",
+        "requiredBeat": "the written memo changes sequencing instead of merely naming the principle"
+      },
+      "scenario": "Decision memo, 5:42 p.m., from Malvina to the delivery group: \"Schedule pressure is now changing the system, not just the calendar. The baseline date stays visible, but the supplier interface, test window, training slot, and regulatory review all move when we compress. I am recording the tradeoff before tomorrow's steering meeting: protect the public date only if we also escalate the interface risk, add Deborah to vendor calls, and move acceptance testing ahead of the demo rehearsal. The decision is not a speech about systems. It is a changed sequence of work.\"",
+      "whatToDo": "Malvina sends the memo with the dependency map attached, changes the vendor-call invite, and moves acceptance testing before the demo rehearsal.",
+      "whyItMatters": "The memo turns schedule pressure into an observable response. The baseline can remain a target, but the interface risk and tradeoff now shape the work instead of hiding behind the date."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch11.ex.principle-11-tradeoff",
+      "title": "Two Green Schedules",
+      "tags": [
+        "contrast",
+        "tradeoff",
+        "baseline"
+      ],
+      "planSpec": {
+        "domain": "vendor integration project",
+        "audience": "team leads comparing local and system-level responses",
+        "stakes": "same schedule pressure produces different outcomes",
+        "format": "contrast",
+        "requiredBeat": "Colby and Deborah face the same pressure with opposite approaches and diverging results"
+      },
+      "scenario": "The same vendor slip reaches Colby and Deborah on Monday. Colby shields his component plan: he trims two review steps, keeps the baseline green, and tells neighboring teams the interface will be ready by Friday. The green cell survives, but testing opens with a blocked API and tired people repairing work no one saw move. Deborah treats the slip as schedule pressure on the whole set of interfaces. She calls the supplier, support lead, and test owner into one review, names the tradeoff, and changes the sequence before status goes out. Her baseline shows yellow; the handoff holds.",
+      "whatToDo": "Deborah traces the moving interface across supplier, support, and testing owners, then changes the sequence while Colby's local shortcut is still recoverable.",
+      "whyItMatters": "A green local baseline can push cost into the next handoff. Comparing the two responses shows that the principle is measured by system results, not by one tidy status cell."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch11.concept",
+      "title": "Rolande's Handoff Sentence",
+      "tags": [
+        "coach talk",
+        "feedback loops",
+        "dependencies"
+      ],
+      "planSpec": {
+        "domain": "release readiness coaching",
+        "audience": "project leaders who treat principles as wording",
+        "stakes": "change a handoff before the phrase becomes decoration",
+        "format": "coach_talk",
+        "requiredBeat": "Rolande reframes Connor's stuck view in one quotable sentence"
+      },
+      "scenario": "Connor brings Rolande a draft status note that says the team will \"apply Recognize, Evaluate, and Respond to System Interactions\" after the release. Rolande reads it once and asks which handoff will change before the release, not after. Connor says the phrase belongs in the principle section; Rolande answers, \"A principle counts when a handoff changes.\" They spend the rest of the conversation moving one vendor review ahead of design signoff, adding the support queue to the feedback loop, and naming the dependency that schedule pressure had made invisible.",
+      "whatToDo": "Connor rewrites the status note around the changed handoff, moves the vendor review, and adds the support queue to the release feedback loop.",
+      "whyItMatters": "The reframe keeps the concept from becoming vocabulary. Readers can test their own use of a principle by asking which relationship, dependency, or feedback loop changed next."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch11.ex.principle-11-pmi",
+      "title": "Tamar Erases The List",
+      "tags": [
+        "school case",
+        "12 principles",
+        "PMI"
+      ],
+      "planSpec": {
+        "domain": "project-management onboarding class",
+        "audience": "learners memorizing the PMBOK principle set",
+        "stakes": "turn recall of the 12 principles into applied reasoning",
+        "format": "school_case",
+        "requiredBeat": "Stella's confusion becomes the teaching material"
+      },
+      "scenario": "Tamar's onboarding class begins with Stella reciting all 12 principles from the PMI handout, including Recognize, Evaluate, and Respond to System Interactions. Stella thinks the exercise is memory work: underline the title, match the definition, pass the check. Tamar erases the list and draws three delayed feedback loops from a practice project - training, procurement, and operations support. Stella's confusion becomes the lesson. If the procurement delay changes training attendance and support staffing, the right answer cannot be the title alone; the learner has to show which dependency moved and which response changed.",
+      "whatToDo": "Tamar has Stella redraw the practice project as dependencies and feedback loops, then write the response that would change the next class handoff.",
+      "whyItMatters": "The PMI principle set is behavioral, not ceremonial. A learner proves understanding by applying the 12 principles to project relationships, not by reciting a title."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch11.fact.8",
+      "title": "Colby's Friday Review",
+      "tags": [
+        "before after",
+        "schedule pressure",
+        "tradeoff decisions"
+      ],
+      "planSpec": {
+        "domain": "weekly project review",
+        "audience": "leaders redesigning a status process",
+        "stakes": "make tradeoffs visible before pressure becomes rework",
+        "format": "before_after",
+        "requiredBeat": "the same review process is shown before and after the change"
+      },
+      "scenario": "Before the change, Colby's Friday review treats schedule pressure as a date problem. The slide shows the baseline in green, the risk log in gray, and each interface as someone else's responsibility. A procurement delay appears only as a footnote. After the change, Colby's Friday review uses the same slide order but adds a \"what else moves\" row under every date. The procurement delay turns the test window yellow, moves a stakeholder walkthrough, and triggers a quality check. Same meeting, same project, different behavior: the tradeoff becomes visible before it becomes rework.",
+      "whatToDo": "Colby adds the moving-part row to the status review and uses it to change the test window, stakeholder walkthrough, and quality check before work is released.",
+      "whyItMatters": "A before-and-after process reveals whether pressure changed behavior. The response is visible when the review exposes interfaces and tradeoffs early enough to guide the next decision."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch11.ex.principle-11-tradeoff",
+      "title": "Stella Finds The Pattern",
+      "tags": [
+        "audit",
+        "dependency logs",
+        "interfaces"
+      ],
+      "planSpec": {
+        "domain": "project assurance review",
+        "audience": "PMO analysts auditing system interactions",
+        "stakes": "find whether the principle changed actual responses",
+        "format": "audit",
+        "requiredBeat": "Stella discovers the telling detail by reviewing records"
+      },
+      "scenario": "Stella's audit contains no interviews. She reads six weeks of status reports, dependency logs, and change requests from the same project. The telling detail is not a dramatic failure; it is a tiny timing pattern. Four missed handoffs occur within two days of baseline changes under schedule pressure, and every miss sits at interfaces between vendor work and internal testing. The phrase Recognize, Evaluate, and Respond to System Interactions appears in two governance notes, but no response changed after the dates moved. Stella marks one finding: the team recognized the words and missed the system.",
+      "whatToDo": "Stella records the timing pattern, links missed handoffs to baseline changes, and asks for a response rule whenever schedule pressure moves an interface.",
+      "whyItMatters": "Auditing records separates stated intent from behavior. The project can cite the principle and still fail it if dependency logs show that nothing changed after interfaces moved."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch11.ex.principle-11-tradeoff",
+        "prompt": "Stella's log shows four missed handoffs in six weeks, each within two days of baseline changes and all at vendor-testing interfaces. Which inference belongs first?",
+        "choices": [
+          "Interface Pattern: trace date-driven handoffs and dependencies before the next status call.",
+          "Date Hygiene: reformat the baseline report so the date changes are easier to read at the next meeting.",
+          "Vendor Blame: treat the supplier as the single cause because every miss touched vendor work."
+        ],
+        "correctIndex": 0,
+        "explanation": "The repeated timing around baseline changes points to an interaction, not a formatting problem or single-owner blame. The first move is to trace the interface pattern.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch11.fact.8",
+        "prompt": "Deborah inherits a project under schedule pressure: the date is green, but support training and test windows keep moving after vendor calls. As the new lead, what should she do first?",
+        "choices": [
+          "Baseline Defense: keep the date green in public and ask each owner to absorb the movement inside their own plan.",
+          "Heroic Compression: shorten training and testing equally so every lane gives up time and the date remains clean.",
+          "Moving-Part Trace: gather affected owners, name moved interfaces, and change the next handoff before status."
+        ],
+        "correctIndex": 2,
+        "explanation": "The issue is propagation across owners. Deborah should make the moved interfaces visible and alter the next handoff; defending the green date only hides the cost.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch11.fact.9",
+        "prompt": "Connor can recite Recognize, Evaluate, and Respond to System Interactions in a steering meeting, yet no meeting, sequence, risk response, or quality check changes. How should Rolande read that evidence?",
+        "choices": [
+          "Vocabulary Proof: correct language in the steering note shows the principle has already been applied.",
+          "Behavior Evidence: the principle has not reached the work until a decision, handoff, or response changes.",
+          "Principle Shelf: the phrase belongs after delivery, when the team can document lessons learned without slowing work."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hard edge is behavioral. Reciting the title is not evidence; a changed decision or handoff is. Waiting until lessons learned leaves the pressure unhandled.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch11.fact.4",
+        "prompt": "A dashboard shows Colby's local milestone improving after he removes a stakeholder review, while defect rework rises and adoption training slips. Which reading best protects value delivery?",
+        "choices": [
+          "Local Velocity: the milestone improved, so the removed review was a good system response.",
+          "Value Interaction: the faster lane moved cost into quality and adoption, so the wider project lost value.",
+          "Stakeholder Courtesy: adoption training slipped only because people prefer extra communication."
+        ],
+        "correctIndex": 1,
+        "explanation": "A local metric can improve while value suffers elsewhere. Rising rework and slipping adoption show side effects that the team must evaluate, not dismiss as courtesy.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch11.fact.2",
+        "prompt": "In Tamar's class, Stella asks whether the principle matters only for adaptive projects because feedback loops are easier to see there. What correction should Tamar make?",
+        "choices": [
+          "Method Lock: use the principle only in adaptive work, where the lifecycle already expects frequent inspection.",
+          "Predictive Exception: skip interaction checks in predictive plans because the approved baseline already holds dependencies.",
+          "Cross-Method Standard: keep the behavior across predictive, adaptive, and hybrid projects; scale the practice."
+        ],
+        "correctIndex": 2,
+        "explanation": "PMBOK principles describe professional behavior across lifecycles. The practice may differ by context, but predictive and hybrid work still have dependencies and side effects.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch11.fact.3",
+        "prompt": "A release board shows test pass rates falling after a deadline is pulled in, vendor tickets increasing, and no change to governance. What should Malvina treat as missing?",
+        "choices": [
+          "Visible Response: change a priority, communication path, governance step, or tradeoff tied to the interaction.",
+          "Metric Patience: the team should wait two cycles because system effects usually disappear once people adjust.",
+          "Owner Isolation: each owner should fix their own metric privately so governance stays light and the baseline stays stable."
+        ],
+        "correctIndex": 0,
+        "explanation": "The data already shows an interaction. Application requires a visible response in priorities, communication, governance, or tradeoffs; private fixes leave the system unchanged.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch11.fact.9",
+        "prompt": "Which sentence is the simplistic reading the PMBOK principle warns against?",
+        "choices": [
+          "Vocabulary Proof: reciting Recognize, Evaluate, and Respond to System Interactions proves the team applied it.",
+          "Tradeoff Evidence: schedule pressure tests the principle when it changes what the team does next, even if the status chart looks less tidy.",
+          "Dependency Trace: the team should examine interfaces and feedback loops before optimizing one part."
+        ],
+        "correctIndex": 0,
+        "explanation": "The question asks for the wrong reading. Vocabulary Proof is the misconception: the real standard appears in decisions about dependencies, interfaces, and responses.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch11.fact.6",
+        "prompt": "Malvina is told the project is small, so tailoring means skipping the dependency review entirely. Which response keeps the PMBOK intent intact?",
+        "choices": [
+          "Tailoring Escape: remove the principle for small work because formal system checks belong only in large programs.",
+          "Scaled Check: shorten the review to moving owners and interfaces, but keep the duty to trace effects.",
+          "Template Transfer: use the same full review form from a large program so the small project proves compliance."
+        ],
+        "correctIndex": 1,
+        "explanation": "Tailoring changes implementation, not responsibility. A small project can use a lighter check, but abandoning interaction review misreads the principle.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch11.ex.principle-11-pmi",
+        "prompt": "After Deborah adds the support queue to a feedback loop, a PMI review connects the work to the 12 principles. The baseline turns yellow, but an adoption issue is caught before release. Why is that stronger than a green chart?",
+        "choices": [
+          "Color Control: a green chart is always weaker because yellow status creates more conversation.",
+          "Status Humility: yellow status matters because it shows Deborah is willing to report bad news even when no action changes.",
+          "System Response: the team used PMI's 12 principles to protect value across dependencies, not just one status color."
+        ],
+        "correctIndex": 2,
+        "explanation": "The color is not the virtue. The stronger result is the changed response: a feedback loop exposed an adoption risk early and protected value across dependencies.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch11.concept",
+      "front": "What should a team trace when one project lever changes?",
+      "back": "Trace relationships, feedback loops, dependencies, interfaces, delays, and side effects. The point is to see what else moved before one local improvement creates hidden work elsewhere.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch11.fact.8",
+      "front": "Why does schedule pressure test whether this PMBOK principle is real behavior?",
+      "back": "Pressure tempts teams to protect a date by pushing cost into quality, risk, stakeholders, or adoption. The principle becomes real when the team changes a tradeoff before that cost becomes rework.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch11.fact.4",
+      "front": "Earlier chapter concept: Focus on Value - how does tracing dependencies protect value delivery?",
+      "back": "Value delivery depends on outcomes and benefits, not one local metric. Tracing dependencies shows whether a faster date is harming quality, trust, adoption, or learning somewhere else.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch11.fact.1",
+      "front": "Why is one early system document not enough for the whole project?",
+      "back": "Project conditions keep changing. A plan can record known dependencies at the start, but new delays, feedback, and constraints appear during delivery and need fresh recognition, evaluation, and response.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch11.fact.2",
+      "front": "How should predictive, adaptive, and hybrid teams apply the same principle differently?",
+      "back": "They keep the same responsibility and vary the practice. A predictive project may use formal governance, an adaptive team may use frequent reviews, and a hybrid effort may combine both.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch11.ex.principle-11-pmi",
+      "front": "Earlier chapter concept: stakeholder engagement - why involve affected owners when an interface moves?",
+      "back": "Stakeholders often receive the side effects of a change. Involving affected owners lets the team see dependencies and feedback loops early, then adjust work before trust or adoption is damaged.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Trace the Moving Part",
+    "coreSkill": "Practice tracing what else moves when a date, scope item, vendor input, or stakeholder expectation changes. Start with the visible change, follow it through dependencies, interfaces, feedback loops, and side effects, then name the response that must change next. Use Trace the Moving Part to turn PMBOK principle language into behavior under pressure.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch11.fact.8",
+        "context": "When a deadline is compressed and people start protecting their own lanes",
+        "plan": "If schedule pressure moves a date, then Trace the Moving Part across interfaces before status goes out and record the tradeoff that must change next."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.3",
+        "context": "When a status report stays green while handoffs keep arriving late",
+        "plan": "If the color looks clean but work is slipping at boundaries, then Trace the Moving Part and change one communication path, governance step, or quality check."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.9",
+        "context": "When someone treats Recognize, Evaluate, and Respond to System Interactions as wording for a report",
+        "plan": "If the principle appears only as a phrase, then Trace the Moving Part and ask which decision, handoff, or response will change before the next review."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.6",
+        "context": "When tailoring is used as a reason to drop interaction checks",
+        "plan": "If the project context is smaller or faster, then Trace the Moving Part with a lighter review while preserving the duty to examine dependencies and side effects."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one current deadline, scope, or vendor change and run Trace the Moving Part. List three affected interfaces, one feedback loop, and the response you will change before the next status update.",
+    "weeklyPractice": "Once a week, review the last changed date or priority with Trace the Moving Part. Track which dependency, stakeholder, quality check, or governance path moved, and whether your response changed in time."
+  },
+  "memorableLines": [
+    {
+      "text": "A principle counts when a handoff changes.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the hard edge: PMBOK principle language matters only when project behavior changes."
+    },
+    {
+      "text": "The cleanest baseline can still hide broken interfaces.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the local-optimization warning concrete and memorable under schedule pressure."
+    },
+    {
+      "text": "Schedule pressure is where the principle stops being vocabulary.",
+      "location": "breakdown.fullRead",
+      "why": "It gives readers a portable test for whether the principle is shaping actual tradeoffs."
+    }
+  ]
+}

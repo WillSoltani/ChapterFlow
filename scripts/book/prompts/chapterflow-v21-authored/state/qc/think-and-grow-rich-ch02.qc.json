@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 2,
+  "chapterId": "think-and-grow-rich-ch02",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "e55a8d124b06431d",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T12:02:30.622Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~90 GREEN. 9/9 keys correct (2,0,1,1,0,2,2,1,0). Six-step desire formula, Marshall Field/Chicago fire, Blair Hill, Schumann-Heink all accurate. Distinct scenes. Minor: Sabrina role-soft (educator vs fund organizer). No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 2,
+      "chapterId": "think-and-grow-rich-ch02",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "a78b4f7c934ef46a",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T12:02:30.622Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~90 GREEN. 9/9 keys correct (2,0,1,1,0,2,2,1,0). Six-step desire formula, Marshall Field/Chicago fire, Blair Hill, Schumann-Heink all accurate. Distinct scenes. Minor: Sabrina role-soft (educator vs fund organizer). No corruption."
+    }
+  ]
+}

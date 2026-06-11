@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch05",
+  "number": 5,
+  "title": "The Project Environment",
+  "coreMove": "Use context as live project data: scan internal culture and assets before checking regulation, technology, and markets, then choose practices that fit the work now.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "distributed rollout using PMO records",
+      "audience": "project leads tempted to copy a familiar plan",
+      "stakes": "an old template may hide a supplier handoff risk",
+      "format": "inner_monologue",
+      "requiredBeat": "Octave works through the urge to copy the asset and then tests it against current enterprise conditions."
+    },
+    {
+      "domain": "compliance and platform planning before work starts",
+      "audience": "analysts allocating limited review time",
+      "stakes": "three external signals compete for one planning block",
+      "format": "planning_choice",
+      "requiredBeat": "Lucie allocates scarce attention among a regulatory update, cybersecurity review, and platform capability assessment before anyone executes."
+    },
+    {
+      "domain": "software release affected by compliance change",
+      "audience": "technical leads managing delivery pressure",
+      "stakes": "both release choices carry visible harm",
+      "format": "dilemma",
+      "requiredBeat": "Ren faces two bad options after a regulatory update changes cybersecurity evidence for the release."
+    },
+    {
+      "domain": "PMO review of reusable project material",
+      "audience": "sponsors and PMO leads deciding how much process to reuse",
+      "stakes": "a helpful archive may become rigid copying",
+      "format": "dialogue",
+      "requiredBeat": "Leon and Giulia separate enterprise environmental factors from organizational process assets in conversation."
+    },
+    {
+      "domain": "procurement review after a promising technology update",
+      "audience": "procurement leads checking feasibility assumptions",
+      "stakes": "a platform shortcut appears to save time but creates a supplier exposure",
+      "format": "predict_reveal",
+      "requiredBeat": "Marguerite expects the new platform capability to reduce work, then discovers a supply disruption that changes feasibility."
+    },
+    {
+      "domain": "team chat during delivery",
+      "audience": "distributed teams catching environmental shifts midstream",
+      "stakes": "short messages must surface an external change before a routine meeting locks the wrong agenda",
+      "format": "text_thread",
+      "requiredBeat": "Lucas uses a short message exchange to turn supply disruption and platform capability signals into a live agenda change."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 4,
+      "evaluate": 2,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.311Z"
+}

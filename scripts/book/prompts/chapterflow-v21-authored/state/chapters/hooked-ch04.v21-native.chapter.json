@@ -1,0 +1,320 @@
+{
+  "chapterId": "hooked-ch04",
+  "number": 4,
+  "title": "Variable Reward",
+  "readingTimeMinutes": 12,
+  "hook": "Pinterest keeps the next useful image just out of certainty.",
+  "counterintuition": "Randomness turns useful only when the uncertainty answers the user's original itch and preserves autonomy.",
+  "tryThisNow": "Name one reward in your product and classify it as tribe, hunt, or self, then ask whether it satisfies the trigger that brought the user in.",
+  "keyTakeaway": "Variable rewards sustain anticipation when they satisfy a real need, leave curiosity alive, and let the user feel in control instead of manipulated.",
+  "breakdown": {
+    "fastRead": "BF Skinner's reinforcement research gives the idea its behavioral spark: uncertain payoffs can keep an organism searching. In product design, the point is not to scatter random prizes. The uncertainty must matter.\n\nPinterest shows rewards of the hunt. A user scrolls because the next image, recipe, room, or idea may be the useful one. Facebook likes and comments show rewards of the tribe. The next response may bring status, belonging, or silence. Variable reward turns action into anticipation.",
+    "deepRead": "Variable rewards operate before the payoff arrives. The mind leans into uncertainty and searches for resolution. Predictable feedback can confirm an action, but variable feedback keeps attention because the next outcome is not fully known.\n\nThe reward framework divides payoffs into three families. Rewards of the tribe come from other people: likes, comments, admiration, competition, inclusion, and social learning. Facebook is powerful because a post's response is uncertain and socially meaningful.\n\nRewards of the hunt concern resources and information. Pinterest's scrolling field offers the possibility that the next item will be exactly the image or idea the user wanted. The search itself becomes charged.\n\nRewards of the self involve mastery, completion, competence, and control. Email often blends all three families: a message from a person, useful information, and the satisfaction of clearing unread items.\n\nAutonomy is the guardrail. Fitocracy and MyFitnessPal illustrate how a reward system can either support self-direction or feel controlling. If users feel coerced, reactance appears and the loop weakens. Farm-management games and World of Warcraft add another limit: finite novelty decays when the pattern is obvious, while social and strategic variability can keep uncertainty alive.",
+    "fullRead": "The idea's strictest line is relevance. A reward can be unpredictable and still fail if it does not answer the reason the user acted. Randomness without meaning is noise.\n\nBF Skinner's reinforcement research explains why uncertainty can produce persistent behavior. The organism does not simply enjoy reward after reward; it keeps acting because the schedule cannot be fully predicted. Product designers borrow that insight, but the human product context adds meaning, autonomy, and purpose.\n\nFacebook likes and comments are rewards of the tribe. A person posts, then wonders who will respond, how strongly, and what the response will imply about belonging or status. The uncertainty is social. Silence is also information. That makes checking emotionally loaded in a way a fixed confirmation message would not be.\n\nPinterest belongs to the hunt. The user scrolls through images because the next tile may contain the recipe, design, gift, or idea that completes the search. The valuable item is never guaranteed, but it is plausible enough to continue. The reward is not only the found image; it is the pursuit through a field of possible value.\n\nRewards of the self are quieter. They show up in completion, competence, mastery, and control. Email mixes the categories almost too well. A message may carry social obligation, useful work information, or the small satisfaction of reducing the unread count. Each open inbox contains uncertainty across tribe, hunt, and self.\n\nThe autonomy warning prevents crude gamification. When users feel controlled, they push back. Fitocracy and MyFitnessPal are useful contrasts because health tracking can either help people feel competent and supported or make them feel judged by a rigid chore. The same domain can produce return or resistance depending on whether the user experiences agency.\n\nVariability also needs a renewing source. Farm-style mechanics can lose force when users learn the pattern. World of Warcraft and other multiplayer systems have deeper variability because people, strategy, and social coordination keep changing. Infinite variability is not merely more content; it is a system where novelty can regenerate.\n\nThe product question is therefore precise. What reward family fits the user's trigger? Does the reward satisfy the itch enough to feel worthwhile? Does it leave curiosity open without trapping the user? Does the experience let the user choose, or does it threaten autonomy?\n\nA clean variable-reward design is not a casino pasted onto an app. It is a meaningful uncertainty after a simple action, tied to the user's motive, strong enough to invite return, and respectful enough that return remains chosen."
+  },
+  "examples": [
+    {
+      "exampleId": "hooked-ch04-ex01",
+      "title": "Feed response",
+      "tags": [
+        "Variable Reward",
+        "Facebook",
+        "tribe"
+      ],
+      "planSpec": {
+        "domain": "social feed review",
+        "audience": "community PM",
+        "stakes": "how likes and comments create social uncertainty",
+        "format": "social scene",
+        "requiredBeat": "Apply Facebook to how likes and comments create social uncertainty without flattening the source case."
+      },
+      "scenario": "After a creator posts on Facebook, she refreshes because the response is socially uncertain. Likes, comments, and silence all say something about belonging and status. The reward is not a fixed badge; it is the unpredictable reaction of other people.",
+      "whatToDo": "Design the feedback around genuine social meaning, then avoid turning every response into a generic point count.",
+      "whyItMatters": "Facebook likes and comments show rewards of the tribe. The variable part matters because people care who responds and how."
+    },
+    {
+      "exampleId": "hooked-ch04-ex02",
+      "title": "Scrolling wall",
+      "tags": [
+        "Variable Reward",
+        "Pinterest",
+        "hunt"
+      ],
+      "planSpec": {
+        "domain": "discovery feed lab",
+        "audience": "design researcher",
+        "stakes": "why the next item can pull the user forward",
+        "format": "observation",
+        "requiredBeat": "Apply Pinterest to why the next item can pull the user forward without flattening the source case."
+      },
+      "scenario": "In a discovery feed lab, Livia watches a user scroll Pinterest for apartment ideas. Each screen is uneven: a forgettable tile, then a perfect shelf, then a color palette. The next valuable image might be just below the fold, so the hunt continues.",
+      "whatToDo": "Keep the hunt tied to a real search goal. Remove filler that makes uncertainty feel like clutter instead of possibility.",
+      "whyItMatters": "Pinterest demonstrates reward of the hunt. The user keeps searching because useful information may appear next."
+    },
+    {
+      "exampleId": "hooked-ch04-ex03",
+      "title": "Fitness log tension",
+      "tags": [
+        "Variable Reward",
+        "Fitocracy",
+        "MyFitnessPal"
+      ],
+      "planSpec": {
+        "domain": "fitness product critique",
+        "audience": "health app founder",
+        "stakes": "whether the reward system supports autonomy",
+        "format": "contrast case",
+        "requiredBeat": "Apply Fitocracy to whether the reward system supports autonomy without flattening the source case."
+      },
+      "scenario": "At a fitness product critique, Jo compares Fitocracy encouragement with a MyFitnessPal logging flow that some users describe as scolding. Both track health behavior, but one can feel like competence and community while the other can provoke reactance.",
+      "whatToDo": "Audit whether the reward helps users feel capable and self-directed. If the system feels controlling, loosen the path and restore choice.",
+      "whyItMatters": "Fitocracy versus MyFitnessPal makes autonomy concrete. Rewards fail when users experience the product as coercion."
+    },
+    {
+      "exampleId": "hooked-ch04-ex04",
+      "title": "Inbox triage",
+      "tags": [
+        "Variable Reward",
+        "email",
+        "self"
+      ],
+      "planSpec": {
+        "domain": "operations desk",
+        "audience": "team lead",
+        "stakes": "how one product can combine reward families",
+        "format": "work scene",
+        "requiredBeat": "Apply email to how one product can combine reward families without flattening the source case."
+      },
+      "scenario": "At an operations desk, Kira opens email after lunch. One message is praise from a client, another contains a needed file, and clearing the unread list feels satisfying. The inbox mixes tribe, hunt, and self in a single variable reward field.",
+      "whatToDo": "Identify which reward family is doing the work in each feature. When several appear together, make sure none overwhelms the user's original need.",
+      "whyItMatters": "Email's power comes from blended uncertainty: social response, useful information, and the self-reward of completion."
+    },
+    {
+      "exampleId": "hooked-ch04-ex05",
+      "title": "Game economy",
+      "tags": [
+        "Variable Reward",
+        "farm-game loops",
+        "World of Warcraft"
+      ],
+      "planSpec": {
+        "domain": "game systems meeting",
+        "audience": "game designer",
+        "stakes": "why finite novelty fades",
+        "format": "systems review",
+        "requiredBeat": "Apply farm-game loops to why finite novelty fades without flattening the source case."
+      },
+      "scenario": "In a game systems meeting, Basil compares farm-style crops with World of Warcraft raids. A fixed collection pattern becomes predictable after repetition. Coordinating with other players, changing strategies, and social surprises keep variability alive longer.",
+      "whatToDo": "Look for the source of renewal. Add human, strategic, or generative uncertainty instead of another copy of a known reward pattern.",
+      "whyItMatters": "farm-management games and World of Warcraft separate finite novelty from deeper variability. Predictable mechanics decay once users learn the loop."
+    },
+    {
+      "exampleId": "hooked-ch04-ex06",
+      "title": "Lab note",
+      "tags": [
+        "Variable Reward",
+        "BF Skinner",
+        "research"
+      ],
+      "planSpec": {
+        "domain": "behavioral research seminar",
+        "audience": "product ethics lead",
+        "stakes": "how Skinner can be overread",
+        "format": "seminar",
+        "requiredBeat": "Apply BF Skinner to how Skinner can be overread without flattening the source case."
+      },
+      "scenario": "In a behavioral research seminar, Dana hears BF Skinner used as permission for random prizes. She redirects the group: uncertain reinforcement explains persistence, but product rewards still need relevance, user control, and a need worth serving.",
+      "whatToDo": "Use Skinner as a mechanism, not a moral blank check. Tie uncertainty to the user's trigger and check for autonomy loss.",
+      "whyItMatters": "Skinner's research explains why uncertainty pulls attention. It does not excuse meaningless randomness or coercive reward design."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "hooked-ch04-q01",
+        "prompt": "What is the main power of variable rewards?",
+        "choices": [
+          "They create anticipation because the payoff is uncertain but meaningful.",
+          "They remove the need for a trigger before action.",
+          "They make any random prize useful regardless of user need."
+        ],
+        "correctIndex": 0,
+        "explanation": "Variable reward works through anticipation and search. The uncertainty must still connect to something the user cares about.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch04-q02",
+        "prompt": "Facebook likes and comments are primarily which reward family?",
+        "choices": [
+          "Rewards of the hunt.",
+          "Rewards of stored value.",
+          "Rewards of the tribe."
+        ],
+        "correctIndex": 2,
+        "explanation": "Likes and comments come from other people. Their variable social meaning makes them tribe rewards.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch04-q03",
+        "prompt": "Why does Pinterest fit rewards of the hunt?",
+        "choices": [
+          "The user builds reputation with every saved image.",
+          "The user searches through uncertain information or inspiration, hoping the next item is useful.",
+          "The user receives a fixed completion badge after each scroll."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pinterest keeps the user searching through possible value. The next useful idea may appear just below the fold.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch04-q04",
+        "prompt": "Which reward type concerns mastery, completion, competence, and control?",
+        "choices": [
+          "Rewards of the self.",
+          "Rewards of the tribe.",
+          "Rewards of the hunt."
+        ],
+        "correctIndex": 0,
+        "explanation": "Rewards of the self satisfy the desire to improve, complete, master, or feel control over a task.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch04-q05",
+        "prompt": "What warning does reactance add to reward design?",
+        "choices": [
+          "Users always prefer rigid rules when health is involved.",
+          "Users need less choice as rewards become more variable.",
+          "Users may resist when a system feels controlling or threatens autonomy."
+        ],
+        "correctIndex": 2,
+        "explanation": "Reactance is the pushback that appears when autonomy feels threatened. Variable rewards need user control to remain inviting.",
+        "bloomsLevel": "remember",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch04-q06",
+        "prompt": "How does email illustrate the idea's categories?",
+        "choices": [
+          "It works only because every message is predictable.",
+          "It combines social obligation, useful information, and completion satisfaction.",
+          "It belongs only to rewards of the hunt."
+        ],
+        "correctIndex": 1,
+        "explanation": "Email often blends tribe, hunt, and self: people, information, and the pleasure of processing unread items.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch04-q07",
+        "prompt": "What is the problem with randomness that does not answer the user's trigger?",
+        "choices": [
+          "It becomes noise instead of a meaningful reward.",
+          "It automatically creates infinite variability.",
+          "It guarantees autonomy because no pattern is visible."
+        ],
+        "correctIndex": 0,
+        "explanation": "The reward must satisfy the itch that brought the user in. Unrelated unpredictability does not create a healthy loop.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch04-q08",
+        "prompt": "Why can World of Warcraft sustain variability longer than a simple farm-game loops-like pattern?",
+        "choices": [
+          "It removes social coordination so rewards remain private.",
+          "It makes every reward schedule fully predictable.",
+          "Its multiplayer and strategic situations renew uncertainty through people and changing contexts."
+        ],
+        "correctIndex": 2,
+        "explanation": "Human coordination and strategy create deeper novelty. Fixed patterns lose force once users understand them.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch04-q09",
+        "prompt": "Which design question best captures the hard edge of this idea?",
+        "choices": [
+          "Which random prize can we attach to the action?",
+          "Does this uncertainty satisfy the original need while preserving the user's choice?",
+          "Can we make the user feel controlled enough to keep returning?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Variable reward must be relevant and autonomy-preserving. The point is meaningful anticipation, not random manipulation.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "hooked-ch04-card01",
+      "front": "What are variable rewards?",
+      "back": "Uncertain payoffs after an action. They keep attention through anticipation and search, provided the uncertainty is relevant to the user's need.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch04-card02",
+      "front": "Name the three reward families.",
+      "back": "Tribe for social validation, hunt for resources or information, and self for mastery, completion, competence, or control.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch04-card03",
+      "front": "Why is autonomy a guardrail?",
+      "back": "If users feel controlled, reactance can make them resist the behavior. A reward system should support choice, not coerce return.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "hooked-ch04-card04",
+      "front": "What separates finite from deeper variability?",
+      "back": "Finite novelty fades when the pattern is learned. Human, strategic, or open-ended systems can renew uncertainty over time.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Match Reward To Itch",
+    "coreSkill": "Design uncertainty around the user's reason for acting. Classify the reward family, test whether it satisfies the trigger, and protect autonomy.",
+    "ifThenPlans": [
+      {
+        "context": "When adding a reward",
+        "plan": "If the payoff is unpredictable, then name whether it is tribe, hunt, or self before shipping it."
+      },
+      {
+        "context": "When users feel pressured",
+        "plan": "If return behavior drops after a reward change, then inspect whether the product threatened autonomy."
+      },
+      {
+        "context": "When novelty fades",
+        "plan": "If the pattern has become obvious, then look for human or strategic variability instead of more decoration."
+      },
+      {
+        "context": "When points feel generic",
+        "plan": "If a badge does not answer the user's original trigger, then replace it with a reward that does."
+      }
+    ],
+    "twentyFourHourChallenge": "Audit one reward in your product and write the user itch, reward family, uncertainty source, and autonomy risk.",
+    "weeklyPractice": "Each week, review one repeat-use feature for relevance: trigger, action, reward family, and whether curiosity remains meaningful."
+  },
+  "memorableLines": [
+    {
+      "text": "Pinterest shows rewards of the hunt.",
+      "location": "breakdown.fastRead",
+      "why": "It condenses rewards of the hunt into a product scene."
+    },
+    {
+      "text": "Randomness without meaning is noise.",
+      "location": "breakdown.fullRead",
+      "why": "It states the idea's hard edge sharply."
+    },
+    {
+      "text": "A reward can be unpredictable and still fail if it does not answer the reason the user acted.",
+      "location": "breakdown.fullRead",
+      "why": "It distinguishes variable reward from arbitrary surprise."
+    }
+  ]
+}

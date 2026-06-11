@@ -1,0 +1,70 @@
+{
+  "chapterId": "pmbok-guide-ch01",
+  "number": 1,
+  "title": "Introduction to The Standard for Project Management",
+  "coreMove": "Before choosing a method, read the Standard's frame: audience, purpose, and shared terms tell you when to use principles as judgment, not as a replacement process grid.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "enterprise PMO standards adoption",
+      "audience": "PMO leaders moving a mixed organization to the Seventh Edition",
+      "stakes": "prevent the formal standard from being misread as a shorter process manual",
+      "format": "predict_reveal",
+      "requiredBeat": "the expected celebration of a 2021 consensus standard reveals a hidden wish for the old process grid"
+    },
+    {
+      "domain": "software release governance",
+      "audience": "project managers explaining the edition shift to delivery teams",
+      "stakes": "stop a chat thread from turning the Seventh Edition into a renamed Sixth Edition grid",
+      "format": "text_thread",
+      "requiredBeat": "the message exchange shows the lesson between short replies about 49 processes and the new reading path"
+    },
+    {
+      "domain": "project management training workshop",
+      "audience": "trainers introducing the Standard to sponsors and team members",
+      "stakes": "keep a routine class from teaching process compliance before professional purpose",
+      "format": "reset_moment",
+      "requiredBeat": "the protagonist interrupts her own routine and restarts from the Standard's audience and purpose"
+    },
+    {
+      "domain": "public-sector permit office",
+      "audience": "consultants observing how shared vocabulary affects coordination",
+      "stakes": "show how the old grid can sit in ordinary work without telling people what a word means",
+      "format": "vignette",
+      "requiredBeat": "a close observed moment shows the teaching point without a decision fork"
+    },
+    {
+      "domain": "public infrastructure handoff review",
+      "audience": "analysts tracing why a compliant project still missed the outcome",
+      "stakes": "locate the interpretive miss that turned guidance into mechanical compliance",
+      "format": "postmortem",
+      "requiredBeat": "the failure is already visible, and the one decisive misstep was skipping the opening frame"
+    },
+    {
+      "domain": "executive sponsor briefing",
+      "audience": "sponsors explaining the edition shift without oversimplifying it",
+      "stakes": "recover from a sponsor's own slide that turns the Seventh Edition into a replacement matrix",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist notices his own error mid-briefing and corrects the frame before the room copies it"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "understand": 2,
+      "apply": 1,
+      "evaluate": 2,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.309Z"
+}

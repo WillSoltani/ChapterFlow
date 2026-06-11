@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 13,
+  "chapterId": "pmbok-guide-ch13",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "5b28a201cb33e6a9",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:55:52.484Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "93/100, read full ch13, quiz keys matched tailoring-by-context principle, examples coherent, cards and plan actionable, no corruption found"
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-4-hour-workweek",
+  "chapterNumber": 9,
+  "chapterId": "the-4-hour-workweek-ch09",
+  "verdict": "REVISE",
+  "contentHash": "4135efa5af1f33e4",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:30:06.952Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=100; cross-chapter: scene_skeleton",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 9,
+      "chapterId": "the-4-hour-workweek-ch09",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "8f33c27c2ed9b1d0",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:01:53.055Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Deep-read all sections. ~90/100. 9/9 keys correct; muse criteria (niche, product-over-service, premium pricing, target monthly income, borrowed expertise) accurate; BrainQUICKEN real; examples coherent & varied; cards answer fronts; plan uses Score the Cash-Flow Vehicle. No corruption."
+    }
+  ]
+}

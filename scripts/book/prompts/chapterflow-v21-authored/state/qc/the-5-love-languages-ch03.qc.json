@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-5-love-languages",
+  "chapterNumber": 3,
+  "chapterId": "the-5-love-languages-ch03",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "f833db528b3f6416",
+  "reviewer": "claude-qc:5ll-20260606",
+  "reviewedAt": "2026-06-06T11:53:15.359Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~93/100. 9/9 keys; Tennov limerence ~2yr + third-path faithful; varied scenes, couples map 1:1 (Etienne/Bonnie, Rocco/Pascal, Valerie/Christophe); plan 'Open-Eyes Love Check'. GREEN.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-5-love-languages",
+      "chapterNumber": 3,
+      "chapterId": "the-5-love-languages-ch03",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "6bf0de1e46a01db8",
+      "reviewer": "claude-qc:5ll-20260606",
+      "reviewedAt": "2026-06-06T11:53:15.359Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~93/100. 9/9 keys; Tennov limerence ~2yr + third-path faithful; varied scenes, couples map 1:1 (Etienne/Bonnie, Rocco/Pascal, Valerie/Christophe); plan 'Open-Eyes Love Check'. GREEN."
+    }
+  ]
+}

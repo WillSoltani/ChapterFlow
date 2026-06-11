@@ -1,0 +1,299 @@
+{
+  "chapterId": "range-ch05",
+  "number": 5,
+  "title": "Thinking Outside Experience",
+  "readingTimeMinutes": 14,
+  "hook": "Kepler found planetary insight by borrowing images from light, magnets, currents, and scent.",
+  "counterintuition": "A metaphor earns its keep only when it maps relationships. Deep analogy means testing where the comparison works and where it breaks.",
+  "tryThisNow": "Write one current problem. List three unlike domains: force or flow or delay or crowding or feedback.",
+  "keyTakeaway": "Deep analogical thinking improves judgment by comparing hidden relationships across domains instead of matching surface appearances.",
+  "breakdown": {
+    "fastRead": "Late in the lab, Ravi's sensor data refuses the usual electrical model, so he asks the team what invisible influence it resembles: current, magnetism, scent, pressure.\n\nKepler used analogies because direct evidence was not enough. Good analogy drops surface detail and maps relations carefully.\n\nThe radiation-and-fortress problem shows the same move: the story helps only when force, path, convergence, and damage are mapped back to the real case.\n\nChoose one stuck problem, write three distant analogies, map the relation in each, and discard the ones that only sound clever.",
+    "deepRead": "When experience provides no ready pattern, analogy becomes the engine of reasoning. Kepler is the central model because his astronomical problem sat beyond available evidence and inherited explanation. Rather than stare harder at Mars alone, he compared planetary motion to light, magnetism, currents, scent, and boats moving in water. Those comparisons were imperfect, but each forced a new question about invisible influence.\n\nThe working distinction is deep analogical thinking: Deep analogical thinking compares problems by underlying relationship instead surface resemblance. It asks what a situation works like, not merely what it looks like.\n\nRadiation and fortress problem: A medical problem about destroying a tumor without harming healthy tissue maps onto a military story about splitting forces across roads to capture a fortress. People solve the medical problem more readily when they see the shared shape.\n\nModern psychology supplies the how it works: analogies work when they map relations, not when they merely match appearances. The radiation problem demonstrates the power of shape mapping. A story about dispersed troops converging on a fortress makes the tumor solution easier because the relation among force, path, and damage transfers.\n\nReaders gain a method for wicked problems: collect distant comparisons, map relationships, and let outside shapes challenge the obvious inside view.\n\nKepler borrowed with care. The fortress story maps force and path. Dunbar shows why mixed labs see more options. Analogy must earn trust.",
+    "fullRead": "Johannes Kepler was not using analogy as decoration. He faced astronomical problems that exceeded the evidence and explanations available to him, so he borrowed relational patterns from light, magnetism, currents, and other phenomena to reason about invisible influence.\n\nThat kind of analogy is demanding. It asks what corresponds to what, which relationships transfer, and which surface features should be ignored. The radiation-and-fortress problem makes the method visible: a military story about dividing forces only helps the medical problem when the deep structure is mapped back to radiation paths, concentrated force, and damage limits.\n\nKevin Dunbar's observations of molecular biology labs show why diverse groups have more resources when experiments surprise them. A failed assay can remain a local failure, or it can become a comparison problem: what else behaves like this? Outsiders and varied backgrounds widen the stock of possible relations.\n\nThe shallow version of the lesson is to brainstorm metaphors. The stronger version is to test analogies. A useful analogy travels because the relation fits, not because the image is charming. When experience has no ready pattern, careful comparison can create one.\n\nA reader can make the method concrete with a four-column page. In the first column, state the target problem in plain terms. In the second, list possible source domains. In the third, map the relationship: what plays the role of force, path, resistance, signal, incentive, or constraint? In the fourth, name the mismatch. That last column keeps analogy honest because every borrowed comparison has a breaking point.\n\nDunbar's lab observations matter because surprise often arrives before explanation. A homogeneous group may all reach for the same familiar cause. A varied group has more comparisons available, and one person's odd reminder can become the start of a better model. The goal is not to collect decorative metaphors; it is to enlarge the search space when direct experience has run out of road.\n\nKepler's example is demanding for that reason. He did not ask whether planets were literally magnets, boats, or beams of light. He asked what relation those images made thinkable. Useful analogy is disciplined imagination: borrow the structure, test the fit, and let the mismatch teach as much as the resemblance.\n\nThe best analogies usually begin as questions, not answers. \"What is this like?\" is only the start. The useful follow-up is, \"What would have to be true for the likeness to matter, and how would we find out?\""
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Kepler Product Mystery",
+      "tags": [
+        "kepler",
+        "product",
+        "mystery"
+      ],
+      "planSpec": {
+        "domain": "kepler product mystery",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "decision_point",
+        "requiredBeat": "Kepler Product Mystery"
+      },
+      "scenario": "Ravi's sensor startup has data that will not fit the team's usual electrical model. At 8:40 p.m. in the lab, he revisits Johannes Kepler's habit of comparing planetary motion to light, magnetism, and currents. Instead of demanding one perfect analogy, Ravi asks each engineer for a relationship that might explain invisible influence.",
+      "whatToDo": "Ravi maps several analogies and marks their limits. The team tests what each comparison predicts before returning to the data.",
+      "whyItMatters": "Kepler's power came from disciplined borrowing. Multiple imperfect analogies can expose structure that direct experience cannot supply."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Fortress Oncology Brief",
+      "tags": [
+        "fortress",
+        "oncology",
+        "brief"
+      ],
+      "planSpec": {
+        "domain": "fortress oncology brief",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "reflection",
+        "requiredBeat": "Fortress Oncology Brief"
+      },
+      "scenario": "Dr. Nisha prepares a tumor-board teaching case with the radiation and fortress problem. Residents know the medical facts but miss the convergence solution. She tells the military story about dividing forces across roads, then asks them to map force, path, and damage back to radiation dosing. In the tumor-board classroom, Dr. Nisha must choose whether the radiation case stays medical or the fortress analogy gets mapped in front of residents.",
+      "whatToDo": "Nisha has residents draw the shared structure before discussing treatment. They name where the analogy fits and where biology changes the answer.",
+      "whyItMatters": "A useful analogy transfers relationships. The fortress story works because it preserves the pattern of distributed force, not because armies resemble tumors."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Dunbar Lab Meeting",
+      "tags": [
+        "dunbar",
+        "lab",
+        "meeting"
+      ],
+      "planSpec": {
+        "domain": "dunbar lab meeting",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "business_case",
+        "requiredBeat": "Dunbar Lab Meeting"
+      },
+      "scenario": "Carlos manages a molecular biology group after reading Kevin Dunbar's lab observations. A failed assay has the specialists repeating familiar explanations. Carlos invites a materials scientist and a statistician to the Friday meeting, then asks each person what the surprising result reminds them of.",
+      "whatToDo": "Carlos collects analogies before choosing the next experiment. Background diversity becomes a resource for interpreting anomalies.",
+      "whyItMatters": "Dunbar saw varied groups generate more useful comparisons. Surprise needs more than deeper local habit; it needs new handles."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Retail Strategy Comparison",
+      "tags": [
+        "retail",
+        "strategy",
+        "comparison"
+      ],
+      "planSpec": {
+        "domain": "retail strategy comparison",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "scene",
+        "requiredBeat": "Retail Strategy Comparison"
+      },
+      "scenario": "Aisha's software company keeps benchmarking Apple and Dell. During a strategy offsite, she adds Nike and McDonald's to the board and asks what each comparison reveals about distribution, identity, and repeatable operations. The team first laughs, then finds patterns the computer-industry set had hidden.",
+      "whatToDo": "Aisha separates surface category from relational lesson. Each analogy must name the structure it contributes to strategy.",
+      "whyItMatters": "Near comparisons can trap a team inside obvious variables. Distant analogies press thinkers to see what the business works like."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Kepler Classroom Debate",
+      "tags": [
+        "kepler",
+        "classroom",
+        "debate"
+      ],
+      "planSpec": {
+        "domain": "kepler classroom debate",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "planning_choice",
+        "requiredBeat": "Kepler Classroom Debate"
+      },
+      "scenario": "Professor Lane gives students Kepler's Mars problem and forbids a single favored metaphor. One group chooses boats in current, another chooses scent spreading through air, and a third chooses magnetism. The chalkboard becomes a map of invisible influence more than a list of clever images.",
+      "whatToDo": "Lane grades the mapping, not the poetry. Students must say which relation transfers and which part of the analogy should be discarded.",
+      "whyItMatters": "Deep analogy is rigorous because it can be tested. The comparison earns value by generating questions."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Warehouse Flow Fix",
+      "tags": [
+        "warehouse",
+        "flow",
+        "fix"
+      ],
+      "planSpec": {
+        "domain": "warehouse flow fix",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "audit",
+        "requiredBeat": "Warehouse Flow Fix"
+      },
+      "scenario": "Marisol's warehouse jams every afternoon near packing. The operations team compares it only to other warehouses. Marisol brings the fortress story and asks whether flow should split and converge like roads around a defended city. The room sketches three routing experiments within twenty minutes.",
+      "whatToDo": "Marisol borrows the convergence relation, then measures bottlenecks. The analogy becomes a trial design not just a slogan.",
+      "whyItMatters": "Outside experience helps when it carries a usable relation. The warehouse does not need to look like a battlefield to learn from the structure."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What is deep analogical thinking?",
+        "choices": [
+          "Choosing the first metaphor that makes a problem sound more vivid.",
+          "Comparing situations by underlying relationships rather than by surface resemblance.",
+          "Relying only on examples from the same industry or discipline."
+        ],
+        "correctIndex": 1,
+        "explanation": "Deep analogy maps relations and structure. It asks what a problem works like, not merely what it looks like.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "How did Johannes Kepler use analogies in his scientific reasoning?",
+        "choices": [
+          "He avoided comparisons outside astronomy because they would contaminate direct evidence.",
+          "He used analogies only after direct observation had already solved the problem.",
+          "He borrowed images from light, magnetism, currents, scent, and boats to make planetary motion thinkable."
+        ],
+        "correctIndex": 2,
+        "explanation": "Kepler lacked direct access to the mechanism moving planets. Distant analogies helped him reason toward physical forces.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "What does the radiation and fortress problem demonstrate?",
+        "choices": [
+          "Two problems with different surfaces can share the same underlying structure.",
+          "Medical problems cannot benefit from military examples because the surface details differ.",
+          "People solve problems best when they ignore stories from other domains."
+        ],
+        "correctIndex": 0,
+        "explanation": "The tumor problem maps onto splitting forces toward a fortress. Seeing the shared structure makes the medical solution easier.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Why are multiple distant analogies often better than one close analogy?",
+        "choices": [
+          "They are more likely to reveal deep structure and challenge the inside view.",
+          "They eliminate the need to test whether any comparison actually fits.",
+          "They work because distant examples always share more facts than close examples."
+        ],
+        "correctIndex": 0,
+        "explanation": "A single close analogy can reinforce assumptions. Several distant comparisons help separate structure from surface.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "What did Dedre Gentner's structure-mapping work contribute to the argument?",
+        "choices": [
+          "It proved that people should avoid comparing unfamiliar situations.",
+          "It argued that surface resemblance is the only reliable guide to problem solving.",
+          "It showed that analogies transfer relational patterns across domains."
+        ],
+        "correctIndex": 2,
+        "explanation": "Gentner's work explains why analogy can move insight across domains: the relationship pattern is what transfers.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "What happened when students compared a fictional software company to Nike and McDonald's rather than only to tech firms?",
+        "choices": [
+          "They became less strategic because nontechnology comparisons were too distant.",
+          "They generated broader strategic insight by escaping a narrow technology-only frame.",
+          "They copied consumer brands without seeing any deeper business structure."
+        ],
+        "correctIndex": 1,
+        "explanation": "The distant analogies widened the strategic frame. They helped students notice patterns a same-industry comparison could miss.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "What did Kevin Dunbar observe in productive molecular biology labs?",
+        "choices": [
+          "Homogeneous teams were best because they shared a single technical language.",
+          "Groups with varied backgrounds generated useful analogies when unexpected results appeared.",
+          "Unexpected results were ignored until a senior specialist supplied the correct answer."
+        ],
+        "correctIndex": 1,
+        "explanation": "Dunbar found that diversity expanded the pool of comparisons available during confusion. That helped groups reinterpret anomalies.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "What is the shallow misuse of analogy that the argument rejects?",
+        "choices": [
+          "Brainstorming random metaphors without testing whether their structure fits.",
+          "Mapping relationships carefully across different cases.",
+          "Using disagreement among analogies to find what the inside view missed."
+        ],
+        "correctIndex": 0,
+        "explanation": "Epstein is not recommending decorative metaphor. Useful analogy requires disciplined mapping and testing.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "What does an outside view gain from analogy?",
+        "choices": [
+          "It replaces evidence with a story that feels familiar.",
+          "It guarantees that the most vivid comparison is the most accurate one.",
+          "It helps strip away local surface details and locate a transferable relationship."
+        ],
+        "correctIndex": 2,
+        "explanation": "The outside view uses comparisons to loosen the grip of local assumptions. The value is in the transferable structure.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "How did Kepler use analogy to reason beyond direct evidence?",
+      "back": "Kepler compared planetary motion with other forms of invisible influence so he could reason about relationships that available evidence did not yet explain.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What makes an analogy useful instead of merely clever?",
+      "back": "A useful analogy maps a deep relation between source and target, identifies limits, and suggests a testable move in the real problem.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "What does local jargon often hide from analogy?",
+      "back": "Jargon can hide the transferable structure of a problem: forces, flows, incentives, constraints, timing, or feedback loops that another field already understands.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "When should you drop an analogy?",
+      "back": "Drop it when the shared relation is weak, the mismatch affects the decision, or the comparison creates confidence without a test.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Analogy-Transfer Protocol",
+    "coreSkill": "Use analogy by mapping relationships, testing fit, dropping surface detail, and keeping only what transfers to the target problem.",
+    "ifThenPlans": [
+      {
+        "context": "When a metaphor sounds exciting",
+        "plan": "If an analogy grabs the room, then I will map the source, target, shared relation, and non-transferable details before using it."
+      },
+      {
+        "context": "When experience has no answer",
+        "plan": "If the familiar model fails, then I will ask which distant domains handle the same relationship or constraint."
+      },
+      {
+        "context": "When an analogy starts driving too much",
+        "plan": "If the comparison hides a crucial difference, then I will revise or drop it instead of force the fit."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one stuck problem. Generate three analogies, map the shared relation for each, and choose one small test that would reveal whether the best analogy transfers.",
+    "weeklyPractice": "This week, run one analogy review before a decision: name the relation, the mismatch, and the evidence that would make you abandon the comparison."
+  }
+}

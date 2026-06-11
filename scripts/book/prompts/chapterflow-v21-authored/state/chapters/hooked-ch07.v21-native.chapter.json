@@ -1,0 +1,320 @@
+{
+  "chapterId": "hooked-ch07",
+  "number": 7,
+  "title": "Case Study: The Bible App",
+  "readingTimeMinutes": 12,
+  "hook": "YouVersion turns a chosen spiritual practice into a repeatable loop.",
+  "counterintuition": "Mission raises the standard for habit design: YouVersion works because the mechanics support a user-endorsed practice with agency and genuine benefit.",
+  "tryThisNow": "Choose one meaningful behavior your users already want, then map its trigger, smallest action, reward, and investment without adding pressure.",
+  "keyTakeaway": "YouVersion shows the full Hook Model serving a value-driven routine when prompts, easy reading, meaningful rewards, and personal investment all support the user's own goal.",
+  "breakdown": {
+    "fastRead": "Bobby Gruenewald and YouVersion make the full-loop case concrete. The target behavior is not idle scrolling; it is helping users read and reflect on scripture more consistently.\n\nThe daily verse notification cues the behavior. Reading plans and bite-size passages reduce the action. A relevant verse, sense of progress, or shared reflection can reward the user. Highlights, notes, and bookmarks become investment. The loop is familiar, but the aim is a practice users already value.",
+    "deepRead": "The ethical hook case study matters because the mechanics do not change simply because the mission is religious. YouVersion still uses triggers, action, reward, and investment. The difference is alignment: the product supports a behavior the founder values and users choose.\n\nDaily verse notifications and reminders act as external triggers. They reduce the need to decide where to begin. The action is simplified by mobile access, themed plans, and short readings. A long and formal text becomes approachable in a small unit.\n\nThe rewards are not generic prizes. A verse may feel timely. A completed reading may give a sense of progress. Sharing a passage may create a response from another person. Those rewards can include relevance, inspiration, completion, and social connection.\n\nInvestment appears through highlights, notes, bookmarks, chosen plans, and a personal reading history. Those stored choices make returning easier and more meaningful. The case points back to the Facilitator quadrant: Bobby Gruenewald's own commitment to the behavior gives the design a stronger ethical footing, but it still needs restraint.",
+    "fullRead": "YouVersion is useful because it removes abstraction. The Hook Model can otherwise sound like a universal engagement machine. The Bible App case shows the same machine pointed at a practice many users already want to sustain.\n\nBobby Gruenewald's role matters. The product is tied to a commitment he personally understands. That does not make every design choice automatically right, but it places the team closer to the Facilitator posture: maker use and user benefit overlap.\n\nThe trigger layer is straightforward. A daily verse notification, reminder, or message gives the user a cue. The cue is more defensible when it arrives as help for an endorsed routine instead of as a demand for idle attention. It should lower activation energy: begin here, with this passage, at this moment.\n\nThe action layer solves a real barrier. Bible reading can feel large, formal, and difficult to begin. Reading plans, themed sequences, mobile access, and bite-size passages turn an intimidating practice into a small next act. The user does not have to decide where in the canon to start each day.\n\nThe reward layer is meaningful instead of flashy. A verse can feel relevant to the user's day. A plan check mark can signal progress. A shared passage can prompt encouragement or conversation. The variability comes from relevance, reflection, completion, and social response, not from arbitrary prizes.\n\nThe investment layer deepens return. Highlights preserve passages that mattered. Notes capture interpretation. Bookmarks mark re-entry points. Selected reading plans create a path. Personal history makes the app more useful than a fresh copy of the same text because the user's spiritual attention has been stored there.\n\nSocial features can load future triggers. A shared verse or message invites a reply. A friend's response can send the user back into the app. The loop continues because the behavior connects to people and meaning, not just interface prompts.\n\nThe hard edge is crucial. A noble category does not excuse manipulation. A mission product can still over-prompt, shame users, or optimize guilt. YouVersion works as an ethical example only when the mechanics support a practice users want and preserve their agency.\n\nThe general design lesson is portable: begin with a value users endorse, cue it respectfully, make the first action small, reward it with something connected to the value, and ask for investments that make the next return more meaningful."
+  },
+  "examples": [
+    {
+      "exampleId": "hooked-ch07-ex01",
+      "title": "Founder commitment",
+      "tags": [
+        "Bible App",
+        "Bobby Gruenewald",
+        "YouVersion"
+      ],
+      "planSpec": {
+        "domain": "church technology office",
+        "audience": "mission product lead",
+        "stakes": "why founder relationship affects the ethical reading",
+        "format": "founder case",
+        "requiredBeat": "Apply Bobby Gruenewald to why founder relationship affects the ethical reading without flattening the source case."
+      },
+      "scenario": "In a church technology office, a product lead studies Bobby Gruenewald and YouVersion. The case is not detached optimization; the founder shares the religious practice the product supports. That personal relationship helps place the app near Facilitator instead of Dealer.",
+      "whatToDo": "Ask whether the maker understands and would choose the behavior being shaped. Founder empathy does not remove scrutiny, but it matters.",
+      "whyItMatters": "Bobby Gruenewald's relationship to YouVersion grounds the case ethically. The hook supports a practice he can personally defend."
+    },
+    {
+      "exampleId": "hooked-ch07-ex02",
+      "title": "Morning cue",
+      "tags": [
+        "Bible App",
+        "daily verse",
+        "notification"
+      ],
+      "planSpec": {
+        "domain": "morning routine",
+        "audience": "mobile designer",
+        "stakes": "how a notification can lower starting friction",
+        "format": "routine scene",
+        "requiredBeat": "Apply daily verse to how a notification can lower starting friction without flattening the source case."
+      },
+      "scenario": "At 6:30 a.m., Noreen sees a daily verse notification from YouVersion before opening email. The cue does not ask her to decide where to begin; it offers a short starting point for a practice she already wants in her morning.",
+      "whatToDo": "Keep the cue specific and modest. A daily verse should open a small chosen practice, not create pressure for screen time.",
+      "whyItMatters": "The daily verse notification works as an external trigger because it arrives with a clear and meaningful next action."
+    },
+    {
+      "exampleId": "hooked-ch07-ex03",
+      "title": "Plan selection",
+      "tags": [
+        "Bible App",
+        "reading plans",
+        "bite-size"
+      ],
+      "planSpec": {
+        "domain": "reading-plan redesign",
+        "audience": "content strategist",
+        "stakes": "how plans simplify a large text",
+        "format": "content design",
+        "requiredBeat": "Apply reading plans to how plans simplify a large text without flattening the source case."
+      },
+      "scenario": "In a reading-plan redesign, Soren turns a broad goal into bite-size passages. YouVersion's lesson is that a large sacred text can overwhelm users at the moment of action. A themed plan gives them a small path instead of a blank table of contents.",
+      "whatToDo": "Design the first reading action as a manageable unit. Let plans reduce decision effort while preserving the user's reason for reading.",
+      "whyItMatters": "Reading plans and bite-size passages make a high-meaning behavior repeatable by shrinking the next action."
+    },
+    {
+      "exampleId": "hooked-ch07-ex04",
+      "title": "Highlight history",
+      "tags": [
+        "Bible App",
+        "highlights",
+        "bookmarks"
+      ],
+      "planSpec": {
+        "domain": "personalization review",
+        "audience": "app PM",
+        "stakes": "how annotations become investment",
+        "format": "feature audit",
+        "requiredBeat": "Apply highlights to how annotations become investment without flattening the source case."
+      },
+      "scenario": "During a personalization review, Keira sees that users return to old highlights, notes, and bookmarks in YouVersion. Those markings are not decoration. They store the user's reflection, making the app feel like a personal spiritual history.",
+      "whatToDo": "Treat annotations as stored meaning. Make them easy to revisit, not merely easy to create.",
+      "whyItMatters": "Highlights, notes, and bookmarks are investment because they make future reading more personal and easier to re-enter."
+    },
+    {
+      "exampleId": "hooked-ch07-ex05",
+      "title": "Shared passage reply",
+      "tags": [
+        "Bible App",
+        "YouVersion",
+        "social"
+      ],
+      "planSpec": {
+        "domain": "small group chat",
+        "audience": "community moderator",
+        "stakes": "how social sharing can load another trigger",
+        "format": "group scene",
+        "requiredBeat": "Apply YouVersion to how social sharing can load another trigger without flattening the source case."
+      },
+      "scenario": "In a small group chat, Dani shares a YouVersion passage and receives a thoughtful reply after dinner. The response becomes a relationship trigger to reopen the app. The reward is not vanity; it is connection around a passage that mattered.",
+      "whatToDo": "Use sharing to support reflection and relationships. Avoid turning spiritual exchange into raw popularity feedback.",
+      "whyItMatters": "The Bible App case shows social triggers can support meaning when they serve the user's chosen practice."
+    },
+    {
+      "exampleId": "hooked-ch07-ex06",
+      "title": "Prompt restraint",
+      "tags": [
+        "Bible App",
+        "Facilitator",
+        "YouVersion"
+      ],
+      "planSpec": {
+        "domain": "trust review",
+        "audience": "product ethicist",
+        "stakes": "why mission products still need limits",
+        "format": "ethics review",
+        "requiredBeat": "Apply Facilitator to why mission products still need limits without flattening the source case."
+      },
+      "scenario": "At a trust review, Iris praises YouVersion's mission but flags a proposal for guilt-heavy reminders. The app may fit the Facilitator quadrant, yet the hook still needs agency. A noble behavior can be damaged by coercive prompting.",
+      "whatToDo": "Review each prompt for consent, tone, and user benefit. Mission language should raise the ethical bar, not lower it.",
+      "whyItMatters": "The case's hard edge is restraint. A meaningful practice does not give designers permission to pressure users."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "hooked-ch07-q01",
+        "prompt": "Why is YouVersion a useful case study for Hooked?",
+        "choices": [
+          "It shows the full trigger-action-reward-investment loop serving a value-driven routine.",
+          "It proves mission products do not need ethical scrutiny.",
+          "It replaces the Hook Model with a religious content strategy."
+        ],
+        "correctIndex": 0,
+        "explanation": "YouVersion makes the complete loop concrete while keeping the target behavior tied to a user-valued practice.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch07-q02",
+        "prompt": "What role does the daily verse notification play?",
+        "choices": [
+          "It is an investment that stores reputation.",
+          "It is an external trigger with a simple next action.",
+          "It is a reward of the hunt unrelated to scripture."
+        ],
+        "correctIndex": 1,
+        "explanation": "The daily verse notification cues the user and lowers the decision of where to begin.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch07-q03",
+        "prompt": "How do reading plans and bite-size passages support action?",
+        "choices": [
+          "They make the reward random enough to replace meaning.",
+          "They ask users for investment before any value appears.",
+          "They reduce the effort of approaching a large and formal text."
+        ],
+        "correctIndex": 2,
+        "explanation": "Plans and short readings simplify the first act. They turn a large practice into an approachable next step.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch07-q04",
+        "prompt": "What kind of investment do highlights, notes, and bookmarks create?",
+        "choices": [
+          "Paid attention that funds acquisition.",
+          "Stored personal meaning that makes later return easier.",
+          "A public reputation score for marketplace trust."
+        ],
+        "correctIndex": 1,
+        "explanation": "Annotations store the user's reflection and re-entry points. The app becomes more personal with use.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch07-q05",
+        "prompt": "Why does Bobby Gruenewald matter to the ethical reading?",
+        "choices": [
+          "His role means every prompt is automatically ethical.",
+          "His presence removes the need to consider user agency.",
+          "His personal commitment places the product closer to the Facilitator posture."
+        ],
+        "correctIndex": 2,
+        "explanation": "Founder alignment strengthens the ethical footing, but it does not give the design a free pass.",
+        "bloomsLevel": "remember",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "hooked-ch07-q06",
+        "prompt": "Which reward is most consistent with the YouVersion case?",
+        "choices": [
+          "A relevant verse, progress in a reading plan, or meaningful social response.",
+          "A random prize unrelated to scripture.",
+          "A forced streak that shames the user into returning."
+        ],
+        "correctIndex": 0,
+        "explanation": "The rewards should connect to reflection, relevance, completion, or connection. Arbitrary prizes would miss the point.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch07-q07",
+        "prompt": "What is the hard edge of the Bible App case?",
+        "choices": [
+          "Mission products should maximize prompts because the goal is good.",
+          "Religious content cannot be habit-forming.",
+          "A noble mission still needs user agency, genuine benefit, and restraint."
+        ],
+        "correctIndex": 2,
+        "explanation": "The case is ethical only when the mechanics serve a chosen practice without coercion.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch07-q08",
+        "prompt": "How can a shared passage load the next trigger?",
+        "choices": [
+          "A reply or message from another person can cue the user to return.",
+          "The share deletes investment so the loop restarts.",
+          "The passage becomes a paid trigger."
+        ],
+        "correctIndex": 0,
+        "explanation": "Social response creates a relationship trigger. Another person's reply brings the user back into the loop.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "hooked-ch07-q09",
+        "prompt": "Which design summary best generalizes YouVersion?",
+        "choices": [
+          "Find a noble label, then optimize any engagement pattern.",
+          "Cue a user-valued behavior, make the first action small, reward it meaningfully, and store personal value.",
+          "Remove investment so the product never asks users to personalize anything."
+        ],
+        "correctIndex": 1,
+        "explanation": "The portable lesson is aligned habit design: respectful cue, simple action, meaningful reward, and investment that serves the user's goal.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "hooked-ch07-card01",
+      "front": "What behavior does YouVersion support?",
+      "back": "Consistent Bible reading and reflection, a practice users already consider meaningful and often want help sustaining.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch07-card02",
+      "front": "Where is the trigger in the Bible App case?",
+      "back": "Daily verse notifications, reminders, and messages cue the user to begin with a simple next action.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "hooked-ch07-card03",
+      "front": "How does YouVersion reduce action difficulty?",
+      "back": "Mobile access, themed reading plans, and bite-size passages make a large text easier to approach repeatedly.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "hooked-ch07-card04",
+      "front": "What are the investment features?",
+      "back": "Highlights, notes, bookmarks, chosen reading plans, and personal history store meaning that makes return easier and more valuable.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Align The Full Loop",
+    "coreSkill": "Build the hook around a behavior users already endorse. Each stage should support that value instead of merely increasing screen time.",
+    "ifThenPlans": [
+      {
+        "context": "When choosing a trigger",
+        "plan": "If the behavior is meaningful, then cue a small start instead of a vague obligation."
+      },
+      {
+        "context": "When action feels heavy",
+        "plan": "If users hesitate before beginning, then shrink the first step into a bite-size unit."
+      },
+      {
+        "context": "When rewards are proposed",
+        "plan": "If a reward feels flashy, then replace it with relevance, progress, reflection, or connection."
+      },
+      {
+        "context": "When personalization grows",
+        "plan": "If users highlight or note something, then make that stored meaning easy to revisit."
+      }
+    ],
+    "twentyFourHourChallenge": "Map one mission-driven behavior through trigger, action, reward, and investment, then mark any step that pressures instead of supports.",
+    "weeklyPractice": "Review one prompt or reward each week against user agency, chosen value, and evidence of real benefit."
+  },
+  "memorableLines": [
+    {
+      "text": "Bobby Gruenewald and YouVersion make the full-loop case concrete.",
+      "location": "breakdown.fastRead",
+      "why": "It captures why the case is both practical and ethical."
+    },
+    {
+      "text": "The ethical hook case study matters because the mechanics do not change simply because the mission is religious.",
+      "location": "breakdown.deepRead",
+      "why": "It preserves the idea's hard edge."
+    },
+    {
+      "text": "A noble category does not excuse manipulation.",
+      "location": "breakdown.fullRead",
+      "why": "It prevents mission language from becoming a shortcut."
+    }
+  ]
+}

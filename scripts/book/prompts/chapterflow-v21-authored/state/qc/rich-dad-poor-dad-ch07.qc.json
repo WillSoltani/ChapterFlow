@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "rich-dad-poor-dad",
+  "chapterNumber": 7,
+  "chapterId": "rich-dad-poor-dad-ch07",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "0a84fdbbd7670a0a",
+  "reviewer": "claude-qc:rdpd-20260605-r2",
+  "reviewedAt": "2026-06-05T11:40:17.042Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Full 8-axis read. All 9 keys correct; five blockers (fear/cynicism/laziness/bad-habits/arrogance), Chicken Little, Texan/Alamo loss attitude faithful; names fully consistent, no orphans; cards/plan/lines solid. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "rich-dad-poor-dad",
+      "chapterNumber": 7,
+      "chapterId": "rich-dad-poor-dad-ch07",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "e0a73d0cc2995fc3",
+      "reviewer": "claude-qc:rdpd-20260605-r2",
+      "reviewedAt": "2026-06-05T11:40:17.042Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Full 8-axis read. All 9 keys correct; five blockers (fear/cynicism/laziness/bad-habits/arrogance), Chicken Little, Texan/Alamo loss attitude faithful; names fully consistent, no orphans; cards/plan/lines solid. No corruption."
+    }
+  ]
+}

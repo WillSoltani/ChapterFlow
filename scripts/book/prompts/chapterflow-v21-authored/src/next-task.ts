@@ -264,7 +264,10 @@ export function formatNextTask(task: NextTask): string {
       lines.push("");
       lines.push(`Read playbook: ${task.playbook}`);
       lines.push("");
-      lines.push(`Every chapter is generated and ship-gated. Run the book gate + assembly + promotion via:`);
+      // Honesty: this ladder is file-EXISTENCE based — it has not run any gate.
+      // Promotion re-runs the full stack (ship + intra-book + book + QC
+      // attestations) and may block; don't promise "ship-gated" here.
+      lines.push(`Every chapter file exists on disk (NOT gate-verified — promotion re-runs the full gate stack). Finalize via:`);
       lines.push(`  npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate-book ${task.bookId} \\`);
       lines.push(`    --title "<title>" --author "<author>" \\`);
       lines.push(`    --no-categorizer \\`);

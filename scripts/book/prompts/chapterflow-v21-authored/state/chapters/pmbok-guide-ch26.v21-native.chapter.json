@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch26",
+  "number": 26,
+  "title": "Measurement Performance Domain",
+  "readingTimeMinutes": 12,
+  "hook": "2 of 14 dashboard tiles carried nearly all the bad news the green report missed.",
+  "counterintuition": "A dashboard can make a project less visible when its measures are not tied to decisions. Good measures earn their place by changing action: keep going, change course, raise the issue, or step in.",
+  "tryThisNow": "Place a 10-minute signal-chain review on tomorrow's calendar at 9:10 in the usual planning room, triggered by the first dashboard refresh.",
+  "keyTakeaway": "Use measurement to guide action, not decorate status: compare KPIs with baselines, read forecasts with context, and connect every dashboard signal to a decision.",
+  "breakdown": {
+    "fastRead": "At a PMBOK Guide review table, Domenic sees 14 tiles on a dashboard. 12 are green. The 2 red ones carry the risk: late benefits data and a team load trend. Treating the deck as good news would hide the work.\n\nMeasurement only helps when it points to action. KPIs, baselines, and forecasts need a chain: signal, threshold, meaning, next step. If the chain breaks, the team has status theater.\n\nThe 8 domains move together. A weak measure in Delivery, Team, or Stakeholders can make a neat plan lie.",
+    "deepRead": "Useful project data has to travel before it can help. A KPI starts as a count, meets a baseline, crosses or clears a threshold, and then gains meaning in context. A cost variance by itself does not say enough. It matters differently if the team is absorbing a planned spike, waiting on a supplier, or burning down risk faster than expected. The same is true for lead time, defects, benefits, and stakeholder response.\n\nAurore learns that in the PMBOK Guide eight-domain map. Her dashboard says delivery is green, yet the stakeholder log shows low adoption and the team board shows weekend work. If she reads Measurement as a box after Planning, she misses the signal. If she reads the 8 domains as a system, the green tile becomes only part of the story.\n\nBaselines give the comparison point; forecasts show where the line is heading. Dashboards should not end the talk. They should start the next useful choice: continue, adjust, escalate, or intervene. A threshold keeps the talk from becoming mood and taste. Credible data keeps the threshold from becoming theater.\n\nThe test is plain: can one named signal change one named action? A measure that cannot alter a decision may still be interesting, but it is not yet doing project work.",
+    "fullRead": "Green can be the riskiest color on a report when the wrong thing is being measured. Ines finds that out after a benefits review. Scope, cost, and schedule stayed inside baseline. Adoption was thin, defects were rising, and users had begun keeping a workaround file. The report was accurate in a narrow way. It was also late to the damage.\n\nThat is the limit of measurement as scorekeeping. Project teams can hit the number and miss the value behind it. A defect trend can improve because people stop logging small defects. A velocity chart can rise while the team cuts learning time. A stakeholder score can stay calm because the quiet group has stopped answering surveys. Numbers need interpretation, and interpretation needs a link back to value.\n\nThe PMBOK Guide places Measurement inside an eight-domain system for this reason. Stakeholders, Team, Planning, Delivery, Uncertainty, Project Work, and Development Approach and Life Cycle do not wait in a line around Measurement. They tug on the same project. A baseline breach may be a planning issue. It may also be a supplier risk, a team load problem, or a delivery quality problem. A dashboard that cannot show those links will overstate control.\n\nAdelaide uses a different cadence on a hybrid project. The predictive work has cost baselines and milestone forecasts. The adaptive work has burnup, lead time, defect age, and product outcome signals. She does not rank one style as more mature. She asks what each signal helps the team do next. Some measures support control. Some support learning. Some support stakeholder choice.\n\nThe harder case is a metric that starts shaping the work too strongly. Once a KPI becomes a target, people may optimize the number. They may defer ugly news until the dashboard refresh. They may split work to improve throughput or delay hard risks to protect a green line. The signal-chain test adds friction before that happens. It asks who will act, what threshold matters, what outside context could explain the change, and what value could still be missed.\n\nLorne's status room gives the clean contrast. A red schedule variance appears beside a forecast that shows recovery next month. The baseline helps, yet it is not the verdict. Lorne checks the resource plan, vendor lead time, and stakeholder release date before asking for a new action. The team chooses a small escalation, not a panic rewrite. The measure guided action without pretending to know more than it did.\n\nGood measurement also has a cost. Every report consumes attention. Every extra metric creates another place to argue about the number instead of the work. The aim is not a bigger dashboard. The aim is a smaller set of credible signals that help decisions across the domains. A team should be able to say which indicator would make it hold course, change the plan, call for help, or intervene.\n\nThe closing standard is practical. When a dashboard refreshes, one signal should connect to a baseline, a forecast, a threshold, and a named next step. If no one can name the decision, the measure is not mature yet. It is only a number looking for a job."
+  },
+  "examples": [
+    {
+      "exampleId": "ch26-ex01-domenic",
+      "sourceAnchorId": "ch26.ex.domain-26-eight",
+      "title": "Domenic Keeps The Map Open",
+      "tags": [
+        "dialogue",
+        "domains",
+        "dashboard"
+      ],
+      "planSpec": {
+        "domain": "PMBOK Guide domain review",
+        "audience": "project leads learning the domain map",
+        "stakes": "a green dashboard may be read apart from the other domains",
+        "format": "dialogue",
+        "requiredBeat": "Two named people use the 8 domains to keep a KPI tied to action."
+      },
+      "scenario": "Domenic taps the PMBOK Guide spread on the conference table. \"Why is Measurement beside Team and Delivery, not after them?\" Lorne asks. \"Because the 8 domains move together,\" Domenic says. Lorne points at the KPI tile. \"Then a green dashboard can still be wrong if Stakeholders are drifting?\" Before the meeting starts, Domenic nods. \"Ask what signal changes action.\"",
+      "whatToDo": "Domenic keeps the PMBOK Guide map visible and asks Lorne to trace one KPI from baseline to decision across Team, Delivery, Stakeholders, and Uncertainty.",
+      "whyItMatters": "The exchange keeps Measurement from becoming a report lane. The measure matters when it shows how the 8 domains tug on the same project."
+    },
+    {
+      "exampleId": "ch26-ex02-aurore",
+      "sourceAnchorId": "ch26.ex.domain-26-artifact",
+      "title": "Aurore Finds The Quiet Miss",
+      "tags": [
+        "predict_reveal",
+        "KPIs",
+        "baselines"
+      ],
+      "planSpec": {
+        "domain": "quarterly product adoption review",
+        "audience": "PMO leads and product sponsors",
+        "stakes": "a green status pack could hide weak value delivery",
+        "format": "predict_reveal",
+        "requiredBeat": "A green KPI set looks safe until adoption evidence breaks the expectation."
+      },
+      "scenario": "Aurore expects applause Tuesday at 8:40 a.m. in the PMO room: 11 KPIs green, all baselines intact, forecast within range. Minutes before the PMBOK Guide review, she opens the adoption notes and finds pilot users keeping a workaround sheet. The reveal changes the room: the KPI set looked healthy until it ignored value use.",
+      "whatToDo": "Aurore adds an adoption indicator beside the cost and schedule baselines, then marks the threshold that would force a product intervention.",
+      "whyItMatters": "Good forecasts do not rescue a blind KPI set. Baseline health has to be checked against value signals, not admired alone."
+    },
+    {
+      "exampleId": "ch26-ex03-aiden",
+      "sourceAnchorId": "ch26.ex.domain-26-artifact",
+      "title": "Aiden Pins The Defect Thread",
+      "tags": [
+        "text_thread",
+        "forecast",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "software release standup",
+        "audience": "product owners and delivery leads",
+        "stakes": "green release status could silence a defect trend",
+        "format": "text_thread",
+        "requiredBeat": "A short chat shows that KPIs and baselines still need interpretation."
+      },
+      "scenario": "Aiden opens the Monday 9:15 a.m. launch chat while the dashboard refreshes:\nInes: Green again?\nAiden: KPIs green. Baselines steady.\nInes: Defect trend?\nAiden: Rising.\nInes: Forecast?\nAiden: Two weeks late if rate holds.\nInes: Then green means \"no action\" only if defects do not count.\nBefore the next standup, Aiden pins the thread.",
+      "whatToDo": "Aiden brings the pinned thread into standup and asks which dashboard signal overrides the green status: defect trend, forecast date, or baseline variance.",
+      "whyItMatters": "The chat compresses the rule: signals need interpretation. A green KPI should not silence a defect trend that points to late or weak delivery."
+    },
+    {
+      "exampleId": "ch26-ex04-ines",
+      "sourceAnchorId": "ch26.ex.domain-26-artifact",
+      "title": "Ines Restarts The Benefits Pack",
+      "tags": [
+        "reset_moment",
+        "benefits",
+        "threshold"
+      ],
+      "planSpec": {
+        "domain": "benefits reporting routine",
+        "audience": "analysts who build sponsor packs",
+        "stakes": "routine reporting could copy colors without asking what action follows",
+        "format": "reset_moment",
+        "requiredBeat": "A routine gets interrupted so the analyst restarts with a decision threshold."
+      },
+      "scenario": "Ines starts her Friday benefits routine by copying dashboard colors into the sponsor pack. The third row stops her: KPIs and baselines are green, but the forecasted adoption curve is flat. Before she sends the pack, she closes the deck, writes \"What action would this signal change?\" on a note, and restarts with thresholds before colors.",
+      "whatToDo": "Ines pauses the report build, defines a trigger for intervention, and rewrites the benefits slide around adoption thresholds instead of color status.",
+      "whyItMatters": "The restart is the control. Restarting turns measurement from routine reporting into a decision check before the dashboard becomes theater."
+    },
+    {
+      "exampleId": "ch26-ex05-lina",
+      "sourceAnchorId": "ch26.ex.domain-26-eight",
+      "title": "Lina Aligns The Warm Printout",
+      "tags": [
+        "vignette",
+        "domains",
+        "defects"
+      ],
+      "planSpec": {
+        "domain": "quality trend desk review",
+        "audience": "quality leads and delivery teams",
+        "stakes": "a defect chart could be read outside team load and delivery notes",
+        "format": "vignette",
+        "requiredBeat": "A small desk moment shows a measure placed inside the PMBOK Guide domain map."
+      },
+      "scenario": "Lina stands beside the printer before the next review while the burnup chart curls warm onto the tray. Coffee rings mark yesterday's dashboard; a sticky note says \"baseline?\" in blue ink. The PMBOK Guide lies open to the 8 domains. She lines up the defect trend with Team load and Delivery notes, and the quiet mismatch finally has shape.",
+      "whatToDo": "Lina places the defect trend beside Team load and Delivery notes so the measure is read inside the PMBOK Guide domain system, not as a loose chart.",
+      "whyItMatters": "The desk scene shows the domain logic without a speech. Measurement gains force when a signal sits next to the work it is meant to explain."
+    },
+    {
+      "exampleId": "ch26-ex06-adelaide",
+      "sourceAnchorId": "ch26.ex.domain-26-artifact",
+      "title": "Adelaide Reconstructs The Green Failure",
+      "tags": [
+        "postmortem",
+        "dashboard",
+        "value"
+      ],
+      "planSpec": {
+        "domain": "missed-release benefits review",
+        "audience": "sponsors and project managers",
+        "stakes": "a failed handoff exposed status measures that never triggered action",
+        "format": "postmortem",
+        "requiredBeat": "The postmortem opens after failure and locates the missed measurement decision."
+      },
+      "scenario": "Adelaide's missed-release review begins with the damage already done: the pilot group rejected the handoff. The trace is plain in the dashboard archive. KPIs stayed green, baselines were updated, and each forecast note treated adoption risk as commentary. The decisive misstep was reading Measurement Performance Domain as status, not decision support.",
+      "whatToDo": "Adelaide reconstructs the chain backward from the failed handoff, then marks the first signal that should have triggered an escalation.",
+      "whyItMatters": "Postmortems are useful when they locate the missed decision. Here the failure came from clean measures that failed to force action."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch26.fact.9",
+        "prompt": "Domenic inherits a reliable project dashboard that people quietly skip during release meetings. What should he test first to make the measures useful?",
+        "choices": [
+          "Activity-volume reading: Add charts to Domenic's dashboard pack so release meetings look better supplied.",
+          "Phase-box reading: Move the skipped dashboard review to the next planning checkpoint.",
+          "Signal-chain repair: Link one KPI to its baseline, threshold, owner, and next action."
+        ],
+        "correctIndex": 2,
+        "explanation": "Skipping the dashboard usually means the signals are not tied to action. More charts add noise, and a phase checkpoint treats Measurement as a sequence box.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch26.fact.8",
+        "prompt": "A log shows 4 missed handoffs in 6 days, all after forecast updates, while Aurore's KPIs stayed green. What should she infer first?",
+        "choices": [
+          "Signal-context reading: The green KPIs need comparison with baselines, forecasts, and handoff data.",
+          "Green-board reading: The KPI color is enough for Aurore's next sponsor update.",
+          "Artifact-volume reading: The handoff log needs a larger dashboard before Aurore acts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The handoff pattern says the green KPI set is missing context. Baselines and forecasts help only when the team reads them beside the performance trace.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch26.fact.1",
+        "prompt": "Lorne is asked to report Measurement Performance Domain health after a schedule variance. Which response fits the PMBOK domain view?",
+        "choices": [
+          "Old-knowledge-area reading: Lorne files the variance under cost and schedule reporting only.",
+          "Domain-system reading: Lorne shows how the variance affects Team load and Delivery risk.",
+          "Single-lane reading: Lorne keeps stakeholder response outside the measurement review."
+        ],
+        "correctIndex": 1,
+        "explanation": "Domains operate together, not as a row of boxes. The variance matters through its effects on team load, delivery, stakeholders, and risk, not as an isolated report item.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch26.fact.3",
+        "prompt": "A dashboard shows cost baseline intact, lead time rising, and stakeholder response falling. Which interpretation should Ines bring to the review?",
+        "choices": [
+          "Cost-only reading: The intact baseline should be the main story in Ines's review.",
+          "Metric-island reading: The lead-time chart can wait until the delivery team asks.",
+          "Interaction reading: The signals point across cost, Delivery, Stakeholders, and Team capacity."
+        ],
+        "correctIndex": 2,
+        "explanation": "The data is cross-domain evidence. Reading cost alone hides the delivery and stakeholder drift that may explain why the project is moving away from value.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch26.fact.2",
+        "prompt": "Ines owns a weekly benefits report with clean activities but no sign that adoption is improving. What should she add before sending it?",
+        "choices": [
+          "Decision-threshold reading: Add the adoption level that will trigger an intervention.",
+          "Color-copy reading: Preserve the benefits report colors so sponsors see stable activity.",
+          "Forecast-as-proof reading: Treat the current forecast note as enough evidence of benefits."
+        ],
+        "correctIndex": 0,
+        "explanation": "Activity does not prove domain health. Ines needs an outcome signal and a threshold that tells sponsors when to intervene, not a tidier color copy.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch26.fact.9",
+        "prompt": "A report shows 3 defect spikes after each throughput push, yet Lina's velocity KPI improved. What should the team investigate first?",
+        "choices": [
+          "Throughput-only reading: Lina should protect the velocity story and address defects later.",
+          "Behavior-distortion reading: The KPI may be shaping work in a way that harms quality.",
+          "Survey-delay reading: The defect spikes should wait until stakeholder scores also fall."
+        ],
+        "correctIndex": 1,
+        "explanation": "A metric can change behavior after it becomes a target. Rising defects after each throughput push suggest the team is optimizing the number while quality pays.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch26.fact.4",
+        "prompt": "Lina supports an adaptive team whose burnup is clear but whose cost baseline belongs to a predictive workstream. Which measure set fits best?",
+        "choices": [
+          "Predictive-only reading: Replace Lina's burnup chart with milestone cost reporting for every workstream.",
+          "Ceremony-count reading: Count adaptive meetings so the board sees the team is active.",
+          "Feedback-fit reading: Use burnup, lead time, defects, and cost baseline where each guides action."
+        ],
+        "correctIndex": 2,
+        "explanation": "Different approaches need different feedback. The point is fit: each measure should help a decision in its workstream, not prove one lifecycle is more mature.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch26.fact.6",
+        "prompt": "Adelaide sees benefits flat while scope, cost, and schedule stay within baseline. Which first reading protects value delivery?",
+        "choices": [
+          "Value-link reading: Treat the flat benefit signal as evidence that outputs may not become outcomes.",
+          "Triple-constraint reading: Adelaide should lead with scope, cost, and schedule staying within baseline.",
+          "Report-cleanup reading: Adelaide should rewrite the benefits section after the status pack is approved."
+        ],
+        "correctIndex": 0,
+        "explanation": "Value delivery is the reason the measures matter. A project can stay inside familiar baselines while outputs fail to become accepted outcomes or benefits.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch26.fact.5",
+        "prompt": "Which sentence would best close a sponsor review when Aiden sees a green dashboard, a late forecast, and rising defects?",
+        "choices": [
+          "Status-theater sentence: Aiden can call the dashboard green and let the defect trend sit in backup.",
+          "Signal-chain sentence: Aiden should name the decision that the late forecast and defects now require.",
+          "Artifact-first sentence: Aiden should request another dashboard view before discussing action."
+        ],
+        "correctIndex": 1,
+        "explanation": "Artifacts matter only when they support a decision. A new view may help later, but the current forecast and defect trend already ask for interpretation and action.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch26.fact.8",
+      "front": "What does a KPI need before it can guide action?",
+      "back": "It needs comparison and use: a baseline, a forecast or trend, a threshold, interpretation, and a named decision. Without that chain, the KPI is only a status marker.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch26.fact.1",
+      "front": "Why are the 8 PMBOK domains read together rather than as a sequence?",
+      "back": "They describe active areas of project health that influence one another. A measurement signal may reveal a planning gap, stakeholder drift, team overload, delivery risk, or uncertainty.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch26.fact.6",
+      "front": "Earlier principle: Focus on Value. How should a green dashboard be tested?",
+      "back": "Compare the green status with benefits, adoption, product outcomes, and stakeholder response. If value signals are weak, the dashboard is not yet telling the useful story.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch26.fact.4",
+      "front": "Earlier principle: Tailor Based on Context. Why might adaptive and predictive teams measure differently?",
+      "back": "Their feedback needs differ. Predictive work may rely on baselines and milestone forecasts, while adaptive work may need burnup, lead time, defect age, and product outcome signals.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch26.fact.9",
+      "front": "How can a metric distort work after it becomes a target?",
+      "back": "People may optimize the number instead of the value behind it. Throughput can rise while defects grow, or green status can be protected while risks move out of sight.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch26.fact.5",
+      "front": "What postmortem question exposes status theater?",
+      "back": "Ask which signal should have changed action before the failure. If no dashboard tile, forecast, or baseline had a trigger attached, the artifact was reporting without guiding.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Test the Signal Chain",
+    "coreSkill": "Practice linking each metric to the decision it should inform. For one KPI, name the baseline, threshold, forecast, owner, and next action. Refuse to treat a dashboard as finished until it can change behavior.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch26.fact.8",
+        "context": "If a dashboard tile changes color before a review",
+        "plan": "If a dashboard tile changes color before a review, then run Test the Signal Chain: compare the KPI with its baseline, forecast, threshold, and next decision."
+      },
+      {
+        "sourceAnchorId": "ch26.fact.3",
+        "context": "If one metric looks healthy while another domain feels strained",
+        "plan": "If one metric looks healthy while another domain feels strained, then map the signal across Team, Delivery, Stakeholders, Planning, and Uncertainty before calling it healthy."
+      },
+      {
+        "sourceAnchorId": "ch26.fact.9",
+        "context": "If a KPI starts shaping behavior more than value",
+        "plan": "If a KPI starts shaping behavior more than value, then pause the target talk and inspect the value signal it was supposed to protect."
+      },
+      {
+        "sourceAnchorId": "ch26.fact.6",
+        "context": "If outputs are complete but benefits look flat",
+        "plan": "If outputs are complete but benefits look flat, then connect the measure to adoption, user response, or product outcome before approving green status."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one live dashboard tile and run Test the Signal Chain in writing: KPI, baseline, forecast, threshold, owner, next action.",
+    "weeklyPractice": "For one week, end each project review by naming one signal that changed a decision and one signal to retire because it did not guide action."
+  },
+  "memorableLines": [
+    {
+      "text": "If the chain breaks, the team has status theater.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the difference between measurement and reporting easy to repeat."
+    },
+    {
+      "text": "A measure that cannot alter a decision may still be interesting, but it is not yet doing project work.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the domain a hard test without turning it into a checklist."
+    },
+    {
+      "text": "It is only a number looking for a job.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the warning against unused metrics into a concrete image."
+    }
+  ]
+}

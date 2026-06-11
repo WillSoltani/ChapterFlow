@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-4-hour-workweek",
+  "chapterNumber": 1,
+  "chapterId": "the-4-hour-workweek-ch01",
+  "verdict": "REVISE",
+  "contentHash": "bd055c53716a6862",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-the-4-hour-workweek-2026-06-10",
+  "reviewedAt": "2026-06-10T04:29:45.246Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "overall=91; cross-chapter: scene_skeleton/repeated_unit/repeated_unit; Anchor-level chapter: grounded specifics (Mark/$500K-$1M/Vegas, Julie+Marc/New Caledonia/15 months all match sidecar), c",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-4-hour-workweek",
+      "chapterNumber": 1,
+      "chapterId": "the-4-hour-workweek-ch01",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "c526e219c4eb50d0",
+      "reviewer": "claude-qc:4hww-20260604",
+      "reviewedAt": "2026-06-04T17:01:40.853Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Deep-read all sections. ~90/100. 9/9 quiz keys correct; relative wealth, four W's, New Rich vs Deferrers accurate; Julie&Marc real; examples coherent named-human scenes (minor timestamp-opener tell); cards answer fronts; plan imperatives use Four W Audit. No corruption."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "_comment": "Stock scene-construction phrases that parallel authoring agents independently reach for, which BP13 (bookPatternAudit) flags when the same verbatim 5-token run appears across >= max(3, ceil(N*0.1)) chapters. This list is INJECTED into each STEP-2 agent (see STEP-2-WRITE-CHAPTERS.md) as phrases to avoid AND as a pattern of what to vary. It is NOT a deterministic gate input — BP13 is data-driven and finds repeats emergently; this list is preventive guidance. Add offenders here as new books surface them.",
+  "_comment": "Stock scene-construction phrases that parallel authoring agents independently reach for, which BP13 (bookPatternAudit) flags when the same verbatim 5-token run appears across >= max(3, ceil(N*0.1)) chapters. This list is INJECTED into each STEP-2 agent (see STEP-2-WRITE-CHAPTERS.md) as phrases to avoid AND as a pattern of what to vary. It is NOT a deterministic gate input — BP13 is data-driven and finds repeats emergently; this list is preventive guidance. Add offenders here as new books surface them. 2026-06-10 catalog campaign: house TIC PHRASES added (\"the point is\" appeared 240x across all 26 books, \"the question is\" 107x, \"scoreboard\" 42x) — these are shorter than the 5-token BP13 window, so they are PREVENTIVE guidance for authors, with budgets enforced at refresh time via catalog-audit.",
   "principle": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
   "bannedConnectives": [
     "has to decide whether to",
@@ -26,7 +26,13 @@
     "has to make a call",
     "sits down to write the",
     "opens the laptop and starts",
-    "runs the numbers one more"
+    "runs the numbers one more",
+    "the point is",
+    "the question is whether",
+    "that is the lesson",
+    "that is the move",
+    "a louder scoreboard",
+    "the scoreboard"
   ],
   "openerPatternsToVary": [
     "Name + present-tense verb + at + place (e.g. 'Marit stares at the dashboard')",

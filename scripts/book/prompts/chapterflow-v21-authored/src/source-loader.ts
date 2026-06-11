@@ -17,10 +17,19 @@
  * so writers never see them. See FAILURE-MODES.md (B9, B10) for context.
  */
 
-import { existsSync, readFileSync, readdirSync, statSync } from "fs";
-import { resolve } from "path";
+import { readFileSync } from "fs";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
 
-const CHAPTERFLOW_RUNS = resolve(process.cwd(), ".chapterflow/runs");
+import { findRunArtifact } from "./lib/runDirs.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+// Anchored to the REPO ROOT (where .chapterflow/runs actually lives — see
+// PIPELINE-HANDOFF §3), not process.cwd(): with the documented invocation
+// (cd <pipeline dir> && npx tsx src/cli.ts …) a cwd-relative path resolved
+// to <pipeline>/.chapterflow/runs, which doesn't exist, so every loader
+// silently returned "no usable source".
+const CHAPTERFLOW_RUNS = resolve(__dirname, "../../../../..", ".chapterflow/runs");
 
 /**
  * Patterns that, if found anywhere on a line, mark that line as meta-content
@@ -61,39 +70,30 @@ export function stripMetaReferences(text: string): string | null {
   return cleaned;
 }
 
-/** Find the latest run directory for a given book slug. v13 creates
- *  .chapterflow/runs/<slug>/<runId>/sidecars/source/chNN.source.txt. */
-function findLatestRun(bookId: string): string | null {
-  const bookDir = resolve(CHAPTERFLOW_RUNS, bookId);
-  if (!existsSync(bookDir)) return null;
-  const runs = readdirSync(bookDir)
-    .filter((d) => statSync(resolve(bookDir, d)).isDirectory())
-    .sort(); // run IDs are timestamped, lexicographic sort = chronological
-  return runs.length ? resolve(bookDir, runs[runs.length - 1]) : null;
-}
+// Run resolution is artifact-aware via lib/runDirs: a run dir that doesn't
+// contain the requested artifact falls through to an older run that does
+// (the rework/zz- burial bug class), and both raw and normSlug bookId dir
+// spellings are tolerated.
 
 export function loadChapterSource(bookId: string, chapterNumber: number): string | null {
-  const runPath = findLatestRun(bookId);
-  if (!runPath) return null;
-  const sidecar = resolve(runPath, "sidecars/source", `ch${String(chapterNumber).padStart(2, "0")}.source.txt`);
-  if (!existsSync(sidecar)) return null;
+  const sidecar = findRunArtifact(
+    CHAPTERFLOW_RUNS,
+    bookId,
+    `sidecars/source/ch${String(chapterNumber).padStart(2, "0")}.source.txt`,
+  );
+  if (!sidecar) return null;
   return stripMetaReferences(readFileSync(sidecar, "utf8"));
 }
 
 export function loadBookSource(bookId: string): string | null {
-  const runPath = findLatestRun(bookId);
-  if (!runPath) return null;
-  const bookSourceMd = resolve(runPath, "source-freeze/book-source.md");
-  if (!existsSync(bookSourceMd)) return null;
+  const bookSourceMd = findRunArtifact(CHAPTERFLOW_RUNS, bookId, "source-freeze/book-source.md");
+  if (!bookSourceMd) return null;
   return stripMetaReferences(readFileSync(bookSourceMd, "utf8"));
 }
 
 export function loadTableOfContents(bookId: string): string | null {
-  const runPath = findLatestRun(bookId);
-  if (!runPath) return null;
-  const tocJson = resolve(runPath, "source-freeze/toc.json");
-  if (existsSync(tocJson)) return readFileSync(tocJson, "utf8");
-  return null;
+  const tocJson = findRunArtifact(CHAPTERFLOW_RUNS, bookId, "source-freeze/toc.json");
+  return tocJson ? readFileSync(tocJson, "utf8") : null;
 }
 
 export type SourceBundle = {

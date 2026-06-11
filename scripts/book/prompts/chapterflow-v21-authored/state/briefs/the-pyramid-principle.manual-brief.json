@@ -61,32 +61,27 @@
   ],
   "targetReader": "Professionals, students, analysts, managers, founders, policy writers, and technical specialists who have to turn messy material into written recommendations other people can act on without doing the writer's sorting work.",
   "voiceCharter": {
-    "register": "plainspoken",
-    "person": "second",
-    "cadence": "medium",
+    "register": "analytical",
+    "person": "third",
+    "cadence": "short",
     "signatureMoves": [
-      "open ideas in a concrete document moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "make structure feel like visible work, not abstract virtue",
-      "let the reader feel the cost of loose logic before offering the repair"
+      "uses answer-first logic, grouping, MECE pressure, and vertical-horizontal structure",
+      "sounds crisp, consulting-trained, and intolerant of muddled support",
+      "turns prose into hierarchy: point, reasons, evidence, order",
+      "keeps every sentence accountable to the governing idea above it"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no claims about neuroscience, cognition research, or business outcomes beyond the frozen support",
-      "no fake case studies, named research, or famous anecdotes not traceable to source sidecars"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not let chronology masquerade as logic.",
+      "Do not use a heading if the support beneath it is not grouped cleanly."
     ]
   },
   "voiceSpecimens": [
-    "A heading can look calm while the support beneath it is still arguing with itself.",
-    "The reader should meet the finished shape, not the trail of scraps that produced it.",
-    "If the three bullets do three different jobs, they are not siblings. They are strangers in matching jackets.",
-    "Write the answer last while thinking, then place it first while communicating.",
-    "A sentence gets easier to read when it carries one relationship cleanly.",
-    "Before you polish the line, make the line prove where it sits."
+    "Lead with the answer.",
+    "Make the support behave."
   ],
   "voiceAntiSpecimens": [
     "This chapter teaches you how to leverage a powerful communication framework for maximum impact.",
@@ -101,6 +96,8 @@
     "Do not teach MECE as a decorative acronym detached from grouping and summary tests.",
     "Do not invent famous consulting anecdotes, lab studies, or named executives to compensate for sparse source sidecars.",
     "Do not let every example be a consultant, slide deck, memo, classroom, or kitchen-table rewrite.",
-    "Do not make formatting devices in Chapter 6 solve logic that the writer has not earned."
+    "Do not make formatting devices in Chapter 6 solve logic that the writer has not earned.",
+    "Do not bury the answer.",
+    "Do not use three-part lists unless the grouping logic is real."
   ]
 }

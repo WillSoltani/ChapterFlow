@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "the-5-love-languages",
+  "chapterNumber": 9,
+  "chapterId": "the-5-love-languages-ch09",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "4b6c249bd641fd4a",
+  "reviewer": "claude-qc:5ll-20260606",
+  "reviewedAt": "2026-06-06T11:53:28.886Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~93/100. 9/9 keys; 6 discovery methods (pain/requests/giving/memory/elimination/tank-check) complete; one method per example, varied; plan 'Tank-Clue Loop'. GREEN.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "the-5-love-languages",
+      "chapterNumber": 9,
+      "chapterId": "the-5-love-languages-ch09",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "3854942157615541",
+      "reviewer": "claude-qc:5ll-20260606",
+      "reviewedAt": "2026-06-06T11:53:28.886Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~93/100. 9/9 keys; 6 discovery methods (pain/requests/giving/memory/elimination/tank-check) complete; one method per example, varied; plan 'Tank-Clue Loop'. GREEN."
+    }
+  ]
+}

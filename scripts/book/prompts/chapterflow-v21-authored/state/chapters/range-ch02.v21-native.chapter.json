@@ -1,0 +1,299 @@
+{
+  "chapterId": "range-ch02",
+  "number": 2,
+  "title": "How the Wicked World Was Made",
+  "readingTimeMinutes": 13,
+  "hook": "Modern life rewards people who can sort by invisible structure, not only by what works nearby.",
+  "counterintuition": "The surprise is historical, not moral. Rising abstract reasoning shows that schooling, markets, bureaucracy, and science trained different habits for different problems.",
+  "tryThisNow": "Pick a work problem and group its parts twice: once by immediate use, once by hidden category or relation.",
+  "keyTakeaway": "Abstract reasoning grew because modern wicked problems demand transfer across unfamiliar settings, even while local practical knowledge still has value.",
+  "breakdown": {
+    "fastRead": "In Luria's fieldwork, a villager groups a saw with wood because that is how life uses them; a schooled observer groups the saw with tools.\n\nFlynn's clue is that modern people became more practiced at seeing context-free patterns. Raven's matrices reward relationship hunting when no familiar object or trade tells you what to do.\n\nThat shift is not proof that older practical worlds were foolish. It shows that schooling, markets, bureaucracy, and science trained different habits for different problems.\n\nTake one current problem and sort it twice: first by immediate use, then by hidden relation or category. Notice which sort opens more options.",
+    "deepRead": "The argument moves from individual development to a historical change in cognition. James Flynn's discovery that IQ scores rose dramatically over generations becomes evidence that societies practice different mental moves over time. The gains appear strongest on tasks like Raven's Progressive Matrices, where success requires spotting general relations among unfamiliar shapes. That matters because modern life constantly asks for reasoning detached from the immediate practical scene.\n\nThe working distinction is general idea-based reasoning: Abstract idea-based reasoning groups things by invisible relationships, principles, and categories not just by immediate practical use. It lets people carry over knowledge from one unfamiliar situation to another.\n\nRaven's Progressive Matrices: The test asks people to infer missing pieces in visual patterns, making it a window into general relational thinking. Large improvements on such tasks show growing comfort with context-free reasoning.\n\nAlexander Luria's fieldwork in Soviet Central Asia supplies a vivid contrast. People with little formal schooling often rejected general grouping tasks. Because the practical relationships felt more real than taxonomy: a saw belonged with wood because that pairing did work in life. Schooling, industrial labor, bureaucratic systems, and scientific categories trained later generations to see classes and principles.\n\nBreadth becomes more than a personality trait; it becomes an adaptation to settings where the surface features keep changing and only deeper patterns travel.\n\nFlynn tracks a shift. Raven tests pattern sight. Luria shows why local use can beat neat class names. The point is fit, not rank.\n\nUse a plain test. Flynn shows scores moving. Raven shows pattern work. Luria shows local use. Each case asks what the task trains.",
+    "fullRead": "Alexander Luria's Central Asian villagers were not failing intelligence tests in the simple sense. They were reasoning inside a world where practical relations mattered. A saw belonged with wood because that pairing did work. A taxonomic category such as \"tool\" was less useful than the concrete arrangement that everyday life demanded.\n\nJames Flynn's rising IQ data points to a historical change in mental habits. The largest gains appeared on tasks like Raven's Progressive Matrices, where people infer abstract relationships without relying on school vocabulary. Modern institutions made that kind of reasoning more common: classify, compare, generalize, and carry a pattern into a new setting.\n\nThe change came with a tradeoff. Practical worlds cultivate fine local distinctions that abstract thinkers can miss. Modern wicked worlds ask for another move as well: step back from familiar use, name the invisible relation, and transfer it. A problem in one field may need the category or pattern that another field already knows.\n\nThis is not a sneer at the unschooled past. It is an ecological argument. Different environments train different minds. As work becomes less routine and feedback less direct, abstraction becomes a survival skill, especially when concrete experience alone keeps solving yesterday's problem.\n\nThe practical exercise is to move back and forth between those habits instead of idolizing either one. A nurse doing a handoff needs concrete local knowledge: this patient, this medication, this odd symptom. A policy designer may need the abstract relation underneath: bottlenecks, incentives, classification errors, or delayed feedback. The modern skill is knowing when to climb up a level and when to come back down.\n\nFlynn, Raven, and Luria also protect the reader from a lazy progress story. Abstraction can travel, but it can also become thin. Concrete knowledge can be narrow, but it can also be exquisitely accurate. Wicked problems often require both: the local facts that keep a plan honest and the conceptual frame that lets a person see why a problem in one setting resembles a problem somewhere else.\n\nSo a useful reframe does not erase the village, the workshop, or the clinic. It asks what the local pairing teaches and what larger category might release new options. When a task stops presenting familiar materials beside familiar tools, the person who can name the hidden relation has more room to move."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Raven Hiring Screen",
+      "tags": [
+        "raven",
+        "hiring",
+        "screen"
+      ],
+      "planSpec": {
+        "domain": "raven hiring screen",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "decision_point",
+        "requiredBeat": "Raven Hiring Screen"
+      },
+      "scenario": "Leona studies a Raven's Progressive Matrices sample before rewriting an analyst interview. Her old case asks candidates to memorize product facts. The new role crosses health care, logistics, and public policy. At 4:15 p.m., she asks the panel whether the screen should test stored knowledge or the ability to infer relations among unfamiliar pieces.",
+      "whatToDo": "Leona adds a pattern-transfer exercise and keeps a small factual section. Candidates must explain the relationship they see before applying it to a new domain.",
+      "whyItMatters": "Flynn's evidence points toward a modern habit: abstract patterning. The role needs that transfer, not merely a bigger pile of local facts."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Village Taxonomy Moment",
+      "tags": [
+        "village",
+        "taxonomy",
+        "moment"
+      ],
+      "planSpec": {
+        "domain": "village taxonomy moment",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "reflection",
+        "requiredBeat": "Village Taxonomy Moment"
+      },
+      "scenario": "Farid facilitates a training session for field technicians and quotes Alexander Luria's saw-and-wood grouping. The technicians resist the corporate taxonomy because their trucks are organized by what gets fixed together. Farid sees the tension on the workbench: practical use and abstract category are both real, but the new diagnostic system requires switching between them.",
+      "whatToDo": "Farid teaches two maps side by side. The truck layout stays organized by use, while digital reports classify by system so patterns can travel across regions.",
+      "whyItMatters": "Luria's work warns against arrogance. Practical grouping is intelligent, but modern scale also needs categories that detach from one local scene."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Policy Pattern Board",
+      "tags": [
+        "policy",
+        "pattern",
+        "board"
+      ],
+      "planSpec": {
+        "domain": "policy pattern board",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "business_case",
+        "requiredBeat": "Policy Pattern Board"
+      },
+      "scenario": "Keisha reviews school absenteeism data with a city team. The first instinct is to group cases by neighborhood. She pins a James Flynn note beside the map and asks for another sort: instability type, transportation friction, illness pattern, and caregiving load. The room starts seeing similarities across distant districts.",
+      "whatToDo": "Keisha moves from geography alone to relational categories. Each intervention is tested against the hidden structure before the closest-looking address.",
+      "whyItMatters": "Wicked problems often cross obvious borders. Abstract grouping lets a policy team move knowledge from one place to another without flattening local detail."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Factory Classroom Shift",
+      "tags": [
+        "factory",
+        "classroom",
+        "shift"
+      ],
+      "planSpec": {
+        "domain": "factory classroom shift",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "scene",
+        "requiredBeat": "Factory Classroom Shift"
+      },
+      "scenario": "Sanjay watches apprentices sort parts by the station where they use them. The new automated line fails in ways that require comparing shapes, tolerances, and sensor readings across stations. During a Thursday lesson, he sketches Raven-like patterns on the board and asks them to name the rule behind the parts. Beside a printout of James Flynn and Raven's Progressive Matrices, Sanjay now has a timed training choice to make.",
+      "whatToDo": "Sanjay keeps hands-on practice but adds relation-finding drills. Apprentices learn to classify by function, material, and failure mode, not only by bench location.",
+      "whyItMatters": "Modern work asks for more than situated memory. Transfer appears when learners can name relationships that survive a change of setting."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "Clinical Handoff Puzzle",
+      "tags": [
+        "clinical",
+        "handoff",
+        "puzzle"
+      ],
+      "planSpec": {
+        "domain": "clinical handoff puzzle",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "planning_choice",
+        "requiredBeat": "Clinical Handoff Puzzle"
+      },
+      "scenario": "Mina's clinic uses color-coded binders, and nurses can find anything by routine. A new regional dashboard asks for abstract categories that do not match the shelves. Mina recalls Luria's Central Asia interviews and sees that the staff is not confused; they are fluent in a different ecology.",
+      "whatToDo": "Mina translates each binder habit into the regional category system. Staff practice explaining why an item belongs in a class before entering it.",
+      "whyItMatters": "Calling practical knowledge primitive would miss the point. The clinic needs a bridge from local fluency to abstract reporting."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "Startup Market Sort",
+      "tags": [
+        "startup",
+        "market",
+        "sort"
+      ],
+      "planSpec": {
+        "domain": "startup market sort",
+        "audience": "practitioners applying Range",
+        "stakes": "misreading the source case",
+        "format": "audit",
+        "requiredBeat": "Startup Market Sort"
+      },
+      "scenario": "Ethan's team groups customers by industry because the CRM makes that easy. A Raven's-style pattern exercise exposes a better split: buyers with audit fear, buyers with staffing gaps, and buyers with public deadline risk. At the whiteboard, the old labels look concrete but less useful.",
+      "whatToDo": "Ethan rebuilds segments around the hidden buying relation. Industry remains a tag, while messaging follows the problem structure.",
+      "whyItMatters": "Flynn effects matter because modern categories often hide beneath surface labels. Better transfer starts when the team sees what cases work like."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What did James Flynn's work on rising IQ scores mainly point toward?",
+        "choices": [
+          "A steady loss of practical reasoning caused by modern schooling.",
+          "Large gains in abstract problem solving rather than a sudden biological increase in intelligence.",
+          "Proof that people in earlier generations lacked the capacity for logic."
+        ],
+        "correctIndex": 1,
+        "explanation": "Flynn's data suggested society was practicing different cognitive tools, especially abstraction. It was not evidence of a rapid biological transformation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Why are Raven's Progressive Matrices important in Epstein's argument?",
+        "choices": [
+          "They test pattern completion without relying on familiar words, making abstract relational reasoning visible.",
+          "They measure memorized school vocabulary better than most intelligence tests.",
+          "They show that concrete practical knowledge is useless in modern work."
+        ],
+        "correctIndex": 0,
+        "explanation": "Raven's matrices ask people to infer relationships in visual patterns. That makes them a good window into context-free abstract reasoning.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "What did Alexander Luria find among less-schooled villagers in Soviet Central Asia?",
+        "choices": [
+          "They consistently refused to reason about everyday objects in any organized way.",
+          "They grouped objects only by the newest scientific categories taught in industrial workplaces.",
+          "They often grouped items by practical function, such as saw with wood, rather than by taxonomic class."
+        ],
+        "correctIndex": 2,
+        "explanation": "Luria's participants frequently organized objects by use in lived settings. Schooling and modern labor later encouraged more taxonomic grouping.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "What makes the modern world more wicked in this argument's sense?",
+        "choices": [
+          "It eliminates the need for abstract concepts because most work is now concrete and repetitive.",
+          "It demands flexible reasoning across changing contexts rather than only repeating familiar local solutions.",
+          "It rewards people mainly for preserving one practical classification system unchanged."
+        ],
+        "correctIndex": 1,
+        "explanation": "Modern wickedness comes from transfer demands: people must carry ideas across settings where old cues do not simply repeat.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "What did industrialization, schooling, and scientific classification push people to practice?",
+        "choices": [
+          "Avoiding categories in favor of immediate practical pairings only.",
+          "Treating every unfamiliar problem as impossible without direct experience.",
+          "Using abstract categories such as tool, animal, shape, and logic class."
+        ],
+        "correctIndex": 2,
+        "explanation": "Epstein frames modern institutions as training people to sort by invisible categories and principles, not only by local use.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "How can specialized experience narrow reasoning?",
+        "choices": [
+          "It can sharpen local perception while weakening the habit of stepping back to a broader conceptual frame.",
+          "It prevents people from ever noticing local details.",
+          "It guarantees better transfer because every new problem resembles the old one."
+        ],
+        "correctIndex": 0,
+        "explanation": "Specialization can make people excellent at local cues. The cost is that they may stop looking for a higher-level structure.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "What is abstract conceptual reasoning?",
+        "choices": [
+          "Memorizing a larger stock of facts about familiar objects and local customs.",
+          "Rejecting practical experience whenever a formal category is available.",
+          "Grouping by invisible relationships, principles, and categories so knowledge can transfer to unfamiliar situations."
+        ],
+        "correctIndex": 2,
+        "explanation": "Epstein defines abstraction as reasoning by relationships and categories that travel beyond one immediate context.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "What is the wrong interpretation of Luria's field research?",
+        "choices": [
+          "That premodern or unschooled people were simply less intelligent.",
+          "That schooling and modern work can change the cognitive habits people practice.",
+          "That different environments reward different styles of reasoning."
+        ],
+        "correctIndex": 0,
+        "explanation": "Epstein's point is ecological, not insulting. Different settings train different habits, and modern settings reward abstraction more often.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Why does wicked work require carrying ideas across contexts?",
+        "choices": [
+          "Because repeating yesterday's solution is always the safest strategy in a changing environment.",
+          "Because rules and surface cues shift, so deep relationships matter more than familiar packaging.",
+          "Because local detail no longer matters once people learn formal categories."
+        ],
+        "correctIndex": 1,
+        "explanation": "When surface situations change, the useful move is to recognize a transferable structure. Repetition alone is too brittle.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What did Flynn's rising IQ data suggest had changed across generations?",
+      "back": "The gains suggested a shift in practiced reasoning habits, especially comfort with abstract pattern problems, not a sudden biological leap in intelligence.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "What is the difference between concrete and abstract sorting?",
+      "back": "Concrete sorting groups things by immediate use or lived context; abstract sorting groups by category, relation, pattern, or rule that can travel across contexts.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "front": "Why do wicked problems reward abstract reasoning?",
+      "back": "Wicked problems often hide their rules and appear in unfamiliar settings, so the useful move is to recognize a transferable structure instead of repeat a local routine.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card04",
+      "front": "What caution keeps abstraction from becoming arrogance?",
+      "back": "Abstract reasoning should not dismiss local knowledge; it should add a portable frame while still checking concrete details and practical constraints.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Concrete-to-Abstract Reframe",
+    "coreSkill": "Move a problem from local use to transferable structure by classifying what is concrete, what is abstract, and which hidden relation can travel.",
+    "ifThenPlans": [
+      {
+        "context": "When a problem feels too local",
+        "plan": "If I keep describing only the familiar objects and people, then I will rewrite the problem using categories, relations, and constraints."
+      },
+      {
+        "context": "When the team sorts by habit",
+        "plan": "If everyone groups options by immediate use, then I will ask for a second grouping by underlying pattern."
+      },
+      {
+        "context": "When abstraction floats away from reality",
+        "plan": "If the conceptual frame gets vague, then I will tie it back to one concrete test or example before acting."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one stuck problem. Write a concrete description, then an abstract version that names the relation, pattern, or category underneath.",
+    "weeklyPractice": "This week, practice a two-sort review on three decisions: sort once by practical use and once by hidden structure, then compare the options each sort reveals."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "psycho-cybernetics",
+  "chapterNumber": 10,
+  "chapterId": "psycho-cybernetics-ch10",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "e9d6b80922146a3f",
+  "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+  "reviewedAt": "2026-06-10T01:25:00.094Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN ~88. 9/9 keys correct; three immunizing rules (big self/self-reliance/relax) + scar-tissue + oyster-shell + 'I failed vs I am a failure' grounded; de-templated; cards good.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "psycho-cybernetics",
+      "chapterNumber": 10,
+      "chapterId": "psycho-cybernetics-ch10",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "02f7d12a07264394",
+      "reviewer": "claude-qc:opus48-20260609-psycho-r2",
+      "reviewedAt": "2026-06-10T01:25:00.094Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "GREEN ~88. 9/9 keys correct; three immunizing rules (big self/self-reliance/relax) + scar-tissue + oyster-shell + 'I failed vs I am a failure' grounded; de-templated; cards good."
+    }
+  ]
+}

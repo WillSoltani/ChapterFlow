@@ -1,0 +1,312 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "dare-to-lead-ch08",
+  "number": 8,
+  "title": "Learning to Rise",
+  "readingTimeMinutes": 12,
+  "hook": "The Ham Foldover, Box Breathing, and SFD work give failure a recovery path.",
+  "counterintuition": "Learning to rise is not bouncing back fast; it is testing the story before it hardens.",
+  "tryThisNow": "Write one SFD from a recent hook and mark the missing data before acting on it.",
+  "keyTakeaway": "Rising means noticing emotion, testing the first story, and proving the learning through changed behavior.",
+  "breakdown": {
+    "fastRead": "Rising strong is a recovery discipline for failure, hurt, and disappointment. The process starts by noticing the emotional hook before the first story becomes marching orders. Regulation gives the body enough room for curiosity, and the rumble tests the story against missing data. The revolution is not forced positivity; it is changed behavior that proves the learning. Teams can take smarter risks when hard landings have a shared repair path. After a heated standup, recovery means repairing the offloaded impact and returning to the facts with new behavior.",
+    "deepRead": "Brown presents rising strong as a sequence: notice the hook, regulate the body, test the story, and prove the lesson through changed behavior. The sequence protects the team from acting on a confident interpretation before the facts arrive. Teams that can rise do not have to avoid risk to stay safe. They can learn from setbacks instead of converting pain into blame, silence, or false certainty. People take smarter risks when they know how to recover from hard landings, regulate emotion, and reality-check the stories their minds create under threat. Resilience should be taught before major risk because hard landings are part of courageous work. The reckoning begins by noticing bodily emotion and getting curious before the reaction becomes behavior. A rough first story is named as provisional instead of true. Sharing it carefully with another person makes missing data visible and turns a private narrative into a chance for clarity and connection. Common offloading patterns include sudden eruptions, redirected hurt, numbing, stockpiling resentment, false cheerfulness, and getting stuck in avoidance. The first story is a draft, not a verdict. Regulation gives curiosity room to return. Recovery is proven by changed behavior.",
+    "fullRead": "Brown gives failure a recovery path that is neither speed nor forced optimism. The first draft may reveal real emotion, but it still needs data. The quick misreading is that rising means bouncing back fast or putting a positive lesson on every failure. The deeper practice is slower and less decorative: notice the hook, regulate the body, interrogate the invented story, gather data, and let changed behavior prove the learning. The final skill begins from the premise that courage guarantees falls. People who do not know how to recover avoid risk, overprotect others, or turn failure into identity threat. Rising starts with the reckoning: noticing the emotional hook in the body and becoming curious before a reaction hardens into behavior. Several offloading patterns show what happens when pain is not acknowledged, including sudden eruptions after restraint, hurt converted into anger, numbing, stockpiled resentment, false cheerfulness, and stuck avoidance. Calm is presented as a practice that can be trained, with Box Breathing as a concrete regulation tool. Calm is a leadership practice, not a personality setting; breathing and perspective create space between stimulus and response. The rumble stage examines the story the mind creates when information is missing. Meaning-making is automatic, but the first explanation is often biased toward self-protection and simple binaries. When data is missing, the brain invents a story and rewards the feeling of explanation even when the story is wrong. SFD language gives people a way to identify a rough narrative without treating it as truth. Confabulation matters because false stories can feel honest from the inside, especially in workplaces where silence leaves gaps for fear to fill. SFDs are rough first interpretations that need to be surfaced, questioned, and revised with better evidence. This matters because the first story often feels complete precisely when it is least checked. A leader who pauses can separate body sensation, interpretation, missing facts, and repair. The recovery becomes visible only when the next behavior changes. The rising practice marks the story as provisional, checks the missing facts, and repairs whatever the first reaction damaged. Story rumbles and reality-checking turn private interpretations into shared inquiry. The revolution is the cultural result: families, schools, and organizations become braver when recovery, story testing, and changed behavior are practiced openly."
+  },
+  "examples": [
+    {
+      "exampleId": "dare-to-lead-ch08-ex01",
+      "title": "Meeting Story",
+      "tags": [
+        "procurement reschedule",
+        "reckoning, rumble, revolution",
+        "Ham Foldover Debacle"
+      ],
+      "planSpec": {
+        "domain": "procurement reschedule",
+        "audience": "Selene and leaders facing procurement reschedule",
+        "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Ham Foldover Debacle to practice reckoning, rumble, revolution in procurement reschedule"
+      },
+      "scenario": "Monday at 11:50 a.m. after a procurement meeting moves. Selene tells herself a moved procurement meeting proves the sponsor is dismissing her. The story is vivid, but she does not yet know why the calendar changed.",
+      "whatToDo": "She labels the explanation as a first draft and lists the data she needs before assigning motive.",
+      "whyItMatters": "The next conversation gets cleaner because Selene tests the story before making it policy."
+    },
+    {
+      "exampleId": "dare-to-lead-ch08-ex02",
+      "title": "Email Breath",
+      "tags": [
+        "email conflict",
+        "reckoning, rumble, revolution",
+        "Box Breathing"
+      ],
+      "planSpec": {
+        "domain": "email conflict",
+        "audience": "Tariq and leaders facing email conflict",
+        "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Box Breathing to practice reckoning, rumble, revolution in email conflict"
+      },
+      "scenario": "Tuesday at 7:05 p.m. before an executive email reply. Tariq feels heat in his chest before replying to an executive email. His body is already preparing the message before his judgment has caught up.",
+      "whatToDo": "He uses Box Breathing, waits for the physical spike to settle, and then writes the reply.",
+      "whyItMatters": "The email improves because Tariq creates enough space to choose language instead of exporting the spike."
+    },
+    {
+      "exampleId": "dare-to-lead-ch08-ex03",
+      "title": "Roadmap Draft",
+      "tags": [
+        "roadmap exclusion",
+        "reckoning, rumble, revolution",
+        "SFD reality-checking"
+      ],
+      "planSpec": {
+        "domain": "roadmap exclusion",
+        "audience": "Uma and leaders facing roadmap exclusion",
+        "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+        "format": "audit",
+        "requiredBeat": "use SFD reality-checking to practice reckoning, rumble, revolution in roadmap exclusion"
+      },
+      "scenario": "Wednesday at 3:15 p.m. after a roadmap meeting ends. Uma was left off a roadmap invite and has already built a polished exclusion story. The story may be true, but it has not earned authority yet.",
+      "whatToDo": "She shares the SFD as provisional and asks what happened before assigning motive.",
+      "whyItMatters": "The product discussion stays repairable because Uma does not confuse a vivid story with verified data."
+    },
+    {
+      "exampleId": "dare-to-lead-ch08-ex04",
+      "title": "Standup Eruption",
+      "tags": [
+        "bug standup",
+        "reckoning, rumble, revolution",
+        "Ham Foldover Debacle"
+      ],
+      "planSpec": {
+        "domain": "bug standup",
+        "audience": "Vaughn and leaders facing bug standup",
+        "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use Ham Foldover Debacle to practice reckoning, rumble, revolution in bug standup"
+      },
+      "scenario": "Friday morning during engineering standup. Vaughn erupts in standup after weeks of stored frustration about a recurring bug. The bug still matters, but now the room also has a repair problem.",
+      "whatToDo": "He names the offloaded hurt, apologizes to the person hit by it, and returns to the bug facts.",
+      "whyItMatters": "The engineering team can address the defect because Vaughn repairs the harm instead of defending the blast."
+    },
+    {
+      "exampleId": "dare-to-lead-ch08-ex05",
+      "title": "Merger Evidence",
+      "tags": [
+        "merger planning",
+        "reckoning, rumble, revolution",
+        "Box Breathing"
+      ],
+      "planSpec": {
+        "domain": "merger planning",
+        "audience": "Willa and leaders facing merger planning",
+        "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+        "format": "before_after",
+        "requiredBeat": "use Box Breathing to practice reckoning, rumble, revolution in merger planning"
+      },
+      "scenario": "Thursday afternoon in a merger integration planning room. Willa is convinced the merger partner is hiding information, but her evidence is thin. Acting on certainty now would turn a question into an accusation.",
+      "whatToDo": "She separates observation from interpretation and asks for the missing documents directly.",
+      "whyItMatters": "The integration stays grounded because Willa does not let certainty outrun evidence."
+    },
+    {
+      "exampleId": "dare-to-lead-ch08-ex06",
+      "title": "Classroom Recovery",
+      "tags": [
+        "classroom recovery",
+        "reckoning, rumble, revolution",
+        "SFD reality-checking"
+      ],
+      "planSpec": {
+        "domain": "classroom recovery",
+        "audience": "Zev and leaders facing classroom recovery",
+        "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+        "format": "decision_point",
+        "requiredBeat": "use SFD reality-checking to practice reckoning, rumble, revolution in classroom recovery"
+      },
+      "scenario": "Sunday evening in a middle school project debrief. Zev's class project failed and the teaching team wants to rush toward a cheerful lesson. Students will miss the recovery skill if disappointment gets skipped.",
+      "whatToDo": "He helps students reckon with the disappointment, test their story, and choose one repair.",
+      "whyItMatters": "Students learn recovery because Zev treats the revolution as changed behavior, not forced positivity."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "dare-to-lead-ch08-q01",
+        "prompt": "A director tells herself a rescheduled procurement meeting proves she is being dismissed.",
+        "choices": [
+          "Mark the story as a draft and ask what data is missing.",
+          "Treat the slight as proof that respect is gone.",
+          "Make a larger demand before the next meeting."
+        ],
+        "correctIndex": 0,
+        "explanation": "The SFD label makes the first story testable; treating it as proof or escalating demands lets an unchecked story drive behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch08-q02",
+        "prompt": "A COO feels heat in her chest before replying to an email.",
+        "choices": [
+          "Send the reply while the emotion is honest.",
+          "Forward the email to allies for validation.",
+          "Use Box Breathing before choosing words."
+        ],
+        "correctIndex": 2,
+        "explanation": "Regulation creates space for curiosity; instant sending and ally-seeking may spread the reaction before it is understood.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "dare-to-lead-ch08-q03",
+        "prompt": "A design lead was left off a roadmap invite and has a polished exclusion story.",
+        "choices": [
+          "Announce the exclusion story so the team feels the impact.",
+          "Share the SFD as provisional and invite missing information.",
+          "Withdraw from roadmap work until someone apologizes."
+        ],
+        "correctIndex": 1,
+        "explanation": "Rumbling with the story asks for data before action; announcing or withdrawing treats the draft as settled truth.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch08-q04",
+        "prompt": "A tech lead erupts during standup after weeks of saved-up frustration.",
+        "choices": [
+          "Name the offloaded hurt and repair with the person affected.",
+          "Defend the eruption because the frustration was real.",
+          "Move the bug discussion to private chat and continue."
+        ],
+        "correctIndex": 0,
+        "explanation": "Offloading hurt explains the pattern but does not excuse the harm; defending or bypassing the eruption skips repair.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch08-q05",
+        "prompt": "A merger lead is certain the other team is hiding information, but data is thin.",
+        "choices": [
+          "Trust the story because it feels sincere.",
+          "Test the confident story before acting on it.",
+          "Wait for the other team to confess first."
+        ],
+        "correctIndex": 1,
+        "explanation": "Confabulation can feel true, so rising tests it; sincerity and passive waiting both leave the story unchecked.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch08-q06",
+        "prompt": "A teacher team wants a failed project to teach recovery.",
+        "choices": [
+          "Identify who caused the failure and move on quickly.",
+          "Turn the lesson positive before feelings slow the class.",
+          "Teach students to reckon, test the story, and practice repair."
+        ],
+        "correctIndex": 2,
+        "explanation": "The revolution is changed behavior; blame and forced cheer both skip the learning process.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "dare-to-lead-ch08-q07",
+        "prompt": "A manager wants recovery to mean bouncing back fast.",
+        "choices": [
+          "Bouncing back fast proves the fall was handled.",
+          "A positive lesson is enough when people are busy.",
+          "Rising is deliberate recovery work, not speed or decoration."
+        ],
+        "correctIndex": 2,
+        "explanation": "Brown's process is slower and more disciplined than positivity; speed and a neat lesson can hide unexamined pain.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "dare-to-lead-ch08-q08",
+        "prompt": "A teammate says the first story is honest because it feels sincere.",
+        "choices": [
+          "Honest emotion makes the first explanation reliable.",
+          "A felt story can still need data before it guides behavior.",
+          "Sincerity means reality-checking is unnecessary."
+        ],
+        "correctIndex": 1,
+        "explanation": "Emotion may be real while the interpretation remains incomplete; honesty and sincerity do not remove the need to check facts.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "dare-to-lead-ch08-q09",
+        "prompt": "A team avoids risk because falls feel like identity threats.",
+        "choices": [
+          "Build a shared recovery practice so risk does not require avoidance.",
+          "Reduce the amount of risk so people stop falling.",
+          "Protect the team from feedback that might hook them."
+        ],
+        "correctIndex": 0,
+        "explanation": "Rising gives courage a recovery path; avoiding all falls shrinks the work.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "dare-to-lead-ch08-card01",
+      "front": "What is a first draft story?",
+      "back": "It is the quick explanation the mind builds from limited data. It should be labeled as provisional before it guides behavior."
+    },
+    {
+      "cardId": "dare-to-lead-ch08-card02",
+      "front": "What starts the reckoning?",
+      "back": "Notice the emotional hook and the body's reaction. That pause keeps the first story from becoming automatic action."
+    },
+    {
+      "cardId": "dare-to-lead-ch08-card03",
+      "front": "Why regulate before replying?",
+      "back": "A settled body gives judgment more room. The leader can choose language instead of exporting the spike."
+    },
+    {
+      "cardId": "dare-to-lead-ch08-card04",
+      "front": "What does rumbling with the story require?",
+      "back": "Separate observation from interpretation and ask what data is missing. The story needs testing before it becomes policy."
+    },
+    {
+      "cardId": "dare-to-lead-ch08-card05",
+      "front": "What proves the revolution?",
+      "back": "Changed behavior proves the learning. Recovery is not complete just because the lesson sounds positive."
+    }
+  ],
+  "implementationPlan": {
+    "title": "Learning to Rise practice",
+    "coreSkill": "Slow the first story, regulate the body, test missing data, and choose one repair that changes behavior.",
+    "ifThenPlans": [
+      {
+        "context": "A slight feels certain before evidence is checked",
+        "plan": "If the story arrives as fact, then label it as a draft and list the missing data before acting."
+      },
+      {
+        "context": "Emotion spikes before a reply",
+        "plan": "If the body is already writing the response, then regulate first and choose words after the spike settles."
+      },
+      {
+        "context": "A hurt reaction has landed on someone else",
+        "plan": "If pain has been offloaded, then repair the impact before debating the original issue."
+      }
+    ],
+    "twentyFourHourChallenge": "Within one day, write one SFD from a recent hook and circle the facts you do not actually have.",
+    "weeklyPractice": "For seven days, track one recurring story, test it with data, and make one repair that shows the learning changed behavior."
+  },
+  "memorableLines": [
+    {
+      "text": "The first story is a draft, not a verdict."
+    },
+    {
+      "text": "Regulation gives curiosity room to return."
+    },
+    {
+      "text": "Recovery is proven by changed behavior."
+    }
+  ]
+}

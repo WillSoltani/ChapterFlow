@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch20",
+  "number": 20,
+  "title": "Stakeholder Performance Domain",
+  "readingTimeMinutes": 12,
+  "hook": "You are about to send the update when one quiet stakeholder turns the whole project sideways.",
+  "counterintuition": "Stakeholder work is not a social courtesy parked at kickoff. It is performance evidence: who is affected, whose influence has shifted, and whether communication is still helping value reach the people who define it.",
+  "tryThisNow": "Put a 15-minute Stakeholder Signal Check on tomorrow's calendar at 10:00 in your project room; trigger it when the stakeholder register or engagement assessment changes.",
+  "keyTakeaway": "Stakeholder work earns trust when teams keep the stakeholder register, engagement assessment, communication, and influence signals tied to the other domains and value delivery.",
+  "breakdown": {
+    "fastRead": "Grayson is halfway through a sponsor update when his cursor stops on the stakeholder register. One reviewer gained power after the plan moved, but his deck still treats that person as handled. The mistake is not a missing form. It is a false picture of project health.\n\nThe useful habit is to read stakeholder work as live performance. The PMBOK Guide puts this work inside a map of 8 domains, so it cannot be sealed inside kickoff. Plans shift hopes. Delivery makes impacts real. Measures show drift. Risk raises new fears. A healthy team keeps asking what the signals say now, not whether the first list was done.",
+    "deepRead": "Teams make stakeholder performance real by checking feedback, not by holding a rite. First they learn who is affected. Then they read interest and influence, choose useful messages, and watch whether those choices still help decisions arrive on time. A stakeholder register, engagement assessment, or communication plan matters only when it helps the next adjustment.\n\nCalvin writes the cleanest example in a decision memo. The memo does not ask for more meetings. It says two warehouse supervisors moved from neutral to resistant after a schedule change, while the stakeholder register still points messages toward the old operations lead. The action in the memo is a correction of attention: change who hears the risk, who can answer it, and which decision needs a response before rework begins.\n\nThat is the mechanism. Stakeholder signals connect relationship work to the rest of the project system. A late objection is not merely a difficult person; it may be planning risk arriving through a human voice. A slow approval may not be red tape by itself; it may show that delivery, measures, and messages are out of sync. This lens keeps the team from saying, \"We engaged them,\" when the better question is, \"What result did our engagement create?\"\n\nThe practical split is clear. Activity volume counts contacts. Performance reading asks whether affected people are known, participation is useful, decisions arrive in time, hopes stay real, and value has a path through acceptance instead of surprise.",
+    "fullRead": "The hard edge appears when a team is proud of its stakeholder activity. They have the stakeholder register. They have the engagement assessment. They have a communication plan with tidy distribution groups. None of that proves the Stakeholder Performance Domain is healthy if objections still arrive late, approvals stall, or the product misses the people who will actually use it.\n\nTrevor and Ishani show the split. Trevor treats the eight-domain picture as a poster for governance. He files the PMBOK Guide map in the kickoff folder, updates names when asked, and assumes the rest of project performance belongs to planning and delivery. When a supplier change alters who carries operational pain, his register stays technically current and practically stale. The first real objection appears only after a demo, when rework is expensive.\n\nIshani faces the same supplier change with a different question. She asks which domain just moved through the stakeholder channel. Planning changed the date, delivery changed the interface, uncertainty changed the supplier's risk, and measurement is now showing slower sign-off. She does not add a ceremonial meeting. She changes the communication path, updates influence notes, and brings the affected supervisor into the next decision review. The outcome diverges because she treats stakeholder evidence as system evidence.\n\nThis also sets a boundary. A domain is not an invitation to collect every possible artifact. More personas, journey maps, feedback records, or influence charts can make the project busier while making performance blurrier. Use an artifact when it can help someone decide, coordinate, communicate, control, or learn. If a stakeholder register is never opened when delivery changes, it has become storage. If an engagement assessment never changes a message, it has become decoration.\n\nScarlett gives Grayson a clearer coaching sentence: \"A stakeholder is not handled until the project can absorb their next reaction.\" That line matters because it points to movement. People shift as impacts become concrete. Funders care differently when costs surface. Users care differently when the prototype touches their day. Regulators care differently when a date becomes a filing obligation. Stakeholder work therefore stays alive from start to finish, whether the approach is predictive, adaptive, or hybrid, with different levels of formality but the same demand for evidence.\n\nThe school version makes the same point without workplace stakes. Gianni stares at a training worksheet and asks why a team cannot just be good at communication. Scarlett circles the word influence, then asks him to mark who can approve, resist, fund, use, regulate, or benefit from the result. His confusion is useful because it exposes the trap. Communication is not the purpose by itself. It is one way the team keeps relationships accurate enough for value to move.\n\nBefore the change, Ishani's monthly review asked whether every stakeholder had received the update. After the change, the same review asks what the stakeholder register, engagement assessment, communication record, and influence notes have revealed since the last delivery decision. The questions are parallel, but the second one is alive. It turns relationship work into project performance by asking what changed, what evidence shows it, and which domain now needs attention."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01-grayson-register-error",
+      "sourceAnchorId": "ch20.ex.domain-20-eight",
+      "title": "The Cursor Stops on the Register",
+      "tags": [
+        "mistake_recovery",
+        "register",
+        "eight domains"
+      ],
+      "planSpec": {
+        "domain": "project sponsor update after a delivery-date change",
+        "audience": "project managers who treat stakeholder work as completed intake",
+        "stakes": "a regulator's influence has changed while the deck still shows old engagement status",
+        "format": "mistake_recovery",
+        "requiredBeat": "the project manager notices his own register error while presenting and corrects the frame before reporting performance"
+      },
+      "scenario": "Grayson is narrating a sponsor update from a conference room screen when his cursor stops on the stakeholder register. He has been treating the Stakeholder Performance Domain as a completed intake task, yet the PMBOK Guide map on the next slide shows 8 domains running together. The moment hurts: a regulator's influence changed after delivery dates moved, and his notes never caught it. Minutes before the deck goes out, while sponsors wait, he sees the error is his, not the team's.",
+      "whatToDo": "Grayson stops the update, marks the changed influence, and adds a review of planning, delivery, measurement, and uncertainty effects before he reports stakeholder health.",
+      "whyItMatters": "The noticing matters more than the paperwork. Teams fail at stakeholder performance when an old register stands in for current evidence of project health."
+    },
+    {
+      "exampleId": "ex02-calvin-decision-memo",
+      "sourceAnchorId": "ch20.ex.domain-20-artifact",
+      "title": "Calvin's Memo Changes the Audience",
+      "tags": [
+        "decision_memo",
+        "engagement",
+        "communication"
+      ],
+      "planSpec": {
+        "domain": "warehouse rollout decision memo after schedule movement",
+        "audience": "delivery leads deciding who needs a risk discussion",
+        "stakes": "old communication routing hides resistance from supervisors affected by the change",
+        "format": "decision_memo",
+        "requiredBeat": "the written memo uses stakeholder signals to reroute communication before the next decision"
+      },
+      "scenario": "Decision memo, drafted by Calvin before the next sponsor call: \"The stakeholder register still routes communication through the old operations lead. Yesterday's engagement assessment moved two warehouse supervisors from neutral to resistant, and their influence now sits between delivery acceptance and rework for the pilot. I recommend changing the audience for Friday's risk review, not adding another broadcast. The decision is whether the supervisors hear the constraint while they can still shape it or after they can only reject it.\"",
+      "whatToDo": "Calvin sends the memo with the two changed names highlighted, replaces the broadcast with a focused risk review, and asks for a decision owner by Friday.",
+      "whyItMatters": "A memo can carry the domain when it turns stakeholder signals into a changed communication path. The artifact matters because it moves a decision."
+    },
+    {
+      "exampleId": "ex03-trevor-ishani-contrast",
+      "sourceAnchorId": "ch20.ex.domain-20-eight",
+      "title": "One Supplier Change, Two Readings",
+      "tags": [
+        "contrast",
+        "system",
+        "supplier"
+      ],
+      "planSpec": {
+        "domain": "supplier change that affects operations, delivery, and approvals",
+        "audience": "teams learning to read stakeholder evidence across domains",
+        "stakes": "the same change can become late resistance or early coordination",
+        "format": "contrast",
+        "requiredBeat": "two project leads face the same supplier change with opposite approaches and different outcomes"
+      },
+      "scenario": "In the supplier review, the same change lands on Trevor's desk and Ishani's desk before the next sign-off review. Trevor opens the PMBOK Guide page on 8 domains, files it beside governance notes, and updates the stakeholder register only after someone asks. The first objection reaches him during the demo. Ishani reads the Stakeholder Performance Domain as connected to planning, delivery, measurement, and uncertainty. She updates influence notes before the demo and brings the affected supervisor into the review. Trevor gets rework; Ishani gets a usable constraint.",
+      "whatToDo": "Ishani treats the supplier change as a system signal and revises the engagement route before sign-off. Trevor's delayed update becomes the contrast she avoids.",
+      "whyItMatters": "The same event creates different outcomes when one lead files stakeholder work as administration and another reads it as evidence across domains."
+    },
+    {
+      "exampleId": "ex04-scarlett-coach-talk",
+      "sourceAnchorId": "ch20.ex.domain-20-artifact",
+      "title": "Handled Is Not Healthy",
+      "tags": [
+        "coach_talk",
+        "influence",
+        "signals"
+      ],
+      "planSpec": {
+        "domain": "coaching conversation before a sponsor sync",
+        "audience": "project leads who confuse contact made with performance achieved",
+        "stakes": "the team may report engagement activity while resistance is rising",
+        "format": "coach_talk",
+        "requiredBeat": "a mentor reframes handled stakeholders as live reactions the project must absorb"
+      },
+      "scenario": "Inside the conference room, Scarlett closes the door after hearing that every stakeholder is \"handled.\" The stakeholder register lies open, but the engagement assessment flags three people as drifting, and the communication log shows no reply from the highest-influence reviewer. She does not argue over the form. She taps the influence column and says, \"A stakeholder is not handled until the project can absorb their next reaction.\" Before the next sponsor sync, the report has to change around that sentence.",
+      "whatToDo": "Scarlett rewrites the status note from contact completed to reaction readiness, then asks which drifting reviewer needs a different message before the sync.",
+      "whyItMatters": "The reframe turns engagement from a courtesy count into a performance question. A team can be busy with communication and still miss the reaction that changes value."
+    },
+    {
+      "exampleId": "ex05-gianni-training-case",
+      "sourceAnchorId": "ch20.ex.domain-20-artifact",
+      "title": "Gianni Sorts the Influence Cards",
+      "tags": [
+        "school_case",
+        "training",
+        "influence"
+      ],
+      "planSpec": {
+        "domain": "onboarding classroom exercise about stakeholder signals",
+        "audience": "learners distinguishing communication from stakeholder performance",
+        "stakes": "confusion in the lesson exposes why communication alone is too narrow",
+        "format": "school_case",
+        "requiredBeat": "a learner's confusion becomes the material for separating communication from influence and engagement evidence"
+      },
+      "scenario": "In Scarlett's onboarding classroom, Gianni keeps sorting every card into the communication pile. The worksheet includes stakeholder register, engagement assessment, communication, and influence, but no project money or deadline is at stake; the confusion is the lesson. Gianni asks why a newsletter would not solve the exercise. The question is still open when the trainer points to a card marked \"can approve\" and another marked \"will use daily\" on the board. He finally sees that messages are only one part of performance.",
+      "whatToDo": "Gianni resorts the cards by who can approve, resist, fund, use, regulate, or benefit, then writes which signal would change the next engagement move.",
+      "whyItMatters": "The classroom case removes workplace pressure. It lets the learner see that stakeholder performance includes communication, but also influence, acceptance, and value."
+    },
+    {
+      "exampleId": "ex06-ishani-before-after",
+      "sourceAnchorId": "ch20.ex.domain-20-artifact",
+      "title": "The Monthly Review Learns to Listen",
+      "tags": [
+        "before_after",
+        "review",
+        "signals"
+      ],
+      "planSpec": {
+        "domain": "monthly stakeholder review process before and after a signal redesign",
+        "audience": "project teams maintaining recurring engagement routines",
+        "stakes": "a routine can count updates while missing changes in influence and acceptance",
+        "format": "before_after",
+        "requiredBeat": "the same review process is shown before and after it starts asking what stakeholder signals revealed"
+      },
+      "scenario": "Before, Ishani's monthly review asked one question: did every listed person receive the update? The stakeholder register sat beside the engagement assessment like attendance paperwork each month, and communication volume looked like success in the notes. After, the same review asks a parallel question: what changed in influence, response, or acceptance since the last delivery decision? The calendar slot is identical, the room is identical, and the output is different. One process counts broadcasts; the other listens for stakeholder performance.",
+      "whatToDo": "Keep the meeting, but change the output. Record one changed signal, one affected decision, and one communication adjustment before closing the review.",
+      "whyItMatters": "The before-and-after view shows tailoring without extra ceremony. A familiar routine becomes useful when it asks what evidence changed and what action follows."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch20.fact.1",
+        "prompt": "Grayson inherits a project whose stakeholder list was approved at kickoff, but delivery changes are now affecting a new reviewer. Which reading fits the domain best?",
+        "choices": [
+          "Kickoff Closure Misread: keep the original list fixed unless the sponsor formally reopens stakeholder work.",
+          "Live Domain Reading: revisit stakeholder influence as project information, decisions, and reactions change.",
+          "Courtesy Outreach Misread: send the new reviewer the standard update and count that as engagement."
+        ],
+        "correctIndex": 1,
+        "explanation": "The domain stays active as the project changes. A kickoff list or courtesy update may be useful, but neither proves stakeholder performance is still healthy.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch20.fact.8",
+        "prompt": "A log shows four late objections in two weeks, all from names marked low influence in the stakeholder register. The engagement assessment was not updated after a schedule change. What should the team infer first?",
+        "choices": [
+          "Bad-Luck Misread: the objections are random noise because the register already classified those people.",
+          "More-Meetings Misread: the team mainly needs a larger recurring forum for every listed stakeholder.",
+          "Signal-Drift Reading: influence or engagement has shifted, so the register and assessment need review before more messages go out."
+        ],
+        "correctIndex": 2,
+        "explanation": "The pattern is evidence, not noise. When objections cluster after a change, the team should inspect stakeholder signals before adding broad communication volume.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch20.fact.5",
+        "prompt": "During a hybrid rollout, Calvin adds personas, journey maps, and a communication plan, but no decision changes after any of them. What is the best critique?",
+        "choices": [
+          "Outcome-Support Reading: artifacts earn their place only when they help decisions, coordination, communication, control, or learning.",
+          "Artifact-Volume Misread: extra stakeholder tools are a good proxy for rigor even when no decision changes.",
+          "Predictive-Only Misread: stakeholder artifacts matter only in predictive projects, so hybrid work should drop them."
+        ],
+        "correctIndex": 0,
+        "explanation": "The useful edge is not anti-artifact. Tools matter when they support outcomes; otherwise they add activity while stakeholder performance remains unclear.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch20.fact.2",
+        "prompt": "The engagement assessment improves on paper, yet approvals still arrive late and users keep raising the same fit concern. Which conclusion should come before celebrating?",
+        "choices": [
+          "Activity Completion Misread: improved assessment entries show the domain is healthy enough.",
+          "Outcome Evidence Reading: the team should ask whether engagement is producing timely decisions and realistic expectations.",
+          "User-Noise Misread: repeated fit concerns belong to delivery only, not stakeholder performance."
+        ],
+        "correctIndex": 1,
+        "explanation": "Healthy performance is judged by outcomes, not by cleaner entries alone. Late approvals and repeated fit concerns show engagement may not be working yet.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch20.fact.3",
+        "prompt": "Scarlett hears a team say resistance is a stakeholder problem and schedule pressure is a planning problem. How should she reframe the situation?",
+        "choices": [
+          "Domain-Interaction Reading: ask how the schedule change is altering stakeholder influence, communication, delivery, and uncertainty together.",
+          "Separate-Lanes Misread: optimize each domain independently so the team can assign clean ownership.",
+          "Escalation-First Misread: treat resistance as a sponsor issue before examining any project-system effects."
+        ],
+        "correctIndex": 0,
+        "explanation": "Domains interact. Stakeholder resistance may be the visible human signal of planning, delivery, measurement, or uncertainty effects elsewhere.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch20.fact.6",
+        "prompt": "Usage data is strong in testing, but the group that must approve the finished result has not joined a decision review. Which risk is most important?",
+        "choices": [
+          "Testing-Is-Value Misread: strong usage data proves value delivery even without acceptance.",
+          "Approval-Is-Admin Misread: approval is separate from value and can wait until delivery is complete.",
+          "Value-Path Reading: stakeholder weakness can block outputs from becoming accepted outcomes and benefits."
+        ],
+        "correctIndex": 2,
+        "explanation": "Value depends on acceptance, use, approval, funding, and benefit realization. Stakeholder weakness can stop useful output from becoming delivered value.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch20.fact.9",
+        "prompt": "After a PMO renames its stakeholder checklist as a performance domain, teams still close the file after kickoff. Which sentence challenges that habit?",
+        "choices": [
+          "Renaming Misread: it is mainly the old stakeholder knowledge area with a newer label.",
+          "Evidence Reading: it asks how stakeholder outcomes and signals show project health across the system.",
+          "Sequence Misread: it is the relationship box to complete before team and planning work begin."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hard edge rejects both renaming and sequencing. Stakeholder performance is assessed through outcomes and signals that interact with the rest of project performance.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch20.fact.4",
+        "prompt": "Ishani's stakeholder register is lightweight in an adaptive effort, while a regulated project uses a formal assessment and approval log. What should this difference suggest?",
+        "choices": [
+          "Tailored-Fit Reading: formality, cadence, and feedback should fit the development approach and project context.",
+          "One-Template Misread: the same stakeholder practices should be used everywhere for consistency.",
+          "Adaptive-Shortcut Misread: adaptive teams can rely on intuition instead of stakeholder evidence."
+        ],
+        "correctIndex": 0,
+        "explanation": "Tailoring changes the level of rigor, not the need for evidence. Predictive, adaptive, and hybrid contexts can all support the domain in different ways.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch20.fact.7",
+        "prompt": "A trainer gives Gianni the PMBOK Guide's 8-domain map and asks where stakeholder work belongs. Which answer should Gianni give?",
+        "choices": [
+          "Optional-Side-Topic Misread: stakeholder work is useful, but it sits outside the main performance map.",
+          "Planning-Subtask Misread: stakeholder work belongs under planning because lists and communication plans are planned early.",
+          "Main-Domain Reading: it is one of the main performance domains and should be read alongside the other seven."
+        ],
+        "correctIndex": 2,
+        "explanation": "The PMBOK Guide uses performance domains as main areas of attention. Stakeholder work is not a side topic or a planning subtask that ends early.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch20.fact.1",
+      "front": "When should stakeholder work be revisited after kickoff?",
+      "back": "Revisit it whenever project information, decisions, or stakeholder reactions change. The domain stays active throughout delivery, so an approved early list is only a starting picture.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch20.fact.8",
+      "front": "What do the stakeholder register and engagement assessment help you see?",
+      "back": "They help turn relationship work into observable signals: who is affected, how engagement is shifting, where communication is landing, and whose influence now matters to decisions.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch20.fact.5",
+      "front": "Why is artifact volume a weak proof of stakeholder performance?",
+      "back": "Artifacts prove little by existing. They earn trust only when they support a decision, coordination move, communication change, control action, or learning loop that improves domain outcomes.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch20.fact.6",
+      "front": "Earlier chapter concept: value delivery. How can stakeholder weakness block value?",
+      "back": "Outputs become value only when the right people accept, use, approve, fund, regulate, or benefit from them. Weak stakeholder performance can leave a technically finished output without accepted outcomes.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch20.fact.4",
+      "front": "Earlier chapter concept: tailoring to context. What changes and what stays constant here?",
+      "back": "Formality, cadence, and feedback style change across predictive, adaptive, and hybrid work. The constant is the need for evidence that stakeholder engagement supports project value.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch20.fact.9",
+      "front": "What mistaken reading does the Stakeholder Performance Domain reject?",
+      "back": "It rejects treating the domain as a renamed knowledge area or a sequence box. The stronger reading asks what outcomes and signals show about project health across the system.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Trace Stakeholder Signals to Value",
+    "coreSkill": "Practice reading stakeholder work as live evidence rather than completed outreach. The Stakeholder Signal Check asks what changed in the register, engagement assessment, communication record, or influence notes since the last project decision. Then it ties that signal to the domain it affects and the action needed for value to keep moving.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch20.fact.1",
+        "context": "When a schedule, delivery, risk, or approval condition changes",
+        "plan": "If project conditions move, then run the Stakeholder Signal Check before the next status report and update any influence or engagement signal that no longer matches reality."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.8",
+        "context": "When objections appear after the stakeholder register looked settled",
+        "plan": "If objections cluster after a change, then compare the stakeholder register with the engagement assessment and revise communication before adding another broad meeting."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.5",
+        "context": "When the team wants to add another stakeholder artifact",
+        "plan": "If a new artifact is proposed, then ask which decision, coordination move, communication change, control action, or learning loop it will improve before accepting the work."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.6",
+        "context": "When output looks ready but acceptance is uncertain",
+        "plan": "If delivery appears complete while approval, use, funding, regulation, or benefit ownership is unclear, then treat that gap as a value risk and revise engagement."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one active project and run a Stakeholder Signal Check: mark one changed person, one changed influence level, one affected decision, and one communication adjustment.",
+    "weeklyPractice": "Once a week, review the stakeholder register, engagement assessment, communication record, and influence notes beside the latest planning or delivery change. Record the signal that changed and the domain it affects."
+  },
+  "memorableLines": [
+    {
+      "text": "The mistake is not a missing form.",
+      "location": "breakdown.fastRead",
+      "why": "It keeps the reader from reducing stakeholder performance to paperwork."
+    },
+    {
+      "text": "Teams make stakeholder performance real by checking feedback, not by holding a rite.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism and pushes attention toward observable adjustment."
+    },
+    {
+      "text": "A stakeholder is not handled until the project can absorb their next reaction.",
+      "location": "breakdown.fullRead",
+      "why": "It turns engagement from a contact count into a performance standard."
+    }
+  ]
+}

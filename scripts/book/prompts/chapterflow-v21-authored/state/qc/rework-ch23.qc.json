@@ -4,7 +4,7 @@
   "chapterNumber": 23,
   "chapterId": "rework-ch23",
   "verdict": "PUBLISHABLE",
-  "contentHash": "d962a5779555ab0e",
+  "contentHash": "ebe0106ed5ef9031",
   "reviewer": "claude-qc:wf_93f0a1dd",
   "reviewedAt": "2026-06-04T12:41:10.631Z",
   "dimensions": {
@@ -15,5 +15,27 @@
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "bar-read score 93/100; hidden-key derivation found 0 key errors; grounded, non-templated, cards answer fronts"
+  "notes": "bar-read score 93/100; hidden-key derivation found 0 key errors; grounded, non-templated, cards answer fronts",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "rework",
+      "chapterNumber": 23,
+      "chapterId": "rework-ch23",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "d962a5779555ab0e",
+      "reviewer": "claude-qc:wf_93f0a1dd",
+      "reviewedAt": "2026-06-04T12:41:10.631Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "bar-read score 93/100; hidden-key derivation found 0 key errors; grounded, non-templated, cards answer fronts"
+    }
+  ]
 }

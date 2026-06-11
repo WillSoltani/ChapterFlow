@@ -46,32 +46,27 @@
   ],
   "targetReader": "Founders, CEOs, senior operators, and managers who are responsible for outcomes when the room is scared, the facts are incomplete, and easy leadership language stops helping.",
   "voiceCharter": {
-    "register": "plainspoken",
+    "register": "blunt",
     "person": "second",
-    "cadence": "medium",
+    "cadence": "short",
     "signatureMoves": [
-      "open ideas in a concrete moment before naming the rule",
-      "use plain sentences with one sharp image",
-      "teach through choices the reader recognizes",
-      "make the cost of delay visible in operational terms",
-      "separate toughness from useful action",
-      "land examples with protagonist names that read naturally to Canadian, American, and European readers - 4 of 6 from common Anglophone or Western European pools, 1 to 2 from less-common European or diaspora names"
+      "uses CEO war stories, ugly tradeoffs, layoffs, cash, and board pressure",
+      "sounds blunt, operational, and allergic to startup mythology",
+      "turns leadership into what happens after the easy advice fails",
+      "keeps cost, delay, and communication consequences visible"
     ],
     "avoidMoves": [
-      "no chapter/book/author meta references",
-      "no em dashes",
-      "no reusable hook/counter/tryThisNow stems",
-      "no generic coaching language",
-      "no worship of founder pain as proof of wisdom"
+      "Avoid \"The point is\" as a paragraph hinge.",
+      "Avoid \"the question is\" as a setup crutch.",
+      "Avoid maxim-per-paragraph cadence.",
+      "Avoid triadic abstract-noun lists such as clarity, courage, and resilience.",
+      "Do not worship founder pain as proof of wisdom.",
+      "Do not make crisis leadership sound cinematic."
     ]
   },
   "voiceSpecimens": [
-    "The bad news is already in the room. Your only choice is whether people hear it from you or build a worse version in private.",
-    "A deadline missed by three teams is not a calendar problem. It is an ownership problem wearing a calendar mask.",
-    "You can care about people and still owe them a clear standard. Confusion is not kindness.",
-    "When cash is short, the spreadsheet stops being a report and becomes a clock.",
-    "The rule that saved you last quarter can hurt you this quarter if you use it to stop reading the room.",
-    "If the team needs certainty you do not have, give them something better: the facts, the open questions, and the next move."
+    "Say the bad news.",
+    "Then make the call."
   ],
   "voiceAntiSpecimens": [
     "This chapter will teach you how Horowitz thinks about leadership.",
@@ -85,6 +80,8 @@
     "Do not turn the book into generic resilience coaching or founder hustle mythology.",
     "Do not soften layoffs, executive misfit, cash pressure, or failed strategy into vague leadership challenges.",
     "Do not treat no rules as anti-process; the point is context-sensitive judgment, not improvisational laziness.",
-    "Do not make people first sound like comfort first; the chapter requires standards, training, feedback, and accountability."
+    "Do not make people first sound like comfort first; the chapter requires standards, training, feedback, and accountability.",
+    "Do not soften bad news before naming it.",
+    "Do not use startup slogans where an operating decision is needed."
   ]
 }

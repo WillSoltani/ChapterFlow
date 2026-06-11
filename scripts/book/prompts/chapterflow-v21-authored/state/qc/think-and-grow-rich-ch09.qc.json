@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "think-and-grow-rich",
+  "chapterNumber": 9,
+  "chapterId": "think-and-grow-rich-ch09",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "7306b7a308e90ea0",
+  "reviewer": "claude-qc:tgr-20260605",
+  "reviewedAt": "2026-06-05T12:02:34.068Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "Bar ~91 GREEN. 9/9 keys correct (1,0,2,2,1,0,0,2,1). Four-step persistence method, symptoms list, Fannie Hurst, Kate Smith accurate. Distinct scenes. No corruption.",
+  "hashVersion": "v2",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "think-and-grow-rich",
+      "chapterNumber": 9,
+      "chapterId": "think-and-grow-rich-ch09",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "707a38c40ebef6a2",
+      "reviewer": "claude-qc:tgr-20260605",
+      "reviewedAt": "2026-06-05T12:02:34.068Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "Bar ~91 GREEN. 9/9 keys correct (1,0,2,2,1,0,0,2,1). Four-step persistence method, symptoms list, Fannie Hurst, Kate Smith accurate. Distinct scenes. No corruption."
+    }
+  ]
+}

@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch12",
+  "number": 12,
+  "title": "Demonstrate Leadership Behaviors",
+  "readingTimeMinutes": 11,
+  "hook": "You reach for the status slide, and the next sentence will make leadership visible.",
+  "counterintuition": "The most important leadership signal may be a changed tradeoff, not a louder instruction. Under pressure, people learn what the principle means by watching which decision gets protected.",
+  "tryThisNow": "Put one pressure choice into a sentence, then label the behavior that would prove it: influence, service, accountability, or clarification.",
+  "keyTakeaway": "A team demonstrates leadership when pressure changes a real behavior: who is heard, what is escalated, which tradeoff is named, and how value stays protected.",
+  "breakdown": {
+    "fastRead": "Rosaire has seven minutes before the steering update and one slide left to cut. The easy slide recites Demonstrate Leadership Behaviors from PMI's 12 principles. The useful slide names the tradeoff the team is avoiding: schedule pressure has made risk escalation feel impolite.\n\nThat is the rule. Leadership is evidence before it is vocabulary. The principle becomes real when someone clarifies purpose, invites dissent, serves the team, or accepts accountability in the next decision.",
+    "deepRead": "The mechanism is visible decision evidence. Project pressure strips nice language down to what people can observe: who gets time, what risk gets named, which stakeholder hears the bad news, and whether the baseline becomes a shield or a tool. A title can authorize action, but the behavior that steadies a project is often influence, servant leadership, communication, and courage in the room where a tradeoff is being made.\n\nCoralie sees it during a release review. The team can still hit the milestone if adoption support is pushed aside and the risk stays inside the room. Nobody is asking for a speech. They are watching the next move. Coralie asks Deepak to explain the technical risk in plain language, gives Rachel two minutes to name the stakeholder impact, and records the accountability owner before the meeting ends. The schedule is still tight. The difference is that the pressure no longer gets to erase learning, quality, and trust.\n\nThis is why the principle crosses predictive, adaptive, and hybrid work. The exact ceremony changes; the responsibility does not. In a predictive environment, the behavior may be escalation through governance. In adaptive work, it may be facilitation that lets a specialist influence the backlog. In a hybrid effort, it may be protecting a handoff that keeps adoption possible. The reader's discrimination is simple: if the principle did not alter a decision, it has not yet reached the project.",
+    "fullRead": "The hard case is the capable team that already knows the words. They can point to the PMI set around stewardship, stakeholder work, value, systems thinking, quality, resilience, risk response, and change without stumbling. They can say Demonstrate Leadership Behaviors with a straight face. Then schedule pressure arrives, and the room quietly teaches the opposite lesson by rewarding silence, haste, and private workarounds.\n\nThat gap matters because leadership in this standard is not a personality contest. It is behavior in service of value delivery. Formal authority helps when direction has to be clear, but influence can also come from expertise, trust, facilitation, and service. A product owner can help people choose. A technical specialist can make risk understandable. A project manager can remove an impediment without making the room about the project manager. A sponsor can model accountability by asking for the uncomfortable fact first. Different roles, same proof: the project system becomes clearer, more responsible, and more able to act.\n\nPressure is where principle vocabulary either becomes behavior or evaporates.\n\nThe boundary is important. Demonstrating leadership does not mean turning every project into a heroic rescue or replacing governance with charisma. A crisis may need decisive direction; a complex problem may need experimentation; a developing team may need coaching; a stakeholder conflict may need negotiation. The behavior is tailored to context, but the obligation is not abandoned. If a small internal effort has low risk, the proof might be a five-minute clarification and a clean owner. If a regulated project has safety exposure, the proof may be formal escalation through decision rights. Tailoring changes the form, not the responsibility.\n\nThere is also a false comfort in calling everything servant leadership. Service is not passivity. A leader may serve the team by slowing a rushed approval, challenging a convenient assumption, or naming the stakeholder who has been left out. Support can feel uncomfortable when it protects quality, learning, or adoption from the short-term wish to appear on track. That discomfort is the point: leadership behavior is most legible when convenience would prefer something quieter.\n\nSo the practical test is not, who sounds like a leader. The test is, what changed because someone practiced leadership here. Did the tradeoff become visible. Did the right people hear it soon enough. Did accountability attach to a next action. Did the team gain confidence, clarity, alignment, or learning that helps value survive the pressure. When the answer is yes, the principle has moved from the page into delivery."
+  },
+  "examples": [
+    {
+      "exampleId": "ch12-ex01-rosaire-agenda-minutes",
+      "sourceAnchorId": "ch12.ex.principle-12-pmi",
+      "title": "Rosaire Spends the Last Minutes",
+      "tags": [
+        "planning_choice",
+        "PMI principles",
+        "attention"
+      ],
+      "planSpec": {
+        "domain": "steering update preparation before any meeting action begins",
+        "audience": "a project lead allocating scarce attention under professional standards",
+        "stakes": "a leadership principle becomes a line on a slide or a live agenda choice",
+        "format": "planning_choice",
+        "requiredBeat": "before execution starts, he allocates the final prep minutes to the decision evidence the principle requires"
+      },
+      "scenario": "Before the steering update starts, Rosaire has eighteen prep minutes and three claims competing for space. PMI's 12 principles sit in the briefing deck, with Demonstrate Leadership Behaviors highlighted beside influence and servant leadership. The baseline chart is clean; the stakeholder concern is not. No meeting action has begun. Rosaire spends the whole scene allocating attention: five minutes for schedule facts, five for the neglected stakeholder, five for the risk owner, three for the opening sentence that will make leadership observable.",
+      "whatToDo": "Rosaire allocates the scarce prep time to evidence, not decoration. He keeps the principle only where it changes what the steering group will notice first.",
+      "whyItMatters": "Leadership becomes practical when scarce attention moves toward influence, service, and accountability. A principle slide alone would let the project avoid the hard signal."
+    },
+    {
+      "exampleId": "ch12-ex02-coralie-two-bad-options",
+      "sourceAnchorId": "ch12.ex.principle-12-tradeoff",
+      "title": "Coralie Holds the Bad Fork",
+      "tags": [
+        "dilemma",
+        "schedule pressure",
+        "accountability"
+      ],
+      "planSpec": {
+        "domain": "release governance under schedule pressure",
+        "audience": "a delivery lead facing two costly choices",
+        "stakes": "the baseline can be protected only by hiding a risk, while escalation may damage trust in the date",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist faces the chapter's only explicit two-bad-options decision"
+      },
+      "scenario": "Schedule pressure has turned Coralie's release review into a bad fork. The baseline date is printed on sponsor materials, and the integration defect is real. She must decide whether to escalate the risk and bruise confidence in the date, or stay quiet and let the team absorb a quality problem later. The tradeoff has no painless branch. Coralie circles accountability on her notes because the principle will be judged by the harm she is willing to name, not by how calmly she says the title.",
+      "whatToDo": "Coralie names the tradeoff and escalates the risk with an owner, an impact, and a next review point. She lets accountability cost something while it can still protect value.",
+      "whyItMatters": "Pressure tests the principle by making every option uncomfortable. The leadership move is the observable choice that protects quality and trust before convenience hardens."
+    },
+    {
+      "exampleId": "ch12-ex03-yann-deepak-dialogue",
+      "sourceAnchorId": "ch12.ex.principle-12-pmi",
+      "title": "Yann Lets Deepak Influence",
+      "tags": [
+        "dialogue",
+        "influence",
+        "servant leadership"
+      ],
+      "planSpec": {
+        "domain": "a project room discussing the PMBOK principle set",
+        "audience": "a facilitator learning that authority is not the only source of leadership",
+        "stakes": "expertise may stay unused if the room treats leadership as title-only",
+        "format": "dialogue",
+        "requiredBeat": "two named people let the lesson emerge through the exchange itself"
+      },
+      "scenario": "\"PMI put Demonstrate Leadership Behaviors inside the 12 principles,\" Yann says. \"So who leads this part?\"\n\nDeepak taps the defect map. \"For the next ten minutes, me. I can show the influence path.\"\n\n\"Without owning the project?\"\n\n\"Servant leadership is not waiting for a title. I can make the risk understandable, then you can help the room choose.\"\n\nYann moves the marker toward Deepak and stops talking. The next note on the board is not a role name. It is the risk path the team had been circling around.",
+      "whatToDo": "Yann makes room for Deepak's expertise to influence the decision. Deepak serves the team by turning a technical risk into language others can use.",
+      "whyItMatters": "The principle is broader than formal authority. A team demonstrates it when the person with the clearest contribution is enabled to help the project decide."
+    },
+    {
+      "exampleId": "ch12-ex04-rachel-reveal",
+      "sourceAnchorId": "ch12.ex.principle-12-tradeoff",
+      "title": "Rachel's Green Slide Breaks",
+      "tags": [
+        "predict_reveal",
+        "baseline",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "status reporting under schedule pressure",
+        "audience": "a project manager tempted to let the baseline color carry the meeting",
+        "stakes": "a green report can hide the adoption work that makes the outcome valuable",
+        "format": "predict_reveal",
+        "requiredBeat": "the reader expects baseline defense, then the outcome reveals the leadership behavior"
+      },
+      "scenario": "Everyone expects Rachel's status slide to stay green. The baseline date still holds, and schedule pressure has made the room hungry for a clean sentence. Then the reveal lands: Rachel leaves the date green but turns the adoption row red. The tradeoff was not time alone; training had been sacrificed to protect the baseline. She adds the stakeholder impact, the accountability owner, and the date for a correction plan. The surprise is that the honest red row makes the project sound more controlled, not less.",
+      "whatToDo": "Rachel separates the baseline from the value risk and makes the hidden adoption cost visible. She assigns accountability before the green status can mislead the room.",
+      "whyItMatters": "A clean date can conceal a failing outcome. Leadership shows when reporting makes the real tradeoff visible enough for responsible action."
+    },
+    {
+      "exampleId": "ch12-ex05-hailey-rejean-thread",
+      "sourceAnchorId": "ch12.ex.principle-12-pmi",
+      "title": "Hailey's Short Thread",
+      "tags": [
+        "text_thread",
+        "PMI principles",
+        "informal"
+      ],
+      "planSpec": {
+        "domain": "informal team message exchange before a project decision",
+        "audience": "team members deciding how to use principle language without becoming stiff",
+        "stakes": "a principle can stay ceremonial unless the next message changes a behavior",
+        "format": "text_thread",
+        "requiredBeat": "a compressed chat shows the lesson between the lines"
+      },
+      "scenario": "Hailey: Did we just paste Demonstrate Leadership Behaviors into the review deck?\n\nRejean: It is in PMI's 12 principles, so yes.\n\nHailey: Cool. What behavior changes before noon?\n\nRejean: I invite Coralie before the tradeoff hardens.\n\nHailey: Influence plus servant leadership?\n\nRejean: Both, if I actually make space for the concern.\n\nHailey: With an owner?\n\nRejean: Rachel copied, decision time included.\n\nHailey: Before noon, not after review?\n\nRejean: Before noon, with the status recap cut.\n\nHailey: Then the slide can stay.\n\nRejean: Fair. I will send the invite now.\n\nHailey: Good. Receipt made.",
+      "whatToDo": "Hailey turns the principle from deck text into a behavior question. Rejean answers by making room for the concern before the review gets locked.",
+      "whyItMatters": "Informal influence can keep a principle alive. The short exchange matters because it changes who gets heard before the project chooses."
+    },
+    {
+      "exampleId": "ch12-ex06-rejean-reset",
+      "sourceAnchorId": "ch12.ex.principle-12-tradeoff",
+      "title": "Rejean Restarts the Variance Review",
+      "tags": [
+        "reset_moment",
+        "baseline",
+        "schedule pressure"
+      ],
+      "planSpec": {
+        "domain": "weekly variance review interrupted by a warning signal",
+        "audience": "a PMO lead using a pause as the leadership technique",
+        "stakes": "routine baseline defense can erase the tradeoff the project needs to confront",
+        "format": "reset_moment",
+        "requiredBeat": "a routine gets interrupted, then the protagonist pauses and restarts differently"
+      },
+      "scenario": "Rejean's variance review usually begins with the baseline column. This week, schedule pressure has everyone leaning forward before he finishes the first sentence. Halfway through the routine, Hailey points at an adoption task with no owner. Rejean stops. He closes the dashboard, waits through the silence, and restarts with a different question: \"What tradeoff are we making by leaving this unnamed?\" The pause becomes the technique. Accountability enters before the old routine can turn the missing owner into background noise.",
+      "whatToDo": "Rejean interrupts his own routine and restarts with the missing owner in view. He uses the pause to make accountability visible before the baseline report takes over.",
+      "whyItMatters": "Routine can hide weak leadership as easily as chaos can. The reset matters because the project notices the skipped responsibility while it can still be assigned."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "ch12-q01",
+        "sourceAnchorId": "ch12.fact.1",
+        "prompt": "Rosaire treats Demonstrate Leadership Behaviors as a kickoff slide and then never returns to it during delivery. Which response best fits the PMBOK principle?",
+        "choices": [
+          "Use the Opening-Ceremony Misread: leave the slide unchanged and call the principle covered.",
+          "Use the Title-Ownership Misread: wait for the person with formal authority to act.",
+          "Use the Continuous-Behavior Read: choose a visible action at each pressure point."
+        ],
+        "correctIndex": 2,
+        "explanation": "The principle is practiced throughout delivery. A kickoff slide and title dependence both miss the point if changing conditions never change behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch12-q02",
+        "sourceAnchorId": "ch12.fact.8",
+        "prompt": "A status log shows three weeks of schedule pressure. Each week, quality questions were deferred to defend the baseline, and stakeholders learned late. What should Rachel infer first?",
+        "choices": [
+          "Use the Pressure-Test Read: the principle is failing where it should shape tradeoffs.",
+          "Use the Baseline-Worship Misread: a protected baseline proves leadership occurred.",
+          "Use the After-Delivery Misread: accountability can wait until the retrospective."
+        ],
+        "correctIndex": 0,
+        "explanation": "Pressure exposes whether the principle changed a decision. Protecting a baseline while hiding quality and stakeholder risk is vocabulary without leadership evidence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch12-q03",
+        "sourceAnchorId": "ch12.fact.2",
+        "prompt": "Yann works in a hybrid project where one team uses a predictive plan and another works adaptively. How should he apply the principle?",
+        "choices": [
+          "Use the Method-Bound Misread: apply leadership only inside the predictive governance path.",
+          "Use the Lifecycle-Travel Read: adapt the behavior while keeping the responsibility.",
+          "Use the Agile-Exemption Misread: skip the principle where the team self-organizes."
+        ],
+        "correctIndex": 1,
+        "explanation": "PMBOK principles travel across predictive, adaptive, and hybrid approaches. The ceremony changes, but the responsibility to clarify, serve, influence, and decide remains.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch12-q04",
+        "sourceAnchorId": "ch12.fact.3",
+        "prompt": "Deepak's meeting notes include the principle name but no owner, stakeholder message, risk escalation, or changed priority. Which reading is strongest?",
+        "choices": [
+          "Use the Vocabulary-Proof Misread: correct terminology is enough evidence.",
+          "Use the Decision-Evidence Read: the notes lack the visible choices that prove application.",
+          "Use the Governance-Delay Misread: wait for a later committee to make every behavior visible."
+        ],
+        "correctIndex": 1,
+        "explanation": "The standard is behavioral. Notes that name the principle but show no priority, communication, governance, or tradeoff change have not applied it yet.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch12-q05",
+        "sourceAnchorId": "ch12.fact.4",
+        "prompt": "A sponsor asks why servant leadership belongs in a value review instead of a team-culture conversation. Which answer should Coralie give?",
+        "choices": [
+          "Use the Soft-Skill Silo Misread: servant leadership is separate from outcomes and benefits.",
+          "Use the Charisma Shortcut Misread: value improves when the room hears a more inspiring speech.",
+          "Use the Value-System Read: service matters when it protects outcomes, trust, learning, or benefits."
+        ],
+        "correctIndex": 2,
+        "explanation": "Leadership behavior connects to value delivery when it protects outcomes, benefits, stakeholder trust, or learning. Inspiration alone is not the evidence.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch12-q06",
+        "sourceAnchorId": "ch12.fact.9",
+        "prompt": "Which sentence would be safest for Hailey to put in a decision log after the team reviews the principle?",
+        "choices": [
+          "Use the Behavioral-Proof Sentence: under schedule pressure, Rachel will escalate the quality risk today.",
+          "Use the Recitation-Proof Misread: the team reviewed Demonstrate Leadership Behaviors and moved on.",
+          "Use the Mood-Proof Misread: everyone sounded confident, so leadership was demonstrated."
+        ],
+        "correctIndex": 0,
+        "explanation": "A decision log should show changed behavior. Recitation and confidence may sound reassuring, but neither proves the principle affected delivery choices.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch12-q07",
+        "sourceAnchorId": "ch12.fact.5",
+        "prompt": "A risk register shows repeated late escalations only when schedule pressure rises. The team says leadership is easy because everyone supports it. What does the data suggest?",
+        "choices": [
+          "Use the Easy-Principle Misread: agreement in calm periods proves the principle works under stress.",
+          "Use the Pressure-Reveals Read: convenience is overriding accountability just when leadership should be visible.",
+          "Use the Delay-Normalization Misread: late escalation is acceptable whenever the date is important."
+        ],
+        "correctIndex": 1,
+        "explanation": "Pressure is where the principle is tested. Repeated late escalation shows convenience crowding out accountability, not a team that has already mastered the behavior.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch12-q08",
+        "sourceAnchorId": "ch12.fact.6",
+        "prompt": "Hailey says the project is small, so the team can ignore leadership behaviors and keep decisions informal. What should Rejean correct?",
+        "choices": [
+          "Use the Tailoring-Means-Ignore Misread: small projects are exempt from the principle.",
+          "Use the One-Size-Ritual Misread: every project needs the same meeting and artifact set.",
+          "Use the Tailored-Responsibility Read: scale the ritual down while keeping the obligation alive."
+        ],
+        "correctIndex": 2,
+        "explanation": "Tailoring changes implementation, not the underlying responsibility. A small effort may need a lighter ritual, but it still needs visible support, clarity, and accountability.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch12-q09",
+        "sourceAnchorId": "ch12.fact.7",
+        "prompt": "Coralie hears a confident answer that the principle is optional because it is only a leadership theme outside the Standard. How should she respond?",
+        "choices": [
+          "Use the Principle-Set Read: it is one of the 12 PMBOK Seventh Edition principles.",
+          "Use the Optional-Theme Misread: treat the idea as advice outside the PMBOK principle set.",
+          "Use the Authority-Only Misread: apply it only when a formal manager is present."
+        ],
+        "correctIndex": 0,
+        "explanation": "Demonstrate Leadership Behaviors belongs inside the Seventh Edition's principle architecture. Calling it optional weakens the standard into a preference.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch12-card01",
+      "sourceAnchorId": "ch12.fact.3",
+      "front": "How does governance for value delivery resurface when leadership is tested?",
+      "back": "Governance clarifies decision rights, escalation, and accountability. Leadership uses those channels instead of bypassing them, so pressure produces a responsible decision rather than delay or private workaround.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch12-card02",
+      "sourceAnchorId": "ch12.fact.4",
+      "front": "How does value focus change the test for leadership behavior?",
+      "back": "The test is not whether someone sounded authoritative. The test is whether the behavior protected outcomes, benefits, stakeholder trust, learning, or adoption when the project was under pressure.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch12-card03",
+      "sourceAnchorId": "ch12.fact.9",
+      "front": "Why is reciting Demonstrate Leadership Behaviors not enough evidence?",
+      "back": "Recitation proves vocabulary, not application. Evidence appears when the principle changes a decision: a risk is escalated, a stakeholder is involved, quality is protected, or accountability attaches to a next action.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch12-card04",
+      "sourceAnchorId": "ch12.concept",
+      "front": "What makes servant leadership a project behavior rather than a personality label?",
+      "back": "It becomes project behavior when service enables people to decide and deliver: removing an impediment, inviting dissent, clarifying purpose, or helping expertise influence the work.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch12-card05",
+      "sourceAnchorId": "ch12.fact.6",
+      "front": "When should tailoring change the leadership move without removing the duty?",
+      "back": "When context changes the right form. A low-risk effort may need a quick owner check; a regulated effort may need formal escalation. The practice adapts, but the responsibility stays.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch12-card06",
+      "sourceAnchorId": "ch12.fact.5",
+      "front": "Why does schedule pressure reveal whether the principle is real?",
+      "back": "Pressure tempts teams to skip engagement, quality, learning, and accountability. If those disappear when the date tightens, the principle has not yet changed behavior.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Make the Pressure Choice Visible",
+    "coreSkill": "Practice converting leadership language into a visible project choice. Make the Pressure Choice Visible by asking what decision, communication, owner, or tradeoff would prove the principle in the next pressured moment. The skill is not sounding leaderly; it is making the next choice clearer, more responsible, and more connected to value.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch12.fact.5",
+        "context": "When schedule pressure makes a quality concern feel inconvenient",
+        "plan": "If pressure is making silence attractive, then Make the Pressure Choice Visible by naming the risk, the owner, and the next review point before the meeting closes."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.3",
+        "context": "When a meeting note contains the principle name but no changed decision",
+        "plan": "If the words appear without evidence, then Make the Pressure Choice Visible by adding the priority, communication, governance path, or tradeoff the principle changes."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.2",
+        "context": "When a team says the principle belongs only to a different delivery approach",
+        "plan": "If methodology becomes the excuse, then Make the Pressure Choice Visible by choosing the lightest behavior that still clarifies, serves, influences, or enables the decision."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.6",
+        "context": "When tailoring is being used to drop the responsibility entirely",
+        "plan": "If the project is small or informal, then Make the Pressure Choice Visible by scaling the practice down to one clear owner, message, or escalation cue."
+      }
+    ],
+    "twentyFourHourChallenge": "Within one day, find one active project pressure point and Make the Pressure Choice Visible. Write the decision being avoided, the behavior that would prove leadership, and the next owner.",
+    "weeklyPractice": "Once a week, Make the Pressure Choice Visible across three decisions made under pressure. Mark which one showed the clearest behavior change and which one needs a stronger proof point next week."
+  },
+  "memorableLines": [
+    {
+      "text": "Leadership is evidence before it is vocabulary.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the chapter's hard edge in a compact contrast."
+    },
+    {
+      "text": "Pressure is where principle vocabulary either becomes behavior or evaporates.",
+      "location": "breakdown.fullRead",
+      "why": "It points readers to the exact moment where the standard is tested."
+    },
+    {
+      "text": "Service is not passivity.",
+      "location": "breakdown.fullRead",
+      "why": "It prevents servant leadership from being misread as avoiding hard calls."
+    }
+  ]
+}
