@@ -35,6 +35,7 @@ import { fileURLToPath } from "url";
 import { ChapterV21 } from "../types.js";
 import { CHAPTERS_DIR, isSiblingFile, normSlug } from "../lib/chapterPaths.js";
 import { extractNamesFromText } from "./libraryState.js";
+import { findSourceSidecar } from "./sourceSidecars.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const CONFIG_DIR = resolve(__dirname, "../../config");
@@ -63,6 +64,8 @@ export type NamePlan = {
     shortChapters: number[];
     /** chapters in [from,to] that already have an authored file (re-planning hazard) */
     alreadyAuthored: number[];
+    /** bank names excluded because this book's source sidecars use them for source figures/cases. */
+    sourceFigureExcluded: number;
   };
 };
 
@@ -207,6 +210,60 @@ export function bankNamesUsedByOtherBooks(bookId: string): Set<string> {
   return used;
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+function sidecarNameTexts(sidecar: unknown): string[] {
+  const texts: string[] = [];
+  if (!isRecord(sidecar)) return texts;
+  const namedExamples = Array.isArray(sidecar.namedExamples) ? sidecar.namedExamples : [];
+  for (const entry of namedExamples) {
+    if (typeof entry === "string") {
+      texts.push(entry);
+      continue;
+    }
+    if (!isRecord(entry)) continue;
+    if (typeof entry.label === "string") texts.push(entry.label);
+    if (typeof entry.summary === "string") texts.push(entry.summary);
+    if (Array.isArray(entry.hardSpecifics)) {
+      for (const specific of entry.hardSpecifics) {
+        if (typeof specific === "string") texts.push(specific);
+      }
+    }
+  }
+  if (Array.isArray(sidecar.properNouns)) {
+    for (const properNoun of sidecar.properNouns) {
+      if (typeof properNoun === "string") texts.push(properNoun);
+    }
+  }
+  return texts;
+}
+
+function sourceFigureBankNames(bookId: string, fromChapter: number, toChapter: number, bank: Set<string>): Set<string> {
+  const excluded = new Set<string>();
+  for (let chapter = fromChapter; chapter <= toChapter; chapter++) {
+    const path = findSourceSidecar(bookId, chapter);
+    if (!path) {
+      console.warn(`name-plan: no source sidecar for "${bookId}" ch${String(chapter).padStart(2, "0")}; source-figure name exclusion skipped for this chapter.`);
+      continue;
+    }
+    let sidecar: unknown;
+    try {
+      sidecar = JSON.parse(readFileSync(path, "utf8"));
+    } catch (err) {
+      console.warn(`name-plan: unreadable source sidecar for "${bookId}" ch${String(chapter).padStart(2, "0")}: ${(err as Error).message}`);
+      continue;
+    }
+    for (const text of sidecarNameTexts(sidecar)) {
+      for (const name of extractNamesFromText(text)) {
+        if (bank.has(name)) excluded.add(name);
+      }
+    }
+  }
+  return excluded;
+}
+
 export function planNames(
   rawBookId: string,
   fromChapter: number,
@@ -242,11 +299,13 @@ export function planNames(
   // (still excluding THIS book's own names) with a loud diagnostic — a dry
   // bank must degrade to the old policy, never brick authoring.
   const bank = loadNameBank();
+  const bankSet = new Set(bank);
+  const sourceFigures = sourceFigureBankNames(bookId, fromChapter, toChapter, bankSet);
   const crossBook = bankNamesUsedByOtherBooks(bookId);
   const offset = bank.length ? nameHash(bookId) % bank.length : 0;
   const rotated = bank.slice(offset).concat(bank.slice(0, offset));
-  const fresh = rotated.filter((n) => !usedAll.has(n) && !crossBook.has(n));
-  const reusable = rotated.filter((n) => !usedAll.has(n) && crossBook.has(n));
+  const fresh = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n) && !crossBook.has(n));
+  const reusable = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n) && crossBook.has(n));
   const needed = perChapter * Math.max(0, toChapter - fromChapter + 1);
   const available = fresh.length >= needed ? fresh : [...fresh, ...reusable];
   if (fresh.length < needed) {
@@ -293,6 +352,7 @@ export function planNames(
       availableCount: available.length,
       shortChapters,
       alreadyAuthored,
+      sourceFigureExcluded: sourceFigures.size,
     },
   };
 }
@@ -312,6 +372,7 @@ export function formatNamePlan(plan: NamePlan): string {
   lines.push(`Name plan — ${plan.bookId}  ch${plan.fromChapter}–${plan.toChapter}  (${plan.perChapter}/chapter)`);
   lines.push(
     `  bank:${d.bankSize}  excluded:${d.excludedCount}  available:${d.availableCount}` +
+      (d.sourceFigureExcluded ? `  source-figures-excluded:${d.sourceFigureExcluded}` : "") +
       (d.shortChapters.length ? `  ⚠ SHORT (bank dry) in ch: ${d.shortChapters.join(",")}` : "") +
       (d.alreadyAuthored.length ? `  ℹ already-authored in range: ${d.alreadyAuthored.join(",")} (showing their real names; only un-authored chapters get fresh allocations)` : ""),
   );
