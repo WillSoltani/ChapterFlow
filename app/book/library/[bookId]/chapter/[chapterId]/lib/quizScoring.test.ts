@@ -7,26 +7,38 @@ import type { QuizQuestionView, QuizSessionView } from "../hooks/useQuizSession"
 
 const FIXED_NOW = () => "2026-06-11T00:00:00.000Z";
 
-function choiceId(questionId: string, index: number): string {
+/** Local fallback choiceId scheme (buildLocalSession). */
+function localChoiceId(questionId: string, index: number): string {
   return `${questionId}-choice-${index}`;
 }
+/** Server choiceId scheme (quiz-session.ts) — deliberately different. */
+function serverChoiceId(questionId: string, index: number): string {
+  return `${questionId}::choice::${index}`;
+}
 
-function makeQuestion(questionId: string, correctIndex: number): QuizQuestionView {
+function makeQuestion(
+  questionId: string,
+  correctIndex: number,
+  scheme: (q: string, i: number) => string = localChoiceId,
+): QuizQuestionView {
   return {
     questionId,
     prompt: `Prompt ${questionId}`,
     choices: [0, 1, 2, 3].map((index) => ({
-      choiceId: choiceId(questionId, index),
+      choiceId: scheme(questionId, index),
       text: `Choice ${index}`,
     })),
     explanation: "Because.",
-    correctChoiceId: choiceId(questionId, correctIndex),
+    correctChoiceId: scheme(questionId, correctIndex),
     correctIndex,
   };
 }
 
 /** A fresh (no-result) session of 3 questions whose correct answers are index 0. */
-function makeSession(passingScorePercent = 70): QuizSessionView {
+function makeSession(
+  passingScorePercent = 70,
+  scheme: (q: string, i: number) => string = localChoiceId,
+): QuizSessionView {
   return {
     chapterId: "book:1",
     chapterNumber: 1,
@@ -41,14 +53,18 @@ function makeSession(passingScorePercent = 70): QuizSessionView {
     nextAttemptAvailableAt: null,
     highestScorePercent: 0,
     unlockedNextChapter: false,
-    questions: [makeQuestion("q1", 0), makeQuestion("q2", 0), makeQuestion("q3", 0)],
+    questions: [
+      makeQuestion("q1", 0, scheme),
+      makeQuestion("q2", 0, scheme),
+      makeQuestion("q3", 0, scheme),
+    ],
     result: null,
     history: [],
   };
 }
 
-const correct = (questionId: string) => choiceId(questionId, 0);
-const wrong = (questionId: string) => choiceId(questionId, 1);
+const correct = (questionId: string) => localChoiceId(questionId, 0);
+const wrong = (questionId: string) => localChoiceId(questionId, 1);
 
 // ─── Tests ───────────────────────────────────────────────────────────────────
 
@@ -67,8 +83,9 @@ test("retake answering the previously-missed questions correctly scores 100% (gu
   assert.equal(firstGraded!.result!.passed, false);
 
   // Retake with default settings (retryIncorrectOnly): q1 and q3 are hidden, so
-  // the user only re-answers q2. Their q1/q3 answers must be carried forward.
-  const carried = buildCarryForwardAnswers(firstGraded!);
+  // the user only re-answers q2. Their q1/q3 answers must be carried forward
+  // into the displayed (fresh) session.
+  const carried = buildCarryForwardAnswers(firstGraded!, makeSession(70));
   assert.deepEqual(
     carried,
     { q1: correct("q1"), q3: correct("q3") },
@@ -108,7 +125,42 @@ test("buildCarryForwardAnswers ignores incorrect and unanswered questions", () =
     { q1: correct("q1"), q2: wrong("q2") /* q3 unanswered */ },
     FIXED_NOW,
   );
-  assert.deepEqual(buildCarryForwardAnswers(graded!), { q1: correct("q1") });
+  assert.deepEqual(buildCarryForwardAnswers(graded!, makeSession(70)), { q1: correct("q1") });
+});
+
+test("carry-forward maps onto the TARGET session's choiceId scheme, not the prior session's (guards the server/local scheme mismatch)", () => {
+  // First attempt graded by the SERVER (server choiceId scheme): q1/q3 right, q2 wrong.
+  const serverSession = makeSession(70, serverChoiceId);
+  const serverGraded = scoreSessionLocally(
+    serverSession,
+    {
+      q1: serverChoiceId("q1", 0),
+      q2: serverChoiceId("q2", 1), // wrong
+      q3: serverChoiceId("q3", 0),
+    },
+    FIXED_NOW,
+  );
+  assert.equal(serverGraded!.result!.passed, false);
+
+  // The retake is displayed as a LOCAL fallback session (different scheme).
+  const localTarget = makeSession(70, localChoiceId);
+  const carried = buildCarryForwardAnswers(serverGraded!, localTarget);
+
+  // Carried ids MUST be in the LOCAL (target) scheme — not the server ids they
+  // came from — or they would never match the displayed correctChoiceId.
+  assert.deepEqual(carried, {
+    q1: localChoiceId("q1", 0),
+    q3: localChoiceId("q3", 0),
+  });
+
+  // Answering the missed q2 correctly on the local target now scores 100%.
+  const retake = scoreSessionLocally(
+    makeSession(70, localChoiceId),
+    { ...carried, q2: localChoiceId("q2", 0) },
+    FIXED_NOW,
+  );
+  assert.equal(retake!.result!.scorePercent, 100);
+  assert.equal(retake!.result!.passed, true);
 });
 
 test("scoreSessionLocally returns null when there are no questions", () => {

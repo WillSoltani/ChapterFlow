@@ -24,7 +24,6 @@ import {
   QUIZ_AUTO_ADVANCE_DELAY,
 } from "@/app/book/_lib/flow-points-economy";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
-import { Confetti } from "@/components/ui/Confetti";
 
 const OPTION_LABELS = ["A", "B", "C", "D", "E"];
 
@@ -450,9 +449,9 @@ function ResultsScreen({
 
   return (
     <div className="cr-glass-reading relative overflow-hidden p-8 text-center">
-      {result.passed && (
-        <Confetti trigger origin="center" colors={["--cr-accent", "--cr-success", "--cr-warning"]} />
-      )}
+      {/* Confetti is fired at the page level (ChapterReaderClient) on pass — a
+       *  fixed full-screen canvas can't live inside this backdrop-filtered,
+       *  overflow-hidden card or it gets clipped to the card box. */}
 
       {/* 1. Pass/fail headline */}
       <h2

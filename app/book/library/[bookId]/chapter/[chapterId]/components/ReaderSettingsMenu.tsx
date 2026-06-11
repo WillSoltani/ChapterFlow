@@ -144,6 +144,26 @@ export function ReaderSettingsMenu({
     return () => document.removeEventListener("keydown", handler);
   }, [open, onClose]);
 
+  // Non-modal dialog focus management: move focus into the panel on open and
+  // restore it to the opener (the settings trigger) on close. A non-modal
+  // dialog manages focus but does NOT trap it (the background stays
+  // interactive), which matches this popover's behavior.
+  useEffect(() => {
+    if (!open) return;
+    const opener = document.activeElement as HTMLElement | null;
+    const t = window.setTimeout(() => {
+      const panel = popoverRef.current;
+      const first = panel?.querySelector<HTMLElement>(
+        'button:not([disabled]),[tabindex]:not([tabindex="-1"])',
+      );
+      (first ?? panel)?.focus?.();
+    }, 0);
+    return () => {
+      window.clearTimeout(t);
+      opener?.focus?.();
+    };
+  }, [open]);
+
   return (
     <AnimatePresence>
       {open && (
@@ -167,6 +187,7 @@ export function ReaderSettingsMenu({
           transition={{ duration: 0.18, ease: "easeOut" }}
           role="dialog"
           aria-label="Reading settings"
+          tabIndex={-1}
         >
           {/* Mobile drag handle */}
           <div className="flex sm:hidden justify-center pt-3 pb-1">

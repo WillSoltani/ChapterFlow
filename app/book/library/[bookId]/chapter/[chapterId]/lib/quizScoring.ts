@@ -10,24 +10,38 @@ import type { QuizSessionView } from "../hooks/useQuizSession";
  */
 
 /**
- * Build the carry-forward answer seed from a graded session: the user's
- * selected choice for every question they already answered correctly.
+ * Build the carry-forward answer seed for a retake: for every question the user
+ * already answered correctly in `graded`, seed the correct choice of the SAME
+ * question in `target` (the session that will actually be displayed/submitted).
  *
  * Why this exists: with `retryIncorrectOnly` (the default) a retake only shows
  * the previously-missed questions, so the user never re-answers the ones they
  * already got right. Without carrying those answers forward they would submit
  * as `null` — which the server rejects (400) and local scoring counts as wrong
- * — so a user who FIXES their mistakes would watch their score DROP. Seeding the
- * answer map with the prior correct selections keeps the submitted answer set
- * complete and correct.
+ * — so a user who FIXES their mistakes would watch their score DROP.
+ *
+ * Critically, the seed is keyed to `target`'s choiceId scheme, NOT the prior
+ * session's. The server and the local fallback use different choiceId schemes
+ * (`qId::choice::N` vs `qId-choice-N`); carrying the prior session's raw
+ * choiceId across that boundary would seed ids that don't match the displayed
+ * session's correctChoiceId, re-introducing the score drop. Because a carried
+ * question is one the user got right, its carried answer is simply the correct
+ * choice — so we read it from `target.correctChoiceId`, which is always in the
+ * right scheme.
  */
 export function buildCarryForwardAnswers(
-  session: Pick<QuizSessionView, "questions">,
+  graded: Pick<QuizSessionView, "questions">,
+  target: Pick<QuizSessionView, "questions">,
 ): Record<string, string> {
+  const previouslyCorrect = new Set(
+    graded.questions
+      .filter((q) => q.isCorrect && q.selectedChoiceId)
+      .map((q) => q.questionId),
+  );
   const seed: Record<string, string> = {};
-  for (const question of session.questions) {
-    if (question.isCorrect && question.selectedChoiceId) {
-      seed[question.questionId] = question.selectedChoiceId;
+  for (const question of target.questions) {
+    if (previouslyCorrect.has(question.questionId) && question.correctChoiceId) {
+      seed[question.questionId] = question.correctChoiceId;
     }
   }
   return seed;

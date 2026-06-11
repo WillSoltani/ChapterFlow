@@ -127,8 +127,12 @@ export function useQuizSession(params: {
     }>;
     passingScorePercent: number;
   };
+  /** Whether the retake only re-shows previously-missed questions (the default).
+   *  Only in this mode are previously-correct answers hidden and thus carried
+   *  forward; a full retake re-asks everything and must start from a clean map. */
+  retryIncorrectOnly?: boolean;
 }) {
-  const { bookId, chapterNumber, difficulty, contentTone, enabled, localQuiz } = params;
+  const { bookId, chapterNumber, difficulty, contentTone, enabled, localQuiz, retryIncorrectOnly = false } = params;
   const localQuizRef = useRef(localQuiz);
   localQuizRef.current = localQuiz;
   const [session, setSession] = useState<QuizSessionView | null>(null);
@@ -365,12 +369,15 @@ export function useQuizSession(params: {
       if (fresh) {
         const nextAttempt = (graded.attemptsCount ?? graded.attemptNumber ?? 0) + 1;
         fresh.attemptNumber = nextAttempt;
-        // Carry forward the answers the user already got right. The retake hides
-        // those questions (retry-incorrect-only), so without this their answers
-        // would submit as null — the server rejects null answers and local
-        // scoring counts them wrong, making an improving score paradoxically
-        // DROP. Persist as the draft so syncFromSession seeds the answer map.
-        const carriedAnswers = buildCarryForwardAnswers(graded);
+        // Carry forward the answers the user already got right — but ONLY in
+        // retry-incorrect-only mode, where those questions are hidden on the
+        // retake (a full retake re-asks everything and must start clean).
+        // Without this they would submit as null — the server rejects null
+        // answers and local scoring counts them wrong, making an improving score
+        // paradoxically DROP. The seed is keyed to the DISPLAYED session's
+        // choiceId scheme (here `fresh`), then re-seated against the server
+        // session below, so it never crosses the server/local scheme boundary.
+        const carriedAnswers = retryIncorrectOnly ? buildCarryForwardAnswers(graded, fresh) : {};
         const hasCarry = Object.keys(carriedAnswers).length > 0;
         if (hasCarry) {
           saveDraftAnswers(bookId, chapterNumber, difficulty, nextAttempt, carriedAnswers);
@@ -383,10 +390,13 @@ export function useQuizSession(params: {
         // wins because we don't overwrite once the user has started answering.
         void load().then((server) => {
           if (server && !server.result) {
-            // Re-seat the carry-forward under the server's attempt number so the
-            // freshly loaded server session keeps the previously-correct answers.
-            if (hasCarry) {
-              saveDraftAnswers(bookId, chapterNumber, difficulty, server.attemptNumber, carriedAnswers);
+            // Re-seat the carry-forward under the SERVER session's choiceId
+            // scheme + attempt number so it keeps the previously-correct answers.
+            if (retryIncorrectOnly) {
+              const serverCarry = buildCarryForwardAnswers(graded, server);
+              if (Object.keys(serverCarry).length > 0) {
+                saveDraftAnswers(bookId, chapterNumber, difficulty, server.attemptNumber, serverCarry);
+              }
             }
             setSession(server);
             syncFromSession(server);
@@ -396,7 +406,7 @@ export function useQuizSession(params: {
       }
     }
     return load();
-  }, [load, session, buildLocalSession, syncFromSession, bookId, chapterNumber, difficulty]);
+  }, [load, session, buildLocalSession, syncFromSession, bookId, chapterNumber, difficulty, retryIncorrectOnly]);
 
   const toggleExplanation = useCallback(
     (questionId: string) => {

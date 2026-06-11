@@ -42,6 +42,7 @@ import { AudioPlayer } from "@/app/book/library/[bookId]/chapter/[chapterId]/com
 import { AskBookDrawer } from "@/app/book/components/AskBookDrawer";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
 import { ChapterCompleteModal } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal";
+import { Confetti } from "@/components/ui/Confetti";
 import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
 import { useChapterState, type ChapterTab, type FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
@@ -410,7 +411,12 @@ export function ChapterReaderClient({
   }, [chapter, hydrated, getChapterState, setLastReadChapter]);
 
   useEffect(() => {
-    if (!entry || !chapter || !onboardingHydrated || !onboarding.setupComplete) return;
+    // NOTE: deliberately NOT gated on `chapter`. The /start access check only
+    // needs bookId, and access status must resolve to ready/blocked even when
+    // the chapter content fetch failed — otherwise the in-place content-error
+    // card (which requires bookAccessStatus === "ready") is unreachable and the
+    // reader spins on the skeleton forever.
+    if (!entry || !onboardingHydrated || !onboarding.setupComplete) return;
     let cancelled = false;
     setBookAccessStatus("loading");
     setBookAccessMessage(null);
@@ -452,7 +458,7 @@ export function ChapterReaderClient({
     return () => {
       cancelled = true;
     };
-  }, [bookId, chapter, entry, onboarding.setupComplete, onboardingHydrated]);
+  }, [bookId, entry, onboarding.setupComplete, onboardingHydrated]);
 
   useEffect(() => {
     if (!toast) return;
@@ -547,6 +553,7 @@ export function ChapterReaderClient({
           passingScorePercent: chapter.quizPassingScorePercent,
         }
       : undefined,
+    retryIncorrectOnly: bookPrefs.learning.retryIncorrectOnly,
   });
 
   const [committedToChapter, setCommittedToChapter] = useState(false);
@@ -599,7 +606,7 @@ export function ChapterReaderClient({
               <button
                 type="button"
                 onClick={() => setContentRefetchKey((k) => k + 1)}
-                className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
+                className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cr-bg-root) focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
               >
                 Try again
               </button>
@@ -1162,6 +1169,14 @@ export function ChapterReaderClient({
       {sessionMode && (
         <SessionModeOverlay onDone={handleSessionTourDone} />
       )}
+
+      {/* One celebration confetti burst, fired at the page level (viewport-
+       *  relative, reduced-motion-aware) the moment the quiz is passed. */}
+      <Confetti
+        trigger={quiz.session?.result?.passed === true}
+        origin="center"
+        colors={["--cr-accent", "--cr-success", "--cr-warning"]}
+      />
 
       {/* Chapter complete — the single celebration surface (IP breakdown +
        *  achievements row + streak + practice handoff), built on the Wave-0
