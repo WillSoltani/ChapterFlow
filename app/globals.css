@@ -73,7 +73,9 @@ body {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-jakarta);
-  --font-mono: var(--font-geist-mono);
+  /* JetBrains Mono is the mono face actually loaded in app/layout.tsx
+     (--font-geist-mono was never defined → --font-mono resolved to nothing). */
+  --font-mono: var(--font-jetbrains);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -319,7 +321,7 @@ body {
   --cf-text-1: #F7F8FA;
   --cf-text-2: #E8ECF1;
   --cf-text-3: #8899AA;
-  --cf-text-soft: #5C6B7A;
+  --cf-text-soft: #7C8B9A;                    /* was #5C6B7A (3.5:1) → 5.5:1 on --cf-page-bg */
   --cf-overlay: rgba(11, 14, 20, 0.72);
   --cf-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.14);
   --cf-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.26), 0 6px 20px rgba(0, 0, 0, 0.2);
@@ -366,6 +368,15 @@ body {
   --cf-progress-track: rgba(255, 255, 255, 0.1);
   --cf-amber-text: #F59E0B;
   --cf-success-label: #10B981;
+
+  /* ── Compat aliases for tokens referenced by components but never declared
+        (rendered transparent before this). Declared once on :root — each
+        resolves per-theme via the canonical token it points at. ── */
+  --cf-card: var(--cf-surface);              /* gift / pair-accept / NotificationBell */
+  --cf-card-hover: var(--cf-surface-muted);  /* NotificationBell hover */
+  --cf-danger-muted: var(--cf-danger-soft);  /* ExportModal */
+  --cf-error: var(--cf-danger-text);         /* CommitmentFollowUpCard */
+  --cf-warm-text: var(--cf-amber-text);      /* RevenueClient (had self-fallback) */
 }
 
 /* ─────────────────────────────────────────
@@ -510,7 +521,7 @@ html:not(.dark) {
   --cf-text-1: #1C1917;
   --cf-text-2: #57534E;
   --cf-text-3: #78716C;
-  --cf-text-soft: #A8A29E;
+  --cf-text-soft: #78716C;                    /* was #A8A29E (2.5:1) → 4.8:1 on white */
   --cf-overlay: rgba(0, 0, 0, 0.3);
   --cf-shadow-sm: 0 1px 2px rgba(50, 50, 93, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
   --cf-shadow-md: 0 2px 8px rgba(50, 50, 93, 0.09), 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -1555,46 +1566,52 @@ html:not(.dark) .bd-chapter-shimmer::before {
 
 /* ─────────────────────────────────────────
    CHAPTER READER — Design Tokens
+   Re-pointed onto the canonical brand tokens (--accent-*/--bg-*/--text-*)
+   so the reader is no longer a teal/purple island. The solid aliases below
+   resolve per-theme automatically (the canonical tokens redefine themselves
+   under html:not(.dark)), so the light block only needs the few theme-specific
+   translucent literals.
    ───────────────────────────────────────── */
 :root {
-  /* ── Chapter Reader Glass ── */
-  --cr-glass-reading: rgba(20, 25, 35, 0.85);
-  --cr-glass-nav: rgba(255, 255, 255, 0.05);
-  --cr-glass-card: rgba(30, 30, 46, 0.70);
-  --cr-glass-border: rgba(255, 255, 255, 0.08);
-  --cr-glass-border-teal: rgba(77, 182, 172, 0.15);
+  /* ── Chapter Reader Glass (brand navy, no purple tint) ── */
+  --cr-glass-reading: rgba(17, 24, 39, 0.85);   /* --bg-surface-1 @ 85% */
+  --cr-glass-nav: var(--bg-glass);
+  --cr-glass-card: rgba(17, 24, 39, 0.70);      /* --bg-surface-1 @ 70% */
+  --cr-glass-border: var(--border-subtle);
+  --cr-glass-border-teal: var(--border-accent);
 
   /* ── Chapter Reader Surfaces ── */
-  --cr-bg-root: #0F0F1A;
-  --cr-bg-surface-1: #161625;
-  --cr-bg-surface-2: #1C1C30;
-  --cr-bg-surface-3: #22223A;
+  --cr-bg-root: var(--bg-base);
+  --cr-bg-surface-1: var(--bg-surface-1);
+  --cr-bg-surface-2: var(--bg-surface-2);
+  --cr-bg-surface-3: var(--bg-surface-3);
 
   /* ── Chapter Reader Text ── */
-  --cr-text-primary: #E8E8E8;
-  --cr-text-heading: #F0F0F0;
-  --cr-text-secondary: #A0A0B0;
-  --cr-text-disabled: #606070;
-  --cr-text-inverse: #0F0F1A;
+  --cr-text-primary: var(--text-primary);
+  --cr-text-heading: var(--text-heading);
+  --cr-text-secondary: var(--text-secondary);
+  --cr-text-disabled: #8A97A6;                  /* bumped to ≥4.5:1 on --bg-base */
+  --cr-text-inverse: var(--primary-foreground);
 
-  /* ── Chapter Reader Accent (Teal) ── */
-  --cr-accent: #4DB6AC;
-  --cr-accent-hover: #80CBC4;
-  --cr-accent-muted: rgba(77, 182, 172, 0.15);
-  --cr-accent-glow: rgba(77, 182, 172, 0.25);
+  /* ── Chapter Reader Accent (brand cyan, was teal) ── */
+  --cr-accent: var(--accent-cyan);
+  --cr-accent-hover: var(--accent-cyan);
+  --cr-accent-muted: var(--accent-cyan-glow);
+  --cr-accent-glow: var(--accent-cyan-glow);
 
   /* ── Chapter Reader Track / Fill ── */
-  --cr-track: rgba(255, 255, 255, 0.10);
+  --cr-track: var(--cf-ring-track);
   --cr-fill-subtle: rgba(255, 255, 255, 0.04);
   --cr-fill-muted: rgba(255, 255, 255, 0.12);
 
-  /* ── Chapter Reader Semantic ── */
-  --cr-success: #81C784;
-  --cr-success-bg: rgba(129, 199, 132, 0.15);
-  --cr-error: #E57373;
-  --cr-error-bg: rgba(229, 115, 115, 0.15);
-  --cr-warning: #FFD54F;
-  --cr-info: #64B5F6;
+  /* ── Chapter Reader Semantic (brand) ── */
+  --cr-success: var(--accent-emerald);
+  --cr-success-bg: var(--accent-emerald-glow);
+  --cr-error: var(--accent-rose);
+  --cr-error-bg: var(--accent-rose-glow);
+  --cr-danger: var(--cr-error);                 /* referenced by AudioPlayer; was undeclared */
+  --cr-warning: var(--accent-amber);
+  --cr-info: var(--accent-cyan);
 
   /* ── Chapter Reader Transitions ── */
   --cr-transition-fast: 150ms ease-out;
@@ -1604,33 +1621,14 @@ html:not(.dark) .bd-chapter-shimmer::before {
 }
 
 html:not(.dark) {
+  /* Only the theme-specific translucent literals; everything else cascades
+     from the brand aliases on :root above. */
   --cr-glass-reading: rgba(255, 255, 255, 0.92);
   --cr-glass-nav: rgba(0, 0, 0, 0.03);
   --cr-glass-card: rgba(255, 255, 255, 0.80);
-  --cr-glass-border: rgba(0, 0, 0, 0.08);
-  --cr-glass-border-teal: rgba(13, 148, 136, 0.15);
-  --cr-bg-root: #FAFAF9;
-  --cr-bg-surface-1: #FFFFFF;
-  --cr-bg-surface-2: #F5F5F4;
-  --cr-bg-surface-3: #EEEEEC;
-  --cr-text-primary: #1C1917;
-  --cr-text-heading: #0F0F0F;
-  --cr-text-secondary: #57534E;
-  --cr-text-disabled: #A8A29E;
-  --cr-text-inverse: #FFFFFF;
-  --cr-accent: #0D9488;
-  --cr-accent-hover: #0F766E;
-  --cr-accent-muted: rgba(13, 148, 136, 0.10);
-  --cr-accent-glow: rgba(13, 148, 136, 0.20);
-  --cr-track: rgba(0, 0, 0, 0.08);
   --cr-fill-subtle: rgba(0, 0, 0, 0.03);
   --cr-fill-muted: rgba(0, 0, 0, 0.06);
-  --cr-success: #15803D;
-  --cr-success-bg: rgba(22, 163, 74, 0.10);
-  --cr-error: #DC2626;
-  --cr-error-bg: rgba(220, 38, 38, 0.10);
-  --cr-warning: #B45309;
-  --cr-info: #1D4ED8;
+  --cr-text-disabled: #78716C;                  /* ≥4.5:1 on light surfaces */
 }
 
 /* ─────────────────────────────────────────
@@ -1643,7 +1641,7 @@ html:not(.dark) {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--cr-glass-border);
-    border-radius: 16px;
+    border-radius: var(--radius-lg-val);
   }
 
   @supports not (backdrop-filter: blur(10px)) {
@@ -1658,7 +1656,7 @@ html:not(.dark) {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--cr-glass-border);
-    border-radius: 16px;
+    border-radius: var(--radius-lg-val);
   }
 
   /* Takeaway card */
@@ -1668,7 +1666,7 @@ html:not(.dark) {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--cr-glass-border);
     border-left: 3px solid var(--cr-accent);
-    border-radius: 16px;
+    border-radius: var(--radius-lg-val);
     padding: 24px;
     margin-bottom: 16px;
   }
@@ -1679,7 +1677,7 @@ html:not(.dark) {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--cr-glass-border);
-    border-radius: 12px;
+    border-radius: var(--radius-md-val);
     padding: 16px 24px;
     min-height: 56px;
     cursor: pointer;
@@ -1797,7 +1795,7 @@ html[data-contrast="high"] :focus-visible {
 /* Stepper pulse glow */
 @keyframes cr-stepper-pulse {
   0%, 100% { box-shadow: 0 0 0 4px var(--cr-accent-glow); }
-  50% { box-shadow: 0 0 0 8px rgba(77, 182, 172, 0.10); }
+  50% { box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.10); }
 }
 
 /* Score ring fill */
@@ -1837,8 +1835,8 @@ html[data-contrast="high"] :focus-visible {
 
 /* Continue button pulse glow */
 @keyframes cr-pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(77, 182, 172, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(77, 182, 172, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(34, 211, 238, 0); }
 }
 
 /* Progress dot fill */
@@ -1869,9 +1867,15 @@ html[data-contrast="high"] :focus-visible {
   }
 }
 
+/* Reader animations are applied via inline `style="animation: cr-… "`, so the
+   kill-list must use [style*=] selectors (the old [class*="cr-float"] /
+   .cr-stepper-pulse class selectors never matched anything). cr-pulse-glow was
+   also missing. The OS-level (media query) and in-app (data-motion) variants
+   cover the identical set. */
 @media (prefers-reduced-motion: reduce) {
-  [class*="cr-float"],
-  .cr-stepper-pulse,
+  [style*="cr-float"],
+  [style*="cr-stepper-pulse"],
+  [style*="cr-pulse-glow"],
   [style*="cr-card-enter"],
   [style*="cr-interstitial"],
   [style*="cr-confetti"],
@@ -1881,8 +1885,13 @@ html[data-contrast="high"] :focus-visible {
   }
 }
 
-html[data-motion="reduced"] [class*="cr-float"],
-html[data-motion="reduced"] .cr-stepper-pulse,
-html[data-motion="reduced"] [style*="cr-card-enter"] {
+html[data-motion="reduced"] [style*="cr-float"],
+html[data-motion="reduced"] [style*="cr-stepper-pulse"],
+html[data-motion="reduced"] [style*="cr-pulse-glow"],
+html[data-motion="reduced"] [style*="cr-card-enter"],
+html[data-motion="reduced"] [style*="cr-interstitial"],
+html[data-motion="reduced"] [style*="cr-confetti"],
+html[data-motion="reduced"] [style*="cr-ring-fill"],
+html[data-motion="reduced"] [style*="cr-dot-fill"] {
   animation: none !important;
 }
