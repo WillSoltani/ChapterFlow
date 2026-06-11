@@ -2,6 +2,7 @@ export type ThemePreference = "dark" | "light" | "system";
 export type AccentColor = "sky" | "emerald" | "amber" | "rose";
 export type InterfaceDensity = "compact" | "comfortable" | "spacious";
 export type FocusRingStrength = "standard" | "strong" | "maximum";
+export type ColorBlindMode = "off" | "protanopia" | "deuteranopia" | "tritanopia";
 export type ResolvedThemeMode = "dark" | "light";
 
 export type DocumentThemeSettings = {
@@ -11,6 +12,7 @@ export type DocumentThemeSettings = {
   reducedMotion?: boolean;
   highContrastMode?: boolean;
   focusRingStrength?: FocusRingStrength;
+  colorBlindMode?: ColorBlindMode;
 };
 
 type StoredThemePayload = {
@@ -24,6 +26,10 @@ type StoredThemePayload = {
     highContrastMode: boolean;
     focusRingStrength: FocusRingStrength;
   }>;
+  // colorBlindMode is persisted by useBookPreferences under `extended`.
+  extended?: Partial<{
+    colorBlindMode: ColorBlindMode;
+  }>;
 };
 
 export const BOOK_THEME_STORAGE_KEY = "book-accelerator:preferences:v2";
@@ -35,6 +41,7 @@ const DEFAULT_THEME_SETTINGS: Required<DocumentThemeSettings> = {
   reducedMotion: false,
   highContrastMode: false,
   focusRingStrength: "strong",
+  colorBlindMode: "off",
 };
 
 function parseStoredThemePayload(raw: string | null | undefined): StoredThemePayload | null {
@@ -72,6 +79,12 @@ function pickFocusRingStrength(value: unknown): FocusRingStrength {
     : DEFAULT_THEME_SETTINGS.focusRingStrength;
 }
 
+function pickColorBlindMode(value: unknown): ColorBlindMode {
+  return value === "protanopia" || value === "deuteranopia" || value === "tritanopia" || value === "off"
+    ? value
+    : DEFAULT_THEME_SETTINGS.colorBlindMode;
+}
+
 function pickBoolean(value: unknown, fallback: boolean) {
   return typeof value === "boolean" ? value : fallback;
 }
@@ -80,6 +93,7 @@ export function readStoredDocumentThemeSettings(raw?: string | null): Required<D
   const parsed = parseStoredThemePayload(raw ?? null);
   const appearance = parsed?.appearance ?? {};
   const accessibility = parsed?.accessibility ?? {};
+  const extended = parsed?.extended ?? {};
 
   return {
     theme: pickThemePreference(appearance.theme),
@@ -91,6 +105,7 @@ export function readStoredDocumentThemeSettings(raw?: string | null): Required<D
       DEFAULT_THEME_SETTINGS.highContrastMode
     ),
     focusRingStrength: pickFocusRingStrength(accessibility.focusRingStrength),
+    colorBlindMode: pickColorBlindMode(extended.colorBlindMode),
   };
 }
 
@@ -136,6 +151,7 @@ export function applyDocumentTheme(settings: DocumentThemeSettings, animate = fa
   root.dataset.motion = next.reducedMotion ? "reduced" : "normal";
   root.dataset.contrast = next.highContrastMode ? "high" : "standard";
   root.dataset.focusRing = next.focusRingStrength;
+  root.dataset.colorBlindMode = next.colorBlindMode;
 
   if (animate) {
     setTimeout(() => root.classList.remove("transitioning"), 350);
@@ -159,6 +175,9 @@ function mergeStoredThemePayload(
   const nextAccessibility = {
     ...(current?.accessibility ?? {}),
   };
+  const nextExtended = {
+    ...(current?.extended ?? {}),
+  };
 
   if (settings.theme !== undefined) nextAppearance.theme = settings.theme;
   if (settings.accentColor !== undefined) nextAppearance.accentColor = settings.accentColor;
@@ -172,11 +191,15 @@ function mergeStoredThemePayload(
   if (settings.focusRingStrength !== undefined) {
     nextAccessibility.focusRingStrength = settings.focusRingStrength;
   }
+  if (settings.colorBlindMode !== undefined) {
+    nextExtended.colorBlindMode = settings.colorBlindMode;
+  }
 
   return {
     ...current,
     appearance: nextAppearance,
     accessibility: nextAccessibility,
+    extended: nextExtended,
   };
 }
 
@@ -202,5 +225,5 @@ export function applyAndPersistDocumentTheme(settings: DocumentThemeSettings) {
 }
 
 export function buildDocumentThemeBootstrapScript() {
-  return `(function(){try{var root=document.documentElement;var raw=localStorage.getItem('${BOOK_THEME_STORAGE_KEY}')||'{}';var parsed=JSON.parse(raw);var appearance=(parsed&&parsed.appearance)||{};var accessibility=(parsed&&parsed.accessibility)||{};var theme=appearance.theme==='light'||appearance.theme==='system'||appearance.theme==='dark'?appearance.theme:'light';var accent=appearance.accentColor==='emerald'||appearance.accentColor==='amber'||appearance.accentColor==='rose'||appearance.accentColor==='sky'?appearance.accentColor:'sky';var density=appearance.interfaceDensity==='compact'||appearance.interfaceDensity==='spacious'||appearance.interfaceDensity==='comfortable'?appearance.interfaceDensity:'comfortable';var reducedMotion=appearance.reducedMotion===true;var highContrast=accessibility.highContrastMode===true;var focusRing=accessibility.focusRingStrength==='standard'||accessibility.focusRingStrength==='maximum'||accessibility.focusRingStrength==='strong'?accessibility.focusRingStrength:'strong';var prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches===true;var dark=theme==='light'?false:theme==='system'?prefersDark:true;root.classList.toggle('dark',dark);root.style.colorScheme=dark?'dark':'light';root.dataset.accent=accent;root.dataset.density=density;root.dataset.motion=reducedMotion?'reduced':'normal';root.dataset.contrast=highContrast?'high':'standard';root.dataset.focusRing=focusRing;}catch(e){var root=document.documentElement;root.classList.remove('dark');root.style.colorScheme='light';root.dataset.accent='sky';root.dataset.density='comfortable';root.dataset.motion='normal';root.dataset.contrast='standard';root.dataset.focusRing='strong';}})();`;
+  return `(function(){try{var root=document.documentElement;var raw=localStorage.getItem('${BOOK_THEME_STORAGE_KEY}')||'{}';var parsed=JSON.parse(raw);var appearance=(parsed&&parsed.appearance)||{};var accessibility=(parsed&&parsed.accessibility)||{};var extended=(parsed&&parsed.extended)||{};var theme=appearance.theme==='light'||appearance.theme==='system'||appearance.theme==='dark'?appearance.theme:'light';var accent=appearance.accentColor==='emerald'||appearance.accentColor==='amber'||appearance.accentColor==='rose'||appearance.accentColor==='sky'?appearance.accentColor:'sky';var density=appearance.interfaceDensity==='compact'||appearance.interfaceDensity==='spacious'||appearance.interfaceDensity==='comfortable'?appearance.interfaceDensity:'comfortable';var reducedMotion=appearance.reducedMotion===true;var highContrast=accessibility.highContrastMode===true;var focusRing=accessibility.focusRingStrength==='standard'||accessibility.focusRingStrength==='maximum'||accessibility.focusRingStrength==='strong'?accessibility.focusRingStrength:'strong';var prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches===true;var dark=theme==='light'?false:theme==='system'?prefersDark:true;root.classList.toggle('dark',dark);root.style.colorScheme=dark?'dark':'light';root.dataset.accent=accent;root.dataset.density=density;root.dataset.motion=reducedMotion?'reduced':'normal';root.dataset.contrast=highContrast?'high':'standard';root.dataset.focusRing=focusRing;root.dataset.colorBlindMode=(extended.colorBlindMode==='protanopia'||extended.colorBlindMode==='deuteranopia'||extended.colorBlindMode==='tritanopia')?extended.colorBlindMode:'off';}catch(e){var root=document.documentElement;root.classList.remove('dark');root.style.colorScheme='light';root.dataset.accent='sky';root.dataset.density='comfortable';root.dataset.motion='normal';root.dataset.contrast='standard';root.dataset.focusRing='strong';root.dataset.colorBlindMode='off';}})();`;
 }
