@@ -1338,6 +1338,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
   const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
   const { planPedagogy, writePedagogyPlan, loadPedagogyPalettes } = await import("./librarian/pedagogyPlan.js");
+  const { planExemplars, writeExemplarPlan } = await import("./librarian/exemplarPlan.js");
   const { findRunArtifact } = await import("./lib/runDirs.js");
   const { formatVoiceBible } = await import("./lib/voiceBible.js");
   const REPO = resolve(__dirname, "../../../../..");
@@ -1382,6 +1383,8 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const hookDefs = new Map(pedagogyPalettes.hookShapes.map((s) => [s.id, s.definition]));
   const tryDefs = new Map(pedagogyPalettes.tryThisNowGrammars.map((g) => [g.id, g]));
   const quizDefs = new Map(pedagogyPalettes.quizOpeners.map((q) => [q.id, q]));
+  const exemplarPlan = planExemplars(bookId, from, to);
+  writeExemplarPlan(exemplarPlan);
   // Carried name allocations for authored chapters include every capitalized
   // token the extractor saw ("University", "All", "Tonight" — junk from
   // scenario text). Pasting those as an exclusive allowlist breaks redo
@@ -1421,6 +1424,13 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
       ? `• HOOK SHAPE: ${pedagogy.hookShape} — ${hookDefs.get(pedagogy.hookShape) ?? "follow the dealt hook shape."}\n` +
         `• TRY-THIS-NOW GRAMMAR: ${pedagogy.tryThisNowGrammar} — ${tryGrammar?.definition ?? "follow the dealt exercise grammar."} (example: ${tryGrammar?.example ?? "keep it concrete."}) This is a FORM, not a stamp: write a fresh opening for it — do not copy the example's first words (the outliers fleet caught identical grammar stamps recycling every third chapter).\n` +
         `• QUIZ OPENERS: draw from two FORMS — ${pedagogy.quizOpeners[0]} (e.g. ${quizA?.example ?? "use the dealt opener."}) and ${pedagogy.quizOpeners[1]} (e.g. ${quizB?.example ?? "use the dealt opener."}). These are question SHAPES, not sentences: never reuse a literal stem twice in the chapter (the first qc-run sweep caught "What happens next" stamped 34× book-wide), vary the phrasing inside each form, and let 1-2 questions per chapter break form entirely. Keyed answer must NOT be reliably the longest choice (BP25 — target ≤45% of questions, ~33% ideal).\n`
+      : "";
+    const exemplar = exemplarPlan.allocation[ch.number];
+    const exemplarLine = exemplar
+      ? `• MARQUEE EXEMPLARS: this chapter owns ${exemplar.assigned.length ? exemplar.assigned.join(", ") : "none"}. ` +
+        `FORBIDDEN (owned by other chapters): ${
+          exemplar.forbidden.length ? exemplar.forbidden.map((item) => `${item.name} (ch${item.ownerChapter})`).join(", ") : "none"
+        } — at most a passing mention, never with date/place stamping, never as a teaching unit, never in quiz/cards.\n`
       : "";
 
     // Source specifics: the sidecar's real anchors, pasted so the writer
@@ -1470,6 +1480,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `${shapeLines}\n` +
         pedagogyLines +
         specificsLine +
+        exemplarLine +
         voiceLine +
         `• Quiz distractors: each distractor is a NAMED plausible misconception (what a hasty reader of THIS chapter would actually believe) — never a junk-prefix mutation or rephrasing of the correct choice.\n` +
         recallLine +
@@ -1531,6 +1542,25 @@ async function runPedagogyPlan(args: string[], flags: Record<string, string | bo
   const plan = planPedagogy(bookId, from, to);
   const path = writePedagogyPlan(plan);
   console.log(formatPedagogyPlan(plan));
+  console.log(`\nWritten: ${path}`);
+  return 0;
+}
+
+/** `exemplar-plan <bookId> --from N --to M` — pre-authoring ownership ledger
+ *  for repeated marquee source figures/cases. Deals each repeated exemplar to
+ *  exactly one chapter and forbids teaching-unit reuse elsewhere. */
+async function runExemplarPlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: exemplar-plan <bookId> --from N --to M");
+    return 2;
+  }
+  const { planExemplars, writeExemplarPlan, formatExemplarPlan } = await import("./librarian/exemplarPlan.js");
+  const plan = planExemplars(bookId, from, to);
+  const path = writeExemplarPlan(plan);
+  console.log(formatExemplarPlan(plan));
   console.log(`\nWritten: ${path}`);
   return 0;
 }
@@ -2352,6 +2382,8 @@ async function main() {
       return runNamePlan(args, flags);
     case "shape-plan":
       return runShapePlan(args, flags);
+    case "exemplar-plan":
+      return runExemplarPlan(args, flags);
     case "pedagogy-plan":
       return runPedagogyPlan(args, flags);
     case "qc-attest":

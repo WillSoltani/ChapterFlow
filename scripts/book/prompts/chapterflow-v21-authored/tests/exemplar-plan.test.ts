@@ -1,0 +1,141 @@
+/**
+ * Exemplar plan — repeated marquee figures/cases get exactly one chapter owner.
+ * Fixtures are written into the real .chapterflow/runs layout so the test uses
+ * findRunArtifact through the production sidecar locator.
+ */
+
+import assert from "node:assert/strict";
+import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { resolve } from "path";
+
+import { formatExemplarPlan, planExemplars } from "../src/librarian/exemplarPlan.js";
+import { test } from "./harness.js";
+import { PIPELINE_DIR, runCli } from "./helpers.js";
+
+const BOOK = "zz-fixture-exemplars";
+const REPO_ROOT = resolve(PIPELINE_DIR, "../../../..");
+const RUN_BOOK_DIR = resolve(REPO_ROOT, ".chapterflow", "runs", BOOK);
+const RUN_DIR = resolve(RUN_BOOK_DIR, "99999999-test");
+const PLAN_PATH = resolve(PIPELINE_DIR, "state", "exemplar-plans", `${BOOK}.exemplar-plan.json`);
+
+function writeSidecar(chapter: number, data: Record<string, unknown>): void {
+  const dir = resolve(RUN_DIR, "sidecars", "source");
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, `ch${String(chapter).padStart(2, "0")}.source.json`), JSON.stringify(data, null, 2), "utf8");
+}
+
+function resetFixture(): void {
+  rmSync(RUN_BOOK_DIR, { recursive: true, force: true });
+  rmSync(PLAN_PATH, { force: true });
+}
+
+function writeFixtureSidecars(): void {
+  resetFixture();
+  writeSidecar(1, {
+    namedExamples: [
+      {
+        label: "Dorothy Day at the Catholic Worker",
+        summary: "Dorothy Day turned public conviction into an ordinary discipline.",
+        teachesWhat: "commitment",
+      },
+      {
+        label: "Tiger Woods training round",
+        summary: "Tiger Woods kept the swing quiet under pressure.",
+        teachesWhat: "practice",
+        hardSpecifics: ["Tiger Woods", "2008 U.S. Open"],
+      },
+    ],
+  });
+  writeSidecar(2, {
+    namedExamples: [
+      "Tiger Woods at Torrey Pines in 2008",
+      {
+        label: "Anne Frank diary pages",
+        summary: "Anne Frank made inner steadiness visible inside a narrow hiding place.",
+        teachesWhat: "attention",
+      },
+    ],
+  });
+  writeSidecar(3, {
+    namedExamples: [
+      {
+        label: "Fred Rogers testimony",
+        summary: "Fred Rogers treated television as a room where children deserved care.",
+        teachesWhat: "presence",
+      },
+      {
+        label: "Anne Frank in the annex",
+        summary: "Anne Frank shows why a repeated exemplar needs one owner.",
+        teachesWhat: "focus",
+      },
+    ],
+    properNouns: ["Kennedy", "John F. Kennedy"],
+  });
+}
+
+test("exemplar-plan deals contested exemplars to exactly one owner with symmetric forbiddens", () => {
+  try {
+    writeFixtureSidecars();
+    const plan = planExemplars(BOOK, 1, 3);
+    assert.equal(plan.diagnostics.contested, 2);
+    assert.deepEqual(plan.diagnostics.chaptersWithoutSidecar, []);
+
+    const ownerChapters = Object.entries(plan.allocation)
+      .filter(([, entry]) => entry.assigned.includes("Tiger Woods"))
+      .map(([chapter]) => Number(chapter));
+    assert.deepEqual(ownerChapters, [2], "Tiger Woods appears earlier in ch2's sidecar and must be owned there only");
+    assert.deepEqual(plan.allocation[1].forbidden.filter((item) => item.name === "Tiger Woods"), [{ name: "Tiger Woods", ownerChapter: 2 }]);
+    assert.deepEqual(plan.allocation[2].forbidden.filter((item) => item.name === "Tiger Woods"), []);
+
+    assert.ok(plan.allocation[2].assigned.includes("Anne Frank"), "tie on namedExamples order goes to the lower chapter");
+    assert.deepEqual(plan.allocation[3].forbidden.filter((item) => item.name === "Anne Frank"), [{ name: "Anne Frank", ownerChapter: 2 }]);
+    assert.ok(plan.allocation[3].assigned.includes("Kennedy"), "single-token properNouns entries are allowed when the sidecar explicitly supplies them");
+  } finally {
+    resetFixture();
+  }
+});
+
+test("exemplar-plan is deterministic across runs", () => {
+  try {
+    writeFixtureSidecars();
+    const a = planExemplars(BOOK, 1, 3);
+    const b = planExemplars(BOOK, 1, 3);
+    assert.deepEqual(a.allocation, b.allocation);
+    assert.equal(formatExemplarPlan(a), formatExemplarPlan({ ...b, createdAt: a.createdAt }));
+  } finally {
+    resetFixture();
+  }
+});
+
+test("exemplar-plan warns but still plans chapters with missing sidecars", () => {
+  try {
+    writeFixtureSidecars();
+    rmSync(resolve(RUN_DIR, "sidecars", "source", "ch03.source.json"), { force: true });
+    const warnings: string[] = [];
+    const oldWarn = console.warn;
+    console.warn = (message?: unknown) => { warnings.push(String(message)); };
+    try {
+      const plan = planExemplars(BOOK, 1, 3);
+      assert.deepEqual(plan.diagnostics.chaptersWithoutSidecar, [3]);
+      assert.deepEqual(plan.allocation[3], { assigned: [], forbidden: [] });
+    } finally {
+      console.warn = oldWarn;
+    }
+    assert.ok(warnings.some((line) => line.includes("ch03")), `expected ch03 warning, got ${warnings.join("\n")}`);
+  } finally {
+    resetFixture();
+  }
+});
+
+test("exemplar-plan CLI writes the plan and prints ownership", () => {
+  try {
+    writeFixtureSidecars();
+    const { status, out } = runCli(["exemplar-plan", BOOK, "--from", "1", "--to", "3"]);
+    assert.equal(status, 0, out.slice(-400));
+    assert.match(out, /Exemplar plan/);
+    assert.match(out, /Tiger Woods/);
+    assert.match(out, /Written:/);
+  } finally {
+    resetFixture();
+  }
+});
