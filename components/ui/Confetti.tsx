@@ -43,7 +43,7 @@ function resolveColor(input: string, root: HTMLElement): string {
   if (trimmed.startsWith("--")) {
     token = trimmed;
   } else {
-    const m = trimmed.match(/^var\((--[^,)]+)/);
+    const m = trimmed.match(/^var\(\s*(--[^,)\s]+)/); // tolerate `var( --x )`
     if (m) token = m[1];
   }
   if (!token) return trimmed;
@@ -68,11 +68,12 @@ interface Particle {
 
 /**
  * Single shared confetti primitive (canvas-based — one element regardless of
- * particle count). Replaces the dead components/ui/ConfettiEffect and the
- * onboarding CanvasConfetti's `mixBlendMode:"screen"` (which made particles
- * invisible on the default light theme). Honors reduced motion (renders nothing)
- * via framer's useReducedMotion(), which MotionProvider wires to the OS setting
- * AND the in-app reduce-motion toggle.
+ * particle count). Supersedes the dead components/ui/ConfettiEffect (deleted in
+ * this change) and is the intended replacement for the onboarding CanvasConfetti
+ * — whose `mixBlendMode:"screen"` made particles invisible on the default light
+ * theme — which downstream migrates onto this in a later wave. Honors reduced
+ * motion (renders nothing) via framer's useReducedMotion(), which MotionProvider
+ * wires to the OS setting AND the in-app reduce-motion toggle.
  */
 export function Confetti({
   trigger,

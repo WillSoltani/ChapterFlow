@@ -38,10 +38,15 @@ const GLOBALS_REL = "app/globals.css";
 const red = (s) => `\x1b[31m${s}\x1b[0m`;
 
 // ── detection patterns (also exercised by --selftest) ───────────────────────
-const RE_DEAD_TW = /-\[--|\[family-name:--/; // guard (a)
+// guard (a): dead `-[--x]` and `[prop:--x]` arbitrary forms (bare var, no var()).
+const RE_DEAD_TW = /-\[--|\[[a-z-]+:--/;
 const RE_TOKEN = /--c[fr]-[a-z0-9-]+/gi; // guard (b): any --cf-/--cr- reference
 const RE_HEX = /(?<!&)#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\b/g; // (c)
 const RE_RGBA = /\brgba?\([^)]*\)/gi; // (c)
+// URL/id fragment refs (href="#abc", id="#x") whose all-hex fragments would
+// otherwise false-positive as colors in guard (c).
+const RE_FRAGMENT_ATTR = /\b(?:href|xlinkHref|to|id)\s*=\s*["']#[\w-]*["']/g;
+const stripFragmentRefs = (line) => line.replace(RE_FRAGMENT_ATTR, "");
 const RE_CATALOG = [
   /\b\d{2,3}\+?\s+more\s+books?\b/i, // "93 more books", "93+ more books"
   /\b\d{2,3}\+\s*books?\b/i, // "60+ books", "95+ books"
@@ -153,7 +158,8 @@ function guardRawColors(files, allow) {
     const src = read(f);
     if (src == null) continue;
     src.split("\n").forEach((line, i) => {
-      const hits = [...line.matchAll(RE_HEX), ...line.matchAll(RE_RGBA)].map((m) => m[0]);
+      const scan = stripFragmentRefs(line);
+      const hits = [...scan.matchAll(RE_HEX), ...scan.matchAll(RE_RGBA)].map((m) => m[0]);
       for (const lit of hits) {
         if (allow.has(sig("c", f, lit))) {
           baselined++;
@@ -225,6 +231,8 @@ function selftest() {
   expect(RE_DEAD_TW.test('className="font-[family-name:--font-body]"'), "(a) missed font-[family-name:--");
   expect(!RE_DEAD_TW.test('className="text-(--text-heading)"'), "(a) false-positive on v4 shorthand");
   expect(!RE_DEAD_TW.test('className="font-[family-name:var(--font-body)]"'), "(a) false-positive on var() form");
+  expect(RE_DEAD_TW.test('className="[color:--x]"'), "(a) missed [color:--x] bare-var arbitrary prop");
+  expect(!RE_DEAD_TW.test('className="[color:var(--x)]"'), "(a) false-positive on [color:var()]");
   // (b) token extraction
   expect([...'bg-(--cf-card)'.matchAll(RE_TOKEN)][0]?.[0] === "--cf-card", "(b) missed shorthand token");
   expect([...'var(--cr-danger, red)'.matchAll(RE_TOKEN)][0]?.[0] === "--cr-danger", "(b) missed var() token");
@@ -235,6 +243,8 @@ function selftest() {
   RE_HEX.lastIndex = 0;
   expect(RE_RGBA.test("rgba(0,0,0,0.3)"), "(c) missed rgba()");
   RE_RGBA.lastIndex = 0;
+  expect([...stripFragmentRefs('<a href="#abc">x</a>').matchAll(RE_HEX)].length === 0, "(c) false-positive on href fragment");
+  RE_HEX.lastIndex = 0;
   // (d) catalog counts
   expect(RE_CATALOG.some((r) => r.test("Unlock 93 more books with Pro")), "(d) missed '93 more books'");
   expect(RE_CATALOG.some((r) => r.test("60+ books across")), "(d) missed '60+ books'");

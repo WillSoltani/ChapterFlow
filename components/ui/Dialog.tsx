@@ -53,7 +53,6 @@ function OverlayShell({
 }: OverlayShellProps) {
   const [mounted, setMounted] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
-  const previousFocus = useRef<HTMLElement | null>(null);
   const prefersReduced = useReducedMotion();
 
   useEffect(() => setMounted(true), []);
@@ -86,10 +85,13 @@ function OverlayShell({
     return () => document.removeEventListener("keydown", onKey);
   }, [open, closeOnEscape, onClose]);
 
-  // Initial focus + focus trap + focus restore on close.
+  // Initial focus + focus trap + focus restore on close. Keyed on [open] ONLY:
+  // the opener is captured per open-cycle as a local (not a persisted ref), so
+  // a changing initialFocusRef identity can't trigger a premature restore +
+  // re-capture. initialFocusRef is a ref, intentionally read inside (not a dep).
   useEffect(() => {
     if (!open) return;
-    previousFocus.current = (document.activeElement as HTMLElement) ?? null;
+    const opener = (document.activeElement as HTMLElement) ?? null;
 
     const focusTimer = window.setTimeout(() => {
       const panel = panelRef.current;
@@ -98,13 +100,16 @@ function OverlayShell({
       target?.focus();
     }, 0);
 
+    // Visible-element test that also keeps position:fixed focusables (whose
+    // offsetParent is null) inside the trap.
+    const isVisible = (el: HTMLElement) =>
+      el.getClientRects().length > 0 || el === document.activeElement;
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return;
       const panel = panelRef.current;
       if (!panel) return;
-      const items = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
-        (el) => el.offsetParent !== null || el === document.activeElement,
-      );
+      const items = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(isVisible);
       if (items.length === 0) {
         e.preventDefault();
         panel.focus();
@@ -128,10 +133,10 @@ function OverlayShell({
     return () => {
       window.clearTimeout(focusTimer);
       document.removeEventListener("keydown", onKeyDown);
-      // Restore focus to whatever had it before the overlay opened.
-      previousFocus.current?.focus?.();
+      opener?.focus?.(); // restore focus to whatever had it before opening
     };
-  }, [open, initialFocusRef]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   if (!mounted) return null;
 
