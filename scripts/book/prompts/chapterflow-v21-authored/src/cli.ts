@@ -1419,7 +1419,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const quizB = pedagogy ? quizDefs.get(pedagogy.quizOpeners[1]) : undefined;
     const pedagogyLines = pedagogy
       ? `• HOOK SHAPE: ${pedagogy.hookShape} — ${hookDefs.get(pedagogy.hookShape) ?? "follow the dealt hook shape."}\n` +
-        `• TRY-THIS-NOW GRAMMAR: ${pedagogy.tryThisNowGrammar} — ${tryGrammar?.definition ?? "follow the dealt exercise grammar."} (example: ${tryGrammar?.example ?? "keep it concrete."})\n` +
+        `• TRY-THIS-NOW GRAMMAR: ${pedagogy.tryThisNowGrammar} — ${tryGrammar?.definition ?? "follow the dealt exercise grammar."} (example: ${tryGrammar?.example ?? "keep it concrete."}) This is a FORM, not a stamp: write a fresh opening for it — do not copy the example's first words (the outliers fleet caught identical grammar stamps recycling every third chapter).\n` +
         `• QUIZ OPENERS: draw from two FORMS — ${pedagogy.quizOpeners[0]} (e.g. ${quizA?.example ?? "use the dealt opener."}) and ${pedagogy.quizOpeners[1]} (e.g. ${quizB?.example ?? "use the dealt opener."}). These are question SHAPES, not sentences: never reuse a literal stem twice in the chapter (the first qc-run sweep caught "What happens next" stamped 34× book-wide), vary the phrasing inside each form, and let 1-2 questions per chapter break form entirely. Keyed answer must NOT be reliably the longest choice (BP25 — target ≤45% of questions, ~33% ideal).\n`
       : "";
 

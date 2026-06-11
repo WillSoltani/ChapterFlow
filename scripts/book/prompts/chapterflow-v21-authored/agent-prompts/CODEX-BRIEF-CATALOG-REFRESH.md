@@ -204,7 +204,16 @@ metrics (catalog-audit) cannot see this; only the qc-run sweep can.
      with different testable facts from each chapter's sidecar).
    - outliers: the 54-scenario frame — every scenario gets its dealt shape;
      quiz prompts: no literal stem twice per chapter ("What happens next"
-     appeared 34×; openers are FORMS, not sentences).
+     appeared 34×; openers are FORMS, not sentences). From the full fleet
+     (2026-06-10 evening): RESTORE memorableLines in ch05-ch09 (the section
+     silently vanishes after ch04 — write 2-3 real lines per chapter from
+     existing prose); vary the 54 example TITLES (all share "[Name] [Verb]s
+     the [Object]" — no title grammar may repeat more than twice per book);
+     de-stamp tryThisNow (the three grammars currently rotate on exactly
+     chapter mod 3 — same grammar family is fine, identical opening stamp
+     every third chapter is not); shuffle each chapter's quiz Blooms/depth
+     SEQUENCE (all nine chapters share one q01-q09 sequence); the ch05 q3
+     wrong key is already fixed by the operator — do not touch keys.
 4. Per chapter: author-check + gate-chapter to "Gate verdict: PASS — 0
    blockers". Quiz keys NEVER change. List every touched chapter for re-QC.
 5. Acceptance is the NEXT qc-run sweep (the operator runs it) — there is no
