@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { Sparkles, X } from "lucide-react";
+import { CheckCircle2, X } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedBackground } from "./AnimatedBackground";
@@ -771,13 +771,19 @@ export function WorkspacePage() {
     () => searchParams.get("billing") === "success",
   );
 
-  // Show a success banner when Stripe redirects back after payment, then
-  // clean the URL so a refresh doesn't re-show it.
+  // Single owner of the post-Stripe ?billing redirect (BillingStatusBanner used
+  // to double up here). On success we flag the upgrade and show the in-page Pro
+  // banner; for any billing value we strip just that param (preserving others)
+  // so a refresh doesn't re-trigger.
   useEffect(() => {
-    if (searchParams.get("billing") === "success") {
+    const billing = searchParams.get("billing");
+    if (!billing) return;
+    if (billing === "success") {
       sessionStorage.setItem("cf:billing-upgraded", "1");
-      router.replace("/dashboard");
     }
+    const url = new URL(window.location.href);
+    url.searchParams.delete("billing");
+    router.replace(url.pathname + url.search);
   }, [searchParams, router]);
 
   return (
@@ -791,11 +797,14 @@ export function WorkspacePage() {
       {/* Noise texture overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" />
 
-      {/* Pro upgrade banner */}
+      {/* Pro upgrade success banner (the single billing-success surface) */}
       {showProBanner && (
-        <div className="relative z-20 flex items-center justify-between gap-3 bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-4 py-3 text-white sm:px-6">
+        <div
+          role="status"
+          className="relative z-20 flex items-center justify-between gap-3 border-b border-(--cf-success-border) bg-(--cf-success-bg) px-4 py-3 text-(--cf-success-text) sm:px-6"
+        >
           <div className="flex items-center gap-2.5">
-            <Sparkles className="h-4 w-4 shrink-0" />
+            <CheckCircle2 className="h-4 w-4 shrink-0" />
             <p className="text-sm font-medium">
               You&apos;re now on Pro — enjoy unlimited access to the full library.
             </p>
@@ -804,7 +813,7 @@ export function WorkspacePage() {
             type="button"
             onClick={() => setShowProBanner(false)}
             aria-label="Dismiss"
-            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full hover:bg-white/20"
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition hover:bg-(--cf-success-soft)"
           >
             <X className="h-3.5 w-3.5" />
           </button>
