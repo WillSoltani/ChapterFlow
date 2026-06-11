@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import {
   Award,
   BarChart3,
@@ -54,6 +55,34 @@ function getNotificationMeta(type: string): { icon: LucideIcon; color: string } 
   }
 }
 
+/**
+ * Where a notification deep-links to. Payloads don't carry context ids yet, so
+ * links are type-level (the relevant product area). Returns null when there's
+ * no sensible destination — the item is still clickable to mark it read.
+ */
+function getNotificationHref(type: string): string | null {
+  switch (type) {
+    case "streak_at_risk":
+    case "streak_milestone":
+    case "weekly_digest":
+    case "partner_nudge":
+      return "/book/progress";
+    case "badge_earned":
+      return "/book/badges";
+    case "tier_up":
+      return "/rewards";
+    case "welcome_back_nudge":
+    case "reading_reminder":
+    case "insight_spark":
+      return "/dashboard";
+    case "scenario_approved":
+    case "scenario_rejected":
+      return "/book/library";
+    default:
+      return null;
+  }
+}
+
 function formatRelativeTime(iso: string): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "";
@@ -74,6 +103,7 @@ export function NotificationBell() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
   const load = useCallback(() => {
@@ -83,8 +113,9 @@ export function NotificationBell() {
       .then((res) => {
         setNotifications(res.notifications);
         setUnreadCount(res.unreadCount);
+        setError(false);
       })
-      .catch(() => {});
+      .catch(() => setError(true));
   }, []);
 
   useEffect(() => {
@@ -93,6 +124,7 @@ export function NotificationBell() {
     return () => clearInterval(interval);
   }, [load]);
 
+  // Close on outside click and on Escape.
   useEffect(() => {
     if (!open) return;
     const handleClick = (e: MouseEvent) => {
@@ -100,21 +132,36 @@ export function NotificationBell() {
         setOpen(false);
       }
     };
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
     document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleKey);
+    };
   }, [open]);
 
-  const markAllRead = () => {
-    fetchBookJson("/app/api/book/me/notifications/read-all", {
+  const markRead = useCallback((n: Notification) => {
+    if (n.readAt) return;
+    // Optimistic: mark this one read and drop the unread count.
+    const readAt = new Date().toISOString();
+    setNotifications((prev) =>
+      prev.map((x) => (x.notificationId === n.notificationId ? { ...x, readAt } : x))
+    );
+    setUnreadCount((c) => Math.max(0, c - 1));
+    fetchBookJson("/app/api/book/me/notifications", {
       method: "POST",
-    })
-      .then(() => {
-        setNotifications((prev) =>
-          prev.map((n) => ({ ...n, readAt: n.readAt ?? new Date().toISOString() }))
-        );
-        setUnreadCount(0);
-      })
-      .catch(() => {});
+      body: JSON.stringify({ notificationId: n.notificationId, createdAt: n.createdAt }),
+    }).catch(() => {});
+  }, []);
+
+  const markAllRead = () => {
+    const now = new Date().toISOString();
+    setNotifications((prev) => prev.map((n) => ({ ...n, readAt: n.readAt ?? now })));
+    setUnreadCount(0);
+    fetchBookJson("/app/api/book/me/notifications/read-all", { method: "POST" }).catch(() => {});
   };
 
   return (
@@ -123,6 +170,9 @@ export function NotificationBell() {
         onClick={() => setOpen((v) => !v)}
         className="relative flex h-9 w-9 items-center justify-center rounded-full hover:bg-(--cf-card-hover) transition-colors"
         aria-label={`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ""}`}
+        aria-haspopup="true"
+        aria-expanded={open}
+        aria-controls="notification-panel"
       >
         <Bell className="h-[18px] w-[18px] text-(--cf-text-2)" />
         {unreadCount > 0 && (
@@ -133,11 +183,17 @@ export function NotificationBell() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-80 max-h-96 overflow-y-auto rounded-xl border border-(--cf-border) bg-(--cf-card) shadow-xl z-50">
+        <div
+          id="notification-panel"
+          role="region"
+          aria-label="Notifications"
+          className="absolute right-0 top-full mt-2 w-80 max-h-96 overflow-y-auto rounded-xl border border-(--cf-border) bg-(--cf-card) shadow-xl z-50"
+        >
           <div className="flex items-center justify-between px-4 py-3 border-b border-(--cf-border)">
             <span className="text-sm font-semibold text-(--cf-text-1)">Notifications</span>
             {unreadCount > 0 && (
               <button
+                type="button"
                 onClick={markAllRead}
                 className="text-xs text-(--cf-accent) hover:underline"
               >
@@ -146,20 +202,32 @@ export function NotificationBell() {
             )}
           </div>
 
-          {notifications.length === 0 ? (
+          {error ? (
             <div className="px-4 py-8 text-center text-xs text-(--cf-text-3)">
-              No notifications yet
+              <p>Couldn&apos;t load notifications.</p>
+              <button
+                type="button"
+                onClick={load}
+                className="mt-2 text-(--cf-accent) hover:underline"
+              >
+                Try again
+              </button>
+            </div>
+          ) : notifications.length === 0 ? (
+            <div className="px-4 py-8 text-center text-xs text-(--cf-text-3)">
+              You&apos;re all caught up — no notifications yet.
             </div>
           ) : (
             <ul className="divide-y divide-(--cf-border)">
               {notifications.slice(0, 20).map((n) => {
                 const meta = getNotificationMeta(n.type);
                 const Icon = meta.icon;
-                return (
-                  <li
-                    key={n.notificationId}
-                    className={`flex gap-3 px-4 py-3 text-sm ${n.readAt ? "opacity-60" : ""}`}
-                  >
+                const href = getNotificationHref(n.type);
+                const itemClass = `flex w-full gap-3 px-4 py-3 text-left text-sm transition-colors hover:bg-(--cf-card-hover) ${
+                  n.readAt ? "opacity-60" : ""
+                }`;
+                const inner = (
+                  <>
                     <div
                       className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
                       style={{ backgroundColor: `color-mix(in srgb, ${meta.color} 12%, transparent)` }}
@@ -167,16 +235,31 @@ export function NotificationBell() {
                       <Icon className="h-3.5 w-3.5" style={{ color: meta.color }} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-medium text-(--cf-text-1) text-xs">
-                        {n.title}
-                      </p>
-                      <p className="text-xs text-(--cf-text-3) mt-0.5 line-clamp-2">
-                        {n.body}
-                      </p>
+                      <p className="font-medium text-(--cf-text-1) text-xs">{n.title}</p>
+                      <p className="text-xs text-(--cf-text-3) mt-0.5 line-clamp-2">{n.body}</p>
                       <p className="text-[10px] text-(--cf-text-3)/50 mt-1">
                         {formatRelativeTime(n.createdAt)}
                       </p>
                     </div>
+                    {!n.readAt && (
+                      <span
+                        aria-hidden="true"
+                        className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-(--cf-accent)"
+                      />
+                    )}
+                  </>
+                );
+                return (
+                  <li key={n.notificationId}>
+                    {href ? (
+                      <Link href={href} onClick={() => { markRead(n); setOpen(false); }} className={itemClass}>
+                        {inner}
+                      </Link>
+                    ) : (
+                      <button type="button" onClick={() => markRead(n)} className={itemClass}>
+                        {inner}
+                      </button>
+                    )}
                   </li>
                 );
               })}
