@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "outliers",
+  "chapterNumber": 9,
+  "chapterId": "outliers-ch09",
+  "verdict": "REVISE",
+  "contentHash": "2b37a4a412d41379",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-outliers-2026-06-10",
+  "reviewedAt": "2026-06-11T00:19:56.112Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=64; cross-chapter: scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/repeated_unit/repeated_unit/other; Grounded, near-anchor prose, but DRAFT not publishable: memorableLines section absent entirely (ch05"
+}

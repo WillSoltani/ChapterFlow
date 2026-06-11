@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "outliers",
+  "chapterNumber": 5,
+  "chapterId": "outliers-ch05",
+  "verdict": "CORRUPTION",
+  "contentHash": "75c6b10181ce6b8a",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-outliers-2026-06-10",
+  "reviewedAt": "2026-06-11T00:19:31.774Z",
+  "dimensions": {
+    "keysCorrect": false,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": false,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=56; 1 confirmed wrong key(s); 1 confirmed corruption hit(s); cross-chapter: scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/repeated_unit/repeated_unit/other; Grounded, human prose but DRAFT: memorableL"
+}

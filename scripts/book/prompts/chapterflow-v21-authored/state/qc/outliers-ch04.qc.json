@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "outliers",
+  "chapterNumber": 4,
+  "chapterId": "outliers-ch04",
+  "verdict": "REVISE",
+  "contentHash": "b6a1fa0762735964",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-outliers-2026-06-10",
+  "reviewedAt": "2026-06-11T00:19:32.139Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": false,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": false
+  },
+  "notes": "overall=78; cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/repeated_unit/other; Grounded, human, non-templated scenes and near-anchor prose (~0.77 weighted vs 0.85 anchor); drafts"
+}
