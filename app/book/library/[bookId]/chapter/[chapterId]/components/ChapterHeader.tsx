@@ -13,7 +13,7 @@ import {
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
-import { ReaderSettingsMenu } from "./ReaderSettingsMenu";
+import { ReaderSettingsMenu, type LineSpacingPref } from "./ReaderSettingsMenu";
 
 const MODE_LABELS: Record<LearningMode, { icon: string; label: string }> = {
   guided: { icon: "\uD83C\uDF31", label: "Guided" },
@@ -45,6 +45,12 @@ type ChapterHeaderProps = {
   onChangeReadingDepth?: (value: ReadingDepth) => void;
   showDepthSelector?: boolean;
   onOpenShortcuts?: () => void;
+  fontSize: number;
+  onChangeFontSize: (px: number) => void;
+  lineSpacing: LineSpacingPref;
+  onChangeLineSpacing: (value: LineSpacingPref) => void;
+  contentWidth: number;
+  onChangeContentWidth: (px: number) => void;
 };
 
 export function ChapterHeader({
@@ -71,6 +77,12 @@ export function ChapterHeader({
   onChangeReadingDepth,
   showDepthSelector = false,
   onOpenShortcuts,
+  fontSize,
+  onChangeFontSize,
+  lineSpacing,
+  onChangeLineSpacing,
+  contentWidth,
+  onChangeContentWidth,
 }: ChapterHeaderProps) {
   void _trackedMinutesToday;
   void _showProgressBar;
@@ -267,6 +279,12 @@ export function ChapterHeader({
               onChangeReadingDepth={onChangeReadingDepth}
               focusMode={focusMode}
               onToggleFocus={onToggleFocus}
+              fontSize={fontSize}
+              onChangeFontSize={onChangeFontSize}
+              lineSpacing={lineSpacing}
+              onChangeLineSpacing={onChangeLineSpacing}
+              contentWidth={contentWidth}
+              onChangeContentWidth={onChangeContentWidth}
             />
           </div>
           <button

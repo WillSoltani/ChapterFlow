@@ -939,6 +939,12 @@ export function ChapterReaderClient({
           onChangeReadingDepth={setReadingDepth}
           showDepthSelector={chapter.isStrictV12}
           onOpenShortcuts={() => setShowShortcuts(true)}
+          fontSize={bookPrefs.reading.fontSize}
+          onChangeFontSize={(px) => patchBookPrefs("reading", { fontSize: px })}
+          lineSpacing={bookPrefs.extended.lineSpacing}
+          onChangeLineSpacing={(value) => patchBookPrefs("extended", { lineSpacing: value })}
+          contentWidth={bookPrefs.reading.contentWidth}
+          onChangeContentWidth={(px) => patchBookPrefs("reading", { contentWidth: px })}
         />
 
         {/* Hook banner: only on the Summary phase. Sits BELOW the chapter
