@@ -1,0 +1,70 @@
+{
+  "chapterId": "range-ch01",
+  "number": 1,
+  "title": "The Cult of the Head Start",
+  "coreMove": "Early specialization is powerful in kind domains, but the Tiger Woods template becomes dangerous when rules hide, shift, or reward the wrong lesson.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "sports academy",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "decision_point",
+      "requiredBeat": "Sports Academy"
+    },
+    {
+      "domain": "chess hiring test",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "reflection",
+      "requiredBeat": "Chess Hiring Test"
+    },
+    {
+      "domain": "board memory drill",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "business_case",
+      "requiredBeat": "Board Memory Drill"
+    },
+    {
+      "domain": "founder coaching choice",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "scene",
+      "requiredBeat": "Founder Coaching Choice"
+    },
+    {
+      "domain": "school track debate",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "planning_choice",
+      "requiredBeat": "School Track Debate"
+    },
+    {
+      "domain": "design review reset",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "audit",
+      "requiredBeat": "Design Review Reset"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:17:02.902Z"
+}

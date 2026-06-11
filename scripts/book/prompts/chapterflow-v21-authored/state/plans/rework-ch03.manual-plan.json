@@ -1,0 +1,69 @@
+{
+  "chapterId": "rework-ch03",
+  "number": 3,
+  "title": "Learning from mistakes is overrated",
+  "coreMove": "Success as instruction means studying working behavior closely enough to repeat the price, message, feature, habit, or process that created it.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "subscription analytics",
+      "audience": "founders reviewing churn and renewals",
+      "stakes": "learn from a renewal instead of only dissecting churn",
+      "format": "postmortem",
+      "requiredBeat": "the protagonist studies a working customer behavior in the 37signals spirit"
+    },
+    {
+      "domain": "municipal permitting software",
+      "audience": "product managers choosing roadmap work",
+      "stakes": "avoid letting failed feature stories crowd out actual use",
+      "format": "audit",
+      "requiredBeat": "the protagonist uses usage evidence as instruction"
+    },
+    {
+      "domain": "industrial equipment service",
+      "audience": "sales teams after a surprise win",
+      "stakes": "capture the sentence that made a buyer act",
+      "format": "predict_reveal",
+      "requiredBeat": "the protagonist finds instruction inside a successful message"
+    },
+    {
+      "domain": "online music lessons",
+      "audience": "small service teams",
+      "stakes": "preserve a practice that customers quietly reward",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist chooses to study a support win before cutting it"
+    },
+    {
+      "domain": "food delivery startup",
+      "audience": "teams after an unsuccessful experiment",
+      "stakes": "avoid turning failure into identity",
+      "format": "reflection",
+      "requiredBeat": "the protagonist limits the lesson from failure and returns to working evidence"
+    },
+    {
+      "domain": "warehouse training",
+      "audience": "operations leaders",
+      "stakes": "repeat a working process instead of only blaming errors",
+      "format": "before_after",
+      "requiredBeat": "the protagonist compares error review with successful process evidence"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.762Z"
+}

@@ -1,0 +1,69 @@
+{
+  "chapterId": "drive-ch02",
+  "number": 2,
+  "title": "Seven Reasons Carrots and Sticks (Often) Don’t Work . . .",
+  "coreMove": "Conditional rewards are risky when the work needs insight, persistence, or ethics, because control can crowd out the motive you wanted.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "museum education desk",
+      "audience": "Claudia, a museum educator deciding whether to prize every answer",
+      "stakes": "A children's desk needs energy without turning curiosity into a contest.",
+      "format": "decision_point",
+      "requiredBeat": "Show the reward crowding out the museum's learning motive."
+    },
+    {
+      "domain": "design sprint room",
+      "audience": "Niko, a design lead protecting exploratory work",
+      "stakes": "A sprint team wants speed, but the problem needs a wider search.",
+      "format": "dialogue",
+      "requiredBeat": "Use the candle-problem warning in a design sprint."
+    },
+    {
+      "domain": "preschool pickup counter",
+      "audience": "Yara, a preschool director reading a fee as a social signal",
+      "stakes": "A pickup policy could turn responsibility into a purchasable delay.",
+      "format": "audit",
+      "requiredBeat": "Show a social norm becoming a market bargain."
+    },
+    {
+      "domain": "sales compensation review",
+      "audience": "Hassan, a sales leader deciding whether a target invites gaming",
+      "stakes": "A compensation review has to distinguish healthy direction from a narrow scoreboard.",
+      "format": "planning_choice",
+      "requiredBeat": "Show a reward that improves numbers while corrupting judgment."
+    },
+    {
+      "domain": "community volunteer table",
+      "audience": "Marta, a volunteer coordinator preserving choice",
+      "stakes": "A community table needs commitments without making service feel bought.",
+      "format": "postmortem",
+      "requiredBeat": "Show how autonomy protects volunteer motive."
+    },
+    {
+      "domain": "software bug bounty meeting",
+      "audience": "Ellis, a security lead designing a bug bounty carefully",
+      "stakes": "A bounty should find flaws without training people to chase payout at any cost.",
+      "format": "reflection",
+      "requiredBeat": "Show reward design with guardrails."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 8,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:46:25.905Z"
+}

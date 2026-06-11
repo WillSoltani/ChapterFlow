@@ -1,0 +1,693 @@
+{
+  "bookId": "the-tipping-point",
+  "title": "The Tipping Point",
+  "author": "Malcolm Gladwell",
+  "promotedAt": "2026-06-03T05:43:42.606Z",
+  "chapterCount": 8,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"baltimore\", \"syphilis\", \"crack\", \"high-risk\", \"john\", \"potterat\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Noor checks a 10:30 a.m. dashboard at the Rutgers student health desk and sees that vaccine emails are opened but appointments stay flat. Her supervisor asks for a larger mailing l"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"baltimore\", \"syphilis\", \"crack\", \"high-risk\", \"john\", \"potterat\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Gideon walks the Queensboro platform at 6:20 p.m. with a clipboard, a radio, and three complaint logs. Riders keep crossing the yellow line near one stairwell. The poster draft bla"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"baltimore\", \"syphilis\", \"crack\", \"high-risk\", \"john\", \"potterat\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Marisol hears the first chant at 8:02 a.m. beside the eighth-grade lockers in Fresno. Students say Friday attendance will not count, and three homerooms are already repeating it. A"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rina opens the 7:15 a.m. case board in a Baltimore health office and sees syphilis visits clustered near two closed clinics. As deputy director, she has to brief the mayor before the noon budget call…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kavita sits in a Chicago conference room at 3:05 p.m. with a donor Slack thread projected on the wall. One volunteer appears in every screenshot, so the director wants a public reprimand. Kavita must…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Gideon walks the Queensboro platform at 6:20 p.m. with a clipboard, a radio, and three complaint logs. Riders keep crossing the yellow line near one stairwell. The poster draft blames carelessness, b…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marisol hears the first chant at 8:02 a.m. beside the eighth-grade lockers in Fresno. Students say Friday attendance will not count, and three homerooms are already repeating it. As principal, she ha…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which test best reveals whether a transit safety problem is a Power of Context issue?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"john potterats work on\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Social distance is not spread evenly across a town, a market, or a company. Some people hold many weak ties. They belong lightly to several worlds, so information can jump from one circle to another.…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Helena opens the display case at 11:10 a.m. in her Portland audio shop as a customer compares two headphones. The register prompt offers a rebate script, but the customer asks which model fails after…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ibrahim pauses a 2:25 p.m. training video in a Torrance advisory office while a new planner floods a widow with charts. The planner has to call the client back before markets close. Ibrahim points to…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Anika watches a 4:45 p.m. beta dashboard in a Berlin software office while signups stall outside engineering. The CEO wants the most admired designer to promote it alone. Anika has to answer before t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a museum invitation keeps reaching the same patrons, which sign would point to a Connector problem?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which hiring brief best avoids treating influence as one vague trait?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the law of the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"joan\", \"ganz\", \"cooney\", \"large-scale\", \"children's\", \"television\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Farah stands at 6:05 a.m. in a Cleveland simulation lab with a paused handoff video and twelve nurses waiting for shift change. The old clip explains five risks in one rush. She mu"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"joan\", \"ganz\", \"cooney\", \"large-scale\", \"children's\", \"television\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Leonie sits beside a 4:30 p.m. discharge cart in Marseille with a pill bottle, a paper schedule, and a tired patient who nods at every sentence. The old script names side effects f"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"joan\", \"ganz\", \"cooney\", \"large-scale\", \"children's\", \"television\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Celeste checks the 1:20 p.m. maintenance bay in Toledo and sees a lockout poster half hidden behind spare belts. A supervisor wants a harsher slogan before the audit team arrives. "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"joan\", \"ganz\", \"cooney\", \"large-scale\", \"children's\", \"television\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Hiro reviews a 9:10 a.m. activation chart in a Tokyo product room and sees new users finish the tutorial once, then vanish. The team wants three new features in onboarding. Hiro ha"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Jamal watches a 2:15 p.m. screen recording in a Brooklyn edtech office as first graders laugh at a skateboard frog. The lesson is supposed to teach greater-than signs, but eye tracking shows the chil…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bastien kneels at 10:00 a.m. beside the carpet in a Lyon library while parents praise the rhyming show. When he asks the children to repeat the sound pattern, most remember the puppet's hat instead. …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Hiro reviews a 9:10 a.m. activation chart in a Tokyo product room and sees new users finish the tutorial once, then vanish. The team wants three new features in onboarding. Hiro has to answer before …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A discharge sheet lists every warning, but patients forget the evening dose. Which change fits the Stickiness Factor?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your training team says adults will dislike repeated modules. Which Blue's Clues insight should shape the reply?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which claim would be weakest under the Children's Television Workshop approach?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "If a public message has wide reach but people do not remember what to do, which lever is failing?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"in front of the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nadine stands at 7:30 a.m. beside the Eastlake Metro turnstiles with a fare report and two supervisors waiting. Riders hop the gate while a guard stares at his phone. She has to set next month's prio…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sofia hears coughing at 11:55 a.m. near a Boston hospital elevator while residents rush to grand rounds. Two staff step around a patient who has slid low in a chair. She must intervene before the hal…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kwame stops a 3:10 p.m. rehearsal at a stadium gate after new security staff start barking at volunteers. The vests, radios, and raised platform have changed their tone. Before doors open, he has to …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rafael edits a 9:25 p.m. crime brief in a Queens newsroom as social feeds compare a platform fight to Bernie Goetz. The headline desk wants a verdict about the city's character. Rafael must file befo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marta enters the Phoenix support lobby at 8:18 a.m. with last week's escalation log. Two chairs are torn, the ticket screen flashes an error, and old forms spill from a tray. Visitors start the day i…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which claim goes too far beyond the Power of Context?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a city sees petty rule breaking spread in one public space, which question best starts a context audit?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the city changed the\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "counterintuition opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Scale is not just more people. Past a rough threshold, trust, shame, praise, and"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"robin\", \"dunbar\", \"hutterite\", \"splitting\", \"gore\", \"associates\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Mina drafts a 6:10 a.m. memo in a Houston relief warehouse as the volunteer roster climbs past 240. Missed shifts no longer draw notice. The director asks for stricter rules by noo"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Elias opens a 9:00 a.m. remote all-hands from Lisbon and sees 162 engineers, half with cameras off. Pull requests now wait on strangers. The founder asks for a stronger culture deck by Friday. Elias …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Samira chairs a 7:15 p.m. meeting in a Vermont intentional community where the roster has reached 156. Older members call a split betrayal. New members say chores already vanish unnoticed. She has to…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tobias reviews attendance at 8:30 p.m. in a Manchester church office after another crowded Sunday produces thin weekday service. The board wants a better sermon series. Before the planning vote, he p…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Priestley walks through a 1:00 p.m. library atrium in Cardiff with posters for a single 400-person author night. The grant officer wants scale. He has to submit the plan by close of day. Thinking of …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mina drafts a 6:10 a.m. memo in a Houston relief warehouse as the volunteer roster climbs past 240. Missed shifts no longer draw notice. The director asks for stricter rules by noon. Mina uses the ro…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A pastor's crowded services produce little weekday practice. Which John Wesley-inspired move fits the mechanism?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A library wants a new novel to spread by recommendation. What plan best uses the Divine Secrets reading-group lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement treats the Rule of 150 as a shallow rule instead of a useful diagnostic?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the rule of 150\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"gordon\", \"allport's\", \"rumor\", \"chinese\", \"maine\", \"japanese\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Mateusz reviews a 12:15 p.m. slide deck in a Warsaw lab before hospital buyers arrive. The engineers describe an elegant signal-processing method, and the clinicians look lost in r"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Inez opens a 7:05 p.m. town chat in Bar Harbor and sees a tourist question retold as a threat. Details have vanished, and one frightening phrase keeps getting sharper. Before the council livestream, …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Keiko scans 8:50 a.m. voice notes from youth correspondents in Tokyo, London, and New York while the creative team polishes one national ad. A director wants the notes reduced to slang. Keiko has to …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A town rumor drops key details and keeps one frightening phrase. Which Allport idea explains the mutation?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A lab tool is brilliant to engineers and opaque to hospital buyers. Which translation move is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which situation shows translation rather than simple broadcast?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A wartime town changes an ambiguous tourist story into a spy accusation. What made the story more contagious?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"version of the same\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"sima\", \"micronesia\", \"micronesian\", \"later\", \"david\", \"phillips\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Amara reviews a 2:20 p.m. survey in a Detroit high school office and sees that ninth graders can recite cancer risks. Their first-cigarette stories point to one older student outsi"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"sima\", \"micronesia\", \"micronesian\", \"later\", \"david\", \"phillips\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Nikhil studies a 9:45 a.m. nicotine chart in an Ottawa policy lab as a committee argues over another teen warning campaign. He predicts the warning will miss the social spark. Then"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"sima\", \"micronesia\", \"micronesian\", \"later\", \"david\", \"phillips\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Callum meets a 4:00 p.m. counseling client in Glasgow who shrugs through every health warning. Instead of repeating risk facts, he asks who handed over the first cigarette and what"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Amara reviews a 2:20 p.m. survey in a Detroit high school office and sees that ninth graders can recite cancer risks. Their first-cigarette stories point to one older student outside the gym. Before …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Dorian sits in a 6:35 p.m. newsroom in Boise with a draft about a student's death and a photo gallery already queued. The memorial language is warm but too vivid. He has to file guidance before the w…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nikhil studies a 9:45 a.m. nicotine chart in an Ottawa policy lab as a committee argues over another teen warning campaign. He predicts the warning will miss the social spark. Then he points to the u…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Callum meets a 4:00 p.m. counseling client in Glasgow who shrugs through every health warning. Instead of repeating risk facts, he asks who handed over the first cigarette and what that person seemed…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Counselors see several boys frame family conflict with the same harmful script. Which response fits the Sima example?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A policy team cannot prevent every first cigarette trial. Which research direction follows the unsticky cigarette idea?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"david phillipss work on\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"georgia\", \"sadler\", \"breast-cancer\", \"black\", \"beauty\", \"diego\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Bianca enters a 6:00 p.m. tenant workshop in Queens and sees more lawyers than renters. The handout is accurate, but residents avoid the sign-in table. Before scheduling five more "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"georgia\", \"sadler\", \"breast-cancer\", \"black\", \"beauty\", \"diego\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Jun writes a 9:30 p.m. reflection after two youth transit safety pilots fail in Vancouver. Posters at stations were ignored, and a school assembly drew polite silence. The team wan"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"georgia\", \"sadler\", \"breast-cancer\", \"black\", \"beauty\", \"diego\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Elodie compares sign-in sheets at 2:00 p.m. in a Montreal family-services office. The budgeting workshop drew four parents, while the childcare pickup line has the same parents wai"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rochelle sits at 7:25 p.m. in a San Diego church basement after twelve chairs stay empty for a breast-cancer session. The pastor is supportive, but the same informed women came again. Before next mon…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bianca enters a 6:00 p.m. tenant workshop in Queens and sees more lawyers than renters. The handout is accurate, but residents avoid the sign-in table. Before scheduling five more sessions, she audit…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Two safety pilots fail, and the team wants to quit. What does disciplined belief require?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement turns small-change optimism into wishful thinking?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A campaign reaches many people but produces little action. Which sequence best matches the final working ethic?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"+this is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"but it did not\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 68
+  },
+  "bookGate": {
+    "bookId": "the-tipping-point",
+    "chapterCount": 8,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "B11",
+        "severity": "major",
+        "message": "5 of 8 chapters (63%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch2, Ch4, Ch5, Ch7, Ch8. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+      },
+      {
+        "catalogId": "B13",
+        "severity": "major",
+        "message": "Hook frame clustering: 5 of 8 chapters open with \"a\" as the first word (cap 4, 50% of book). Chapters: 3, 4, 5, 6, 7. Vary hook openers across the book.",
+        "evidence": "a"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        27,
+        23,
+        22
+      ],
+      "answerPositionPctMax": 0.375,
+      "totalQuizQuestions": 72,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "the-tipping-point",
+        "chapterCount": 8,
+        "passed": true,
+        "findings": [
+          {
+            "code": "B11",
+            "severity": "major",
+            "chapters": [
+              2,
+              4,
+              5,
+              7,
+              8
+            ],
+            "count": 5,
+            "unit": "counterintuition",
+            "message": "5 of 8 chapters (63%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch2, Ch4, Ch5, Ch7, Ch8. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+          },
+          {
+            "code": "B13",
+            "severity": "major",
+            "chapters": [
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "count": 5,
+            "unit": "hook.firstWord",
+            "evidence": "a",
+            "message": "Hook frame clustering: 5 of 8 chapters open with \"a\" as the first word (cap 4, 50% of book). Chapters: 3, 4, 5, 6, 7. Vary hook openers across the book.",
+            "maxScoreCap": 80
+          }
+        ],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

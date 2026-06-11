@@ -1,80 +1,17 @@
 {
   "bookId": "rework",
-  "fromChapter": 24,
-  "toChapter": 31,
+  "fromChapter": 8,
+  "toChapter": 8,
   "perChapter": 7,
   "allocation": {
-    "24": [
+    "8": [
       "Norman",
-      "Matthew",
-      "Grant",
       "Aaron",
       "Medard",
       "Firmin",
-      "Winnie"
-    ],
-    "25": [
-      "Juliana",
+      "Winnie",
       "Kendra",
-      "Violette",
-      "Maverick",
-      "Paige",
-      "Remi",
-      "Nikos"
-    ],
-    "26": [
-      "Sasha",
-      "Delphis",
-      "Isaac",
-      "Maddox",
-      "Yuri",
-      "Mason",
-      "Doreen"
-    ],
-    "27": [
-      "Ghislaine",
-      "Cody",
-      "Lincoln",
-      "Brady",
-      "Amrit",
-      "Adrien",
-      "Napoleon"
-    ],
-    "28": [
-      "Mariam",
-      "Kenji",
-      "Severine",
-      "Rita",
-      "Cora",
-      "Abel",
-      "Silas"
-    ],
-    "29": [
-      "Marion",
-      "Scott",
-      "Carlos",
-      "Nathalie",
-      "Grayson",
-      "Calvin",
-      "Trevor"
-    ],
-    "30": [
-      "Ishani",
-      "Scarlett",
-      "Vito",
-      "Omar",
-      "Keaton",
-      "Gianni",
-      "Lucien"
-    ],
-    "31": [
-      "Ludger",
-      "Wei",
-      "Ricardo",
-      "Liliane",
-      "Noemie",
-      "Cesaire",
-      "Lucy"
+      "Violette"
     ]
   },
   "bannedConnectives": [
@@ -102,13 +39,21 @@
     "has to make a call",
     "sits down to write the",
     "opens the laptop and starts",
-    "runs the numbers one more"
+    "runs the numbers one more",
+    "the point is",
+    "the question is whether",
+    "that is the lesson",
+    "that is the move",
+    "a louder scoreboard",
+    "the scoreboard"
   ],
   "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
   "diagnostics": {
     "bankSize": 777,
     "excludedCount": 224,
-    "availableCount": 747,
+    "crossBookExcluded": 586,
+    "freshAvailable": 189,
+    "availableCount": 189,
     "shortChapters": [],
     "alreadyAuthored": []
   }

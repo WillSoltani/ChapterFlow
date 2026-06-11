@@ -1,0 +1,70 @@
+{
+  "chapterId": "hooked-ch07",
+  "number": 7,
+  "title": "Case Study: The Bible App",
+  "coreMove": "YouVersion shows the full Hook Model serving a value-driven routine when prompts, easy reading, meaningful rewards, and personal investment all support the user's own goal.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "church technology office",
+      "audience": "mission product lead",
+      "stakes": "why founder relationship affects the ethical reading",
+      "format": "founder case",
+      "requiredBeat": "Apply Bobby Gruenewald to why founder relationship affects the ethical reading without flattening the source case."
+    },
+    {
+      "domain": "morning routine",
+      "audience": "mobile designer",
+      "stakes": "how a notification can lower starting friction",
+      "format": "routine scene",
+      "requiredBeat": "Apply daily verse to how a notification can lower starting friction without flattening the source case."
+    },
+    {
+      "domain": "reading-plan redesign",
+      "audience": "content strategist",
+      "stakes": "how plans simplify a large text",
+      "format": "content design",
+      "requiredBeat": "Apply reading plans to how plans simplify a large text without flattening the source case."
+    },
+    {
+      "domain": "personalization review",
+      "audience": "app PM",
+      "stakes": "how annotations become investment",
+      "format": "feature audit",
+      "requiredBeat": "Apply highlights to how annotations become investment without flattening the source case."
+    },
+    {
+      "domain": "small group chat",
+      "audience": "community moderator",
+      "stakes": "how social sharing can load another trigger",
+      "format": "group scene",
+      "requiredBeat": "Apply YouVersion to how social sharing can load another trigger without flattening the source case."
+    },
+    {
+      "domain": "trust review",
+      "audience": "product ethicist",
+      "stakes": "why mission products still need limits",
+      "format": "ethics review",
+      "requiredBeat": "Apply Facilitator to why mission products still need limits without flattening the source case."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:55:57.484Z"
+}

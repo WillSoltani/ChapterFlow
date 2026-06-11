@@ -1,0 +1,70 @@
+{
+  "chapterId": "range-ch11",
+  "number": 11,
+  "title": "Learning to Drop Your Familiar Tools",
+  "coreMove": "Adaptation requires noticing when a familiar tool, metric, or identity cue has crossed from helpful to harmful.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "carter racing table",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "decision_point",
+      "requiredBeat": "Carter Racing Table"
+    },
+    {
+      "domain": "challenger launch review",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "reflection",
+      "requiredBeat": "Challenger Launch Review"
+    },
+    {
+      "domain": "mann gulch drill",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "business_case",
+      "requiredBeat": "Mann Gulch Drill"
+    },
+    {
+      "domain": "storm king identity cue",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "scene",
+      "requiredBeat": "Storm King Identity Cue"
+    },
+    {
+      "domain": "dashboard abandonment",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "planning_choice",
+      "requiredBeat": "Dashboard Abandonment"
+    },
+    {
+      "domain": "hospital protocol edge",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "audit",
+      "requiredBeat": "Hospital Protocol Edge"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:17:02.906Z"
+}

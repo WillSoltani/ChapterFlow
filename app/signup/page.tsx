@@ -28,14 +28,16 @@ function AppleIcon() {
 export default function SignupPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [consented, setConsented] = useState(false);
 
   const handleEmailContinue = () => {
-    if (email.trim()) {
+    if (consented && email.trim()) {
       router.push("/onboarding");
     }
   };
 
   const handleOAuthContinue = () => {
+    if (!consented) return;
     router.push("/onboarding");
   };
 
@@ -148,6 +150,43 @@ export default function SignupPage() {
           </p>
         </div>
 
+        {/* Consent */}
+        <label
+          className="flex items-start gap-2.5 mb-5 cursor-pointer select-none"
+          style={{
+            fontFamily: "var(--font-dm-sans)",
+            fontSize: 13,
+            color: "var(--text-secondary)",
+            lineHeight: 1.5,
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={consented}
+            onChange={(e) => setConsented(e.target.checked)}
+            aria-label="I agree to the Terms of Service and Privacy Policy"
+            style={{
+              marginTop: 2,
+              width: 16,
+              height: 16,
+              accentColor: "var(--accent-blue)",
+              cursor: "pointer",
+              flexShrink: 0,
+            }}
+          />
+          <span>
+            I agree to the{" "}
+            <a href="/legal/terms" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-blue)", textDecoration: "underline" }}>
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="/legal/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-blue)", textDecoration: "underline" }}>
+              Privacy Policy
+            </a>
+            .
+          </span>
+        </label>
+
         {/* OAuth buttons */}
         <div className="flex flex-col gap-3">
           <button
@@ -163,6 +202,8 @@ export default function SignupPage() {
               fontWeight: 500,
               borderRadius: "var(--radius-md-val)",
               border: "none",
+              opacity: consented ? 1 : 0.5,
+              pointerEvents: consented ? "auto" : "none",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.01)")}
             onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
@@ -186,6 +227,8 @@ export default function SignupPage() {
               fontWeight: 500,
               borderRadius: "var(--radius-md-val)",
               border: "1px solid var(--border-subtle)",
+              opacity: consented ? 1 : 0.5,
+              pointerEvents: consented ? "auto" : "none",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = "var(--border-default)";
@@ -260,8 +303,8 @@ export default function SignupPage() {
               borderRadius: "var(--radius-md-val)",
               border: "none",
               boxShadow: "0 0 20px rgba(52,211,153,0.15)",
-              opacity: email.trim() ? 1 : 0.5,
-              pointerEvents: email.trim() ? "auto" : "none",
+              opacity: consented && email.trim() ? 1 : 0.5,
+              pointerEvents: consented && email.trim() ? "auto" : "none",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.filter = "brightness(1.1)";

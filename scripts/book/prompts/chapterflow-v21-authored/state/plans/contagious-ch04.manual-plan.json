@@ -1,0 +1,70 @@
+{
+  "chapterId": "contagious-ch04",
+  "number": 4,
+  "title": "Public",
+  "coreMove": "Public design turns private action into social proof; make the desired behavior easy to see, while avoiding signals that normalize what you hope to reduce.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hardware branding review",
+      "audience": "industrial designers choosing logo orientation",
+      "stakes": "a private convenience choice can remove public brand evidence",
+      "format": "decision_point",
+      "requiredBeat": "Linh uses Apple laptop logo orientation"
+    },
+    {
+      "domain": "audio-device launch",
+      "audience": "consumer electronics marketers",
+      "stakes": "a pocketed device may look absent unless an accessory announces use",
+      "format": "planning_choice",
+      "requiredBeat": "Bruno applies white iPod earbuds logic"
+    },
+    {
+      "domain": "freemium email product",
+      "audience": "growth teams adding invitation prompts",
+      "stakes": "normal use can expose recipients without adding a separate campaign",
+      "format": "business_case",
+      "requiredBeat": "Celine uses Hotmail signatures as public use"
+    },
+    {
+      "domain": "cancer fundraiser design",
+      "audience": "nonprofit staff choosing donor reminders",
+      "stakes": "a private donation can vanish after payment unless residue keeps it visible",
+      "format": "dilemma",
+      "requiredBeat": "Kwame uses Livestrong wristbands"
+    },
+    {
+      "domain": "men's health campaign",
+      "audience": "community organizers recruiting participants",
+      "stakes": "a hidden pledge will not invite the conversations the cause needs",
+      "format": "coach_talk",
+      "requiredBeat": "Anouk uses Movember's visible temporary behavior"
+    },
+    {
+      "domain": "campus drinking prevention",
+      "audience": "student health staff writing posters",
+      "stakes": "warning about a bad behavior can make it look common",
+      "format": "mistake_recovery",
+      "requiredBeat": "Petra avoids reverse social proof"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "remember": 1,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:12:41.230Z"
+}

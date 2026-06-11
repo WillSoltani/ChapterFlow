@@ -6,6 +6,7 @@ const navLinks = [
   { label: "How it works", href: "/#how-it-works" },
   { label: "Library", href: "/books" },
   { label: "Pricing", href: "/#pricing" },
+  { label: "Contact", href: "/contact" },
   { label: "Sign in", href: AUTH_LOGIN_BOOK_URL },
 ];
 
@@ -79,12 +80,24 @@ export function Footer() {
           className="mt-6 flex flex-col md:flex-row md:justify-between items-center gap-2 text-[12px]"
           style={{ color: "var(--text-muted)" }}
         >
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/legal/terms" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
               Terms
             </Link>
             <Link href="/legal/privacy" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
               Privacy
+            </Link>
+            <Link href="/legal/refund" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+              Refunds
+            </Link>
+            <Link href="/legal/cookies" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+              Cookies
+            </Link>
+            <Link href="/legal/copyright" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+              Copyright
+            </Link>
+            <Link href="/legal/data-rights" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+              Data Rights
             </Link>
           </div>
           <span>&copy; <CurrentYear /> ChapterFlow</span>

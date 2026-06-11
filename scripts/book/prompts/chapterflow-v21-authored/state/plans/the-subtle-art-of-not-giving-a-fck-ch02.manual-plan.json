@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-subtle-art-of-not-giving-a-fck-ch02",
+  "number": 2,
+  "title": "Happiness Is a Problem",
+  "coreMove": "A good life is built by choosing better problems, then engaging them honestly instead of chasing comfort as if pain can be retired.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "graduate career choice",
+      "audience": "student",
+      "stakes": "whether comfort hides a meaningful problem",
+      "format": "dilemma",
+      "requiredBeat": "Use Prince Siddhartha to show comfort failing as a life answer"
+    },
+    {
+      "domain": "startup customer feedback",
+      "audience": "founder",
+      "stakes": "whether unpleasant evidence gets heard",
+      "format": "predict_reveal",
+      "requiredBeat": "Use Disappointment Panda to make bad news useful"
+    },
+    {
+      "domain": "wellness retreat",
+      "audience": "burned-out professional",
+      "stakes": "whether escape is mistaken for healing",
+      "format": "reflection",
+      "requiredBeat": "Use the Buddha middle path to separate rest from avoidance"
+    },
+    {
+      "domain": "restaurant operations",
+      "audience": "kitchen lead",
+      "stakes": "whether anger becomes information",
+      "format": "decision_point",
+      "requiredBeat": "Treat emotion as a signal rather than a sacred verdict"
+    },
+    {
+      "domain": "household money talk",
+      "audience": "new parent",
+      "stakes": "whether reassurance delays repair",
+      "format": "dialogue",
+      "requiredBeat": "Use Disappointment Panda as the messenger for a needed household truth"
+    },
+    {
+      "domain": "amateur endurance training",
+      "audience": "runner",
+      "stakes": "whether pain is selected or merely endured",
+      "format": "before_after",
+      "requiredBeat": "Show chosen struggle creating agency without romanticizing pain"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:47:49.732Z"
+}

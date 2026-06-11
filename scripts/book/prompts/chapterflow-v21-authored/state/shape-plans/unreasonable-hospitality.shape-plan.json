@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "shape-plan-v1",
+  "bookId": "unreasonable-hospitality",
+  "createdAt": "2026-06-10T13:57:59.669Z",
+  "perChapter": 6,
+  "allocation": {
+    "1": [
+      "decision_point",
+      "dialogue",
+      "dilemma",
+      "before_after",
+      "postmortem",
+      "planning_choice"
+    ],
+    "2": [
+      "decision_point",
+      "dialogue",
+      "dilemma",
+      "before_after",
+      "postmortem",
+      "planning_choice"
+    ],
+    "3": [
+      "decision_point",
+      "dialogue",
+      "dilemma",
+      "before_after",
+      "postmortem",
+      "planning_choice"
+    ]
+  },
+  "carriedChapters": [
+    1,
+    2,
+    3
+  ]
+}

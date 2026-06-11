@@ -1,0 +1,70 @@
+{
+  "chapterId": "the-4-hour-workweek-ch05",
+  "number": 5,
+  "title": "The End of Time Management: Illusions and Italians",
+  "coreMove": "Stop managing every hour; use 80/20 to choose the few actions that matter, then use Parkinson's Law to keep those actions from swelling.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "warehouse inventory audit",
+      "audience": "Gerald, an operations lead sorting product lines",
+      "stakes": "Slow movers crowd out the products that drive shipment value.",
+      "format": "decision_point",
+      "requiredBeat": "Use Pareto's uneven distribution to cut low-return inventory work."
+    },
+    {
+      "domain": "software sales proposal",
+      "audience": "Pierre, a sales director trimming a bloated proposal process",
+      "stakes": "A buyer needs a clear offer while the team wants another week of polish.",
+      "format": "planning_choice",
+      "requiredBeat": "Apply Parkinson's Law only after the valuable sales task has been selected."
+    },
+    {
+      "domain": "subscription customer support",
+      "audience": "Everly, a customer success manager ranking accounts by burden",
+      "stakes": "High-noise accounts consume the week while better accounts wait.",
+      "format": "audit",
+      "requiredBeat": "Rank customers by return and stress, then decide which customers should change or leave."
+    },
+    {
+      "domain": "nonprofit grant application",
+      "audience": "Bryan, a program director choosing a grant draft scope",
+      "stakes": "A small grant needs a usable draft, not a week of internal theater.",
+      "format": "mistake_recovery",
+      "requiredBeat": "Recover from a bloated deadline by compressing a selected priority."
+    },
+    {
+      "domain": "product roadmap review",
+      "audience": "Delaney, a product lead cutting a crowded roadmap",
+      "stakes": "Low-use features drain engineers from the fixes customers actually value.",
+      "format": "decision_memo",
+      "requiredBeat": "Use uneven feature return to remove roadmap items rather than optimize all of them."
+    },
+    {
+      "domain": "legal case preparation",
+      "audience": "Laurence, an attorney narrowing a status brief",
+      "stakes": "A judge needs the issue and next action, while the team keeps adding background.",
+      "format": "contrast",
+      "requiredBeat": "Show useful compression without confusing it with reckless haste."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 9,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-05T08:48:29.793Z"
+}

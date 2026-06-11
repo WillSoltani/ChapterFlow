@@ -1,0 +1,70 @@
+{
+  "chapterId": "the-tipping-point-ch08",
+  "number": 8,
+  "title": "Conclusion: Focus, Test, and Believe",
+  "coreMove": "Focus on the few sensitive points, test against real behavior, and keep revising until a small change finds the system's movable place.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "breast-cancer outreach redesign",
+      "audience": "health educators choosing community venues",
+      "stakes": "a formal meeting may miss women who trust everyday relationships more",
+      "format": "decision_point",
+      "requiredBeat": "Rochelle follows Sadler from church meetings to salon trust"
+    },
+    {
+      "domain": "after-school reading program",
+      "audience": "program directors revising a plausible plan",
+      "stakes": "a beloved adult idea may not produce child recall",
+      "format": "postmortem",
+      "requiredBeat": "Devon uses Sesame Street-style testing to revise"
+    },
+    {
+      "domain": "diabetes screening campaign",
+      "audience": "community health workers reducing broad outreach waste",
+      "stakes": "generic posters may reach everyone and move almost no one",
+      "format": "planning_choice",
+      "requiredBeat": "Hassan focuses on stylists as trusted local messengers"
+    },
+    {
+      "domain": "housing rights outreach",
+      "audience": "advocates choosing community messengers",
+      "stakes": "legal information may fail if tenants distrust formal workshops",
+      "format": "audit",
+      "requiredBeat": "Bianca searches for the few trusted carriers before scaling"
+    },
+    {
+      "domain": "youth transit safety campaign",
+      "audience": "city teams iterating after weak pilots",
+      "stakes": "early failures may end the search before the right context is found",
+      "format": "reflection",
+      "requiredBeat": "Jun keeps disciplined belief through multiple tests"
+    },
+    {
+      "domain": "financial coaching for single parents",
+      "audience": "social-service teams improving participation",
+      "stakes": "a formal workshop may ask busy parents to enter the wrong context",
+      "format": "before_after",
+      "requiredBeat": "Elodie applies salon dwell time and trust to a new domain"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "evaluate": 3,
+      "analyze": 1,
+      "create": 1,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:43:32.864Z"
+}

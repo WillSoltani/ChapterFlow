@@ -28,12 +28,13 @@ export async function POST(req: Request) {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
 
-    // Server-side consent check — respect the user's privacy preference
+    // Server-side consent check — respect the user's privacy preference.
+    // Usage analytics is opt-in: off unless the user explicitly enabled it.
     const settingsItem = await getUserSettingsItem(tableName, user.sub);
     const privacy = settingsItem?.settings?.privacy as
       | { analyticsParticipation?: boolean }
       | undefined;
-    const analyticsParticipation = privacy?.analyticsParticipation ?? true;
+    const analyticsParticipation = privacy?.analyticsParticipation ?? false;
 
     if (!analyticsParticipation) {
       // User has opted out — silently accept but don't store

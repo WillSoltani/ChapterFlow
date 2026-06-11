@@ -1,0 +1,70 @@
+{
+  "chapterId": "hooked-ch02",
+  "number": 2,
+  "title": "Trigger",
+  "coreMove": "Habitual products move from external triggers to internal triggers by becoming the remembered relief for boredom, loneliness, uncertainty, or another recurring feeling.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "city photo walk",
+      "audience": "mobile product designer",
+      "stakes": "how Yin's moment becomes a cue before an alert",
+      "format": "place-first",
+      "requiredBeat": "Apply Instagram to how Yin's moment becomes a cue before an alert without flattening the source case."
+    },
+    {
+      "domain": "train commute",
+      "audience": "social app researcher",
+      "stakes": "why a feed check happens with no visible cue",
+      "format": "time-first",
+      "requiredBeat": "Apply Facebook to why a feed check happens with no visible cue without flattening the source case."
+    },
+    {
+      "domain": "notification permission review",
+      "audience": "growth PM",
+      "stakes": "whether owned triggers are being used responsibly",
+      "format": "audit",
+      "requiredBeat": "Apply notifications to whether owned triggers are being used responsibly without flattening the source case."
+    },
+    {
+      "domain": "marketing budget meeting",
+      "audience": "acquisition lead",
+      "stakes": "why ads cannot be the main return loop",
+      "format": "budget debate",
+      "requiredBeat": "Apply paid triggers to why ads cannot be the main return loop without flattening the source case."
+    },
+    {
+      "domain": "invite flow critique",
+      "audience": "product designer",
+      "stakes": "how a cue from another person carries trust",
+      "format": "critique",
+      "requiredBeat": "Apply relationship triggers to how a cue from another person carries trust without flattening the source case."
+    },
+    {
+      "domain": "user interview room",
+      "audience": "research lead",
+      "stakes": "how to uncover the emotional root under a photo request",
+      "format": "dialogue-led",
+      "requiredBeat": "Apply 5 Whys to how to uncover the emotional root under a photo request without flattening the source case."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:55:57.483Z"
+}

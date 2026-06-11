@@ -1,0 +1,69 @@
+{
+  "chapterId": "mindset-ch01",
+  "number": 1,
+  "title": "The Mindsets",
+  "coreMove": "Do not let a first result act like a final label; ask what effort, strategy, help, and time could reveal before you decide what is possible.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "middle school placement review",
+      "audience": "teachers deciding how to use test data",
+      "stakes": "a student may be tracked away from harder work",
+      "format": "decision_point",
+      "requiredBeat": "use Alfred Binet as the anchor for treating a score as a guide to instruction rather than a permanent rank"
+    },
+    {
+      "domain": "sixth-grade classroom routines",
+      "audience": "new teachers shaping classroom norms",
+      "stakes": "students may learn to defend rank instead of learn",
+      "format": "mistake_recovery",
+      "requiredBeat": "contrast Mrs. Wilson's IQ seating with a classroom routine that removes status from measurement"
+    },
+    {
+      "domain": "museum fellowship selection",
+      "audience": "selection committees reading uneven portfolios",
+      "stakes": "a developing candidate may be screened out too soon",
+      "format": "decision_memo",
+      "requiredBeat": "use Charles Darwin as a reminder that early ordinariness can mislead evaluators"
+    },
+    {
+      "domain": "adult golf lesson after a public mistake",
+      "audience": "learners ashamed by visible errors",
+      "stakes": "quitting would preserve pride and stop improvement",
+      "format": "dialogue",
+      "requiredBeat": "use Ben Hogan to show that early clumsiness does not settle future skill"
+    },
+    {
+      "domain": "community art school portfolio critique",
+      "audience": "adults returning to creative work",
+      "stakes": "one harsh critique could end a developing practice",
+      "format": "reflection",
+      "requiredBeat": "anchor the response in Cindy Sherman and the fragility of first labels"
+    },
+    {
+      "domain": "community theater audition callback",
+      "audience": "performers facing visible judgment",
+      "stakes": "a poor first read may push the actor into self-protection",
+      "format": "reset_moment",
+      "requiredBeat": "use Geraldine Page to prevent one awkward audition from becoming an identity label"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-01T08:14:34.945Z"
+}

@@ -1,0 +1,69 @@
+{
+  "chapterId": "rework-ch05",
+  "number": 5,
+  "title": "Why grow?",
+  "coreMove": "A right-sized company treats size as a design choice, adding people or layers only when they strengthen the work more than they slow it.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "customer support software",
+      "audience": "founders considering a support expansion",
+      "stakes": "hire for real strain rather than staff-count prestige",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist measures whether new headcount strengthens the work"
+    },
+    {
+      "domain": "architecture studio",
+      "audience": "owners weighing location growth",
+      "stakes": "separate client value from visible bigness",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist treats size as a design choice"
+    },
+    {
+      "domain": "specialty ceramics",
+      "audience": "operators with quality bottlenecks",
+      "stakes": "show when growth is justified by real work pain",
+      "format": "before_after",
+      "requiredBeat": "the protagonist grows because quality requires it"
+    },
+    {
+      "domain": "SaaS investor communication",
+      "audience": "founders under investor pressure",
+      "stakes": "avoid using headcount as a success proxy",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist replaces staff count with useful business outcomes"
+    },
+    {
+      "domain": "independent restaurant",
+      "audience": "owners offered rapid expansion",
+      "stakes": "protect the customer experience from premature scale",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist notices the complexity cost of a bigger footprint"
+    },
+    {
+      "domain": "digital design agency",
+      "audience": "small teams adding management layers",
+      "stakes": "identify whether a new layer helps delivery or feeds structure",
+      "format": "audit",
+      "requiredBeat": "the protagonist inspects communication cost before adding management"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "evaluate": 2,
+      "analyze": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.762Z"
+}

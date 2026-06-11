@@ -15,14 +15,14 @@ import {
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { SESv2Client } from "@aws-sdk/client-sesv2";
 import { processStreakAtRisk } from "./lib/streak-at-risk";
 import { processWeeklyDigest } from "./lib/weekly-digest";
 import { processWelcomeBackNudge } from "./lib/welcome-back-nudge";
 import { readingReminderEmail } from "./lib/email-templates/reading-reminder";
+import { resolveEmailConfig, sendCompliantEmail } from "./lib/email-compliance";
 
 const tableName = process.env.BOOK_TABLE_NAME!;
-const senderEmail = process.env.SES_SENDER_EMAIL!;
 
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true },
@@ -43,6 +43,9 @@ function resolveHour(timeLocal: string, timezone: string): number {
 
 export async function handler() {
   console.log(`[reading-reminder-cron] Running at ${new Date().toISOString()}`);
+
+  // Owner email config (postal address, unsubscribe secret, …) is read from SSM.
+  const emailConfig = await resolveEmailConfig();
 
   let lastKey: Record<string, unknown> | undefined;
   let sent = 0;
@@ -140,22 +143,15 @@ export async function handler() {
       // Send email if available.
       if (email && (notifPrefs.channels as Record<string, unknown>)?.email === true) {
         try {
-          const tpl = readingReminderEmail({ name });
-          await ses.send(
-            new SendEmailCommand({
-              FromEmailAddress: senderEmail,
-              Destination: { ToAddresses: [email] },
-              Content: {
-                Simple: {
-                  Subject: { Data: tpl.subject, Charset: "UTF-8" },
-                  Body: {
-                    Text: { Data: tpl.textBody, Charset: "UTF-8" },
-                    Html: { Data: tpl.htmlBody, Charset: "UTF-8" },
-                  },
-                },
-              },
-            })
-          );
+          const tpl = readingReminderEmail({ name, appBaseUrl: emailConfig.appBaseUrl });
+          await sendCompliantEmail(ses, ddb, tableName, emailConfig, {
+            to: email,
+            userId,
+            category: "reading_reminder",
+            subject: tpl.subject,
+            textBody: tpl.textBody,
+            htmlBody: tpl.htmlBody,
+          });
         } catch (e) {
           console.error(`[reading-reminder-cron] email failed for ${userId.slice(0, 8)}:`, e);
         }
@@ -185,9 +181,9 @@ export async function handler() {
 
   // ── Dispatch habit nudge sub-handlers ──────────────────────────────────
   const [streakResult, digestResult, welcomeResult] = await Promise.allSettled([
-    processStreakAtRisk(ddb, ses, tableName, senderEmail, allUserItems as never),
-    processWeeklyDigest(ddb, ses, tableName, senderEmail, allUserItems as never),
-    processWelcomeBackNudge(ddb, ses, tableName, senderEmail, allUserItems as never),
+    processStreakAtRisk(ddb, ses, tableName, emailConfig, allUserItems as never),
+    processWeeklyDigest(ddb, ses, tableName, emailConfig, allUserItems as never),
+    processWelcomeBackNudge(ddb, ses, tableName, emailConfig, allUserItems as never),
   ]);
 
   console.log("[reading-reminder-cron] Nudge results:", {

@@ -1,0 +1,70 @@
+{
+  "chapterId": "blink-ch05",
+  "number": 5,
+  "title": "Kenna's Dilemma: The Right—and Wrong—Way to Ask People What They Want",
+  "coreMove": "Context-sensitive preference asks whether the test captured the real encounter, not whether the score looked clean.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "music streaming launch research",
+      "audience": "label teams testing unusual artists",
+      "stakes": "a stripped test may confuse unfamiliarity with weak demand",
+      "format": "decision_point",
+      "requiredBeat": "Roshan changes a Kenna-style test to include context and repetition"
+    },
+    {
+      "domain": "beverage reformulation study",
+      "audience": "brand managers reading taste tests",
+      "stakes": "a sip result may mislead a whole-serving product decision",
+      "format": "predict_reveal",
+      "requiredBeat": "Celine uses the Pepsi Challenge and New Coke lesson"
+    },
+    {
+      "domain": "office furniture pilot",
+      "audience": "workplace teams testing unfamiliar design",
+      "stakes": "early ugliness scores may punish a new category",
+      "format": "before_after",
+      "requiredBeat": "Diego applies the Herman Miller Aeron lesson about learning to read novelty"
+    },
+    {
+      "domain": "bakery quality panel",
+      "audience": "operators building expert taste",
+      "stakes": "ordinary tasters may feel a difference they cannot name",
+      "format": "coach_talk",
+      "requiredBeat": "Hana uses Gail Vance Civille and Judy Heylmun's tasting expertise as a model"
+    },
+    {
+      "domain": "skin-care packaging test",
+      "audience": "consumer researchers separating clean method from real experience",
+      "stakes": "removing packaging may remove the cue consumers actually use",
+      "format": "audit",
+      "requiredBeat": "Ingrid uses sensation transference to test package and product together"
+    },
+    {
+      "domain": "enterprise software trial",
+      "audience": "product teams reading survey certainty",
+      "stakes": "users may reject a workflow before they understand its category",
+      "format": "dilemma",
+      "requiredBeat": "Bastien asks whether the preference test recreated real use"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 1,
+      "create": 1,
+      "evaluate": 2,
+      "remember": 1,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:07:46.120Z"
+}

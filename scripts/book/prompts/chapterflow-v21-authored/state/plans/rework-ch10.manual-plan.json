@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch10",
+  "number": 10,
+  "title": "Start making something",
+  "coreMove": "An idea is worth little until it becomes a thing people can use, buy, or reject; making converts imagination into evidence, and execution, not the notion, decides the outcome.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "online marketplace startup",
+      "audience": "founders who keep refining a concept instead of building",
+      "stakes": "build the smallest working version or keep polishing the pitch",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist chooses to make a real artifact over guarding the idea"
+    },
+    {
+      "domain": "consumer hardware pitching",
+      "audience": "inventors hoping to sell a concept before building",
+      "stakes": "sell the unbuilt idea or build proof first",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist learns an unexecuted idea fetches almost nothing"
+    },
+    {
+      "domain": "software product validation",
+      "audience": "teams running endless interviews before building",
+      "stakes": "keep interviewing or ship a small thing people can react to",
+      "format": "contrast",
+      "requiredBeat": "the protagonist weighs talk-based feedback against reactions to a real artifact"
+    },
+    {
+      "domain": "indie game development",
+      "audience": "makers waiting for a perfect plan before starting",
+      "stakes": "wait for every answer or start and let building force the choices",
+      "format": "before_after",
+      "requiredBeat": "beginning forces tradeoffs that planning had postponed"
+    },
+    {
+      "domain": "food delivery startups",
+      "audience": "founders who think the idea itself is the advantage",
+      "stakes": "treat the shared idea as decisive or treat execution as decisive",
+      "format": "predict_reveal",
+      "requiredBeat": "two teams with the same idea diverge on execution quality"
+    },
+    {
+      "domain": "agency client work",
+      "audience": "teams mistaking busyness for execution",
+      "stakes": "ship anything fast and sloppy or make one real, testable thing",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist separates frantic motion from making a real artifact"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "understand": 2,
+      "evaluate": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.763Z"
+}

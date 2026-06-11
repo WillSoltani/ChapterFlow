@@ -1,0 +1,75 @@
+{
+  "chapterId": "rework-ch22",
+  "number": 22,
+  "title": "Ignore the details early on",
+  "coreMove": "Defer details that depend on structure you have not built; a color or label has no right answer until the core exists, so early polish decides blind and gets redone.",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "consumer software startup",
+      "audience": "teams debating details before a build exists",
+      "stakes": "settle the color now or build the core first",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist refuses a detail debate that has no buildable referent"
+    },
+    {
+      "domain": "analytics product interface",
+      "audience": "designers polishing before the layout settles",
+      "stakes": "polish the panel now or wait until it survives",
+      "format": "before_after",
+      "requiredBeat": "early refinement is discarded when the structure changes"
+    },
+    {
+      "domain": "logistics software",
+      "audience": "teams trusting a spec to name the right details",
+      "stakes": "specify every detail up front or let use reveal them",
+      "format": "contrast",
+      "requiredBeat": "the right details surface through use, not advance reasoning"
+    },
+    {
+      "domain": "fintech product team",
+      "audience": "teams mistaking detail motion for real progress",
+      "stakes": "stay busy on settings or face the unresolved core",
+      "format": "reflection",
+      "requiredBeat": "concrete detail work hides the unaddressed hard question"
+    },
+    {
+      "domain": "project management saas",
+      "audience": "founders sequencing usefulness against polish",
+      "stakes": "polish in parallel from day one or after coherence holds",
+      "format": "planning_choice",
+      "requiredBeat": "broad usefulness and coherence come before fine polish"
+    },
+    {
+      "domain": "indie hardware",
+      "audience": "makers worried that deferring means shipping careless work",
+      "stakes": "skip details entirely or defer them to a later stage",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist separates deferring details from neglecting them"
+    },
+    {
+      "domain": "accounting software",
+      "audience": "teams deciding which details can be safely deferred",
+      "stakes": "defer a detail that is actually the core or fix it now",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist catches a detail that is load-bearing, not deferrable"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.765Z"
+}

@@ -1,0 +1,70 @@
+{
+  "chapterId": "hooked-ch03",
+  "number": 3,
+  "title": "Action",
+  "coreMove": "A triggered behavior happens only when motivation, ability, and timing meet, so reducing friction usually beats trying to manufacture stronger desire.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "support call review",
+      "audience": "behavior designer",
+      "stakes": "why a prompted user still failed to act",
+      "format": "mechanism",
+      "requiredBeat": "Apply BJ Fogg to why a prompted user still failed to act without flattening the source case."
+    },
+    {
+      "domain": "homepage redesign",
+      "audience": "UX lead",
+      "stakes": "whether a portal layout is suppressing action",
+      "format": "interface comparison",
+      "requiredBeat": "Apply Google to whether a portal layout is suppressing action without flattening the source case."
+    },
+    {
+      "domain": "content composer sprint",
+      "audience": "creation tools team",
+      "stakes": "how lightweight creation expands participation",
+      "format": "sprint review",
+      "requiredBeat": "Apply Twitter to how lightweight creation expands participation without flattening the source case."
+    },
+    {
+      "domain": "onboarding analytics",
+      "audience": "growth designer",
+      "stakes": "whether a progress meter clarifies the next action",
+      "format": "data review",
+      "requiredBeat": "Apply LinkedIn to whether a progress meter clarifies the next action without flattening the source case."
+    },
+    {
+      "domain": "checkout experiment",
+      "audience": "conversion analyst",
+      "stakes": "when a heuristic masks high friction",
+      "format": "experiment critique",
+      "requiredBeat": "Apply scarcity to when a heuristic masks high friction without flattening the source case."
+    },
+    {
+      "domain": "mobile usability lab",
+      "audience": "researcher",
+      "stakes": "why an action breaks the user's daily flow",
+      "format": "field observation",
+      "requiredBeat": "Apply simplicity to why an action breaks the user's daily flow without flattening the source case."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:55:57.483Z"
+}

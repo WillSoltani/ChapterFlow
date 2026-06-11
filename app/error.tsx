@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { SUPPORT_EMAIL } from "@/lib/legal-entity";
 
 export default function GlobalError({
   error,
@@ -56,6 +57,16 @@ export default function GlobalError({
         >
           Try again
         </button>
+        <p style={{ fontSize: 13, color: "var(--cf-text-3, #94a3b8)", marginTop: 20 }}>
+          Still stuck? Contact{" "}
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            style={{ color: "var(--cf-accent, #38bdf8)", textDecoration: "underline" }}
+          >
+            {SUPPORT_EMAIL}
+          </a>
+          .
+        </p>
       </div>
     </div>
   );

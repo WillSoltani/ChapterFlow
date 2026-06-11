@@ -1,0 +1,70 @@
+{
+  "chapterId": "the-tipping-point-ch03",
+  "number": 3,
+  "title": "The Stickiness Factor: Sesame Street, Blue's Clues, and the Educational Virus",
+  "coreMove": "Make the message itself carry the lesson: test attention, remove distraction, repeat the useful step, and give the audience time to respond.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital handoff training",
+      "audience": "nurse educators simplifying a safety behavior",
+      "stakes": "staff may watch the video without practicing the handoff phrase",
+      "format": "decision_point",
+      "requiredBeat": "Farah borrows Blue's Clues pacing for adult practice"
+    },
+    {
+      "domain": "math app lesson design",
+      "audience": "edtech teams testing child attention",
+      "stakes": "a funny animation may steal focus from the number relation",
+      "format": "mistake_recovery",
+      "requiredBeat": "Jamal uses Sesame Street testing logic to separate looking from learning"
+    },
+    {
+      "domain": "clinic discharge instruction",
+      "audience": "patient educators reducing medication confusion",
+      "stakes": "patients may hear the instruction once and forget the exact sequence",
+      "format": "before_after",
+      "requiredBeat": "Leonie treats repetition as a memory tool"
+    },
+    {
+      "domain": "library story-hour redesign",
+      "audience": "librarians teaching early reading habits",
+      "stakes": "adult enthusiasm may hide that children cannot retell the sound pattern",
+      "format": "audit",
+      "requiredBeat": "Bastien observes the actual audience before trusting adult taste"
+    },
+    {
+      "domain": "factory lockout reminder",
+      "audience": "safety managers designing floor prompts",
+      "stakes": "workers may see the poster but miss the action before maintenance",
+      "format": "planning_choice",
+      "requiredBeat": "Celeste makes the cue visually central like a tested clue"
+    },
+    {
+      "domain": "software onboarding sequence",
+      "audience": "product teams reducing first-week churn",
+      "stakes": "new users may complete a tutorial once without gaining confidence",
+      "format": "predict_reveal",
+      "requiredBeat": "Hiro uses rerun logic to create mastery"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "understand": 1,
+      "evaluate": 1,
+      "create": 1,
+      "analyze": 2,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:43:32.863Z"
+}

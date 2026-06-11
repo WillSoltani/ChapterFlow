@@ -1,0 +1,69 @@
+{
+  "chapterId": "drive-ch06",
+  "number": 6,
+  "title": "Mastery",
+  "coreMove": "Mastery grows when challenge, feedback, and a growth mindset turn effort into progress without pretending perfection arrives.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "piano lesson studio",
+      "audience": "Silas, a piano teacher setting a stretch target",
+      "stakes": "A student needs challenge without panic.",
+      "format": "decision_point",
+      "requiredBeat": "Show the edge between boredom and overwhelm."
+    },
+    {
+      "domain": "coding dojo review",
+      "audience": "Ari, a coding coach turning weakness into practice",
+      "stakes": "A code review could shame a learner or create a useful drill.",
+      "format": "dialogue",
+      "requiredBeat": "Use deliberate practice on a concrete weakness."
+    },
+    {
+      "domain": "surgical simulation lab",
+      "audience": "Daphne, a simulation lead calibrating difficulty",
+      "stakes": "A surgical simulation is either too easy to teach or too hard to learn from.",
+      "format": "audit",
+      "requiredBeat": "Apply flow's challenge-skill balance."
+    },
+    {
+      "domain": "language tutoring call",
+      "audience": "Hugo, a language tutor reframing errors",
+      "stakes": "A learner may treat mistakes as proof of lacking talent.",
+      "format": "planning_choice",
+      "requiredBeat": "Use growth mindset as a practical response."
+    },
+    {
+      "domain": "basketball film session",
+      "audience": "Cleo, a coach selecting one film clip",
+      "stakes": "An athlete needs one reachable improvement instead of a pile of criticism.",
+      "format": "postmortem",
+      "requiredBeat": "Turn feedback into the next stretch."
+    },
+    {
+      "domain": "public-speaking rehearsal",
+      "audience": "Ruth, a speaking coach scheduling a repeat",
+      "stakes": "A speaker needs feedback quickly enough to revise.",
+      "format": "reflection",
+      "requiredBeat": "Close the practice loop with immediate repetition."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 8,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:46:25.906Z"
+}

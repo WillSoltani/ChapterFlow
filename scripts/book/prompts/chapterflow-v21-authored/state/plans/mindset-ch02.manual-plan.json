@@ -1,0 +1,70 @@
+{
+  "chapterId": "mindset-ch02",
+  "number": 2,
+  "title": "Inside the Mindsets",
+  "coreMove": "Success, failure, and effort drive behavior by meaning; change the meaning from judgment to learning, and the next choice changes too.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "first-year university advising",
+      "audience": "students avoiding needed remediation",
+      "stakes": "weak English could damage every class",
+      "format": "decision_point",
+      "requiredBeat": "anchor the choice in the University of Hong Kong English course and the shame of accepting help"
+    },
+    {
+      "domain": "research assistant reviewing feedback data",
+      "audience": "learners who chase scores over correction",
+      "stakes": "future study habits depend on what feedback is used for",
+      "format": "predict_reveal",
+      "requiredBeat": "use the brain-wave feedback study to contrast judgment attention with learning attention"
+    },
+    {
+      "domain": "high school soccer tryout preparation",
+      "audience": "athletes choosing training partners",
+      "stakes": "comfort could keep the player below varsity pace",
+      "format": "planning_choice",
+      "requiredBeat": "use Mia Hamm to show seeking stronger players as growth behavior"
+    },
+    {
+      "domain": "physical therapy after injury",
+      "audience": "patients discouraged by slow progress",
+      "stakes": "discouragement could stop daily recovery work",
+      "format": "reflection",
+      "requiredBeat": "anchor the scene in Christopher Reeve and effort organized around recovery"
+    },
+    {
+      "domain": "conservatory violin practice",
+      "audience": "talented students ashamed of needing drills",
+      "stakes": "protecting the prodigy image could stall development",
+      "format": "inner_monologue",
+      "requiredBeat": "use Nadja Salerno-Sonnenberg at Juilliard to show talent identity making practice embarrassing"
+    },
+    {
+      "domain": "product leadership after a failed launch",
+      "audience": "managers tempted to defend reputation",
+      "stakes": "ignoring critique could repeat the launch failure",
+      "format": "dialogue",
+      "requiredBeat": "use Lee Iacocca and CEO disease to show success turning feedback into a threat"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 1,
+      "evaluate": 2,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-01T08:14:34.945Z"
+}

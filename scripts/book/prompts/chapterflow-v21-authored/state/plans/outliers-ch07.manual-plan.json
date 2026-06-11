@@ -1,0 +1,69 @@
+{
+  "chapterId": "outliers-ch07",
+  "number": 7,
+  "title": "The Ethnic Theory of Plane Crashes",
+  "coreMove": "Power distance becomes dangerous when deference softens warnings, so reliable systems train people to speak clearly when hierarchy would mute them.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airline simulator training",
+      "audience": "flight instructors teaching direct warnings",
+      "stakes": "a mild hint may fail to stop a dangerous descent",
+      "format": "decision_point",
+      "requiredBeat": "Use Korean Air Flight 801 to teach direct cockpit warnings."
+    },
+    {
+      "domain": "rail dispatch center",
+      "audience": "operators clarifying urgent language",
+      "stakes": "a vague fuel or power warning may be treated as routine",
+      "format": "audit",
+      "requiredBeat": "Use Avianca Flight 052 to audit emergency language."
+    },
+    {
+      "domain": "operating-room safety huddle",
+      "audience": "medical teams managing rank",
+      "stakes": "junior staff may stay vague while a patient declines",
+      "format": "scene",
+      "requiredBeat": "Apply power distance to an operating-room huddle."
+    },
+    {
+      "domain": "aircraft maintenance shift change",
+      "audience": "maintenance leads reducing hierarchy risk",
+      "stakes": "a defect note may be softened until no one owns it",
+      "format": "planning_choice",
+      "requiredBeat": "Use Korean Air reform to improve maintenance handoffs."
+    },
+    {
+      "domain": "wildfire command training",
+      "audience": "incident leaders hearing junior warnings",
+      "stakes": "a crew may keep deference while conditions worsen",
+      "format": "before_after",
+      "requiredBeat": "Use direct cockpit speech in wildfire command."
+    },
+    {
+      "domain": "financial risk meeting",
+      "audience": "executives designing challenge norms",
+      "stakes": "junior analysts may hint at danger while senior leaders keep momentum",
+      "format": "reflection",
+      "requiredBeat": "Apply power distance to financial risk meetings."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:26:52.519Z"
+}

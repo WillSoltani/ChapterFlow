@@ -4,6 +4,10 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
 import { MONTHLY_PRICE } from "@/lib/pricing";
+import {
+  CATALOG_BOOK_COUNT_DISPLAY,
+  CATALOG_CATEGORY_COUNT_DISPLAY,
+} from "@/lib/catalog-stats";
 
 interface ProBook {
   id: string;
@@ -116,7 +120,8 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
           }
         >
           <p className="text-sm" style={{ color: "var(--cf-text-3)" }}>
-            Unlock your full library — 95+ books across 21 categories
+            Unlock your full library — {CATALOG_BOOK_COUNT_DISPLAY} books across{" "}
+            {CATALOG_CATEGORY_COUNT_DISPLAY} categories
           </p>
           <Link href="/pricing">
           <motion.span

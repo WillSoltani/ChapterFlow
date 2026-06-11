@@ -1,0 +1,70 @@
+{
+  "chapterId": "blink-ch01",
+  "number": 1,
+  "title": "The Theory of Thin Slices: How a Little Bit of Knowledge Goes a Long Way",
+  "coreMove": "Thin-slicing is not guessing from a glance; it is compressing judgment around the few signals that carry real predictive weight.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "couples therapy intake",
+      "audience": "therapists reading brief exchanges",
+      "stakes": "a noisy life history could hide the emotional cue that predicts repair",
+      "format": "decision_point",
+      "requiredBeat": "Freya weighs a short Gottman-style exchange against a long intake file"
+    },
+    {
+      "domain": "cybersecurity radio-pattern audit",
+      "audience": "analysts comparing sparse signals",
+      "stakes": "a hidden operator may be missed if content is treated as the only evidence",
+      "format": "predict_reveal",
+      "requiredBeat": "Sabine uses Morse-code fist logic to trust rhythm before content"
+    },
+    {
+      "domain": "residential adviser selection",
+      "audience": "student-life staff",
+      "stakes": "friendly references may normalize behavior that room evidence exposes",
+      "format": "audit",
+      "requiredBeat": "Dario separates Samuel Gosling-style residue from decorative noise"
+    },
+    {
+      "domain": "hospital communication review",
+      "audience": "clinical quality teams",
+      "stakes": "technical skill may be blamed when the social injury is tone",
+      "format": "postmortem",
+      "requiredBeat": "Hyejin uses doctor-patient tone studies to isolate respect cues"
+    },
+    {
+      "domain": "subscription churn review",
+      "audience": "product leaders facing noisy dashboards",
+      "stakes": "too many measures can disguise the one behavior tied to cancellation",
+      "format": "decision_memo",
+      "requiredBeat": "Gustavo applies thin-slicing by choosing the predictive cue, not the biggest dashboard"
+    },
+    {
+      "domain": "legal mediation prep",
+      "audience": "attorneys testing how trust cues shape settlement",
+      "stakes": "a case theory may miss why the patient felt dismissed",
+      "format": "reflection",
+      "requiredBeat": "Marisol uses malpractice tone studies to narrow a settlement question"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:07:46.118Z"
+}

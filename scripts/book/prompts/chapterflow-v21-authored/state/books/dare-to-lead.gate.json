@@ -1,0 +1,1348 @@
+{
+  "bookId": "dare-to-lead",
+  "title": "Dare to Lead",
+  "author": "Brené Brown",
+  "promotedAt": "2026-06-03T07:12:42.694Z",
+  "chapterCount": 8,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 12.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 7 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 12.4 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "fullRead: Flesch-Kincaid grade 13.3 exceeds ceiling 12 (target grade 10–12). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"theodore\", \"roosevelt\", \"square\", \"squad\", \"one-inch\", \"john\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Tuesday at 8:20 a.m. in a product launch retrospective. Ansel has three Slack threads, two executive opinions, and a customer complaint open after the launch missed its date. The l"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"theodore\", \"roosevelt\", \"square\", \"squad\", \"one-inch\", \"john\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Thursday after lunch beside the support queue dashboard. Beatriz sees a new support analyst hesitate before saying the escalation script is confusing customers. The warning is tent"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"theodore\", \"roosevelt\", \"square\", \"squad\", \"one-inch\", \"john\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Monday at 4:05 p.m. in a performance calibration room. Cleo is about to weigh promotion feedback from someone who has never managed the kind of work being judged. The comment is co"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"theodore\", \"roosevelt\", \"square\", \"squad\", \"one-inch\", \"john\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Friday at 6:15 p.m. on an investor update call. Dorian has to tell investors that a forecast is wrong while the company still needs confidence in the next quarter. If he overexplai"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"theodore\", \"roosevelt\", \"square\", \"squad\", \"one-inch\", \"john\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Wednesday morning at the design studio wall. Etta's design team is split between useful critique and comments from people protecting personal taste. The proposal needs pressure-tes"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday at 8:20 a.m. in a product launch retrospective. Ansel has three Slack threads, two executive opinions, and a customer complaint open after the launch missed its date. The loudest opinions are…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Thursday after lunch beside the support queue dashboard. Beatriz sees a new support analyst hesitate before saying the escalation script is confusing customers. The warning is tentative, but ignoring…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sunday evening in a conference room after reorganization rumors. Finn knows reorganization rumors are spreading and wants to be honest without flooding the room with anxiety. Employees need usable tr…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A product lead is stung by harsh online comments after a launch misses its mark."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A support manager hears a quiet warning from a new teammate about a broken escalation script."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A creative director wants feedback before protecting a brave design choice."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team asks how much vulnerability belongs in a reorganization meeting."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader says disclosure itself is courage."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "dare-to-lead-ch01-q08 choice[0] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Let seniority decide the list automatically."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "dare-to-lead-ch01-q08 correct answer is 1.86× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Choose critics who have earned a seat through care, competence, and comparable risk."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Choose critics who have earned a seat through care, competence, and comparable risk."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"small bids for trust\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 11.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 7 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "fullRead: Flesch-Kincaid grade 12.7 exceeds ceiling 12 (target grade 10–12). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"charles\", \"family\", \"event-planning\", \"one-off\", \"force\", \"performance\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Monday at 9:10 a.m. before sprint planning starts. Gita opens sprint planning and sees that the date depends on work nobody has estimated honestly. The optimistic timeline would so"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"charles\", \"family\", \"event-planning\", \"one-off\", \"force\", \"performance\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Wednesday at 5:30 p.m. in the hospital staffing huddle. Harlan hears nurses describe exhaustion in hallway whispers but not in the official staffing huddle. The schedule looks cove"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"charles\", \"family\", \"event-planning\", \"one-off\", \"force\", \"performance\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Saturday morning at a community fundraiser table. Iris notices that fundraiser volunteers are repeating the same last-minute scramble she creates at home. The familiar pattern make"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"charles\", \"family\", \"event-planning\", \"one-off\", \"force\", \"performance\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Thursday before lunch on the regional sales call. Kira's sales call has turned one teammate into the optimist and another into the person expected to object. The labels are saving "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"charles\", \"family\", \"event-planning\", \"one-off\", \"force\", \"performance\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Friday night in a school board hearing room. Lucien faces a school board hearing where budget fear is making every question sound like an accusation. Treating the emotion as a nuis"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Monday at 9:10 a.m. before sprint planning starts. Gita opens sprint planning and sees that the date depends on work nobody has estimated honestly. The optimistic timeline would sound supportive in t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wednesday at 5:30 p.m. in the hospital staffing huddle. Harlan hears nurses describe exhaustion in hallway whispers but not in the official staffing huddle. The schedule looks covered on paper while …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Saturday morning at a community fundraiser table. Iris notices that fundraiser volunteers are repeating the same last-minute scramble she creates at home. The familiar pattern makes it harder to blam…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday at 2:45 p.m. inside the agency review room. Jalen hears contemptuous sighs during a tense agency review and can feel the room sliding toward performance. The client problem will not get clear…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday night in a school board hearing room. Lucien faces a school board hearing where budget fear is making every question sound like an accusation. Treating the emotion as a nuisance would leave th…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Nurses stop naming exhaustion because loyalty is being measured by silence."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A volunteer chair notices the same overcommitment pattern at home and in fundraiser planning."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An account director hears eye-rolling during a tense client review."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A sales VP labels one person the optimist and another the realist."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Charles gives feedback about unrealistic timelines and the leader feels exposed."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A board chair calls time-out during a public budget fight."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A regional planning team admits the deadline scares them."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader says emotional facts distract from performance."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "dare-to-lead-ch02-q04 correct answer is 1.56× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Set rules for no contempt, no interruptions, and an explicit return after any time-out."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "dare-to-lead-ch02-q06 correct answer is 1.87× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Ask for the impact, name the pattern, and agree on a different planning behavior."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Set rules for no contempt, no interruptions, and an explicit return after any time-out."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Ask for the impact, name the pattern, and agree on a different planning behavior."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"permission slips help people\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 13.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 8 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 12.9 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"the sharper move is\" — Counter payoff template. Talk Like Ted / 48 Laws stubs / others.",
+            "evidence": "Brown asks for substitution, not self-condemnation. Once a protective habit is visible, the leader chooses the paired daring practice and tests it in behavior. The surface takeaway is to remove defen…"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"costco\", \"ceo\", \"victim\", \"viking\", \"fear-based\", \"foreboding\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Monday at noon during an all-hands employee forum. Marin takes questions at an employee forum and feels the pull to polish away every unknown. Employees can handle a hard answer be"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"costco\", \"ceo\", \"victim\", \"viking\", \"fear-based\", \"foreboding\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Tuesday at 7:40 a.m. on the manufacturing floor. Niko hears a quality defect described as proof that the floor needs a tougher hand. The defect needs a standard, not a story that d"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"costco\", \"ceo\", \"victim\", \"viking\", \"fear-based\", \"foreboding\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Thursday at 3:10 p.m. beside the nonprofit grant notice. Opal wins a grant and immediately starts rehearsing all the ways the award could disappear. The risk planning is real, but "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"costco\", \"ceo\", \"victim\", \"viking\", \"fear-based\", \"foreboding\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Wednesday morning in a medical device prototype review. Paolo is tempted to remove clinician objections from a prototype review so the device appears ready. The clean deck would pr"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"costco\", \"ceo\", \"victim\", \"viking\", \"fear-based\", \"foreboding\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Friday afternoon around the crisis-planning whiteboard. Rhea uses sarcasm around the crisis board and people laugh instead of naming what they can do. The jokes are disguising usab"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"costco\", \"ceo\", \"victim\", \"viking\", \"fear-based\", \"foreboding\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Sunday night in a consulting deadline postmortem. Soren's consulting team is being praised for weekend heroics after a preventable deadline collapse. The applause is about to teach"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Monday at noon during an all-hands employee forum. Marin takes questions at an employee forum and feels the pull to polish away every unknown. Employees can handle a hard answer better than a careful…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday at 7:40 a.m. on the manufacturing floor. Niko hears a quality defect described as proof that the floor needs a tougher hand. The defect needs a standard, not a story that domination is the on…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Thursday at 3:10 p.m. beside the nonprofit grant notice. Opal wins a grant and immediately starts rehearsing all the ways the award could disappear. The risk planning is real, but it is arriving befo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wednesday morning in a medical device prototype review. Paolo is tempted to remove clinician objections from a prototype review so the device appears ready. The clean deck would protect status and we…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A retail VP faces employee questions and does not know every answer."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A plant supervisor hears Victim or Viking language after a quality defect."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A nonprofit wins a grant and the executive director immediately rehearses disaster."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A research lead is polishing away clinician concerns before a prototype review."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A communications director uses sarcasm during crisis planning."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A consulting partner praises a team for heroic weekend work after a missed deadline."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team calls domination accountability."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A CEO wants to protect image during an all-hands question session."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader wants to drop armor by sharing every private anxiety."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 11.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "fullRead: Flesch-Kincaid grade 13.2 exceeds ceiling 12 (target grade 10–12). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"concussion\", \"recovery\", \"common\", \"dignity\", \"letting\", \"accountability\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Thursday at 11:15 a.m. outside the HR conference room. Usha must end a role after misconduct and senses the team wants a public example. The consequence is necessary, but humiliati"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"concussion\", \"recovery\", \"common\", \"dignity\", \"letting\", \"accountability\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Tuesday afternoon in the school hallway after a complaint. Vera watches a colleague respond to a student's pain with dramatic shock and fast reassurance. The student is being asked"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"concussion\", \"recovery\", \"common\", \"dignity\", \"letting\", \"accountability\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Wednesday at 4:50 p.m. near the lab safety board. Willem receives a late lab safety report and wants to say the researcher is careless. That label would threaten the reporting chan"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"concussion\", \"recovery\", \"common\", \"dignity\", \"letting\", \"accountability\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Friday morning inside the department Slack review. Xenia reviews a Slack thread where jokes about one employee have become normal. The humor is teaching the group that belonging ca"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"concussion\", \"recovery\", \"common\", \"dignity\", \"letting\", \"accountability\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Sunday evening in a law firm associate review. Yara sees a law firm partner become harsher than usual after an associate's visible error. The feedback is starting to carry the part"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Monday at 6:30 a.m. in an executive medical leave planning call. Tamsin hears an executive call medical rest a personal failure after a concussion. The coverage plan is getting tangled with an old st…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Thursday at 11:15 a.m. outside the HR conference room. Usha must end a role after misconduct and senses the team wants a public example. The consequence is necessary, but humiliation would make the a…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday afternoon in the school hallway after a complaint. Vera watches a colleague respond to a student's pain with dramatic shock and fast reassurance. The student is being asked to comfort the adu…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wednesday at 4:50 p.m. near the lab safety board. Willem receives a late lab safety report and wants to say the researcher is careless. That label would threaten the reporting channel the lab needs m…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sunday evening in a law firm associate review. Yara sees a law firm partner become harsher than usual after an associate's visible error. The feedback is starting to carry the partner's shame instead…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A chief of staff notices a leader treating medical rest like moral failure."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An HR director must end a role after repeated misconduct."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A principal hears a colleague respond to pain with shock and hollow reassurance."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A lab supervisor responds after a near miss is reported late."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team lead reviews a Slack thread where mockery has become normal."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A partner feels unusually harsh toward an associate who made a visible error."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A termination meeting needs both consequence and care."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to tell the truth\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 11.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 6 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 11.2 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "fullRead: Flesch-Kincaid grade 12.5 exceeds ceiling 12 (target grade 10–12). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"entrepreneurship\", \"ceo\", \"stefan\", \"larsson\", \"navy\", \"sports\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Tuesday at 10:25 a.m. in a startup pricing meeting. Zadie has a pricing team split between a bold launch and a cautious delay. Each side has a real truth, and the room wants one of"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"entrepreneurship\", \"ceo\", \"stefan\", \"larsson\", \"navy\", \"sports\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Wednesday at 7:55 a.m. beside a regional inventory screen. Basil sees inventory reports that look polished while store managers keep describing missing stock. The contradiction is "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"entrepreneurship\", \"ceo\", \"stefan\", \"larsson\", \"navy\", \"sports\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Monday afternoon around an architecture model. Devan hears a structural concern and wants to answer fast so authority stays visible. A quick answer would protect his image and hide"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"entrepreneurship\", \"ceo\", \"stefan\", \"larsson\", \"navy\", \"sports\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Saturday morning in a city traffic hearing. Faye faces resident traffic evidence that complicates the city plan. The hearing can improve the test without reopening every preference"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday at 10:25 a.m. in a startup pricing meeting. Zadie has a pricing team split between a bold launch and a cautious delay. Each side has a real truth, and the room wants one of them to disappear."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wednesday at 7:55 a.m. beside a regional inventory screen. Basil sees inventory reports that look polished while store managers keep describing missing stock. The contradiction is embarrassing only i…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Monday afternoon around an architecture model. Devan hears a structural concern and wants to answer fast so authority stays visible. A quick answer would protect his image and hide the weakest assump…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Saturday morning in a city traffic hearing. Faye faces resident traffic evidence that complicates the city plan. The hearing can improve the test without reopening every preference."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A district manager sees polished reports hiding inventory facts."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A new engagement lead has not practiced the first sentence of a hard client meeting."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An architect hears a structural concern and wants to answer with swagger."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A learning director sees that popular training collapses during conflict."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A city planning director faces resident evidence that complicates the traffic plan."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A CEO says grounded confidence means sounding certain before facts are ready."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Frontline data contradicts the official inventory story."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team treats curiosity as niceness."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "dare-to-lead-ch05-q06 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Ask what evidence has not been heard, then decide the next test."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"slows certainty long enough\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 11.3 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"selecting\", \"courage\", \"bren\", \"brown\", \"education\", \"research\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Monday at 8:45 a.m. during an executive values offsite. Gwen wants all twelve official values to stay on the offsite wall. The list feels inclusive, but it cannot settle a tradeoff"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"selecting\", \"courage\", \"bren\", \"brown\", \"education\", \"research\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Friday at 5:20 p.m. in a professional association forum. Keira moderates a professional forum where hateful comments are being defended as openness. Inclusion cannot be both a valu"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"selecting\", \"courage\", \"bren\", \"brown\", \"education\", \"research\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Sunday afternoon beside a finance audit checklist. Lior prepares for an audit and knows pressure will tempt people into small shortcuts. The likely compromises are easiest to stop "
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Monday at 8:45 a.m. during an executive values offsite. Gwen wants all twelve official values to stay on the offsite wall. The list feels inclusive, but it cannot settle a tradeoff if every word has …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Thursday night at a sales conference reception. Hiro hears a discriminatory joke at a conference reception and knows silence would be easier. The courage value will either become behavior now or rema…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday at 1:30 p.m. in a research manuscript review. Ines watches manuscript feedback turn Be Brave into permission to attack. The value needs a behavioral definition before it becomes a shield for …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wednesday morning during a remote handoff review. Jonas's remote team assumes good intent while missed handoffs keep hurting clients. Generosity is present, but the broken agreement still needs a nam…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sunday afternoon beside a finance audit checklist. Lior prepares for an audit and knows pressure will tempt people into small shortcuts. The likely compromises are easiest to stop before they feel ne…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A division president wants to keep twelve official values."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A regional manager hears a discriminatory joke at a conference reception."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A research team uses Be Brave and Serve the Work during manuscript conflict."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A remote team assumes positive intent while missed handoffs keep hurting clients."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A moderator sees hateful comments in a professional association forum."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A controller prepares the team for audit pressure."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader separates home values from work values to avoid tradeoffs."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "During feedback, a manager says values are obvious because posters list them."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team chooses Take Good Care but has not defined the behavior."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "dare-to-lead-ch06-q02 correct answer is 1.69× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "State the boundary and refuse the joke even if approval drops."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "dare-to-lead-ch06-q09 correct answer is 1.65× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Define how Be Brave, Serve the Work, and Take Good Care behave in meetings."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a long list can\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 14.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 11 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "fullRead: Flesch-Kincaid grade 13.9 exceeds ceiling 12 (target grade 10–12). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"seven\", \"brent\", \"ladd\", \"purdue\", \"university\", \"strengthening\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Tuesday at 4:10 p.m. in a legal document access review. Marta finds confidential legal documents moving through vague access rules. The team is treating convenience as permission, "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"seven\", \"brent\", \"ladd\", \"purdue\", \"university\", \"strengthening\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Monday morning beside a marketing campaign tracker. Noor keeps promising campaign approvals faster than the team can deliver. People still believe her motives, but the repeated mis"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"seven\", \"brent\", \"ladd\", \"purdue\", \"university\", \"strengthening\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Thursday evening in a vendor migration postmortem. Quill's vendor migration failed after several warnings were minimized. The client needs more than regret; they need evidence that"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday at 4:10 p.m. in a legal document access review. Marta finds confidential legal documents moving through vague access rules. The team is treating convenience as permission, and one wrong share…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Monday morning beside a marketing campaign tracker. Noor keeps promising campaign approvals faster than the team can deliver. People still believe her motives, but the repeated misses are making her …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wednesday at 2:05 p.m. in a university advising office. Oren hears advising-office gossip offered as a shortcut to closeness. The story may feel bonding in the moment, but it teaches everyone that pr…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday at 8:30 a.m. before a student success meeting. Petra notices her Purdue-style program controls increasing whenever she doubts her own judgment. Her self-trust gap is turning into extra approva…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Saturday afternoon across a research partnership table. Rina's research partner missed a deadline and the evidence about intent is thin. The partnership can neither excuse the miss nor invent a motiv…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A project attorney discovers vague access rules around confidential files."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A creative operations lead keeps making approval-seeking promises."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A coordinator hears gossip in a university advising office."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A Purdue program director notices control rising whenever self-trust drops."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A vendor migration failed after repeated warning signs."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A research partnership misunderstanding has thin evidence."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Motivation is high on a campaign team, but delivery keeps slipping."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A leader judges colleagues who ask for help."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "card[2]",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "What does the Vault protect? Information that is not yours to share. Gossip counts as a trust breach, even when it feels like bonding."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Discuss realistic commitments and follow-through instead of motivation."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"boundaries reliability accountability vault\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 8 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[0].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"foldover\", \"debacle\", \"breathing\", \"regulation\", \"four-count\", \"sfd\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Monday at 11:50 a.m. after a procurement meeting moves. Selene tells herself a moved procurement meeting proves the sponsor is dismissing her. The story is vivid, but she does not "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"foldover\", \"debacle\", \"breathing\", \"regulation\", \"four-count\", \"sfd\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Tuesday at 7:05 p.m. before an executive email reply. Tariq feels heat in his chest before replying to an executive email. His body is already preparing the message before his judg"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"foldover\", \"debacle\", \"breathing\", \"regulation\", \"four-count\", \"sfd\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Wednesday at 3:15 p.m. after a roadmap meeting ends. Uma was left off a roadmap invite and has already built a polished exclusion story. The story may be true, but it has not earne"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"foldover\", \"debacle\", \"breathing\", \"regulation\", \"four-count\", \"sfd\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Friday morning during engineering standup. Vaughn erupts in standup after weeks of stored frustration about a recurring bug. The bug still matters, but now the room also has a repa"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"foldover\", \"debacle\", \"breathing\", \"regulation\", \"four-count\", \"sfd\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Thursday afternoon in a merger integration planning room. Willa is convinced the merger partner is hiding information, but her evidence is thin. Acting on certainty now would turn "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"foldover\", \"debacle\", \"breathing\", \"regulation\", \"four-count\", \"sfd\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Sunday evening in a middle school project debrief. Zev's class project failed and the teaching team wants to rush toward a cheerful lesson. Students will miss the recovery skill if"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Monday at 11:50 a.m. after a procurement meeting moves. Selene tells herself a moved procurement meeting proves the sponsor is dismissing her. The story is vivid, but she does not yet know why the ca…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tuesday at 7:05 p.m. before an executive email reply. Tariq feels heat in his chest before replying to an executive email. His body is already preparing the message before his judgment has caught up."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wednesday at 3:15 p.m. after a roadmap meeting ends. Uma was left off a roadmap invite and has already built a polished exclusion story. The story may be true, but it has not earned authority yet."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Friday morning during engineering standup. Vaughn erupts in standup after weeks of stored frustration about a recurring bug. The bug still matters, but now the room also has a repair problem."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sunday evening in a middle school project debrief. Zev's class project failed and the teaching team wants to rush toward a cheerful lesson. Students will miss the recovery skill if disappointment get…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A COO feels heat in her chest before replying to an email."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A design lead was left off a roadmap invite and has a polished exclusion story."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A tech lead erupts during standup after weeks of saved-up frustration."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A merger lead is certain the other team is hiding information, but data is thin."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A teammate says the first story is honest because it feels sincere."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team avoids risk because falls feel like identity threats."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "dare-to-lead-ch08-q08 correct answer is 1.83× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "A felt story can still need data before it guides behavior."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"take smarter risks when\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 172
+  },
+  "bookGate": {
+    "bookId": "dare-to-lead",
+    "chapterCount": 8,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        24,
+        23,
+        25
+      ],
+      "answerPositionPctMax": 0.3472222222222222,
+      "totalQuizQuestions": 72,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "dare-to-lead",
+        "chapterCount": 8,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

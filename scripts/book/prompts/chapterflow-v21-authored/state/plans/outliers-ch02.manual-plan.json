@@ -1,0 +1,69 @@
+{
+  "chapterId": "outliers-ch02",
+  "number": 2,
+  "title": "The 10,000-Hour Rule",
+  "coreMove": "The 10,000-hour rule teaches that mastery requires deep practice, but deep practice depends on access to tools, feedback, time, and timing.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "community college coding lab",
+      "audience": "program leads allocating scarce equipment",
+      "stakes": "working students may never build enough practice hours",
+      "format": "decision_point",
+      "requiredBeat": "Use Bill Joy at Michigan to allocate scarce coding lab access."
+    },
+    {
+      "domain": "student band rehearsal schedule",
+      "audience": "arts mentors designing practice volume",
+      "stakes": "a band may miss the hard stage hours that build skill",
+      "format": "planning_choice",
+      "requiredBeat": "Translate the Beatles in Hamburg into a rehearsal design."
+    },
+    {
+      "domain": "private-school scholarship fund",
+      "audience": "donors choosing access over prizes",
+      "stakes": "students without rare tools may never find their skill early",
+      "format": "dilemma",
+      "requiredBeat": "Use Bill Gates and Lakeside to choose access over awards."
+    },
+    {
+      "domain": "after-school chess club",
+      "audience": "coaches managing limited boards and mentors",
+      "stakes": "new players may be kept from the feedback that grows mastery",
+      "format": "audit",
+      "requiredBeat": "Apply practice opportunity to mentor time in chess."
+    },
+    {
+      "domain": "restaurant training program",
+      "audience": "owners designing work reps",
+      "stakes": "new cooks may get praise without enough hard repetitions",
+      "format": "before_after",
+      "requiredBeat": "Use the volume lesson to redesign kitchen practice."
+    },
+    {
+      "domain": "public library maker-space",
+      "audience": "librarians widening tool access",
+      "stakes": "confident users may crowd out first-time builders",
+      "format": "scene",
+      "requiredBeat": "Use practice opportunity to widen maker-space access."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:26:52.516Z"
+}

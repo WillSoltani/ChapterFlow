@@ -1,0 +1,169 @@
+{
+  "examples": [
+    {
+      "title": "Showed up on her day off",
+      "scenario": "A top performer just showed up for a shift on her day off, frazzled and certain she was late. The team manager Annika Berg reads it as dedication at first, then as the warning it is, the same alarm Eleven Madison Park saw when a frayed cook rushed in around eleven at night, ten hours early. Pushing harder would only deepen it. Before she sets next week's schedule, Annika has to decide whether to praise the overwork or treat this disorientation as a signal to slow the team down.",
+      "whatToDo": "Read disorientation and dread in a top performer as a burnout alarm, not a badge of dedication, and treat it as a signal to slow the whole team down before the standard collapses."
+    },
+    {
+      "title": "Behind, so push harder?",
+      "scenario": "'We are behind, so the answer is obviously to push harder,' the director said. Pavel Novak, his operations partner, shook his head. 'Exhaustion erodes the very standard you are chasing. Eleven Madison Park found that slowing down first was how to reach the next level, not a detour.' He closed the laptop. 'Before you announce another crunch, you have to decide to ease the pace long enough for people to recover and actually speed up.'",
+      "whatToDo": "When a team is depleted, ease the pace to let people recover before pushing again, because exhaustion erodes the standard it is meant to raise, so slowing down is how you ultimately speed up."
+    },
+    {
+      "title": "Borrow against their evenings",
+      "scenario": "Sunita Rao, the program director, can squeeze two more hours of output by cutting into the evenings her team guards for what recharges them. The deadline tempts her to take it. But sustainable energy comes from protecting people's 'oxygen', the hobbies and rest that bring them joy, a practice Eleven Madison Park used to keep its team whole. Before the deadline call at noon, Sunita has to choose between borrowing against their recovery and protecting the off-hours that keep their work alive.",
+      "whatToDo": "Protect the off-the-clock time and hobbies that recharge your people instead of borrowing against them, because sustainable energy and creativity at work depend on that personal oxygen."
+    },
+    {
+      "title": "A shared cue to breathe",
+      "scenario": "Before, Gideon Ware's trading desk ran on raw adrenaline, and panic spread person to person with nothing to break it. After Gideon, the desk lead, borrowed the Deep Breathing Club Eleven Madison Park leaned on, a simple agreed-on cue telling an overwhelmed teammate to stop and take a breath, the spirals shortened. People reminded each other to breathe. A year later composure under pressure was a team habit, not a private struggle each person fought alone.",
+      "whatToDo": "Create a simple, agreed-on signal that tells an overwhelmed teammate to pause and breathe, because a shared ritual turns composure under pressure into a team norm instead of a private battle."
+    },
+    {
+      "title": "Asking for help felt like weakness",
+      "scenario": "Quiet collapses kept blindsiding her, so the unit manager Lottie Hayes reviewed the quarter Monday. People only admitted they were drowning when it was already too late, because asking for help felt like confessing weakness. Reading the pattern, Lottie saw the fix she had missed: a low-friction, dignified way to ask, like the discreet lapel touch Eleven Madison Park used so requesting help felt routine. Without a normal way to signal need, her team had suffered in silence.",
+      "whatToDo": "Build an easy, dignified way for people to signal they need help, because systemizing the request removes the stigma and makes support a normal reflex instead of an admission of failure."
+    },
+    {
+      "title": "Care as luxury or precondition",
+      "scenario": "Two weeks before the push for a major award, the founder Emeka Obi must decide how to frame it. One version treats care for people as a trade-off against the standard, something to sacrifice now. The other holds excellence and humane conditions together as an 'and', the integrative move Eleven Madison Park used so raising the bar and protecting people happened at once. The board calls care a luxury. Emeka weighs sacrificing his team against the belief that a breaking team cannot deliver excellence anyway.",
+      "whatToDo": "Frame care and standards as one combined goal in your plans and metrics, and refuse to schedule a sprint that sacrifices recovery, because a breaking team cannot deliver the standard anyway."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A reliable employee turns up for work badly disoriented, convinced she is late when she is hours early, after weeks of intense pressure. How should a leader read this?",
+        "choices": [
+          "As impressive commitment, so the leader should publicly praise her example and ask others to match it.",
+          "As a clear burnout warning that the pace has become unsustainable and the team needs to slow down.",
+          "As a private quirk unrelated to work, so the leader should note it and otherwise keep the pressure on."
+        ],
+        "correctIndex": 1,
+        "explanation": "Disorientation and dread are how burnout shows up, and a vivid incident like this signals the culture of intensity has become unsustainable. It is an alarm to ease the pace, not a model to celebrate.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A team is behind and exhausted, and the director wants to declare another crunch. A peer says that will make things worse. Why might the peer be right?",
+        "choices": [
+          "The peer is wrong, since adding hours is usually the most dependable way for a behind team to catch up.",
+          "The crunch is fine; exhaustion has no real effect on the quality of the work people produce.",
+          "Exhaustion erodes the standard it is meant to raise, so slowing down to recover is often how a team actually speeds up."
+        ],
+        "correctIndex": 2,
+        "explanation": "Pushing harder is counterproductive when people are depleted: tired teams make the standard worse, not better. Slowing down first to regain balance is the path back to higher performance.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A manager is tempted to claw back the evenings her team protects for hobbies and rest to hit a deadline. What does the idea of personal 'oxygen' suggest?",
+        "choices": [
+          "Claw back the time, since off-hours hobbies are a luxury that has no bearing on work performance.",
+          "Split the difference and take half their evenings, because partial recovery is good enough during a crunch.",
+          "Protect that restorative time, since sustainable energy and creativity at work depend on the oxygen people get off the clock."
+        ],
+        "correctIndex": 2,
+        "explanation": "Sustaining high performance depends on protecting the off-the-clock sources of renewal that keep people whole. Cannibalizing that personal oxygen for a deadline drains the very energy the work needs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Panic tends to spread across your team with nothing to interrupt it. You want one low-key habit that helps people regain composure. Which fits?",
+        "choices": [
+          "Tell people to simply toughen up, since anyone who panics under pressure is not suited to the work.",
+          "Adopt a shared, agreed-on cue that tells an overwhelmed teammate to stop and take a breath, making composure a team norm.",
+          "Add a mandatory hour of meditation each morning, because only a large time commitment can change how people handle stress."
+        ],
+        "correctIndex": 1,
+        "explanation": "A small, agreed-upon ritual gives people permission to pause and reset, turning self-regulation into a team norm. A shared breathing cue interrupts spreading panic better than toughness or a big mandate.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "On your team, people only admit they are overwhelmed once they have already collapsed, because asking for help feels like weakness. What is the most useful fix?",
+        "choices": [
+          "Design an easy, dignified signal for requesting help, so asking feels routine rather than like admitting failure.",
+          "Remind everyone that strong professionals seldom need help, so those who ask should reconsider the job.",
+          "Wait for people to ask on their own, since anyone who truly needed help would have spoken up already."
+        ],
+        "correctIndex": 0,
+        "explanation": "Systemizing how help is requested removes the stigma and makes support a normal reflex. A low-friction, dignified cue lifts the shame that otherwise keeps people silent until they break.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A board member calls staff well-being a soft luxury that competes with the company's high standards. How should you evaluate that framing?",
+        "choices": [
+          "Agree, since caring too much about people inevitably softens a team and steadily pulls it away from real excellence.",
+          "Agree, because high standards and humane conditions are genuine opposites that any leader is forced to trade off.",
+          "Reject it: a breaking team cannot deliver excellence, so care for people is the precondition for the standard, not its rival."
+        ],
+        "correctIndex": 2,
+        "explanation": "Caring for people is not a retreat from standards but the precondition for keeping them; a team that is breaking down cannot deliver excellence. Excellence and humane conditions are an 'and', not a trade-off.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "Your team hit its targets this quarter but several people seem hollowed out. You want to protect performance going forward. What is the strongest move?",
+        "choices": [
+          "Ease the pace and protect recovery now, since a hollowed-out team will lose the standard it just barely hit.",
+          "Raise the targets immediately, because a team that just succeeded can clearly absorb even more pressure.",
+          "Ignore the exhaustion, since the numbers were met and how people feel has no bearing on future results."
+        ],
+        "correctIndex": 0,
+        "explanation": "Hitting targets while people deteriorate is a warning, not a green light. Protecting recovery now preserves the standard, because a depleted team cannot keep delivering what it just managed to.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "You want to make asking for support feel normal on a high-pressure team without singling anyone out. What design fits best?",
+        "choices": [
+          "Post each person's stress level on a public dashboard, since visibility is what pushes people to manage themselves.",
+          "Give everyone a discreet, shared signal to ask for help, so support moves quickly without anyone publicly admitting they are struggling.",
+          "Require people to file a formal request to get help, because a paper trail keeps the process fair and accountable."
+        ],
+        "correctIndex": 1,
+        "explanation": "A subtle, shared cue lets help move fast without forcing a public admission of weakness. Dashboards and formal requests add friction or exposure that keep people from asking in the first place.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "You are chasing an ambitious goal and want to raise the standard without grinding your team down. What is the strongest plan?",
+        "choices": [
+          "Treat raising the bar and protecting people as one combined goal, building recovery and support into the push for the standard.",
+          "Pursue the standard at all costs now and address people's well-being only once the goal is achieved.",
+          "Lower the ambition itself, since the only way to keep a team healthy is to stop pushing for anything hard."
+        ],
+        "correctIndex": 0,
+        "explanation": "The toughest, most ambitious move holds excellence and humane conditions together as an integrative 'and'. Building recovery and support into the push is what makes the higher standard reachable and durable.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cardFronts": {
+    "card01": "Beyond hitting the numbers, what must a leader protect for a team to keep performing?",
+    "card02": "What does a frazzled star showing up hours early reveal about a team's pace?",
+    "card03": "Why does a shared signal to pause and breathe transfer from a kitchen to any high-pressure team?",
+    "card04": "What is the most common way leaders treat every pause as weakness or wasted time?",
+    "card05": "What single question helps a manager coach recovery without lowering the standard?",
+    "card06": "Work-life balance sounds soft in a strategy meeting. What makes a team actually protect its people?"
+  },
+  "coreSkill": "Read burnout as a leadership alarm and slow the pace to let people recover, because exhaustion erodes the standard. Protect each person's restorative 'oxygen', build low-friction rituals like a shared breathing cue and a discreet help signal that strip the stigma from needing support, and hold excellence and humane conditions together as an 'and', not a trade-off.",
+  "ifThenContexts": {
+    "1": "A story about one burnout warning becomes a cautionary tale no one acts on.",
+    "3": "Protecting one person's recovery raises the whole team's sense of being cared for."
+  }
+}

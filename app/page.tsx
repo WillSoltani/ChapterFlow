@@ -16,16 +16,17 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 import { MobileStickyBar } from "@/components/landing/MobileStickyBar";
 import { PRICING } from "@/lib/pricing";
+import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
   description:
-    "ChapterFlow turns every non-fiction book into a guided learning loop. Read summaries, see real-world scenarios, prove retention with quizzes, and unlock the next chapter. 95+ books, free to start.",
+    `ChapterFlow turns every non-fiction book into a guided learning loop. Read summaries, see real-world scenarios, prove retention with quizzes, and unlock the next chapter. ${CATALOG_BOOK_COUNT_DISPLAY} books, free to start.`,
   metadataBase: new URL(getChapterFlowSiteUrl()),
   openGraph: {
     title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
     description:
-      "Guided reading that turns every chapter into a 20-minute learning loop. Summaries, scenarios, quizzes, and real progress. 95+ non-fiction books.",
+      `Guided reading that turns every chapter into a 20-minute learning loop. Summaries, scenarios, quizzes, and real progress. ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books.`,
     url: getChapterFlowSiteUrl(),
     siteName: CHAPTERFLOW_NAME,
     type: "website",
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
     description:
-      "Guided reading that turns every chapter into a 20-minute learning loop. 95+ non-fiction books, free to start.",
+      `Guided reading that turns every chapter into a 20-minute learning loop. ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books, free to start.`,
     images: ["/og"],
   },
 };

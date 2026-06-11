@@ -1,0 +1,2589 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "hooked-v21-1780466168722",
+  "createdAt": "2026-06-03T05:56:08.722Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "hooked",
+    "title": "Hooked",
+    "author": "Nir Eyal",
+    "categories": [
+      "Psychology",
+      "Business",
+      "Entrepreneurship",
+      "Innovation"
+    ],
+    "tags": [
+      "habits",
+      "product design",
+      "behavior design",
+      "engagement",
+      "triggers",
+      "rewards",
+      "user retention"
+    ]
+  },
+  "chapters": [
+    {
+      "chapterId": "hooked-ch01",
+      "number": 1,
+      "title": "The Habit Zone",
+      "readingTimeMinutes": 11,
+      "hook": "Google wins many tiny defaults before anyone bothers to compare.",
+      "counterintuition": "The Habit Zone works as a sorting tool before it becomes a growth tactic: frequency and perceived utility decide whether habit design is even the right game.",
+      "tryThisNow": "Pick one behavior in your product and rate it twice: how often it naturally happens, and how useful it feels when it happens.",
+      "keyTakeaway": "A product belongs in the Habit Zone only when a real behavior happens often enough and feels useful enough to become the user's default answer.",
+      "breakdown": {
+        "fastRead": "Google versus Bing makes the opening diagnosis vivid. A searcher may not run a formal quality comparison before every query; the familiar box appears, the question is typed, and the next question follows the same route. That frequency gives Google a kind of protection.\n\nThe rule is not that habit is magic. Habit needs recurrence and perceived utility. Amazon shows the other side: shopping may happen less often than search, but the everything-store expectation can still pull the user back when a buying need appears.",
+        "deepRead": "The Habit Zone works because automatic behavior conserves attention. When the mind has solved the same problem often enough, it stores the response and stops spending fresh effort on the choice. That is valuable to a company only when the behavior naturally repeats and the product gives the user a benefit they can feel.\n\nGoogle sits near the high-frequency edge. Search can happen many times in a day, and the marginal difference between Google and Bing may not matter enough for the user to reconsider the route. Repetition itself becomes an advantage because the default path is easier than a comparison.\n\nAmazon leans more on utility. A customer may not shop hourly, but the memory that almost anything can be found there makes Amazon the first place the mind visits when a purchase need appears. Less recurrence demands stronger usefulness.\n\nThe University College London habit-formation study adds a limit. Habits do not arrive on a universal schedule, and complexity changes the curve. A product team cannot declare a habit by calendar. It must ask whether the behavior is frequent enough, useful enough, and ethically worth making automatic.",
+        "fullRead": "The sharp boundary in this idea is category discipline. Many products would like the economics of habit: higher lifetime value, easier pricing, user-driven growth, and a moat against alternatives. Wanting those advantages does not place the product in the Habit Zone.\n\nGoogle versus Bing clarifies why frequency matters. Search has a repeating place in ordinary life. A person wonders about a restaurant, a symptom, a phrase, a route, or a product, and the same search habit answers each time. The result is not just loyalty in the emotional sense. It is a reduction in decision effort. The user does not need to decide which engine to use because the old route has become the low-friction route.\n\nAmazon shows why the second axis exists. Some behaviors are too rare to become automatic unless the utility is unusually strong. The everything-store promise gives Amazon recall even when the buying occasion is not constant. The mind learns, when I need to find a product, start there. That remembered usefulness can compensate for lower frequency, but only up to a point.\n\nThe University College London research pushes against the myth that habit formation has a fixed deadline. Simple routines can settle faster than complex ones. Personal importance changes the process. If a team treats every behavior as a thirty-day conversion target, it mistakes a variable behavioral curve for a project-management calendar.\n\nThe vitamin-versus-painkiller distinction also becomes subtler here. A product may begin as a nice extra, then become painful to lose after repeated use. The ache is learned. Still, the absence must matter to the user, not merely to the retention dashboard. A notification cannot invent utility that the product does not provide.\n\nThat is where the ethical warning enters. Habit is not addiction. Addiction is compulsive and harmful; a good habit may be automatic while still serving the user's interest. This distinction matters because the same business benefits that make habits attractive can tempt teams to chase compulsion.\n\nA clean Habit Zone reading leaves a product team with a diagnostic, not a slogan. Is the target behavior naturally recurring? Does the product solve a problem strongly enough to deserve automatic recall? If one axis is weak, should the team improve recurrence, increase usefulness, or accept that the business should not be built around habit?\n\nThe practical consequence is restraint. Google and Amazon can teach product economics without licensing every app to demand daily attention. Some products should be excellent occasional tools. Others can become defaults. The Habit Zone tells the difference before the team starts optimizing return visits."
+      },
+      "examples": [
+        {
+          "exampleId": "hooked-ch01-ex01",
+          "title": "Search default review",
+          "tags": [
+            "Habit Zone",
+            "Google",
+            "product strategy"
+          ],
+          "planSpec": {
+            "domain": "search analytics review",
+            "audience": "search product lead",
+            "stakes": "whether a rival can beat habit with marginal quality",
+            "format": "data-first",
+            "requiredBeat": "Apply Google to whether a rival can beat habit with marginal quality without flattening the source case."
+          },
+          "scenario": "During a search-quality review, Asha compares Google and Bing result samples. The score gap is real but small, while usage logs show people searching again before they ever discuss alternatives. The Habit Zone explains the stickiness: frequent questions make the familiar route feel cheaper than reconsideration.",
+          "whatToDo": "Treat the rival's problem as habit strength, not only ranking quality. Look for repeated moments where users choose before comparison even begins.",
+          "whyItMatters": "Google shows why high-frequency behaviors can harden into defaults. The advantage is not just better answers; it is the saved effort of not choosing again."
+        },
+        {
+          "exampleId": "hooked-ch01-ex02",
+          "title": "Marketplace planning",
+          "tags": [
+            "Habit Zone",
+            "Amazon",
+            "utility"
+          ],
+          "planSpec": {
+            "domain": "commerce roadmap meeting",
+            "audience": "marketplace founder",
+            "stakes": "how to compete with Amazon without faking daily use",
+            "format": "boardroom",
+            "requiredBeat": "Apply Amazon to how to compete with Amazon without faking daily use without flattening the source case."
+          },
+          "scenario": "In a commerce roadmap meeting, Ronan admits his marketplace will never be opened as often as Google. The team keeps proposing daily deals anyway. Amazon is the better comparison: the question is whether buyers believe this store has enough special utility to be remembered when the purchase need arrives.",
+          "whatToDo": "Stop forcing a daily rhythm. Define the buying occasions where your utility can beat Amazon's everything-store memory, then design for recall at those moments.",
+          "whyItMatters": "Amazon keeps the Habit Zone honest because high utility can matter, but it cannot excuse weak usefulness or invented recurrence."
+        },
+        {
+          "exampleId": "hooked-ch01-ex03",
+          "title": "Routine study calendar",
+          "tags": [
+            "Habit Zone",
+            "University College London",
+            "research"
+          ],
+          "planSpec": {
+            "domain": "behavior science workshop",
+            "audience": "research translator",
+            "stakes": "why a fixed habit deadline is misleading",
+            "format": "teaching scene",
+            "requiredBeat": "Apply University College London to why a fixed habit deadline is misleading without flattening the source case."
+          },
+          "scenario": "At a behavior science workshop, Kira hears a founder promise investors that every user routine will lock in after one month. She pulls up the University College London habit-formation study and points to the spread: simple acts and complex routines do not settle on the same timetable.",
+          "whatToDo": "Replace the countdown with a behavior-specific learning curve. Measure recurrence, missed days, and recovery after disruption instead of declaring a universal habit date.",
+          "whyItMatters": "The University College London anchor prevents calendar folklore. Habit formation depends on behavior complexity and personal relevance."
+        },
+        {
+          "exampleId": "hooked-ch01-ex04",
+          "title": "Pricing debate",
+          "tags": [
+            "Habit Zone",
+            "Google",
+            "lifetime value"
+          ],
+          "planSpec": {
+            "domain": "pricing committee",
+            "audience": "growth analyst",
+            "stakes": "whether habitual use can support pricing power",
+            "format": "economic case",
+            "requiredBeat": "Apply Google to whether habitual use can support pricing power without flattening the source case."
+          },
+          "scenario": "The pricing committee wants to raise fees because usage looks high. Nia separates Google-like frequency from true utility: users open the tool often, but only because the company requires it. The Habit Zone test exposes a gap between imposed recurrence and a personally useful default.",
+          "whatToDo": "Ask whether users would still return if the mandate disappeared. Price around voluntary utility, not usage produced by policy pressure.",
+          "whyItMatters": "Habit economics depend on chosen recurrence. Forced use can inflate activity without creating the defensible customer lifetime value Eyal describes."
+        },
+        {
+          "exampleId": "hooked-ch01-ex05",
+          "title": "Painkiller question",
+          "tags": [
+            "Habit Zone",
+            "Amazon",
+            "vitamin"
+          ],
+          "planSpec": {
+            "domain": "customer interview lab",
+            "audience": "product researcher",
+            "stakes": "whether a nice-to-have service has become painful to lose",
+            "format": "interview",
+            "requiredBeat": "Apply Amazon to whether a nice-to-have service has become painful to lose without flattening the source case."
+          },
+          "scenario": "In a customer interview lab, Soren asks why a user keeps renewing a small shopping assistant. She says it began as a vitamin, then became painful to lose because it remembered hard-to-find items better than Amazon. The ache came from repeated usefulness, not from louder reminders.",
+          "whatToDo": "Trace the exact absence that would bother the user. If losing the service creates no felt problem, keep improving utility before chasing habit loops.",
+          "whyItMatters": "The vitamin-to-painkiller move only counts when absence hurts in the user's life. Amazon sets a high utility bar for that claim."
+        },
+        {
+          "exampleId": "hooked-ch01-ex06",
+          "title": "Ethics check",
+          "tags": [
+            "Habit Zone",
+            "addiction",
+            "Google"
+          ],
+          "planSpec": {
+            "domain": "trust review",
+            "audience": "product ethicist",
+            "stakes": "how to separate useful habit from harmful compulsion",
+            "format": "boundary audit",
+            "requiredBeat": "Apply addiction to how to separate useful habit from harmful compulsion without flattening the source case."
+          },
+          "scenario": "At a trust review, Iris hears a slide celebrate addictive engagement. She rewrites it around the Habit Zone and Google: automatic use can be valuable when it saves effort and serves a real need. Addiction, by contrast, means compulsion and harm, not merely repeat behavior.",
+          "whatToDo": "Ban addiction language from success metrics. Define the user benefit that makes recurrence worth encouraging, then watch for harm signals.",
+          "whyItMatters": "The idea's hard edge is moral as well as strategic. Habit is only defensible when automatic return still serves genuine user value."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "hooked-ch01-q01",
+            "prompt": "Why does Google versus Bing matter to the Habit Zone diagnosis?",
+            "choices": [
+              "It shows that repeated search can make the familiar route default before users compare alternatives.",
+              "It proves that search habits require the largest possible utility gap on every query.",
+              "It shows that paid prompts are enough to preserve a search engine's advantage."
+            ],
+            "correctIndex": 0,
+            "explanation": "Google versus Bing teaches frequency. The repeated act of searching makes the familiar path feel easier, even when a single comparison might not show a dramatic difference.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch01-q02",
+            "prompt": "Amazon is less frequent than search but still belongs near habit territory when what condition holds?",
+            "choices": [
+              "Users receive constant notifications that make shopping feel urgent.",
+              "Users believe the everything store will be useful whenever a buying need appears.",
+              "Users forget other stores exist because Amazon blocks comparison."
+            ],
+            "correctIndex": 1,
+            "explanation": "Amazon illustrates perceived utility. Lower frequency can still support automatic recall when the product is remembered as unusually useful at the right moment.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch01-q03",
+            "prompt": "A founder says every tool deserves daily engagement. Which Habit Zone reply is strictest?",
+            "choices": [
+              "Daily engagement is harmless if the company can afford enough reminders.",
+              "The founder should copy Google's frequency goal before studying user utility.",
+              "Some products should remain excellent occasional tools because weak frequency or weak utility keeps them outside habit design."
+            ],
+            "correctIndex": 2,
+            "explanation": "The Habit Zone is diagnostic. It tells teams when habit formation fits the behavior and when chasing daily use would waste effort or pressure users needlessly.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch01-q04",
+            "prompt": "In the University College London habit-formation study, what warning should a product team hear?",
+            "choices": [
+              "Habit timing varies by behavior, so a fixed calendar promise is not evidence of automatic use.",
+              "Habit formation is impossible unless a routine is completed every day for a year.",
+              "Research matters less than whether the team can increase notification volume."
+            ],
+            "correctIndex": 0,
+            "explanation": "The study blocks a universal countdown. Simple and complex behaviors settle differently, so teams must measure the actual behavior instead of recite a deadline.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch01-q05",
+            "prompt": "Which statement best separates habit from addiction in this idea?",
+            "choices": [
+              "Addiction is acceptable when lifetime value improves.",
+              "Habit can be automatic and useful; addiction is compulsive, harmful, and not the design goal.",
+              "Addiction and habit are identical words for repeat use."
+            ],
+            "correctIndex": 1,
+            "explanation": "Eyal's distinction keeps the ethics visible. Repeat use is not automatically bad, but compulsion that harms the user is outside the defensible aim.",
+            "bloomsLevel": "remember",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch01-q06",
+            "prompt": "A service begins as a vitamin and later feels like a painkiller. What changed?",
+            "choices": [
+              "The product advertised more heavily until users accepted the claim.",
+              "The company labeled ordinary convenience as pain relief.",
+              "Repeated usefulness taught users that absence creates a felt problem."
+            ],
+            "correctIndex": 2,
+            "explanation": "The painkiller shift must be learned through real utility. The user's discomfort when the service disappears is what matters, not the company's positioning.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch01-q07",
+            "prompt": "How should a team use the Habit Zone before building retention features?",
+            "choices": [
+              "Plot the target behavior by natural frequency and perceived utility, then decide which axis deserves work.",
+              "Start with daily notifications so the frequency axis rises automatically.",
+              "Choose the highest lifetime-value metric and call that the user's habit."
+            ],
+            "correctIndex": 0,
+            "explanation": "The framework asks for a two-axis diagnosis first. Retention tactics make sense only after the team sees whether recurrence or usefulness is the binding constraint.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch01-q08",
+            "prompt": "A product is used often only because an employer requires it. What is the Habit Zone risk?",
+            "choices": [
+              "The product has proven enough utility to become an addiction.",
+              "The usage may not represent a voluntary default that survives when the mandate disappears.",
+              "The team should raise prices because frequency alone establishes habit strength."
+            ],
+            "correctIndex": 1,
+            "explanation": "Forced recurrence can look like habit in dashboards while lacking automatic user preference. The Habit Zone cares about real use in the user's life.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch01-q09",
+            "prompt": "What business benefits do strong user habits create according to the idea?",
+            "choices": [
+              "They eliminate the need to make the product useful after launch.",
+              "They mainly increase press coverage and earned triggers.",
+              "They can raise lifetime value, support pricing flexibility, aid growth, and make alternatives feel awkward."
+            ],
+            "correctIndex": 2,
+            "explanation": "The idea links habit to economics: repeat use can improve lifetime value, pricing power, growth through exposure, and defensibility against competitors.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "hooked-ch01-card01",
+          "front": "What are the two axes of the Habit Zone?",
+          "back": "Frequency of behavior and perceived utility. A product needs enough of both for the target behavior to become a default instead of a fresh choice.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch01-card02",
+          "front": "Why is Google the frequency example?",
+          "back": "Search happens repeatedly throughout ordinary life. The repeated path makes Google easier to use by default, even when the user could compare alternatives.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch01-card03",
+          "front": "What does Amazon add to the Habit Zone picture?",
+          "back": "Amazon shows that a less frequent behavior needs unusually strong perceived usefulness. The everything-store memory creates recall when a purchase need appears.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "hooked-ch01-card04",
+          "front": "What mistake does the idea warn product teams against?",
+          "back": "Do not chase automatic daily use for every product. Some tools should improve utility or accept occasional use instead of manufacturing unhealthy recurrence.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Plot The Habit Fit",
+        "coreSkill": "Use the Habit Zone as a diagnostic map. Name one target behavior, then judge whether frequency or perceived utility is the honest constraint.",
+        "ifThenPlans": [
+          {
+            "context": "When the team wants more engagement",
+            "plan": "If daily use is proposed, then ask whether the behavior naturally recurs often enough to deserve that rhythm."
+          },
+          {
+            "context": "When utility feels vague",
+            "plan": "If the product is called useful, then ask what absence would make the user miss it and why."
+          },
+          {
+            "context": "When dashboards show forced use",
+            "plan": "If recurrence comes from policy or pressure, then separate mandated activity from a voluntary default."
+          },
+          {
+            "context": "When a competitor looks similar",
+            "plan": "If switching seems easy on paper, then inspect whether habit makes the old route cheaper than comparison."
+          }
+        ],
+        "twentyFourHourChallenge": "Plot one product behavior on the Habit Zone and write the evidence for frequency, utility, and the weakest axis.",
+        "weeklyPractice": "Review one retention idea each week and classify it as increasing real recurrence, increasing perceived utility, or merely adding pressure."
+      },
+      "memorableLines": [
+        {
+          "text": "Google versus Bing makes the opening diagnosis vivid.",
+          "location": "breakdown.fastRead",
+          "why": "It captures the frequency advantage in one concrete image."
+        },
+        {
+          "text": "The Habit Zone works because automatic behavior conserves attention.",
+          "location": "breakdown.deepRead",
+          "why": "It states the mechanism behind the framework."
+        },
+        {
+          "text": "Wanting those advantages does not place the product in the Habit Zone.",
+          "location": "breakdown.fullRead",
+          "why": "It preserves the idea's diagnostic edge."
+        }
+      ]
+    },
+    {
+      "chapterId": "hooked-ch02",
+      "number": 2,
+      "title": "Trigger",
+      "readingTimeMinutes": 12,
+      "hook": "Yin reaches for Instagram before any notification has to ask.",
+      "counterintuition": "The best trigger is eventually invisible. External cues matter because they teach the mind which product answers a recurring internal discomfort.",
+      "tryThisNow": "Choose one user action and write the feeling, place, or routine that could make the user want it before any alert appears.",
+      "keyTakeaway": "Habitual products move from external triggers to internal triggers by becoming the remembered relief for boredom, loneliness, uncertainty, or another recurring feeling.",
+      "breakdown": {
+        "fastRead": "Yin's Instagram habit does not begin as pure instinct. Photos from others, the app icon, and repeated exposure help teach the behavior. Over time, the cue changes. A visually interesting moment appears, and the urge to preserve it is enough.\n\nThat is the idea's rule: external triggers are scaffolding, not the finished habit. Paid ads, press, friends, app icons, and notifications can all point the user toward action. The durable loop forms when an internal trigger sends the user back without visible instruction.",
+        "deepRead": "An internal trigger is an association stored in the user's mind. The cue can be boredom, loneliness, fear of missing out, uncertainty, or the sudden wish to capture something beautiful. The product becomes the place the mind expects relief.\n\nFacebook and loneliness make the mechanism clear. A person who feels disconnected may check the feed without seeing an ad or hearing a ping. The uncomfortable feeling does the cueing. The product has become linked to a social itch.\n\nExternal triggers still matter, but each type has a different job. Paid triggers can buy attention, yet they are expensive to keep using forever. Earned triggers, such as press or app-store attention, can spike interest but are hard to control. Relationship triggers carry trust because another person is involved. Owned triggers, including an app icon or permission-based alert, give the company a repeated surface while the association develops.\n\nThe 5 Whys method keeps the designer from stopping at a surface request. A user may say they want photos, messages, or reminders. The deeper question is what feeling makes that object matter at that moment. Trigger design starts with that pain.",
+        "fullRead": "The easiest way to misread this idea is to make notifications louder. If the product has not learned the user's internal trigger, more prompts usually teach irritation instead of attachment.\n\nYin and Instagram show the migration from outside cue to inner cue. At first, the product can be encountered through shared photos, visible app surfaces, or friends who already use it. Repetition links the tool to a mental state: this moment is worth preserving, this scene might be shared, this image says something about me. Eventually the cue is not a banner. It is the felt urge to capture and broadcast a moment.\n\nFacebook and loneliness reveal a more uncomfortable version. Social products often become answers to disconnection, boredom, status anxiety, or missing out. The user does not necessarily name the feeling. The hand moves because past relief taught the association. That is why trigger work has to be morally serious: the product is joining a private emotional loop.\n\nThe external-trigger taxonomy helps a team choose its temporary supports. Paid triggers can start acquisition but usually cannot fund every return visit. Earned triggers can produce a burst but disappear unpredictably. Relationship triggers, such as a friend invitation or shared item, bring social trust. Owned triggers are more durable because the user has granted a continuing surface: an app icon, email subscription, or notification permission.\n\nYet owned does not mean unlimited. A permission is borrowed attention. Used well, it cues a simple action at a moment when the product can provide real relief. Used badly, it breaks trust and weakens the association the team hoped to build.\n\nThe 5 Whys method belongs here because the first stated desire is rarely the root. A user may want to post a photo. Why? To remember the meal. Why? Because it felt special. Why does that matter? Because sharing it keeps a friend group present. The emotional answer gives the designer a better trigger than a generic reminder.\n\nThe strict reading is not cynical. It does not say every product should exploit loneliness or boredom. It says the hook begins when a cue meets a real felt problem. Designers who cannot name that problem are just decorating alerts.\n\nA good trigger plan therefore asks when the user's discomfort appears, which external cue can responsibly meet it, and how quickly the product can prove itself useful. The endpoint is not a more crowded notification tray. It is a learned association between a recurring inner state and a product that genuinely helps."
+      },
+      "examples": [
+        {
+          "exampleId": "hooked-ch02-ex01",
+          "title": "Photo walk",
+          "tags": [
+            "Trigger",
+            "Instagram",
+            "Yin"
+          ],
+          "planSpec": {
+            "domain": "city photo walk",
+            "audience": "mobile product designer",
+            "stakes": "how Yin's moment becomes a cue before an alert",
+            "format": "place-first",
+            "requiredBeat": "Apply Instagram to how Yin's moment becomes a cue before an alert without flattening the source case."
+          },
+          "scenario": "On a Saturday photo walk, Yin stops under a mural and opens Instagram without checking notifications. The color, the friend beside her, and the wish to keep the scene do the prompting. The external app icon helped earlier, but now the interesting moment itself has become the internal trigger.",
+          "whatToDo": "Design around the moment before the tap. Ask what feeling or situation makes capture feel necessary, then make the first action obvious and light.",
+          "whyItMatters": "Yin shows that durable triggering is learned association. Instagram wins when the user's own impulse cues the product before an outside prompt arrives."
+        },
+        {
+          "exampleId": "hooked-ch02-ex02",
+          "title": "Lonely commute",
+          "tags": [
+            "Trigger",
+            "Facebook",
+            "loneliness"
+          ],
+          "planSpec": {
+            "domain": "train commute",
+            "audience": "social app researcher",
+            "stakes": "why a feed check happens with no visible cue",
+            "format": "time-first",
+            "requiredBeat": "Apply Facebook to why a feed check happens with no visible cue without flattening the source case."
+          },
+          "scenario": "At 7:40 a.m. on a delayed train, Darius opens Facebook after seeing no alert at all. The cue is the small loneliness of standing among strangers and wondering what friends are doing. The feed has become a remembered answer to that feeling.",
+          "whatToDo": "Interview for the emotion beneath the behavior. Do not ask only what feature was used; ask what discomfort made Facebook feel like relief.",
+          "whyItMatters": "Facebook and loneliness show why internal triggers are powerful and risky. The cue lives inside the user's mood, not on the screen."
+        },
+        {
+          "exampleId": "hooked-ch02-ex03",
+          "title": "Permission review",
+          "tags": [
+            "Trigger",
+            "notifications",
+            "app icon"
+          ],
+          "planSpec": {
+            "domain": "notification permission review",
+            "audience": "growth PM",
+            "stakes": "whether owned triggers are being used responsibly",
+            "format": "audit",
+            "requiredBeat": "Apply notifications to whether owned triggers are being used responsibly without flattening the source case."
+          },
+          "scenario": "Brielle reviews a dashboard of app icon taps and notification opt-ins. The team celebrates permission as if it were habit. She pauses: an owned trigger is only a temporary surface. If the alert does not connect to a real internal trigger, the user will learn annoyance.",
+          "whatToDo": "Audit each notification against the user feeling it serves. Keep the cue only when it leads to genuine relief or progress.",
+          "whyItMatters": "App icons and notification permissions are scaffolds. They help repeat the behavior while the product earns a deeper association."
+        },
+        {
+          "exampleId": "hooked-ch02-ex04",
+          "title": "Ad budget meeting",
+          "tags": [
+            "Trigger",
+            "paid triggers",
+            "Facebook"
+          ],
+          "planSpec": {
+            "domain": "marketing budget meeting",
+            "audience": "acquisition lead",
+            "stakes": "why ads cannot be the main return loop",
+            "format": "budget debate",
+            "requiredBeat": "Apply paid triggers to why ads cannot be the main return loop without flattening the source case."
+          },
+          "scenario": "In a budget meeting, Keira proposes buying more search ads for every return visit. A teammate brings up Facebook's internal-trigger logic: paid triggers can introduce the product, but paying forever means the habit never moved into the user's own routine.",
+          "whatToDo": "Separate acquisition from habit formation. Use paid triggers to start a loop, then measure whether users return from owned or internal cues.",
+          "whyItMatters": "Paid triggers can attract attention, but they are too expensive and shallow to be the durable source of repeat engagement."
+        },
+        {
+          "exampleId": "hooked-ch02-ex05",
+          "title": "Friend invitation",
+          "tags": [
+            "Trigger",
+            "relationship triggers",
+            "Instagram"
+          ],
+          "planSpec": {
+            "domain": "invite flow critique",
+            "audience": "product designer",
+            "stakes": "how a cue from another person carries trust",
+            "format": "critique",
+            "requiredBeat": "Apply relationship triggers to how a cue from another person carries trust without flattening the source case."
+          },
+          "scenario": "During an invite-flow critique, Jae notices that Instagram shares from friends outperform polished banners. The trigger is relational: a person the user trusts has sent something that carries social meaning, not just information about a button.",
+          "whatToDo": "Treat friend-originated cues differently from ads. Preserve the sender's context and make the next action feel socially relevant.",
+          "whyItMatters": "Relationship triggers work because another person is part of the cue. Trust and social relevance can start a hook more cleanly than broadcast persuasion."
+        },
+        {
+          "exampleId": "hooked-ch02-ex06",
+          "title": "Five Whys interview",
+          "tags": [
+            "Trigger",
+            "5 Whys",
+            "Yin"
+          ],
+          "planSpec": {
+            "domain": "user interview room",
+            "audience": "research lead",
+            "stakes": "how to uncover the emotional root under a photo request",
+            "format": "dialogue-led",
+            "requiredBeat": "Apply 5 Whys to how to uncover the emotional root under a photo request without flattening the source case."
+          },
+          "scenario": "In a user interview, Alina asks why someone wants better photo filters. The first answer is quality, then memory, then being seen by faraway friends. The 5 Whys turns a feature request into a trigger hypothesis that sounds much closer to Yin's Instagram loop.",
+          "whatToDo": "Push past the feature noun until the emotional situation appears. Then design the external cue around that moment, not around the team's wording.",
+          "whyItMatters": "The 5 Whys protects trigger design from surface wishes. It reveals the recurring discomfort or desire the product must answer."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "hooked-ch02-q01",
+            "prompt": "What changes when Yin's Instagram use becomes habitual?",
+            "choices": [
+              "The app no longer needs to provide any relief after she opens it.",
+              "The cue migrates from outside exposure toward the internal urge to capture and share a moment.",
+              "Paid advertising becomes the most reliable prompt for every return visit."
+            ],
+            "correctIndex": 1,
+            "explanation": "Yin's case shows trigger migration. Repeated external cues teach an association until the user's own moment or feeling starts the behavior.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch02-q02",
+            "prompt": "A user checks Facebook when lonely, with no notification visible. What kind of trigger is operating?",
+            "choices": [
+              "An earned trigger from press attention.",
+              "A paid trigger because the feed contains ads.",
+              "An internal trigger tied to emotional discomfort."
+            ],
+            "correctIndex": 2,
+            "explanation": "The cue is inside the user. Loneliness or disconnection can become the mental prompt that sends someone back to a social product.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch02-q03",
+            "prompt": "Which external trigger is most durable before a habit fully forms?",
+            "choices": [
+              "A permission-based owned trigger such as an app icon, subscription, or opted-in notification.",
+              "A single burst of earned press coverage that fades after the news cycle.",
+              "A paid advertisement bought repeatedly for every return session."
+            ],
+            "correctIndex": 0,
+            "explanation": "Owned triggers give the product a continuing surface after the user grants access. They can support repetition while the internal association forms.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch02-q04",
+            "prompt": "What is the danger of sending more notifications without understanding the internal trigger?",
+            "choices": [
+              "The user will immediately become addicted.",
+              "The product may train annoyance instead of attachment.",
+              "The notification becomes a relationship trigger automatically."
+            ],
+            "correctIndex": 1,
+            "explanation": "The idea's hard edge is association. External prompts only help when they connect a real internal discomfort to useful relief.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch02-q05",
+            "prompt": "Why are paid triggers weak as the main source of repeat engagement?",
+            "choices": [
+              "They always carry more trust than relationship triggers.",
+              "They become internal triggers as soon as the user sees them.",
+              "They are usually too expensive to fund every return visit."
+            ],
+            "correctIndex": 2,
+            "explanation": "Paid triggers can introduce a product, but a habit-forming business cannot usually buy every repeated action profitably.",
+            "bloomsLevel": "remember",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch02-q06",
+            "prompt": "What does the 5 Whys method help a product team find?",
+            "choices": [
+              "The emotional root beneath a stated desire or feature request.",
+              "The cheapest channel for buying first-time attention.",
+              "The exact number of notifications a user should receive."
+            ],
+            "correctIndex": 0,
+            "explanation": "The 5 Whys pushes past surface requests. It asks why the behavior matters until the recurring pain or desire becomes visible.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch02-q07",
+            "prompt": "A friend sends a product invitation. Why can that trigger be powerful?",
+            "choices": [
+              "It works because users cannot refuse a relationship trigger.",
+              "It includes social trust and personal relevance from another person.",
+              "It replaces the need for the product to solve a real problem."
+            ],
+            "correctIndex": 1,
+            "explanation": "Relationship triggers carry context and trust. A cue from a person often means more than the same instruction from a company.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch02-q08",
+            "prompt": "Which trigger plan best honors the idea's mechanism?",
+            "choices": [
+              "Buy broad awareness until users appear to stop leaving the product.",
+              "Send reminders at random so the user cannot predict the product's next interruption.",
+              "Identify the user's recurring discomfort, then choose an external cue that responsibly connects that moment to relief."
+            ],
+            "correctIndex": 2,
+            "explanation": "Trigger design starts with the internal state. The external cue should meet that moment and lead to a useful action, not merely interrupt.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch02-q09",
+            "prompt": "What is the endpoint of trigger design in Hooked?",
+            "choices": [
+              "A learned association where a feeling, place, routine, or thought cues the product.",
+              "A louder external prompt for every possible user action.",
+              "A dashboard showing that press coverage created a temporary spike."
+            ],
+            "correctIndex": 0,
+            "explanation": "The durable habit forms when the cue is internal. The product becomes the remembered response to a recurring state in the user's life.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "hooked-ch02-card01",
+          "front": "What is an internal trigger?",
+          "back": "A learned mental cue, such as boredom, loneliness, uncertainty, or a routine, that makes the user reach for the product without visible instruction.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch02-card02",
+          "front": "Why does Yin matter in the Instagram example?",
+          "back": "Yin shows the migration from external exposure to an inner cue: the wish to capture a moment becomes enough to open the app.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch02-card03",
+          "front": "How should a team treat notifications?",
+          "back": "As owned external triggers that support repetition while a habit forms. They must connect to real user relief or they become irritating noise.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "hooked-ch02-card04",
+          "front": "What does the 5 Whys add to trigger design?",
+          "back": "It uncovers the emotional reason beneath a request, helping the team design for the recurring feeling instead of a surface feature noun.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Find The Hidden Cue",
+        "coreSkill": "Map each visible prompt to the internal state it is supposed to serve. A trigger is strong only when the user feels the problem before the product speaks.",
+        "ifThenPlans": [
+          {
+            "context": "When notifications multiply",
+            "plan": "If an alert has no named user feeling behind it, then remove or rewrite it before sending."
+          },
+          {
+            "context": "When interviews stay feature-level",
+            "plan": "If a user asks for a feature, then run 5 Whys until the emotional situation appears."
+          },
+          {
+            "context": "When paid acquisition looks strong",
+            "plan": "If ads create first use, then check whether owned or internal cues create the next use."
+          },
+          {
+            "context": "When friends create the cue",
+            "plan": "If a trigger comes through another person, then protect that relationship context instead of making it feel like a broadcast."
+          }
+        ],
+        "twentyFourHourChallenge": "For one existing notification, write the internal trigger it serves and the relief the next action gives the user.",
+        "weeklyPractice": "Review one user interview each week and add a trigger note: feeling, situation, external cue, and evidence of relief."
+      },
+      "memorableLines": [
+        {
+          "text": "Yin's Instagram habit does not begin as pure instinct.",
+          "location": "breakdown.fastRead",
+          "why": "It makes the endpoint of trigger design concrete."
+        },
+        {
+          "text": "An internal trigger is an association stored in the user's mind.",
+          "location": "breakdown.deepRead",
+          "why": "It gives the concept a clear mechanism."
+        },
+        {
+          "text": "A permission is borrowed attention.",
+          "location": "breakdown.fullRead",
+          "why": "It captures the restraint around owned triggers."
+        }
+      ]
+    },
+    {
+      "chapterId": "hooked-ch03",
+      "number": 3,
+      "title": "Action",
+      "readingTimeMinutes": 12,
+      "hook": "BJ Fogg's equation fails the moment one ingredient goes missing.",
+      "counterintuition": "Persuasion is often the expensive lever. The cheaper path is making the desired action so easy that the trigger arrives above the action line.",
+      "tryThisNow": "Remove one step from a target action before writing any new motivational copy, then ask which simplicity factor improved.",
+      "keyTakeaway": "A triggered behavior happens only when motivation, ability, and timing meet, so reducing friction usually beats trying to manufacture stronger desire.",
+      "breakdown": {
+        "fastRead": "BJ Fogg's behavior model gives the idea its operating rule: behavior happens when motivation, ability, and a trigger converge. If one piece is missing, the action fails.\n\nGoogle versus Yahoo makes the point visible. Google's sparse page asked for one obvious action. Portal pages demanded scanning, choosing, and ignoring clutter. The searcher did not need a motivational speech. The searcher needed less mental effort. Action design begins by lowering the cost of doing.",
+        "deepRead": "Action is the simplest behavior performed in anticipation of a reward. A trigger can be perfectly timed and still fail if the user does not care enough or cannot act easily enough. Fogg's B equals MAT turns failure into diagnosis: motivation, ability, or trigger was not present at the same moment.\n\nMotivation has familiar sources. People seek pleasure and avoid pain, seek hope and avoid fear, seek social acceptance and avoid rejection. A product can speak to those motives, but raising motivation is often unstable and expensive.\n\nAbility is more directly designable. Fogg's simplicity factors ask whether the behavior costs too much time, money, physical effort, mental effort, social risk, or disruption to routine. Google reduced mental effort. Twitter's short-post constraint reduced the effort of broadcasting. Instagram, Pinterest, and Vine made creation feel smaller than older publishing tools.\n\nLinkedIn profile progress adds a motivational nudge without burying the user in persuasion. A completion meter frames the task as closing an already-started gap. The broader rule stays the same: if the action is too hard at the triggered moment, clever psychology will not save it.",
+        "fullRead": "The action framework is easy to flatten into a bag of tricks: scarcity, framing, anchoring, progress meters, social proof. The stricter reading starts earlier. Before any heuristic matters, the target behavior has to cross the action line.\n\nBJ Fogg's model gives product teams a humane diagnostic. When a user does not act, the explanation is not laziness by default. Perhaps the trigger arrived while the user was driving. Perhaps motivation was low because the reward felt distant. Perhaps ability was low because the action required money, time, social exposure, or too much thought. B equals MAT turns blame into design inquiry.\n\nGoogle versus Yahoo is the clean interface case. A crowded portal page can contain more options and still create less action because the user has to parse the page before doing the job. Google's single search field made the next step unmistakable. The page did not need to shout; it reduced mental effort.\n\nCreation tools show the same principle in a different domain. Twitter's character limit made public posting feel bounded. Instagram made photo sharing faster. Pinterest made contribution as simple as saving or repinning. Vine made short video creation less intimidating. Each design lowered the smallest behavior enough that more people could participate.\n\nMotivation still matters, but it is slippery. Pleasure, hope, fear, acceptance, and rejection can all move behavior. A team can write copy around those motives, yet the user may still bounce if the action is awkward. That is why ability is usually the first lever to inspect.\n\nThe six simplicity factors are practical because they describe different kinds of cost. Time and money are obvious. Physical effort appears when an action requires movement or setup. Mental effort appears in confusing forms and choices. Social acceptability appears when the user risks looking foolish. Routine fit appears when a behavior asks the user to break the flow of the day.\n\nLinkedIn profile progress shows that heuristics can help when the base action is already plausible. The meter makes incompletion visible and endowed progress makes the user feel partway there. But a progress bar on a painful form is not a miracle. It works only if adding the next piece is easy enough.\n\nThe strict warning is therefore anti-drama. Do not begin by trying to inflame desire. Begin by making the behavior easier to do than to avoid. If the cue appears at the wrong moment, fix timing. If the user is not motivated, clarify the reward. If the action is too hard, remove effort until the path is simple enough to cross."
+      },
+      "examples": [
+        {
+          "exampleId": "hooked-ch03-ex01",
+          "title": "Missed call diagnosis",
+          "tags": [
+            "Action",
+            "BJ Fogg",
+            "B equals MAT"
+          ],
+          "planSpec": {
+            "domain": "support call review",
+            "audience": "behavior designer",
+            "stakes": "why a prompted user still failed to act",
+            "format": "mechanism",
+            "requiredBeat": "Apply BJ Fogg to why a prompted user still failed to act without flattening the source case."
+          },
+          "scenario": "After a missed support call, Devon refuses to call the customer careless. BJ Fogg's B equals MAT gives three possible failures: the customer may not have wanted the call, may not have been able to answer, or may have received the trigger at a bad moment.",
+          "whatToDo": "Diagnose the failed behavior by motivation, ability, and timing. Change the weakest condition before blaming the user.",
+          "whyItMatters": "BJ Fogg turns non-action into a missing-condition problem. That keeps the team focused on design levers instead of moralizing."
+        },
+        {
+          "exampleId": "hooked-ch03-ex02",
+          "title": "Search page cleanup",
+          "tags": [
+            "Action",
+            "Google",
+            "Yahoo"
+          ],
+          "planSpec": {
+            "domain": "homepage redesign",
+            "audience": "UX lead",
+            "stakes": "whether a portal layout is suppressing action",
+            "format": "interface comparison",
+            "requiredBeat": "Apply Google to whether a portal layout is suppressing action without flattening the source case."
+          },
+          "scenario": "The UX lead places Google and Yahoo screenshots beside the new homepage. The team likes every module, but the search action is buried under choices. Google's sparse field wins because the user knows what to do before deliberation can interrupt.",
+          "whatToDo": "Cut the page until the target action is visually and mentally obvious. Add options only after the first behavior is protected.",
+          "whyItMatters": "Google versus Yahoo shows that mental effort is a real cost. A cluttered page can lower ability even when it offers more features."
+        },
+        {
+          "exampleId": "hooked-ch03-ex03",
+          "title": "Composer redesign",
+          "tags": [
+            "Action",
+            "Twitter",
+            "Instagram"
+          ],
+          "planSpec": {
+            "domain": "content composer sprint",
+            "audience": "creation tools team",
+            "stakes": "how lightweight creation expands participation",
+            "format": "sprint review",
+            "requiredBeat": "Apply Twitter to how lightweight creation expands participation without flattening the source case."
+          },
+          "scenario": "In a composer sprint, a team compares its long publishing form with Twitter's short messages and Instagram's quick photo flow. Their tool asks for title, tags, category, and settings before expression. The target action is not creation; it is paperwork.",
+          "whatToDo": "Define the smallest publishable act, then remove fields until creation feels lighter than hesitation.",
+          "whyItMatters": "Twitter and Instagram demonstrate ability by compression. Reducing the creation act invites users who would never complete a heavier workflow."
+        },
+        {
+          "exampleId": "hooked-ch03-ex04",
+          "title": "Profile meter",
+          "tags": [
+            "Action",
+            "LinkedIn",
+            "progress"
+          ],
+          "planSpec": {
+            "domain": "onboarding analytics",
+            "audience": "growth designer",
+            "stakes": "whether a progress meter clarifies the next action",
+            "format": "data review",
+            "requiredBeat": "Apply LinkedIn to whether a progress meter clarifies the next action without flattening the source case."
+          },
+          "scenario": "In onboarding analytics, Meera sees users abandon a long profile form. LinkedIn profile progress suggests a different frame: show that the person has already begun and name the next small missing piece. The work becomes gap-closing instead of form obedience.",
+          "whatToDo": "Use progress only to point at a concrete next step. The meter should shrink uncertainty, not decorate a still-confusing task.",
+          "whyItMatters": "LinkedIn's meter works because endowed progress raises motivation while the next action remains specific and manageable."
+        },
+        {
+          "exampleId": "hooked-ch03-ex05",
+          "title": "Scarcity banner",
+          "tags": [
+            "Action",
+            "scarcity",
+            "BJ Fogg"
+          ],
+          "planSpec": {
+            "domain": "checkout experiment",
+            "audience": "conversion analyst",
+            "stakes": "when a heuristic masks high friction",
+            "format": "experiment critique",
+            "requiredBeat": "Apply scarcity to when a heuristic masks high friction without flattening the source case."
+          },
+          "scenario": "A checkout experiment adds a scarcity banner, but completion barely moves. Sara returns to BJ Fogg: motivation rose for a few users, yet ability stayed low because the page still asks for unnecessary account setup and shipping details before payment.",
+          "whatToDo": "Do a friction pass before adding another motivational heuristic. Remove time, thought, or money costs that block the behavior.",
+          "whyItMatters": "Scarcity cannot rescue a hard action. The Fogg model keeps persuasion subordinate to ability at the moment of doing."
+        },
+        {
+          "exampleId": "hooked-ch03-ex06",
+          "title": "Routine fit test",
+          "tags": [
+            "Action",
+            "simplicity",
+            "Pinterest"
+          ],
+          "planSpec": {
+            "domain": "mobile usability lab",
+            "audience": "researcher",
+            "stakes": "why an action breaks the user's daily flow",
+            "format": "field observation",
+            "requiredBeat": "Apply simplicity to why an action breaks the user's daily flow without flattening the source case."
+          },
+          "scenario": "During a mobile usability lab, Andre watches a participant save ideas on Pinterest during a short break. His team's prototype requires opening a desktop editor later. The simplicity factor is routine fit: the behavior no longer matches the moment when motivation appears.",
+          "whatToDo": "Move the action into the user's existing routine or shorten it enough for the live moment. Ability includes fit with the day.",
+          "whyItMatters": "Pinterest-style saving works because the behavior can happen when discovery happens. Delayed effort weakens the action line."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "hooked-ch03-q01",
+            "prompt": "What does BJ Fogg's behavior model require for action?",
+            "choices": [
+              "A reward, a habit, and a business model occurring together.",
+              "A large emotional appeal before any trigger appears.",
+              "Motivation, ability, and a trigger occurring together."
+            ],
+            "correctIndex": 2,
+            "explanation": "B equals MAT is the idea's core diagnostic. Behavior fails when motivation, ability, or the trigger is missing at the moment.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch03-q02",
+            "prompt": "Why does Google beat a cluttered Yahoo-style portal in the idea's action logic?",
+            "choices": [
+              "It lowers mental effort and makes the next action obvious.",
+              "It increases social motivation by showing more options.",
+              "It forces users to browse before searching."
+            ],
+            "correctIndex": 0,
+            "explanation": "Google's sparse interface improves ability by reducing cognitive load. The user can act before scanning and deliberation get in the way.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch03-q03",
+            "prompt": "Which response best fits a failed triggered behavior?",
+            "choices": [
+              "Assume the user lacks discipline and increase emotional pressure.",
+              "Diagnose whether motivation, ability, or timing was insufficient.",
+              "Remove the trigger so the user does not feel bothered."
+            ],
+            "correctIndex": 1,
+            "explanation": "Fogg's model gives three failure points. A team should inspect conditions, not default to blame or random pressure.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch03-q04",
+            "prompt": "What is the most practical first lever when motivation is costly to raise?",
+            "choices": [
+              "Add scarcity language to every screen so motivation appears higher than it is.",
+              "Hide the target action until curiosity grows enough to overcome friction.",
+              "Increase ability by reducing time, thought, money, effort, social risk, or routine disruption."
+            ],
+            "correctIndex": 2,
+            "explanation": "Ability is directly designable. Simplicity factors give teams concrete ways to move users above the action line.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch03-q05",
+            "prompt": "What do Twitter, Instagram, Pinterest, and Vine illustrate?",
+            "choices": [
+              "Lightweight creation tools can broaden participation by making the smallest action easier.",
+              "Creation habits require long setup flows to feel meaningful.",
+              "Users act more when every publishing choice is visible at once."
+            ],
+            "correctIndex": 0,
+            "explanation": "These examples reduce the cost of creating or sharing. Shorter, simpler actions let more users participate.",
+            "bloomsLevel": "remember",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch03-q06",
+            "prompt": "How does LinkedIn profile progress influence action?",
+            "choices": [
+              "It replaces ability with a purely social reward.",
+              "It frames the user as already partway through, making the next completion step more motivating.",
+              "It proves long forms should stay long if a meter is attached."
+            ],
+            "correctIndex": 1,
+            "explanation": "Endowed progress can motivate extra effort because the user feels a gap has already been opened. The next step still has to remain manageable.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch03-q07",
+            "prompt": "A checkout page adds urgency copy but keeps a long account setup. What is the likely problem?",
+            "choices": [
+              "The trigger arrived too early because scarcity always removes motivation.",
+              "The user needs a variable reward before entering payment details.",
+              "The team raised motivation while leaving ability too low."
+            ],
+            "correctIndex": 2,
+            "explanation": "Urgency can lift motivation, but a difficult action still fails. The model points back to ability costs in the checkout flow.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch03-q08",
+            "prompt": "Which set belongs to Fogg's simplicity factors?",
+            "choices": [
+              "Time, money, physical effort, mental effort, social acceptability, and routine fit.",
+              "Tribe, hunt, self, and autonomy inside a reward system.",
+              "Content, data, reputation, skill, and followers stored after reward."
+            ],
+            "correctIndex": 0,
+            "explanation": "The simplicity factors specify ability costs. They tell a team where the target action may be too hard.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch03-q09",
+            "prompt": "What is the idea's hard warning about heuristics?",
+            "choices": [
+              "They should replace interface work because motivation always dominates.",
+              "They can alter perception, but they cannot rescue an action that asks for too much effort.",
+              "They work only after a user has invested stored value."
+            ],
+            "correctIndex": 1,
+            "explanation": "Scarcity, framing, anchoring, and progress effects can help, but ease remains central. Clever psychology cannot compensate for a burdensome action.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "hooked-ch03-card01",
+          "front": "What does B equals MAT mean?",
+          "back": "Behavior happens when motivation, ability, and a trigger converge. Remove one element and the intended action fails.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch03-card02",
+          "front": "Why is Google a key action example?",
+          "back": "Its sparse search field lowers mental effort. The user can perform the target action without scanning a crowded portal page.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch03-card03",
+          "front": "Name the six simplicity factors.",
+          "back": "Time, money, physical effort, mental effort, social acceptability, and fit with routine. They describe the practical costs that lower ability.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "hooked-ch03-card04",
+          "front": "What does LinkedIn profile progress teach?",
+          "back": "A progress meter can make an unfinished task feel like closing a gap, but it works best when the next step is specific and easy enough.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Lower The Action Cost",
+        "coreSkill": "Treat every failed behavior as a condition diagnosis. Before writing stronger copy, inspect motivation, ability, and trigger timing.",
+        "ifThenPlans": [
+          {
+            "context": "When a prompt fails",
+            "plan": "If users ignore a cue, then identify which part of motivation, ability, or timing was missing."
+          },
+          {
+            "context": "When a screen feels busy",
+            "plan": "If the target action is hidden among options, then cut mental effort until the next move is obvious."
+          },
+          {
+            "context": "When persuasion feels tempting",
+            "plan": "If the team wants urgency language, then first remove one time, money, or setup cost."
+          },
+          {
+            "context": "When onboarding drags",
+            "plan": "If users quit during setup, then turn the next task into a small gap-closing action."
+          }
+        ],
+        "twentyFourHourChallenge": "Choose one failed action and list its motivation, ability, and trigger conditions. Remove one ability cost today.",
+        "weeklyPractice": "Run a simplicity review on one flow each week, naming the specific factor improved and the behavior it should unlock."
+      },
+      "memorableLines": [
+        {
+          "text": "BJ Fogg's behavior model gives the idea its operating rule: behavior happens when motivation, ability, and a trigger converge.",
+          "location": "breakdown.fastRead",
+          "why": "It makes the model memorable without jargon."
+        },
+        {
+          "text": "Ability is more directly designable.",
+          "location": "breakdown.deepRead",
+          "why": "It names the idea's practical priority."
+        },
+        {
+          "text": "B equals MAT turns blame into design inquiry.",
+          "location": "breakdown.fullRead",
+          "why": "It reframes non-action as a solvable condition problem."
+        }
+      ]
+    },
+    {
+      "chapterId": "hooked-ch04",
+      "number": 4,
+      "title": "Variable Reward",
+      "readingTimeMinutes": 12,
+      "hook": "Pinterest keeps the next useful image just out of certainty.",
+      "counterintuition": "Randomness turns useful only when the uncertainty answers the user's original itch and preserves autonomy.",
+      "tryThisNow": "Name one reward in your product and classify it as tribe, hunt, or self, then ask whether it satisfies the trigger that brought the user in.",
+      "keyTakeaway": "Variable rewards sustain anticipation when they satisfy a real need, leave curiosity alive, and let the user feel in control instead of manipulated.",
+      "breakdown": {
+        "fastRead": "BF Skinner's reinforcement research gives the idea its behavioral spark: uncertain payoffs can keep an organism searching. In product design, the point is not to scatter random prizes. The uncertainty must matter.\n\nPinterest shows rewards of the hunt. A user scrolls because the next image, recipe, room, or idea may be the useful one. Facebook likes and comments show rewards of the tribe. The next response may bring status, belonging, or silence. Variable reward turns action into anticipation.",
+        "deepRead": "Variable rewards operate before the payoff arrives. The mind leans into uncertainty and searches for resolution. Predictable feedback can confirm an action, but variable feedback keeps attention because the next outcome is not fully known.\n\nThe reward framework divides payoffs into three families. Rewards of the tribe come from other people: likes, comments, admiration, competition, inclusion, and social learning. Facebook is powerful because a post's response is uncertain and socially meaningful.\n\nRewards of the hunt concern resources and information. Pinterest's scrolling field offers the possibility that the next item will be exactly the image or idea the user wanted. The search itself becomes charged.\n\nRewards of the self involve mastery, completion, competence, and control. Email often blends all three families: a message from a person, useful information, and the satisfaction of clearing unread items.\n\nAutonomy is the guardrail. Fitocracy and MyFitnessPal illustrate how a reward system can either support self-direction or feel controlling. If users feel coerced, reactance appears and the loop weakens. Farm-management games and World of Warcraft add another limit: finite novelty decays when the pattern is obvious, while social and strategic variability can keep uncertainty alive.",
+        "fullRead": "The idea's strictest line is relevance. A reward can be unpredictable and still fail if it does not answer the reason the user acted. Randomness without meaning is noise.\n\nBF Skinner's reinforcement research explains why uncertainty can produce persistent behavior. The organism does not simply enjoy reward after reward; it keeps acting because the schedule cannot be fully predicted. Product designers borrow that insight, but the human product context adds meaning, autonomy, and purpose.\n\nFacebook likes and comments are rewards of the tribe. A person posts, then wonders who will respond, how strongly, and what the response will imply about belonging or status. The uncertainty is social. Silence is also information. That makes checking emotionally loaded in a way a fixed confirmation message would not be.\n\nPinterest belongs to the hunt. The user scrolls through images because the next tile may contain the recipe, design, gift, or idea that completes the search. The valuable item is never guaranteed, but it is plausible enough to continue. The reward is not only the found image; it is the pursuit through a field of possible value.\n\nRewards of the self are quieter. They show up in completion, competence, mastery, and control. Email mixes the categories almost too well. A message may carry social obligation, useful work information, or the small satisfaction of reducing the unread count. Each open inbox contains uncertainty across tribe, hunt, and self.\n\nThe autonomy warning prevents crude gamification. When users feel controlled, they push back. Fitocracy and MyFitnessPal are useful contrasts because health tracking can either help people feel competent and supported or make them feel judged by a rigid chore. The same domain can produce return or resistance depending on whether the user experiences agency.\n\nVariability also needs a renewing source. Farm-style mechanics can lose force when users learn the pattern. World of Warcraft and other multiplayer systems have deeper variability because people, strategy, and social coordination keep changing. Infinite variability is not merely more content; it is a system where novelty can regenerate.\n\nThe product question is therefore precise. What reward family fits the user's trigger? Does the reward satisfy the itch enough to feel worthwhile? Does it leave curiosity open without trapping the user? Does the experience let the user choose, or does it threaten autonomy?\n\nA clean variable-reward design is not a casino pasted onto an app. It is a meaningful uncertainty after a simple action, tied to the user's motive, strong enough to invite return, and respectful enough that return remains chosen."
+      },
+      "examples": [
+        {
+          "exampleId": "hooked-ch04-ex01",
+          "title": "Feed response",
+          "tags": [
+            "Variable Reward",
+            "Facebook",
+            "tribe"
+          ],
+          "planSpec": {
+            "domain": "social feed review",
+            "audience": "community PM",
+            "stakes": "how likes and comments create social uncertainty",
+            "format": "social scene",
+            "requiredBeat": "Apply Facebook to how likes and comments create social uncertainty without flattening the source case."
+          },
+          "scenario": "After a creator posts on Facebook, she refreshes because the response is socially uncertain. Likes, comments, and silence all say something about belonging and status. The reward is not a fixed badge; it is the unpredictable reaction of other people.",
+          "whatToDo": "Design the feedback around genuine social meaning, then avoid turning every response into a generic point count.",
+          "whyItMatters": "Facebook likes and comments show rewards of the tribe. The variable part matters because people care who responds and how."
+        },
+        {
+          "exampleId": "hooked-ch04-ex02",
+          "title": "Scrolling wall",
+          "tags": [
+            "Variable Reward",
+            "Pinterest",
+            "hunt"
+          ],
+          "planSpec": {
+            "domain": "discovery feed lab",
+            "audience": "design researcher",
+            "stakes": "why the next item can pull the user forward",
+            "format": "observation",
+            "requiredBeat": "Apply Pinterest to why the next item can pull the user forward without flattening the source case."
+          },
+          "scenario": "In a discovery feed lab, Livia watches a user scroll Pinterest for apartment ideas. Each screen is uneven: a forgettable tile, then a perfect shelf, then a color palette. The next valuable image might be just below the fold, so the hunt continues.",
+          "whatToDo": "Keep the hunt tied to a real search goal. Remove filler that makes uncertainty feel like clutter instead of possibility.",
+          "whyItMatters": "Pinterest demonstrates reward of the hunt. The user keeps searching because useful information may appear next."
+        },
+        {
+          "exampleId": "hooked-ch04-ex03",
+          "title": "Fitness log tension",
+          "tags": [
+            "Variable Reward",
+            "Fitocracy",
+            "MyFitnessPal"
+          ],
+          "planSpec": {
+            "domain": "fitness product critique",
+            "audience": "health app founder",
+            "stakes": "whether the reward system supports autonomy",
+            "format": "contrast case",
+            "requiredBeat": "Apply Fitocracy to whether the reward system supports autonomy without flattening the source case."
+          },
+          "scenario": "At a fitness product critique, Jo compares Fitocracy encouragement with a MyFitnessPal logging flow that some users describe as scolding. Both track health behavior, but one can feel like competence and community while the other can provoke reactance.",
+          "whatToDo": "Audit whether the reward helps users feel capable and self-directed. If the system feels controlling, loosen the path and restore choice.",
+          "whyItMatters": "Fitocracy versus MyFitnessPal makes autonomy concrete. Rewards fail when users experience the product as coercion."
+        },
+        {
+          "exampleId": "hooked-ch04-ex04",
+          "title": "Inbox triage",
+          "tags": [
+            "Variable Reward",
+            "email",
+            "self"
+          ],
+          "planSpec": {
+            "domain": "operations desk",
+            "audience": "team lead",
+            "stakes": "how one product can combine reward families",
+            "format": "work scene",
+            "requiredBeat": "Apply email to how one product can combine reward families without flattening the source case."
+          },
+          "scenario": "At an operations desk, Kira opens email after lunch. One message is praise from a client, another contains a needed file, and clearing the unread list feels satisfying. The inbox mixes tribe, hunt, and self in a single variable reward field.",
+          "whatToDo": "Identify which reward family is doing the work in each feature. When several appear together, make sure none overwhelms the user's original need.",
+          "whyItMatters": "Email's power comes from blended uncertainty: social response, useful information, and the self-reward of completion."
+        },
+        {
+          "exampleId": "hooked-ch04-ex05",
+          "title": "Game economy",
+          "tags": [
+            "Variable Reward",
+            "farm-game loops",
+            "World of Warcraft"
+          ],
+          "planSpec": {
+            "domain": "game systems meeting",
+            "audience": "game designer",
+            "stakes": "why finite novelty fades",
+            "format": "systems review",
+            "requiredBeat": "Apply farm-game loops to why finite novelty fades without flattening the source case."
+          },
+          "scenario": "In a game systems meeting, Basil compares farm-style crops with World of Warcraft raids. A fixed collection pattern becomes predictable after repetition. Coordinating with other players, changing strategies, and social surprises keep variability alive longer.",
+          "whatToDo": "Look for the source of renewal. Add human, strategic, or generative uncertainty instead of another copy of a known reward pattern.",
+          "whyItMatters": "farm-management games and World of Warcraft separate finite novelty from deeper variability. Predictable mechanics decay once users learn the loop."
+        },
+        {
+          "exampleId": "hooked-ch04-ex06",
+          "title": "Lab note",
+          "tags": [
+            "Variable Reward",
+            "BF Skinner",
+            "research"
+          ],
+          "planSpec": {
+            "domain": "behavioral research seminar",
+            "audience": "product ethics lead",
+            "stakes": "how Skinner can be overread",
+            "format": "seminar",
+            "requiredBeat": "Apply BF Skinner to how Skinner can be overread without flattening the source case."
+          },
+          "scenario": "In a behavioral research seminar, Dana hears BF Skinner used as permission for random prizes. She redirects the group: uncertain reinforcement explains persistence, but product rewards still need relevance, user control, and a need worth serving.",
+          "whatToDo": "Use Skinner as a mechanism, not a moral blank check. Tie uncertainty to the user's trigger and check for autonomy loss.",
+          "whyItMatters": "Skinner's research explains why uncertainty pulls attention. It does not excuse meaningless randomness or coercive reward design."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "hooked-ch04-q01",
+            "prompt": "What is the main power of variable rewards?",
+            "choices": [
+              "They create anticipation because the payoff is uncertain but meaningful.",
+              "They remove the need for a trigger before action.",
+              "They make any random prize useful regardless of user need."
+            ],
+            "correctIndex": 0,
+            "explanation": "Variable reward works through anticipation and search. The uncertainty must still connect to something the user cares about.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch04-q02",
+            "prompt": "Facebook likes and comments are primarily which reward family?",
+            "choices": [
+              "Rewards of the hunt.",
+              "Rewards of stored value.",
+              "Rewards of the tribe."
+            ],
+            "correctIndex": 2,
+            "explanation": "Likes and comments come from other people. Their variable social meaning makes them tribe rewards.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch04-q03",
+            "prompt": "Why does Pinterest fit rewards of the hunt?",
+            "choices": [
+              "The user builds reputation with every saved image.",
+              "The user searches through uncertain information or inspiration, hoping the next item is useful.",
+              "The user receives a fixed completion badge after each scroll."
+            ],
+            "correctIndex": 1,
+            "explanation": "Pinterest keeps the user searching through possible value. The next useful idea may appear just below the fold.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch04-q04",
+            "prompt": "Which reward type concerns mastery, completion, competence, and control?",
+            "choices": [
+              "Rewards of the self.",
+              "Rewards of the tribe.",
+              "Rewards of the hunt."
+            ],
+            "correctIndex": 0,
+            "explanation": "Rewards of the self satisfy the desire to improve, complete, master, or feel control over a task.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch04-q05",
+            "prompt": "What warning does reactance add to reward design?",
+            "choices": [
+              "Users always prefer rigid rules when health is involved.",
+              "Users need less choice as rewards become more variable.",
+              "Users may resist when a system feels controlling or threatens autonomy."
+            ],
+            "correctIndex": 2,
+            "explanation": "Reactance is the pushback that appears when autonomy feels threatened. Variable rewards need user control to remain inviting.",
+            "bloomsLevel": "remember",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch04-q06",
+            "prompt": "How does email illustrate the idea's categories?",
+            "choices": [
+              "It works only because every message is predictable.",
+              "It combines social obligation, useful information, and completion satisfaction.",
+              "It belongs only to rewards of the hunt."
+            ],
+            "correctIndex": 1,
+            "explanation": "Email often blends tribe, hunt, and self: people, information, and the pleasure of processing unread items.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch04-q07",
+            "prompt": "What is the problem with randomness that does not answer the user's trigger?",
+            "choices": [
+              "It becomes noise instead of a meaningful reward.",
+              "It automatically creates infinite variability.",
+              "It guarantees autonomy because no pattern is visible."
+            ],
+            "correctIndex": 0,
+            "explanation": "The reward must satisfy the itch that brought the user in. Unrelated unpredictability does not create a healthy loop.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch04-q08",
+            "prompt": "Why can World of Warcraft sustain variability longer than a simple farm-game loops-like pattern?",
+            "choices": [
+              "It removes social coordination so rewards remain private.",
+              "It makes every reward schedule fully predictable.",
+              "Its multiplayer and strategic situations renew uncertainty through people and changing contexts."
+            ],
+            "correctIndex": 2,
+            "explanation": "Human coordination and strategy create deeper novelty. Fixed patterns lose force once users understand them.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch04-q09",
+            "prompt": "Which design question best captures the hard edge of this idea?",
+            "choices": [
+              "Which random prize can we attach to the action?",
+              "Does this uncertainty satisfy the original need while preserving the user's choice?",
+              "Can we make the user feel controlled enough to keep returning?"
+            ],
+            "correctIndex": 1,
+            "explanation": "Variable reward must be relevant and autonomy-preserving. The point is meaningful anticipation, not random manipulation.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "hooked-ch04-card01",
+          "front": "What are variable rewards?",
+          "back": "Uncertain payoffs after an action. They keep attention through anticipation and search, provided the uncertainty is relevant to the user's need.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch04-card02",
+          "front": "Name the three reward families.",
+          "back": "Tribe for social validation, hunt for resources or information, and self for mastery, completion, competence, or control.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch04-card03",
+          "front": "Why is autonomy a guardrail?",
+          "back": "If users feel controlled, reactance can make them resist the behavior. A reward system should support choice, not coerce return.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "hooked-ch04-card04",
+          "front": "What separates finite from deeper variability?",
+          "back": "Finite novelty fades when the pattern is learned. Human, strategic, or open-ended systems can renew uncertainty over time.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Match Reward To Itch",
+        "coreSkill": "Design uncertainty around the user's reason for acting. Classify the reward family, test whether it satisfies the trigger, and protect autonomy.",
+        "ifThenPlans": [
+          {
+            "context": "When adding a reward",
+            "plan": "If the payoff is unpredictable, then name whether it is tribe, hunt, or self before shipping it."
+          },
+          {
+            "context": "When users feel pressured",
+            "plan": "If return behavior drops after a reward change, then inspect whether the product threatened autonomy."
+          },
+          {
+            "context": "When novelty fades",
+            "plan": "If the pattern has become obvious, then look for human or strategic variability instead of more decoration."
+          },
+          {
+            "context": "When points feel generic",
+            "plan": "If a badge does not answer the user's original trigger, then replace it with a reward that does."
+          }
+        ],
+        "twentyFourHourChallenge": "Audit one reward in your product and write the user itch, reward family, uncertainty source, and autonomy risk.",
+        "weeklyPractice": "Each week, review one repeat-use feature for relevance: trigger, action, reward family, and whether curiosity remains meaningful."
+      },
+      "memorableLines": [
+        {
+          "text": "Pinterest shows rewards of the hunt.",
+          "location": "breakdown.fastRead",
+          "why": "It condenses rewards of the hunt into a product scene."
+        },
+        {
+          "text": "Randomness without meaning is noise.",
+          "location": "breakdown.fullRead",
+          "why": "It states the idea's hard edge sharply."
+        },
+        {
+          "text": "A reward can be unpredictable and still fail if it does not answer the reason the user acted.",
+          "location": "breakdown.fullRead",
+          "why": "It distinguishes variable reward from arbitrary surprise."
+        }
+      ]
+    },
+    {
+      "chapterId": "hooked-ch05",
+      "number": 5,
+      "title": "Investment",
+      "readingTimeMinutes": 12,
+      "hook": "An iTunes library makes yesterday's effort wait inside today's choice.",
+      "counterintuition": "Investment depends on timing: ask for a small contribution after reward, when the user is willing and the product can store future value.",
+      "tryThisNow": "After one rewarding user moment, identify the smallest contribution that would make the next visit easier, more personal, or more socially alive.",
+      "keyTakeaway": "Investment strengthens the next hook when user effort becomes stored value, such as content, data, followers, reputation, skill, or a future trigger.",
+      "breakdown": {
+        "fastRead": "The IKEA effect explains why investment can change value. People often value what they helped build more than an equivalent object they merely received. In product terms, the user's effort can become attachment.\n\nAn iTunes music library is not just a pile of files. It is past choosing stored inside the product. The eBay and Airbnb reputations work differently but follow the same logic: trust built through use becomes costly to rebuild elsewhere. Investment makes the next return more valuable than the first visit.",
+        "deepRead": "Investment comes after the reward, not before it. The user has already received something satisfying, so a small request for effort can feel reasonable. That effort should improve the next cycle.\n\nStored value gives the idea its practical vocabulary. Content investments include music libraries, posts, photos, documents, and playlists. Data investments personalize the next visit. Followers and social graphs increase future reach. Reputation on eBay or Airbnb changes what other people will trust. Skill investments, such as learning Adobe Photoshop, make switching costly because expertise does not transfer instantly.\n\nThe mechanism is partly psychological. The IKEA effect makes self-made things feel more valuable. Consistency pressure and cognitive dissonance push people to treat past effort as evidence of commitment. If I built this, chose this, rated this, learned this, or earned this, then staying can feel sensible.\n\nSnapchat photo exchange shows the forward-looking version. Sending a photo is a small investment that gives another person a reason to respond. That response becomes a future trigger. A good investment does not merely end the session; it loads the next loop.",
+        "fullRead": "The idea's timing rule is the piece many teams miss. Investment is not the first hurdle. If the user is asked to create an account, enter preferences, invite friends, and upload data before any reward arrives, the product has added friction instead of commitment.\n\nThe IKEA effect provides the psychological foundation. Effort can change valuation. A person who helps build something may prize it more because the work becomes part of the object's meaning. Product investment borrows that effect, but it has to be paired with actual future usefulness. The user should not merely work; the product should get better because of the work.\n\nThe iTunes example demonstrates stored content. A curated music library reflects taste, money, organization, and memory. Leaving means losing or rebuilding a personal collection. The value is not abstract loyalty. It is the stock of past choices that makes the current product easier and richer to use.\n\nThe eBay and Airbnb examples show reputation as stored value. A seller rating or host reputation affects future transactions because other people use it to judge trust. That value is attached to the platform context. A user can carry identity elsewhere, but the marketplace proof does not simply reappear in a new system.\n\nAdobe Photoshop shows skill investment. Years of shortcuts, habits, and judgment make the tool feel natural. A rival may be cheaper or cleaner, but switching asks the user to pay a relearning cost. Skill is a form of stored value inside the relationship between user and product.\n\nContent, data, followers, reputation, and skill are not the same, and that matters. A reading app may store highlights. A marketplace may store trust. A design tool may store competence. A social app may store followers or message history. The correct investment depends on what makes later use more valuable for that specific behavior.\n\nSnapchat's photo exchange adds the next-trigger idea. The user sends something, which invites a reply. The reply becomes a cue. The investment phase therefore connects the current reward to the next cycle instead of leaving the loop cold.\n\nThe hard edge is restraint. Do not demand labor simply because commitment sounds useful. Ask after reward, ask for something small, and make sure the contribution stores value the user can feel later. Otherwise investment becomes setup friction wearing strategic clothes.\n\nA useful investment question is simple: what can the user add now that makes tomorrow's product easier to enter, more personal, more trusted, more skilled, or more likely to cue a return?"
+      },
+      "examples": [
+        {
+          "exampleId": "hooked-ch05-ex01",
+          "title": "Library migration",
+          "tags": [
+            "Investment",
+            "iTunes",
+            "stored value"
+          ],
+          "planSpec": {
+            "domain": "music app migration",
+            "audience": "product strategist",
+            "stakes": "why a user resists leaving a familiar library",
+            "format": "migration case",
+            "requiredBeat": "Apply iTunes to why a user resists leaving a familiar library without flattening the source case."
+          },
+          "scenario": "During a music app migration, Elian says the competitor has cleaner audio but his iTunes library holds years of choices. Playlists, purchases, and organization make the old service feel personally built. The investment is stored content, not nostalgia alone.",
+          "whatToDo": "List the user's accumulated content before estimating switching risk. Treat stored libraries as product value created over many cycles.",
+          "whyItMatters": "iTunes shows how past effort stays inside the product. A library makes return easier and departure more costly."
+        },
+        {
+          "exampleId": "hooked-ch05-ex02",
+          "title": "Marketplace trust",
+          "tags": [
+            "Investment",
+            "eBay",
+            "Airbnb"
+          ],
+          "planSpec": {
+            "domain": "marketplace seller review",
+            "audience": "operations lead",
+            "stakes": "why reputation changes switching cost",
+            "format": "trust audit",
+            "requiredBeat": "Apply eBay to why reputation changes switching cost without flattening the source case."
+          },
+          "scenario": "In a marketplace seller review, Kira compares a trusted eBay profile with a new account elsewhere. The products may both list goods, but ratings change buyer confidence. Airbnb hosts face the same economics: reputation is value that lives where transactions happen.",
+          "whatToDo": "Treat reputation as stored value. If switching asks users to rebuild trust from zero, the product has attachment beyond features.",
+          "whyItMatters": "eBay and Airbnb demonstrate reputation investment. Trust scores affect future outcomes and do not transfer easily."
+        },
+        {
+          "exampleId": "hooked-ch05-ex03",
+          "title": "Design tool renewal",
+          "tags": [
+            "Investment",
+            "Adobe Photoshop",
+            "skill"
+          ],
+          "planSpec": {
+            "domain": "software renewal desk",
+            "audience": "creative director",
+            "stakes": "why skill can be a durable investment",
+            "format": "renewal decision",
+            "requiredBeat": "Apply Adobe Photoshop to why skill can be a durable investment without flattening the source case."
+          },
+          "scenario": "At renewal time, Noor considers replacing Adobe Photoshop with a cheaper tool. The feature list is close, but her team's years of shortcuts, file habits, and editing judgment live in Photoshop. The switching cost is skill, not just subscription inertia.",
+          "whatToDo": "Measure learned workflow as part of product value. A rival must beat the tool and the cost of rebuilding expertise.",
+          "whyItMatters": "Adobe Photoshop shows skill as stored value. Expertise makes the familiar product faster and harder to abandon."
+        },
+        {
+          "exampleId": "hooked-ch05-ex04",
+          "title": "Photo reply loop",
+          "tags": [
+            "Investment",
+            "Snapchat",
+            "next trigger"
+          ],
+          "planSpec": {
+            "domain": "messaging feature review",
+            "audience": "consumer app PM",
+            "stakes": "how a sent photo plants a later cue",
+            "format": "loop analysis",
+            "requiredBeat": "Apply Snapchat to how a sent photo plants a later cue without flattening the source case."
+          },
+          "scenario": "During a messaging feature review, Noah diagrams a Snapchat photo exchange. The user sends a picture after a rewarding moment, and the recipient's reply becomes tomorrow's cue. The investment is social because the action loads the next trigger.",
+          "whatToDo": "Ask what user contribution can create a future prompt from another person or from the product's improved state.",
+          "whyItMatters": "Snapchat makes investment forward-looking. The best small effort prepares another hook instead of merely recording the current session."
+        },
+        {
+          "exampleId": "hooked-ch05-ex05",
+          "title": "Furniture lab",
+          "tags": [
+            "Investment",
+            "IKEA",
+            "research"
+          ],
+          "planSpec": {
+            "domain": "consumer psychology seminar",
+            "audience": "behavioral researcher",
+            "stakes": "why effort changes perceived value",
+            "format": "research translation",
+            "requiredBeat": "Apply IKEA to why effort changes perceived value without flattening the source case."
+          },
+          "scenario": "In a consumer psychology seminar, Cora uses the IKEA effect craft research to explain why a simple assembled object can feel special. The labor is part of the valuation. Product investment works only if that labor also improves later use.",
+          "whatToDo": "Use effort carefully. Ask for user work only when it can become ownership, personalization, trust, skill, or another future benefit.",
+          "whyItMatters": "The IKEA effect explains attachment through effort, but the product still needs stored value instead of busywork."
+        },
+        {
+          "exampleId": "hooked-ch05-ex06",
+          "title": "Preference setup",
+          "tags": [
+            "Investment",
+            "data",
+            "stored value"
+          ],
+          "planSpec": {
+            "domain": "personalization setup test",
+            "audience": "data product lead",
+            "stakes": "why asking for preferences too early fails",
+            "format": "usability test",
+            "requiredBeat": "Apply data to why asking for preferences too early fails without flattening the source case."
+          },
+          "scenario": "In a personalization setup test, Lin asks users for ten preferences before any reward. Completion collapses. The investment idea says the timing is wrong: data can store value, but the user is more willing after seeing the product help.",
+          "whatToDo": "Move preference capture after a satisfying result and ask for the smallest data point that improves the next visit.",
+          "whyItMatters": "Data can be stored value, but only when the user sees why giving it will make future use easier or more personal."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "hooked-ch05-q01",
+            "prompt": "When should investment usually happen in the hook cycle?",
+            "choices": [
+              "Before the first useful experience so commitment starts immediately.",
+              "After the user has received a reward and is more willing to contribute.",
+              "Only after the user has already left the product."
+            ],
+            "correctIndex": 1,
+            "explanation": "Investment follows reward. Asking too early turns useful contribution into front-loaded friction.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch05-q02",
+            "prompt": "What is stored value?",
+            "choices": [
+              "User effort that remains in the product and improves later experiences.",
+              "A random payoff that keeps the user searching.",
+              "A paid trigger that stores marketing attention."
+            ],
+            "correctIndex": 0,
+            "explanation": "Stored value is the durable result of user investment: content, data, followers, reputation, skill, or future triggers.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch05-q03",
+            "prompt": "How does an iTunes library create attachment?",
+            "choices": [
+              "It uses social reputation to make every song public.",
+              "It relies mainly on unpredictable rewards from other listeners.",
+              "It stores past choices, purchases, and organization that would be costly to rebuild."
+            ],
+            "correctIndex": 2,
+            "explanation": "The iTunes example is stored content. The user's collection reflects effort and becomes part of the product's value.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch05-q04",
+            "prompt": "Why do eBay and Airbnb reputations matter?",
+            "choices": [
+              "They are decorative badges with no effect on future transactions.",
+              "They create platform-specific trust that is difficult to transfer elsewhere.",
+              "They replace the need for user trust."
+            ],
+            "correctIndex": 1,
+            "explanation": "Marketplace reputation affects whether other people will transact. That trust is valuable and sticky inside the platform.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch05-q05",
+            "prompt": "Adobe Photoshop illustrates which investment type?",
+            "choices": [
+              "Skill investment, because learned expertise makes switching costly.",
+              "Paid-trigger investment, because users buy ads to return.",
+              "Tribe reward, because every shortcut is social validation."
+            ],
+            "correctIndex": 0,
+            "explanation": "Photoshop's durability often comes from learned skill. Users have invested in fluency that competitors must overcome.",
+            "bloomsLevel": "remember",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch05-q06",
+            "prompt": "What does Snapchat photo exchange show about investment?",
+            "choices": [
+              "Photos should be requested before any reward so the user feels committed.",
+              "Investment works only when content disappears quickly.",
+              "A sent photo can create a future reply, which becomes the next trigger."
+            ],
+            "correctIndex": 2,
+            "explanation": "Snapchat shows investment loading the next loop. A user's contribution gives someone else a reason to respond.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch05-q07",
+            "prompt": "What is the IKEA effect's role in this idea?",
+            "choices": [
+              "It proves all user labor is good for retention.",
+              "It shows that effort can increase perceived ownership and value.",
+              "It explains why variable rewards must be random."
+            ],
+            "correctIndex": 1,
+            "explanation": "The IKEA effect supports the psychology of investment: people often value what they helped build.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch05-q08",
+            "prompt": "Which request would violate the idea's hard edge?",
+            "choices": [
+              "Ask for ten preferences before the product has delivered any reward.",
+              "Ask a satisfied user to save one useful preference for next time.",
+              "Invite a user to bookmark a result after it helped them."
+            ],
+            "correctIndex": 0,
+            "explanation": "Demanding work before reward creates friction. Investment should follow satisfaction and store value.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch05-q09",
+            "prompt": "Which list best matches stored-value categories?",
+            "choices": [
+              "Paid, earned, relationship, and owned triggers.",
+              "Tribe, hunt, self, and reactance.",
+              "Content, data, followers, reputation, and skill."
+            ],
+            "correctIndex": 2,
+            "explanation": "The idea identifies several forms of stored value. Each can make future use better and switching more costly.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "hooked-ch05-card01",
+          "front": "How is investment different from action?",
+          "back": "Action is the small behavior before reward. Investment is the small contribution after reward that stores value for future use.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch05-card02",
+          "front": "What does stored value include?",
+          "back": "Content, data, followers, reputation, and skill. These user contributions make the product more personal, useful, trusted, or costly to leave.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch05-card03",
+          "front": "Why does Photoshop fit the investment idea?",
+          "back": "Photoshop stores skill. Years of learned shortcuts and workflow make switching to a rival tool costly even when features overlap.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "hooked-ch05-card04",
+          "front": "What is the timing rule for investment?",
+          "back": "Ask after a reward, keep the effort small, and make the contribution improve the next cycle. Early demands feel like setup friction.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Store The Next Return",
+        "coreSkill": "Ask for user effort only when it can become future value. The investment should personalize, preserve, connect, build trust, build skill, or prepare the next trigger.",
+        "ifThenPlans": [
+          {
+            "context": "When onboarding asks too much",
+            "plan": "If setup appears before reward, then defer the request until the user has received value."
+          },
+          {
+            "context": "When switching seems easy",
+            "plan": "If a competitor looks similar, then inventory stored content, reputation, data, and skill."
+          },
+          {
+            "context": "When a feature collects data",
+            "plan": "If you ask for a preference, then show how it improves the next visit."
+          },
+          {
+            "context": "When a social action occurs",
+            "plan": "If the user sends or shares something, then check whether it naturally creates a future trigger."
+          }
+        ],
+        "twentyFourHourChallenge": "Choose one rewarding moment and design one small follow-up contribution that stores future value without adding early friction.",
+        "weeklyPractice": "Each week, classify one user contribution as content, data, reputation, followers, skill, or next-trigger loading."
+      },
+      "memorableLines": [
+        {
+          "text": "An iTunes music library is not just a pile of files.",
+          "location": "breakdown.fastRead",
+          "why": "It makes stored content vivid."
+        },
+        {
+          "text": "Investment comes after the reward, not before it.",
+          "location": "breakdown.deepRead",
+          "why": "It states the timing rule directly."
+        },
+        {
+          "text": "Investment is not the first hurdle.",
+          "location": "breakdown.fullRead",
+          "why": "It guards against the most common product mistake."
+        }
+      ]
+    },
+    {
+      "chapterId": "hooked-ch06",
+      "number": 6,
+      "title": "What Are You Going To Do With This?",
+      "readingTimeMinutes": 11,
+      "hook": "The Manipulation Matrix asks whether you would live with your own hook.",
+      "counterintuition": "Ethics starts from ownership of influence: the maker must understand the behavior and defend the user's benefit.",
+      "tryThisNow": "Place your product in the Manipulation Matrix by answering two questions honestly: would you use it, and does it materially improve users' lives?",
+      "keyTakeaway": "The morality of habit design depends on the maker's relationship to the product and the product's real effect on users, not on engagement alone.",
+      "breakdown": {
+        "fastRead": "The Manipulation Matrix stops habit mechanics from looking like morally neutral craft. It asks two questions: would the maker use the product, and does the product materially improve users' lives?\n\nA yes to both creates the Facilitator. A Peddler believes in the benefit but does not use the product. An Entertainer uses the product without claiming deep improvement. A Dealer neither uses it nor believes it helps. The same hook mechanics look different in each quadrant.",
+        "deepRead": "Habit-forming design is manipulation in the plain sense: it deliberately shapes behavior. The idea refuses to hide that fact. The ethical task is to decide what kind of influence the builder is applying.\n\nThe Facilitator quadrant is strongest because the maker's own need overlaps with the user's need. Direct use creates empathy, and belief in real benefit gives the work a defensible aim.\n\nThe Peddler quadrant is more fragile. A builder may believe a product helps others while never using it personally. Good intentions remain possible, but the distance from the user's lived problem increases the risk of hubris.\n\nThe Entertainer quadrant is not automatically bad. Entertainment can be worthy, and a maker may enjoy the product. The danger is pretending amusement is material life improvement or relying on novelty that constantly has to be refreshed.\n\nThe Dealer quadrant carries the harshest warning. If the maker would not use the product and does not believe it improves life, the tools become extraction. Engagement metrics cannot rescue that posture.",
+        "fullRead": "The idea's title is a direct challenge because the Hook Model has now become powerful enough to require judgment. A team that can trigger, simplify, reward, and invite investment can help users build constructive routines or can exploit predictable vulnerabilities.\n\nThe Manipulation Matrix gives the ethical screen. It does not begin with a press release, a mission statement, or a retention graph. It asks whether the maker would use the product and whether the product materially improves users' lives. Those answers create four roles.\n\nThe Facilitator uses the product and believes it helps. This is the strongest posture because empathy and benefit point in the same direction. The maker has felt the problem, wants the solution, and can recognize when the design begins to serve or betray the user.\n\nThe Peddler believes the product improves life but does not use it personally. That is not automatically corrupt, but it is dangerous. The builder can start imagining another group's needs from a distance. Without first-hand use, research and humility have to work harder.\n\nThe Entertainer uses the product but does not claim material improvement. Games, media, and light social products may sit here honestly. The ethical danger is category inflation: calling entertainment medicine, productivity, or deep flourishing because those labels make engagement look nobler. Another business risk is novelty. Entertainment often needs renewal because delight fades.\n\nThe Dealer neither uses the product nor believes it helps. This is where habit design becomes closest to extraction. The team understands the behavior well enough to shape it but not well enough, or not honestly enough, to defend the user's welfare.\n\nThe hard edge is that labels do not settle the matter. A team can call itself a Facilitator and still create harm. A product can intend benefit and still produce unhealthy behavior. The matrix should start ongoing scrutiny, not end it.\n\nThe practical audit is personal and uncomfortable. Would you recommend the product to someone you love? Are you proud of the behavior you are making easier? Do the metrics celebrate a user outcome or only a company outcome? Are you using the same product under the same conditions as the people you influence?\n\nThe framework does not ask builders to stop influencing behavior. It asks them to own the influence. Habit design is strongest when creator empathy, real user benefit, and behavioral mechanics line up. Without that alignment, a hook may still work, but the maker should be honest about what kind of work it is doing."
+      },
+      "examples": [
+        {
+          "exampleId": "hooked-ch06-ex01",
+          "title": "Founder self-audit",
+          "tags": [
+            "Manipulation Matrix",
+            "Facilitator",
+            "ethics"
+          ],
+          "planSpec": {
+            "domain": "founder offsite",
+            "audience": "startup founder",
+            "stakes": "whether the team belongs in the Facilitator quadrant",
+            "format": "self-audit",
+            "requiredBeat": "Apply Facilitator to whether the team belongs in the Facilitator quadrant without flattening the source case."
+          },
+          "scenario": "At a founder offsite, Anika places her own wellness product in the Manipulation Matrix. She uses it daily and believes it improves a problem she has personally felt. That does not end the ethics, but it gives the Facilitator quadrant a real footing.",
+          "whatToDo": "Write the two matrix answers in plain language, then add the harm you will monitor even if both answers are yes.",
+          "whyItMatters": "The Facilitator quadrant is strongest when personal use and user benefit overlap, but it still requires ongoing scrutiny."
+        },
+        {
+          "exampleId": "hooked-ch06-ex02",
+          "title": "Distant good intentions",
+          "tags": [
+            "Manipulation Matrix",
+            "Peddler",
+            "users"
+          ],
+          "planSpec": {
+            "domain": "edtech roadmap",
+            "audience": "product lead",
+            "stakes": "why belief in benefit is not enough",
+            "format": "roadmap review",
+            "requiredBeat": "Apply Peddler to why belief in benefit is not enough without flattening the source case."
+          },
+          "scenario": "In an edtech roadmap review, the team insists their app helps students, but no one uses it or studies with it. The Manipulation Matrix names the Peddler risk: they may be right about benefit, yet far from the student's lived friction.",
+          "whatToDo": "Pair the benefit claim with direct user immersion. If you do not use the product, increase humility through observation and evidence.",
+          "whyItMatters": "The Peddler quadrant warns that good intentions can drift when builders do not personally feel the user's problem."
+        },
+        {
+          "exampleId": "hooked-ch06-ex03",
+          "title": "Entertainment honesty",
+          "tags": [
+            "Manipulation Matrix",
+            "Entertainer",
+            "novelty"
+          ],
+          "planSpec": {
+            "domain": "game publishing meeting",
+            "audience": "game producer",
+            "stakes": "whether fun is being mislabeled as life improvement",
+            "format": "category check",
+            "requiredBeat": "Apply Entertainer to whether fun is being mislabeled as life improvement without flattening the source case."
+          },
+          "scenario": "At a game publishing meeting, Brennan enjoys the product and knows players do too. The Manipulation Matrix places it near Entertainer, not Facilitator. The honest claim is fun, challenge, and social play, not a grand promise of material life improvement.",
+          "whatToDo": "Keep the value claim honest. Design for enjoyment without dressing novelty as medicine or moral rescue.",
+          "whyItMatters": "The Entertainer quadrant legitimizes pleasure while warning against inflated claims and the constant need for fresh novelty."
+        },
+        {
+          "exampleId": "hooked-ch06-ex04",
+          "title": "Extraction dashboard",
+          "tags": [
+            "Manipulation Matrix",
+            "Dealer",
+            "engagement"
+          ],
+          "planSpec": {
+            "domain": "adtech metrics review",
+            "audience": "ethics reviewer",
+            "stakes": "when engagement hides lack of user benefit",
+            "format": "metrics challenge",
+            "requiredBeat": "Apply Dealer to when engagement hides lack of user benefit without flattening the source case."
+          },
+          "scenario": "In an adtech metrics review, Farah asks whether anyone would use the product themselves or believes it improves users' lives. The room talks only about session length. The Manipulation Matrix gives the uncomfortable name: Dealer risk.",
+          "whatToDo": "Do not let engagement answer ethical questions. Require a user-benefit claim that the team can defend outside the dashboard.",
+          "whyItMatters": "The Dealer quadrant shows how hook mechanics become extraction when neither maker use nor user benefit is present."
+        },
+        {
+          "exampleId": "hooked-ch06-ex05",
+          "title": "Family recommendation test",
+          "tags": [
+            "Manipulation Matrix",
+            "Facilitator",
+            "Dealer"
+          ],
+          "planSpec": {
+            "domain": "trust council",
+            "audience": "product counsel",
+            "stakes": "whether a team is proud of the behavior it shapes",
+            "format": "question-led",
+            "requiredBeat": "Apply Facilitator to whether a team is proud of the behavior it shapes without flattening the source case."
+          },
+          "scenario": "At a trust council, Amira asks whether the team would recommend the product to a younger sibling. The question cuts through quadrant theater. A product called beneficial can still encourage behavior the builders would not want near their own family.",
+          "whatToDo": "Use the family recommendation as a pressure test, then return to the matrix answers and the behavior being encouraged.",
+          "whyItMatters": "The Manipulation Matrix is not public relations. It asks for honesty about pride, use, benefit, and possible harm."
+        },
+        {
+          "exampleId": "hooked-ch06-ex06",
+          "title": "Mission statement gap",
+          "tags": [
+            "Manipulation Matrix",
+            "Peddler",
+            "Facilitator"
+          ],
+          "planSpec": {
+            "domain": "nonprofit app review",
+            "audience": "program director",
+            "stakes": "why mission language cannot settle the quadrant",
+            "format": "mission review",
+            "requiredBeat": "Apply Peddler to why mission language cannot settle the quadrant without flattening the source case."
+          },
+          "scenario": "In a nonprofit app review, the mission statement sounds noble, but field users ignore the feature and staff do not use it either. The team wants Facilitator status; the Manipulation Matrix says the evidence looks closer to Peddler distance.",
+          "whatToDo": "Test the quadrant with behavior, not mission language. Ask who uses it, who benefits, and what evidence shows improvement.",
+          "whyItMatters": "The matrix keeps ethics grounded in actual use and material benefit instead of a flattering label."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "hooked-ch06-q01",
+            "prompt": "What two questions define the Manipulation Matrix?",
+            "choices": [
+              "How many users return daily, and how much revenue does each user produce?",
+              "Is the product entertaining, and can it generate press attention?",
+              "Would the maker use the product, and does it materially improve users' lives?"
+            ],
+            "correctIndex": 2,
+            "explanation": "The matrix asks about maker use and user benefit. Engagement metrics alone cannot answer the ethical question.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch06-q02",
+            "prompt": "Who is a Facilitator in the matrix?",
+            "choices": [
+              "A maker who never uses the product but thinks others should.",
+              "A maker who uses the product and believes it improves users' lives.",
+              "A maker who enjoys the product but makes no benefit claim."
+            ],
+            "correctIndex": 1,
+            "explanation": "Facilitators have personal use and belief in benefit. The overlap gives empathy and a defensible aim.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch06-q03",
+            "prompt": "What is the Peddler risk?",
+            "choices": [
+              "The builder believes in the benefit but lacks first-hand use, creating distance from the user's reality.",
+              "The builder uses the product but refuses to add novelty.",
+              "The builder neither uses the product nor believes it helps."
+            ],
+            "correctIndex": 0,
+            "explanation": "Peddlers may have good intentions, but not using the product can produce hubris and weak understanding.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch06-q04",
+            "prompt": "Which claim best describes the Entertainer quadrant?",
+            "choices": [
+              "It is always unethical because fun has no value.",
+              "It is the same as the Facilitator quadrant.",
+              "It uses the product but does not claim material life improvement."
+            ],
+            "correctIndex": 2,
+            "explanation": "Entertainers can create legitimate enjoyment, but they should not pretend fun is deep material improvement.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch06-q05",
+            "prompt": "Why is the Dealer quadrant ethically dangerous?",
+            "choices": [
+              "The maker uses the product too often and enjoys it.",
+              "The maker neither uses the product nor believes it improves users' lives.",
+              "The maker believes in the product but asks too many research questions."
+            ],
+            "correctIndex": 1,
+            "explanation": "Dealer posture places habit mechanics closest to extraction because empathy and user benefit are both missing.",
+            "bloomsLevel": "remember",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch06-q06",
+            "prompt": "What is the idea's view of manipulation?",
+            "choices": [
+              "Behavior design deliberately influences users, so the ethical issue is whether that influence is defensible.",
+              "Manipulation disappears when retention is high enough to make users return every week.",
+              "Only paid advertising counts as manipulation because product design is neutral."
+            ],
+            "correctIndex": 0,
+            "explanation": "The idea uses manipulation broadly. The question is not whether influence exists, but whether it serves users responsibly.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch06-q07",
+            "prompt": "A team calls itself beneficial but would not recommend the product to family. What should happen?",
+            "choices": [
+              "Ignore the discomfort because the label already settled the ethics.",
+              "Move the product automatically into Facilitator status.",
+              "Treat that discomfort as evidence for a deeper matrix audit."
+            ],
+            "correctIndex": 2,
+            "explanation": "The matrix asks for honesty. Pride in the encouraged behavior matters more than a flattering label.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch06-q08",
+            "prompt": "What does the matrix do with engagement metrics?",
+            "choices": [
+              "It makes them the only test of user benefit.",
+              "It treats them as useful business data but insufficient for ethics.",
+              "It rejects all products with repeat use."
+            ],
+            "correctIndex": 1,
+            "explanation": "Retention can show behavior change, not whether that change helps users. The matrix asks a different set of questions.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch06-q09",
+            "prompt": "Which builder posture is most durable according to the idea?",
+            "choices": [
+              "Building for a problem the maker understands personally and can defend as beneficial.",
+              "Building for users the maker never studies because distance increases objectivity.",
+              "Building products the maker dislikes as long as novelty is high."
+            ],
+            "correctIndex": 0,
+            "explanation": "The strongest posture joins maker empathy with real user benefit. That combination supports both ethics and product judgment.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "hooked-ch06-card01",
+          "front": "What are the Manipulation Matrix questions?",
+          "back": "Would the maker use the product, and does it materially improve users' lives? The answers sort the builder into four ethical postures.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch06-card02",
+          "front": "What defines a Facilitator?",
+          "back": "A Facilitator uses the product and believes it improves users' lives. The maker's own need overlaps with the user's need.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch06-card03",
+          "front": "Why is the Peddler quadrant risky?",
+          "back": "The maker may believe in the benefit but lacks first-hand use. That distance can produce hubris and weak understanding of user pain.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "hooked-ch06-card04",
+          "front": "What makes Dealer the warning quadrant?",
+          "back": "The maker neither uses the product nor believes it helps users. Habit mechanics then become extraction tools instead of service tools.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Audit Your Influence",
+        "coreSkill": "Use the Manipulation Matrix before optimizing behavior. Answer maker use and user benefit honestly, then identify the harm signals you will watch.",
+        "ifThenPlans": [
+          {
+            "context": "When a metric looks exciting",
+            "plan": "If engagement rises, then ask whether the encouraged behavior improves users' lives."
+          },
+          {
+            "context": "When the team lacks first-hand use",
+            "plan": "If no builder uses the product, then add direct user immersion before making benefit claims."
+          },
+          {
+            "context": "When entertainment is the real value",
+            "plan": "If the product is mainly fun, then describe it honestly instead of inflating the claim."
+          },
+          {
+            "context": "When ethics feels settled",
+            "plan": "If the quadrant label sounds flattering, then test it with family recommendation and harm monitoring."
+          }
+        ],
+        "twentyFourHourChallenge": "Place your product in the matrix and write one sentence you would be willing to defend to a user you care about.",
+        "weeklyPractice": "Revisit the matrix each week with one behavior metric and one user-benefit metric side by side."
+      },
+      "memorableLines": [
+        {
+          "text": "The Manipulation Matrix stops habit mechanics from looking like morally neutral craft.",
+          "location": "breakdown.fastRead",
+          "why": "It personalizes the ethical audit."
+        },
+        {
+          "text": "Engagement metrics cannot rescue that posture.",
+          "location": "breakdown.deepRead",
+          "why": "It names the limit of dashboards."
+        },
+        {
+          "text": "The framework does not ask builders to stop influencing behavior.",
+          "location": "breakdown.fullRead",
+          "why": "It clarifies that responsibility, not abstention, is the demand."
+        }
+      ]
+    },
+    {
+      "chapterId": "hooked-ch07",
+      "number": 7,
+      "title": "Case Study: The Bible App",
+      "readingTimeMinutes": 12,
+      "hook": "YouVersion turns a chosen spiritual practice into a repeatable loop.",
+      "counterintuition": "Mission raises the standard for habit design: YouVersion works because the mechanics support a user-endorsed practice with agency and genuine benefit.",
+      "tryThisNow": "Choose one meaningful behavior your users already want, then map its trigger, smallest action, reward, and investment without adding pressure.",
+      "keyTakeaway": "YouVersion shows the full Hook Model serving a value-driven routine when prompts, easy reading, meaningful rewards, and personal investment all support the user's own goal.",
+      "breakdown": {
+        "fastRead": "Bobby Gruenewald and YouVersion make the full-loop case concrete. The target behavior is not idle scrolling; it is helping users read and reflect on scripture more consistently.\n\nThe daily verse notification cues the behavior. Reading plans and bite-size passages reduce the action. A relevant verse, sense of progress, or shared reflection can reward the user. Highlights, notes, and bookmarks become investment. The loop is familiar, but the aim is a practice users already value.",
+        "deepRead": "The ethical hook case study matters because the mechanics do not change simply because the mission is religious. YouVersion still uses triggers, action, reward, and investment. The difference is alignment: the product supports a behavior the founder values and users choose.\n\nDaily verse notifications and reminders act as external triggers. They reduce the need to decide where to begin. The action is simplified by mobile access, themed plans, and short readings. A long and formal text becomes approachable in a small unit.\n\nThe rewards are not generic prizes. A verse may feel timely. A completed reading may give a sense of progress. Sharing a passage may create a response from another person. Those rewards can include relevance, inspiration, completion, and social connection.\n\nInvestment appears through highlights, notes, bookmarks, chosen plans, and a personal reading history. Those stored choices make returning easier and more meaningful. The case points back to the Facilitator quadrant: Bobby Gruenewald's own commitment to the behavior gives the design a stronger ethical footing, but it still needs restraint.",
+        "fullRead": "YouVersion is useful because it removes abstraction. The Hook Model can otherwise sound like a universal engagement machine. The Bible App case shows the same machine pointed at a practice many users already want to sustain.\n\nBobby Gruenewald's role matters. The product is tied to a commitment he personally understands. That does not make every design choice automatically right, but it places the team closer to the Facilitator posture: maker use and user benefit overlap.\n\nThe trigger layer is straightforward. A daily verse notification, reminder, or message gives the user a cue. The cue is more defensible when it arrives as help for an endorsed routine instead of as a demand for idle attention. It should lower activation energy: begin here, with this passage, at this moment.\n\nThe action layer solves a real barrier. Bible reading can feel large, formal, and difficult to begin. Reading plans, themed sequences, mobile access, and bite-size passages turn an intimidating practice into a small next act. The user does not have to decide where in the canon to start each day.\n\nThe reward layer is meaningful instead of flashy. A verse can feel relevant to the user's day. A plan check mark can signal progress. A shared passage can prompt encouragement or conversation. The variability comes from relevance, reflection, completion, and social response, not from arbitrary prizes.\n\nThe investment layer deepens return. Highlights preserve passages that mattered. Notes capture interpretation. Bookmarks mark re-entry points. Selected reading plans create a path. Personal history makes the app more useful than a fresh copy of the same text because the user's spiritual attention has been stored there.\n\nSocial features can load future triggers. A shared verse or message invites a reply. A friend's response can send the user back into the app. The loop continues because the behavior connects to people and meaning, not just interface prompts.\n\nThe hard edge is crucial. A noble category does not excuse manipulation. A mission product can still over-prompt, shame users, or optimize guilt. YouVersion works as an ethical example only when the mechanics support a practice users want and preserve their agency.\n\nThe general design lesson is portable: begin with a value users endorse, cue it respectfully, make the first action small, reward it with something connected to the value, and ask for investments that make the next return more meaningful."
+      },
+      "examples": [
+        {
+          "exampleId": "hooked-ch07-ex01",
+          "title": "Founder commitment",
+          "tags": [
+            "Bible App",
+            "Bobby Gruenewald",
+            "YouVersion"
+          ],
+          "planSpec": {
+            "domain": "church technology office",
+            "audience": "mission product lead",
+            "stakes": "why founder relationship affects the ethical reading",
+            "format": "founder case",
+            "requiredBeat": "Apply Bobby Gruenewald to why founder relationship affects the ethical reading without flattening the source case."
+          },
+          "scenario": "In a church technology office, a product lead studies Bobby Gruenewald and YouVersion. The case is not detached optimization; the founder shares the religious practice the product supports. That personal relationship helps place the app near Facilitator instead of Dealer.",
+          "whatToDo": "Ask whether the maker understands and would choose the behavior being shaped. Founder empathy does not remove scrutiny, but it matters.",
+          "whyItMatters": "Bobby Gruenewald's relationship to YouVersion grounds the case ethically. The hook supports a practice he can personally defend."
+        },
+        {
+          "exampleId": "hooked-ch07-ex02",
+          "title": "Morning cue",
+          "tags": [
+            "Bible App",
+            "daily verse",
+            "notification"
+          ],
+          "planSpec": {
+            "domain": "morning routine",
+            "audience": "mobile designer",
+            "stakes": "how a notification can lower starting friction",
+            "format": "routine scene",
+            "requiredBeat": "Apply daily verse to how a notification can lower starting friction without flattening the source case."
+          },
+          "scenario": "At 6:30 a.m., Noreen sees a daily verse notification from YouVersion before opening email. The cue does not ask her to decide where to begin; it offers a short starting point for a practice she already wants in her morning.",
+          "whatToDo": "Keep the cue specific and modest. A daily verse should open a small chosen practice, not create pressure for screen time.",
+          "whyItMatters": "The daily verse notification works as an external trigger because it arrives with a clear and meaningful next action."
+        },
+        {
+          "exampleId": "hooked-ch07-ex03",
+          "title": "Plan selection",
+          "tags": [
+            "Bible App",
+            "reading plans",
+            "bite-size"
+          ],
+          "planSpec": {
+            "domain": "reading-plan redesign",
+            "audience": "content strategist",
+            "stakes": "how plans simplify a large text",
+            "format": "content design",
+            "requiredBeat": "Apply reading plans to how plans simplify a large text without flattening the source case."
+          },
+          "scenario": "In a reading-plan redesign, Soren turns a broad goal into bite-size passages. YouVersion's lesson is that a large sacred text can overwhelm users at the moment of action. A themed plan gives them a small path instead of a blank table of contents.",
+          "whatToDo": "Design the first reading action as a manageable unit. Let plans reduce decision effort while preserving the user's reason for reading.",
+          "whyItMatters": "Reading plans and bite-size passages make a high-meaning behavior repeatable by shrinking the next action."
+        },
+        {
+          "exampleId": "hooked-ch07-ex04",
+          "title": "Highlight history",
+          "tags": [
+            "Bible App",
+            "highlights",
+            "bookmarks"
+          ],
+          "planSpec": {
+            "domain": "personalization review",
+            "audience": "app PM",
+            "stakes": "how annotations become investment",
+            "format": "feature audit",
+            "requiredBeat": "Apply highlights to how annotations become investment without flattening the source case."
+          },
+          "scenario": "During a personalization review, Keira sees that users return to old highlights, notes, and bookmarks in YouVersion. Those markings are not decoration. They store the user's reflection, making the app feel like a personal spiritual history.",
+          "whatToDo": "Treat annotations as stored meaning. Make them easy to revisit, not merely easy to create.",
+          "whyItMatters": "Highlights, notes, and bookmarks are investment because they make future reading more personal and easier to re-enter."
+        },
+        {
+          "exampleId": "hooked-ch07-ex05",
+          "title": "Shared passage reply",
+          "tags": [
+            "Bible App",
+            "YouVersion",
+            "social"
+          ],
+          "planSpec": {
+            "domain": "small group chat",
+            "audience": "community moderator",
+            "stakes": "how social sharing can load another trigger",
+            "format": "group scene",
+            "requiredBeat": "Apply YouVersion to how social sharing can load another trigger without flattening the source case."
+          },
+          "scenario": "In a small group chat, Dani shares a YouVersion passage and receives a thoughtful reply after dinner. The response becomes a relationship trigger to reopen the app. The reward is not vanity; it is connection around a passage that mattered.",
+          "whatToDo": "Use sharing to support reflection and relationships. Avoid turning spiritual exchange into raw popularity feedback.",
+          "whyItMatters": "The Bible App case shows social triggers can support meaning when they serve the user's chosen practice."
+        },
+        {
+          "exampleId": "hooked-ch07-ex06",
+          "title": "Prompt restraint",
+          "tags": [
+            "Bible App",
+            "Facilitator",
+            "YouVersion"
+          ],
+          "planSpec": {
+            "domain": "trust review",
+            "audience": "product ethicist",
+            "stakes": "why mission products still need limits",
+            "format": "ethics review",
+            "requiredBeat": "Apply Facilitator to why mission products still need limits without flattening the source case."
+          },
+          "scenario": "At a trust review, Iris praises YouVersion's mission but flags a proposal for guilt-heavy reminders. The app may fit the Facilitator quadrant, yet the hook still needs agency. A noble behavior can be damaged by coercive prompting.",
+          "whatToDo": "Review each prompt for consent, tone, and user benefit. Mission language should raise the ethical bar, not lower it.",
+          "whyItMatters": "The case's hard edge is restraint. A meaningful practice does not give designers permission to pressure users."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "hooked-ch07-q01",
+            "prompt": "Why is YouVersion a useful case study for Hooked?",
+            "choices": [
+              "It shows the full trigger-action-reward-investment loop serving a value-driven routine.",
+              "It proves mission products do not need ethical scrutiny.",
+              "It replaces the Hook Model with a religious content strategy."
+            ],
+            "correctIndex": 0,
+            "explanation": "YouVersion makes the complete loop concrete while keeping the target behavior tied to a user-valued practice.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch07-q02",
+            "prompt": "What role does the daily verse notification play?",
+            "choices": [
+              "It is an investment that stores reputation.",
+              "It is an external trigger with a simple next action.",
+              "It is a reward of the hunt unrelated to scripture."
+            ],
+            "correctIndex": 1,
+            "explanation": "The daily verse notification cues the user and lowers the decision of where to begin.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch07-q03",
+            "prompt": "How do reading plans and bite-size passages support action?",
+            "choices": [
+              "They make the reward random enough to replace meaning.",
+              "They ask users for investment before any value appears.",
+              "They reduce the effort of approaching a large and formal text."
+            ],
+            "correctIndex": 2,
+            "explanation": "Plans and short readings simplify the first act. They turn a large practice into an approachable next step.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch07-q04",
+            "prompt": "What kind of investment do highlights, notes, and bookmarks create?",
+            "choices": [
+              "Paid attention that funds acquisition.",
+              "Stored personal meaning that makes later return easier.",
+              "A public reputation score for marketplace trust."
+            ],
+            "correctIndex": 1,
+            "explanation": "Annotations store the user's reflection and re-entry points. The app becomes more personal with use.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch07-q05",
+            "prompt": "Why does Bobby Gruenewald matter to the ethical reading?",
+            "choices": [
+              "His role means every prompt is automatically ethical.",
+              "His presence removes the need to consider user agency.",
+              "His personal commitment places the product closer to the Facilitator posture."
+            ],
+            "correctIndex": 2,
+            "explanation": "Founder alignment strengthens the ethical footing, but it does not give the design a free pass.",
+            "bloomsLevel": "remember",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch07-q06",
+            "prompt": "Which reward is most consistent with the YouVersion case?",
+            "choices": [
+              "A relevant verse, progress in a reading plan, or meaningful social response.",
+              "A random prize unrelated to scripture.",
+              "A forced streak that shames the user into returning."
+            ],
+            "correctIndex": 0,
+            "explanation": "The rewards should connect to reflection, relevance, completion, or connection. Arbitrary prizes would miss the point.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch07-q07",
+            "prompt": "What is the hard edge of the Bible App case?",
+            "choices": [
+              "Mission products should maximize prompts because the goal is good.",
+              "Religious content cannot be habit-forming.",
+              "A noble mission still needs user agency, genuine benefit, and restraint."
+            ],
+            "correctIndex": 2,
+            "explanation": "The case is ethical only when the mechanics serve a chosen practice without coercion.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch07-q08",
+            "prompt": "How can a shared passage load the next trigger?",
+            "choices": [
+              "A reply or message from another person can cue the user to return.",
+              "The share deletes investment so the loop restarts.",
+              "The passage becomes a paid trigger."
+            ],
+            "correctIndex": 0,
+            "explanation": "Social response creates a relationship trigger. Another person's reply brings the user back into the loop.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch07-q09",
+            "prompt": "Which design summary best generalizes YouVersion?",
+            "choices": [
+              "Find a noble label, then optimize any engagement pattern.",
+              "Cue a user-valued behavior, make the first action small, reward it meaningfully, and store personal value.",
+              "Remove investment so the product never asks users to personalize anything."
+            ],
+            "correctIndex": 1,
+            "explanation": "The portable lesson is aligned habit design: respectful cue, simple action, meaningful reward, and investment that serves the user's goal.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "hooked-ch07-card01",
+          "front": "What behavior does YouVersion support?",
+          "back": "Consistent Bible reading and reflection, a practice users already consider meaningful and often want help sustaining.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch07-card02",
+          "front": "Where is the trigger in the Bible App case?",
+          "back": "Daily verse notifications, reminders, and messages cue the user to begin with a simple next action.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch07-card03",
+          "front": "How does YouVersion reduce action difficulty?",
+          "back": "Mobile access, themed reading plans, and bite-size passages make a large text easier to approach repeatedly.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "hooked-ch07-card04",
+          "front": "What are the investment features?",
+          "back": "Highlights, notes, bookmarks, chosen reading plans, and personal history store meaning that makes return easier and more valuable.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Align The Full Loop",
+        "coreSkill": "Build the hook around a behavior users already endorse. Each stage should support that value instead of merely increasing screen time.",
+        "ifThenPlans": [
+          {
+            "context": "When choosing a trigger",
+            "plan": "If the behavior is meaningful, then cue a small start instead of a vague obligation."
+          },
+          {
+            "context": "When action feels heavy",
+            "plan": "If users hesitate before beginning, then shrink the first step into a bite-size unit."
+          },
+          {
+            "context": "When rewards are proposed",
+            "plan": "If a reward feels flashy, then replace it with relevance, progress, reflection, or connection."
+          },
+          {
+            "context": "When personalization grows",
+            "plan": "If users highlight or note something, then make that stored meaning easy to revisit."
+          }
+        ],
+        "twentyFourHourChallenge": "Map one mission-driven behavior through trigger, action, reward, and investment, then mark any step that pressures instead of supports.",
+        "weeklyPractice": "Review one prompt or reward each week against user agency, chosen value, and evidence of real benefit."
+      },
+      "memorableLines": [
+        {
+          "text": "Bobby Gruenewald and YouVersion make the full-loop case concrete.",
+          "location": "breakdown.fastRead",
+          "why": "It captures why the case is both practical and ethical."
+        },
+        {
+          "text": "The ethical hook case study matters because the mechanics do not change simply because the mission is religious.",
+          "location": "breakdown.deepRead",
+          "why": "It preserves the idea's hard edge."
+        },
+        {
+          "text": "A noble category does not excuse manipulation.",
+          "location": "breakdown.fullRead",
+          "why": "It prevents mission language from becoming a shortcut."
+        }
+      ]
+    },
+    {
+      "chapterId": "hooked-ch08",
+      "number": 8,
+      "title": "Habit Testing and Where To Look For Habit-Forming Opportunities",
+      "readingTimeMinutes": 13,
+      "hook": "Twitter's thirty-follows clue turns retention from hunch into path.",
+      "counterintuition": "Habit Testing begins with discipline: define the right rhythm, find a real cluster, codify the path, and modify with evidence.",
+      "tryThisNow": "Define what devoted use means for one product, then find one behavior shared by retained users that newcomers do not yet do.",
+      "keyTakeaway": "Habit Testing identifies habitual users, codifies their shared path, and modifies the product so more users can reach that path through measured behavior.",
+      "breakdown": {
+        "fastRead": "Twitter's 30 follows became a concrete habit clue. Users who followed enough accounts early were more likely to stay, so onboarding could guide newcomers toward that condition.\n\nThe closing framework is Habit Testing: identify devoted users, codify the behavior path they share, and modify the product to help more users follow it. Instagram and Rotten Tomatoes should not share the same frequency threshold. The test begins by respecting the product's natural rhythm.",
+        "deepRead": "Habit Testing turns the Hook Model into measurement. The first step is defining what devoted use should mean for the category. A social-photo app may need frequent use; a movie-review site like Rotten Tomatoes can have a slower cadence and still serve its purpose.\n\nOnce the threshold is defined, the team identifies habitual users. A rough five percent signal gives enough of a cluster to study. If too few users qualify, the product may need rethinking before optimization.\n\nCodifying means looking for the path loyal users share: source channel, registration choices, number of friends or follows, content interactions, and timing of repeat use. Twitter's 30 follows insight made the path concrete. It gave the team something to emphasize in onboarding.\n\nModification is then tested, not assumed. The team may change registration, simplify an interface, emphasize certain features, adjust content, or remove friction.\n\nOpportunity search broadens the method. Personal frustration points to real pain. Facebook at Harvard shows a nascent behavior in a small community. Google, Yahoo, and Lycos show interface change. Instagram filters, Google Glass, and Oculus Rift show how new technologies or surfaces can make old motivations easier to act on.",
+        "fullRead": "The final framework matters because it protects habit design from becoming armchair psychology. A team can name triggers, actions, rewards, and investments and still be guessing. Habit Testing asks the product to prove where a habit is forming.\n\nThe first move is threshold discipline. Instagram and Rotten Tomatoes cannot use the same devoted-use definition. A social-photo app may reasonably expect daily or near-daily behavior because photos, friends, and moments recur constantly. A movie-review site belongs to a different rhythm. Defining devotion without category context produces bad data.\n\nAfter the threshold comes identification. The team looks for users who meet the chosen definition. The rough five percent benchmark is not a victory parade. It is a signal that there may be enough habitual users to study. If the group is too small, the team may need to revisit the value proposition instead of polish onboarding.\n\nCodifying the habit path is the investigative step. Where did devoted users come from? What did they do during registration? How many accounts did they follow? Which features did they touch? When did repeat use begin? Twitter's 30 follows finding is memorable because it turned retention into a concrete early behavior. New users who reached that social graph threshold were more likely to stay, so the product could be modified to help them get there.\n\nModification should remain experimental. A team might change sign-up, recommend follows, simplify first actions, surface content differently, or remove confusing steps. The point is not to worship a correlation. It is to create a plausible path and test whether more users can travel it.\n\nThe opportunity lens widens the search beyond current products. Personal frustration is a serious source because direct irritation reveals pain the builder understands. That also reduces ethical distance. A maker who feels the problem is less likely to invent a fake need.\n\nNascent behaviors deserve attention. Facebook at Harvard began with a narrow campus behavior before expanding outward. Small groups can reveal a universal motivation early, especially when outsiders dismiss the behavior as niche.\n\nInterface change can expose demand. Google, Yahoo, and Lycos show how search behavior changed when the interface got simpler. Instagram filters made mobile photos more shareable by improving their look with little effort. Google Glass and Oculus Rift point to the possibility that new surfaces can alter when and how old desires become actionable.\n\nThe hard edge is discipline. Do not copy retained users mechanically. Do not treat five percent as proof of health. Do not mistake correlation for a cause. Define the rhythm, find the cluster, codify the path, modify carefully, and keep measuring whether the behavior genuinely becomes easier, more frequent, or more rewarding."
+      },
+      "examples": [
+        {
+          "exampleId": "hooked-ch08-ex01",
+          "title": "Follow threshold",
+          "tags": [
+            "Habit Testing",
+            "Twitter",
+            "30 follows"
+          ],
+          "planSpec": {
+            "domain": "onboarding analytics",
+            "audience": "growth lead",
+            "stakes": "how a retained-user path becomes a product change",
+            "format": "data-first",
+            "requiredBeat": "Apply Twitter to how a retained-user path becomes a product change without flattening the source case."
+          },
+          "scenario": "In an onboarding analytics review, Zara sees the Twitter 30 follows pattern: newcomers who connect enough accounts are more likely to stay. The finding turns retention from a vague goal into a concrete path the product can help new users reach.",
+          "whatToDo": "Modify onboarding to guide users toward meaningful follows, then test whether retention improves instead of assuming the threshold is magic.",
+          "whyItMatters": "Twitter's 30 follows clue shows Habit Testing at work: identify devoted users, codify their path, and modify the product around evidence."
+        },
+        {
+          "exampleId": "hooked-ch08-ex02",
+          "title": "Threshold debate",
+          "tags": [
+            "Habit Testing",
+            "Instagram",
+            "Rotten Tomatoes"
+          ],
+          "planSpec": {
+            "domain": "metrics definition meeting",
+            "audience": "data scientist",
+            "stakes": "why devoted use must fit the category",
+            "format": "definition debate",
+            "requiredBeat": "Apply Instagram to why devoted use must fit the category without flattening the source case."
+          },
+          "scenario": "At a metrics definition meeting, Ken rejects a single daily-use target for Instagram and Rotten Tomatoes. A photo-sharing app and a movie-review site serve different rhythms. Habit Testing begins by defining devotion in the context of the behavior.",
+          "whatToDo": "Set the frequency threshold from the product's natural use case. Do not borrow another category's cadence because it sounds ambitious.",
+          "whyItMatters": "Instagram versus Rotten Tomatoes keeps the method calibrated. Devoted use must match what the product actually helps users do."
+        },
+        {
+          "exampleId": "hooked-ch08-ex03",
+          "title": "Campus signal",
+          "tags": [
+            "Habit Testing",
+            "Facebook",
+            "Harvard"
+          ],
+          "planSpec": {
+            "domain": "startup idea review",
+            "audience": "founder",
+            "stakes": "how a small nascent behavior can point to a larger need",
+            "format": "origin case",
+            "requiredBeat": "Apply Facebook to how a small nascent behavior can point to a larger need without flattening the source case."
+          },
+          "scenario": "In a startup idea review, Lina studies Facebook at Harvard. The early market was narrow, but the behavior was familiar: students wanted a digital way to see and connect with people around them. The small community signaled a broader social motivation.",
+          "whatToDo": "Look for tiny groups already improvising the behavior. Study whether the motivation is local trivia or a wider human need.",
+          "whyItMatters": "Facebook at Harvard shows why nascent behavior matters. Small adoption can reveal a large motivation before the mass market sees it."
+        },
+        {
+          "exampleId": "hooked-ch08-ex04",
+          "title": "Search interface lesson",
+          "tags": [
+            "Habit Testing",
+            "Google",
+            "Yahoo",
+            "Lycos"
+          ],
+          "planSpec": {
+            "domain": "search prototype critique",
+            "audience": "interface designer",
+            "stakes": "how interface change can unlock behavior",
+            "format": "interface critique",
+            "requiredBeat": "Apply Google to how interface change can unlock behavior without flattening the source case."
+          },
+          "scenario": "At a search prototype critique, Arman compares Google with Yahoo and Lycos. The sparse interface was not cosmetic; it lowered effort and exposed how much people wanted direct access to answers. Interface change made the behavior easier and more frequent.",
+          "whatToDo": "Treat interface simplicity as an opportunity lens. Ask whether a desired behavior is waiting behind unnecessary effort.",
+          "whyItMatters": "Google, Yahoo, and Lycos show that changing the surface can reveal latent demand by making the action simpler."
+        },
+        {
+          "exampleId": "hooked-ch08-ex05",
+          "title": "Filter opportunity",
+          "tags": [
+            "Habit Testing",
+            "Instagram filters",
+            "Google Glass"
+          ],
+          "planSpec": {
+            "domain": "new-technology scan",
+            "audience": "product scout",
+            "stakes": "how technology shifts can make old motives easier",
+            "format": "trend scan",
+            "requiredBeat": "Apply Instagram filters to how technology shifts can make old motives easier without flattening the source case."
+          },
+          "scenario": "During a technology scan, Ivy compares Instagram filters with Google Glass prototypes. Filters made ordinary mobile photos more shareable immediately. Glass was a bet on a new surface. Both cases ask whether technology changes can make an old motivation easier to act on.",
+          "whatToDo": "Separate proven friction removal from speculative surface change. Look for the old desire that the new tool makes faster, easier, or more rewarding.",
+          "whyItMatters": "Instagram filters, Google Glass, and similar shifts matter when they change the cost or timing of a behavior users already value."
+        },
+        {
+          "exampleId": "hooked-ch08-ex06",
+          "title": "Five percent pause",
+          "tags": [
+            "Habit Testing",
+            "five percent",
+            "Twitter"
+          ],
+          "planSpec": {
+            "domain": "cohort analysis desk",
+            "audience": "product analyst",
+            "stakes": "why a benchmark is a starting signal, not proof",
+            "format": "analytics caution",
+            "requiredBeat": "Apply five percent to why a benchmark is a starting signal, not proof without flattening the source case."
+          },
+          "scenario": "At a cohort analysis desk, Ronan finds just over five percent of users meet the team's devoted-use definition. The room cheers. He points back to Habit Testing: the number is enough to study, not enough to declare the product healthy or ethical.",
+          "whatToDo": "Use the cluster as a research sample. Codify the path, test modifications, and keep checking whether the behavior benefits users.",
+          "whyItMatters": "The five percent benchmark is a starting threshold. It gives a team something to study, not a guarantee that a habit is healthy."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "hooked-ch08-q01",
+            "prompt": "What are the three moves of Habit Testing?",
+            "choices": [
+              "Trigger users, randomize rewards, and collect investment before value appears.",
+              "Advertise heavily, copy competitors, and raise notification volume.",
+              "Identify habitual users, codify their shared path, and modify the product to guide more users there."
+            ],
+            "correctIndex": 2,
+            "explanation": "Habit Testing is a behavior-data loop. It studies devoted users, extracts a path, and tests product changes.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch08-q02",
+            "prompt": "Why should Instagram and Rotten Tomatoes use different devoted-use thresholds?",
+            "choices": [
+              "Their natural behavior rhythms differ, so the same frequency target would distort the test.",
+              "Rotten Tomatoes should always copy social-photo frequency.",
+              "Instagram cannot form habits because photos are optional."
+            ],
+            "correctIndex": 0,
+            "explanation": "Habit Testing starts by defining devotion for the product's category. A social-photo app and a movie-review site should not share one cadence.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch08-q03",
+            "prompt": "What did Twitter's 30 follows finding provide?",
+            "choices": [
+              "Proof that every product needs exactly thirty connections.",
+              "A concrete early behavior linked to retention that onboarding could emphasize.",
+              "A moral test for the Manipulation Matrix."
+            ],
+            "correctIndex": 1,
+            "explanation": "The 30 follows clue codified part of the retained-user path. It gave the team a behavior to guide newcomers toward and test.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch08-q04",
+            "prompt": "How should a team treat the rough five percent benchmark?",
+            "choices": [
+              "As a starting signal that there may be enough habitual users to study.",
+              "As proof that the product is healthy and ethical.",
+              "As a requirement that every product must exceed daily use."
+            ],
+            "correctIndex": 0,
+            "explanation": "Five percent is not a finish line. It indicates whether there may be a cluster worth investigating.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch08-q05",
+            "prompt": "What does codifying a habit path involve?",
+            "choices": [
+              "Writing a slogan for the product's mission and using it as the retention explanation.",
+              "Finding shared behaviors among loyal users, such as source, sign-up choices, follows, feature use, and repeat timing.",
+              "Copying every retained user's behavior without testing whether the pattern is causal."
+            ],
+            "correctIndex": 1,
+            "explanation": "Codifying is investigative. It looks for recurring behaviors that plausibly help explain retention.",
+            "bloomsLevel": "remember",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "hooked-ch08-q06",
+            "prompt": "Why is Facebook at Harvard important to opportunity search?",
+            "choices": [
+              "It proves products should avoid narrow early markets.",
+              "It shows interface simplicity is irrelevant to adoption.",
+              "It shows that a small nascent behavior can reveal a broader motivation."
+            ],
+            "correctIndex": 2,
+            "explanation": "A tiny initial community can expose a behavior that later expands. Nascent behavior is one place to look for opportunity.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch08-q07",
+            "prompt": "What opportunity lesson comes from Google, Yahoo, and Lycos?",
+            "choices": [
+              "More portal content always makes action easier.",
+              "Interface simplification can uncover latent demand by lowering effort.",
+              "Search adoption depends mainly on reputation investment."
+            ],
+            "correctIndex": 1,
+            "explanation": "Google's simpler surface made the search action easier. Interface change can make a desired behavior more frequent.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch08-q08",
+            "prompt": "How should teams use personal frustration in opportunity search?",
+            "choices": [
+              "As proof that no user research is needed after the founder feels annoyed.",
+              "As a reason to ignore ethical distance and skip validation with users.",
+              "As evidence of a real pain the maker understands, then test whether others share it."
+            ],
+            "correctIndex": 2,
+            "explanation": "Personal frustration can reveal authentic pain, but it still needs validation. It is a starting point, not a substitute for evidence.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "hooked-ch08-q09",
+            "prompt": "What is the hard warning about copying retained users?",
+            "choices": [
+              "Do not worship correlation; define the rhythm, test the path, and keep measuring after modifications.",
+              "Copy every behavior of loyal users because retention proves causality.",
+              "Ignore retained users because their behavior cannot teach anything."
+            ],
+            "correctIndex": 0,
+            "explanation": "Habit Testing needs discipline. Retained-user patterns are hypotheses to test, not automatic proof of cause.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "hooked-ch08-card01",
+          "front": "What is Habit Testing?",
+          "back": "An iterative process: identify habitual users, codify their shared path, and modify the product so more users can follow that path.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch08-card02",
+          "front": "Why did Twitter's thirty follows matter?",
+          "back": "It gave Twitter a concrete early behavior associated with retention, making onboarding changes more targeted and testable.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "hooked-ch08-card03",
+          "front": "Why compare Instagram with Rotten Tomatoes?",
+          "back": "They should not share the same devoted-use threshold. Habit Testing begins with the natural rhythm of the behavior.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "hooked-ch08-card04",
+          "front": "Where should teams look for habit opportunities?",
+          "back": "Personal frustration, nascent behaviors, enabling technologies, and interface changes that make a valued action easier, faster, more frequent, or more rewarding.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Test The Habit Path",
+        "coreSkill": "Turn habit design into measured learning. Define devoted use, find retained-user patterns, modify the product carefully, and keep testing.",
+        "ifThenPlans": [
+          {
+            "context": "When setting metrics",
+            "plan": "If the product category has a natural rhythm, then define devoted use from that rhythm before analyzing cohorts."
+          },
+          {
+            "context": "When a loyal cluster appears",
+            "plan": "If enough users meet the threshold, then codify their shared path instead of celebrating the percentage."
+          },
+          {
+            "context": "When a pattern looks causal",
+            "plan": "If retained users share a behavior, then modify onboarding and test whether new users benefit from that path."
+          },
+          {
+            "context": "When searching for ideas",
+            "plan": "If you feel a recurring frustration, then check for nascent communities, new interfaces, or technologies that lower effort."
+          }
+        ],
+        "twentyFourHourChallenge": "Define devoted use for one product, find a retained-user segment, and list three shared behaviors worth testing.",
+        "weeklyPractice": "Run a Habit Testing review each week: threshold, cluster size, shared path, modification, and evidence after the change."
+      },
+      "memorableLines": [
+        {
+          "text": "Twitter's 30 follows became a concrete habit clue.",
+          "location": "breakdown.fastRead",
+          "why": "It captures the idea's measurement move."
+        },
+        {
+          "text": "Habit Testing turns the Hook Model into measurement.",
+          "location": "breakdown.deepRead",
+          "why": "It states the closing framework cleanly."
+        },
+        {
+          "text": "The final framework matters because it protects habit design from becoming armchair psychology.",
+          "location": "breakdown.fullRead",
+          "why": "It explains why the process matters after the model."
+        }
+      ]
+    }
+  ]
+}

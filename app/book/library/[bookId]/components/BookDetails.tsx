@@ -157,6 +157,13 @@ export function BookDetails({
           </div>
         )}
       </div>
+
+      {/* Content provenance / not-affiliated disclaimer */}
+      <p className="px-1 text-xs leading-relaxed text-(--cf-text-3)">
+        ChapterFlow&rsquo;s summaries, examples, and quizzes are original educational
+        interpretations of ideas from {entry.title} by {entry.author} — not the original
+        book, and not affiliated with, endorsed by, or licensed by the author or publisher.
+      </p>
     </section>
   );
 }

@@ -2,6 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import {
+  CATALOG_BOOK_COUNT_DISPLAY,
+  CATALOG_CATEGORY_COUNT_DISPLAY,
+} from "@/lib/catalog-stats";
 import { motion, useReducedMotion } from "framer-motion";
 import { LearningLoopIndicator } from "./LearningLoopIndicator";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
@@ -132,7 +136,7 @@ function getHeroSubtitle(
 ): string | null {
   switch (userState) {
     case "new_user":
-      return "Choose from 95+ non-fiction books across 21 categories";
+      return `Choose from ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books across ${CATALOG_CATEGORY_COUNT_DISPLAY} categories`;
     case "returning":
       return "Your book is right where you left it";
     case "between_books":

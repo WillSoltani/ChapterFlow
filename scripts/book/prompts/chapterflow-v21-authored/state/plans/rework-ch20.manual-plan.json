@@ -1,0 +1,75 @@
+{
+  "chapterId": "rework-ch20",
+  "number": 20,
+  "title": "Build half a product, not a half-assed product",
+  "coreMove": "Shrink the promise until your team can honor it fully; partial excellence on a narrow scope beats broad mediocrity, so cut the merely good to make one thing great.",
+  "exampleCount": 7,
+  "exampleSpecs": [
+    {
+      "domain": "project management software",
+      "audience": "makers tempted to match a competitor's feature count",
+      "stakes": "match the enterprise feature bulk or honor a narrow promise",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist chooses narrow completeness over matching a rival's feature list"
+    },
+    {
+      "domain": "branding and design studio",
+      "audience": "teams that protect every defensible idea",
+      "stakes": "keep three good features or cut two to perfect one",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist sacrifices a merely-good idea to make one piece great"
+    },
+    {
+      "domain": "restaurant operations",
+      "audience": "operators who plan as if effort were unlimited",
+      "stakes": "keep a sprawling menu or sacrifice scope to a few dishes",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist accepts that limited capacity requires real sacrifice"
+    },
+    {
+      "domain": "consumer mobile app",
+      "audience": "teams that mistake sloppiness for focus",
+      "stakes": "ship a rough narrowed product or finish the chosen half well",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist fixes the misreading that focus excuses incompleteness"
+    },
+    {
+      "domain": "camera hardware design",
+      "audience": "makers polishing every part equally",
+      "stakes": "spread polish evenly or concentrate craft where it is felt",
+      "format": "contrast",
+      "requiredBeat": "the protagonist directs craft to the parts customers actually experience"
+    },
+    {
+      "domain": "accounting software",
+      "audience": "product leads chasing parity with rivals",
+      "stakes": "add a feature to match a rival or hold a whole promise",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist measures completeness against the promise, not the rival"
+    },
+    {
+      "domain": "note-taking software",
+      "audience": "teams that gauge strength by feature count",
+      "stakes": "grow the feature count or make the core promise feel whole",
+      "format": "before_after",
+      "requiredBeat": "the protagonist replaces feature count with a wholeness test"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.765Z"
+}

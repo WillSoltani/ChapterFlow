@@ -1,0 +1,69 @@
+{
+  "chapterId": "everything-is-fcked-ch02",
+  "number": 2,
+  "title": "Self-Control Is an Illusion",
+  "coreMove": "The Thinking Brain can explain, plan, and compare, but behavior changes only when the Feeling Brain can feel a better meaning in the route.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "clinic intake",
+      "audience": "occupational therapist",
+      "stakes": "helping a patient who can list priorities but cannot start",
+      "format": "decision_point",
+      "requiredBeat": "Uses Elliot to test Thinking Brain and Feeling Brain."
+    },
+    {
+      "domain": "Consciousness Car commute",
+      "audience": "manager",
+      "stakes": "why a productivity plan keeps collapsing",
+      "format": "reflection",
+      "requiredBeat": "Uses Antonio Damasio to test Thinking Brain and Feeling Brain."
+    },
+    {
+      "domain": "family dinner",
+      "audience": "parent",
+      "stakes": "whether more facts will change a teenager's phone use",
+      "format": "audit",
+      "requiredBeat": "Uses Consciousness Car to test Thinking Brain and Feeling Brain."
+    },
+    {
+      "domain": "budget app",
+      "audience": "freelancer",
+      "stakes": "why a clear financial plan still feels impossible",
+      "format": "dialogue",
+      "requiredBeat": "Uses Thinking Brain to test Thinking Brain and Feeling Brain."
+    },
+    {
+      "domain": "apology draft",
+      "audience": "friend",
+      "stakes": "moving from explanation to felt ownership",
+      "format": "reset_moment",
+      "requiredBeat": "Uses Feeling Brain to test Thinking Brain and Feeling Brain."
+    },
+    {
+      "domain": "training plan",
+      "audience": "runner",
+      "stakes": "when discipline needs a better story",
+      "format": "business_case",
+      "requiredBeat": "Uses Elliot to test Thinking Brain and Feeling Brain."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:05:31.587Z"
+}

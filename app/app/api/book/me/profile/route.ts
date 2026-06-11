@@ -11,6 +11,7 @@ import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/
 import {
   getUserProfileItem,
   putUserProfileItem,
+  getUserSettingsItem,
 } from "@/app/app/api/book/_lib/repo";
 import {
   analyticsSetUserLocale,
@@ -19,6 +20,8 @@ import {
   analyticsTrackReferral,
 } from "@/app/app/api/book/_lib/analytics-repo";
 import { resolveLocation } from "@/app/app/api/book/_lib/location";
+import { nowIso } from "@/app/app/api/book/_lib/keys";
+import { LEGAL_TERMS_VERSION } from "@/lib/legal-entity";
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { inferLocationFromHeaders } from "@/app/app/api/book/_lib/location";
 import { applyDeviceIdCookie, getOrCreateDeviceId, recordRiskSignals } from "@/app/app/api/book/_lib/abuse";
@@ -345,19 +348,35 @@ export async function PATCH(req: Request) {
 
     const previousProfile = sanitizeProfile(existing?.profile ?? null);
     const sanitizedIncoming = sanitizeProfile(incomingProfile);
-    const profile = {
+    const profile: Record<string, unknown> = {
       ...previousProfile,
       ...sanitizedIncoming,
     };
+
+    const completedOnboardingNow =
+      previousProfile.onboardingCompleted !== true && profile.onboardingCompleted === true;
+
+    // Terms/Privacy acceptance is server-authoritative. sanitizeProfile strips
+    // these fields from client input, so we carry forward any prior recorded
+    // consent from the stored profile, and stamp it the first time onboarding
+    // completes (the signup gate required acceptance before reaching the app).
+    const priorConsent = (existing?.profile ?? {}) as Record<string, unknown>;
+    if (typeof priorConsent.termsAcceptedAt === "string") {
+      profile.termsAcceptedAt = priorConsent.termsAcceptedAt;
+      if (typeof priorConsent.termsVersion === "string") {
+        profile.termsVersion = priorConsent.termsVersion;
+      }
+    }
+    if (completedOnboardingNow && !profile.termsAcceptedAt) {
+      profile.termsAcceptedAt = nowIso();
+      profile.termsVersion = LEGAL_TERMS_VERSION;
+    }
 
     const saved = await putUserProfileItem(tableName, {
       userId: user.sub,
       profile,
       createdAt: existing?.createdAt,
     });
-
-    const completedOnboardingNow =
-      previousProfile.onboardingCompleted !== true && profile.onboardingCompleted === true;
     let riskDevice: Awaited<ReturnType<typeof recordRiskSignals>> | null = null;
     let clearReferralCookie = false;
 
@@ -441,8 +460,16 @@ export async function PATCH(req: Request) {
             : Promise.resolve(),
         ]).catch(() => {});
 
-        // Geo capture on first profile save — tries headers first, then IP lookup
-        const loc = await resolveLocation(headersSnapshot).catch(() => null);
+        // Geo capture on first profile save — only when the user has opted in
+        // to "Share Usage Analytics" (opt-in: off by default). Tries CDN headers
+        // first, then a third-party IP lookup.
+        const settingsItem = await getUserSettingsItem(tableName, user.sub);
+        const analyticsParticipation =
+          (settingsItem?.settings?.privacy as { analyticsParticipation?: boolean } | undefined)
+            ?.analyticsParticipation ?? false;
+        const loc = analyticsParticipation
+          ? await resolveLocation(headersSnapshot).catch(() => null)
+          : null;
         if (loc) {
           await analyticsSetUserLocale(analyticsTable, {
             userId: user.sub,

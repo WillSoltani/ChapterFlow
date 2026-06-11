@@ -1,0 +1,69 @@
+{
+  "chapterId": "drive-ch01",
+  "number": 1,
+  "title": "The Rise and Fall of Motivation 2.0",
+  "coreMove": "Use rewards and rules where the path is clear; for creative work, design for curiosity, contribution, and self-direction.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "product wiki review",
+      "audience": "Rowan, a product lead deciding how much control a wiki needs",
+      "stakes": "The team must decide whether a public contribution space needs tighter approval or clearer invitation.",
+      "format": "decision_point",
+      "requiredBeat": "Show the choice between Encarta-style control and a Wikipedia-style contribution path."
+    },
+    {
+      "domain": "factory training room",
+      "audience": "Imani, a trainer separating routine work from judgment work",
+      "stakes": "New supervisors are about to apply one factory-style rule to every task.",
+      "format": "dialogue",
+      "requiredBeat": "Use Taylor as a useful but limited model."
+    },
+    {
+      "domain": "pricing ethics seminar",
+      "audience": "Soren, an ethics instructor making fairness visible",
+      "stakes": "A class is tempted to explain every pricing choice as simple self-interest.",
+      "format": "audit",
+      "requiredBeat": "Use the fairness lesson to complicate a pure incentive story."
+    },
+    {
+      "domain": "open-source release standup",
+      "audience": "Beatrice, a release lead opening work without losing standards",
+      "stakes": "An open-source team needs more contributors but cannot let quality collapse.",
+      "format": "planning_choice",
+      "requiredBeat": "Turn the Wikipedia lesson into a practical contribution design."
+    },
+    {
+      "domain": "university lab debrief",
+      "audience": "Keisha, a lab manager reading a short-term productivity jump carefully",
+      "stakes": "A lab gets more logged output after adding check-ins, but curiosity is dropping.",
+      "format": "postmortem",
+      "requiredBeat": "Show how the wrong operating system can suppress the behavior it wants."
+    },
+    {
+      "domain": "customer support redesign",
+      "audience": "Galen, a support manager redesigning scripts",
+      "stakes": "Agents need consistency without losing the ability to solve unusual customer problems.",
+      "format": "reflection",
+      "requiredBeat": "Apply the routine-versus-heuristic diagnosis to a service workflow."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 8,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:46:25.904Z"
+}

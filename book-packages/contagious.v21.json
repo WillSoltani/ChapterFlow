@@ -1,0 +1,2019 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "contagious-v21-1780456371095",
+  "createdAt": "2026-06-03T03:12:51.095Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "contagious",
+    "title": "Contagious",
+    "author": "Jonah Berger",
+    "categories": [
+      "Psychology",
+      "Business",
+      "Communication",
+      "Behavioral Economics"
+    ],
+    "tags": [
+      "virality",
+      "social influence",
+      "marketing",
+      "word of mouth",
+      "consumer behavior",
+      "storytelling"
+    ]
+  },
+  "chapters": [
+    {
+      "chapterId": "contagious-ch01",
+      "number": 1,
+      "title": "Social Currency",
+      "readingTimeMinutes": 11,
+      "hook": "A phone booth in a hot dog shop makes a drink feel like proof that you know the city.",
+      "counterintuition": "People often spread products because the telling improves their own image. Status travels faster when a detail gives the sharer surprise, achievement, or insider access.",
+      "tryThisNow": "Pick one offer you want mentioned today. Add one concrete detail a customer could retell to look sharp, connected, or first to know.",
+      "keyTakeaway": "Social currency makes sharing useful to the sharer: give people a real badge of taste, access, surprise, or achievement, and they gain a reason to talk.",
+      "breakdown": {
+        "fastRead": "Please Don't Tell hides behind a phone booth inside Crif Dogs. The drink is only part of the draw. The first prize is the story of finding the door. A guest can tell a friend, \"I know a place,\" and sound like an insider before naming a cocktail.\n\nSocial currency works when a product helps the sharer look good. Blendtec made a blender worth talking about by crushing phones and marbles on camera. Snapple caps gave drinkers odd facts to pass across a lunch table. Frequent-flyer tiers turn travel into visible rank. The rule is simple: do not ask only how the offer looks. Ask how the person looks when they pass it on.",
+        "deepRead": "Sharing begins as self-presentation. People talk about what they know, buy, find, and do because those details let others read them. A hidden bar in Crif Dogs gives the customer a status role. The customer is not repeating an ad. The customer is showing taste, access, and a bit of urban skill.\n\nRemarkability supplies one route. Blendtec took a plain kitchen appliance and gave it an extreme test. A blender that destroys a phone is easy to describe, and the teller seems quick for spotting it. Snapple used the same small engine on a bottle cap. The fact under the lid becomes social ammunition, a short oddity that lets the drinker start a tiny exchange.\n\nAchievement supplies another route. Airline tiers, miles, and progress bars make consumption look earned. A traveler near the next level has a reason to mention status because the system gives rank, not just service. Scarcity adds a third route by making access feel selective. The danger is shallow gimmickry. A velvet rope with nothing worth finding soon feels needy. Social currency needs a real hook attached to the person who shares it.\n\nThe practical test is personal. Does the detail let the customer seem observant, connected, skilled, lucky, early, or in the know? If not, the company may admire its own campaign while the public stays quiet.",
+        "fullRead": "Scarcity can help a weak idea look special for a minute, then expose how little is underneath. Social currency is stronger than a fake line outside a door. It asks what identity a person can perform when they talk about the thing. Please Don't Tell works because the phone booth ritual gives the guest a credible story of access. The secret is physical, simple, and easy to retell.\n\nThe same principle can make a dull object lively. Blendtec was not selling glamour. It sold blenders. The \"Will It Blend?\" format gave viewers one startling proof of power: a machine made for smoothies could grind objects that should not meet kitchen blades. The clip travels because the teller can compress the surprise in one sentence. A person sharing it sounds amused and well supplied with odd evidence.\n\nSnapple Real Facts moves on a smaller scale. The underside of a cap becomes a tiny gift. A drinker does not need a sales pitch. The cap hands over a fact weird enough to say aloud. That works because the fact improves the moment for the person who says it. It gives them a quick spark of novelty, not a duty to promote tea.\n\nGame mechanics add visible progress. Frequent-flyer status turns repeated travel into rank. Miles, tiers, badges, and thresholds let people compare effort and proximity to the next reward. The status payoff sits in the system itself. People chase it because the marks are public enough to count and private enough to feel earned.\n\nExclusivity has to be handled with care. Restricted access can signal value, but restriction alone is not value. If the thing behind the curtain is thin, the sharer looks fooled rather than discerning. The social reward must survive after the first reveal. A customer should feel safe telling the story twice.\n\nThe limit is bragging bait. People do not want to sound like they are showing off for a brand. They want to sound useful, funny, discerning, or connected. That is why the status has to attach to them. The company can be present, but the customer's identity carries the message.\n\nA strong social-currency design gives ordinary people a flattering sentence. It might be \"I found the bar behind the phone booth.\" It might be \"This blender ate a phone.\" It might be \"My cap says a duck's quack does not echo.\" The sentence works only if it gives the teller a small lift.\n\nThe best test happens before launch. Hand the idea to one real customer and ask what they would say to a friend. If the answer sounds like an ad, keep working. If the answer makes the customer look sharp, the message has a path. People pass along what lets them perform a valued identity."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Selin guards the booth story",
+          "tags": [
+            "hospitality",
+            "access",
+            "PDT"
+          ],
+          "planSpec": {
+            "domain": "speakeasy reservation design",
+            "audience": "bar operators shaping first-time visits",
+            "stakes": "a hidden entrance can feel cheap unless the guest earns a story",
+            "format": "decision_point",
+            "requiredBeat": "Selin uses Please Don't Tell to protect insider status"
+          },
+          "scenario": "Selin stands at 6:40 p.m. beside the Crif Dogs phone booth with the Please Don't Tell host list on a tablet. A sponsor wants a bright sign outside before Friday's press walk-through. The printer closes in twelve minutes, and the booth ritual is the part guests brag about after they leave.",
+          "whatToDo": "Keep the entrance cue subtle and let the host teach first-timers the ritual, so guests gain a discovery they can retell without sounding like they followed an ad.",
+          "whyItMatters": "Please Don't Tell shows that access can be the product's social badge. The guest needs a real secret to carry, not a louder arrow to the door."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Rafael tests the blender stunt",
+          "tags": [
+            "product",
+            "remarkability",
+            "Blendtec"
+          ],
+          "planSpec": {
+            "domain": "appliance demo planning",
+            "audience": "hardware marketers choosing launch footage",
+            "stakes": "a normal feature list will not give viewers a compact surprise",
+            "format": "planning_choice",
+            "requiredBeat": "Rafael applies Will It Blend? logic to a proof demo"
+          },
+          "scenario": "Rafael is in a Utah test kitchen at 9:15 a.m. with a Blendtec 'Will It Blend?' clip paused beside three demo scripts. The team wants a polished video about motor speed. Rafael has to choose before the shoot crew arrives, and one script shows the grinder chewing through dried cinnamon sticks in five seconds.",
+          "whatToDo": "Lead with the extreme, visible proof and let the technical claims follow, because the shareable sentence is the surprising capability viewers can repeat.",
+          "whyItMatters": "Blendtec made dull machinery remarkable by showing an unexpected limit. Rafael needs a concrete stunt that makes the teller seem observant."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Keiko rewrites the bottle cap",
+          "tags": [
+            "packaging",
+            "trivia",
+            "Snapple"
+          ],
+          "planSpec": {
+            "domain": "beverage packaging refresh",
+            "audience": "brand team choosing cap copy",
+            "stakes": "a joke that falls flat gives drinkers nothing worth saying",
+            "format": "mistake_recovery",
+            "requiredBeat": "Keiko replaces failed jokes with Snapple Real Facts"
+          },
+          "scenario": "Keiko sits at 2:25 p.m. in a Queens packaging studio with rejected joke caps in one tray and Snapple Real Facts samples in another. The bottling line locks copy tonight. She must tell the design lead whether to keep cute slogans or print odd facts that a customer can read aloud at lunch.",
+          "whatToDo": "Choose the fact line that sounds strange enough to repeat, then make the cap feel like a tiny discovery instead of a brand voice exercise.",
+          "whyItMatters": "Snapple worked when the cap handed status to the drinker. A surprising fact lets Keiko's customer start a social moment."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Amara keeps rank visible",
+          "tags": [
+            "loyalty",
+            "game mechanics",
+            "airlines"
+          ],
+          "planSpec": {
+            "domain": "travel loyalty dashboard",
+            "audience": "airline product managers",
+            "stakes": "miles feel abstract until rank and progress become easy to compare",
+            "format": "audit",
+            "requiredBeat": "Amara uses frequent-flyer status as visible achievement"
+          },
+          "scenario": "Amara reviews a frequent-flyer prototype at 11:05 a.m. in the Atlanta operations floor. The old page hides tier progress under account history. Sales wants another discount tile. Amara must decide before the sprint review whether to show miles as quiet bookkeeping or as a progress bar toward Gold status.",
+          "whatToDo": "Put tier progress, next threshold, and earned perks in view, so travelers can see achievement rather than just a balance.",
+          "whyItMatters": "Frequent-flyer programs turn consumption into rank. The dashboard should give members a status marker they want to mention."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Declan limits the invite",
+          "tags": [
+            "software",
+            "scarcity",
+            "access"
+          ],
+          "planSpec": {
+            "domain": "beta launch access",
+            "audience": "startup founders choosing rollout mechanics",
+            "stakes": "open signup may erase the feeling of being early",
+            "format": "dilemma",
+            "requiredBeat": "Declan treats exclusivity as identity performance, not hype"
+          },
+          "scenario": "Declan is in a Dublin video call at 7:50 p.m. with a beta invite counter and a Please Don't Tell note pinned near his webcam. The waitlist is growing. The launch email sends in twenty minutes, and the choice is open doors for all or two coded invites per current user.",
+          "whatToDo": "Give members a small number of named invites and explain the craft reason for the cap, so access feels selective without becoming empty theater.",
+          "whyItMatters": "Scarcity earns talk only when it makes the sharer look discerning. Declan needs access that feels earned and credible."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Imani cuts the brag line",
+          "tags": [
+            "retail",
+            "identity",
+            "status"
+          ],
+          "planSpec": {
+            "domain": "limited sneaker release",
+            "audience": "retail merchandisers writing product copy",
+            "stakes": "forced prestige language can make buyers feel used",
+            "format": "reflection",
+            "requiredBeat": "Imani distinguishes social currency from bragging bait"
+          },
+          "scenario": "Imani sits at 4:10 p.m. in a Chicago retail office with a sneaker sample, a scarcity brief, and a Blendtec transcript on her desk. The draft copy says owners will be envied. She has to revise it before the product page freezes, and the shoe's real story is the recycled race-tire sole.",
+          "whatToDo": "Replace envy language with the unexpected material story, giving buyers a fact they can share without sounding like they are boasting.",
+          "whyItMatters": "Social currency is not a command to brag. Imani should give customers a tasteful proof point that reflects well on them."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "Selin is deciding whether to put a neon sign outside a hidden bar. Which choice best protects social currency?",
+            "choices": [
+              "Keep the phone booth ritual and let guests feel they found the place.",
+              "Add the neon sign so Selin can prove the bar is easy to locate.",
+              "Replace the hidden entrance with a discount board for passing foot traffic."
+            ],
+            "correctIndex": 0,
+            "explanation": "The hidden ritual gives guests insider standing. Making the entrance too obvious can remove the status they gain from knowing how access works.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A blender team wants a demo people will repeat after lunch. Which pitch best uses remarkability?",
+            "choices": [
+              "List motor specs beside a clean product shot for the team.",
+              "Show the blender destroying an object viewers did not expect it to handle.",
+              "Ask customers to describe their favorite smoothie texture."
+            ],
+            "correctIndex": 1,
+            "explanation": "Blendtec spread because the demo made an ordinary machine surprising. The shareable unit is the unexpected proof, not the normal feature claim.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "When a beverage cap gives a customer one odd fact, what status payoff does the customer receive?",
+            "choices": [
+              "The customer gets a larger serving than other drinkers at the table.",
+              "The customer avoids choosing between jokes and product claims.",
+              "The customer has a small discovery to offer someone nearby."
+            ],
+            "correctIndex": 2,
+            "explanation": "Snapple Real Facts work because the cap gives the drinker social material. The person can share a tidbit and look curious or quick.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Amara's airline app hides elite-tier progress in a menu. What change best fits game mechanics?",
+            "choices": [
+              "Show progress toward the next tier with earned miles and the next threshold.",
+              "Remove status labels so members focus on the flight itself.",
+              "Replace the tier page with a cheaper fare search for Amara's users."
+            ],
+            "correctIndex": 0,
+            "explanation": "Game mechanics make rank and progress visible. A traveler talks more readily when the system turns activity into achievement.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A startup founder wants exclusivity for a beta launch. Which version avoids empty scarcity?",
+            "choices": [
+              "Close access without explaining the product, so the waitlist looks mysterious.",
+              "Limit invites for a craft reason and give members a story about why access is selective.",
+              "Let anyone join, then call the first week exclusive in the founder's recap."
+            ],
+            "correctIndex": 1,
+            "explanation": "Exclusivity helps when it gives members credible insider standing. A cap with a clear reason gives users something safe to pass along.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Your retailer says a shoe page should tell buyers they will be envied. Which rewrite better follows social currency?",
+            "choices": [
+              "Tell buyers the shoe is rare and leave the material story for the packaging.",
+              "Promise buyers they will outrank their friends at weekend events.",
+              "Lead with the recycled race-tire sole, a detail buyers can retell with taste."
+            ],
+            "correctIndex": 2,
+            "explanation": "The recycled-material fact gives buyers a status-bearing story without crude boasting. Social currency should flatter the sharer, not pressure them to show off.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A museum cafe hides a dessert on a verbal menu. Guests who know the phrase can order it. What should the manager check first?",
+            "choices": [
+              "Whether every guest sees the dessert name printed in the lobby.",
+              "Whether the dessert has the lowest food cost on the menu.",
+              "Whether the phrase lets guests feel informed when they tell friends about it."
+            ],
+            "correctIndex": 2,
+            "explanation": "The verbal menu works only if the act of knowing creates social value. Cost and visibility do not explain why guests would spread the secret.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A loyalty team adds badges, but members do not mention them. Which diagnosis best fits social currency?",
+            "choices": [
+              "The badges may not signal achievement that members care to compare.",
+              "The badges should be hidden until checkout so the interface is cleaner.",
+              "The badges need a larger font because status comes from size alone."
+            ],
+            "correctIndex": 0,
+            "explanation": "Badges spread when they mark valued progress. If the achievement feels trivial, members gain little identity value from sharing it.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A chef wants diners to talk about a plain soup. Which move most directly creates inner remarkability?",
+            "choices": [
+              "Lower the price so diners can recommend it as a budget option.",
+              "Serve it with a surprising tableside freeze that changes texture in seconds.",
+              "Ask servers to say the soup is popular with regulars."
+            ],
+            "correctIndex": 1,
+            "explanation": "Inner remarkability comes from a detail that violates expectations. The texture change gives diners a compact surprise to describe.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What does social currency give the person who shares?",
+          "back": "It gives the sharer reputational value: they seem tasteful, sharp, connected, early, skilled, or in the know because they passed along the thing.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why does Please Don't Tell spread without feeling like an ad?",
+          "back": "The phone booth entrance turns a visit into insider knowledge. Guests retell their own discovery, so the bar travels through their status story.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "How did Blendtec make a plain appliance worth mentioning?",
+          "back": "It showed extreme, concrete proof through 'Will It Blend?' stunts. The surprise made the blender easy to summarize and fun to pass on.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card04",
+          "front": "What do points, tiers, and progress bars add to sharing?",
+          "back": "They make achievement visible. People can compare progress and mention rank because the system turns repeated participation into a badge.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "Where does fake exclusivity fail?",
+          "back": "It fails when restriction is the whole appeal. If there is no real surprise, access, craft, or achievement behind the limit, the sharer looks fooled.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "What is the practical design question behind social currency?",
+          "back": "Ask how the customer will look when they talk about the offer. The status payoff must attach to the person, not only to the brand.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Build a share badge",
+        "coreSkill": "Design one detail that improves the sharer's identity when repeated. Start with the sentence a real customer could say to a friend, then make the product supply proof for that sentence.",
+        "ifThenPlans": [
+          {
+            "context": "If an offer sounds useful but dull",
+            "plan": "If an offer sounds useful but dull, then add one visible proof that violates expectations and can be described in one breath."
+          },
+          {
+            "context": "If access is limited",
+            "plan": "If access is limited, then state the real reason for the limit so customers feel selective rather than manipulated."
+          },
+          {
+            "context": "If a loyalty feature is hidden",
+            "plan": "If a loyalty feature is hidden, then surface progress, rank, or threshold in the place members already check."
+          },
+          {
+            "context": "If copy tells customers to brag",
+            "plan": "If copy tells customers to brag, then replace the brag with a concrete fact that lets them sound discerning."
+          }
+        ],
+        "twentyFourHourChallenge": "Before tomorrow, write three share sentences for one product. Keep only the sentence that makes the customer look best without sounding like an advertisement.",
+        "weeklyPractice": "For one week, ask after every campaign review: what status, surprise, access, or achievement does the sharer gain by telling someone else?"
+      },
+      "memorableLines": [
+        {
+          "text": "The first prize is the story of finding the door.",
+          "location": "breakdown.fastRead",
+          "why": "It turns secrecy into a concrete social reward."
+        },
+        {
+          "text": "Sharing begins as self-presentation.",
+          "location": "breakdown.deepRead",
+          "why": "It names the mechanism without making it abstract."
+        },
+        {
+          "text": "A strong social-currency design gives ordinary people a flattering sentence.",
+          "location": "breakdown.fullRead",
+          "why": "It gives the reader a usable test for shareability."
+        }
+      ]
+    },
+    {
+      "chapterId": "contagious-ch02",
+      "number": 2,
+      "title": "Triggers",
+      "readingTimeMinutes": 10,
+      "hook": "Breakfast beats a vacation when the cereal sits beside the spoon every morning.",
+      "counterintuition": "Excitement can fade before people have a chance to talk. A common cue near the moment of action can keep a quieter idea alive for months.",
+      "tryThisNow": "Name the routine that happens right before your desired behavior, then pair your message with one object, day, or place already in that routine.",
+      "keyTakeaway": "Triggers make ideas easy to recall at useful moments; choose cues that are frequent, distinctive, and close to the behavior you want.",
+      "breakdown": {
+        "fastRead": "Cheerios has a dull advantage over Disney World. The cereal shows up at breakfast again and again. The park may thrill a family once, but the bowl sits inside a daily routine. Repetition gives the cereal more chances to come to mind.\n\nTriggers are memory cues in the world. Friday can remind people of Rebecca Black's song. Coffee can remind people of Kit Kat. A NASA Mars story can lift Mars bar sales because the word is suddenly easy to retrieve. The best cue is not merely clever. It appears often, points cleanly to the idea, and shows up near the moment someone can talk, buy, or act.",
+        "deepRead": "Recall depends on habitat. An idea needs a place to live after the first burst of attention. Disney World has intensity, but Cheerios has frequency. Breakfast repeats, so the cereal gets daily chances to rise in memory. A vacation has fewer natural prompts.\n\nA trigger works by linking the target to a cue people already meet. Rebecca Black's \"Friday\" gained weekly search waves because the title was tied to a day that returns. Many listeners did not love the song. They remembered it because the calendar did the work. Kit Kat chose a more useful habitat by linking the bar to coffee breaks. Coffee appears often, and the break is close to a snack moment.\n\nStrength matters too. A cue that points to too many things becomes weak. Coffee can mean work, cafes, energy, breakfast, meetings, or dozens of brands. Kit Kat had to build a clear pairing so the cue did not drift away. Distance also matters. A cue at midnight may not help a lunch purchase. A cue in the break room can.\n\nThe Mars bar example shows accidental triggering. NASA news made the word Mars common for a while, and candy benefited without planning the event. Designers cannot control every public cue, but they can ask better habitat questions. Where will people be when the idea should return? What will they see, hear, hold, or say at that moment?",
+        "fullRead": "A cue can be loud and still useless if it appears in the wrong place. Trigger design is not wordplay for its own sake. It is memory placement. Cheerios outperforms a more thrilling place in daily talk because breakfast repeats. Disney World may be loved more deeply, yet it does not sit on the table each morning.\n\nThe mechanism is mental accessibility. People talk about what is easy to retrieve. After a launch, a funny ad, or a surprising story, attention drops unless the world keeps bringing the idea back. A trigger does that by attaching the idea to a routine, object, time, or place that people already encounter.\n\nRebecca Black's \"Friday\" shows how little affection is required. The day of the week returns on schedule, and the title fits the cue exactly. Search interest rose in weekly waves because the calendar kept saying the word. The song did not need a new campaign each week. The cue was built into ordinary time.\n\nKit Kat and coffee shows deliberate habitat design. The candy brand needed more than generic snack desire. Coffee breaks already had frequency, a pause, and a moment when a sweet bite made sense. Pairing the bar with coffee put recall near use. That closeness matters. Remembering a snack while brushing teeth at night does less work than remembering it near a vending machine.\n\nMars bars gained from public coincidence. News about NASA's Mars mission made the name more available, and sales rose. The candy did not cause the space story. It benefited because language in the environment overlapped with the brand. That case warns designers to watch culture, not only campaigns.\n\nGood triggers have three traits. They recur often. They point to the target with little confusion. They live near the behavior. A rare cue may feel clever in a boardroom and do little in the field. A common cue may be too crowded to carry a brand. A faraway cue may create memory after the useful moment has passed.\n\nThe limit is forced association. A brand can staple itself to a random holiday, color, or sound and still fail because people do not meet the cue where action happens. Trigger work starts with the audience's day. Breakfast, Friday, coffee breaks, commutes, checkout lines, and weather changes each have different power.\n\nThe design question is ecological. Do not ask only whether the message is memorable today. Ask what will remind people tomorrow when they can do something with the thought. Ideas endure when they borrow stable cues from daily life."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Lucien moves the cereal prompt",
+          "tags": [
+            "retail",
+            "frequency",
+            "Cheerios"
+          ],
+          "planSpec": {
+            "domain": "grocery endcap planning",
+            "audience": "retail marketers deciding where reminders belong",
+            "stakes": "an exciting display may miss the breakfast moment",
+            "format": "decision_point",
+            "requiredBeat": "Lucien chooses Cheerios-style frequency over vacation-style intensity"
+          },
+          "scenario": "Lucien walks the Montreal grocery aisle at 7:30 a.m. with a Cheerios sales map and a Disney World comparison note folded in his pocket. The store can place cereal near a weekend travel contest or beside milk. He must decide before the endcap reset, and the milk case is where breakfast plans form.",
+          "whatToDo": "Place the cereal beside the milk so the daily breakfast cue does the recall work at the moment shoppers can act.",
+          "whyItMatters": "Cheerios shows that frequent cues can beat exciting ones. Lucien should choose the habitat that repeats, not the display with more sparkle."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Hanaa times the Friday post",
+          "tags": [
+            "music",
+            "calendar",
+            "Rebecca Black"
+          ],
+          "planSpec": {
+            "domain": "music catalog promotion",
+            "audience": "streaming editors scheduling throwback clips",
+            "stakes": "a funny song reference loses power if posted away from its natural cue",
+            "format": "planning_choice",
+            "requiredBeat": "Hanaa uses Rebecca Black's weekday cue"
+          },
+          "scenario": "Hanaa is in a London streaming office at 3:18 p.m. on Thursday with a Rebecca Black 'Friday' chart open on her monitor. The social team wants to post the clip now to fill a gap. Hanaa has to answer before scheduling closes, and the song's natural cue arrives tomorrow morning.",
+          "whatToDo": "Schedule the post for Friday morning, letting the day named in the title prime recall before the clip asks for attention.",
+          "whyItMatters": "The song's waves came from the calendar, not universal affection. Hanaa should let the recurring cue carry the timing."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Soren pairs the snack",
+          "tags": [
+            "candy",
+            "coffee",
+            "Kit Kat"
+          ],
+          "planSpec": {
+            "domain": "convenience-store merchandising",
+            "audience": "brand managers pairing products with routines",
+            "stakes": "a candy bar can vanish among snacks unless a strong routine calls it up",
+            "format": "business_case",
+            "requiredBeat": "Soren copies Kit Kat and coffee habitat design"
+          },
+          "scenario": "Soren stands at 10:45 a.m. in a Toronto convenience store with a Kit Kat and coffee case study on his clipboard. The buyer offers space near gum or beside the espresso machine. Soren must tell the rep before the planogram prints, and the espresso line is packed during office breaks.",
+          "whatToDo": "Put the bars by the espresso machine and use break language in the shelf tag, so coffee becomes the cue for the snack.",
+          "whyItMatters": "Kit Kat grew by borrowing memory from coffee breaks. Soren needs a cue that appears often and sits close to use."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Beatrice watches the Mars bump",
+          "tags": [
+            "culture",
+            "naming",
+            "Mars bars"
+          ],
+          "planSpec": {
+            "domain": "brand monitoring during news cycle",
+            "audience": "consumer goods analysts watching cultural cues",
+            "stakes": "a public event can create recall the brand did not buy",
+            "format": "predict_reveal",
+            "requiredBeat": "Beatrice recognizes NASA Mars mission spillover"
+          },
+          "scenario": "Beatrice reviews a dashboard at 8:05 a.m. in a Sydney candy office while NASA Mars mission headlines fill the news crawl. Mars bar mentions are climbing without new ads. She has to brief the sales team before noon and decide whether the spike is channel error or a cue from public language.",
+          "whatToDo": "Treat the spike as cue-driven recall, then move displays while the Mars headlines are still making the name easy to retrieve.",
+          "whyItMatters": "Mars bars show that ambient culture can trigger a product. Beatrice should use the window while the cue is alive."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Yara rejects the crowded cue",
+          "tags": [
+            "fitness",
+            "association",
+            "habitat"
+          ],
+          "planSpec": {
+            "domain": "gym referral campaign",
+            "audience": "membership teams choosing reminder cues",
+            "stakes": "a broad cue may remind people of too many unrelated things",
+            "format": "dilemma",
+            "requiredBeat": "Yara checks association strength and cue distance"
+          },
+          "scenario": "Yara sits at 1:35 p.m. in a Nairobi gym office with a Kit Kat coffee-break diagram and two referral posters. One uses the word 'summer.' The other appears on locker mirrors after class. She must choose before printing, and members invite friends most often while changing after workouts.",
+          "whatToDo": "Use the locker-mirror prompt and tie it to the post-class moment, because the cue is closer to the referral behavior.",
+          "whyItMatters": "Trigger strength depends on habitat. Yara should avoid a broad word when a narrow, well-timed cue can prompt action."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Kofi maps the bus stop",
+          "tags": [
+            "public health",
+            "distance",
+            "cues"
+          ],
+          "planSpec": {
+            "domain": "clinic appointment reminders",
+            "audience": "public health coordinators reducing missed visits",
+            "stakes": "remembering a clinic at home may not help if transport decisions happen later",
+            "format": "audit",
+            "requiredBeat": "Kofi places the cue near the action moment"
+          },
+          "scenario": "Kofi is at 6:55 a.m. by an Accra bus stop with a clinic reminder map and a Cheerios frequency note in his bag. Patients miss morning appointments after passing the transfer point. He must decide before the poster crew arrives whether reminders belong in homes or at the bus shelter.",
+          "whatToDo": "Place the reminder at the transfer shelter, where the cue appears close to the travel choice and repeats on appointment mornings.",
+          "whyItMatters": "Triggers work best near behavior. Kofi's cue has to meet patients where the next step is possible."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "Lucien can display cereal beside a vacation contest or beside milk. Which choice best uses triggers?",
+            "choices": [
+              "Place cereal with the contest because vacation is more exciting.",
+              "Place cereal beside milk because breakfast repeats and buying can happen there.",
+              "Hide cereal near checkout so shoppers feel surprised by the shelf."
+            ],
+            "correctIndex": 1,
+            "explanation": "Triggers favor frequent, well-placed cues. Milk sits in the breakfast habitat and appears near a purchase decision.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Hanaa wants to revive a song named after a weekday. What timing best follows the Rebecca Black pattern?",
+            "choices": [
+              "Post the clip when the editing calendar has an empty slot.",
+              "Post the clip late Sunday because weekend traffic is broad.",
+              "Post the clip on the named weekday as people meet the cue."
+            ],
+            "correctIndex": 2,
+            "explanation": "The weekday is the recurring reminder. Hanaa should time the post when the natural cue is already making the song easy to recall.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A candy brand can sit near gum or near coffee. What is the strongest reason to choose coffee?",
+            "choices": [
+              "Coffee breaks repeat and happen close to the snack moment.",
+              "Coffee buyers have less interest in candy than gum buyers.",
+              "Coffee packaging gives the candy a more formal shelf look."
+            ],
+            "correctIndex": 0,
+            "explanation": "Kit Kat used coffee because the routine repeated often and fit the use moment. The cue made recall practical, not just clever.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Beatrice sees candy sales rise during NASA Mars coverage. Which conclusion is most careful?",
+            "choices": [
+              "The news may be acting as a temporary cue for the candy name.",
+              "The candy recipe must have improved during the Mars coverage.",
+              "Customers are proving that space stories create lasting candy loyalty."
+            ],
+            "correctIndex": 1,
+            "explanation": "The Mars bar case supports cue-driven recall from public language. It does not prove recipe change or durable loyalty.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A gym wants more referrals. Which prompt location best honors cue distance?",
+            "choices": [
+              "A postcard mailed three weeks before the membership drive.",
+              "A slogan on the website footer for visitors browsing class times.",
+              "A poster at the locker mirror after workouts, where members invite friends."
+            ],
+            "correctIndex": 2,
+            "explanation": "Cue distance matters. The locker mirror is close to the behavior and appears after the routine that makes referral talk plausible.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Your team picks the word 'summer' as a cue for sunscreen, but every brand uses it. What problem should you raise?",
+            "choices": [
+              "The cue may be too crowded to point clearly to your product.",
+              "The cue should be saved for winter so it feels more unexpected.",
+              "The cue needs a longer tagline before customers can understand it."
+            ],
+            "correctIndex": 0,
+            "explanation": "A trigger needs association strength. If the cue points to many products, recall may scatter instead of leading to the intended sunscreen.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A clinic reminder is remembered at home, then forgotten at the bus transfer. Which fix best uses habitat design?",
+            "choices": [
+              "Send a longer brochure so patients can study the clinic rules.",
+              "Rename the clinic after a popular holiday for easier recall.",
+              "Put the reminder at the transfer stop where the route choice occurs."
+            ],
+            "correctIndex": 2,
+            "explanation": "The useful cue belongs near the action moment. A transfer-stop reminder meets patients when they can still choose the route.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Soren's team says a trigger only needs to be catchy. Which reply is strongest?",
+            "choices": [
+              "Catchiness is enough when the product already has a colorful package.",
+              "Catchiness helps only if the cue is frequent, distinctive, and close to action.",
+              "Catchiness should be judged by how many puns the team can generate."
+            ],
+            "correctIndex": 1,
+            "explanation": "Trigger design is a memory placement problem. A cue must appear often, point clearly, and arrive when behavior is possible.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "When the first launch burst fades, what does a trigger provide?",
+            "choices": [
+              "A repeated path back into memory through daily context.",
+              "A guarantee that people will like the product more.",
+              "A reason to stop improving the offer after launch week."
+            ],
+            "correctIndex": 0,
+            "explanation": "A trigger keeps the idea accessible after novelty fades. It cannot guarantee affection, but it can create repeated recall.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "Why can Cheerios out-talk Disney World?",
+          "back": "Breakfast repeats constantly, while vacation planning is rare. A frequent cue gives Cheerios more chances to come to mind.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "What makes a trigger useful rather than merely clever?",
+          "back": "It appears often, points clearly to the target, and shows up close to the moment someone can talk, buy, or act.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "How did Friday help Rebecca Black's song keep returning?",
+          "back": "The weekday acted as a recurring calendar cue. Each Friday made the title easier to retrieve, even for people who mocked it.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card04",
+          "front": "What did Kit Kat gain from coffee breaks?",
+          "back": "Coffee gave the candy a frequent routine and a use moment. The cue lived where a snack choice could actually happen.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "What does the Mars bar case teach about culture?",
+          "back": "Public events can make a name or association more accessible. Ambient language can trigger recall even without a planned campaign.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card06",
+          "front": "What is the habitat question for any idea?",
+          "back": "Ask where and when the audience should remember it, then place the cue inside that real routine rather than inside a clever slogan.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Map the memory habitat",
+        "coreSkill": "Place the idea beside a cue your audience already meets. Judge the cue by frequency, clarity, and closeness to the desired behavior, not by how clever it sounds in isolation.",
+        "ifThenPlans": [
+          {
+            "context": "If a campaign depends on launch excitement",
+            "plan": "If a campaign depends on launch excitement, then add one recurring cue that will still appear next week."
+          },
+          {
+            "context": "If a cue points to many brands",
+            "plan": "If a cue points to many brands, then narrow it with a specific pairing, place, or use moment."
+          },
+          {
+            "context": "If people remember too late",
+            "plan": "If people remember too late, then move the reminder closer to the moment when action is still possible."
+          },
+          {
+            "context": "If a routine already exists",
+            "plan": "If a routine already exists, then attach the message to the object or phrase people meet inside that routine."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, choose one audience behavior and list five cues that appear in the hour before it. Test the strongest cue with one real user.",
+        "weeklyPractice": "Each day this week, notice one product that borrowed memory from a routine. Write down the cue, its frequency, and its distance from action."
+      },
+      "memorableLines": [
+        {
+          "text": "Repetition gives the cereal more chances to come to mind.",
+          "location": "breakdown.fastRead",
+          "why": "It captures the Cheerios reversal in plain words."
+        },
+        {
+          "text": "Recall depends on habitat.",
+          "location": "breakdown.deepRead",
+          "why": "It turns memory into a design problem."
+        },
+        {
+          "text": "Trigger design is not wordplay for its own sake.",
+          "location": "breakdown.fullRead",
+          "why": "It blocks the common mistake of confusing puns with cues."
+        }
+      ]
+    },
+    {
+      "chapterId": "contagious-ch03",
+      "number": 3,
+      "title": "Emotion",
+      "readingTimeMinutes": 12,
+      "hook": "Cough photographs can travel farther than gossip when they leave readers wide awake.",
+      "counterintuition": "Positive feeling is not the main dividing line. Sharing rises when a message activates the body enough that people want to warn, delight, protest, or pull someone in.",
+      "tryThisNow": "Take one useful message and ask why it matters three times. Rewrite the final line around awe, anger, anxiety, excitement, or care.",
+      "keyTakeaway": "High-arousal emotion turns care into motion; design for activated feeling, not for pleasantness alone or shock that steals attention from the idea.",
+      "breakdown": {
+        "fastRead": "Denise Grady's cough photography piece does not sound like viral bait. It is science journalism about how coughs move through air. Yet readers passed it along because the images made an unseen act feel startling. Awe can make technical facts worth sharing.\n\nEmotion spreads when it creates action energy. The New York Times Most E-Mailed study found that awe, anger, and anxiety helped articles travel. Susan Boyle spread through surprise that flipped into amazement. Dave Carroll's \"United Breaks Guitars\" moved through focused outrage. The lesson is not to chase any feeling. Aim for care that wakes people up and points them toward the message.",
+        "deepRead": "Arousal is the useful axis. A message can be positive and sleepy, or negative and highly active. Sharing grows when the feeling pushes outward. Awe makes people want to bring others into a larger view. Anger makes them warn or recruit agreement. Anxiety sends them looking for help, proof, or company.\n\nThe New York Times Most E-Mailed work separated interest, usefulness, positivity, and specific emotions. That matters for a marketer or editor because usefulness alone may not be enough. A science article can travel when wonder gives it lift. Denise Grady's cough photographs made the invisible visible, and that strange view gave readers a reason to send the piece.\n\nSusan Boyle's audition shows a popular version of the same move. The audience begins with doubt, then the performance forces a fast revision. Viewers share the clip because they want another person to feel that reversal. Dave Carroll's airline song uses a different path. The anger is concrete: a broken guitar, a named airline, a customer ignored. The feeling moves because it asks for witness.\n\nThe warning is precision. Sadness can quiet people. Disgust can repel them from the brand. Random shock can make the stunt famous while the intended point fades. The emotional core should grow from the real human stake under the feature. Google Parisian Love made search shareable by showing what queries can carry: hope, distance, family, and romance.",
+        "fullRead": "A message can be moving and still fail to move. Low-arousal feelings may be deep, but they often pull people inward. Contentment settles. Sadness can slow the hand. High-arousal emotion has a different feel in the body. It raises energy and makes the next act more likely.\n\nThe cough photography story is a clean starting point because it breaks the glamour rule. No celebrity feud drives it. No scandal powers it. Denise Grady's article made an ordinary body act visible in a strange way. Readers saw breath as motion, risk, and pattern. That small dose of awe gave technical material a social life.\n\nData from the New York Times Most E-Mailed study sharpened the point. Articles that were useful or interesting had an advantage, but awe, anger, and anxiety added a separate push. Positive versus negative was too crude. The stronger question was whether the emotion activated people. A calm happy piece could sit still. A worrying or astonishing piece could travel.\n\nSusan Boyle's Britain's Got Talent performance spread because the scene changed the viewer's judgment in real time. The audience's skepticism was visible. The voice overturned it. Sharing the clip gave viewers a way to deliver that same reversal to someone else. The feeling was not merely pleasure. It was amazement with a before and after.\n\nUnited Breaks Guitars shows why some negative feelings travel. Dave Carroll's complaint had a concrete target and a clean wrong. Viewers could pass it along as a warning and as a protest. Anger moved outward because the story gave it a place to go. Vague bitterness would not have worked as well.\n\nGoogle Parisian Love moves through tenderness rather than outrage. The ad takes a functional tool and asks why the function matters. Search is not only speed or accuracy. It can help someone learn a language, find a flight, build a relationship, and start a family. The product remains present because the feeling is carried through the queries.\n\nThe limit is emotional theft. If the feeling becomes bigger than the idea, people may share the scene and forget the point. If the reaction is disgust, fatigue, or dread, they may back away. High arousal is a lever, not a license. The feeling should fit the action you want: share wonder, warn a friend, praise a service, challenge a wrong, or invite someone into a story.\n\nGood emotional design begins below the feature list. Keep asking why the benefit matters until a human stake appears. Convenience might really mean getting home sooner. Accuracy might mean protecting a patient. A cheap flight might mean seeing a parent. Once the stake is clear, choose the feeling with care. Activated care gives people a reason to pass the message on."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Ingrid frames the cough image",
+          "tags": [
+            "science",
+            "awe",
+            "New York Times"
+          ],
+          "planSpec": {
+            "domain": "science desk headline review",
+            "audience": "editors deciding how to package research",
+            "stakes": "a technical article may look dry unless wonder is visible quickly",
+            "format": "decision_point",
+            "requiredBeat": "Ingrid uses Denise Grady's cough photography as awe"
+          },
+          "scenario": "Ingrid sits at 9:05 a.m. in a Boston newsroom with Denise Grady's cough photography article and two headline drafts on her screen. One says the research is important. The other shows how a cough cloud hangs in air. With nine minutes left before the newsletter locks, the image is what made her stop.",
+          "whatToDo": "Lead with the visible cough cloud and let the health point follow, so readers feel awe before they meet the technical claim.",
+          "whyItMatters": "The cough article traveled because wonder made science social. Ingrid needs the image to activate care, not just a sober claim."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Tomas separates happy from active",
+          "tags": [
+            "media",
+            "arousal",
+            "NYT study"
+          ],
+          "planSpec": {
+            "domain": "newsletter analytics",
+            "audience": "editors interpreting share data",
+            "stakes": "pleasant stories may be overvalued if activation is ignored",
+            "format": "audit",
+            "requiredBeat": "Tomas applies New York Times Most E-Mailed categories"
+          },
+          "scenario": "Tomas reviews a New York Times Most E-Mailed study summary at 4:35 p.m. in a Madrid analytics room. The team's cheerful travel essays underperform, while anxious consumer warnings spread. He has to brief the editor before tomorrow's lineup meeting and explain why positive mood is not enough.",
+          "whatToDo": "Sort candidate pieces by emotional activation, then look for awe, anger, anxiety, amusement, or excitement that points to sharing.",
+          "whyItMatters": "The study separates pleasantness from arousal. Tomas should track the body energy that makes readers act."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Farah protects the Boyle reversal",
+          "tags": [
+            "video",
+            "awe",
+            "Susan Boyle"
+          ],
+          "planSpec": {
+            "domain": "talent-show clip edit",
+            "audience": "producers choosing social cuts",
+            "stakes": "cutting the setup may remove the emotional flip that makes the clip spread",
+            "format": "planning_choice",
+            "requiredBeat": "Farah preserves the Susan Boyle before-and-after"
+          },
+          "scenario": "Farah is in a Glasgow edit bay at 10:20 p.m. with the Susan Boyle audition open beside a thirty-second cut. The fast version starts at the first note. She must tell the producer before export whether to keep the audience's doubtful faces, even though they slow the clip.",
+          "whatToDo": "Keep a brief setup of skepticism before the song, because the awe depends on watching doubt turn into amazement.",
+          "whyItMatters": "Susan Boyle spread through a reversal viewers wanted others to feel. Farah should protect the emotional hinge."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Leandro channels the guitar anger",
+          "tags": [
+            "service",
+            "anger",
+            "United"
+          ],
+          "planSpec": {
+            "domain": "airline service recovery",
+            "audience": "customer care leaders handling public complaints",
+            "stakes": "a vague apology can leave anger with nowhere useful to go",
+            "format": "mistake_recovery",
+            "requiredBeat": "Leandro learns from United Breaks Guitars"
+          },
+          "scenario": "Leandro sits at 7:45 a.m. in a Sao Paulo airline office with Dave Carroll's 'United Breaks Guitars' lyrics printed beside a broken-luggage complaint. A musician's video is gaining views. He has to answer before legal joins the call, and the anger is focused on one ignored claim.",
+          "whatToDo": "Address the concrete broken item and the missed response first, then give viewers proof that the complaint changed action.",
+          "whyItMatters": "United Breaks Guitars moved because anger had a clear target. Leandro needs to resolve the wrong, not drain it with vague regret."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Chiara finds the love under search",
+          "tags": [
+            "advertising",
+            "emotion",
+            "Google"
+          ],
+          "planSpec": {
+            "domain": "software ad concept",
+            "audience": "brand planners making a utility product human",
+            "stakes": "feature lists may hide the emotional reason people care",
+            "format": "coach_talk",
+            "requiredBeat": "Chiara uses Google Parisian Love to expose a human stake"
+          },
+          "scenario": "Chiara stands at 1:10 p.m. in a Milan agency room with Google Parisian Love playing silently on the wall. Her search-client script lists speed, filters, and maps. The creative director asks for a decision before the pitch, and Chiara can see the stronger story inside a daughter's move abroad.",
+          "whatToDo": "Ask why each feature matters until the human stake appears, then build the script around the relationship the searches help carry.",
+          "whyItMatters": "Google Parisian Love made a tool emotional without losing the tool. Chiara should let function reveal care."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Sanaa cuts the disgust shot",
+          "tags": [
+            "health",
+            "activation",
+            "limits"
+          ],
+          "planSpec": {
+            "domain": "public health video edit",
+            "audience": "campaign staff warning about food safety",
+            "stakes": "shock may make viewers turn away before they share the warning",
+            "format": "dilemma",
+            "requiredBeat": "Sanaa distinguishes activation from repulsion"
+          },
+          "scenario": "Sanaa is in a Minneapolis health department studio at 5:55 p.m. with the New York Times emotion categories taped beside a raw food-safety video. The worst shot is disgusting. She must approve an edit before the media buy closes, and the warning should make parents act, not close the tab.",
+          "whatToDo": "Use an anxious but watchable scene that shows risk and prevention, rather than a repulsive image that overwhelms the useful warning.",
+          "whyItMatters": "High arousal should point toward action. Sanaa needs concern that moves outward, not disgust that makes people flee."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "Ingrid has a science article with a striking cough photograph. Which edit best uses emotion?",
+            "choices": [
+              "Remove the image so the research sounds more serious.",
+              "Add a celebrity quote because science needs fame to spread.",
+              "Place the image high and connect its wonder to the health lesson."
+            ],
+            "correctIndex": 2,
+            "explanation": "Awe can make technical material shareable. Ingrid should use the image to activate curiosity while keeping the health idea attached.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Tomas sees cheerful essays lag behind anxious warnings. What distinction should guide his next lineup?",
+            "choices": [
+              "Whether each piece creates action energy such as awe, anger, or anxiety.",
+              "Whether each piece is positive enough for broad readers.",
+              "Whether each piece avoids emotion so usefulness can stand alone."
+            ],
+            "correctIndex": 0,
+            "explanation": "The key split is arousal, not positive mood. High-energy feelings can push readers to send, warn, comment, or invite.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A producer wants to cut Susan Boyle's doubtful setup and start with the singing. What risk should Farah name?",
+            "choices": [
+              "The clip may become too negative for viewers to understand.",
+              "The clip may lose the reversal that creates awe.",
+              "The clip may need more product information before the song."
+            ],
+            "correctIndex": 1,
+            "explanation": "The emotional force comes from skepticism flipping into amazement. Removing the setup weakens the moment viewers want to share.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Leandro faces a musician's complaint about broken luggage. Which response best channels anger?",
+            "choices": [
+              "Wait for the video to fade, since attention often moves quickly.",
+              "Offer a broad apology that avoids the broken item.",
+              "Fix the specific claim and show the service change publicly."
+            ],
+            "correctIndex": 2,
+            "explanation": "Focused anger spreads when people can witness a concrete wrong. Leandro should answer the target of the complaint and show repair.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Chiara is selling search software. Which concept follows Google Parisian Love most closely?",
+            "choices": [
+              "A story where searches help a family manage distance and reunion.",
+              "A table comparing every filter with rival tools.",
+              "A slapstick scene where the product name appears at the end."
+            ],
+            "correctIndex": 0,
+            "explanation": "Parisian Love keeps the tool central while revealing human stakes. The family story gives function an emotional core.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Sanaa's health warning uses a repulsive image that viewers close quickly. What adjustment best fits high-arousal emotion?",
+            "choices": [
+              "Make the image more graphic so viewers cannot miss it.",
+              "Use anxious concern with a clear prevention step.",
+              "Remove feeling and publish only the inspection code."
+            ],
+            "correctIndex": 1,
+            "explanation": "Arousal should move people toward action. Repulsion can push them away before they share or use the warning.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A charity clip makes viewers quietly sad but donations and shares are low. What should the team examine?",
+            "choices": [
+              "Whether the sadness lowers activation instead of prompting outward action.",
+              "Whether the clip needs a longer list of sponsor names.",
+              "Whether viewers should be asked to ignore feeling during the appeal."
+            ],
+            "correctIndex": 0,
+            "explanation": "Sadness can reduce outward motion. The team should find a feeling that still honors the cause while creating energy to act.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "When an article is useful but not shared, which question best adds the emotion lens?",
+            "choices": [
+              "How can the headline promise more facts than the article can support?",
+              "Which low-energy mood will make the article feel calmer?",
+              "What high-arousal stake would make a reader want someone else to see this?"
+            ],
+            "correctIndex": 2,
+            "explanation": "Usefulness can travel farther when the reader feels activated care. The question looks for a shareable human stake.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "What does high-arousal emotion add to a message?",
+            "choices": [
+              "A demand that every message be happy before it spreads.",
+              "A push from caring into visible action such as warning or sharing.",
+              "A way to replace the idea with spectacle during launch."
+            ],
+            "correctIndex": 1,
+            "explanation": "High arousal supplies action energy. The feeling should move people while keeping the intended idea in view.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "Why is positive versus negative the wrong main split?",
+          "back": "A positive feeling can be quiet, and a negative feeling can be active. The useful split is whether the emotion creates energy to act.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "What did the cough photography article reveal?",
+          "back": "Wonder can make technical material social. Seeing an invisible process gave readers a reason to pass the science along.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "Why did Susan Boyle's clip invite sharing?",
+          "back": "The scene let viewers feel doubt turn into awe. Sharing the clip recreated that reversal for someone else.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "How can anger help transmission?",
+          "back": "Anger spreads when it has a clear target and a wrong people can witness, warn about, or protest together.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "What did Google Parisian Love do with a functional product?",
+          "back": "It showed the human stake under search. The queries carried romance, distance, and family while keeping the tool central.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "What is the emotional design warning?",
+          "back": "Do not let shock, disgust, or melodrama steal the idea. The feeling should create action that points back to the message.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Find activated care",
+        "coreSkill": "Look beneath the feature or fact until a human stake appears. Then choose an emotion that raises energy and sends people toward the desired action.",
+        "ifThenPlans": [
+          {
+            "context": "If a message is useful but flat",
+            "plan": "If a message is useful but flat, then ask why it matters until awe, anxiety, anger, or excitement appears."
+          },
+          {
+            "context": "If a story feels merely pleasant",
+            "plan": "If a story feels merely pleasant, then add a concrete reversal, risk, or wonder that creates motion."
+          },
+          {
+            "context": "If anger is involved",
+            "plan": "If anger is involved, then name the specific wrong and the repair path so energy does not become vague resentment."
+          },
+          {
+            "context": "If shock dominates the idea",
+            "plan": "If shock dominates the idea, then cut the shot or line that people would remember instead of the message."
+          }
+        ],
+        "twentyFourHourChallenge": "Today, revise one message by replacing a feature claim with the human reason it matters. Test whether a colleague can name the feeling and action.",
+        "weeklyPractice": "For seven days, save one shared item per day and label its arousal: awe, anger, anxiety, amusement, excitement, sadness, or calm."
+      },
+      "memorableLines": [
+        {
+          "text": "Arousal is the useful axis.",
+          "location": "breakdown.deepRead",
+          "why": "It compresses the whole emotion distinction into one line."
+        },
+        {
+          "text": "A message can be moving and still fail to move.",
+          "location": "breakdown.fullRead",
+          "why": "It makes the difference between feeling and action memorable."
+        },
+        {
+          "text": "Activated care gives people a reason to pass the message on.",
+          "location": "breakdown.fullRead",
+          "why": "It names the practical target for emotional design."
+        }
+      ]
+    },
+    {
+      "chapterId": "contagious-ch04",
+      "number": 4,
+      "title": "Public",
+      "readingTimeMinutes": 11,
+      "hook": "White cords in someone's ears can make a hidden music player look everywhere.",
+      "counterintuition": "People copy what they can see, so private use often needs a public trace. Visibility can spread a desired behavior, but it can also make the wrong behavior look normal.",
+      "tryThisNow": "Find one private behavior you want copied. Add a visible signal, residue, or prompt that appears after use and invites a question.",
+      "keyTakeaway": "Public design turns private action into social proof; make the desired behavior easy to see, while avoiding signals that normalize what you hope to reduce.",
+      "breakdown": {
+        "fastRead": "White iPod earbuds solved a visibility problem. The music player sat in a pocket, but the cord showed up on sidewalks, trains, and campuses. Each listener became a public sign that the product was in use.\n\nPublic signals make imitation easier. Apple also turned laptop users into brand displays by orienting the logo for onlookers. Hotmail put a signup prompt inside each sent email. Livestrong wristbands and Movember mustaches left residue that invited questions after the original choice. The caution is sharp: visibility can normalize the wrong act. Show the behavior you want copied, not the one you want reduced.",
+        "deepRead": "Social proof needs evidence. When people cannot judge value directly, they look at what others appear to choose. But private behavior cannot guide imitation unless some part of it becomes visible. The iPod could have stayed hidden. White earbuds made the hidden device legible in public.\n\nApple's laptop logo used the same logic in a small design choice. The logo looks upside down to the owner while opening the lid, then correct to everyone facing the open computer. The user gives up a tiny private convenience so the brand gains a public display. Hotmail made use even more direct. Each outgoing email carried an invitation to get a free account, turning normal communication into exposure and a path to adoption.\n\nBehavioral residue extends visibility past the moment of use. A Livestrong wristband keeps support visible at lunch, at work, and on the bus. Movember makes men's health advocacy hard to miss because the mustache sits on the face. The visible change invites the question that lets the cause be explained.\n\nThe danger is reverse social proof. A campaign that announces heavy drinking is common may tell students that heavy drinking is normal. A poster about tax cheating can make cheating look widespread. Public design must choose its signal carefully. The goal is not maximum noise. The goal is observable proof of the desired behavior.",
+        "fullRead": "A private choice cannot become social proof until it leaves the private realm. That is why visibility sits at the center of public design. People imitate what they can notice, especially when they are unsure what is good, normal, or worth trying.\n\nWhite iPod earbuds were more than an accessory. They made portable music use visible when the device itself stayed hidden. On a train, the cord told a simple story: people like this product, people carry it, people use it in public. The signal was small enough to feel natural and clear enough to be recognized.\n\nThe Apple laptop logo turns a hinge decision into advertising. When the lid is closed, the owner sees the mark one way. Once the laptop opens, the room sees it correctly. The choice favors observers over the owner for a reason. Each working user becomes a display that other people can read.\n\nHotmail embeds visibility in the act of use. A sent email carried a line inviting the recipient to get a free account. That line did two jobs. It showed that someone was already using the service, and it gave the recipient a low-friction next step. Publicness worked inside the product's natural channel.\n\nBehavioral residue widens the window. Livestrong wristbands kept support for cancer awareness visible long after a purchase or donation. The bracelet could be seen in places far from the original cause moment. Movember does this with a temporary change on the face. The mustache is awkward, noticeable, and conversational. It invites people to ask what is going on.\n\nThe same mechanism can backfire. If a public health message says too many people binge drink, skip taxes, or use drugs, the audience may learn that the unwanted behavior is common. The signal meant to warn can become a permission slip. Social proof is not moral. It points toward whatever looks normal.\n\nGood public design asks what a stranger will infer. A voting sticker says voting happened and can happen. A reusable bag says carrying one is normal here. A default email signature says others are using the tool. These traces make desired acts easy to see and easy to copy.\n\nThe limit is clutter. Not every behavior needs a badge, sound, logo, or bracelet. Forced visibility can annoy users or reveal private choices they would rather keep quiet. The best residue respects the user while making the right act observable. Build to show the behavior that should grow, then leave the user's dignity intact."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Linh flips the laptop mark",
+          "tags": [
+            "design",
+            "Apple",
+            "visibility"
+          ],
+          "planSpec": {
+            "domain": "hardware branding review",
+            "audience": "industrial designers choosing logo orientation",
+            "stakes": "a private convenience choice can remove public brand evidence",
+            "format": "decision_point",
+            "requiredBeat": "Linh uses Apple laptop logo orientation"
+          },
+          "scenario": "Linh stands at 8:25 a.m. in a Cupertino mockup room with two Apple-style laptop lids on a table. One logo faces the owner while closed. The other faces the room when open. She must decide before tooling starts, and the product will spend most of its public life open in cafes.",
+          "whatToDo": "Orient the mark for onlookers during use, so each open laptop becomes a clear public signal without asking owners to say anything.",
+          "whyItMatters": "Apple's logo choice made private use visible. Linh should design for the people who observe adoption."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Bruno keeps the white cord",
+          "tags": [
+            "accessory",
+            "iPod",
+            "social proof"
+          ],
+          "planSpec": {
+            "domain": "audio-device launch",
+            "audience": "consumer electronics marketers",
+            "stakes": "a pocketed device may look absent unless an accessory announces use",
+            "format": "planning_choice",
+            "requiredBeat": "Bruno applies white iPod earbuds logic"
+          },
+          "scenario": "Bruno is in a Berlin product lab at 6:15 p.m. with white iPod earbuds in one hand and matte black prototypes in the other. The new player stays inside a jacket pocket. The supplier call starts in six minutes, and Bruno has to settle whether the cord should blend in or stand out on the street.",
+          "whatToDo": "Choose the distinctive cord and make it consistent, because the visible accessory is the public proof that hidden use is happening.",
+          "whyItMatters": "White earbuds made iPods observable. Bruno needs the marker that lets strangers see the product in use."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Celine trims the email footer",
+          "tags": [
+            "software",
+            "Hotmail",
+            "growth"
+          ],
+          "planSpec": {
+            "domain": "freemium email product",
+            "audience": "growth teams adding invitation prompts",
+            "stakes": "normal use can expose recipients without adding a separate campaign",
+            "format": "business_case",
+            "requiredBeat": "Celine uses Hotmail signatures as public use"
+          },
+          "scenario": "Celine reviews a Hotmail signature case at 11:40 a.m. in a Paris startup office. Her team wants pop-up ads after login. With the release branch closing at noon, Celine has to pick the surface that already reaches people who might need the same free account.",
+          "whatToDo": "Put a short signup invitation in outgoing emails, so use itself shows proof and gives recipients a direct adoption path.",
+          "whyItMatters": "Hotmail grew by making communication public evidence. Celine should place the prompt inside the natural channel."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Kwame orders the bracelets",
+          "tags": [
+            "cause",
+            "Livestrong",
+            "residue"
+          ],
+          "planSpec": {
+            "domain": "cancer fundraiser design",
+            "audience": "nonprofit staff choosing donor reminders",
+            "stakes": "a private donation can vanish after payment unless residue keeps it visible",
+            "format": "dilemma",
+            "requiredBeat": "Kwame uses Livestrong wristbands"
+          },
+          "scenario": "Kwame sits at 3:30 p.m. in an Accra nonprofit office with Livestrong wristband photos and a donor receipt mockup. The budget covers either nicer thank-you emails or simple yellow bracelets. The vendor deadline is two hours away, and the campaign needs supporters to spark questions for weeks.",
+          "whatToDo": "Choose the bracelets and connect them to the cause story, so a private donation leaves a visible trace people can ask about.",
+          "whyItMatters": "Livestrong shows how residue extends the signal. Kwame needs support to remain observable after checkout."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Anouk saves the mustache cue",
+          "tags": [
+            "health",
+            "Movember",
+            "questions"
+          ],
+          "planSpec": {
+            "domain": "men's health campaign",
+            "audience": "community organizers recruiting participants",
+            "stakes": "a hidden pledge will not invite the conversations the cause needs",
+            "format": "coach_talk",
+            "requiredBeat": "Anouk uses Movember's visible temporary behavior"
+          },
+          "scenario": "Anouk is at 8:50 p.m. in an Amsterdam community hall with Movember posters and a sign-up sheet. A sponsor suggests private online pledges instead of mustache photos. She must respond before the launch briefing, and the strange facial-hair cue is what makes coworkers ask questions.",
+          "whatToDo": "Keep the public mustache challenge and give participants a simple answer for the questions it will invite.",
+          "whyItMatters": "Movember turns concern into visible conversation. Anouk should protect the cue that makes advocacy observable."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Petra rewrites the warning",
+          "tags": [
+            "public health",
+            "backfire",
+            "social proof"
+          ],
+          "planSpec": {
+            "domain": "campus drinking prevention",
+            "audience": "student health staff writing posters",
+            "stakes": "warning about a bad behavior can make it look common",
+            "format": "mistake_recovery",
+            "requiredBeat": "Petra avoids reverse social proof"
+          },
+          "scenario": "Petra sits at 1:22 p.m. in a Prague student health office with a draft poster saying many students binge drink. An Apple visibility note and a social proof warning sit beside her laptop. She must approve copy before printing, and the current line makes the bad behavior look normal.",
+          "whatToDo": "Rewrite the poster around visible sober choices and protective peer actions, not the number of students doing the harmful thing.",
+          "whyItMatters": "Public signals normalize what they show. Petra should make the desired behavior observable instead of advertising the wrong one."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "Linh can orient a laptop logo for the owner opening it or for people facing the open screen. Which choice best uses public design?",
+            "choices": [
+              "Orient it for onlookers during use, when adoption can be observed.",
+              "Orient it for the owner, because private ease creates social proof.",
+              "Remove the mark so observers focus on the keyboard shape."
+            ],
+            "correctIndex": 0,
+            "explanation": "The Apple example favors public observability. A visible mark turns each user into evidence for people nearby.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A music player sits in a pocket. What did white earbuds solve?",
+            "choices": [
+              "They made battery life easier for owners to estimate.",
+              "They reduced the need for users to choose songs.",
+              "They made the hidden product observable in public."
+            ],
+            "correctIndex": 2,
+            "explanation": "The earbuds acted as a visible marker. Strangers could see use even when the device stayed hidden.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "Celine wants growth for a free email tool. Which move most resembles Hotmail?",
+            "choices": [
+              "Ask users to memorize a referral code for future conversations.",
+              "Add a short signup invitation to messages users already send.",
+              "Place a long product history on the account settings page."
+            ],
+            "correctIndex": 1,
+            "explanation": "Hotmail put exposure and adoption path inside normal use. The message itself carried social proof to recipients.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Kwame chooses between thank-you emails and bracelets for donors. Why might bracelets be stronger?",
+            "choices": [
+              "They make every donor give more money at checkout.",
+              "They leave behavioral residue that remains visible after donation.",
+              "They keep the cause private so donors avoid questions."
+            ],
+            "correctIndex": 1,
+            "explanation": "Livestrong wristbands kept support observable long after the original act. Residue invites attention and conversation.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Anouk's sponsor wants private pledges instead of a Movember-style visible challenge. What should she protect?",
+            "choices": [
+              "The visible change that invites people to ask about men's health.",
+              "The private pledge because hidden support creates more imitation.",
+              "The sponsor logo as the only thing participants need to show."
+            ],
+            "correctIndex": 0,
+            "explanation": "Movember works because the mustache makes the cause noticeable. The cue opens the conversation.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Petra's poster says many students binge drink. What is the public-design risk?",
+            "choices": [
+              "Students may find the poster too hard to see from far away.",
+              "Students may assume the printer approved the message late.",
+              "Students may infer the unwanted behavior is common."
+            ],
+            "correctIndex": 2,
+            "explanation": "Public signals imply norms. Showing the bad behavior as common can accidentally strengthen it.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A voting group gives stickers after ballots are cast. What does the sticker add?",
+            "choices": [
+              "A private reminder that only the voter can interpret.",
+              "A visible trace that voting happened and can be copied.",
+              "A price discount that makes the ballot feel more valuable."
+            ],
+            "correctIndex": 1,
+            "explanation": "The sticker is behavioral residue. It lets a private civic act become public evidence.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Your team wants to make a private wellness habit spread. Which first test is most useful?",
+            "choices": [
+              "Ask how to hide participants so the habit feels more personal.",
+              "Ask how many warnings about unhealthy behavior fit on a flyer.",
+              "Ask what visible trace would let others notice the desired behavior."
+            ],
+            "correctIndex": 2,
+            "explanation": "Public design starts with observability. The signal should show the wanted act, not hide it or spotlight the opposite.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "When can visibility become harmful?",
+            "choices": [
+              "When it makes an unwanted act look widespread or normal.",
+              "When it appears on a product people already use in public.",
+              "When it leaves a trace that invites a helpful question."
+            ],
+            "correctIndex": 0,
+            "explanation": "Visibility amplifies whatever it shows. It helps only when the desired behavior is the thing being normalized.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "Why does public visibility help ideas spread?",
+          "back": "People copy what they can observe. Visibility turns private use into evidence that others can notice and imitate.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "What did white iPod earbuds make public?",
+          "back": "They made a hidden music player visible. The accessory signaled use on sidewalks, trains, and campuses.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card03",
+          "front": "What growth lesson comes from Hotmail signatures?",
+          "back": "Put proof and a next step inside normal use. Each email exposed a recipient to the service and invited adoption.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "What is behavioral residue?",
+          "back": "It is the trace left after action, such as a wristband, sticker, logo, signature, or visible marker that keeps signaling later.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "How does reverse social proof happen?",
+          "back": "A warning can make the bad behavior look common. People may copy or accept what the campaign meant to reduce.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "What should public design show?",
+          "back": "It should make the desired behavior easy to see, copy, and ask about while keeping harmful behavior from looking normal.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Leave the right trace",
+        "coreSkill": "Make the desired behavior observable in a way users can accept. Choose a signal that appears during or after use, then check what a stranger would infer from it.",
+        "ifThenPlans": [
+          {
+            "context": "If use is hidden",
+            "plan": "If use is hidden, then add a visible marker that naturally belongs to the behavior."
+          },
+          {
+            "context": "If a cause needs talk",
+            "plan": "If a cause needs talk, then give supporters a residue that invites one simple question."
+          },
+          {
+            "context": "If a warning mentions bad behavior",
+            "plan": "If a warning mentions bad behavior, then rewrite it so the visible norm is the desired action."
+          },
+          {
+            "context": "If a logo choice affects observers",
+            "plan": "If a logo choice affects observers, then judge it from the viewpoint of the people watching use happen."
+          }
+        ],
+        "twentyFourHourChallenge": "By tomorrow, pick one private behavior and sketch three visible traces for it. Reject any trace that makes the wrong behavior look common.",
+        "weeklyPractice": "For one week, collect examples of public signals in the wild. Label each as during-use visibility, after-use residue, or reverse social proof risk."
+      },
+      "memorableLines": [
+        {
+          "text": "Social proof needs evidence.",
+          "location": "breakdown.deepRead",
+          "why": "It states why visibility matters in four words."
+        },
+        {
+          "text": "A private choice cannot become social proof until it leaves the private realm.",
+          "location": "breakdown.fullRead",
+          "why": "It names the core constraint on imitation."
+        },
+        {
+          "text": "Build to show the behavior that should grow, then leave the user's dignity intact.",
+          "location": "breakdown.fullRead",
+          "why": "It turns the chapter into a practical rule."
+        }
+      ]
+    },
+    {
+      "chapterId": "contagious-ch05",
+      "number": 5,
+      "title": "Practical Value",
+      "readingTimeMinutes": 11,
+      "hook": "An older man's corn trick can outrun a glossy ad because dinner gets easier tonight.",
+      "counterintuition": "Usefulness spreads when it feels exceptional and recipient-specific, not when advice is merely accurate. Helpful intent also needs truth checks because false warnings can travel on care.",
+      "tryThisNow": "Choose one tip, deal, or warning. Add the exact person it helps, the concrete payoff, and the simplest proof that the benefit is real.",
+      "keyTakeaway": "Practical value travels as help; package the benefit so it feels clear, exceptional, relevant, and true enough to forward responsibly.",
+      "breakdown": {
+        "fastRead": "Ken Craig's corn-shucking video is humble. No celebrity steps in. No luxury product appears. An older man shows a cleaner way to remove corn silk, and millions watch because the payoff is obvious in seconds.\n\nPractical value spreads through helping. People forward tips, deals, warnings, and how-to clips because being useful strengthens ties. Yet usefulness must stand out. A grill discount feels different depending on the reference price. The Rule of 100 says percentages often look larger below $100, while dollar amounts often look larger above $100. The hard part is truth. Helpful people can spread harmful claims when a warning feels protective but lacks evidence.",
+        "deepRead": "Usefulness is social. A person who sends a good tip is not only moving information. They are being helpful to a friend, parent, neighbor, or coworker. Ken Craig's corn-shucking video spread because viewers could instantly name who needed it. The benefit was visible, simple, and easy to test.\n\nPractical value needs packaging because ordinary advice floods every inbox. A deal has to feel worth interrupting someone. That feeling depends on reference points. In the barbecue grill example, buyers react not only to the final price but to the markdown they think they are receiving. The comparison shapes whether the deal feels notable enough to mention.\n\nDiminishing sensitivity makes framing matter. Ten dollars off a $25 item can feel large. Ten dollars off a $500 item can feel small. A percentage can make a low-priced discount look bigger. A dollar amount can make a high-priced discount feel more impressive. The Rule of 100 turns that perception into a simple packaging choice: use percentages under $100 and dollars over $100.\n\nThe ethical edge is important. Vaccine-autism misinformation shows how helpful intent can become a carrier for harm. A frightening health warning may spread because senders believe they are protecting children. Practical value should therefore include verification, not just urgency. The best useful message names the beneficiary, shows the payoff, and earns trust before it asks to be forwarded.",
+        "fullRead": "A useful idea can spread without glamour because help is a social gift. Ken Craig did not need youth culture, celebrity, or a giant production budget. He showed a way to clean corn with less mess. The viewer could see the result and imagine a person who would benefit before dinner.\n\nThat is the core of practical value. People share to save someone time, money, effort, risk, or frustration. A forwarded coupon can say, \"I thought of you.\" A shortcut can say, \"This will make your day easier.\" A warning can say, \"I want you safe.\" Usefulness travels through relationships.\n\nThe benefit still has to cut through noise. Generic helpfulness is easy to ignore because advice is everywhere. A strong practical message makes the payoff concrete. It says who should use it, what changes, and how soon the change can be seen. Ken Craig's corn trick wins because the viewer does not need a theory. The silk comes off cleanly.\n\nPricing adds another layer. People judge deals against reference points. The barbecue grill discount experiment shows that a markdown can feel valuable because of the comparison, not only the final price. A shopper tells a friend about a deal when the savings feel notable. The frame creates that feeling.\n\nDiminishing sensitivity explains why the same dollar change can feel different at different scales. A small discount on a cheap item feels meaningful. The same dollars on a costly item may barely register. Below $100, percentages can make value feel large. Above $100, absolute dollars often carry more weight. The Rule of 100 helps a seller choose the clearer frame.\n\nPractical value can also be abused by accident. Vaccine-autism misinformation spread through a desire to protect families. The sender may feel generous and careful while passing along a false warning. That is why usefulness cannot be separated from truth. Help that misleads is harm with good manners.\n\nThe limit is recipient relevance. A coupon for ski boots is not useful to a friend in a city summer. A brilliant kitchen trick may not matter to someone who never cooks. A safety warning should name who faces the risk and what action follows. Useful information travels best when the recipient is easy to picture.\n\nDesign practical value like a favor. Make the benefit fast to grasp. Choose the frame that makes the value feel exceptional without distortion. Show enough proof that the sender can pass it along with confidence. A clear favor gives people a clean reason to share."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Rosa shows the corn payoff",
+          "tags": [
+            "how-to",
+            "Ken Craig",
+            "utility"
+          ],
+          "planSpec": {
+            "domain": "kitchen video production",
+            "audience": "food editors choosing tutorial structure",
+            "stakes": "viewers need to see the benefit before they decide whom to send it to",
+            "format": "decision_point",
+            "requiredBeat": "Rosa uses Ken Craig's visible corn-shucking payoff"
+          },
+          "scenario": "Rosa is in a Portland test kitchen at 8:15 a.m. with Ken Craig's corn-shucking video open beside two rough cuts. One starts with family backstory. The other shows silk sliding off a hot ear of corn. The newsletter goes out at noon, so dinner help has to be visible fast.",
+          "whatToDo": "Open with the clean corn reveal, then add the steps, so viewers can see the practical payoff before attention drifts.",
+          "whyItMatters": "Ken Craig spread because the benefit was obvious within seconds. Rosa should let usefulness prove itself on screen."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Nikhil frames the grill deal",
+          "tags": [
+            "pricing",
+            "reference point",
+            "discount"
+          ],
+          "planSpec": {
+            "domain": "outdoor retail promotion",
+            "audience": "merchandisers advertising seasonal markdowns",
+            "stakes": "the same final price can feel ordinary or worth forwarding",
+            "format": "business_case",
+            "requiredBeat": "Nikhil applies barbecue grill reference-point logic"
+          },
+          "scenario": "Nikhil sits at 5:05 p.m. in a Dallas outdoor store with a barbecue grill discount experiment summary and two signs. One says 'Now $350.' The other shows the original $500 price and the markdown. He must decide before the weekend flyer closes, and customers share deals that feel exceptional.",
+          "whatToDo": "Show the reference price and savings clearly, so the deal feels notable rather than like another shelf price.",
+          "whyItMatters": "The grill example shows that perceived value depends on comparison. Nikhil needs the frame that makes the benefit worth telling."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Greta chooses the Rule of 100",
+          "tags": [
+            "retail",
+            "Rule of 100",
+            "framing"
+          ],
+          "planSpec": {
+            "domain": "ecommerce coupon display",
+            "audience": "pricing analysts choosing discount labels",
+            "stakes": "a true discount may look small if framed on the wrong scale",
+            "format": "planning_choice",
+            "requiredBeat": "Greta uses Rule of 100 below and above $100"
+          },
+          "scenario": "Greta is in a Stockholm ecommerce office at 9:50 a.m. with the Rule of 100 written on a sticky note. A $40 pan and a $240 mixer both need sale labels before the site refresh. She must tell design whether each should show dollars off or percent off.",
+          "whatToDo": "Use a percentage for the $40 pan and dollars for the $240 mixer, making the same savings feel easier to recognize at each scale.",
+          "whyItMatters": "The Rule of 100 packages value in the frame people perceive as larger. Greta should match the label to the price."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Samira checks the vaccine claim",
+          "tags": [
+            "health",
+            "misinformation",
+            "safeguards"
+          ],
+          "planSpec": {
+            "domain": "parent group moderation",
+            "audience": "community moderators handling health warnings",
+            "stakes": "protective intent can spread a false claim quickly",
+            "format": "mistake_recovery",
+            "requiredBeat": "Samira catches vaccine-autism misinformation"
+          },
+          "scenario": "Samira moderates a parent chat at 7:12 p.m. in Toronto while a vaccine-autism warning gets forwarded with crying emojis. The sender says she only wants to protect children. Samira must answer before more parents share it, and the claim lacks credible support.",
+          "whatToDo": "Pause the forward, add a verified health source, and explain that protective intent still needs evidence before the group spreads a warning.",
+          "whyItMatters": "Vaccine-autism misinformation shows practical value's dark side. Samira has to keep helpfulness tied to truth."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Pavel names the recipient",
+          "tags": [
+            "B2B",
+            "relevance",
+            "usefulness"
+          ],
+          "planSpec": {
+            "domain": "software tip email",
+            "audience": "customer success teams sending workflow advice",
+            "stakes": "a good tip can feel irrelevant if the recipient is vague",
+            "format": "coach_talk",
+            "requiredBeat": "Pavel makes utility recipient-specific"
+          },
+          "scenario": "Pavel is at 11:25 a.m. in a Warsaw customer-success bullpen with Ken Craig's corn example and a draft email titled 'Five dashboard tips.' He must approve the send before lunch. The best tip saves payroll managers ten minutes on Friday exports, but the draft addresses every user.",
+          "whatToDo": "Rewrite the email for payroll managers and lead with the Friday export time saved, so the right recipient sees the benefit immediately.",
+          "whyItMatters": "Practical value needs a clear beneficiary. Pavel should make the useful person and payoff easy to picture."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "June trims the tip list",
+          "tags": [
+            "newsletter",
+            "specificity",
+            "help"
+          ],
+          "planSpec": {
+            "domain": "neighborhood newsletter",
+            "audience": "editors choosing community advice",
+            "stakes": "too many small tips can bury the one neighbors would forward",
+            "format": "audit",
+            "requiredBeat": "June avoids generic tip-list dilution"
+          },
+          "scenario": "June sits at 6:05 a.m. in a Boise library with a community newsletter draft and a Rule of 100 note beside her mug. Twelve tips fill the page. She must choose before volunteers print copies, and only one item shows residents how to cut winter heating bills this week.",
+          "whatToDo": "Feature the heating-bill tip with exact steps and expected savings, rather than burying it inside a broad advice list.",
+          "whyItMatters": "Useful information spreads when the payoff is concrete and timely. June should package one favor well."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "Rosa has a corn tutorial. Which opening best follows Ken Craig's practical-value lesson?",
+            "choices": [
+              "Begin with the cook's full biography before any kitchen action.",
+              "Show the clean corn result first so viewers see the immediate payoff.",
+              "Hide the finished corn until viewers have watched every step twice."
+            ],
+            "correctIndex": 1,
+            "explanation": "The corn video spread because usefulness was visible quickly. Rosa should put the payoff where viewers can grasp it and think of a recipient.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Nikhil's grill sign can show only a final price or the original price plus markdown. Why show the reference price?",
+            "choices": [
+              "It helps shoppers perceive whether the deal is exceptional.",
+              "It makes the grill easier to assemble after purchase.",
+              "It proves customers will buy two grills instead of one."
+            ],
+            "correctIndex": 0,
+            "explanation": "Reference points shape perceived value. The markdown can make the savings feel worth forwarding.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "Greta labels a $40 pan and a $240 mixer. Which pair best uses the Rule of 100?",
+            "choices": [
+              "Dollars for the pan and percent for the mixer.",
+              "Percent for both because percentages are clearer at every price.",
+              "Percent for the pan and dollars for the mixer."
+            ],
+            "correctIndex": 2,
+            "explanation": "Below $100, percentages often look larger. Above $100, absolute dollars often feel more impressive.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Samira sees a frightening vaccine-autism warning spreading in a parent chat. What should she do first?",
+            "choices": [
+              "Forward it faster because parents are trying to protect children.",
+              "Change the topic so no one discusses health in the group.",
+              "Pause sharing and add credible verification before the claim travels farther."
+            ],
+            "correctIndex": 2,
+            "explanation": "Helpful intent can carry false information. Samira should protect the group by checking evidence before amplifying the warning.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Pavel's software tip saves payroll managers ten minutes on Friday exports. Which subject line best packages practical value?",
+            "choices": [
+              "A few workflow thoughts for many teams.",
+              "Payroll managers: cut Friday export cleanup by ten minutes.",
+              "Product update notes from the customer team."
+            ],
+            "correctIndex": 1,
+            "explanation": "The strongest line names the recipient, payoff, and timing. It feels like a useful favor to a specific person.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "June has twelve neighborhood tips and one heating-bill tactic that works this week. Which edit helps sharing?",
+            "choices": [
+              "Lead with the heating-bill tactic and give exact steps.",
+              "Keep all twelve tips equal so no one feels guided.",
+              "Replace the tactic with a general essay about community care."
+            ],
+            "correctIndex": 0,
+            "explanation": "Practical value travels when the benefit is concrete and easy to pass on. One clear favor beats a diluted list.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A store advertises 5 dollars off a 500 dollar item. Why might that feel weak?",
+            "choices": [
+              "Diminishing sensitivity makes the savings feel small at that scale.",
+              "Customers dislike dollar amounts on costly items in most cases.",
+              "The final price matters only when no reference point exists."
+            ],
+            "correctIndex": 0,
+            "explanation": "A fixed dollar amount can feel tiny against a high price. The value frame has to match the scale.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Your team wants customers to forward a safety checklist. Which feature is most important?",
+            "choices": [
+              "A long list of possible risks with no ranking.",
+              "A dramatic tone that makes checking sources feel less urgent.",
+              "A clear risk, a specific recipient, and a verified action step."
+            ],
+            "correctIndex": 2,
+            "explanation": "A useful warning should be relevant and true. People need to know who benefits, what to do, and why the claim can be trusted.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "What social motive powers practical value?",
+            "choices": [
+              "Showing that the sender knows secret places before others.",
+              "Helping someone else save time, money, effort, risk, or frustration.",
+              "Making private behavior visible through residue."
+            ],
+            "correctIndex": 1,
+            "explanation": "Practical value spreads as a form of helping. The sender strengthens a tie by passing along a useful benefit.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "Why did Ken Craig's corn video travel?",
+          "back": "The payoff was visible and useful within seconds. Viewers could imagine exactly who would benefit from cleaner corn.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "What makes practical value social?",
+          "back": "Sharing a useful tip, deal, warning, or shortcut lets the sender help someone and maintain the relationship.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card03",
+          "front": "Why do reference points matter in deals?",
+          "back": "People judge value by comparison. The same final price can feel ordinary or exceptional depending on the visible markdown.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "How does the Rule of 100 frame discounts?",
+          "back": "Use percentages below $100 and dollar amounts above $100 when those frames make the savings easier to perceive.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "What is the danger of practical-value sharing?",
+          "back": "False information can spread through protective intent. A warning needs verification before helpfulness becomes harm.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "What must a useful message make clear?",
+          "back": "It should name who benefits, what they gain, how soon they gain it, and why the claim is trustworthy.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Package one useful favor",
+        "coreSkill": "Turn a tip, deal, or warning into a concrete favor for a specific person. Make the payoff visible, frame the value at the right scale, and verify claims before asking anyone to forward them.",
+        "ifThenPlans": [
+          {
+            "context": "If advice feels broad",
+            "plan": "If advice feels broad, then name the exact recipient and the task it improves."
+          },
+          {
+            "context": "If a discount looks small",
+            "plan": "If a discount looks small, then compare percent and dollar framing using the Rule of 100."
+          },
+          {
+            "context": "If a warning feels urgent",
+            "plan": "If a warning feels urgent, then check the source before increasing its reach."
+          },
+          {
+            "context": "If a tip list grows long",
+            "plan": "If a tip list grows long, then promote the one item with the clearest near-term payoff."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, send one useful note to one specific person. Include the benefit, the action, and the evidence in three short sentences.",
+        "weeklyPractice": "Each day this week, rewrite one tip or deal so the recipient, payoff, frame, and proof are visible before anyone has to click."
+      },
+      "memorableLines": [
+        {
+          "text": "Usefulness is social.",
+          "location": "breakdown.deepRead",
+          "why": "It explains why helpful information moves between people."
+        },
+        {
+          "text": "A useful idea can spread without glamour because help is a social gift.",
+          "location": "breakdown.fullRead",
+          "why": "It makes humble utility feel powerful."
+        },
+        {
+          "text": "Help that misleads is harm with good manners.",
+          "location": "breakdown.fullRead",
+          "why": "It captures the ethical warning sharply."
+        }
+      ]
+    },
+    {
+      "chapterId": "contagious-ch06",
+      "number": 6,
+      "title": "Stories",
+      "readingTimeMinutes": 12,
+      "hook": "Jokes, diets, and war tricks spread best when the lesson cannot be removed.",
+      "counterintuition": "Reach alone can be worthless if people retell the spectacle and drop the payload. Stories work when the message is necessary to the plot.",
+      "tryThisNow": "Write the story people would retell about your idea. Cross out your product or lesson; if the story still works, rebuild the plot around it.",
+      "keyTakeaway": "Stories carry ideas when the payload is integral: make the message the hinge of the narrative, not a sponsor tag people can forget.",
+      "breakdown": {
+        "fastRead": "The Trojan Horse survives because the lesson rides inside the event. The story is not a lecture about hidden danger. It is a vivid plot where the attractive gift contains the threat. Retelling the event keeps the warning alive.\n\nStories give information cover. Jared Fogle's Subway weight-loss story kept the restaurant central because the sandwiches explained the transformation. A Land's End zipper replacement turns service policy into an incident. Golden Palace's Olympic pool crash shows the failure case: people remember the disruption and lose the casino message. Valuable virality needs the entertaining part and the payload locked together.",
+        "deepRead": "Narratives travel more easily than claims. People retell incidents, transformations, jokes, and warnings because stories have motion. They give listeners a reason to keep attention without feeling that they are being sold to. That social cover is powerful, but it can also hide the wrong thing.\n\nThe Trojan Horse metaphor works because the message is built into the plot. Remove the hidden danger and the story collapses. Jared Fogle's Subway story had the same structural tie. The weight loss depended on the sandwiches, so retelling the change kept the brand and the healthier-menu implication attached.\n\nLand's End shows how service values can ride inside a small event. A broken zipper and a no-hassle replacement communicate trust better than a policy sentence. The claim becomes believable because it appears as action. Panda Cheese uses humor in a different way. The product refusal triggers the panda's reaction, so the cheese remains the hinge of the joke.\n\nFailed virality makes the rule clearer. Golden Palace got attention when an Olympic event was interrupted by a casino URL, but the story people retold was the crash, not the casino's value. If the payload can be removed without damaging the tale, attention leaks away. A strong story makes the idea load-bearing.",
+        "fullRead": "Stories are memory vehicles, but vehicles can drive away without the cargo. That is the risk in chasing virality. A clip can gather views, jokes, and press while leaving the intended brand or lesson behind. Narrative design is about keeping the payload inside the plot.\n\nThe Trojan Horse remains a durable metaphor because the message is not pasted on. A gift appears safe. Hidden soldiers make it dangerous. The lesson about attractive threats cannot be separated from the event. Tell the story and the warning comes with it.\n\nJared Fogle's Subway story shows valuable virality at brand level. The transformation is dramatic, but the restaurant is not an afterthought. The diet story depends on Subway sandwiches, so a retelling that removes the brand no longer explains the change. The payload survives because it is needed.\n\nLand's End works through service instead of transformation. A customer with a broken coat zipper receives a no-hassle replacement. That incident carries a claim about reliability and trust more naturally than a slogan. The listener hears a concrete act, not a policy recitation. The service promise rides inside the event.\n\nPanda Cheese makes the product the cause of the joke. Someone refuses the cheese, and the panda disrupts the scene. The humor can be retold only by naming the refusal and the product. That is why the entertainment helps rather than steals. The cheese is the hinge.\n\nGolden Palace shows the opposite. An Olympic pool crash can be retold as a wild intrusion while the casino URL fades. The stunt earns attention but not useful memory. The audience keeps the spectacle and drops the message. That is poor cargo design.\n\nStories also change as they travel. People compress details, cut side characters, and keep the parts that make the plot work. Any message sitting at the edge will be trimmed. A sponsor tag, a logo at the end, or a moral added after the funny part is easy to lose. The intended idea has to be central enough that the story breaks without it.\n\nThe limit is overloading the narrative. If every line tries to carry a lesson, the story becomes a brochure. The stronger approach is to find one plot hinge: the sandwich that explains the weight loss, the zipper that proves service, the cheese refusal that triggers the panda, the hidden soldiers that define the gift. Make that hinge memorable.\n\nUseful stories earn retelling and preserve meaning. Before release, ask someone to repeat the story after one listen. Notice what survives. If the payload disappears, the story is entertaining but not valuable. If the idea stays because the event needs it, the story can carry the message from person to person."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Dalia tests the horse",
+          "tags": [
+            "metaphor",
+            "Trojan Horse",
+            "payload"
+          ],
+          "planSpec": {
+            "domain": "museum education exhibit",
+            "audience": "curators explaining ancient lessons to visitors",
+            "stakes": "a label may state the lesson while the display fails to carry it",
+            "format": "decision_point",
+            "requiredBeat": "Dalia uses the Trojan Horse as payload inside plot"
+          },
+          "scenario": "Dalia stands at 9:40 a.m. in an Athens museum gallery with a Trojan Horse model and two label drafts. One explains hidden danger in abstract terms. The other lets visitors follow the gift, the gate, and the soldiers inside. Minutes before the school tour arrives, the plot version is the only one children can retell.",
+          "whatToDo": "Use the plot sequence, so the warning about hidden danger travels inside the event rather than beside it as a lecture.",
+          "whyItMatters": "The Trojan Horse endures because lesson and story are fused. Dalia should make the message impossible to remove."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Henrik keeps Subway central",
+          "tags": [
+            "brand",
+            "Subway",
+            "transformation"
+          ],
+          "planSpec": {
+            "domain": "restaurant campaign review",
+            "audience": "brand managers judging testimonial stories",
+            "stakes": "a dramatic customer story may drop the restaurant if the product is not causal",
+            "format": "business_case",
+            "requiredBeat": "Henrik checks the Jared Fogle/Subway structural tie"
+          },
+          "scenario": "Henrik is in a Copenhagen restaurant office at 2:45 p.m. with the Jared Fogle Subway case and a new customer video. The customer lost weight after many changes, but the restaurant appears only in the final logo. Henrik must decide before media spend is approved.",
+          "whatToDo": "Approve only a version where the meal choice explains the transformation, so removing the restaurant would break the story.",
+          "whyItMatters": "Jared's Subway story worked because the brand was causal. Henrik needs a plot where the product carries the change."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Soraya writes the zipper incident",
+          "tags": [
+            "service",
+            "Land's End",
+            "trust"
+          ],
+          "planSpec": {
+            "domain": "customer service training",
+            "audience": "support leaders teaching warranty values",
+            "stakes": "a policy statement may not be remembered or believed",
+            "format": "vignette",
+            "requiredBeat": "Soraya turns Land's End zipper replacement into a service story"
+          },
+          "scenario": "Soraya sits at 6:30 p.m. in a Minneapolis support classroom with a Land's End zipper replacement note and a warranty slide deck. New hires look bored by policy language. She has to open training in five minutes, and the broken-coat incident shows the promise better than any rule.",
+          "whatToDo": "Start with the zipper story, then extract the service standard from the action the company took.",
+          "whyItMatters": "Land's End turns trust into an event. Soraya should teach the value through a case people can retell."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Benji cuts the pool stunt",
+          "tags": [
+            "failure",
+            "GoldenPalace",
+            "virality"
+          ],
+          "planSpec": {
+            "domain": "sports sponsorship pitch",
+            "audience": "agency strategists evaluating stunt ideas",
+            "stakes": "attention can detach from the sponsor and waste the spend",
+            "format": "postmortem",
+            "requiredBeat": "Benji diagnoses Golden Palace Olympic pool crash"
+          },
+          "scenario": "Benji reviews a stunt deck at 10:10 p.m. in a Los Angeles agency office with the Golden Palace Olympic pool crash highlighted in red. The proposed mascot interruption would dominate social feeds. The client call starts in fifteen minutes, and the brand promise has no role in the incident.",
+          "whatToDo": "Reject the stunt unless the brand becomes necessary to the story people will retell, not just a logo near the chaos.",
+          "whyItMatters": "Golden Palace shows attention without payload. Benji should not buy views that leave the message behind."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Mei protects the panda hinge",
+          "tags": [
+            "humor",
+            "Panda Cheese",
+            "product"
+          ],
+          "planSpec": {
+            "domain": "food ad storyboard",
+            "audience": "creative directors judging comedy scripts",
+            "stakes": "a funny scene can be retold without naming the food",
+            "format": "planning_choice",
+            "requiredBeat": "Mei uses Panda Cheese's refusal-trigger structure"
+          },
+          "scenario": "Mei is at 3:05 p.m. in a Shanghai studio with Panda Cheese ads and three comedy boards. One board has a random office prank. Another begins when someone refuses the cheese. She must choose before animatics start, and only the refusal makes the product cause the joke.",
+          "whatToDo": "Choose the refusal-trigger story, so the product remains the reason the funny escalation happens.",
+          "whyItMatters": "Panda Cheese keeps the brand as the hinge. Mei needs humor that cannot be separated from the product."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Alonzo repeats it back",
+          "tags": [
+            "testing",
+            "valuable virality",
+            "retention"
+          ],
+          "planSpec": {
+            "domain": "launch message testing",
+            "audience": "founders checking whether stories retain payload",
+            "stakes": "early testers may remember the anecdote and forget the idea",
+            "format": "audit",
+            "requiredBeat": "Alonzo runs a payload-retention retell test"
+          },
+          "scenario": "Alonzo sits at 12:18 p.m. in a Mexico City startup room with a Subway case note and five user interview recordings. Testers love the founder's travel mishap but never mention the product's safety feature. He must decide before launch copy freezes whether the story is viral or just entertaining.",
+          "whatToDo": "Ask testers to retell the story after one listen, then rebuild the plot if the safety feature disappears from their version.",
+          "whyItMatters": "Valuable virality requires message retention. Alonzo should test what survives retelling, not just whether people laugh."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "Dalia chooses between a Trojan Horse plot label and an abstract warning label. Which choice best uses stories?",
+            "choices": [
+              "Use the abstract warning so visitors skip the details.",
+              "Use only dates and material facts because stories reduce memory.",
+              "Use the plot so the hidden-danger lesson rides inside the event."
+            ],
+            "correctIndex": 2,
+            "explanation": "The Trojan Horse works because the lesson is inseparable from the event. The plot carries the payload.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Henrik reviews a weight-loss testimonial where the restaurant appears only as a final logo. What is the problem?",
+            "choices": [
+              "The story has too much product causality for viewers to retell.",
+              "The story may spread while the restaurant payload drops out.",
+              "The story should avoid transformation because change is hard to believe."
+            ],
+            "correctIndex": 1,
+            "explanation": "Jared and Subway worked because the restaurant explained the transformation. A logo tag can vanish during retelling.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "Soraya wants support trainees to remember a warranty promise. Which opening follows the Land's End lesson?",
+            "choices": [
+              "A broken-zipper replacement incident that shows the promise in action.",
+              "A list of every clause in the warranty policy.",
+              "A slogan saying service matters before any example appears."
+            ],
+            "correctIndex": 0,
+            "explanation": "A service story makes the promise concrete. The incident gives trainees an event they can remember and repeat.",
+            "bloomsLevel": "create",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Benji's stunt will get attention, but the sponsor is only printed on a banner nearby. Which test should he apply?",
+            "choices": [
+              "Whether the stunt can be retold without the sponsor's message.",
+              "Whether the banner uses the largest font allowed by the venue.",
+              "Whether attention alone will make the sponsor easier to trust."
+            ],
+            "correctIndex": 0,
+            "explanation": "Golden Palace shows that attention can detach from payload. Benji needs the brand to be necessary to the retold story.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Mei compares two comedy boards. One prank is random; one starts when a diner refuses the cheese. Which is stronger?",
+            "choices": [
+              "The random prank because broader humor fits more products.",
+              "The board with fewer product mentions because viewers dislike food ads.",
+              "The cheese refusal because the product causes the joke."
+            ],
+            "correctIndex": 2,
+            "explanation": "Panda Cheese works because refusal of the product triggers the funny escalation. The product is the hinge.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Alonzo's testers retell a travel mishap but omit the safety feature. What should he do?",
+            "choices": [
+              "Launch anyway because laughter proves valuable virality.",
+              "Rebuild the plot so the safety feature is needed for the story to make sense.",
+              "Add a larger logo after the story and keep the plot unchanged."
+            ],
+            "correctIndex": 1,
+            "explanation": "Valuable virality requires message retention. If the feature disappears, the payload is not load-bearing.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "What does psychological cover let people do?",
+            "choices": [
+              "Avoid retelling the plot so the claim stays concise.",
+              "Share product information while feeling like they are telling an interesting story.",
+              "Remove the message from the story before passing it on."
+            ],
+            "correctIndex": 1,
+            "explanation": "Stories let people pass along information without sounding like unpaid advertisers. The social act is telling a tale.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A story sheds side details as it travels. Where should the intended message sit?",
+            "choices": [
+              "At the plot hinge that listeners need to preserve.",
+              "In a sponsor tag after the entertaining part.",
+              "In a footnote that only careful viewers notice."
+            ],
+            "correctIndex": 0,
+            "explanation": "Peripheral details are easy to drop. The payload survives when it is central to the plot.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "What makes virality valuable rather than merely visible?",
+            "choices": [
+              "Views that rise even when no one remembers the product.",
+              "Surprise that can be retold without the cause or brand.",
+              "Reach paired with retention of the intended message."
+            ],
+            "correctIndex": 2,
+            "explanation": "Useful spread needs both attention and payload retention. The idea must travel with the story.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What is a Trojan Horse story?",
+          "back": "It is an engaging narrative that carries a lesson, product, or idea inside the plot rather than attaching it as an outside tag.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why did Jared's Subway story keep the brand attached?",
+          "back": "The sandwiches explained the transformation. Removing Subway would break the weight-loss story.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "What does the Land's End zipper case show?",
+          "back": "Service values travel better as incidents than as policy claims. A concrete replacement story makes trust believable.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "What failed in the Golden Palace pool crash?",
+          "back": "The stunt got attention, but the casino message was detachable. People could retell the disruption without carrying the payload.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card05",
+          "front": "Why does Panda Cheese protect the product in the joke?",
+          "back": "The product refusal causes the panda's reaction. The cheese remains central because the humor depends on it.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card06",
+          "front": "What is the main test for valuable virality?",
+          "back": "Ask whether someone can retell the entertaining part without the intended message. If yes, the payload is too loose.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Lock payload to plot",
+        "coreSkill": "Build stories where the message is needed for the event to make sense. Test retellings for payload retention before celebrating reach.",
+        "ifThenPlans": [
+          {
+            "context": "If a story works without the product",
+            "plan": "If a story works without the product, then rewrite the plot so the product causes or resolves the central event."
+          },
+          {
+            "context": "If a service claim feels abstract",
+            "plan": "If a service claim feels abstract, then find one incident where the promise became visible action."
+          },
+          {
+            "context": "If a stunt earns attention",
+            "plan": "If a stunt earns attention, then ask what exact message a viewer would repeat the next day."
+          },
+          {
+            "context": "If comedy leads the campaign",
+            "plan": "If comedy leads the campaign, then make the product the hinge of the joke rather than a prop near it."
+          }
+        ],
+        "twentyFourHourChallenge": "Within 24 hours, tell one campaign story to a colleague once. Ask for a retell and record whether the intended payload survives.",
+        "weeklyPractice": "For one week, collect shared stories and mark the hinge: transformation, warning, service recovery, joke trigger, or lesson carrier."
+      },
+      "memorableLines": [
+        {
+          "text": "Stories are memory vehicles, but vehicles can drive away without the cargo.",
+          "location": "breakdown.fullRead",
+          "why": "It makes detached virality easy to picture."
+        },
+        {
+          "text": "A strong story makes the idea load-bearing.",
+          "location": "breakdown.deepRead",
+          "why": "It states the payload test in practical terms."
+        },
+        {
+          "text": "Useful stories earn retelling and preserve meaning.",
+          "location": "breakdown.fullRead",
+          "why": "It balances attention with message retention."
+        }
+      ]
+    }
+  ]
+}

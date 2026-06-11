@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch15",
+  "number": 15,
+  "title": "You need less than you think",
+  "coreMove": "Challenge every claimed prerequisite before buying it. Start with a smaller team, a shorter cut, and cheaper space, then add only the resource a proven constraint demands.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "early-stage software",
+      "audience": "first-time founders",
+      "stakes": "burning runway on headcount before validation",
+      "format": "decision_point",
+      "requiredBeat": "shrink an imagined ten-person plan to the two people who can run the first test"
+    },
+    {
+      "domain": "consumer hardware",
+      "audience": "product leads",
+      "stakes": "spending four extra months before learning if the idea works",
+      "format": "decision_point",
+      "requiredBeat": "find the two-month cut hidden inside a six-month plan"
+    },
+    {
+      "domain": "artisan food",
+      "audience": "solo makers",
+      "stakes": "a twelve-month kitchen lease before a single sale",
+      "format": "before_after",
+      "requiredBeat": "swap a leased commercial kitchen for a home oven and rented shelf"
+    },
+    {
+      "domain": "e-commerce retail",
+      "audience": "small retailers",
+      "stakes": "monthly warehouse rent against unproven demand",
+      "format": "mistake_recovery",
+      "requiredBeat": "stop early inventory commitments from creating obligations before value"
+    },
+    {
+      "domain": "small-batch printing",
+      "audience": "shop owners",
+      "stakes": "starving a real bottleneck in the name of staying lean",
+      "format": "decision_point",
+      "requiredBeat": "add a resource only after a constraint demonstrates itself"
+    },
+    {
+      "domain": "software team practice",
+      "audience": "engineering managers",
+      "stakes": "headcount creep that demands more infrastructure",
+      "format": "reflection",
+      "requiredBeat": "treat subtraction as the default before adding weight, in the 37signals mode"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.764Z"
+}

@@ -150,6 +150,39 @@ These are consumed by the app via `getServerEnv` but are **not** in
 | `ADMIN_EMAILS`, `ADMIN_SUBS` | O | local | A **secondary** admin gate on `app/book/settings/page.tsx` only, read via raw `process.env` (no SSM fallback). **Not injected into the Lambda** → effectively inert in deployed envs. The **real** admin gate is the Cognito group (`BOOK_ADMIN_GROUP`). |
 | `SECURE_DOC_TABLE` | n/a | — | Belongs to the sibling "Cloud Portfolio" product (`app/app/api/_lib/aws.ts`); **not used by ChapterFlow**. |
 
+### F. Email compliance (CASL / CAN-SPAM) — used by BOTH the app and the reminder cron
+
+These power the legally-required footer + one-click unsubscribe on commercial
+(engagement) email. **Set each as a single SSM param `/chapterflow/<env>/<KEY>`**
+(same pattern as `VAPID_*`). Both consumers read that one source:
+- the **app server Lambda** via `getServerEnv` (`email-compliance.ts`), and
+- the **reminder-cron Lambda** via `resolveEmailConfig()`, which reads the same
+  SSM params at runtime (`email-compliance.ts`; the cron role has scoped
+  `ssm:GetParameter` + `kms:Decrypt`-via-SSM). The CDK `process.env` values are
+  deploy-time fallbacks only — you don't need to set anything in the workflow.
+
+| Variable | Req | Source | Purpose |
+|---|---|---|---|
+| `EMAIL_UNSUBSCRIBE_SECRET` | **R (launch blocker)** | secret + ssm | HMAC key that signs one-click unsubscribe tokens. **Must be the SAME value on the app runtime and the cron Lambda**, or cron-minted unsubscribe links won't verify (the `mailto:` fallback still works). Use a random 32+ byte string. Token format is pinned by `email-compliance-core.test.ts`. |
+| `EMAIL_POSTAL_ADDRESS` | **R for engagement email** | secret + ssm | Physical mailing address printed in every commercial-email footer (**CASL §6 / CAN-SPAM 16 CFR 316.4 require it**; a P.O. box works). Acts as a kill-switch: when unset, `sendCompliantEmail` (cron) and `createNotification` (app) **skip all commercial email** automatically. Transactional email (trial-ending, receipts) is exempt and unaffected. |
+| `EMAIL_SENDER_NAME` | O | secret + ssm | Friendly From display name (default `ChapterFlow`) → `ChapterFlow <info@chapterflow.ca>`. |
+| `EMAIL_SUPPORT_ADDRESS` | O | secret + ssm | `Reply-To` + the `List-Unsubscribe` `mailto:` (default `support@chapterflow.ca`). Confirm the mailbox is monitored. |
+| `SES_CONFIGURATION_SET` | auto | auto (CDK) | Name of the SES configuration set applied to every send so bounce/complaint events flow to the suppression handler. **CDK-managed** — the backend stack creates the config set, injects it into the cron Lambda, and writes it to `${ssmPrefix}/SES_CONFIGURATION_SET` for the app. No owner action. |
+
+> **Bounce/complaint suppression (auto):** the backend stack provisions an SES
+> configuration set → SNS topic → `ChapterFlowSuppressionHandler` Lambda that
+> writes hard-bounced/complained addresses to DynamoDB (`BOOKSUPPRESS#<email>`).
+> Commercial **and** transactional sends check this before emailing. This is on
+> top of SES's built-in account-level suppression — no setup beyond deploying
+> the backend stack.
+
+> **SES domain authentication (deliverability, not in code):** before enabling
+> the cron in prod, add **SPF**, **DKIM**, and **DMARC** DNS records for the
+> sender domain (`chapterflow.ca`) and confirm SES is out of the sandbox. See
+> [LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md). The `CHAPTERFLOW_APP_BASE_URL`
+> origin (§3.B) is reused to build absolute unsubscribe links; the cron receives
+> it as `APP_BASE_URL`.
+
 ---
 
 ## 4) Per-environment guidance

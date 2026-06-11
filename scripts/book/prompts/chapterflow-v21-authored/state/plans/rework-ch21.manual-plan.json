@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch21",
+  "number": 21,
+  "title": "Start at the epicenter",
+  "coreMove": "Find the part you cannot remove without destroying what you sell, build that first, and let napkins-and-relish details wait until the center actually holds.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "street food cart",
+      "audience": "makers tempted to polish accessories first",
+      "stakes": "build the grill or build the branding",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist applies the removal test to find the epicenter"
+    },
+    {
+      "domain": "field-repair software",
+      "audience": "product teams drowning in possible tasks",
+      "stakes": "ship the structural screen or the optional polish",
+      "format": "audit",
+      "requiredBeat": "the protagonist separates structural tasks from optional edges"
+    },
+    {
+      "domain": "consumer mobile app",
+      "audience": "makers who mistake motion for progress",
+      "stakes": "keep polishing edges or face the unbuilt core",
+      "format": "reflection",
+      "requiredBeat": "the protagonist sees that finished edge tasks are not progress on the offer"
+    },
+    {
+      "domain": "specialty coffee kiosk",
+      "audience": "makers who over-correct into bare-core minimalism",
+      "stakes": "ship a core-only product forever or wrap it once it holds",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist separates core-first sequence from permanent neglect of details"
+    },
+    {
+      "domain": "B2B analytics dashboard",
+      "audience": "founders who confuse spent effort with structural necessity",
+      "stakes": "crown the costly feature or the non-removable one as the core",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist corrects an epicenter chosen by effort instead of removal"
+    },
+    {
+      "domain": "online booking platform",
+      "audience": "teams building refinements in parallel with the core",
+      "stakes": "build the surrounding experience now or after the center holds",
+      "format": "predict_reveal",
+      "requiredBeat": "the protagonist predicts the ordering cost of refining before the core works"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.765Z"
+}

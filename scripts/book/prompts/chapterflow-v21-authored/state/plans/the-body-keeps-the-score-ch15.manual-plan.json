@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-body-keeps-the-score-ch15",
+  "number": 15,
+  "title": "Letting Go of the Past: EMDR",
+  "coreMove": "EMDR treats traumatic memory as something that can process through anchored attention, bilateral stimulation, and association, with safety guiding pace over forced disclosure.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "clinical training seminar",
+      "audience": "trauma clinicians learning EMDR",
+      "stakes": "a strange origin story could be dismissed or oversold",
+      "format": "dialogue",
+      "requiredBeat": "Use Francine Shapiro, late 1980s, eye movements, and EMDR without reducing the protocol to spectacle"
+    },
+    {
+      "domain": "post-assault trauma care",
+      "audience": "clinicians handling vivid single-event PTSD",
+      "stakes": "a stuck assault memory could be forced into narration too soon",
+      "format": "scene",
+      "requiredBeat": "Show a broken beer bottle assault shifting through EMDR processing rather than simple retelling"
+    },
+    {
+      "domain": "trauma supervision",
+      "audience": "supervisors working with complex developmental trauma",
+      "stakes": "curiosity about abuse details could interrupt processing",
+      "format": "reflection",
+      "requiredBeat": "Use childhood sexual abuse, Brookline Trauma Center, and EMDR sessions to protect associative movement"
+    },
+    {
+      "domain": "neuroscience teaching",
+      "audience": "residents linking therapy to sleep research",
+      "stakes": "a possible mechanism could harden into overclaim",
+      "format": "predict_reveal",
+      "requiredBeat": "Use Robert Stickgold and REM-related memory consolidation as a possible explanation, not final proof"
+    },
+    {
+      "domain": "treatment program review",
+      "audience": "clinical directors comparing PTSD interventions",
+      "stakes": "data could become either dismissal of medication or false certainty about EMDR",
+      "format": "audit",
+      "requiredBeat": "Use Brookline Trauma Center findings on EMDR and medication for some PTSD patients"
+    },
+    {
+      "domain": "outpatient EMDR session",
+      "audience": "therapists tempted to chase narrative detail",
+      "stakes": "a patient's associative shift could be interrupted by the clinician's curiosity",
+      "format": "reset_moment",
+      "requiredBeat": "Show the clinician following internal process rather than demanding every narrative detail"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "evaluate": 2,
+      "apply": 3,
+      "analyze": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-10T00:54:13.983Z"
+}

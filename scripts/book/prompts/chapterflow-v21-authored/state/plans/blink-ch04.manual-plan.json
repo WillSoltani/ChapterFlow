@@ -1,0 +1,70 @@
+{
+  "chapterId": "blink-ch04",
+  "number": 4,
+  "title": "Paul Van Riper's Big Victory: Creating Structure for Spontaneity",
+  "coreMove": "Structured spontaneity builds fast judgment by removing clutter, rehearsing roles, and giving intuition a narrow channel for action.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "cyber incident simulation",
+      "audience": "security leads running war games",
+      "stakes": "the defending team may model an attacker who behaves too neatly",
+      "format": "decision_point",
+      "requiredBeat": "Kiran uses Van Riper's Millennium Challenge lesson to remove expected channels"
+    },
+    {
+      "domain": "customer-service role play",
+      "audience": "trainers building fast response",
+      "stakes": "too much freedom may make trainees freeze",
+      "format": "coach_talk",
+      "requiredBeat": "Petra uses improvisational comedy rules to create usable spontaneity"
+    },
+    {
+      "domain": "urgent-care triage redesign",
+      "audience": "clinical directors under overload",
+      "stakes": "weak symptoms may crowd out urgent indicators",
+      "format": "audit",
+      "requiredBeat": "Maren applies the Cook County and Goldman decision-tree logic"
+    },
+    {
+      "domain": "specialty grocery launch",
+      "audience": "retail managers choosing displays",
+      "stakes": "a large selection may win attention but reduce purchase",
+      "format": "predict_reveal",
+      "requiredBeat": "Luis uses jam-choice overload to favor a smaller set"
+    },
+    {
+      "domain": "storm-response dispatch",
+      "audience": "operations teams facing live disruption",
+      "stakes": "full-route analysis may slow crews during outages",
+      "format": "planning_choice",
+      "requiredBeat": "Zofia creates a lean rule for fast field action"
+    },
+    {
+      "domain": "software outage command",
+      "audience": "engineering managers in incident response",
+      "stakes": "too many voices may delay the rollback",
+      "format": "dilemma",
+      "requiredBeat": "Noor sets roles and variables before improvising through the outage"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "understand": 1,
+      "analyze": 1,
+      "create": 1,
+      "evaluate": 2,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:07:46.119Z"
+}

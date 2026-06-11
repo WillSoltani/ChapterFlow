@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import type { ActiveBook, LearningStep } from "./progressTypes";
 import { StepIndicator } from "./StepIndicator";
 import { ChapterProgressBar } from "./ChapterProgressBar";
+import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 interface ContinueLearningCardProps {
   primaryBook: ActiveBook;
@@ -274,7 +275,7 @@ export function NoActiveBooksCard() {
         className="mt-1.5 text-sm"
         style={{ color: "var(--text-secondary)" }}
       >
-        Start with any of our 95+ books {"\u2014"} 2 are completely free.
+        Start with any of our {CATALOG_BOOK_COUNT_DISPLAY} books {"\u2014"} 2 are completely free.
       </p>
       <Link
         href="/book/library"

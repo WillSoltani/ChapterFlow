@@ -1,0 +1,792 @@
+{
+  "bookId": "think-and-grow-rich",
+  "title": "Think and Grow Rich",
+  "author": "Napoleon Hill",
+  "promotedAt": "2026-06-05T12:32:01.002Z",
+  "chapterCount": 15,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C19",
+            "severity": "major",
+            "unit": "examples",
+            "message": "\"Edison\" is the recurring protagonist of multiple examples (1, 2) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+            "evidence": "Edison"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "East Orange, New Jersey, is the first line on Noah's notebook, not the last. He has no introduction to Thomas A. Edison, no bankroll, and no reason a receptionist should treat him as a future busines…"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "East Orange, New Jersey, is the first line on Noah's notebook, not the last. He "
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Nobody wants this machine,\" the sales manager says, tapping the Edison Dictating Machine in a demo room. Kavya has been waiting for a glamorous assignment, but the neglected product is the first gap…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Three feet is the number Gina circles before closing the failed pilot. The dashboard has missed target twice, and the team wants to sell the equipment while someone will still buy it. On the whiteboa…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Harpreet's palm stays open across the counter. The stipend is only fifty cents, but the office aide has waved her away twice and the bus leaves soon. She thinks of the tenant farmer's daughter in the…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The page refuses to underline the Carnegie secret for Malcolm. He has a pen ready for the promised formula, but Hill keeps sending him back through Barnes, Darby, the Edison Dictating Machine, the Co…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Harpreet has one small stipend request and keeps being brushed aside. Which action matches the fifty-cent child story?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Malcolm complains that the Carnegie secret is not stated quickly enough. What should he do with the delay?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Kabir says the message is simply to think about wealth often. Which reading avoids the soft misreading?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "q09 choice[2] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Gina should sell the project immediately because missing the answer once means the opportunity was never real."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a definite major purpose\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Danielle circles \"$600 million\" on a legal pad in a Newark co-working room. As founder, she is not copying Charles M. Schwab or United States Steel, but she sees the pattern before the investor call …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Paolo says, \"Five promises feels excessive,\" while the union classroom empties around him. His apprenticeship mentor taps the worksheet: definite major purpose at the top, daily concentration in the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Bilal stacks the last folding chair after only eleven tenants attend the meeting. The poster beside the door quotes Mahatma Gandhi, India, millions, and collective belief. That scale almost embarrass…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Brynn tapes three cancelled estimates to the dental clinic cabinet and writes, \"This place is failing,\" across the staff agenda. Before the Monday huddle, the Self-confidence formula on her desk look…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Gerald's sponsorship letter fills a conference table with confident language. During the audit, he reads the self-confidence formula again: five promises, a written description, and a pledge that suc…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Pierre receives nine texts while the city council clerk calls the next speaker. One message says Mahatma Gandhi moved India without conventional force; another says millions are not needed tonight. T…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Danielle cites United States Steel while pitching a software rollup. What lesson should she take from the Schwab case?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Pierre wrote a clear desire statement last week, yet it still feels distant. Which next step connects desire to faith?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"henry\", \"ford\", \"libel-trial\", \"andrew\", \"carnegie's\", \"personal-services\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Pierce underlines three night-school options in the union hall while the enrollment clerk stacks forms by the door. Accounting looks safe, sales sounds useful, and machine maintena"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Thomas brings four binders to the mill office instead of one heroic pitch deck. The tabs read steel, law, finance, and plant management, with Andrew Carnegie written across the cover. Before the lend…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Solene's email draft to the targeted employer has one blank subject line and six claims of reliability. On the train platform, she deletes five of them. The new subject names inventory errors, the fi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Salma has already admitted the mistake: her client memo quotes broad market articles but misses the regulation that decides the recommendation. In the library reference room, with the meeting two hou…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Thomas is preparing a steel venture and lacks legal and finance depth. Which plan follows the Carnegie pattern?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Pierce can take one night-school course before launching a repair service. Which test should guide the choice?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Solene sends a proposal to a targeted employer who has not met her. What makes the written presentation stronger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Thomas reviews a staff-training budget after a software change. Which argument best fits directed continuing education?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A colleague says Ford's trial story proves school does not matter. Which reply keeps the hard edge intact?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The kettle tells Alphonse almost nothing by itself. On the tasting table sit a syrup sample, a rough formula, and a clipping about Asa Candler turning Coca-Cola into a vast enterprise. The investor a…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Say the number before you soften it,\" Murray tells himself behind the auditorium curtain. His notes mention Dr. Frank W. Gunsaulus, $1 million, the sermon, and Armour Institute. The donors have hear…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In the back room of a neighborhood retailer, Farah tapes four cards to a wall: sample table, weekend foot traffic, delivery route, Coca-Cola. The case reminds her that Asa Candler did not need a new …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The prototype fails before lunch. Gaelle almost adds another feature, then rereads her note about Dr. Frank W. Gunsaulus making $1 million vivid through a sermon for Armour Institute. The hunch lands…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Farah has a delivery route, weekend customers, and a product sample. Which next step shows synthetic imagination?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Diego wants a community project to last after its founders leave. Which design best follows the Christianity example?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Tracy has a definite desire but no route for action. Which diagnosis is most accurate?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A teammate says the Coca-Cola story is mainly about laboratory invention. What should Alphonse point out?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which comparison would help Farah explain the two forms of imagination to her team?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Gavin has already written the board memo before the Friday vote at a school foundation office. A framed copy of the Declaration of Independence hangs near the agenda, with 1776, Britain, and treason …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Andriy says the last polling round is over as Tuesday's tenants gather in a Boston church basement. The sign-in sheet sits under a flyer about Samuel Adams and colonial resistance. Independence is th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Isabelle counts nine unread family messages while waiting outside the investor conference room as founder. Her launch deck uses Henry Ford and the Model T to explain why advisors do not get a veto in…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Camille's text thread fills the left side of her tablet during a volunteer strategy night at a storefront near Boston. One tab holds notes on Samuel Adams, colonial resistance, and independence. Her …"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the declaration of independence\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Isabella's practice tape begins with a rough chorus and ends with a better one. No audience is present; only the small radio on the shelf and a card that says Kate Smith, singer. Isabella rewinds the…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Tiago has one new rejection and one finished story. Which response best uses persistence to induce faith?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Haruto wants his team to start the persistence drill correctly after a failed week. Which first move fits the method?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Beatriz keeps rewriting strategy documents after the launch miss but never ships the next repair. What is missing?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "think-and-grow-rich-ch09-q01 choice[2] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Tiago should treat the rejection as proof that the aim was never definite enough to deserve effort."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "think-and-grow-rich-ch09-q02 choice[1] uses absolute trigger \"ever\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Whether every critic can be avoided so no resistance ever reaches the draft."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "think-and-grow-rich-ch09-q02 choice[2] uses absolute trigger \"completely\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Whether persistence can be separated completely from how much the aim matters."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "think-and-grow-rich-ch09-q05 choice[2] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Pretend the refusals never happened, since any negative information weakens persistence."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "think-and-grow-rich-ch09-q07 choice[1] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Her case proves publishing rejection is meaningless and should never be studied."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "think-and-grow-rich-ch09-q08 choice[1] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Aubrey should ignore opportunity altogether, because public breaks never matter."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "think-and-grow-rich-ch09-q09 choice[2] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Too much friendly alliance, since support always makes desire weaker."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Julia hears the assistant whisper, \"The 10 stimuli list has sex, music, and auto"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ezra counts broken glasses after dinner service, with the bar register open and the 10 stimuli list scribbled on a prep ticket: sex, music, auto-suggestion, fear, narcotics and alcohol. Tomorrow's in…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Sofia spends one night on impulse and the next week repairing rumor damage. Which warning does her postmortem support?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the list of 10\" appears in both fastRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[4]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "Cosmetic charm is surface polish. Personal magnetism comes from disciplined emotional vitality, the "
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "counterintuition opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Privacy does not make a thought harmless. Repeated fear, jealousy, anger, or gre"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Name the feeling before we name the fix,\" Sade says, and the table stops trading rumors. A promotion has stirred jealousy, a budget note has stirred fear, and one missed deadline has stirred anger. …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Three numbers sit at the top of Eliana's grant page: shortfall, deadline, payroll. Under them she has copied a prayer for guidance, but the words feel wooden. The source claim about Infinite Intellig…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "banned phrase \"usable lesson\" — Tic.",
+            "evidence": "The rejection email has already been answered politely; Tanner's trouble begins afterward. He keeps replaying the competitor's smile, then adds greed, fear, and anger to the story until the lost bid …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Across the studio wall, Seo draws seven empty boxes. The prototype failed again, and the team has been calling its worry realism. In the first box she writes the 7 positive emotions, then fills them …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In Gaston's closed kitchen, the prayer card is clean and the invoices are not. He asks Infinite Intelligence for a plan, then spends the next hour telling himself the restaurant is finished. The cont…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In Gaston's closed kitchen, the prayer card is clean and the invoices are not. He asks Infinite Intelligence for a plan, then spends the next hour telling himself the restaurant is finished. The cont…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which response should Henri give when someone says the aim of emotional discipline is merely to feel pleasant?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the 7 negative emotions\" appears in both deepRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[5]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "Constructive emotion should support ideas, impulses, and plans. The aim is not merely a pleasant moo"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Three index cards sit beside Valentin's laptop: Emerson for self-reliance, Paine for hard candor, Edison for experiment, and Lincoln for patience. The partnership offer looks generous, yet the revenu…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Justice before speed,\" Jules says, then stops with the filing draft still open. Her client wants a lawsuit sent tonight, anger hot enough to feel like resolve. The Abraham Lincoln counselor in her n…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The defect chart finally turns green, but Griffin keeps circling one supplier note. Temple of Wisdom is written at the top of his project page beside thirteenth principle, threshold, and Infinite Int…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The morning after the donor room goes cold, Rosalie finds her council notes under the coffee mug. Emerson had asked for self-reliance, Paine for plain speech, Edison for a trial, Lincoln for patience…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In the hospital stairwell, Trang hears the unit quiet down after a near miss. Abraham Lincoln appears in her notebook as counselor, with justice and resolve underlined twice. Her gut says the family …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Imogen has already closed the resignation speech when the phrase Temple of Wisdom makes her pause. Thirteenth principle, Infinite Intelligence, and threshold are in the margin from last week's notes.…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Jules imagines a council before a tense strategy call, what use of the counselors best matches the practice?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Write the worry currently talking loudest, label it as poverty, criticism, ill h"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Obi receives a delayed reply and starts reading jealousy into every small detail. What should he name before he acts?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Adaeze can recite all six fear labels but still misses the same planning block each week. What makes the audit real?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"old age and death\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 78
+  },
+  "bookGate": {
+    "bookId": "think-and-grow-rich",
+    "chapterCount": 15,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "B13",
+        "severity": "major",
+        "message": "Hook frame clustering: 8 of 15 chapters open with \"a\" as the first word (cap 8, 50% of book). Chapters: 2, 3, 4, 6, 8, 10, 12, 13. Vary hook openers across the book.",
+        "evidence": "a"
+      },
+      {
+        "catalogId": "F4",
+        "severity": "major",
+        "message": "soft-banned phrase \"rather than\" appears 18 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+        "evidence": "rather than"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        46,
+        45,
+        44
+      ],
+      "answerPositionPctMax": 0.34074074074074073,
+      "totalQuizQuestions": 135,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "think-and-grow-rich",
+        "chapterCount": 15,
+        "passed": true,
+        "findings": [
+          {
+            "code": "B13",
+            "severity": "major",
+            "chapters": [
+              2,
+              3,
+              4,
+              6,
+              8,
+              10,
+              12,
+              13
+            ],
+            "count": 8,
+            "unit": "hook.firstWord",
+            "evidence": "a",
+            "message": "Hook frame clustering: 8 of 15 chapters open with \"a\" as the first word (cap 8, 50% of book). Chapters: 2, 3, 4, 6, 8, 10, 12, 13. Vary hook openers across the book.",
+            "maxScoreCap": 80
+          }
+        ],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  },
+  "qcAttestation": {
+    "totalBlockers": 0,
+    "findings": []
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "examples": [
+    {
+      "title": "Comfortable role or the hard classroom",
+      "scenario": "Wendell Marsh runs a beloved, scrappy chain of cafes on instinct and warmth, and a polished corporate group just offered him a frontline VP role he would love. His father, a lifelong operator like Frank Guidara, warned him years ago not to fall head over heels for one way of working. The corporate world he distrusts is exactly the one he is weakest in. Before the offer expires Monday, Wendell has to decide whether to take the comfortable role he would shine in or the unglamorous one that would teach him systems.",
+      "whatToDo": "Deliberately apprentice in the discipline you instinctively dislike instead of the strength you already have, because understanding both sides before you commit is what makes you complete."
+    },
+    {
+      "title": "Fix one margin or learn the system",
+      "scenario": "'Why can't I just fix the margin on my one menu?' the floor manager asked. Oksana Petrova, who had apprenticed under a controller like Hani Ichkan at Restaurant Associates, pulled up the cost report. 'Because a single number, caught centrally, can fix a dish across forty locations overnight, the way one swapped dish got pulled company-wide.' She slid him the sub-reports. 'Before you touch one price, you have to decide to learn the system that moves all of them, not just your own corner.'",
+      "whatToDo": "Learn the central systems that act across the whole business instead of optimizing only your unit, because real financial power comes from coordinated systems, not local fixes."
+    },
+    {
+      "title": "The order from headquarters",
+      "scenario": "Rashid Bahri, a regional director, gets a request from headquarters: reverse a frontline manager's small floor decision and a staffing call, by remote order, to enforce consistency. He remembers the overruled flower arrangement and the reversed firing at Nick + Stef's Steakhouse, how control exercised far from the floor drained the people who cared. Before the policy call at noon, Rashid has to choose between backing the central rule and protecting the ground-level ownership that makes his managers care.",
+      "whatToDo": "Resist overruling frontline decisions from a distance without ground-level information, because control imposed blindly drains the ownership that makes people care about the work."
+    },
+    {
+      "title": "Spread thin or one bright detail",
+      "scenario": "Before, the catering founder Juliet Sandoval spread her budget evenly and thinly, so nothing felt special and the books stayed tight. After she adopted the 95/5 rule, guarding ninety-five percent of costs to the penny, she freed money for one extravagant detail per event. She had read how blue Italian spoons at the MoMA Sculpture Garden once made curators pause before eating. Juliet's version was a single, absurdly good signature touch that guests now talk about for weeks afterward.",
+      "whatToDo": "Guard ninety-five percent of your budget down to the penny so you earn the right to spend the last five percent extravagantly on one detail with outsize impact on the guest."
+    },
+    {
+      "title": "The splurge that backfired",
+      "scenario": "The splurge backfired, so Kofi Mensah reviewed the event budget Monday. His team had lavished money on a showy centerpiece while the rest of the costs ran loose, and the event lost money. Reading the ledger, Kofi saw the error: generosity is only justified when everything else is disciplined to the penny. Like a manager learning the numbers at Restaurant Associates before any splurge, they had spent their five percent without first earning it through ruthless control everywhere else.",
+      "whatToDo": "Before any generous splurge, prove the other ninety-five percent is controlled to the penny, because spending freely without that discipline is reckless, not generous."
+    },
+    {
+      "title": "The full P&L or the fundamentals",
+      "scenario": "Two weeks before she takes over the full budget, Delphine Roy, a rising operations lead, must decide how to ramp up. One path hands her the whole P&L immediately so she looks in command. The other, slower path makes her master the underlying sub-reports first, the way a controller like Hani Ichkan withheld the full statement for months to force real fluency. Her boss offers the shortcut. Delphine weighs looking capable now against actually understanding the numbers she will soon own.",
+      "whatToDo": "Earn financial fluency from the bottom up by mastering the sub-reports before you take the full P&L, because surface command without understanding the fundamentals is fragile."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A warm, autonomous regional chain runs on instinct but keeps losing money to sloppy back-end systems. The founder, strong on culture, must shore up the weakness. What does the two-smarts idea suggest?",
+        "choices": [
+          "Deliberately go learn the systems-driven discipline she is weakest in, rather than leaning harder on the culture she already has.",
+          "Double down on the warm culture, since the back-end numbers will sort themselves out if morale stays high.",
+          "Sell the company, because a restaurant-smart operator rarely manages to learn corporate-smart systems."
+        ],
+        "correctIndex": 0,
+        "explanation": "Each style has a built-in weakness, and the real education is learning the side you lack. Going to master the unglamorous systems is exactly the move, not retreating into a familiar strength.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "When a unit manager insists, 'I should be free to fix my own location's costs and ignore the central finance team,' which response best reflects the power of systems?",
+        "choices": [
+          "Agree, since a manager who knows the floor usually beats any centralized number-cruncher.",
+          "Point out that one controller spotting a costly item can coordinate a fix across every location at once.",
+          "Agree, because central finance teams mostly slow things down and rarely add real value to operations."
+        ],
+        "correctIndex": 1,
+        "explanation": "Systems have reach a single manager lacks: one controller catching a cost can act across the whole portfolio overnight. Local-only fixes leave that coordinated power on the table.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Headquarters keeps reversing small frontline decisions from afar to enforce consistency, and store managers are growing detached. As an executive, what is the real danger to watch for?",
+        "choices": [
+          "Nothing, since tight central control is usually worth a little frontline grumbling.",
+          "That managers are simply ungrateful, so the fix is to replace anyone who resists central authority.",
+          "That control without ground-level information corrodes the ownership that makes frontline people care."
+        ],
+        "correctIndex": 2,
+        "explanation": "Being overruled on small calls from a distance drains the ownership that fuels frontline care. The warning is that blind central control quietly corrodes the very engagement it depends on.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A team wants to add a single memorable, expensive flourish to its product. Money is tight. Which approach matches the 95/5 rule?",
+        "choices": [
+          "Fund the flourish on credit now, since a striking detail pays for itself no matter the surrounding costs.",
+          "Skip the flourish, because spending anything extra seems irresponsible when budgets are tight.",
+          "Squeeze the other ninety-five percent of the budget to the penny first, which earns the right to splurge on that one detail."
+        ],
+        "correctIndex": 2,
+        "explanation": "The 95/5 rule funds generosity through discipline: guard the bulk of costs ruthlessly so the small splurge is earned, not reckless. The flourish is justified only by control everywhere else.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A creative leader brags that his team is so inventive it does not need budgets or cost tracking. Margins are quietly bleeding. How should you evaluate his stance?",
+        "choices": [
+          "Endorse it, since creativity and financial discipline cannot coexist and creativity is the more important one.",
+          "Challenge it: using creativity to dodge operational discipline is the trap, and the splurge is only safe atop tight control.",
+          "Endorse it, because tracking costs tends to kill the spontaneity that makes a team special."
+        ],
+        "correctIndex": 1,
+        "explanation": "Generosity and discipline are not opposites to balance fifty-fifty; the splurge is funded by ruthless control. Using creativity as an excuse to skip discipline is exactly the failure mode.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Two operators face the same cost crunch. One slashes the signature detail customers love; the other holds it and trims ninety-five percent of everything else hard. The second keeps customers and stays solvent. What best explains it?",
+        "choices": [
+          "The first operator must have had worse customers, so the comparison reveals nothing about strategy.",
+          "Cutting costs is usually the wrong move, so the first operator should have spent even more freely.",
+          "Disciplined control of the bulk of costs funded the one detail that mattered, rather than sacrificing the thing customers valued."
+        ],
+        "correctIndex": 2,
+        "explanation": "The 95/5 logic protects the high-impact detail by squeezing everything else. The solvent operator earned the splurge through discipline instead of cutting the very thing that drew customers.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A leader is deciding whether to build a warm culture onto a rigid corporate machine or layer discipline onto a warm, autonomous team. Which path is easier, and why?",
+        "choices": [
+          "Inject warmth into the rigid machine, since strict systems are the hardest part to build.",
+          "Layer disciplined systems onto the warm culture, since structure on warmth beats forcing flexibility into rigidity.",
+          "Neither is possible, so the leader should keep the two cultures permanently separate."
+        ],
+        "correctIndex": 1,
+        "explanation": "It is easier to add disciplined systems to a warm, autonomous culture than to inject genuine human flexibility into a rigid corporate one, so the leader should start from the warmth.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "You are about to be handed your division's full budget. Your mentor offers either the complete statement now or a slower path through the underlying detail reports first. Which builds real fluency?",
+        "choices": [
+          "Master the underlying sub-reports first, since fluency is earned from the fundamentals up, not from holding the summary.",
+          "Take the full statement immediately, because looking in command from day one is what actually builds skill.",
+          "Refuse the budget, since hardly anyone truly masters a profit-and-loss statement."
+        ],
+        "correctIndex": 0,
+        "explanation": "Mastery is built bottom-up: understanding the sub-reports before the full P&L produces genuine fluency, while jumping to the summary leaves only surface knowledge.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "You run a nonprofit and want one signature touch that makes donors feel the care is real without blowing the budget. What plan best applies the 95/5 idea?",
+        "choices": [
+          "Run every other cost as lean as possible, then pour the savings into one striking, generous detail donors will remember.",
+          "Spend evenly across everything, since spreading the budget thin is the fairest and safest way to use it.",
+          "Cut all extras, because donors mostly watch overhead ratios and seldom notice a thoughtful touch."
+        ],
+        "correctIndex": 0,
+        "explanation": "The 95/5 rule turns discipline into a license for one outsize gesture. Running everything else lean earns the savings to spend extravagantly on the single detail donors actually remember.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cardFronts": {
+    "card01": "Beyond running things warmly, what must a leader decide and change to keep generosity sustainable?",
+    "card02": "What does an operation that runs smoothly yet keeps losing money reveal about its current approach?",
+    "card03": "Why does the discipline-funds-generosity move transfer from a gelato cart to any business budget?",
+    "card04": "What is the most common way creativity gets used as an excuse to dodge operational discipline?",
+    "card05": "What single question helps a manager coach the balance of discipline and generosity?",
+    "card06": "Financial discipline sounds dull on a slide. What turns the 95/5 idea into something a team actually does?"
+  },
+  "coreSkill": "Deliberately learn the side of the business you are weakest in, then run ninety-five percent of your budget with ruthless discipline so you earn the right to spend the last five percent extravagantly on one detail. Push real decisions down to the people with ground-level information, because control imposed from a distance drains the ownership that makes them care.",
+  "ifThenContexts": {
+    "1": "A favorite cautionary story about two kinds of operators becomes a line people quote but never apply.",
+    "3": "A clever systems win inspires a far grander gesture than the moment actually needs."
+  }
+}

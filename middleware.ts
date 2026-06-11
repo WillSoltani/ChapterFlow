@@ -27,6 +27,14 @@ function resolveRequestOrigin(req: NextRequest): string {
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+
+  // Public, unauthenticated endpoints that live under an otherwise-protected
+  // prefix. One-click email unsubscribe (CASL/CAN-SPAM) is token-authenticated
+  // and must work for logged-out recipients and automated mail clients.
+  if (pathname.startsWith("/app/api/book/email/unsubscribe")) {
+    return NextResponse.next();
+  }
+
   const protectedSurface =
     pathname.startsWith("/app") ||
     pathname.startsWith("/book") ||

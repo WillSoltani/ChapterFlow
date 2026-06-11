@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch09",
+  "number": 9,
+  "title": "Scratch your own itch",
+  "coreMove": "When you build to relieve a problem you personally feel, your own daily use becomes the test; firsthand pain gives sharper judgment than guessing at a stranger's needs.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "web consultancy operations",
+      "audience": "makers tempted to chase a market they do not share",
+      "stakes": "build from felt pain or guess at an outsider's needs",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist chooses to solve a problem the team personally feels"
+    },
+    {
+      "domain": "field-service software",
+      "audience": "teams trusting surveys over lived friction",
+      "stakes": "trust stated preferences or the friction you actually feel",
+      "format": "contrast",
+      "requiredBeat": "the protagonist weighs survey wishes against firsthand pain"
+    },
+    {
+      "domain": "software framework extraction",
+      "audience": "builders deciding whether to design tools in the abstract",
+      "stakes": "design a framework up front or let real work produce one",
+      "format": "before_after",
+      "requiredBeat": "value emerges as a by-product of solving a real problem"
+    },
+    {
+      "domain": "consumer mobile app",
+      "audience": "makers mistaking personal love for proven demand",
+      "stakes": "treat self-love as proof or as a hypothesis to test",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist separates personal taste from market demand"
+    },
+    {
+      "domain": "indie productivity tool",
+      "audience": "solo makers losing motivation mid-build",
+      "stakes": "quit at the unglamorous middle or finish it well",
+      "format": "reflection",
+      "requiredBeat": "self-felt need sustains effort when payout is uncertain"
+    },
+    {
+      "domain": "niche hobbyist software",
+      "audience": "makers checking whether their pain generalizes",
+      "stakes": "assume the pain is shared or verify it before scaling",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist tests whether firsthand pain is common or idiosyncratic"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.762Z"
+}

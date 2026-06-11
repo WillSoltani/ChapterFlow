@@ -8,7 +8,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
-import { PRICING, ANNUAL_SAVINGS_PCT, formatAmount } from "@/lib/pricing";
+import { PRICING, ANNUAL_SAVINGS_PCT, formatAmount, TRIAL_CTA_LABEL } from "@/lib/pricing";
 
 /* ------------------------------------------------------------------ */
 /*  Inline icons                                                      */
@@ -87,7 +87,7 @@ const faqs = [
   {
     question: "Can I cancel anytime?",
     answer:
-      "Yes. Upgrade to Pro from your account settings anytime, and cancel just as easily \u2014 no penalties, no lock-in.",
+      "Yes \u2014 cancel anytime from your account settings, with no penalties or lock-in. Cancel during your 14-day free trial and you won't be charged. Cancel after, and your Pro access continues until the end of the period you've already paid for; the remaining time isn't refunded.",
   },
   {
     question: "What happens after my 2 free books?",
@@ -347,10 +347,21 @@ export function Pricing() {
               </ul>
 
               <p
-                className="mt-6 mb-3 text-[12px] text-[--text-muted] text-center"
+                className="mt-6 mb-3 text-[12px] text-[--text-muted] text-center leading-[1.6]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                No credit card to start. Upgrade anytime from your account.
+                {PRICING.trialDays}-day free trial, then {formatAmount(perMonthAmount)}{" "}
+                {PRICING.currency}/month
+                {isAnnual ? ` (${annualTotal} ${PRICING.currency} billed annually)` : ""}. A card
+                is required; you won&apos;t be charged until the trial ends, and you can cancel
+                anytime before then.{" "}
+                <Link
+                  href="/legal/refund"
+                  className="underline hover:text-[--text-secondary]"
+                >
+                  Refund policy
+                </Link>
+                .
               </p>
 
               {/* CTA */}
@@ -360,7 +371,7 @@ export function Pricing() {
                 className="block w-full text-center bg-[--accent-teal] text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Try ChapterFlow free
+                {TRIAL_CTA_LABEL}
               </Link>
             </div>
           </SectionReveal>

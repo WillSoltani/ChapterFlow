@@ -1,0 +1,68 @@
+{
+  "chapterId": "four-thousand-weeks-ch01",
+  "number": 1,
+  "title": "The Limit-Embracing Life",
+  "coreMove": "A limit-embracing life starts when measured hours stop judging your worth; use calendars for coordination, then refuse demands that turn every moment into proof.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "operations planning after reading clock history",
+      "audience": "workers who judge themselves by clean calendars",
+      "stakes": "separate useful scheduling from moral self-audit",
+      "format": "scene",
+      "requiredBeat": "the protagonist uses Mumford's clock history to notice when hour blocks become containers of self-worth"
+    },
+    {
+      "domain": "payroll meeting about factory time discipline",
+      "audience": "managers tempted to treat every pause as waste",
+      "stakes": "notice when hourly accounting turns attention into company property",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist sees Crowley's rules as a warning about treating nonwork minutes as stolen time"
+    },
+    {
+      "domain": "startup metrics deck using industrial history",
+      "audience": "analysts who confuse measurement with mastery",
+      "stakes": "avoid selling efficiency as freedom from limits",
+      "format": "decision_memo",
+      "requiredBeat": "the protagonist revises a metrics slide so clock coordination does not become a promise of total control"
+    },
+    {
+      "domain": "postmortem after a productivity system collapse",
+      "audience": "people who keep upgrading systems to escape anxiety",
+      "stakes": "locate relief in surrendering impossible mastery",
+      "format": "postmortem",
+      "requiredBeat": "the protagonist interprets a Brooklyn productivity collapse as the end of the mastery fantasy"
+    },
+    {
+      "domain": "teacher's hallway reset before class",
+      "audience": "professionals who turn every block into future payoff",
+      "stakes": "stop treating present moments as auditions for a later life",
+      "format": "inner_monologue",
+      "requiredBeat": "the protagonist connects Inbox Zero and Pomodoro habits to the habit of postponing life into a mastered future"
+    },
+    {
+      "domain": "museum exhibit design about industrial time",
+      "audience": "educators explaining time discipline without nostalgia",
+      "stakes": "teach the hard edge without blaming clocks alone",
+      "format": "contrast",
+      "requiredBeat": "the protagonist presents Crowley's ironworks as a social bargain, not proof that clocks themselves are evil"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "understand": 2,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-10T01:20:20.249Z"
+}

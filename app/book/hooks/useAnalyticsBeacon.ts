@@ -173,16 +173,19 @@ export function useAnalyticsBeacon() {
 
 const STORAGE_KEY = "book-accelerator:preferences:v2";
 
-/** Read analytics consent from localStorage. Returns true if opted in (default). */
+/**
+ * Read analytics consent from localStorage. Analytics is opt-in: returns true
+ * only when the user has explicitly enabled "Share Usage Analytics".
+ */
 function readAnalyticsConsent(): boolean {
   if (typeof window === "undefined") return false;
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return true; // Default is opted in
+    if (!raw) return false; // Default is opted out (opt-in)
     const parsed = JSON.parse(raw);
     const value = parsed?.privacy?.analyticsParticipation;
-    return value !== false; // Only false means opted out
+    return value === true; // Only an explicit opt-in counts as consent
   } catch {
-    return true; // Default is opted in
+    return false; // Default is opted out (opt-in)
   }
 }

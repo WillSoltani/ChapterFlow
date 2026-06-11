@@ -251,6 +251,8 @@ export type CriticCheckId =
   | "narrative.example_templating"
   | "narrative.title_templating"
   | "narrative.alphabet_cycling_names"
+  | "narrative.example_setting_stamping"
+  | "narrative.example_protagonist_reuse"
   | "register.no_meta_reference"
   | "register.no_chapter_number_literal"
   | "register.no_banned_phrase"
@@ -305,6 +307,7 @@ export type CriticCheckId =
   | "AS11.chapter_breakdown_paragraph_verbatim_prior"
   | "AS12.chapter_quiz_position_matches_prior"
   | "BP24.cross_tier_breakdown_verbatim"
+  | "BP25.quiz_correct_longest_rate"
   | "SC9.example_not_source_grounded";
 
 export type CriticSeverity = "blocker" | "major" | "minor";

@@ -1,125 +1,22 @@
 {
   "bookId": "the-gifts-of-imperfection",
-  "fromChapter": 1,
-  "toChapter": 13,
+  "fromChapter": 2,
+  "toChapter": 2,
   "perChapter": 7,
   "allocation": {
-    "1": [
-      "Adeline",
-      "Thomas",
-      "Pierce",
-      "Owen",
-      "Salma",
-      "Solene",
-      "Alphonse"
-    ],
     "2": [
       "Murray",
+      "University",
+      "Houston",
       "Diego",
+      "Beside",
+      "All",
+      "Love",
       "Farah",
+      "Tonight",
       "Gaelle",
       "Bohdan",
-      "Tracy",
-      "Roland"
-    ],
-    "3": [
-      "Donna",
-      "Nicholas",
-      "Arlo",
-      "Zainab",
-      "Hudson",
-      "Kwame",
-      "Gavin"
-    ],
-    "4": [
-      "Andriy",
-      "Dean",
-      "Isabelle",
-      "Camille",
-      "Avery",
-      "Euphemie",
-      "Tiago"
-    ],
-    "5": [
-      "Haruto",
-      "Aubrey",
-      "Estelle",
-      "Beatriz",
-      "Addison",
-      "Isabella",
-      "Marlowe"
-    ],
-    "6": [
-      "Yasmin",
-      "Yusra",
-      "Graham",
-      "Josephine",
-      "Lacey",
-      "Anika",
-      "Julia"
-    ],
-    "7": [
-      "Forrest",
-      "Eleanor",
-      "Walker",
-      "Ezra",
-      "Edmond",
-      "Sofia",
-      "Maxwell"
-    ],
-    "8": [
-      "Sade",
-      "Eliana",
-      "Tanner",
-      "Seo",
-      "Gaston",
-      "Henri",
-      "Kyle"
-    ],
-    "9": [
-      "Hayes",
-      "Jesse",
-      "Natalia",
-      "Mia",
-      "Harold",
-      "Carly",
-      "Valentin"
-    ],
-    "10": [
-      "Jules",
-      "Griffin",
-      "Rosalie",
-      "Trang",
-      "Imogen",
-      "Katya",
-      "Skylar"
-    ],
-    "11": [
-      "Ignace",
-      "Adaeze",
-      "Natalie",
-      "Claude",
-      "Easton",
-      "Obi",
-      "Evelyn"
-    ],
-    "12": [
-      "Eloi",
-      "Phoebe",
-      "Wendy",
-      "Nora",
-      "Carla",
-      "Chen",
-      "Alice"
-    ],
-    "13": [
-      "Bradley",
-      "Ayaan",
-      "Maurice",
-      "Kathleen",
-      "Joel",
-      "Aisha",
-      "Min"
+      "Tracy"
     ]
   },
   "bannedConnectives": [
@@ -152,9 +49,11 @@
   "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
   "diagnostics": {
     "bankSize": 777,
-    "excludedCount": 0,
-    "availableCount": 777,
+    "excludedCount": 177,
+    "availableCount": 690,
     "shortChapters": [],
-    "alreadyAuthored": []
+    "alreadyAuthored": [
+      2
+    ]
   }
 }

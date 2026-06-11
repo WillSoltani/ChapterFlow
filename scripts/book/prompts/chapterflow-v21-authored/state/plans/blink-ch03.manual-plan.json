@@ -1,0 +1,70 @@
+{
+  "chapterId": "blink-ch03",
+  "number": 3,
+  "title": "The Warren Harding Error: Why We Fall for Tall, Dark, and Handsome Men",
+  "coreMove": "The Warren Harding error happens when appearance, race, gender, height, or polish gets treated as evidence for ability instead of noise.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "executive director search",
+      "audience": "boards choosing leaders",
+      "stakes": "a polished candidate may be confused with judgment",
+      "format": "decision_point",
+      "requiredBeat": "Simone catches the Warren Harding error before the vote"
+    },
+    {
+      "domain": "engineering promotion review",
+      "audience": "managers noticing automatic associations",
+      "stakes": "speed can hide gender or race cues inside talent judgments",
+      "format": "audit",
+      "requiredBeat": "Rajan uses the Implicit Association Test as a warning about automatic links"
+    },
+    {
+      "domain": "appliance showroom coaching",
+      "audience": "sales leads building fair first contact",
+      "stakes": "a shopper's appearance may shape effort before behavior is observed",
+      "format": "coach_talk",
+      "requiredBeat": "Beverly borrows Bob Golomb's equal-probability door rule"
+    },
+    {
+      "domain": "used-car pricing compliance",
+      "audience": "operators checking identity bias",
+      "stakes": "ordinary price instincts may reproduce unfair treatment",
+      "format": "postmortem",
+      "requiredBeat": "Kwame uses Ian Ayres's Chicago dealership design to test offers"
+    },
+    {
+      "domain": "student council candidate forum",
+      "audience": "teachers designing fair selection",
+      "stakes": "confidence and height may crowd out service behavior",
+      "format": "planning_choice",
+      "requiredBeat": "Inez separates leader-like presence from behavior after the Harding case"
+    },
+    {
+      "domain": "startup investment meeting",
+      "audience": "investors filtering charisma",
+      "stakes": "a smooth founder may get capital without evidence of learning",
+      "format": "dilemma",
+      "requiredBeat": "Fatima notices socially loaded polish and asks for predictive behavior"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "understand": 1,
+      "create": 1,
+      "evaluate": 2,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:07:46.119Z"
+}

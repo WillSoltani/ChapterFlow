@@ -237,7 +237,8 @@ export const defaultBookPreferencesState: BookPreferencesState = {
     readingRulerMode: false,
   },
   privacy: {
-    analyticsParticipation: true,
+    // Usage analytics is opt-in (off by default) for CASL/GDPR alignment.
+    analyticsParticipation: false,
     personalizedRecommendations: true,
     saveReadingHistory: true,
     saveQuizHistory: true,

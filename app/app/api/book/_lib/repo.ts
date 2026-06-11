@@ -46,6 +46,8 @@ import {
   stripeCustomerSk,
   webhookPk,
   webhookSk,
+  emailSuppressionPk,
+  emailSuppressionSk,
   billingEventPk,
   billingEventSk,
   licenseKeyPk,
@@ -1591,6 +1593,77 @@ export async function recordStripeWebhookEvent(
     if (isConditionalCheckFailed(error)) return false;
     throw error;
   }
+}
+
+// ── Email suppression (bounce/complaint deliverability) ───────────────────────
+
+export type EmailSuppressionRecord = {
+  email: string;
+  reason: "bounce" | "complaint";
+  subtype?: string;
+  source?: string;
+  createdAt: string;
+};
+
+/** True if the address has been suppressed by a hard bounce or complaint. */
+export async function isEmailSuppressed(
+  tableName: string,
+  email: string
+): Promise<boolean> {
+  if (!email) return false;
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: { PK: emailSuppressionPk(email), SK: emailSuppressionSk() },
+      ProjectionExpression: "email",
+    })
+  );
+  return !!res.Item;
+}
+
+export async function getEmailSuppression(
+  tableName: string,
+  email: string
+): Promise<EmailSuppressionRecord | null> {
+  if (!email) return null;
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: { PK: emailSuppressionPk(email), SK: emailSuppressionSk() },
+    })
+  );
+  const item = res.Item;
+  if (!item) return null;
+  return {
+    email: readStr(item.email) || email.trim().toLowerCase(),
+    reason: readStr(item.reason) === "complaint" ? "complaint" : "bounce",
+    subtype: readStr(item.subtype) || undefined,
+    source: readStr(item.source) || undefined,
+    createdAt: readStr(item.createdAt) || "",
+  };
+}
+
+/** Add or refresh a suppression record (used by ops/admin tooling and tests). */
+export async function putEmailSuppression(
+  tableName: string,
+  params: { email: string; reason: "bounce" | "complaint"; subtype?: string; source?: string }
+): Promise<void> {
+  const email = params.email.trim().toLowerCase();
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: emailSuppressionPk(email),
+        SK: emailSuppressionSk(),
+        entity: "BOOK_EMAIL_SUPPRESSION",
+        email,
+        reason: params.reason,
+        subtype: params.subtype,
+        source: params.source,
+        createdAt: nowIso(),
+      },
+    })
+  );
 }
 
 export type BillingEventKind = "refund" | "dispute";

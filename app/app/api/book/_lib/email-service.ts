@@ -16,7 +16,13 @@ type SendEmailParams = {
   subject: string;
   textBody: string;
   htmlBody: string;
+  /** May be a bare address or a friendly form like `ChapterFlow <info@chapterflow.ca>`. */
   senderEmail: string;
+  replyTo?: string;
+  /** Extra SMTP headers (e.g. List-Unsubscribe). Required on commercial email. */
+  headers?: Array<{ Name: string; Value: string }>;
+  /** SES configuration set for bounce/complaint event tracking. */
+  configurationSet?: string;
 };
 
 export async function sendEmail(params: SendEmailParams): Promise<{ sent: boolean; error?: string }> {
@@ -24,6 +30,8 @@ export async function sendEmail(params: SendEmailParams): Promise<{ sent: boolea
     await getSES().send(
       new SendEmailCommand({
         FromEmailAddress: params.senderEmail,
+        ReplyToAddresses: params.replyTo ? [params.replyTo] : undefined,
+        ConfigurationSetName: params.configurationSet || undefined,
         Destination: { ToAddresses: [params.to] },
         Content: {
           Simple: {
@@ -32,6 +40,7 @@ export async function sendEmail(params: SendEmailParams): Promise<{ sent: boolea
               Text: { Data: params.textBody, Charset: "UTF-8" },
               Html: { Data: params.htmlBody, Charset: "UTF-8" },
             },
+            Headers: params.headers,
           },
         },
       })

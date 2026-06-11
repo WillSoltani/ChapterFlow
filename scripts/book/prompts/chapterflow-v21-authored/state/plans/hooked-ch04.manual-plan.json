@@ -1,0 +1,70 @@
+{
+  "chapterId": "hooked-ch04",
+  "number": 4,
+  "title": "Variable Reward",
+  "coreMove": "Variable rewards sustain anticipation when they satisfy a real need, leave curiosity alive, and let the user feel in control instead of manipulated.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "social feed review",
+      "audience": "community PM",
+      "stakes": "how likes and comments create social uncertainty",
+      "format": "social scene",
+      "requiredBeat": "Apply Facebook to how likes and comments create social uncertainty without flattening the source case."
+    },
+    {
+      "domain": "discovery feed lab",
+      "audience": "design researcher",
+      "stakes": "why the next item can pull the user forward",
+      "format": "observation",
+      "requiredBeat": "Apply Pinterest to why the next item can pull the user forward without flattening the source case."
+    },
+    {
+      "domain": "fitness product critique",
+      "audience": "health app founder",
+      "stakes": "whether the reward system supports autonomy",
+      "format": "contrast case",
+      "requiredBeat": "Apply Fitocracy to whether the reward system supports autonomy without flattening the source case."
+    },
+    {
+      "domain": "operations desk",
+      "audience": "team lead",
+      "stakes": "how one product can combine reward families",
+      "format": "work scene",
+      "requiredBeat": "Apply email to how one product can combine reward families without flattening the source case."
+    },
+    {
+      "domain": "game systems meeting",
+      "audience": "game designer",
+      "stakes": "why finite novelty fades",
+      "format": "systems review",
+      "requiredBeat": "Apply farm-game loops to why finite novelty fades without flattening the source case."
+    },
+    {
+      "domain": "behavioral research seminar",
+      "audience": "product ethics lead",
+      "stakes": "how Skinner can be overread",
+      "format": "seminar",
+      "requiredBeat": "Apply BF Skinner to how Skinner can be overread without flattening the source case."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:55:57.483Z"
+}

@@ -1,0 +1,69 @@
+{
+  "chapterId": "rich-dad-poor-dad-ch02",
+  "number": 2,
+  "title": "Lesson Two: Why Teach Financial Literacy?",
+  "coreMove": "Judge money decisions by cash direction: assets feed you, liabilities bill you, and income alone cannot fix a leaking pattern.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "family budget review",
+      "audience": "households sorting confusing money labels",
+      "stakes": "see cash movement before another purchase gets a flattering name",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist uses the income statement and balance sheet to classify cash direction"
+    },
+    {
+      "domain": "first home purchase",
+      "audience": "buyers treating a residence as automatic wealth",
+      "stakes": "love the home without misreading its cash-flow role",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist separates the house's life value from its monthly outflows"
+    },
+    {
+      "domain": "salary negotiation aftermath",
+      "audience": "high earners tempted to scale spending",
+      "stakes": "convert a raise into freedom rather than a larger trap",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist sees taxes, cars, and credit rising with salary"
+    },
+    {
+      "domain": "retail side project",
+      "audience": "owners deciding whether growth strengthens the statement",
+      "stakes": "avoid confusing busy ownership with asset creation",
+      "format": "audit",
+      "requiredBeat": "the protagonist checks whether the new project adds cash to the asset side"
+    },
+    {
+      "domain": "home renovation budget",
+      "audience": "owners calling upgrades investments",
+      "stakes": "separate pride in a house from the cash it requires",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist corrects an investment label by listing mortgage, property taxes, and repairs"
+    },
+    {
+      "domain": "professional lifestyle planning",
+      "audience": "workers whose income rises faster than their assets",
+      "stakes": "keep a promotion from becoming a larger monthly obligation",
+      "format": "before_after",
+      "requiredBeat": "the protagonist changes the sequence after seeing salary, taxes, cars, and credit move together"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "understand": 2,
+      "remember": 1,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-05T11:34:28.227Z"
+}

@@ -1364,7 +1364,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             <SettingRow
               id="analytics"
               label="Share usage analytics"
-              description="Help improve ChapterFlow by sharing anonymous usage data. No personal information is ever collected."
+              description="Off by default. Help improve ChapterFlow by sharing device, performance, and navigation data, plus an approximate (city-level) location. We never sell this data or use it for ads. See our Privacy Policy for details."
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.privacy.analyticsParticipation : false}

@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-4-hour-workweek-ch07",
+  "number": 7,
+  "title": "Interrupting Interruption and the Art of Refusal",
+  "coreMove": "Protect attention by publishing access rules: batch email, require meeting decisions, give permissions, and keep a true emergency path open.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software support",
+      "audience": "a team lead resetting response expectations",
+      "stakes": "Constant replies are taking time from a release fix.",
+      "format": "decision_point",
+      "requiredBeat": "Use the email autoresponder to shift scheduled checking and urgent phone use into the social contract."
+    },
+    {
+      "domain": "customer operations",
+      "audience": "an operations manager removing approval drag",
+      "stakes": "Small refunds are freezing because every choice waits for the owner.",
+      "format": "before_after",
+      "requiredBeat": "Show missing permissions becoming decision rules and spending limits."
+    },
+    {
+      "domain": "design agency",
+      "audience": "an account director calming a nervous client",
+      "stakes": "A client may read slower email as neglect unless the rule is explicit.",
+      "format": "dialogue",
+      "requiredBeat": "Use scheduled checking plus urgent phone language to make refusal respectful."
+    },
+    {
+      "domain": "warehouse purchasing",
+      "audience": "a floor supervisor reducing routine approvals",
+      "stakes": "The line keeps stopping for small purchases the crew could handle.",
+      "format": "mistake_recovery",
+      "requiredBeat": "Show a bottleneck caused by missing spending limits, then repair it."
+    },
+    {
+      "domain": "product planning",
+      "audience": "a product lead deciding whether to accept a vague invite",
+      "stakes": "A no-agenda meeting may consume the one block needed for planning.",
+      "format": "text_thread",
+      "requiredBeat": "Translate batching and scheduled checking into a refusal script for meetings."
+    },
+    {
+      "domain": "public benefits office",
+      "audience": "a desk lead keeping cases moving",
+      "stakes": "Case files are pausing because staff fear making small calls alone.",
+      "format": "audit",
+      "requiredBeat": "Expose missing permissions as the cause of repeated interruptions."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "understand": 1,
+      "create": 1,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-05T08:48:29.794Z"
+}

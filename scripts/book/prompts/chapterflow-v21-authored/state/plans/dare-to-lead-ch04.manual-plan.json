@@ -1,0 +1,68 @@
+{
+  "chapterId": "dare-to-lead-ch04",
+  "number": 4,
+  "title": "Shame and Empathy",
+  "coreMove": "Shame attacks identity; empathy keeps people connected enough to own behavior and make repair.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "medical leave planning",
+      "audience": "Tamsin and leaders facing medical leave planning",
+      "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+      "format": "decision_point",
+      "requiredBeat": "use Concussion and forced rest to practice shame resilience in medical leave planning"
+    },
+    {
+      "domain": "role exit",
+      "audience": "Usha and leaders facing role exit",
+      "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+      "format": "decision_point",
+      "requiredBeat": "use Six empathic misses to practice shame resilience in role exit"
+    },
+    {
+      "domain": "school hallway",
+      "audience": "Vera and leaders facing school hallway",
+      "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+      "format": "audit",
+      "requiredBeat": "use Dignity in termination to practice shame resilience in school hallway"
+    },
+    {
+      "domain": "lab safety",
+      "audience": "Willem and leaders facing lab safety",
+      "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+      "format": "decision_point",
+      "requiredBeat": "use Concussion and forced rest to practice shame resilience in lab safety"
+    },
+    {
+      "domain": "Slack moderation",
+      "audience": "Xenia and leaders facing Slack moderation",
+      "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+      "format": "before_after",
+      "requiredBeat": "use Six empathic misses to practice shame resilience in Slack moderation"
+    },
+    {
+      "domain": "associate review",
+      "audience": "Yara and leaders facing associate review",
+      "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+      "format": "decision_point",
+      "requiredBeat": "use Dignity in termination to practice shame resilience in associate review"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "understand": 2,
+      "analyze": 2,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:12:32.868Z"
+}

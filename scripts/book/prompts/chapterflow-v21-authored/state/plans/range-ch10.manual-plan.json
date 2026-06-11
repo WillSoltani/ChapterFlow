@@ -1,0 +1,70 @@
+{
+  "chapterId": "range-ch10",
+  "number": 10,
+  "title": "Fooled by Expertise",
+  "coreMove": "Fox-like judgment beats hedgehog certainty in uncertain predictions because it uses many partial models and updates without humiliation.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "ehrlich simon proxy",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "decision_point",
+      "requiredBeat": "Ehrlich Simon Proxy"
+    },
+    {
+      "domain": "tetlock forecast board",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "reflection",
+      "requiredBeat": "Tetlock Forecast Board"
+    },
+    {
+      "domain": "good judgment standup",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "business_case",
+      "requiredBeat": "Good Judgment Standup"
+    },
+    {
+      "domain": "hedgehog product roadmap",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "scene",
+      "requiredBeat": "Hedgehog Product Roadmap"
+    },
+    {
+      "domain": "pundit scorecard",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "planning_choice",
+      "requiredBeat": "Pundit Scorecard"
+    },
+    {
+      "domain": "climate scenario review",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "audit",
+      "requiredBeat": "Climate Scenario Review"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:17:02.905Z"
+}

@@ -1,0 +1,69 @@
+{
+  "chapterId": "outliers-ch04",
+  "number": 4,
+  "title": "The Trouble with Geniuses, Part 2",
+  "coreMove": "Practical intelligence turns ability into navigable action: asking clearly, reading authority, pressing respectfully, and surviving institutional friction.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "college advising office",
+      "audience": "advisors helping first-generation students",
+      "stakes": "a student may lose aid because no one taught the appeal script",
+      "format": "decision_point",
+      "requiredBeat": "Use Langan at Reed and Montana State to teach an appeal script."
+    },
+    {
+      "domain": "research fellowship review",
+      "audience": "committee chairs judging forceful candidates",
+      "stakes": "confidence may be rewarded as merit when it is partly trained status",
+      "format": "analysis",
+      "requiredBeat": "Use Oppenheimer to question confidence as merit."
+    },
+    {
+      "domain": "middle-school parent meeting",
+      "audience": "teachers interpreting family styles",
+      "stakes": "a teacher may reward one family code while misreading another",
+      "format": "scene",
+      "requiredBeat": "Use Annette Lareau's studies to interpret parent meetings."
+    },
+    {
+      "domain": "internship mentoring program",
+      "audience": "mentors teaching institutional know-how",
+      "stakes": "quiet interns may miss chances because they lack the asking code",
+      "format": "planning_choice",
+      "requiredBeat": "Turn practical intelligence into internship practice."
+    },
+    {
+      "domain": "graduate lab review",
+      "audience": "faculty examining unequal second chances",
+      "stakes": "some students may receive grace because they know elite codes",
+      "format": "postmortem",
+      "requiredBeat": "Use Oppenheimer to review unequal grace."
+    },
+    {
+      "domain": "pediatric clinic advocacy",
+      "audience": "health workers serving mixed-class families",
+      "stakes": "parents may leave without answers because deference is mistaken for agreement",
+      "format": "before_after",
+      "requiredBeat": "Apply Lareau's authority research in a clinic."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:26:52.517Z"
+}

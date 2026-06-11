@@ -3,10 +3,27 @@ import "server-only";
 import { PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, notificationSk, nowIso } from "@/app/app/api/book/_lib/keys";
-import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
-import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { getUserSettingsItem, isEmailSuppressed } from "@/app/app/api/book/_lib/repo";
 import { sendEmail } from "@/app/app/api/book/_lib/email-service";
+import {
+  buildUnsubscribeUrl,
+  emailFooter,
+  getEmailComplianceConfig,
+  reasonLineForCategory,
+  signUnsubscribeToken,
+  unsubscribeHeaders,
+  type EmailCategory,
+} from "@/app/app/api/book/_lib/email-compliance";
 import type { BookUserNotificationItem, NotificationPreferences } from "@/app/app/api/book/_lib/types";
+
+/** Map an in-app notification type to the unsubscribe category for its email. */
+function emailCategoryForNotificationType(type: string): EmailCategory {
+  if (type.includes("reading_reminder")) return "reading_reminder";
+  if (type.includes("streak")) return "streak";
+  if (type.includes("welcome_back")) return "welcome_back";
+  if (type.includes("digest")) return "weekly_digest";
+  return "celebration";
+}
 
 type CreateNotificationParams = {
   userId: string;
@@ -55,16 +72,40 @@ export async function createNotification(
     inAppCreated = true;
   }
 
-  // Email notification (if enabled and email available).
+  // Email notification (if enabled and email available). These are commercial
+  // (engagement) emails, so they carry full CASL/CAN-SPAM compliance: sender
+  // identification, reply-to, a postal-address footer, and a working one-click
+  // unsubscribe + List-Unsubscribe headers.
   if (notifPrefs.channels?.email === true && params.userEmail) {
-    const senderEmail = await getServerEnv("SES_SENDER_EMAIL");
-    if (senderEmail) {
+    const config = await getEmailComplianceConfig();
+    // Commercial email requires a postal address (CASL/CAN-SPAM). Without one we
+    // skip sending — set EMAIL_POSTAL_ADDRESS to enable. (Transactional email,
+    // e.g. trial-ending, uses a separate path and is exempt.) Also skip addresses
+    // suppressed by a hard bounce or complaint.
+    const suppressed =
+      config.postalAddress && (await isEmailSuppressed(tableName, params.userEmail));
+    if (config.senderEmail && config.postalAddress && !suppressed) {
+      const category = emailCategoryForNotificationType(params.type);
+      const token = signUnsubscribeToken(params.userId, category, config.secret);
+      const unsubscribeUrl = buildUnsubscribeUrl(config.appBaseUrl, token);
+      const mailto = `mailto:${config.supportAddress}?subject=unsubscribe`;
+      const footer = emailFooter({
+        config,
+        unsubscribeUrl,
+        reasonLine: reasonLineForCategory(category),
+      });
+      const coreHtml = `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">${params.title}</h2><p>${params.body}</p></div>`;
       const result = await sendEmail({
         to: params.userEmail,
         subject: params.title,
-        textBody: params.body,
-        htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">${params.title}</h2><p>${params.body}</p><p style="color:#888;font-size:12px">— ChapterFlow</p></div>`,
-        senderEmail,
+        textBody: params.body + footer.text,
+        htmlBody: coreHtml + footer.html,
+        senderEmail: config.senderName
+          ? `${config.senderName} <${config.senderEmail}>`
+          : config.senderEmail,
+        replyTo: config.supportAddress,
+        headers: unsubscribeHeaders(unsubscribeUrl, mailto),
+        configurationSet: config.configurationSet,
       });
       emailSent = result.sent;
     }

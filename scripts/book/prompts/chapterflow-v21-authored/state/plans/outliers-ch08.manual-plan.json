@@ -1,0 +1,69 @@
+{
+  "chapterId": "outliers-ch08",
+  "number": 8,
+  "title": "Rice Paddies and Math Tests",
+  "coreMove": "Effortful persistence grows when language reveals patterns and culture teaches that careful, repeated work can reliably improve the result.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "first-grade math lesson",
+      "audience": "teachers introducing number structure",
+      "stakes": "children may mistake confusing words for math weakness",
+      "format": "decision_point",
+      "requiredBeat": "Use Chinese number system transparency in a math lesson."
+    },
+    {
+      "domain": "middle-school project lab",
+      "audience": "teachers linking effort to feedback",
+      "stakes": "students may quit before effort shows a return",
+      "format": "scene",
+      "requiredBeat": "Apply rice-paddy effort beliefs to project feedback."
+    },
+    {
+      "domain": "education research lab",
+      "audience": "test designers interpreting persistence",
+      "stakes": "a long task may reveal effort habits, not just content skill",
+      "format": "audit",
+      "requiredBeat": "Use questionnaire persistence to interpret math scores."
+    },
+    {
+      "domain": "math learning app",
+      "audience": "product teams reducing quit points",
+      "stakes": "learners may leave before repetition can pay off",
+      "format": "planning_choice",
+      "requiredBeat": "Use effortful persistence to reduce quit points."
+    },
+    {
+      "domain": "home music practice",
+      "audience": "parents shaping effort beliefs",
+      "stakes": "a child may hear effort as punishment rather than payoff",
+      "format": "before_after",
+      "requiredBeat": "Apply rice-paddy effort beliefs to home practice."
+    },
+    {
+      "domain": "after-school tutoring center",
+      "audience": "tutors diagnosing math avoidance",
+      "stakes": "a student's early exit may be misread as lack of ability",
+      "format": "postmortem",
+      "requiredBeat": "Use persistence to diagnose math avoidance."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:26:52.519Z"
+}

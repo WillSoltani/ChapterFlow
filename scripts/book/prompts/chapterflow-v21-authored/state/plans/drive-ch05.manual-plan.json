@@ -1,0 +1,69 @@
+{
+  "chapterId": "drive-ch05",
+  "number": 5,
+  "title": "Autonomy",
+  "coreMove": "Engagement rises when clear goals remain in place while people gain real choice over how work is shaped and pursued.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "clinic scheduling board",
+      "audience": "Jun, a clinic coordinator giving staff bounded time choice",
+      "stakes": "A scheduling board must protect patient care while reducing needless control.",
+      "format": "decision_point",
+      "requiredBeat": "Show one of the four Ts changing under clear standards."
+    },
+    {
+      "domain": "engineering roadmap review",
+      "audience": "Calla, an engineering lead opening task choice",
+      "stakes": "A roadmap review needs ownership without abandoning commitments.",
+      "format": "dialogue",
+      "requiredBeat": "Use task autonomy within a shared roadmap."
+    },
+    {
+      "domain": "remote service team",
+      "audience": "Ronan, a service manager moving from presence to outcomes",
+      "stakes": "A remote team is being judged by green status dots instead of customer resolution.",
+      "format": "audit",
+      "requiredBeat": "Apply results-only thinking to a service environment."
+    },
+    {
+      "domain": "school faculty planning day",
+      "audience": "Yvette, a faculty lead giving technique choice",
+      "stakes": "Teachers share a literacy goal but are being handed a script for every minute.",
+      "format": "planning_choice",
+      "requiredBeat": "Show technique autonomy under a common learning aim."
+    },
+    {
+      "domain": "agency creative brief",
+      "audience": "Briar, a creative director leaving room in a brief",
+      "stakes": "An agency brief is so scripted that the team can only decorate the answer.",
+      "format": "postmortem",
+      "requiredBeat": "Show autonomy over technique in creative work."
+    },
+    {
+      "domain": "manufacturing improvement huddle",
+      "audience": "Keaton, a plant manager giving team choice for one experiment",
+      "stakes": "An improvement huddle needs participation without losing safety rules.",
+      "format": "reflection",
+      "requiredBeat": "Use team autonomy in a bounded operational experiment."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 8,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:46:25.905Z"
+}

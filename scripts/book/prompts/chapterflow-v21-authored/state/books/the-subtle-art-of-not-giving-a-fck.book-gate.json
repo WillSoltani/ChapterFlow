@@ -1,0 +1,102 @@
+{
+  "bookId": "the-subtle-art-of-not-giving-a-fck",
+  "chapterCount": 9,
+  "passed": true,
+  "findings": [
+    {
+      "catalogId": "B11",
+      "severity": "major",
+      "message": "5 of 9 chapters (56%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch2, Ch4, Ch5, Ch6, Ch9. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+    },
+    {
+      "catalogId": "BP16",
+      "severity": "major",
+      "message": "Q9 prompt uses the same opening \"a reader wants\" in 8 chapters (1, 2, 3, 4, 5, 7, 8, 9). A repeated question-position opener is a template tell — vary formats across chapters.",
+      "evidence": "a reader wants"
+    },
+    {
+      "catalogId": "BP16",
+      "severity": "major",
+      "message": "Q7 prompt uses the same opening \"a friend says\" in 4 chapters (4, 5, 8, 9). A repeated question-position opener is a template tell — vary formats across chapters.",
+      "evidence": "a friend says"
+    }
+  ],
+  "stats": {
+    "answerPositionCounts": [
+      29,
+      26,
+      26
+    ],
+    "answerPositionPctMax": 0.35802469135802467,
+    "totalQuizQuestions": 81,
+    "duplicatedNames": [],
+    "duplicatedHookOpeners": [],
+    "schemaInconsistencies": [],
+    "patternAudit": {
+      "bookId": "the-subtle-art-of-not-giving-a-fck",
+      "chapterCount": 9,
+      "passed": true,
+      "findings": [
+        {
+          "code": "B11",
+          "severity": "major",
+          "chapters": [
+            2,
+            4,
+            5,
+            6,
+            9
+          ],
+          "count": 5,
+          "unit": "counterintuition",
+          "message": "5 of 9 chapters (56%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch2, Ch4, Ch5, Ch6, Ch9. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+        },
+        {
+          "code": "BP16",
+          "severity": "major",
+          "chapters": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9
+          ],
+          "count": 8,
+          "unit": "quiz.q9",
+          "evidence": "a reader wants",
+          "message": "Q9 prompt uses the same opening \"a reader wants\" in 8 chapters (1, 2, 3, 4, 5, 7, 8, 9). A repeated question-position opener is a template tell — vary formats across chapters."
+        },
+        {
+          "code": "BP16",
+          "severity": "major",
+          "chapters": [
+            4,
+            5,
+            8,
+            9
+          ],
+          "count": 4,
+          "unit": "quiz.q7",
+          "evidence": "a friend says",
+          "message": "Q7 prompt uses the same opening \"a friend says\" in 4 chapters (4, 5, 8, 9). A repeated question-position opener is a template tell — vary formats across chapters."
+        }
+      ],
+      "stats": {
+        "repeatedQuizExplanationGroups": 0,
+        "repeatedSurfaceFrameGroups": 0,
+        "repeatedExampleFrameGroups": 0,
+        "repeatedConcreteAnchors": 0,
+        "templatedBreakdownShellGroups": 0,
+        "shortParagraphDuplicateGroups": 0,
+        "literalSubstringGroups": 0,
+        "quizPositionTemplateDuplicates": 0,
+        "missingPlanChapters": [],
+        "missingBrief": false,
+        "sourceAlignmentWarnings": 0
+      }
+    }
+  }
+}

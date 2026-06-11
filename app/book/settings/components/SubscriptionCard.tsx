@@ -6,6 +6,7 @@ import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
 import type { BillingInterval, PricingTier } from "@/app/book/hooks/useBookEntitlements";
 import { ANNUAL_SAVINGS_BADGE, TRIAL_CTA_LABEL } from "@/lib/pricing";
+import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
@@ -107,7 +108,7 @@ export function SubscriptionCard({
           <span className="text-base font-bold text-(--cf-text-1)">Pro Plan</span>
         </div>
         <p className="mt-0.5 text-xs text-(--cf-text-soft)">
-          All 95+ books &middot; Full feature access
+          All {CATALOG_BOOK_COUNT_DISPLAY} books &middot; Full feature access
         </p>
         <p className="text-sm text-(--cf-text-soft) mt-1">
           {cancelAtPeriodEnd && formattedDate
@@ -158,7 +159,7 @@ export function SubscriptionCard({
           &#10024; Upgrade to Pro
         </p>
         <p className="mt-1 text-xs leading-relaxed text-(--cf-text-3)">
-          Unlock all 95+ books, text-to-speech, spaced repetition, reading analytics, and
+          Unlock all {CATALOG_BOOK_COUNT_DISPLAY} books, text-to-speech, spaced repetition, reading analytics, and
           export tools.
         </p>
 

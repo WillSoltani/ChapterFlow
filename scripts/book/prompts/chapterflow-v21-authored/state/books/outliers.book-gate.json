@@ -1,0 +1,58 @@
+{
+  "bookId": "outliers",
+  "chapterCount": 9,
+  "passed": true,
+  "findings": [
+    {
+      "catalogId": "B11",
+      "severity": "major",
+      "message": "5 of 9 chapters (56%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch1, Ch2, Ch6, Ch8, Ch9. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+    }
+  ],
+  "stats": {
+    "answerPositionCounts": [
+      27,
+      27,
+      27
+    ],
+    "answerPositionPctMax": 0.3333333333333333,
+    "totalQuizQuestions": 81,
+    "duplicatedNames": [],
+    "duplicatedHookOpeners": [],
+    "schemaInconsistencies": [],
+    "patternAudit": {
+      "bookId": "outliers",
+      "chapterCount": 9,
+      "passed": true,
+      "findings": [
+        {
+          "code": "B11",
+          "severity": "major",
+          "chapters": [
+            1,
+            2,
+            6,
+            8,
+            9
+          ],
+          "count": 5,
+          "unit": "counterintuition",
+          "message": "5 of 9 chapters (56%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch1, Ch2, Ch6, Ch8, Ch9. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+        }
+      ],
+      "stats": {
+        "repeatedQuizExplanationGroups": 0,
+        "repeatedSurfaceFrameGroups": 0,
+        "repeatedExampleFrameGroups": 0,
+        "repeatedConcreteAnchors": 0,
+        "templatedBreakdownShellGroups": 0,
+        "shortParagraphDuplicateGroups": 0,
+        "literalSubstringGroups": 0,
+        "quizPositionTemplateDuplicates": 0,
+        "missingPlanChapters": [],
+        "missingBrief": false,
+        "sourceAlignmentWarnings": 0
+      }
+    }
+  }
+}

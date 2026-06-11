@@ -1,0 +1,169 @@
+{
+  "bookId": "the-5-am-club",
+  "chapterCount": 18,
+  "passed": true,
+  "findings": [
+    {
+      "catalogId": "B11",
+      "severity": "major",
+      "message": "17 of 18 chapters (94%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch1, Ch2, Ch3, Ch4, Ch5, Ch6, Ch7, Ch8, Ch10, Ch11, Ch12, Ch13, Ch14, Ch15, Ch16, Ch17, Ch18. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+    },
+    {
+      "catalogId": "B13",
+      "severity": "major",
+      "message": "Hook frame clustering: 10 of 18 chapters open with \"the\" as the first word (cap 9, 50% of book). Chapters: 1, 2, 3, 4, 5, 6, 9, 11, 12, 14. Vary hook openers across the book.",
+      "evidence": "the"
+    },
+    {
+      "catalogId": "BP16",
+      "severity": "major",
+      "message": "Q9 prompt uses the same opening \"which memory best\" in 5 chapters (2, 3, 4, 5, 6). A repeated question-position opener is a template tell — vary formats across chapters.",
+      "evidence": "which memory best"
+    },
+    {
+      "catalogId": "BP16",
+      "severity": "major",
+      "message": "Q8 prompt uses the same opening \"a coach wants\" in 5 chapters (5, 7, 14, 15, 17). A repeated question-position opener is a template tell — vary formats across chapters.",
+      "evidence": "a coach wants"
+    },
+    {
+      "catalogId": "BP16",
+      "severity": "major",
+      "message": "Q9 prompt uses the same opening \"a learner writes\" in 8 chapters (10, 12, 13, 14, 15, 16, 17, 18). A repeated question-position opener is a template tell — vary formats across chapters.",
+      "evidence": "a learner writes"
+    },
+    {
+      "catalogId": "F4",
+      "severity": "major",
+      "message": "soft-banned phrase \"rather than\" appears 39 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+      "evidence": "rather than"
+    }
+  ],
+  "stats": {
+    "answerPositionCounts": [
+      54,
+      54,
+      54
+    ],
+    "answerPositionPctMax": 0.3333333333333333,
+    "totalQuizQuestions": 162,
+    "duplicatedNames": [],
+    "duplicatedHookOpeners": [],
+    "schemaInconsistencies": [],
+    "patternAudit": {
+      "bookId": "the-5-am-club",
+      "chapterCount": 18,
+      "passed": true,
+      "findings": [
+        {
+          "code": "B11",
+          "severity": "major",
+          "chapters": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "count": 17,
+          "unit": "counterintuition",
+          "message": "17 of 18 chapters (94%) open counterintuition with a negation-correction shell (\"X is not Y. [correction]\"). Affected: Ch1, Ch2, Ch3, Ch4, Ch5, Ch6, Ch7, Ch8, Ch10, Ch11, Ch12, Ch13, Ch14, Ch15, Ch16, Ch17, Ch18. The shell is a templating tell — pick more varied paradox-signal shapes across chapters."
+        },
+        {
+          "code": "B13",
+          "severity": "major",
+          "chapters": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            9,
+            11,
+            12,
+            14
+          ],
+          "count": 10,
+          "unit": "hook.firstWord",
+          "evidence": "the",
+          "message": "Hook frame clustering: 10 of 18 chapters open with \"the\" as the first word (cap 9, 50% of book). Chapters: 1, 2, 3, 4, 5, 6, 9, 11, 12, 14. Vary hook openers across the book.",
+          "maxScoreCap": 80
+        },
+        {
+          "code": "BP16",
+          "severity": "major",
+          "chapters": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "count": 5,
+          "unit": "quiz.q9",
+          "evidence": "which memory best",
+          "message": "Q9 prompt uses the same opening \"which memory best\" in 5 chapters (2, 3, 4, 5, 6). A repeated question-position opener is a template tell — vary formats across chapters."
+        },
+        {
+          "code": "BP16",
+          "severity": "major",
+          "chapters": [
+            5,
+            7,
+            14,
+            15,
+            17
+          ],
+          "count": 5,
+          "unit": "quiz.q8",
+          "evidence": "a coach wants",
+          "message": "Q8 prompt uses the same opening \"a coach wants\" in 5 chapters (5, 7, 14, 15, 17). A repeated question-position opener is a template tell — vary formats across chapters."
+        },
+        {
+          "code": "BP16",
+          "severity": "major",
+          "chapters": [
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "count": 8,
+          "unit": "quiz.q9",
+          "evidence": "a learner writes",
+          "message": "Q9 prompt uses the same opening \"a learner writes\" in 8 chapters (10, 12, 13, 14, 15, 16, 17, 18). A repeated question-position opener is a template tell — vary formats across chapters."
+        }
+      ],
+      "stats": {
+        "repeatedQuizExplanationGroups": 0,
+        "repeatedSurfaceFrameGroups": 0,
+        "repeatedExampleFrameGroups": 0,
+        "repeatedConcreteAnchors": 0,
+        "templatedBreakdownShellGroups": 0,
+        "shortParagraphDuplicateGroups": 0,
+        "literalSubstringGroups": 0,
+        "quizPositionTemplateDuplicates": 0,
+        "missingPlanChapters": [],
+        "missingBrief": false,
+        "sourceAlignmentWarnings": 0
+      }
+    }
+  }
+}

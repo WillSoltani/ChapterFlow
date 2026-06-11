@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch18",
+  "number": 18,
+  "title": "Less mass",
+  "coreMove": "Treat every commitment as weight that raises the force to change later; keep mass low so a mistake stays cheap to undo and a new priority does not drag a machine behind it.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "office real estate decision",
+      "audience": "founders equating long contracts with seriousness",
+      "stakes": "sign a long lease or keep the company able to move",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist treats a long contract as mass that resists change"
+    },
+    {
+      "domain": "software infrastructure choice",
+      "audience": "teams tempted to build heavy custom systems early",
+      "stakes": "build custom code or rent a tool that teaches the same thing",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist applies the smaller-promise test before adding mass"
+    },
+    {
+      "domain": "product roadmap review",
+      "audience": "leaders attached to a decision that no longer works",
+      "stakes": "defend a proud past call or drop the dead weight",
+      "format": "reflection",
+      "requiredBeat": "the protagonist counts pride as mass alongside physical assets"
+    },
+    {
+      "domain": "vendor and hiring commitments",
+      "audience": "founders confusing lightness with refusing to commit",
+      "stakes": "commit on purpose or refuse everything and stall",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist separates useful structure from dead weight"
+    },
+    {
+      "domain": "small-team product strategy",
+      "audience": "teams choosing how much to take on at the earliest stage",
+      "stakes": "match a bigger rival's footprint or stay deliberately lean",
+      "format": "contrast",
+      "requiredBeat": "the protagonist keeps fewer features, people, and obligations to stay agile"
+    },
+    {
+      "domain": "product mistake reversal",
+      "audience": "leaders assuming scale improves error correction",
+      "stakes": "carry heavy mass for safety or stay light to fix mistakes cheaply",
+      "format": "before_after",
+      "requiredBeat": "low mass makes the same mistake cheaper to undo"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "understand": 2,
+      "evaluate": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.764Z"
+}

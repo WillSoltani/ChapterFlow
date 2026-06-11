@@ -1,0 +1,37 @@
+{
+  "bookId": "daring-greatly",
+  "chapterCount": 7,
+  "passed": true,
+  "findings": [],
+  "stats": {
+    "answerPositionCounts": [
+      22,
+      24,
+      17
+    ],
+    "answerPositionPctMax": 0.38095238095238093,
+    "totalQuizQuestions": 63,
+    "duplicatedNames": [],
+    "duplicatedHookOpeners": [],
+    "schemaInconsistencies": [],
+    "patternAudit": {
+      "bookId": "daring-greatly",
+      "chapterCount": 7,
+      "passed": true,
+      "findings": [],
+      "stats": {
+        "repeatedQuizExplanationGroups": 0,
+        "repeatedSurfaceFrameGroups": 0,
+        "repeatedExampleFrameGroups": 0,
+        "repeatedConcreteAnchors": 0,
+        "templatedBreakdownShellGroups": 0,
+        "shortParagraphDuplicateGroups": 0,
+        "literalSubstringGroups": 0,
+        "quizPositionTemplateDuplicates": 0,
+        "missingPlanChapters": [],
+        "missingBrief": false,
+        "sourceAlignmentWarnings": 0
+      }
+    }
+  }
+}

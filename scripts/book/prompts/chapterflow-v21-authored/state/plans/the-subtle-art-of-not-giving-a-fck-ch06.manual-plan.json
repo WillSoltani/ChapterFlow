@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-subtle-art-of-not-giving-a-fck-ch06",
+  "number": 6,
+  "title": "You're Wrong About Everything (But So Am I)",
+  "coreMove": "Productive uncertainty means moving from wrong to less wrong by letting evidence correct identity before certainty turns into avoidance.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "behavioral science workshop",
+      "audience": "product analysts",
+      "stakes": "whether random data gets turned into a ritual",
+      "format": "predict_reveal",
+      "requiredBeat": "Use the random-button experiment to expose invented control"
+    },
+    {
+      "domain": "museum exhibit planning",
+      "audience": "curator",
+      "stakes": "whether authority is mistaken for truth",
+      "format": "audit",
+      "requiredBeat": "Use California island maps to make certainty feel temporary"
+    },
+    {
+      "domain": "bioethics startup pitch",
+      "audience": "founder",
+      "stakes": "whether noble certainty blocks feedback",
+      "format": "business_case",
+      "requiredBeat": "Use Erin to show purpose becoming armor"
+    },
+    {
+      "domain": "retail customer research",
+      "audience": "brand manager",
+      "stakes": "whether identity blocks learning",
+      "format": "decision_point",
+      "requiredBeat": "Turn a defended belief into a testable correction"
+    },
+    {
+      "domain": "couple communication",
+      "audience": "partner",
+      "stakes": "whether a guessed story becomes accusation",
+      "format": "dialogue",
+      "requiredBeat": "Use pattern-making to pause before identity defense"
+    },
+    {
+      "domain": "mathematics course",
+      "audience": "student",
+      "stakes": "whether one failure becomes self-concept",
+      "format": "coach_talk",
+      "requiredBeat": "Apply the law of avoidance to a threatened identity"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 4,
+      "understand": 1,
+      "analyze": 1,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:47:49.750Z"
+}

@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "drive-ch02",
+  "number": 2,
+  "title": "Seven Reasons Carrots and Sticks Often Do Not Work",
+  "readingTimeMinutes": 8,
+  "hook": "Tom Sawyer's fence turns payment into a warning: a prize can make play feel like labor.",
+  "counterintuition": "A reward can raise effort while quietly narrowing attention, reducing candor, and draining the original appetite for the task.",
+  "tryThisNow": "Pick one reward you use or chase; write whether it invites curiosity or merely purchases compliance.",
+  "keyTakeaway": "Conditional rewards are risky when the work needs insight, persistence, or ethics, because control can crowd out the motive you wanted.",
+  "breakdown": {
+    "fastRead": "Tom Sawyer's fence begins as a chore and becomes desirable only because other boys are allowed to treat painting as play. The Sawyer Effect names the darker reversal: add a controlling prize and an interesting activity can become a transaction. Edward Deci's Soma puzzles, Karl Duncker's candle problem, and day-care fines all show a similar fracture. The rule is not that every reward fails. The rule is to beware of if-then control when creativity, care, or moral judgment is the point.",
+    "deepRead": "The mechanism is crowding out: attention shifts from the work itself to the bargain attached to it. The Sawyer Effect means The Sawyer Effect is the conversion of play into work by adding an external reward or control. A task that once felt interesting can become a transaction, and the original appetite for doing it can shrink. Mark Twain's fence in The Adventures of Tom Sawyer: Motivation changes when an activity is framed as self-chosen and interesting rather than imposed labor. Edward Deci's Soma puzzle experiment: A reward can buy temporary effort while reducing voluntary engagement later. Designers of incentives can accidentally destroy the motive they hoped to amplify. The practical question becomes whether a reward supports the work or crowds out the reason people cared. Conditional rewards can produce a short burst of effort while damaging intrinsic interest, creativity, ethics, persistence, and long-term judgment. The seven defects turn a familiar management tool into a hidden liability for heuristic work. If-then rewards often solve the wrong problem by narrowing attention when the work needs broad thinking and internal commitment.",
+    "fullRead": "The warning has a narrow target, and that narrowness makes it more useful. The surface takeaway is that all goals and rewards are poisonous. The real warning is conditional control: rewards attached too tightly to outcome can shrink attention, corrupt measures, and reduce voluntary interest in tasks that require judgment or creativity.\n\nMark Twain's fence in The Adventures of Tom Sawyer: Tom turns an unpleasant chore into a desirable activity by making other boys believe painting the fence is a privilege. The reversal captures how meaning around a task can transform effort more powerfully than direct payment.\n\nEdward Deci's Soma puzzle experiment: College students who were paid to solve puzzles spent less free-choice time with the puzzles after payment disappeared. The unpaid group retained more spontaneous interest because the task had not been reframed as a paid transaction.\n\nKarl Duncker's candle problem: Participants need to overcome functional fixedness by seeing a box not just as a container but as a platform. Incentives that speed simple focus can slow the broad search required for this kind of insight.\n\nRewards can extinguish intrinsic motivation by shifting attention from the activity to the payoff. For creative problem solving, incentives can diminish performance by narrowing attention around the prize rather than the problem. Creativity suffers when people feel controlled, rushed, or evaluated primarily by an external outcome. External rewards can crowd out moral or civic behavior by making people treat a social obligation as a market transaction. When goals carry high stakes, people become more willing to cheat, cut corners, or distort measures. Rewards can become addictive because each round resets expectations and requires a larger or more salient payoff to get the same response. Short-term targets can steal attention from long-term health, learning, or institutional trust.\n\nThe reward system looks commonsensical because it often works for simple compliance: hold out a prize, threaten a cost, and behavior moves. The problem appears when an activity already carries interest or when success requires lateral thinking. The Sawyer Effect supplies the governing image. Paint a fence as play and effort appears; make an interesting puzzle feel like a paid job and interest drains away. Seven defects accumulate around that move. Rewards can reduce inner interest, depress performance on creative tasks, compress attention, displace civic or moral motives, invite gaming, build dependency, and bias people toward short-term wins. Deci's puzzle work gives the intrinsic-motivation mechanism. Duncker's candle problem supplies the cognitive mechanism: when the answer depends on seeing an object differently, a prize can make people stare harder in the wrong way. The day-care fine supplies the moral mechanism: pricing a bad behavior can make it feel permitted. Aggressive performance targets add the ethical mechanism, since people under pressure learn to manage the metric rather than serve the mission. The point is diagnostic. If the task is routine, measurable, and not interesting, a reward may help. If the task needs imagination, trust, or care, a poorly designed incentive can buy motion while damaging the source of better work."
+  },
+  "examples": [
+    {
+      "exampleId": "drive-ch02-ex01",
+      "title": "A Misread Incentive",
+      "tags": [
+        "work design",
+        "motivation"
+      ],
+      "planSpec": {
+        "domain": "museum education desk",
+        "audience": "Claudia and readers facing museum education desk",
+        "stakes": "Use Mark Twain's fence in The Adventures of Tom Sawyer to apply The Sawyer Effect without flattening the source lesson.",
+        "format": "decision_point",
+        "requiredBeat": "Apply The Sawyer Effect through Mark Twain's fence in The Adventures of Tom Sawyer in a museum education desk situation."
+      },
+      "scenario": "Claudia weighs whether a prize will make the museum activity livelier or turn curiosity into a transaction during the museum education desk at 10:14 a.m. Tom turns an unpleasant chore into a desirable activity by making other boys believe painting the fence is a privilege. The reversal captures how meaning around a task can transform effort more powerfully than direct payment.",
+      "whatToDo": "Before the museum education desk, name the motive a prize could crowd out and design around that risk.",
+      "whyItMatters": "Designers of incentives can accidentally destroy the motive they hoped to amplify. The practical question becomes whether a reward supports the work or crowds out the reason people cared."
+    },
+    {
+      "exampleId": "drive-ch02-ex02",
+      "title": "The Calendar Test",
+      "tags": [
+        "team choice",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "design sprint room",
+        "audience": "Niko and readers facing design sprint room",
+        "stakes": "Use Edward Deci's Soma puzzle experiment to apply The Sawyer Effect without flattening the source lesson.",
+        "format": "dialogue",
+        "requiredBeat": "Apply The Sawyer Effect through Edward Deci's Soma puzzle experiment in a design sprint room situation."
+      },
+      "scenario": "Niko must decide whether the sprint team should chase a bonus or protect the loose attention needed for insight before the design sprint room. A reward can buy temporary effort while reducing voluntary engagement later.",
+      "whatToDo": "In the design sprint room, protect a block of exploratory time before discussing any bonus.",
+      "whyItMatters": "The surface takeaway is that all goals and rewards are poisonous. The real warning is conditional control: rewards attached too tightly to outcome can shrink attention, corrupt measures, and reduce voluntary interest in tasks that require judgment or creativity."
+    },
+    {
+      "exampleId": "drive-ch02-ex03",
+      "title": "When Metrics Crowd Out Meaning",
+      "tags": [
+        "ethics",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "preschool pickup counter",
+        "audience": "Yara and readers facing preschool pickup counter",
+        "stakes": "Use Karl Duncker's candle problem to apply The Sawyer Effect without flattening the source lesson.",
+        "format": "audit",
+        "requiredBeat": "Apply The Sawyer Effect through Karl Duncker's candle problem in a preschool pickup counter situation."
+      },
+      "scenario": "Yara compares late-pickup fines will teach respect or convert a social norm into a fee inside the preschool pickup counter. Designers of incentives can accidentally destroy the motive they hoped to amplify.",
+      "whatToDo": "Audit the preschool pickup counter for the social norm a fee might convert into a market bargain.",
+      "whyItMatters": "Karl Duncker's candle problem matters here because Creative tasks need expanded perception, and rewards can narrow the field too soon."
+    },
+    {
+      "exampleId": "drive-ch02-ex04",
+      "title": "A Better Design Choice",
+      "tags": [
+        "autonomy",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "sales compensation review",
+        "audience": "Hassan and readers facing sales compensation review",
+        "stakes": "Use Day-care late pickup fines to apply The Sawyer Effect without flattening the source lesson.",
+        "format": "planning_choice",
+        "requiredBeat": "Apply The Sawyer Effect through Day-care late pickup fines in a sales compensation review situation."
+      },
+      "scenario": "Hassan tests whether a sales target will improve judgment or encourage people to game the number during the sales compensation review using Day-care late pickup fines. Market incentives can crowd out social obligations instead of strengthen them.",
+      "whatToDo": "For the sales compensation review, check whether the target invites learning or encourages gaming the number.",
+      "whyItMatters": "The Sawyer Effect is the conversion of play into work by adding an external reward or control. A task that once felt interesting can become a transaction, and the original appetite for doing it can shrink."
+    },
+    {
+      "exampleId": "drive-ch02-ex05",
+      "title": "The Control Signal",
+      "tags": [
+        "management",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "community volunteer table",
+        "audience": "Marta and readers facing community volunteer table",
+        "stakes": "Use Mark Twain's fence in The Adventures of Tom Sawyer to apply The Sawyer Effect without flattening the source lesson.",
+        "format": "postmortem",
+        "requiredBeat": "Apply The Sawyer Effect through Mark Twain's fence in The Adventures of Tom Sawyer in a community volunteer table situation."
+      },
+      "scenario": "Marta spots whether volunteers need a reward or a stronger sense that their help is freely chosen while reviewing the community volunteer table after 8:58 a.m. The real warning is conditional control: rewards attached too tightly to outcome can shrink attention, corrupt measures, and reduce voluntary interest in tasks that require judgment or creativity.",
+      "whatToDo": "At the community volunteer table, make the volunteer choice feel self-directed before offering a reward.",
+      "whyItMatters": "When goals carry high stakes, people become more willing to cheat, cut corners, or distort measures."
+    },
+    {
+      "exampleId": "drive-ch02-ex06",
+      "title": "After the Reward Debate",
+      "tags": [
+        "reflection",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "software bug bounty meeting",
+        "audience": "Ellis and readers facing software bug bounty meeting",
+        "stakes": "Use Edward Deci's Soma puzzle experiment to apply The Sawyer Effect without flattening the source lesson.",
+        "format": "reflection",
+        "requiredBeat": "Apply The Sawyer Effect through Edward Deci's Soma puzzle experiment in a software bug bounty meeting situation."
+      },
+      "scenario": "Ellis writes about whether the bug bounty will focus careful work or narrow attention around the payout after the software bug bounty meeting. If-then rewards often solve the wrong problem by narrowing attention when the work needs broad thinking and internal commitment.",
+      "whatToDo": "In the software bug bounty meeting, cap the bounty and add a quality review so attention does not narrow to payout.",
+      "whyItMatters": "The reward system looks commonsensical because it often works for simple compliance: hold out a prize, threaten a cost, and behavior moves."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "drive-ch02-q01",
+        "prompt": "What should the museum education desk inspect before it adds a prize or tighter rule?",
+        "choices": [
+          "Mark Twain's fence would be managed through a public leaderboard in the museum education desk; the bonus metric would outrank curiosity.",
+          "The Sawyer Effect is the conversion of play into work by adding an external reward or control.",
+          "Edward Deci's Soma puzzle experiment would justify a fresh dashboard label while the preschool pickup counter stays basically unchanged."
+        ],
+        "correctIndex": 1,
+        "explanation": "Seven Reasons Carrots and Sticks Often Do Not Work diagnostic: The Sawyer Effect is the conversion of play into work by adding an external reward or control.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch02-q02",
+        "prompt": "What does Mark Twain's fence reveal about motivation that a paid-expert forecast would miss?",
+        "choices": [
+          "Motivation changes when an activity is framed as self-chosen and interesting instead of imposed labor.",
+          "adult supervision could vanish from the fence scene.",
+          "painting feels playful. That would supposedly let Mark Twain's fence drop ordinary constraints."
+        ],
+        "correctIndex": 0,
+        "explanation": "Mark Twain's fence lesson: Motivation changes when an activity is framed as self-chosen and interesting instead of imposed labor.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch02-q03",
+        "prompt": "When The Sawyer Effect sounds too sweeping in the preschool pickup counter, which limit belongs in the answer?",
+        "choices": [
+          "The Sawyer Effect would remove baseline pay rules from the design sprint room; playful framing would supposedly handle every constraint.",
+          "The Sawyer Effect would supply one rule for fence painting, puzzle solving, and pickup fines alike.",
+          "The real warning is conditional control, rewards attached too tightly to outcome can shrink attention, corrupt measures, and reduce voluntary interest in tasks that require judgment or creativity."
+        ],
+        "correctIndex": 2,
+        "explanation": "The Sawyer Effect boundary: The real warning is conditional control, rewards attached too tightly to outcome can shrink attention, corrupt measures, and reduce voluntary interest in tasks that require judgment or creativity.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch02-q04",
+        "prompt": "Which policy would fit the sales compensation review if Mark Twain's fence is taken seriously?",
+        "choices": [
+          "sales compensation review should use a public leaderboard first, then ask later whether The Sawyer Effect lost anything important.",
+          "Karl Duncker's candle problem should be simplified into the innovation bonus; scoring would center the puzzle result.",
+          "Rewards can extinguish intrinsic motivation by shifting attention from the activity to the payoff."
+        ],
+        "correctIndex": 2,
+        "explanation": "sales compensation review policy: Rewards can extinguish intrinsic motivation by shifting attention from the activity to the payoff.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch02-q05",
+        "prompt": "How does Edward Deci's Soma puzzle experiment narrow the lesson to the right kind of work?",
+        "choices": [
+          "Edward Deci's Soma puzzle experiment should turn The Sawyer Effect into one universal rule for community volunteer table.",
+          "For creative problem solving, incentives can diminish performance by narrowing attention around the prize instead of the problem.",
+          "software bug bounty meeting should treat The Sawyer Effect as playful framing instead of incentive design."
+        ],
+        "correctIndex": 1,
+        "explanation": "Edward Deci's Soma puzzle experiment distinction: For creative problem solving, incentives can diminish performance by narrowing attention around the prize instead of the problem.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch02-q06",
+        "prompt": "What correction should follow when Karl Duncker's candle problem is used to dismiss structure?",
+        "choices": [
+          "Creativity suffers when people feel controlled, rushed, or evaluated primarily by an external outcome.",
+          "Karl Duncker's candle problem should make baseline pay rules optional once painters seem excited.",
+          "design sprint room should drop standards quickly so The Sawyer Effect feels less controlling."
+        ],
+        "correctIndex": 0,
+        "explanation": "Karl Duncker's candle problem correction: Creativity suffers when people feel controlled, rushed, or evaluated primarily by an external outcome.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "drive-ch02-q07",
+        "prompt": "What reversible experiment belongs in the museum education desk before a permanent rule is made?",
+        "choices": [
+          "After the first burst of puzzle effort, leaders would freeze The Sawyer Effect for the museum education desk.",
+          "a fresh dashboard label would signal change while the reward bargain still controls the activity.",
+          "Change one museum education desk condition for The Sawyer Effect, then watch voluntary return, puzzle interest, and solution breadth."
+        ],
+        "correctIndex": 2,
+        "explanation": "museum education desk evidence test: Change one museum education desk condition for The Sawyer Effect, then watch voluntary return, puzzle interest, and solution breadth.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "drive-ch02-q08",
+        "prompt": "How should the community volunteer table read a short-term gain that weakens the motive underneath it?",
+        "choices": [
+          "Designers of incentives can accidentally destroy the motive they hoped to amplify. The practical question becomes whether a reward supports the work or crowds out the reason people cared.",
+          "unfocused designers should explain the community volunteer table result; the reward frame could be checked later.",
+          "Mark Twain's fence should be paired with the innovation bonus; scoring would center the puzzle result."
+        ],
+        "correctIndex": 0,
+        "explanation": "community volunteer table interpretation: Designers of incentives can accidentally destroy the motive they hoped to amplify. The practical question becomes whether a reward supports the work or crowds out the reason people cared.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "drive-ch02-q09",
+        "prompt": "If a reader had one day to use The Sawyer Effect, what action should come first?",
+        "choices": [
+          "design sprint room work should begin with the innovation bonus before the activity can feel self-chosen.",
+          "Before adding a reward, write down the intrinsic motive it might crowd out and decide whether the task needs creativity, care, or moral judgment.",
+          "preschool pickup counter should wait until every incentive policy is replaced."
+        ],
+        "correctIndex": 1,
+        "explanation": "software bug bounty meeting action: Before adding a reward, write down the intrinsic motive it might crowd out and decide whether the task needs creativity, care, or moral judgment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "drive-ch02-card01",
+      "front": "How should a reader define The Sawyer Effect before applying it?",
+      "back": "The Sawyer Effect is the conversion of play into work by adding an external reward or control. A task that once felt interesting can become a transaction, and the original appetite for doing it can shrink.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "drive-ch02-card02",
+      "front": "What source lesson should a reader take from Mark Twain's fence?",
+      "back": "Tom turns an unpleasant chore into a desirable activity by making other boys believe painting the fence is a privilege. The reversal captures how meaning around a task can transform effort more powerfully than direct payment. Motivation changes when an activity is framed as self-chosen and interesting rather than imposed labor.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch02-card03",
+      "front": "How should the reader use this source claim: For creative problem solving, incentives can diminish performance by narrowing attention around the prize instead of the problem?",
+      "back": "For creative problem solving, incentives can diminish performance by narrowing attention around the prize rather than the problem.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "drive-ch02-card04",
+      "front": "How does this source detail sharpen The Sawyer Effect: College students who were paid to solve puzzles spent less free-choice time with the puzzles after payment disappeared?",
+      "back": "College students who were paid to solve puzzles spent less free-choice time with the puzzles after payment disappeared. The unpaid group retained more spontaneous interest because the task had not been reframed as a paid transaction. A reward can buy temporary effort while reducing voluntary engagement later.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "drive-ch02-card05",
+      "front": "How does this warning change the reader's next decision: Designers of incentives can accidentally destroy the motive they hoped to amplify?",
+      "back": "Designers of incentives can accidentally destroy the motive they hoped to amplify. The practical question becomes whether a reward supports the work or crowds out the reason people cared.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Inspect the hidden cost of control",
+    "coreSkill": "The Sawyer Effect becomes practical when the reader can identify the task, the current motivational signal, and the next condition to change. Use Mark Twain's fence in The Adventures of Tom Sawyer as the source check. The limit is clear: The surface takeaway is that all goals and rewards are poisonous. The real warning is conditional control: rewards attached too tightly to outcome can shrink attention, corrupt measures, and reduce voluntary interest in tasks that require judgment or creativity.",
+    "ifThenPlans": [
+      {
+        "context": "Mark Twain's fence in The Adventures of Tom Sawyer shows up in a current decision",
+        "plan": "If Mark Twain's fence in The Adventures of Tom Sawyer fits the situation, then use this source lesson: Motivation changes when an activity is framed as self-chosen and interesting rather than imposed labor."
+      },
+      {
+        "context": "The Sawyer Effect feels abstract",
+        "plan": "If the concept sounds broad, then translate it through this source claim: Rewards can extinguish intrinsic motivation by shifting attention from the activity to the payoff."
+      },
+      {
+        "context": "A quick fix would be easy to announce",
+        "plan": "If speed is pushing the decision, then test it against this claim: Creativity suffers when people feel controlled, rushed, or evaluated primarily by an external outcome."
+      }
+    ],
+    "twentyFourHourChallenge": "Within one day, apply Mark Twain's fence in The Adventures of Tom Sawyer to a real decision. Write the task type, the motive being trained, and one condition you can change without pretending the surface takeaway is that all goals and rewards are poisonous. the real warning is conditional control: rewards attached too tightly to outcome can shrink attention, corrupt measures, and reduce voluntary interest in tasks that require judgment or creativity.",
+    "weeklyPractice": "For seven days, track The Sawyer Effect through three source anchors: Mark Twain's fence in The Adventures of Tom Sawyer, Edward Deci's Soma puzzle experiment, Karl Duncker's candle problem, Day-care late pickup fines. Each day, connect one current decision to one of those anchors."
+  },
+  "memorableLines": [
+    {
+      "text": "Tom Sawyer's fence begins as a chore and becomes desirable only because other boys are allowed to treat painting as play.",
+      "location": "breakdown.fastRead",
+      "why": "It opens the lesson through a concrete source scene."
+    },
+    {
+      "text": "The mechanism is crowding out: attention shifts from the work itself to the bargain attached to it.",
+      "location": "breakdown.deepRead",
+      "why": "It names the mechanism before adding detail."
+    },
+    {
+      "text": "The warning has a narrow target, and that narrowness makes it more useful.",
+      "location": "breakdown.fullRead",
+      "why": "It frames the limit that protects the lesson from overreach."
+    }
+  ]
+}

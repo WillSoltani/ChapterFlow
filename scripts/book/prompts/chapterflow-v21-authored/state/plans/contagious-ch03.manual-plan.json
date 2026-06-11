@@ -1,0 +1,69 @@
+{
+  "chapterId": "contagious-ch03",
+  "number": 3,
+  "title": "Emotion",
+  "coreMove": "High-arousal emotion turns care into motion; design for activated feeling, not for pleasantness alone or shock that steals attention from the idea.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "science desk headline review",
+      "audience": "editors deciding how to package research",
+      "stakes": "a technical article may look dry unless wonder is visible quickly",
+      "format": "decision_point",
+      "requiredBeat": "Ingrid uses Denise Grady's cough photography as awe"
+    },
+    {
+      "domain": "newsletter analytics",
+      "audience": "editors interpreting share data",
+      "stakes": "pleasant stories may be overvalued if activation is ignored",
+      "format": "audit",
+      "requiredBeat": "Tomas applies New York Times Most E-Mailed categories"
+    },
+    {
+      "domain": "talent-show clip edit",
+      "audience": "producers choosing social cuts",
+      "stakes": "cutting the setup may remove the emotional flip that makes the clip spread",
+      "format": "planning_choice",
+      "requiredBeat": "Farah preserves the Susan Boyle before-and-after"
+    },
+    {
+      "domain": "airline service recovery",
+      "audience": "customer care leaders handling public complaints",
+      "stakes": "a vague apology can leave anger with nowhere useful to go",
+      "format": "mistake_recovery",
+      "requiredBeat": "Leandro learns from United Breaks Guitars"
+    },
+    {
+      "domain": "software ad concept",
+      "audience": "brand planners making a utility product human",
+      "stakes": "feature lists may hide the emotional reason people care",
+      "format": "coach_talk",
+      "requiredBeat": "Chiara uses Google Parisian Love to expose a human stake"
+    },
+    {
+      "domain": "public health video edit",
+      "audience": "campaign staff warning about food safety",
+      "stakes": "shock may make viewers turn away before they share the warning",
+      "format": "dilemma",
+      "requiredBeat": "Sanaa distinguishes activation from repulsion"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 2,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:12:41.230Z"
+}
