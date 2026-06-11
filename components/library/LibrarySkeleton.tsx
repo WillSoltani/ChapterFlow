@@ -1,5 +1,35 @@
 "use client";
 
+function CardGridSkeleton({ count = 10 }: { count?: number }) {
+  return (
+    <div className="grid grid-cols-2 gap-x-5 gap-y-6 md:grid-cols-4 lg:grid-cols-5">
+      {Array.from({ length: count }).map((_, i) => (
+        <div key={i} className="animate-pulse">
+          <div
+            className="w-full"
+            style={{
+              aspectRatio: "2/3",
+              borderRadius: "var(--radius-md-val)",
+              background: "var(--bg-elevated)",
+            }}
+          />
+          <div className="mt-2.5 h-4 w-3/4 rounded" style={{ background: "var(--bg-elevated)" }} />
+          <div className="mt-1.5 h-3 w-1/2 rounded" style={{ background: "var(--bg-elevated)" }} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Grid-only skeleton for surfaces without a hero (e.g. the Saved page). */
+export function LibraryGridSkeleton({ count = 8 }: { count?: number }) {
+  return (
+    <div aria-hidden="true">
+      <CardGridSkeleton count={count} />
+    </div>
+  );
+}
+
 /**
  * Loading skeleton that mirrors the final library geometry (glass hero + a
  * 2:3-aspect card grid) instead of a bare "Loading…" card, so the layout
@@ -40,21 +70,8 @@ export function LibrarySkeleton() {
       {/* Card rows */}
       <div className="mx-auto mt-12" style={{ maxWidth: 1080 }}>
         <div className="h-5 w-48 animate-pulse rounded" style={{ background: "var(--bg-elevated)" }} />
-        <div className="mt-5 grid grid-cols-2 gap-x-5 gap-y-6 md:grid-cols-4 lg:grid-cols-5">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="animate-pulse">
-              <div
-                className="w-full"
-                style={{
-                  aspectRatio: "2/3",
-                  borderRadius: "var(--radius-md-val)",
-                  background: "var(--bg-elevated)",
-                }}
-              />
-              <div className="mt-2.5 h-4 w-3/4 rounded" style={{ background: "var(--bg-elevated)" }} />
-              <div className="mt-1.5 h-3 w-1/2 rounded" style={{ background: "var(--bg-elevated)" }} />
-            </div>
-          ))}
+        <div className="mt-5">
+          <CardGridSkeleton count={10} />
         </div>
       </div>
     </div>
