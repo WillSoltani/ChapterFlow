@@ -9,7 +9,13 @@ interface WeeklyMomentumStripProps {
   streakCount: number;
 }
 
-const dayLabels = ["M", "T", "W", "T", "F", "S", "S"];
+// Monday-based weekday letters (Mon=0 … Sun=6).
+const MON_LETTERS = ["M", "T", "W", "T", "F", "S", "S"];
+
+/** Monday-based weekday letter for the day `daysAgo` before today (todayWeekday is Mon=0…Sun=6). */
+function weekdayLabel(todayWeekday: number, daysAgo: number): string {
+  return MON_LETTERS[((todayWeekday - daysAgo) % 7 + 7) % 7];
+}
 
 export function WeeklyMomentumStrip({
   weeklyActivity,
@@ -18,7 +24,11 @@ export function WeeklyMomentumStrip({
   streakCount,
 }: WeeklyMomentumStripProps) {
   const prefersReducedMotion = useReducedMotion();
-  const today = (new Date().getDay() + 6) % 7; // Mon=0, Sun=6
+  // weeklyActivity is a rolling 7-day window: index 0 = 6 days ago … last = today.
+  // Each dot is labeled with its TRUE weekday and today is the rightmost dot, so
+  // today's activity always sits under today's label. (The old fixed M–S strip
+  // mislabeled the dots six days out of seven.)
+  const todayWeekday = (new Date().getDay() + 6) % 7; // Mon=0 … Sun=6
 
   // Build dynamic stats — only show non-zero
   const stats: { text: string; highlight?: string }[] = [];
@@ -47,9 +57,10 @@ export function WeeklyMomentumStrip({
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         {/* 7-day heatmap */}
         <div className="flex items-center gap-3">
-          {dayLabels.map((label, i) => {
-            const isActive = weeklyActivity[i];
-            const isToday = i === today;
+          {weeklyActivity.map((isActive, i) => {
+            const daysAgo = weeklyActivity.length - 1 - i;
+            const isToday = daysAgo === 0;
+            const label = weekdayLabel(todayWeekday, daysAgo);
             return (
               <motion.div
                 key={i}
