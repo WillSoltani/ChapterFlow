@@ -84,7 +84,7 @@ export function RewardsCard({
       <div className="mt-3">
         <div
           className="h-1.5 overflow-hidden rounded-full"
-          style={{ background: "var(--cf-surface-muted)" }}
+          style={{ background: "var(--cf-progress-track)" }}
           role="progressbar"
           aria-valuenow={insightPoints}
           aria-valuemin={0}

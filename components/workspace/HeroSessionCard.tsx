@@ -271,7 +271,7 @@ export function HeroSessionCard({
               <div
                 className="mt-2 h-1 overflow-hidden rounded-full"
                 style={{
-                  background: "var(--cf-surface-muted)",
+                  background: "var(--cf-progress-track)",
                   maxWidth: 280,
                 }}
                 role="progressbar"

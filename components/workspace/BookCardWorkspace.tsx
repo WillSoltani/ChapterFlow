@@ -143,7 +143,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
             {/* Progress bar */}
             <div
               className="mt-2 h-[3px] overflow-hidden rounded-full"
-              style={{ background: "var(--cf-surface-muted)" }}
+              style={{ background: "var(--cf-progress-track)" }}
               role="progressbar"
               aria-valuenow={(book as UserBookData).progressPercent}
               aria-valuemin={0}

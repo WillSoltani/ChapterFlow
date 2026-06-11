@@ -78,7 +78,7 @@ export function NextAchievementCard({
           <div className="mt-3">
             <div
               className="h-1 overflow-hidden rounded-full"
-              style={{ background: "var(--cf-surface-muted)" }}
+              style={{ background: "var(--cf-progress-track)" }}
               role="progressbar"
               aria-valuenow={progressCurrent}
               aria-valuemin={0}
