@@ -290,6 +290,8 @@ export type CriticCheckId =
   | "BP19.quiz_banned_tail_phrase"
   | "BP20.quiz_ngram_template_repeat"
   | "BP21.quiz_cross_chapter_duplicate"
+  | "BP26.exemplar_chapter_reuse"
+  | "BP27.venue_stamping"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
   | "schema.quiz_unexpected_field"

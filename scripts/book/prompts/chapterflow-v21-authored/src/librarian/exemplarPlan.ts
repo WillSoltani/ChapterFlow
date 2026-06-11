@@ -67,7 +67,7 @@ function cleanDisplay(value: string): string {
     .trim();
 }
 
-function normalizeCandidate(value: string): string {
+export function normalizeExemplarCandidate(value: string): string {
   return cleanDisplay(value)
     .replace(/\b(the|a|an)\b/gi, " ")
     .replace(/[^\wÀ-ÖØ-öø-ÿ]+/g, " ")
@@ -107,7 +107,7 @@ function maybePushSequence(out: string[], seq: string[]): void {
   const hasYear = trimmed.some(isYearToken);
   if (nameCount < 2 && !(nameCount >= 1 && hasYear)) return;
   const display = cleanDisplay(trimmed.join(" "));
-  const key = normalizeCandidate(display);
+  const key = normalizeExemplarCandidate(display);
   if (key.length < 4) return;
   out.push(display);
 }
@@ -141,7 +141,7 @@ export function extractExemplarCandidatesFromText(text: string, allowSinglePrope
 
   const seen = new Set<string>();
   return out.filter((candidate) => {
-    const key = normalizeCandidate(candidate);
+    const key = normalizeExemplarCandidate(candidate);
     if (!key || seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -168,7 +168,7 @@ function sidecarOccurrences(sidecar: unknown, chapter: number): CandidateOccurre
     }
     for (const source of sources) {
       for (const display of extractExemplarCandidatesFromText(source)) {
-        out.push({ key: normalizeCandidate(display), display, chapter, order: idx });
+        out.push({ key: normalizeExemplarCandidate(display), display, chapter, order: idx });
       }
     }
   });
@@ -177,7 +177,7 @@ function sidecarOccurrences(sidecar: unknown, chapter: number): CandidateOccurre
     sidecar.properNouns.forEach((value, idx) => {
       if (typeof value !== "string") return;
       for (const display of extractExemplarCandidatesFromText(value, true)) {
-        out.push({ key: normalizeCandidate(display), display, chapter, order: 1000 + idx });
+        out.push({ key: normalizeExemplarCandidate(display), display, chapter, order: 1000 + idx });
       }
     });
   }

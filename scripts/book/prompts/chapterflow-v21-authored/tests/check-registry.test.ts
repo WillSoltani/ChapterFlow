@@ -103,3 +103,13 @@ test("severity map carries every AS5–AS12 intra-book check id", () => {
   // today). If missing, that is information Phase 1 needs — fail loudly either way.
   assert.deepEqual(missing, [], `AS check ids missing from SEVERITY_FROM_CATALOG: ${missing.join(", ")}`);
 });
+
+test("severity map carries BP26/BP27 book repetition check ids", () => {
+  const keys = new Set(severityMapKeys());
+  const required = [
+    "BP26.exemplar_chapter_reuse",
+    "BP27.venue_stamping",
+  ];
+  const missing = required.filter((k) => !keys.has(k));
+  assert.deepEqual(missing, [], `book repetition check ids missing from SEVERITY_FROM_CATALOG: ${missing.join(", ")}`);
+});

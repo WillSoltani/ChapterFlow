@@ -188,6 +188,8 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // on the worst offenders (drive 94%). Refresh target ≤45% lives in
   // catalog-audit + STEP-2; promote to major only after the catalog refresh.
   "BP25.quiz_correct_longest_rate": "minor",
+  "BP26.exemplar_chapter_reuse": "minor",
+  "BP27.venue_stamping": "major",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
