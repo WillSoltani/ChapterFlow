@@ -418,13 +418,30 @@ const DECISION_CUES = [
   "must tell", "must say whether", "must answer whether", "has to tell",
   "has to say", "minutes before", "seconds before", "hours before",
   "before the dose", "before the hearing", "before the meeting starts",
+  // Naturalistic constructions (2026-06-11): added so authors can write
+  // scene-native decision pressure instead of stamping the original list —
+  // the stillness QC found "minutes before"/"must tell" stamped in 22+
+  // scenarios because the old narrow list was the only way to pass C3.
+  "weighs", "weighing", "wonders whether", "wondering whether", "considers",
+  "considering whether", "torn between", "should she", "should he",
+  "should they", "could either", "what to do about", "decision", "deciding",
+  "or wait", "or send", "not sure whether", "hesitates", "unsent",
 ];
+
+/** Formats whose POINT is a live decision — only these require a decision
+ *  cue. Forcing decision language into discovery/observation shapes (audit,
+ *  vignette, dialogue…) produced incoherent scenes and book-wide deadline
+ *  stamps (stillness QC, 2026-06-11). */
+const DECISION_FORMATS = new Set([
+  "decision_point", "dilemma", "mistake_recovery", "predict_reveal",
+  "planning_choice", "decision_memo",
+]);
 
 export function checkDecisionPoint(ex: Example): CriticFinding[] {
   const findings: CriticFinding[] = [];
-  // Retrospective formats have their decision beat in the reflection itself,
-  // not in a forward-looking moment. Skip the forward-decision cue check.
-  if (ex.format === "postmortem" || ex.format === "reflection" || ex.format === "before_after") {
+  // Only decision-family formats must carry a decision beat; all other
+  // shapes (retrospective, discovery, observational) are exempt.
+  if (!DECISION_FORMATS.has(ex.format ?? "")) {
     return findings;
   }
   const texts = allTones(ex.scenario);

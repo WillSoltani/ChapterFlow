@@ -114,6 +114,16 @@ masks"):
   more than once per chapter.
 
 
+
+**R2.8 — Nothing in this prompt is copy-paste material.** Every example, cue
+phrase, shape definition, and illustrative sentence in this document and in
+the dealt plans exists to show a STRUCTURE. Reproducing its surface wording
+in your prose is a defect (the stillness book reproduced two of this
+prompt's seed examples in 13-14 chapters each, and the shape definitions'
+catch-phrases — "the telling detail", "decisive misstep" — became book-wide
+stamps). Before gating, grep your own chapter for any phrase you recognize
+from this prompt; if you find one, rewrite it in scene-native words.
+
 **R2.7 — Plain language beats abstraction (2026-06-11 product direction).** The
 catalog's reader panel scored interest lowest of all axes and named the cause:
 "wall-to-wall abstraction with no narrative inside", paragraphs of abstract
@@ -472,8 +482,7 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 
 2. **C2 — Specific scene.** Name a time, a place, a role, a concrete artifact. "On Tuesday at 4 PM in the Berlin warehouse, Hanna sees the manifest on her tablet…" NOT "A manager reviews paperwork…".
 
-3. **C3 — Decision point cue.** Every scenario (when `format` is `decision_point`, `dilemma`, `mistake_recovery`, `predict_reveal`, etc.) must include explicit time-pressure or choice language. Phrases like: `must tell`, `must answer`, `has to say`, `has to tell`, `minutes before`, `seconds before`, `hours before`, `before the meeting starts`, `before the vote`, `before time runs out`, `before the window`. Formats `before_after`, `postmortem`, `reflection` are exempt.
-
+3. **C3 — Decision point cue.** Scenarios whose format IS a decision (`decision_point`, `dilemma`, `mistake_recovery`, `predict_reveal`, `planning_choice`, `decision_memo`) must make a live decision moment unmistakable — a question the protagonist is weighing, an unsent reply on the screen, two options both still possible. Write the pressure in words native to THIS scene. The gate recognizes many constructions (weighs, wonders whether, torn between, should she, the deadline is, …) — these are DETECTION examples, not templates: never copy them verbatim, never use the same pressure construction in more than 2 scenarios per chapter, and never reuse a "minutes before X" / "must tell" stamp across chapters (the stillness QC found exactly that stamp in 22+ scenarios). Non-decision formats (audit, vignette, dialogue, contrast, …) need NO decision language — forcing it in produces incoherent scenes.
 4. **C8 — No template across examples.** No two examples share a Cartesian-product shape (same skeleton, name + role + city swapped). Each scenario structurally different.
 
 5. **C9 — No alphabet-cycling names.** Don't pick A, B, C, D, E, F across examples. Vary deliberately.

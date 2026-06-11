@@ -1,21 +1,70 @@
 {
   "comment": "Scene-shape palette for the pre-authoring shape plan (Phase 3). The scene-skeleton defect class ('[Name] does X at [clock time] in [place]; must decide A or B' on every example) has NO viable deterministic gate (clock times and decisions are common in clean books — see PIPELINE-HANDOFF §11), so it is handled by PREVENTION: each chapter is dealt a palette of structurally distinct shapes, one per example slot, the way name-plan deals protagonist names. Definitions are written to be pasted verbatim into authoring prompts. ids align with the ExampleFormat union in src/types.ts.",
   "shapes": [
-    { "id": "postmortem", "definition": "Open AFTER the failure already happened. The scene reconstructs what went wrong and locates the one decisive misstep — no live action, only the trace it left." },
-    { "id": "dialogue", "definition": "Two named people talking. The lesson emerges from the exchange itself; narration stays minimal and nobody summarizes the moral." },
-    { "id": "before_after", "definition": "The same person or process shown twice — before the change and after it. The contrast carries the point; keep the two halves structurally parallel." },
-    { "id": "mistake_recovery", "definition": "The protagonist notices their OWN error mid-stream and corrects course. The scene's center of gravity is the moment of noticing, not the fix." },
-    { "id": "predict_reveal", "definition": "Set up the situation so the reader forms an expectation, then reveal the outcome that breaks it. The gap between guess and reality teaches." },
-    { "id": "audit", "definition": "Someone reviews existing work — records, code, files, footage — and finds the telling detail. Discovery-driven; nothing 'happens' except understanding." },
-    { "id": "decision_memo", "definition": "A written artifact carries the scene: a memo, an email, a log entry. We read what the protagonist wrote; the action lives inside the document." },
-    { "id": "text_thread", "definition": "A short message exchange (chat/SMS). Compressed and informal; the lesson lands between the lines, not in any single message." },
-    { "id": "inner_monologue", "definition": "Inside one person's head while they work through the tension. No external dialogue; thought-by-thought, including the wrong turns." },
-    { "id": "contrast", "definition": "Two DIFFERENT named people face the same situation with opposite approaches, and the outcomes diverge. Give both halves equal weight." },
-    { "id": "reset_moment", "definition": "A routine gets interrupted and the protagonist deliberately stops and restarts differently. The pause IS the technique being taught." },
-    { "id": "planning_choice", "definition": "Before any action happens: allocating scarce time, money, or attention. The tradeoff deliberation is the entire scene — no execution shown." },
-    { "id": "coach_talk", "definition": "A mentor or peer reframes the protagonist's stuck view in one conversation. The reframe sentence should be quotable on its own." },
-    { "id": "vignette", "definition": "One small lived moment described closely — a desk, a queue, a kitchen. No decision required; the precisely observed detail does the teaching." },
-    { "id": "dilemma", "definition": "A genuine two-bad-options tension where the protagonist must decide. AT MOST ONE per chapter — this is R6's binary-decision cap." },
-    { "id": "school_case", "definition": "A learning or teaching context — a class, an onboarding, a training session — rather than workplace stakes. The learner's confusion is the material." }
-  ]
+    {
+      "id": "postmortem",
+      "definition": "Open AFTER the outcome is known. The scene reconstructs how it unfolded and what mattered most — no live action, only evidence and hindsight. Each use must find its own language for the reconstruction; never narrate it the same way twice."
+    },
+    {
+      "id": "dialogue",
+      "definition": "Two named people talking. The lesson emerges from the exchange itself; narration stays minimal and nobody summarizes the moral."
+    },
+    {
+      "id": "before_after",
+      "definition": "The same person or process shown twice — earlier and later — with one variable changed. The contrast carries the point. Never use literal 'Before:'/'After:' panel labels; weave the two states into continuous narration."
+    },
+    {
+      "id": "mistake_recovery",
+      "definition": "The protagonist notices their OWN error mid-stream and corrects course. The scene's center of gravity is the moment of noticing, not the fix."
+    },
+    {
+      "id": "predict_reveal",
+      "definition": "Set up the situation so the reader forms an expectation, then reveal the outcome that breaks it. The gap between guess and reality teaches."
+    },
+    {
+      "id": "audit",
+      "definition": "Someone reviews existing work — records, code, files, footage — and understanding shifts on one specific find. Quiet, discovery-driven. Vary what is reviewed, what is found, and how the find is described; never reuse another chapter's audit wording."
+    },
+    {
+      "id": "decision_memo",
+      "definition": "A written artifact carries the scene: a memo, an email, a log entry. We read what the protagonist wrote; the action lives inside the document."
+    },
+    {
+      "id": "text_thread",
+      "definition": "A short message exchange (chat/SMS). Compressed and informal; the lesson lands between the lines, not in any single message."
+    },
+    {
+      "id": "inner_monologue",
+      "definition": "Inside one person's head while they work through the tension. No external dialogue; thought-by-thought, including the wrong turns."
+    },
+    {
+      "id": "contrast",
+      "definition": "Two DIFFERENT named people approach one situation in opposite ways and the outcomes diverge. Give both halves equal weight. Vary the construction every time — never open with both names receiving 'the same X', and never close on a paired-minds tagline."
+    },
+    {
+      "id": "reset_moment",
+      "definition": "A routine gets interrupted and the protagonist deliberately stops and restarts differently. The pause IS the technique being taught."
+    },
+    {
+      "id": "planning_choice",
+      "definition": "Before any action happens: allocating scarce time, money, or attention. The tradeoff deliberation is the entire scene — no execution shown."
+    },
+    {
+      "id": "coach_talk",
+      "definition": "A mentor or peer reframes the protagonist's stuck view in one conversation. The reframe sentence should be quotable on its own."
+    },
+    {
+      "id": "vignette",
+      "definition": "One small lived moment described closely — a desk, a queue, a kitchen. No decision required; the precisely observed detail does the teaching."
+    },
+    {
+      "id": "dilemma",
+      "definition": "A genuine two-bad-options tension where the protagonist must decide. AT MOST ONE per chapter — this is R6's binary-decision cap."
+    },
+    {
+      "id": "school_case",
+      "definition": "A learning or teaching context — a class, an onboarding, a training session — rather than workplace stakes. The learner's confusion is the material."
+    }
+  ],
+  "_note": "Definitions describe STRUCTURE only. Their wording must NEVER appear in authored prose — a shape rendered with the definition's own phrases is a stamp, the defect this palette exists to prevent (stillness QC, 2026-06-11: 9 shape families recurred in 13-18 chapters with near-verbatim framing)."
 }
