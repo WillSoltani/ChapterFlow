@@ -3,20 +3,20 @@
   "bookId": "rich-dad-poor-dad",
   "chapterNumber": 5,
   "chapterId": "rich-dad-poor-dad-ch05",
-  "verdict": "PUBLISHABLE",
-  "contentHash": "7cc3aca3668f7b0d",
-  "reviewer": "claude-qc:rdpd-20260605-r2",
-  "reviewedAt": "2026-06-05T11:36:10.332Z",
+  "verdict": "REVISE",
+  "contentHash": "4b4c0c11211e4831",
+  "hashVersion": "v2",
+  "reviewer": "harness:qc-run-rich-dad-poor-dad-2026-06-10",
+  "reviewedAt": "2026-06-11T00:12:12.068Z",
   "dimensions": {
     "keysCorrect": true,
     "grounded": true,
-    "nonTemplated": true,
+    "nonTemplated": false,
     "frameworkComplete": true,
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "All 9 keys correct, names consistent, prose/cards/plan/facts solid. Round-1 example-slate clustering FIXED: ex06 re-domained from real estate to a delivery-route service contract; real-estate scenes now 2 of 6. No corruption.",
-  "hashVersion": "v2",
+  "notes": "overall=88; cross-chapter: scene_skeleton/repeated_unit/other; Near-anchor quality (~87 weighted): genuine scenes, teaching prose, verbatim aphoristic lines, consistent Deal Scan tool",
   "history": [
     {
       "schemaVersion": "qc-attest-v1",
@@ -36,6 +36,26 @@
         "distractorsReal": true
       },
       "notes": "All 9 keys correct, names consistent, prose/cards/plan/facts solid. Round-1 example-slate clustering FIXED: ex06 re-domained from real estate to a delivery-route service contract; real-estate scenes now 2 of 6. No corruption."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "rich-dad-poor-dad",
+      "chapterNumber": 5,
+      "chapterId": "rich-dad-poor-dad-ch05",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "7cc3aca3668f7b0d",
+      "reviewer": "claude-qc:rdpd-20260605-r2",
+      "reviewedAt": "2026-06-05T11:36:10.332Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "All 9 keys correct, names consistent, prose/cards/plan/facts solid. Round-1 example-slate clustering FIXED: ex06 re-domained from real estate to a delivery-route service contract; real-estate scenes now 2 of 6. No corruption.",
+      "hashVersion": "v2"
     }
   ]
 }
