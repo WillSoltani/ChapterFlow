@@ -8,7 +8,6 @@ interface CuratedSectionProps {
   narrativeTitle: string;
   narrativeSubtitle: string;
   books: LibraryBook[];
-  onBookClick: (bookId: string) => void;
   showProLock?: boolean;
 }
 
@@ -16,7 +15,6 @@ export function CuratedSection({
   narrativeTitle,
   narrativeSubtitle,
   books,
-  onBookClick,
   showProLock = false,
 }: CuratedSectionProps) {
   const prefersReduced = useReducedMotion();
@@ -109,12 +107,7 @@ export function CuratedSection({
                   }
             }
           >
-            <BookCard
-              book={book}
-              index={0}
-              onBookClick={onBookClick}
-              showProLock={showProLock}
-            />
+            <BookCard book={book} index={0} layout="carousel" showProLock={showProLock} />
           </motion.div>
         ))}
       </motion.div>

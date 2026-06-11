@@ -1,8 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { BookCover } from "./BookCover";
 import { ProgressRing } from "./ProgressRing";
+import { BookSaveButton } from "@/app/book/components/BookSaveButton";
+import { useLibraryContext } from "./LibraryContext";
 import {
   formatReadingTime,
   getProgressMicrocopy,
@@ -15,7 +18,6 @@ interface HeroRecommendationProps {
   heroBook: LibraryBook;
   alternatives: LibraryBook[];
   userName: string;
-  onBookClick: (bookId: string) => void;
 }
 
 function getGreeting(): string {
@@ -29,9 +31,11 @@ export function HeroRecommendation({
   heroBook,
   alternatives,
   userName,
-  onBookClick,
 }: HeroRecommendationProps) {
   const prefersReduced = useReducedMotion();
+  const { savedSet, onToggleSave } = useLibraryContext();
+  const saved = savedSet.has(heroBook.id);
+  const detailHref = `/book/library/${encodeURIComponent(heroBook.id)}`;
   const prog = heroBook.userProgress;
   const isInProgress = prog && !prog.isCompleted && prog.percentComplete > 0;
   const chaptersLeft = isInProgress
@@ -93,6 +97,7 @@ export function HeroRecommendation({
             }}
           >
             <BookCover
+              bookId={heroBook.id}
               title={heroBook.title}
               coverGradient={heroBook.coverGradient}
               coverImage={heroBook.coverImage}
@@ -172,10 +177,8 @@ export function HeroRecommendation({
               />
               {heroBook.difficulty.charAt(0).toUpperCase() + heroBook.difficulty.slice(1)}
             </span>
-            <span className="font-(family-name:--font-mono)">
-              {heroBook.readerCount.toLocaleString()} readers
-            </span>
-            <span>{heroBook.completionRate}% completion rate</span>
+            <span>{heroBook.totalChapters} chapters</span>
+            <span>{heroBook.category}</span>
           </div>
 
           {/* Progress line (in-progress) */}
@@ -192,10 +195,9 @@ export function HeroRecommendation({
 
           {/* CTAs — larger primary button (Fitts' Law) with glow */}
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <button
-              type="button"
-              onClick={() => onBookClick(heroBook.id)}
-              className="cta-shine w-full cursor-pointer rounded-xl px-8 text-[16px] font-semibold transition-all sm:w-auto"
+            <Link
+              href={detailHref}
+              className="cta-shine flex w-full cursor-pointer items-center justify-center rounded-xl px-8 text-[16px] font-semibold transition-all sm:w-auto"
               style={{
                 height: 52,
                 background: "var(--accent-cyan)",
@@ -204,11 +206,10 @@ export function HeroRecommendation({
               }}
             >
               {isInProgress ? "Continue Reading →" : "Start Reading →"}
-            </button>
-            <button
-              type="button"
-              onClick={() => onBookClick(heroBook.id)}
-              className="cursor-pointer rounded-xl px-5 text-[14px] font-medium transition-colors"
+            </Link>
+            <Link
+              href={detailHref}
+              className="flex cursor-pointer items-center justify-center rounded-xl px-5 text-[14px] font-medium transition-colors"
               style={{
                 height: 48,
                 color: "var(--text-secondary)",
@@ -216,7 +217,11 @@ export function HeroRecommendation({
               }}
             >
               View Details
-            </button>
+            </Link>
+            <BookSaveButton
+              saved={saved}
+              onToggle={() => onToggleSave(heroBook.id, heroBook.title)}
+            />
           </div>
         </div>
       </div>
@@ -232,51 +237,48 @@ export function HeroRecommendation({
           </span>
           <div className="flex gap-4">
             {alternatives.slice(0, 3).map((book, i) => (
-              <motion.button
+              <motion.div
                 key={book.id}
-                type="button"
-                onClick={() => onBookClick(book.id)}
-                className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 transition-colors"
                 initial={{
                   opacity: prefersReduced ? 1 : 0,
                   x: prefersReduced ? 0 : -10,
                 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 + i * 0.1 }}
-                style={{ border: "1px solid transparent" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "var(--border-medium)";
-                  e.currentTarget.style.background = "var(--bg-glass)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "transparent";
-                  e.currentTarget.style.background = "transparent";
-                }}
               >
-                <div
-                  className="shrink-0 overflow-hidden"
-                  style={{ width: 50, height: 75, borderRadius: 4 }}
+                <Link
+                  href={`/book/library/${encodeURIComponent(book.id)}`}
+                  className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
+                  style={{ border: "1px solid transparent" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border-medium)";
+                    e.currentTarget.style.background = "var(--bg-glass)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "transparent";
+                    e.currentTarget.style.background = "transparent";
+                  }}
                 >
-                  <BookCover
-                    title={book.title}
-                    coverGradient={book.coverGradient}
-                    coverImage={book.coverImage}
-                    width={50}
-                    height={75}
-                  />
-                </div>
-                <div className="hidden text-left md:block" style={{ maxWidth: 140 }}>
-                  <p className="text-[13px] font-medium" style={{ color: "var(--text-heading)" }}>
-                    {book.title}
-                  </p>
-                  <p
-                    className="mt-0.5 text-[11px] leading-snug"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {book.hook}
-                  </p>
-                </div>
-              </motion.button>
+                  <div className="relative shrink-0 overflow-hidden" style={{ width: 50, height: 75, borderRadius: 4 }}>
+                    <BookCover
+                      bookId={book.id}
+                      title={book.title}
+                      coverGradient={book.coverGradient}
+                      coverImage={book.coverImage}
+                      width={50}
+                      height={75}
+                    />
+                  </div>
+                  <div className="hidden text-left md:block" style={{ maxWidth: 140 }}>
+                    <p className="text-[13px] font-medium" style={{ color: "var(--text-heading)" }}>
+                      {book.title}
+                    </p>
+                    <p className="mt-0.5 text-[11px] leading-snug" style={{ color: "var(--text-muted)" }}>
+                      {book.hook}
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -1,29 +1,27 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { BookCover } from "./BookCover";
 import { ProgressRing } from "./ProgressRing";
 import {
   formatReadingTime,
   getProgressMicrocopy,
-  getProgressColor,
   getPerChapterMinutes,
-  getLastReadUrgencyColor,
   getLastReadCopy,
   type LibraryBook,
 } from "./libraryData";
 
 interface ActiveReadsProps {
   books: LibraryBook[];
-  onBookClick: (bookId: string) => void;
 }
 
-export function ActiveReads({ books, onBookClick }: ActiveReadsProps) {
+export function ActiveReads({ books }: ActiveReadsProps) {
   const prefersReduced = useReducedMotion();
 
   if (books.length < 2) return null;
 
-  // Sort by most recent first to add "reading now" indicator
+  // Most recently read first
   const sorted = [...books].sort(
     (a, b) =>
       (b.userProgress?.lastReadAt.getTime() ?? 0) -
@@ -47,136 +45,122 @@ export function ActiveReads({ books, onBookClick }: ActiveReadsProps) {
             book.estimatedReadingTimeMinutes * (1 - prog.percentComplete / 100)
           );
           const perChapter = getPerChapterMinutes(book);
-          const urgencyColor = getLastReadUrgencyColor(prog.lastReadAt);
           const lastReadText = getLastReadCopy(prog.lastReadAt);
-          const isMostRecent = i === 0;
 
           return (
-            <motion.article
+            <motion.div
               key={book.id}
               initial={{
                 opacity: prefersReduced ? 1 : 0,
                 x: prefersReduced ? 0 : -20,
               }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.7 + i * 0.15 }}
-              className="group flex cursor-pointer gap-4 overflow-hidden rounded-2xl p-4 transition-all duration-200"
-              style={{
-                background: "var(--bg-glass)",
-                backdropFilter: "blur(12px)",
-                border: "1px solid var(--border-subtle)",
-              }}
-              onClick={() => onBookClick(book.id)}
-              role="article"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--border-medium)";
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--border-subtle)";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
+              transition={{ duration: 0.3, delay: 0.5 + i * 0.12 }}
             >
-              {/* Cover + ring */}
-              <div className="relative shrink-0">
-                <div
-                  className="overflow-hidden"
-                  style={{
-                    width: 80,
-                    height: 112,
-                    borderRadius: "var(--radius-md-val)",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
-                  }}
-                >
-                  <BookCover
-                    title={book.title}
-                    coverGradient={book.coverGradient}
-                    coverImage={book.coverImage}
-                    width={80}
-                    height={112}
-                  />
-                </div>
-                {/* Progress ring with color gradient and staggered animation */}
-                <div
-                  className="absolute -bottom-2 -right-2 rounded-full"
-                  style={{ background: "var(--bg-base)", padding: 2 }}
-                >
-                  <ProgressRing
-                    percent={prog.percentComplete}
-                    size={48}
-                    strokeWidth={4}
-                    showLabel
-                    delay={900 + i * 150}
-                  />
-                </div>
-              </div>
-
-              {/* Details */}
-              <div className="flex min-w-0 flex-1 flex-col justify-between">
-                <div>
-                  <h3
-                    className="truncate text-[15px] font-semibold"
-                    style={{ color: "var(--text-heading)" }}
+              <Link
+                href={`/book/library/${encodeURIComponent(book.id)}`}
+                className="group flex gap-4 overflow-hidden rounded-2xl p-4 outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
+                style={{
+                  background: "var(--bg-glass)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid var(--border-subtle)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--border-medium)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "var(--shadow-card)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--border-subtle)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                {/* Cover + ring */}
+                <div className="relative shrink-0">
+                  <div
+                    className="relative overflow-hidden"
+                    style={{
+                      width: 80,
+                      height: 112,
+                      borderRadius: "var(--radius-md-val)",
+                      boxShadow: "var(--shadow-book)",
+                    }}
                   >
-                    {book.title}
-                  </h3>
-                  <p className="mt-0.5 truncate text-[13px]" style={{ color: "var(--text-secondary)" }}>
-                    {book.author}
-                  </p>
-                  <p className="mt-1.5 text-[12px]" style={{ color: "var(--text-secondary)" }}>
-                    Chapter {prog.currentChapter} of {book.totalChapters} · ~{formatReadingTime(timeLeft)} left
-                  </p>
-                  {/* Per-chapter time — reduces commitment barrier */}
-                  <p className="text-[12px]" style={{ color: "var(--text-muted)" }}>
-                    ~{perChapter}m for next chapter
-                  </p>
+                    <BookCover
+                      bookId={book.id}
+                      title={book.title}
+                      coverGradient={book.coverGradient}
+                      coverImage={book.coverImage}
+                      fill
+                    />
+                  </div>
+                  <div
+                    className="absolute -bottom-2 -right-2 rounded-full"
+                    style={{ background: "var(--bg-base)", padding: 2 }}
+                  >
+                    <ProgressRing
+                      percent={prog.percentComplete}
+                      size={48}
+                      strokeWidth={4}
+                      showLabel
+                      delay={700 + i * 150}
+                    />
+                  </div>
                 </div>
 
-                <div className="mt-2">
-                  {/* Microcopy — emerald for "more than halfway", cyan for "just getting started" */}
-                  <p className="text-[12px]" style={{ color: prog.percentComplete >= 50 ? "var(--accent-emerald)" : "var(--accent-cyan)" }}>
-                    {getProgressMicrocopy(prog.percentComplete, chaptersLeft)}
-                  </p>
+                {/* Details */}
+                <div className="flex min-w-0 flex-1 flex-col justify-between">
+                  <div>
+                    <h3
+                      className="truncate text-[15px] font-semibold"
+                      style={{ color: "var(--text-heading)" }}
+                    >
+                      {book.title}
+                    </h3>
+                    <p className="mt-0.5 truncate text-[13px]" style={{ color: "var(--text-secondary)" }}>
+                      {book.author}
+                    </p>
+                    <p className="mt-1.5 text-[12px]" style={{ color: "var(--text-secondary)" }}>
+                      Chapter {prog.currentChapter} of {book.totalChapters} · ~
+                      {formatReadingTime(timeLeft)} left
+                    </p>
+                    <p className="text-[12px]" style={{ color: "var(--text-muted)" }}>
+                      ~{perChapter}m for next chapter
+                    </p>
+                  </div>
 
-                  {/* Last read with urgency color + Resume + "reading now" */}
-                  <div className="mt-2 flex items-center justify-between">
-                    <div className="flex flex-col">
+                  <div className="mt-2">
+                    <p
+                      className="text-[12px]"
+                      style={{
+                        color:
+                          prog.percentComplete >= 50
+                            ? "var(--accent-emerald)"
+                            : "var(--accent-cyan)",
+                      }}
+                    >
+                      {getProgressMicrocopy(prog.percentComplete, chaptersLeft)}
+                    </p>
+
+                    <div className="mt-2 flex items-center justify-between">
                       <span className="text-[11px]" style={{ color: "var(--text-tertiary)" }}>
                         {lastReadText}
                       </span>
-                      {/* Social proof: reading now indicator on most recent */}
-                      {isMostRecent && (
-                        <span className="mt-0.5 flex items-center gap-1 text-[10px]" style={{ color: "var(--text-tertiary)" }}>
-                          <motion.span
-                            className="inline-block rounded-full"
-                            style={{
-                              width: 6,
-                              height: 6,
-                              background: "var(--accent-emerald)",
-                              boxShadow: "0 0 4px var(--accent-emerald)",
-                            }}
-                            animate={{ scale: [1, 1.3, 1] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                          />
-                          12 people reading now
+                      <span
+                        className="text-[13px] font-semibold transition-colors"
+                        style={{ color: "var(--accent-cyan)" }}
+                      >
+                        Resume
+                        <span className="ml-0.5 inline-block transition-transform duration-200 group-hover:translate-x-0.5">
+                          →
                         </span>
-                      )}
-                    </div>
-                    <span
-                      className="text-[13px] font-semibold transition-colors"
-                      style={{ color: "var(--accent-cyan)" }}
-                    >
-                      Resume
-                      <span className="ml-0.5 inline-block transition-transform duration-200 group-hover:translate-x-0.5">
-                        →
                       </span>
-                    </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.article>
+              </Link>
+            </motion.div>
           );
         })}
       </div>

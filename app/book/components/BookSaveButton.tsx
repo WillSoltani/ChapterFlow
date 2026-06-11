@@ -28,7 +28,8 @@ export function BookSaveButton({
       aria-label={saved ? "Remove from Read Next" : "Save to Read Next"}
       title={saved ? "Remove from Read Next" : "Save to Read Next"}
       className={[
-        "cf-btn h-10 w-10 rounded-2xl px-0 disabled:cursor-not-allowed disabled:opacity-60",
+        // 44px — meets the minimum touch-target standard everywhere it's used.
+        "cf-btn h-11 w-11 rounded-2xl px-0 disabled:cursor-not-allowed disabled:opacity-60",
         saved
           ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
           : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:border-(--cf-border-strong) hover:bg-(--cf-input-bg-hover) hover:text-(--cf-text-1)",

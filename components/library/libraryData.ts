@@ -25,7 +25,9 @@ export interface UserProgress {
   currentChapter: number;
   percentComplete: number;
   lastReadAt: Date;
-  xpEarned: number;
+  /** Real insight points earned for this book. Undefined when the backend
+   *  exposes no per-book figure — never fabricate a number. */
+  xpEarned?: number;
   isCompleted: boolean;
   completedAt?: Date;
 }
@@ -45,8 +47,6 @@ export interface LibraryBook {
   difficulty: Difficulty;
   totalChapters: number;
   estimatedReadingTimeMinutes: number;
-  readerCount: number;
-  completionRate: number;
   isPro: boolean;
   badges: BadgeType[];
   staffPickReason?: string;
@@ -129,22 +129,6 @@ function inferCoverGradient(bookId: string): string {
   return gradients[Math.abs(hash) % gradients.length];
 }
 
-function inferReaderCount(bookId: string): number {
-  let hash = 0;
-  for (let index = 0; index < bookId.length; index += 1) {
-    hash = ((hash << 5) - hash + bookId.charCodeAt(index)) | 0;
-  }
-  return 900 + (Math.abs(hash) % 700);
-}
-
-function inferCompletionRate(bookId: string): number {
-  let hash = 0;
-  for (let index = 0; index < bookId.length; index += 1) {
-    hash = ((hash << 5) - hash + bookId.charCodeAt(index)) | 0;
-  }
-  return 68 + (Math.abs(hash) % 16);
-}
-
 function buildLearningPoints(tags: string[] | undefined, categories: string[]): string[] {
   const base = [...(tags ?? []), ...categories]
     .map((item) => item.replace(/-/g, " ").trim())
@@ -180,8 +164,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     ],
     bestFor: ["managers", "partners", "teams", "students"],
     category: "Communication",
-    readerCount: 1580,
-    completionRate: 79,
     badges: ["new", "staff-pick"],
     staffPickReason: "Concrete communication mechanics that stay useful under real pressure.",
     similarBookId: "what-every-body-is-saying",
@@ -201,8 +183,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["managers", "partners", "teams", "students"],
     category: "Communication",
     difficulty: "medium",
-    readerCount: 1640,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason: "One of the clearest books on why hard conversations derail and what to do before they harden.",
     similarBookId: "crucial-conversations",
@@ -221,8 +201,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     ],
     bestFor: ["self-improvers", "operators", "leaders", "psychology enthusiasts"],
     category: "Psychology",
-    readerCount: 1840,
-    completionRate: 77,
     badges: ["new", "staff-pick"],
     staffPickReason: "The best bridge between personal habit mechanics and the systems that amplify them.",
     similarBookId: "tiny-habits",
@@ -241,8 +219,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     ],
     bestFor: ["builders", "students", "operators", "self-improvers"],
     category: "Productivity",
-    readerCount: 1710,
-    completionRate: 81,
     badges: ["new", "staff-pick"],
     staffPickReason: "One of the clearest bridges between attention management and everyday execution.",
     similarBookId: "essentialism",
@@ -263,8 +239,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["students", "professionals", "teachers", "lifelong learners"],
     category: "Psychology",
     difficulty: "medium",
-    readerCount: 1720,
-    completionRate: 80,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "The strongest learning-science book in the library for separating durable memory from study habits that only feel effective.",
@@ -286,8 +260,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "teachers", "marketers", "founders"],
     category: "Communication",
     difficulty: "medium",
-    readerCount: 1740,
-    completionRate: 81,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest books in the library for turning abstract communication advice into repeatable message design choices.",
@@ -307,8 +279,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     ],
     bestFor: ["leaders", "operators", "students", "self-improvers"],
     category: "Productivity",
-    readerCount: 1630,
-    completionRate: 80,
     badges: ["new", "staff-pick"],
     staffPickReason: "One of the cleanest frameworks for turning priorities into real exclusion and execution.",
     similarBookId: "make-time",
@@ -329,8 +299,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["students", "builders", "operators", "ambitious professionals"],
     category: "Productivity",
     difficulty: "medium",
-    readerCount: 1760,
-    completionRate: 80,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "The clearest career book in the library for replacing vague passion talk with a mechanism-driven path from skill to leverage to mission.",
@@ -351,8 +319,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["psychology enthusiasts", "leaders", "investors", "self-improvers"],
     category: "Psychology",
     difficulty: "hard",
-    readerCount: 1975,
-    completionRate: 73,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "The most useful single framework in the library for understanding how judgment goes wrong before confidence catches up.",
@@ -373,8 +339,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["builders", "operators", "students", "curious readers"],
     category: "Philosophy",
     difficulty: "medium",
-    readerCount: 1890,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "Short, dense, and unusually good at connecting money, judgment, and inner life without wasting pages.",
@@ -395,8 +359,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "psychology enthusiasts", "self-improvers"],
     category: "Psychology",
     difficulty: "hard",
-    readerCount: 1960,
-    completionRate: 74,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "The sharpest broad survey in the library for reading motives, distortion, and social pressure together.",
@@ -417,8 +379,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["founders", "operators", "managers", "team leads"],
     category: "Leadership",
     difficulty: "hard",
-    readerCount: 1870,
-    completionRate: 72,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest operator books in the library for leadership when the company is under real strain.",
@@ -440,8 +400,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "investors", "curious readers"],
     category: "Psychology",
     difficulty: "medium",
-    readerCount: 1740,
-    completionRate: 79,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the sharpest books in the library for learning how better decisions survive uncertainty, disagreement, and noisy outcomes.",
@@ -463,8 +421,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "investors", "curious readers"],
     category: "Psychology",
     difficulty: "medium",
-    readerCount: 1760,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the strongest books in the library for turning judgment under uncertainty into a trainable, scoreable practice.",
@@ -486,8 +442,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["investors", "operators", "leaders", "curious readers"],
     category: "Psychology",
     difficulty: "hard",
-    readerCount: 1910,
-    completionRate: 74,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the strongest books in the library for learning where prediction breaks and how better risk posture begins.",
@@ -508,8 +462,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "students", "psychology enthusiasts"],
     category: "Psychology",
     difficulty: "medium",
-    readerCount: 2260,
-    completionRate: 77,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the most durable books in the library for seeing how small cues scale into real compliance before you notice the mechanism.",
@@ -530,8 +482,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["founders", "leaders", "operators", "team leads"],
     category: "Leadership",
     difficulty: "hard",
-    readerCount: 1730,
-    completionRate: 74,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the strongest institution-building books in the library for separating durable company design from founder mythology.",
@@ -552,8 +502,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "managers", "operators", "team leads"],
     category: "Leadership",
     difficulty: "medium",
-    readerCount: 1820,
-    completionRate: 76,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the strongest culture books in the library for turning trust from rhetoric into operating practice.",
@@ -575,8 +523,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["students", "professionals", "self-improvers", "lifelong learners"],
     category: "Productivity",
     difficulty: "medium",
-    readerCount: 1860,
-    completionRate: 80,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest practical books in the library for turning learning ability into a trainable system instead of a fixed trait.",
@@ -598,8 +544,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["students", "coaches", "professionals", "self-improvers"],
     category: "Psychology",
     difficulty: "medium",
-    readerCount: 1680,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "The clearest expertise book in the library for replacing talent myths with a mechanism-driven account of skill growth.",
@@ -621,8 +565,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["self-improvers", "students", "professionals", "generalists"],
     category: "Productivity",
     difficulty: "medium",
-    readerCount: 1640,
-    completionRate: 80,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest books in the library for turning learning ambition into an actual early-stage practice system.",
@@ -644,8 +586,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["strategists", "operators", "founders", "leaders"],
     category: "Strategy",
     difficulty: "hard",
-    readerCount: 1680,
-    completionRate: 73,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the foundational strategy books in the library for explaining why competent incumbents can still get disruption badly wrong.",
@@ -667,8 +607,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["strategists", "product teams", "founders", "operators"],
     category: "Strategy",
     difficulty: "hard",
-    readerCount: 1540,
-    completionRate: 75,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest books in the library for turning vague customer research into a sharper mechanism for innovation choice.",
@@ -690,8 +628,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["strategists", "operators", "leaders", "founders"],
     category: "Strategy",
     difficulty: "hard",
-    readerCount: 1860,
-    completionRate: 77,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest strategy books in the library for turning competitive ambition into a coherent set of reinforcing choices.",
@@ -713,8 +649,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["operators", "founders", "students", "self-improvers"],
     category: "Productivity",
     difficulty: "medium",
-    readerCount: 1880,
-    completionRate: 81,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the sharpest productivity books in the library for turning priority into sequencing, leverage, and visible consequence.",
@@ -735,8 +669,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "professionals", "speakers", "self-improvers"],
     category: "Communication",
     difficulty: "medium",
-    readerCount: 1870,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the cleanest books in the library for turning charisma from vague mystique into trainable signal mechanics.",
@@ -757,8 +689,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["professionals", "self-improvers", "students", "relationship-builders"],
     category: "Psychology",
     difficulty: "medium",
-    readerCount: 1760,
-    completionRate: 79,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest social-skills books in the library for connecting first-contact mechanics to durable trust.",
@@ -779,8 +709,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "founders", "team leads"],
     category: "Leadership",
     difficulty: "hard",
-    readerCount: 1940,
-    completionRate: 75,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the cleanest books in the library for separating loud business success from disciplined institutional strength.",
@@ -802,8 +730,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["strategists", "founders", "operators", "leaders"],
     category: "Strategy",
     difficulty: "hard",
-    readerCount: 1870,
-    completionRate: 74,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the sharpest strategy books in the library for separating real durable advantage from generic competitive ambition.",
@@ -825,8 +751,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "investors", "founders"],
     category: "Leadership",
     difficulty: "hard",
-    readerCount: 1780,
-    completionRate: 76,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the strongest leadership books in the library for showing how capital allocation and managerial restraint actually compound together.",
@@ -847,8 +771,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["students", "career switchers", "self-improvers", "builders"],
     category: "Productivity",
     difficulty: "medium",
-    readerCount: 1760,
-    completionRate: 80,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "It gives the clearest end-to-end playbook in the library for turning ambition into a testable learning project.",
@@ -869,8 +791,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["managers", "operators", "founders", "students"],
     category: "Communication",
     difficulty: "medium",
-    readerCount: 1910,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the most practically useful books in the library for handling pressure, leverage, and difficult asks without theatrics.",
@@ -892,8 +812,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "students", "psychology enthusiasts"],
     category: "Psychology",
     difficulty: "medium",
-    readerCount: 2035,
-    completionRate: 76,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "The clearest companion in the library to Influence for understanding how persuasion starts before the explicit pitch.",
@@ -915,8 +833,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["operators", "leaders", "students", "self-improvers"],
     category: "Psychology",
     difficulty: "medium",
-    readerCount: 1680,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "A sharp bridge between abstract mental models and the everyday decisions where they either pay off or quietly fail.",
@@ -937,8 +853,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "managers", "team leads"],
     category: "Leadership",
     difficulty: "hard",
-    readerCount: 1880,
-    completionRate: 74,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest execution-focused leadership books in the library for turning accountability into repeatable team behavior.",
@@ -959,8 +873,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["athletes", "operators", "self-improvers", "readers under pressure"],
     category: "Psychology",
     difficulty: "hard",
-    readerCount: 2140,
-    completionRate: 73,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "It keeps mental toughness tied to cost, planning, and recovery instead of letting intensity collapse into slogans.",
@@ -981,8 +893,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["self-improvers", "builders", "leaders", "students"],
     category: "Productivity",
     difficulty: "medium",
-    readerCount: 1690,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the strongest attention books in the library for connecting personal focus to work, family, and relationships without losing practical mechanics.",
@@ -1003,8 +913,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["professionals", "students", "networkers", "self-improvers"],
     category: "Communication",
     difficulty: "medium",
-    readerCount: 1660,
-    completionRate: 80,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "It turns scattered conversation advice into a clear progression from first hello to tact under pressure.",
@@ -1025,8 +933,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["speakers", "founders", "students", "professionals"],
     category: "Communication",
     difficulty: "medium",
-    readerCount: 1540,
-    completionRate: 79,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "It gives the clearest speaker-focused path in the library from inner stake to delivery mechanics without collapsing into presentation cliches.",
@@ -1047,8 +953,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["strategists", "leaders", "operators", "readers who think competitively"],
     category: "Strategy",
     difficulty: "hard",
-    readerCount: 2310,
-    completionRate: 71,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the most rigorous classical strategy texts in the library for connecting ancient military logic to modern competitive decisions.",
@@ -1070,8 +974,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["writers", "builders", "artists", "self-improvers"],
     category: "Productivity",
     difficulty: "medium",
-    readerCount: 1760,
-    completionRate: 77,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the clearest books in the library for moving from blocked intention to serious creative labor without collapsing into grind rhetoric.",
@@ -1093,8 +995,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["strategists", "operators", "leaders", "readers who think competitively"],
     category: "Strategy",
     difficulty: "hard",
-    readerCount: 2140,
-    completionRate: 69,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "It is the sharpest modern strategy package in the library for separating legitimate competitive moves from ego, cruelty, and overreach.",
@@ -1116,8 +1016,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["self-improvers", "students", "operators", "leaders"],
     category: "Productivity",
     difficulty: "medium",
-    readerCount: 2410,
-    completionRate: 82,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "The clearest habit book in the library for turning behavior change into a repeatable system instead of a motivation project.",
@@ -1139,8 +1037,6 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     bestFor: ["leaders", "operators", "investors", "curious readers"],
     category: "Philosophy",
     difficulty: "medium",
-    readerCount: 1890,
-    completionRate: 78,
     badges: ["new", "staff-pick"],
     staffPickReason:
       "One of the cleanest entry points in the library for turning general reasoning advice into a reusable decision toolkit.",
@@ -1177,8 +1073,6 @@ function buildLibraryBookFromMetadata(
       (entry.difficulty.toLowerCase() as Difficulty),
     totalChapters: entry.chapterCount,
     estimatedReadingTimeMinutes: entry.estimatedMinutes,
-    readerCount: overrides.readerCount ?? inferReaderCount(bookId),
-    completionRate: overrides.completionRate ?? inferCompletionRate(bookId),
     isPro: overrides.isPro ?? true,
     badges: overrides.badges ?? ["new"],
     staffPickReason: overrides.staffPickReason,
@@ -1191,10 +1085,11 @@ function buildLibraryBookFromMetadata(
  * Build the presentational `LibraryBook` UI shape from a published catalog book
  * (`/api/book/me/dashboard` → `catalog[]`) plus the viewer's per-book progress
  * entry. This is the production-data counterpart to `buildLibraryBookFromMetadata`
- * (which reads the local static catalog). Editorial config (overrides + inferred
- * social-proof/visual fields) is reused so the presentational components don't
- * change. Fields with no backend source (readerCount, completionRate, gradient,
- * badges) are deterministic/static — see TODOs in `dashboardToLibraryUi.ts`.
+ * (which reads the local static catalog). Editorial config (overrides + visual
+ * fields) is reused so the presentational components don't change. Fields with
+ * no backend source (gradient, badges) are deterministic/static — see TODOs in
+ * `dashboardToLibraryUi.ts`. Social-proof fields (reader counts, completion
+ * rates) were removed: there is no honest source for them.
  */
 export function buildLibraryBookFromCatalog(
   book: LibraryCatalogBook,
@@ -1213,7 +1108,8 @@ export function buildLibraryBookFromCatalog(
           ),
           percentComplete: entry.progressPercent,
           lastReadAt: new Date(entry.lastActivityAt),
-          xpEarned: 0,
+          // No per-book IP figure in the dashboard payload — leave undefined
+          // rather than fabricate a "+0 IP earned" line.
           isCompleted: entry.status === "completed",
           completedAt:
             entry.status === "completed" ? new Date(entry.lastActivityAt) : undefined,
@@ -1241,8 +1137,6 @@ export function buildLibraryBookFromCatalog(
       (book.difficulty.toLowerCase() as Difficulty),
     totalChapters: book.chapterCount,
     estimatedReadingTimeMinutes: book.estimatedMinutes,
-    readerCount: overrides.readerCount ?? inferReaderCount(bookId),
-    completionRate: overrides.completionRate ?? inferCompletionRate(bookId),
     isPro: overrides.isPro ?? true,
     badges: overrides.badges ?? ["new"],
     staffPickReason: overrides.staffPickReason,
@@ -1400,18 +1294,18 @@ export function getFreePlanColor(used: number, limit: number): string {
   return "var(--accent-teal)";
 }
 
+// "popular" / "completion" were dropped — both sorted on fabricated metrics.
+// "featured" keeps the catalog's curated order (no claim of popularity).
 export type SortOption =
-  | "popular"
+  | "featured"
   | "shortest"
-  | "completion"
   | "beginner"
   | "recent"
   | "alphabetical";
 
 export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
-  { value: "popular", label: "Most popular" },
+  { value: "featured", label: "Featured" },
   { value: "shortest", label: "Shortest first" },
-  { value: "completion", label: "Highest completion rate" },
   { value: "beginner", label: "Best for beginners" },
   { value: "recent", label: "Recently added" },
   { value: "alphabetical", label: "Alphabetical" },
