@@ -623,23 +623,9 @@ export function ChapterReaderClient({
     );
   }
 
-  if (
-    !entry ||
-    !chapter ||
-    !onboardingHydrated ||
-    !hydrated ||
-    !chapterHydrated ||
-    !onboarding.setupComplete ||
-    bookAccessStatus === "loading"
-  ) {
-    return (
-      <main className="relative min-h-screen overflow-x-hidden">
-        <ChapterBackgroundOrbs />
-        <ChapterSkeleton />
-      </main>
-    );
-  }
-
+  // Blocked access is a terminal state — show it BEFORE the skeleton guard so a
+  // paywalled API-only book with no local fallback (chapter never loads) still
+  // explains why instead of spinning on the skeleton forever.
   if (bookAccessStatus === "blocked") {
     return (
       <main className="relative min-h-screen overflow-x-hidden">
@@ -672,6 +658,23 @@ export function ChapterReaderClient({
             </div>
           </div>
         </section>
+      </main>
+    );
+  }
+
+  if (
+    !entry ||
+    !chapter ||
+    !onboardingHydrated ||
+    !hydrated ||
+    !chapterHydrated ||
+    !onboarding.setupComplete ||
+    bookAccessStatus === "loading"
+  ) {
+    return (
+      <main className="relative min-h-screen overflow-x-hidden">
+        <ChapterBackgroundOrbs />
+        <ChapterSkeleton />
       </main>
     );
   }
