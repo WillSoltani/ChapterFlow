@@ -24,6 +24,7 @@ import {
   QUIZ_AUTO_ADVANCE_DELAY,
 } from "@/app/book/_lib/flow-points-economy";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
+import { Confetti } from "@/components/ui/Confetti";
 
 const OPTION_LABELS = ["A", "B", "C", "D", "E"];
 
@@ -115,33 +116,6 @@ function ProgressRing({
           {correctAnswers}/{totalQuestions}
         </span>
       </div>
-    </div>
-  );
-}
-
-// ─── Confetti ────────────────────────────────────────────────────────────────
-
-function ConfettiBurst() {
-  const particles = useMemo(() =>
-    Array.from({ length: 25 }, (_, i) => ({
-      id: i,
-      x: `${(Math.random() - 0.5) * 300}px`,
-      y: `${-100 - Math.random() * 200}px`,
-      r: `${Math.random() * 720}deg`,
-      color: i % 3 === 0 ? "var(--cr-accent)" : i % 3 === 1 ? "var(--cr-warning)" : "var(--cr-success)",
-      delay: `${Math.random() * 0.3}s`,
-      size: 4 + Math.random() * 4,
-    })), []);
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      {particles.map((p) => (
-        <div key={p.id} className="absolute left-1/2 top-1/2 rounded-sm"
-          style={{ width: p.size, height: p.size, background: p.color,
-            "--cr-confetti-x": p.x, "--cr-confetti-y": p.y, "--cr-confetti-r": p.r,
-            animation: `cr-confetti 1.5s ease-out ${p.delay} forwards`,
-          } as React.CSSProperties} />
-      ))}
     </div>
   );
 }
@@ -476,7 +450,9 @@ function ResultsScreen({
 
   return (
     <div className="cr-glass-reading relative overflow-hidden p-8 text-center">
-      {result.passed && <ConfettiBurst />}
+      {result.passed && (
+        <Confetti trigger origin="center" colors={["--cr-accent", "--cr-success", "--cr-warning"]} />
+      )}
 
       {/* 1. Pass/fail headline */}
       <h2

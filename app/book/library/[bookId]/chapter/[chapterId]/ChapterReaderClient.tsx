@@ -14,10 +14,7 @@ import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import {
   chapterStartModeToInitialTab,
 } from "@/app/book/_lib/onboarding-personalization";
-import {
-  INSIGHT_POINTS_AMOUNTS,
-  type LoopPipelineResult,
-} from "@/app/book/_lib/flow-points-economy";
+import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 import { createReviewItem, createFlashcardReviewItem } from "@/app/book/_lib/spaced-repetition";
 import { getMotivationMessage } from "@/app/book/_lib/motivation-messages";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
@@ -44,8 +41,6 @@ import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/com
 import { AudioPlayer } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer";
 import { AskBookDrawer } from "@/app/book/components/AskBookDrawer";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
-import { QuizPassCelebration } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/QuizPassCelebration";
-import { AchievementToastStack } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/AchievementToastStack";
 import { ChapterCompleteModal } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal";
 import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
@@ -122,18 +117,7 @@ export function ChapterReaderClient({
   const [toast, setToast] = useState<string | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
-  const [showQuizCelebration, setShowQuizCelebration] = useState(false);
-  const [quizCelebrationData, setQuizCelebrationData] = useState<{
-    scorePercent: number;
-    isPerfect: boolean;
-    quizPassIP: number;
-    perfectBonusIP: number;
-    loopPipeline: LoopPipelineResult | null;
-  } | null>(null);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
-  const [pendingAchievements, setPendingAchievements] = useState<
-    LoopPipelineResult["achievements"]
-  >([]);
   // Quiz success modal removed: chapter completion now happens after Practice phase
   const [approvedUserExamples, setApprovedUserExamples] = useState<ChapterExample[]>([]);
   const [userSubmissions, setUserSubmissions] = useState<UserScenarioSubmission[]>([]);
@@ -698,20 +682,10 @@ export function ChapterReaderClient({
       const nextSession = submitResult?.session ?? null;
       const persona = bookPrefs.extended.motivationPersona || "coach";
       if (nextSession?.result?.passed) {
+        // Mark the phase done; the celebration is the single ChapterCompleteModal
+        // surface, opened when the user taps "Continue to Practice" on the
+        // ResultsScreen. No separate celebration overlay or achievement toasts.
         phaseCompletion.markPhaseCompleted("quiz");
-        const pipeline = submitResult?.loopPipeline ?? null;
-        // Only celebrate when the backend actually awarded points (pipeline present).
-        // Provisional/offline submits skip the celebration to avoid showing fake IP.
-        if (pipeline) {
-          setQuizCelebrationData({
-            scorePercent: nextSession.result.scorePercent,
-            isPerfect: nextSession.result.scorePercent === 100,
-            quizPassIP: pipeline.quizPassIP,
-            perfectBonusIP: pipeline.perfectBonusIP,
-            loopPipeline: pipeline,
-          });
-          setShowQuizCelebration(true);
-        }
       } else {
         setToast(getMotivationMessage(persona, "quiz_fail", { score: nextSession?.result?.scorePercent }));
       }
@@ -826,23 +800,6 @@ export function ChapterReaderClient({
   const showSummary = state.activeTab === "summary";
   const showExamples = state.activeTab === "examples";
   const progressPercent = computeProgressPercent(state.activeTab, phaseCompletion.completedPhases);
-
-  const totalChapterIP = (() => {
-    const p = quiz.lastLoopPipeline;
-    if (!p) return 0;
-    return (
-      p.quizPassIP +
-      p.perfectBonusIP +
-      p.loopCompleteIP +
-      p.bookCompleteIP +
-      p.streak.streakDayIP +
-      p.streak.welcomeBackIP +
-      p.streak.milestones.reduce((sum, m) => sum + m.ip, 0) +
-      p.tier.advancementIP +
-      p.achievements.reduce((sum, a) => sum + a.ip, 0) +
-      p.insightSpark.amount
-    );
-  })();
 
   return (
     <main className="relative min-h-screen overflow-x-hidden text-(--cr-text-primary)">
@@ -1153,39 +1110,17 @@ export function ChapterReaderClient({
         <SessionModeOverlay onDone={handleSessionTourDone} />
       )}
 
-      {/* Quiz-pass celebration overlay */}
-      {showQuizCelebration && quizCelebrationData && (
-        <QuizPassCelebration
-          scorePercent={quizCelebrationData.scorePercent}
-          isPerfect={quizCelebrationData.isPerfect}
-          quizPassIP={quizCelebrationData.quizPassIP}
-          perfectBonusIP={quizCelebrationData.perfectBonusIP}
-          loopPipeline={quizCelebrationData.loopPipeline}
-          onDismiss={() => {
-            setShowQuizCelebration(false);
-            if (quizCelebrationData?.loopPipeline?.achievements.length) {
-              setPendingAchievements(quizCelebrationData.loopPipeline.achievements);
-            }
-            handleContinueToPractice();
-          }}
-        />
-      )}
-
-      {pendingAchievements.length > 0 && (
-        <AchievementToastStack
-          achievements={pendingAchievements}
-          onDismissAll={() => setPendingAchievements([])}
-        />
-      )}
-
-      {/* Chapter complete modal */}
+      {/* Chapter complete — the single celebration surface (IP breakdown +
+       *  achievements row + streak + practice handoff), built on the Wave-0
+       *  Dialog (Escape / focus-trap / scroll-lock / closable back to chapter). */}
       {showCompleteModal && (
         <ChapterCompleteModal
+          open={showCompleteModal}
+          onClose={() => setShowCompleteModal(false)}
           chapterTitle={chapter.title}
           chapterNumber={chapter.order}
           quizScore={quiz.session?.result?.scorePercent ?? 0}
-          streak={quiz.lastLoopPipeline?.streak.currentStreak ?? 1}
-          insightPointsEarned={totalChapterIP}
+          loopPipeline={quiz.lastLoopPipeline}
           hasNextChapter={Boolean(nextChapter)}
           onNext={handleChapterCompleteNext}
           onLibrary={handleChapterCompleteLibrary}
