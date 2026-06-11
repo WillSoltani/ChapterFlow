@@ -6,6 +6,7 @@ import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
+import { buildCarryForwardAnswers, scoreSessionLocally } from "../lib/quizScoring";
 
 type QuizSubmitResponse = {
   quiz: QuizSessionView;
@@ -292,29 +293,7 @@ export function useQuizSession(params: {
 
   const scoreLocally = useCallback((): QuizSessionView | null => {
     if (!session) return null;
-    let correct = 0;
-    const scoredQuestions = session.questions.map((q) => {
-      const selectedId = answers[q.questionId] ?? null;
-      const isCorrect = selectedId === q.correctChoiceId;
-      if (isCorrect) correct += 1;
-      return { ...q, selectedChoiceId: selectedId, isCorrect };
-    });
-    if (scoredQuestions.length === 0) return null;
-    const scorePercent = Math.round((correct / scoredQuestions.length) * 100);
-    const passed = scorePercent >= session.passingScorePercent;
-    return {
-      ...session,
-      status: passed ? "passed" : "ready",
-      questions: scoredQuestions,
-      result: {
-        attemptNumber: session.attemptNumber,
-        scorePercent,
-        correctAnswers: correct,
-        totalQuestions: scoredQuestions.length,
-        passed,
-        submittedAt: new Date().toISOString(),
-      },
-    };
+    return scoreSessionLocally(session, answers);
   }, [answers, session]);
 
   const submit = useCallback(async () => {
@@ -380,10 +359,22 @@ export function useQuizSession(params: {
     // background to keep server-side attempt tracking honest.
     setLastLoopPipeline(null);
     setError(null);
-    if (session?.result) {
+    const graded = session;
+    if (graded?.result) {
       const fresh = buildLocalSession();
       if (fresh) {
-        fresh.attemptNumber = (session.attemptsCount ?? session.attemptNumber ?? 0) + 1;
+        const nextAttempt = (graded.attemptsCount ?? graded.attemptNumber ?? 0) + 1;
+        fresh.attemptNumber = nextAttempt;
+        // Carry forward the answers the user already got right. The retake hides
+        // those questions (retry-incorrect-only), so without this their answers
+        // would submit as null — the server rejects null answers and local
+        // scoring counts them wrong, making an improving score paradoxically
+        // DROP. Persist as the draft so syncFromSession seeds the answer map.
+        const carriedAnswers = buildCarryForwardAnswers(graded);
+        const hasCarry = Object.keys(carriedAnswers).length > 0;
+        if (hasCarry) {
+          saveDraftAnswers(bookId, chapterNumber, difficulty, nextAttempt, carriedAnswers);
+        }
         setSession(fresh);
         syncFromSession(fresh);
         // Refresh from server in the background — if it succeeds and returns
@@ -392,6 +383,11 @@ export function useQuizSession(params: {
         // wins because we don't overwrite once the user has started answering.
         void load().then((server) => {
           if (server && !server.result) {
+            // Re-seat the carry-forward under the server's attempt number so the
+            // freshly loaded server session keeps the previously-correct answers.
+            if (hasCarry) {
+              saveDraftAnswers(bookId, chapterNumber, difficulty, server.attemptNumber, carriedAnswers);
+            }
             setSession(server);
             syncFromSession(server);
           }
@@ -400,7 +396,7 @@ export function useQuizSession(params: {
       }
     }
     return load();
-  }, [load, session, buildLocalSession, syncFromSession]);
+  }, [load, session, buildLocalSession, syncFromSession, bookId, chapterNumber, difficulty]);
 
   const toggleExplanation = useCallback(
     (questionId: string) => {
