@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useId, useState } from "react";
 import { X } from "lucide-react";
 import { ProBadge } from "./ProBadge";
 import { Button } from "@/app/book/components/ui/Button";
 import { TRIAL_CTA_LABEL } from "@/lib/pricing";
+import { Dialog } from "@/components/ui/Dialog";
 
 type ProFeatureCardProps = {
   icon: string;
   title: string;
   description: string;
   detailDescription?: string;
+  /** Retained for call-site compatibility; Dialog owns motion now. */
   reducedMotion?: boolean;
   onUpgrade?: () => void;
 };
@@ -21,10 +22,10 @@ export function ProFeatureCard({
   title,
   description,
   detailDescription,
-  reducedMotion,
   onUpgrade,
 }: ProFeatureCardProps) {
   const [showModal, setShowModal] = useState(false);
+  const titleId = useId();
 
   return (
     <>
@@ -54,57 +55,48 @@ export function ProFeatureCard({
       </div>
 
       {/* Pro Preview Modal */}
-      <AnimatePresence>
-        {showModal && (
-          <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center px-4">
-            <motion.div
-              initial={reducedMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={reducedMotion ? undefined : { opacity: 0 }}
-              className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
+      <Dialog
+        open={showModal}
+        onClose={() => setShowModal(false)}
+        labelledBy={titleId}
+      >
+        <div className="relative p-6">
+          <button
+            type="button"
+            onClick={() => setShowModal(false)}
+            aria-label="Close"
+            className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
+          >
+            <X className="h-4 w-4" />
+          </button>
+
+          <h2
+            id={titleId}
+            className="flex items-center gap-2 text-xl font-bold text-(--cf-text-1)"
+          >
+            <span aria-hidden="true">{icon}</span>
+            <span>{title}</span>
+            <ProBadge />
+          </h2>
+
+          <p className="mt-3 text-sm leading-relaxed text-(--cf-text-2)">
+            {detailDescription ?? description}
+          </p>
+
+          <div className="mt-6 space-y-3">
+            <Button variant="primary" fullWidth onClick={onUpgrade}>
+              {TRIAL_CTA_LABEL}
+            </Button>
+            <button
+              type="button"
               onClick={() => setShowModal(false)}
-            />
-            <motion.div
-              initial={reducedMotion ? false : { y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={reducedMotion ? undefined : { y: 20, opacity: 0 }}
-              className="relative w-full max-w-md rounded-t-3xl sm:rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-shadow-elevated"
+              className="w-full py-2 text-center text-sm text-(--cf-text-3) hover:text-(--cf-text-2)"
             >
-              <button
-                type="button"
-                onClick={() => setShowModal(false)}
-                aria-label="Close"
-                className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
-              >
-                <X className="h-4 w-4" />
-              </button>
-
-              <div className="flex items-center gap-2 text-xl">
-                <span>{icon}</span>
-                <span className="font-bold text-(--cf-text-1)">{title}</span>
-                <ProBadge />
-              </div>
-
-              <p className="mt-3 text-sm leading-relaxed text-(--cf-text-2)">
-                {detailDescription ?? description}
-              </p>
-
-              <div className="mt-6 space-y-3">
-                <Button variant="primary" fullWidth onClick={onUpgrade}>
-                  {TRIAL_CTA_LABEL}
-                </Button>
-                <button
-                  type="button"
-                  onClick={() => setShowModal(false)}
-                  className="w-full py-2 text-center text-sm text-(--cf-text-3) hover:text-(--cf-text-2)"
-                >
-                  Not now
-                </button>
-              </div>
-            </motion.div>
+              Not now
+            </button>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      </Dialog>
     </>
   );
 }
