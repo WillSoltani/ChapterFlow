@@ -68,12 +68,13 @@ function cleanup(): void {
   rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
 }
 
-function writeAnswers(chapter: ReturnType<typeof makeChapter>, wrong = false, partial = false): string {
+function writeAnswers(chapter: ReturnType<typeof makeChapter>, wrong = false, partial = false, confidence: number | "low" | "medium" | "high" = 0.95, omitFacts = false): string {
   const answers = chapter.quiz.questions.map((q, i) => ({
     questionIndex: i,
     choiceIndex: wrong ? (q.correctIndex + 1) % 3 : q.correctIndex,
-    confidence: 0.95,
-    sourceFactIds: [`fact${i}`],
+    confidence,
+    reason: `The source fact fact${i} supports this choice because it matches the fixture mechanism and rejects the plausible error.`,
+    sourceFactIds: omitFacts ? [] : [`fact${i}`],
   }));
   const payload = {
     chapters: [{
@@ -93,6 +94,20 @@ test("manual keyjudge: missing A/B derivations block", () => {
     const result = resolveManualKeyJudges(BOOK, "r-manual");
     assert.equal(result.records[0].status, "BLOCK");
     assert.match(result.records[0].reason, /missing keyA\/keyB/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("manual keyjudge: answer reasons are required and must be substantial", () => {
+  try {
+    const { chapter, tokens, roundId } = setup();
+    const answers = writeAnswers(chapter);
+    const raw = JSON.parse(readFileSync(answers, "utf8"));
+    raw.chapters[0].answers[0].reason = "too short";
+    writeFileSync(answers, JSON.stringify(raw, null, 2), "utf8");
+    const result = validateAndWriteKeyDerivation(BOOK, roundId, "keyA", tokens.keyA, answers);
+    assert.ok(result.errors.some((e) => /reason must be at least 40/.test(e)), result.errors.join("\n"));
   } finally {
     cleanup();
   }
@@ -121,6 +136,46 @@ test("manual keyjudge: keyA + keyB agreeing against the stored key records CORRU
     const result = resolveManualKeyJudges(BOOK, roundId);
     assert.equal(result.records[0].status, "CORRUPTION");
     assert.equal(checkManualKeyJudge(chapter, true)[0].checkId, "QC2.manual_keyjudge_not_pass");
+  } finally {
+    cleanup();
+  }
+});
+
+test("manual keyjudge: low confidence forces adjudication even when readers agree with stored key", () => {
+  try {
+    const { chapter, tokens, roundId } = setup();
+    const answers = writeAnswers(chapter, false, false, "low");
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyA", tokens.keyA, answers).errors, []);
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyB", tokens.keyB, answers).errors, []);
+    const result = resolveManualKeyJudges(BOOK, roundId);
+    assert.equal(result.records[0].status, "NEEDS_ADJUDICATION");
+    assert.match(result.records[0].reason, /low confidence|adjudication/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("manual keyjudge: medium confidence can pass only when both readers and stored key agree with source facts", () => {
+  try {
+    const { chapter, tokens, roundId } = setup();
+    const answers = writeAnswers(chapter, false, false, "medium");
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyA", tokens.keyA, answers).errors, []);
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyB", tokens.keyB, answers).errors, []);
+    const result = resolveManualKeyJudges(BOOK, roundId);
+    assert.equal(result.records[0].status, "PASS");
+  } finally {
+    cleanup();
+  }
+});
+
+test("manual keyjudge: medium confidence against stored key needs adjudication, not immediate corruption", () => {
+  try {
+    const { chapter, tokens, roundId } = setup();
+    const answers = writeAnswers(chapter, true, false, "medium");
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyA", tokens.keyA, answers).errors, []);
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyB", tokens.keyB, answers).errors, []);
+    const result = resolveManualKeyJudges(BOOK, roundId);
+    assert.equal(result.records[0].status, "NEEDS_ADJUDICATION");
   } finally {
     cleanup();
   }

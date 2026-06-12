@@ -35,11 +35,12 @@ export type KeyAnswer = {
   questionIndex: number;
   choiceIndex: number;
   confidence: number | "low" | "medium" | "high";
+  reason: string;
   sourceFactIds: string[];
 };
 
 export type KeyDerivation = {
-  schemaVersion: "manual-key-derive-v1";
+  schemaVersion: "manual-key-derive-v2";
   bookId: string;
   roundId: string;
   role: "keyA" | "keyB";
@@ -159,6 +160,7 @@ function normalizeAnswer(raw: any): KeyAnswer {
     questionIndex: Number(raw.questionIndex ?? raw.q ?? raw.index),
     choiceIndex: Number(raw.choiceIndex ?? raw.answerIndex ?? raw.choice),
     confidence: raw.confidence,
+    reason: String(raw.reason ?? raw.rationale ?? ""),
     sourceFactIds: Array.isArray(raw.sourceFactIds) ? raw.sourceFactIds.map(String) : [],
   };
 }
@@ -214,6 +216,7 @@ export function validateAndWriteKeyDerivation(bookId: string, roundId: string, r
       const q = pack.questions[ans.questionIndex];
       if (!Number.isInteger(ans.choiceIndex) || !q || ans.choiceIndex < 0 || ans.choiceIndex >= q.choices.length) errors.push(`ch${pack.chapterNumber}: invalid choiceIndex ${ans.choiceIndex} for q${ans.questionIndex}`);
       if (!confidenceValid(ans.confidence)) errors.push(`ch${pack.chapterNumber}: invalid confidence for q${ans.questionIndex}`);
+      if (ans.reason.trim().length < 40) errors.push(`ch${pack.chapterNumber}: q${ans.questionIndex} reason must be at least 40 characters`);
       if (ans.sourceFactIds.length === 0) errors.push(`ch${pack.chapterNumber}: q${ans.questionIndex} has no sourceFactIds`);
       for (const id of ans.sourceFactIds) if (!validFactIds.has(id)) errors.push(`ch${pack.chapterNumber}: q${ans.questionIndex} cites unknown sourceFactId ${id}`);
     }
@@ -229,7 +232,7 @@ export function validateAndWriteKeyDerivation(bookId: string, roundId: string, r
   }
   if (errors.length > 0) return { errors };
   const rec: KeyDerivation = {
-    schemaVersion: "manual-key-derive-v1",
+    schemaVersion: "manual-key-derive-v2",
     bookId,
     roundId,
     role,
@@ -250,6 +253,17 @@ function loadDerivation(bookId: string, roundId: string, role: "keyA" | "keyB"):
   } catch {
     return null;
   }
+}
+
+function confidenceBand(value: KeyAnswer["confidence"]): "low" | "medium" | "high" {
+  if (value === "low" || value === "medium" || value === "high") return value;
+  if (value < 0.5) return "low";
+  if (value < 0.8) return "medium";
+  return "high";
+}
+
+function citesSourceFacts(ans: KeyAnswer | undefined): boolean {
+  return !!ans && ans.sourceFactIds.length > 0;
 }
 
 export function loadManualKeyJudge(bookId: string, chapterNumber: number): ManualKeyJudgeRecord | null {
@@ -294,17 +308,27 @@ export function resolveManualKeyJudges(bookId: string, roundId: string): { recor
           reason = "partial derivation";
           break;
         }
+        const aBand = confidenceBand(aa.confidence);
+        const bBand = confidenceBand(bb.confidence);
+        if (aBand === "low" || bBand === "low") {
+          disagreements.push(i);
+          continue;
+        }
         if (aa.choiceIndex !== bb.choiceIndex) {
           disagreements.push(i);
         } else {
           const stored = ch.quiz.questions[i].correctIndex;
+          if ((aBand === "medium" || bBand === "medium") && (aa.choiceIndex !== stored || !citesSourceFacts(aa) || !citesSourceFacts(bb))) {
+            disagreements.push(i);
+            continue;
+          }
           if (aa.choiceIndex !== stored) mismatches.push({ questionIndex: i, storedIndex: stored, agreedIndex: aa.choiceIndex });
         }
       }
       if (!reason) {
         if (disagreements.length > 0) {
           status = "NEEDS_ADJUDICATION";
-          reason = `keyA/keyB disagree on ${disagreements.length} question(s)`;
+          reason = `keyA/keyB need adjudication on ${disagreements.length} question(s) because of disagreement, low confidence, or medium confidence without stored-key/source-fact agreement`;
         } else if (mismatches.length > 0) {
           status = "CORRUPTION";
           reason = `keyA/keyB agree against stored key on ${mismatches.length} question(s)`;

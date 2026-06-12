@@ -96,7 +96,7 @@ npx tsx src/cli.ts key-pack <bookId> --round <roundId>
 npx tsx src/cli.ts key-derive <bookId> --round <roundId> --role keyA --token <keyA-token> --answers-file <path>
 npx tsx src/cli.ts key-derive <bookId> --round <roundId> --role keyB --token <keyB-token> --answers-file <path>
 npx tsx src/cli.ts key-resolve <bookId> --round <roundId>
-npx tsx src/cli.ts sweep-attest <bookId> --round <roundId> --token <sweep-token> --verdict PASS --reviewer "<id>"
+npx tsx src/cli.ts sweep-attest <bookId> --round <roundId> --token <sweep-token> --verdict PASS --reviewer "<id>" --findings-file <sweep-findings.json>
 npx tsx src/cli.ts bar-pack <bookId> --round <roundId>
 npx tsx src/cli.ts bar-attest <bookId> --round <roundId> --token <bar-token> --scores-file <filled-bar-scores.json> --reviewer "<id>"
 npx tsx src/cli.ts major-status <bookId>   # every current major needs major-disposition

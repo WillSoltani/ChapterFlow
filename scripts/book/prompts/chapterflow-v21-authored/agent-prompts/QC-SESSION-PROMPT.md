@@ -99,7 +99,10 @@ edit chapters; key readers use only blind packs and source facts.
 
 Required no-api artifacts:
 - `source-v2-gate <bookId>` must pass before authoring prompts print.
-- `sweep-pack <bookId> --round <roundId>` then `sweep-attest ... --token <sweep-token> --verdict PASS`.
+- `sweep-pack <bookId> --round <roundId>` then `sweep-attest ... --token <sweep-token> --verdict PASS --findings-file <path>`.
+  The findings file must include `checkedFamilies` with all four sweep families
+  (`scene_skeleton`, `persona_drift`, `repeated_unit`, `location_stamping`) and
+  `findings` (use `[]` when clean).
 - `key-pack <bookId> --round <roundId>`, two independent `key-derive` runs
   (`keyA`, `keyB`), then `key-resolve`.
 - For the publishable-bar read, prefer full-book batching on large books:

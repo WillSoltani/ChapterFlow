@@ -5,6 +5,7 @@ import { resolve } from "path";
 import { attestationPath, loadAttestation } from "../src/critics/qcAttestation.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { barScoresTemplatePath, validateAndWriteBarAttestations, writeBarPack } from "../src/qc/barReview.js";
+import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 import { keyPackDir } from "../src/qc/manualKeyJudge.js";
 import { test } from "./harness.js";
 import { cleanTmp, makeChapter, STATE_CHAPTERS, TMP_DIR } from "./helpers.js";
@@ -18,6 +19,7 @@ function cleanup(): void {
     rmSync(attestationPath(BOOK, n), { force: true });
   }
   rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
   cleanTmp();
 }
@@ -121,4 +123,3 @@ test("bar-attest batch records REVISE when computed bar is yellow", () => {
     cleanup();
   }
 });
-

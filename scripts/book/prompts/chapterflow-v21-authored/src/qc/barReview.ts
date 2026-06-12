@@ -27,6 +27,7 @@ import { identifyQcRoundRole, loadQcRound, type QcRoundRole } from "./qcRound.js
 import { isNoApiCodexQcMode } from "./noApiMode.js";
 import { keyPackDir, loadBookChapters } from "./manualKeyJudge.js";
 import { checkSourceV2Gate, sourceFactsForPack, sourceHashFor, loadSourceV2Sidecar, type SourceFactForPack } from "./sourceV2Gate.js";
+import { hasFreshConfirmReadArtifact, writeBarReadArtifact } from "./orchestrator/artifacts.js";
 
 export type BarPackChapter = {
   chapterNumber: number;
@@ -298,6 +299,9 @@ export function validateAndWriteBarAttestations(
     ) {
       errors.push(`ch${ch.number}: unchanged ${existing.verdict} attestation cannot be batch-flipped to PUBLISHABLE; repair content or use qc-attest --supersede with a specific reason`);
     }
+    if (isNoApiCodexQcMode() && qcVerdict === "PUBLISHABLE" && !hasFreshConfirmReadArtifact(bookId, roundId, ch)) {
+      errors.push(`ch${ch.number}: no-api PUBLISHABLE attestation requires a fresh confirm-read artifact before bar-attest can certify`);
+    }
     results.push({ chapterNumber: ch.number, chapterId: ch.chapterId, gate: verdict.gate, overall: verdict.overall, verdict: qcVerdict });
     pending.push({ chapter: ch, verdict, reviewerNotes, qcVerdict });
   }
@@ -307,6 +311,20 @@ export function validateAndWriteBarAttestations(
 
   let wrote = 0;
   for (const item of pending) {
+    writeBarReadArtifact({
+      schemaVersion: "qc-bar-read-v1",
+      bookId,
+      roundId,
+      role: "bar",
+      reviewer,
+      chapterNumber: item.chapter.number,
+      chapterId: item.chapter.chapterId,
+      contentHash: chapterContentHash(item.chapter),
+      sourceHash: sourceHashFor(bookId, item.chapter.number),
+      axes: item.verdict.axes,
+      notes: item.reviewerNotes,
+      verdict: item.verdict,
+    });
     const existing = loadAttestation(bookId, item.chapter.number);
     const { history: _prevHistory, ...existingSansHistory } = existing ?? {};
     const att: QcAttestation = {

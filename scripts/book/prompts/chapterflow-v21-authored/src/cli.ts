@@ -127,6 +127,22 @@ Commands:
   qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."]
                                      Add --round <roundId> --token <token> in no-api Codex QC mode.
   qc-open-round <bookId>             Open a role-separated QC round and print plaintext role tokens once.
+  qc-orchestrate <bookId> --create [--chapters 1,2]
+                                     Create a v21.2 no-api Codex QC orchestration round, task cards,
+                                     packs, append-only repair ledger, and repair brief.
+  qc-orchestrate <bookId> --collect --round <roundId>
+                                     Validate stored submissions, merge the repair ledger, and write
+                                     safe attestations only when fresh bar+confirm artifacts exist.
+  qc-orchestrate <bookId> --render-repair --round <roundId>
+                                     Render repair-ledger.jsonl to repair-brief.md.
+  qc-orchestrate <bookId> --verify-repair --round <roundId>
+                                     Re-run repair validation and append stale/still-open/QC-rerun statuses.
+  qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --file <submission.json>
+                                     Validate and store a structured QC submission for an orchestrated round.
+  qc-ledger-status <bookId> --round <roundId>
+                                     Summarize the append-only orchestrator repair ledger.
+  qc-repair-brief <bookId> --round <roundId>
+                                     Render and print the pasteable repair brief path.
   source-v2-gate <bookId>            Strict no-api source gate: every chapter sidecar must be source-v2
                                      with centralConcept, namedExamples, hardSpecifics, and testableFacts.
   key-pack <bookId> --round <id>     Write blind manual quiz-key packs under state/qc-packs/.
@@ -137,8 +153,8 @@ Commands:
   bar-attest <bookId> --round <id> --token X --scores-file path --reviewer <id>
                                      Validate full bar-score coverage and batch-write qc attestations.
   sweep-pack <bookId> --round <id>   Write the book-level sweep pack for a QC round.
-  sweep-attest <bookId> --round <id> --token X --verdict PASS|REVISE|CORRUPTION --reviewer <id>
-                                     Record the sweep verdict and all chapter content hashes.
+  sweep-attest <bookId> --round <id> --token X --verdict PASS|REVISE|CORRUPTION --reviewer <id> --findings-file path
+                                     Record the sweep verdict, checked families, findings, and chapter hashes.
   sweep-status <bookId>              Show the latest sweep attestation status.
   major-status <bookId>              Show current major findings and their dispositions.
   major-disposition <bookId> --finding <id> --status resolved|waived --reason X --reviewer X --round <id> [--token X]
@@ -1687,6 +1703,100 @@ async function runQcOpenRound(args: string[]): Promise<number> {
   }
 }
 
+async function runQcOrchestrate(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--render-repair|--verify-repair --round <roundId>");
+    return 2;
+  }
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  const orch = await import("./qc/orchestrator/index.js");
+  if (flags["create"] === true) {
+    const result = orch.createQcOrchestrationRound(bookId, {
+      roundId: roundId || undefined,
+      chapters: orch.parseChapterList(flags["chapters"]),
+    });
+    for (const m of result.messages) console.log(m);
+    if (result.errors.length) for (const e of result.errors) console.error(e);
+    console.log(`qc-orchestrate: ${result.ok ? "created" : "created-with-errors"} ${result.roundId}`);
+    console.log(`  ${result.roundDir}`);
+    return result.ok ? 0 : 1;
+  }
+  if (!roundId) {
+    console.error("qc-orchestrate requires --round <roundId> for --collect, --render-repair, and --verify-repair.");
+    return 2;
+  }
+  if (flags["collect"] === true) {
+    const result = orch.collectQcRound(bookId, roundId);
+    console.log(JSON.stringify(result.summary, null, 2));
+    if (result.errors.length) for (const e of result.errors) console.error(e);
+    return result.ok ? 0 : 1;
+  }
+  if (flags["render-repair"] === true) {
+    const path = orch.renderRepair(bookId, roundId);
+    console.log(`repair brief: ${path}`);
+    return 0;
+  }
+  if (flags["verify-repair"] === true) {
+    const result = orch.verifyRepair(bookId, roundId);
+    console.log(JSON.stringify(result.summary, null, 2));
+    return result.ok ? 0 : 1;
+  }
+  console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--render-repair|--verify-repair --round <roundId>");
+  return 2;
+}
+
+async function runQcSubmit(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  const role = typeof flags["role"] === "string" ? flags["role"] : "";
+  const file = typeof flags["file"] === "string" ? flags["file"] : "";
+  if (!bookId || !roundId || !role || !file) {
+    console.error("Usage: qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --file <submission.json>");
+    return 2;
+  }
+  const { SUBMISSION_ROLES } = await import("./qc/orchestrator/schemas.js");
+  if (!(SUBMISSION_ROLES as readonly string[]).includes(role)) {
+    console.error(`Unknown role "${role}". Use one of: ${SUBMISSION_ROLES.join(", ")}`);
+    return 2;
+  }
+  const { submitQcArtifact } = await import("./qc/orchestrator/index.js");
+  const result = submitQcArtifact(bookId, roundId, role as any, file);
+  for (const m of result.messages) console.log(m);
+  if (result.errors.length) {
+    for (const e of result.errors) console.error(e);
+    return 1;
+  }
+  return 0;
+}
+
+async function runQcLedgerStatus(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: qc-ledger-status <bookId> --round <roundId>");
+    return 2;
+  }
+  const { ledgerStatus } = await import("./qc/orchestrator/index.js");
+  const result = ledgerStatus(bookId, roundId);
+  console.log(`qc-ledger-status: ${bookId} ${roundId}`);
+  for (const [status, count] of Object.entries(result.summary).sort()) console.log(`  ${status}: ${count}`);
+  console.log(`  total: ${result.findings.length}`);
+  return result.findings.some((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun") ? 1 : 0;
+}
+
+async function runQcRepairBrief(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: qc-repair-brief <bookId> --round <roundId>");
+    return 2;
+  }
+  const { renderRepair } = await import("./qc/orchestrator/index.js");
+  console.log(`repair brief: ${renderRepair(bookId, roundId)}`);
+  return 0;
+}
+
 async function runSourceV2Gate(args: string[]): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
@@ -1816,13 +1926,14 @@ async function runSweepAttest(args: string[], flags: Record<string, string | boo
   const token = typeof flags["token"] === "string" ? flags["token"] : "";
   const reviewer = typeof flags["reviewer"] === "string" ? flags["reviewer"] : "";
   const verdict = typeof flags["verdict"] === "string" ? flags["verdict"].toUpperCase() : "";
+  const findingsFile = typeof flags["findings-file"] === "string" ? flags["findings-file"] : "";
   const notes = typeof flags["notes"] === "string" ? flags["notes"] : undefined;
-  if (!bookId || !roundId || !token || !reviewer || !["PASS", "REVISE", "CORRUPTION"].includes(verdict)) {
-    console.error("Usage: sweep-attest <bookId> --round <roundId> --token <token> --verdict PASS|REVISE|CORRUPTION --reviewer <id> [--notes X]");
+  if (!bookId || !roundId || !token || !reviewer || !findingsFile || !["PASS", "REVISE", "CORRUPTION"].includes(verdict)) {
+    console.error("Usage: sweep-attest <bookId> --round <roundId> --token <token> --verdict PASS|REVISE|CORRUPTION --reviewer <id> --findings-file <path> [--notes X]");
     return 2;
   }
   const { writeSweepAttestation } = await import("./qc/sweep.js");
-  const result = writeSweepAttestation(bookId, roundId, token, verdict as any, reviewer, notes);
+  const result = writeSweepAttestation(bookId, roundId, token, verdict as any, reviewer, findingsFile, notes);
   if (result.error) {
     console.error(result.error);
     return 1;
@@ -2877,6 +2988,14 @@ async function main() {
       return runPedagogyPlan(args, flags);
     case "qc-open-round":
       return runQcOpenRound(args);
+    case "qc-orchestrate":
+      return runQcOrchestrate(args, flags);
+    case "qc-submit":
+      return runQcSubmit(args, flags);
+    case "qc-ledger-status":
+      return runQcLedgerStatus(args, flags);
+    case "qc-repair-brief":
+      return runQcRepairBrief(args, flags);
     case "source-v2-gate":
       return runSourceV2Gate(args);
     case "key-pack":
