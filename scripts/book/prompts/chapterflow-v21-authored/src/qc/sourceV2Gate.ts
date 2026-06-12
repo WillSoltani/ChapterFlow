@@ -124,7 +124,7 @@ export function sourceFactsForPack(sc: any): SourceFactForPack[] {
     becauseMechanism: String(f?.becauseMechanism ?? ""),
     commonError: String(f?.commonError ?? ""),
     errorIsWhy: String(f?.errorIsWhy ?? ""),
-  })).filter((f) => f.id && f.claim);
+  })).filter((f: SourceFactForPack) => f.id && f.claim);
 }
 
 function nonempty(value: unknown): boolean {
@@ -186,4 +186,3 @@ export function formatSourceV2GateReport(report: SourceV2GateReport): string {
   }
   return lines.join("\n");
 }
-

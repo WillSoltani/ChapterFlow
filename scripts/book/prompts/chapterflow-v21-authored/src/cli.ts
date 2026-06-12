@@ -26,6 +26,7 @@ import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
 import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileName, assertNoShadowStateDir } from "./lib/chapterPaths.js";
 import type { ProviderName } from "./providers/types.js";
+import type { AxisId, AxisScore, FailureTier } from "./critics/semantic/publishableBar.js";
 
 /** Refuse to run if a repo-root shadow state/chapters dir holds chapters
  *  (the dual-directory divergence hazard). Returns an exit code on failure. */
@@ -1993,7 +1994,7 @@ async function runQcVerdict(args: string[], flags: Record<string, string | boole
     return 3;
   }
   const known = new Set(Object.keys(AXIS_WEIGHTS));
-  const axes = [];
+  const axes: AxisScore[] = [];
   for (const a of parsed) {
     if (!a || typeof a.axis !== "string" || typeof a.score !== "number") {
       console.error(`bad axis entry: ${JSON.stringify(a).slice(0, 120)} — need { axis: string, score: number }`);
@@ -2003,7 +2004,8 @@ async function runQcVerdict(args: string[], flags: Record<string, string | boole
       console.error(`unknown axis "${a.axis}" — valid: ${[...known].join(", ")}`);
       return 3;
     }
-    axes.push({ axis: a.axis, score: a.score, tier: a.tier ?? "PUBLISHABLE", hits: Array.isArray(a.hits) ? a.hits : [] });
+    const tier: FailureTier = ["CORRUPTION", "GENERATED_DRAFT", "PUBLISHABLE"].includes(a.tier) ? a.tier : "PUBLISHABLE";
+    axes.push({ axis: a.axis as AxisId, score: a.score, tier, hits: Array.isArray(a.hits) ? a.hits : [] });
   }
   // Missing axes are NOT defaulted — an unread axis is a partial read, and a
   // partial read is never a pass (the DID-NOT-RUN rule).
