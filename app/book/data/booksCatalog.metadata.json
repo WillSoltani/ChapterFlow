@@ -1,104 +1,17 @@
 [
   {
-    "id": "clear-thinking",
-    "title": "Clear Thinking",
-    "author": "Shane Parrish",
-    "categories": [
-      "Decision Making",
-      "Self-Help",
-      "Psychology",
-      "Personal Development"
-    ],
-    "category": "Decision Making",
-    "tags": [
-      "clear-thinking",
-      "decision-making",
-      "defaults",
-      "self-control",
-      "judgment",
-      "mental-models",
-      "reflection"
-    ],
-    "chapterCount": 26,
-    "estimatedMinutes": 156,
-    "icon": "🧭",
-    "coverImage": "/book-covers/clear-thinking.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Shane Parrish's twenty-six chapters on noticing default reactions, building safeguards, defining problems clearly, evaluating options, and learning from decisions."
-  },
-  {
-    "id": "smarter-faster-better",
-    "title": "Smarter Faster Better",
-    "author": "Charles Duhigg",
-    "categories": [
-      "Productivity",
-      "Management",
-      "Decision Making",
-      "Psychology"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "motivation",
-      "teams",
-      "focus",
-      "goal-setting",
-      "management",
-      "forecasting",
-      "innovation",
-      "data-interpretation"
-    ],
-    "chapterCount": 8,
-    "estimatedMinutes": 96,
-    "icon": "⚙️",
-    "coverImage": "/book-covers/smarter-faster-better.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Charles Duhigg's eight chapters on motivation, team dynamics, focus, goals, decision making, innovation, and turning raw information into usable judgment."
-  },
-  {
-    "id": "Getting-Things-Done",
-    "title": "Getting Things Done",
-    "author": "David Allen",
-    "categories": [
-      "Productivity",
-      "Self-Help",
-      "Decision Making"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "task-management",
-      "workflow-organization",
-      "time-management",
-      "next-actions",
-      "capture-system",
-      "review-habit",
-      "outcome-focusing"
-    ],
-    "chapterCount": 13,
-    "estimatedMinutes": 302,
-    "icon": "📊",
-    "coverImage": "/book-covers/Getting-Things-Done.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of David Allen's thirteen chapters on capturing commitments, clarifying next actions, organizing trusted lists, reviewing consistently, and defining outcomes clearly."
-  },
-  {
     "id": "seven-powers",
     "title": "7 Powers: The Foundations of Business Strategy",
     "author": "Hamilton Helmer",
     "categories": [
-      "Strategy",
       "Business",
-      "Management",
-      "Entrepreneurship"
+      "Strategy"
     ],
-    "category": "Strategy",
+    "category": "Business",
     "tags": [
-      "competitive-advantage",
-      "strategy",
+      "competition",
       "moats",
-      "scale-economies",
-      "network-effects",
-      "business-models",
-      "market-timing"
+      "strategy"
     ],
     "chapterCount": 9,
     "estimatedMinutes": 108,
@@ -108,24 +21,39 @@
     "synopsis": "A modern reading of Hamilton Helmer's nine chapters on the seven powers, path dependence, and how timing shapes durable strategic advantage."
   },
   {
+    "id": "antifragile",
+    "title": "Antifragile: Things That Gain from Disorder",
+    "author": "Nassim Nicholas Taleb",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 25,
+    "estimatedMinutes": 300,
+    "icon": "🧬",
+    "coverImage": "/book-covers/antifragile.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of hidden fragility, optionality, nonlinear harm, time-tested systems, medical restraint, ethics, and designs that gain from bounded disorder."
+  },
+  {
     "id": "atomic-habits",
     "title": "Atomic Habits",
     "author": "James Clear",
     "categories": [
-      "Psychology",
-      "Self-Help",
-      "Productivity"
+      "Productivity",
+      "Self Improvement"
     ],
-    "category": "Psychology",
+    "category": "Productivity",
     "tags": [
-      "habit-formation",
-      "behavior-change",
-      "identity",
-      "environment-design",
-      "self-control",
-      "motivation",
-      "procrastination",
-      "consistency"
+      "attention",
+      "focus",
+      "habits"
     ],
     "chapterCount": 20,
     "estimatedMinutes": 259,
@@ -133,1373 +61,6 @@
     "coverImage": "/book-covers/atomic-habits.svg",
     "difficulty": "Medium",
     "synopsis": "A modern reading of James Clear's twenty chapters on tiny gains, identity change, environment design, repetition, and the conditions that make habits stick long enough to compound."
-  },
-  {
-    "id": "built-to-last",
-    "title": "Built to Last: Successful Habits of Visionary Companies",
-    "author": "Jim Collins; Jerry I. Porras",
-    "categories": [
-      "Business",
-      "Leadership",
-      "Management",
-      "Strategy"
-    ],
-    "category": "Business",
-    "tags": [
-      "institution-building",
-      "organizational-design",
-      "leadership-development",
-      "culture",
-      "standards",
-      "experimentation"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 120,
-    "icon": "🏛️",
-    "coverImage": "/book-covers/built-to-last.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Jim Collins and Jerry I. Porras's ten chapters on clock building, core ideology, experimentation, internal development, and the habits that help institutions outlast founders and cycles."
-  },
-  {
-    "id": "you-cant-hurt-me",
-    "title": "Can't Hurt Me: Master Your Mind and Defy the Odds",
-    "author": "David Goggins",
-    "categories": [
-      "Self-Help",
-      "Psychology",
-      "Productivity"
-    ],
-    "category": "Self-Help",
-    "tags": [
-      "accountability",
-      "discipline",
-      "failure",
-      "mental-toughness",
-      "personal-standards",
-      "resilience"
-    ],
-    "chapterCount": 11,
-    "estimatedMinutes": 154,
-    "icon": "🏃",
-    "coverImage": "/book-covers/you-can't-hurt-me.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of David Goggins's eleven chapters on abuse, accountability, suffering, discipline, failure, recovery, and widening strength beyond old verdicts."
-  },
-  {
-    "id": "competing-against-luck",
-    "title": "Competing Against Luck: The Story of Innovation and Customer Choice",
-    "author": "Clayton M. Christensen, Taddy Hall, Karen Dillon, David S. Duncan",
-    "categories": [
-      "Business",
-      "Innovation",
-      "Strategy",
-      "Management"
-    ],
-    "category": "Business",
-    "tags": [
-      "jobs-to-be-done",
-      "customer-choice",
-      "innovation",
-      "product-strategy",
-      "customer-research",
-      "organizational-alignment"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 110,
-    "icon": "🧲",
-    "coverImage": "/book-covers/competing-against-luck.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Clayton Christensen and coauthors' ten chapters on jobs theory, customer progress, hidden competition, causal demand, and building innovation around what customers are really trying to get done."
-  },
-  {
-    "id": "crucial-conversations",
-    "title": "Crucial Conversations: Tools for Talking When Stakes Are High",
-    "author": "Joseph Grenny, Kerry Patterson, Ron McMillan, Al Switzler, Emily Gregory",
-    "categories": [
-      "Communication",
-      "Business",
-      "Self-Help",
-      "Psychology"
-    ],
-    "category": "Communication",
-    "tags": [
-      "dialogue",
-      "conflict-resolution",
-      "high-stakes-communication",
-      "emotional-intelligence",
-      "feedback",
-      "psychological-safety",
-      "workplace-communication",
-      "relationships"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 120,
-    "icon": "💬",
-    "coverImage": "/book-covers/crucial-conversations.svg",
-    "difficulty": "Medium",
-    "synopsis": "A practical guide to high-stakes dialogue: spotting crucial conversations early, avoiding silence and force, restoring safety, and turning hard talks into real action."
-  },
-  {
-    "id": "deep-work",
-    "title": "Deep Work",
-    "author": "Cal Newport",
-    "categories": [
-      "Productivity",
-      "Focus",
-      "Self-Help"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "focus",
-      "attention",
-      "deep-work",
-      "digital-distraction",
-      "knowledge-work"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 91,
-    "icon": "🧠",
-    "coverImage": "/book-covers/deep-work.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of focus, distraction, scheduling, boredom training, tool selection, and shallow-work control for people trying to build a deeper working life."
-  },
-  {
-    "id": "difficult-conversations",
-    "title": "Difficult Conversations: How to Discuss What Matters Most",
-    "author": "Douglas Stone, Bruce Patton, Sheila Heen",
-    "categories": [
-      "Communication",
-      "Relationships",
-      "Self-Help",
-      "Leadership"
-    ],
-    "category": "Communication",
-    "tags": [
-      "difficult-conversations",
-      "conflict",
-      "listening",
-      "feedback",
-      "repair",
-      "workplace-communication"
-    ],
-    "chapterCount": 12,
-    "estimatedMinutes": 144,
-    "icon": "🗣️",
-    "coverImage": "/book-covers/difficult-conversations.svg",
-    "difficulty": "Medium",
-    "synopsis": "A practical guide to the hidden structure inside hard conversations: what happened, feelings, identity, listening, expression, and the move into joint problem-solving."
-  },
-  {
-    "id": "essentialism",
-    "title": "Essentialism",
-    "author": "Greg McKeown",
-    "categories": [
-      "Productivity",
-      "Leadership",
-      "Personal Development"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "essentialism",
-      "priorities",
-      "decision-making",
-      "focus",
-      "boundaries",
-      "trade-offs"
-    ],
-    "chapterCount": 20,
-    "estimatedMinutes": 200,
-    "icon": "🎯",
-    "coverImage": "/book-covers/essentialism.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Greg McKeown's framework for choosing the vital few, cutting the trivial many, and building a life around less but better."
-  },
-  {
-    "id": "execution",
-    "title": "Execution: The Discipline of Getting Things Done",
-    "author": "Larry Bossidy, Ram Charan, Charles Burck",
-    "categories": [
-      "Business",
-      "Leadership",
-      "Management",
-      "Strategy"
-    ],
-    "category": "Business",
-    "tags": [
-      "execution",
-      "follow-through",
-      "operations",
-      "people-process",
-      "strategy-review",
-      "management"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 120,
-    "icon": "⚙️",
-    "coverImage": "/book-covers/execution.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of the discipline that links strategy to results through leadership, cultural realism, people processes, operating cadence, and follow-through."
-  },
-  {
-    "id": "extreme-ownership",
-    "title": "Extreme Ownership",
-    "author": "Jocko Willink, Leif Babin",
-    "categories": [
-      "Leadership",
-      "Management",
-      "Business",
-      "Decision Making"
-    ],
-    "category": "Leadership",
-    "tags": [
-      "ownership",
-      "teamwork",
-      "discipline",
-      "planning",
-      "execution",
-      "command"
-    ],
-    "chapterCount": 13,
-    "estimatedMinutes": 117,
-    "icon": "🪖",
-    "coverImage": "/book-covers/extreme-ownership.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Jocko Willink and Leif Babin's thirteen chapters on ownership, trust, planning, decentralized command, disciplined execution, and leadership under pressure."
-  },
-  {
-    "id": "good-to-great",
-    "title": "Good to Great",
-    "author": "Jim Collins",
-    "categories": [
-      "Business",
-      "Leadership",
-      "Strategy"
-    ],
-    "category": "Business",
-    "tags": [
-      "institutional-performance",
-      "leadership",
-      "strategy",
-      "discipline",
-      "flywheel",
-      "comparative-study"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 80,
-    "icon": "📈",
-    "coverImage": "/book-covers/good-to-great.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Jim Collins's nine chapters on disciplined leadership, strategic clarity, cumulative momentum, and the difference between a breakthrough and an enduring institution."
-  },
-  {
-    "id": "how-to-talk-to-anyone",
-    "title": "How to Talk to Anyone: 92 Little Tricks for Big Success in Relationships",
-    "author": "Leil Lowndes",
-    "categories": [
-      "Communication",
-      "Relationships",
-      "Self-Help",
-      "Personal Development"
-    ],
-    "category": "Communication",
-    "tags": [
-      "social-skills",
-      "conversation",
-      "rapport",
-      "first-impressions",
-      "networking",
-      "phone-etiquette",
-      "tact"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 141,
-    "icon": "🗣️",
-    "coverImage": "/book-covers/how-to-talk-to-anyone.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Leil Lowndes's nine-part guide to first impressions, conversation flow, rapport, social tact, and practical relationship-building under real-world pressure."
-  },
-  {
-    "id": "indistractable",
-    "title": "Indistractable",
-    "author": "Nir Eyal",
-    "categories": [
-      "Productivity",
-      "Psychology",
-      "Self-Help",
-      "Management"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "focus",
-      "attention",
-      "distraction",
-      "timeboxing",
-      "behavior-change",
-      "workplace-culture",
-      "technology",
-      "relationships"
-    ],
-    "chapterCount": 30,
-    "estimatedMinutes": 305,
-    "icon": "🎯",
-    "coverImage": "/book-covers/indistractable.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Nir Eyal's thirty chapters on internal triggers, timeboxing, external triggers, pacts, workplace culture, parenting, and relational attention."
-  },
-  {
-    "id": "influence",
-    "title": "Influence, New and Expanded: The Psychology of Persuasion",
-    "author": "Robert B. Cialdini, PhD",
-    "categories": [
-      "Psychology",
-      "Communication",
-      "Decision Making",
-      "Business"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "persuasion",
-      "influence",
-      "reciprocity",
-      "social-proof",
-      "authority",
-      "scarcity",
-      "commitment",
-      "unity"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 118,
-    "icon": "🧠",
-    "coverImage": "/book-covers/influence.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Robert Cialdini's nine chapters on automatic judgment, reciprocity, liking, social proof, authority, scarcity, commitment, unity, and the cue stacks that shape consent."
-  },
-  {
-    "id": "leaders-eat-last",
-    "title": "Leaders Eat Last",
-    "author": "Simon Sinek",
-    "categories": [
-      "Leadership",
-      "Business",
-      "Management",
-      "Psychology"
-    ],
-    "category": "Leadership",
-    "tags": [
-      "leadership",
-      "culture",
-      "trust",
-      "management",
-      "workplace-safety",
-      "service",
-      "teams"
-    ],
-    "chapterCount": 27,
-    "estimatedMinutes": 297,
-    "icon": "🛡️",
-    "coverImage": "/book-covers/leaders-eat-last.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Simon Sinek's twenty-seven chapters on trust, leadership, cortisol, culture, sacrifice, and building circles of safety inside groups."
-  },
-  {
-    "id": "limitless",
-    "title": "Limitless",
-    "author": "Jim Kwik",
-    "categories": [
-      "Learning",
-      "Self-Improvement",
-      "Productivity",
-      "Cognitive Performance"
-    ],
-    "category": "Learning",
-    "tags": [
-      "mindset",
-      "motivation",
-      "focus",
-      "study",
-      "memory",
-      "speed-reading",
-      "thinking",
-      "learning-how-to-learn"
-    ],
-    "chapterCount": 15,
-    "estimatedMinutes": 120,
-    "icon": "🧠",
-    "coverImage": "/book-covers/limitless.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Jim Kwik's fifteen chapters on mindset, motivation, methods, focus, memory, speed reading, and learning as a trainable system."
-  },
-  {
-    "id": "made-to-stick",
-    "title": "Made to Stick: Why Some Ideas Survive and Others Die",
-    "author": "Chip Heath, Dan Heath",
-    "categories": [
-      "Communication",
-      "Psychology",
-      "Business",
-      "Leadership"
-    ],
-    "category": "Communication",
-    "tags": [
-      "communication",
-      "messaging",
-      "persuasion",
-      "storytelling",
-      "ideas",
-      "stickiness",
-      "presentation",
-      "change"
-    ],
-    "chapterCount": 6,
-    "estimatedMinutes": 69,
-    "icon": "📣",
-    "coverImage": "/book-covers/made-to-stick.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of SUCCESs: simplicity, surprise, concreteness, credibility, emotion, and stories as practical design choices that help ideas survive and spread."
-  },
-  {
-    "id": "make-it-stick",
-    "title": "Make It Stick",
-    "author": "Peter C. Brown; Henry L. Roediger III; Mark A. McDaniel",
-    "categories": [
-      "Education",
-      "Productivity",
-      "Psychology",
-      "Personal Development"
-    ],
-    "category": "Education",
-    "tags": [
-      "learning-science",
-      "retrieval-practice",
-      "spaced-repetition",
-      "interleaving",
-      "metacognition",
-      "study-skills",
-      "skill-building"
-    ],
-    "chapterCount": 8,
-    "estimatedMinutes": 96,
-    "icon": "🧠",
-    "coverImage": "/book-covers/make-it-stick.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of retrieval, spacing, interleaving, useful difficulty, calibration, and growth-minded practice as a repeatable system for learning that lasts."
-  },
-  {
-    "id": "make-time",
-    "title": "Make Time",
-    "author": "Jake Knapp and John Zeratsky",
-    "categories": [
-      "Productivity",
-      "Self-Help"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "attention",
-      "priorities",
-      "habits",
-      "energy",
-      "distraction",
-      "time-management"
-    ],
-    "chapterCount": 5,
-    "estimatedMinutes": 40,
-    "icon": "⏳",
-    "coverImage": "/book-covers/make-time.svg",
-    "difficulty": "Medium",
-    "synopsis": "A practical guide to reclaiming attention day by day through a clear Highlight, better focus defenses, stronger energy, and a lightweight reflection loop."
-  },
-  {
-    "id": "never-split-the-difference",
-    "title": "Never Split the Difference: Negotiating as if Your Life Depended on It",
-    "author": "Chris Voss, Tahl Raz",
-    "categories": [
-      "Negotiation",
-      "Communication",
-      "Business",
-      "Psychology"
-    ],
-    "category": "Negotiation",
-    "tags": [
-      "negotiation",
-      "tactical-empathy",
-      "communication",
-      "bargaining",
-      "conflict",
-      "listening"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 60,
-    "icon": "🤝",
-    "coverImage": "/book-covers/never-split-the-difference.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Chris Voss's ten chapters on tactical empathy, calibrated questions, mirroring, labeling, bargaining, and reading the hidden leverage inside high-stakes negotiation."
-  },
-  {
-    "id": "peak",
-    "title": "Peak",
-    "author": "Anders Ericsson, Robert Pool",
-    "categories": [
-      "Psychology",
-      "Self-Help",
-      "Productivity",
-      "Learning"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "deliberate-practice",
-      "expert-performance",
-      "skill-building",
-      "feedback-loops",
-      "mental-representations"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 96,
-    "icon": "🏔️",
-    "coverImage": "/book-covers/peak.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Anders Ericsson and Robert Pool's nine chapters on deliberate practice, adaptation, mental representations, coaching, and the conditions that build expertise."
-  },
-  {
-    "id": "pitch-anything",
-    "title": "Pitch-Anything",
-    "author": "Oren Klaff",
-    "categories": [
-      "business",
-      "communication",
-      "leadership"
-    ],
-    "category": "business",
-    "tags": [
-      "pitching",
-      "sales",
-      "fundraising",
-      "persuasion",
-      "presentations",
-      "negotiation"
-    ],
-    "chapterCount": 11,
-    "estimatedMinutes": 76,
-    "icon": "🎤",
-    "coverImage": "/book-covers/pitch-anything.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Oren Klaff's eleven chapters on frame control, attention, story, intrigue, prizing, hookpoints, and turning high-stakes pitches into repeatable room command."
-  },
-  {
-    "id": "playing-to-win",
-    "title": "Playing to Win",
-    "author": "A.G. Lafley, Roger L. Martin",
-    "categories": [
-      "Business",
-      "Strategy",
-      "Management",
-      "Decision Making"
-    ],
-    "category": "Strategy",
-    "tags": [
-      "strategy",
-      "competitive-advantage",
-      "management-systems",
-      "choice-cascade",
-      "where-to-play",
-      "how-to-win"
-    ],
-    "chapterCount": 8,
-    "estimatedMinutes": 112,
-    "icon": "♟️",
-    "coverImage": "/book-covers/playing-to-win.svg",
-    "difficulty": "Hard",
-    "synopsis": "A practical guide to strategy as integrated choice: defining a winning aspiration, choosing where to play, deciding how to win, building capabilities, and aligning management systems around the game you mean to win."
-  },
-  {
-    "id": "pre-suasion",
-    "title": "Pre-Suasion",
-    "author": "Robert Cialdini",
-    "categories": [
-      "Psychology",
-      "Communication",
-      "Self-Help",
-      "Leadership"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "persuasion",
-      "attention",
-      "influence",
-      "ethics",
-      "priming",
-      "unity"
-    ],
-    "chapterCount": 14,
-    "estimatedMinutes": 168,
-    "icon": "🧲",
-    "coverImage": "/book-covers/pre-suasion.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Robert Cialdini's fourteen chapters on frontloaded attention, association, unity, ethical screening, and the aftereffects that determine whether influence actually lasts."
-  },
-  {
-    "id": "predictably-irrational",
-    "title": "Predictably Irrational",
-    "author": "Dan Ariely",
-    "categories": [
-      "Psychology",
-      "Behavioral Economics",
-      "Decision Making",
-      "Self-Help"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "biases",
-      "pricing",
-      "choice-design",
-      "self-control",
-      "dishonesty",
-      "social-influence"
-    ],
-    "chapterCount": 13,
-    "estimatedMinutes": 156,
-    "icon": "🧪",
-    "coverImage": "/book-covers/predictably-irrational.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Dan Ariely's thirteen chapters on relativity, anchoring, zero price, norms, expectations, dishonesty, and practical design fixes for predictable decision errors."
-  },
-  {
-    "id": "so-good-they-cant-ignore-you",
-    "title": "So Good They Can't Ignore You: Why Skills Trump Passion in the Quest for Work You Love",
-    "author": "Cal Newport",
-    "categories": [
-      "Careers",
-      "Self-Help",
-      "Productivity"
-    ],
-    "category": "Careers",
-    "tags": [
-      "career-capital",
-      "craftsmanship",
-      "control",
-      "mission",
-      "career-change",
-      "work"
-    ],
-    "chapterCount": 16,
-    "estimatedMinutes": 192,
-    "icon": "🛠️",
-    "coverImage": "/book-covers/so-good-they-cant-ignore-you.svg",
-    "difficulty": "Medium",
-    "synopsis": "A practical reading of the passion hypothesis, craftsman mindset, career capital, control, and mission as a sequenced path to work that becomes compelling over time."
-  },
-  {
-    "id": "super-thinking",
-    "title": "Super Thinking",
-    "author": "Gabriel Weinberg; Lauren McCann",
-    "categories": [
-      "Decision Making",
-      "Psychology",
-      "Self-Help",
-      "Productivity"
-    ],
-    "category": "Decision Making",
-    "tags": [
-      "mental-models",
-      "decision-making",
-      "systems-thinking",
-      "statistics",
-      "conflict"
-    ],
-    "chapterCount": 7,
-    "estimatedMinutes": 55,
-    "icon": "🧠",
-    "coverImage": "/book-covers/super-thinking.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of mental models for clearer judgment: reducing avoidable error, tracing unintended consequences, protecting future time, reading systems, and updating decisions with sharper feedback."
-  },
-  {
-    "id": "superforecasting",
-    "title": "Superforecasting: The Art and Science of Prediction",
-    "author": "Philip E. Tetlock, Dan Gardner",
-    "categories": [
-      "Psychology",
-      "Decision Making",
-      "Business",
-      "Leadership"
-    ],
-    "category": "Decision Making",
-    "tags": [
-      "forecasting",
-      "prediction",
-      "probability",
-      "calibration",
-      "judgment",
-      "decision-making",
-      "uncertainty",
-      "scorekeeping"
-    ],
-    "chapterCount": 12,
-    "estimatedMinutes": 144,
-    "icon": "🔮",
-    "coverImage": "/book-covers/superforecasting.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Philip E. Tetlock and Dan Gardner's twelve chapters on probabilistic judgment, scorekeeping, revision, team forecasting, and building better institutions for thinking about the future."
-  },
-  {
-    "id": "talk-like-ted",
-    "title": "Talk Like TED: The 9 Public-Speaking Secrets of the World's Top Minds",
-    "author": "Carmine Gallo",
-    "categories": [
-      "Business Communication",
-      "Public Speaking"
-    ],
-    "category": "Business Communication",
-    "tags": [],
-    "chapterCount": 9,
-    "estimatedMinutes": 103,
-    "icon": "🎤",
-    "coverImage": "/book-covers/talk-like-ted.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Carmine Gallo's nine public-speaking chapters on passion, story, delivery, novelty, memorable moments, warmth, compression, vividness, and rehearsal under real audience pressure."
-  },
-  {
-    "id": "the-33-strategies-of-war",
-    "title": "The 33 Strategies of War",
-    "author": "Robert Greene",
-    "categories": [
-      "Psychology",
-      "Business",
-      "Self-Help"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "strategy",
-      "leadership",
-      "conflict",
-      "negotiation",
-      "power"
-    ],
-    "chapterCount": 33,
-    "estimatedMinutes": 166,
-    "icon": "⚔️",
-    "coverImage": "/book-covers/the-33-strategies-of-war.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Robert Greene's thirty-three strategy chapters on polarity, maneuver, escalation, moral positioning, psychological pressure, and the discipline of knowing when not to treat life like a battlefield."
-  },
-  {
-    "id": "the-almanack-of-naval-ravikant",
-    "title": "The Almanack of Naval Ravikant",
-    "author": "Eric Jorgenson",
-    "categories": [
-      "Business",
-      "Investing",
-      "Philosophy",
-      "Self-Development"
-    ],
-    "category": "Business",
-    "tags": [
-      "wealth",
-      "leverage",
-      "specific-knowledge",
-      "judgment",
-      "ownership",
-      "reputation"
-    ],
-    "chapterCount": 6,
-    "estimatedMinutes": 84,
-    "icon": "🧭",
-    "coverImage": "/book-covers/the-almanack-of-naval-ravikant.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Naval Ravikant's six-part guide to wealth, judgment, happiness, self-governance, philosophy, and the reading life behind those ideas."
-  },
-  {
-    "id": "the-art-of-war",
-    "title": "The Art of War",
-    "author": "Sunzi",
-    "categories": [
-      "Military Strategy",
-      "Philosophy",
-      "Leadership",
-      "Classics"
-    ],
-    "category": "Military Strategy",
-    "tags": [
-      "strategy",
-      "warfare",
-      "deception",
-      "leadership",
-      "intelligence",
-      "tactics",
-      "ancient-china",
-      "classics",
-      "sun-tzu"
-    ],
-    "chapterCount": 13,
-    "estimatedMinutes": 117,
-    "icon": "⚔️",
-    "coverImage": "/book-covers/the-art-of-war.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Sun Tzu's thirteen chapters on strategy, deception, terrain, intelligence, and the conditions that produce victory before battle begins."
-  },
-  {
-    "id": "the-black-swan",
-    "title": "The Black Swan",
-    "author": "Nassim N. Taleb",
-    "categories": [
-      "risk",
-      "probability",
-      "decision-making",
-      "epistemology"
-    ],
-    "category": "risk",
-    "tags": [
-      "uncertainty",
-      "black swan",
-      "narrative fallacy",
-      "silent evidence",
-      "extremistan"
-    ],
-    "chapterCount": 19,
-    "estimatedMinutes": 38,
-    "icon": "🦢",
-    "coverImage": "/book-covers/the-black-swan.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Taleb's nineteen chapters on rare events, narrative error, silent evidence, extremistan, and the practical stance of limiting downside while staying open to upside."
-  },
-  {
-    "id": "the-charisma-myth",
-    "title": "The Charisma Myth",
-    "author": "Olivia Fox Cabane",
-    "categories": [
-      "communication",
-      "leadership",
-      "self-development"
-    ],
-    "category": "communication",
-    "tags": [],
-    "chapterCount": 13,
-    "estimatedMinutes": 81,
-    "icon": "✨",
-    "coverImage": "/book-covers/the-charisma-myth.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Olivia Fox Cabane's thirteen chapters on presence, power, warmth, first impressions, conversation, body language, digital charisma, and carrying signal under pressure."
-  },
-  {
-    "id": "the-checklist-manifesto",
-    "title": "The Checklist Manifesto: How to Get Things Right",
-    "author": "Atul Gawande",
-    "categories": [
-      "Productivity",
-      "Execution",
-      "Self Management"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "focus",
-      "planning",
-      "systems",
-      "workflow",
-      "accountability"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 45,
-    "icon": "✅",
-    "coverImage": "/book-covers/the-checklist-manifesto.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Atul Gawande's nine chapters on complexity, omission, team pause points, disciplined checklists, resistance, and carrying structured safeguards into other high-stakes fields."
-  },
-  {
-    "id": "the-first-20-hours",
-    "title": "The First 20 Hours: How to Learn Anything... Fast!",
-    "author": "Josh Kaufman",
-    "categories": [
-      "Learning",
-      "Skill Acquisition",
-      "Personal Development",
-      "Productivity"
-    ],
-    "category": "Learning",
-    "tags": [
-      "rapid skill acquisition",
-      "deliberate practice",
-      "self-directed learning",
-      "beginner-friendly",
-      "practice design",
-      "habit change",
-      "applied learning"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 71,
-    "icon": "⚡",
-    "coverImage": "/book-covers/the-first-20-hours.svg",
-    "difficulty": "Medium",
-    "synopsis": "A practical guide to rapid skill acquisition: lowering the barrier to starting, deconstructing a skill, designing early practice, and getting to usable performance in the first twenty hours."
-  },
-  {
-    "id": "the-great-mental-models-vol-1",
-    "title": "The Great Mental Models, Volume 1: General Thinking Concepts",
-    "author": "Shane Parrish",
-    "categories": [
-      "Philosophy"
-    ],
-    "category": "Philosophy",
-    "tags": [
-      "mental-models",
-      "decision-making",
-      "judgment"
-    ],
-    "chapterCount": 12,
-    "estimatedMinutes": 311,
-    "icon": "🧩",
-    "coverImage": "/book-covers/the-great-mental-models-v-1.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of core mental models: abstraction and reality, circles of competence, first principles, second-order effects, probabilistic thinking, inversion, and the disciplined limits of judgment."
-  },
-  {
-    "id": "the-hard-thing-about-hard-things",
-    "title": "The Hard Thing About Hard Things",
-    "author": "Ben Horowitz",
-    "categories": [
-      "Entrepreneurship",
-      "Management",
-      "Leadership",
-      "Startups"
-    ],
-    "category": "Entrepreneurship",
-    "tags": [
-      "startup",
-      "ceo",
-      "management",
-      "leadership",
-      "crisis",
-      "culture",
-      "entrepreneurship"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 104,
-    "icon": "🏢",
-    "coverImage": "/book-covers/the-hard-thing-about-hard-things.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Ben Horowitz's ten chapters on CEO struggle, layoffs, executive hiring, wartime leadership, culture, and building through crisis."
-  },
-  {
-    "id": "the-innovators-dilemma",
-    "title": "The Innovator's Dilemma: When New Technologies Cause Great Firms to Fail",
-    "author": "Clayton M. Christensen",
-    "categories": [
-      "Strategy",
-      "Business",
-      "Innovation"
-    ],
-    "category": "Strategy",
-    "tags": [],
-    "chapterCount": 11,
-    "estimatedMinutes": 89,
-    "icon": "⚙️",
-    "coverImage": "/book-covers/the-innovators-dilemma.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Clayton Christensen's eleven chapters on disruptive innovation, value networks, organizational fit, market discovery, capability limits, and the dilemmas that make strong incumbents fail rationally."
-  },
-  {
-    "id": "the-laws-of-human-nature",
-    "title": "The Laws of Human Nature",
-    "author": "Robert Greene",
-    "categories": [
-      "Psychology",
-      "Self-Development"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "human-nature",
-      "psychology",
-      "self-awareness",
-      "social-dynamics",
-      "power"
-    ],
-    "chapterCount": 19,
-    "estimatedMinutes": 581,
-    "icon": "🧠",
-    "coverImage": "/book-covers/laws-of-human-nature.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Robert Greene's nineteen chapters on irrationality, narcissism, role-playing, envy, conformity, aggression, historical mood, and mortality across everyday human behavior."
-  },
-  {
-    "id": "the-lean-startup",
-    "title": "The Lean Startup",
-    "author": "Eric Ries",
-    "categories": [
-      "Entrepreneurship",
-      "Product",
-      "Innovation",
-      "Startups"
-    ],
-    "category": "Entrepreneurship",
-    "tags": [
-      "startup",
-      "lean startup",
-      "validated learning",
-      "product",
-      "innovation"
-    ],
-    "chapterCount": 14,
-    "estimatedMinutes": 96,
-    "icon": "🚀",
-    "coverImage": "/book-covers/the-lean-startup.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of validated learning, MVPs, innovation accounting, pivots, growth engines, adaptive organizations, and anti-waste management under uncertainty."
-  },
-  {
-    "id": "the-like-switch",
-    "title": "The Like Switch",
-    "author": "Jack Schafer, Marvin Karlins",
-    "categories": [
-      "Psychology",
-      "Interpersonal Relations",
-      "Body Language",
-      "Self-Help"
-    ],
-    "category": "Psychology",
-    "tags": [],
-    "chapterCount": 8,
-    "estimatedMinutes": 64,
-    "icon": "🕵️",
-    "coverImage": "/book-covers/the-like-switch.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Jack Schafer and Marvin Karlins's eight chapters on first impressions, rapport, attraction, conversation, closeness, maintenance, and the promise and peril of trust."
-  },
-  {
-    "id": "the-one-thing",
-    "title": "The One Thing",
-    "author": "Gary Keller, Jay Papasan",
-    "categories": [
-      "productivity",
-      "business"
-    ],
-    "category": "productivity",
-    "tags": [],
-    "chapterCount": 18,
-    "estimatedMinutes": 162,
-    "icon": "🎯",
-    "coverImage": "/book-covers/the-one-thing.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Gary Keller and Jay Papasan's eighteen chapters on leverage, priority, sequencing, and giving your most important work first claim on time and attention."
-  },
-  {
-    "id": "the-outsiders",
-    "title": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
-    "author": "William N. Thorndike Jr.",
-    "categories": [
-      "business",
-      "leadership",
-      "investing",
-      "management"
-    ],
-    "category": "business",
-    "tags": [
-      "capital allocation",
-      "ceos",
-      "shareholder returns",
-      "decentralization",
-      "conglomerates",
-      "value creation"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 90,
-    "icon": "📈",
-    "coverImage": "/book-covers/the-outsiders.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Thorndike's nine outsider CEO chapters on capital allocation, decentralization, disciplined restraint, and the scorecards that drove exceptional long-term returns."
-  },
-  {
-    "id": "the-power-of-habit",
-    "title": "The Power of Habit",
-    "author": "Charles Duhigg",
-    "categories": [
-      "Psychology",
-      "Productivity",
-      "Leadership"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "habits",
-      "behavior-change",
-      "willpower",
-      "organizations",
-      "social-change",
-      "decision-making"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 106,
-    "icon": "🧭",
-    "coverImage": "/book-covers/the-power-of-habit.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of cues, cravings, willpower, organizational routines, social movements, and the question of responsibility inside automatic behavior."
-  },
-  {
-    "id": "the-prince",
-    "title": "The Prince",
-    "author": "Niccolo Machiavelli",
-    "categories": [
-      "Political Philosophy",
-      "Leadership",
-      "Strategy"
-    ],
-    "category": "Political Philosophy",
-    "tags": [
-      "statecraft",
-      "power",
-      "leadership",
-      "politics",
-      "war",
-      "governance"
-    ],
-    "chapterCount": 26,
-    "estimatedMinutes": 211,
-    "icon": "👑",
-    "coverImage": "/book-covers/the-prince.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of political founding, power, arms, fortune, reputation, and statecraft across Machiavelli's twenty-six chapters."
-  },
-  {
-    "id": "the-psychology-of-money",
-    "title": "The Psychology of Money",
-    "author": "Morgan Housel",
-    "categories": [
-      "Finance",
-      "Investing",
-      "Behavioral Economics"
-    ],
-    "category": "Finance",
-    "tags": [],
-    "chapterCount": 22,
-    "estimatedMinutes": 154,
-    "icon": "💸",
-    "coverImage": "/book-covers/the-psychology-of-money.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Morgan Housel's twenty-two chapters on luck, risk, enoughness, compounding, saving, freedom, pessimism, and the historical forces shaping consumer expectations."
-  },
-  {
-    "id": "the-war-of-art",
-    "title": "The War of Art",
-    "author": "Steven Pressfield",
-    "categories": [
-      "Self-Help",
-      "Creativity",
-      "Writing"
-    ],
-    "category": "Self-Help",
-    "tags": [],
-    "chapterCount": 3,
-    "estimatedMinutes": 15,
-    "icon": "🎨",
-    "coverImage": "/book-covers/the-war-of-art.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Steven Pressfield's three-part argument about Resistance, turning pro, and serving the work as something larger than ego."
-  },
-  {
-    "id": "thinking-in-bets",
-    "title": "Thinking in Bets",
-    "author": "Annie Duke",
-    "categories": [
-      "Decision Making",
-      "Psychology",
-      "Risk"
-    ],
-    "category": "Decision Making",
-    "tags": [
-      "probabilistic-thinking",
-      "uncertainty",
-      "decision-quality",
-      "resulting",
-      "calibration",
-      "truth-seeking",
-      "dissent",
-      "mental-time-travel"
-    ],
-    "chapterCount": 7,
-    "estimatedMinutes": 55,
-    "icon": "🎲",
-    "coverImage": "/book-covers/thinking-in-bets.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Annie Duke's seven chapters on resulting, probabilistic thinking, calibration, truth-seeking disagreement, and making better decisions when certainty is unavailable."
-  },
-  {
-    "id": "thinking-fast-and-slow",
-    "title": "Thinking, Fast and Slow",
-    "author": "Daniel Kahneman",
-    "categories": [
-      "Psychology",
-      "Behavioral Economics",
-      "Decision Making",
-      "Cognitive Science"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "judgment",
-      "bias",
-      "heuristics",
-      "overconfidence",
-      "prospect-theory",
-      "risk",
-      "decision-making",
-      "well-being"
-    ],
-    "chapterCount": 38,
-    "estimatedMinutes": 1110,
-    "icon": "🧠",
-    "coverImage": "/book-covers/thinking-fast-and-slow.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Kahneman's thirty-eight chapters on System 1 and System 2, heuristics, bias, prospect theory, overconfidence, and the limits of judgment under uncertainty."
-  },
-  {
-    "id": "tiny-habits",
-    "title": "Tiny Habits",
-    "author": "BJ Fogg",
-    "categories": [
-      "Psychology",
-      "Behavior Change",
-      "Self-Help"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "habits",
-      "behavior-design",
-      "motivation",
-      "prompts",
-      "celebration",
-      "consistency"
-    ],
-    "chapterCount": 8,
-    "estimatedMinutes": 83,
-    "icon": "🌱",
-    "coverImage": "/book-covers/tiny-habits.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of BJ Fogg's behavior design method: matching motivation, making habits tiny, anchoring prompts, using celebration, untangling bad loops, and growing change through shared support."
-  },
-  {
-    "id": "ultralearning",
-    "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
-    "author": "Scott H. Young",
-    "categories": [
-      "Education",
-      "Learning",
-      "Self-Improvement",
-      "Career Development"
-    ],
-    "category": "Education",
-    "tags": [
-      "ultralearning",
-      "self-directed learning",
-      "skill acquisition",
-      "deliberate practice",
-      "career adaptation"
-    ],
-    "chapterCount": 14,
-    "estimatedMinutes": 126,
-    "icon": "📚",
-    "coverImage": "/book-covers/ultralearning.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Scott H. Young's fourteen chapters on self-directed skill acquisition, directness, feedback, retention, experimentation, and designing learning projects that survive real proof."
-  },
-  {
-    "id": "what-every-body-is-saying",
-    "title": "What Every BODY is Saying",
-    "author": "Joe Navarro",
-    "categories": [
-      "Psychology",
-      "Communication",
-      "Self-Help",
-      "Applied Psychology"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "body-language",
-      "nonverbal-communication",
-      "observation",
-      "social-skills",
-      "behavior"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 84,
-    "icon": "👁️",
-    "coverImage": "/book-covers/what-every-body-is-saying.svg",
-    "difficulty": "Medium",
-    "synopsis": "A practical guide to reading nonverbal behavior with more discipline: noticing comfort, discomfort, confidence, stress, and withdrawal without turning one cue into false certainty."
-  },
-  {
-    "id": "how-to-win-friends-and-influence-people",
-    "title": "How to Win Friends and Influence People",
-    "author": "Dale Carnegie",
-    "categories": [
-      "Psychology",
-      "Self-Help",
-      "Communication",
-      "Leadership"
-    ],
-    "category": "Communication",
-    "tags": [
-      "persuasion",
-      "social-skills",
-      "listening",
-      "influence",
-      "conflict",
-      "criticism"
-    ],
-    "chapterCount": 25,
-    "estimatedMinutes": 312,
-    "icon": "🤝",
-    "coverImage": "/book-covers/how-to-win-friends-and-influence-people.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Dale Carnegie's twenty-five chapters on handling people, making others feel valued, winning people to your way of thinking, and leading without arousing resentment."
-  },
-  {
-    "id": "games-people-play",
-    "title": "Games People Play",
-    "author": "Eric Berne",
-    "categories": [
-      "Psychology",
-      "Self-Help",
-      "Relationships",
-      "Communication"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "transactional-analysis",
-      "games",
-      "ego-states",
-      "self-awareness",
-      "communication",
-      "relationships",
-      "psychology"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 123,
-    "icon": "🎭",
-    "coverImage": "/book-covers/games-people-play.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Eric Berne's ten chapters on transactional analysis, ego states, hidden social scripts, repeated payoffs, and contact beyond familiar games."
-  },
-  {
-    "id": "mistakes-were-made-but-not-by-me",
-    "title": "Mistakes Were Made (but Not by Me)",
-    "author": "Carol Tavris; Elliot Aronson",
-    "categories": [
-      "Psychology",
-      "Self-Help",
-      "Relationships",
-      "Communication"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "self-justification",
-      "cognitive-dissonance",
-      "accountability",
-      "bias",
-      "memory",
-      "conflict",
-      "apology"
-    ],
-    "chapterCount": 9,
-    "estimatedMinutes": 113,
-    "icon": "🪞",
-    "coverImage": "/book-covers/mistakes-were-made-but-not-by-me.svg",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of self-justification, cognitive dissonance, bias, memory, blame, conflict, and the hard practice of owning mistakes before they harden into identity."
   },
   {
     "id": "blue-ocean-strategy",
@@ -1511,7 +72,7 @@
       "Innovation",
       "Management"
     ],
-    "category": "Strategy",
+    "category": "Business",
     "tags": [
       "blue-ocean-strategy",
       "value-innovation",
@@ -1528,28 +89,490 @@
     "synopsis": "A modern reading of value innovation, strategy canvases, noncustomers, fair process, renewal, and the traps that pull market creation back into rivalry."
   },
   {
-    "id": "antifragile",
-    "title": "Antifragile: Things That Gain from Disorder",
-    "author": "Nassim Nicholas Taleb",
+    "id": "built-to-last",
+    "title": "Built to Last: Successful Habits of Visionary Companies",
+    "author": "Jim Collins; Jerry I. Porras",
     "categories": [
-      "Risk",
-      "Decision Making",
-      "Philosophy"
+      "Business",
+      "Management",
+      "Strategy"
     ],
-    "category": "Risk",
+    "category": "Business",
     "tags": [
-      "antifragility",
-      "risk",
-      "asymmetry",
-      "optionality",
-      "convexity"
+      "institution-building",
+      "leadership",
+      "organizational-design"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "🏛️",
+    "coverImage": "/book-covers/built-to-last.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Jim Collins and Jerry I. Porras's ten chapters on clock building, core ideology, experimentation, internal development, and the habits that help institutions outlast founders and cycles."
+  },
+  {
+    "id": "you-cant-hurt-me",
+    "title": "Can't Hurt Me: Master Your Mind and Defy the Odds",
+    "author": "David Goggins",
+    "categories": [
+      "Memoir",
+      "Self-Help",
+      "Mental Toughness",
+      "Sports"
+    ],
+    "category": "Memoir",
+    "tags": [
+      "resilience",
+      "self-discipline",
+      "accountability",
+      "endurance",
+      "military training",
+      "trauma",
+      "identity"
+    ],
+    "chapterCount": 11,
+    "estimatedMinutes": 132,
+    "icon": "🏃",
+    "coverImage": "/book-covers/you-can't-hurt-me.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of David Goggins's eleven chapters on abuse, accountability, suffering, discipline, failure, recovery, and widening strength beyond old verdicts."
+  },
+  {
+    "id": "clear-thinking",
+    "title": "Clear Thinking",
+    "author": "Shane Parrish",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 26,
+    "estimatedMinutes": 312,
+    "icon": "🧭",
+    "coverImage": "/book-covers/clear-thinking.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of noticing default reactions, building safeguards, defining problems clearly, evaluating options, and learning from decisions."
+  },
+  {
+    "id": "competing-against-luck",
+    "title": "Competing Against Luck",
+    "author": "Clayton M. Christensen",
+    "categories": [],
+    "category": "General",
+    "tags": [],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "🧲",
+    "coverImage": "/book-covers/competing-against-luck.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Clayton Christensen and coauthors' ten chapters on jobs theory, customer progress, hidden competition, causal demand, and building innovation around what customers are really trying to get done."
+  },
+  {
+    "id": "crucial-conversations",
+    "title": "Crucial Conversations: Tools for Talking When Stakes Are High",
+    "author": "Joseph Grenny, Kerry Patterson, Ron McMillan, Al Switzler, Emily Gregory",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "💬",
+    "coverImage": "/book-covers/crucial-conversations.svg",
+    "difficulty": "Medium",
+    "synopsis": "A practical guide to high-stakes dialogue: spotting crucial conversations early, avoiding silence and force, restoring safety, and turning hard talks into real action."
+  },
+  {
+    "id": "deep-work",
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 91,
+    "icon": "🧠",
+    "coverImage": "/book-covers/deep-work.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of focus, distraction, scheduling, boredom training, tool selection, and shallow-work control for people trying to build a deeper working life."
+  },
+  {
+    "id": "difficult-conversations",
+    "title": "Difficult Conversations: How to Discuss What Matters Most",
+    "author": "Douglas Stone, Bruce Patton, Sheila Heen",
+    "categories": [
+      "Communication",
+      "Self-Help",
+      "Psychology",
+      "Negotiation"
+    ],
+    "category": "Communication",
+    "tags": [
+      "dialogue",
+      "conflict-resolution",
+      "feedback",
+      "feelings",
+      "identity",
+      "listening",
+      "negotiation",
+      "harvard-negotiation-project",
+      "relationships",
+      "workplace-communication"
+    ],
+    "chapterCount": 12,
+    "estimatedMinutes": 144,
+    "icon": "🗣️",
+    "coverImage": "/book-covers/difficult-conversations.svg",
+    "difficulty": "Medium",
+    "synopsis": "A practical guide to the hidden structure inside hard conversations: what happened, feelings, identity, listening, expression, and the move into joint problem-solving."
+  },
+  {
+    "id": "essentialism",
+    "title": "Essentialism",
+    "author": "Greg McKeown",
+    "categories": [
+      "Productivity",
+      "Self Improvement",
+      "Focus"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "essentialism",
+      "focus",
+      "prioritization",
+      "decision making",
+      "productivity"
+    ],
+    "chapterCount": 20,
+    "estimatedMinutes": 241,
+    "icon": "🎯",
+    "coverImage": "/book-covers/essentialism.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Greg McKeown's framework for choosing the vital few, cutting the trivial many, and building a life around less but better."
+  },
+  {
+    "id": "execution",
+    "title": "Execution: The Discipline of Getting Things Done",
+    "author": "Larry Bossidy, Ram Charan, Charles Burck",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "⚙️",
+    "coverImage": "/book-covers/execution.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of the discipline that links strategy to results through leadership, cultural realism, people processes, operating cadence, and follow-through."
+  },
+  {
+    "id": "extreme-ownership",
+    "title": "Extreme Ownership",
+    "author": "Jocko Willink, Leif Babin",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 13,
+    "estimatedMinutes": 156,
+    "icon": "🪖",
+    "coverImage": "/book-covers/extreme-ownership.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Jocko Willink and Leif Babin's thirteen chapters on ownership, trust, planning, decentralized command, disciplined execution, and leadership under pressure."
+  },
+  {
+    "id": "games-people-play",
+    "title": "Games People Play",
+    "author": "Eric Berne",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "🎭",
+    "coverImage": "/book-covers/games-people-play.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Eric Berne's ten chapters on transactional analysis, ego states, hidden social scripts, repeated payoffs, and contact beyond familiar games."
+  },
+  {
+    "id": "getting-things-done",
+    "title": "Getting Things Done",
+    "author": "David Allen",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 13,
+    "estimatedMinutes": 302,
+    "icon": "✅",
+    "coverImage": "/book-covers/getting-things-done.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "good-to-great",
+    "title": "Good to Great",
+    "author": "Jim Collins",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 108,
+    "icon": "📈",
+    "coverImage": "/book-covers/good-to-great.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Jim Collins's nine chapters on disciplined leadership, strategic clarity, cumulative momentum, and the difference between a breakthrough and an enduring institution."
+  },
+  {
+    "id": "how-to-talk-to-anyone",
+    "title": "How to Talk to Anyone: 92 Little Tricks for Big Success in Relationships",
+    "author": "Leil Lowndes",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 141,
+    "icon": "🗣️",
+    "coverImage": "/book-covers/how-to-talk-to-anyone.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Leil Lowndes's nine-part guide to first impressions, conversation flow, rapport, social tact, and practical relationship-building under real-world pressure."
+  },
+  {
+    "id": "how-to-win-friends-and-influence-people",
+    "title": "How to Win Friends and Influence People",
+    "author": "Dale Carnegie",
+    "categories": [
+      "Psychology",
+      "Self-Help",
+      "Communication",
+      "Leadership"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "persuasion",
+      "social-skills",
+      "listening",
+      "influence",
+      "conflict",
+      "criticism"
     ],
     "chapterCount": 25,
-    "estimatedMinutes": 350,
-    "icon": "🧬",
-    "coverImage": "/book-covers/antifragile.svg",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of hidden fragility, optionality, nonlinear harm, time-tested systems, medical restraint, ethics, and designs that gain from bounded disorder."
+    "estimatedMinutes": 312,
+    "icon": "🤝",
+    "coverImage": "/book-covers/how-to-win-friends-and-influence-people.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Dale Carnegie's twenty-five chapters on handling people, making others feel valued, winning people to your way of thinking, and leading without arousing resentment."
+  },
+  {
+    "id": "indistractable",
+    "title": "Indistractable",
+    "author": "Nir Eyal",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 30,
+    "estimatedMinutes": 360,
+    "icon": "🎯",
+    "coverImage": "/book-covers/indistractable.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Nir Eyal's thirty chapters on internal triggers, timeboxing, external triggers, pacts, workplace culture, parenting, and relational attention."
+  },
+  {
+    "id": "influence",
+    "title": "Influence, New and Expanded: The Psychology of Persuasion",
+    "author": "Robert B. Cialdini, PhD",
+    "categories": [
+      "Psychology",
+      "Business",
+      "Self-Help"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "persuasion",
+      "influence",
+      "social-psychology",
+      "decision-making"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 118,
+    "icon": "🧠",
+    "coverImage": "/book-covers/influence.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Robert Cialdini's nine chapters on automatic judgment, reciprocity, liking, social proof, authority, scarcity, commitment, unity, and the cue stacks that shape consent."
+  },
+  {
+    "id": "leaders-eat-last",
+    "title": "Leaders Eat Last",
+    "author": "Simon Sinek",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 27,
+    "estimatedMinutes": 324,
+    "icon": "🛡️",
+    "coverImage": "/book-covers/leaders-eat-last.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Simon Sinek's twenty-seven chapters on trust, leadership, cortisol, culture, sacrifice, and building circles of safety inside groups."
+  },
+  {
+    "id": "limitless",
+    "title": "Limitless",
+    "author": "Jim Kwik",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 15,
+    "estimatedMinutes": 180,
+    "icon": "🧠",
+    "coverImage": "/book-covers/limitless.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Jim Kwik's fifteen chapters on mindset, motivation, methods, focus, memory, speed reading, and learning as a trainable system."
+  },
+  {
+    "id": "made-to-stick",
+    "title": "Made to Stick: Why Some Ideas Survive and Others Die",
+    "author": "Chip Heath, Dan Heath",
+    "categories": [
+      "Communication",
+      "Psychology",
+      "Business",
+      "Messaging"
+    ],
+    "category": "Communication",
+    "tags": [
+      "communication",
+      "messaging",
+      "persuasion",
+      "storytelling",
+      "decision-making",
+      "ideas"
+    ],
+    "chapterCount": 6,
+    "estimatedMinutes": 72,
+    "icon": "📣",
+    "coverImage": "/book-covers/made-to-stick.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of SUCCESs: simplicity, surprise, concreteness, credibility, emotion, and stories as practical design choices that help ideas survive and spread."
+  },
+  {
+    "id": "make-it-stick",
+    "title": "Make It Stick",
+    "author": "Peter C. Brown; Henry L. Roediger III; Mark A. McDaniel",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 8,
+    "estimatedMinutes": 96,
+    "icon": "📚",
+    "coverImage": "/book-covers/make-it-stick.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of retrieval, spacing, interleaving, desirable difficulty, calibration, and the conditions that make learning durable instead of merely fluent."
+  },
+  {
+    "id": "make-time",
+    "title": "Make Time",
+    "author": "Jake Knapp and John Zeratsky",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 5,
+    "estimatedMinutes": 40,
+    "icon": "⏳",
+    "coverImage": "/book-covers/make-time.svg",
+    "difficulty": "Medium",
+    "synopsis": "A practical guide to reclaiming attention day by day through a clear Highlight, better focus defenses, stronger energy, and a lightweight reflection loop."
   },
   {
     "id": "measure-what-matters",
@@ -1579,6 +602,195 @@
     "synopsis": "A modern reading of John Doerr's OKR system: choosing focused objectives, defining key results, aligning teams, tracking progress, stretching honestly, and using frequent conversations to improve."
   },
   {
+    "id": "mistakes-were-made-but-not-by-me",
+    "title": "Mistakes Were Made (but Not by Me)",
+    "author": "Carol Tavris; Elliot Aronson",
+    "categories": [
+      "Psychology",
+      "Self-Help",
+      "Relationships",
+      "Communication"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "self-justification",
+      "cognitive-dissonance",
+      "accountability",
+      "bias",
+      "memory",
+      "conflict",
+      "apology"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 108,
+    "icon": "🪞",
+    "coverImage": "/book-covers/mistakes-were-made-but-not-by-me.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of self-justification, cognitive dissonance, bias, memory, blame, conflict, and the hard practice of owning mistakes before they harden into identity."
+  },
+  {
+    "id": "never-split-the-difference",
+    "title": "Never Split the Difference: Negotiating as if Your Life Depended on It",
+    "author": "Chris Voss, Tahl Raz",
+    "categories": [
+      "Negotiation",
+      "Communication",
+      "Business",
+      "Psychology"
+    ],
+    "category": "Negotiation",
+    "tags": [
+      "negotiation",
+      "tactical-empathy",
+      "communication",
+      "bargaining",
+      "conflict",
+      "listening"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "🤝",
+    "coverImage": "/book-covers/never-split-the-difference.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Chris Voss's ten chapters on tactical empathy, calibrated questions, mirroring, labeling, bargaining, and reading the hidden leverage inside high-stakes negotiation."
+  },
+  {
+    "id": "peak",
+    "title": "Peak",
+    "author": "Anders Ericsson, Robert Pool",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 108,
+    "icon": "🏔️",
+    "coverImage": "/book-covers/peak.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Anders Ericsson and Robert Pool's nine chapters on deliberate practice, adaptation, mental representations, coaching, and the conditions that build expertise."
+  },
+  {
+    "id": "pitch-anything",
+    "title": "Pitch-Anything",
+    "author": "Oren Klaff",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 11,
+    "estimatedMinutes": 132,
+    "icon": "🎤",
+    "coverImage": "/book-covers/pitch-anything.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Oren Klaff's eleven chapters on frame control, attention, story, intrigue, prizing, hookpoints, and turning high-stakes pitches into repeatable room command."
+  },
+  {
+    "id": "playing-to-win",
+    "title": "Playing to Win",
+    "author": "A.G. Lafley and Roger L. Martin",
+    "categories": [
+      "Business",
+      "Strategy",
+      "Management",
+      "Decision Making"
+    ],
+    "category": "Business",
+    "tags": [
+      "strategy",
+      "competitive-advantage",
+      "management-systems",
+      "choice-cascade",
+      "where-to-play",
+      "how-to-win"
+    ],
+    "chapterCount": 8,
+    "estimatedMinutes": 96,
+    "icon": "♟️",
+    "coverImage": "/book-covers/playing-to-win.svg",
+    "difficulty": "Hard",
+    "synopsis": "A practical guide to strategy as integrated choice: defining a winning aspiration, choosing where to play, deciding how to win, building capabilities, and aligning management systems around the game you mean to win."
+  },
+  {
+    "id": "pre-suasion",
+    "title": "Pre-Suasion",
+    "author": "Robert Cialdini",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 14,
+    "estimatedMinutes": 168,
+    "icon": "🎯",
+    "coverImage": "/book-covers/pre-suasion.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Robert Cialdini's fourteen chapters on frontloaded attention, association, unity, ethical screening, and the aftereffects that determine whether influence actually lasts."
+  },
+  {
+    "id": "predictably-irrational",
+    "title": "Predictably Irrational",
+    "author": "Dan Ariely",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 13,
+    "estimatedMinutes": 156,
+    "icon": "🧪",
+    "coverImage": "/book-covers/predictably-irrational.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Dan Ariely's thirteen chapters on relativity, anchoring, zero price, norms, expectations, dishonesty, and practical design fixes for predictable decision errors."
+  },
+  {
+    "id": "rich-dad-poor-dad",
+    "title": "Rich Dad Poor Dad",
+    "author": "Robert T. Kiyosaki",
+    "categories": [
+      "Investing",
+      "Learning"
+    ],
+    "category": "Investing",
+    "tags": [
+      "money-as-emotional-leverage",
+      "asset-liability-literacy",
+      "asset-column-ownership",
+      "legal-structure-leverage",
+      "financial-creativity",
+      "skill-stack-apprenticeship",
+      "behavioral-wealth-blockers",
+      "financial-genius-activation"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 98,
+    "icon": "💰",
+    "coverImage": "/book-covers/rich-dad-poor-dad.jpg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of money-as-emotional-leverage, asset-liability-literacy, asset-column-ownership, legal-structure-leverage, and financial-creativity with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "seeking-wisdom",
     "title": "Seeking Wisdom: From Darwin to Munger",
     "author": "Peter Bevelin",
@@ -1598,10 +810,735 @@
       "temperament"
     ],
     "chapterCount": 6,
-    "estimatedMinutes": 64,
+    "estimatedMinutes": 72,
     "icon": "🧠",
     "coverImage": "/book-covers/seeking-wisdom.svg",
     "difficulty": "Medium",
     "synopsis": "A modern reading of Peter Bevelin's practical mental models for judgment: misjudgment patterns, incentives, probability, consequences, checklists, and temperament."
+  },
+  {
+    "id": "smarter-faster-better",
+    "title": "Smarter Faster Better",
+    "author": "Charles Duhigg",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 8,
+    "estimatedMinutes": 96,
+    "icon": "📊",
+    "coverImage": "/book-covers/smarter-faster-better.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Charles Duhigg's eight chapters on motivation, team dynamics, focus, goals, decision making, innovation, and turning raw information into usable judgment."
+  },
+  {
+    "id": "so-good-they-cant-ignore-you",
+    "title": "So Good They Can't Ignore You: Why Skills Trump Passion in the Quest for Work You Love",
+    "author": "Cal Newport",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 16,
+    "estimatedMinutes": 192,
+    "icon": "🛠️",
+    "coverImage": "/book-covers/so-good-they-cant-ignore-you.svg",
+    "difficulty": "Medium",
+    "synopsis": "A practical reading of the passion hypothesis, craftsman mindset, career capital, control, and mission as a sequenced path to work that becomes compelling over time."
+  },
+  {
+    "id": "stillness-is-the-key",
+    "title": "Stillness Is the Key",
+    "author": "Ryan Holiday",
+    "categories": [
+      "Psychology",
+      "Productivity",
+      "Philosophy"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "mental-stillness",
+      "presence",
+      "input-sovereignty",
+      "mental-clearing",
+      "deliberative-space",
+      "written-reflection",
+      "active-silence",
+      "practical-wisdom"
+    ],
+    "chapterCount": 32,
+    "estimatedMinutes": 337,
+    "icon": "✅",
+    "coverImage": "/book-covers/stillness-is-the-key.jpg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of mental-stillness, presence, input-sovereignty, mental-clearing, and deliberative-space with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "super-thinking",
+    "title": "Super Thinking",
+    "author": "Gabriel Weinberg; Lauren McCann",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 7,
+    "estimatedMinutes": 55,
+    "icon": "🧠",
+    "coverImage": "/book-covers/super-thinking.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of mental models for clearer judgment: reducing avoidable error, tracing unintended consequences, protecting future time, reading systems, and updating decisions with sharper feedback."
+  },
+  {
+    "id": "superforecasting",
+    "title": "Superforecasting",
+    "author": "Philip E. Tetlock",
+    "categories": [
+      "Decision-Making",
+      "Strategy"
+    ],
+    "category": "Decision-Making",
+    "tags": [
+      "forecasting",
+      "probability",
+      "thinking"
+    ],
+    "chapterCount": 12,
+    "estimatedMinutes": 144,
+    "icon": "🔮",
+    "coverImage": "/book-covers/superforecasting.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Philip E. Tetlock and Dan Gardner's twelve chapters on probabilistic judgment, scorekeeping, revision, team forecasting, and building better institutions for thinking about the future."
+  },
+  {
+    "id": "talk-like-ted",
+    "title": "Talk Like TED: The 9 Public-Speaking Secrets of the World's Top Minds",
+    "author": "Carmine Gallo",
+    "categories": [
+      "Business Communication",
+      "Public Speaking"
+    ],
+    "category": "Business Communication",
+    "tags": [
+      "public-speaking",
+      "presentations",
+      "communication"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 108,
+    "icon": "🎤",
+    "coverImage": "/book-covers/talk-like-ted.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Carmine Gallo's nine public-speaking chapters on passion, story, delivery, novelty, memorable moments, warmth, compression, vividness, and rehearsal under real audience pressure."
+  },
+  {
+    "id": "the-33-strategies-of-war",
+    "title": "The 33 Strategies of War",
+    "author": "Robert Greene",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 33,
+    "estimatedMinutes": 396,
+    "icon": "⚔️",
+    "coverImage": "/book-covers/the-33-strategies-of-war.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Robert Greene's thirty-three strategy chapters on polarity, maneuver, escalation, moral positioning, psychological pressure, and the discipline of knowing when not to treat life like a battlefield."
+  },
+  {
+    "id": "the-4-hour-workweek",
+    "title": "The 4-Hour Workweek",
+    "author": "Tim Ferriss",
+    "categories": [
+      "Decision Making",
+      "Business",
+      "Productivity"
+    ],
+    "category": "Decision Making",
+    "tags": [
+      "relative-wealth",
+      "productive-nonconformity",
+      "fear-setting",
+      "dreamlining",
+      "effectiveness-over-efficiency",
+      "selective-ignorance",
+      "interruption-control",
+      "delegation-literacy"
+    ],
+    "chapterCount": 17,
+    "estimatedMinutes": 177,
+    "icon": "🚨",
+    "coverImage": "/book-covers/the-4-hour-workweek.jpg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of relative-wealth, productive-nonconformity, fear-setting, dreamlining, and effectiveness-over-efficiency with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-almanack-of-naval-ravikant",
+    "title": "The Almanack of Naval Ravikant",
+    "author": "Eric Jorgenson",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 6,
+    "estimatedMinutes": 72,
+    "icon": "🧭",
+    "coverImage": "/book-covers/the-almanack-of-naval-ravikant.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Naval Ravikant's six-part guide to wealth, judgment, happiness, self-governance, philosophy, and the reading life behind those ideas."
+  },
+  {
+    "id": "the-art-of-war",
+    "title": "The Art of War",
+    "author": "Sunzi",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 13,
+    "estimatedMinutes": 156,
+    "icon": "⚔️",
+    "coverImage": "/book-covers/the-art-of-war.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Sun Tzu's thirteen chapters on strategy, deception, terrain, intelligence, and the conditions that produce victory before battle begins."
+  },
+  {
+    "id": "the-black-swan",
+    "title": "The Black Swan",
+    "author": "Nassim N. Taleb",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 19,
+    "estimatedMinutes": 228,
+    "icon": "🦢",
+    "coverImage": "/book-covers/the-black-swan.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Taleb's nineteen chapters on rare events, narrative error, silent evidence, extremistan, and the practical stance of limiting downside while staying open to upside."
+  },
+  {
+    "id": "the-charisma-myth",
+    "title": "The Charisma Myth",
+    "author": "Olivia Fox Cabane",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 13,
+    "estimatedMinutes": 156,
+    "icon": "✨",
+    "coverImage": "/book-covers/the-charisma-myth.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Olivia Fox Cabane's thirteen chapters on presence, power, warmth, first impressions, conversation, body language, digital charisma, and carrying signal under pressure."
+  },
+  {
+    "id": "the-checklist-manifesto",
+    "title": "The Checklist Manifesto: How to Get Things Right",
+    "author": "Atul Gawande",
+    "categories": [
+      "Productivity",
+      "Execution",
+      "Self Management"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "focus",
+      "planning",
+      "systems",
+      "workflow",
+      "accountability"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 108,
+    "icon": "✅",
+    "coverImage": "/book-covers/the-checklist-manifesto.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Atul Gawande's nine chapters on complexity, omission, team pause points, disciplined checklists, resistance, and carrying structured safeguards into other high-stakes fields."
+  },
+  {
+    "id": "the-first-20-hours",
+    "title": "The First 20 Hours: How to Learn Anything... Fast!",
+    "author": "Josh Kaufman",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 108,
+    "icon": "⚡",
+    "coverImage": "/book-covers/the-first-20-hours.svg",
+    "difficulty": "Medium",
+    "synopsis": "A practical guide to rapid skill acquisition: lowering the barrier to starting, deconstructing a skill, designing early practice, and getting to usable performance in the first twenty hours."
+  },
+  {
+    "id": "the-great-mental-models-vol-1",
+    "title": "The Great Mental Models, Volume 1: General Thinking Concepts",
+    "author": "Shane Parrish",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 12,
+    "estimatedMinutes": 144,
+    "icon": "🧩",
+    "coverImage": "/book-covers/the-great-mental-models-v-1.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of core mental models: abstraction and reality, circles of competence, first principles, second-order effects, probabilistic thinking, inversion, and the disciplined limits of judgment."
+  },
+  {
+    "id": "the-hard-thing-about-hard-things",
+    "title": "The Hard Thing About Hard Things",
+    "author": "Ben Horowitz",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "🏢",
+    "coverImage": "/book-covers/the-hard-thing-about-hard-things.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Ben Horowitz's ten chapters on CEO struggle, layoffs, executive hiring, wartime leadership, culture, and building through crisis."
+  },
+  {
+    "id": "the-innovators-dilemma",
+    "title": "The Innovator's Dilemma: When New Technologies Cause Great Firms to Fail",
+    "author": "Clayton M. Christensen",
+    "categories": [
+      "Business",
+      "Strategy",
+      "Innovation",
+      "Management"
+    ],
+    "category": "Business",
+    "tags": [
+      "disruption",
+      "disruptive-innovation",
+      "value-networks",
+      "incumbents",
+      "market-entry",
+      "organizational-fit"
+    ],
+    "chapterCount": 11,
+    "estimatedMinutes": 132,
+    "icon": "⚙️",
+    "coverImage": "/book-covers/the-innovators-dilemma.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Clayton Christensen's eleven chapters on disruptive innovation, value networks, organizational fit, market discovery, capability limits, and the dilemmas that make strong incumbents fail rationally."
+  },
+  {
+    "id": "the-laws-of-human-nature",
+    "title": "The Laws of Human Nature",
+    "author": "Robert Greene",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 19,
+    "estimatedMinutes": 228,
+    "icon": "🧠",
+    "coverImage": "/book-covers/laws-of-human-nature.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Robert Greene's nineteen chapters on irrationality, narcissism, role-playing, envy, conformity, aggression, historical mood, and mortality across everyday human behavior."
+  },
+  {
+    "id": "the-lean-startup",
+    "title": "The Lean Startup",
+    "author": "Eric Ries",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 14,
+    "estimatedMinutes": 168,
+    "icon": "🚀",
+    "coverImage": "/book-covers/the-lean-startup.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of validated learning, MVPs, innovation accounting, pivots, growth engines, adaptive organizations, and anti-waste management under uncertainty."
+  },
+  {
+    "id": "the-like-switch",
+    "title": "The Like Switch",
+    "author": "Jack Schafer, Marvin Karlins",
+    "categories": [
+      "Psychology",
+      "Interpersonal Relations",
+      "Body Language",
+      "Self-Help"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "likability",
+      "rapport",
+      "friendship",
+      "body language",
+      "trust",
+      "relationships"
+    ],
+    "chapterCount": 8,
+    "estimatedMinutes": 96,
+    "icon": "🕵️",
+    "coverImage": "/book-covers/the-like-switch.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Jack Schafer and Marvin Karlins's eight chapters on first impressions, rapport, attraction, conversation, closeness, maintenance, and the promise and peril of trust."
+  },
+  {
+    "id": "the-one-thing",
+    "title": "The One Thing",
+    "author": "Gary Keller, Jay Papasan",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 18,
+    "estimatedMinutes": 216,
+    "icon": "🎯",
+    "coverImage": "/book-covers/the-one-thing.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Gary Keller and Jay Papasan's eighteen chapters on leverage, priority, sequencing, and giving your most important work first claim on time and attention."
+  },
+  {
+    "id": "the-outsiders",
+    "title": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
+    "author": "William N. Thorndike Jr.",
+    "categories": [
+      "Business",
+      "Leadership",
+      "Investing",
+      "Management"
+    ],
+    "category": "Business",
+    "tags": [
+      "capital allocation",
+      "ceos",
+      "shareholder returns",
+      "decentralization",
+      "conglomerates",
+      "value creation"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 108,
+    "icon": "📈",
+    "coverImage": "/book-covers/the-outsiders.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Thorndike's nine outsider CEO chapters on capital allocation, decentralization, disciplined restraint, and the scorecards that drove exceptional long-term returns."
+  },
+  {
+    "id": "the-power-of-habit",
+    "title": "The Power of Habit",
+    "author": "Charles Duhigg",
+    "categories": [
+      "Psychology",
+      "Self Improvement",
+      "Business"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "habits",
+      "behavior change",
+      "habit formation",
+      "willpower",
+      "organizational habits"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 108,
+    "icon": "🧭",
+    "coverImage": "/book-covers/the-power-of-habit.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of cues, cravings, willpower, organizational routines, social movements, and the question of responsibility inside automatic behavior."
+  },
+  {
+    "id": "the-prince",
+    "title": "The Prince",
+    "author": "Niccolo Machiavelli",
+    "categories": [
+      "Classics",
+      "Political Philosophy",
+      "Leadership"
+    ],
+    "category": "Classics",
+    "tags": [
+      "statecraft",
+      "power",
+      "political realism",
+      "leadership",
+      "fortune"
+    ],
+    "chapterCount": 26,
+    "estimatedMinutes": 312,
+    "icon": "👑",
+    "coverImage": "/book-covers/the-prince.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of political founding, power, arms, fortune, reputation, and statecraft across Machiavelli's twenty-six chapters."
+  },
+  {
+    "id": "the-psychology-of-money",
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 22,
+    "estimatedMinutes": 264,
+    "icon": "💸",
+    "coverImage": "/book-covers/the-psychology-of-money.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Morgan Housel's twenty-two chapters on luck, risk, enoughness, compounding, saving, freedom, pessimism, and the historical forces shaping consumer expectations."
+  },
+  {
+    "id": "the-war-of-art",
+    "title": "The War of Art",
+    "author": "Steven Pressfield",
+    "categories": [
+      "Self-Help",
+      "Creativity",
+      "Writing"
+    ],
+    "category": "Self-Help",
+    "tags": [],
+    "chapterCount": 3,
+    "estimatedMinutes": 36,
+    "icon": "🎨",
+    "coverImage": "/book-covers/the-war-of-art.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Steven Pressfield's three-part argument about Resistance, turning pro, and serving the work as something larger than ego."
+  },
+  {
+    "id": "think-and-grow-rich",
+    "title": "Think and Grow Rich",
+    "author": "Napoleon Hill",
+    "categories": [
+      "Psychology"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "definite-major-purpose",
+      "burning-desire",
+      "faith-through-auto-suggestion",
+      "auto-suggestion",
+      "specialized-knowledge",
+      "synthetic-and-creative-imagination",
+      "organized-planning",
+      "decisiveness"
+    ],
+    "chapterCount": 15,
+    "estimatedMinutes": 156,
+    "icon": "🫀",
+    "coverImage": "/book-covers/think-and-grow-rich.jpg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of definite-major-purpose, burning-desire, faith-through-auto-suggestion, auto-suggestion, and specialized-knowledge with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "thinking-in-bets",
+    "title": "Thinking in Bets",
+    "author": "Annie Duke",
+    "categories": [
+      "Decision Making",
+      "Psychology",
+      "Risk"
+    ],
+    "category": "Decision Making",
+    "tags": [
+      "probabilistic-thinking",
+      "uncertainty",
+      "decision-quality",
+      "resulting",
+      "calibration",
+      "truth-seeking",
+      "dissent",
+      "mental-time-travel"
+    ],
+    "chapterCount": 7,
+    "estimatedMinutes": 84,
+    "icon": "🎲",
+    "coverImage": "/book-covers/thinking-in-bets.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Annie Duke's seven chapters on resulting, probabilistic thinking, calibration, truth-seeking disagreement, and making better decisions when certainty is unavailable."
+  },
+  {
+    "id": "thinking-fast-and-slow",
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 38,
+    "estimatedMinutes": 458,
+    "icon": "🧠",
+    "coverImage": "/book-covers/thinking-fast-and-slow.svg",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of Kahneman's thirty-eight chapters on System 1 and System 2, heuristics, bias, prospect theory, overconfidence, and the limits of judgment under uncertainty."
+  },
+  {
+    "id": "tiny-habits",
+    "title": "Tiny Habits",
+    "author": "BJ Fogg",
+    "categories": [
+      "Psychology",
+      "Self-Help",
+      "Productivity"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "habits",
+      "behavior-change",
+      "motivation",
+      "celebration",
+      "anchoring",
+      "prompts"
+    ],
+    "chapterCount": 8,
+    "estimatedMinutes": 113,
+    "icon": "🌱",
+    "coverImage": "/book-covers/tiny-habits.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of BJ Fogg's behavior design method: matching motivation, making habits tiny, anchoring prompts, using celebration, untangling bad loops, and growing change through shared support."
+  },
+  {
+    "id": "ultralearning",
+    "title": "Ultralearning: Master Hard Skills, Outsmart the Competition, and Accelerate Your Career",
+    "author": "Scott H. Young",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 14,
+    "estimatedMinutes": 168,
+    "icon": "📚",
+    "coverImage": "/book-covers/ultralearning.svg",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of Scott H. Young's fourteen chapters on self-directed skill acquisition, directness, feedback, retention, experimentation, and designing learning projects that survive real proof."
+  },
+  {
+    "id": "what-every-body-is-saying",
+    "title": "What Every BODY is Saying",
+    "author": "Joe Navarro",
+    "categories": [
+      "Communication",
+      "Psychology",
+      "Self Improvement"
+    ],
+    "category": "Communication",
+    "tags": [
+      "body language",
+      "nonverbal communication",
+      "observation",
+      "comfort",
+      "discomfort",
+      "context",
+      "baseline",
+      "deception restraint"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "👁️",
+    "coverImage": "/book-covers/what-every-body-is-saying.svg",
+    "difficulty": "Medium",
+    "synopsis": "A practical guide to reading nonverbal behavior with more discipline: noticing comfort, discomfort, confidence, stress, and withdrawal without turning one cue into false certainty."
   }
 ]

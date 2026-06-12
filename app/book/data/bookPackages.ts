@@ -65,6 +65,7 @@ import ultralearningPackageJson from "@/book-packages/ultralearning.v21.json";
 import auto_the_4_hour_workweek_Json from "@/book-packages/the-4-hour-workweek.v21.json";
 import auto_rich_dad_poor_dad_Json from "@/book-packages/rich-dad-poor-dad.v21.json";
 import auto_think_and_grow_rich_Json from "@/book-packages/think-and-grow-rich.v21.json";
+import auto_stillness_is_the_key_Json from "@/book-packages/stillness-is-the-key.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { isV21RawPackage, normalizeV21Package } from "@/app/book/lib/v21-adapter";
 
@@ -1949,4 +1950,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_think_and_grow_rich_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["think-and-grow-rich"] = (tone) => normalizeAnyPackage(auto_think_and_grow_rich_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "stillness-is-the-key" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_stillness_is_the_key_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["stillness-is-the-key"] = (tone) => normalizeAnyPackage(auto_stillness_is_the_key_Json, tone);
 }
