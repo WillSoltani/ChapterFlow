@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "qc-round-v1",
+  "bookId": "the-book-of-boundaries",
+  "roundId": "r20260612193633-8cb0a4",
+  "openedAt": "2026-06-12T19:36:33.987Z",
+  "roles": {
+    "sweep": {
+      "salt": "7492baa88137de2c503a665e540e878f",
+      "tokenHash": "ba5cca3fbefe098687a3cebcae70d7828abf9420c8827246effbf2bafe3d3a09"
+    },
+    "keyA": {
+      "salt": "0ad7c9a55b70731e57dd8e064fee3e18",
+      "tokenHash": "9201f535412b4d1866e1759a66590519a45ebc3305a1946e05ad5dfb0c00d42d"
+    },
+    "keyB": {
+      "salt": "dba85844f73dce9fb01d4ec301d650e0",
+      "tokenHash": "0221e7439701c38686a6c37a76fe2a8e69907eed1d28ab20ea2f75fd69ae235d"
+    },
+    "bar": {
+      "salt": "0c85fa83c29dbeb9b8760e0c83981fd8",
+      "tokenHash": "d0c80db4e6c5a366b6104e3c7b9a0aec33bef3387865d17eb8b82b68aca3952c"
+    },
+    "confirm": {
+      "salt": "6b99d2e34485f22d57cdf9d873861528",
+      "tokenHash": "e5fb4c667022e0b025eebc27db363ca8ffa3bce65ef68976bc54a73164e7c77c"
+    },
+    "attest": {
+      "salt": "9b224b95515b97c0da863d813e03ff36",
+      "tokenHash": "17aa0b2eacbfe964d61909cf0f61e91b98b915ca004e9d4b7c98ef93835ed34d"
+    }
+  }
+}

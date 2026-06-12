@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "manual-key-pack-v1",
+  "bookId": "the-book-of-boundaries",
+  "roundId": "r20260612193633-8cb0a4",
+  "chapterNumber": 4,
+  "chapterId": "the-book-of-boundaries-ch04",
+  "createdAt": "2026-06-12T20:09:25.306Z",
+  "contentHash": "59fa2c76309440b0",
+  "sourceHash": "f56c230834be6c9e",
+  "sourceFacts": [
+    {
+      "id": "ch04.fact.1",
+      "claim": "Family boundaries often feel heavier because old roles remain active.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "A family boundary is needed only when relatives are cruel.",
+      "errorIsWhy": "Loving relatives can still overstep through habit and expectation."
+    },
+    {
+      "id": "ch04.fact.2",
+      "claim": "Unsolicited parenting or coparenting advice can become a boundary problem.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "Tradition automatically decides holidays, visits, and childcare.",
+      "errorIsWhy": "Adult households need current consent, not only inherited routines."
+    },
+    {
+      "id": "ch04.fact.3",
+      "claim": "Holiday expectations should be stated before annual dread builds.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "A family limit is valid only after winning the argument.",
+      "errorIsWhy": "Boundaries protect capacity and values even without agreement."
+    },
+    {
+      "id": "ch04.fact.4",
+      "claim": "In-law boundaries can protect a couple's household decisions.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "A family boundary is needed only when relatives are cruel.",
+      "errorIsWhy": "Loving relatives can still overstep through habit and expectation."
+    },
+    {
+      "id": "ch04.fact.5",
+      "claim": "Grandparent access can be loving and still limited.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "Tradition automatically decides holidays, visits, and childcare.",
+      "errorIsWhy": "Adult households need current consent, not only inherited routines."
+    },
+    {
+      "id": "ch04.fact.6",
+      "claim": "Acknowledging care can sit beside a firm stop.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "A family limit is valid only after winning the argument.",
+      "errorIsWhy": "Boundaries protect capacity and values even without agreement."
+    },
+    {
+      "id": "ch04.fact.7",
+      "claim": "Family money can carry boundary pressure.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "A family boundary is needed only when relatives are cruel.",
+      "errorIsWhy": "Loving relatives can still overstep through habit and expectation."
+    },
+    {
+      "id": "ch04.fact.8",
+      "claim": "Shorter calls or visits are valid follow-through actions.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "Tradition automatically decides holidays, visits, and childcare.",
+      "errorIsWhy": "Adult households need current consent, not only inherited routines."
+    },
+    {
+      "id": "ch04.fact.9",
+      "claim": "Adult autonomy does not require proving the relative is wrong.",
+      "becauseMechanism": "This matters because family affection can otherwise be used as an argument for unlimited advice, access, or authority.",
+      "commonError": "A family limit is valid only after winning the argument.",
+      "errorIsWhy": "Boundaries protect capacity and values even without agreement."
+    }
+  ],
+  "questions": [
+    {
+      "questionIndex": 0,
+      "prompt": "Two adult children hear parents repeat coparenting advice after a request to stop. One debates each tip; Neha names a call rule. Which response fits family autonomy?",
+      "choices": [
+        "Intentions-first misconception: Neha keeps the details open so her parents feel included in the call.",
+        "Topic-boundary move: Neha thanks them, names coparenting advice off-limits, and ends the call if it resumes.",
+        "Winning-the-case misconception: Neha debates each tip until her parents concede the request was fair."
+      ]
+    },
+    {
+      "questionIndex": 1,
+      "prompt": "A shared calendar shows Glenn's parents made four unscheduled visits in ten days, twice during childcare handoffs, after Glenn sent visit windows. What should he infer first?",
+      "choices": [
+        "Kindness-credit misconception: Glenn should treat the visits as harmless since the grandparents enjoy helping with childcare.",
+        "Photo-access misconception: Glenn should offer more family photos so the grandparents feel less shut out.",
+        "Pattern-first move: Glenn needs a clear visit term and follow-through, not another hint."
+      ]
+    },
+    {
+      "questionIndex": 2,
+      "prompt": "Qing and her partner compare two December plans: keep the inherited holiday schedule, or accept one meal and decline the second invitation. Which plan matches family autonomy?",
+      "choices": [
+        "Current-capacity move: Qing should name one event as the yes and decline the second invitation plainly.",
+        "Tradition-default misconception: Qing should keep both events so the in-laws do not read change as rejection.",
+        "Equal-split misconception: Qing should attend both events briefly so every in-law gets the same minutes."
+      ]
+    },
+    {
+      "questionIndex": 3,
+      "prompt": "Nikhil's dinner notes show the same in-law debate after every dishwashing shift: holiday loyalty, travel guilt, then a longer explanation from him. Which next line is strongest?",
+      "choices": [
+        "History-led misconception: Nikhil retells prior December conflicts so the in-laws understand his fatigue.",
+        "Access-term move: Nikhil states the Saturday meal is the plan and stops defending the travel math.",
+        "Consensus-first misconception: Nikhil keeps revising the plan until every relative feels the schedule is fair."
+      ]
+    },
+    {
+      "questionIndex": 4,
+      "prompt": "Simon says a boundary with parents is valid only after they agree they overstepped. Which reply keeps the hard edge intact?",
+      "choices": [
+        "Permission-seeking misconception: Simon should wait for his parents to bless the limit before changing calls.",
+        "Toxicity-test misconception: Simon should set a limit only after proving his parents meant harm.",
+        "Autonomy-first move: Simon can limit advice access even while believing his parents meant care."
+      ]
+    },
+    {
+      "questionIndex": 5,
+      "prompt": "Two parents respond when grandparents ask for weekly childcare and open visit access. One says yes out of guilt; Marcel names planned days. Which response protects both love and authority?",
+      "choices": [
+        "Parent-term move: Marcel should offer planned days and keep childcare authority with the parent household.",
+        "Gratitude-debt misconception: Marcel should accept weekly childcare because help deserves wider family access.",
+        "Equal-affection misconception: Marcel should add visits until the grandparents feel equally loved by the child."
+      ]
+    },
+    {
+      "questionIndex": 6,
+      "prompt": "A trailhead text thread shows Minh allowed family photos three times, then regretted each post after grandparents added captions about childcare. What is the first clean adjustment?",
+      "choices": [
+        "Harmony-first misconception: Minh should keep allowing photos so the hike does not become tense.",
+        "Caption-control misconception: Minh should edit each caption after posting instead of naming photo access.",
+        "Photo-term move: Minh should require parent approval before family photos are posted."
+      ]
+    },
+    {
+      "questionIndex": 7,
+      "prompt": "A relative offers Simon money for a home repair, then starts reviewing furniture purchases and parenting choices. Which response best reads the pressure?",
+      "choices": [
+        "Cost-of-help move: Simon treats the money as carrying access pressure and names what topics stay closed.",
+        "Grateful-recipient misconception: Simon accepts purchase reviews because the repair money was generous.",
+        "Debate-the-budget misconception: Simon proves each purchase was reasonable so the relative drops the advice."
+      ]
+    },
+    {
+      "questionIndex": 8,
+      "prompt": "Compare two readings of Qing's guilt after changing a holiday plan: one says guilt proves betrayal, another says old roles are active. Which reading helps most?",
+      "choices": [
+        "Betrayal-signal misconception: Qing should treat guilt as proof the in-law holiday plan was wrong.",
+        "Old-role move: Qing should notice guilt as family history, then return to the current holiday term.",
+        "Comfort-first misconception: Qing should add one extra visit so the old role quiets down for December."
+      ]
+    }
+  ],
+  "packHash": "c68f48a5b2053ab4"
+}

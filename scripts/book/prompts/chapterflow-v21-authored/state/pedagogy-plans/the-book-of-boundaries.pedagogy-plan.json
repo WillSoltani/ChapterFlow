@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "pedagogy-plan-v1",
+  "bookId": "the-book-of-boundaries",
+  "fromChapter": 1,
+  "toChapter": 13,
+  "bookMix": {
+    "hookShapes": [
+      "counterfactual-question",
+      "one-number-contrast",
+      "concrete-ironic-image"
+    ],
+    "dominantHookShape": "counterfactual-question",
+    "tryThisNowGrammars": [
+      "deliberate-abstention",
+      "write-one",
+      "count-observations"
+    ],
+    "tacticFamilies": [
+      "breath-counting",
+      "write-one-line",
+      "subtract-one-thing",
+      "environment-move",
+      "single-question-conversation",
+      "timer-block",
+      "object-relocation",
+      "read-aloud",
+      "walk-and-decide",
+      "comparison-of-two",
+      "calendar-edit",
+      "checklist-mark",
+      "observation-log",
+      "teach-someone",
+      "rehearse-once",
+      "boundary-script",
+      "stop-doing-list",
+      "threshold-cue",
+      "ranking-pass",
+      "replacement-rule",
+      "handoff-note",
+      "friction-add",
+      "friction-remove",
+      "error-review"
+    ],
+    "quizOpeners": [
+      "data-reading",
+      "compare-two-responses"
+    ]
+  },
+  "allocation": {
+    "1": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "tacticFamily": "walk-and-decide",
+      "quizOpeners": [
+        "data-reading",
+        "compare-two-responses"
+      ]
+    },
+    "2": {
+      "hookShape": "one-number-contrast",
+      "tryThisNowGrammar": "write-one",
+      "tacticFamily": "teach-someone",
+      "quizOpeners": [
+        "compare-two-responses",
+        "data-reading"
+      ]
+    },
+    "3": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "count-observations",
+      "tacticFamily": "ranking-pass",
+      "quizOpeners": [
+        "data-reading",
+        "compare-two-responses"
+      ]
+    },
+    "4": {
+      "hookShape": "concrete-ironic-image",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "tacticFamily": "error-review",
+      "quizOpeners": [
+        "compare-two-responses",
+        "data-reading"
+      ]
+    },
+    "5": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "write-one",
+      "tacticFamily": "single-question-conversation",
+      "quizOpeners": [
+        "data-reading",
+        "compare-two-responses"
+      ]
+    },
+    "6": {
+      "hookShape": "one-number-contrast",
+      "tryThisNowGrammar": "count-observations",
+      "tacticFamily": "comparison-of-two",
+      "quizOpeners": [
+        "compare-two-responses",
+        "data-reading"
+      ]
+    },
+    "7": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "tacticFamily": "rehearse-once",
+      "quizOpeners": [
+        "data-reading",
+        "compare-two-responses"
+      ]
+    },
+    "8": {
+      "hookShape": "concrete-ironic-image",
+      "tryThisNowGrammar": "write-one",
+      "tacticFamily": "replacement-rule",
+      "quizOpeners": [
+        "compare-two-responses",
+        "data-reading"
+      ]
+    },
+    "9": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "count-observations",
+      "tacticFamily": "breath-counting",
+      "quizOpeners": [
+        "data-reading",
+        "compare-two-responses"
+      ]
+    },
+    "10": {
+      "hookShape": "one-number-contrast",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "tacticFamily": "timer-block",
+      "quizOpeners": [
+        "compare-two-responses",
+        "data-reading"
+      ]
+    },
+    "11": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "write-one",
+      "tacticFamily": "calendar-edit",
+      "quizOpeners": [
+        "data-reading",
+        "compare-two-responses"
+      ]
+    },
+    "12": {
+      "hookShape": "concrete-ironic-image",
+      "tryThisNowGrammar": "count-observations",
+      "tacticFamily": "boundary-script",
+      "quizOpeners": [
+        "compare-two-responses",
+        "data-reading"
+      ]
+    },
+    "13": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "tacticFamily": "handoff-note",
+      "quizOpeners": [
+        "data-reading",
+        "compare-two-responses"
+      ]
+    }
+  },
+  "carriedChapters": []
+}

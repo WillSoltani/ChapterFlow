@@ -1,0 +1,68 @@
+{
+  "chapterId": "the-book-of-boundaries-ch01",
+  "number": 1,
+  "title": "A Crash Course on Boundaries",
+  "coreMove": "A boundary is not a remote control for another person; it names the access you can allow, the action you will take, and the resentment you refuse to let build.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "public comment about a neighbor joining a private morning routine",
+      "audience": "a reader who wants to protect a personal ritual without shaming someone lonely",
+      "stakes": "whether care for an elderly neighbor costs the quiet weekday walk that steadies the day",
+      "format": "dilemma",
+      "requiredBeat": "Hyun uses Nancy's weekday morning walk and Saturday walk pattern while speaking at the town hall microphone stand"
+    },
+    {
+      "domain": "physical therapy patient asking for a pressure limit during a stretch",
+      "audience": "a reader who apologizes before naming a body limit",
+      "stakes": "whether pain becomes information or the patient performs toughness for approval",
+      "format": "dialogue",
+      "requiredBeat": "Severin and Lana use the medium-well burger comparison to make a body limit sound as plain as a clear order"
+    },
+    {
+      "domain": "teacher setting terms for grade-update calls and emails",
+      "audience": "a reader who thinks more explanation will prevent pushback",
+      "stakes": "whether dread before a phone call becomes a clear access rule or another week of avoidance",
+      "format": "predict_reveal",
+      "requiredBeat": "Peyton expects a long explanation to reduce resentment, then sees the parent debate the reasons instead of hearing the limit"
+    },
+    {
+      "domain": "food truck owner handling a friend's texts during lunch rush",
+      "audience": "a reader whose attention gets treated as always available",
+      "stakes": "whether a friendship gets special access while customers wait at the window",
+      "format": "text_thread",
+      "requiredBeat": "Milo protects time and attention by texting what access is available at the food truck service window"
+    },
+    {
+      "domain": "community garden volunteer ending repeated last-minute tool requests",
+      "audience": "a reader who piles on reasons until the limit disappears",
+      "stakes": "whether one clear sentence protects the plot or resentment keeps growing",
+      "format": "reset_moment",
+      "requiredBeat": "Hugo interrupts his routine at the community garden plot, stops overexplaining, and restarts with a direct limit"
+    },
+    {
+      "domain": "apartment laundry room moment after an avoided family call",
+      "audience": "a reader who treats irritation as a personality flaw instead of information",
+      "stakes": "whether the next call gets avoided again or becomes a clearer access conversation",
+      "format": "vignette",
+      "requiredBeat": "Lana notices dread, avoidance, resentment, and the phone call while cleaning the laundry room lint screen"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "understand": 2,
+      "apply": 3,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-12T20:04:39.324Z"
+}

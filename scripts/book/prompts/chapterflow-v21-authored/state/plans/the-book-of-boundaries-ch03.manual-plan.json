@@ -1,0 +1,68 @@
+{
+  "chapterId": "the-book-of-boundaries-ch03",
+  "number": 3,
+  "title": "The Real Work/Life Balance: Setting Boundaries in the Workplace",
+  "coreMove": "A work boundary is professional when it names the resource, the tradeoff, and the next step clearly enough that other people can plan around it.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "public works permit desk interruptions",
+      "audience": "frontline staff whose help gets treated as always available",
+      "stakes": "whether same-day permits are reviewed carefully or scattered by constant walk-ups",
+      "format": "inner_monologue",
+      "requiredBeat": "Veronique notices the coworker interruption pattern and defines a time window for help without starting a fight"
+    },
+    {
+      "domain": "hospital supply restock under a new assignment",
+      "audience": "employees who receive urgent work while current deadlines are already full",
+      "stakes": "whether patient supply labels are checked or rushed after hours",
+      "format": "planning_choice",
+      "requiredBeat": "before doing any work, Violet allocates scarce time by putting the boss's new deadline against the current priority list and calendar"
+    },
+    {
+      "domain": "music school scheduling during a grant deadline",
+      "audience": "creative staff asked to absorb urgent administrative work",
+      "stakes": "whether students lose rehearsal time or the grant package misses its deadline",
+      "format": "dilemma",
+      "requiredBeat": "Irina faces two bad options and uses the priority list and calendar to make the boss choose the tradeoff"
+    },
+    {
+      "domain": "catering crew after-hours message norms",
+      "audience": "workers who admire balanced colleagues but never ask how they do it",
+      "stakes": "whether personal time keeps getting eaten by ordinary messages after events",
+      "format": "dialogue",
+      "requiredBeat": "Weston asks a colleague how she protects work-life balance around after-hours email and borrows the tactic"
+    },
+    {
+      "domain": "park maintenance tool questions during repair logs",
+      "audience": "teams that fear access rules will make helpful people less helpful",
+      "stakes": "whether repair logs get finished or the shed becomes a constant interruption lane",
+      "format": "predict_reveal",
+      "requiredBeat": "the expected loss of help is revealed as cleaner work after coworker questions move into a time window and Slack or email"
+    },
+    {
+      "domain": "mall kiosk response expectations after closing",
+      "audience": "hourly staff who keep answering ordinary questions from home",
+      "stakes": "whether closing time protects recovery or becomes unpaid message duty",
+      "format": "text_thread",
+      "requiredBeat": "Diogo separates emergency messages from ordinary after-hours email and protects personal time without disappearing"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "evaluate": 3,
+      "apply": 3,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-12T20:04:39.326Z"
+}

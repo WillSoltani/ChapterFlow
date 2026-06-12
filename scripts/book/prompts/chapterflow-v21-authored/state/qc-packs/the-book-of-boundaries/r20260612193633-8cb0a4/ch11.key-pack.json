@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "manual-key-pack-v1",
+  "bookId": "the-book-of-boundaries",
+  "roundId": "r20260612193633-8cb0a4",
+  "chapterNumber": 11,
+  "chapterId": "the-book-of-boundaries-ch11",
+  "createdAt": "2026-06-12T20:09:25.311Z",
+  "contentHash": "dc3f810cc6915221",
+  "sourceHash": "186e4f53bb1e1641",
+  "sourceFacts": [
+    {
+      "id": "ch11.fact.1",
+      "claim": "Boundary respect must operate in both directions.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "A person who sets boundaries does not need to accept anyone else's limits.",
+      "errorIsWhy": "That would turn the method into entitlement."
+    },
+    {
+      "id": "ch11.fact.2",
+      "claim": "Receiving no without pressure is a boundary skill.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "A close friend owes a detailed reason for every no.",
+      "errorIsWhy": "Closeness does not erase the right to decline."
+    },
+    {
+      "id": "ch11.fact.3",
+      "claim": "Silence or delayed response can signal an access limit.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "Good boundaries make everyone comfortable all the time.",
+      "errorIsWhy": "Respectful limits may still disappoint people."
+    },
+    {
+      "id": "ch11.fact.4",
+      "claim": "A capacity check should come before heavy emotional unloading.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "A person who sets boundaries does not need to accept anyone else's limits.",
+      "errorIsWhy": "That would turn the method into entitlement."
+    },
+    {
+      "id": "ch11.fact.5",
+      "claim": "Asking for reasons can become pressure.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "A close friend owes a detailed reason for every no.",
+      "errorIsWhy": "Closeness does not erase the right to decline."
+    },
+    {
+      "id": "ch11.fact.6",
+      "claim": "Bystanders can support someone else's boundary in a group.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "Good boundaries make everyone comfortable all the time.",
+      "errorIsWhy": "Respectful limits may still disappoint people."
+    },
+    {
+      "id": "ch11.fact.7",
+      "claim": "Consent applies to topics, time, touch, help, and emotional labor.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "A person who sets boundaries does not need to accept anyone else's limits.",
+      "errorIsWhy": "That would turn the method into entitlement."
+    },
+    {
+      "id": "ch11.fact.8",
+      "claim": "Respecting privacy can require not asking follow-up questions.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "A close friend owes a detailed reason for every no.",
+      "errorIsWhy": "Closeness does not erase the right to decline."
+    },
+    {
+      "id": "ch11.fact.9",
+      "claim": "A healthy boundary culture reduces coercion rather than discomfort.",
+      "becauseMechanism": "This matters because a boundary standard becomes control if it protects one person while overriding everyone else.",
+      "commonError": "Good boundaries make everyone comfortable all the time.",
+      "errorIsWhy": "Respectful limits may still disappoint people."
+    }
+  ],
+  "questions": [
+    {
+      "questionIndex": 0,
+      "prompt": "Hadley's text log shows three declined invitations from a friend, each followed by Hadley asking why. What should she read first in the pattern?",
+      "choices": [
+        "Reason-debt misread: The friend should give a fuller explanation before Hadley changes plans.",
+        "Reciprocal respect: Hadley is turning no into pressure and should accept the answer cleanly.",
+        "Closeness-credit misread: Past favors mean Hadley can keep asking until the plan works."
+      ]
+    },
+    {
+      "questionIndex": 1,
+      "prompt": "At the bike repair stand, Antonio asks for crash details after a rider names a topic limit. Albertine redirects to the brake pads. Which response fits the boundary standard?",
+      "choices": [
+        "Albertine's redirect, because a bystander can support the stated limit without making the rider explain.",
+        "Antonio's question, because group gathering norms make private topics open for clarification.",
+        "Antonio's persistence, because silence after a crash can leave the group feeling uncertain."
+      ]
+    },
+    {
+      "questionIndex": 2,
+      "prompt": "Florent notices friends leave quickly after practice on nights when he unloads a difficult story beside the equipment bin. Which change matches the capacity rule?",
+      "choices": [
+        "Urgency override: Florent should start faster so the story is finished before anyone can leave.",
+        "Friendship access misread: Florent should assume close teammates have room unless they object.",
+        "Capacity check: Florent should ask whether his friend has room for emotional labor before he begins."
+      ]
+    },
+    {
+      "questionIndex": 3,
+      "prompt": "Marshall receives no to an airport pickup request. One draft says, \"No worries, I will grab a shuttle.\" Another asks for a better reason. Which draft honors the limit?",
+      "choices": [
+        "Proof-first misread: Ask for a better reason so the no feels fair.",
+        "Clean receipt: Accept the no and solve the ride without making the friend defend it.",
+        "Comfort bargain: Offer guilt-free language while pushing for a later pickup."
+      ]
+    },
+    {
+      "questionIndex": 4,
+      "prompt": "A project chat shows four late replies from Willow during fitting-room training week, all after people send long personal updates. What should the team infer first?",
+      "choices": [
+        "Delayed replies may be an access limit, so ask for capacity before sending heavy updates.",
+        "Responsiveness bargain: Willow should answer faster so nobody has to guess about her limits.",
+        "Silence punishment misread: The team should match her delay to show the cost of waiting."
+      ]
+    },
+    {
+      "questionIndex": 5,
+      "prompt": "Willow thinks consent only applies to touch in the fitting room. Her instructor adds time, help, topics, and emotional labor. What is the best reading?",
+      "choices": [
+        "Touch-only misread: The fitting room lesson should stay limited to hands and clothes.",
+        "Helpfulness exemption: Kind intent gives Willow room to assist first and ask after.",
+        "Access consent: A person gets a choice before touch, help, private topics, or heavy listening."
+      ]
+    },
+    {
+      "questionIndex": 6,
+      "prompt": "A friend says, \"I am not ready to talk about that.\" Hadley feels worried and wants details. Which next move keeps privacy normal?",
+      "choices": [
+        "Privacy respect: Acknowledge the limit and offer support without asking for the hidden story.",
+        "Care-as-access misread: Ask gentle follow-ups so the friend knows Hadley cares.",
+        "Anxiety transfer: Explain Hadley's worry so the friend understands why details would help."
+      ]
+    },
+    {
+      "questionIndex": 7,
+      "prompt": "Two responses follow a clear no: one person accepts the discomfort, the other tries to make everyone feel fine before stopping. Which response fits boundary maturity?",
+      "choices": [
+        "Comfort-first misread: Keep talking until the no feels pleasant to both sides.",
+        "Coercion reduction: Stop the pressure even if someone still feels disappointed.",
+        "Relief bargain: Keep softening the no until the person who heard it feels steady."
+      ]
+    },
+    {
+      "questionIndex": 8,
+      "prompt": "Albertine says she wants her own topic limits honored but keeps pressing Antonio after he says no to a favor. Which critique is most accurate?",
+      "choices": [
+        "Equal-discomfort bargain: Albertine should press only until Antonio explains the reason clearly.",
+        "Nice-language exemption: Albertine can continue if the follow-up questions sound warm.",
+        "Reciprocity check: Albertine protects her own limits while treating Antonio's no as negotiable."
+      ]
+    }
+  ],
+  "packHash": "5f0f96469eb69706"
+}
