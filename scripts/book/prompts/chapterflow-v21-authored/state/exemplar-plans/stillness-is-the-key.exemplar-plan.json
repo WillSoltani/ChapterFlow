@@ -1,0 +1,235 @@
+{
+  "schemaVersion": "exemplar-plan-v1",
+  "bookId": "stillness-is-the-key",
+  "createdAt": "2026-06-12T14:25:30.846Z",
+  "fromChapter": 1,
+  "toChapter": 32,
+  "allocation": {
+    "1": {
+      "assigned": [
+        "Cuban Missile Crisis",
+        "John F Kennedy",
+        "John F Kennedy Cuban Missile Crisis",
+        "October 1962",
+        "Washington Cape Canaveral and the Panama Canal"
+      ],
+      "forbidden": [
+        {
+          "name": "Alan Watts",
+          "ownerChapter": 7
+        }
+      ]
+    },
+    "2": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "3": {
+      "assigned": [
+        "Marcus Aurelius",
+        "Jeremy Willets",
+        "Mastering Work Intake"
+      ],
+      "forbidden": []
+    },
+    "4": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "5": {
+      "assigned": [
+        "Viktor Frankl"
+      ],
+      "forbidden": []
+    },
+    "6": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Viktor Frankl",
+          "ownerChapter": 5
+        },
+        {
+          "name": "Marcus Aurelius",
+          "ownerChapter": 3
+        }
+      ]
+    },
+    "7": {
+      "assigned": [
+        "Alan Watts"
+      ],
+      "forbidden": []
+    },
+    "8": {
+      "assigned": [
+        "Stoic Buddhist Christian"
+      ],
+      "forbidden": []
+    },
+    "9": {
+      "assigned": [
+        "Colin Powell",
+        "Laws of Power",
+        "Robert Greene"
+      ],
+      "forbidden": []
+    },
+    "10": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Colin Powell",
+          "ownerChapter": 9
+        }
+      ]
+    },
+    "11": {
+      "assigned": [
+        "Thich Nhat Hanh"
+      ],
+      "forbidden": []
+    },
+    "12": {
+      "assigned": [
+        "Ralph Waldo Emerson",
+        "Confucian Catholic Buddhist Hindu and Islamic"
+      ],
+      "forbidden": []
+    },
+    "13": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Thich Nhat Hanh",
+          "ownerChapter": 11
+        }
+      ]
+    },
+    "14": {
+      "assigned": [
+        "Bruce Lee"
+      ],
+      "forbidden": []
+    },
+    "15": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "16": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Ralph Waldo Emerson",
+          "ownerChapter": 12
+        }
+      ]
+    },
+    "17": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Ralph Waldo Emerson",
+          "ownerChapter": 12
+        },
+        {
+          "name": "Thich Nhat Hanh",
+          "ownerChapter": 11
+        }
+      ]
+    },
+    "18": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "19": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "20": {
+      "assigned": [],
+      "forbidden": [
+        {
+          "name": "Marcus Aurelius",
+          "ownerChapter": 3
+        }
+      ]
+    },
+    "21": {
+      "assigned": [
+        "Paul Johnson",
+        "Winston Churchill"
+      ],
+      "forbidden": []
+    },
+    "22": {
+      "assigned": [
+        "Steve Jobs"
+      ],
+      "forbidden": []
+    },
+    "23": {
+      "assigned": [
+        "Erich Schiffmann"
+      ],
+      "forbidden": []
+    },
+    "24": {
+      "assigned": [
+        "W Somerset Maugham"
+      ],
+      "forbidden": []
+    },
+    "25": {
+      "assigned": [
+        "I Like My Stuff",
+        "May 2026"
+      ],
+      "forbidden": []
+    },
+    "26": {
+      "assigned": [
+        "Henry David Thoreau",
+        "Blaise Pascal"
+      ],
+      "forbidden": []
+    },
+    "27": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "28": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "29": {
+      "assigned": [
+        "Robert A Stebbins",
+        "University of Calgary"
+      ],
+      "forbidden": []
+    },
+    "30": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "31": {
+      "assigned": [
+        "Abraham Lincoln",
+        "Nassim Nicholas Taleb"
+      ],
+      "forbidden": []
+    },
+    "32": {
+      "assigned": [
+        "Epistulae Morales",
+        "Loeb Classical Library"
+      ],
+      "forbidden": []
+    }
+  },
+  "diagnostics": {
+    "contested": 6,
+    "chaptersWithoutSidecar": []
+  }
+}

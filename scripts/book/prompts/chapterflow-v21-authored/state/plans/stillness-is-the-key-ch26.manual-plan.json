@@ -1,0 +1,68 @@
+{
+  "chapterId": "stillness-is-the-key-ch26",
+  "number": 26,
+  "title": "Seek Solitude",
+  "coreMove": "Choose solitude that has an end, a place, and a purpose: let social noise drop, read one recent miss without blame, then return to people with cleaner attention.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "chapel side-room pause",
+      "audience": "people who fear solitude is punishment",
+      "stakes": "use quiet to name one recent miss without exile",
+      "format": "text_thread",
+      "requiredBeat": "Celia reviews one apology miss and returns to people with a cleaner sentence"
+    },
+    {
+      "domain": "rooftop garden bench",
+      "audience": "people who need a short nonperformance pause in a crowd",
+      "stakes": "lower social arousal before the next count",
+      "format": "reset_moment",
+      "requiredBeat": "Andre closes the notebook and restarts from the last clean number"
+    },
+    {
+      "domain": "marsh field notebook",
+      "audience": "people who need quiet enough to feel the task again",
+      "stakes": "let fewer social cues reveal a missed signal",
+      "format": "vignette",
+      "requiredBeat": "Soren uses the quiet minute to notice the wind note he missed"
+    },
+    {
+      "domain": "empty soccer bleachers",
+      "audience": "people seeing the cost of no quiet review",
+      "stakes": "turn attention fatigue into a bounded repair",
+      "format": "postmortem",
+      "requiredBeat": "Hanna adds one quiet review before the next team talk"
+    },
+    {
+      "domain": "conservatory fern path",
+      "audience": "people whose wish for solitude is sliding into isolation",
+      "stakes": "catch the dodge inside a reasonable sentence",
+      "format": "mistake_recovery",
+      "requiredBeat": "Ilya notices that quiet must send him back to the call"
+    },
+    {
+      "domain": "night-shift stairwell landing",
+      "audience": "people who need solitude with edges",
+      "stakes": "give quiet a time, place, trigger, and error to review",
+      "format": "decision_memo",
+      "requiredBeat": "Mina writes solitude into a repair appointment, not a vague wish"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 3,
+      "understand": 1,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-12T17:37:06.494Z"
+}

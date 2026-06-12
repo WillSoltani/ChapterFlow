@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 21,
+  "chapterId": "stillness-is-the-key-ch21",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "4f00c4eabbf060a1",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:45:03.897Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 93/100; r2 quiz-domain repair verified; gate/source pass and quiz verifies 9/9.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 21,
+      "chapterId": "stillness-is-the-key-ch21",
+      "verdict": "REVISE",
+      "contentHash": "12ed228c67ce97dc",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:18:19.267Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch21 repeats ch04-adjacent venue slate (transit/commute, tree nursery, bedroom/nightstand, swim, radiology); quiz keys verified 9/9; no corruption found."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 21,
+      "chapterId": "stillness-is-the-key-ch21",
+      "verdict": "REVISE",
+      "contentHash": "989a1fcd48ab4bc7",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:25:27.663Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "88/100; prior venue-slate issue resolved, but quiz_distractor_quality=0.55: q01 interpreter prompt uses panel/electrical judgment choice language; q06 bell choir item has reading-room/clinician distractors; gates/source pass; quiz keys verified 9/9.",
+      "supersededReason": "Prior REVISE was caused by venue-slate reuse; fresh QC retains REVISE for stale-domain quiz choices in ch21 q01/q06."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 21,
+      "chapterId": "stillness-is-the-key-ch21",
+      "verdict": "REVISE",
+      "contentHash": "5e873abd8d18ef2e",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:34:18.757Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "YELLOW 88/100; quiz_distractor_quality=0.55; keys verify 9/9 but quiz wording still leaks stale domains: lamp, lane board, scan block.",
+      "supersededReason": "post-r1 re-QC for quiz-domain repair"
+    }
+  ],
+  "supersededReason": "post-r2 re-QC for quiz-domain repair"
+}

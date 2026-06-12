@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 14,
+  "chapterId": "stillness-is-the-key-ch14",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "fc9d57587d9ba4d2",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:18:18.983Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "92/100; post-repair ch08-ch16 QC refresh; gates/source pass; quiz keys verified 9/9; examples/cards/plans grounded and publishable; no duplicate venue slate found.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 14,
+      "chapterId": "stillness-is-the-key-ch14",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "fc9d57587d9ba4d2",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:12:17.621Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "92/100; quiz keys verified 9/9; desire and self-mastery chapter coherent and grounded in Aristotle and Bruce Lee."
+    }
+  ]
+}

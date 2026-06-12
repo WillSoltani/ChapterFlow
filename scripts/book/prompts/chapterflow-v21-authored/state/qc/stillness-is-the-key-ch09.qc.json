@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 9,
+  "chapterId": "stillness-is-the-key-ch09",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "f05f3ee749ce8ff6",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:17:59.351Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "92/100; post-repair ch08-ch16 QC: prior cross-chapter venue-slate repeat with ch26 resolved downstream; gates/source pass; quiz keys verified 9/9; examples/cards/plans grounded and publishable.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 9,
+      "chapterId": "stillness-is-the-key-ch09",
+      "verdict": "REVISE",
+      "contentHash": "f05f3ee749ce8ff6",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:12:17.621Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch26 repeats ch09 venue slate (marina fuel ordering, repair shop pickup process, public works service desk scheduling, hospital supply inventory); quiz keys verified 9/9; no corruption found."
+    }
+  ],
+  "supersededReason": "Prior REVISE was caused by downstream ch26 venue-slate reuse; repaired downstream chapter now breaks that duplicate family, and fresh QC read finds ch09 publishable."
+}

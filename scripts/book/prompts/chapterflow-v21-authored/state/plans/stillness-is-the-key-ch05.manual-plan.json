@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch05",
+  "number": 5,
+  "title": "Slow Down, Think Deeply",
+  "coreMove": "Slow thinking is not delay; it is the small gap where you check the stimulus, test your first response, and make later speed safer for people who depend on you.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "client operations review",
+      "audience": "team leads facing a fast blame cycle",
+      "stakes": "a rushed reply could protect pride but damage trust",
+      "format": "dilemma",
+      "requiredBeat": "A genuine two-bad-options choice happens at a butcher paper station."
+    },
+    {
+      "domain": "farmers market pricing",
+      "audience": "small operators under visible customer pressure",
+      "stakes": "fast pricing could turn one bad crate into a bad table",
+      "format": "dialogue",
+      "requiredBeat": "Two named people talk at a farmers market stall and the lesson emerges in the exchange."
+    },
+    {
+      "domain": "home medication mix-up",
+      "audience": "readers who react fast inside family tension",
+      "stakes": "a false accusation could turn a small scare into a fight",
+      "format": "predict_reveal",
+      "requiredBeat": "The bathroom medicine cabinet sets up an expectation, then reveals a quieter truth."
+    },
+    {
+      "domain": "recreational tennis coaching",
+      "audience": "competitors who want instant correction",
+      "stakes": "trying to fix everything at once could wreck the next set",
+      "format": "text_thread",
+      "requiredBeat": "A short message exchange at a tennis court net post compresses the lesson."
+    },
+    {
+      "domain": "ambulance dispatch",
+      "audience": "operators who work under urgency",
+      "stakes": "one blind dispatch could send crews the wrong way",
+      "format": "reset_moment",
+      "requiredBeat": "A routine at an ambulance dispatch station is interrupted and restarted differently."
+    },
+    {
+      "domain": "carpentry practice",
+      "audience": "makers learning from visible mistakes",
+      "stakes": "a rushed cut wastes material and hides the lesson",
+      "format": "vignette",
+      "requiredBeat": "A small lived moment at a carpentry workbench teaches through detail."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 3,
+      "evaluate": 2,
+      "apply": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-12T17:37:06.486Z"
+}

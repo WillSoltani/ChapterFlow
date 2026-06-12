@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 11,
+  "chapterId": "stillness-is-the-key-ch11",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "85eedf1aafca574b",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:17:59.349Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "92/100; post-repair ch08-ch16 QC refresh; gates/source pass; quiz keys verified 9/9; examples/cards/plans grounded and publishable; no duplicate venue slate found.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 11,
+      "chapterId": "stillness-is-the-key-ch11",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "85eedf1aafca574b",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:12:17.620Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "92/100; quiz keys verified 9/9; soul-domain chapter coherent and grounded in Thich Nhat Hanh ocean and hustle-culture sources."
+    }
+  ]
+}

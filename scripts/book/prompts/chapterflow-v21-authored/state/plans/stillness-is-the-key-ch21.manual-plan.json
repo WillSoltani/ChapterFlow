@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch21",
+  "number": 21,
+  "title": "The Domain of the Body",
+  "coreMove": "Stillness needs a cared-for body: lower the noise, make recovery easy, and stop treating rest, movement, and leisure as rewards earned after collapse.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "courtroom interpreter break rotation",
+      "audience": "people who treat exhausted bodies as a scheduling inconvenience",
+      "stakes": "treat recovery as part of judgment, not a perk",
+      "format": "dilemma",
+      "requiredBeat": "Dalia delays a noncritical translation block until a rested interpreter rotates in"
+    },
+    {
+      "domain": "night-shift warehouse cooler",
+      "audience": "people who treat speed as the only serious route",
+      "stakes": "make relaxation in nature practical after bodily strain",
+      "format": "dialogue",
+      "requiredBeat": "Rene chooses the courtyard exit before reopening work"
+    },
+    {
+      "domain": "stage manager cue call",
+      "audience": "leaders who confuse urgency with accuracy",
+      "stakes": "show errors falling after the body settles",
+      "format": "predict_reveal",
+      "requiredBeat": "Kira sees accuracy improve after the crew gets a short outdoor reset"
+    },
+    {
+      "domain": "classroom paraeducator lunch reset",
+      "audience": "people whose tired intentions need a visible setup",
+      "stakes": "make bodily philosophy easier than another work loop",
+      "format": "text_thread",
+      "requiredBeat": "Joss sets up lunch, water, and one quiet page before returning to class"
+    },
+    {
+      "domain": "caregiving lift routine",
+      "audience": "people whose bodies warn them before skill collapses",
+      "stakes": "reset a punishing routine before effort becomes unsafe",
+      "format": "reset_moment",
+      "requiredBeat": "Camila rewrites the lift sequence when her hands start shaking"
+    },
+    {
+      "domain": "bell choir hand recovery",
+      "audience": "people who pretend judgment floats above the body",
+      "stakes": "show posture, water, light, and breaks shaping perception",
+      "format": "vignette",
+      "requiredBeat": "Beatrice sees that missed notes are body data, not just skill data"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 3,
+      "apply": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-12T17:37:06.492Z"
+}

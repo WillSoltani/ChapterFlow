@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 27,
+  "chapterId": "stillness-is-the-key-ch27",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "2c03fb2ed264726d",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:45:03.855Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 93/100; gates/source pass, examples/cards coherent, quiz verifies 9/9.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 27,
+      "chapterId": "stillness-is-the-key-ch27",
+      "verdict": "REVISE",
+      "contentHash": "0605276414e1f403",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:22:34.770Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch27 repeats shifted ch10 venue slate (catering van, park maintenance, mall kiosk, fire gear rack, ceramics kiln); quiz keys verified 9/9; no corruption found."
+    }
+  ],
+  "supersededReason": "fresh continuation QC ch27"
+}

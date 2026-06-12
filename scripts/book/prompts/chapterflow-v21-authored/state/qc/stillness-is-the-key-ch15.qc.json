@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 15,
+  "chapterId": "stillness-is-the-key-ch15",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "22f2442a2fa3e437",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:18:19.065Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "92/100; post-repair ch08-ch16 QC: prior cross-chapter venue-slate repeat with ch32 resolved downstream; gates/source pass; quiz keys verified 9/9; examples/cards/plans grounded and publishable.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 15,
+      "chapterId": "stillness-is-the-key-ch15",
+      "verdict": "REVISE",
+      "contentHash": "22f2442a2fa3e437",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:12:17.630Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch32 repeats ch15 venue slate (bike-share, courthouse records, recreation and bowling scoring); quiz keys verified 9/9; no corruption found."
+    }
+  ],
+  "supersededReason": "Prior REVISE was caused by downstream ch32 venue-slate reuse; repaired downstream chapter now breaks that duplicate family, and fresh QC read finds ch15 publishable."
+}

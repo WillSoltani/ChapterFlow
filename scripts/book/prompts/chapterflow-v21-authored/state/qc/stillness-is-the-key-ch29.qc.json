@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 29,
+  "chapterId": "stillness-is-the-key-ch29",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "d84a2565c1fdaf6f",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:55:24.899Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 93/100; quiz-domain repair verified; gate/source pass, quiz verifies 9/9, examples/cards coherent.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 29,
+      "chapterId": "stillness-is-the-key-ch29",
+      "verdict": "REVISE",
+      "contentHash": "9c147689b1ea97fa",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:22:34.825Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch29 repeats shifted ch12 venue slate (restaurant pass, transit control, pet supply checkout, polling place, podcast studio); quiz keys verified 9/9; no corruption found."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 29,
+      "chapterId": "stillness-is-the-key-ch29",
+      "verdict": "REVISE",
+      "contentHash": "cc239f4243b66eb1",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:45:04.103Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "YELLOW 88/100; quiz_distractor_quality=0.50; keys verify 9/9 but quiz choices leak stale domains: sauce metrics, model-railway, watercolor.",
+      "supersededReason": "fresh continuation QC ch29"
+    }
+  ],
+  "supersededReason": "post-r1 re-QC for ch26-32 quiz-domain repair"
+}

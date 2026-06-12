@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 30,
+  "chapterId": "stillness-is-the-key-ch30",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "f0a76a84995680fa",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:55:24.899Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 93/100; quiz-domain repair verified; gate/source pass, quiz verifies 9/9, examples/cards coherent.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 30,
+      "chapterId": "stillness-is-the-key-ch30",
+      "verdict": "REVISE",
+      "contentHash": "54ab2cc7fad8f700",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:22:34.871Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch30 repeats shifted ch13 venue slate (bakery, highway rest stop, laundromat, post office, clinical lab freezer); quiz keys verified 9/9; no corruption found."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 30,
+      "chapterId": "stillness-is-the-key-ch30",
+      "verdict": "REVISE",
+      "contentHash": "7ed772357b92f356",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:45:04.176Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "YELLOW 87/100; quiz_distractor_quality=0.45; keys verify 9/9 but quiz choices/explanations leak stale domains: alley, trays, bus, walk.",
+      "supersededReason": "fresh continuation QC ch30"
+    }
+  ],
+  "supersededReason": "post-r1 re-QC for ch26-32 quiz-domain repair"
+}

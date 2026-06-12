@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch01",
+  "number": 1,
+  "title": "The Domain of the Mind",
+  "coreMove": "Mental stillness is a pause before judgment: steady the room, rank the real risks, and let facts settle before fear writes the plan everyone will follow.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "airport operations during a cancelled flight",
+      "audience": "readers who need a fast reset before their tone spreads",
+      "stakes": "one loud announcement can turn a delay into a crowd problem",
+      "format": "reset_moment",
+      "requiredBeat": "the pause itself changes the next action, so the reader sees mental stillness as a reset before speech"
+    },
+    {
+      "domain": "clothing store fitting room after a rush",
+      "audience": "readers whose minds make small messes feel large",
+      "stakes": "mental clutter can turn one ordinary room into a false emergency",
+      "format": "vignette",
+      "requiredBeat": "the detail of the small room teaches how interpretation enlarges raw circumstance"
+    },
+    {
+      "domain": "nursery handoff after a hard night",
+      "audience": "readers reviewing a mistake after the outcome is already known",
+      "stakes": "a rushed mind can hide the actual cause of a small failure",
+      "format": "postmortem",
+      "requiredBeat": "the scene opens after the failure and reconstructs what the facts showed"
+    },
+    {
+      "domain": "rink skate counter during a safety complaint",
+      "audience": "readers who notice their own alarm midstream",
+      "stakes": "one unchecked leap can become policy for the whole rink",
+      "format": "mistake_recovery",
+      "requiredBeat": "the center is the moment the protagonist notices his own error, not the later fix"
+    },
+    {
+      "domain": "nursing station during a night shift",
+      "audience": "readers who need to write their way out of first fear",
+      "stakes": "an entire ward can feel unsafe if the first read outruns the chart",
+      "format": "decision_memo",
+      "requiredBeat": "the written artifact carries the action and shows facts settling before judgment"
+    },
+    {
+      "domain": "print shop cutter table during a rush order",
+      "audience": "readers comparing panic with calm factual sorting",
+      "stakes": "one response creates a client problem while the other saves usable work",
+      "format": "contrast",
+      "requiredBeat": "two people meet the same jam in opposite ways and the outcomes visibly diverge"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 3,
+      "understand": 1,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-12T17:37:06.484Z"
+}
