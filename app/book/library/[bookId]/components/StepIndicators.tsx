@@ -5,14 +5,12 @@ const STEP_LABELS = ["Summary", "Scenarios", "Quiz", "Unlock"] as const;
 type StepIndicatorsProps = {
   stepsCompleted: number;
   isInProgress?: boolean;
-  accentColor?: "green" | "indigo";
   lockedDots?: boolean;
 };
 
 export function StepIndicators({
   stepsCompleted,
   isInProgress = false,
-  accentColor = "green",
   lockedDots = false,
 }: StepIndicatorsProps) {
   return (
