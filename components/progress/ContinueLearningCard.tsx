@@ -12,6 +12,8 @@ import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 interface ContinueLearningCardProps {
   primaryBook: ActiveBook;
   otherBooks: ActiveBook[];
+  /** Closest real badge milestone, or null when the user has none yet. */
+  nextMilestone?: { name: string; icon: string } | null;
   onSwitchBook?: (bookId: string) => void;
 }
 
@@ -32,6 +34,7 @@ function getBookHref(book: ActiveBook): string {
 export function ContinueLearningCard({
   primaryBook,
   otherBooks,
+  nextMilestone = null,
   onSwitchBook,
 }: ContinueLearningCardProps) {
   const prefersReduced = useReducedMotion();
@@ -75,7 +78,7 @@ export function ContinueLearningCard({
             height: 120,
             background: primaryBook.coverUrl
               ? undefined
-              : "linear-gradient(135deg, rgba(56,189,248,0.3), rgba(167,139,250,0.3))",
+              : "linear-gradient(135deg, color-mix(in srgb, var(--accent-cyan) 30%, transparent), color-mix(in srgb, var(--accent-violet) 30%, transparent))",
             boxShadow: "var(--cf-shadow-md)",
           }}
         >
@@ -155,8 +158,8 @@ export function ContinueLearningCard({
           className="w-full cursor-pointer rounded-xl px-6 py-3.5 text-base font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
           style={{
             background: "linear-gradient(135deg, var(--cf-accent), var(--cf-accent-strong))",
-            border: "1px solid rgba(6,182,212,0.3)",
-            boxShadow: "0 4px 16px rgba(6,182,212,0.2)",
+            border: "1px solid var(--cf-accent-border)",
+            boxShadow: "0 4px 16px var(--cf-accent-shadow)",
           }}
           whileHover={{ scale: 1.02, y: -1 }}
           whileTap={{ scale: 0.98 }}
@@ -166,11 +169,13 @@ export function ContinueLearningCard({
         </motion.button>
       </Link>
 
-      {/* Next reward teaser */}
-      <p className="mt-3 text-xs" style={{ color: "var(--text-muted)" }}>
-        Complete this step to earn +50 IP and progress toward{" "}
-        {"\u{1F3C5}"} First Steps
-      </p>
+      {/* Next milestone — the user's real closest badge, or nothing */}
+      {nextMilestone && (
+        <p className="mt-3 text-xs" style={{ color: "var(--text-muted)" }}>
+          Keep going to earn{" "}
+          <span aria-hidden="true">{nextMilestone.icon}</span> {nextMilestone.name}
+        </p>
+      )}
 
       {/* Other active books */}
       {otherBooks.length > 0 && (
@@ -202,7 +207,7 @@ export function ContinueLearningCard({
                     height: 52,
                     background: book.coverUrl
                       ? undefined
-                      : "linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.2))",
+                      : "linear-gradient(135deg, color-mix(in srgb, var(--accent-cyan) 20%, transparent), color-mix(in srgb, var(--accent-violet) 20%, transparent))",
                   }}
                 >
                   {book.coverUrl ? (

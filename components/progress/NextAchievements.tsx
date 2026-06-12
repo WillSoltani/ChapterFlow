@@ -79,9 +79,9 @@ export function NextAchievements({
           <motion.div
             className="mt-3 flex items-center justify-between rounded-xl px-3 py-2"
             style={{
-              background: "linear-gradient(135deg, rgba(245,158,11,0.12), rgba(232,185,49,0.08), rgba(245,158,11,0.12))",
+              background: "linear-gradient(135deg, color-mix(in srgb, var(--accent-amber) 12%, transparent), color-mix(in srgb, var(--accent-amber) 8%, transparent), color-mix(in srgb, var(--accent-amber) 12%, transparent))",
               backgroundSize: "200% 100%",
-              border: "1px solid rgba(245,158,11,0.25)",
+              border: "1px solid color-mix(in srgb, var(--accent-amber) 25%, transparent)",
             }}
             initial={{ opacity: 0, height: 0, marginTop: 0 }}
             animate={{ opacity: 1, height: "auto", marginTop: 12, backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
@@ -176,7 +176,7 @@ export function NextAchievements({
                       style={{
                         width: `${progressPct}%`,
                         background: barColor,
-                        transition: "width 0.5s ease-out",
+                        transition: "width var(--duration-slow) var(--ease-out)",
                       }}
                     />
                   </div>
