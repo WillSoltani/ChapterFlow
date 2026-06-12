@@ -437,6 +437,10 @@ export type ExampleV21 = {
     stakes: string;
     format: string;
     requiredBeat: string;
+    /** v21.1 no-api QC scaffolding. Not shown to readers; stripped at promote. */
+    venue?: string;
+    /** v21.1 no-api QC scaffolding. Empty/absent means no marquee exemplar. */
+    exemplar?: string;
   };
   scenario: string;                     // 280–520 chars
   whatToDo: string;                     // 120–240 chars

@@ -30,6 +30,12 @@ import { runBookGate, BookGateReport, formatBookGateReport } from "./critics/boo
 import { runIntraBookChecks } from "./critics/intraBook.js";
 import { checkQcAttestation } from "./critics/qcAttestation.js";
 import { checkKeyJudge } from "./critics/quizKeyGate.js";
+import { isNoApiCodexQcMode } from "./qc/noApiMode.js";
+import { checkSourceV2Gate } from "./qc/sourceV2Gate.js";
+import { checkPlanEnforcement } from "./qc/planEnforcement.js";
+import { checkManualKeyJudge } from "./qc/manualKeyJudge.js";
+import { checkSweep } from "./qc/sweep.js";
+import { unresolvedMajors } from "./qc/majorDisposition.js";
 import { ChapterSpec } from "./generateChapter.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -52,6 +58,7 @@ export type PromotionResult = {
    *  results. The model-backed catch the deterministic gates structurally
    *  cannot do — enforced here from the sidecar `quiz-judge` writes. */
   keyJudgeBlockerCount: number;
+  noApiBlockerCount: number;
   shipGateMajorCount: number;
   bookGateMajorCount: number;
   reason: string;                // human-readable explanation
@@ -225,6 +232,45 @@ export function promoteBook(input: PromotionInput): PromotionResult {
   );
   const keyJudgeBlockerCount = keyJudgeFindings.length;
 
+  // Step 3.7: v21.1 no-API Codex QC mode. Default promotion remains backward
+  // compatible; this stricter stack is active only when explicitly enabled.
+  const noApiMode = isNoApiCodexQcMode();
+  const noApiFindings: Array<{ chapter?: number; checkId: string; severity: "blocker"; message: string }> = [];
+  if (noApiMode) {
+    const source = checkSourceV2Gate(bookId, loadedChapters.map((ch) => ch.number));
+    noApiFindings.push(...source.findings.map((f) => ({
+      chapter: f.chapterNumber,
+      checkId: f.checkId,
+      severity: "blocker" as const,
+      message: f.message,
+    })));
+    noApiFindings.push(...checkPlanEnforcement(bookId, loadedChapters).map((f) => ({
+      chapter: f.chapterNumber,
+      checkId: f.checkId,
+      severity: "blocker" as const,
+      message: f.message,
+    })));
+    noApiFindings.push(...loadedChapters.flatMap((ch) =>
+      checkManualKeyJudge(ch, true).map((f) => ({
+        chapter: ch.number,
+        checkId: f.checkId,
+        severity: "blocker" as const,
+        message: f.message,
+      })),
+    ));
+    noApiFindings.push(...checkSweep(loadedChapters, true).map((f) => ({
+      checkId: f.checkId,
+      severity: "blocker" as const,
+      message: f.message,
+    })));
+    noApiFindings.push(...unresolvedMajors(bookId, loadedChapters).map((f) => ({
+      checkId: "QC4.major_unresolved",
+      severity: "blocker" as const,
+      message: `Unresolved major ${f.id} (${f.scope} ${f.checkId}): ${f.message}`,
+    })));
+  }
+  const noApiBlockerCount = noApiFindings.length;
+
   // Step 4: Write the report regardless of pass/fail.
   mkdirSync(resolve(STATE, "books"), { recursive: true });
   const reportPath = resolve(STATE, "books", `${bookId}.gate.json`);
@@ -249,13 +295,14 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     intraBook: { totalBlockers: intraBlockerCount, findings: intraFindings },
     qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
     quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
+    noApiCodexQc: { enabled: noApiMode, totalBlockers: noApiBlockerCount, findings: noApiFindings },
   };
   writeFileSync(reportPath, JSON.stringify(fullReport, null, 2), "utf8");
 
   // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
   // gates (per-chapter + intra-book + book), the QC-attestation gate, AND the
   // quiz answer-key judge gate.
-  if (shipBlockerCount > 0 || intraBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0 || keyJudgeBlockerCount > 0) {
+  if (shipBlockerCount > 0 || intraBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0 || keyJudgeBlockerCount > 0 || noApiBlockerCount > 0) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${Date.now()}.report.json`);
     writeFileSync(quarantinePath, JSON.stringify(fullReport, null, 2), "utf8");
@@ -268,6 +315,9 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     const keyJudgeSummary = keyJudgeBlockerCount > 0
       ? ` + ${keyJudgeBlockerCount} quiz-key blocker(s): ${keyJudgeFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${keyJudgeBlockerCount > 3 ? ", …" : ""}`
       : "";
+    const noApiSummary = noApiBlockerCount > 0
+      ? ` + ${noApiBlockerCount} no-api QC blocker(s): ${noApiFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${noApiBlockerCount > 3 ? ", …" : ""}`
+      : "";
     return {
       promoted: false,
       bookId,
@@ -276,9 +326,10 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       bookGateBlockerCount: bookBlockerCount,
       intraBookBlockerCount: intraBlockerCount,
       keyJudgeBlockerCount,
+      noApiBlockerCount,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}. Quarantined at ${quarantinePath}.`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${noApiSummary}. Quarantined at ${quarantinePath}.`,
     };
   }
 
@@ -314,6 +365,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     bookGateBlockerCount: 0,
     intraBookBlockerCount: 0,
     keyJudgeBlockerCount: 0,
+    noApiBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
     reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Majors logged: ${shipMajorCount} ship + ${bookMajorCount} book.`,
@@ -329,6 +381,7 @@ function blockedResult(args: { bookId: string; reason: string; missingChapters?:
     bookGateBlockerCount: 0,
     intraBookBlockerCount: 0,
     keyJudgeBlockerCount: 0,
+    noApiBlockerCount: 0,
     shipGateMajorCount: 0,
     bookGateMajorCount: 0,
     reason: args.reason,
@@ -344,6 +397,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   lines.push(`  Ship gate: ${r.shipGateBlockerCount} blockers, ${r.shipGateMajorCount} majors`);
   lines.push(`  Intra-book (AS5–AS12): ${r.intraBookBlockerCount} blockers`);
   lines.push(`  Quiz answer-key judge: ${r.keyJudgeBlockerCount} blockers`);
+  lines.push(`  No-api Codex QC: ${r.noApiBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
   return lines.join("\n");
 }

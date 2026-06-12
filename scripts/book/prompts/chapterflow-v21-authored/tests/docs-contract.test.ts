@@ -68,6 +68,20 @@ test("QC-SESSION teaches the TOOLED hidden-key protocol and attest-all coverage"
   assert.match(s, /EVERY chapter/, "coverage must state that promote needs every chapter attested");
 });
 
+test("prompt docs teach v21.1 no-api Codex QC mode, not gate-only GREEN", () => {
+  const qc = doc("agent-prompts/QC-SESSION-PROMPT.md");
+  const playbook = doc("agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md");
+  for (const s of [qc, playbook]) {
+    assert.match(s, /CHAPTERFLOW_NO_API_CODEX_QC=1/, "docs must name the no-api mode switch");
+    assert.match(s, /qc-open-round/, "docs must teach round creation");
+    assert.match(s, /key-pack/, "docs must teach blind manual key packs");
+    assert.match(s, /key-derive/, "docs must teach keyA/keyB derivation");
+    assert.match(s, /sweep-attest/, "docs must teach sweep attestation");
+    assert.match(s, /major-(status|disposition)/, "docs must teach major disposition");
+  }
+  assert.match(qc, /gate-only GREEN is never enough|Gate tallies alone can NEVER produce GREEN|Never report GREEN \/ "ready to promote" from gate output alone/i);
+});
+
 test("PLAYBOOK names R6 and no doc pins the dead v21-redesign branch", () => {
   const s = doc("agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md");
   assert.match(s, /R1–R6/, "the playbook must include R6 — the rule against THE systemic defect");

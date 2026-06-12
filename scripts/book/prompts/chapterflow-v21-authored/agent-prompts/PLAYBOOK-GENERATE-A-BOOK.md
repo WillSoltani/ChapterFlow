@@ -83,12 +83,27 @@ hit before QC.
 
 ## 5. Semantic QC  (separate Claude session — the no-API judge)
 
-Open a fresh Claude session and give it `QC-SESSION-PROMPT.md`. It reads each
+Open a fresh QC session and give it `QC-SESSION-PROMPT.md`. It reads each
 chapter, scores the publishable bar, and **hidden-key-derives every quiz answer**
-(derive the key independently, then compare). It records each verdict:
+(derive the key independently, then compare). In v21.1 no-api Codex QC mode
+(`CHAPTERFLOW_NO_API_CODEX_QC=1`), first open a role-separated round and produce
+the required artifacts:
+```
+npx tsx src/cli.ts qc-open-round <bookId>
+npx tsx src/cli.ts sweep-pack <bookId> --round <roundId>
+npx tsx src/cli.ts key-pack <bookId> --round <roundId>
+# two independent readers:
+npx tsx src/cli.ts key-derive <bookId> --round <roundId> --role keyA --token <keyA-token> --answers-file <path>
+npx tsx src/cli.ts key-derive <bookId> --round <roundId> --role keyB --token <keyB-token> --answers-file <path>
+npx tsx src/cli.ts key-resolve <bookId> --round <roundId>
+npx tsx src/cli.ts sweep-attest <bookId> --round <roundId> --token <sweep-token> --verdict PASS --reviewer "<id>"
+npx tsx src/cli.ts major-status <bookId>   # every current major needs major-disposition
+```
+It records each chapter verdict:
 ```
 npx tsx src/cli.ts qc-attest state/chapters/<bookId>-chNN.v21-native.chapter.json \
   --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer "claude-qc:<session>" \
+  --round <roundId> --token <bar|confirm|attest-token> \
   --dimensions "keysCorrect=true,grounded=true,nonTemplated=true,frameworkComplete=true,cardsAnswerFronts=true,distractorsReal=true" \
   --notes "<bar score; reason>"
 ```

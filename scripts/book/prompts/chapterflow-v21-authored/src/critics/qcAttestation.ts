@@ -33,6 +33,8 @@ import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
+import type { QcRoundRole } from "../qc/qcRound.js";
+import { isNoApiCodexQcMode } from "../qc/noApiMode.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 
@@ -55,6 +57,9 @@ export type QcAttestation = {
   /** who/what produced the verdict, e.g. "claude-qc:wf_93f0a1dd" or a session id. */
   reviewer: string;
   reviewedAt: string;
+  /** v21.1 no-api QC mode: round-backed role that produced this attestation. */
+  roundId?: string;
+  roundRole?: QcRoundRole;
   /** per-dimension booleans the reviewer checked (keysCorrect, grounded, …). */
   dimensions?: Record<string, boolean>;
   findings?: string[];
@@ -264,6 +269,12 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
   if (!isApprovedReviewer(att.reviewer)) {
     return [{ checkId: "QC0.unverified_reviewer", severity: sev,
       message: `QC reviewer "${att.reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). A chapter cannot be certified by its own writer — review it in a QC session and re-attest as e.g. "claude-qc:<id>" or "codex-qc:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change the allowed roles).` }];
+  }
+  if (isNoApiCodexQcMode()) {
+    if (!att.roundId || !att.roundRole || !["bar", "confirm", "attest"].includes(att.roundRole)) {
+      return [{ checkId: "QC0.no_api_round_missing", severity: sev,
+        message: `No-api QC mode requires a fresh round-backed attestation (qc-attest --round <roundId> --token <bar|confirm|attest token>). Legacy attestations remain readable but cannot promote in this mode.` }];
+    }
   }
   return [];
 }

@@ -124,6 +124,21 @@ Commands:
                                      state/name-plans/<bookId>.name-plan.json. Default K=7.
                                      Exit 1 if the name bank ran dry for any chapter.
   qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."]
+                                     Add --round <roundId> --token <token> in no-api Codex QC mode.
+  qc-open-round <bookId>             Open a role-separated QC round and print plaintext role tokens once.
+  source-v2-gate <bookId>            Strict no-api source gate: every chapter sidecar must be source-v2
+                                     with centralConcept, namedExamples, hardSpecifics, and testableFacts.
+  key-pack <bookId> --round <id>     Write blind manual quiz-key packs under state/qc-packs/.
+  key-derive <bookId> --round <id> --role keyA|keyB --token X --answers-file path
+                                     Validate and store a blind key reader's answers.
+  key-resolve <bookId> --round <id>  Resolve keyA/keyB derivations into manual-keyjudge records.
+  sweep-pack <bookId> --round <id>   Write the book-level sweep pack for a QC round.
+  sweep-attest <bookId> --round <id> --token X --verdict PASS|REVISE|CORRUPTION --reviewer <id>
+                                     Record the sweep verdict and all chapter content hashes.
+  sweep-status <bookId>              Show the latest sweep attestation status.
+  major-status <bookId>              Show current major findings and their dispositions.
+  major-disposition <bookId> --finding <id> --status resolved|waived --reason X --reviewer X --round <id> [--token X]
+                                     Record an explicit disposition for a current major finding.
   qc-verdict <chapterId> --scores '<json>'|--scores-file <path>
                                      Reduce per-axis scores to the verdict via the REAL computeVerdict
                                      (corruption veto + floors are mechanical — exit 0 GREEN / 1 YELLOW / 2 RED)
@@ -1372,6 +1387,16 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     console.error(`Chapter list at ${tocPath} is empty.`);
     return 2;
   }
+  const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
+  if (isNoApiCodexQcMode()) {
+    const { checkSourceV2Gate, formatSourceV2GateReport } = await import("./qc/sourceV2Gate.js");
+    const sourceGate = checkSourceV2Gate(bookId, flat.map((ch) => ch.number));
+    if (!sourceGate.passed) {
+      console.error(formatSourceV2GateReport(sourceGate));
+      console.error("fanout refuses to print authoring prompts in CHAPTERFLOW_NO_API_CODEX_QC=1 until source-v2-gate passes.");
+      return 1;
+    }
+  }
   const indexPath = resolve(PIPE, "state/indexes", `${bookId}.json`);
   const idx: Array<{ chapterId: string; chapterNumber: number }> = existsSyncFs(indexPath)
     ? JSON.parse(readFileSync(indexPath, "utf8"))
@@ -1443,12 +1468,12 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
       ? `• MARQUEE EXEMPLARS: this chapter owns ${exemplar.assigned.length ? exemplar.assigned.join(", ") : "none"}. ` +
         `FORBIDDEN (owned by other chapters): ${
           exemplar.forbidden.length ? exemplar.forbidden.map((item) => `${item.name} (ch${item.ownerChapter})`).join(", ") : "none"
-        } — at most a passing mention, never with date/place stamping, never as a teaching unit, never in quiz/cards.\n`
+        } — at most a passing mention, never with date/place stamping, never as a teaching unit, never in quiz/cards. Set example[i].planSpec.exemplar to the owned exemplar used by that scene, or "" when none is used.\n`
       : "";
     const venueIds = venuePlan.allocation[ch.number] ?? [];
     const venueLines = venueIds.map((venue, i) => `    ${i + 1}. ${venue}`).join("\n");
     const venueLine = venueIds.length
-      ? `• VENUES: example[i] is set at the dealt venue[i] (a venue is a PLACE, not a script — furnish it from the scene's own logic). Never relocate two examples to the same venue.\n${venueLines}\n`
+      ? `• VENUES: example[i] is set at the dealt venue[i] and example[i].planSpec.venue MUST equal that exact venue string (a venue is a PLACE, not a script — furnish it from the scene's own logic). Never relocate two examples to the same venue.\n${venueLines}\n`
       : "";
 
     // Source specifics: the sidecar's real anchors, pasted so the writer
@@ -1638,6 +1663,188 @@ async function runNamePlan(args: string[], flags: Record<string, string | boolea
   return 0;
 }
 
+async function runQcOpenRound(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: qc-open-round <bookId>");
+    return 2;
+  }
+  const { openQcRound, QC_ROUND_ROLES } = await import("./qc/qcRound.js");
+  try {
+    const { record, tokens, path } = openQcRound(bookId);
+    console.log(`QC round opened: ${record.roundId}`);
+    console.log(`Stored: ${path}`);
+    console.log("Plaintext role tokens (shown once):");
+    for (const role of QC_ROUND_ROLES) console.log(`  ${role}: ${tokens[role]}`);
+    return 0;
+  } catch (err) {
+    console.error((err as Error).message);
+    return 1;
+  }
+}
+
+async function runSourceV2Gate(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: source-v2-gate <bookId>");
+    return 2;
+  }
+  const { checkSourceV2Gate, formatSourceV2GateReport } = await import("./qc/sourceV2Gate.js");
+  const report = checkSourceV2Gate(bookId);
+  console.log(formatSourceV2GateReport(report));
+  return report.passed ? 0 : 1;
+}
+
+async function runKeyPack(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: key-pack <bookId> --round <roundId>");
+    return 2;
+  }
+  try {
+    const { writeKeyPacks } = await import("./qc/manualKeyJudge.js");
+    const paths = writeKeyPacks(bookId, roundId);
+    console.log(`key-pack: wrote ${paths.length} pack(s)`);
+    for (const p of paths) console.log(`  ${p}`);
+    return 0;
+  } catch (err) {
+    console.error((err as Error).message);
+    return 1;
+  }
+}
+
+async function runKeyDerive(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  const role = typeof flags["role"] === "string" ? flags["role"] : "";
+  const token = typeof flags["token"] === "string" ? flags["token"] : "";
+  const answersFile = typeof flags["answers-file"] === "string" ? flags["answers-file"] : "";
+  if (!bookId || !roundId || !["keyA", "keyB"].includes(role) || !token || !answersFile) {
+    console.error("Usage: key-derive <bookId> --round <roundId> --role keyA|keyB --token <token> --answers-file <path>");
+    return 2;
+  }
+  const { validateAndWriteKeyDerivation } = await import("./qc/manualKeyJudge.js");
+  const result = validateAndWriteKeyDerivation(bookId, roundId, role as "keyA" | "keyB", token, answersFile);
+  if (result.errors.length > 0) {
+    console.error(`key-derive: BLOCK (${result.errors.length} error(s))`);
+    for (const e of result.errors) console.error(`  ${e}`);
+    return 1;
+  }
+  console.log(`key-derive: wrote ${result.path}`);
+  return 0;
+}
+
+async function runKeyResolve(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: key-resolve <bookId> --round <roundId>");
+    return 2;
+  }
+  const { resolveManualKeyJudges } = await import("./qc/manualKeyJudge.js");
+  const result = resolveManualKeyJudges(bookId, roundId);
+  console.log(`key-resolve: wrote ${result.records.length} manual-keyjudge record(s)`);
+  for (const rec of result.records) console.log(`  ch${String(rec.chapterNumber).padStart(2, "0")}: ${rec.status} — ${rec.reason}`);
+  return result.errors.length === 0 ? 0 : 1;
+}
+
+async function runSweepPack(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: sweep-pack <bookId> --round <roundId>");
+    return 2;
+  }
+  const { writeSweepPack } = await import("./qc/sweep.js");
+  const path = writeSweepPack(bookId, roundId);
+  console.log(`sweep-pack: wrote ${path}`);
+  return 0;
+}
+
+async function runSweepAttest(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  const token = typeof flags["token"] === "string" ? flags["token"] : "";
+  const reviewer = typeof flags["reviewer"] === "string" ? flags["reviewer"] : "";
+  const verdict = typeof flags["verdict"] === "string" ? flags["verdict"].toUpperCase() : "";
+  const notes = typeof flags["notes"] === "string" ? flags["notes"] : undefined;
+  if (!bookId || !roundId || !token || !reviewer || !["PASS", "REVISE", "CORRUPTION"].includes(verdict)) {
+    console.error("Usage: sweep-attest <bookId> --round <roundId> --token <token> --verdict PASS|REVISE|CORRUPTION --reviewer <id> [--notes X]");
+    return 2;
+  }
+  const { writeSweepAttestation } = await import("./qc/sweep.js");
+  const result = writeSweepAttestation(bookId, roundId, token, verdict as any, reviewer, notes);
+  if (result.error) {
+    console.error(result.error);
+    return 1;
+  }
+  console.log(`sweep-attest: wrote ${result.path}`);
+  return 0;
+}
+
+async function runSweepStatus(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: sweep-status <bookId>");
+    return 2;
+  }
+  const { formatSweepStatus, checkSweep } = await import("./qc/sweep.js");
+  const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+  console.log(formatSweepStatus(bookId));
+  const findings = checkSweep(loadBookChapters(bookId), true);
+  for (const f of findings) console.log(`  [${f.checkId}] ${f.message}`);
+  return findings.length === 0 ? 0 : 1;
+}
+
+async function runMajorStatus(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: major-status <bookId>");
+    return 2;
+  }
+  const { formatMajorStatus, unresolvedMajors } = await import("./qc/majorDisposition.js");
+  console.log(formatMajorStatus(bookId));
+  return unresolvedMajors(bookId).length === 0 ? 0 : 1;
+}
+
+async function runMajorDisposition(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const findingId = typeof flags["finding"] === "string" ? flags["finding"] : "";
+  const status = typeof flags["status"] === "string" ? flags["status"] : "";
+  const reason = typeof flags["reason"] === "string" ? flags["reason"] : "";
+  const reviewer = typeof flags["reviewer"] === "string" ? flags["reviewer"] : "";
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  const token = typeof flags["token"] === "string" ? flags["token"] : "";
+  if (!bookId || !findingId || !["resolved", "waived"].includes(status) || !reason || !reviewer || !roundId) {
+    console.error("Usage: major-disposition <bookId> --finding <id> --status resolved|waived --reason <text> --reviewer <id> --round <roundId> [--token <confirm-token>]");
+    return 2;
+  }
+  const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
+  if (isNoApiCodexQcMode() || token) {
+    const { verifyQcRoundToken } = await import("./qc/qcRound.js");
+    if (!verifyQcRoundToken(bookId, roundId, "confirm", token)) {
+      console.error(`Invalid confirm token for ${bookId} round ${roundId}.`);
+      return 1;
+    }
+  }
+  const { currentMajorFindings, writeDisposition } = await import("./qc/majorDisposition.js");
+  if (!currentMajorFindings(bookId).some((f) => f.id === findingId)) {
+    console.error(`Finding id ${findingId} is not a current major for ${bookId}. Run major-status ${bookId} and use one of the listed ids.`);
+    return 1;
+  }
+  const path = writeDisposition(bookId, {
+    findingId,
+    status: status as "resolved" | "waived",
+    reason,
+    reviewer,
+    roundId,
+    timestamp: new Date().toISOString(),
+  });
+  console.log(`major-disposition: wrote ${path}`);
+  return 0;
+}
+
 /** `qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id>
  *  [--notes "..."] [--dimensions key=true,key=false]` — record a Claude reviewer's
  *  semantic verdict for a chapter, stamped with the chapter's current content hash.
@@ -1649,8 +1856,10 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
   const file = args[0];
   const verdict = typeof flags["verdict"] === "string" ? (flags["verdict"] as string).toUpperCase() : "";
   const reviewer = typeof flags["reviewer"] === "string" ? (flags["reviewer"] as string) : "";
+  const roundId = typeof flags["round"] === "string" ? (flags["round"] as string) : "";
+  const token = typeof flags["token"] === "string" ? (flags["token"] as string) : "";
   if (!file || !["PUBLISHABLE", "REVISE", "CORRUPTION"].includes(verdict) || !reviewer) {
-    console.error(`Usage: qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--notes "..."] [--dimensions k=true,k2=false] [--supersede "<reason>"]`);
+    console.error(`Usage: qc-attest <chapter.json> --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer <id> [--round <roundId> --token <token>] [--notes "..."] [--dimensions k=true,k2=false] [--supersede "<reason>"]`);
     return 2;
   }
   const chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
@@ -1658,6 +1867,21 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
   if (!parsed) {
     console.error(`Could not parse chapterId "${chapter.chapterId}" — cannot attest.`);
     return 2;
+  }
+  const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
+  let roundRole: "bar" | "confirm" | "attest" | undefined;
+  if (isNoApiCodexQcMode() || roundId || token) {
+    if (!roundId || !token) {
+      console.error("CHAPTERFLOW_NO_API_CODEX_QC=1 requires qc-attest --round <roundId> --token <bar|confirm|attest token>.");
+      return 2;
+    }
+    const { identifyQcRoundRole } = await import("./qc/qcRound.js");
+    const role = identifyQcRoundRole(parsed.bookId, roundId, token, ["bar", "confirm", "attest"]);
+    if (!role) {
+      console.error(`Invalid qc-attest token for ${parsed.bookId} round ${roundId}; expected a bar, confirm, or attest token.`);
+      return 1;
+    }
+    roundRole = role as "bar" | "confirm" | "attest";
   }
   const { chapterContentHash, writeAttestation, loadAttestation, isAttestationFresh } =
     await import("./critics/qcAttestation.js");
@@ -1711,6 +1935,8 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
     hashVersion: "v2",
     reviewer,
     reviewedAt: new Date().toISOString(),
+    roundId: roundId || undefined,
+    roundRole,
     dimensions: Object.keys(dimensions).length ? dimensions : undefined,
     findings,
     notes,
@@ -1719,7 +1945,7 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
       : undefined,
     supersededReason: supersede ?? undefined,
   });
-  console.log(`QC attestation written: ${path}\n  ${parsed.bookId}-ch${chapter.number}  verdict=${verdict}  hash=${chapterContentHash(chapter)} (v2)  reviewer=${reviewer}`);
+  console.log(`QC attestation written: ${path}\n  ${parsed.bookId}-ch${chapter.number}  verdict=${verdict}  hash=${chapterContentHash(chapter)} (v2)  reviewer=${reviewer}${roundId ? `  round=${roundId} role=${roundRole}` : ""}`);
   return 0;
 }
 
@@ -2229,7 +2455,7 @@ async function runQcStatus(args: string[]): Promise<number> {
     else if (att.verdict !== "PUBLISHABLE") status = att.verdict;
     else if (!isAttestationFresh(att, ch)) status = "STALE";
     else { status = "PASS"; ready++; }
-    lines.push(`  ch${String(ch.number).padStart(2, "0")}: ${status}${att ? `  (reviewer=${att.reviewer}, ${att.reviewedAt.slice(0, 10)})` : ""}`);
+    lines.push(`  ch${String(ch.number).padStart(2, "0")}: ${status}${att ? `  (reviewer=${att.reviewer}, ${att.reviewedAt.slice(0, 10)}${att.roundId ? `, round=${att.roundId}/${att.roundRole ?? "?"}` : ""})` : ""}`);
   }
   console.log(`QC attestation status — ${bookId}: ${ready}/${files.length} chapters ship-ready (PASS)`);
   console.log(lines.join("\n"));
@@ -2600,6 +2826,26 @@ async function main() {
       return runVenuePlan(args, flags);
     case "pedagogy-plan":
       return runPedagogyPlan(args, flags);
+    case "qc-open-round":
+      return runQcOpenRound(args);
+    case "source-v2-gate":
+      return runSourceV2Gate(args);
+    case "key-pack":
+      return runKeyPack(args, flags);
+    case "key-derive":
+      return runKeyDerive(args, flags);
+    case "key-resolve":
+      return runKeyResolve(args, flags);
+    case "sweep-pack":
+      return runSweepPack(args, flags);
+    case "sweep-attest":
+      return runSweepAttest(args, flags);
+    case "sweep-status":
+      return runSweepStatus(args);
+    case "major-status":
+      return runMajorStatus(args);
+    case "major-disposition":
+      return runMajorDisposition(args, flags);
     case "qc-attest":
       return runQcAttest(args, flags);
     case "qc-verdict":
