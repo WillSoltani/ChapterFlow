@@ -230,8 +230,15 @@ self-restraint:**
 ```bash
 grep -oE '"[A-Z][^"]{2,30}: [^"]*; [^"]*"|means The|Source Moment|(Reverse|Flatten|Prefer) ' state/chapters/<bookId>-ch*.v21-native.chapter.json | head
 ```
-The automated `judge-quiz-keys` runner exists but needs a funded model key; until then
-the hidden-key read IS the catch. **A `DID NOT RUN` from any model tool is never a pass.**
+**Automated path (preferred when a provider key is set):** `npx tsx src/cli.ts quiz-judge <bookId>`
+runs the model judge across every chapter (hidden-key, independent derivation), writes
+`state/qc/<bookId>-chNN.keyjudge.json`, and a flagged result **BLOCKS at promote**
+(`QC1.wrong_quiz_key`) — so the wrong-key catch no longer depends on the reviewer's honesty.
+It defaults to the `openai-api` provider (Codex's). Run it, then read its flags. Without a
+key, the manual `quiz-blind`/`quiz-verify` read above IS the catch. **A `DID NOT RUN` from
+any model tool is never a pass** — and for a single agent that both writes and QCs, set
+`CHAPTERFLOW_REQUIRE_KEYJUDGE=1` so promote refuses any chapter without a fresh clean
+`quiz-judge` result.
 
 ### Layer 3 — Source check (if you also QC Step 1)
 
@@ -306,6 +313,12 @@ edits the chapter afterward, the hash no longer matches and the attestation goes
 — `promote` blocks again and the chapter must be re-reviewed. So: review, then attest, and
 never attest a chapter you have not actually read. Check coverage any time with
 `npx tsx src/cli.ts qc-status <bookId>` (PASS / STALE / REVISE / CORRUPTION / MISSING).
+
+**Reviewer identity matters.** Attest under an approved QC role — `claude-qc:<id>`,
+`codex-qc:<id>`, `harness:<id>`, or `human:<id>`. `promote` REFUSES a `PUBLISHABLE`
+attestation whose reviewer is the writer (e.g. `codex:writer`): a chapter cannot certify
+itself, so the QC pass must run in a session distinct from the one that wrote the chapter.
+(Override the allowed roles with `CHAPTERFLOW_QC_REVIEWERS`.)
 
 ---
 

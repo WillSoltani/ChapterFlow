@@ -3,6 +3,7 @@ export const meta = {
   description: 'Semantic QC of a book: sweep-first triage, merged blind-key + bar read, adversarial confirm gate on PUBLISHABLE, adjudication, then qc-attest',
   phases: [
     { title: 'Sweep', detail: 'one cross-chapter read FIRST — systemic templating exits early with a fix brief instead of paying for per-chapter QC' },
+    { title: 'Key judge', detail: 'model-backed answer-key audit per chapter (quiz-judge) — writes the sidecar promote enforces (QC1.wrong_quiz_key)' },
     { title: 'Bar read', detail: 'one agent per chapter: blind-key derivation (tooled), then the full publishable-bar read' },
     { title: 'Confirm', detail: 'adversarial second read ONLY for provisional-PUBLISHABLE chapters — two independent reads are required to ship, one is enough to send back' },
     { title: 'Adjudicate', detail: 'adversarially verify every corruption-class claim before it counts' },
@@ -151,6 +152,15 @@ const ATTEST_SCHEMA = {
   },
 }
 
+const KEYJUDGE_CH_SCHEMA = {
+  type: 'object',
+  required: ['ran', 'flagged'],
+  properties: {
+    ran: { type: 'boolean', description: 'false if quiz-judge printed "SEMANTIC JUDGE DID NOT RUN" (no provider key) — never a clean pass' },
+    flagged: { type: 'number', description: 'count of confident wrong keys quiz-judge flagged for this chapter' },
+  },
+}
+
 // ── Phase 1: cross-chapter sweep FIRST (the cheap read that predicts the rest) ──
 
 phase('Sweep')
@@ -206,6 +216,34 @@ if (sweepRan && systemicFamilies.length >= 3) {
     attested: [],
   }
 }
+
+// ── Phase 1.5: automated answer-key judge (model-backed, honesty-independent) ──
+// Runs AFTER the sweep early-exit (a systemically-templated book skips it) and
+// before the bar read. Each agent runs `quiz-judge` for one chapter, which
+// re-derives every answer with a model and writes
+// state/qc/<bookId>-chNN.keyjudge.json — the record promote ENFORCES
+// (QC1.wrong_quiz_key). The per-chapter blind-key read below is STILL done; this
+// is the catch that does not depend on a reviewer agent doing it honestly, and a
+// flag here caps the chapter at REVISE regardless of what the bar read concludes.
+phase('Key judge')
+const keyJudgeResults = await parallel(
+  CONFIG.chapters.map((c) => () =>
+    agent(
+      `Automated answer-key judge for "${CONFIG.bookId}" chapter ${c.n}. It re-derives every quiz answer with a model (hidden-key) and writes the result promote BLOCKS on.
+Run EXACTLY this and report its output: ${CLI} quiz-judge ${CONFIG.bookId} --chapters ${c.n}
+Read the printed "flagged (wrong key): N" line: set ran=true and flagged=N. If it instead prints "SEMANTIC JUDGE DID NOT RUN" (no provider key configured), set ran=false and flagged=0 — a DID NOT RUN is never a clean pass (the blind-key read below remains the catch). Do not open or edit any chapter file.`,
+      { label: `key-judge:ch${c.n}`, phase: 'Key judge', schema: KEYJUDGE_CH_SCHEMA },
+    ).then((r) => ({ n: c.n, ran: !!r?.ran, flagged: r?.flagged ?? 0 })),
+  ),
+)
+const keyJudgeFlaggedByCh = new Map()
+let keyJudgeRanAll = true
+for (const r of keyJudgeResults.filter(Boolean)) {
+  keyJudgeFlaggedByCh.set(r.n, r.flagged)
+  if (!r.ran) keyJudgeRanAll = false
+}
+const keyJudgeTotal = [...keyJudgeFlaggedByCh.values()].reduce((a, b) => a + b, 0)
+log(`Key judge: ${keyJudgeRanAll ? 'ran on all chapters' : 'DID NOT RUN on some chapters (no provider key?) — those rely on the blind-key read'}; flagged ${keyJudgeTotal} wrong key(s) total.`)
 
 // ── Phase 2: merged per-chapter read (blind keys via tooling, then the bar) ──
 
@@ -337,6 +375,10 @@ Read the actual unit in context. upheld=true ONLY if the quote is real (verbatim
 
 function finalVerdict({ entry, verdicts }) {
   const { c, read, prov, confirm, confirmNeeded } = entry
+  // Model-backed answer-key judge (Phase 1.5): a confident wrong-key flag here
+  // is independent of the agent's manual blind-key read and caps the chapter at
+  // REVISE — promote also hard-blocks it (QC1.wrong_quiz_key) until re-judged clean.
+  const keyJudgeFlagged = keyJudgeFlaggedByCh.get(c.n) ?? 0
   const upheldKeys = verdicts.filter((v) => v.claim.kind === 'key' && v.resolved && v.upheld)
   const upheldAxis = verdicts.filter((v) => v.claim.kind === 'axis' && v.resolved && v.upheld)
   const unresolved = verdicts.filter((v) => !v.resolved)
@@ -352,14 +394,14 @@ function finalVerdict({ entry, verdicts }) {
   const confirmRefuted = !!confirm?.refuted && (confirm?.hits?.length ?? 0) > 0
   let verdict
   if (upheldKeys.length > 0 || upheldAxis.length > 0) verdict = 'CORRUPTION'
-  else if (incomplete || confirmRefuted || prov.sweepHits.length > 0 || prov.overall < CONFIG.publishableFloor || prov.axes.some((a) => a.score < CONFIG.axisFloor)) verdict = 'REVISE'
+  else if (incomplete || confirmRefuted || keyJudgeFlagged > 0 || prov.sweepHits.length > 0 || prov.overall < CONFIG.publishableFloor || prov.axes.some((a) => a.score < CONFIG.axisFloor)) verdict = 'REVISE'
   else verdict = confirmNeeded ? 'PUBLISHABLE' : 'REVISE'
   const booleans = Object.assign(
     { grounded: true, frameworkComplete: true, cardsAnswerFronts: true, distractorsReal: true },
     read?.booleans ?? {},
   )
   const dims = {
-    keysCorrect: upheldKeys.length === 0,
+    keysCorrect: upheldKeys.length === 0 && keyJudgeFlagged === 0,
     grounded: !!booleans.grounded,
     nonTemplated: upheldAxis.length === 0 && prov.sweepHits.length === 0,
     frameworkComplete: !!booleans.frameworkComplete,
@@ -371,6 +413,7 @@ function finalVerdict({ entry, verdicts }) {
       ? `INCOMPLETE READ (${prov.readComplete ? 'read ok' : 'partial read'}${sweepRan ? '' : ', sweep missing'}${confirmMissing ? ', confirm missing' : ''}${unresolved.length ? `, ${unresolved.length} unresolved claim(s)` : ''}) — NOT attested; re-run qc-run`
       : `overall=${prov.overall}`,
     upheldKeys.length ? `${upheldKeys.length} confirmed wrong key(s)` : null,
+    keyJudgeFlagged ? `quiz-judge flagged ${keyJudgeFlagged} key(s)` : null,
     upheldAxis.length ? `${upheldAxis.length} confirmed corruption hit(s)` : null,
     confirmRefuted ? `confirm refuted: ${confirm.hits[0]?.defect ?? ''}`.slice(0, 80) : null,
     prov.sweepHits.length ? `cross-chapter: ${prov.sweepHits.map((f) => f.kind).join('/')}` : null,
@@ -416,6 +459,7 @@ return {
   byVerdict,
   needsRerun: needsRerun.map((f) => ({ chapter: f.n, note: f.note })),
   perChapter: finals,
+  keyJudge: { ranAll: keyJudgeRanAll, flaggedByChapter: [...keyJudgeFlaggedByCh.entries()].map(([n, flagged]) => ({ chapter: n, flagged })) },
   sweepFindings: sweep?.findings ?? [],
   attested: attested.filter(Boolean).map((a) => ({ chapter: a.chapterNumber, attested: a.attested, output: a.cliOutput.slice(-600) })),
 }

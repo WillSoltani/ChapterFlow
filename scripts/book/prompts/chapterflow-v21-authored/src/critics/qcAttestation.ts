@@ -208,11 +208,39 @@ export function writeAttestation(att: QcAttestation): string {
 
 export type QcFinding = { checkId: string; severity: "blocker" | "advisory"; message: string };
 
+/** Reviewer-identity allowlist. A PUBLISHABLE attestation only counts at the
+ *  gate if its reviewer carries an approved QC ROLE prefix (the segment before
+ *  the first ":"). This stops the WRITER agent from self-certifying its own
+ *  output — the whole semantic gate assumes reviewer ≠ author (see
+ *  QC-SESSION-PROMPT.md "a separate writer agent (Codex) produces the
+ *  chapters; you evaluate them"). On-disk reviewers are
+ *  claude-qc:/codex-qc:/harness:/human:; the writer identity is codex:writer.
+ *
+ *  NOTE: this is a default-safe GUARDRAIL, not a cryptographic guarantee — a
+ *  single agent willing to relabel itself a reviewer can still pass it. The
+ *  honesty-INDEPENDENT catch for the worst class (wrong quiz keys) is the model
+ *  judge enforced via quizKeyGate.ts. Override the allowed roles with
+ *  CHAPTERFLOW_QC_REVIEWERS (comma-separated role prefixes). */
+const DEFAULT_QC_REVIEWERS = ["claude-qc", "codex-qc", "harness", "human"];
+
+export function approvedReviewerRoles(): string[] {
+  const env = process.env.CHAPTERFLOW_QC_REVIEWERS;
+  if (env && env.trim()) return env.split(",").map((s) => s.trim()).filter(Boolean);
+  return DEFAULT_QC_REVIEWERS;
+}
+
+/** True if the reviewer string carries an approved QC role prefix. */
+export function isApprovedReviewer(reviewer: string): boolean {
+  const role = (reviewer.split(":")[0] ?? "").trim().toLowerCase();
+  return approvedReviewerRoles().some((r) => r.toLowerCase() === role);
+}
+
 /**
  * The gate check. `enforce` true → severities are "blocker" (promote);
  * false → "advisory" (gate-chapter, so iteration isn't blocked).
  * A chapter passes iff it carries a PUBLISHABLE attestation whose contentHash
- * still matches the chapter as it is on disk now.
+ * still matches the chapter as it is on disk now AND whose reviewer is an
+ * approved QC role (not the writer that produced it).
  */
 export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFinding[] {
   const sev = enforce ? "blocker" : "advisory";
@@ -232,6 +260,10 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
     const now = hashForVersion(chapter, att.hashVersion);
     return [{ checkId: "QC0.stale_attestation", severity: sev,
       message: `QC attestation is STALE: the chapter changed since review (attested ${att.contentHash}, now ${now}, hash ${att.hashVersion ?? "v1"}). Re-review before shipping.` }];
+  }
+  if (!isApprovedReviewer(att.reviewer)) {
+    return [{ checkId: "QC0.unverified_reviewer", severity: sev,
+      message: `QC reviewer "${att.reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). A chapter cannot be certified by its own writer — review it in a QC session and re-attest as e.g. "claude-qc:<id>" or "codex-qc:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change the allowed roles).` }];
   }
   return [];
 }

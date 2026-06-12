@@ -29,6 +29,7 @@ import { runShipGate, GateReport, formatGateReport } from "./critics/finalGate.j
 import { runBookGate, BookGateReport, formatBookGateReport } from "./critics/bookGate.js";
 import { runIntraBookChecks } from "./critics/intraBook.js";
 import { checkQcAttestation } from "./critics/qcAttestation.js";
+import { checkKeyJudge } from "./critics/quizKeyGate.js";
 import { ChapterSpec } from "./generateChapter.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -47,6 +48,10 @@ export type PromotionResult = {
   /** AS5–AS12 cross-chapter blockers. Until Phase 1 these ran ONLY in
    *  gate-chapter, so promote shipped books the authoring gate would block. */
   intraBookBlockerCount: number;
+  /** Fresh wrong-key (or, in require mode, missing/stale) quiz answer-key judge
+   *  results. The model-backed catch the deterministic gates structurally
+   *  cannot do — enforced here from the sidecar `quiz-judge` writes. */
+  keyJudgeBlockerCount: number;
   shipGateMajorCount: number;
   bookGateMajorCount: number;
   reason: string;                // human-readable explanation
@@ -205,6 +210,21 @@ export function promoteBook(input: PromotionInput): PromotionResult {
   );
   const qcBlockerCount = qcFindings.length;
 
+  // Step 3.6: Quiz answer-key judge gate — the model-backed wrong-key catch the
+  // deterministic gates structurally cannot do (they only range-check
+  // correctIndex; the `hooked` book shipped 21/72 wrong keys past a GREEN gate).
+  // The judge is async + model-backed, so it runs out-of-band via `quiz-judge`
+  // and writes a per-chapter result; promote stays sync + offline and merely
+  // ENFORCES that result. A fresh result that flagged a confident wrong key
+  // blocks. With CHAPTERFLOW_REQUIRE_KEYJUDGE=1 every chapter must also carry a
+  // fresh CLEAN result — the setting for a single agent that both writes and QCs
+  // a book, where the catch must not depend on that agent's honesty.
+  const requireKeyJudge = process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE === "1";
+  const keyJudgeFindings = loadedChapters.flatMap((ch) =>
+    checkKeyJudge(ch, true, requireKeyJudge).map((f) => ({ chapter: ch.number, ...f })),
+  );
+  const keyJudgeBlockerCount = keyJudgeFindings.length;
+
   // Step 4: Write the report regardless of pass/fail.
   mkdirSync(resolve(STATE, "books"), { recursive: true });
   const reportPath = resolve(STATE, "books", `${bookId}.gate.json`);
@@ -228,12 +248,14 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     bookGate,
     intraBook: { totalBlockers: intraBlockerCount, findings: intraFindings },
     qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
+    quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
   };
   writeFileSync(reportPath, JSON.stringify(fullReport, null, 2), "utf8");
 
   // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
-  // gates (per-chapter + intra-book + book) AND the QC-attestation gate.
-  if (shipBlockerCount > 0 || intraBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0) {
+  // gates (per-chapter + intra-book + book), the QC-attestation gate, AND the
+  // quiz answer-key judge gate.
+  if (shipBlockerCount > 0 || intraBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0 || keyJudgeBlockerCount > 0) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${Date.now()}.report.json`);
     writeFileSync(quarantinePath, JSON.stringify(fullReport, null, 2), "utf8");
@@ -243,6 +265,9 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     const intraSummary = intraBlockerCount > 0
       ? ` + ${intraBlockerCount} intra-book blocker(s): ${intraFindings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${intraBlockerCount > 3 ? ", …" : ""}`
       : "";
+    const keyJudgeSummary = keyJudgeBlockerCount > 0
+      ? ` + ${keyJudgeBlockerCount} quiz-key blocker(s): ${keyJudgeFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${keyJudgeBlockerCount > 3 ? ", …" : ""}`
+      : "";
     return {
       promoted: false,
       bookId,
@@ -250,9 +275,10 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       shipGateBlockerCount: shipBlockerCount,
       bookGateBlockerCount: bookBlockerCount,
       intraBookBlockerCount: intraBlockerCount,
+      keyJudgeBlockerCount,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}. Quarantined at ${quarantinePath}.`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}. Quarantined at ${quarantinePath}.`,
     };
   }
 
@@ -287,6 +313,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     shipGateBlockerCount: 0,
     bookGateBlockerCount: 0,
     intraBookBlockerCount: 0,
+    keyJudgeBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
     reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Majors logged: ${shipMajorCount} ship + ${bookMajorCount} book.`,
@@ -301,6 +328,7 @@ function blockedResult(args: { bookId: string; reason: string; missingChapters?:
     shipGateBlockerCount: 0,
     bookGateBlockerCount: 0,
     intraBookBlockerCount: 0,
+    keyJudgeBlockerCount: 0,
     shipGateMajorCount: 0,
     bookGateMajorCount: 0,
     reason: args.reason,
@@ -315,6 +343,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   if (r.reportPath) lines.push(`  Report: ${r.reportPath}`);
   lines.push(`  Ship gate: ${r.shipGateBlockerCount} blockers, ${r.shipGateMajorCount} majors`);
   lines.push(`  Intra-book (AS5–AS12): ${r.intraBookBlockerCount} blockers`);
+  lines.push(`  Quiz answer-key judge: ${r.keyJudgeBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
   return lines.join("\n");
 }

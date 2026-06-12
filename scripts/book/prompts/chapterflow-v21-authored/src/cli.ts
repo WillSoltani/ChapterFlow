@@ -25,6 +25,7 @@ import { BookCriticReport, BookPackage, ChapterV21 } from "./types.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
 import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileName, assertNoShadowStateDir } from "./lib/chapterPaths.js";
+import type { ProviderName } from "./providers/types.js";
 
 /** Refuse to run if a repo-root shadow state/chapters dir holds chapters
  *  (the dual-directory divergence hazard). Returns an exit code on failure. */
@@ -137,6 +138,11 @@ Commands:
                                      + cross-chapter sweep + adjudication + qc-attest)
   catalog-audit [bookId] [--save]    Cross-book fingerprint metrics (hook/exercise/quiz monoculture,
                                      house tics, name collisions, distractor tell) + variety score
+  quiz-judge <bookId> [--chapters 1,2] [--provider openai-api]
+                                     Model-backed answer-key audit (hidden-key): derives each answer
+                                     independently and flags confident wrong keys. Writes
+                                     state/qc/<bookId>-chNN.keyjudge.json; a fresh flagged result BLOCKS
+                                     promote (QC1.wrong_quiz_key). Exit 1 if any wrong key, 2 on infra.
   quiz-blind <chapter.json>          Print the quiz with the answer key stripped (hidden-key protocol)
   quiz-verify <chapter.json> --answers "0:1,..."  Diff blind-derived answers against the real key
   qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
@@ -2050,6 +2056,85 @@ async function runQcRun(args: string[], flags: Record<string, string | boolean>)
   return 0;
 }
 
+/** `quiz-judge <bookId> [--chapters 1,2] [--provider openai-api]` — the
+ *  model-backed answer-key audit. For each chapter it hides correctIndex and
+ *  asks the model to derive the answer independently (the hidden-key protocol,
+ *  tooled — not left to an agent's self-restraint); a confident disagreement is
+ *  a wrong-key flag. Writes a per-chapter result to
+ *  state/qc/<bookId>-chNN.keyjudge.json that the promote gate ENFORCES
+ *  (QC1.wrong_quiz_key), so the catch is independent of the writer's honesty.
+ *  Exit 0 clean / 1 wrong key(s) / 2 infra (fail-OPEN: an infra error must never
+ *  look like a clean semantic pass). */
+async function runQuizJudge(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: quiz-judge <bookId> [--chapters 1,2,3] [--provider openai-api]");
+    return 2;
+  }
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  const files = readdirSync(chaptersDir).filter((f) => isSiblingFile(f, bookId)).sort();
+  if (files.length === 0) {
+    console.error(`No chapters found for "${bookId}" in state/chapters/.`);
+    return 2;
+  }
+  const only = (parseCsvFlag(flags["chapters"]) ?? []).map((s) => Number(s)).filter((n) => Number.isFinite(n));
+  const providerFlag = typeof flags["provider"] === "string" ? (flags["provider"] as string) : process.env.CHAPTERFLOW_PROVIDER;
+  const provider = providerFlag as ProviderName | undefined;
+
+  const { judgeQuizKeys, makeLiveAskModel, formatQuizKeyReport } = await import("./critics/semantic/quizKeyJudge.js");
+  const { recordFromReport, writeKeyJudge } = await import("./critics/quizKeyGate.js");
+  const { findRunArtifact } = await import("./lib/runDirs.js");
+  const RUNS = resolve(__dirname, "../../../../..", ".chapterflow/runs");
+
+  const ask = makeLiveAskModel(provider ? { provider } : undefined);
+  const reviewer = `keyjudge:${provider ?? "openai-api"}`;
+  const chapters = files
+    .map((f) => JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21)
+    .filter((ch) => only.length === 0 || only.includes(ch.number))
+    .sort((a, b) => a.number - b.number);
+
+  console.log(`Judging quiz answer keys for ${bookId} — ${chapters.length} chapter(s) via provider=${provider ?? "openai-api"}...\n`);
+
+  let totalFlagged = 0;
+  let totalReview = 0;
+  let judged = 0;
+  try {
+    for (const ch of chapters) {
+      const numStr = String(ch.number).padStart(2, "0");
+      let sourceContext: string | undefined;
+      const scPath = findRunArtifact(RUNS, bookId, `sidecars/source/ch${numStr}.source.json`);
+      if (scPath) {
+        try { sourceContext = readFileSync(scPath, "utf8").slice(0, 8000); } catch { /* sidecar ground truth is optional */ }
+      }
+      const report = await judgeQuizKeys(ch, { ask, sourceContext });
+      const recPath = writeKeyJudge(recordFromReport(report, ch, { bookId, reviewer, now: new Date().toISOString() }));
+      console.log(formatQuizKeyReport(report));
+      console.log(`  → ${recPath}\n`);
+      totalFlagged += report.flagged.length;
+      totalReview += report.review.length;
+      judged++;
+    }
+  } catch (err) {
+    // Fail OPEN: a provider/infra error must never be recorded or read as a
+    // clean semantic pass. Loud, distinct marker; only chapters that actually
+    // completed were written, so a half-run can't masquerade as full coverage.
+    console.error("\n⚠️  SEMANTIC JUDGE DID NOT RUN — provider/infra error (NOT a clean pass):");
+    console.error("   " + (err as Error).message);
+    console.error("   Set a funded OPENAI_API_KEY / ANTHROPIC_API_KEY (or CHAPTERFLOW_PROVIDER) and retry.");
+    console.error(`   (${judged}/${chapters.length} chapter(s) judged before the error.)`);
+    return 2;
+  }
+
+  console.log(`Quiz answer-key judge: ${totalFlagged === 0 ? "PASS" : "BLOCK"} for ${bookId}`);
+  console.log(`  chapters judged: ${judged}  |  wrong keys flagged: ${totalFlagged}  |  medium-confidence review: ${totalReview}`);
+  if (totalFlagged > 0) {
+    console.log("  These BLOCK at promote (QC1.wrong_quiz_key) while the result is fresh. Fix the keys, then re-run quiz-judge.");
+  }
+  return totalFlagged === 0 ? 0 : 1;
+}
+
 /** `qc-stats [bookId]` — revision-rate instrumentation from the attestation
  *  record. The plan's throughput ceiling is the ~18% reviewer-revision rate;
  *  this measures it instead of assuming it: first-pass PUBLISHABLE rate
@@ -2318,6 +2403,23 @@ async function runGateChapter(args: string[]): Promise<number> {
     /* non-fatal — advisory layer */
   }
 
+  // ── Quiz answer-key judge (advisory) ────────────────────────────────────
+  // Surface any wrong-key result the model judge recorded for this chapter
+  // (run out-of-band via `quiz-judge`). ADVISORY here so authoring iteration is
+  // never blocked by it; it BLOCKS at promote (QC1.wrong_quiz_key). A missing
+  // result is silent — gate-chapter never requires the judge to have run.
+  try {
+    const { checkKeyJudge } = await import("./critics/quizKeyGate.js");
+    const kjFindings = checkKeyJudge(chapter, false);
+    if (kjFindings.length > 0) {
+      console.log("");
+      console.log("Quiz answer-key judge findings (advisory — blocks at promote):");
+      for (const f of kjFindings) console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
+    }
+  } catch {
+    /* non-fatal — advisory layer */
+  }
+
   // ── Authoritative combined verdict ──────────────────────────────────────
   // formatGateReport prints "Ship gate: PASS/BLOCK" for the CHAPTER-ONLY ship
   // gate. The intra-book blockers above are computed separately and are NOT in
@@ -2510,6 +2612,8 @@ async function main() {
       return runQcRehash(args, flags);
     case "qc-run":
       return runQcRun(args, flags);
+    case "quiz-judge":
+      return runQuizJudge(args, flags);
     case "quiz-blind":
       return runQuizBlind(args);
     case "catalog-audit":
