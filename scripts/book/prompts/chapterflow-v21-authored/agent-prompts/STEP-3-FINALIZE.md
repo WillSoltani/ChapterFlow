@@ -16,7 +16,7 @@ This is the shortest stage. You run 3-4 deterministic Bash commands. If they pas
 ## Working directory
 
 ```
-/Users/radinsoltani/ChapterFlow
+/Users/radinsoltani/ChapterFlow-books
 ```
 
 `cd` there at the start of your session.
@@ -251,7 +251,7 @@ In every case: **do not attempt to write chapter content yourself**. Step 2 is t
 ## TL;DR sequence
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow
+cd /Users/radinsoltani/ChapterFlow-books
 
 # Step A — confirm chapters present and gating clean
 for f in scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-ch*.v21-native.chapter.json; do

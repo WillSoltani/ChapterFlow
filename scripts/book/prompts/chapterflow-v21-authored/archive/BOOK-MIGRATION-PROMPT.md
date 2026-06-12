@@ -17,7 +17,7 @@ Migrate `<BOOK_ID>` from v13 to v21 end-to-end. Single session. By the time you'
 
 ## Working directory
 
-`/Users/radinsoltani/ChapterFlow` — `cd` here at the start.
+`/Users/radinsoltani/ChapterFlow-books` — `cd` here at the start.
 
 ## Read these before you do anything
 

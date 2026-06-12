@@ -248,7 +248,7 @@ Every field has a JOB. The complete per-field specification — JOB, a WRITE rec
 ## Working directory
 
 ```
-/Users/radinsoltani/ChapterFlow
+/Users/radinsoltani/ChapterFlow-books
 ```
 
 `cd` there at the start of your session. All paths below are relative to this directory.
@@ -694,7 +694,7 @@ In either case, report:
 ## TL;DR loop
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow
+cd /Users/radinsoltani/ChapterFlow-books
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts next-task <bookId>
 # It tells you which chapter to write. Write the Bind Block from the source.
 # Compose each field to its JOB (FIELD-PURPOSE-CONTRACTS.md). Save to the printed path.

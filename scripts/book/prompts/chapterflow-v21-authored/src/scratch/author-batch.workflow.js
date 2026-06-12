@@ -75,7 +75,7 @@ const results = await pipeline(
     agent(
       `You are upgrading one ChapterFlow source sidecar from rich-v1 to source-v2. Work in ${PIPE} (cd there first).
 
-INPUT  (rich-v1): .chapterflow/runs/${bookId}/${v1RunId}/sidecars/source/ch${pad(n)}.source.json  (relative to the REPO ROOT /Users/radinsoltani/ChapterFlow)
+INPUT  (rich-v1): .chapterflow/runs/${bookId}/${v1RunId}/sidecars/source/ch${pad(n)}.source.json  (relative to the REPO ROOT /Users/radinsoltani/ChapterFlow-books)
 OUTPUT (v2):      .chapterflow/runs/${bookId}/${runId}/sidecars/source/ch${pad(n)}.source.json  (REPO ROOT relative)
 REFERENCE v2 shape: read .chapterflow/runs/${bookId}/${runId}/sidecars/source/ch09.source.json — match its structure EXACTLY.
 

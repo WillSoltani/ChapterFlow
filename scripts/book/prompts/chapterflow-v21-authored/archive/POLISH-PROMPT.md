@@ -29,7 +29,7 @@ You will:
 ## Setup
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow
+cd /Users/radinsoltani/ChapterFlow-books
 set -a; source .env.local; set +a
 ```
 
