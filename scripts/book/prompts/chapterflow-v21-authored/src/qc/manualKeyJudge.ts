@@ -5,7 +5,7 @@ import { resolve } from "path";
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, CHAPTERS_DIR, isSiblingFile, parseChapterId } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
-import { verifyQcRoundToken } from "./qcRound.js";
+import { loadQcRound, verifyQcRoundToken } from "./qcRound.js";
 import { loadSourceV2Sidecar, sourceFactsForPack, sourceHashFor, type SourceFactForPack } from "./sourceV2Gate.js";
 
 export const QC_PACKS_DIR = resolve(CANONICAL_STATE, "qc-packs");
@@ -342,6 +342,8 @@ export function checkManualKeyJudge(chapter: ChapterV21, enforce: boolean): Manu
   const bookId = parsed?.bookId ?? chapter.chapterId.replace(/-ch\d+$/i, "");
   const rec = loadManualKeyJudge(bookId, chapter.number);
   if (!rec) return [{ checkId: "QC2.manual_keyjudge_missing", severity: sev, message: `No manual keyjudge record for ${chapter.chapterId}. Run key-pack, key-derive for keyA/keyB, then key-resolve.` }];
+  const round = loadQcRound(rec.bookId, rec.roundId);
+  if (!round?.roles?.keyA || !round.roles.keyB) return [{ checkId: "QC2.manual_keyjudge_round_missing", severity: sev, message: `Manual keyjudge record is not backed by an existing QC round file. Re-open a round and repeat key-pack/key-derive/key-resolve.` }];
   if (rec.contentHash !== chapterContentHash(chapter)) return [{ checkId: "QC2.manual_keyjudge_stale", severity: sev, message: `Manual keyjudge record is stale for ${chapter.chapterId}.` }];
   const sourceHash = sourceHashFor(bookId, chapter.number);
   if (!sourceHash || rec.sourceHash !== sourceHash) return [{ checkId: "QC2.manual_keyjudge_source_stale", severity: sev, message: `Manual keyjudge source hash is stale/missing for ${chapter.chapterId}.` }];

@@ -33,7 +33,7 @@ import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
-import type { QcRoundRole } from "../qc/qcRound.js";
+import { loadQcRound, type QcRoundRole } from "../qc/qcRound.js";
 import { isNoApiCodexQcMode } from "../qc/noApiMode.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
@@ -274,6 +274,10 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
     if (!att.roundId || !att.roundRole || !["bar", "confirm", "attest"].includes(att.roundRole)) {
       return [{ checkId: "QC0.no_api_round_missing", severity: sev,
         message: `No-api QC mode requires a fresh round-backed attestation (qc-attest --round <roundId> --token <bar|confirm|attest token>). Legacy attestations remain readable but cannot promote in this mode.` }];
+    }
+    if (!loadQcRound(att.bookId, att.roundId)?.roles?.[att.roundRole]) {
+      return [{ checkId: "QC0.no_api_round_missing", severity: sev,
+        message: `No-api QC mode requires an attestation backed by an existing QC round file. Re-open a round and re-attest ${chapter.chapterId}.` }];
     }
   }
   return [];

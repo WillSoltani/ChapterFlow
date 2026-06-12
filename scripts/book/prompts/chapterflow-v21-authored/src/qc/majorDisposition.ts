@@ -7,6 +7,7 @@ import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { runShipGate } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
 import { loadBookChapters } from "./manualKeyJudge.js";
+import { loadQcRound } from "./qcRound.js";
 
 export const WAIVERS_DIR = resolve(CANONICAL_STATE, "waivers");
 
@@ -82,11 +83,13 @@ export function writeDisposition(bookId: string, disposition: MajorDisposition):
   return p;
 }
 
-export function unresolvedMajors(bookId: string, chapters = loadBookChapters(bookId)): MajorFindingSnapshot[] {
+export function unresolvedMajors(bookId: string, chapters = loadBookChapters(bookId), requireRoundBacked = false): MajorFindingSnapshot[] {
   const dispositions = new Map(loadWaivers(bookId).dispositions.map((d) => [d.findingId, d]));
   return currentMajorFindings(bookId, chapters).filter((f) => {
     const d = dispositions.get(f.id);
-    return !d || (d.status !== "resolved" && d.status !== "waived");
+    if (!d || (d.status !== "resolved" && d.status !== "waived")) return true;
+    if (requireRoundBacked && !loadQcRound(bookId, d.roundId)?.roles?.confirm) return true;
+    return false;
   });
 }
 
@@ -100,4 +103,3 @@ export function formatMajorStatus(bookId: string, chapters = loadBookChapters(bo
   }
   return lines.join("\n");
 }
-

@@ -4,7 +4,7 @@ import { dirname, resolve } from "path";
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
-import { verifyQcRoundToken } from "./qcRound.js";
+import { loadQcRound, verifyQcRoundToken } from "./qcRound.js";
 import { loadBookChapters } from "./manualKeyJudge.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
@@ -99,6 +99,7 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   const bookId = parsed?.bookId ?? chapters[0]?.chapterId?.replace(/-ch\d+$/i, "") ?? "";
   const rec = loadSweepRecord(bookId);
   if (!rec) return [{ checkId: "QC3.sweep_missing", severity: sev, message: `No sweep attestation for ${bookId}. Run sweep-pack and sweep-attest.` }];
+  if (!loadQcRound(rec.bookId, rec.roundId)?.roles?.sweep) return [{ checkId: "QC3.sweep_round_missing", severity: sev, message: `Sweep attestation is not backed by an existing QC round file. Re-open a round and re-attest the sweep.` }];
   if (rec.verdict !== "PASS") return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict}, not PASS.` }];
   const stale = chapters.filter((ch) => rec.contentHashes[String(ch.number)] !== chapterContentHash(ch));
   if (stale.length > 0) return [{ checkId: "QC3.sweep_stale", severity: sev, message: `Sweep attestation is stale/missing for chapter(s): ${stale.map((ch) => ch.number).join(", ")}.` }];

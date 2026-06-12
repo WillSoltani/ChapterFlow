@@ -263,7 +263,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       severity: "blocker" as const,
       message: f.message,
     })));
-    noApiFindings.push(...unresolvedMajors(bookId, loadedChapters).map((f) => ({
+    noApiFindings.push(...unresolvedMajors(bookId, loadedChapters, true).map((f) => ({
       checkId: "QC4.major_unresolved",
       severity: "blocker" as const,
       message: `Unresolved major ${f.id} (${f.scope} ${f.checkId}): ${f.message}`,
