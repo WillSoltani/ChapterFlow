@@ -93,14 +93,20 @@ export function BookBadgesClient() {
     [badgeSystem.badges],
   );
 
-  // Celebrate badges earned since the last visit. earnedAt is server-truth, so a
-  // fresh device never re-stamps the back-catalog as "earned today" and old
-  // badges never re-celebrate.
+  // Celebrate badges earned since the last visit. earnedAt is server-truth, so
+  // old badges never re-celebrate.
   useEffect(() => {
     if (!badgeSystem.hydrated || !badges.length) return;
     const lastSeen = getLastSeenTimestamp();
     if (!lastSeen) {
-      // First ever visit — adopt the back-catalog silently.
+      // First visit on this device: adopt the entire earned back-catalog
+      // silently. We baseline the already-earned ids (not just the timestamp) so
+      // that useBadgeSystem's brief client-side earnedAt stamp — which can read
+      // as "today" for a few frames before the /me/badges GET resolves on a fresh
+      // device — can never replay the back-catalog as a burst of celebrations.
+      badges.forEach((b) => {
+        if (b.isEarned) celebratedRef.current.add(b.id);
+      });
       setLastSeenTimestamp();
       return;
     }

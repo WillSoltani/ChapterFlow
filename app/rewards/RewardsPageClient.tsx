@@ -113,9 +113,9 @@ function RewardCard({
         <button
           onClick={onRedeem}
           disabled={redeeming}
-          className="mt-auto w-full cursor-pointer rounded-xl bg-(--cf-accent) py-2.5 text-[14px] font-semibold text-(--cf-accent-contrast) transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+          className="cf-btn cf-btn-primary mt-auto w-full rounded-xl text-[14px]"
         >
-          {redeeming ? "Redeeming..." : "Redeem"}
+          {redeeming ? "Redeeming…" : "Redeem"}
         </button>
       )}
 
