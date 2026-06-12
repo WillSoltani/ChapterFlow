@@ -96,7 +96,7 @@ export function BookHero({
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.2 }}
             className="shrink-0"
           >
-            <div style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3)", borderRadius: "0.75rem" }}>
+            <div style={{ boxShadow: "var(--shadow-book)", borderRadius: "0.75rem" }}>
               <BookCover
                 bookId={entry.id}
                 title={entry.title}
@@ -165,7 +165,7 @@ export function BookHero({
                     type="button"
                     onClick={() => setSynopsisExpanded((prev) => !prev)}
                     aria-expanded={synopsisExpanded}
-                    className="mt-1 inline-flex rounded text-sm font-medium text-(--cf-accent) transition-colors hover:text-(--cf-accent-strong) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                    className="-mx-1 mt-0.5 inline-flex min-h-11 items-center rounded px-1 text-sm font-medium text-(--cf-accent) transition-colors hover:text-(--cf-accent-strong) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                   >
                     {synopsisExpanded ? "Less" : "More"}
                   </button>

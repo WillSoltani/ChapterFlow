@@ -318,7 +318,7 @@ export function BookDetailClient({
             </p>
             <Link
               href="/pricing"
-              className="cf-btn cf-btn-primary mt-3 inline-flex rounded-xl px-5 py-2.5 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+              className="cf-btn cf-btn-primary mt-3 inline-flex rounded-xl px-5 py-3 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
             >
               <Sparkles className="h-4 w-4" />
               Upgrade to Pro

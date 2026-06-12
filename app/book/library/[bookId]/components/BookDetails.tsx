@@ -110,7 +110,7 @@ export function BookDetails({
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent, var(--cf-border-strong, rgba(255,255,255,0.1)), transparent)" }}
+          style={{ background: "linear-gradient(to right, transparent, var(--cf-border-strong), transparent)" }}
           aria-hidden="true"
         />
         <button

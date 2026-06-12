@@ -105,6 +105,9 @@ export function BookDetailSkeleton({ rows = 6 }: { rows?: number }) {
 export function BookDetailLoading() {
   return (
     <main className="cf-app-shell relative">
+      <span className="sr-only" role="status">
+        Loading book details…
+      </span>
       <div
         className="cf-topbar sticky top-0 z-30 flex h-16 items-center justify-between px-4 sm:px-6 lg:px-10"
         aria-hidden="true"
