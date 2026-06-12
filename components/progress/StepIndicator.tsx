@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { StepNumber } from "./progressTypes";
 
 const STEP_LABELS = ["Summary", "Scenarios", "Quiz", "Unlock"] as const;
@@ -17,6 +17,7 @@ export function StepIndicator({
   totalSteps = 4,
   size = "md",
 }: StepIndicatorProps) {
+  const prefersReduced = useReducedMotion();
   const lineHeight = 2;
 
   // Compact mode for "sm" — just dots + "Step X/4" text, no lines
@@ -35,10 +36,10 @@ export function StepIndicator({
                 width: 6,
                 height: 6,
                 background: isCompleted
-                  ? "#34D399"
+                  ? "var(--accent-emerald)"
                   : isCurrent
-                    ? "#22D3EE"
-                    : "rgba(255,255,255,0.15)",
+                    ? "var(--cf-accent)"
+                    : "var(--cf-progress-track)",
               }}
             />
           );
@@ -70,11 +71,15 @@ export function StepIndicator({
                     style={{
                       width: 12,
                       height: 12,
-                      background: "#22D3EE",
-                      boxShadow: "0 0 12px rgba(34,211,238,0.5)",
+                      background: "var(--cf-accent)",
+                      boxShadow: "0 0 12px var(--cf-accent-shadow)",
                     }}
-                    animate={{ scale: [1, 1.25, 1] }}
-                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    animate={prefersReduced ? { scale: 1 } : { scale: [1, 1.25, 1] }}
+                    transition={
+                      prefersReduced
+                        ? { duration: 0 }
+                        : { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                    }
                     aria-label={`Step ${stepNum} of ${totalSteps}: ${STEP_LABELS[i]} (current)`}
                   />
                 ) : (
@@ -84,11 +89,11 @@ export function StepIndicator({
                       width: 10,
                       height: 10,
                       background: isCompleted
-                        ? "#34D399"
+                        ? "var(--accent-emerald)"
                         : "transparent",
                       border: isCompleted
                         ? "none"
-                        : "2px solid rgba(255,255,255,0.2)",
+                        : "2px solid var(--cf-border-strong)",
                     }}
                     aria-label={`Step ${stepNum} of ${totalSteps}: ${STEP_LABELS[i]} (${isCompleted ? "completed" : "upcoming"})`}
                   />
@@ -103,8 +108,8 @@ export function StepIndicator({
                     height: lineHeight,
                     minWidth: 12,
                     background: isCompleted
-                      ? "#34D399"
-                      : "rgba(255,255,255,0.15)",
+                      ? "var(--accent-emerald)"
+                      : "var(--cf-progress-track)",
                   }}
                 />
               )}
@@ -127,9 +132,9 @@ export function StepIndicator({
               style={{
                 fontSize: 11,
                 color: isCompleted
-                  ? "#34D399"
+                  ? "var(--accent-emerald)"
                   : isCurrent
-                    ? "#22D3EE"
+                    ? "var(--cf-accent)"
                     : "var(--text-tertiary)",
                 fontWeight: isCurrent ? 600 : 400,
               }}
