@@ -4,6 +4,7 @@ export const ORCHESTRATOR_SUBMISSION_SCHEMAS = [
   "qc-sweep-submission-v1",
   "qc-key-derive-v2",
   "qc-bar-read-v1",
+  "qc-bar-read-v2",
   "qc-confirm-read-v1",
   "qc-major-triage-v1",
 ] as const;
@@ -64,7 +65,7 @@ export type ValidatedKeyDeriveSubmission = {
 };
 
 export type ValidatedBarReadSubmission = {
-  schemaVersion: "qc-bar-read-v1";
+  schemaVersion: "qc-bar-read-v1" | "qc-bar-read-v2";
   bookId: string;
   roundId: string;
   role: "bar";
@@ -118,6 +119,7 @@ export type SubmissionValidationResult =
   | { ok: false; errors: string[] };
 
 const AXES = Object.keys(AXIS_WEIGHTS) as AxisId[];
+const NON_KEY_AXES = AXES.filter((axis) => axis !== "quiz_key_correctness");
 const TIERS: FailureTier[] = ["CORRUPTION", "GENERATED_DRAFT", "PUBLISHABLE"];
 const VERDICTS = ["PASS", "REVISE", "CORRUPTION"] as const;
 const QC_DECISIONS = ["PUBLISHABLE", "REVISE", "CORRUPTION"] as const;
@@ -204,7 +206,24 @@ function validateSweep(bookId: string, roundId: string, role: SubmissionRole, ra
       if (!checkedFamilies.includes(f)) errors.push(`PASS requires checkedFamilies to include ${f}`);
     }
   }
-  const findings = normalizeFindings(raw?.findings, errors, "sweep", { repairClass: "cross_chapter_sweep", unitId: "book", severity: raw?.verdict === "PASS" ? "advisory" : "blocker" });
+  const findings = normalizeFindings(raw?.findings, errors, "sweep", { severity: raw?.verdict === "PASS" ? "advisory" : "blocker" });
+  if (Array.isArray(raw?.findings)) {
+    raw.findings.forEach((finding: any, i: number) => {
+      if (!isObject(finding) || !(SWEEP_FAMILIES as readonly string[]).includes(String(finding.family))) {
+        errors.push(`sweep.findings[${i}].family must be one of ${SWEEP_FAMILIES.join(", ")}`);
+      }
+      const chapters = Array.isArray(finding?.chapters)
+        ? finding.chapters.map((n: unknown) => Number(n)).filter((n: number) => Number.isInteger(n) && n > 0)
+        : [];
+      if (chapters.length === 0) errors.push(`sweep.findings[${i}].chapters must list affected chapters`);
+    });
+  }
+  if (raw?.verdict === "PASS" && findings.some((f) => f.severity === "blocker" || f.severity === "major")) {
+    errors.push("PASS sweep submission may include advisory observations only; blocker/major findings require REVISE or CORRUPTION");
+  }
+  if ((raw?.verdict === "REVISE" || raw?.verdict === "CORRUPTION") && findings.length === 0) {
+    errors.push(`${raw.verdict} sweep submission requires at least one quote-backed finding`);
+  }
   if (errors.length) return { ok: false, errors };
   return {
     ok: true,
@@ -264,10 +283,10 @@ function normalizeHit(raw: any, errors: string[], context: string): AxisHit {
   return hit;
 }
 
-function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw: any): SubmissionValidationResult {
+function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw: any, schema: "qc-bar-read-v1" | "qc-bar-read-v2"): SubmissionValidationResult {
   const errors: string[] = [];
-  validateEnvelope(bookId, roundId, role, raw, "qc-bar-read-v1", errors);
-  if (role !== "bar") errors.push("qc-bar-read-v1 must be submitted with role bar");
+  validateEnvelope(bookId, roundId, role, raw, schema, errors);
+  if (role !== "bar") errors.push(`${schema} must be submitted with role bar`);
   if (!nonempty(raw?.reviewer)) errors.push("reviewer is required");
   const chapterNumber = Number(raw?.chapterNumber);
   if (!Number.isInteger(chapterNumber) || chapterNumber < 1) errors.push("chapterNumber must be a positive integer");
@@ -276,12 +295,17 @@ function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw:
   if (!Array.isArray(raw?.axes)) errors.push("axes[] is required");
   const seen = new Set<string>();
   const axes: AxisScore[] = [];
+  const requiredAxes = schema === "qc-bar-read-v2" ? NON_KEY_AXES : AXES;
   if (Array.isArray(raw?.axes)) {
     for (let i = 0; i < raw.axes.length; i++) {
       const a = raw.axes[i];
       const axis = a?.axis;
       if (!AXES.includes(axis)) {
         errors.push(`axes[${i}].axis is unknown: ${String(axis)}`);
+        continue;
+      }
+      if (schema === "qc-bar-read-v2" && axis === "quiz_key_correctness") {
+        errors.push("qc-bar-read-v2 must not include quiz_key_correctness; finalizer injects it from manual keyjudge");
         continue;
       }
       if (seen.has(axis)) errors.push(`duplicate axis ${axis}`);
@@ -293,8 +317,11 @@ function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw:
       axes.push({ axis, score: Number(a?.score), tier: a?.tier, hits });
     }
   }
-  for (const axis of AXES) if (!seen.has(axis)) errors.push(`missing axis ${axis}`);
-  const verdict = computeVerdict(String(raw?.chapterId ?? ""), axes, true);
+  for (const axis of requiredAxes) if (!seen.has(axis)) errors.push(`missing axis ${axis}`);
+  const verdictAxes = schema === "qc-bar-read-v2"
+    ? [{ axis: "quiz_key_correctness" as AxisId, score: 1, tier: "PUBLISHABLE" as FailureTier, hits: [] }, ...axes]
+    : axes;
+  const verdict = computeVerdict(String(raw?.chapterId ?? ""), verdictAxes, true);
   if (verdict.gate !== "GREEN" && !String(raw?.notes ?? "").trim() && axes.every((a) => a.hits.length === 0)) {
     errors.push("non-GREEN bar read requires notes or cited hits");
   }
@@ -302,7 +329,7 @@ function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw:
   return {
     ok: true,
     submission: {
-      schemaVersion: "qc-bar-read-v1",
+      schemaVersion: schema,
       bookId,
       roundId,
       role: "bar",
@@ -332,6 +359,7 @@ function validateConfirm(bookId: string, roundId: string, role: SubmissionRole, 
   if (reason.trim().length < 40) errors.push("reason must be at least 40 characters");
   const findings = normalizeFindings(raw?.findings ?? [], errors, "confirm", { chapterNumber, repairClass: "confirm_read", severity: raw?.decision === "PUBLISHABLE" ? "advisory" : "blocker" });
   if (raw?.decision === "PUBLISHABLE" && findings.length > 0) errors.push("PUBLISHABLE confirm-read must not include open findings");
+  if ((raw?.decision === "REVISE" || raw?.decision === "CORRUPTION") && findings.length === 0) errors.push(`${raw.decision} confirm-read requires at least one quote-backed finding`);
   if (errors.length) return { ok: false, errors };
   return { ok: true, submission: { schemaVersion: "qc-confirm-read-v1", bookId, roundId, role: "confirm", reviewer: String(raw.reviewer), chapterNumber, chapterId: String(raw.chapterId), contentHash: String(raw.contentHash), decision: raw.decision, reason, findings } };
 }
@@ -362,7 +390,9 @@ export function validateSubmission(bookId: string, roundId: string, role: Submis
     case "qc-key-derive-v2":
       return validateKeyDerive(bookId, roundId, role, raw);
     case "qc-bar-read-v1":
-      return validateBar(bookId, roundId, role, raw);
+      return validateBar(bookId, roundId, role, raw, "qc-bar-read-v1");
+    case "qc-bar-read-v2":
+      return validateBar(bookId, roundId, role, raw, "qc-bar-read-v2");
     case "qc-confirm-read-v1":
       return validateConfirm(bookId, roundId, role, raw);
     case "qc-major-triage-v1":
@@ -376,7 +406,7 @@ export function findingsFromSubmission(submission: ValidatedSubmission): Submiss
   if (submission.schemaVersion === "qc-sweep-submission-v1") return submission.findings;
   if (submission.schemaVersion === "qc-confirm-read-v1") return submission.findings;
   if (submission.schemaVersion === "qc-major-triage-v1") return submission.findings;
-  if (submission.schemaVersion === "qc-bar-read-v1") {
+  if (submission.schemaVersion === "qc-bar-read-v1" || submission.schemaVersion === "qc-bar-read-v2") {
     const out: SubmissionFinding[] = [];
     for (const axis of submission.axes) {
       for (const hit of axis.hits) {

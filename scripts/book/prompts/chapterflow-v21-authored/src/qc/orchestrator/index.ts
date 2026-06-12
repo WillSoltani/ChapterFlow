@@ -1,25 +1,21 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync, copyFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
 import { basename, dirname, resolve } from "path";
 
 import { runBookGate } from "../../critics/bookGate.js";
 import { runShipGate } from "../../critics/finalGate.js";
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
-import { chapterContentHash, writeAttestation } from "../../critics/qcAttestation.js";
+import { chapterContentHash } from "../../critics/qcAttestation.js";
 import { AXIS_WEIGHTS } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { runIntraBookChecks } from "../../critics/intraBook.js";
 import { writeBarPack } from "../barReview.js";
-import { loadBookChapters, writeKeyPacks } from "../manualKeyJudge.js";
+import { keyDerivationPath, loadBookChapters, loadKeyPack, writeKeyPacks, type KeyDerivation } from "../manualKeyJudge.js";
 import { isNoApiCodexQcMode } from "../noApiMode.js";
-import { openQcRound, qcRoundPath, type QcRoundRole } from "../qcRound.js";
+import { openQcRound, qcRoundPath, verifyQcRoundToken, type QcRoundRole } from "../qcRound.js";
 import { checkSourceV2Gate } from "../sourceV2Gate.js";
 import { writeSweepPack } from "../sweep.js";
 import {
-  hasFreshBarReadArtifact,
-  hasFreshConfirmReadArtifact,
-  loadBarReadArtifact,
-  loadConfirmReadArtifact,
   orchestratorRoundDir,
   qcSummaryPath,
   repairLedgerPath,
@@ -30,8 +26,9 @@ import {
   writeConfirmReadArtifact,
 } from "./artifacts.js";
 import { appendFindingsFromSubmission, appendStatusEvents, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
-import { writeRepairBrief } from "./repairBrief.js";
-import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedSubmission } from "./schemas.js";
+import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
+import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission } from "./schemas.js";
+export { finalizeQcRound } from "./finalize.js";
 
 export type QcOrchestratorRoundRecord = {
   schemaVersion: "qc-orchestrator-round-v1";
@@ -100,7 +97,7 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
     "Read the sweep pack only for the cross-chapter sweep.",
     "Check all four families: scene_skeleton, persona_drift, repeated_unit, location_stamping.",
     "Submit `qc-sweep-submission-v1` with checkedFamilies and verbatim findings.",
-    `Command: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role sweep --file <submission.json>`,
+    `Command: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role sweep --token ${tokens.sweep} --file <submission.json>`,
     "",
   ].join("\n")));
   for (const role of ["keyA", "keyB"] as const) {
@@ -109,29 +106,29 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
       "Never open `state/chapters` and never inspect stored correctIndex values.",
       "Derive every answer from the stripped prompt/choices plus source facts.",
       "Every answer needs `confidence`, a `reason` of at least 40 characters, and `sourceFactIds`.",
-      `Submit \`qc-key-derive-v2\`: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role ${role} --file <submission.json>`,
+      `Submit \`qc-key-derive-v2\`: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role ${role} --token ${tokens[role]} --file <submission.json>`,
       "",
     ].join("\n")));
   }
   for (const ch of chapters) {
     paths.push(writeText(resolve(root, "bar", `ch${String(ch.number).padStart(2, "0")}.md`), cardHeader(bookId, roundId, `bar ch${String(ch.number).padStart(2, "0")}`, tokens.bar) + [
       "Read the chapter through the publishable-bar rubric and score every axis.",
-      `Required schema: qc-bar-read-v1. Required artifact contentHash: ${ch.chapterId}.`,
-      `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role bar --file <submission.json>`,
+      `Required schema: qc-bar-read-v2. Score every non-key publishableBar axis; quiz_key_correctness is injected from manual keyjudge. Required artifact contentHash: ${ch.chapterId}.`,
+      `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role bar --token ${tokens.bar} --file <submission.json>`,
       "",
     ].join("\n")));
     paths.push(writeText(resolve(root, "confirm", `ch${String(ch.number).padStart(2, "0")}.md`), cardHeader(bookId, roundId, `confirm ch${String(ch.number).padStart(2, "0")}`, tokens.confirm) + [
       "Use this only after a bar read marks the chapter as a PUBLISHABLE candidate.",
       "Confirm the candidate or return REVISE/CORRUPTION with exact findings.",
       `Required schema: qc-confirm-read-v1.`,
-      `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role confirm --file <submission.json>`,
+      `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role confirm --token ${tokens.confirm} --file <submission.json>`,
       "",
     ].join("\n")));
   }
-  paths.push(writeText(resolve(root, "majors.md"), cardHeader(bookId, roundId, "major triage", tokens.confirm) + [
-    "Triage current major findings only. Use the confirm token for any major-disposition command.",
+  paths.push(writeText(resolve(root, "majors.md"), cardHeader(bookId, roundId, "major triage", tokens.major) + [
+    "Triage current major findings only. Use the major token for any major-disposition command.",
     "Silent ignores do not count as pass; every current major needs a concrete status.",
-    `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role major --file <submission.json>`,
+    `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role major --token ${tokens.major} --file <submission.json>`,
     "",
   ].join("\n")));
   return paths;
@@ -212,8 +209,25 @@ function loadJsonFile(path: string): any {
   return JSON.parse(readFileSync(resolve(path), "utf8"));
 }
 
-export function submitQcArtifact(bookId: string, roundId: string, role: SubmissionRole, file: string): { ok: boolean; path?: string; errors: string[]; messages: string[] } {
+function stripPlaintextSecrets(raw: any): any {
+  if (Array.isArray(raw)) return raw.map(stripPlaintextSecrets);
+  if (raw && typeof raw === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(raw)) {
+      if (key.toLowerCase() === "token") continue;
+      out[key] = stripPlaintextSecrets(value);
+    }
+    return out;
+  }
+  return raw;
+}
+
+export function submitQcArtifact(bookId: string, roundId: string, role: SubmissionRole, file: string, token: string): { ok: boolean; path?: string; errors: string[]; messages: string[] } {
   if (!SUBMISSION_ROLES.includes(role)) return { ok: false, errors: [`Unknown role ${role}.`], messages: [] };
+  if (!token) return { ok: false, errors: [`qc-submit requires --token for role ${role}.`], messages: [] };
+  if (!verifyQcRoundToken(bookId, roundId, role as QcRoundRole, token)) {
+    return { ok: false, errors: [`Invalid ${role} token for ${bookId} round ${roundId}.`], messages: [] };
+  }
   let raw: any;
   try {
     raw = loadJsonFile(file);
@@ -226,9 +240,15 @@ export function submitQcArtifact(bookId: string, roundId: string, role: Submissi
   mkdirSync(dir, { recursive: true });
   const safeName = basename(file).replace(/[^a-zA-Z0-9._-]/g, "_");
   const dest = resolve(dir, `${new Date().toISOString().replace(/[:.]/g, "-")}.${safeName}`);
-  copyFileSync(resolve(file), dest);
+  writeFileSync(dest, JSON.stringify(stripPlaintextSecrets(raw), null, 2) + "\n", "utf8");
+  writeFileSync(`${dest}.meta.json`, JSON.stringify({
+    roleVerified: true,
+    verifiedRole: role,
+    submittedAt: new Date().toISOString(),
+    copiedFrom: resolve(file),
+  }, null, 2) + "\n", "utf8");
   const messages = [`submission stored: ${dest}`];
-  if (validation.submission.schemaVersion === "qc-bar-read-v1") {
+  if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") {
     const artifact = writeBarReadArtifact(validation.submission);
     messages.push(`bar-read artifact stored: ${artifact}`);
   }
@@ -244,7 +264,7 @@ function submissionFiles(bookId: string, roundId: string): Array<{ role: Submiss
   for (const role of SUBMISSION_ROLES) {
     const dir = submissionsDir(bookId, roundId, role);
     if (!existsSync(dir)) continue;
-    for (const f of readdirSync(dir).filter((name) => name.endsWith(".json")).sort()) {
+    for (const f of readdirSync(dir).filter((name) => name.endsWith(".json") && !name.endsWith(".meta.json")).sort()) {
       const p = resolve(dir, f);
       if (/^ch\d+\.bar-read\.json$/.test(f) || /^ch\d+\.confirm-read\.json$/.test(f)) continue;
       out.push({ role, path: p });
@@ -253,48 +273,30 @@ function submissionFiles(bookId: string, roundId: string): Array<{ role: Submiss
   return out;
 }
 
-function currentChaptersByNumber(bookId: string): Map<number, ChapterV21> {
-  return new Map(loadBookChapters(bookId).map((ch) => [ch.number, ch]));
-}
-
-function writePublishableAttestationsFromArtifacts(bookId: string, roundId: string): { wrote: number; skipped: string[] } {
-  const chapters = currentChaptersByNumber(bookId);
-  let wrote = 0;
-  const skipped: string[] = [];
-  for (const ch of chapters.values()) {
-    const bar = loadBarReadArtifact(bookId, roundId, ch.number);
-    const confirm = loadConfirmReadArtifact(bookId, roundId, ch.number);
-    if (!bar || !confirm) {
-      skipped.push(`ch${ch.number}: missing bar or confirm artifact`);
-      continue;
-    }
-    if (!hasFreshBarReadArtifact(bookId, roundId, ch) || !hasFreshConfirmReadArtifact(bookId, roundId, ch)) {
-      skipped.push(`ch${ch.number}: stale bar or confirm artifact`);
-      continue;
-    }
-    if (bar.verdict.gate !== "GREEN" || confirm.decision !== "PUBLISHABLE") {
-      skipped.push(`ch${ch.number}: bar=${bar.verdict.gate} confirm=${confirm.decision}`);
-      continue;
-    }
-    writeAttestation({
-      schemaVersion: "qc-attest-v1",
-      bookId,
-      chapterNumber: ch.number,
-      chapterId: ch.chapterId,
-      verdict: "PUBLISHABLE",
-      contentHash: bar.contentHash,
-      hashVersion: "v2",
-      reviewer: confirm.reviewer,
-      reviewedAt: new Date().toISOString(),
-      roundId,
-      roundRole: "confirm",
-      dimensions: Object.fromEntries(bar.axes.map((axis) => [axis.axis, axis.score >= 0.6])),
-      findings: [],
-      notes: `orchestrator-confirmed publishable: bar ${bar.verdict.overall}/100; ${confirm.reason}`,
-    });
-    wrote++;
-  }
-  return { wrote, skipped };
+function writeKeyDerivationFromSubmission(submission: ValidatedKeyDeriveSubmission): string {
+  const chapters: KeyDerivation["chapters"] = submission.chapters.map((entry) => {
+    const pack = loadKeyPack(submission.bookId, submission.roundId, entry.chapterNumber);
+    return {
+      chapterNumber: entry.chapterNumber,
+      chapterId: entry.chapterId ?? pack?.chapterId ?? `${submission.bookId}-ch${String(entry.chapterNumber).padStart(2, "0")}`,
+      packHash: entry.packHash,
+      contentHash: entry.contentHash ?? pack?.contentHash ?? "",
+      sourceHash: entry.sourceHash ?? pack?.sourceHash ?? "",
+      answers: entry.answers,
+    };
+  });
+  const rec: KeyDerivation = {
+    schemaVersion: "manual-key-derive-v2",
+    bookId: submission.bookId,
+    roundId: submission.roundId,
+    role: submission.role,
+    derivedAt: new Date().toISOString(),
+    chapters,
+  };
+  const path = keyDerivationPath(submission.bookId, submission.roundId, submission.role);
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, JSON.stringify(rec, null, 2), "utf8");
+  return path;
 }
 
 export function collectQcRound(bookId: string, roundId: string): { ok: boolean; errors: string[]; summary: Record<string, unknown> } {
@@ -316,14 +318,15 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
       continue;
     }
     submissions++;
-    if (validation.submission.schemaVersion === "qc-bar-read-v1") writeBarReadArtifact(validation.submission);
+    if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") writeBarReadArtifact(validation.submission);
     if (validation.submission.schemaVersion === "qc-confirm-read-v1") writeConfirmReadArtifact(validation.submission);
+    if (validation.submission.schemaVersion === "qc-key-derive-v2") writeKeyDerivationFromSubmission(validation.submission);
     const merged = appendFindingsFromSubmission({ bookId, roundId, role: item.role, submissionFile: item.path, submission: validation.submission as ValidatedSubmission });
     appended += merged.appended;
     duplicates += merged.duplicates;
   }
-  const att = writePublishableAttestationsFromArtifacts(bookId, roundId);
   const briefPath = writeRepairBrief(bookId, roundId);
+  const promptPath = writeRepairPrompt(bookId, roundId);
   const summary = {
     bookId,
     roundId,
@@ -332,9 +335,9 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
     ledger: ledgerStatusSummary(bookId, roundId),
     findingsAppended: appended,
     duplicateSources: duplicates,
-    attestationsWritten: att.wrote,
-    attestationSkips: att.skipped,
+    attestationsWritten: 0,
     repairBrief: briefPath,
+    repairPrompt: promptPath,
     errors,
   };
   writeText(qcSummaryPath(bookId, roundId), JSON.stringify(summary, null, 2) + "\n");

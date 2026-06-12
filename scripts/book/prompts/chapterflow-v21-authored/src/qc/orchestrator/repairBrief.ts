@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from "fs";
 import { dirname } from "path";
 
-import { repairBriefPath } from "./artifacts.js";
+import { evidenceMatrixPath, repairBriefPath, repairPromptPath } from "./artifacts.js";
 import { effectiveLedger, type EffectiveLedgerFinding } from "./ledger.js";
 
 const SEVERITY_RANK: Record<string, number> = { blocker: 0, major: 1, minor: 2, advisory: 3 };
@@ -89,5 +89,71 @@ export function writeRepairBrief(bookId: string, roundId: string): string {
   const path = repairBriefPath(bookId, roundId);
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, renderRepairBriefMarkdown(bookId, roundId), "utf8");
+  writeRepairPrompt(bookId, roundId);
+  return path;
+}
+
+export function renderRepairPromptMarkdown(bookId: string, roundId: string, findings = effectiveLedger(bookId, roundId)): string {
+  const active = findings.filter((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun");
+  const chapters = [...new Set(active.flatMap((f) => f.chapterNumber !== undefined ? [f.chapterNumber] : f.chapters ?? []))].sort((a, b) => a - b);
+  const themes = [...new Set(active.map((f) => f.globalTheme || f.repairClass || "general"))].sort();
+  const lines: string[] = [];
+  lines.push("You are a fresh Writer Codex repair session for ChapterFlow.");
+  lines.push("Your job is to repair the listed chapters only.");
+  lines.push("You are not a QC reviewer.");
+  lines.push("You must not run qc-attest, qc-submit, sweep-attest, bar-attest,");
+  lines.push("key-resolve, major-disposition, promote-book, or any command that certifies.");
+  lines.push("Fix root causes, not just quoted text.");
+  lines.push("Preserve source-v2 provenance.");
+  lines.push("After each edited chapter, run author-check and gate-chapter.");
+  lines.push("After all edits, run book-gate.");
+  lines.push("Report changed files and validation output.");
+  lines.push("");
+  lines.push(`bookId: ${bookId}`);
+  lines.push(`roundId: ${roundId}`);
+  lines.push(`affected chapters: ${chapters.length ? chapters.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ") : "none"}`);
+  lines.push("");
+  if (active.length === 0) {
+    lines.push("No repair findings are open for this round.");
+    lines.push(`Evidence matrix: ${evidenceMatrixPath(bookId, roundId)}`);
+    return lines.join("\n") + "\n";
+  }
+  lines.push("global repair themes:");
+  for (const theme of themes) lines.push(`- ${theme}`);
+  lines.push("");
+  lines.push("findings by chapter:");
+  const byChapter = new Map<string, EffectiveLedgerFinding[]>();
+  for (const f of active) {
+    const label = chapterLabel(f);
+    if (!byChapter.has(label)) byChapter.set(label, []);
+    byChapter.get(label)!.push(f);
+  }
+  for (const [chapter, chapterFindings] of [...byChapter.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
+    lines.push("");
+    lines.push(`## ${chapter}`);
+    for (const f of chapterFindings.slice().sort((a, b) => (SEVERITY_RANK[a.severity] ?? 99) - (SEVERITY_RANK[b.severity] ?? 99))) {
+      lines.push("");
+      lines.push(`- findingId: ${f.findingId}`);
+      lines.push(`  severity: ${f.severity}`);
+      lines.push(`  repairClass: ${f.repairClass}`);
+      lines.push(`  unitId: ${f.unitId}`);
+      lines.push(`  quote: "${f.quote}"`);
+      lines.push(`  problem: ${f.problem}`);
+      lines.push(`  expected fix: ${f.expectedFix}`);
+      lines.push(`  source roles: ${[...new Set(f.sources.map((s) => s.sourceRole))].join(", ")}`);
+    }
+  }
+  lines.push("");
+  lines.push("validation commands:");
+  lines.push("```bash");
+  for (const cmd of validationCommands(bookId, active)) lines.push(cmd);
+  lines.push("```");
+  return lines.join("\n") + "\n";
+}
+
+export function writeRepairPrompt(bookId: string, roundId: string): string {
+  const path = repairPromptPath(bookId, roundId);
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, renderRepairPromptMarkdown(bookId, roundId), "utf8");
   return path;
 }

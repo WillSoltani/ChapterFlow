@@ -27,6 +27,9 @@ You are operating in one role only. Never mix roles.
 - You must cite exact units and quotes for every defect.
 - A missing read is never a pass.
 - A partial answer file is never a pass.
+- A master QC orchestrator may coordinate subagents and write attestations only
+  through `qc-orchestrate --finalize`. It may not directly edit chapters,
+  override evidence, silently waive findings, or force pass.
 
 ## Key Reader role
 - Read only key-pack blind files and source facts.

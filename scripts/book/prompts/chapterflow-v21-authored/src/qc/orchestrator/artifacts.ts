@@ -32,8 +32,16 @@ export function repairBriefPath(bookId: string, roundId: string): string {
   return resolve(orchestratorRoundDir(bookId, roundId), "repair-brief.md");
 }
 
+export function repairPromptPath(bookId: string, roundId: string): string {
+  return resolve(orchestratorRoundDir(bookId, roundId), "repair-prompt.md");
+}
+
 export function qcSummaryPath(bookId: string, roundId: string): string {
   return resolve(orchestratorRoundDir(bookId, roundId), "qc-summary.json");
+}
+
+export function evidenceMatrixPath(bookId: string, roundId: string): string {
+  return resolve(orchestratorRoundDir(bookId, roundId), "evidence-matrix.json");
 }
 
 export function barArtifactPath(bookId: string, roundId: string, chapterNumber: number): string {
@@ -69,7 +77,7 @@ export function writeConfirmReadArtifact(submission: ValidatedConfirmReadSubmiss
 
 export function loadBarReadArtifact(bookId: string, roundId: string, chapterNumber: number): ValidatedBarReadSubmission | null {
   const raw = readJson(barArtifactPath(bookId, roundId, chapterNumber));
-  return raw?.schemaVersion === "qc-bar-read-v1" ? raw as ValidatedBarReadSubmission : null;
+  return raw?.schemaVersion === "qc-bar-read-v1" || raw?.schemaVersion === "qc-bar-read-v2" ? raw as ValidatedBarReadSubmission : null;
 }
 
 export function loadConfirmReadArtifact(bookId: string, roundId: string, chapterNumber: number): ValidatedConfirmReadSubmission | null {

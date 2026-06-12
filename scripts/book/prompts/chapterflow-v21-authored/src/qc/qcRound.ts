@@ -4,7 +4,7 @@ import { resolve } from "path";
 
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 
-export const QC_ROUND_ROLES = ["sweep", "keyA", "keyB", "bar", "confirm", "attest"] as const;
+export const QC_ROUND_ROLES = ["sweep", "keyA", "keyB", "bar", "confirm", "major", "attest"] as const;
 export type QcRoundRole = typeof QC_ROUND_ROLES[number];
 
 export type QcRoundRecord = {
@@ -12,7 +12,7 @@ export type QcRoundRecord = {
   bookId: string;
   roundId: string;
   openedAt: string;
-  roles: Record<QcRoundRole, { salt: string; tokenHash: string }>;
+  roles: Partial<Record<QcRoundRole, { salt: string; tokenHash: string }>>;
 };
 
 export const QC_ROUNDS_DIR = resolve(CANONICAL_STATE, "qc-rounds");

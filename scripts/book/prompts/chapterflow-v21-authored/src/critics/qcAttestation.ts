@@ -63,6 +63,16 @@ export type QcAttestation = {
   roundRole?: QcRoundRole;
   /** per-dimension booleans the reviewer checked (keysCorrect, grounded, …). */
   dimensions?: Record<string, boolean>;
+  evidence?: {
+    orchestratorRoundId?: string;
+    evidenceMatrixPath?: string;
+    manualKeyJudgePath?: string;
+    sweepPath?: string;
+    barReadPath?: string;
+    confirmReadPath?: string;
+    repairLedgerPath?: string;
+    repairBriefPath?: string;
+  };
   findings?: string[];
   notes?: string;
   /** Prior attestations for this chapter, newest last (capped). Overwrites
