@@ -4,17 +4,39 @@
   "chapterNumber": 15,
   "chapterId": "stillness-is-the-key-ch15",
   "verdict": "CORRUPTION",
-  "contentHash": "f5875d07c1e814ea",
+  "contentHash": "0e6deeafb08e7ace",
   "hashVersion": "v2",
-  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
-  "reviewedAt": "2026-06-11T15:55:58.871Z",
+  "reviewer": "codex-qc:stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T00:04:48.823Z",
   "dimensions": {
     "keysCorrect": false,
     "grounded": true,
-    "nonTemplated": false,
+    "nonTemplated": true,
     "frameworkComplete": true,
     "cardsAnswerFronts": true,
     "distractorsReal": false
   },
-  "notes": "overall=76; 1 confirmed wrong key(s); cross-chapter: scene_skeleton/repeated_unit/persona_drift; Strong, human-reading chapter near anchor quality; cards all answer their fronts, plans are real If-X-then-Y triggers, p"
+  "notes": "RED 85/100; confirmed wrong quiz key/stem at q1: prompt asks what the lead should reject, but key selects the positive Public-private split action.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 15,
+      "chapterId": "stillness-is-the-key-ch15",
+      "verdict": "CORRUPTION",
+      "contentHash": "f5875d07c1e814ea",
+      "hashVersion": "v2",
+      "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+      "reviewedAt": "2026-06-11T15:55:58.871Z",
+      "dimensions": {
+        "keysCorrect": false,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "overall=76; 1 confirmed wrong key(s); cross-chapter: scene_skeleton/repeated_unit/persona_drift; Strong, human-reading chapter near anchor quality; cards all answer their fronts, plans are real If-X-then-Y triggers, p"
+    }
+  ]
 }

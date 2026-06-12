@@ -28,7 +28,7 @@ export const meta = {
 const CONFIG = {
   "bookId": "stillness-is-the-key",
   "pipelineDir": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored",
-  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-12",
   "chapters": [
     {
       "n": 1,

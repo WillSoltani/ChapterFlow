@@ -4,17 +4,39 @@
   "chapterNumber": 24,
   "chapterId": "stillness-is-the-key-ch24",
   "verdict": "CORRUPTION",
-  "contentHash": "a1dcc5c60c2582d9",
+  "contentHash": "2217d1701ca19653",
   "hashVersion": "v2",
-  "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
-  "reviewedAt": "2026-06-11T16:03:14.048Z",
+  "reviewer": "codex-qc:stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T00:04:48.821Z",
   "dimensions": {
     "keysCorrect": false,
     "grounded": true,
-    "nonTemplated": false,
+    "nonTemplated": true,
     "frameworkComplete": true,
     "cardsAnswerFronts": true,
     "distractorsReal": true
   },
-  "notes": "overall=87; 1 confirmed wrong key(s); cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit; Solid human prose and actionable plan; main weakness is source hard-specifics recited as index-card/pointed"
+  "notes": "RED 88/100; confirmed wrong quiz key/stem at q8: prompt asks which mistake Gerard helps Jordan avoid, but key selects the positive Better Calendar principle.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 24,
+      "chapterId": "stillness-is-the-key-ch24",
+      "verdict": "CORRUPTION",
+      "contentHash": "a1dcc5c60c2582d9",
+      "hashVersion": "v2",
+      "reviewer": "harness:qc-run-stillness-is-the-key-2026-06-11",
+      "reviewedAt": "2026-06-11T16:03:14.048Z",
+      "dimensions": {
+        "keysCorrect": false,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "overall=87; 1 confirmed wrong key(s); cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit; Solid human prose and actionable plan; main weakness is source hard-specifics recited as index-card/pointed"
+    }
+  ]
 }
