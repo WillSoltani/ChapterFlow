@@ -46,13 +46,6 @@ function TierPill({ tier, earned }: { tier: string; earned: boolean }) {
   );
 }
 
-function getRarityLabel(rarity: number): { label: string; color: string } {
-  if (rarity < 10) return { label: "Rare", color: "var(--accent-violet)" };
-  if (rarity <= 30) return { label: "Uncommon", color: "var(--accent-cyan)" };
-  if (rarity <= 60) return { label: "Common", color: "var(--cf-text-3)" };
-  return { label: "Popular", color: "var(--cf-text-soft)" };
-}
-
 export function BadgeCard({ badge, index = 0, onClick }: BadgeCardProps) {
   const reduced = useReducedMotion();
 
@@ -80,8 +73,6 @@ function EarnedBadgeCard({
 }) {
   const borderColor = TIER_BORDER_COLORS[badge.tier] ?? TIER_BORDER_COLORS.unique;
   const glowStyle = TIER_GLOW_STYLES[badge.tier] ?? TIER_GLOW_STYLES.unique;
-  const rarity = Math.max(1, Math.min(95, ((badge.id.charCodeAt(0) * 7 + (badge.id.charCodeAt(1) ?? 0) * 3) % 20) + (badge.tier === "platinum" ? 2 : badge.tier === "gold" ? 8 : badge.tier === "silver" ? 18 : 34)));
-  const rarityInfo = getRarityLabel(rarity);
 
   return (
     <motion.button
@@ -131,10 +122,6 @@ function EarnedBadgeCard({
           <span className="font-medium" style={{ color: "var(--accent-emerald)" }}>&#10003; Earned</span>
         </div>
       </div>
-
-      <p className="mt-1.5 text-[10px] transition-opacity group-hover:opacity-80" style={{ color: rarityInfo.color }}>
-        {rarityInfo.label} &mdash; Earned by {rarity}% of readers
-      </p>
     </motion.button>
   );
 }

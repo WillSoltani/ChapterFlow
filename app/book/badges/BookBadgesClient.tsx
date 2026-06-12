@@ -11,7 +11,7 @@ import { fetchBookJson } from "@/app/book/_lib/book-api";
 import type { EventDefinition, EventParticipationItem } from "@/app/app/api/book/_lib/types";
 import type { BadgeFilter, BadgeWithProgress, SeasonalChallenge as SeasonalChallengeType } from "./lib/badge-types";
 import {
-  evaluateBadges,
+  badgeStateToBadgeWithProgress,
   computeProfile,
   groupByCategory,
   filterBadges,
@@ -19,8 +19,6 @@ import {
   getDefaultOpenCategory,
   getShowcaseBadgeIds,
   toggleShowcaseBadge,
-  getEarnedHistory,
-  persistEarnedBadge,
   getLastSeenTimestamp,
   setLastSeenTimestamp,
 } from "./lib/badge-utils";
@@ -53,24 +51,6 @@ function eventToSeasonalChallenge(
   };
 }
 
-function buildFallbackChallenge(
-  completedChaptersThisMonth: number,
-): SeasonalChallengeType {
-  const now = new Date();
-  const monthName = now.toLocaleString(undefined, { month: "long" });
-  const year = now.getFullYear();
-  return {
-    id: `${monthName.toLowerCase()}-${year}`,
-    title: `${monthName} ${year} Reading Challenge`,
-    description: "Complete 5 chapters this month",
-    badgeIcon: "📅",
-    startDate: new Date(year, now.getMonth(), 1).toISOString(),
-    endDate: new Date(year, now.getMonth() + 1, 0, 23, 59, 59).toISOString(),
-    criteria: { description: "chapters", target: 5 },
-    progress: Math.min(completedChaptersThisMonth, 5),
-  };
-}
-
 export function BookBadgesClient() {
   const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -89,14 +69,12 @@ export function BookBadgesClient() {
   const [filter, setFilter] = useState<BadgeFilter>("all");
   const [selectedBadge, setSelectedBadge] = useState<BadgeWithProgress | null>(null);
   const [showcaseIds, setShowcaseIds] = useState<string[]>([]);
-  const [earnedHistory, setEarnedHistory] = useState<Record<string, string>>({});
   const [newlyEarned, setNewlyEarned] = useState<BadgeWithProgress[]>([]);
-  const celebrationFiredRef = useRef(false);
+  const celebratedRef = useRef<Set<string>>(new Set());
 
-  // Hydrate localStorage values on mount
+  // Hydrate showcase pins (cosmetic, local) on mount.
   useEffect(() => {
     setShowcaseIds(getShowcaseBadgeIds());
-    setEarnedHistory(getEarnedHistory());
   }, []);
 
   // Redirect if onboarding not complete
@@ -107,58 +85,38 @@ export function BookBadgesClient() {
     }
   }, [onboarding.setupComplete, onboardingHydrated, router]);
 
-  // Evaluate new badge system against existing stats
-  const badges = useMemo(() => {
-    if (!badgeSystem.badgeStats) return [] as BadgeWithProgress[];
-    return evaluateBadges(badgeSystem.badgeStats, earnedHistory);
-  }, [badgeSystem.badgeStats, earnedHistory]);
+  // One canonical catalog (badge-ui-definitions) with server-truth earned state:
+  // useBadgeSystem fetches /me/badges and stamps earnedAt, so we just adapt its
+  // materialized badges into the BadgeWithProgress contract this page renders.
+  const badges = useMemo(
+    () => badgeSystem.badges.map(badgeStateToBadgeWithProgress),
+    [badgeSystem.badges],
+  );
 
-  // Track newly earned badges & persist them — but only celebrate TRULY new ones
+  // Celebrate badges earned since the last visit. earnedAt is server-truth, so a
+  // fresh device never re-stamps the back-catalog as "earned today" and old
+  // badges never re-celebrate.
   useEffect(() => {
-    if (!badges.length || celebrationFiredRef.current) return;
-
-    const newOnes = badges.filter((b) => b.isEarned && !earnedHistory[b.id]);
-    if (newOnes.length === 0) {
-      // No new badges to persist — still mark celebration as fired
-      // and update lastSeen on first load
-      if (!celebrationFiredRef.current) {
-        celebrationFiredRef.current = true;
-        const lastSeen = getLastSeenTimestamp();
-        if (!lastSeen) {
-          // First ever visit — don't celebrate, just set timestamp
-          setLastSeenTimestamp();
-        }
-      }
-      return;
-    }
-
-    celebrationFiredRef.current = true;
-    const now = Date.now();
-    const updatedHistory = { ...earnedHistory };
-    newOnes.forEach((b, i) => {
-      const earnedAt = new Date(now + i * 1000).toISOString();
-      updatedHistory[b.id] = earnedAt;
-      persistEarnedBadge(b.id, earnedAt);
-    });
-    setEarnedHistory(updatedHistory);
-
-    // Only celebrate badges earned SINCE last page visit
+    if (!badgeSystem.hydrated || !badges.length) return;
     const lastSeen = getLastSeenTimestamp();
     if (!lastSeen) {
-      // First ever visit — don't celebrate any, just set timestamp
+      // First ever visit — adopt the back-catalog silently.
       setLastSeenTimestamp();
       return;
     }
     const lastSeenTime = new Date(lastSeen).getTime();
-    const truelyNew = newOnes.filter((b) => {
-      const earnedAt = updatedHistory[b.id];
-      return earnedAt && new Date(earnedAt).getTime() > lastSeenTime;
-    });
-    if (truelyNew.length > 0) {
-      setNewlyEarned(truelyNew);
+    const fresh = badges.filter(
+      (b) =>
+        b.isEarned &&
+        b.earnedDate &&
+        new Date(b.earnedDate).getTime() > lastSeenTime &&
+        !celebratedRef.current.has(b.id),
+    );
+    if (fresh.length > 0) {
+      fresh.forEach((b) => celebratedRef.current.add(b.id));
+      setNewlyEarned((prev) => [...prev, ...fresh]);
     }
-    setLastSeenTimestamp();
-  }, [badges, earnedHistory]);
+  }, [badgeSystem.hydrated, badges]);
 
   // Filtered badges
   const filteredBadges = useMemo(() => {
@@ -182,31 +140,31 @@ export function BookBadgesClient() {
   // Earned badges for timeline
   const earnedBadges = useMemo(() => badges.filter((b) => b.isEarned), [badges]);
 
-  // Seasonal challenge — prefer real event, fall back to monthly challenge
+  // Timed challenge — a single real event from /events/active (the one timed
+  // mechanic, shared with /book/events). No fabricated "5 chapters this month"
+  // fallback that auto-completes from lifetime stats: if there's no active
+  // event, the card simply doesn't render.
   const [seasonalChallenge, setSeasonalChallenge] =
-    useState<SeasonalChallengeType | null>(null);
+    useState<{ challenge: SeasonalChallengeType; href: string } | null>(null);
   useEffect(() => {
     fetchBookJson<{ events: ActiveEventWithParticipation[] }>(
       "/app/api/book/events/active",
     )
       .then((data) => {
-        // Prefer a joined event, otherwise show most urgent active event
+        // Prefer a joined-but-incomplete event, otherwise the first active one.
         const joinedEvent = data.events.find((e) => e.participation && !e.participation.completed);
         const activeEvent = joinedEvent ?? data.events[0] ?? null;
-        if (activeEvent) {
-          setSeasonalChallenge(eventToSeasonalChallenge(activeEvent));
-        } else {
-          const chaptersThisMonth =
-            badgeSystem.badgeStats?.totalCompletedChapters ?? 0;
-          setSeasonalChallenge(buildFallbackChallenge(chaptersThisMonth));
-        }
+        setSeasonalChallenge(
+          activeEvent
+            ? {
+                challenge: eventToSeasonalChallenge(activeEvent),
+                href: `/book/events/${activeEvent.eventId}`,
+              }
+            : null,
+        );
       })
-      .catch(() => {
-        const chaptersThisMonth =
-          badgeSystem.badgeStats?.totalCompletedChapters ?? 0;
-        setSeasonalChallenge(buildFallbackChallenge(chaptersThisMonth));
-      });
-  }, [badgeSystem.badgeStats?.totalCompletedChapters]);
+      .catch(() => setSeasonalChallenge(null));
+  }, []);
 
   // Handlers
   const handleToggleShowcase = useCallback((badgeId: string) => {
@@ -220,6 +178,7 @@ export function BookBadgesClient() {
 
   const handleDismissCelebration = useCallback(() => {
     setNewlyEarned([]);
+    setLastSeenTimestamp();
   }, []);
 
   // Loading state with skeleton
@@ -287,7 +246,10 @@ export function BookBadgesClient() {
 
         {seasonalChallenge && (
           <div className="mt-6">
-            <SeasonalChallenge challenge={seasonalChallenge} />
+            <SeasonalChallenge
+              challenge={seasonalChallenge.challenge}
+              href={seasonalChallenge.href}
+            />
           </div>
         )}
 
