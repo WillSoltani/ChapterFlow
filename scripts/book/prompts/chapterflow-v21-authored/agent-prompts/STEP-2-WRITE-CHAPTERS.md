@@ -351,6 +351,8 @@ type ExampleV21 = {
     stakes: string;
     format: string;               // see ExampleFormat list below
     requiredBeat: string;         // the exact beat the example must hit
+    venue?: string;                // v21.1 no-api QC: exact dealt venue string from fanout
+    exemplar?: string;             // v21.1 no-api QC: owned marquee exemplar used, or ""
   };
   scenario: string;               // 280-520 chars
   whatToDo: string;               // 120-240 chars

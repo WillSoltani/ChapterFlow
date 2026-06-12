@@ -1,0 +1,79 @@
+import assert from "node:assert/strict";
+import { readdirSync, readFileSync, rmSync } from "fs";
+import { resolve } from "path";
+
+import { test } from "./harness.js";
+import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
+import { promoteBook } from "../src/promoteBook.js";
+import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
+
+const BOOK = "zz-fixture-no-api-promote";
+
+function cleanup(): void {
+  for (const f of readdirSync(STATE_CHAPTERS)) {
+    if (f.startsWith(`${BOOK}-ch`)) rmSync(resolve(STATE_CHAPTERS, f), { force: true });
+  }
+  for (const n of [1, 2, 3]) {
+    rmSync(attestationPath(BOOK, n), { force: true });
+    rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}-ch${String(n).padStart(2, "0")}.manual-keyjudge.json`), { force: true });
+  }
+  rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}.sweep.json`), { force: true });
+  rmSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), { force: true });
+  const blocked = resolve(PIPELINE_DIR, "state", "books", "_blocked");
+  try {
+    for (const f of readdirSync(blocked)) {
+      if (f.startsWith(`${BOOK}.`)) rmSync(resolve(blocked, f), { force: true });
+    }
+  } catch {}
+}
+
+test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS, round-backed attestations, and major dispositions", () => {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    cleanup();
+    const chapters = [1, 2, 3].map((n) => {
+      const ch = makeChapter(BOOK, n);
+      ch.examples[0].scenario =
+        `At the kitchen table, a synthetic team repeats the same venue in chapter ${n}. This intentionally creates a current book-gate major for disposition testing.`;
+      return ch;
+    });
+    writeFixtureBook(STATE_CHAPTERS, chapters);
+    for (const ch of chapters) {
+      writeAttestation({
+        schemaVersion: "qc-attest-v1",
+        bookId: BOOK,
+        chapterNumber: ch.number,
+        chapterId: ch.chapterId,
+        verdict: "PUBLISHABLE",
+        contentHash: chapterContentHash(ch),
+        hashVersion: "v2",
+        reviewer: "human:legacy",
+        reviewedAt: "2026-06-12T00:00:00.000Z",
+      });
+    }
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    const result = promoteBook({
+      bookId: BOOK,
+      title: "Fixture",
+      author: "Nobody",
+      chapters: chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title })) as any,
+    });
+    assert.equal(result.promoted, false);
+    assert.ok(result.noApiBlockerCount > 0, `expected no-api blockers, got ${result.noApiBlockerCount}`);
+    const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
+    const noApiIds = (report.noApiCodexQc.findings ?? []).map((f: any) => f.checkId);
+    const qcIds = (report.qcAttestation.findings ?? []).map((f: any) => f.checkId);
+    assert.ok(noApiIds.some((id: string) => id.startsWith("SV2.")), `source-v2 blocker missing: ${noApiIds.join(", ")}`);
+    assert.ok(noApiIds.includes("QC2.manual_keyjudge_missing"), `manual keyjudge blocker missing: ${noApiIds.join(", ")}`);
+    assert.ok(noApiIds.includes("QC3.sweep_missing"), `sweep blocker missing: ${noApiIds.join(", ")}`);
+    assert.ok(noApiIds.includes("QC4.major_unresolved"), `major disposition blocker missing: ${noApiIds.join(", ")}`);
+    assert.ok(qcIds.includes("QC0.no_api_round_missing"), `round-backed attestation blocker missing: ${qcIds.join(", ")}`);
+  } finally {
+    console.warn = oldWarn;
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanup();
+  }
+});

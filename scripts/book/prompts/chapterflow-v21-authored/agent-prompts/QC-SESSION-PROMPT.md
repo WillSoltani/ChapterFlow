@@ -85,6 +85,27 @@ investigating start-with-why because this check used a book whose research
 run isn't on disk.)
 All `npx tsx` commands below run from this directory.
 
+### v21.1 NO-API CODEX QC MODE
+
+If the operator sets `CHAPTERFLOW_NO_API_CODEX_QC=1`, QC is round-backed and
+role-separated. The operator opens the round with:
+
+```bash
+npx tsx src/cli.ts qc-open-round <bookId>
+```
+
+Use only the token for your assigned role. Writers cannot QC; QC readers cannot
+edit chapters; key readers use only blind packs and source facts.
+
+Required no-api artifacts:
+- `source-v2-gate <bookId>` must pass before authoring prompts print.
+- `sweep-pack <bookId> --round <roundId>` then `sweep-attest ... --token <sweep-token> --verdict PASS`.
+- `key-pack <bookId> --round <roundId>`, two independent `key-derive` runs
+  (`keyA`, `keyB`), then `key-resolve`.
+- `qc-attest ... --round <roundId> --token <bar|confirm|attest-token>`.
+- `major-status <bookId>` must have every current major explicitly resolved or
+  waived with `major-disposition`; silent ignores never count as pass.
+
 Required on-disk files for book `<bookId>`:
 - `state/chapters/<bookId>-ch{NN}.v21-native.chapter.json` × N (the chapters)
 - `state/indexes/<bookId>.json` (chapter index)
