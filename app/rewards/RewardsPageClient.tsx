@@ -1,19 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowLeft,
-  Check,
-  Gift,
-  Lock,
-  Sparkles,
-  TrendingUp,
-  Users,
-  Zap,
-  Copy,
-} from "lucide-react";
+import { Check, Gift, Lock, TrendingUp, Users, Zap, Copy } from "lucide-react";
+import { TopNav } from "@/app/book/home/components/TopNav";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useInsightPoints, type InsightPointsPayload } from "@/app/book/hooks/useInsightPoints";
 
 function formatDate(iso: string) {
@@ -27,56 +18,49 @@ function formatDate(iso: string) {
 function BalanceHeader({ summary }: { summary: InsightPointsPayload["summary"] }) {
   return (
     <div
-      className="rounded-2xl p-6 text-center"
+      className="rounded-2xl border border-(--cf-border) p-6 text-center"
       style={{
-        background:
-          "linear-gradient(135deg, rgba(139,92,246,0.10), rgba(34,211,238,0.08))",
-        border: "1px solid var(--border-subtle)",
+        background: "linear-gradient(135deg, var(--cf-accent-soft), var(--cf-surface))",
       }}
     >
-      <p
-        className="text-[13px] font-medium uppercase tracking-widest mb-1"
-        style={{ color: "var(--text-muted)" }}
-      >
+      <p className="mb-1 text-[13px] font-medium uppercase tracking-widest text-(--cf-text-soft)">
         Insight Points
       </p>
-      <p
-        className="text-[48px] font-bold tracking-tight leading-none"
-        style={{ fontFamily: "var(--font-display)", color: "var(--text-heading)" }}
-      >
+      <p className="text-[48px] font-bold leading-none tracking-tight text-(--cf-text-1)">
         {summary.balance.toLocaleString()}
       </p>
-      <div className="mt-4 flex justify-center gap-6 text-[13px]" style={{ color: "var(--text-secondary)" }}>
+      <div className="mt-4 flex justify-center gap-6 text-[13px] text-(--cf-text-2)">
         <span>
-          <TrendingUp size={14} className="inline mr-1 opacity-60" />
+          <TrendingUp size={14} className="mr-1 inline opacity-60" />
           {summary.lifetimeEarned.toLocaleString()} earned
         </span>
         <span>
-          <Gift size={14} className="inline mr-1 opacity-60" />
+          <Gift size={14} className="mr-1 inline opacity-60" />
           {summary.lifetimeSpent.toLocaleString()} spent
         </span>
       </div>
 
       {summary.nextReward && (
         <div className="mt-5">
-          <div className="flex items-center justify-between text-[12px] mb-1.5" style={{ color: "var(--text-muted)" }}>
+          <div className="mb-1.5 flex items-center justify-between text-[12px] text-(--cf-text-soft)">
             <span>Next: {summary.nextReward.name}</span>
             <span>{summary.nextReward.progressPercent}%</span>
           </div>
           <div
-            className="h-2 rounded-full overflow-hidden"
-            style={{ background: "var(--bg-surface-1)" }}
+            className="h-2 overflow-hidden rounded-full bg-(--cf-surface-strong)"
+            role="progressbar"
+            aria-valuenow={Math.min(summary.nextReward.progressPercent, 100)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`Progress to ${summary.nextReward.name}`}
           >
             <div
-              className="h-full rounded-full transition-all duration-500"
-              style={{
-                width: `${Math.min(summary.nextReward.progressPercent, 100)}%`,
-                background: "var(--accent-teal)",
-              }}
+              className="h-full rounded-full bg-(--cf-accent) transition-all duration-500"
+              style={{ width: `${Math.min(summary.nextReward.progressPercent, 100)}%` }}
             />
           </div>
-          <p className="mt-1 text-[12px]" style={{ color: "var(--text-muted)" }}>
-            {summary.nextReward.pointsRemaining.toLocaleString()} pts to go
+          <p className="mt-1 text-[12px] text-(--cf-text-soft)">
+            {summary.nextReward.pointsRemaining.toLocaleString()} IP to go
           </p>
         </div>
       )}
@@ -99,76 +83,58 @@ function RewardCard({
 
   return (
     <div
-      className="rounded-xl p-5 flex flex-col gap-3"
-      style={{
-        border: "1px solid var(--border-subtle)",
-        background: "var(--bg-surface-1)",
-        opacity: reward.status === "unavailable" ? 0.5 : 1,
-      }}
+      className="flex flex-col gap-3 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-5"
+      style={{ opacity: reward.status === "unavailable" ? 0.5 : 1 }}
     >
       <div className="flex items-start justify-between gap-2">
         <div>
-          <h3 className="text-[15px] font-semibold" style={{ color: "var(--text-heading)" }}>
-            {reward.name}
-          </h3>
-          <p className="text-[13px] mt-0.5" style={{ color: "var(--text-secondary)" }}>
-            {reward.description}
-          </p>
+          <h3 className="text-[15px] font-semibold text-(--cf-text-1)">{reward.name}</h3>
+          <p className="mt-0.5 text-[13px] text-(--cf-text-2)">{reward.description}</p>
         </div>
         <span
-          className="shrink-0 rounded-lg px-2.5 py-1 text-[12px] font-semibold"
-          style={{
-            background: isAvailable
-              ? "rgba(34,211,238,0.12)"
+          className={
+            "shrink-0 rounded-lg px-2.5 py-1 text-[12px] font-semibold " +
+            (isAvailable
+              ? "bg-(--cf-accent-soft) text-(--cf-accent)"
               : isClaimed
-                ? "rgba(34,197,94,0.12)"
-                : "var(--bg-surface-1)",
-            color: isAvailable
-              ? "var(--accent-teal)"
-              : isClaimed
-                ? "#22c55e"
-                : "var(--text-muted)",
-          }}
+                ? "bg-(--cf-success-soft) text-(--cf-success-text)"
+                : "bg-(--cf-surface-strong) text-(--cf-text-soft)")
+          }
         >
-          {reward.costPoints.toLocaleString()} pts
+          {reward.costPoints.toLocaleString()} IP
         </span>
       </div>
 
       {reward.highlight && (
-        <p className="text-[12px] font-medium" style={{ color: "var(--accent-teal)" }}>
-          {reward.highlight}
-        </p>
+        <p className="text-[12px] font-medium text-(--cf-accent)">{reward.highlight}</p>
       )}
 
       {isAvailable && (
         <button
           onClick={onRedeem}
           disabled={redeeming}
-          className="mt-auto w-full rounded-xl py-2.5 text-[14px] font-semibold text-white transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 cursor-pointer"
-          style={{ backgroundColor: "var(--accent-teal)" }}
+          className="mt-auto w-full cursor-pointer rounded-xl bg-(--cf-accent) py-2.5 text-[14px] font-semibold text-(--cf-accent-contrast) transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
         >
           {redeeming ? "Redeeming..." : "Redeem"}
         </button>
       )}
 
       {isClaimed && (
-        <div className="mt-auto flex items-center gap-2 text-[13px]" style={{ color: "#22c55e" }}>
+        <div className="mt-auto flex items-center gap-2 text-[13px] text-(--cf-success-text)">
           <Check size={14} />
           Claimed {reward.claimedAt ? formatDate(reward.claimedAt) : ""}
         </div>
       )}
 
       {isLocked && (
-        <div className="mt-auto flex items-center gap-2 text-[13px]" style={{ color: "var(--text-muted)" }}>
+        <div className="mt-auto flex items-center gap-2 text-[13px] text-(--cf-text-soft)">
           <Lock size={14} />
-          {reward.pointsRemaining.toLocaleString()} more pts needed
+          {reward.pointsRemaining.toLocaleString()} more IP needed
         </div>
       )}
 
       {reward.status === "unavailable" && reward.unavailableReason && (
-        <p className="mt-auto text-[12px]" style={{ color: "var(--text-muted)" }}>
-          {reward.unavailableReason}
-        </p>
+        <p className="mt-auto text-[12px] text-(--cf-text-soft)">{reward.unavailableReason}</p>
       )}
     </div>
   );
@@ -176,9 +142,8 @@ function RewardCard({
 
 function ReferralSection({ referral }: { referral: InsightPointsPayload["referral"] }) {
   const [copied, setCopied] = useState(false);
-  const fullUrl = typeof window !== "undefined"
-    ? `${window.location.origin}${referral.path}`
-    : referral.path;
+  const fullUrl =
+    typeof window !== "undefined" ? `${window.location.origin}${referral.path}` : referral.path;
 
   const handleCopy = () => {
     void navigator.clipboard.writeText(fullUrl);
@@ -187,35 +152,30 @@ function ReferralSection({ referral }: { referral: InsightPointsPayload["referra
   };
 
   return (
-    <div
-      className="rounded-xl p-5"
-      style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-1)" }}
-    >
-      <div className="flex items-center gap-2 mb-3">
-        <Users size={16} style={{ color: "var(--accent-teal)" }} />
-        <h3 className="text-[15px] font-semibold" style={{ color: "var(--text-heading)" }}>
+    <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+      <div className="mb-3 flex items-center gap-2">
+        <Users size={16} className="text-(--cf-accent)" />
+        <h3 className="text-[15px] font-semibold text-(--cf-text-1)">
           Give a Friend a Free Week of Pro
         </h3>
       </div>
-      <p className="text-[13px] mb-4" style={{ color: "var(--text-secondary)" }}>
+      <p className="mb-4 text-[13px] text-(--cf-text-2)">
         Share your link to give a friend a free week of Pro access — you&apos;ll both be rewarded when they complete their first learning loop.
       </p>
 
       <div className="flex items-center gap-2">
-        <div
-          className="flex-1 rounded-lg px-3 py-2 text-[13px] font-mono truncate"
-          style={{ background: "var(--bg-base)", color: "var(--text-secondary)", border: "1px solid var(--border-subtle)" }}
-        >
+        <div className="flex-1 truncate rounded-lg border border-(--cf-border) bg-(--cf-page-bg) px-3 py-2 font-mono text-[13px] text-(--cf-text-2)">
           {fullUrl}
         </div>
         <button
           onClick={handleCopy}
-          className="shrink-0 rounded-lg px-3 py-2 text-[13px] font-medium transition-colors cursor-pointer"
-          style={{
-            background: copied ? "rgba(34,197,94,0.12)" : "var(--bg-surface-1)",
-            color: copied ? "#22c55e" : "var(--text-heading)",
-            border: "1px solid var(--border-subtle)",
-          }}
+          className={
+            "shrink-0 cursor-pointer rounded-lg border border-(--cf-border) px-3 py-2 text-[13px] font-medium transition-colors " +
+            (copied
+              ? "bg-(--cf-success-soft) text-(--cf-success-text)"
+              : "bg-(--cf-surface) text-(--cf-text-1)")
+          }
+          aria-label="Copy referral link"
         >
           {copied ? <Check size={14} /> : <Copy size={14} />}
         </button>
@@ -223,22 +183,16 @@ function ReferralSection({ referral }: { referral: InsightPointsPayload["referra
 
       <div className="mt-4 grid grid-cols-3 gap-3 text-center text-[12px]">
         <div>
-          <p className="text-[18px] font-bold" style={{ color: "var(--text-heading)" }}>
-            {referral.pendingInvites}
-          </p>
-          <p style={{ color: "var(--text-muted)" }}>Pending</p>
+          <p className="text-[18px] font-bold text-(--cf-text-1)">{referral.pendingInvites}</p>
+          <p className="text-(--cf-text-soft)">Pending</p>
         </div>
         <div>
-          <p className="text-[18px] font-bold" style={{ color: "var(--text-heading)" }}>
-            {referral.activatedInvites}
-          </p>
-          <p style={{ color: "var(--text-muted)" }}>Activated</p>
+          <p className="text-[18px] font-bold text-(--cf-text-1)">{referral.activatedInvites}</p>
+          <p className="text-(--cf-text-soft)">Activated</p>
         </div>
         <div>
-          <p className="text-[18px] font-bold" style={{ color: "var(--text-heading)" }}>
-            {referral.proInvites}
-          </p>
-          <p style={{ color: "var(--text-muted)" }}>Pro converts</p>
+          <p className="text-[18px] font-bold text-(--cf-text-1)">{referral.proInvites}</p>
+          <p className="text-(--cf-text-soft)">Pro converts</p>
         </div>
       </div>
     </div>
@@ -248,73 +202,66 @@ function ReferralSection({ referral }: { referral: InsightPointsPayload["referra
 export function RewardsPageClient() {
   const { loading, payload, error, redeemingRewardId, redeemMessage, redeemReward } =
     useInsightPoints();
+  const { identity } = useBookViewer();
+  const searchRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--bg-base)" }}>
-      {/* Header */}
-      <header
-        className="sticky top-0 z-30 backdrop-blur-md border-b"
-        style={{ borderColor: "var(--border-subtle)" }}
-      >
-        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-1.5 text-[14px] font-medium transition-colors hover:text-(--text-heading)"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            <ArrowLeft size={16} />
-            Back
-          </Link>
-          <div className="flex-1" />
-          <div className="flex items-center gap-1.5">
-            <Sparkles size={16} style={{ color: "var(--accent-teal)" }} />
-            <span className="text-[14px] font-semibold" style={{ color: "var(--text-heading)" }}>
-              Rewards
-            </span>
-          </div>
-        </div>
-      </header>
+    <main className="cf-app-shell">
+      <TopNav
+        name={identity.displayName || "Reader"}
+        avatarUrl={identity.avatarDataUrl}
+        activeTab="badges"
+        searchQuery=""
+        onSearchChange={() => {}}
+        searchInputRef={searchRef}
+        showSearch={false}
+        logoVariant="dashboard"
+      />
 
-      <main className="max-w-2xl mx-auto px-4 py-8 space-y-8">
+      <section className="mx-auto w-full max-w-2xl space-y-8 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight text-(--cf-text-1)">Rewards</h1>
+          <p className="mt-1 text-sm text-(--cf-text-soft)">
+            Redeem Insight Points for bonus books and Pro passes.
+          </p>
+        </div>
+
         {/* Loading */}
         {loading && (
-          <div className="text-center py-20 text-[14px]" style={{ color: "var(--text-muted)" }}>
-            Loading your rewards...
+          <div className="space-y-4">
+            <div className="h-40 animate-pulse rounded-2xl bg-(--cf-surface-strong)" />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="h-36 animate-pulse rounded-xl bg-(--cf-surface-strong)" />
+              <div className="h-36 animate-pulse rounded-xl bg-(--cf-surface-strong)" />
+            </div>
           </div>
         )}
 
         {/* Error */}
         {error && (
           <div
-            className="rounded-xl p-4 text-center text-[14px]"
-            style={{
-              background: "rgba(239,68,68,0.08)",
-              border: "1px solid rgba(239,68,68,0.2)",
-              color: "#ef4444",
-            }}
+            role="alert"
+            className="rounded-xl border border-(--cf-danger-border) bg-(--cf-danger-soft) p-4 text-center text-[14px] text-(--cf-danger-text)"
           >
             {error}
           </div>
         )}
 
         {/* Redeem success/error toast */}
-        <AnimatePresence>
-          {redeemMessage && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="rounded-xl p-3 text-center text-[14px] font-medium"
-              style={{
-                background: "rgba(34,211,238,0.08)",
-                border: "1px solid rgba(34,211,238,0.2)",
-                color: "var(--accent-teal)",
-              }}
-            >
-              {redeemMessage}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div aria-live="polite" aria-atomic="true">
+          <AnimatePresence>
+            {redeemMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) p-3 text-center text-[14px] font-medium text-(--cf-accent)"
+              >
+                {redeemMessage}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
         {payload && (
           <>
@@ -323,10 +270,7 @@ export function RewardsPageClient() {
 
             {/* Reward Catalog */}
             <section>
-              <h2
-                className="text-[13px] font-semibold uppercase tracking-widest mb-4"
-                style={{ color: "var(--text-muted)" }}
-              >
+              <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-widest text-(--cf-text-soft)">
                 Reward Catalog
               </h2>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -343,39 +287,21 @@ export function RewardsPageClient() {
 
             {/* Ways to Earn */}
             <section>
-              <h2
-                className="text-[13px] font-semibold uppercase tracking-widest mb-4"
-                style={{ color: "var(--text-muted)" }}
-              >
-                <Zap size={14} className="inline mr-1.5" />
+              <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-widest text-(--cf-text-soft)">
+                <Zap size={14} className="mr-1.5 inline" />
                 Ways to Earn
               </h2>
-              <div
-                className="rounded-xl divide-y"
-                style={{
-                  border: "1px solid var(--border-subtle)",
-                  background: "var(--bg-surface-1)",
-                }}
-              >
+              <div className="divide-y divide-(--cf-border) rounded-xl border border-(--cf-border) bg-(--cf-surface-muted)">
                 {payload.waysToEarn.map((way) => (
                   <div key={way.label} className="flex items-start justify-between gap-4 px-4 py-3">
                     <div className="min-w-0">
-                      <p className="text-[14px] font-medium" style={{ color: "var(--text-heading)" }}>
-                        {way.label}
-                      </p>
-                      <p className="text-[12px] mt-0.5" style={{ color: "var(--text-secondary)" }}>
-                        {way.detail}
-                      </p>
+                      <p className="text-[14px] font-medium text-(--cf-text-1)">{way.label}</p>
+                      <p className="mt-0.5 text-[12px] text-(--cf-text-2)">{way.detail}</p>
                       {way.note && (
-                        <p className="text-[11px] mt-0.5" style={{ color: "var(--text-muted)" }}>
-                          {way.note}
-                        </p>
+                        <p className="mt-0.5 text-[11px] text-(--cf-text-soft)">{way.note}</p>
                       )}
                     </div>
-                    <span
-                      className="text-[13px] font-semibold shrink-0 tabular-nums"
-                      style={{ color: "var(--accent-teal)" }}
-                    >
+                    <span className="shrink-0 text-[13px] font-semibold tabular-nums text-(--cf-accent)">
                       {way.displayValue}
                     </span>
                   </div>
@@ -389,49 +315,33 @@ export function RewardsPageClient() {
             {/* Recent Activity */}
             {payload.recentTransactions.length > 0 && (
               <section>
-                <h2
-                  className="text-[13px] font-semibold uppercase tracking-widest mb-4"
-                  style={{ color: "var(--text-muted)" }}
-                >
+                <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-widest text-(--cf-text-soft)">
                   Recent Activity
                 </h2>
-                <div
-                  className="rounded-xl divide-y"
-                  style={{
-                    border: "1px solid var(--border-subtle)",
-                    background: "var(--bg-surface-1)",
-                    }}
-                >
+                <div className="divide-y divide-(--cf-border) rounded-xl border border-(--cf-border) bg-(--cf-surface-muted)">
                   {payload.recentTransactions.map((tx) => (
                     <div key={tx.transactionId} className="flex items-center justify-between px-4 py-3">
                       <div>
-                        <p className="text-[14px] font-medium" style={{ color: "var(--text-heading)" }}>
-                          {tx.title}
-                        </p>
+                        <p className="text-[14px] font-medium text-(--cf-text-1)">{tx.title}</p>
                         {tx.subtitle && (
-                          <p className="text-[12px] mt-0.5" style={{ color: "var(--text-muted)" }}>
-                            {tx.subtitle}
-                          </p>
+                          <p className="mt-0.5 text-[12px] text-(--cf-text-soft)">{tx.subtitle}</p>
                         )}
                       </div>
-                      <div className="text-right shrink-0">
+                      <div className="shrink-0 text-right">
                         <p
-                          className="text-[14px] font-semibold"
-                          style={{
-                            color:
-                              tx.direction === "earn"
-                                ? "#22c55e"
-                                : tx.direction === "spend"
-                                  ? "#ef4444"
-                                  : "var(--text-secondary)",
-                          }}
+                          className={
+                            "text-[14px] font-semibold " +
+                            (tx.direction === "earn"
+                              ? "text-(--cf-success-text)"
+                              : tx.direction === "spend"
+                                ? "text-(--cf-danger-text)"
+                                : "text-(--cf-text-2)")
+                          }
                         >
                           {tx.direction === "earn" ? "+" : tx.direction === "spend" ? "-" : ""}
                           {tx.amount}
                         </p>
-                        <p className="text-[11px]" style={{ color: "var(--text-muted)" }}>
-                          {formatDate(tx.createdAt)}
-                        </p>
+                        <p className="text-[11px] text-(--cf-text-soft)">{formatDate(tx.createdAt)}</p>
                       </div>
                     </div>
                   ))}
@@ -440,7 +350,7 @@ export function RewardsPageClient() {
             )}
           </>
         )}
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
