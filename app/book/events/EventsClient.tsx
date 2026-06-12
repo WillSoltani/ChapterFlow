@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Calendar, ArrowRight, Trophy, Check, Loader2 } from "lucide-react";
+import { Calendar, ArrowRight, Trophy, Check } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
@@ -14,9 +15,9 @@ type ActiveEventWithParticipation = EventDefinition & {
 };
 
 type EventsResponse = { events: ActiveEventWithParticipation[] };
-type JoinResponse = { participation: EventParticipationItem; isNew: boolean };
 
 export function EventsClient() {
+  const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
@@ -25,35 +26,18 @@ export function EventsClient() {
   const [events, setEvents] = useState<ActiveEventWithParticipation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [joiningId, setJoiningId] = useState<string | null>(null);
+
+  // Non-onboarded users get redirected (don't skeleton forever) — same posture
+  // as /book/badges. The page is also guarded server-side by requireDashboardAccess.
+  useEffect(() => {
+    if (onboardingHydrated && !onboarding.setupComplete) router.replace("/book");
+  }, [onboardingHydrated, onboarding.setupComplete, router]);
 
   useEffect(() => {
     fetchBookJson<EventsResponse>("/app/api/book/events/active")
       .then((data) => setEvents(data.events))
       .catch(() => setError("Something went wrong loading events. Please try again later."))
       .finally(() => setLoading(false));
-  }, []);
-
-  const handleJoin = useCallback(async (eventId: string) => {
-    setJoiningId(eventId);
-    setError(null);
-    try {
-      const res = await fetchBookJson<JoinResponse>(
-        `/app/api/book/me/events/${encodeURIComponent(eventId)}/join`,
-        { method: "POST" },
-      );
-      setEvents((prev) =>
-        prev.map((e) =>
-          e.eventId === eventId
-            ? { ...e, participation: res.participation }
-            : e,
-        ),
-      );
-    } catch {
-      setError("Failed to join event. Please try again.");
-    } finally {
-      setJoiningId(null);
-    }
   }, []);
 
   if (!onboardingHydrated || !onboarding.setupComplete) {
@@ -139,10 +123,8 @@ export function EventsClient() {
               const progressPercent = event.targetChapters > 0
                 ? Math.min(100, Math.round((progress / event.targetChapters) * 100))
                 : 0;
-              const isJoining = joiningId === event.eventId;
-
               const card = (
-                <div className="cf-panel overflow-hidden rounded-3xl border border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface))] transition hover:shadow-lg">
+                <div className="group cf-panel overflow-hidden rounded-3xl border border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface))] transition hover:shadow-lg">
                   <div className="p-6">
                     <div className="flex items-center gap-2">
                       <Trophy className="h-4 w-4 text-(--cf-accent)" />
@@ -180,45 +162,38 @@ export function EventsClient() {
                       </div>
                     )}
 
-                    <div className="mt-4">
+                    <div className="mt-4 text-sm font-semibold">
                       {completed ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-success-soft) px-4 py-2 text-sm font-semibold text-(--cf-success-text)">
+                        <span className="inline-flex items-center gap-1.5 text-(--cf-success-text)">
                           <Check className="h-4 w-4" /> Completed
                         </span>
                       ) : joined ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent-soft) px-4 py-2 text-sm font-semibold text-(--cf-accent)">
-                          <Check className="h-4 w-4" /> Joined
+                        <span className="inline-flex items-center gap-1.5 text-(--cf-accent)">
+                          <Check className="h-4 w-4" /> Joined — view progress
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                         </span>
                       ) : (
-                        <button
-                          type="button"
-                          disabled={isJoining}
-                          onClick={() => handleJoin(event.eventId)}
-                          className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
-                        >
-                          {isJoining ? (
-                            <Loader2 className="h-4 w-4 animate-spin" />
-                          ) : (
-                            <ArrowRight className="h-4 w-4" />
-                          )}
-                          {isJoining ? "Joining..." : "Join Event"}
-                        </button>
+                        <span className="inline-flex items-center gap-1.5 text-(--cf-accent)">
+                          View event
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                        </span>
                       )}
                     </div>
                   </div>
                 </div>
               );
 
-              // Only wrap with Link when user has joined (avoids nested interactive elements)
-              if (joined) {
-                return (
-                  <Link key={event.eventId} href={`/book/events/${event.eventId}`}>
-                    {card}
-                  </Link>
-                );
-              }
-
-              return <div key={event.eventId}>{card}</div>;
+              // Always link to the detail page — join lives there, so readers can
+              // inspect an event (books, schedule, reward) before committing.
+              return (
+                <Link
+                  key={event.eventId}
+                  href={`/book/events/${event.eventId}`}
+                  className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) rounded-3xl"
+                >
+                  {card}
+                </Link>
+              );
             })
           )}
         </div>

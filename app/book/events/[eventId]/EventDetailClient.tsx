@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -26,6 +27,7 @@ type EventsResponse = { events: ActiveEventWithParticipation[] };
 type JoinResponse = { participation: EventParticipationItem; isNew: boolean };
 
 export function EventDetailClient({ eventId }: { eventId: string }) {
+  const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
@@ -35,6 +37,12 @@ export function EventDetailClient({ eventId }: { eventId: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [joining, setJoining] = useState(false);
+
+  // Non-onboarded users get redirected (don't skeleton forever) — same posture
+  // as /book/badges. The page is also guarded server-side by requireDashboardAccess.
+  useEffect(() => {
+    if (onboardingHydrated && !onboarding.setupComplete) router.replace("/book");
+  }, [onboardingHydrated, onboarding.setupComplete, router]);
 
   useEffect(() => {
     fetchBookJson<EventsResponse>("/app/api/book/events/active")

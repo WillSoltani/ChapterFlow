@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Map, ArrowRight, CheckCircle } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
@@ -14,6 +15,7 @@ type JourneysResponse = {
 };
 
 export function JourneysClient() {
+  const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
@@ -22,7 +24,12 @@ export function JourneysClient() {
   const [journeys, setJourneys] = useState<JourneysResponse["journeys"]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [startingId, setStartingId] = useState<string | null>(null);
+
+  // Non-onboarded users get redirected (don't skeleton forever) — same posture
+  // as /book/badges. The page is also guarded server-side by requireDashboardAccess.
+  useEffect(() => {
+    if (onboardingHydrated && !onboarding.setupComplete) router.replace("/book");
+  }, [onboardingHydrated, onboarding.setupComplete, router]);
 
   useEffect(() => {
     fetchBookJson<JourneysResponse>("/app/api/book/books/journeys")
@@ -30,25 +37,6 @@ export function JourneysClient() {
       .catch((err) => setError(err?.message ?? "Failed to load journeys"))
       .finally(() => setLoading(false));
   }, []);
-
-  const handleStart = async (journeyId: string) => {
-    if (startingId) return;
-    setStartingId(journeyId);
-    setError(null);
-    try {
-      await fetchBookJson(`/app/api/book/me/journeys/${journeyId}/start`, {
-        method: "POST",
-      });
-      const data = await fetchBookJson<JourneysResponse>("/app/api/book/books/journeys");
-      setJourneys(data.journeys);
-    } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Failed to start journey";
-      setError(message);
-    } finally {
-      setStartingId(null);
-    }
-  };
 
   if (!onboardingHydrated || !onboarding.setupComplete) {
     return (
@@ -124,83 +112,65 @@ export function JourneysClient() {
               const totalBooks = journey.books.length;
               const hasProgress = !!journey.progress;
 
-              const card = (
-                <div
-                  className="cf-panel overflow-hidden rounded-3xl border border-(--cf-border) transition hover:border-(--cf-accent-border)"
-                  style={{
-                    background: `linear-gradient(135deg, ${journey.coverGradient[0]}22, var(--cf-surface))`,
-                  }}
-                >
-                  <div className="p-6">
-                    <div className="flex items-center gap-2">
-                      <Map className="h-4 w-4 text-(--cf-accent)" />
-                      <span className="text-xs font-semibold uppercase tracking-wider text-(--cf-accent)">
-                        {journey.category}
-                      </span>
-                      {isComplete && (
-                        <CheckCircle className="ml-auto h-4 w-4 text-(--cf-success-text)" />
-                      )}
-                    </div>
-                    <h2 className="mt-2 text-xl font-semibold text-(--cf-text-1)">
-                      {journey.title}
-                    </h2>
-                    <p className="mt-1 text-sm text-(--cf-text-2)">
-                      {journey.description}
-                    </p>
-                    <div className="mt-3 flex items-center gap-4 text-xs text-(--cf-text-3)">
-                      <span>{totalBooks} books</span>
-                      <span>~{journey.estimatedWeeks} weeks</span>
-                      <span>{journey.bonusIP} IP bonus</span>
-                    </div>
-
-                    {isActive && (
-                      <div className="mt-4">
-                        <div className="h-2 rounded-full bg-(--cf-surface-muted)">
-                          <div
-                            className="h-2 rounded-full bg-(--cf-accent)"
-                            style={{ width: `${(completedCount / totalBooks) * 100}%` }}
-                          />
-                        </div>
-                        <p className="mt-1 text-xs text-(--cf-text-3)">
-                          {completedCount} of {totalBooks} books completed
-                        </p>
-                      </div>
-                    )}
-
-                    {!hasProgress && (
-                      <button
-                        type="button"
-                        disabled={startingId !== null}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          handleStart(journey.journeyId);
-                        }}
-                        className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        {startingId === journey.journeyId ? "Starting..." : "Start Journey"}{" "}
-                        <ArrowRight className="h-4 w-4" />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              );
-
-              if (hasProgress) {
-                return (
-                  <Link
-                    key={journey.journeyId}
-                    href={`/book/journeys/${journey.journeyId}`}
-                  >
-                    {card}
-                  </Link>
-                );
-              }
-
               return (
-                <div key={journey.journeyId}>
-                  {card}
-                </div>
+                <Link
+                  key={journey.journeyId}
+                  href={`/book/journeys/${journey.journeyId}`}
+                  className="group block rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                >
+                  <div
+                    className="cf-panel overflow-hidden rounded-3xl border border-(--cf-border) transition group-hover:border-(--cf-accent-border)"
+                    style={{
+                      background: `linear-gradient(135deg, ${journey.coverGradient[0]}22, var(--cf-surface))`,
+                    }}
+                  >
+                    <div className="p-6">
+                      <div className="flex items-center gap-2">
+                        <Map className="h-4 w-4 text-(--cf-accent)" />
+                        <span className="text-xs font-semibold uppercase tracking-wider text-(--cf-accent)">
+                          {journey.category}
+                        </span>
+                        {isComplete && (
+                          <CheckCircle className="ml-auto h-4 w-4 text-(--cf-success-text)" />
+                        )}
+                      </div>
+                      <h2 className="mt-2 text-xl font-semibold text-(--cf-text-1)">
+                        {journey.title}
+                      </h2>
+                      <p className="mt-1 text-sm text-(--cf-text-2)">
+                        {journey.description}
+                      </p>
+                      <div className="mt-3 flex items-center gap-4 text-xs text-(--cf-text-3)">
+                        <span>{totalBooks} books</span>
+                        <span>~{journey.estimatedWeeks} weeks</span>
+                        <span>{journey.bonusIP} IP bonus</span>
+                      </div>
+
+                      {isActive && (
+                        <div className="mt-4">
+                          <div className="h-2 rounded-full bg-(--cf-surface-muted)">
+                            <div
+                              className="h-2 rounded-full bg-(--cf-accent)"
+                              style={{ width: `${(completedCount / totalBooks) * 100}%` }}
+                            />
+                          </div>
+                          <p className="mt-1 text-xs text-(--cf-text-3)">
+                            {completedCount} of {totalBooks} books completed
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-(--cf-accent)">
+                        {isComplete
+                          ? "View journey"
+                          : hasProgress
+                            ? "Continue journey"
+                            : "Explore journey"}
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               );
             })
           )}

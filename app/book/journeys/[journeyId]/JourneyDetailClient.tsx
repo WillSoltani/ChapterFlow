@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -50,6 +50,7 @@ type JourneyDetailResponse = {
 
 export function JourneyDetailClient() {
   const { journeyId } = useParams<{ journeyId: string }>();
+  const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
@@ -58,6 +59,13 @@ export function JourneyDetailClient() {
   const [journey, setJourney] = useState<JourneyDetailResponse["journey"] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [starting, setStarting] = useState(false);
+
+  // Non-onboarded users get redirected (don't skeleton forever) — same posture
+  // as /book/badges. The page is also guarded server-side by requireDashboardAccess.
+  useEffect(() => {
+    if (onboardingHydrated && !onboarding.setupComplete) router.replace("/book");
+  }, [onboardingHydrated, onboarding.setupComplete, router]);
 
   useEffect(() => {
     fetchBookJson<JourneyDetailResponse>(
@@ -67,6 +75,25 @@ export function JourneyDetailClient() {
       .catch((err) => setError(err?.message ?? "Failed to load journey"))
       .finally(() => setLoading(false));
   }, [journeyId]);
+
+  const handleStart = async () => {
+    if (starting) return;
+    setStarting(true);
+    setError(null);
+    try {
+      await fetchBookJson(`/app/api/book/me/journeys/${journeyId}/start`, {
+        method: "POST",
+      });
+      const data = await fetchBookJson<JourneyDetailResponse>(
+        `/app/api/book/me/journeys/${journeyId}`,
+      );
+      setJourney(data.journey);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to start journey");
+    } finally {
+      setStarting(false);
+    }
+  };
 
   const topNav = (
     <TopNav
@@ -191,6 +218,20 @@ export function JourneyDetailClient() {
                   : `${completedCount} of ${totalBooks} books completed`}
               </p>
             </div>
+          )}
+
+          {/* Start CTA — journeys are started here (not from the list), so
+              readers can review the books and reward before committing. */}
+          {!journey.progress && (
+            <button
+              type="button"
+              onClick={handleStart}
+              disabled={starting}
+              className="mt-5 inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+            >
+              {starting ? "Starting…" : "Start Journey"}
+              <ArrowRight className="h-4 w-4" />
+            </button>
           )}
         </div>
 
