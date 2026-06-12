@@ -38,6 +38,9 @@ You are operating in one role only. Never mix roles.
 - Apply publishableBar axes mechanically.
 - One corruption hit red-gates the chapter.
 - Overall <85 or any axis <0.6 is REVISE.
+- Prefer `bar-pack` + `bar-attest` for full-book batch attestation when the
+  book is large; it reduces command repetition but still requires every axis
+  for every chapter.
 
 ## Confirm role
 - Use the confirm token only for final attestation/disposition decisions.

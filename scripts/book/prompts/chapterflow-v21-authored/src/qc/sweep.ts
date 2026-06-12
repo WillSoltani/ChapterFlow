@@ -9,6 +9,8 @@ import { loadBookChapters } from "./manualKeyJudge.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 export const SWEEP_PACKS_DIR = resolve(CANONICAL_STATE, "qc-packs");
+export const REQUIRED_SWEEP_FAMILIES = ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"] as const;
+export type SweepFamily = typeof REQUIRED_SWEEP_FAMILIES[number];
 
 export type SweepPack = {
   schemaVersion: "sweep-pack-v1";
@@ -26,6 +28,15 @@ export type SweepRecord = {
   reviewer: string;
   attestedAt: string;
   contentHashes: Record<string, string>;
+  checkedFamilies: SweepFamily[];
+  findings: Array<{
+    family: SweepFamily;
+    chapters: number[];
+    unitId: string;
+    quote: string;
+    problem: string;
+    expectedFix: string;
+  }>;
   notes?: string;
 };
 
@@ -60,9 +71,54 @@ export function writeSweepPack(bookId: string, roundId: string): string {
   return p;
 }
 
-export function writeSweepAttestation(bookId: string, roundId: string, token: string, verdict: SweepRecord["verdict"], reviewer: string, notes?: string): { path?: string; error?: string } {
+function isSweepFamily(value: unknown): value is SweepFamily {
+  return (REQUIRED_SWEEP_FAMILIES as readonly string[]).includes(String(value));
+}
+
+function loadFindingsFile(path: string): { checkedFamilies: SweepFamily[]; findings: SweepRecord["findings"]; errors: string[] } {
+  let raw: any;
+  try {
+    raw = JSON.parse(readFileSync(resolve(path), "utf8"));
+  } catch (err) {
+    return { checkedFamilies: [], findings: [], errors: [`Could not read findings file: ${(err as Error).message}`] };
+  }
+  const errors: string[] = [];
+  const checkedFamilies = Array.isArray(raw?.checkedFamilies)
+    ? raw.checkedFamilies.filter(isSweepFamily)
+    : [];
+  if (!Array.isArray(raw?.checkedFamilies)) errors.push("findings file must include checkedFamilies[]");
+  for (const fam of raw?.checkedFamilies ?? []) if (!isSweepFamily(fam)) errors.push(`unknown checkedFamily: ${String(fam)}`);
+  const findings = Array.isArray(raw?.findings) ? raw.findings.map((f: any, i: number) => {
+    const family = f?.family;
+    if (!isSweepFamily(family)) errors.push(`findings[${i}].family must be one of ${REQUIRED_SWEEP_FAMILIES.join(", ")}`);
+    const chapters = Array.isArray(f?.chapters) ? f.chapters.map((n: unknown) => Number(n)).filter((n: number) => Number.isInteger(n) && n > 0) : [];
+    if (chapters.length === 0) errors.push(`findings[${i}].chapters must list affected chapters`);
+    for (const key of ["unitId", "quote", "problem", "expectedFix"] as const) {
+      if (typeof f?.[key] !== "string" || !f[key].trim()) errors.push(`findings[${i}].${key} is required`);
+    }
+    return {
+      family: isSweepFamily(family) ? family : "scene_skeleton",
+      chapters,
+      unitId: String(f?.unitId ?? ""),
+      quote: String(f?.quote ?? ""),
+      problem: String(f?.problem ?? ""),
+      expectedFix: String(f?.expectedFix ?? ""),
+    };
+  }) : [];
+  if (!Array.isArray(raw?.findings)) errors.push("findings file must include findings[] (empty array is allowed)");
+  return { checkedFamilies, findings, errors };
+}
+
+export function writeSweepAttestation(bookId: string, roundId: string, token: string, verdict: SweepRecord["verdict"], reviewer: string, findingsFile: string, notes?: string): { path?: string; error?: string } {
   if (!verifyQcRoundToken(bookId, roundId, "sweep", token)) {
     return { error: `Invalid sweep token for ${bookId} round ${roundId}.` };
+  }
+  if (!findingsFile) return { error: "sweep-attest requires --findings-file." };
+  const loaded = loadFindingsFile(findingsFile);
+  if (loaded.errors.length > 0) return { error: loaded.errors.join("; ") };
+  if (verdict === "PASS") {
+    const missing = REQUIRED_SWEEP_FAMILIES.filter((family) => !loaded.checkedFamilies.includes(family));
+    if (missing.length > 0) return { error: `PASS requires checkedFamilies to include: ${missing.join(", ")}.` };
   }
   const chapters = loadBookChapters(bookId);
   const contentHashes: Record<string, string> = {};
@@ -75,6 +131,8 @@ export function writeSweepAttestation(bookId: string, roundId: string, token: st
     reviewer,
     attestedAt: new Date().toISOString(),
     contentHashes,
+    checkedFamilies: loaded.checkedFamilies,
+    findings: loaded.findings,
     notes,
   };
   mkdirSync(QC_DIR, { recursive: true });
@@ -101,6 +159,8 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   if (!rec) return [{ checkId: "QC3.sweep_missing", severity: sev, message: `No sweep attestation for ${bookId}. Run sweep-pack and sweep-attest.` }];
   if (!loadQcRound(rec.bookId, rec.roundId)?.roles?.sweep) return [{ checkId: "QC3.sweep_round_missing", severity: sev, message: `Sweep attestation is not backed by an existing QC round file. Re-open a round and re-attest the sweep.` }];
   if (rec.verdict !== "PASS") return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict}, not PASS.` }];
+  const missingFamilies = REQUIRED_SWEEP_FAMILIES.filter((family) => !(rec.checkedFamilies ?? []).includes(family));
+  if (missingFamilies.length > 0) return [{ checkId: "QC3.sweep_incomplete", severity: sev, message: `Sweep PASS is incomplete; missing checkedFamilies: ${missingFamilies.join(", ")}.` }];
   const stale = chapters.filter((ch) => rec.contentHashes[String(ch.number)] !== chapterContentHash(ch));
   if (stale.length > 0) return [{ checkId: "QC3.sweep_stale", severity: sev, message: `Sweep attestation is stale/missing for chapter(s): ${stale.map((ch) => ch.number).join(", ")}.` }];
   return [];

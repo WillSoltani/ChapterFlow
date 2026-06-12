@@ -99,10 +99,19 @@ edit chapters; key readers use only blind packs and source facts.
 
 Required no-api artifacts:
 - `source-v2-gate <bookId>` must pass before authoring prompts print.
-- `sweep-pack <bookId> --round <roundId>` then `sweep-attest ... --token <sweep-token> --verdict PASS`.
+- `sweep-pack <bookId> --round <roundId>` then `sweep-attest ... --token <sweep-token> --verdict PASS --findings-file <path>`.
+  The findings file must include `checkedFamilies` with all four sweep families
+  (`scene_skeleton`, `persona_drift`, `repeated_unit`, `location_stamping`) and
+  `findings` (use `[]` when clean).
 - `key-pack <bookId> --round <roundId>`, two independent `key-derive` runs
   (`keyA`, `keyB`), then `key-resolve`.
-- `qc-attest ... --round <roundId> --token <bar|confirm|attest-token>`.
+- For the publishable-bar read, prefer full-book batching on large books:
+  `bar-pack <bookId> --round <roundId>` writes `bar-pack.json` plus
+  `bar-scores.template.json`; fill every axis for every chapter, then run
+  `bar-attest <bookId> --round <roundId> --token <bar|attest|confirm-token>
+  --scores-file <filled-template> --reviewer <id>`. Use per-chapter
+  `qc-attest ... --round <roundId> --token <bar|confirm|attest-token>` only
+  for overrides or small/manual rechecks.
 - `major-status <bookId>` must have every current major explicitly resolved or
   waived with `major-disposition`; silent ignores never count as pass.
 

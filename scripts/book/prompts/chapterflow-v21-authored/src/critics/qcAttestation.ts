@@ -35,6 +35,7 @@ import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { loadQcRound, type QcRoundRole } from "../qc/qcRound.js";
 import { isNoApiCodexQcMode } from "../qc/noApiMode.js";
+import { checkBarConfirmArtifactsForPublishable } from "../qc/orchestrator/artifacts.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 
@@ -279,6 +280,8 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
       return [{ checkId: "QC0.no_api_round_missing", severity: sev,
         message: `No-api QC mode requires an attestation backed by an existing QC round file. Re-open a round and re-attest ${chapter.chapterId}.` }];
     }
+    const artifactFindings = checkBarConfirmArtifactsForPublishable(chapter, att, enforce);
+    if (artifactFindings.length > 0) return artifactFindings;
   }
   return [];
 }

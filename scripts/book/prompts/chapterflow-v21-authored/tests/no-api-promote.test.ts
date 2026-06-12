@@ -6,6 +6,8 @@ import { test } from "./harness.js";
 import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
 import { promoteBook } from "../src/promoteBook.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
+import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
+import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 
 const BOOK = "zz-fixture-no-api-promote";
 
@@ -18,6 +20,8 @@ function cleanup(): void {
     rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}-ch${String(n).padStart(2, "0")}.manual-keyjudge.json`), { force: true });
   }
   rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}.sweep.json`), { force: true });
+  rmSync(qcRoundPath(BOOK, "r-no-api-artifacts"), { force: true });
+  rmSync(orchestratorRoundDir(BOOK, "r-no-api-artifacts"), { recursive: true, force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), { force: true });
   const blocked = resolve(PIPELINE_DIR, "state", "books", "_blocked");
   try {
@@ -70,6 +74,47 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
     assert.ok(noApiIds.includes("QC3.sweep_missing"), `sweep blocker missing: ${noApiIds.join(", ")}`);
     assert.ok(noApiIds.includes("QC4.major_unresolved"), `major disposition blocker missing: ${noApiIds.join(", ")}`);
     assert.ok(qcIds.includes("QC0.no_api_round_missing"), `round-backed attestation blocker missing: ${qcIds.join(", ")}`);
+  } finally {
+    console.warn = oldWarn;
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanup();
+  }
+});
+
+test("no-api promote requires fresh bar and confirm artifacts for a PUBLISHABLE attestation", () => {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    cleanup();
+    const chapter = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    openQcRound(BOOK, "r-no-api-artifacts");
+    writeAttestation({
+      schemaVersion: "qc-attest-v1",
+      bookId: BOOK,
+      chapterNumber: chapter.number,
+      chapterId: chapter.chapterId,
+      verdict: "PUBLISHABLE",
+      contentHash: chapterContentHash(chapter),
+      hashVersion: "v2",
+      reviewer: "human:artifact-test",
+      reviewedAt: "2026-06-12T00:00:00.000Z",
+      roundId: "r-no-api-artifacts",
+      roundRole: "confirm",
+    });
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    const result = promoteBook({
+      bookId: BOOK,
+      title: "Fixture",
+      author: "Nobody",
+      chapters: [{ chapterId: chapter.chapterId, chapterNumber: chapter.number, chapterTitle: chapter.title }] as any,
+    });
+    assert.equal(result.promoted, false);
+    const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
+    const qcIds = (report.qcAttestation.findings ?? []).map((f: any) => f.checkId);
+    assert.ok(qcIds.includes("QC0.bar_read_missing"), `bar artifact blocker missing: ${qcIds.join(", ")}`);
   } finally {
     console.warn = oldWarn;
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;

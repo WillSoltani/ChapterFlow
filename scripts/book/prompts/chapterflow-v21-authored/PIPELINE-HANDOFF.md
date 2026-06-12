@@ -67,7 +67,7 @@ lifts this constraint.
 Full CLI surface: `research, generate, generate-book, next-task, check-source,
 source-v2-gate, derive-artifacts, name-plan, fanout, author-check, gate-chapter,
 book-gate, qc-open-round, sweep-pack, sweep-attest, sweep-status, key-pack,
-key-derive, key-resolve, qc-attest, qc-status, major-status,
+key-derive, key-resolve, bar-pack, bar-attest, qc-attest, qc-status, major-status,
 major-disposition, categorize, promote-book, register-web, batch, ledger,
 migrate-state, state-status, fix-chapter-ids, quarantine-book, critic, ping`.
 
@@ -89,7 +89,8 @@ The supported (no-API) operator loop, per book:
 6. **QC (separate Claude/Codex QC session)** with `agent-prompts/QC-SESSION-PROMPT.md`.
    In v21.1 no-api Codex QC mode (`CHAPTERFLOW_NO_API_CODEX_QC=1`), open a
    role-separated round with `qc-open-round`, run the sweep, blind manual key
-   judge (`key-pack`/`key-derive`/`key-resolve`), round-tokened `qc-attest`,
+   judge (`key-pack`/`key-derive`/`key-resolve`), batch publishable-bar QC
+   (`bar-pack`/`bar-attest`) or per-chapter round-tokened `qc-attest`,
    and explicit `major-disposition` for every current major. `qc-status <bookId>`
    tracks PASS/STALE/REVISE/CORRUPTION/MISSING; gate-only GREEN is never enough.
 7. **`promote-book <bookId> --title … --author …`** — final gate (re-runs ship gate +
