@@ -50,15 +50,39 @@ read raw content, you did not do QC.
 
 ---
 
+## 0b. COMPLETE THE BOOK — one defect is a finding, not a stopping point
+
+The ONLY legitimate early exit is the systemic-templating exit in §2.0.
+Otherwise you read EVERY chapter in your assigned range, score every axis,
+attest every chapter you fully read, and report everything AT THE END.
+
+- Finding a defect mid-chapter: record it (verbatim quote + unitId) and KEEP
+  READING. A reviewer who stops at the first issue has produced one bug
+  report, not a QC verdict — the author then fixes one thing, you re-run, you
+  find the next thing, and a 9-chapter book takes nine sessions.
+- If your session is running out of room: attest the chapters you fully read,
+  then end your report with `NEEDS-CONTINUATION: chapters <list>` so the next
+  session knows where to pick up.
+- RESUME PROTOCOL: every session starts with
+  `npx tsx src/cli.ts qc-status <bookId>` — chapters already attested FRESH
+  by this round's reviewer can be skipped; start from the first chapter that
+  is unattested or STALE.
+
 ## 1. Setup
 
 ```bash
 cd /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored
 node --version            # need >= 18
-npx tsx src/cli.ts book-gate start-with-why   # calibration: must print "Book gate: PASS (start-with-why, 14 chapters)"
+npx tsx src/cli.ts book-gate daring-greatly   # instrument check: should print "Book gate: PASS (daring-greatly, 7 chapters)"
 ```
 
-If calibration doesn't PASS, the repo is missing patches — run `git pull origin main` and retry.
+The instrument check is NON-BLOCKING: if it fails, write one line in your
+final report ("instrument check failed: <message>") and PROCEED with the book
+under QC. Do not investigate the gold book, do not read its chapters beyond
+the one calibration skim in §3, and NEVER run QC steps on it — it is a
+reference, not your subject. (A previous reviewer burned its session
+investigating start-with-why because this check used a book whose research
+run isn't on disk.)
 All `npx tsx` commands below run from this directory.
 
 Required on-disk files for book `<bookId>`:
@@ -285,17 +309,37 @@ never attest a chapter you have not actually read. Check coverage any time with
 
 ---
 
-## 4. If RED — draft a redo prompt for Codex
+## 4. If RED or YELLOW — draft a repair prompt that CONVERGES
 
-Write it to `agent-prompts/REDO-<bookId>-<scope>.md`. It must state: exactly
-which fields change, which fields must NOT change, why the redo exists (which
-critic fired or which correctness defect you found, with verbatim broken
-examples), the per-field composition rule, and the done-condition (per-chapter
-`gate-chapter` 0 blockers + `book-gate` 0 blockers + your specific correctness
-fix verified). Use the template in QC-PLAYBOOK §6. The user hands it to Codex.
+Write it to `agent-prompts/REDO-<bookId>-<scope>.md`. The historical failure
+mode of this loop: repair prompts listed the cited quotes, the author fixed
+those exact quotes, and the chapter stayed YELLOW — because **YELLOW is a
+SCORE tier, not a bug list**. A chapter at 82/100 with weak distractors needs
+its distractor CRAFT lifted across the whole quiz, not three quoted
+distractors patched. Therefore a repair prompt must be AXIS-TARGETED:
+
+For every non-GREEN chapter, state:
+1. **The failing axes with their scores** (e.g. `quiz_distractor_quality:
+   0.55`) and the rubric text for each axis (copy it from
+   `src/critics/semantic/publishableBar.ts` AXIS_RUBRIC — it defines what
+   0.85+ looks like, including the FP-guards).
+2. **2-3 of your cited quotes per axis as EXAMPLES of the pattern** — marked
+   "examples, not the complete list: fix the PATTERN everywhere it occurs".
+3. Which fields must NOT change (quiz keys NEVER; anything scoring well).
+4. The done-condition: `gate-chapter` PASS **and** the axis pattern gone on a
+   self-read of every instance — then a FRESH QC session re-scores (the
+   repair session never attests; it is an authoring session).
+
+**CONVERGENCE RULE — mandatory:** track rounds in the repair prompt's
+filename (`REDO-<bookId>-<scope>-r2.md`…). If the SAME axis is still below
+floor on the SAME chapter after TWO repair rounds, DO NOT write a third
+prompt — escalate to the operator with the axis, both rounds' scores, and
+your hypothesis (palette gap, prompt gap, or bar miscalibration). A loop
+that isn't converging means something structural is wrong upstream; round
+three of the same prompt just burns sessions.
 
 If 5+ classes of blocker are firing, or the same defect keeps moving fields
-across 3 redos, recommend a full Step-2 rewrite instead of patching.
+across redos, recommend a full Step-2 rewrite instead of patching.
 
 ---
 
