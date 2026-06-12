@@ -6,6 +6,7 @@ import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadQcRound, verifyQcRoundToken } from "./qcRound.js";
 import { loadBookChapters } from "./manualKeyJudge.js";
+import type { ValidatedSweepSubmission } from "./orchestrator/schemas.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 export const SWEEP_PACKS_DIR = resolve(CANONICAL_STATE, "qc-packs");
@@ -17,7 +18,43 @@ export type SweepPack = {
   bookId: string;
   roundId: string;
   createdAt: string;
-  chapters: Array<{ chapterNumber: number; chapterId: string; contentHash: string; exampleCount: number; quizCount: number }>;
+  chapters: Array<{
+    chapterNumber: number;
+    chapterId: string;
+    contentHash: string;
+    title: string;
+    hook: string;
+    counterintuition: string;
+    keyTakeaway: string;
+    tryThisNow: string;
+    breakdown: {
+      fastRead: string;
+      deepRead: string;
+      fullRead: string;
+    };
+    examples: Array<{
+      title: string;
+      scenario: string;
+      whatToDo: string;
+      whyItMatters: string;
+    }>;
+    quiz: Array<{
+      prompt: string;
+      choices: string[];
+    }>;
+    reviewCards: Array<{
+      front: string;
+      back: string;
+    }>;
+    implementationPlan: {
+      coreSkill?: string;
+      challenge?: string;
+      twentyFourHourChallenge?: string;
+      weeklyPractice?: string;
+      ifThenPlans: Array<{ context: string; plan: string }>;
+    };
+    memorableLines: string[];
+  }>;
 };
 
 export type SweepRecord = {
@@ -61,13 +98,71 @@ export function writeSweepPack(bookId: string, roundId: string): string {
       chapterNumber: ch.number,
       chapterId: ch.chapterId,
       contentHash: chapterContentHash(ch),
-      exampleCount: ch.examples?.length ?? 0,
-      quizCount: ch.quiz?.questions?.length ?? 0,
+      title: ch.title ?? "",
+      hook: ch.hook ?? "",
+      counterintuition: ch.counterintuition ?? "",
+      keyTakeaway: ch.keyTakeaway ?? "",
+      tryThisNow: ch.tryThisNow ?? "",
+      breakdown: {
+        fastRead: ch.breakdown?.fastRead ?? "",
+        deepRead: ch.breakdown?.deepRead ?? "",
+        fullRead: ch.breakdown?.fullRead ?? "",
+      },
+      examples: (ch.examples ?? []).map((ex) => ({
+        title: ex.title ?? "",
+        scenario: ex.scenario ?? "",
+        whatToDo: ex.whatToDo ?? "",
+        whyItMatters: ex.whyItMatters ?? "",
+      })),
+      quiz: (ch.quiz?.questions ?? []).map((q) => ({
+        prompt: q.prompt ?? "",
+        choices: Array.isArray(q.choices) ? q.choices.map(String) : [],
+      })),
+      reviewCards: (ch.reviewCards ?? []).map((card) => ({
+        front: card.front ?? "",
+        back: card.back ?? "",
+      })),
+      implementationPlan: {
+        coreSkill: ch.implementationPlan?.coreSkill,
+        challenge: (ch.implementationPlan as any)?.challenge ?? ch.implementationPlan?.twentyFourHourChallenge,
+        twentyFourHourChallenge: ch.implementationPlan?.twentyFourHourChallenge,
+        weeklyPractice: ch.implementationPlan?.weeklyPractice,
+        ifThenPlans: (ch.implementationPlan?.ifThenPlans ?? []).map((plan) => ({ context: plan.context ?? "", plan: plan.plan ?? "" })),
+      },
+      memorableLines: (ch.memorableLines ?? []).map((line: any) => typeof line === "string" ? line : String(line?.text ?? "")),
     })),
   };
   const p = sweepPackPath(bookId, roundId);
   mkdirSync(dirname(p), { recursive: true });
   writeFileSync(p, JSON.stringify(pack, null, 2), "utf8");
+  return p;
+}
+
+export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmission): string {
+  const chapters = loadBookChapters(submission.bookId);
+  const contentHashes: Record<string, string> = {};
+  for (const ch of chapters) contentHashes[String(ch.number)] = chapterContentHash(ch);
+  const rec: SweepRecord = {
+    schemaVersion: "sweep-attest-v1",
+    bookId: submission.bookId,
+    roundId: submission.roundId,
+    verdict: submission.verdict,
+    reviewer: submission.reviewer,
+    attestedAt: new Date().toISOString(),
+    contentHashes,
+    checkedFamilies: submission.checkedFamilies,
+    findings: submission.findings.map((f) => ({
+      family: isSweepFamily(f.repairClass) ? f.repairClass : "scene_skeleton",
+      chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
+      unitId: f.unitId,
+      quote: f.quote,
+      problem: f.problem,
+      expectedFix: f.expectedFix,
+    })),
+  };
+  mkdirSync(QC_DIR, { recursive: true });
+  const p = sweepRecordPath(submission.bookId);
+  writeFileSync(p, JSON.stringify(rec, null, 2), "utf8");
   return p;
 }
 

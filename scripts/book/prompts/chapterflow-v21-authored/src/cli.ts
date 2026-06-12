@@ -132,17 +132,27 @@ Commands:
                                      packs, append-only repair ledger, and repair brief.
   qc-orchestrate <bookId> --collect --round <roundId>
                                      Validate stored submissions, merge the repair ledger, and write
-                                     safe attestations only when fresh bar+confirm artifacts exist.
+                                     repair artifacts. Never writes chapter attestations.
+  qc-orchestrate <bookId> --finalize --round <roundId> [--chapters 1,2] [--no-attest]
+                                     Build evidence-matrix.json and write only evidence-backed
+                                     PUBLISHABLE/REVISE/CORRUPTION attestations. NEEDS_MORE_QC is
+                                     recorded in the matrix and never attested.
   qc-orchestrate <bookId> --render-repair --round <roundId>
                                      Render repair-ledger.jsonl to repair-brief.md.
   qc-orchestrate <bookId> --verify-repair --round <roundId>
                                      Re-run repair validation and append stale/still-open/QC-rerun statuses.
-  qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --file <submission.json>
+  qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --token <token> --file <submission.json>
                                      Validate and store a structured QC submission for an orchestrated round.
+  qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest]
+                                     One-command no-api Codex QC autopilot. Creates/reuses a round,
+                                     writes workflow tasking, collects submissions, finalizes evidence,
+                                     and reports PASS/REPAIR/INCOMPLETE without using paid APIs.
   qc-ledger-status <bookId> --round <roundId>
                                      Summarize the append-only orchestrator repair ledger.
   qc-repair-brief <bookId> --round <roundId>
-                                     Render and print the pasteable repair brief path.
+                                     Render and print the repair brief and pasteable repair prompt paths.
+  qc-repair-prompt <bookId> --round <roundId>
+                                     Render and print only the pasteable Writer Codex repair prompt path.
   source-v2-gate <bookId>            Strict no-api source gate: every chapter sidecar must be source-v2
                                      with centralConcept, namedExamples, hardSpecifics, and testableFacts.
   key-pack <bookId> --round <id>     Write blind manual quiz-key packs under state/qc-packs/.
@@ -1706,7 +1716,7 @@ async function runQcOpenRound(args: string[]): Promise<number> {
 async function runQcOrchestrate(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--render-repair|--verify-repair --round <roundId>");
+    console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--finalize|--render-repair|--verify-repair --round <roundId>");
     return 2;
   }
   const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
@@ -1723,7 +1733,7 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     return result.ok ? 0 : 1;
   }
   if (!roundId) {
-    console.error("qc-orchestrate requires --round <roundId> for --collect, --render-repair, and --verify-repair.");
+    console.error("qc-orchestrate requires --round <roundId> for --collect, --finalize, --render-repair, and --verify-repair.");
     return 2;
   }
   if (flags["collect"] === true) {
@@ -1731,6 +1741,31 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     console.log(JSON.stringify(result.summary, null, 2));
     if (result.errors.length) for (const e of result.errors) console.error(e);
     return result.ok ? 0 : 1;
+  }
+  if (flags["finalize"] === true) {
+    const collected = orch.collectQcRound(bookId, roundId);
+    if (!collected.ok) {
+      console.log(JSON.stringify({
+        ok: false,
+        incomplete: true,
+        errors: collected.errors,
+        collected: collected.summary,
+      }, null, 2));
+      for (const e of collected.errors) console.error(e);
+      return 3;
+    }
+    const result = orch.finalizeQcRound(bookId, roundId, {
+      chapters: orch.parseChapterList(flags["chapters"]),
+      attest: flags["no-attest"] !== true,
+    });
+    console.log(JSON.stringify({
+      ...result,
+      collected: collected.summary,
+    }, null, 2));
+    for (const e of [...collected.errors, ...result.errors]) console.error(e);
+    if (result.incomplete) return 3;
+    if (result.repairRequired) return 1;
+    return result.allPublishable ? 0 : 1;
   }
   if (flags["render-repair"] === true) {
     const path = orch.renderRepair(bookId, roundId);
@@ -1742,7 +1777,7 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     console.log(JSON.stringify(result.summary, null, 2));
     return result.ok ? 0 : 1;
   }
-  console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--render-repair|--verify-repair --round <roundId>");
+  console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--finalize|--render-repair|--verify-repair --round <roundId>");
   return 2;
 }
 
@@ -1750,9 +1785,10 @@ async function runQcSubmit(args: string[], flags: Record<string, string | boolea
   const bookId = args[0];
   const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
   const role = typeof flags["role"] === "string" ? flags["role"] : "";
+  const token = typeof flags["token"] === "string" ? flags["token"] : "";
   const file = typeof flags["file"] === "string" ? flags["file"] : "";
-  if (!bookId || !roundId || !role || !file) {
-    console.error("Usage: qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --file <submission.json>");
+  if (!bookId || !roundId || !role || !token || !file) {
+    console.error("Usage: qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --token <token> --file <submission.json>");
     return 2;
   }
   const { SUBMISSION_ROLES } = await import("./qc/orchestrator/schemas.js");
@@ -1761,13 +1797,180 @@ async function runQcSubmit(args: string[], flags: Record<string, string | boolea
     return 2;
   }
   const { submitQcArtifact } = await import("./qc/orchestrator/index.js");
-  const result = submitQcArtifact(bookId, roundId, role as any, file);
+  const result = submitQcArtifact(bookId, roundId, role as any, file, token);
   for (const m of result.messages) console.log(m);
   if (result.errors.length) {
     for (const e of result.errors) console.error(e);
     return 1;
   }
   return 0;
+}
+
+function listMarkdownFiles(dir: string): string[] {
+  if (!existsSyncFs(dir)) return [];
+  const out: string[] = [];
+  for (const name of readdirSync(dir)) {
+    const path = resolve(dir, name);
+    const st = statSync(path);
+    if (st.isDirectory()) out.push(...listMarkdownFiles(path));
+    else if (name.endsWith(".md")) out.push(path);
+  }
+  return out.sort();
+}
+
+function countSubmissionFiles(dir: string): number {
+  if (!existsSyncFs(dir)) return 0;
+  let count = 0;
+  for (const name of readdirSync(dir)) {
+    const path = resolve(dir, name);
+    const st = statSync(path);
+    if (st.isDirectory()) count += countSubmissionFiles(path);
+    else if (name.endsWith(".json") && !name.endsWith(".meta.json") && !/^ch\d+\.(bar-read|confirm-read)\.json$/.test(name)) count++;
+  }
+  return count;
+}
+
+async function runQcAuto(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input || flags["pass"] !== true) {
+    console.error('Usage: qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest]');
+    return 2;
+  }
+  if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") {
+    console.error("qc-auto requires no-api Codex QC mode.");
+    console.error("Run:");
+    console.error(`  export CHAPTERFLOW_NO_API_CODEX_QC=1`);
+    console.error(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(input)} --pass`);
+    return 2;
+  }
+
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  if (resolved.ok === false) {
+    console.error(resolved.message);
+    if (resolved.reason === "ambiguous" && resolved.candidates?.length) {
+      console.error("Candidates:");
+      for (const c of resolved.candidates) console.error(`  ${c.bookId}${c.title ? ` — ${c.title}` : ""} (${c.source})`);
+    }
+    return 2;
+  }
+
+  const bookId = resolved.bookId;
+  const orch = await import("./qc/orchestrator/index.js");
+  const artifacts = await import("./qc/orchestrator/artifacts.js");
+  const { generateQcAutoWorkflow } = await import("./qc/auto/generateWorkflow.js");
+  const chapters = orch.parseChapterList(flags["chapters"]);
+  const maxAgents = typeof flags["max-agents"] === "string" ? parseInt(flags["max-agents"], 10) : undefined;
+  if (maxAgents !== undefined && (!Number.isInteger(maxAgents) || maxAgents < 1)) {
+    console.error(`--max-agents must be a positive integer (got "${String(flags["max-agents"])}")`);
+    return 2;
+  }
+  let roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+
+  if (!roundId || !existsSyncFs(artifacts.roundRecordPath(bookId, roundId))) {
+    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters });
+    for (const m of created.messages) console.log(m);
+    if (created.errors.length) for (const e of created.errors) console.error(e);
+    roundId = created.roundId;
+    if (!roundId) return 3;
+  }
+
+  const workflowPath = generateQcAutoWorkflow(bookId, roundId, { maxAgents });
+  const taskCards = listMarkdownFiles(artifacts.taskCardsDir(bookId, roundId));
+  const submissions = countSubmissionFiles(artifacts.submissionsDir(bookId, roundId));
+
+  if (flags["dry-run"] === true || submissions === 0) {
+    console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+    console.log(`round: ${roundId}`);
+    console.log(`workflow:`);
+    console.log(`  ${workflowPath}`);
+    console.log(`task cards:`);
+    for (const p of taskCards) console.log(`  ${p}`);
+    console.log("missing:");
+    console.log("  subagent submissions are not present yet");
+    console.log("no fake pass was written.");
+    console.log("rerun or resume:");
+    console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass --round ${roundId}`);
+    return flags["dry-run"] === true ? 0 : 3;
+  }
+
+  const collected = orch.collectQcRound(bookId, roundId);
+  if (!collected.ok) {
+    for (const e of collected.errors) console.error(e);
+    console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+    console.log(`round: ${roundId}`);
+    console.log("missing:");
+    console.log("  one or more stored subagent submissions failed validation during collect");
+    console.log("no fake pass was written.");
+    console.log("rerun or resume:");
+    console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass --round ${roundId}`);
+    return 3;
+  }
+  const finalized = orch.finalizeQcRound(bookId, roundId, {
+    chapters,
+    attest: flags["no-attest"] !== true,
+  });
+  if (collected.errors.length) for (const e of collected.errors) console.error(e);
+  if (finalized.errors.length) for (const e of finalized.errors) console.error(e);
+  const counts = {
+    publishable: finalized.chapters.filter((d) => d.finalVerdict === "PUBLISHABLE").length,
+    revise: finalized.chapters.filter((d) => d.finalVerdict === "REVISE").length,
+    corruption: finalized.chapters.filter((d) => d.finalVerdict === "CORRUPTION").length,
+    incomplete: finalized.chapters.filter((d) => d.finalVerdict === "NEEDS_MORE_QC").length,
+  };
+
+  if (finalized.allPublishable) {
+    let qcStatusLabel = "selected chapters PASS";
+    if (!chapters?.length) {
+      const qcStatusCode = await runQcStatus([bookId]);
+      if (qcStatusCode !== 0) {
+        console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+        console.log(`round: ${roundId}`);
+        console.log("missing:");
+        console.log("  qc-status did not report all chapters as PASS after finalization");
+        console.log("no fake pass was written.");
+        return 3;
+      }
+      qcStatusLabel = "PASS";
+    }
+    console.log(`QC AUTO PASS — ${bookId}`);
+    console.log(`round: ${roundId}`);
+    console.log(`chapters selected: ${finalized.chapters.length}`);
+    console.log(`attestations written: ${finalized.attestationsWritten} PUBLISHABLE`);
+    console.log(`repair findings: 0 open`);
+    console.log(`qc-status: ${qcStatusLabel}`);
+    console.log("next:");
+    console.log(`  npx tsx src/cli.ts qc-status ${bookId}`);
+    console.log(`  npx tsx src/cli.ts promote-book ${bookId} --title "..." --author "..."`);
+    return 0;
+  }
+
+  if (finalized.incomplete) {
+    console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+    console.log(`round: ${roundId}`);
+    console.log("missing:");
+    for (const d of finalized.chapters.filter((ch) => ch.finalVerdict === "NEEDS_MORE_QC")) {
+      console.log(`  ch${String(d.chapterNumber).padStart(2, "0")}: ${d.reason}`);
+    }
+    console.log("no fake pass was written.");
+    console.log("rerun or resume:");
+    console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass --round ${roundId}`);
+    return 3;
+  }
+
+  console.log(`QC AUTO REPAIR REQUIRED — ${bookId}`);
+  console.log(`round: ${roundId}`);
+  console.log(`PUBLISHABLE attested: ${counts.publishable}`);
+  console.log(`REVISE attested: ${counts.revise}`);
+  console.log(`CORRUPTION attested: ${counts.corruption}`);
+  console.log(`open repair findings: ${(collected.summary.ledger as any)?.open ?? 0}`);
+  console.log("repair prompt:");
+  console.log(`  ${finalized.repairPromptPath}`);
+  console.log("");
+  console.log("Paste the repair prompt into a fresh Writer Codex session.");
+  console.log("After repair, run:");
+  console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
+  return 1;
 }
 
 async function runQcLedgerStatus(args: string[], flags: Record<string, string | boolean>): Promise<number> {
@@ -1793,7 +1996,21 @@ async function runQcRepairBrief(args: string[], flags: Record<string, string | b
     return 2;
   }
   const { renderRepair } = await import("./qc/orchestrator/index.js");
+  const { repairPromptPath } = await import("./qc/orchestrator/artifacts.js");
   console.log(`repair brief: ${renderRepair(bookId, roundId)}`);
+  console.log(`repair prompt: ${repairPromptPath(bookId, roundId)}`);
+  return 0;
+}
+
+async function runQcRepairPrompt(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: qc-repair-prompt <bookId> --round <roundId>");
+    return 2;
+  }
+  const { writeRepairPrompt } = await import("./qc/orchestrator/repairBrief.js");
+  console.log(`repair prompt: ${writeRepairPrompt(bookId, roundId)}`);
   return 0;
 }
 
@@ -2992,10 +3209,14 @@ async function main() {
       return runQcOrchestrate(args, flags);
     case "qc-submit":
       return runQcSubmit(args, flags);
+    case "qc-auto":
+      return runQcAuto(args, flags);
     case "qc-ledger-status":
       return runQcLedgerStatus(args, flags);
     case "qc-repair-brief":
       return runQcRepairBrief(args, flags);
+    case "qc-repair-prompt":
+      return runQcRepairPrompt(args, flags);
     case "source-v2-gate":
       return runSourceV2Gate(args);
     case "key-pack":
