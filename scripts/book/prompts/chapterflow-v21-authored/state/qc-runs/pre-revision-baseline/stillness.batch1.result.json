@@ -1,0 +1,331 @@
+{
+  "summary": "Semantic QC of a book: tooled blind-key verification, dual-lens bar reads, cross-chapter sweep, adversarial adjudication, then qc-attest",
+  "agentCount": 37,
+  "logs": [
+    "Verdicts: ch1=REVISE(80) ch2=REVISE(82) ch3=REVISE(90) ch4=REVISE(85) ch5=REVISE(83) ch6=REVISE(81) ch7=REVISE(89) ch8=REVISE(86) ch9=REVISE(89)",
+    "Attested 9/9 — PUBLISHABLE 0, REVISE 9, CORRUPTION 0; NEEDS_RERUN 0"
+  ],
+  "result": {
+    "bookId": "stillness-is-the-key",
+    "byVerdict": {
+      "PUBLISHABLE": [],
+      "REVISE": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "CORRUPTION": []
+    },
+    "needsRerun": [],
+    "perChapter": [
+      {
+        "n": 1,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch01.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 80,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=80; cross-chapter: scene_skeleton/repeated_unit/scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit/location_stamping/repeated_unit; Strong, near-anchor chapter (prose/lines/plan/cards all clean; all 6 car",
+        "upheldKeys": 0
+      },
+      {
+        "n": 2,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch02.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 82,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=82; cross-chapter: repeated_unit/repeated_unit; Strong, human, non-templated prose/lines/plan near anchor quality; only ding is anchor-as-set-dressing in ex03/ex05/ex06",
+        "upheldKeys": 0
+      },
+      {
+        "n": 3,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch03.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 90,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": true
+        },
+        "note": "overall=90; cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit/location_stamping/repeated_unit; Publishable, near anchor: concrete named-human scenes, plain teaching prose, portable aphorisms, situ",
+        "upheldKeys": 0
+      },
+      {
+        "n": 4,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch04.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 85,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=85; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/location_stamping/repeated_unit; Near-publishable: 6 named-human scenes, plain concrete prose, portable lines, situational If-Then plans using one nam",
+        "upheldKeys": 0
+      },
+      {
+        "n": 5,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch05.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 83,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=83; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/location_stamping; Publishable, anchor-comparable: concrete named scenes, plain teaching prose, grounded anchors, actionable named-tool pla",
+        "upheldKeys": 0
+      },
+      {
+        "n": 6,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch06.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 81,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=81; cross-chapter: scene_skeleton/repeated_unit/location_stamping; Strong, near-anchor chapter; main blemish is recurring anchor-as-prop ('Roman Empire and second century notes beside it/",
+        "upheldKeys": 0
+      },
+      {
+        "n": 7,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch07.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 89,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=89; cross-chapter: repeated_unit; Finished, human, anchor-grade prose; six distinct named scenes, plain-language teaching, compact aphorisms; only blemish",
+        "upheldKeys": 0
+      },
+      {
+        "n": 8,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch08.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 86,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=86; cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/location_stamping; Reads as finished, human, non-templated writing on par with the anchor: named actors take concrete ac",
+        "upheldKeys": 0
+      },
+      {
+        "n": 9,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch09.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 89,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": true
+        },
+        "note": "overall=89; cross-chapter: repeated_unit/location_stamping; Strong, near-anchor chapter; only soft spot is a recurring anchor-as-prop tendency (hardSpecifics dumped as packet/slide",
+        "upheldKeys": 0
+      }
+    ],
+    "sweepFindings": [
+      {
+        "kind": "scene_skeleton",
+        "chapterNumbers": [
+          1,
+          3,
+          5
+        ],
+        "quote": "ch01 ex01 (Caleb): \"Caleb stops, closes the alert stack, reopens the route map, and needs to choose his first move...\" | ch03 ex03 (Mateus): \"Before typing the first paragraph, Mateus closes the tabs, sets the phone face down, waits for one slow count of ten, and restarts with only the draft on screen.\" | ch05 ex05 (Beckett): \"Then he shuts the laptop, opens the HMS Beagle evidence folder, and restarts the call with one question...\"",
+        "detail": "The 'reset_moment' / interrupted-routine example shares one frame across three chapters: protagonist is mid-routine -> catches self racing the noise -> physically closes/removes the live inputs (tabs, alert stack, laptop) -> restarts the work from the single hinge thing. The requiredBeats are near-identical ('The protagonist stops an alert-clearing routine and restarts from the hinge question' / 'An interrupted routine stops and restarts differently' / 'A routine is interrupted, then restarted with a slower question'). Only the nouns change (alert wall vs draft vs grant call). A reader meeting the third one will feel they have read it before."
+      },
+      {
+        "kind": "repeated_unit",
+        "chapterNumbers": [
+          1,
+          5
+        ],
+        "quote": "\"The pause is the technique.\"",
+        "detail": "Verbatim identical whyItMatters opener in ch01 ex01 (Caleb: \"The pause is the technique. Caleb does not work slower for its own sake...\") and ch05 ex05 (Beckett: \"The pause is the technique. It stops the routine from carrying an untested claim forward...\"). Same sentence stamped as the moral of two different examples in two different chapters."
+      },
+      {
+        "kind": "scene_skeleton",
+        "chapterNumbers": [
+          1,
+          3,
+          8
+        ],
+        "quote": "ch01 ex03 requiredBeat: \"Open after the failure and locate the one misstep that scattered attention.\" | ch03 ex05 requiredBeat: \"Open after the failure and locate the decisive misstep.\" | ch08 ex02 (Davinder): \"The failure is already over, and the misstep is treating Confucius as decoration.\"",
+        "detail": "The postmortem example repeats one skeleton across three chapters: the failure has already happened, the room/meeting/hallway is empty, an audit/postmortem 'locates the one decisive misstep,' and the protagonist had treated the source case as decoration / chased loud noise instead of the hinge. ch01 (Malik, missed migration path), ch03 (Aanya, launch note with a rumor), and ch08 (Davinder, dismissal rule) are the same beat with swapped settings. The phrase 'locate the decisive misstep' is nearly word-for-word across ch03 and ch08."
+      },
+      {
+        "kind": "scene_skeleton",
+        "chapterNumbers": [
+          1,
+          3,
+          8
+        ],
+        "quote": "ch01 ex04 (Sierra): \"Sierra is halfway through slide twelve when she hears herself call every initiative urgent.\" | ch03 ex06 (Armande): \"Armande is halfway through answering the third email inbox ping when he notices the pattern...\" | ch08 ex03 (Monique): \"Halfway through the staff workshop, Monique hears herself using Socrates as a trophy.\"",
+        "detail": "The mistake_recovery example uses one identical frame in three chapters: protagonist is 'halfway through' a task when they 'hear themselves' / 'notice the pattern,' catch their own error mid-stream, stop, and do the one real thing first. The opening clause is templated almost verbatim ('halfway through X when she/he hears herself/notices'). whatToDo lines echo too ('names her mistake out loud' / 'names the error midstream')."
+      },
+      {
+        "kind": "scene_skeleton",
+        "chapterNumbers": [
+          1,
+          4,
+          6,
+          8
+        ],
+        "quote": "ch01 ex06 requiredBeat: \"Two named people face the same situation with opposite approaches and diverging outcomes.\" | ch04 ex01: \"two named people face the same noisy thread and opposite approaches produce opposite outcomes\" | ch06 ex03: \"Two named people face the same missed handoff...with different outcomes.\" | ch08 ex05: \"Diya and Sylvie face the same intake problem with opposite approaches and different outcomes.\"",
+        "detail": "The contrast example is the same skeleton in four chapters: two named people take the SAME shift/thread/handoff/intake; one scatters or trusts the wrong instinct and fails, the other governs attention and succeeds, with the win resolving on the same clock ('two beds open before dinner' ch01; 'by lunch...moves with less snapping' ch08). The requiredBeats are paraphrases of one sentence. Pairing one-loser/one-winner on an identical scenario reads as a reused template."
+      },
+      {
+        "kind": "repeated_unit",
+        "chapterNumbers": [
+          2,
+          4,
+          8,
+          9
+        ],
+        "quote": "ch02 ex03 (Omar): \"Nothing dramatic happens in the archive; understanding arrives as he notices...\" | ch04 ex05 (Ludovic): \"Nothing new happens in the room; the screen just changes columns. The telling detail is a copied note...\" | ch08 ex01 (Constance): \"Nothing dramatic happens. The first reply she drafts is shorter...\" | ch09 ex02 (Aurele): audit that reviews clips/files until 'the missing detail becomes visible.'",
+        "detail": "The 'audit / no-action discovery' beat reuses the same signature phrasing across chapters: a reviewer studies existing files/clips, 'Nothing dramatic/new happens,' and 'the telling detail' surfaces in the records. ch02 Omar and ch04 Ludovic are the closest twins (margin note 'wait for new information' vs copied note 'too noisy to think,' each found beside the historical-source line). The reassurance line 'Nothing dramatic happens' is stamped verbatim in ch02 and ch08."
+      },
+      {
+        "kind": "repeated_unit",
+        "chapterNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "quote": "ch01 keyTakeaway: \"...guarded enough to see the hinge, name the noise...\" | ch03 deepRead: \"...the email inbox, cell phone alarms, social media notifications, and 24/7 news all vote on your next thought.\" | ch04 keyTakeaway: \"...notice the noise, release what is useless, and return...\"",
+        "detail": "Across nearly every chapter the breakdown and quiz lean on one recurring noise-vs-signal-vs-hinge prose engine: 'name the noise,' 'the loudest [thing] is not the decisive one,' 'do the one thing that changes the field,' plus a recurring 'hard edge / the limit also matters' caveat paragraph in each fullRead (ch01 'There is also a hard limit'; ch04 'A limit matters here'; ch05 'The limit is also plain'; ch07 'The limit matters'; ch08 'There is a boundary here'). This is partly the book's legitimate vocabulary (an FP-guarded concept), but the IDENTICAL structural 'hard edge / limit' rebuttal paragraph in the same fullRead slot of most chapters is a reused breakdown shape a close reader would notice, distinct from shared concept terms."
+      },
+      {
+        "kind": "location_stamping",
+        "chapterNumbers": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9
+        ],
+        "quote": "Recurring office/desk/inbox staging: ch01 \"city logistics desk\"/\"beside his keyboard\"; ch03 \"client-pricing block\"/\"email inbox badge\"; ch04 \"control room\"/\"clinic thread\"; ch05 \"archive table\"/\"7:30 a.m. routine is to clear lab messages\"; ch06 \"draft email\"/\"incident summary\"; ch08 \"thin card beside her keyboard\"/\"7:10 a.m. the office\"; ch09 desk/clip review.",
+        "detail": "The example settings are stamped from a narrow palette of knowledge-worker desks: someone at a keyboard/desk with an inbox or thread open, early-morning (7:10 a.m., 7:30 a.m., 8:05 a.m.), the historical source on a card/footer/slide beside the screen. Almost every chapter opens at least one example with 'beside the keyboard/desk' + a clock time + the source-note prop. The recurrence of the same office-desk-at-dawn stage and the 'historical note sitting beside the screen' device across 7 of 9 chapters reads as one reused backdrop rather than varied worlds."
+      },
+      {
+        "kind": "repeated_unit",
+        "chapterNumbers": [
+          1,
+          3,
+          4
+        ],
+        "quote": "ch01 keyTakeaway/concept 'name the noise'; ch03 card01 back: \"They choose ahead of time which news, messages, advice, entertainment, and gossip may enter, and when.\" vs ch08 card05 back: \"A smaller gate keeps novelty and noise from becoming your council.\" | ch04 card05 back: \"The mind can keep broadcasting old arguments, status fears, plans, and imaginary replies.\"",
+        "detail": "The 'earlier-concept callback' review cards use a fixed template: card front 'Earlier concept: [Prior Chapter Title]: how does X help Y?' and a back that restates the prior chapter in one sentence then bridges to the current one. This appears in ch02 (rc05/rc06), ch03 (card04/card05), ch04 (card04/card05), ch05 (card05/card06), ch06 (card05/card06), ch07 (card06/card07), ch08 (card05/card06), ch09 (card05/card06). The mechanism is pedagogically fine, but the back-half cards are built from one identical mold across all chapters, so a reader reviewing multiple chapters sees the same callback-card shape repeated verbatim in structure."
+      }
+    ],
+    "attested": [
+      {
+        "chapter": 1,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch01.qc.json\n  stillness-is-the-key-ch1  verdict=REVISE  hash=b3c73a6bbfbb32eb (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 2,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch02.qc.json\n  stillness-is-the-key-ch2  verdict=REVISE  hash=756491d47fa73bc8 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 3,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch03.qc.json\n  stillness-is-the-key-ch3  verdict=REVISE  hash=76b421833d4e3e3e (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 4,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch04.qc.json\n  stillness-is-the-key-ch4  verdict=REVISE  hash=21d763ddc652559b (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 5,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch05.qc.json\n  stillness-is-the-key-ch5  verdict=REVISE  hash=92da0842973c07a5 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 6,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch06.qc.json\n  stillness-is-the-key-ch6  verdict=REVISE  hash=9f2cde61a4a0e68d (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 7,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch07.qc.json\n  stillness-is-the-key-ch7  verdict=REVISE  hash=2ffc987e6c7ff79c (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 8,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch08.qc.json\n  stillness-is-the-key-ch8  verdict=REVISE  hash=b13b957662d2b0c1 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 9,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch09.qc.json\n  stillness-is-the-key-ch9  verdict=REVISE  hash=5a50fad4adcc1781 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      }
+    ]
+  }
+}

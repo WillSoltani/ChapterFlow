@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "pedagogy-plan-v1",
+  "bookId": "the-book-of-boundaries",
+  "fromChapter": 1,
+  "toChapter": 12,
+  "bookMix": {
+    "hookShapes": [
+      "counterfactual-question",
+      "one-number-contrast",
+      "concrete-ironic-image"
+    ],
+    "dominantHookShape": "counterfactual-question",
+    "tryThisNowGrammars": [
+      "deliberate-abstention",
+      "write-one",
+      "count-observations"
+    ],
+    "quizOpeners": [
+      "what-happens-next",
+      "quote-interpretation"
+    ]
+  },
+  "allocation": {
+    "1": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "quizOpeners": [
+        "what-happens-next",
+        "quote-interpretation"
+      ]
+    },
+    "2": {
+      "hookShape": "one-number-contrast",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "quote-interpretation",
+        "what-happens-next"
+      ]
+    },
+    "3": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "what-happens-next",
+        "quote-interpretation"
+      ]
+    },
+    "4": {
+      "hookShape": "concrete-ironic-image",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "quizOpeners": [
+        "quote-interpretation",
+        "what-happens-next"
+      ]
+    },
+    "5": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "what-happens-next",
+        "quote-interpretation"
+      ]
+    },
+    "6": {
+      "hookShape": "one-number-contrast",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "quote-interpretation",
+        "what-happens-next"
+      ]
+    },
+    "7": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "quizOpeners": [
+        "what-happens-next",
+        "quote-interpretation"
+      ]
+    },
+    "8": {
+      "hookShape": "concrete-ironic-image",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "quote-interpretation",
+        "what-happens-next"
+      ]
+    },
+    "9": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "what-happens-next",
+        "quote-interpretation"
+      ]
+    },
+    "10": {
+      "hookShape": "one-number-contrast",
+      "tryThisNowGrammar": "deliberate-abstention",
+      "quizOpeners": [
+        "quote-interpretation",
+        "what-happens-next"
+      ]
+    },
+    "11": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "what-happens-next",
+        "quote-interpretation"
+      ]
+    },
+    "12": {
+      "hookShape": "concrete-ironic-image",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "quote-interpretation",
+        "what-happens-next"
+      ]
+    }
+  },
+  "carriedChapters": []
+}

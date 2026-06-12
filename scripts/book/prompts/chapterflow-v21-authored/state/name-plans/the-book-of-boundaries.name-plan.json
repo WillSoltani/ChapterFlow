@@ -7,20 +7,26 @@
     "1": [
       "Hyun",
       "Severin",
+      "Everyone",
+      "Twenty",
       "Lana",
+      "Avoidance",
       "Peyton",
       "Milo",
-      "Theophile",
-      "Hugo"
+      "Theophile"
     ],
     "2": [
+      "Can",
       "Jordan",
+      "Green",
+      "Yellow",
       "Anatole",
       "Brigitte",
       "Benoit",
+      "Red",
+      "Costumes",
       "Zoe",
-      "Lane",
-      "Gerard"
+      "Lane"
     ],
     "3": [
       "Veronique",
@@ -28,8 +34,8 @@
       "Irina",
       "Weston",
       "Eileen",
-      "Finley",
-      "Diogo"
+      "Minutes",
+      "Finley"
     ],
     "4": [
       "Neha",
@@ -37,80 +43,109 @@
       "Glenn",
       "Nikhil",
       "Minh",
-      "Marcel",
-      "Simon"
+      "Marcel"
     ],
     "5": [
       "Lucienne",
+      "Instead",
       "Tatum",
       "Chase",
       "Rowan",
       "Colleen",
-      "Apolline",
-      "Gabriel"
+      "Can",
+      "Last",
+      "Apolline"
     ],
     "6": [
       "Jerome",
+      "Last",
       "Mila",
+      "Fair",
+      "Play",
       "Ivy",
+      "Please",
       "Holly",
       "Georges",
-      "Janelle",
-      "Beau"
+      "Earlier",
+      "Janelle"
     ],
     "7": [
       "Benjamin",
+      "Pickup",
       "Derek",
       "Nadine",
       "Harper",
       "Melodie",
+      "Let",
+      "Last",
       "Soraya",
       "Christophe"
     ],
     "8": [
-      "Etienne",
       "Valerie",
       "Rocco",
       "Jaspreet",
-      "Pascal",
+      "Etienne",
       "Bonnie",
-      "Madeline"
+      "Madeline",
+      "Green"
     ],
     "9": [
       "Olena",
       "Romain",
+      "Please",
+      "Thank",
       "Sunil",
+      "Did",
       "Gilberte",
       "Cedric",
-      "Valeria",
-      "Aspen"
+      "Aspen",
+      "Valeria"
     ],
     "10": [
       "Gwen",
+      "Next",
       "Oliver",
+      "Netflix",
       "Maxime",
+      "None",
+      "Rain",
       "Brielle",
+      "Later",
+      "With",
       "Russell",
+      "Halfway",
       "Tao",
-      "Wade"
+      "Shame"
     ],
     "11": [
       "Hadley",
+      "Must",
       "Florent",
+      "Seconds",
+      "Right",
+      "Distract",
+      "Delegate",
       "Zachary",
       "Albertine",
       "Antonio",
+      "Minutes",
+      "Document",
+      "Delay",
       "Marshall",
       "Willow"
     ],
     "12": [
       "Carmen",
+      "Restaurant",
+      "Wars",
+      "Top",
+      "Chef",
       "Douglas",
       "Nova",
       "Madelyn",
       "Lorraine",
-      "Olivia",
-      "Jude"
+      "Olivia"
     ]
   },
   "bannedConnectives": [
@@ -138,14 +173,35 @@
     "has to make a call",
     "sits down to write the",
     "opens the laptop and starts",
-    "runs the numbers one more"
+    "runs the numbers one more",
+    "the point is",
+    "the question is whether",
+    "that is the lesson",
+    "that is the move",
+    "a louder scoreboard",
+    "the scoreboard"
   ],
   "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
   "diagnostics": {
     "bankSize": 777,
-    "excludedCount": 0,
-    "availableCount": 777,
+    "excludedCount": 113,
+    "crossBookExcluded": 672,
+    "freshAvailable": 105,
+    "availableCount": 105,
     "shortChapters": [],
-    "alreadyAuthored": []
+    "alreadyAuthored": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
   }
 }

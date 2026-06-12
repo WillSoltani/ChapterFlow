@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "shape-plan-v1",
+  "bookId": "the-book-of-boundaries",
+  "createdAt": "2026-06-11T23:34:22.258Z",
+  "perChapter": 6,
+  "allocation": {
+    "1": [
+      "dilemma",
+      "dialogue",
+      "predict_reveal",
+      "text_thread",
+      "reset_moment",
+      "vignette"
+    ],
+    "2": [
+      "mistake_recovery",
+      "decision_memo",
+      "contrast",
+      "coach_talk",
+      "school_case",
+      "before_after"
+    ],
+    "3": [
+      "inner_monologue",
+      "planning_choice",
+      "dilemma",
+      "dialogue",
+      "predict_reveal",
+      "text_thread"
+    ],
+    "4": [
+      "vignette",
+      "postmortem",
+      "mistake_recovery",
+      "decision_memo",
+      "contrast",
+      "coach_talk"
+    ],
+    "5": [
+      "before_after",
+      "audit",
+      "inner_monologue",
+      "planning_choice",
+      "dilemma",
+      "dialogue"
+    ],
+    "6": [
+      "text_thread",
+      "reset_moment",
+      "vignette",
+      "postmortem",
+      "mistake_recovery",
+      "decision_memo"
+    ],
+    "7": [
+      "coach_talk",
+      "school_case",
+      "before_after",
+      "audit",
+      "inner_monologue",
+      "planning_choice"
+    ],
+    "8": [
+      "dialogue",
+      "predict_reveal",
+      "text_thread",
+      "reset_moment",
+      "vignette",
+      "postmortem"
+    ],
+    "9": [
+      "decision_memo",
+      "contrast",
+      "coach_talk",
+      "school_case",
+      "before_after",
+      "audit"
+    ],
+    "10": [
+      "planning_choice",
+      "dilemma",
+      "dialogue",
+      "predict_reveal",
+      "text_thread",
+      "reset_moment"
+    ],
+    "11": [
+      "postmortem",
+      "mistake_recovery",
+      "decision_memo",
+      "contrast",
+      "coach_talk",
+      "school_case"
+    ],
+    "12": [
+      "audit",
+      "inner_monologue",
+      "planning_choice",
+      "dilemma",
+      "dialogue",
+      "predict_reveal"
+    ]
+  },
+  "carriedChapters": []
+}
