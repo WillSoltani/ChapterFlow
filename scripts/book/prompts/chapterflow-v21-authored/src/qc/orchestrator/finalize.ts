@@ -10,6 +10,7 @@ import { computeVerdict, type AxisScore, type FailureTier } from "../../critics/
 import type { ChapterV21 } from "../../types.js";
 import { runIntraBookChecks } from "../../critics/intraBook.js";
 import { loadBookChapters, loadManualKeyJudge, manualKeyJudgePath, resolveManualKeyJudges, type ManualKeyJudgeRecord } from "../manualKeyJudge.js";
+import { unresolvedMajors, type MajorFindingSnapshot } from "../majorDisposition.js";
 import { checkSourceV2Gate, sourceHashFor } from "../sourceV2Gate.js";
 import { loadSweepRecord, sweepRecordPath, writeSweepRecordFromSubmission } from "../sweep.js";
 import {
@@ -57,6 +58,11 @@ export type EvidenceChapterDecision = {
     confirmRead: "PUBLISHABLE" | "REVISE" | "CORRUPTION" | "MISSING" | "STALE";
     repairLedger: "NO_OPEN_BLOCKERS" | "OPEN_FINDINGS" | "NEEDS_QC_RERUN";
     majors: EvidenceStatus;
+  };
+  majorStatus: {
+    status: EvidenceStatus;
+    chapter: MajorFindingSnapshot[];
+    book: MajorFindingSnapshot[];
   };
   finalVerdict: "PUBLISHABLE" | "REVISE" | "CORRUPTION" | "NEEDS_MORE_QC";
   reason: string;
@@ -198,6 +204,16 @@ function summarizeFindings(bookId: string, roundId: string, chapterNumber: numbe
     .map((f) => `${f.severity} ${f.findingId} ${f.unitId}: ${f.problem}`);
 }
 
+function unresolvedMajorsForChapter(unresolved: MajorFindingSnapshot[], chapterNumber: number): EvidenceChapterDecision["majorStatus"] {
+  const chapter = unresolved.filter((f) => f.scope.startsWith(`chapter:${chapterNumber}:`));
+  const book = unresolved.filter((f) => f.scope === "book");
+  return {
+    status: chapter.length || book.length ? "FAIL" : "PASS",
+    chapter,
+    book,
+  };
+}
+
 export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean } = {}): FinalizeQcRoundResult {
   const errors: string[] = [];
   mkdirSync(orchestratorRoundDir(bookId, roundId), { recursive: true });
@@ -210,6 +226,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   const allChapters = loadBookChapters(bookId);
   const selectedSet = selectedChapterNumbers(bookId, roundId, options);
   const chapters = selectedSet ? allChapters.filter((ch) => selectedSet.includes(ch.number)) : allChapters;
+  const unresolvedMajorFindings = unresolvedMajors(bookId, chapters, true);
   const bookGate = runBookGate(bookId, allChapters);
   const bookGateStatus: EvidenceStatus = bookGate.passed ? "PASS" : "FAIL";
   const sweepRecord = loadSweepRecord(bookId);
@@ -231,6 +248,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     const ledgerFindings = ledgerFindingsForChapter(bookId, roundId, ch.number);
     const needsQcRerun = ledgerFindings.some((f) => f.status === "needs_qc_rerun");
     const openSerious = ledgerFindings.some((f) => f.severity === "blocker" || f.severity === "major");
+    const majorStatus = unresolvedMajorsForChapter(unresolvedMajorFindings, ch.number);
 
     const checks: EvidenceChapterDecision["checks"] = {
       sourceV2: source.passed ? "PASS" : "FAIL",
@@ -243,7 +261,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       barRead: "MISSING",
       confirmRead: "MISSING",
       repairLedger: needsQcRerun ? "NEEDS_QC_RERUN" : openSerious ? "OPEN_FINDINGS" : "NO_OPEN_BLOCKERS",
-      majors: openSerious ? "FAIL" : "PASS",
+      majors: majorStatus.status,
     };
 
     if (sweepRecord?.roundId === roundId) {
@@ -304,7 +322,9 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       checks.majors !== "PASS"
     ) {
       finalVerdict = "REVISE";
-      reason = checks.confirmRead === "REVISE" ? confirm?.reason ?? "confirm read requires revision" : "one or more gates, reads, or repair-ledger checks require revision";
+      reason = checks.majors !== "PASS"
+        ? "one or more current major findings are unresolved or not round-backed"
+        : checks.confirmRead === "REVISE" ? confirm?.reason ?? "confirm read requires revision" : "one or more gates, reads, or repair-ledger checks require revision";
     } else {
       const block = currentNegativeAttestationBlocksPublishable(bookId, ch);
       if (block) {
@@ -323,6 +343,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       contentHash,
       sourceHash,
       checks,
+      majorStatus,
       finalVerdict,
       reason,
       evidence: {
@@ -378,6 +399,11 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     repairBrief: briefPath,
     repairPrompt: promptPath,
     ledger: ledgerStatusSummary(bookId, roundId),
+    majors: {
+      unresolved: unresolvedMajorFindings.length,
+      book: unresolvedMajorFindings.filter((f) => f.scope === "book").length,
+      chapter: unresolvedMajorFindings.filter((f) => f.scope.startsWith("chapter:")).length,
+    },
     attestationsWritten,
     verdicts: {
       PUBLISHABLE: decisions.filter((d) => d.finalVerdict === "PUBLISHABLE").length,

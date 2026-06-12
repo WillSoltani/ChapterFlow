@@ -7,7 +7,7 @@ import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { runShipGate } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
 import { loadBookChapters } from "./manualKeyJudge.js";
-import { loadQcRound } from "./qcRound.js";
+import { loadQcRound, type QcRoundRole } from "./qcRound.js";
 
 export const WAIVERS_DIR = resolve(CANONICAL_STATE, "waivers");
 
@@ -19,14 +19,22 @@ export type MajorFindingSnapshot = {
   evidence?: string;
 };
 
+export const CURRENT_MAJOR_DISPOSITION_STATUSES = ["open", "waived_false_positive", "waived_accepted_debt"] as const;
+export const LEGACY_MAJOR_DISPOSITION_STATUSES = ["resolved", "waived"] as const;
+export type CurrentMajorDispositionStatus = typeof CURRENT_MAJOR_DISPOSITION_STATUSES[number];
+export type LegacyMajorDispositionStatus = typeof LEGACY_MAJOR_DISPOSITION_STATUSES[number];
+export type MajorDispositionStatus = CurrentMajorDispositionStatus | LegacyMajorDispositionStatus;
+
 export type MajorDisposition = {
   findingId: string;
-  status: "resolved" | "waived";
+  status: MajorDispositionStatus;
   reason: string;
   reviewer: string;
   roundId: string;
+  roundRole?: Extract<QcRoundRole, "major" | "confirm">;
   timestamp: string;
 };
+export type CurrentMajorDisposition = Omit<MajorDisposition, "status"> & { status: CurrentMajorDispositionStatus };
 
 export type WaiverFile = {
   schemaVersion: "major-waivers-v1";
@@ -74,7 +82,7 @@ export function loadWaivers(bookId: string): WaiverFile {
   }
 }
 
-export function writeDisposition(bookId: string, disposition: MajorDisposition): string {
+export function writeDisposition(bookId: string, disposition: CurrentMajorDisposition): string {
   const file = loadWaivers(bookId);
   file.dispositions = [...file.dispositions.filter((d) => d.findingId !== disposition.findingId), disposition];
   mkdirSync(WAIVERS_DIR, { recursive: true });
@@ -83,12 +91,26 @@ export function writeDisposition(bookId: string, disposition: MajorDisposition):
   return p;
 }
 
+function dispositionClosesCurrentMajor(status: MajorDispositionStatus): boolean {
+  return status === "waived_false_positive" ||
+    status === "waived_accepted_debt" ||
+    status === "resolved" ||
+    status === "waived";
+}
+
+function dispositionIsRoundBacked(bookId: string, disposition: MajorDisposition): boolean {
+  const round = loadQcRound(bookId, disposition.roundId);
+  if (!round) return false;
+  if (disposition.roundRole && round.roles?.[disposition.roundRole]) return true;
+  return !!(round.roles?.major || round.roles?.confirm);
+}
+
 export function unresolvedMajors(bookId: string, chapters = loadBookChapters(bookId), requireRoundBacked = false): MajorFindingSnapshot[] {
   const dispositions = new Map(loadWaivers(bookId).dispositions.map((d) => [d.findingId, d]));
   return currentMajorFindings(bookId, chapters).filter((f) => {
     const d = dispositions.get(f.id);
-    if (!d || (d.status !== "resolved" && d.status !== "waived")) return true;
-    if (requireRoundBacked && !loadQcRound(bookId, d.roundId)?.roles?.confirm) return true;
+    if (!d || !dispositionClosesCurrentMajor(d.status)) return true;
+    if (requireRoundBacked && !dispositionIsRoundBacked(bookId, d)) return true;
     return false;
   });
 }

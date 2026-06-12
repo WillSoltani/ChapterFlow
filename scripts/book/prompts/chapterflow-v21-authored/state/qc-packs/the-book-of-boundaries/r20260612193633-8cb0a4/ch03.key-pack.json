@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "manual-key-pack-v1",
+  "bookId": "the-book-of-boundaries",
+  "roundId": "r20260612193633-8cb0a4",
+  "chapterNumber": 3,
+  "chapterId": "the-book-of-boundaries-ch03",
+  "createdAt": "2026-06-12T20:09:25.305Z",
+  "contentHash": "89ab0a3e1e0e1069",
+  "sourceHash": "9924b3053c1c061a",
+  "sourceFacts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "Work boundaries often involve availability, workload, attention, and recovery.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "A reliable employee always absorbs new work silently.",
+      "errorIsWhy": "Silent overload can make quality and timing collapse."
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "A new assignment should trigger a priority conversation when capacity is full.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "A work limit sounds professional only when surrounded by apology.",
+      "errorIsWhy": "Overapology can make a reasonable operating limit seem questionable."
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "After-hours messages need an expectation about response time.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "Firmness at work always damages reputation.",
+      "errorIsWhy": "Clear limits can increase trust when commitments become realistic."
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Coworker interruptions can be redirected to a channel or time window.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "A reliable employee always absorbs new work silently.",
+      "errorIsWhy": "Silent overload can make quality and timing collapse."
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "Professional language does not require repeated apologies.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "A work limit sounds professional only when surrounded by apology.",
+      "errorIsWhy": "Overapology can make a reasonable operating limit seem questionable."
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "Colleagues with healthy balance can be used as practical models.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "Firmness at work always damages reputation.",
+      "errorIsWhy": "Clear limits can increase trust when commitments become realistic."
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "Workload boundaries should name the work affected by the new request.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "A reliable employee always absorbs new work silently.",
+      "errorIsWhy": "Silent overload can make quality and timing collapse."
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "Meeting boundaries can protect deep work.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "A work limit sounds professional only when surrounded by apology.",
+      "errorIsWhy": "Overapology can make a reasonable operating limit seem questionable."
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "A firm work boundary can still be cooperative.",
+      "becauseMechanism": "This matters because work limits become useful only when other people can plan around concrete availability, priorities, and response rules.",
+      "commonError": "Firmness at work always damages reputation.",
+      "errorIsWhy": "Clear limits can increase trust when commitments become realistic."
+    }
+  ],
+  "questions": [
+    {
+      "questionIndex": 0,
+      "prompt": "A work log shows Violet missed 4 supply checks in 6 days, all after a boss added same-day tasks. What should she infer first?",
+      "choices": [
+        "The misses show Violet needs a longer apology before raising the issue.",
+        "The new tasks need a priority conversation before the next deadline.",
+        "The supply room should keep absorbing the checks until the rush passes."
+      ]
+    },
+    {
+      "questionIndex": 1,
+      "prompt": "Two kiosk workers set limits. Diogo writes one calm response time. Another worker sends three apologies before the same limit. Which response treats the limit as professional?",
+      "choices": [
+        "The apologetic note protects reputation because it proves the worker feels bad.",
+        "Both notes work the same if the time is listed somewhere in the message.",
+        "Diogo's note is stronger because the limit sounds like a normal work rule."
+      ]
+    },
+    {
+      "questionIndex": 2,
+      "prompt": "During three repair mornings, Finley logs 11 walk-up questions and 2 delayed latch fixes. Which change addresses the pattern most directly?",
+      "choices": [
+        "Create a 2 p.m. question window and route nonurgent tool requests through Slack or email.",
+        "Tell the crew that interruptions are frustrating and hope the message lands.",
+        "Stay late after each shift so every walk-up question still gets answered."
+      ]
+    },
+    {
+      "questionIndex": 3,
+      "prompt": "Eileen leaves events on time and rarely answers ordinary messages at night. Weston admires this but feels stuck. Which response uses her example well?",
+      "choices": [
+        "Assume Eileen has an easier job and stop comparing his schedule with hers.",
+        "Ask Eileen for the wording she uses around after-hours email, then adapt it.",
+        "Copy Eileen's exact hours without telling the catering lead what changed."
+      ]
+    },
+    {
+      "questionIndex": 4,
+      "prompt": "Compare two replies to a 9:20 p.m. message. Diogo says, \"Call if this affects tonight's lockup; otherwise I will answer at 9.\" A teammate just ignores it. Which reply is clearer?",
+      "choices": [
+        "Ignoring it is clearer because silence teaches people not to ask.",
+        "Both replies are equal because neither answers the vendor question.",
+        "Diogo's reply is clearer because emergency and ordinary response times are separated."
+      ]
+    },
+    {
+      "questionIndex": 5,
+      "prompt": "A desk tally shows Veronique loses 70 minutes a day to coworker walk-ups, then reviews permits from home. Which resource is the boundary mainly protecting?",
+      "choices": [
+        "Attention during permit review, with a clearer access rule for coworkers.",
+        "The coworker's confidence, by keeping every walk-up welcome at the desk.",
+        "The public counter's image, by hiding the review work after hours."
+      ]
+    },
+    {
+      "questionIndex": 6,
+      "prompt": "Irina's boss adds a grant packet while auditions fill the calendar. Which sentence makes the workload boundary concrete?",
+      "choices": [
+        "I am really sorry, but I am overwhelmed and hope you understand.",
+        "I can finish the grant packet today if auditions move or someone else takes the music room setup.",
+        "I will try to make both happen and tell you tomorrow if anything slips."
+      ]
+    },
+    {
+      "questionIndex": 7,
+      "prompt": "A calendar review shows Veronique has six short meetings spread across the only permit-review block. What should she test before blaming herself for slow work?",
+      "choices": [
+        "Whether she can type faster between meetings and stay later.",
+        "Whether each meeting includes enough people to feel worth the time.",
+        "Whether grouping meetings would protect a real stretch of deep work."
+      ]
+    },
+    {
+      "questionIndex": 8,
+      "prompt": "A supervisor says firm limits make staff seem uncooperative. Which workplace result would best challenge that claim?",
+      "choices": [
+        "The team hits more deadlines after priority tradeoffs and response windows become explicit.",
+        "Staff stop mentioning overload so the supervisor hears fewer complaints.",
+        "Every request gets a yes, even when the work moves into personal time."
+      ]
+    }
+  ],
+  "packHash": "61507ae7b229881f"
+}

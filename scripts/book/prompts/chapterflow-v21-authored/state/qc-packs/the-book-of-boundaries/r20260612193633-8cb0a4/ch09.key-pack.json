@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "manual-key-pack-v1",
+  "bookId": "the-book-of-boundaries",
+  "roundId": "r20260612193633-8cb0a4",
+  "chapterNumber": 9,
+  "chapterId": "the-book-of-boundaries-ch09",
+  "createdAt": "2026-06-12T20:09:25.310Z",
+  "contentHash": "ca63a744b3bae886",
+  "sourceHash": "5d3a5d51324d4701",
+  "sourceFacts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "A sensitive topic can be unavailable even if it matters.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "Important subjects must always be discussed when raised.",
+      "errorIsWhy": "Urgency from one person does not create automatic access to another."
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "Timing is a valid boundary for difficult conversations.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "Concern gives people a right to details.",
+      "errorIsWhy": "Concern may be kind, but it does not create entitlement."
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "Health information can remain private without apology.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "A boundary around a topic means the topic can never be discussed.",
+      "errorIsWhy": "Many topic limits are about when, where, and with whom."
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "Political or religious debate can be limited by setting.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "Important subjects must always be discussed when raised.",
+      "errorIsWhy": "Urgency from one person does not create automatic access to another."
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "Redirects preserve connection while closing the topic.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "Concern gives people a right to details.",
+      "errorIsWhy": "Concern may be kind, but it does not create entitlement."
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "Repeated topic pressure may require ending the interaction.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "A boundary around a topic means the topic can never be discussed.",
+      "errorIsWhy": "Many topic limits are about when, where, and with whom."
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "Grief boundaries can involve audience and duration.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "Important subjects must always be discussed when raised.",
+      "errorIsWhy": "Urgency from one person does not create automatic access to another."
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "Money questions can be bounded as private information.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "Concern gives people a right to details.",
+      "errorIsWhy": "Concern may be kind, but it does not create entitlement."
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Topic access limits are not a ban on hard conversations.",
+      "becauseMechanism": "This matters because charged subjects can be real and still exceed the setting, timing, audience, or privacy a person can offer.",
+      "commonError": "A boundary around a topic means the topic can never be discussed.",
+      "errorIsWhy": "Many topic limits are about when, where, and with whom."
+    }
+  ],
+  "questions": [
+    {
+      "questionIndex": 0,
+      "prompt": "A dinner log shows four politics flare-ups in three Sundays, all after Olena redirects once and relatives continue. What should she infer first?",
+      "choices": [
+        "Harmony myth: Olena should keep answering so dinner feels open to everyone.",
+        "Pressure pattern: The topic needs an exit plan, not another speech at the table.",
+        "Debate duty: Politics matters, so the family should finish the argument before dessert."
+      ]
+    },
+    {
+      "questionIndex": 1,
+      "prompt": "Cedric and Valeria compare two replies to a fertility question. Cedric says sincere concern deserves details; Valeria says concern can be kind and still lack access. Which reading fits?",
+      "choices": [
+        "Sincerity pass: Cedric should treat concern as permission to ask health details.",
+        "Secret-keeping fear: Valeria is hiding information by refusing the example.",
+        "Privacy line: Valeria separates kindness from access to fertility details."
+      ]
+    },
+    {
+      "questionIndex": 2,
+      "prompt": "A text thread shows Aspen answered diagnosis questions Monday, medication questions Tuesday, and mental health questions after saying \"private\" twice. What should change?",
+      "choices": [
+        "Follow-through step: Aspen should end the exchange after repeated pressure.",
+        "Reassurance loop: Aspen should give one more detail to calm the thread.",
+        "Concern upgrade: Aspen should move the medical talk to a larger family chat."
+      ]
+    },
+    {
+      "questionIndex": 3,
+      "prompt": "During a group event, Gilberte is holding paper cups by the doorway when three people ask for details of the loss and the room starts listening. Which reply uses timing and audience well?",
+      "choices": [
+        "Not-here reply: Gilberte can say she is not discussing the loss in this room.",
+        "Public-processing myth: Gilberte should answer because the group is already listening.",
+        "Closure rush: Gilberte should finish the story quickly so the event can continue."
+      ]
+    },
+    {
+      "questionIndex": 4,
+      "prompt": "Romain and Sunil face medication questions at a casual bowling night. Romain explains until he misses his turn; Sunil says the health details are private. Which lesson is strongest?",
+      "choices": [
+        "Politeness tax: Romain owes enough detail to make the teammate comfortable.",
+        "Game-first dodge: Sunil should avoid health talk only to protect the bowling pace.",
+        "Access choice: Sunil can be warm without sharing medication information."
+      ]
+    },
+    {
+      "questionIndex": 5,
+      "prompt": "At the taxi stand kiosk, Valeria's notes show three holiday calls about grief, each running past twenty minutes after she said she was tired. What term is missing?",
+      "choices": [
+        "Care debt: Valeria should keep talking so the caller feels included in the loss.",
+        "Duration limit: Valeria needs a clear stop point before the call starts.",
+        "Holiday exception: Valeria should suspend grief limits when family gathers."
+      ]
+    },
+    {
+      "questionIndex": 6,
+      "prompt": "Olena and Cedric both hear, \"You owe me an honest conversation.\" Olena offers a later time for politics; Cedric refuses a fertility question. Which distinction matters?",
+      "choices": [
+        "Access surrender: Olena and Cedric should both answer because honesty was requested.",
+        "Topic ban fear: Olena and Cedric are closing hard conversations for good.",
+        "Terms distinction: Some talks move later, while some details remain private."
+      ]
+    },
+    {
+      "questionIndex": 7,
+      "prompt": "In a workshop, Aspen hears someone say a topic boundary is avoidance unless the subject is trivial, and the group starts nodding. Which response best corrects that?",
+      "choices": [
+        "Access test: Important subjects can still need terms for place, time, and audience.",
+        "Triviality rule: Aspen should discuss only topics that no one cares about.",
+        "Urgency pass: Aspen should accept the asker's timing when the subject is serious."
+      ]
+    },
+    {
+      "questionIndex": 8,
+      "prompt": "A week of notes shows Sunil stays calm when he names the topic, timing, audience, and exit before events. Which practice should he keep?",
+      "choices": [
+        "Explanation habit: Sunil should prepare longer reasons for every private subject.",
+        "Topic terms: Sunil should set the access rules before pressure arrives.",
+        "Mood reading: Sunil should wait until he feels ready and then improvise."
+      ]
+    }
+  ],
+  "packHash": "905817ba7f8e42d5"
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "exemplar-plan-v1",
+  "bookId": "the-book-of-boundaries",
+  "createdAt": "2026-06-12T19:15:16.312Z",
+  "fromChapter": 1,
+  "toChapter": 13,
+  "allocation": {
+    "1": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "2": {
+      "assigned": [
+        "Green Yellow Red"
+      ],
+      "forbidden": []
+    },
+    "3": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "4": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "5": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "6": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "7": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "8": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "9": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "10": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "11": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "12": {
+      "assigned": [],
+      "forbidden": []
+    },
+    "13": {
+      "assigned": [],
+      "forbidden": []
+    }
+  },
+  "diagnostics": {
+    "contested": 0,
+    "chaptersWithoutSidecar": []
+  }
+}

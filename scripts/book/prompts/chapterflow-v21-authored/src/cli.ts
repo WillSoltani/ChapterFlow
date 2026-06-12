@@ -167,7 +167,7 @@ Commands:
                                      Record the sweep verdict, checked families, findings, and chapter hashes.
   sweep-status <bookId>              Show the latest sweep attestation status.
   major-status <bookId>              Show current major findings and their dispositions.
-  major-disposition <bookId> --finding <id> --status resolved|waived --reason X --reviewer X --round <id> [--token X]
+  major-disposition <bookId> --finding <id> --status open|waived_false_positive|waived_accepted_debt --reason X --reviewer X --round <id> [--token X]
                                      Record an explicit disposition for a current major finding.
   qc-verdict <chapterId> --scores '<json>'|--scores-file <path>
                                      Reduce per-axis scores to the verdict via the REAL computeVerdict
@@ -2192,17 +2192,21 @@ async function runMajorDisposition(args: string[], flags: Record<string, string 
   const reviewer = typeof flags["reviewer"] === "string" ? flags["reviewer"] : "";
   const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
   const token = typeof flags["token"] === "string" ? flags["token"] : "";
-  if (!bookId || !findingId || !["resolved", "waived"].includes(status) || !reason || !reviewer || !roundId) {
-    console.error("Usage: major-disposition <bookId> --finding <id> --status resolved|waived --reason <text> --reviewer <id> --round <roundId> [--token <confirm-token>]");
+  const validStatuses = ["open", "waived_false_positive", "waived_accepted_debt"] as const;
+  if (!bookId || !findingId || !(validStatuses as readonly string[]).includes(status) || !reason || !reviewer || !roundId) {
+    console.error("Usage: major-disposition <bookId> --finding <id> --status open|waived_false_positive|waived_accepted_debt --reason <text> --reviewer <id> --round <roundId> [--token <major-token>]");
     return 2;
   }
+  let roundRole: "major" | "confirm" | undefined;
   const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
   if (isNoApiCodexQcMode() || token) {
-    const { verifyQcRoundToken } = await import("./qc/qcRound.js");
-    if (!verifyQcRoundToken(bookId, roundId, "confirm", token)) {
-      console.error(`Invalid confirm token for ${bookId} round ${roundId}.`);
+    const { identifyQcRoundRole } = await import("./qc/qcRound.js");
+    const identified = identifyQcRoundRole(bookId, roundId, token, ["major", "confirm"]);
+    if (identified !== "major" && identified !== "confirm") {
+      console.error(`Invalid major token for ${bookId} round ${roundId}.`);
       return 1;
     }
+    roundRole = identified;
   }
   const { currentMajorFindings, writeDisposition } = await import("./qc/majorDisposition.js");
   if (!currentMajorFindings(bookId).some((f) => f.id === findingId)) {
@@ -2211,10 +2215,11 @@ async function runMajorDisposition(args: string[], flags: Record<string, string 
   }
   const path = writeDisposition(bookId, {
     findingId,
-    status: status as "resolved" | "waived",
+    status: status as typeof validStatuses[number],
     reason,
     reviewer,
     roundId,
+    roundRole,
     timestamp: new Date().toISOString(),
   });
   console.log(`major-disposition: wrote ${path}`);

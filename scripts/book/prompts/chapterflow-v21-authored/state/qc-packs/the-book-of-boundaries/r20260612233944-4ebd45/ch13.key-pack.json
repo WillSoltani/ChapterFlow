@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "manual-key-pack-v1",
+  "bookId": "the-book-of-boundaries",
+  "roundId": "r20260612233944-4ebd45",
+  "chapterNumber": 13,
+  "chapterId": "the-book-of-boundaries-ch13",
+  "createdAt": "2026-06-12T23:39:45.985Z",
+  "contentHash": "480a6047285f0a39",
+  "sourceHash": "717d17bb17791fb7",
+  "sourceFacts": [
+    {
+      "id": "ch13.fact.1",
+      "claim": "Parenting boundaries require age-aware clarity.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "Children should receive the same boundary language as adults.",
+      "errorIsWhy": "Developmental stage affects both wording and follow-through."
+    },
+    {
+      "id": "ch13.fact.2",
+      "claim": "Consistency helps children trust household limits.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "A rule is stronger when consequences change with the parent's mood.",
+      "errorIsWhy": "Mood-based enforcement makes the boundary less reliable."
+    },
+    {
+      "id": "ch13.fact.3",
+      "claim": "A parent can protect capacity without blaming the child for adult feelings.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "Respecting a child's no means parents give up authority.",
+      "errorIsWhy": "Parents can honor appropriate autonomy while preserving safety rules."
+    },
+    {
+      "id": "ch13.fact.4",
+      "claim": "Screen boundaries work better when rules come before conflict.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "Children should receive the same boundary language as adults.",
+      "errorIsWhy": "Developmental stage affects both wording and follow-through."
+    },
+    {
+      "id": "ch13.fact.5",
+      "claim": "Body autonomy includes not forcing unwanted affection.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "A rule is stronger when consequences change with the parent's mood.",
+      "errorIsWhy": "Mood-based enforcement makes the boundary less reliable."
+    },
+    {
+      "id": "ch13.fact.6",
+      "claim": "Extended family may need boundaries around household rules.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "Respecting a child's no means parents give up authority.",
+      "errorIsWhy": "Parents can honor appropriate autonomy while preserving safety rules."
+    },
+    {
+      "id": "ch13.fact.7",
+      "claim": "Parenting boundaries combine authority and respect.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "Children should receive the same boundary language as adults.",
+      "errorIsWhy": "Developmental stage affects both wording and follow-through."
+    },
+    {
+      "id": "ch13.fact.8",
+      "claim": "Follow-through should be predictable rather than punitive.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "A rule is stronger when consequences change with the parent's mood.",
+      "errorIsWhy": "Mood-based enforcement makes the boundary less reliable."
+    },
+    {
+      "id": "ch13.fact.9",
+      "claim": "Parents model boundary behavior through their delivery.",
+      "becauseMechanism": "This matters because children learn limits through both stated rules and the adult pattern of respectful follow-through.",
+      "commonError": "Respecting a child's no means parents give up authority.",
+      "errorIsWhy": "Parents can honor appropriate autonomy while preserving safety rules."
+    }
+  ],
+  "questions": [
+    {
+      "questionIndex": 0,
+      "prompt": "A six-day log shows four screen-time arguments in Raymond's house, all after the bedtime device charging rule is mentioned late. What should Raymond infer first?",
+      "choices": [
+        "Lecture Fix: Raymond should explain the screen rule longer so Noah sees the adult logic.",
+        "Timing Gap: Raymond should state the household rule before the tired part of bedtime.",
+        "Mood Rule: Raymond should change the consequence when Noah's tone sounds disrespectful."
+      ]
+    },
+    {
+      "questionIndex": 1,
+      "prompt": "Kavya and Gina see the same child pull back from a relative's hug at the yoga studio cubby. Which response fits parenting boundary modeling?",
+      "choices": [
+        "Consent Greeting: Kavya protects the child's body no and offers a wave, fist bump, or hello.",
+        "Polite Pressure: Gina reminds the child that relatives feel hurt when hugs are refused in public.",
+        "Exit Avoidance: Kavya leaves quickly so nobody has to practice a respectful greeting at the cubby."
+      ]
+    },
+    {
+      "questionIndex": 2,
+      "prompt": "At a community health tent, the sign-out sheet shows Malcolm ignored the sleep routine twice and called it grandparent fun. Which first reading is strongest?",
+      "choices": [
+        "Child Messenger: Kavya should coach the child to remind Malcolm about bedtime next time.",
+        "Harmless Treat: Kavya should treat the late snack as separate from parent authority.",
+        "Adult Access: Kavya should address Malcolm directly and adjust visits if the pattern continues."
+      ]
+    },
+    {
+      "questionIndex": 3,
+      "prompt": "Two parents need quiet during a risky task: one says, \"You are ruining my focus,\" and Brock says, \"I need ten quiet minutes for safety.\" Which difference matters?",
+      "choices": [
+        "Owned Capacity: Brock names his need without making the child manage his feelings.",
+        "Strictness Display: The first parent sounds firmer, so the child is likelier to stop.",
+        "Equal Language: Both parents set the same boundary because each asks for quiet."
+      ]
+    },
+    {
+      "questionIndex": 4,
+      "prompt": "A child refuses a hug but still says hello. Which adult interpretation keeps body autonomy and respect together?",
+      "choices": [
+        "Manners First: A refused hug shows the child needs stronger correction at family gatherings.",
+        "Respectful No: The child can decline touch and still practice a greeting.",
+        "No-Rule Drift: Honoring one body no means most family expectations should pause for the day."
+      ]
+    },
+    {
+      "questionIndex": 5,
+      "prompt": "Harpreet's handoff note lists the episode limit, the device charging spot, and the repeat line for bedtime. What does the note prevent?",
+      "choices": [
+        "Performance Parenting: Harpreet can prove the rule sounds polished to another adult.",
+        "Child Vote: Harpreet can let the child choose which household rule applies at night.",
+        "Fatigue Rewrite: Harpreet avoids inventing a new screen-time rule while tired."
+      ]
+    },
+    {
+      "questionIndex": 6,
+      "prompt": "A fridge log shows one rule for weekday screens, but three different consequences after Raymond gets annoyed. What should change first?",
+      "choices": [
+        "Tone Policing: Raymond should make Noah repeat the rule in a respectful voice before charging the tablet.",
+        "Predictable Follow-Through: Raymond should use the planned next step instead of mood-based enforcement.",
+        "Longer Warning: Raymond should add more reminders so the child knows the rule matters."
+      ]
+    },
+    {
+      "questionIndex": 7,
+      "prompt": "Brock wants to use the same boundary words with a four-year-old and a fifteen-year-old. Which adjustment fits age-aware clarity?",
+      "choices": [
+        "Different Wording: Brock keeps the safety limit and changes the explanation by age.",
+        "Adult Script: Brock uses identical language so both children hear the rule as fair.",
+        "Teen Exception: Brock lets the older child decide which safety limits still apply."
+      ]
+    },
+    {
+      "questionIndex": 8,
+      "prompt": "Gina says parenting boundaries require control, while Malcolm says they mean letting the child decide. Which answer best captures the hard edge?",
+      "choices": [
+        "Control Model: Gina is closer because children need adults to keep firm rules.",
+        "Child-Led Model: Malcolm is closer because respect means the child leads the limit.",
+        "Structured Respect: Parents hold authority while honoring age-appropriate autonomy."
+      ]
+    }
+  ],
+  "packHash": "c759dde560d6e3a0"
+}
