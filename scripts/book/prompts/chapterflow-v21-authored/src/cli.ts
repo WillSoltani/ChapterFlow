@@ -2445,6 +2445,21 @@ function recordGateAttempt(
 
 async function main() {
   const { cmd, args, flags } = parseArgs(process.argv.slice(2));
+  // CANONICAL-WORKSPACE TRIPWIRE (2026-06-12). The legacy checkout at
+  // ~/ChapterFlow (app campaigns, other branches) carries stale pipeline
+  // state; commands run there embed wrong paths into generated prompts/
+  // workflows and judge/edit stale copies — this burned a full QC run and a
+  // fanout round. Path-specific on purpose (no effect in CI or future
+  // machines); remove when the legacy checkout retires.
+  if (__dirname.startsWith("/Users/radinsoltani/ChapterFlow/") && flags["allow-noncanonical"] !== true) {
+    console.error(
+      "REFUSED — you are running the pipeline from the legacy checkout (~/ChapterFlow).\n" +
+        "All pipeline work runs in ~/ChapterFlow-books (worktree pinned to main).\n" +
+        `  cd /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored\n` +
+        "Override only if you truly mean it: --allow-noncanonical",
+    );
+    return 3;
+  }
   switch (cmd) {
     case "critic":
       return runCritic(args, flags);
