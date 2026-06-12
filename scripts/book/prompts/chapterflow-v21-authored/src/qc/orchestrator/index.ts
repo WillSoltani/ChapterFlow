@@ -113,7 +113,7 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
   for (const ch of chapters) {
     paths.push(writeText(resolve(root, "bar", `ch${String(ch.number).padStart(2, "0")}.md`), cardHeader(bookId, roundId, `bar ch${String(ch.number).padStart(2, "0")}`, tokens.bar) + [
       "Read the chapter through the publishable-bar rubric and score every axis.",
-      `Required schema: qc-bar-read-v2. Score every non-key publishableBar axis; quiz_key_correctness is injected from manual keyjudge. Required artifact contentHash: ${ch.chapterId}.`,
+      `Required schema: qc-bar-read-v2. Score every non-key publishableBar axis; quiz_key_correctness is injected from manual keyjudge. Required artifact contentHash: ${chapterContentHash(ch)}.`,
       `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role bar --token ${tokens.bar} --file <submission.json>`,
       "",
     ].join("\n")));
@@ -127,7 +127,7 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
   }
   paths.push(writeText(resolve(root, "majors.md"), cardHeader(bookId, roundId, "major triage", tokens.major) + [
     "Triage current major findings only. Use the major token for any major-disposition command.",
-    "Silent ignores do not count as pass; every current major needs a concrete status.",
+    "Silent ignores do not count as pass; every current major needs a concrete status: open, waived_false_positive, or waived_accepted_debt.",
     `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role major --token ${tokens.major} --file <submission.json>`,
     "",
   ].join("\n")));

@@ -102,7 +102,7 @@ export type ValidatedMajorTriageSubmission = {
   findings: SubmissionFinding[];
   dispositions: Array<{
     findingId: string;
-    status: "resolved" | "waived" | "open";
+    status: "open" | "waived_false_positive" | "waived_accepted_debt";
     reason: string;
   }>;
 };
@@ -372,7 +372,7 @@ function validateMajor(bookId: string, roundId: string, role: SubmissionRole, ra
   const findings = normalizeFindings(raw?.findings ?? [], errors, "major", { repairClass: "major_triage", severity: "major" });
   const dispositions = Array.isArray(raw?.dispositions) ? raw.dispositions.map((d: any, i: number) => {
     if (!nonempty(d?.findingId)) errors.push(`dispositions[${i}].findingId is required`);
-    if (!["resolved", "waived", "open"].includes(d?.status)) errors.push(`dispositions[${i}].status must be resolved, waived, or open`);
+    if (!["open", "waived_false_positive", "waived_accepted_debt"].includes(d?.status)) errors.push(`dispositions[${i}].status must be open, waived_false_positive, or waived_accepted_debt`);
     const reason = String(d?.reason ?? "");
     if (reason.trim().length < 20) errors.push(`dispositions[${i}].reason must be at least 20 characters`);
     return { findingId: String(d?.findingId ?? ""), status: d?.status, reason };

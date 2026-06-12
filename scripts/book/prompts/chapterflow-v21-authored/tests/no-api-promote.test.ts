@@ -1,13 +1,14 @@
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync, rmSync } from "fs";
-import { resolve } from "path";
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
-import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, runCli, writeFixtureBook } from "./helpers.js";
 import { promoteBook } from "../src/promoteBook.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
+import { currentMajorFindings, unresolvedMajors, waiverPath } from "../src/qc/majorDisposition.js";
 
 const BOOK = "zz-fixture-no-api-promote";
 
@@ -21,7 +22,9 @@ function cleanup(): void {
   }
   rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}.sweep.json`), { force: true });
   rmSync(qcRoundPath(BOOK, "r-no-api-artifacts"), { force: true });
+  rmSync(qcRoundPath(BOOK, "r-legacy-major"), { force: true });
   rmSync(orchestratorRoundDir(BOOK, "r-no-api-artifacts"), { recursive: true, force: true });
+  rmSync(waiverPath(BOOK), { force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), { force: true });
   const blocked = resolve(PIPELINE_DIR, "state", "books", "_blocked");
   try {
@@ -78,6 +81,48 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
     console.warn = oldWarn;
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanup();
+  }
+});
+
+test("major dispositions read legacy closed statuses but CLI rejects writing legacy status names", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    cleanup();
+    const chapter = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    openQcRound(BOOK, "r-legacy-major");
+    const finding = currentMajorFindings(BOOK, [chapter])[0];
+    assert.ok(finding, "fixture should expose at least one current major");
+    const waiverFile = waiverPath(BOOK);
+    mkdirSync(dirname(waiverFile), { recursive: true });
+    writeFileSync(waiverFile, JSON.stringify({
+      schemaVersion: "major-waivers-v1",
+      bookId: BOOK,
+      dispositions: [{
+        findingId: finding.id,
+        status: "waived",
+        reason: "Legacy waiver status remains readable for existing waiver files.",
+        reviewer: "human:legacy",
+        roundId: "r-legacy-major",
+        timestamp: "2026-06-12T00:00:00.000Z",
+      }],
+    }, null, 2) + "\n", "utf8");
+    assert.equal(unresolvedMajors(BOOK, [chapter], true).some((f) => f.id === finding.id), false);
+    const cli = runCli([
+      "major-disposition",
+      BOOK,
+      "--finding", finding.id,
+      "--status", "waived",
+      "--reason", "Legacy status names should not be written by the current CLI.",
+      "--reviewer", "human:test",
+      "--round", "r-legacy-major",
+    ]);
+    assert.equal(cli.status, 2);
+    assert.match(cli.out, /open\|waived_false_positive\|waived_accepted_debt/);
+  } finally {
+    console.warn = oldWarn;
     cleanup();
   }
 });

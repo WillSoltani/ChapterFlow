@@ -4,6 +4,7 @@ import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { makeChapter, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
+import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { createQcOrchestrationRound } from "../src/qc/orchestrator/index.js";
 import { orchestratorRoundDir, roundRecordPath, taskCardsDir } from "../src/qc/orchestrator/artifacts.js";
@@ -77,6 +78,10 @@ test("qc orchestrator create writes round layout, packs, and role task cards", (
     const keyCard = readFileSync(resolve(taskCardsDir(BOOK, ROUND), "01-keyA.md"), "utf8");
     assert.match(keyCard, /Read ONLY the blind key packs and their sourceFacts/);
     assert.match(keyCard, /Never open `state\/chapters`/);
+    const barCard = readFileSync(resolve(taskCardsDir(BOOK, ROUND), "bar", "ch01.md"), "utf8");
+    const expectedHash = chapterContentHash(makeChapter(BOOK, 1));
+    assert.match(barCard, new RegExp(`Required artifact contentHash: ${expectedHash}\\.`));
+    assert.doesNotMatch(barCard, new RegExp(`Required artifact contentHash: ${BOOK}-ch01\\.`));
     const round = JSON.parse(readFileSync(roundRecordPath(BOOK, ROUND), "utf8"));
     assert.deepEqual(round.chapters, [1]);
     assert.equal(round.schemaVersion, "qc-orchestrator-round-v1");
