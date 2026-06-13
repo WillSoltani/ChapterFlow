@@ -48,3 +48,15 @@ You are operating in one role only. Never mix roles.
 ## Confirm role
 - Use the confirm token only for final attestation/disposition decisions.
 - Never waive a current major without a concrete reason tied to the finding id.
+
+## Publish-after-QC role
+- You may finalize/promote/register only after `qc-auto`/`qc-status` prove the
+  selected book is publishable.
+- You must not edit chapter files.
+- You must not run `qc-attest` manually.
+- You must not bypass no-api QC blockers.
+- You must clean token-bearing task cards before commit.
+- You may delete one-time repair prompts after clean publish.
+- You must preserve durable evidence by default: qc attestations,
+  manual-keyjudge records, sweep record, evidence matrix, and final book package.
+- You may commit and push only after validation passes.
