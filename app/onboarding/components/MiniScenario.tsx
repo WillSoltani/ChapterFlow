@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
 import {
   FIRST_LOOP_CONTENT,
@@ -10,6 +11,7 @@ import {
   staggerContainer,
   staggerItem,
 } from "@/app/onboarding/utils/animations";
+import { Button } from "@/components/ui/button";
 
 interface MiniScenarioProps {
   onContinue: () => void;
@@ -77,42 +79,12 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
         </motion.div>
       ))}
 
-      {/* CTA */}
-      <motion.div variants={staggerItem}>
-        <button
-          onClick={onContinue}
-          style={{
-            width: "100%",
-            minHeight: 48,
-            padding: "14px 24px",
-            marginTop: 8,
-            fontFamily: "var(--font-dm-sans, sans-serif)",
-            fontSize: 16,
-            fontWeight: 600,
-            color: "var(--bg-base)",
-            background: "var(--accent-emerald)",
-            border: "none",
-            borderRadius: "var(--radius-md-val, 12px)",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            boxShadow: "0 0 20px color-mix(in srgb, var(--accent-emerald) 25%, transparent)",
-            transition: "filter 0.15s, transform 0.15s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.filter = "brightness(1.1)";
-            e.currentTarget.style.transform = "scale(1.02)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.filter = "brightness(1)";
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
+      {/* CTA — shared brand primary */}
+      <motion.div variants={staggerItem} className="mt-2">
+        <Button size="lg" className="w-full" onClick={onContinue}>
           Continue to quiz
-          <span>&rarr;</span>
-        </button>
+          <ArrowRight size={18} strokeWidth={2} />
+        </Button>
       </motion.div>
     </motion.div>
   );

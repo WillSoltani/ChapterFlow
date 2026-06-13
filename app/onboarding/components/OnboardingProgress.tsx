@@ -91,8 +91,7 @@ export default function OnboardingProgress({
                 style={{
                   height: "100%",
                   borderRadius: 2,
-                  background:
-                    "linear-gradient(90deg, var(--accent-blue), var(--accent-teal))",
+                  background: "var(--accent-cyan)",
                 }}
               />
 
@@ -110,8 +109,7 @@ export default function OnboardingProgress({
                     position: "absolute",
                     inset: -2,
                     borderRadius: 4,
-                    background:
-                      "linear-gradient(90deg, var(--glow-blue), var(--glow-green))",
+                    background: "var(--accent-cyan-glow)",
                     pointerEvents: "none",
                   }}
                 />

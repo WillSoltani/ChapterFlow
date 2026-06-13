@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Leaf, Zap, Flame, ArrowRight, Check, CheckCircle, XCircle } from "lucide-react";
+import { Leaf, Zap, Flame, ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import TappableCard from "./TappableCard";
 import { useOnboarding, type Tone } from "@/app/onboarding/hooks/useOnboarding";
 import { staggerContainer, staggerItem } from "@/app/onboarding/utils/animations";
+import { Button } from "@/components/ui/button";
 
 interface StepToneProps {
   onNext: () => void;
@@ -199,44 +200,17 @@ export default function StepTone({ onNext }: StepToneProps) {
             })}
           </motion.div>
 
-          {/* Continue CTA */}
-          <motion.button
-            onClick={onNext}
-            whileHover={noMotion ? {} : { scale: 1.02 }}
-            whileTap={noMotion ? {} : { scale: 0.98 }}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 8,
-              padding: "14px 40px",
-              minHeight: 48,
-              borderRadius: 12,
-              backgroundColor: "var(--accent-emerald)",
-              color: "var(--bg-base)",
-              fontFamily: "var(--font-dm-sans, sans-serif)",
-              fontSize: 16,
-              fontWeight: 600,
-              border: "none",
-              cursor: "pointer",
-              outline: "none",
-              marginTop: 24,
-              width: "100%",
-              boxShadow: "0 0 20px color-mix(in srgb, var(--accent-emerald) 25%, transparent)",
-              transition: "filter 0.15s",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.filter = "brightness(1.1)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.filter = "brightness(1)"; }}
-          >
+          {/* Continue CTA — shared brand primary */}
+          <Button size="lg" className="mt-6 w-full" onClick={onNext}>
             Continue
             <ArrowRight size={18} strokeWidth={2} />
-          </motion.button>
+          </Button>
         </div>
 
         {/* Right: Live preview panel */}
         <div
           style={{ flex: "0 0 45%" }}
-          className="w-full lg:w-auto lg:sticky lg:top-[120px]"
+          className="w-full lg:w-auto lg:sticky lg:top-30"
         >
           <div
             style={{
