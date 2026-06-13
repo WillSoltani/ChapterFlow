@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { CheckCircle, XCircle } from "lucide-react";
+import { CheckCircle, XCircle, ArrowRight } from "lucide-react";
 import { getFirstLoopContent, getQuizFeedback } from "@/app/onboarding/data/chapters";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
-import CanvasConfetti from "./CanvasConfetti";
+import { Button } from "@/components/ui/button";
+import { Confetti } from "@/components/ui/Confetti";
 
 interface MiniQuizProps {
   onComplete: (score: number) => void;
@@ -31,6 +32,8 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
     selectedLetter !== null &&
     question.options.find((o) => o.letter === selectedLetter)?.isCorrect;
 
+  const isLastQuestion = currentQuestion >= questions.length - 1;
+
   const handleSelect = useCallback(
     (letter: string) => {
       if (showFeedback) return;
@@ -46,23 +49,36 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
         setShowMiniConfetti(true);
         setTimeout(() => setShowMiniConfetti(false), 2000);
       }
-
-      const advanceDelay = correct ? 1000 : 1500;
-
-      setTimeout(() => {
-        if (currentQuestion < questions.length - 1) {
-          setCurrentQuestion((q) => q + 1);
-          setSelectedLetter(null);
-          setShowFeedback(false);
-        } else {
-          const finalScore = correct ? score + 1 : score;
-          setQuizFinished(true);
-          setTimeout(() => onComplete(finalScore), 1500);
-        }
-      }, advanceDelay);
+      // No auto-advance here. Correct answers auto-advance via the effect below
+      // (the feedback is short); wrong answers wait for the user to read the
+      // explanation and tap "Next" — never force-advancing past it.
     },
-    [showFeedback, question, currentQuestion, questions.length, score, onComplete]
+    [showFeedback, question]
   );
+
+  // Advance to the next question, or finish the quiz on the last one. Guarded
+  // against double-firing: on the last question a manual "See your result" tap
+  // and the correct-answer auto-advance timer could both call this, so bail
+  // once the quiz is already finished.
+  const advance = useCallback(() => {
+    if (!showFeedback || quizFinished) return;
+    if (!isLastQuestion) {
+      setCurrentQuestion((q) => q + 1);
+      setSelectedLetter(null);
+      setShowFeedback(false);
+    } else {
+      setQuizFinished(true);
+      setTimeout(() => onComplete(score), 1200);
+    }
+  }, [showFeedback, quizFinished, isLastQuestion, score, onComplete]);
+
+  // Auto-advance ONLY on a correct answer, after a comfortable read beat.
+  // Wrong answers stay put until the user taps "Next".
+  useEffect(() => {
+    if (!showFeedback || !isCorrect) return;
+    const t = setTimeout(advance, 4000);
+    return () => clearTimeout(t);
+  }, [showFeedback, isCorrect, advance]);
 
   if (quizFinished) {
     const finalScore = score;
@@ -105,10 +121,8 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* Mini confetti on correct answer */}
-      {showMiniConfetti && (
-        <CanvasConfetti particleCount={30} duration={1500} />
-      )}
+      {/* Mini confetti on correct answer (shared primitive — visible on light) */}
+      {showMiniConfetti && <Confetti particleCount={30} duration={1500} origin="center" />}
 
       {/* Subtitle */}
       <p
@@ -216,7 +230,6 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                     opacity: dimmed ? 0.4 : 1,
                     backdropFilter: "blur(16px)",
                     WebkitBackdropFilter: "blur(16px)",
-                    outline: "none",
                   }}
                 >
                   <span
@@ -295,6 +308,22 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
               </motion.p>
             )}
           </AnimatePresence>
+
+          {/* User-paced advance. Wrong answers wait here so the explanation can
+              be read; correct answers also auto-advance after a short beat. */}
+          {showFeedback && (
+            <motion.div
+              initial={noMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: noMotion ? 0 : 0.15, duration: 0.2 }}
+              className="mt-5 flex justify-end"
+            >
+              <Button onClick={advance}>
+                {isLastQuestion ? "See your result" : "Next"}
+                <ArrowRight size={16} strokeWidth={2} />
+              </Button>
+            </motion.div>
+          )}
         </motion.div>
       </AnimatePresence>
     </div>
