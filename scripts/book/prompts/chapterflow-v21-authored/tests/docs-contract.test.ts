@@ -112,3 +112,32 @@ test("STEP-2 carries the plain-language direction (R2.7) and fanout pins it", ()
   const cli = readFileSync(resolve(PIPELINE_DIR, "src/cli.ts"), "utf8");
   assert.match(cli, /PLAIN LANGUAGE \(R2\.7/, "fanout must pin the plain-language rule into every authoring prompt");
 });
+
+test("STEP-2 teaches no-api major debt before completion", () => {
+  const s = doc("agent-prompts/STEP-2-WRITE-CHAPTERS.md");
+  assert.match(s, /major-status <bookId>/, "writers must run major-status before claiming completion");
+  assert.match(s, /do not waive majors; only QC\/operator may write `major-disposition`/, "writers must not write major dispositions");
+  assert.match(s, /Unresolved majors are QC debt/, "STEP-2 must name unresolved majors as QC debt");
+});
+
+test("STEP-2 scenario length guidance stays consistent", () => {
+  const s = doc("agent-prompts/STEP-2-WRITE-CHAPTERS.md");
+  assert.doesNotMatch(s, /80[–-]140 words per scenario/, "old scenario word target conflicts with the schema char floor");
+  assert.match(s, /280[–-]520 chars/, "scenario guidance must include the schema char target");
+  assert.match(s, /55[–-]95 words/, "scenario guidance must include the word-count equivalent");
+});
+
+test("QC-SESSION points no-api Codex sessions at qc-auto and current major statuses", () => {
+  const s = doc("agent-prompts/QC-SESSION-PROMPT.md");
+  assert.match(s, /QC-AUTO-CODEX-SESSION\.md/, "manual QC prompt must reference the preferred no-api Codex autopilot prompt");
+  assert.match(s, /qc-auto/, "manual QC prompt must reference qc-auto");
+  assert.match(s, /`open`, `waived_false_positive`, or\s+`waived_accepted_debt`/, "QC docs must teach current major disposition statuses");
+  assert.match(s, /Legacy `resolved\|waived` statuses may be read from old\s+waiver files but must not be newly written/, "legacy major statuses must remain read-only");
+});
+
+test("AGENTS names the Publish-after-QC role", () => {
+  const s = doc("AGENTS.md");
+  assert.match(s, /## Publish-after-QC role/);
+  assert.match(s, /must not edit chapter files/);
+  assert.match(s, /clean token-bearing task cards before commit/);
+});
