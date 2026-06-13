@@ -31,7 +31,7 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 30% 50%, rgba(34,211,238,0.08), transparent 70%)",
+            "radial-gradient(ellipse at 30% 50%, color-mix(in srgb, var(--accent-cyan) 8%, transparent), transparent 70%)",
         }}
       />
 
@@ -55,8 +55,8 @@ export function Hero() {
                 style={{
                   letterSpacing: "0.18em",
                   color: "var(--accent-teal)",
-                  backgroundColor: "rgba(34,211,238,0.08)",
-                  borderColor: "rgba(34,211,238,0.2)",
+                  backgroundColor: "color-mix(in srgb, var(--accent-cyan) 8%, transparent)",
+                  borderColor: "color-mix(in srgb, var(--accent-cyan) 20%, transparent)",
                 }}
               >
                 <span className="text-[14px]">&#10022;</span>
@@ -80,7 +80,7 @@ export function Hero() {
                 className="bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    "linear-gradient(135deg, var(--accent-teal), #5eead4)",
+                    "linear-gradient(135deg, var(--accent-teal), color-mix(in srgb, var(--accent-cyan), white 35%))",
                   WebkitBackgroundClip: "text",
                 }}
               >
@@ -127,31 +127,6 @@ export function Hero() {
             >
               No credit card &middot; 2 full books free
             </motion.p>
-
-            {/* Micro testimonial */}
-            <motion.div
-              className="mt-4 flex items-center gap-2.5"
-              variants={fadeUp}
-            >
-              <div
-                className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-[10px] font-bold"
-                style={{
-                  background: "linear-gradient(135deg, rgba(34,211,238,0.2), rgba(34,211,238,0.05))",
-                  border: "1.5px solid rgba(34,211,238,0.3)",
-                  color: "var(--accent-teal)",
-                }}
-                aria-hidden="true"
-              >
-                SK
-              </div>
-              <p
-                className="text-[13px] italic"
-                style={{ color: "var(--text-muted)" }}
-              >
-                &ldquo;I actually remember what I read now.&rdquo; &mdash;
-                Sarah&nbsp;K., senior product manager
-              </p>
-            </motion.div>
           </motion.div>
 
           {/* Right column — phone mockup */}
@@ -172,7 +147,7 @@ export function Hero() {
                 width: 420,
                 height: 420,
                 background:
-                  "radial-gradient(circle, rgba(34,211,238,0.10) 0%, transparent 70%)",
+                  "radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 10%, transparent) 0%, transparent 70%)",
                 filter: "blur(60px)",
               }}
             />
