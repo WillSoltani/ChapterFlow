@@ -5,25 +5,11 @@ import Link from "next/link";
 
 interface BookRequestSuccessProps {
   title: string;
+  author?: string;
   email: string;
 }
 
-const popularBooks = [
-  {
-    title: "Crucial Conversations",
-    gradient: "linear-gradient(135deg, #f59e0b, #d97706)",
-  },
-  {
-    title: "Deep Work",
-    gradient: "linear-gradient(135deg, #3b82f6, #2563eb)",
-  },
-  {
-    title: "Thinking Fast and Slow",
-    gradient: "linear-gradient(135deg, #14b8a6, #0d9488)",
-  },
-];
-
-export function BookRequestSuccess({ title, email }: BookRequestSuccessProps) {
+export function BookRequestSuccess({ title, author, email }: BookRequestSuccessProps) {
   return (
     <motion.div
       className="flex flex-col items-center text-center"
@@ -45,7 +31,7 @@ export function BookRequestSuccess({ title, email }: BookRequestSuccessProps) {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="white"
+          stroke="var(--primary-foreground)"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -62,56 +48,38 @@ export function BookRequestSuccess({ title, email }: BookRequestSuccessProps) {
           fontFamily: "var(--font-display)",
         }}
       >
-        Request received!
+        Request received
       </p>
 
-      {/* Confirmation message */}
+      {/* Confirmation message — honest: we log it and email only if we build it */}
       <p
-        className="text-[14px] mt-2"
+        className="text-[14px] mt-2 max-w-[340px]"
         style={{ color: "var(--text-secondary)" }}
       >
-        We will email you at {email} when &lsquo;{title}&rsquo; is ready.
+        We have logged &lsquo;{title}&rsquo;{author ? ` by ${author}` : ""}. If we
+        add it to the library, we will email you at {email}.
       </p>
 
-      {/* Suggestion */}
-      <p
-        className="text-[12px] mt-3"
-        style={{ color: "var(--text-muted)" }}
-      >
-        In the meantime, start with our most popular books:
-      </p>
-
-      {/* Mini book covers */}
-      <div className="flex gap-3 justify-center mt-2">
-        {popularBooks.map((book) => (
-          <motion.div
-            key={book.title}
-            className="flex items-center justify-center rounded-md overflow-hidden"
-            style={{
-              width: 60,
-              height: 80,
-              background: book.gradient,
-            }}
-            whileHover={{ y: -2 }}
-            transition={{ duration: 0.2 }}
-          >
-            <span className="text-white text-[7px] font-bold uppercase tracking-wider text-center leading-tight px-1">
-              {book.title}
-            </span>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* CTA button */}
+      {/* CTA — start reading what's already available (matches the site's primary CTA) */}
       <Link
         href="/auth/login?returnTo=%2Fbook"
-        className="inline-flex items-center gap-1 mt-4 px-6 py-2.5 rounded-lg text-[14px] font-semibold text-white transition-all duration-200 hover:scale-[1.02]"
+        className="cta-shine inline-flex items-center gap-1 mt-5 px-6 py-2.5 rounded-full text-[14px] font-semibold transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
         style={{
-          background: "var(--accent-green)",
+          backgroundColor: "var(--accent-teal)",
+          color: "var(--primary-foreground)",
           fontFamily: "var(--font-body)",
         }}
       >
-        Start reading free →
+        Start reading free &rarr;
+      </Link>
+
+      {/* Secondary — browse what's available now */}
+      <Link
+        href="/books"
+        className="mt-3 text-[12px] hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded"
+        style={{ color: "var(--text-muted)" }}
+      >
+        Browse the books we already have &rarr;
       </Link>
     </motion.div>
   );

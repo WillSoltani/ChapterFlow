@@ -11,7 +11,7 @@ interface SubmissionData {
   email: string;
 }
 
-export function BookRequestSection() {
+export function BookRequestSection({ initialTitle }: { initialTitle?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [submissionData, setSubmissionData] = useState<SubmissionData | null>(null);
 
@@ -28,7 +28,7 @@ export function BookRequestSection() {
           className="h-px w-[200px]"
           style={{
             background:
-              "linear-gradient(to right, transparent, rgba(34,211,238,0.3), transparent)",
+              "linear-gradient(to right, transparent, color-mix(in srgb, var(--accent-cyan) 30%, transparent), transparent)",
           }}
         />
       </div>
@@ -39,17 +39,17 @@ export function BookRequestSection() {
         style={{
           background: "var(--bg-glass)",
           backgroundImage:
-            "linear-gradient(135deg, rgba(34,211,238,0.03), transparent 50%, rgba(34,211,238,0.03))",
+            "linear-gradient(135deg, color-mix(in srgb, var(--accent-cyan) 3%, transparent), transparent 50%, color-mix(in srgb, var(--accent-cyan) 3%, transparent))",
           border: "1px solid var(--border-medium)",
-          boxShadow: "0 0 40px rgba(34,211,238,0.04)",
+          boxShadow: "0 0 40px color-mix(in srgb, var(--accent-cyan) 4%, transparent)",
         }}
       >
         {/* Icon */}
         <div
           className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4"
           style={{
-            background: "rgba(34,211,238,0.08)",
-            border: "1px solid rgba(34,211,238,0.12)",
+            background: "color-mix(in srgb, var(--accent-cyan) 8%, transparent)",
+            border: "1px solid color-mix(in srgb, var(--accent-cyan) 12%, transparent)",
           }}
         >
           <svg
@@ -90,9 +90,9 @@ export function BookRequestSection() {
             lineHeight: 1.7,
           }}
         >
-          Tell us what book you would like to read on ChapterFlow. We will
-          structure it with summaries, scenarios, and quizzes, and notify you the
-          moment it is ready.
+          Tell us what book you would like to read on ChapterFlow. We
+          prioritize the most-requested titles, and if we build the one you
+          asked for, we will email you.
         </p>
 
         {/* Form / Success area */}
@@ -105,7 +105,7 @@ export function BookRequestSection() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
               >
-                <BookRequestForm onSuccess={handleSuccess} />
+                <BookRequestForm initialTitle={initialTitle} onSuccess={handleSuccess} />
               </motion.div>
             ) : (
               <motion.div
@@ -116,6 +116,7 @@ export function BookRequestSection() {
               >
                 <BookRequestSuccess
                   title={submissionData!.title}
+                  author={submissionData!.author}
                   email={submissionData!.email}
                 />
               </motion.div>
@@ -129,7 +130,7 @@ export function BookRequestSection() {
             No spam, ever
           </span>
           <span className="text-[11px]" style={{ color: "var(--text-muted)" }}>
-            One notification when ready
+            We email only if we build it
           </span>
           <span className="text-[11px]" style={{ color: "var(--text-muted)" }}>
             It is free
