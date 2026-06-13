@@ -44,6 +44,10 @@ export function evidenceMatrixPath(bookId: string, roundId: string): string {
   return resolve(orchestratorRoundDir(bookId, roundId), "evidence-matrix.json");
 }
 
+export function confirmCandidatesPath(bookId: string, roundId: string): string {
+  return resolve(orchestratorRoundDir(bookId, roundId), "confirm-candidates.json");
+}
+
 export function barArtifactPath(bookId: string, roundId: string, chapterNumber: number): string {
   return resolve(submissionsDir(bookId, roundId, "bar"), `ch${String(chapterNumber).padStart(2, "0")}.bar-read.json`);
 }

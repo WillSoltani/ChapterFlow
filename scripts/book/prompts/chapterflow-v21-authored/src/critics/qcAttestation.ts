@@ -36,6 +36,7 @@ import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { loadQcRound, type QcRoundRole } from "../qc/qcRound.js";
 import { isNoApiCodexQcMode } from "../qc/noApiMode.js";
 import { checkBarConfirmArtifactsForPublishable } from "../qc/orchestrator/artifacts.js";
+import { loadAuthorProvenance, violatesSessionIndependence } from "../qc/sessionProvenance.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 
@@ -61,6 +62,10 @@ export type QcAttestation = {
   /** v21.1 no-api QC mode: round-backed role that produced this attestation. */
   roundId?: string;
   roundRole?: QcRoundRole;
+  /** The QC session that produced this attestation (CHAPTERFLOW_SESSION_ID at
+   *  attest time). Compared against the chapter's author provenance to enforce
+   *  reviewer != author when CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1. */
+  reviewerSessionId?: string;
   /** per-dimension booleans the reviewer checked (keysCorrect, grounded, …). */
   dimensions?: Record<string, boolean>;
   evidence?: {
@@ -280,6 +285,17 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
   if (!isApprovedReviewer(att.reviewer)) {
     return [{ checkId: "QC0.unverified_reviewer", severity: sev,
       message: `QC reviewer "${att.reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). A chapter cannot be certified by its own writer — review it in a QC session and re-attest as e.g. "claude-qc:<id>" or "codex-qc:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change the allowed roles).` }];
+  }
+  // Session-independence gate (OFF by default). When CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1
+  // and BOTH the authoring session (sidecar) and reviewing session (attestation)
+  // are recorded, refuse a verdict the authoring session graded itself. Absence
+  // of either id short-circuits, so legacy/un-stamped books are never blocked.
+  {
+    const author = loadAuthorProvenance(chapter.chapterId);
+    if (violatesSessionIndependence(author?.authorSessionId, att.reviewerSessionId)) {
+      return [{ checkId: "QC0.author_graded_own_work", severity: sev,
+        message: `QC session "${att.reviewerSessionId}" is the SAME session that authored ${chapter.chapterId} — the author cannot grade its own work. Re-QC in a fresh session (different CHAPTERFLOW_SESSION_ID).` }];
+    }
   }
   if (isNoApiCodexQcMode()) {
     if (!att.roundId || !att.roundRole || !["bar", "confirm", "attest"].includes(att.roundRole)) {

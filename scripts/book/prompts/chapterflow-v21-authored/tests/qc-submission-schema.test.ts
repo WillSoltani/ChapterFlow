@@ -199,6 +199,49 @@ test("qc-bar-read-v2 axis hits become repair findings", () => {
   assert.equal(findings[0].chapterNumber, 1);
 });
 
+test("qc-bar-read-v2 sub-floor axes require cited hits", () => {
+  const axes = greenAxes().filter((a) => a.axis !== "quiz_key_correctness");
+  const weak = axes.find((a) => a.axis === "example_coherence");
+  weak.score = 0.55;
+  weak.tier = "GENERATED_DRAFT";
+  weak.hits = [];
+  const result = validateSubmission(BOOK, ROUND, "bar", {
+    schemaVersion: "qc-bar-read-v2",
+    bookId: BOOK,
+    roundId: ROUND,
+    role: "bar",
+    reviewer: "codex-qc:bar",
+    chapterNumber: 1,
+    chapterId: `${BOOK}-ch01`,
+    contentHash: "abc123",
+    notes: "This chapter has weak examples but no specific cited hit.",
+    axes,
+  });
+  assert.equal(result.ok, false);
+  assert.match((result as any).errors.join("\n"), /score < 0\.6 requires at least one cited hit/);
+});
+
+test("qc-bar-read-v2 yellow-range axes can use notes without hits", () => {
+  const axes = greenAxes().filter((a) => a.axis !== "quiz_key_correctness");
+  const weak = axes.find((a) => a.axis === "example_coherence");
+  weak.score = 0.7;
+  weak.tier = "GENERATED_DRAFT";
+  weak.hits = [];
+  const result = validateSubmission(BOOK, ROUND, "bar", {
+    schemaVersion: "qc-bar-read-v2",
+    bookId: BOOK,
+    roundId: ROUND,
+    role: "bar",
+    reviewer: "codex-qc:bar",
+    chapterNumber: 1,
+    chapterId: `${BOOK}-ch01`,
+    contentHash: "abc123",
+    notes: "The examples are plausible but not yet publishable enough.",
+    axes,
+  });
+  assert.equal(result.ok, true, (result as any).errors?.join("\n"));
+});
+
 test("qc-confirm-read-v1 enforces finding policy by decision", () => {
   const publishableWithFinding = validateSubmission(BOOK, ROUND, "confirm", {
     schemaVersion: "qc-confirm-read-v1",

@@ -11,6 +11,9 @@ You are operating in one role only. Never mix roles.
 - Do not edit chapters during QC roles.
 - Do not QC a chapter you authored or repaired.
 - If a required command fails, report the failure; do not infer PASS.
+- No more than one repair loop may run without `qc-diagnose <bookId> --round <roundId>`.
+- After repair changes chapter content, do not resume the old QC round for
+  publishability; start a fresh `qc-auto "<bookId>" --pass` round.
 
 ## Writer role
 - Read STEP-2-WRITE-CHAPTERS.md.

@@ -73,7 +73,7 @@ test("qc orchestrator create writes round layout, packs, and role task cards", (
     assert.ok(existsSync(resolve(taskCardsDir(BOOK, ROUND), "00-sweep.md")));
     assert.ok(existsSync(resolve(taskCardsDir(BOOK, ROUND), "01-keyA.md")));
     assert.ok(existsSync(resolve(taskCardsDir(BOOK, ROUND), "bar", "ch01.md")));
-    assert.ok(existsSync(resolve(taskCardsDir(BOOK, ROUND), "confirm", "ch01.md")));
+    assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "confirm", "ch01.md")), false);
     assert.ok(existsSync(resolve(taskCardsDir(BOOK, ROUND), "majors.md")));
     const keyCard = readFileSync(resolve(taskCardsDir(BOOK, ROUND), "01-keyA.md"), "utf8");
     assert.match(keyCard, /Read ONLY the blind key packs and their sourceFacts/);

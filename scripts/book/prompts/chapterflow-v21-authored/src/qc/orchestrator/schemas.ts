@@ -314,6 +314,7 @@ function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw:
       if (!TIERS.includes(a?.tier)) errors.push(`axes[${i}].tier must be CORRUPTION, GENERATED_DRAFT, or PUBLISHABLE`);
       const hits = Array.isArray(a?.hits) ? a.hits.map((h: any, hi: number) => normalizeHit(h, errors, `axes[${i}].hits[${hi}]`)) : [];
       if (a?.tier === "CORRUPTION" && hits.length === 0) errors.push(`axes[${i}] CORRUPTION requires at least one cited hit`);
+      if (finiteNumber(a?.score) && a.score < 0.6 && hits.length === 0) errors.push(`axes[${i}] score < 0.6 requires at least one cited hit`);
       axes.push({ axis, score: Number(a?.score), tier: a?.tier, hits });
     }
   }
