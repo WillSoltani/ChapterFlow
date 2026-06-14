@@ -11,6 +11,10 @@ export class AuthError extends Error {
   }
 }
 
+// Identity is verified and read exclusively from the id_token cookie. The
+// access_token cookie set by the auth routes is NOT a credential here — nothing
+// reads it (it is reserved for a future resource-server / API Gateway
+// authorizer call). Do not switch this to access_token.
 const COOKIE_NAME = "id_token";
 
 type AuthConfig = {
