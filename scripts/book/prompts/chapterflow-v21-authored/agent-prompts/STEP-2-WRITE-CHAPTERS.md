@@ -163,6 +163,14 @@ ChapterFlow is for a WIDE audience. The rules:
 - FP-guard: precise technical terms from the source (PET scan, compound
   interest, attachment) are GOOD — explain them plainly once and keep them.
   Plain language is not dumbing down; it is the concept with the fog removed.
+- **This applies to EVERY reader-facing field, not just the breakdown** — quiz
+  prompts/choices/explanations, review-card fronts/backs, example scenarios,
+  the hook, keyTakeaway, and the implementation plan all get the plain-word and
+  short-sentence treatment. A deterministic gate (E7) now flags needlessly-fancy
+  words with their plain swap (utilize→use, leverage→use, facilitate→help,
+  optimize→improve, subsequent→later, "prior to"→before) and any sentence that
+  runs long (over 34 words in prose; over 24 words in a one-liner like the hook
+  or a memorable line). Default to a grade 7–9 reading level everywhere.
 
 
 **R3 — No fixed per-field skeleton across slots or chapters.** Compose each slot independently, from its own bit of source. A skeleton is the tell that you stopped writing and started filling blanks. The reader meets your fields in sequence; a rotating frame is obvious to them the second time they see it, and it teaches them that the book is generated, not authored. The diagnostic: if your six example scenarios share a clause, or your nine quiz prompts share an opener, or your card fronts share a stem with the concept swapped — you built a skeleton. Tear it out and write each from its own source moment.
