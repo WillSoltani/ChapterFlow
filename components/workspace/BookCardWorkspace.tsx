@@ -47,7 +47,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
   return (
     <Link href={`/book/library/${book.id}`} className="block flex-shrink-0">
     <motion.div
-      className="overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+      className="overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
       style={{
         width: 170,
         background: "var(--cf-surface-muted)",
@@ -143,7 +143,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
             {/* Progress bar */}
             <div
               className="mt-2 h-[3px] overflow-hidden rounded-full"
-              style={{ background: "var(--cf-surface-muted)" }}
+              style={{ background: "var(--cf-progress-track)" }}
               role="progressbar"
               aria-valuenow={(book as UserBookData).progressPercent}
               aria-valuemin={0}

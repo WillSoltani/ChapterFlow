@@ -88,7 +88,6 @@ export function CompactHeader({
               <DailyGoalRing
                 size={22}
                 progress={dailyProgress}
-                todayPulse={dailyProgress < 100}
               />
             </Link>
 
@@ -96,7 +95,7 @@ export function CompactHeader({
               href="/rewards"
               className="inline-flex items-center gap-1"
             >
-              <span aria-hidden="true" style={{ color: "var(--accent-amber)", fontSize: 14, filter: "drop-shadow(0 0 6px rgba(245,158,11,0.3))" }}>
+              <span aria-hidden="true" style={{ color: "var(--accent-amber)", fontSize: 14, filter: "drop-shadow(0 0 6px color-mix(in srgb, var(--accent-amber) 30%, transparent))" }}>
                 ◆
               </span>
               <span

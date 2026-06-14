@@ -47,11 +47,10 @@ export function NextAchievementCard({
           style={{
             width: 48,
             height: 48,
-            background:
-              "linear-gradient(135deg, rgba(139,92,246,0.15), rgba(245,158,11,0.12))",
+            background: "var(--accent-amber-glow)",
             border: "1px solid var(--cf-border-strong)",
             boxShadow:
-              "inset 0 1px 0 var(--cf-border-strong), 0 0 15px -4px rgba(245,158,11,0.25)",
+              "inset 0 1px 0 var(--cf-border-strong), 0 0 15px -4px var(--accent-amber-glow)",
           }}
         >
           <Trophy size={24} style={{ color: "var(--accent-gold)" }} aria-hidden="true" />
@@ -78,7 +77,7 @@ export function NextAchievementCard({
           <div className="mt-3">
             <div
               className="h-1 overflow-hidden rounded-full"
-              style={{ background: "var(--cf-surface-muted)" }}
+              style={{ background: "var(--cf-progress-track)" }}
               role="progressbar"
               aria-valuenow={progressCurrent}
               aria-valuemin={0}
@@ -87,8 +86,7 @@ export function NextAchievementCard({
               <motion.div
                 className="h-full rounded-full"
                 style={{
-                  background: "linear-gradient(90deg, var(--accent-amber), #D97706)",
-                  ...(progress > 80 ? { animation: "achievement-pulse-edge 2s ease-in-out infinite" } : {}),
+                  background: "linear-gradient(90deg, var(--accent-amber), var(--accent-gold))",
                 }}
                 initial={prefersReducedMotion ? undefined : { width: 0 }}
                 whileInView={{ width: `${progress}%` }}
@@ -112,7 +110,7 @@ export function NextAchievementCard({
 
       <Link
         href="/book/badges"
-        className="mt-4 block text-xs font-medium transition-colors hover:text-accent-violet focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+        className="mt-4 block text-xs font-medium transition-colors hover:text-(--cf-accent) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent)"
         style={{ color: "var(--cf-accent)" }}
       >
         View All Achievements →

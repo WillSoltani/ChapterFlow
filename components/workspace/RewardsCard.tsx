@@ -43,37 +43,23 @@ export function RewardsCard({
           : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
       }
     >
-      {/* Points balance with shine sweep */}
+      {/* Points balance */}
       <div className="flex items-center gap-2">
-        <span aria-hidden="true" style={{ color: "var(--accent-violet)", fontSize: 18, filter: "drop-shadow(0 0 8px rgba(139,92,246,0.4))" }}>
+        <span
+          aria-hidden="true"
+          style={{
+            color: "var(--accent-amber)",
+            fontSize: 18,
+            filter: "drop-shadow(0 0 8px color-mix(in srgb, var(--accent-amber) 40%, transparent))",
+          }}
+        >
           ◆
         </span>
-        <span className="relative inline-block overflow-hidden">
-          <span
-            className="font-(family-name:--font-jetbrains) text-2xl font-bold tabular-nums"
-            style={{ color: "var(--cf-text-1)" }}
-          >
-            {insightPoints.toLocaleString()}
-          </span>
-          {/* Shine sweep effect */}
-          {!prefersReducedMotion && (
-            <motion.span
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 48%, rgba(255,255,255,0.18) 52%, transparent 60%)",
-                mixBlendMode: "overlay",
-              }}
-              initial={{ x: "-120%" }}
-              animate={{ x: "220%" }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                repeatDelay: 5,
-                ease: "easeInOut",
-              }}
-            />
-          )}
+        <span
+          className="font-(family-name:--font-jetbrains) text-2xl font-bold tabular-nums"
+          style={{ color: "var(--cf-text-1)" }}
+        >
+          {insightPoints.toLocaleString()}
         </span>
         <span className="text-xs" style={{ color: "var(--cf-text-3)" }}>
           Insight Points
@@ -84,7 +70,7 @@ export function RewardsCard({
       <div className="mt-3">
         <div
           className="h-1.5 overflow-hidden rounded-full"
-          style={{ background: "var(--cf-surface-muted)" }}
+          style={{ background: "var(--cf-progress-track)" }}
           role="progressbar"
           aria-valuenow={insightPoints}
           aria-valuemin={0}
@@ -94,7 +80,7 @@ export function RewardsCard({
           <motion.div
             className="h-full rounded-full"
             style={{
-              background: "linear-gradient(90deg, var(--accent-violet), var(--accent-cyan))",
+              background: "linear-gradient(90deg, var(--cf-accent), var(--cf-accent-strong))",
             }}
             initial={prefersReducedMotion ? undefined : { width: 0 }}
             whileInView={{ width: `${progress}%` }}
@@ -136,7 +122,7 @@ export function RewardsCard({
       {/* Link to rewards page */}
       <Link
         href="/rewards"
-        className="mt-3 block text-[11px] transition-colors hover:text-accent-violet"
+        className="mt-3 block text-[11px] transition-colors hover:text-(--cf-accent)"
         style={{ color: "var(--cf-text-soft)" }}
       >
         View all rewards →

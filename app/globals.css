@@ -2,6 +2,16 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
+/*
+ * Exclude build/CI tooling from Tailwind's automatic source detection. These
+ * files aren't rendered UI, but the style-drift guard (scripts/ci/
+ * scan-style-drift.mjs) holds intentional class-like fixture strings such as
+ * `[color:var()]`. Auto-detection would otherwise extract those and emit
+ * invalid utilities (e.g. `.[color:var()] { color: var() }`), which Turbopack's
+ * dev CSS parser rejects — 500-ing every page under `npm run dev`.
+ */
+@source not "../scripts";
+
 /* OpenDyslexic — accessibility font for dyslexia support */
 @font-face {
   font-family: "OpenDyslexic";

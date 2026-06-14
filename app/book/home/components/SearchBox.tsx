@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, type KeyboardEventHandler } from "react";
 import { Search } from "lucide-react";
 
 type SearchBoxProps = {
@@ -8,6 +8,11 @@ type SearchBoxProps = {
   onChange: (value: string) => void;
   placeholder?: string;
   onFocus?: () => void;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  /** combobox a11y — set when a results listbox is wired up. */
+  expanded?: boolean;
+  controlsId?: string;
+  activeDescendantId?: string;
 };
 
 export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(
@@ -17,6 +22,10 @@ export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(
       onChange,
       placeholder = "Search books... (press / to focus)",
       onFocus,
+      onKeyDown,
+      expanded,
+      controlsId,
+      activeDescendantId,
     },
     ref
   ) {
@@ -29,9 +38,15 @@ export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(
           value={value}
           onChange={(event) => onChange(event.target.value)}
           onFocus={onFocus}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
           className="cf-input w-full rounded-2xl px-10 py-2.5 text-sm"
           aria-label="Search books"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded={expanded ?? false}
+          aria-controls={expanded ? controlsId : undefined}
+          aria-activedescendant={expanded ? activeDescendantId : undefined}
         />
       </label>
     );

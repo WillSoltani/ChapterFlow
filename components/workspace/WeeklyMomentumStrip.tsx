@@ -9,7 +9,13 @@ interface WeeklyMomentumStripProps {
   streakCount: number;
 }
 
-const dayLabels = ["M", "T", "W", "T", "F", "S", "S"];
+// Monday-based weekday letters (Mon=0 … Sun=6).
+const MON_LETTERS = ["M", "T", "W", "T", "F", "S", "S"];
+
+/** Monday-based weekday letter for the day `daysAgo` before today (todayWeekday is Mon=0…Sun=6). */
+function weekdayLabel(todayWeekday: number, daysAgo: number): string {
+  return MON_LETTERS[((todayWeekday - daysAgo) % 7 + 7) % 7];
+}
 
 export function WeeklyMomentumStrip({
   weeklyActivity,
@@ -18,7 +24,11 @@ export function WeeklyMomentumStrip({
   streakCount,
 }: WeeklyMomentumStripProps) {
   const prefersReducedMotion = useReducedMotion();
-  const today = (new Date().getDay() + 6) % 7; // Mon=0, Sun=6
+  // weeklyActivity is a rolling 7-day window: index 0 = 6 days ago … last = today.
+  // Each dot is labeled with its TRUE weekday and today is the rightmost dot, so
+  // today's activity always sits under today's label. (The old fixed M–S strip
+  // mislabeled the dots six days out of seven.)
+  const todayWeekday = (new Date().getDay() + 6) % 7; // Mon=0 … Sun=6
 
   // Build dynamic stats — only show non-zero
   const stats: { text: string; highlight?: string }[] = [];
@@ -47,9 +57,10 @@ export function WeeklyMomentumStrip({
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         {/* 7-day heatmap */}
         <div className="flex items-center gap-3">
-          {dayLabels.map((label, i) => {
-            const isActive = weeklyActivity[i];
-            const isToday = i === today;
+          {weeklyActivity.map((isActive, i) => {
+            const daysAgo = weeklyActivity.length - 1 - i;
+            const isToday = daysAgo === 0;
+            const label = weekdayLabel(todayWeekday, daysAgo);
             return (
               <motion.div
                 key={i}
@@ -87,18 +98,10 @@ export function WeeklyMomentumStrip({
                         ? "2px solid var(--accent-cyan)"
                         : "none",
                       boxShadow: isActive
-                        ? "0 0 8px 2px rgba(16, 185, 129, 0.55)"
+                        ? "0 0 8px 2px color-mix(in srgb, var(--accent-emerald) 40%, transparent)"
                         : "none",
                     }}
                   />
-                  {isToday && !isActive && !prefersReducedMotion && (
-                    <motion.div
-                      className="absolute inset-0 rounded-full"
-                      style={{ border: "1px solid rgba(34,211,238,0.4)" }}
-                      animate={{ scale: [1, 1.6, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  )}
                   {isToday && isActive && (
                     <div
                       className="absolute -bottom-1 left-1/2 h-[2px] w-[2px] -translate-x-1/2 rounded-full"
