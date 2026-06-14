@@ -132,14 +132,23 @@ export type BookPreferencesState = {
     analyticsParticipation: boolean;
     personalizedRecommendations: boolean;
     saveReadingHistory: boolean;
-    saveQuizHistory: boolean;
-    saveNotes: boolean;
+    // NOTE: saveQuizHistory / saveNotes were declared here but had no UI control
+    // and no server-side gating anywhere (unlike saveReadingHistory, which IS
+    // honored in the reading-sessions/dashboard/export routes). They were dead
+    // schema surface implying privacy consents that did not exist, so they were
+    // removed until the behavior is actually implemented. See P17.
   };
   extended: ExtendedSettings;
   whatsNewSeenAt: string | null;
 };
 
 const STORAGE_KEY = "book-accelerator:preferences:v2";
+// Tracks the server `updatedAt` (ISO string) of the last settings snapshot this
+// device successfully reconciled with. Used to decide, on load, whether the
+// server copy is newer than what this device last saw — so settings changed on
+// another device are no longer silently discarded just because this device has
+// existing localStorage. See H27.
+const LAST_SYNCED_KEY = "book-accelerator:preferences:last-synced-at:v2";
 const LEGACY_STORAGE_KEY = "book-accelerator:preferences:v1";
 const LEGACY_EXT_STORAGE_KEY = "book-accelerator:settings-ext:v1";
 const LEGACY_ONBOARDING_KEY = "book-accelerator:onboarding:v5";
@@ -241,8 +250,6 @@ export const defaultBookPreferencesState: BookPreferencesState = {
     analyticsParticipation: false,
     personalizedRecommendations: true,
     saveReadingHistory: true,
-    saveQuizHistory: true,
-    saveNotes: true,
   },
   extended: defaultExtendedSettings,
   whatsNewSeenAt: null,
@@ -735,14 +742,6 @@ function parseStored(raw: string | null): BookPreferencesState | null {
           privacy.saveReadingHistory,
           defaultBookPreferencesState.privacy.saveReadingHistory
         ),
-        saveQuizHistory: parseBoolean(
-          privacy.saveQuizHistory,
-          defaultBookPreferencesState.privacy.saveQuizHistory
-        ),
-        saveNotes: parseBoolean(
-          privacy.saveNotes,
-          defaultBookPreferencesState.privacy.saveNotes
-        ),
       },
       extended: parseExtendedSettings(ext),
       whatsNewSeenAt:
@@ -805,14 +804,20 @@ export function useBookPreferences() {
   // Prevents write-back on the state change caused by loading server settings.
   const skipNextServerSave = useRef(false);
   // Tracks whether localStorage had saved preferences on mount.
-  // If true, server data should NOT overwrite local state.
+  // If true, server data is applied only when it is strictly newer than the
+  // snapshot this device last reconciled with (see lastSyncedAt / H27).
   const localStorageHadData = useRef(false);
+  // The server `updatedAt` this device last saw, read from LAST_SYNCED_KEY on
+  // mount. Lets the load effect tell "server has changes from another device"
+  // (apply) apart from "server is just echoing our own last save" (ignore).
+  const lastSyncedAt = useRef<string | null>(null);
 
   useEffect(() => {
     const storedRaw = window.localStorage.getItem(STORAGE_KEY);
     const legacyRaw = window.localStorage.getItem(LEGACY_STORAGE_KEY);
     const hadSaved = storedRaw !== null || legacyRaw !== null;
     localStorageHadData.current = hadSaved;
+    lastSyncedAt.current = window.localStorage.getItem(LAST_SYNCED_KEY);
 
     let nextState =
       parseStored(storedRaw) ??
@@ -879,13 +884,37 @@ export function useBookPreferences() {
 
   useEffect(() => {
     let mounted = true;
-    fetchBookJson<{ settings: Record<string, unknown> | null }>("/app/api/book/me/settings")
+    fetchBookJson<{ settings: Record<string, unknown> | null; updatedAt: string | null }>(
+      "/app/api/book/me/settings"
+    )
       .then((payload) => {
         if (!mounted) return;
-        // Only apply server data if this device has no saved preferences
-        // (fresh device / first login). Otherwise localStorage is the source
-        // of truth and changes will sync to the server on next state change.
-        if (payload.settings && !localStorageHadData.current) {
+        if (!payload.settings) return;
+
+        // Decide whether the server copy should overwrite local state. Two cases
+        // apply it (see H27):
+        //   1. This device has no saved preferences (fresh device / first login).
+        //   2. The server item is strictly newer than the snapshot this device
+        //      last reconciled with — i.e. it carries changes made on another
+        //      device that this stale device must not clobber on its next save.
+        // Comparing payload.updatedAt against the locally-remembered last-synced
+        // timestamp distinguishes "another device wrote newer values" from the
+        // server merely echoing this device's own last save.
+        const serverUpdatedAt = payload.updatedAt;
+        const serverIsNewer =
+          typeof serverUpdatedAt === "string" &&
+          (lastSyncedAt.current === null || serverUpdatedAt > lastSyncedAt.current);
+        const shouldApplyServer = !localStorageHadData.current || serverIsNewer;
+
+        // Always record what we have now seen from the server so the save effect
+        // and subsequent loads can reconcile correctly, regardless of whether we
+        // apply the server copy this time.
+        if (typeof serverUpdatedAt === "string") {
+          lastSyncedAt.current = serverUpdatedAt;
+          window.localStorage.setItem(LAST_SYNCED_KEY, serverUpdatedAt);
+        }
+
+        if (shouldApplyServer) {
           skipNextServerSave.current = true;
           // Hydrate the reader's tone / chapter-start order / daily goal from the
           // onboarding picks the server persisted (settings.onboarding + hoisted
@@ -910,18 +939,62 @@ export function useBookPreferences() {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [hydrated, state]);
 
+  // Single source of truth for the document theme. The scheduled-dark-mode
+  // evaluation is folded INTO this effect (instead of a second, independent
+  // classList toggle) so the two no longer race: every appearance change and
+  // every schedule tick re-applies the base theme first, then lets the schedule
+  // override `.dark` only when the user is not already in permanent dark mode.
+  // This also reverts to the base (light) theme at the window's end. See M44.
+  //
+  // NOTE: this effect only runs where useBookPreferences is mounted (Settings +
+  // Chapter Reader). Applying the schedule on every route would require a global
+  // theme client (and folding the schedule into app/_lib/document-theme.ts /
+  // its bootstrap script) — both outside this task's editable file set, so the
+  // app-wide coverage gap is flagged in the report rather than fixed here.
   useEffect(() => {
     if (!hydrated) return;
 
-    applyDocumentTheme({
-      theme: state.appearance.theme,
-      accentColor: state.appearance.accentColor,
-      interfaceDensity: state.appearance.interfaceDensity,
-      reducedMotion: state.appearance.reducedMotion,
-      highContrastMode: state.accessibility.highContrastMode,
-      focusRingStrength: state.accessibility.focusRingStrength,
-    });
+    const applyBaseTheme = () => {
+      applyDocumentTheme({
+        theme: state.appearance.theme,
+        accentColor: state.appearance.accentColor,
+        interfaceDensity: state.appearance.interfaceDensity,
+        reducedMotion: state.appearance.reducedMotion,
+        highContrastMode: state.accessibility.highContrastMode,
+        focusRingStrength: state.accessibility.focusRingStrength,
+      });
+    };
+
+    const scheduleActive =
+      state.extended.scheduledDarkMode && state.appearance.theme !== "dark";
+
+    const applySchedule = () => {
+      const now = new Date();
+      const mins = now.getHours() * 60 + now.getMinutes();
+      const [startH, startM] = state.extended.darkModeFrom.split(":").map(Number);
+      const [endH, endM] = state.extended.darkModeTo.split(":").map(Number);
+      const start = startH * 60 + startM;
+      const end = endH * 60 + endM;
+      const isDark = start > end ? mins >= start || mins < end : mins >= start && mins < end;
+      const root = document.documentElement;
+      root.classList.toggle("dark", isDark);
+      root.style.colorScheme = isDark ? "dark" : "light";
+    };
+
+    const evaluate = () => {
+      // Re-apply the base theme every tick so the schedule reverts cleanly to
+      // the user's chosen theme at the window boundary instead of getting stuck
+      // dark once the window ends.
+      applyBaseTheme();
+      if (scheduleActive) applySchedule();
+    };
+
+    evaluate();
     window.dispatchEvent(new Event("book-theme-change"));
+
+    if (!scheduleActive) return;
+    const interval = window.setInterval(evaluate, 60000);
+    return () => window.clearInterval(interval);
   }, [
     hydrated,
     state.appearance.theme,
@@ -930,6 +1003,9 @@ export function useBookPreferences() {
     state.appearance.reducedMotion,
     state.accessibility.highContrastMode,
     state.accessibility.focusRingStrength,
+    state.extended.scheduledDarkMode,
+    state.extended.darkModeFrom,
+    state.extended.darkModeTo,
   ]);
 
   // Apply CSS variables for extended reading settings
@@ -940,7 +1016,11 @@ export function useBookPreferences() {
 
     const fontMap: Record<string, string> = {
       "serif": '"Georgia", "Times New Roman", serif',
-      "sans-serif": '"Inter", "system-ui", sans-serif',
+      // Map the Sans-Serif option (and the default fallback below) to the
+      // already-loaded brand body font so the reading surface matches the rest
+      // of the app. Inter was never loaded, so it always fell back to system-ui.
+      // See L85.
+      "sans-serif": "var(--font-jakarta), system-ui, sans-serif",
       "opendyslexic": '"OpenDyslexic", sans-serif',
     };
     root.style.setProperty("--reading-font-family", fontMap[ext.fontFamily] || fontMap["sans-serif"]);
@@ -962,29 +1042,9 @@ export function useBookPreferences() {
     state.extended.colorBlindMode,
   ]);
 
-  // Scheduled dark mode
-  useEffect(() => {
-    if (!hydrated || !state.extended.scheduledDarkMode) return;
-    const checkTime = () => {
-      const now = new Date();
-      const mins = now.getHours() * 60 + now.getMinutes();
-      const [startH, startM] = state.extended.darkModeFrom.split(":").map(Number);
-      const [endH, endM] = state.extended.darkModeTo.split(":").map(Number);
-      const start = startH * 60 + startM;
-      const end = endH * 60 + endM;
-      const isDark = start > end ? mins >= start || mins < end : mins >= start && mins < end;
-      document.documentElement.classList.toggle("dark", isDark);
-      document.documentElement.style.colorScheme = isDark ? "dark" : "light";
-    };
-    checkTime();
-    const interval = setInterval(checkTime, 60000);
-    return () => clearInterval(interval);
-  }, [
-    hydrated,
-    state.extended.scheduledDarkMode,
-    state.extended.darkModeFrom,
-    state.extended.darkModeTo,
-  ]);
+  // Scheduled dark mode is now evaluated inside the consolidated theme effect
+  // above (folded into the same source that owns `.dark`) so the two no longer
+  // race. See M44.
 
   useEffect(() => {
     if (!hydrated) return;
@@ -993,10 +1053,23 @@ export function useBookPreferences() {
       return;
     }
     const timeout = window.setTimeout(() => {
-      fetchBookJson("/app/api/book/me/settings", {
-        method: "PATCH",
-        body: JSON.stringify({ settings: state }),
-      }).catch((err) => console.error("[settings] server save failed:", err));
+      fetchBookJson<{ settings: Record<string, unknown>; updatedAt: string | null }>(
+        "/app/api/book/me/settings",
+        {
+          method: "PATCH",
+          body: JSON.stringify({ settings: state }),
+        }
+      )
+        .then((payload) => {
+          // Remember the server timestamp this save produced so the next load
+          // recognizes the server echoing our own write (and does not re-apply
+          // it as if it were a remote change). See H27.
+          if (typeof payload.updatedAt === "string") {
+            lastSyncedAt.current = payload.updatedAt;
+            window.localStorage.setItem(LAST_SYNCED_KEY, payload.updatedAt);
+          }
+        })
+        .catch((err) => console.error("[settings] server save failed:", err));
     }, 500);
     return () => window.clearTimeout(timeout);
   }, [hydrated, state]);
