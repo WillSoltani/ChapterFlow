@@ -42,7 +42,6 @@ type ExportData = {
   badges: Array<Record<string, unknown>>;
   flowPoints: { balance: number; ledger: Array<Record<string, unknown>> };
   consent: { termsAcceptedAt: string | null; termsVersion: string | null };
-  analyticsAndLocation: string;
   analytics: {
     snapshot: Record<string, unknown> | null;
     recentEvents: Array<Record<string, unknown>>;
@@ -372,8 +371,6 @@ export async function GET(req: Request) {
         termsVersion:
           typeof rawProfile.termsVersion === "string" ? rawProfile.termsVersion : null,
       },
-      analyticsAndLocation:
-        "Usage analytics and approximate-location telemetry (collected only if you enabled 'Share Usage Analytics') are included below under \"analytics\": \"snapshot\" holds your approximate location/device and \"recentEvents\" your most recent activity (up to the latest 200 events). For the full event history beyond those 200, contact support@chapterflow.ca.",
       entitlement: entitlement
         ? {
             plan: entitlement.plan,
@@ -718,7 +715,12 @@ function exportToMarkdown(data: ExportData): string {
       lines.push("");
     }
     if (data.analytics.recentEvents.length > 0) {
-      lines.push(`**Recent events:** ${data.analytics.recentEvents.length} (most recent first)`, "");
+      lines.push(
+        `**Recent events:** ${data.analytics.recentEvents.length} (most recent first; up to the latest 200)`,
+        "",
+        "For your full event history beyond the most recent 200 events, email support@chapterflow.ca.",
+        ""
+      );
     }
   }
 
