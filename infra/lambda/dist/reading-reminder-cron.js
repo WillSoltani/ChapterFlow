@@ -249,6 +249,10 @@ async function processStreakAtRisk(ddb2, ses2, tableName2, config, userItems) {
       skipped++;
       continue;
     }
+    if (item.settings?.extended?.streakMode === "off") {
+      skipped++;
+      continue;
+    }
     const userId = item.PK.replace("BOOKUSER#", "");
     const streakResult = await ddb2.send(
       new import_lib_dynamodb2.GetCommand({
