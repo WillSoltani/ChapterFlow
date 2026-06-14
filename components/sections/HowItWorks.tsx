@@ -100,9 +100,14 @@ export function HowItWorks() {
       key={step.number}
       className={`group relative overflow-hidden rounded-xl border bg-(--bg-glass) backdrop-blur-[16px] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-(--border-medium) ${
         step.number === "01"
-          ? "border-(--accent-teal)/30 shadow-[0_0_24px_rgba(34,211,238,0.08)]"
+          ? "border-(--accent-teal)/30"
           : "border-(--border-subtle)"
       }`}
+      style={
+        step.number === "01"
+          ? { boxShadow: "0 0 24px color-mix(in srgb, var(--accent-cyan) 8%, transparent)" }
+          : undefined
+      }
     >
       {/* Watermark number */}
       <span

@@ -8,11 +8,24 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CounterAnimation } from "@/components/ui/CounterAnimation";
 import { BookCover } from "@/app/book/components/BookCover";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { track } from "@/lib/analytics";
+import { useAuthStatus } from "@/components/auth/useAuthStatus";
 
-const BOOK_COUNT = BOOKS_CATALOG.length;
+// Source the count from the shared catalog-stats module (single source of truth).
+const BOOK_COUNT = CATALOG_BOOK_COUNT;
 const FREE_TO_START_COUNT: number = 2;
+
+// Preserve intent through the login wall: a logged-out reader who clicks a book
+// lands on THAT book after auth (not the generic dashboard). Logged-in readers
+// go straight there.
+function bookHref(id: string, loggedIn: boolean | null): string {
+  const target = `/book/library/${id}`;
+  return loggedIn === true
+    ? target
+    : `/auth/login?returnTo=${encodeURIComponent(target)}`;
+}
 
 // Derive ordered categories from full catalog (by count, descending)
 const ALL_CATEGORY_COUNTS = (() => {
@@ -37,6 +50,7 @@ const STATS = [
 
 export function Library() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const { loggedIn } = useAuthStatus();
 
   // Show up to 8 books — from the full catalog filtered by category
   const filteredBooks =
@@ -81,12 +95,12 @@ export function Library() {
                 onClick={() => track("browse_library_click", { source: "landing_library" })}
                 className="inline-flex items-center gap-1.5 border rounded-lg px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 style={{
-                  borderColor: "rgba(34,211,238,0.35)",
+                  borderColor: "color-mix(in srgb, var(--accent-cyan) 35%, transparent)",
                   color: "var(--text-heading)",
                   fontFamily: "var(--font-display)",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 16px rgba(34,211,238,0.12)";
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "var(--shadow-glow-cyan)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
@@ -167,12 +181,12 @@ export function Library() {
                       whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.2 } }}
                     >
                       <Link
-                        href={`/book/library/${book.id}`}
+                        href={bookHref(book.id, loggedIn)}
                         aria-label={`Open ${book.title} by ${book.author}`}
                         onClick={() => track("book_card_click", { source: "landing_library", bookId: book.id })}
                         className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded-lg"
                       >
-                        <div className="overflow-hidden rounded-lg shadow-shadow-elevated group-hover:shadow-[0_0_20px_rgba(34,211,238,0.18)] transition-shadow duration-300">
+                        <div className="overflow-hidden rounded-lg shadow-shadow-elevated group-hover:shadow-[var(--shadow-glow-cyan)] transition-shadow duration-300">
                           <BookCover
                             bookId={book.id}
                             title={book.title}

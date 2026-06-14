@@ -18,7 +18,7 @@ export default function ComingSoonPage() {
             left: -150,
             width: 500,
             height: 500,
-            background: "radial-gradient(circle, rgba(124,107,240,0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 8%, transparent) 0%, transparent 70%)",
           }}
         />
         <div
@@ -28,7 +28,7 @@ export default function ComingSoonPage() {
             right: -100,
             width: 400,
             height: 400,
-            background: "radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)",
+            background: "radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 6%, transparent) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -52,12 +52,12 @@ export default function ComingSoonPage() {
             marginBottom: 24,
           }}
         >
-          <Construction size={32} style={{ color: "#E8B931" }} />
+          <Construction size={32} style={{ color: "var(--accent-amber)" }} />
         </div>
 
         <h1
           style={{
-            fontFamily: "var(--font-sora, sans-serif)",
+            fontFamily: "var(--font-display)",
             fontSize: 28,
             fontWeight: 600,
             color: "var(--text-heading)",
@@ -68,7 +68,7 @@ export default function ComingSoonPage() {
 
         <p
           style={{
-            fontFamily: "var(--font-dm-sans, sans-serif)",
+            fontFamily: "var(--font-body)",
             fontSize: 16,
             color: "var(--text-secondary)",
             marginTop: 8,
@@ -87,7 +87,7 @@ export default function ComingSoonPage() {
             display: "flex",
             alignItems: "center",
             gap: 8,
-            fontFamily: "var(--font-dm-sans, sans-serif)",
+            fontFamily: "var(--font-body)",
             fontSize: 14,
             color: "var(--text-secondary)",
             background: "none",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface BookRequestFormProps {
@@ -24,6 +24,12 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  // Prefill the title when a parent supplies one (e.g. the "Request this book"
+  // shortcut from a zero-results search). Only runs when initialTitle changes.
+  useEffect(() => {
+    if (initialTitle) setBookTitle(initialTitle);
+  }, [initialTitle]);
 
   const isFormValid = bookTitle.trim().length >= 2 && isValidEmail(email.trim());
 
@@ -58,16 +64,23 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
     if (!isFormValid) return;
 
+    const payload = {
+      title: bookTitle.trim(),
+      author: authorName.trim(),
+      email: email.trim(),
+    };
+
     setFormState("submitting");
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      setFormState("success");
-      onSuccess({
-        title: bookTitle.trim(),
-        author: authorName.trim(),
-        email: email.trim(),
+      const res = await fetch("/api/book-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
+      if (!res.ok) throw new Error(`request failed: ${res.status}`);
+      setFormState("success");
+      onSuccess(payload);
     } catch {
       setFormState("error");
     }
@@ -106,8 +119,8 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           onFocus={(e) => {
             e.currentTarget.style.borderColor = errors.title && touched.title ? "var(--accent-rose)" : "var(--accent-blue)";
             e.currentTarget.style.boxShadow = errors.title && touched.title
-              ? "0 0 0 3px rgba(244,63,94,0.15)"
-              : "0 0 0 3px rgba(34,211,238,0.15)";
+              ? "0 0 0 3px var(--accent-rose-glow)"
+              : "0 0 0 3px var(--accent-cyan-glow)";
           }}
           onMouseLeave={() => {}}
           onBlurCapture={(e) => {
@@ -133,7 +146,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           style={inputStyle(false)}
           onFocus={(e) => {
             e.currentTarget.style.borderColor = "var(--accent-blue)";
-            e.currentTarget.style.boxShadow = "0 0 0 3px rgba(34,211,238,0.15)";
+            e.currentTarget.style.boxShadow = "0 0 0 3px var(--accent-cyan-glow)";
           }}
           onBlurCapture={(e) => {
             e.currentTarget.style.borderColor = "var(--border-subtle)";
@@ -152,14 +165,14 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
             if (touched.email) validateField("email", e.target.value);
           }}
           onBlur={() => handleBlur("email", email)}
-          placeholder="Your email, we will notify you when it is ready"
+          placeholder="Your email (so we can reach you)"
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.email && !!touched.email)}
           onFocus={(e) => {
             e.currentTarget.style.borderColor = errors.email && touched.email ? "var(--accent-rose)" : "var(--accent-blue)";
             e.currentTarget.style.boxShadow = errors.email && touched.email
-              ? "0 0 0 3px rgba(244,63,94,0.15)"
-              : "0 0 0 3px rgba(34,211,238,0.15)";
+              ? "0 0 0 3px var(--accent-rose-glow)"
+              : "0 0 0 3px var(--accent-cyan-glow)";
           }}
           onBlurCapture={(e) => {
             e.currentTarget.style.borderColor = errors.email && touched.email ? "var(--accent-rose)" : "var(--border-subtle)";
@@ -177,9 +190,10 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
       <motion.button
         type="submit"
         disabled={!isFormValid || formState === "submitting"}
-        className="w-full h-12 rounded-lg text-[15px] font-semibold text-white cursor-pointer transition-all duration-200 flex items-center justify-center gap-2"
+        className="w-full h-12 rounded-lg text-[15px] font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
         style={{
-          background: "var(--accent-green)",
+          background: "var(--accent-teal)",
+          color: "var(--primary-foreground)",
           opacity: !isFormValid || formState === "submitting" ? 0.5 : 1,
           cursor: !isFormValid || formState === "submitting" ? "not-allowed" : "pointer",
           fontFamily: "var(--font-body)",
@@ -188,7 +202,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           isFormValid && formState !== "submitting"
             ? {
                 scale: 1.02,
-                boxShadow: "0 0 20px rgba(34,197,94,0.3)",
+                boxShadow: "var(--shadow-glow-cyan)",
               }
             : {}
         }
@@ -208,7 +222,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
                 cx="8"
                 cy="8"
                 r="6"
-                stroke="white"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeDasharray="28"
@@ -231,12 +245,23 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
         )}
       </motion.button>
 
-      {/* Social proof */}
+      {/* Error state — shown only when the submission actually failed */}
+      {formState === "error" && (
+        <p
+          className="text-[12px] text-center mt-1"
+          style={{ color: "var(--accent-rose)" }}
+          role="alert"
+        >
+          Something went wrong sending your request. Please try again.
+        </p>
+      )}
+
+      {/* Honest microcopy — a statement of intent, not a fabricated metric */}
       <p
         className="text-[12px] text-center mt-2"
         style={{ color: "var(--text-muted)" }}
       >
-        We have added 12 books from user requests this month.
+        We read every request and build the most-asked-for titles first.
       </p>
     </form>
   );

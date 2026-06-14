@@ -11,6 +11,7 @@ import { Problem } from "@/components/sections/Problem";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { InteractiveDemo } from "@/components/sections/InteractiveDemo";
 import { Library } from "@/components/sections/Library";
+import { SocialProof } from "@/components/sections/SocialProof";
 import { Pricing } from "@/components/sections/Pricing";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
@@ -134,6 +135,7 @@ export default function Home() {
         <HowItWorks />
         <InteractiveDemo />
         <Library />
+        <SocialProof />
         <Pricing />
         <FinalCTA />
       </main>
