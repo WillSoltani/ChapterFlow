@@ -100,7 +100,7 @@ export default function PrivacyPolicyPage() {
             <li><strong style={{ color: "var(--text-heading)" }}>Usage analytics:</strong> Off by default. Turn usage analytics (including approximate-location collection) on or off at any time.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Personalized recommendations:</strong> Toggle personalized book and chapter recommendations.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Reading history:</strong> Choose whether your daily reading activity is tracked.</li>
-            <li><strong style={{ color: "var(--text-heading)" }}>Data export:</strong> Download all your data (reading history, notes, bookmarks, quiz results, badges, and more) in JSON, CSV, or Markdown format.</li>
+            <li><strong style={{ color: "var(--text-heading)" }}>Data export:</strong> Download all your data — reading history, notes, bookmarks, quiz results, badges, and any usage analytics and approximate-location telemetry we hold (collected while Share Usage Analytics is enabled) — in JSON, CSV, or Markdown format (the JSON and Markdown exports include the usage-analytics detail).</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Account deactivation:</strong> Temporarily disable your account from Settings. Your data is preserved and you can reactivate by signing back in.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Account deletion:</strong> Permanently delete your account from Settings. You can also contact us at <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.</li>
           </ul>
