@@ -42,13 +42,13 @@ export function MobileStickyBar() {
     track("cta_click", { source: "mobile_sticky_bar_dismiss" });
   };
 
-  if (prefersReducedMotion && dismissed) return null;
+  const shown = visible && !dismissed && !pricingInView;
 
   return (
     <motion.div
-      initial={prefersReducedMotion ? { y: 0 } : { y: 100 }}
-      animate={{ y: prefersReducedMotion ? 0 : (visible && !dismissed && !pricingInView ? 0 : 100) }}
-      transition={{ duration: 0.3 }}
+      initial={{ y: 100 }}
+      animate={{ y: shown ? 0 : 100 }}
+      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }}
       className="fixed bottom-0 inset-x-0 z-40 md:hidden"
       style={{
         background: "color-mix(in srgb, var(--bg-base) 90%, transparent)",
