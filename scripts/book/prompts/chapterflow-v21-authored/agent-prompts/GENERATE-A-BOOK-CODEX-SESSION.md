@@ -60,13 +60,27 @@ into the authoring context: use ONLY your chapter's reserved-name row, and never
 the banned phrases (house tics, salting connectives, cross-book signature tells).
 Names are American/Canadian and unique WITHIN this book; they may repeat in other
 books — that's fine. This is the same prevention pattern as the voice bible — set it
-before authoring, not in repair.
+before authoring, not in repair. The guardrails sheet is REQUIRED, not optional —
+if `state/guardrails/<bookId>.guardrails.md` does not exist, generate it before
+writing any chapter.
+
+**Author ONE chapter at a time, each from ITS OWN source notes — never batch-write
+all chapters from a shared scaffold.** The deadliest failure mode here (a hard
+blocker: AS5–AS11, C12) is cross-chapter templating — writing the quiz
+prompts/distractors/correct-answers, review cards, and examples as ONE skeleton
+with a noun swapped per chapter (e.g. every chapter's answer is "Keep the reply
+short, tied to ___"). Each chapter teaches a DIFFERENT move, so its quiz answers,
+cards, and examples MUST be composed from THAT chapter's specific concept/hardEdge
+— not adapted from a sibling or a template. The gate compares every chapter against
+its siblings; if you reuse a sentence shape across chapters it WILL block. If you
+catch yourself swapping a word into a reused shape, stop and rewrite from the source.
 
 ## Rules
 - Let `book-status`'s `next:` line decide the next step — don't guess the order —
   EXCEPT at `phase: qc`: do NOT run the printed `qc-auto` command here; stop and hand
   off to prompt 2 (the author never grades its own work).
 - One chapter author = one reserved-name row. Never reuse a name across CHAPTERS of the same book; names MAY repeat across different books — that's fine.
+- Author each chapter from its OWN source, one at a time, with the guardrails sheet pasted in. NEVER batch-write all chapters from a shared scaffold, and never make a quiz answer / card / example a skeleton with one noun swapped per chapter — that is cross-chapter templating, and AS5–AS11 will block the whole book.
 - Do not QC or publish in THIS session — QC must run in a separate fresh session
   (the author never grades its own work). Stop at `phase: qc` and hand off to prompt 2.
 - No editing chapters to dodge a gate; fix the real field and re-run the gate.
