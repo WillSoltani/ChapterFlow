@@ -101,7 +101,16 @@ export function loadBookChapters(bookId: string): ChapterV21[] {
   return readdirSync(CHAPTERS_DIR)
     .filter((f) => isSiblingFile(f, bookId))
     .sort()
-    .map((f) => JSON.parse(readFileSync(resolve(CHAPTERS_DIR, f), "utf8")) as ChapterV21)
+    .map((f) => {
+      // Per-file parse so a single corrupt/half-written chapter (the documented
+      // agent metadata-drift failure mode) names itself, instead of surfacing a
+      // path-less SyntaxError from deep inside a QC/finalize call.
+      try {
+        return JSON.parse(readFileSync(resolve(CHAPTERS_DIR, f), "utf8")) as ChapterV21;
+      } catch (err) {
+        throw new Error(`Failed to parse chapter file ${resolve(CHAPTERS_DIR, f)}: ${(err as Error).message}`);
+      }
+    })
     .sort((a, b) => a.number - b.number);
 }
 

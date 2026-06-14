@@ -27,8 +27,10 @@ import {
   roundRecordPath,
   submissionsDir,
 } from "./artifacts.js";
-import { effectiveLedger, ledgerStatusSummary } from "./ledger.js";
-import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
+import { appendFindings, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
+import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
+import { writeRepairBrief } from "./repairBrief.js";
+import { currentSessionId } from "../sessionProvenance.js";
 import { validateSubmission, type SubmissionRole, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
 
 export type EvidenceStatus =
@@ -170,6 +172,7 @@ function attestationForDecision(chapter: ChapterV21, decision: EvidenceChapterDe
     hashVersion: "v2",
     reviewer: `codex-qc:auto:${decision.roundId}`,
     reviewedAt: new Date().toISOString(),
+    reviewerSessionId: currentSessionId(),
     roundId: decision.roundId,
     roundRole: publishable ? "confirm" : "attest",
     dimensions: {
@@ -214,6 +217,23 @@ function unresolvedMajorsForChapter(unresolved: MajorFindingSnapshot[], chapterN
   };
 }
 
+function barHasUnactionableSubfloor(bar: NonNullable<ReturnType<typeof loadBarReadArtifact>> | null): boolean {
+  return !!bar && bar.axes.some((axis) => axis.score < 0.6 && axis.hits.length === 0);
+}
+
+function confirmHasUnactionableDecision(confirm: NonNullable<ReturnType<typeof loadConfirmReadArtifact>> | null): boolean {
+  return !!confirm && (confirm.decision === "REVISE" || confirm.decision === "CORRUPTION") && confirm.findings.length === 0;
+}
+
+function activeLedgerFindingsForDecision(bookId: string, roundId: string, chapterNumber: number) {
+  return effectiveLedger(bookId, roundId).filter((f) => {
+    if (!(f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun")) return false;
+    if (f.chapterNumber === undefined && (!f.chapters || f.chapters.length === 0)) return true;
+    if (f.chapterNumber === chapterNumber) return true;
+    return (f.chapters ?? []).includes(chapterNumber);
+  });
+}
+
 export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean } = {}): FinalizeQcRoundResult {
   const errors: string[] = [];
   mkdirSync(orchestratorRoundDir(bookId, roundId), { recursive: true });
@@ -224,15 +244,22 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   if (keyResolution.errors.length) errors.push(...keyResolution.errors.map((e) => `manual-keyjudge: ${e}`));
 
   const allChapters = loadBookChapters(bookId);
+  // NOTE: we deliberately do NOT backfill round.chapterContentHashes from
+  // current content here. Doing so blessed already-edited content as the
+  // freshness baseline (the highest-risk edit lands between round creation and
+  // first finalize). Hashes are recorded once, at round creation
+  // (createQcOrchestrationRound); a round that predates that is treated as
+  // stale by checkRoundFreshness and must be re-opened.
   const selectedSet = selectedChapterNumbers(bookId, roundId, options);
   const chapters = selectedSet ? allChapters.filter((ch) => selectedSet.includes(ch.number)) : allChapters;
   const unresolvedMajorFindings = unresolvedMajors(bookId, chapters, true);
   const bookGate = runBookGate(bookId, allChapters);
   const bookGateStatus: EvidenceStatus = bookGate.passed ? "PASS" : "FAIL";
   const sweepRecord = loadSweepRecord(bookId);
-  const briefPath = writeRepairBrief(bookId, roundId);
-  const promptPath = writeRepairPrompt(bookId, roundId);
+  const briefPath = repairBriefPath(bookId, roundId);
+  const promptPath = repairPromptPath(bookId, roundId);
   const decisions: EvidenceChapterDecision[] = [];
+  const rawByChapter = new Map<number, FinalizerRawEvidence>();
   let attestationsWritten = 0;
 
   for (const ch of chapters) {
@@ -293,9 +320,20 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     }
 
     const missingRequired = [checks.sweep, checks.manualKeyJudge, checks.sourceV2, checks.barRead].some((s) => s === "MISSING" || s === "STALE");
-    const publishableCandidate = checks.manualKeyJudge === "PASS" && checks.barRead === "GREEN" && checks.sweep === "PASS" && checks.repairLedger === "NO_OPEN_BLOCKERS" && checks.shipGate === "PASS" && checks.bookGate === "PASS";
+    const publishableCandidate = checks.manualKeyJudge === "PASS" &&
+      checks.barRead === "GREEN" &&
+      checks.sweep === "PASS" &&
+      checks.sourceV2 === "PASS" &&
+      checks.shipGate === "PASS" &&
+      checks.authorCheck === "PASS" &&
+      checks.intraBook === "PASS" &&
+      checks.bookGate === "PASS" &&
+      checks.repairLedger === "NO_OPEN_BLOCKERS" &&
+      checks.majors === "PASS";
     const confirmMissingForCandidate = publishableCandidate && (checks.confirmRead === "MISSING" || checks.confirmRead === "STALE");
     const sameReviewerConfirm = publishableCandidate && bar && confirm && bar.reviewer === confirm.reviewer && confirm.decision === "PUBLISHABLE";
+    const unactionableBar = barGate === "YELLOW" && barHasUnactionableSubfloor(bar);
+    const unactionableConfirm = publishableCandidate && confirmHasUnactionableDecision(confirm);
 
     let finalVerdict: EvidenceChapterDecision["finalVerdict"] = "NEEDS_MORE_QC";
     let reason = "";
@@ -305,9 +343,13 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       reason = "publishable candidate is missing a fresh confirm read";
     } else if (sameReviewerConfirm) {
       reason = "confirm reviewer must differ from bar reviewer";
-    } else if (keyJudge?.status === "CORRUPTION" || checks.barRead === "RED" || checks.confirmRead === "CORRUPTION") {
+    } else if (unactionableBar) {
+      reason = "bar read has a sub-0.6 axis without a cited hit";
+    } else if (unactionableConfirm) {
+      reason = "confirm read returned a non-publishable decision without quote-backed findings";
+    } else if (keyJudge?.status === "CORRUPTION" || checks.barRead === "RED" || (publishableCandidate && checks.confirmRead === "CORRUPTION")) {
       finalVerdict = "CORRUPTION";
-      reason = keyJudge?.status === "CORRUPTION" ? keyJudge.reason : checks.confirmRead === "CORRUPTION" ? confirm?.reason ?? "confirm read found corruption" : "bar read found a corruption-tier defect";
+      reason = keyJudge?.status === "CORRUPTION" ? keyJudge.reason : publishableCandidate && checks.confirmRead === "CORRUPTION" ? confirm?.reason ?? "confirm read found corruption" : "bar read found a corruption-tier defect";
     } else if (
       checks.sourceV2 !== "PASS" ||
       checks.shipGate !== "PASS" ||
@@ -317,14 +359,14 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       checks.sweep !== "PASS" ||
       checks.manualKeyJudge !== "PASS" ||
       checks.barRead === "YELLOW" ||
-      checks.confirmRead === "REVISE" ||
+      (publishableCandidate && checks.confirmRead === "REVISE") ||
       checks.repairLedger !== "NO_OPEN_BLOCKERS" ||
       checks.majors !== "PASS"
     ) {
       finalVerdict = "REVISE";
       reason = checks.majors !== "PASS"
         ? "one or more current major findings are unresolved or not round-backed"
-        : checks.confirmRead === "REVISE" ? confirm?.reason ?? "confirm read requires revision" : "one or more gates, reads, or repair-ledger checks require revision";
+        : publishableCandidate && checks.confirmRead === "REVISE" ? confirm?.reason ?? "confirm read requires revision" : "one or more gates, reads, or repair-ledger checks require revision";
     } else {
       const block = currentNegativeAttestationBlocksPublishable(bookId, ch);
       if (block) {
@@ -356,12 +398,36 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       },
     };
     decisions.push(decision);
+    rawByChapter.set(ch.number, {
+      source,
+      authorFindings,
+      shipGate,
+      intraFindings,
+      bookGate,
+      sweepRecord,
+      keyJudge,
+      bar,
+      confirm,
+      confirmAccepted: publishableCandidate,
+    });
+  }
 
-    if (options.attest !== false && finalVerdict !== "NEEDS_MORE_QC") {
-      const verdict: QcVerdict = finalVerdict;
-      const findings = finalVerdict === "PUBLISHABLE" ? [] : summarizeFindings(bookId, roundId, ch.number);
-      writeAttestation(attestationForDecision(ch, decision, verdict, findings));
-      attestationsWritten++;
+  const finalizerFindings = decisions.flatMap((decision) => {
+    const raw = rawByChapter.get(decision.chapterNumber);
+    return raw ? findingsFromEvidenceDecision(decision, raw) : [];
+  });
+  appendFindings({
+    bookId,
+    roundId,
+    role: "finalizer",
+    submissionFile: "evidence-matrix.json",
+    findings: finalizerFindings,
+  });
+
+  for (const decision of decisions) {
+    if ((decision.finalVerdict === "REVISE" || decision.finalVerdict === "CORRUPTION") && activeLedgerFindingsForDecision(bookId, roundId, decision.chapterNumber).length === 0) {
+      decision.finalVerdict = "NEEDS_MORE_QC";
+      decision.reason = "non-publishable decision lacked actionable repair evidence";
     }
   }
 
@@ -376,6 +442,21 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     errors,
   }, null, 2), "utf8");
 
+  const writtenBriefPath = writeRepairBrief(bookId, roundId);
+
+  if (options.attest !== false) {
+    const chapterByNumber = new Map(chapters.map((ch) => [ch.number, ch]));
+    for (const decision of decisions) {
+      if (decision.finalVerdict === "NEEDS_MORE_QC") continue;
+      const ch = chapterByNumber.get(decision.chapterNumber);
+      if (!ch) continue;
+      const verdict: QcVerdict = decision.finalVerdict;
+      const findings = decision.finalVerdict === "PUBLISHABLE" ? [] : summarizeFindings(bookId, roundId, ch.number);
+      writeAttestation(attestationForDecision(ch, decision, verdict, findings));
+      attestationsWritten++;
+    }
+  }
+
   const incomplete = decisions.some((d) => d.finalVerdict === "NEEDS_MORE_QC");
   const repairRequired = decisions.some((d) => d.finalVerdict === "REVISE" || d.finalVerdict === "CORRUPTION");
   const allPublishable = decisions.length > 0 && decisions.every((d) => d.finalVerdict === "PUBLISHABLE");
@@ -385,7 +466,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     repairRequired,
     incomplete,
     evidenceMatrixPath: matrixPath,
-    repairBriefPath: briefPath,
+    repairBriefPath: writtenBriefPath,
     repairPromptPath: promptPath,
     attestationsWritten,
     chapters: decisions,

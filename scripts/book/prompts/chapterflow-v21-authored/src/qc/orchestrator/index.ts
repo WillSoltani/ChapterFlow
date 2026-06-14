@@ -5,23 +5,28 @@ import { runBookGate } from "../../critics/bookGate.js";
 import { runShipGate } from "../../critics/finalGate.js";
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
-import { chapterContentHash } from "../../critics/qcAttestation.js";
-import { AXIS_WEIGHTS } from "../../critics/semantic/publishableBar.js";
+import { chapterContentHash, isApprovedReviewer, approvedReviewerRoles } from "../../critics/qcAttestation.js";
+import { AXIS_WEIGHTS, computeVerdict } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { runIntraBookChecks } from "../../critics/intraBook.js";
 import { writeBarPack } from "../barReview.js";
-import { keyDerivationPath, loadBookChapters, loadKeyPack, writeKeyPacks, type KeyDerivation } from "../manualKeyJudge.js";
+import { keyDerivationPath, loadBookChapters, loadKeyPack, loadManualKeyJudge, resolveManualKeyJudges, writeKeyPacks, type KeyDerivation } from "../manualKeyJudge.js";
+import { unresolvedMajors } from "../majorDisposition.js";
 import { isNoApiCodexQcMode } from "../noApiMode.js";
 import { openQcRound, qcRoundPath, verifyQcRoundToken, type QcRoundRole } from "../qcRound.js";
-import { checkSourceV2Gate } from "../sourceV2Gate.js";
-import { writeSweepPack } from "../sweep.js";
+import { checkSourceV2Gate, sourceHashFor } from "../sourceV2Gate.js";
+import { loadSweepRecord, writeSweepPack, REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
+import { writeReviewPacket } from "./reviewPacket.js";
+export { reviewPacketPath } from "./reviewPacket.js";
 import {
   orchestratorRoundDir,
+  confirmCandidatesPath,
   qcSummaryPath,
   repairLedgerPath,
   roundRecordPath,
   submissionsDir,
   taskCardsDir,
+  loadBarReadArtifact,
   writeBarReadArtifact,
   writeConfirmReadArtifact,
 } from "./artifacts.js";
@@ -45,6 +50,7 @@ export type QcOrchestratorRoundRecord = {
     barPack: { packPath?: string; templatePath?: string; errors: string[] };
   };
   taskCards: string[];
+  chapterContentHashes?: Record<string, string>;
 };
 
 export type OrchestratorResult = {
@@ -69,6 +75,10 @@ function ensureRoundLayout(bookId: string, roundId: string): void {
   for (const role of SUBMISSION_ROLES) mkdirSync(submissionsDir(bookId, roundId, role), { recursive: true });
   const ledger = repairLedgerPath(bookId, roundId);
   if (!existsSync(ledger)) writeFileSync(ledger, "", "utf8");
+}
+
+function chapterHashRecord(chapters: ChapterV21[]): Record<string, string> {
+  return Object.fromEntries(chapters.map((ch) => [String(ch.number), chapterContentHash(ch)]));
 }
 
 function writeText(path: string, text: string): string {
@@ -117,13 +127,6 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
       `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role bar --token ${tokens.bar} --file <submission.json>`,
       "",
     ].join("\n")));
-    paths.push(writeText(resolve(root, "confirm", `ch${String(ch.number).padStart(2, "0")}.md`), cardHeader(bookId, roundId, `confirm ch${String(ch.number).padStart(2, "0")}`, tokens.confirm) + [
-      "Use this only after a bar read marks the chapter as a PUBLISHABLE candidate.",
-      "Confirm the candidate or return REVISE/CORRUPTION with exact findings.",
-      `Required schema: qc-confirm-read-v1.`,
-      `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role confirm --token ${tokens.confirm} --file <submission.json>`,
-      "",
-    ].join("\n")));
   }
   paths.push(writeText(resolve(root, "majors.md"), cardHeader(bookId, roundId, "major triage", tokens.major) + [
     "Triage current major findings only. Use the major token for any major-disposition command.",
@@ -132,6 +135,43 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
     "",
   ].join("\n")));
   return paths;
+}
+
+function confirmTaskCard(bookId: string, roundId: string, chapter: ChapterV21, token = "<confirm-token>"): string {
+  return cardHeader(bookId, roundId, `confirm ch${String(chapter.number).padStart(2, "0")}`, token) + [
+    "Confirm this publishable candidate or return REVISE/CORRUPTION with exact findings.",
+    "Only use this card if the chapter is listed in confirm-candidates.json.",
+    `Required schema: qc-confirm-read-v1. Required artifact contentHash: ${chapterContentHash(chapter)}.`,
+    `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role confirm --token ${token} --file <submission.json>`,
+    "",
+  ].join("\n");
+}
+
+function selectedRoundChapters(bookId: string, roundId: string, chapters?: number[]): ChapterV21[] {
+  const all = loadBookChapters(bookId);
+  const explicit = chapters?.length ? new Set(chapters) : null;
+  if (explicit) return all.filter((ch) => explicit.has(ch.number));
+  const round = existsSync(roundRecordPath(bookId, roundId)) ? JSON.parse(readFileSync(roundRecordPath(bookId, roundId), "utf8")) as QcOrchestratorRoundRecord : null;
+  const fromRound = Array.isArray(round?.chapters) && round.chapters.length ? new Set(round.chapters.map(Number)) : null;
+  return fromRound ? all.filter((ch) => fromRound.has(ch.number)) : all;
+}
+
+export function checkRoundFreshness(bookId: string, roundId: string, chapters?: number[]): { fresh: boolean; staleChapters: number[]; missingHashes: boolean } {
+  const round = existsSync(roundRecordPath(bookId, roundId)) ? JSON.parse(readFileSync(roundRecordPath(bookId, roundId), "utf8")) as QcOrchestratorRoundRecord : null;
+  const selected = selectedRoundChapters(bookId, roundId, chapters);
+  const hashes = round?.chapterContentHashes;
+  // Fail CLOSED: a round with no recorded creation-time hashes cannot prove its
+  // submissions reviewed the content as it is now. (The old behaviour returned
+  // fresh:true here, and finalize backfilled CURRENT content as the baseline —
+  // which blessed any edit landed between round creation and first finalize.)
+  // Treat the whole selected set as stale so the operator starts a fresh round.
+  if (!hashes) return { fresh: false, staleChapters: selected.map((ch) => ch.number), missingHashes: true };
+  const staleChapters = selected
+    // A selected chapter missing from the hash map is also stale, not fresh —
+    // no recorded baseline means no proof the review matched current content.
+    .filter((ch) => !hashes[String(ch.number)] || hashes[String(ch.number)] !== chapterContentHash(ch))
+    .map((ch) => ch.number);
+  return { fresh: staleChapters.length === 0, staleChapters, missingHashes: false };
 }
 
 export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string } = {}): OrchestratorResult {
@@ -183,6 +223,16 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
     messages.push(`bar-pack: wrote ${barPack.packPath}`);
   }
   const cards = taskCardPaths(bookId, roundId, selected, opened.tokens);
+  // Self-contained reviewer packet (content/rubric pointers + per-role submit
+  // commands + invalid-until-filled JSON skeletons). Written here because the
+  // plaintext round tokens only exist at creation time.
+  let reviewPacket: string | undefined;
+  try {
+    reviewPacket = writeReviewPacket(bookId, roundId, selected, opened.tokens);
+    messages.push(`review-packet: wrote ${reviewPacket}`);
+  } catch (err) {
+    errors.push(`review-packet failed: ${(err as Error).message}`);
+  }
   const record: QcOrchestratorRoundRecord = {
     schemaVersion: "qc-orchestrator-round-v1",
     bookId,
@@ -198,11 +248,73 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
       barPack: { packPath: barPack.packPath, templatePath: barPack.templatePath, errors: barPack.errors },
     },
     taskCards: cards,
+    chapterContentHashes: chapterHashRecord(selected),
   };
   writeText(roundRecordPath(bookId, roundId), JSON.stringify(record, null, 2) + "\n");
   writeText(qcSummaryPath(bookId, roundId), JSON.stringify({ bookId, roundId, createdAt: record.createdAt, submissions: 0, ledger: {}, attestationsWritten: 0 }, null, 2) + "\n");
   writeRepairBrief(bookId, roundId);
   return { ok: errors.length === 0, roundId, roundDir: orchestratorRoundDir(bookId, roundId), errors, messages };
+}
+
+export function generateConfirmCandidates(bookId: string, roundId: string, options: { chapters?: number[] } = {}): { ok: boolean; path: string; taskCards: string[]; candidates: number[]; skipped: Array<{ chapterNumber: number; blockers: string[] }>; errors: string[] } {
+  const errors: string[] = [];
+  const chapters = selectedRoundChapters(bookId, roundId, options.chapters);
+  const allChapters = loadBookChapters(bookId);
+  resolveManualKeyJudges(bookId, roundId);
+  const source = checkSourceV2Gate(bookId, chapters.map((ch) => ch.number));
+  const sweep = loadSweepRecord(bookId);
+  const bookGate = runBookGate(bookId, allChapters);
+  const majorFindings = unresolvedMajors(bookId, chapters, true);
+  const taskCards: string[] = [];
+  const candidates: number[] = [];
+  const skipped: Array<{ chapterNumber: number; blockers: string[] }> = [];
+
+  for (const ch of chapters) {
+    const blockers: string[] = [];
+    const contentHash = chapterContentHash(ch);
+    const keyJudge = loadManualKeyJudge(bookId, ch.number);
+    const bar = loadBarReadArtifact(bookId, roundId, ch.number);
+    const shipGate = runShipGate(ch);
+    const authorFindings = checkAuthoringContract(ch, { sidecar: loadChapterSidecar(ch.chapterId), filePath: `state/chapters/${ch.chapterId}.v21-native.chapter.json` });
+    const intraFindings = runIntraBookChecks(ch, allChapters.filter((other) => other.number < ch.number));
+    const ledgerFindings = effectiveLedger(bookId, roundId).filter((f) => {
+      if (!(f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun")) return false;
+      if (f.chapterNumber === undefined && (!f.chapters || f.chapters.length === 0)) return true;
+      if (f.chapterNumber === ch.number) return true;
+      return (f.chapters ?? []).includes(ch.number);
+    });
+    const chapterMajorFindings = majorFindings.filter((f) => f.scope === "book" || f.scope.startsWith(`chapter:${ch.number}:`));
+
+    if (source.findings.some((f) => f.chapterNumber === undefined || f.chapterNumber === ch.number)) blockers.push("sourceV2");
+    if (shipGate.blockers.length > 0) blockers.push("shipGate");
+    if (authorFindings.length > 0) blockers.push("authorCheck");
+    if (intraFindings.some((f) => f.severity === "blocker")) blockers.push("intraBook");
+    if (!bookGate.passed) blockers.push("bookGate");
+    if (!sweep || sweep.roundId !== roundId || sweep.contentHashes[String(ch.number)] !== contentHash || sweep.verdict !== "PASS") blockers.push("sweep");
+    if (!keyJudge || keyJudge.contentHash !== contentHash || keyJudge.sourceHash !== (sourceHashFor(bookId, ch.number) ?? "") || keyJudge.status !== "PASS") blockers.push("manualKeyJudge");
+    if (!bar || bar.chapterId !== ch.chapterId || bar.contentHash !== contentHash) {
+      blockers.push("barRead");
+    } else {
+      const barGate = computeVerdict(ch.chapterId, [
+        { axis: "quiz_key_correctness", score: 1, tier: "PUBLISHABLE", hits: [] },
+        ...bar.axes,
+      ], true).gate;
+      if (barGate !== "GREEN") blockers.push("barRead");
+    }
+    if (ledgerFindings.length > 0) blockers.push("repairLedger");
+    if (chapterMajorFindings.length > 0) blockers.push("majors");
+
+    if (blockers.length === 0) {
+      candidates.push(ch.number);
+      taskCards.push(writeText(resolve(taskCardsDir(bookId, roundId), "confirm", `ch${String(ch.number).padStart(2, "0")}.md`), confirmTaskCard(bookId, roundId, ch)));
+    } else {
+      skipped.push({ chapterNumber: ch.number, blockers });
+    }
+  }
+
+  const path = confirmCandidatesPath(bookId, roundId);
+  writeText(path, JSON.stringify({ schemaVersion: "qc-confirm-candidates-v1", bookId, roundId, generatedAt: new Date().toISOString(), candidates, taskCards, skipped }, null, 2) + "\n");
+  return { ok: errors.length === 0, path, taskCards, candidates, skipped, errors };
 }
 
 function loadJsonFile(path: string): any {
@@ -236,6 +348,17 @@ export function submitQcArtifact(bookId: string, roundId: string, role: Submissi
   }
   const validation = validateSubmission(bookId, roundId, role, raw);
   if (validation.ok === false) return { ok: false, errors: validation.errors, messages: [] };
+  // Reviewer-identity gate at the fresh-ingest door. A submission's reviewer must
+  // carry an approved QC role prefix (codex-qc:/claude-qc:/harness:/human:), so a
+  // writer can't self-certify under an arbitrary string. Enforced here (not in the
+  // schema validator) so re-collecting historical rounds with legacy bare-string
+  // reviewers is unaffected. keyA/keyB carry an optional reviewer and are exempt.
+  if (role !== "keyA" && role !== "keyB") {
+    const reviewer = (validation.submission as { reviewer?: unknown }).reviewer;
+    if (typeof reviewer === "string" && !isApprovedReviewer(reviewer)) {
+      return { ok: false, errors: [`reviewer "${reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). Use e.g. "codex-qc:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change allowed roles).`], messages: [] };
+    }
+  }
   const dir = submissionsDir(bookId, roundId, role);
   mkdirSync(dir, { recursive: true });
   const safeName = basename(file).replace(/[^a-zA-Z0-9._-]/g, "_");
@@ -344,9 +467,28 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
   return { ok: errors.length === 0, errors, summary };
 }
 
-function isSemanticFinding(sourceRoles: string[], repairClass: string): boolean {
-  const axes = new Set(Object.keys(AXIS_WEIGHTS));
-  if (axes.has(repairClass)) return true;
+// A "semantic" finding is one a clean deterministic re-gate CANNOT prove fixed
+// (publishable-bar axes, the cross-chapter sweep families, the manual key
+// judge). verifyRepair must NOT stale these on a cosmetic edit — they require a
+// fresh QC round. The classification keys on the finding's own repairClass AND
+// globalTheme (a known semantic theme), not just its source role: the finalizer
+// re-injects sweep/axis findings with sourceRole "finalizer" (not "sweep"/"bar"),
+// so a role-only check would mislabel them deterministic and let a byte-change
+// clear a real templating/wrong-key defect. We do NOT treat an arbitrary
+// non-empty globalTheme as semantic (deterministic finalizer themes like
+// "book_gate"/"intra_book"/"source_v2" must still go stale_after_repair on a
+// clean re-gate).
+const SEMANTIC_THEMES: ReadonlySet<string> = new Set<string>([
+  ...Object.keys(AXIS_WEIGHTS),
+  ...REQUIRED_SWEEP_FAMILIES,
+  "manual_keyjudge",
+  "confirm",
+  "confirm_read",
+]);
+
+export function isSemanticFinding(sourceRoles: string[], repairClass: string, globalTheme?: string): boolean {
+  if (SEMANTIC_THEMES.has(repairClass)) return true;
+  if (globalTheme && SEMANTIC_THEMES.has(globalTheme)) return true;
   return sourceRoles.some((role) => role === "bar" || role === "confirm" || role === "keyA" || role === "keyB" || role === "sweep");
 }
 
@@ -394,7 +536,7 @@ export function verifyRepair(bookId: string, roundId: string): { ok: boolean; su
       updates.push({ findingId: f.findingId, status: "still_open", reason: "chapter changed but validation commands still report blockers/findings", validation: { ...validation, bookBlockers } });
       continue;
     }
-    const semantic = isSemanticFinding(f.sources.map((s) => s.sourceRole), f.repairClass);
+    const semantic = isSemanticFinding(f.sources.map((s) => s.sourceRole), f.repairClass, f.globalTheme);
     updates.push({
       findingId: f.findingId,
       status: semantic ? "needs_qc_rerun" : "stale_after_repair",

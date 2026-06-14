@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "child_process";
-import { existsSync, mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
@@ -82,6 +82,25 @@ test("qc-auto creates round, workflow, task cards, and packs in dry-run manual m
     assert.ok(existsSync(resolve(orchestratorRoundDir(BOOK, ROUND), "task-cards/bar/ch01.md")));
     assert.ok(existsSync(resolve(keyPackDir(BOOK, ROUND), "sweep-pack.json")));
     assert.ok(existsSync(resolve(keyPackDir(BOOK, ROUND), "bar-pack.json")));
+  } finally {
+    cleanup();
+  }
+});
+
+test("qc-auto refuses to reuse a stale round after chapter repair", () => {
+  try {
+    setup();
+    const first = runQcAuto(true);
+    assert.equal(first.status, 0, first.out);
+    const chapterPath = resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`);
+    const chapter = JSON.parse(readFileSync(chapterPath, "utf8"));
+    chapter.hook = `${chapter.hook} The repair changed this content.`;
+    writeFileSync(chapterPath, JSON.stringify(chapter, null, 2), "utf8");
+    const reused = runQcAuto(true);
+    assert.equal(reused.status, 3, reused.out);
+    assert.match(reused.out, /STALE_ROUND/);
+    assert.match(reused.out, /This round is stale after repair/);
+    assert.match(reused.out, /Start a fresh QC round/);
   } finally {
     cleanup();
   }

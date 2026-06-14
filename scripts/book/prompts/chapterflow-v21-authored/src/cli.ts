@@ -95,6 +95,25 @@ Commands:
                                      success. Categories/tags are auto-derived (no-API) from the book's
                                      content when not given; pass --categories/--tags to override.
                                      Quarantines to state/books/_blocked/ on failure.
+  publish "<book name or id>" [--title X --author Y] [--categories A,B] [--tags x,y]
+                                     One-verb ship. Resolves the book, auto-fills title/author from its
+                                     brief, then runs promote-book (so it CANNOT ship a book that has not
+                                     passed QC). Run after qc-auto ... --pass reports PASS.
+  qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]
+                                     Record the authoring session (state/provenance/) so a later FRESH QC
+                                     session can't grade its own work when
+                                     CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1. Uses CHAPTERFLOW_SESSION_ID.
+  book-status "<book name or id>" [--json]
+                                     The whole lifecycle in one view: research → written → gate-clean →
+                                     QC'd → publishable, a cross-book variety read (advisory), and the
+                                     single exact next command. Read-only.
+  doctor [<bookId>]                  Preflight: catches the shadow state dir, dual brief shapes,
+                                     chapter-number drift, and untracked-but-imported source files before
+                                     they cost a run. Exit 0 healthy / 1 warnings / 2 blocking trap.
+  authoring-guardrails <bookId> [--chapters N]
+                                     Write the pre-authoring sheet (per-chapter reserved names +
+                                     banned-phrase registry: house tics, forbidden moves, salting
+                                     connectives, cross-book signature tells) for parallel authors.
   author-check <chapter.json>        Phase 1: run the authoring-contract (field-JOB) checks Codex uses to
                                      converge in-session. Advisory/shadow (calibrated 0 false-positives).
                                      Exit 1 on any finding so a write loop iterates to clean.
@@ -133,6 +152,9 @@ Commands:
   qc-orchestrate <bookId> --collect --round <roundId>
                                      Validate stored submissions, merge the repair ledger, and write
                                      repair artifacts. Never writes chapter attestations.
+  qc-orchestrate <bookId> --confirm-candidates --round <roundId>
+                                     Generate confirm task cards only for chapters whose current
+                                     evidence is a publishable candidate.
   qc-orchestrate <bookId> --finalize --round <roundId> [--chapters 1,2] [--no-attest]
                                      Build evidence-matrix.json and write only evidence-backed
                                      PUBLISHABLE/REVISE/CORRUPTION attestations. NEEDS_MORE_QC is
@@ -143,10 +165,13 @@ Commands:
                                      Re-run repair validation and append stale/still-open/QC-rerun statuses.
   qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --token <token> --file <submission.json>
                                      Validate and store a structured QC submission for an orchestrated round.
-  qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest]
+  qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]
                                      One-command no-api Codex QC autopilot. Creates/reuses a round,
                                      writes workflow tasking, collects submissions, finalizes evidence,
                                      and reports PASS/REPAIR/INCOMPLETE without using paid APIs.
+  qc-diagnose <bookId> --round <roundId>
+                                     Explain evidence-matrix verdicts, common failures, repair prompt,
+                                     and the exact next QC command.
   publish-after-qc "<book name or id>" --round <roundId> [--title "..."] [--author "..."] [--commit] [--push] [--cleanup transient|none|audit-unsafe] [--include-state] [--dry-run]
                                      Verifies no-api QC pass, promotes/registers the book, removes
                                      one-time token/task/repair artifacts, and optionally commits/pushes
@@ -860,6 +885,157 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   const result = promoteBook({ bookId, title, author, chapters, categories, tags });
   console.log(formatPromotionResult(result));
   return result.promoted ? 0 : 1;
+}
+
+/** `publish "<book name or id>"` — one-verb ship. Resolves the book, auto-fills
+ *  title/author from its brief (flags override), then runs promote-book, whose
+ *  gates already require a fresh no-API PUBLISHABLE attestation per chapter. So
+ *  publish CANNOT ship a book that has not passed QC — it is a friendly wrapper,
+ *  not a bypass. A fresh QC session runs `qc-auto ... --pass` then `publish`. */
+async function runPublish(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error('Usage: publish "<book name or id>" [--title X --author Y] [--categories A,B] [--tags x,y]');
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  if (resolved.ok === false) {
+    console.error(resolved.message);
+    if (resolved.reason === "ambiguous" && resolved.candidates?.length) {
+      console.error("Candidates:");
+      for (const c of resolved.candidates) console.error(`  ${c.bookId}${c.title ? ` — ${c.title}` : ""} (${c.source})`);
+    }
+    return 2;
+  }
+  const bookId = resolved.bookId;
+  const { loadBrief } = await import("./lib/voiceBible.js");
+  const brief = loadBrief(bookId) as Record<string, unknown> | null;
+  const briefTitle = typeof brief?.title === "string" ? brief.title : undefined;
+  const briefAuthor = typeof brief?.author === "string" ? brief.author : undefined;
+  const title = typeof flags["title"] === "string" ? flags["title"] : briefTitle;
+  const author = typeof flags["author"] === "string" ? flags["author"] : briefAuthor;
+  if (!title || !author) {
+    console.error(`Could not resolve title/author for ${bookId} from its brief. Pass them explicitly:`);
+    console.error(`  npx tsx src/cli.ts publish ${bookId} --title "..." --author "..."`);
+    return 2;
+  }
+  // Cross-book variety advisory (non-blocking): surface catalog sameness BEFORE
+  // shipping, so a one-voice / name-reuse book is a visible choice, not a silent
+  // drift. This never blocks promote — promote's gates are unchanged.
+  try {
+    const { computeBookStatus } = await import("./lifecycle/bookStatus.js");
+    const v = computeBookStatus(bookId).variety;
+    if (v && v.notes.length > 0) {
+      console.log("variety (advisory — does not block):");
+      for (const n of v.notes) console.log(`  ⚠ ${n}`);
+    }
+  } catch { /* advisory only */ }
+  console.log(`publish: ${bookId} (title="${title}", author="${author}") — running promote-book gates...`);
+  // Delegate to promote-book with the resolved title/author so all gating (incl.
+  // the no-API QC-attestation gate) runs exactly once, in one place.
+  return runPromoteBook([bookId], { ...flags, title, author });
+}
+
+/** `qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]` — record the
+ *  authoring session for a book's chapters (state/provenance/<chapterId>.json).
+ *  An authoring session runs this after writing chapters; a later FRESH QC
+ *  session (different CHAPTERFLOW_SESSION_ID) then can't grade its own work when
+ *  CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1. No-op without a session id. */
+async function runStampAuthor(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]");
+    return 2;
+  }
+  const { recordAuthorProvenance, currentSessionId } = await import("./qc/sessionProvenance.js");
+  const session = typeof flags["session"] === "string" ? flags["session"] : currentSessionId();
+  if (!session) {
+    console.error("No author session id. Set CHAPTERFLOW_SESSION_ID or pass --session <id>.");
+    return 2;
+  }
+  const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+  const only = typeof flags["chapters"] === "string"
+    ? new Set(flags["chapters"].split(",").map((s) => Number(s.trim())).filter((n) => Number.isInteger(n)))
+    : null;
+  const chapters = loadBookChapters(bookId).filter((ch) => !only || only.has(ch.number));
+  let wrote = 0;
+  for (const ch of chapters) {
+    if (recordAuthorProvenance(ch.chapterId, session)) wrote++;
+  }
+  console.log(`qc-stamp-author: recorded ${wrote} author-provenance sidecar(s) for session "${session}".`);
+  return 0;
+}
+
+/** `book-status "<book name or id>"` — the whole lifecycle in one view (research →
+ *  written → gate-clean → QC'd → publishable) plus the single exact next command.
+ *  Read-only: a resolvable read never fails the command (exit 0, even on a corrupt
+ *  chapter — it degrades to an error line and points at `doctor`). Exit 2 only on a
+ *  missing argument. */
+async function runBookStatus(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error('Usage: book-status "<book name or id>" [--json]');
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  if (resolved.ok === false) {
+    console.log(`note: could not resolve "${input}" to a known book — showing status for the raw id "${bookId}".`);
+  }
+  const { computeBookStatus, formatBookStatus } = await import("./lifecycle/bookStatus.js");
+  try {
+    const status = computeBookStatus(bookId);
+    if (flags["json"] === true) console.log(JSON.stringify(status, null, 2));
+    else console.log(formatBookStatus(status));
+  } catch (err) {
+    // A status read must never crash with a raw stack (the documented corrupt-
+    // chapter failure mode). Degrade to a one-line error and point at doctor.
+    console.log(`BOOK STATUS — ${bookId}`);
+    console.log(`  could not read status: ${(err as Error).message}`);
+    console.log(`  run: npx tsx src/cli.ts doctor ${bookId}`);
+  }
+  return 0;
+}
+
+/** `doctor [<bookId>]` — preflight that catches the known workspace traps
+ *  (shadow state dir, dual brief, chapter-number drift, untracked imports).
+ *  Exit 0 healthy, 1 warnings, 2 a blocking trap. */
+async function runDoctor(args: string[], _flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const { runDoctorChecks, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
+  const findings = runDoctorChecks(bookId);
+  console.log(formatDoctor(findings));
+  return doctorExitCode(findings);
+}
+
+/** `authoring-guardrails <bookId> [--chapters N]` — write the pre-authoring sheet
+ *  (per-chapter reserved names + banned-phrase registry) that every chapter author
+ *  reads before writing, so parallel authors don't collide on names/stock phrases. */
+async function runAuthoringGuardrails(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: authoring-guardrails <bookId> [--chapters N]");
+    return 2;
+  }
+  const chapters = typeof flags["chapters"] === "string" ? parseInt(flags["chapters"], 10) : undefined;
+  const { writeAuthoringGuardrails } = await import("./librarian/authoringGuardrails.js");
+  try {
+    const path = writeAuthoringGuardrails(bookId, { chapters: Number.isInteger(chapters) ? chapters : undefined });
+    console.log(`authoring-guardrails: wrote ${path}`);
+    console.log("Paste this into every chapter authoring prompt before writing.");
+    return 0;
+  } catch (err) {
+    console.error((err as Error).message);
+    return 1;
+  }
 }
 
 /** `book-gate <bookId>` — standalone book-gate runner.
@@ -1718,9 +1894,11 @@ async function runQcOpenRound(args: string[]): Promise<number> {
 }
 
 async function runQcOrchestrate(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--finalize|--render-repair|--verify-repair --round <roundId>");
+    console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--confirm-candidates|--finalize|--render-repair|--verify-repair --round <roundId>");
     return 2;
   }
   const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
@@ -1737,12 +1915,20 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     return result.ok ? 0 : 1;
   }
   if (!roundId) {
-    console.error("qc-orchestrate requires --round <roundId> for --collect, --finalize, --render-repair, and --verify-repair.");
+    console.error("qc-orchestrate requires --round <roundId> for --collect, --confirm-candidates, --finalize, --render-repair, and --verify-repair.");
     return 2;
   }
   if (flags["collect"] === true) {
     const result = orch.collectQcRound(bookId, roundId);
     console.log(JSON.stringify(result.summary, null, 2));
+    if (result.errors.length) for (const e of result.errors) console.error(e);
+    return result.ok ? 0 : 1;
+  }
+  if (flags["confirm-candidates"] === true) {
+    const result = orch.generateConfirmCandidates(bookId, roundId, {
+      chapters: orch.parseChapterList(flags["chapters"]),
+    });
+    console.log(JSON.stringify(result, null, 2));
     if (result.errors.length) for (const e of result.errors) console.error(e);
     return result.ok ? 0 : 1;
   }
@@ -1758,9 +1944,23 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
       for (const e of collected.errors) console.error(e);
       return 3;
     }
+    // Freshness gate (parity with qc-auto): never write attestations against a
+    // round that predates freshness tracking or whose chapters changed since
+    // the round was opened. --no-attest stays allowed for diagnostics.
+    const finalizeChapters = orch.parseChapterList(flags["chapters"]);
+    const wantAttest = flags["no-attest"] !== true;
+    if (wantAttest) {
+      const freshness = orch.checkRoundFreshness(bookId, roundId, finalizeChapters);
+      if (!freshness.fresh) {
+        const stale = freshness.staleChapters.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ");
+        console.error(`STALE_ROUND: ${freshness.missingHashes ? "round predates freshness tracking" : `stale chapters: ${stale}`}.`);
+        console.error("Refusing to attest a stale round. Start a fresh QC round, or pass --no-attest for diagnostics only.");
+        return 3;
+      }
+    }
     const result = orch.finalizeQcRound(bookId, roundId, {
-      chapters: orch.parseChapterList(flags["chapters"]),
-      attest: flags["no-attest"] !== true,
+      chapters: finalizeChapters,
+      attest: wantAttest,
     });
     console.log(JSON.stringify({
       ...result,
@@ -1781,7 +1981,7 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     console.log(JSON.stringify(result.summary, null, 2));
     return result.ok ? 0 : 1;
   }
-  console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--finalize|--render-repair|--verify-repair --round <roundId>");
+  console.error("Usage: qc-orchestrate <bookId> --create [--chapters 1,2] | --collect|--confirm-candidates|--finalize|--render-repair|--verify-repair --round <roundId>");
   return 2;
 }
 
@@ -1835,9 +2035,11 @@ function countSubmissionFiles(dir: string): number {
 }
 
 async function runQcAuto(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
   const input = args.join(" ").trim();
   if (!input || flags["pass"] !== true) {
-    console.error('Usage: qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest]');
+    console.error('Usage: qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]');
     return 2;
   }
   if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") {
@@ -1879,6 +2081,19 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     if (!roundId) return 3;
   }
 
+  const freshness = orch.checkRoundFreshness(bookId, roundId, chapters);
+  const staleDiagnosticsOnly = !freshness.fresh && flags["allow-stale-round"] === true;
+  if (!freshness.fresh && !staleDiagnosticsOnly) {
+    console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+    console.log(`round: ${roundId}`);
+    console.log(`status: STALE_ROUND`);
+    console.log(`stale chapters: ${freshness.staleChapters.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
+    console.log("This round is stale after repair. Do not resume this round for publishability.");
+    console.log("Start a fresh QC round:");
+    console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
+    return 3;
+  }
+
   const workflowPath = generateQcAutoWorkflow(bookId, roundId, { maxAgents });
   const taskCards = listMarkdownFiles(artifacts.taskCardsDir(bookId, roundId));
   const submissions = countSubmissionFiles(artifacts.submissionsDir(bookId, roundId));
@@ -1886,12 +2101,16 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   if (flags["dry-run"] === true || submissions === 0) {
     console.log(`QC AUTO INCOMPLETE — ${bookId}`);
     console.log(`round: ${roundId}`);
+    console.log("review packet (read this — content + rubric + per-role submit commands + skeletons):");
+    console.log(`  ${orch.reviewPacketPath(bookId, roundId)}`);
     console.log(`workflow:`);
     console.log(`  ${workflowPath}`);
     console.log(`task cards:`);
     for (const p of taskCards) console.log(`  ${p}`);
     console.log("missing:");
     console.log("  subagent submissions are not present yet");
+    console.log("how to proceed (fresh QC session): read the review packet, fill each skeleton with");
+    console.log("  your honest scores/decisions, run its qc-submit command, then resume:");
     console.log("no fake pass was written.");
     console.log("rerun or resume:");
     console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass --round ${roundId}`);
@@ -1910,9 +2129,19 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass --round ${roundId}`);
     return 3;
   }
+  const confirmCandidates = orch.generateConfirmCandidates(bookId, roundId, { chapters });
+  if (!confirmCandidates.ok) {
+    for (const e of confirmCandidates.errors) console.error(e);
+    console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+    console.log(`round: ${roundId}`);
+    console.log("missing:");
+    console.log("  confirm candidate generation failed");
+    console.log("no fake pass was written.");
+    return 3;
+  }
   const finalized = orch.finalizeQcRound(bookId, roundId, {
     chapters,
-    attest: flags["no-attest"] !== true,
+    attest: flags["no-attest"] !== true && !staleDiagnosticsOnly,
   });
   if (collected.errors.length) for (const e of collected.errors) console.error(e);
   if (finalized.errors.length) for (const e of finalized.errors) console.error(e);
@@ -1924,8 +2153,18 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   };
 
   if (finalized.allPublishable) {
-    let qcStatusLabel = "selected chapters PASS";
-    if (!chapters?.length) {
+    if (staleDiagnosticsOnly) {
+      console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+      console.log(`round: ${roundId}`);
+      console.log(`status: STALE_ROUND`);
+      console.log("This round is stale after repair. Do not resume this round for publishability.");
+      console.log("Start a fresh QC round:");
+      console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
+      return 3;
+    }
+    const isSubset = !!chapters?.length;
+    let qcStatusLabel = "selected chapters PASS (subset — book not fully verified)";
+    if (!isSubset) {
       const qcStatusCode = await runQcStatus([bookId]);
       if (qcStatusCode !== 0) {
         console.log(`QC AUTO INCOMPLETE — ${bookId}`);
@@ -1935,19 +2174,28 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
         console.log("no fake pass was written.");
         return 3;
       }
-      qcStatusLabel = "PASS";
+      qcStatusLabel = "PASS (all chapters fresh + PUBLISHABLE)";
     }
-    console.log(`QC AUTO PASS — ${bookId}`);
+    // A subset run verifies only the named chapters; it is NOT a book-level pass.
+    // (Keep the literal "QC AUTO PASS" intact — qc-auto-output.test.ts source-scans for it.)
+    const passLabel = isSubset ? "QC AUTO PASS (SUBSET)" : "QC AUTO PASS";
+    console.log(`${passLabel} — ${bookId}`);
     console.log(`round: ${roundId}`);
-    console.log(`chapters selected: ${finalized.chapters.length}`);
+    console.log(`chapters selected: ${finalized.chapters.length}${isSubset ? " (subset)" : " (full book)"}`);
     console.log(`attestations written: ${finalized.attestationsWritten} PUBLISHABLE`);
     console.log(`repair findings: 0 open`);
     console.log(`qc-status: ${qcStatusLabel}`);
     console.log("next:");
-    console.log(`  npx tsx src/cli.ts qc-status ${bookId}`);
-    const titleArg = resolved.title ?? "...";
-    console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc ${JSON.stringify(bookId)} --round ${roundId} --title ${JSON.stringify(titleArg)} --author "..." --dry-run`);
-    console.log("  add --commit --push after checking the dry-run");
+    if (isSubset) {
+      console.log("  # subset only — run a full-book pass before publishing:");
+      console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
+    } else {
+      console.log(`  npx tsx src/cli.ts qc-status ${bookId}`);
+      const titleArg = resolved.title ?? "...";
+      console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc ${JSON.stringify(bookId)} --round ${roundId} --title ${JSON.stringify(titleArg)} --author "..." --dry-run`);
+      console.log("  add --commit --push after checking the dry-run");
+    }
+
     return 0;
   }
 
@@ -1969,7 +2217,7 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   console.log(`PUBLISHABLE attested: ${counts.publishable}`);
   console.log(`REVISE attested: ${counts.revise}`);
   console.log(`CORRUPTION attested: ${counts.corruption}`);
-  console.log(`open repair findings: ${(collected.summary.ledger as any)?.open ?? 0}`);
+  console.log(`open repair findings: ${orch.ledgerStatus(bookId, roundId).summary.open ?? 0}`);
   console.log("repair prompt:");
   console.log(`  ${finalized.repairPromptPath}`);
   console.log("");
@@ -2051,6 +2299,25 @@ async function runQcRepairPrompt(args: string[], flags: Record<string, string | 
   const { writeRepairPrompt } = await import("./qc/orchestrator/repairBrief.js");
   console.log(`repair prompt: ${writeRepairPrompt(bookId, roundId)}`);
   return 0;
+}
+
+async function runQcDiagnose(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: qc-diagnose <bookId> --round <roundId>");
+    return 2;
+  }
+  const { renderQcDiagnose } = await import("./qc/orchestrator/diagnose.js");
+  try {
+    console.log(renderQcDiagnose(bookId, roundId));
+    return 0;
+  } catch (err) {
+    console.error((err as Error).message);
+    return 1;
+  }
 }
 
 async function runSourceV2Gate(args: string[]): Promise<number> {
@@ -2234,6 +2501,14 @@ async function runMajorDisposition(args: string[], flags: Record<string, string 
   const validStatuses = ["open", "waived_false_positive", "waived_accepted_debt"] as const;
   if (!bookId || !findingId || !(validStatuses as readonly string[]).includes(status) || !reason || !reviewer || !roundId) {
     console.error("Usage: major-disposition <bookId> --finding <id> --status open|waived_false_positive|waived_accepted_debt --reason <text> --reviewer <id> --round <roundId> [--token <major-token>]");
+    return 2;
+  }
+  // A waiver must be signed by an approved QC role (not the writer). This stops
+  // a major from being silently waived to PUBLISHABLE under an arbitrary
+  // reviewer string. Override the allowed roles with CHAPTERFLOW_QC_REVIEWERS.
+  const { isApprovedReviewer, approvedReviewerRoles } = await import("./critics/qcAttestation.js");
+  if (!isApprovedReviewer(reviewer)) {
+    console.error(`--reviewer "${reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). Use e.g. "codex-qc:<id>" or "human:<id>".`);
     return 2;
   }
   let roundRole: "major" | "confirm" | undefined;
@@ -3231,6 +3506,16 @@ async function main() {
       return runResearch(args, flags);
     case "generate":
       return runGenerate(args, flags);
+    case "publish":
+      return runPublish(args, flags);
+    case "qc-stamp-author":
+      return runStampAuthor(args, flags);
+    case "book-status":
+      return runBookStatus(args, flags);
+    case "doctor":
+      return runDoctor(args, flags);
+    case "authoring-guardrails":
+      return runAuthoringGuardrails(args, flags);
     case "promote-book":
       return runPromoteBook(args, flags);
     case "gate-chapter":
@@ -3263,6 +3548,8 @@ async function main() {
       return runQcRepairBrief(args, flags);
     case "qc-repair-prompt":
       return runQcRepairPrompt(args, flags);
+    case "qc-diagnose":
+      return runQcDiagnose(args, flags);
     case "source-v2-gate":
       return runSourceV2Gate(args);
     case "key-pack":

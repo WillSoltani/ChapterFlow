@@ -10,7 +10,7 @@ import { findingsFromSubmission, type SubmissionFinding, type SubmissionRole, ty
 export type LedgerStatus = "open" | "stale_after_repair" | "still_open" | "needs_qc_rerun";
 
 export type LedgerSource = {
-  sourceRole: SubmissionRole;
+  sourceRole: SubmissionRole | "finalizer";
   submissionFile: string;
   observedAt: string;
 };
@@ -162,15 +162,14 @@ function hashByChapter(bookId: string): Map<number, string> {
   return out;
 }
 
-export function appendFindingsFromSubmission(args: {
+export function appendFindings(args: {
   bookId: string;
   roundId: string;
-  role: SubmissionRole;
+  role: SubmissionRole | "finalizer";
   submissionFile: string;
-  submission: ValidatedSubmission;
+  findings: SubmissionFinding[];
 }): { appended: number; duplicates: number; findingIds: string[] } {
-  const findings = findingsFromSubmission(args.submission);
-  if (findings.length === 0) return { appended: 0, duplicates: 0, findingIds: [] };
+  if (args.findings.length === 0) return { appended: 0, duplicates: 0, findingIds: [] };
   const existing = new Set(effectiveLedger(args.bookId, args.roundId).map((f) => f.findingId));
   const chapterHashes = hashByChapter(args.bookId);
   const now = new Date().toISOString();
@@ -178,7 +177,7 @@ export function appendFindingsFromSubmission(args: {
   let appended = 0;
   let duplicates = 0;
   const findingIds: string[] = [];
-  for (const finding of findings) {
+  for (const finding of args.findings) {
     const findingId = stableFindingId(args.bookId, args.roundId, finding);
     findingIds.push(findingId);
     const source: LedgerSource = { sourceRole: args.role, submissionFile: args.submissionFile, observedAt: now };
@@ -212,6 +211,22 @@ export function appendFindingsFromSubmission(args: {
   }
   appendLedgerEvents(args.bookId, args.roundId, events);
   return { appended, duplicates, findingIds };
+}
+
+export function appendFindingsFromSubmission(args: {
+  bookId: string;
+  roundId: string;
+  role: SubmissionRole;
+  submissionFile: string;
+  submission: ValidatedSubmission;
+}): { appended: number; duplicates: number; findingIds: string[] } {
+  return appendFindings({
+    bookId: args.bookId,
+    roundId: args.roundId,
+    role: args.role,
+    submissionFile: args.submissionFile,
+    findings: findingsFromSubmission(args.submission),
+  });
 }
 
 export function ledgerStatusSummary(bookId: string, roundId: string): Record<string, number> {

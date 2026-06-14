@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname } from "path";
 
 import { evidenceMatrixPath, repairBriefPath, repairPromptPath } from "./artifacts.js";
@@ -24,6 +24,66 @@ function validationCommands(bookId: string, findings: EffectiveLedgerFinding[]):
     lines.push(`npx tsx src/cli.ts gate-chapter ${chapterPath(bookId, n)}`);
   }
   lines.push(`npx tsx src/cli.ts book-gate ${bookId}`);
+  return lines;
+}
+
+function readEvidenceMatrix(bookId: string, roundId: string): any | null {
+  const path = evidenceMatrixPath(bookId, roundId);
+  if (!existsSync(path)) return null;
+  try {
+    return JSON.parse(readFileSync(path, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function failedChecks(decision: any): string[] {
+  const checks = decision?.checks ?? {};
+  const bad: string[] = [];
+  for (const key of ["sourceV2", "authorCheck", "shipGate", "intraBook", "bookGate", "majors", "manualKeyJudge", "barRead", "confirmRead", "sweep", "repairLedger"]) {
+    const value = checks[key];
+    if (value === undefined) continue;
+    const ok = value === "PASS" || value === "GREEN" || value === "PUBLISHABLE" || value === "NO_OPEN_BLOCKERS" || value === "NOT_APPLICABLE";
+    if (!ok) bad.push(`${key}=${value}`);
+  }
+  return bad;
+}
+
+function renderFinalizerCauseSection(bookId: string, roundId: string): string[] {
+  const matrix = readEvidenceMatrix(bookId, roundId);
+  const chapters = Array.isArray(matrix?.chapters) ? matrix.chapters : [];
+  if (chapters.length === 0) return [];
+
+  const bookWide = new Map<string, string>();
+  const chapterIssues: string[] = [];
+  const missing: string[] = [];
+  for (const decision of chapters) {
+    const label = `ch${String(decision.chapterNumber).padStart(2, "0")}`;
+    const failed = failedChecks(decision);
+    if (decision.checks?.bookGate === "FAIL") bookWide.set("bookGate", "bookGate=FAIL");
+    for (const f of decision.majorStatus?.book ?? []) bookWide.set(`major:${f.id}`, `major ${f.id} ${f.checkId}: ${f.message}`);
+    if (decision.finalVerdict === "NEEDS_MORE_QC") {
+      missing.push(`${label}: ${decision.reason}${failed.length ? ` (${failed.join(", ")})` : ""}`);
+    } else if (decision.finalVerdict === "REVISE" || decision.finalVerdict === "CORRUPTION") {
+      chapterIssues.push(`${label}: ${decision.finalVerdict}; ${failed.join(", ") || decision.reason}`);
+    }
+  }
+  const lines: string[] = [];
+  if (bookWide.size === 0 && chapterIssues.length === 0 && missing.length === 0) return lines;
+  lines.push("Why QC returned REVISE:");
+  if (bookWide.size > 0) {
+    lines.push("- book-wide issues:");
+    for (const item of bookWide.values()) lines.push(`  - ${item}`);
+  }
+  if (chapterIssues.length > 0) {
+    lines.push("- chapter issues:");
+    for (const item of chapterIssues) lines.push(`  - ${item}`);
+  }
+  if (missing.length > 0) {
+    lines.push("- missing evidence / needs-more-qc:");
+    for (const item of missing) lines.push(`  - ${item}`);
+  }
+  lines.push("");
   return lines;
 }
 
@@ -113,8 +173,15 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
   lines.push(`roundId: ${roundId}`);
   lines.push(`affected chapters: ${chapters.length ? chapters.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ") : "none"}`);
   lines.push("");
+  lines.push(...renderFinalizerCauseSection(bookId, roundId));
   if (active.length === 0) {
-    lines.push("No repair findings are open for this round.");
+    const matrix = readEvidenceMatrix(bookId, roundId);
+    const hasNonPublishable = Array.isArray(matrix?.chapters) && matrix.chapters.some((d: any) => d.finalVerdict !== "PUBLISHABLE");
+    if (hasNonPublishable) {
+      lines.push("No content repair prompt was generated because QC evidence was incomplete. Complete the missing QC artifacts instead.");
+    } else {
+      lines.push("No repair findings are open for this round.");
+    }
     lines.push(`Evidence matrix: ${evidenceMatrixPath(bookId, roundId)}`);
     return lines.join("\n") + "\n";
   }

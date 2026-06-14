@@ -43,7 +43,10 @@ pipeline(`ChapterFlow no-api QC autopilot: ${bookId}`, [
   phase("PHASE 4 — First Collect", [
     run(`CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-orchestrate ${bookId} --collect --round ${roundId}`),
   ]),
-  phase("PHASE 5 — Confirm Reads", [
+  phase("PHASE 5 — Confirm Candidates", [
+    run(`CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-orchestrate ${bookId} --confirm-candidates --round ${roundId}`),
+  ]),
+  phase("PHASE 6 — Confirm Reads", [
     agent("confirm-readers", {
       promptGlob: task("confirm/ch*.md"),
       schemaVersion: "qc-confirm-read-v1",
@@ -51,7 +54,7 @@ pipeline(`ChapterFlow no-api QC autopilot: ${bookId}`, [
       maxAgents,
     }),
   ]),
-  phase("PHASE 6 — Finalize", [
+  phase("PHASE 7 — Finalize", [
     run(`CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-orchestrate ${bookId} --finalize --round ${roundId}`),
   ]),
 ]);

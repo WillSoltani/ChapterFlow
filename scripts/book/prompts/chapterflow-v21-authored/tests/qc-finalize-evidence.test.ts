@@ -15,12 +15,16 @@ import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import {
   evidenceMatrixPath,
   orchestratorRoundDir,
+  repairPromptPath,
   roundRecordPath,
   submissionsDir,
+  taskCardsDir,
   writeBarReadArtifact,
   writeConfirmReadArtifact,
 } from "../src/qc/orchestrator/artifacts.js";
 import { finalizeQcRound } from "../src/qc/orchestrator/finalize.js";
+import { generateConfirmCandidates } from "../src/qc/orchestrator/index.js";
+import { effectiveLedger } from "../src/qc/orchestrator/ledger.js";
 import { checkSourceV2Gate, sourceHashFor, sourceSidecarPathFor } from "../src/qc/sourceV2Gate.js";
 import { REQUIRED_SWEEP_FAMILIES, checkSweep, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 
@@ -102,6 +106,11 @@ function writeRoundRecord(bookId: string, chapters: ChapterV21[]): void {
       barPack: { packPath: undefined, templatePath: undefined, errors: [] },
     },
     taskCards: [],
+    // Stamp creation-time hashes (mirrors createQcOrchestrationRound) so the
+    // freshness gate sees a FRESH round and the downstream gates (e.g. the
+    // major gate) actually run, instead of qc-auto short-circuiting on a
+    // hashless round now that checkRoundFreshness fails closed.
+    chapterContentHashes: Object.fromEntries(chapters.map((ch) => [String(ch.number), chapterContentHash(ch)])),
   }, null, 2) + "\n", "utf8");
 }
 
@@ -315,9 +324,87 @@ test("finalize and qc-auto refuse PASS when a current major is unresolved", () =
     const cli = runCli(["qc-auto", MAJOR_BOOK, "--pass", "--round", ROUND, "--chapters", String(SOURCE_CHAPTER_NUMBER)]);
     assert.notEqual(cli.status, 0);
     assert.doesNotMatch(cli.out, /QC AUTO PASS/);
+    // Guard against the hollow-test trap: qc-auto must refuse because of the
+    // unresolved MAJOR, not because the round is stale (which would short-circuit
+    // before the major gate and pass these assertions for the wrong reason).
+    assert.doesNotMatch(cli.out, /STALE_ROUND/, "must reach the major gate, not short-circuit on staleness");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanup();
+  }
+});
+
+test("finalize turns author-check REVISE into finalizer repair findings and prompt causes", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    chapter.tryThisNow = "Source Moment 1.1 asks the reader to revisit the hard edge as the source cue.";
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.repairRequired, true);
+    assert.equal(result.chapters[0].checks.authorCheck, "FAIL");
+    assert.equal(result.chapters[0].finalVerdict, "REVISE");
+    const ledger = effectiveLedger(GREEN_BOOK, ROUND);
+    assert.ok(ledger.some((f) => f.sources.some((s) => s.sourceRole === "finalizer") && f.repairClass === "AC7.scaffold_leak"));
+    const prompt = readFileSync(repairPromptPath(GREEN_BOOK, ROUND), "utf8");
+    assert.match(prompt, /Why QC returned REVISE/);
+    assert.match(prompt, /authorCheck=FAIL/);
+    assert.match(prompt, /AC7\.scaffold_leak/);
+    const cli = runCli(["qc-diagnose", GREEN_BOOK, "--round", ROUND]);
+    assert.equal(cli.status, 0, cli.out);
+    assert.match(cli.out, /QC DIAGNOSE/);
+    assert.match(cli.out, /authorCheck=FAIL on 1\/1/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("confirm-candidates writes confirm cards only for green candidates", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    assert.equal(existsSync(resolve(taskCardsDir(GREEN_BOOK, ROUND), "confirm", `ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}.md`)), false);
+    const result = generateConfirmCandidates(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.ok, true, result.errors.join("\n"));
+    assert.deepEqual(result.candidates, [SOURCE_CHAPTER_NUMBER]);
+    assert.ok(existsSync(resolve(taskCardsDir(GREEN_BOOK, ROUND), "confirm", `ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}.md`)));
+    const card = readFileSync(resolve(taskCardsDir(GREEN_BOOK, ROUND), "confirm", `ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}.md`), "utf8");
+    assert.match(card, /<confirm-token>/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("finalize treats bar YELLOW without sub-floor hits as NEEDS_MORE_QC", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    const axes: AxisScore[] = (Object.keys(AXIS_WEIGHTS) as AxisId[])
+      .filter((axis) => axis !== "quiz_key_correctness")
+      .map((axis) => ({ axis, score: axis === "example_coherence" ? 0.55 : 0.94, tier: axis === "example_coherence" ? "GENERATED_DRAFT" : "PUBLISHABLE", hits: [] }));
+    writeBarReadArtifact({
+      schemaVersion: "qc-bar-read-v2",
+      bookId: GREEN_BOOK,
+      roundId: ROUND,
+      role: "bar",
+      reviewer: "codex-qc:bar-fixture",
+      chapterNumber: SOURCE_CHAPTER_NUMBER,
+      chapterId: chapter.chapterId,
+      contentHash: chapterContentHash(chapter),
+      sourceHash: sourceHashFor(GREEN_BOOK, SOURCE_CHAPTER_NUMBER),
+      axes,
+      notes: "The examples are weak but this artifact forgot to cite the exact hit.",
+      verdict: computeVerdict(chapter.chapterId, axes, true),
+    });
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.incomplete, true);
+    assert.equal(result.repairRequired, false);
+    assert.equal(result.chapters[0].finalVerdict, "NEEDS_MORE_QC");
+    assert.match(result.chapters[0].reason, /sub-0\.6 axis without a cited hit/);
+  } finally {
     cleanup();
   }
 });
