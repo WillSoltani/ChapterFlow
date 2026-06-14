@@ -751,11 +751,18 @@ async function runCheckSource(args: string[]): Promise<number> {
  *  Scans on-disk state and prints the next artifact the operator (Claude
  *  in this session) should produce, with the path and playbook reference. */
 async function runNextTask(args: string[]): Promise<number> {
-  const bookId = args[0];
-  if (!bookId) {
-    console.error("Usage: next-task <bookId>");
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: next-task <bookId|title>");
     return 2;
   }
+  // Resolve a title to its bookId (else a pasted title silently re-researches an
+  // existing book under the raw title as a new id). A brand-new book won't resolve
+  // yet — fall back to the raw input (the slug the operator will author under).
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
   const { computeNextTask, formatNextTask } = await import("./next-task.js");
   try {
     const task = computeNextTask(bookId);
@@ -1007,7 +1014,16 @@ async function runBookStatus(args: string[], flags: Record<string, string | bool
  *  (shadow state dir, dual brief, chapter-number drift, untracked imports).
  *  Exit 0 healthy, 1 warnings, 2 a blocking trap. */
 async function runDoctor(args: string[], _flags: Record<string, string | boolean>): Promise<number> {
-  const bookId = args[0];
+  // doctor takes an OPTIONAL bookId (no arg = global checks). When given, resolve
+  // a title to its bookId so per-book checks match the right files.
+  const input = args.join(" ").trim();
+  let bookId: string | undefined = input || undefined;
+  if (input) {
+    const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+    const resolved = resolveBookIdentifier(input);
+    bookId = resolved.ok === false ? input : resolved.bookId;
+    if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
+  }
   const { runDoctorChecks, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
   const findings = runDoctorChecks(bookId);
   console.log(formatDoctor(findings));
@@ -1020,11 +1036,15 @@ async function runDoctor(args: string[], _flags: Record<string, string | boolean
 async function runAuthoringGuardrails(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
-  const bookId = args[0];
-  if (!bookId) {
-    console.error("Usage: authoring-guardrails <bookId> [--chapters N]");
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: authoring-guardrails <bookId|title> [--chapters N]");
     return 2;
   }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
   const chapters = typeof flags["chapters"] === "string" ? parseInt(flags["chapters"], 10) : undefined;
   const { writeAuthoringGuardrails } = await import("./librarian/authoringGuardrails.js");
   try {
@@ -2307,12 +2327,18 @@ async function runQcRepairPrompt(args: string[], flags: Record<string, string | 
 async function runQcDiagnose(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
-  const bookId = args[0];
+  const input = args.join(" ").trim();
   const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
-  if (!bookId || !roundId) {
-    console.error("Usage: qc-diagnose <bookId> --round <roundId>");
+  if (!input || !roundId) {
+    console.error("Usage: qc-diagnose <bookId|title> --round <roundId>");
     return 2;
   }
+  // Resolve a title to its bookId; otherwise renderQcDiagnose throws "Missing
+  // evidence matrix" on the un-normalized path.
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
   const { renderQcDiagnose } = await import("./qc/orchestrator/diagnose.js");
   try {
     console.log(renderQcDiagnose(bookId, roundId));
@@ -3132,11 +3158,18 @@ async function runQcStats(args: string[]): Promise<number> {
 async function runQcStatus(args: string[]): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
-  const bookId = args[0];
-  if (!bookId) {
-    console.error("Usage: qc-status <bookId>");
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: qc-status <bookId|title>");
     return 2;
   }
+  // Resolve a title to its bookId (the finalize prompt's preflight may be handed
+  // a title); without this a pasted title reports every chapter MISSING + exit 1
+  // and stalls a fully-QC'd book.
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
   const chaptersDir = resolve(__dirname, "../state/chapters");
   const files = readdirSync(chaptersDir).filter((f) => isSiblingFile(f, bookId)).sort();
   if (files.length === 0) {

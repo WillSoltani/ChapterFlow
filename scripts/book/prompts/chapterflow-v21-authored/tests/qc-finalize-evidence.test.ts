@@ -15,6 +15,8 @@ import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import {
   evidenceMatrixPath,
   orchestratorRoundDir,
+  qcSummaryPath,
+  repairLedgerPath,
   repairPromptPath,
   roundRecordPath,
   submissionsDir,
@@ -300,6 +302,40 @@ test("finalize writes PUBLISHABLE attestation with evidence paths when all no-ap
     assert.ok(att?.evidence?.barReadPath);
     assert.ok(att?.evidence?.confirmReadPath);
     assert.deepEqual(noApiQcBlockers(GREEN_BOOK, [chapter]), []);
+  } finally {
+    cleanup();
+  }
+});
+
+test("finalize dryRun computes the same verdict but writes NOTHING durable (a preflight must not mutate QC state)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    // Real finalize first: writes the PUBLISHABLE attestation + evidence matrix + qc-summary + ledger.
+    const real = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(real.allPublishable, true);
+    assert.equal(real.attestationsWritten, 1);
+
+    // Snapshot every durable artifact the dry-run must NOT touch.
+    const watched = [
+      attestationPath(GREEN_BOOK, SOURCE_CHAPTER_NUMBER),
+      evidenceMatrixPath(GREEN_BOOK, ROUND),
+      qcSummaryPath(GREEN_BOOK, ROUND),
+      repairLedgerPath(GREEN_BOOK, ROUND),
+    ];
+    const before = watched.map((p) => (existsSync(p) ? readFileSync(p, "utf8") : null));
+
+    // Dry-run: identical verdict, zero writes (regression guard for publish-after-qc
+    // --dry-run, which used to re-finalize with attest:true and flip PUBLISHABLE→REVISE).
+    const dry = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER], dryRun: true });
+    assert.equal(dry.allPublishable, true, "dry-run must compute the same all-publishable verdict");
+    assert.equal(dry.attestationsWritten, 0, "dry-run must write no attestations");
+
+    const after = watched.map((p) => (existsSync(p) ? readFileSync(p, "utf8") : null));
+    for (let i = 0; i < watched.length; i++) {
+      assert.equal(after[i], before[i], `dry-run mutated ${watched[i]} — a preflight must be read-only`);
+    }
   } finally {
     cleanup();
   }

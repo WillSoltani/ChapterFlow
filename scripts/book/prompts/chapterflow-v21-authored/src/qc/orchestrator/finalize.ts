@@ -234,12 +234,16 @@ function activeLedgerFindingsForDecision(bookId: string, roundId: string, chapte
   });
 }
 
-export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean } = {}): FinalizeQcRoundResult {
+export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean; dryRun?: boolean } = {}): FinalizeQcRoundResult {
+  // dryRun computes the same decisions in-memory but writes NOTHING durable
+  // (no attestations, evidence matrix, qc-summary, repair brief, ledger, or
+  // sweep record). A preflight must never mutate QC state — re-finalizing with
+  // attest:true used to overwrite a fresh PUBLISHABLE attestation with REVISE.
   const errors: string[] = [];
-  mkdirSync(orchestratorRoundDir(bookId, roundId), { recursive: true });
+  if (!options.dryRun) mkdirSync(orchestratorRoundDir(bookId, roundId), { recursive: true });
 
   const sweepSubmission = latestValidSubmission<ValidatedSweepSubmission>(bookId, roundId, "sweep");
-  if (sweepSubmission) writeSweepRecordFromSubmission(sweepSubmission);
+  if (sweepSubmission && !options.dryRun) writeSweepRecordFromSubmission(sweepSubmission);
   const keyResolution = resolveManualKeyJudges(bookId, roundId);
   if (keyResolution.errors.length) errors.push(...keyResolution.errors.map((e) => `manual-keyjudge: ${e}`));
 
@@ -416,7 +420,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     const raw = rawByChapter.get(decision.chapterNumber);
     return raw ? findingsFromEvidenceDecision(decision, raw) : [];
   });
-  appendFindings({
+  if (!options.dryRun) appendFindings({
     bookId,
     roundId,
     role: "finalizer",
@@ -432,8 +436,8 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   }
 
   const matrixPath = evidenceMatrixPath(bookId, roundId);
-  mkdirSync(dirname(matrixPath), { recursive: true });
-  writeFileSync(matrixPath, JSON.stringify({
+  if (!options.dryRun) mkdirSync(dirname(matrixPath), { recursive: true });
+  if (!options.dryRun) writeFileSync(matrixPath, JSON.stringify({
     schemaVersion: "qc-evidence-matrix-v1",
     bookId,
     roundId,
@@ -442,9 +446,9 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     errors,
   }, null, 2), "utf8");
 
-  const writtenBriefPath = writeRepairBrief(bookId, roundId);
+  const writtenBriefPath = options.dryRun ? briefPath : writeRepairBrief(bookId, roundId);
 
-  if (options.attest !== false) {
+  if (options.attest !== false && !options.dryRun) {
     const chapterByNumber = new Map(chapters.map((ch) => [ch.number, ch]));
     for (const decision of decisions) {
       if (decision.finalVerdict === "NEEDS_MORE_QC") continue;
@@ -472,7 +476,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     chapters: decisions,
     errors,
   };
-  writeFileSync(qcSummaryPath(bookId, roundId), JSON.stringify({
+  if (!options.dryRun) writeFileSync(qcSummaryPath(bookId, roundId), JSON.stringify({
     bookId,
     roundId,
     finalizedAt: new Date().toISOString(),

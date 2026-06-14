@@ -1,10 +1,14 @@
-# QC & Publish — fresh-session Codex prompt (ChapterFlow v21)
+# QC — fresh-session Codex prompt (ChapterFlow v21)
 
 Paste this whole file into a FRESH session. You are an INDEPENDENT QC reviewer.
-You did NOT author this book. Your job: QC it honestly, and if (and only if) every
-chapter passes, publish it. Do not edit chapter content. Do not fake outputs.
+You did NOT author this book. Your job: QC it honestly until every chapter passes.
+You do **not** publish — when QC passes you hand off to the finalize prompt
+(`PUBLISH-AFTER-QC-CODEX-SESSION.md`) in a new session. Do not edit chapter content.
+Do not fake outputs.
 
-When the operator says: **`QC and publish <book>`** — do exactly this.
+This is **prompt 2 of 3** (see `RUN-A-BOOK.md`): generate → **QC** → finalize.
+
+When the operator says: **`QC <book>`** — do exactly this.
 
 ## 0. Setup (once)
 ```bash
@@ -18,16 +22,17 @@ export CHAPTERFLOW_SESSION_ID="qc-$(date +%Y%m%d%H%M%S)"
 ```bash
 CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<book>" --pass
 ```
-Read the final block. It always ends with a `next:` section telling you the exact
-command to run. Branch on the headline:
+Read the final block and branch on the headline; it always prints the exact command
+to run next — labeled `next:` on a PASS, or `rerun or resume:` / `Start a fresh QC
+round:` / `After repair, run:` on the other outcomes. Run that printed command.
 
-- **`QC AUTO INCOMPLETE` + "review packet:"** → first run; no submissions yet. Go to step 2.
-- **`QC AUTO PASS`** → go to step 4 (publish).
+- **`QC AUTO INCOMPLETE` + a "review packet (" line** → first run; no submissions yet. Go to step 2.
+- **`QC AUTO PASS`** → done. Go to step 4 (hand off to finalize).
 - **`QC AUTO PASS (SUBSET)`** → only a `--chapters` subset was verified. Re-run a
-  full-book pass (the printed command) before publishing.
+  full-book pass (the printed command) before handing off.
 - **`QC AUTO REPAIR REQUIRED`** → go to step 3 (repair).
 - **`status: STALE_ROUND`** → chapters changed since the round opened. Start a fresh
-  round with the printed command. Never publish a stale round.
+  round with the printed command. Never hand off a stale round.
 
 ## 2. Review every chapter, then submit (the actual QC work)
 Open the **REVIEW-PACKET.md** path the run printed. It contains, for the whole book:
@@ -56,20 +61,29 @@ QC found real defects. Open the printed **repair prompt** and paste it into a fr
 ```bash
 npx tsx src/cli.ts qc-diagnose "<book>" --round <roundId>
 ```
+`qc-diagnose` also surfaces any major a content-only repair can never clear (a true
+false positive). Only a reviewer — never the writer — may disposition one, with the
+gated `major-disposition … --status waived_false_positive` command it prints. Fix or
+recalibrate first; waive only a confirmed FP.
+
 After the writer edits chapters, the round is stale — start a FRESH QC round (step 1).
 Do not reuse a round across content edits.
 
-## 4. Publish (only after a full-book `QC AUTO PASS`)
-```bash
-npx tsx src/cli.ts publish "<book>"
+## 4. On a full-book `QC AUTO PASS` — hand off to finalize (do NOT publish here)
+QC passing does **not** publish or push anything. Stop here and report to the operator:
+- the **round id** (`round: r…` in the PASS block),
+- `qc-status: PASS (all chapters fresh + PUBLISHABLE)`.
+
+Then tell them to open a NEW session and paste `PUBLISH-AFTER-QC-CODEX-SESSION.md`
+(prompt 3) with:
+```text
+Finalize and publish <book> from QC round <roundId>. Commit and push.
 ```
-`publish` resolves title/author from the brief and runs `promote-book`, which
-re-validates every gate (including the QC-attestation gate) before writing the package.
-It physically cannot ship a book that has not passed QC. If it blocks, read the reason,
-fix, re-QC, and publish again.
+The PASS block already prints the exact `publish-after-qc … --dry-run` command and the
+round id — copy them into the handoff.
 
 ## Rules (non-negotiable)
 - You are a fresh, independent reviewer; you did not author this book. Never grade your own writing.
 - Read the actual content — never pass a skeleton you didn't fill from a real read.
 - No paid API commands/providers. No editing chapter files in this session.
-- Only `publish` after a full-book PASS. Never force a pass or waive findings silently.
+- Never force a pass or waive findings silently. Do NOT publish or push — that is prompt 3.
