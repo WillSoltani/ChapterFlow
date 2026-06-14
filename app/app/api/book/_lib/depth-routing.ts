@@ -3,7 +3,8 @@ import type {
   DepthFeatureVector,
   VariantKey,
 } from "./types";
-import { bookUserPk, depthModelSk, nowIso } from "./keys";
+import { nowIso } from "./keys";
+import { depthModelKey } from "./depth-routing-core";
 import { GetCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 
@@ -92,7 +93,9 @@ export async function getDepthModel(
   const result = await ddbDoc.send(
     new GetCommand({
       TableName: tableName,
-      Key: { pk: bookUserPk(userId), sk: depthModelSk(bookId) },
+      // Table key schema is uppercase PK/SK (infra appTable); lowercase keys
+      // raise a DynamoDB ValidationException. See depthModelKey().
+      Key: depthModelKey(userId, bookId),
     })
   );
   return (result.Item as BookUserDepthModelItem) ?? null;
@@ -161,8 +164,9 @@ export async function updateDepthModel(
     new PutCommand({
       TableName: tableName,
       Item: {
-        pk: bookUserPk(userId),
-        sk: depthModelSk(bookId),
+        // Uppercase PK/SK to match the table key schema (infra appTable);
+        // lowercase keys are rejected with a DynamoDB ValidationException.
+        ...depthModelKey(userId, bookId),
         ...item,
       },
     })
