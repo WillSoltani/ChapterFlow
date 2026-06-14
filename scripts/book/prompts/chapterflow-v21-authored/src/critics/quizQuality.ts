@@ -272,6 +272,52 @@ export function checkQuizLabelShapedCorrect(quiz: QuizV21): CriticFinding[] {
  * Schema — duplicate choices within a single question. Renders as two
  * literally-identical options. Severity: BLOCKER (corrupts the question).
  */
+/**
+ * Answer-label leak (BP27). When choices carry a leading "Label: sentence"
+ * tag, the correct answer must NOT be identifiable from its label alone. The
+ * boundaries-book regen shipped two chapters where the key was always labelled
+ * "…move" and every distractor "…misconception" — a reader could ace the quiz
+ * without reading a word. We fire ONLY on the unambiguous signal: every
+ * distractor's label carries an explicit wrongness marker (misconception / myth
+ * / misread / …) that the key's label lacks, so the reader just picks the one
+ * choice NOT branded wrong. Neutral named-misconception labels (the GOOD pattern
+ * — "The Courtesy Cover / The Signal Read / The Endurance Bet") carry no marker
+ * and never fire; a key legitimately labelled "best/right/sound" is NOT flagged
+ * (those words are too common to treat as a tell without false positives). */
+const WRONGNESS_LABEL_MARKER = /\b(misconception|misreads?|myth|fallacy|mistaken?|errors?|fails?)\b/i;
+
+function choiceLabel(choice: unknown): string {
+  if (typeof choice !== "string") return "";
+  const i = choice.indexOf(": ");
+  return i > 0 ? choice.slice(0, i) : "";
+}
+
+export function checkQuizAnswerLabelLeak(quiz: QuizV21): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  for (const q of quiz.questions ?? []) {
+    const correct = pickCorrectIndex(q);
+    if (correct == null) continue;
+    const choices = q.choices ?? [];
+    if (choices.length < 2) continue;
+    const labels = choices.map(choiceLabel);
+    if (labels.filter((l) => l.trim()).length < choices.length) continue; // every choice must carry a "Label: …" tag
+    const keyWrong = WRONGNESS_LABEL_MARKER.test(labels[correct]);
+    const distractorLabels = labels.filter((_, j) => j !== correct);
+    const distractorsAllBrandedWrong = distractorLabels.length > 0 && distractorLabels.every((l) => WRONGNESS_LABEL_MARKER.test(l));
+    if (distractorsAllBrandedWrong && !keyWrong) {
+      findings.push(
+        finding(
+          "BP27.quiz_answer_label_leak" as any,
+          "blocker",
+          `${q.questionId} every distractor's label is branded a misconception/myth while the key's is not, so the correct answer is identifiable from the LABELS alone — relabel so no label reveals which choice is right`,
+          truncate(choices[correct] as string, 120),
+        ),
+      );
+    }
+  }
+  return findings;
+}
+
 export function checkQuizDuplicateChoices(quiz: QuizV21): CriticFinding[] {
   const findings: CriticFinding[] = [];
   for (const q of quiz.questions ?? []) {

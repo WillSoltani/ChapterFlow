@@ -14,6 +14,7 @@ import assert from "node:assert/strict";
 import { checkIntraBookCardSimilarity } from "../src/critics/intraBookFieldSimilarity.js";
 import { checkIntraBookQuizSimilarity } from "../src/critics/intraBookQuizSimilarity.js";
 import { runBookGate } from "../src/critics/bookGate.js";
+import { checkQuizAnswerLabelLeak } from "../src/critics/quizQuality.js";
 import { test, xfail } from "./harness.js";
 import { makeChapter } from "./helpers.js";
 
@@ -40,6 +41,43 @@ test("AS7 stays quiet for genuinely varied cards (no false positive)", () => {
     makeChapter(book, 2),
   ]);
   assert.deepEqual(findings, [], `AS7 false positive on disjoint-vocabulary chapters: ${JSON.stringify(findings.map((f) => f.checkId))}`);
+});
+
+// ── Incident: boundaries regen — quiz answer-label leak (BP27) ──────────────
+// ch04/ch07 shipped with the key always labelled "…move" and every distractor
+// "…misconception", so a reader could ace the quiz from the labels alone.
+
+test("BP27 catches a quiz whose choice labels reveal the correct answer (boundaries regen class)", () => {
+  const quiz = { questions: [{
+    questionId: "q01",
+    prompt: "Two co-parent replies sit on the screen. Which fits the boundary?",
+    choices: [
+      "Harmony-first misconception: soothe the breakup comments first so school talk gets easier.",
+      "Channel-lane move: answer the school detail and leave the breakup comments outside the thread.",
+      "Speed-first misconception: just reply faster to every text so fewer details pile up.",
+    ],
+    correctIndex: 1,
+  }] } as any;
+  const findings = checkQuizAnswerLabelLeak(quiz);
+  assert.ok(
+    findings.some((f) => (f.checkId as string).startsWith("BP27")),
+    `expected BP27 for a label-leaking quiz, got: ${JSON.stringify(findings.map((f) => f.checkId))}`,
+  );
+});
+
+test("BP27 stays quiet for neutral named-misconception labels (no false positive)", () => {
+  const quiz = { questions: [{
+    questionId: "q01",
+    prompt: "A call log shows ignored messages and rising irritation. Best read?",
+    choices: [
+      "The Courtesy Cover: add a warmer apology before the next call.",
+      "The Signal Read: treat the dread and irritation as clues access needs clearer terms.",
+      "The Endurance Bet: keep answering so the chair does not feel abandoned.",
+    ],
+    correctIndex: 1,
+  }] } as any;
+  const findings = checkQuizAnswerLabelLeak(quiz);
+  assert.deepEqual(findings, [], `BP27 false positive on neutral labels: ${JSON.stringify(findings.map((f) => f.checkId))}`);
 });
 
 // ── Incident: Covey/rich-dad quiz template substitution (AS5) ───────────────
