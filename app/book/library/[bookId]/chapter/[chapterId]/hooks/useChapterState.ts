@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
@@ -25,6 +25,7 @@ type PersistedChapterState = {
   quizFailureStreak: number;
   quizCooldownUntil: string | null;
   notes: string;
+  notesUpdatedAt: string | null;
   focusMode: boolean;
   fontScale: FontScale;
   showRecap: boolean;
@@ -49,6 +50,7 @@ const defaultState: PersistedChapterState = {
   quizFailureStreak: 0,
   quizCooldownUntil: null,
   notes: "",
+  notesUpdatedAt: null,
   focusMode: false,
   fontScale: "md",
   showRecap: false,
@@ -130,6 +132,12 @@ function parseStored(value: string | null): PersistedChapterState | null {
           ? parsed.quizCooldownUntil
           : defaultState.quizCooldownUntil,
       notes: typeof parsed.notes === "string" ? parsed.notes : defaultState.notes,
+      notesUpdatedAt:
+        typeof parsed.notesUpdatedAt === "string" &&
+        parsed.notesUpdatedAt.trim() &&
+        isValidTimestamp(parsed.notesUpdatedAt)
+          ? parsed.notesUpdatedAt
+          : defaultState.notesUpdatedAt,
       focusMode:
         typeof parsed.focusMode === "boolean" ? parsed.focusMode : defaultState.focusMode,
       fontScale: isFontScale(parsed.fontScale) ? parsed.fontScale : defaultState.fontScale,
@@ -179,6 +187,110 @@ function inferChapterNumber(chapterId: string) {
   return result;
 }
 
+function uniqueInts(values: number[]): number[] {
+  const seen = new Set<number>();
+  const result: number[] = [];
+  for (const value of values) {
+    if (!seen.has(value)) {
+      seen.add(value);
+      result.push(value);
+    }
+  }
+  return result;
+}
+
+function laterTimestamp(a: string | null, b: string | null): string | null {
+  if (a && b) return a > b ? a : b;
+  return a ?? b;
+}
+
+function chooseQuizResult(
+  local: QuizResult | null,
+  server: QuizResult | null
+): QuizResult | null {
+  if (!local) return server;
+  if (!server) return local;
+  // Never lose a recorded pass: prefer a passing result, then the higher score.
+  if (local.passed !== server.passed) return local.passed ? local : server;
+  return server.score > local.score ? server : local;
+}
+
+// Reconcile the freshly-hydrated local state with the server copy fetched on
+// mount. Mirrors useBookProgress's union / last-write-wins merge so a newer
+// local edit is never silently clobbered by stale server data. By category:
+//  - User-authored content (notes, bookmarked takeaways): preserved — notes via
+//    last-write-wins on notesUpdatedAt, takeaways via union.
+//  - Economy / abuse counters (retakes, failure streak, cooldown): take the more
+//    restrictive value; the server is the source of truth for the quiz economy.
+//  - Quiz progress: keep local in-progress answers; keep the better result.
+//  - UI preferences: adopt the server value only where local is still at default.
+function mergeServerChapterState(
+  local: PersistedChapterState,
+  server: PersistedChapterState
+): PersistedChapterState {
+  // Notes: last-write-wins on notesUpdatedAt; never let an empty or stale server
+  // copy overwrite notes the user has authored on this device.
+  let notes = local.notes;
+  let notesUpdatedAt = local.notesUpdatedAt;
+  if (local.notesUpdatedAt && server.notesUpdatedAt) {
+    if (server.notesUpdatedAt > local.notesUpdatedAt) {
+      notes = server.notes;
+      notesUpdatedAt = server.notesUpdatedAt;
+    }
+  } else if (server.notesUpdatedAt && !local.notesUpdatedAt) {
+    // Only the server is timestamped: adopt it unless doing so would drop
+    // unstamped (legacy) local notes the user wrote on this device.
+    if (server.notes.trim() || !local.notes.trim()) {
+      notes = server.notes;
+      notesUpdatedAt = server.notesUpdatedAt;
+    }
+  } else if (!local.notesUpdatedAt && !server.notesUpdatedAt) {
+    // Neither side is timestamped (legacy data): keep local content, only
+    // filling in from the server when local has nothing.
+    if (!local.notes.trim() && server.notes.trim()) {
+      notes = server.notes;
+    }
+  }
+  // (local timestamped, server not) → keep the newer local notes as-is.
+
+  return {
+    // UI preferences: the server fills in only where local is still at default.
+    activeTab:
+      local.activeTab === defaultState.activeTab ? server.activeTab : local.activeTab,
+    readingDepth:
+      local.readingDepth === defaultState.readingDepth
+        ? server.readingDepth
+        : local.readingDepth,
+    exampleFilter:
+      local.exampleFilter === defaultState.exampleFilter
+        ? server.exampleFilter
+        : local.exampleFilter,
+    fontScale:
+      local.fontScale === defaultState.fontScale ? server.fontScale : local.fontScale,
+    focusMode: local.focusMode,
+    showRecap: local.showRecap || server.showRecap,
+    explanationOpen:
+      Object.keys(local.explanationOpen).length > 0
+        ? local.explanationOpen
+        : server.explanationOpen,
+    // Quiz progress: keep local in-progress answers; keep the better result.
+    quizAnswers:
+      Object.keys(local.quizAnswers).length > 0 ? local.quizAnswers : server.quizAnswers,
+    quizResult: chooseQuizResult(local.quizResult, server.quizResult),
+    // Economy / abuse counters: take the more restrictive value (server-truth).
+    quizRetakeCount: Math.max(local.quizRetakeCount, server.quizRetakeCount),
+    quizFailureStreak: Math.max(local.quizFailureStreak, server.quizFailureStreak),
+    quizCooldownUntil: laterTimestamp(local.quizCooldownUntil, server.quizCooldownUntil),
+    // User-authored content.
+    notes,
+    notesUpdatedAt,
+    bookmarkedTakeaways: uniqueInts([
+      ...local.bookmarkedTakeaways,
+      ...server.bookmarkedTakeaways,
+    ]),
+  };
+}
+
 export function useChapterState(
   bookId: string,
   chapterId: string,
@@ -199,7 +311,6 @@ export function useChapterState(
   const [serverReady, setServerReady] = useState(false);
   const [hasPersistedState, setHasPersistedState] = useState(false);
   const [syncFailed, setSyncFailed] = useState(false);
-  const skipNextServerSave = useRef(false);
 
   useEffect(() => {
     const parsed = parseStored(window.localStorage.getItem(storageKey));
@@ -268,13 +379,20 @@ export function useChapterState(
       `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${resolvedChapterNumber}/state`
     )
       .then((payload) => {
-        if (!mounted || !payload.state?.state) return;
-        const parsed = parseStored(JSON.stringify(payload.state?.state));
-        if (parsed) {
-          skipNextServerSave.current = true;
-          setHasPersistedState(true);
-          setState((prev) => ({ ...prev, ...parsed }));
+        if (!mounted) return;
+        const serverState = payload.state?.state;
+        if (serverState) {
+          const parsed = parseStored(JSON.stringify(serverState));
+          if (parsed) {
+            setHasPersistedState(true);
+            // Per-field merge (last-write-wins on notes, union of bookmarks,
+            // restrictive economy counters) instead of a blind server-wins
+            // spread, so newer local edits are never clobbered.
+            setState((prev) => mergeServerChapterState(prev, parsed));
+          }
         }
+        // Always mark the server reachable so the save effect can persist this
+        // chapter's state even on a first read (no server copy yet).
         setServerReady(true);
       })
       .catch(() => {
@@ -294,10 +412,6 @@ export function useChapterState(
 
   useEffect(() => {
     if (!hydrated || !serverReady) return;
-    if (skipNextServerSave.current) {
-      skipNextServerSave.current = false;
-      return;
-    }
     const timeout = window.setTimeout(() => {
       fetchBookJson(
         `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${resolvedChapterNumber}/state`,
@@ -391,7 +505,7 @@ export function useChapterState(
   }, []);
 
   const setNotes = useCallback((notes: string) => {
-    setState((prev) => ({ ...prev, notes }));
+    setState((prev) => ({ ...prev, notes, notesUpdatedAt: new Date().toISOString() }));
   }, []);
 
   const appendNote = useCallback((snippet: string) => {
@@ -402,6 +516,7 @@ export function useChapterState(
       return {
         ...prev,
         notes: nextNotes,
+        notesUpdatedAt: new Date().toISOString(),
       };
     });
   }, []);
