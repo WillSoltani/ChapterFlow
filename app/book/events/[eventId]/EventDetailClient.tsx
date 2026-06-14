@@ -17,6 +17,7 @@ import { TopNav } from "@/app/book/home/components/TopNav";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { getBookById } from "@/app/book/data/booksCatalog";
 import type { EventDefinition, EventParticipationItem } from "@/app/app/api/book/_lib/types";
 
 type ActiveEventWithParticipation = EventDefinition & {
@@ -261,23 +262,30 @@ export function EventDetailClient({ eventId }: { eventId: string }) {
             Complete chapters from these books to earn progress
           </p>
           <div className="mt-3 space-y-2">
-            {event.books.map((bookId) => (
-              <Link
-                key={bookId}
-                href={`/book/library/${bookId}`}
-                className="cf-panel flex items-center gap-3 rounded-2xl p-3 transition hover:bg-(--cf-accent-muted)"
-              >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-strong)">
-                  <Book className="h-5 w-5 text-(--cf-text-3)" />
-                </div>
-                <span className="text-sm font-medium text-(--cf-text-1)">
-                  {bookId
-                    .split("-")
-                    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-                    .join(" ")}
-                </span>
-              </Link>
-            ))}
+            {event.books.map((bookId) => {
+              const book = getBookById(bookId);
+              return (
+                <Link
+                  key={bookId}
+                  href={`/book/library/${bookId}`}
+                  className="cf-panel flex items-center gap-3 rounded-2xl p-3 transition hover:bg-(--cf-accent-muted)"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-strong)">
+                    <Book className="h-5 w-5 text-(--cf-text-3)" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="block truncate text-sm font-medium text-(--cf-text-1)">
+                      {book?.title ?? bookId}
+                    </span>
+                    {book?.author && (
+                      <span className="block truncate text-xs text-(--cf-text-3)">
+                        {book.author}
+                      </span>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
 
