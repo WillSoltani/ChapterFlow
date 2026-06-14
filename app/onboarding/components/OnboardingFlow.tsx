@@ -92,12 +92,21 @@ export function OnboardingFlow() {
       const legacyKey = "book-accelerator:onboarding:v5";
       const legacyRaw = localStorage.getItem(legacyKey);
       const legacy = legacyRaw ? JSON.parse(legacyRaw) : {};
+      // Mirror the reader-relevant picks under the field names the reader's seed
+      // (useBookPreferences) and useOnboardingState read, so tone and chapter-start
+      // order take effect on THIS device immediately. Fresh devices are covered
+      // separately by server-settings hydration in useBookPreferences. See H21.
+      const chapterStartMode =
+        onboarding.chapterOrder === "scenarios_first" ? "practical-first" : "summary-first";
       localStorage.setItem(
         legacyKey,
         JSON.stringify({
           ...legacy,
           setupComplete: true,
           completedAt: new Date().toISOString(),
+          motivationStyle: onboarding.tone,
+          chapterStartMode,
+          dailyGoalMinutes: onboarding.dailyGoal,
         })
       );
     } catch {}
