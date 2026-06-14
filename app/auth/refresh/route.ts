@@ -7,7 +7,8 @@ import { getAuthCookieBase } from "../_lib/auth-cookie";
 
 export const runtime = "nodejs";
 
-// Mirrors the refresh-token validity persisted by the callback.
+// Mirrors the refresh-token validity persisted by the callback. This 30-day
+// lifetime is disclosed in app/legal/cookies/page.tsx — keep that policy in sync.
 const REFRESH_TOKEN_MAX_AGE = 30 * 24 * 60 * 60;
 
 function readString(value: unknown): string | null {
