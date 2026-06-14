@@ -16,6 +16,9 @@ function readString(value: unknown): string | null {
 // tokens silently, instead of hard-ending the session at the ~1h access-token
 // expiry. The exact value only needs to be an upper bound — a stale cookie just
 // yields a 401 from /auth/refresh, which falls back to re-login.
+// NOTE: this 30-day lifetime (refresh_token, and the auth_expires_at cookie that
+// shares it) is disclosed in app/legal/cookies/page.tsx — keep that policy in
+// sync if this value changes.
 const REFRESH_TOKEN_MAX_AGE = 30 * 24 * 60 * 60;
 
 /**
