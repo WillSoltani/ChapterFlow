@@ -11,6 +11,13 @@ function readString(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value : null;
 }
 
+// Cognito refresh tokens default to 30 days of validity. We persist the refresh
+// token (httpOnly) for this window so /auth/refresh can mint fresh access/id
+// tokens silently, instead of hard-ending the session at the ~1h access-token
+// expiry. The exact value only needs to be an upper bound — a stale cookie just
+// yields a 401 from /auth/refresh, which falls back to re-login.
+const REFRESH_TOKEN_MAX_AGE = 30 * 24 * 60 * 60;
+
 /**
  * Recover the PKCE verifier and return URL from the encrypted state parameter.
  * Falls back to cookies if decryption fails (backward compatibility during
@@ -112,6 +119,7 @@ export async function GET(req: NextRequest) {
     const tokens = (await tokenRes.json()) as Record<string, unknown>;
     const idToken = readString(tokens.id_token);
     const accessToken = readString(tokens.access_token);
+    const refreshToken = readString(tokens.refresh_token);
 
     if (!idToken || !accessToken) {
       return NextResponse.redirect(new URL("/?auth=token_error", origin));
@@ -131,11 +139,26 @@ export async function GET(req: NextRequest) {
     res.cookies.set("id_token", idToken, commonCookie);
     res.cookies.set("access_token", accessToken, commonCookie);
 
-    // Client-readable expiry timestamp for proactive session management
+    // Persist the refresh token (httpOnly) so /auth/refresh can silently renew
+    // the session before the access token expires. Cognito only returns this on
+    // the initial code exchange (refresh-token rotation is off by default), so
+    // we must capture it here.
+    if (refreshToken) {
+      res.cookies.set("refresh_token", refreshToken, {
+        ...cookieBase,
+        maxAge: REFRESH_TOKEN_MAX_AGE,
+      });
+    }
+
+    // Client-readable expiry timestamp for proactive session management.
+    // The cookie *value* is the access-token expiry, but its *lifetime* spans
+    // the whole refresh window — otherwise the cookie would evaporate at the
+    // exact moment it expires, leaving TokenExpiryGuard unable to read the
+    // timestamp and fire its renew/redirect logic.
     res.cookies.set("auth_expires_at", String(Math.floor(Date.now() / 1000) + expiresIn), {
       ...cookieBase,
       httpOnly: false, // Must be readable by client JS
-      maxAge: expiresIn,
+      maxAge: REFRESH_TOKEN_MAX_AGE,
     });
 
     // Clear ephemeral OAuth cookies

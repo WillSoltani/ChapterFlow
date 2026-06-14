@@ -17,6 +17,8 @@ export async function GET(req: NextRequest) {
   const cookieStore = await cookies();
   cookieStore.delete("id_token");
   cookieStore.delete("access_token");
+  cookieStore.delete("refresh_token");
+  cookieStore.delete("auth_expires_at");
   const returnTo = sanitizeReturnTo(
     req.nextUrl.searchParams.get("returnTo"),
     logoutRedirect
@@ -31,5 +33,7 @@ export async function GET(req: NextRequest) {
   const res = NextResponse.redirect(logoutUrl);
   res.cookies.set("id_token", "", { ...cookieBase, maxAge: 0 });
   res.cookies.set("access_token", "", { ...cookieBase, maxAge: 0 });
+  res.cookies.set("refresh_token", "", { ...cookieBase, maxAge: 0 });
+  res.cookies.set("auth_expires_at", "", { ...cookieBase, httpOnly: false, maxAge: 0 });
   return res;
 }
