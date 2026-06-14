@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch11",
+  "number": 11,
+  "title": "Recognize, Evaluate, and Respond to System Interactions",
+  "coreMove": "A PMBOK principle becomes real when a project team traces what else moves, evaluates dependencies and feedback loops, and changes the next decision before local speed damages value.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regulated software rollout",
+      "audience": "project managers under deadline pressure",
+      "stakes": "record the tradeoff before a compressed baseline hides interface risk",
+      "format": "decision_memo",
+      "requiredBeat": "the written memo changes sequencing instead of merely naming the principle"
+    },
+    {
+      "domain": "vendor integration project",
+      "audience": "team leads comparing local and system-level responses",
+      "stakes": "same schedule pressure produces different outcomes",
+      "format": "contrast",
+      "requiredBeat": "Colby and Deborah face the same pressure with opposite approaches and diverging results"
+    },
+    {
+      "domain": "release readiness coaching",
+      "audience": "project leaders who treat principles as wording",
+      "stakes": "change a handoff before the phrase becomes decoration",
+      "format": "coach_talk",
+      "requiredBeat": "Rolande reframes Connor's stuck view in one quotable sentence"
+    },
+    {
+      "domain": "project-management onboarding class",
+      "audience": "learners memorizing the PMBOK principle set",
+      "stakes": "turn recall of the 12 principles into applied reasoning",
+      "format": "school_case",
+      "requiredBeat": "Stella's confusion becomes the teaching material"
+    },
+    {
+      "domain": "weekly project review",
+      "audience": "leaders redesigning a status process",
+      "stakes": "make tradeoffs visible before pressure becomes rework",
+      "format": "before_after",
+      "requiredBeat": "the same review process is shown before and after the change"
+    },
+    {
+      "domain": "project assurance review",
+      "audience": "PMO analysts auditing system interactions",
+      "stakes": "find whether the principle changed actual responses",
+      "format": "audit",
+      "requiredBeat": "Stella discovers the telling detail by reviewing records"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 2,
+      "evaluate": 3,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.316Z"
+}

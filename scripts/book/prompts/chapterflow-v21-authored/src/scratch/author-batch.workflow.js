@@ -10,7 +10,7 @@ export const meta = {
 // Batch params are hardcoded for this one-off ch16-23 Rework run (args plumbing
 // is overridden if provided). allocation/titles mirror state/name-plans/rework.name-plan.json.
 const A = args || {}
-const PIPE = '/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored'
+const PIPE = '/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored'
 const bookId = A.bookId || 'rework'
 const runId = A.runId || 'zz-v2-validation'           // where v2 sidecars + gating read from (findLatestRun picks "zz...")
 const v1RunId = A.v1RunId || '20260601-083527'        // where the rich-v1 sidecars live
@@ -75,7 +75,7 @@ const results = await pipeline(
     agent(
       `You are upgrading one ChapterFlow source sidecar from rich-v1 to source-v2. Work in ${PIPE} (cd there first).
 
-INPUT  (rich-v1): .chapterflow/runs/${bookId}/${v1RunId}/sidecars/source/ch${pad(n)}.source.json  (relative to the REPO ROOT /Users/radinsoltani/ChapterFlow)
+INPUT  (rich-v1): .chapterflow/runs/${bookId}/${v1RunId}/sidecars/source/ch${pad(n)}.source.json  (relative to the REPO ROOT /Users/radinsoltani/ChapterFlow-books)
 OUTPUT (v2):      .chapterflow/runs/${bookId}/${runId}/sidecars/source/ch${pad(n)}.source.json  (REPO ROOT relative)
 REFERENCE v2 shape: read .chapterflow/runs/${bookId}/${runId}/sidecars/source/ch09.source.json — match its structure EXACTLY.
 

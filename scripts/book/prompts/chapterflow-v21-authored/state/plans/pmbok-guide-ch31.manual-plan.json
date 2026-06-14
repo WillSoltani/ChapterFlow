@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch31",
+  "number": 31,
+  "title": "Artifacts",
+  "coreMove": "Teams get value from artifacts when current information supports decisions, coordination, compliance, learning, or control; stale or unused records are theater, not management.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "weekly governance review with a risk register on screen",
+      "audience": "a PMO lead trying to keep artifact review tied to decisions",
+      "stakes": "prevent a completed register from being mistaken for active risk response",
+      "format": "reset_moment",
+      "requiredBeat": "the protagonist interrupts his own checklist routine and restarts from who uses the risk register"
+    },
+    {
+      "domain": "team workspace with a Kanban board and delivery dashboard",
+      "audience": "a coordinator observing flow before a daily team conversation",
+      "stakes": "show how visible work state teaches without a decision fork",
+      "format": "vignette",
+      "requiredBeat": "a close observed detail shows WIP and bottlenecks before anyone explains them"
+    },
+    {
+      "domain": "postmortem after an unresolved supplier risk delays delivery",
+      "audience": "an analyst reconstructing the decisive artifact failure",
+      "stakes": "locate the misstep that turned a listed risk into unmanaged uncertainty",
+      "format": "postmortem",
+      "requiredBeat": "the failure has already happened and the trace points to a green risk row with no real response"
+    },
+    {
+      "domain": "delivery lead presenting a dashboard beside a Kanban board",
+      "audience": "a delivery lead responsible for current measurement signals",
+      "stakes": "recover from presenting stale performance data before the group relies on it",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist notices her own stale dashboard while the live Kanban board shows a bottleneck"
+    },
+    {
+      "domain": "project manager documenting which artifacts the team will keep",
+      "audience": "a project manager explaining artifact choices to a sponsor",
+      "stakes": "justify a fit-for-purpose artifact set without copying the whole catalog",
+      "format": "decision_memo",
+      "requiredBeat": "the written memo carries the scene by naming use before inventory"
+    },
+    {
+      "domain": "two project leads responding to the same sponsor request for status visibility",
+      "audience": "leads choosing whether visibility means more artifacts or better-used artifacts",
+      "stakes": "show how opposite artifact strategies produce different outcomes",
+      "format": "contrast",
+      "requiredBeat": "two named people face the same request with opposite approaches and outcomes diverge"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 2,
+      "evaluate": 3,
+      "create": 1,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.330Z"
+}

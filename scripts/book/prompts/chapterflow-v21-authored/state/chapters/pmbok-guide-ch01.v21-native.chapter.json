@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch01",
+  "number": 1,
+  "title": "Introduction to The Standard for Project Management",
+  "readingTimeMinutes": 13,
+  "hook": "After the vote, the conference table still held the 49-process grid beside the ANSI/PMI binder.",
+  "counterintuition": "An introduction can govern execution. When readers skip audience, purpose, and vocabulary, principle guidance gets pulled back into process compliance.",
+  "tryThisNow": "In the next meeting, tally five project words that draw different meanings, such as standard, process, value, owner, and done. Let the count show where vocabulary is doing real work.",
+  "keyTakeaway": "Before choosing a method, read the Standard's frame: audience, purpose, and shared terms tell you when to use principles as judgment, not as a replacement process grid.",
+  "breakdown": {
+    "fastRead": "After the vote, Santino leaves both binders on the conference table. One shows ANSI/PMI 99-001-2021 and the Project Management Institute cover. The other holds the old 49-process grid. The room chose the new edition, yet the sticky notes still ask, where does each process go?\n\nA standard protects judgment before it protects paperwork. The opening frame says who the guidance serves, why the terms matter, and how broad project work has become. Read it first. Without that frame, the Seventh Edition gets dragged into the shape of the Sixth Edition, and principles become a checklist with softer names.",
+    "deepRead": "Shared terms do work before any method is chosen. Sponsors, team members, PMO staff, trainers, consultants, and executives all touch value delivery. If those people use the same words differently, the project can look aligned while each role is steering by a private map.\n\nCapucine sees the mechanism during a release call. One group says standard and means required process. Another says principle and hears vague advice. A third asks if the 10 knowledge areas vanished because the 49 processes no longer form the front door. The argument is not about vocabulary style. It is about control over interpretation.\n\nThe opening frame is a control on interpretation. ANSI/PMI 99-001-2021 gives the work a formal standards identity, so the language has to travel across industries and lifecycles. The Seventh Edition cannot be a single task sequence for software, public works, medical devices, research, and internal change. It has to give durable decision criteria, then leave room for method choice.\n\nThat does not make process unimportant. It changes where process belongs. A predictive plan, an adaptive cadence, and a hybrid governance model can all be disciplined. The frame asks whether the chosen practice helps deliver value in context. Capucine can now ask a sharper question in a PMO review: which term is being misread, and which practice serves the outcome here?",
+    "fullRead": "The hard case is the reader who loved the Sixth Edition for good reasons. The 49 processes, 10 knowledge areas, and 5 process groups gave Santino a map he could teach, audit, and defend. A grid can calm a room because everyone can point to a box. Losing that front-door map can feel like losing rigor itself.\n\nRigor has not disappeared. It has moved from prescription to professional judgment. A formal standard cannot assume that every project lives in the same industry, risk profile, cadence, or governance setting. The Project Management Institute had to preserve shared language while allowing predictive, adaptive, and hybrid work to be managed without pretending they are one lifecycle.\n\nThat is why the first orientation matters. Audience tells the reader that the guidance is not only for the person with the project manager title. Purpose tells the reader that value and outcomes sit above document production. Vocabulary gives mixed roles a way to coordinate before templates and tools enter the room.\n\nThe issue is not old against new; it is map against recipe. The old grid remains useful history and a reference point. The new frame asks a different first question: what kind of professional judgment does this environment require? If a team answers that well, a process can serve the work. If the team skips it, even a principle can become a disguised compliance step.\n\nAldege's failed handoff review shows the cost. The team had produced every required artifact, yet the sponsor and delivery lead meant different things by acceptance. One meant signoff on a document. The other meant a capability users could operate without a workaround. The missing piece was not another template. It was a shared frame for terms, roles, and value.\n\nThere is also a limit. A principle-based standard is not permission to improvise without discipline. Some environments need strict evidence, fixed approvals, or traceable controls. In those settings, the Frame First Check does not weaken process. It asks why a process is required, who relies on it, and what outcome it protects. The test is purpose, not preference.\n\nThat distinction keeps the Seventh Edition from becoming a mood. It also keeps the Sixth Edition from becoming a museum piece. The reader does not have to choose between judgment and structure. The real work is to read the frame, name the context, and let the chosen method earn its place."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch01.ex.ansi-standard",
+      "title": "Santino Finds the Wrong Cheer",
+      "tags": [
+        "standard",
+        "vote",
+        "predict-reveal"
+      ],
+      "planSpec": {
+        "domain": "enterprise PMO standards adoption",
+        "audience": "PMO leaders moving a mixed organization to the Seventh Edition",
+        "stakes": "prevent the formal standard from being misread as a shorter process manual",
+        "format": "predict_reveal",
+        "requiredBeat": "the expected celebration of a 2021 consensus standard reveals a hidden wish for the old process grid"
+      },
+      "scenario": "Santino pins the Project Management Institute cover page to the glass wall and expects the steering group to cheer the 2021 label on ANSI/PMI 99-001-2021. Instead, every hand reaches for the old worksheet of 49 processes. The reveal lands before the closeout vote: the room wants the Seventh Edition to be a shorter process manual. Santino has to answer before the agenda closes, with the consensus standard open beside the old grid.",
+      "whatToDo": "Santino names the formal standard first, then asks the group to read audience, purpose, and vocabulary before mapping any process artifacts.",
+      "whyItMatters": "The vote did not prove shared interpretation. A standards label can still be dragged into old compliance habits unless the opening frame governs how people read it."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch01.ex.sixth-edition-grid",
+      "title": "Capucine's Thread Slows the Rush",
+      "tags": [
+        "text-thread",
+        "software",
+        "vocabulary"
+      ],
+      "planSpec": {
+        "domain": "software release governance",
+        "audience": "project managers explaining the edition shift to delivery teams",
+        "stakes": "stop a chat thread from turning the Seventh Edition into a renamed Sixth Edition grid",
+        "format": "text_thread",
+        "requiredBeat": "the message exchange shows the lesson between short replies about 49 processes and the new reading path"
+      },
+      "scenario": "Capucine's phone buzzes while the release team waits on Zoom. Santino texts, 'Do we still need all 49 processes?' Capucine replies, 'We need a shared frame, not a scavenger hunt.' Santino asks, 'So the 10 knowledge areas are gone?' Capucine types, 'No. The Sixth Edition grid is history we recognize. The Seventh Edition asks which principle and performance view fits this release.' Three dots hang before Capucine turns the thread into the call's first sentence.",
+      "whatToDo": "Capucine uses the thread to separate continuity from architecture: the old grid remains familiar, while the new reading path starts with fit and value.",
+      "whyItMatters": "Short messages expose the real confusion. The team is not resisting discipline; it is asking which map now controls the search for guidance."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch01.ex.ansi-standard",
+      "title": "Abigail Restarts the Workshop",
+      "tags": [
+        "reset",
+        "training",
+        "audience"
+      ],
+      "planSpec": {
+        "domain": "project management training workshop",
+        "audience": "trainers introducing the Standard to sponsors and team members",
+        "stakes": "keep a routine class from teaching process compliance before professional purpose",
+        "format": "reset_moment",
+        "requiredBeat": "the protagonist interrupts her own routine and restarts from the Standard's audience and purpose"
+      },
+      "scenario": "Abigail begins the workshop the way she always has: slides first, checklist second, exercise third. A sponsor raises a hand and asks if ANSI/PMI 99-001-2021 means every team must follow one method. Abigail stops with the Project Management Institute logo still glowing on the screen. She sets the checklist aside, breathes once, and restarts from audience and purpose before the first exercise begins.",
+      "whatToDo": "Abigail pauses the routine, reads the opening frame aloud, and asks each role in the room what decision the Standard must help them make.",
+      "whyItMatters": "The useful move is the interruption. A training habit that starts with artifacts can teach the wrong contract before the group understands what kind of guidance it has opened."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch01.ex.sixth-edition-grid",
+      "title": "Antoine Watches the Queue",
+      "tags": [
+        "vignette",
+        "public-sector",
+        "terms"
+      ],
+      "planSpec": {
+        "domain": "public-sector permit office",
+        "audience": "consultants observing how shared vocabulary affects coordination",
+        "stakes": "show how the old grid can sit in ordinary work without telling people what a word means",
+        "format": "vignette",
+        "requiredBeat": "a close observed moment shows the teaching point without a decision fork"
+      },
+      "scenario": "Antoine waits beside the permit office printer while a clerk stamps three folders. Above the tray, a faded Sixth Edition poster shows 49 processes, 10 knowledge areas, and 5 process groups. Two sticky notes sit on the bezel: value? and acceptance? The queue shuffles forward. Nobody argues. The detail teaches quietly: a grid can be visible all day while key words still have no shared meaning.",
+      "whatToDo": "Antoine records the mismatched terms on the sticky notes and brings them to the next review as coordination risks, not as trivia about wording.",
+      "whyItMatters": "Vocabulary is practical infrastructure. If people share a process map but not the meaning of value or acceptance, work can move while alignment stays false."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch01.fact.9",
+      "title": "Aldege Rebuilds the Failed Handoff",
+      "tags": [
+        "postmortem",
+        "handoff",
+        "orientation"
+      ],
+      "planSpec": {
+        "domain": "public infrastructure handoff review",
+        "audience": "analysts tracing why a compliant project still missed the outcome",
+        "stakes": "locate the interpretive miss that turned guidance into mechanical compliance",
+        "format": "postmortem",
+        "requiredBeat": "the failure is already visible, and the one decisive misstep was skipping the opening frame"
+      },
+      "scenario": "Aldege's postmortem packet opens after the handoff has failed. The file shows completed templates, approved gates, and a neat appendix labeled Seventh Edition. The decisive misstep sits earlier: nobody used audience, purpose, and vocabulary to define acceptance. One side meant document signoff; the sponsor meant a usable capability. The project did not lack artifacts. It lacked the opening control on interpretation.",
+      "whatToDo": "Aldege traces the failure to the first review meeting and marks the missing Frame First Check beside the acceptance definition, not beside a late template.",
+      "whyItMatters": "Postmortems often hunt for the missing document. This one shows a deeper miss: the team used guidance mechanically before agreeing how later guidance should be read."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch01.ex.sixth-edition-grid",
+      "title": "Herve Corrects His Slide",
+      "tags": [
+        "mistake-recovery",
+        "sponsor",
+        "architecture"
+      ],
+      "planSpec": {
+        "domain": "executive sponsor briefing",
+        "audience": "sponsors explaining the edition shift without oversimplifying it",
+        "stakes": "recover from a sponsor's own slide that turns the Seventh Edition into a replacement matrix",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist notices his own error mid-briefing and corrects the frame before the room copies it"
+      },
+      "scenario": "Herve is halfway through a sponsor briefing when he hears his own sentence land wrong: 'The Seventh Edition replaces the Sixth Edition's 49 processes.' On the screen, his slide still shows the 10 knowledge areas and 5 process groups crossed out in red. He catches the mistake before questions begin. The issue is not deletion. It is a different organizing architecture, and Herve revises the slide while the room watches.",
+      "whatToDo": "Herve removes the red strikeouts, labels the Sixth Edition grid as a familiar reference point, and adds the new frame: principles, domains, tailoring, and context.",
+      "whyItMatters": "Recovery matters because leaders spread misreadings fast. A sponsor who corrects his own simplification protects continuity while making the new architecture clear."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch01.fact.4",
+        "prompt": "Capucine's PMO log shows four delayed handoffs in six days, all after teams used standard, process, and acceptance differently. Which inference should come first?",
+        "choices": [
+          "Document-maturity proxy: Ask each team to submit more templates before the next review.",
+          "Frame-first reading: Align the shared terms before judging the delivery method.",
+          "Process-grid carryover: Rebuild the Sixth Edition matrix with extra signoffs."
+        ],
+        "correctIndex": 1,
+        "explanation": "The pattern points to vocabulary failure before method failure. Extra templates or a rebuilt grid can still miss if standard, process, and acceptance carry different meanings.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch01.fact.8",
+        "prompt": "Santino inherits a reliable onboarding deck built around the 49 processes, 10 knowledge areas, and 5 process groups. What should he do before updating it for the Seventh Edition?",
+        "choices": [
+          "Architecture-shift read: Explain that the old grid remains a reference point while principles and domains become the new reading path.",
+          "Renaming shortcut: Keep the grid in place and relabel each box with a newer term.",
+          "Compliance nostalgia: Teach the old matrix first so teams can treat later guidance as an appendix."
+        ],
+        "correctIndex": 0,
+        "explanation": "Continuity matters, but the organizing structure changes. Relabeling or demoting the new material hides the shift toward principles, domains, tailoring, and value.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch01.fact.2",
+        "prompt": "A release dashboard from Capucine shows an agile team, a predictive vendor plan, and a hybrid governance cadence using the same Standard. Which reading best fits that spread?",
+        "choices": [
+          "One-method myth: Pick one lifecycle and require all three groups to match it.",
+          "Soft-principle dismissal: Treat principles as motivational language and keep method choices separate.",
+          "Context-fit standard: Use the principles as decision criteria while selecting practices that fit each workstream."
+        ],
+        "correctIndex": 2,
+        "explanation": "The Standard supports judgment across different lifecycles. One forced lifecycle is too narrow, while dismissing principles misses their role in disciplined method selection.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch01.fact.1",
+        "prompt": "Antoine advises a governance group that says only assigned project managers need the Standard. Which correction best matches the intended audience?",
+        "choices": [
+          "Role-narrowing error: Give the material only to project managers so accountability stays clear.",
+          "Training-manual shortcut: Reserve the Standard for exam prep and leave sponsors out of it.",
+          "Ecosystem view: Include sponsors, PMO staff, teams, consultants, trainers, and executives because their decisions shape value."
+        ],
+        "correctIndex": 2,
+        "explanation": "Project value is shaped across the delivery environment. Keeping the frame inside one title ignores sponsors, PMOs, teams, and governance roles that affect outcomes.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch01.fact.5",
+        "prompt": "Aldege's audit table lists every required document as complete, yet users still cannot operate the delivered capability. What should the audit read first?",
+        "choices": [
+          "Document-maturity proxy: Count completed artifacts as the main evidence of project success.",
+          "Outcome-first read: Ask how the documents supported usable value, coordination, learning, or compliance.",
+          "Template-volume cure: Add another signoff package so the artifact trail looks stronger."
+        ],
+        "correctIndex": 1,
+        "explanation": "Completed documents matter only when they help decisions and outcomes. Counting artifacts as success repeats the error the audit has already exposed.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch01.fact.7",
+        "prompt": "Abigail is designing a standards seminar and someone calls ANSI/PMI 99-001-2021 a commercial training manual. Which response keeps the status clear?",
+        "choices": [
+          "Consensus-standard status: Treat the ANSI/PMI label as a signal of broad professional guidance, not one firm's workflow.",
+          "Courseware reduction: Treat the label as branding for a class and skip the professional framing.",
+          "Vendor-method misconception: Present the Standard as the Project Management Institute's required delivery method."
+        ],
+        "correctIndex": 0,
+        "explanation": "The ANSI/PMI label signals a formal standards context. Course branding and vendor-method readings shrink broad professional guidance into a product or a workflow.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch01.fact.9",
+        "prompt": "Which sentence belongs at the top of Herve's kickoff slide before the team chooses predictive, adaptive, or hybrid practices?",
+        "choices": [
+          "Process-first habit: Start with the old matrix, then make the project fit whichever boxes remain useful.",
+          "Artifact-completion proxy: Prove control by listing the documents the team will produce.",
+          "Frame-first check: Define audience, purpose, vocabulary, and value before choosing practices."
+        ],
+        "correctIndex": 2,
+        "explanation": "The orientation controls how later guidance is used. Starting with boxes or artifacts risks turning adaptable guidance back into mechanical compliance.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch01.fact.6",
+        "prompt": "A portfolio snapshot contains a regulated facility upgrade, a software product release, and a research effort with high uncertainty. What does the variety imply about the Standard?",
+        "choices": [
+          "Broad-context fit: Use shared principles and vocabulary while letting practices vary by regulation, cadence, and uncertainty.",
+          "Identical-step bias: Apply the same sequence to all three so comparison stays simple.",
+          "Industry-silo misconception: Build separate standards and avoid shared terms across the portfolio."
+        ],
+        "correctIndex": 0,
+        "explanation": "The variety is exactly why a single universal sequence is brittle. Shared terms and principles can travel while practices adapt to each environment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch01.fact.3",
+        "prompt": "Capucine hears a colleague say the Seventh Edition simply renames the Sixth Edition process grid. Which reply is most accurate?",
+        "choices": [
+          "Replacement-grid myth: Agree, since the old 49 processes remain the hidden base of the new guide.",
+          "Continuity-plus-shift read: Keep the shared language, but recognize the move toward principles, domains, tailoring, and assets.",
+          "Vocabulary-overhead error: Ignore the architecture shift and focus only on local team habits."
+        ],
+        "correctIndex": 1,
+        "explanation": "The new edition keeps professional continuity without preserving the old grid as the main map. Treating vocabulary as overhead misses how the architecture guides use.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch01.fact.7",
+      "front": "What does ANSI/PMI 99-001-2021 signal about the Standard's purpose?",
+      "back": "It signals formal standards guidance from a professional context. The material has to serve broad project environments, not just one organization's preferred workflow or a narrow training sequence.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch01.fact.8",
+      "front": "How should a reader treat the Sixth Edition's 49-process grid when reading the Seventh Edition?",
+      "back": "Treat the grid as a familiar reference point, not the main map. The Seventh Edition starts from principles, performance domains, tailoring, and practice assets rather than the 49 processes.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch01.fact.1",
+      "front": "Why is the Standard addressed to more than project managers?",
+      "back": "Sponsors, team members, PMO staff, consultants, trainers, and executives all shape value delivery. Their choices affect governance, coordination, acceptance, and outcomes.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch01.fact.4",
+      "front": "Why can shared vocabulary change project execution?",
+      "back": "Shared terms reduce hidden mismatches. When people mean different things by value, process, acceptance, or owner, the project can seem aligned while roles make conflicting choices.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch01.fact.5",
+      "front": "What does document completion fail to prove by itself?",
+      "back": "It fails to prove value. Documents are useful when they support decisions, coordination, learning, compliance, or delivery of usable outcomes, not when they merely exist.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch01.fact.9",
+      "front": "What is the Frame First Check meant to prevent?",
+      "back": "It prevents later guidance from being read as rigid compliance. By checking audience, purpose, vocabulary, and value first, the reader protects judgment before selecting methods or artifacts.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Frame First Check",
+    "coreSkill": "Practice reading audience, purpose, vocabulary, and value before choosing a method. Use the Frame First Check to ask who depends on the guidance, what outcome is at stake, and which terms must be shared. Only then choose predictive, adaptive, or hybrid practices.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch01.fact.4",
+        "context": "When a meeting uses the same project word in two different ways",
+        "plan": "If standard, value, owner, or acceptance starts shifting meaning, then run the Frame First Check and write the shared definition before the group chooses a tool."
+      },
+      {
+        "sourceAnchorId": "ch01.fact.8",
+        "context": "When someone asks where the old 49 processes went",
+        "plan": "If the room reaches for the Sixth Edition grid, then run the Frame First Check by naming the old grid as a reference and the Seventh Edition frame as the current reading path."
+      },
+      {
+        "sourceAnchorId": "ch01.fact.5",
+        "context": "When completed documents are being treated as proof of success",
+        "plan": "If the artifact list becomes the scorecard, then run the Frame First Check and ask which outcome, decision, or stakeholder value each document is meant to support."
+      },
+      {
+        "sourceAnchorId": "ch01.fact.6",
+        "context": "When one process sequence is proposed for very different projects",
+        "plan": "If a regulated build, a software release, and a research effort are being given identical steps, then run the Frame First Check and separate shared principles from local practice choices."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, before one project conversation, write four labels at the top of your notes: audience, purpose, vocabulary, value. Fill each line before choosing or defending any method.",
+    "weeklyPractice": "For one week, run the Frame First Check in every recurring project meeting. Track the term, audience role, or value claim that most often changes the way guidance gets applied."
+  },
+  "memorableLines": [
+    {
+      "text": "A standard protects judgment before it protects paperwork.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the whole opening frame into a contrast between professional judgment and artifact compliance."
+    },
+    {
+      "text": "The opening frame is a control on interpretation.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the introduction practical by showing how it governs later choices."
+    },
+    {
+      "text": "The issue is not old against new; it is map against recipe.",
+      "location": "breakdown.fullRead",
+      "why": "It preserves continuity with the Sixth Edition while naming the Seventh Edition's different use."
+    }
+  ]
+}

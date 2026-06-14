@@ -1,0 +1,1431 @@
+{
+  "bookId": "pmbok-guide",
+  "title": "A Guide to the Project Management Body of Knowledge (PMBOK Guide)",
+  "author": "Project Management Institute",
+  "promotedAt": "2026-06-11T03:00:36.868Z",
+  "chapterCount": 31,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Before choosing a method, read the Standard's frame: audience, purpose, and shar"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Santino pins the Project Management Institute cover page to the glass wall and expects the steering group to cheer the 2021 label on ANSI/PMI 99-001-2021. Instead, every hand reaches for the old work…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Capucine's phone buzzes while the release team waits on Zoom. Santino texts, 'Do we still need all 49 processes?' Capucine replies, 'We need a shared frame, not a scavenger hunt.' Santino asks, 'So t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Capucine's phone buzzes while the release team waits on Zoom. Santino texts, 'Do we still need all 49 processes?' Capucine replies, 'We need a shared frame, not a scavenger hunt.' Santino asks, 'So t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Abigail begins the workshop the way she always has: slides first, checklist second, exercise third. A sponsor raises a hand and asks if ANSI/PMI 99-001-2021 means every team must follow one method. A…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Antoine waits beside the permit office printer while a clerk stamps three folders. Above the tray, a faded Sixth Edition poster shows 49 processes, 10 knowledge areas, and 5 process groups. Two stick…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Herve is halfway through a sponsor briefing when he hears his own sentence land wrong: 'The Seventh Edition replaces the Sixth Edition's 49 processes.' On the screen, his slide still shows the 10 kno…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Ferdinand puts a one-page decision rights map between two coffee cups before the steering meeting starts. Eric reads the line about benefit changes.\n\n\"So the team can approve the screen swap?\"\n\n\"Yes,…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ferdinand puts a one-page decision rights map between two coffee cups before the steering meeting starts. Eric reads the line about benefit changes.\n\n\"So the team can approve the screen swap?\"\n\n\"Yes,…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sign tells Ferdinand that a meeting cadence is being mistaken for governance on Eric's project?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "q09 choice[1] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Anti-Governance Misread: Remove sponsor and portfolio review so teams never wait for external calls."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the level that can\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "In the next five work messages you read, tally each time time, money, data, or a"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Brooks reviews the release folder after three late-night commits. The schedule pressure story is familiar, but the telling detail is in the resources tab: testing hours were cut while the baseline st…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Leontine rereads the PMI principle card while the export bar creeps across her screen. She thinks: the file is technically complete. Then: the privacy check is still open. Then the tempting thought a…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Maelle has ninety minutes left in Friday planning and four issues on the board: a schedule pressure update, a baseline change request, a resources gap, and adoption notes from support. No work starts…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Odilon holds the failed test screenshot minutes before the steering call. The schedule pressure is real. If he reports it, the baseline slips and Gregoire loses a promise made to customers. If he hid…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Gregoire and Ryan sit with the PMI 12 principles page between them before the sponsor call. Gregoire says, \"If we say stewardship, the slide sounds fine.\" Ryan says, \"Ethics and compliance are not sl…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Gregoire and Ryan sit with the PMI 12 principles page between them before the sponsor call. Gregoire says, \"If we say stewardship, the slide sounds fine.\" Ryan says, \"Ethics and compliance are not sl…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sentence best passes Maelle's public accountability test before she approves a shortcut under deadline pressure?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wilfrid sits in a classroom at 9:30 a.m. with a worksheet titled PMI 12 principles. He draws Effectively Engage with Stakeholders as one arrow from stakeholder analysis to communication. The trainer …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Amir reviews the project file alone at 7:10 p.m. in the assurance office. The register is complete, the baseline change is signed, and schedule pressure appears in three meeting notes. The telling de…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Amelie has one hour before the boardroom schedule review. Three tabs are open: a cleaner baseline slide, a communication note to the permitting office, and a sponsor memo naming the adoption tradeoff…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which evidence would best show Amelie that the phrase Effectively Engage with Stakeholders has moved beyond vocabulary?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"If we quote it, we have to use it,\" Ahmed says, tapping the PMI page where Focus on Value sits inside the 12 principles. Kelsey slides the benefits note back across the table. \"The status deck says …"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[0].scenario",
+            "message": "example[0].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "\"If we quote it, we have to use it,\" Ahmed says, tapping the PMI page where Focu"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Everyone expected Piper's release review to be easy. Schedule pressure had forced a tradeoff, the baseline date survived, and the dashboard finally showed green. The surprise came from the support lo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Project chat, 4:18 p.m.\nMarlene: Schedule pressure is real. Which tradeoff protects the business case?\nRami: Drop the pilot group?\nMarlene: That protects the baseline, not the benefit.\nRami: Then sho…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The standup had a rhythm: yesterday, today, blocked. Mathieu heard six updates and zero outcomes. On the seventh, the team celebrated a finished interface that no customer group had touched. He uncap…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Beside Anaya's keyboard, green stickers cover the deliverable list. The PMI 12 principles printout is half under a coffee mug, with Focus on Value highlighted in yellow. One sticky note is different:…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sentence would worry Marlene most during a recovery meeting?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the benefit path the\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 11 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C19",
+            "severity": "major",
+            "unit": "examples",
+            "message": "\"Colby\" is the recurring protagonist of multiple examples (2, 5) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+            "evidence": "Colby"
+          },
+          {
+            "catalogId": "C19",
+            "severity": "major",
+            "unit": "examples",
+            "message": "\"Stella\" is the recurring protagonist of multiple examples (4, 6) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+            "evidence": "Stella"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Decision memo, 5:42 p.m., from Malvina to the delivery group: \"Schedule pressure is now changing the system, not just the calendar. The baseline date stays visible, but the supplier interface, test w…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The same vendor slip reaches Colby and Deborah on Monday. Colby shields his component plan: he trims two review steps, keeps the baseline green, and tells neighboring teams the interface will be read…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Connor brings Rolande a draft status note that says the team will \"apply Recognize, Evaluate, and Respond to System Interactions\" after the release. Rolande reads it once and asks which handoff will …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Tamar's onboarding class begins with Stella reciting all 12 principles from the PMI handout, including Recognize, Evaluate, and Respond to System Interactions. Stella thinks the exercise is memory wo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tamar's onboarding class begins with Stella reciting all 12 principles from the PMI handout, including Recognize, Evaluate, and Respond to System Interactions. Stella thinks the exercise is memory wo…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Stella's audit contains no interviews. She reads six weeks of status reports, dependency logs, and change requests from the same project. The telling detail is not a dramatic failure; it is a tiny ti…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Stella's audit contains no interviews. She reads six weeks of status reports, dependency logs, and change requests from the same project. The telling detail is not a dramatic failure; it is a tiny ti…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sentence is the simplistic reading the PMBOK principle warns against?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "q09 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Color Control: a green chart is always weaker because yellow status creates more conversation."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2/3 (67%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3/6 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Before the steering update starts, Rosaire has eighteen prep minutes and three claims competing for space. PMI's 12 principles sit in the briefing deck, with Demonstrate Leadership Behaviors highligh…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"PMI put Demonstrate Leadership Behaviors inside the 12 principles,\" Yann says. \"So who leads this part?\"\n\nDeepak taps the defect map. \"For the next ten minutes, me. I can show the influence path.\"\n\n…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Everyone expects Rachel's status slide to stay green. The baseline date still holds, and schedule pressure has made the room hungry for a clean sentence. Then the reveal lands: Rachel leaves the date…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Everyone expects Rachel's status slide to stay green. The baseline date still holds, and schedule pressure has made the room hungry for a clean sentence. Then the reveal lands: Rachel leaves the date…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Hailey: Did we just paste Demonstrate Leadership Behaviors into the review deck?\n\nRejean: It is in PMI's 12 principles, so yes.\n\nHailey: Cool. What behavior changes before noon?\n\nRejean: I invite Cor…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sentence would be safest for Hailey to put in a decision log after the team reviews the principle?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Bryce's postmortem folder sits open after the permit portal missed its release. The conference room still has the approved baseline taped over a risk list marked schedule pressure, governance, and st…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Aryan's memo fills the first page of the sponsor packet: schedule pressure has made the old baseline unsafe. The recommended tradeoff is not to skip governance, but to narrow it: daily claims-supervi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Aryan closes the PMO laptop after Bryce says changing the approach will make the team look undisciplined. The PMI page with 12 principles is still open to Tailor Based on Context. Aryan answers in on…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Aryan closes the PMO laptop after Bryce says changing the approach will make the team look undisciplined. The PMI page with 12 principles is still open to Tailor Based on Context. Aryan answers in on…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Chantal's classroom worksheet shows two practice projects under the PMI 12 principles: a two-week prototype and a regulated plant upgrade. She is confused because both say Tailor Based on Context, ye…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which evidence would best show that Chantal connected tailoring to value delivery on a benefits rollout?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Cyrielle keeps the release note open and reads the sentence again. Schedule pressure is loud in her head: call the baseline stable, praise velocity, avoid trouble. Then the acceptance criteria line s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Only 90 minutes remain before Duc's steering packet locks. The PMI principle set is open to the 12 principles, and the margin notes pair fitness for use with prevention. No one has started editing. D…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Only 90 minutes remain before Duc's steering packet locks. The PMI principle set is open to the 12 principles, and the margin notes pair fitness for use with prevention. No one has started editing. D…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Shirley: PMI lists 12 principles, and our slide names the quality principle. Lydia: The slide says it, but the checklist does not show prevention. Shirley: We have a final review. Lydia: Final review…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Shirley: PMI lists 12 principles, and our slide names the quality principle. Lydia: The slide says it, but the checklist does not show prevention. Shirley: We have a final review. Lydia: Final review…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Everyone expects Lydia's validation trend to blame test capacity. Schedule pressure cut the test window, and the baseline stayed fixed. Then Lydia opens the chart: the failed checks cluster around ac…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement best connects built-in quality to value delivery?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"what fit for purpose\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"pmi\", \"seventh\", \"edition's\", \"pmbok\", \"readers\", \"evidence\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Eugenie hears herself say the training rollout is on track while Mai's adoption note is still unanswered in the chat. The phrase sounded harmless until the room nodded too quickly."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Dylan is halfway through the Friday status routine when the permit portal's vendor lead says the test server will be shared for one more week. The slide still shows the baseline in green. Before Dyla…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Anil's desk is covered with twelve sticky notes in PMI blue. Navigate Complexity sits between systems thinking and risk, not because the label is louder, but because ambiguity and interdependence tou…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Anil's desk is covered with twelve sticky notes in PMI blue. Navigate Complexity sits between systems thinking and risk, not because the label is louder, but because ambiguity and interdependence tou…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Denis opens the postmortem after payroll has already failed for three regions. No one is moving fast now. The trace shows a schedule pressure meeting, then a tradeoff: cut one user test to protect th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Eugenie hears herself say the training rollout is on track while Mai's adoption note is still unanswered in the chat. The phrase sounded harmless until the room nodded too quickly. Before the review …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mai's memo begins: Decision needed by noon. Schedule pressure favors keeping the baseline. The tradeoff is that two departments now depend on the same conversion window, and emergence is visible in d…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Simonne and Mohammed both see the same PMI review note: Navigate Complexity is one of 12 principles, and the fare upgrade has new interdependence between devices and customer support. Simonne treats …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Simonne and Mohammed both see the same PMI review note: Navigate Complexity is one of 12 principles, and the fare upgrade has new interdependence between devices and customer support. Simonne treats …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Eveline writes PMI and 12 principles on the training board, then circles Optimize Risk Responses. A learner asks why threats and opportunities need a whole principle if the team already has a risk li…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Aldo reviews the risk file in silence. The owners are named, the dates are current, and the colors look neat. Then one accepted row catches him: under schedule pressure, a high-impact security threat…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Jasmine rereads the PMI pilot note and feels her mind reach for the easy line: log the defect risk, keep the date, move on. No, that is just a list. Maybe mitigate everything. No, the reserve will va…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Karen is on the go-live call with schedule pressure pressing hard against the baseline. One path accepts a cybersecurity threat that sits outside risk appetite and keeps the date. The other path esca…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"value cost timing and\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Aaron walks into the steering room expecting the sponsor to punish any change to the baseline. The portal team is under schedule pressure, and the outage log says Friday's demo will miss two workflow…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Medard reads the PMO chat while the status deck is still blank. Violette: Can we cite PMI and move on? Medard: Only if the 12 principles change a call today. Firmin: Quality check or baseline date? M…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Medard reads the PMO chat while the status deck is still blank. Violette: Can we cite PMI and move on? Medard: Only if the 12 principles change a call today. Firmin: Quality check or baseline date? M…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Winnie starts the weekly workback by copying last week's dates into the spreadsheet. A vendor alert interrupts the routine: two test devices will arrive late. Her hand is already on the baseline colu…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kendra's desk has a binder tabbed PMI 12 principles, a chipped mug, and a yellow sticky note reading, resilience reserve: two days. The office printer warms behind her while the team standup hums thr…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Violette's release has already failed when the postmortem opens. The error log shows a skipped integration check, then a customer complaint, then a rollback notice. The team had schedule pressure, a …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Maverick is halfway through telling the migration team to add Saturday hours when his own sentence sounds wrong. He has framed resilience as endurance and adaptation as extra effort, while the risk l…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sentence would worry Medard most during a PMO review?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          }
+        ]
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the team protects the\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 21,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 22,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Choose predictive, adaptive, or hybrid work by fit: match uncertainty, cadence, "
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mathis presses a red sticky note beside the release wall, beside a PMBOK Guide sketch labeled \"8 domains.\" The note says, \"feedback after freeze.\" Coffee rings mark the old predictive milestone chart…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Bridget's postmortem opens after the payroll release has already failed. The defect list is sorted by date, not blame. Five tax-rule gaps appear after phase signoff; three self-service issues appear …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rosemary is halfway through a museum app review when her own slide bothers her. It says the PMBOK Guide effort is adaptive because demos happen every other Friday. Then she sees the privacy table bes…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Pamphile's memo begins: \"Lifecycle recommendation for the airport baggage upgrade: hybrid. Predictive control remains for safety certification, procurement dates, and gate shutdowns. Adaptive review …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Pamphile's memo begins: \"Lifecycle recommendation for the airport baggage upgrade: hybrid. Predictive control remains for safety certification, procurement dates, and gate shutdowns. Adaptive review …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Charlotte and Chloe receive the same finance portal brief. Charlotte copies last year's predictive plan, locking cadence before analysts test report layouts; approval is neat and rework grows. Chloe …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Katherine listens while Mathis defends the predictive plan for a city permitting workflow. He points to the PMBOK Guide page with 8 domains and says the Development Approach and Life Cycle Performanc…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Katherine listens while Mathis defends the predictive plan for a city permitting workflow. He points to the PMBOK Guide page with 8 domains and says the Development Approach and Life Cycle Performanc…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 23,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Planning performance is healthy when scope, schedule, budget, and resource signa"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Perry stares at the planning sheet and keeps his thoughts inside. Scope is broader than last week. Schedule is unchanged. Budget is not moving. Resources are already split across two releases. Maybe …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Vivienne has one hour before the steering review opens. Her notebook says PMBOK Guide: 8 domains, and Planning Performance Domain is not the only page needing attention. She has to choose how to spen…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 24,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Manage project work as a live system: trace flow, procurement, resources, knowle"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mathilde's phone shows three project-chat lines: \"Ovide: procurement approval missed again.\" \"Aurora: work flow board still says ready.\" \"Anastasia: resources shifted to the pilot.\" Before the 3 p.m.…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Philippe opens after the handoff failed. The operations team received the package, then sent it back in two hours. The trace is clear: the PMBOK Guide's 8 domains were reviewed as separate slides, an…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Arjun's decision memo begins: \"The PMBOK Guide's 8 domains show our issue is not a missing form. Project Work Performance Domain is interacting with Planning, Delivery, and Uncertainty through a brok…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Resource swaps have produced four handoff failures in less than a week. Which inference fits the Project Work lens?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which note in Arjun's steering memo should worry the sponsor most?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "q07 choice[2] uses absolute trigger \"entirely\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Late-risk bet: Mathilde should move the issue entirely to Uncertainty and stop checking flow."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"project work\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"delivery measurement and uncertainty\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 25,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Maeva keeps tapping the Delivery Performance Domain box on the PMBOK Guide wall map, sure it belongs after planning. Therese listens, then points to the 8 domains around it and asks where requirement…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Dmytro sits in Philomene's onboarding class with four cards in front of him: requirements, scope, quality, and acceptance criteria. He keeps placing all four before delivery, as if the cards are scho…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Dmytro sits in Philomene's onboarding class with four cards in front of him: requirements, scope, quality, and acceptance criteria. He keeps placing all four before delivery, as if the cards are scho…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before: Jasper's release board shows five deliverables shipped, five owners thanked, five dates met. He calls the process green. After: Jasper's release board shows the same five deliverables against…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Garrett reviews the project files after everyone has left: requirements log, scope baseline, quality report, acceptance criteria sheet, and meeting notes. The telling detail sits in the version histo…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Whitney reads the steering slide in silence. Seven deliverables shipped. Good. Too easy. Maybe quality passed, so delivery is fine. Not enough. Maybe acceptance emails count. Only if the right people…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Whitney reads the steering slide in silence. Seven deliverables shipped. Good. Too easy. Maybe quality passed, so delivery is fine. Not enough. Maybe acceptance emails count. Only if the right people…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 26,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 27,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶3: 8 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The supplier email lands in Rosa's and Jack's inboxes with the same news: two delivery dates have slipped, the cause is unclear, and the workaround may affect testing. Rosa opens the risk register, r…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The supplier email lands in Rosa's and Jack's inboxes with the same news: two delivery dates have slipped, the cause is unclear, and the workaround may affect testing. Rosa opens the risk register, r…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In Mabel's certification class, Aditya draws 8 PMBOK Guide domains as a ladder and puts the Uncertainty Performance Domain at the bottom, right beside \"risk register.\" Mabel hands him a marker and as…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In Mabel's certification class, Aditya draws 8 PMBOK Guide domains as a ladder and puts the Uncertainty Performance Domain at the bottom, right beside \"risk register.\" Mabel hands him a marker and as…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before, Seraphine's intake process turned every unknown into one risk register row. A threat, an opportunity, a fuzzy requirement, and a fast-moving vendor all received probability, impact, owner, an…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the pmbok guides 8\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 28,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Sora thumbs the first message on her phone from the train before the next governance check. \"Template is 42 pages.\" Megan replies, \"What do the Tailoring diagnostics say?\" Sora: \"Low risk, loud stake…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which question best protects Sora from tailoring by preference?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Hassan sees risk fall but team capability fall faster, which move shows the hard edge of fit, not minimalism?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 29,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3/6 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C19",
+            "severity": "major",
+            "unit": "examples",
+            "message": "\"Guillaume\" is the recurring protagonist of multiple examples (5, 6) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+            "evidence": "Guillaume"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Halfway through the team review, Samantha hears herself say, \"This group is already off track.\" The sentence bothers her before the slide changes. Bruce Tuckman's sequence is printed in her notes: fo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Lloyd's memo carries the whole scene. It reads: \"Subject: Stop calling the notice complete. Sender: facilities. Receiver: clinic supervisors. Message: weekend entrance closure. Noise: old floor map a…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Bianca and Wilder each inherit a new product team after forming ends and arguments over ownership begin. Bianca uses Bruce Tuckman's forming, storming, norming, performing sequence to make the confli…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bianca and Wilder each inherit a new product team after forming ends and arguments over ownership begin. Bianca uses Bruce Tuckman's forming, storming, norming, performing sequence to make the confli…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"We already used Cynefin,\" Guillaume says, tapping the chart beside the backlog. \"The client behavior is complex.\" Stephane does not argue with the label. He asks what changed after the label appeare…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In the training room, Guillaume sorts practice cards under two headings: Bruce Tuckman and Cynefin. He places \"new team arguing over roles\" under complex and \"customer behavior changing weekly\" under…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In the training room, Guillaume sorts practice cards under two headings: Bruce Tuckman and Cynefin. He places \"new team arguing over roles\" under complex and \"customer behavior changing weekly\" under…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sentence would Stephane put under a model diagram before a team applies it?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the work is complex\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 30,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 31,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "counterintuition opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "The mature artifact question is not whether the charter, register, board, or rep"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Salvatore begins the governance review by reading the artifact checklist in order: charter, plan, risk register, status report. Then the risk register opens on the wall, and row 14 shows risk owner b…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ruby stands beside the team desk while the printer warms and the coffee machine clicks. The Kanban board has two cards in Ready, three in Build, and nine in Review, each sticker curling at one corner…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Dina is halfway through the delivery review when she hears her own sentence: \"The dashboard is green.\" On the wall behind her, the Kanban board says otherwise. WIP is stacked in Review, and the bottl…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ibrahim's memo begins: \"Subject: artifact set for the next release. We will keep the risk register because every open risk has a risk owner, response, and status review. We will keep the Kanban board…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Roxane and Tara receive the same sponsor request: \"I need better visibility by Friday.\" Roxane sends a thicker status pack with a copied Kanban board image, a dashboard export, and three new logs nob…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sentence belongs at the top of Ibrahim's artifact decision memo?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"and a risk register\" appears in both fastRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[4]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "It should help the team see uncertainty as active work: risks, owners, responses, and changing statu"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 151
+  },
+  "bookGate": {
+    "bookId": "pmbok-guide",
+    "chapterCount": 31,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "F4",
+        "severity": "major",
+        "message": "soft-banned phrase \"rather than\" appears 53 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+        "evidence": "rather than"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        92,
+        92,
+        95
+      ],
+      "answerPositionPctMax": 0.34050179211469533,
+      "totalQuizQuestions": 279,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "pmbok-guide",
+        "chapterCount": 31,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  },
+  "qcAttestation": {
+    "totalBlockers": 0,
+    "findings": []
+  }
+}

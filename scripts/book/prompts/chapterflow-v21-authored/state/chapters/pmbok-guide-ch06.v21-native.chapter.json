@@ -1,0 +1,345 @@
+{
+  "chapterId": "pmbok-guide-ch06",
+  "number": 6,
+  "title": "Product Management Considerations",
+  "readingTimeMinutes": 9,
+  "hook": "2 of 10 launch tasks slipped; the 8 that shipped still failed when no one owned the product after closure.",
+  "counterintuition": "A project can finish cleanly and still leave value exposed. The weak spot often appears after delivery, when feedback, support, roadmap order, and retirement no longer have a named owner.",
+  "tryThisNow": "Draft one sentence naming who owns the product after project closure, then label the next roadmap or backlog decision that owner must steward.",
+  "keyTakeaway": "Treat project outputs as entries in a longer product life: name the owner, connect roadmap choices to feedback, and measure value after closure.",
+  "breakdown": {
+    "fastRead": "Levi keeps a small ledger beside the launch checklist. One column says project close; the next says launch, growth, care, and retirement. The first column fills fast. The second is mostly blank.\n\nA project can close while the product it touched is just beginning its useful life. That is the PMBOK point here. A short effort may create, improve, move, link, or retire a product, but value continues through use. If nobody owns the product after closure, the output can become an orphan: supported by no one, measured by no one, and improved by no one.",
+    "deepRead": "Roadmaps make the overlap visible. A roadmap turns strategy, stakeholder feedback, market signals, and service lessons into a sequence of product choices. A project may deliver one slice of that sequence, but the backlog remains alive when the project board is archived. Roadmap work is the place where strategy, stakeholder feedback, and backlog order stop being separate conversations.\n\nYolande learns that in a postmortem for a customer portal release. The project closed on Friday with every required feature accepted. On Monday, support tickets showed that customers still avoided the portal because the highest-friction task sat six releases away in the backlog. The project metrics looked tidy. The product metrics did not. The decisive misstep was not a missed task; it was treating the scope baseline as if it had replaced product prioritization.\n\nThe mechanism is continuity. Project management organizes temporary effort around a defined objective. Product ownership keeps asking what the product is for, who uses it, what feedback changes the order of work, and which benefits still matter after launch. Those questions can live in adaptive, predictive, or hybrid work. They also apply outside software, to services, facilities, platforms, physical goods, and hybrid offerings. The reader's discrimination is simple: a deliverable is not the same thing as a product life. Finishing the deliverable answers whether the project produced its output; product stewardship answers whether the output keeps creating value.",
+    "fullRead": "Not every project output deserves a full product apparatus. A temporary report, one-time event, or internal cleanup effort may have a short life and a light handoff. The product lens matters when an output enters an ongoing system of users, service, support, compliance, revenue, mission impact, or future release decisions. That is why the question is not whether the team used agile language. The question is whether someone has to manage the thing after the temporary work ends.\n\nTrent catches this distinction halfway through a migration meeting. He has been presenting the work as a platform project with a finish date, conversion checklist, and acceptance packet. Then a service owner asks who will decide the first post-migration enhancement, who will read stakeholder feedback, and who will retire the old feature set when usage drops. Trent hears his own error. He had been treating migration as closure, when the platform still has growth, maturity, decline, and retirement ahead of it. He stops the slide deck and adds a handoff page with an owner, a backlog review date, and the first adoption measure.\n\nMetrics are where the two views separate most clearly. A project may track schedule, budget, scope, risks, and acceptance. A product may track adoption, satisfaction, reliability, revenue, usage, compliance, mission impact, and support load. Both sets can be useful. They answer different questions. If a portal ships on time and no customer uses it, the project result and the product result have diverged. If a service redesign launches late but then cuts support burden and raises mission reach, the product story contains information the project closeout alone could miss.\n\nTeagan writes a decision memo before the steering group meets. The memo says the roadmap is not a promise that every backlog item belongs in the next project. It is a living product artifact that orders work by strategy, feedback from stakeholders, and expected benefits. One project will take the authentication work. Another may handle reporting. A later effort may retire a legacy form. The memo makes one practical demand: each project charter must say which product outcome it serves and what owner will keep learning after the project is done.\n\nSergei gives the cleanest summary in a hallway coaching talk with Levi after a successful launch. Levi says the team delivered the scope, so the work is over. Sergei taps the release note and says, \"Closure is a door, not a grave.\" The sentence lands because it protects the hard edge. A project should close; temporary work needs an endpoint. But closure should pass the product into accountable life, not abandon it. Closure is clean only when the next owner can see what must be watched, improved, supported, and eventually retired."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch06.ex.product-lifecycle",
+      "title": "Ledger After Launch",
+      "tags": [
+        "lifecycle",
+        "closure",
+        "ownership"
+      ],
+      "planSpec": {
+        "domain": "customer portal launch desk",
+        "audience": "project managers preparing closure",
+        "stakes": "avoid handing over an output with no continuing owner",
+        "format": "vignette",
+        "requiredBeat": "a small observed moment shows the product lifecycle extending beyond project closure"
+      },
+      "scenario": "Levi's desk holds two neat stacks: a signed project closure packet on the left, a product lifecycle ledger on the right. The ledger has rows for introduction, growth, maturity, and retirement. Only the introduction row has ink. A sticky note under growth says, \"owner?\" Before the meeting starts, the room is quiet except for the printer cooling down. No one is arguing, and no vote is pending. The blank rows do the teaching: the project ended before the product's life had much evidence in it.",
+      "whatToDo": "Levi writes the missing owner beside the growth row, adds a first adoption check, and attaches the ledger to the closure packet instead of filing the packet by itself.",
+      "whyItMatters": "The quiet ledger keeps closure from becoming abandonment. A delivered product still needs ownership through growth, maturity, support choices, and eventual retirement."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch06.ex.roadmap-and-backlog",
+      "title": "Portal Postmortem",
+      "tags": [
+        "roadmap",
+        "backlog",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "customer portal postmortem",
+        "audience": "teams whose delivery metrics hid adoption problems",
+        "stakes": "locate the misstep that stranded product value after delivery",
+        "format": "postmortem",
+        "requiredBeat": "open after the failure and identify the missed roadmap/backlog decision"
+      },
+      "scenario": "The portal failure had already happened when Yolande opened the postmortem folder in the review room. The project closed on time, the release note was approved, and the support queue still filled with complaints. The trace led to one misstep: stakeholder feedback about a painful account-change task never reached the roadmap, so the backlog kept lower-value polish as prioritized work. No live rescue scene was left. The evidence said enough: the project delivered its slice while the product priority stayed wrong.",
+      "whatToDo": "Yolande records the missed feedback path, moves the account-change task into the roadmap review, and names the backlog owner who will keep prioritizing after closure.",
+      "whyItMatters": "A postmortem can separate delivery success from product success. The decisive error was not late work; it was losing the feedback that should have reordered the backlog."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch06.ex.product-lifecycle",
+      "title": "Trent Notices Migration",
+      "tags": [
+        "migration",
+        "lifecycle",
+        "handoff"
+      ],
+      "planSpec": {
+        "domain": "platform migration review",
+        "audience": "project leads moving products across platforms",
+        "stakes": "correct an ownerless handoff before migration work closes",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist notices his own lifecycle error mid-stream"
+      },
+      "scenario": "Midway through the migration review, Trent hears himself say the platform will be \"done\" at cutover. The word catches. The product still has growth work scheduled, a maturity plan for reliability, and a retirement path for the old interface. Minutes before the next slide, Trent notices his own error: he has been presenting a lifecycle handoff as a finish line. The room watches him cross out \"done\" and write \"owned after cutover\" in the margin.",
+      "whatToDo": "Trent pauses the review, adds the post-cutover owner, and marks the next growth, maturity, and retirement checkpoints before he returns to the migration schedule.",
+      "whyItMatters": "The useful recovery is the moment of noticing. Once Trent hears the false endpoint, he can turn a clean migration close into a product handoff with continuing accountability."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch06.ex.roadmap-and-backlog",
+      "title": "Teagan's Roadmap Memo",
+      "tags": [
+        "decision memo",
+        "roadmap",
+        "backlog"
+      ],
+      "planSpec": {
+        "domain": "service roadmap memo",
+        "audience": "sponsors deciding how project scope connects to product work",
+        "stakes": "put continuing prioritization into the written artifact",
+        "format": "decision_memo",
+        "requiredBeat": "the written memo carries the scene and the action"
+      },
+      "scenario": "In the email Teagan sends to the service steering group: \"The roadmap is not a storage shelf for every requested feature. It is the product order we revise as stakeholder feedback changes. This project should take the billing fix and leave two backlog items for later prioritized work. Before the next meeting, approve the owner who will keep reading feedback after closure. Without that owner, the roadmap becomes old paper the day the project ends.\"",
+      "whatToDo": "Teagan sends the memo with one named owner, one billing fix in scope, and two backlog items held for a later roadmap review rather than buried in the project plan.",
+      "whyItMatters": "A decision memo can carry product discipline into project governance. It keeps scope from pretending to settle every future roadmap and backlog question."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch06.ex.roadmap-and-backlog",
+      "title": "Two Backlog Paths",
+      "tags": [
+        "contrast",
+        "prioritization",
+        "outcomes"
+      ],
+      "planSpec": {
+        "domain": "parallel service teams",
+        "audience": "leaders comparing project-scope and product-priority habits",
+        "stakes": "show how opposite backlog habits change outcomes",
+        "format": "contrast",
+        "requiredBeat": "two named people face the same roadmap/backlog situation with divergent results"
+      },
+      "scenario": "Yolande and Sergei inherit the same roadmap problem: a backlog swollen by stakeholder feedback after launch. Yolande treats the project scope as fixed history, so her team completes the next listed items and usage stays flat. Sergei rereads the feedback before prioritizing work, moves a painful onboarding fix to the top, and adoption rises in the next release. Same roadmap, same backlog, opposite habits. One protects the old plan; the other protects product value.",
+      "whatToDo": "Sergei lets stakeholder feedback reorder prioritized work, while Yolande keeps the old sequence intact. Their results expose which habit serves the product after launch.",
+      "whyItMatters": "The contrast shows why a backlog is not just leftover scope. Product value depends on keeping priority tied to feedback once the original project plan ages."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch06.ex.product-lifecycle",
+      "title": "Closure Is A Door",
+      "tags": [
+        "coach talk",
+        "closure",
+        "retirement"
+      ],
+      "planSpec": {
+        "domain": "launch hallway coaching",
+        "audience": "teams ready to treat delivery as the end",
+        "stakes": "reframe closure as a handoff into product life",
+        "format": "coach_talk",
+        "requiredBeat": "a peer gives a quotable reframe about lifecycle ownership"
+      },
+      "scenario": "\"Scope is done,\" Levi says in the hallway after the launch review. Sergei does not argue with the celebration. He points to the release note and asks who will watch introduction, growth, maturity, and retirement. Levi needs to decide whose name goes on the owner line. He starts to answer with the project team name, then stops. Sergei gives him the sentence to keep: \"Closure is a door, not a grave.\" The stuck view shifts. A clean ending should hand the product into life.",
+      "whatToDo": "Sergei turns the celebration into a handoff talk, asks for the owner of each lifecycle stage, and leaves Levi with a line he can repeat at closure.",
+      "whyItMatters": "The coaching sentence preserves both truths: projects need endings, and products need continuing care. Closure works when it opens into ownership."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch06.ex.roadmap-and-backlog",
+        "prompt": "A manager closes a project that delivered two roadmap items, while the backlog still contains fresh stakeholder feedback from launch week. What should the manager do before archiving the project files?",
+        "choices": [
+          "Continuity reading: name the product owner who will review stakeholder feedback and reorder prioritized work after closure.",
+          "Closure-completes-value myth: file the backlog with the project records because accepted scope settles the product question.",
+          "Agile-only myth: leave roadmap and backlog decisions alone unless the team uses an adaptive software method."
+        ],
+        "correctIndex": 0,
+        "explanation": "The roadmap and backlog outlive one project. Closure should identify who keeps reading stakeholder feedback and turning it into prioritized work, not treat acceptance as the end of product judgment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch06.fact.4",
+        "prompt": "Usage data shows the project hit its date and budget, but adoption is low and support calls doubled after launch. Which inference fits the product-project distinction?",
+        "choices": [
+          "Schedule-success myth: on-time and on-budget delivery is enough evidence that the product succeeded.",
+          "Metric-split reading: project delivery can succeed while product outcomes show weak adoption, support load, or satisfaction.",
+          "Scope-only myth: low adoption matters only if an accepted deliverable was missing from the closeout list."
+        ],
+        "correctIndex": 1,
+        "explanation": "Project metrics and product metrics answer different questions. A clean delivery record can coexist with poor adoption or support performance, so the product still needs outcome review.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch06.ex.product-lifecycle",
+        "prompt": "An analyst sees a product move from introduction into growth, while separate projects add a feature, migrate a platform, and prepare retirement of an older tool. What does this pattern show?",
+        "choices": [
+          "Single-project myth: a product lifecycle belongs inside the original project and ends when that project closes.",
+          "Launch-only myth: product management matters mainly before introduction and fades once growth begins.",
+          "Lifecycle reading: one product can pass through introduction, growth, and retirement while several projects change it."
+        ],
+        "correctIndex": 2,
+        "explanation": "The product life can span multiple temporary efforts. Projects may launch, improve, migrate, or retire parts of the product while the lifecycle keeps moving.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch06.fact.2",
+        "prompt": "A service lead says product management is not relevant because the offering is a public service, not an app. Which response best reflects the PMBOK view?",
+        "choices": [
+          "Broad-product reading: physical goods, services, platforms, facilities, and hybrids can need lifecycle ownership.",
+          "Software-box myth: product ownership belongs only to digital teams with roadmaps and sprint backlogs.",
+          "Operations-only myth: once a service launches, operations replaces product decisions about benefits and priorities."
+        ],
+        "correctIndex": 0,
+        "explanation": "The product view is broader than software. Any ongoing offering may need customer, market, benefit, support, and lifecycle decisions after project work creates or changes it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch06.fact.5",
+        "prompt": "A project team plans to close after delivering a new scheduling tool. No one has been assigned to read feedback, plan releases, or decide when features should be retired. What risk is most immediate?",
+        "choices": [
+          "Documentation myth: the closeout report will carry all future decisions if it lists the accepted deliverables clearly.",
+          "Sponsor-memory myth: informal sponsor knowledge will keep priorities clear without a named owner.",
+          "Ownership-gap reading: the tool may be stranded because post-closure priorities, releases, feedback, and retirement lack accountable stewardship."
+        ],
+        "correctIndex": 2,
+        "explanation": "Product ownership clarifies who keeps making decisions after the temporary effort ends. Without it, the delivered tool can sit between project closure and real lifecycle management.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch06.ex.roadmap-and-backlog",
+        "prompt": "Roadmap notes show three backlog items: a compliance fix, a cosmetic dashboard change, and a stakeholder feedback theme about failed onboarding. The project can take one item next. Which choice fits product value?",
+        "choices": [
+          "List-order myth: choose the item that entered the backlog first because roadmaps should preserve original sequence.",
+          "Prioritized-work reading: compare strategy, stakeholder feedback, and benefits, then place the highest-value backlog item into the next project.",
+          "Polish-first myth: choose the cosmetic dashboard change because visible work reassures sponsors fastest."
+        ],
+        "correctIndex": 1,
+        "explanation": "Roadmaps and backlogs translate strategy and stakeholder feedback into prioritized work. The next project should serve product value, not list order or surface polish.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch06.fact.6",
+        "prompt": "When a team releases small increments and receives frequent user feedback, what product-management need usually grows rather than shrinks?",
+        "choices": [
+          "Feedback-replaces-owner myth: frequent feedback removes the need for a product owner because users supply the direction.",
+          "Priority-steward reading: someone must connect feedback to roadmap choices, backlog order, and continuing product ownership.",
+          "Iteration-solves-priority myth: incremental delivery will sort priorities by itself as the team keeps releasing."
+        ],
+        "correctIndex": 1,
+        "explanation": "Adaptive delivery can tighten the product-project connection. More feedback increases the need for clear product priorities and ownership; it does not make those decisions automatic.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch06.fact.3",
+        "prompt": "Which action best shows a project changing an existing product rather than only creating one before launch?",
+        "choices": [
+          "Lifecycle-change reading: run a migration project that improves a mature product and prepares an old capability for retirement.",
+          "New-build myth: charter a project only when no product exists yet, so existing products remain outside project work.",
+          "Operations-wall myth: send all product improvements to operations because projects should avoid live products."
+        ],
+        "correctIndex": 0,
+        "explanation": "Temporary work can create, improve, integrate, migrate, or retire products. Projects matter across the lifecycle, not only before the first launch.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch06.fact.9",
+        "prompt": "A release report lists accepted scope, no open project risks, and satisfied sponsors. Three months later, customers avoid the product and support cannot keep up. Which conclusion should come first?",
+        "choices": [
+          "Sponsor-satisfaction myth: sponsor approval is the best proxy for product success after launch.",
+          "Risk-register myth: if no project risks remain open, product use problems belong outside value delivery.",
+          "Divergence reading: the project may have delivered successfully while the product failed adoption, support, or customer outcome tests."
+        ],
+        "correctIndex": 2,
+        "explanation": "Accepted scope and closed risks do not prove product value. Product success can diverge when adoption, use, support, or customer outcomes disappoint after delivery.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch06.concept",
+      "front": "How does the project and product relationship differ from treating closure as the endpoint?",
+      "back": "A project is temporary work with an endpoint. A product may keep moving through use, support, enhancement, maturity, retirement, or replacement, so closure should hand off ownership rather than end value management.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch06.fact.4",
+      "front": "Earlier concept, value creation: why can a completed deliverable still fail the value test?",
+      "back": "Value creation depends on outcomes and benefits, not only output completion. A project can deliver the agreed product change while adoption, satisfaction, reliability, revenue, or mission impact stays weak.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch06.ex.roadmap-and-backlog",
+      "front": "What should a roadmap and backlog do with stakeholder feedback after a project closes?",
+      "back": "They should keep turning strategy and stakeholder feedback into prioritized work. The roadmap and backlog outlive one project, so someone must keep deciding which product value comes next.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch06.fact.5",
+      "front": "Earlier concept, governance for value delivery: what decision right must survive project closure?",
+      "back": "Governance for value delivery needs clear accountability after temporary work ends. Someone must own product priorities, feedback interpretation, release choices, and retirement decisions.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch06.ex.product-lifecycle",
+      "front": "Why does product lifecycle thinking include introduction, growth, maturity, and retirement?",
+      "back": "Those stages remind the team that launch is not the full story. Product value may need support and adaptation through growth and maturity, then responsible retirement or replacement later.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Trace the Product Afterlife",
+    "coreSkill": "Practice tracing what happens to an output after the project closes. Use Trace the Product Afterlife to name the owner, the next feedback source, the next roadmap or backlog decision, and the measure that will show whether value continues.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch06.fact.5",
+        "context": "A project is ready to close, but no one has named who owns the product afterward.",
+        "plan": "If closure is approaching, then use Trace the Product Afterlife to name the owner, the next feedback review, and the first decision that cannot belong to the closed project."
+      },
+      {
+        "sourceAnchorId": "ch06.ex.roadmap-and-backlog",
+        "context": "A roadmap and backlog contain stakeholder feedback, but the project team wants to freeze the original list.",
+        "plan": "If new feedback arrives, then use Trace the Product Afterlife to compare roadmap intent, backlog order, and prioritized work before adding scope to the next project."
+      },
+      {
+        "sourceAnchorId": "ch06.fact.4",
+        "context": "Delivery metrics look strong, but adoption or support signals look weak.",
+        "plan": "If project success and product evidence diverge, then use Trace the Product Afterlife to record one product metric and assign an owner to act on it."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one current deliverable. Use Trace the Product Afterlife to write its post-closure owner, next feedback source, next roadmap or backlog choice, and first product metric.",
+    "weeklyPractice": "For one week, review one active project each day and ask where its output sits in product life. Update the owner, feedback source, priority decision, or retirement note."
+  },
+  "memorableLines": [
+    {
+      "text": "A project can close while the product it touched is just beginning its useful life.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the chapter's central reversal into one practical sentence."
+    },
+    {
+      "text": "Roadmap work is the place where strategy, stakeholder feedback, and backlog order stop being separate conversations.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the abstract roadmap-backlog link a memorable job."
+    },
+    {
+      "text": "Closure is clean only when the next owner can see what must be watched, improved, supported, and eventually retired.",
+      "location": "breakdown.fullRead",
+      "why": "It turns closure from paperwork into accountable product stewardship."
+    }
+  ]
+}

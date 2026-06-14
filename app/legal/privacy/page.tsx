@@ -34,11 +34,12 @@ export default function PrivacyPolicyPage() {
             <li><strong style={{ color: "var(--text-heading)" }}>Payment information:</strong> Billing is handled entirely by Stripe. We store your Stripe customer ID and subscription status but never see or store your credit card number.</li>
             <li>
               <strong style={{ color: "var(--text-heading)" }}>Optional analytics data:</strong> Usage analytics is off by default. If you turn on &quot;Share Usage Analytics&quot; in Settings, we collect
-              technical information such as screen dimensions, browser and device type, operating system, page load performance, and navigation patterns.
+              technical information such as screen dimensions, browser and device type, operating system, page load performance, and navigation patterns,
+              along with how you use the product (reading sessions, quiz activity, badges, and Insight Points).
               This data is used to understand product usage and improve ChapterFlow. It is not sold and is not used for advertising. You can turn it off again at any time.
             </li>
             <li>
-              <strong style={{ color: "var(--text-heading)" }}>Approximate location:</strong> When usage analytics is enabled, we record an approximate location (city, region, and country) for your reading sessions.
+              <strong style={{ color: "var(--text-heading)" }}>Approximate location:</strong> When usage analytics is enabled, we record an approximate location (country, region, city, and approximate coordinates) for your reading sessions.
               This is derived from your IP address and our content-delivery network&apos;s edge data — we do not use GPS or access your device&apos;s precise location.
               To resolve an approximate location when our network does not already provide it, your IP address may be sent to a third-party IP-geolocation provider (ip-api.com). If usage analytics is off, we do not collect or store location data.
             </li>

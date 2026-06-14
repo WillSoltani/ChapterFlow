@@ -2,59 +2,58 @@
   "chapterId": "the-book-of-boundaries-ch01",
   "number": 1,
   "title": "A Crash Course on Boundaries",
-  "coreMove": "Treat dread, resentment, avoidance, and anger as boundary signals; name the limit clearly, then follow through on your own access, time, topic, or participation.",
+  "coreMove": "A boundary is not a remote control for another person; it names the access you can allow, the action you will take, and the resentment you refuse to let build.",
   "exampleCount": 6,
   "exampleSpecs": [
     {
-      "domain": "neighborhood walking routine",
-      "audience": "people who need solitude without cutting off friendly contact",
-      "stakes": "protect daily mental health while preserving goodwill",
-      "format": "scene",
-      "requiredBeat": "the protagonist protects a weekday walk from an elderly neighbor while offering Saturday morning as limited connection"
+      "domain": "public comment about a neighbor joining a private morning routine",
+      "audience": "a reader who wants to protect a personal ritual without shaming someone lonely",
+      "stakes": "whether care for an elderly neighbor costs the quiet weekday walk that steadies the day",
+      "format": "dilemma",
+      "requiredBeat": "Hyun uses Nancy's weekday morning walk and Saturday walk pattern while speaking at the town hall microphone stand"
     },
     {
-      "domain": "family dinner before a mother visit",
-      "audience": "readers who treat anticipatory anxiety as overreaction",
-      "stakes": "use dread to name the topic before the first comment lands",
+      "domain": "physical therapy patient asking for a pressure limit during a stretch",
+      "audience": "a reader who apologizes before naming a body limit",
+      "stakes": "whether pain becomes information or the patient performs toughness for approval",
       "format": "dialogue",
-      "requiredBeat": "the protagonist names dread before a mother visit involving twenty pounds and recurring weight comments"
+      "requiredBeat": "Severin and Lana use the medium-well burger comparison to make a body limit sound as plain as a clear order"
     },
     {
-      "domain": "family scheduling after a strained visit",
-      "audience": "people who avoid contact instead of naming the limit",
-      "stakes": "restore contact by separating family love from parenting debate",
-      "format": "before_after",
-      "requiredBeat": "the protagonist treats avoided invitations from parents as a clue that co-parenting with a new husband needs a spoken limit"
+      "domain": "teacher setting terms for grade-update calls and emails",
+      "audience": "a reader who thinks more explanation will prevent pushback",
+      "stakes": "whether dread before a phone call becomes a clear access rule or another week of avoidance",
+      "format": "predict_reveal",
+      "requiredBeat": "Peyton expects a long explanation to reduce resentment, then sees the parent debate the reasons instead of hearing the limit"
     },
     {
-      "domain": "apartment mailbox conversation",
-      "audience": "people who overexplain a small limit",
-      "stakes": "keep the sentence clear instead of defending the need",
-      "format": "reflection",
-      "requiredBeat": "the protagonist rehearses a weekday walk boundary with an elderly neighbor and keeps Saturday morning as a specific alternative"
-    },
-    {
-      "domain": "family text thread before a visit",
-      "audience": "readers who wait for the first hurtful comment",
-      "stakes": "respond to the signal before resentment needs anger",
+      "domain": "food truck owner handling a friend's texts during lunch rush",
+      "audience": "a reader whose attention gets treated as always available",
+      "stakes": "whether a friendship gets special access while customers wait at the window",
       "format": "text_thread",
-      "requiredBeat": "the protagonist uses a photo text before a mother visit to prepare a boundary around twenty pounds and weight comments"
+      "requiredBeat": "Milo protects time and attention by texting what access is available at the food truck service window"
     },
     {
-      "domain": "family postmortem after a tense meal",
-      "audience": "people who set a limit but do not hold it",
-      "stakes": "show that follow-through protects the next visit",
-      "format": "postmortem",
-      "requiredBeat": "the protagonist reviews a visit where parents tested the co-parenting limit and the new husband watched the follow-through"
+      "domain": "community garden volunteer ending repeated last-minute tool requests",
+      "audience": "a reader who piles on reasons until the limit disappears",
+      "stakes": "whether one clear sentence protects the plot or resentment keeps growing",
+      "format": "reset_moment",
+      "requiredBeat": "Hugo interrupts his routine at the community garden plot, stops overexplaining, and restarts with a direct limit"
+    },
+    {
+      "domain": "apartment laundry room moment after an avoided family call",
+      "audience": "a reader who treats irritation as a personality flaw instead of information",
+      "stakes": "whether the next call gets avoided again or becomes a clearer access conversation",
+      "format": "vignette",
+      "requiredBeat": "Lana notices dread, avoidance, resentment, and the phone call while cleaning the laundry room lint screen"
     }
   ],
   "quizFocus": {
     "count": 9,
     "bloomsMix": {
-      "apply": 3,
-      "understand": 1,
       "analyze": 2,
-      "remember": 1,
+      "understand": 2,
+      "apply": 3,
       "evaluate": 2
     },
     "transferEmphasis": 1
@@ -63,7 +62,7 @@
     "count": 6,
     "retrievalPractice": true
   },
-  "readingTimeMinutes": 11,
+  "readingTimeMinutes": 10,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-10T01:00:31.121Z"
+  "derivedAt": "2026-06-12T20:04:39.324Z"
 }

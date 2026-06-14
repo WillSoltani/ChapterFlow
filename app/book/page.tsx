@@ -24,10 +24,15 @@ export default async function BookOnboardingPage() {
   } catch (e) {
     // Re-throw Next.js redirects so they take effect
     if (e instanceof Error && "digest" in e) throw e;
-    // Only swallow AuthError (dev bypass or token issues).
-    // Re-throw everything else (DynamoDB, network, etc.) so the error
-    // boundary catches it instead of silently showing onboarding.
-    if (!(e instanceof AuthError)) throw e;
+    // Swallow AuthError (dev bypass / token issues) and the locally-unset data
+    // plane: BOOK_TABLE_NAME is provisioned via SSM in deployed envs and is
+    // absent in local dev, so reading it throws. In both cases fall through to
+    // onboarding — matching how app/book/library/[bookId]/page.tsx degrades.
+    // Real DynamoDB/network errors still re-throw so the error boundary catches
+    // them in production.
+    const isLocalUnsetDataPlane =
+      e instanceof Error && e.message.includes("BOOK_TABLE_NAME");
+    if (!(e instanceof AuthError) && !isLocalUnsetDataPlane) throw e;
   }
 
   return <OnboardingFlow />;

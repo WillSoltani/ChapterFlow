@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 22,
+  "chapterId": "stillness-is-the-key-ch22",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "a2bf872b45c7369d",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:45:03.740Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 93/100; r2 quiz-domain repair verified; gate/source pass and quiz verifies 9/9.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 22,
+      "chapterId": "stillness-is-the-key-ch22",
+      "verdict": "REVISE",
+      "contentHash": "ed1d2fc95d29b5ba",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:18:19.113Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch22 repeats ch05-adjacent venue slate (farmers market, tennis, ambulance dispatch, home/workshop request setting); quiz keys verified 9/9; no corruption found."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 22,
+      "chapterId": "stillness-is-the-key-ch22",
+      "verdict": "REVISE",
+      "contentHash": "eb3ca0149c14479f",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:25:27.822Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "87/100; prior venue-slate issue resolved, but quiz_distractor_quality=0.50: q01 plumbing-team distractor, q06 fundraiser prompt with serve-drill choices, q07 freelance revision prompt with stall/sale/pricing choices; gates/source pass; quiz keys verified 9/9.",
+      "supersededReason": "Prior REVISE was caused by venue-slate reuse; fresh QC retains REVISE for stale-domain quiz choices in ch22 q01/q06/q07."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 22,
+      "chapterId": "stillness-is-the-key-ch22",
+      "verdict": "REVISE",
+      "contentHash": "e087945370535b0b",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:34:18.757Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "YELLOW 89/100; quiz_distractor_quality=0.58; keys verify 9/9 but q02 still says ambulance channel in eldercare calendar context.",
+      "supersededReason": "post-r1 re-QC for quiz-domain repair"
+    }
+  ],
+  "supersededReason": "post-r2 re-QC for quiz-domain repair"
+}

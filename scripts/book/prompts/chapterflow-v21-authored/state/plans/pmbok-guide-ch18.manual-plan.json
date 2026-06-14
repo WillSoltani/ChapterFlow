@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch18",
+  "number": 18,
+  "title": "Enable Change to Achieve the Envisioned Future State",
+  "coreMove": "Change enablement turns a deliverable into sustained value by making teams protect adoption, transition, and the future state when pressure tempts them to defend only the baseline.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "regional operations rollout",
+      "audience": "project leads preparing stakeholder launch meetings",
+      "stakes": "whether a principle changes adoption work or stays on a slide",
+      "format": "contrast",
+      "requiredBeat": "show two leads using the same PMI 12-principle material with opposite results"
+    },
+    {
+      "domain": "public-sector records migration",
+      "audience": "delivery managers under deadline pressure",
+      "stakes": "a transition handoff may be cut to keep the baseline date",
+      "format": "coach_talk",
+      "requiredBeat": "a peer reframes the schedule-pressure choice so transition cannot be hidden"
+    },
+    {
+      "domain": "project-management onboarding class",
+      "audience": "new project coordinators learning the principle set",
+      "stakes": "a learner confuses memorization with application",
+      "format": "school_case",
+      "requiredBeat": "use the learner's confusion to distinguish principle recall from adoption planning"
+    },
+    {
+      "domain": "manufacturing equipment installation",
+      "audience": "project managers comparing status-report habits",
+      "stakes": "green schedule reporting may hide an unsupported operating transition",
+      "format": "before_after",
+      "requiredBeat": "show the same review before and after the adoption tradeoff check"
+    },
+    {
+      "domain": "field-service software recovery",
+      "audience": "analysts reviewing rollout evidence",
+      "stakes": "support records may reveal the real transition failure",
+      "format": "audit",
+      "requiredBeat": "find the telling detail in existing files rather than stage a new event"
+    },
+    {
+      "domain": "health-clinic scheduling rollout",
+      "audience": "project leads making final go-live recommendations",
+      "stakes": "a leader must sort through pressure without external dialogue",
+      "format": "inner_monologue",
+      "requiredBeat": "keep the scene inside one person's thoughts while the PMI principle tests the go-live call"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "evaluate": 3,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.322Z"
+}

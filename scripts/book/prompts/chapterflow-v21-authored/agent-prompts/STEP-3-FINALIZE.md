@@ -16,7 +16,7 @@ This is the shortest stage. You run 3-4 deterministic Bash commands. If they pas
 ## Working directory
 
 ```
-/Users/radinsoltani/ChapterFlow
+/Users/radinsoltani/ChapterFlow-books
 ```
 
 `cd` there at the start of your session.
@@ -159,7 +159,7 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts generate-book $
 [HH:MM:SS] manual tags: <your tags>
 [HH:MM:SS] === Library promotion ===
 [HH:MM:SS] ✓ PROMOTED: <bookId>
-  Package: /Users/radinsoltani/ChapterFlow/book-packages/<bookId>.v21.json
+  Package: /Users/radinsoltani/ChapterFlow-books/book-packages/<bookId>.v21.json
   Ship gate: 0 blockers, 0 majors
   Book gate: 0 blockers, ...
 ```
@@ -251,7 +251,7 @@ In every case: **do not attempt to write chapter content yourself**. Step 2 is t
 ## TL;DR sequence
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow
+cd /Users/radinsoltani/ChapterFlow-books
 
 # Step A — confirm chapters present and gating clean
 for f in scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-ch*.v21-native.chapter.json; do

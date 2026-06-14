@@ -25,7 +25,7 @@ Every field you write must use specific terminology and proper nouns from these 
 
 1. Anchor in ONE of this chapter's `namedExamples` or its `centralConcept`. Each scenario should reference at least one proper noun from the sidecar — a real company, person, product, place, or framework name. `SC9` fires at chapter-gate time if a scenario contains no source-grounded anchor.
 2. Use a DIFFERENT scene structure across scenarios — vary opener style (time-first, place-first, dialogue-led, data-first, role-action), vary protagonist role, vary stakes. Do NOT use the same skeleton with different nouns substituted.
-3. 80–140 words per scenario.
+3. `scenario`: 280–520 chars, usually 55–95 words.
 
 ### Quiz `correctIndex` per chapter
 
@@ -64,6 +64,17 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts book-gate <book
 ```
 
 This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs the full book-level pattern audit. Must report 0 blockers before reporting Step 2 complete.
+
+Before reporting Step 2 complete:
+- every assigned chapter must pass `author-check`;
+- every assigned chapter must pass `gate-chapter` with 0 blockers;
+- `book-gate <bookId>` must have 0 blockers;
+- run `major-status <bookId>`;
+- fix any actionable current major findings that are writing defects;
+- do not waive majors; only QC/operator may write `major-disposition`;
+- if a major seems like a false positive or acceptable debt, report it explicitly instead of claiming completion.
+
+**Warning:** 0 blockers is necessary but not sufficient for no-api QC. Unresolved majors are QC debt and may cause finalizer REVISE.
 
 ---
 
@@ -112,6 +123,46 @@ masks"):
   question is" (107×), "that is the …" (101×), "scoreboard" (48×), and the
   triadic abstract-noun list ("shame, comparison, and disengagement" cadence)
   more than once per chapter.
+
+
+
+**R2.8 — Nothing in this prompt is copy-paste material.** Every example, cue
+phrase, shape definition, and illustrative sentence in this document and in
+the dealt plans exists to show a STRUCTURE. Reproducing its surface wording
+in your prose is a defect (the stillness book reproduced two of this
+prompt's seed examples in 13-14 chapters each, and the shape definitions'
+catch-phrases — "the telling detail", "decisive misstep" — became book-wide
+stamps). Before gating, grep your own chapter for any phrase you recognize
+from this prompt; if you find one, rewrite it in scene-native words.
+
+**R2.7 — Plain language beats abstraction (2026-06-11 product direction).** The
+catalog's reader panel scored interest lowest of all axes and named the cause:
+"wall-to-wall abstraction with no narrative inside", paragraphs of abstract
+nouns trading places ("Scarcity culture shrinks courage by teaching lack
+first; enoughness grows when you name shame, comparison, and disengagement").
+ChapterFlow is for a WIDE audience. The rules:
+
+- **Concrete within two sentences.** Every abstract claim must be followed,
+  within two sentences, by something the reader can SEE: a person doing
+  something, a scene, a number, a familiar object. If two abstract sentences
+  ever touch, one of them changes.
+- **Say it like you'd say it to a friend.** First phrasing test: would you say
+  this sentence out loud to a smart friend at lunch? "Worthiness no longer
+  waits for proof" fails that test; "you stop needing to earn the right to
+  feel okay" passes.
+- **Define every term-of-art in everyday words the first time it appears** —
+  then you may use it freely. Never stack two undefined abstractions in one
+  sentence.
+- **Prefer the short common word**: use/not utilize, enough/not sufficiency,
+  blame/not attribution. Nominalizations (-tion/-ness/-ity words) are a
+  budget, not a style: if a sentence has two, rewrite one as a verb with a
+  subject ("she compared" not "comparison occurred").
+- **Each breakdown tier opens with something concrete** — a person, a moment,
+  a number — never with a thesis abstraction. The reader earns the concept by
+  seeing it first.
+- FP-guard: precise technical terms from the source (PET scan, compound
+  interest, attachment) are GOOD — explain them plainly once and keep them.
+  Plain language is not dumbing down; it is the concept with the fog removed.
 
 
 **R3 — No fixed per-field skeleton across slots or chapters.** Compose each slot independently, from its own bit of source. A skeleton is the tell that you stopped writing and started filling blanks. The reader meets your fields in sequence; a rotating frame is obvious to them the second time they see it, and it teaches them that the book is generated, not authored. The diagnostic: if your six example scenarios share a clause, or your nine quiz prompts share an opener, or your card fronts share a stem with the concept swapped — you built a skeleton. Tear it out and write each from its own source moment.
@@ -208,7 +259,7 @@ Every field has a JOB. The complete per-field specification — JOB, a WRITE rec
 ## Working directory
 
 ```
-/Users/radinsoltani/ChapterFlow
+/Users/radinsoltani/ChapterFlow-books
 ```
 
 `cd` there at the start of your session. All paths below are relative to this directory.
@@ -311,8 +362,10 @@ type ExampleV21 = {
     stakes: string;
     format: string;               // see ExampleFormat list below
     requiredBeat: string;         // the exact beat the example must hit
+    venue?: string;                // v21.1 no-api QC: exact dealt venue string from fanout
+    exemplar?: string;             // v21.1 no-api QC: owned marquee exemplar used, or ""
   };
-  scenario: string;               // 280-520 chars
+  scenario: string;               // 280-520 chars; usually 55-95 words
   whatToDo: string;               // 120-240 chars
   whyItMatters: string;           // 120-240 chars
 };
@@ -442,8 +495,7 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 
 2. **C2 — Specific scene.** Name a time, a place, a role, a concrete artifact. "On Tuesday at 4 PM in the Berlin warehouse, Hanna sees the manifest on her tablet…" NOT "A manager reviews paperwork…".
 
-3. **C3 — Decision point cue.** Every scenario (when `format` is `decision_point`, `dilemma`, `mistake_recovery`, `predict_reveal`, etc.) must include explicit time-pressure or choice language. Phrases like: `must tell`, `must answer`, `has to say`, `has to tell`, `minutes before`, `seconds before`, `hours before`, `before the meeting starts`, `before the vote`, `before time runs out`, `before the window`. Formats `before_after`, `postmortem`, `reflection` are exempt.
-
+3. **C3 — Decision point cue.** Scenarios whose format IS a decision (`decision_point`, `dilemma`, `mistake_recovery`, `predict_reveal`, `planning_choice`, `decision_memo`) must make a live decision moment unmistakable — a question the protagonist is weighing, an unsent reply on the screen, two options both still possible. Write the pressure in words native to THIS scene. The gate recognizes many constructions (weighs, wonders whether, torn between, should she, the deadline is, …) — these are DETECTION examples, not templates: never copy them verbatim, never use the same pressure construction in more than 2 scenarios per chapter, and never reuse a "minutes before X" / "must tell" stamp across chapters (the stillness QC found exactly that stamp in 22+ scenarios). Non-decision formats (audit, vignette, dialogue, contrast, …) need NO decision language — forcing it in produces incoherent scenes.
 4. **C8 — No template across examples.** No two examples share a Cartesian-product shape (same skeleton, name + role + city swapped). Each scenario structurally different.
 
 5. **C9 — No alphabet-cycling names.** Don't pick A, B, C, D, E, F across examples. Vary deliberately.
@@ -457,7 +509,7 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 9. **whyItMatters is the lesson.** What does this scene teach about the chapter's move? Don't repeat the scenario.
 
 **Length floors:**
-- `scenario`: 280-520 chars
+- `scenario`: 280–520 chars, usually 55–95 words
 - `whatToDo`: 120-240 chars
 - `whyItMatters`: 120-240 chars
 
@@ -655,7 +707,7 @@ In either case, report:
 ## TL;DR loop
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow
+cd /Users/radinsoltani/ChapterFlow-books
 npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts next-task <bookId>
 # It tells you which chapter to write. Write the Bind Block from the source.
 # Compose each field to its JOB (FIELD-PURPOSE-CONTRACTS.md). Save to the printed path.

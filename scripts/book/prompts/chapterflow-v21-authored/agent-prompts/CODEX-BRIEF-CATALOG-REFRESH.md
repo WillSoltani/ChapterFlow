@@ -54,16 +54,16 @@ exists before starting)
 slots; do not touch breakdown tiers except for de-ticking (readers rate the
 breakdowns 7/10 — the fingerprints live in the slots):
 
-1. **Generate fresh plans**: `name-plan <bookId> --from 1 --to N` (now
-   cross-book exclusive) and `pedagogy-plan <bookId> --from 1 --to N`
+1. **Generate fresh plans**: `name-plan <bookId> --from 1 --to N` (American/
+   Canadian names, unique WITHIN the book) and `pedagogy-plan <bookId> --from 1 --to N`
    (and read `shape-plan` if rewriting any scene). Print and follow them.
-2. **Character renames**: build an old→new map — old = bank names this book
-   shares with other books (run `catalog-audit <bookId>` to list its
-   `bankNames`, cross-check collisions in the catalog-wide run), new = fresh
-   names from the new name-plan. Rename CONSISTENTLY across every field of
-   the chapter (scenario, whatToDo, whyItMatters, quiz prompts/choices/
-   explanations, card fronts/backs, plan text). One name = one person still
-   holds.
+2. **Character renames** (only WITHIN-book duplicates — owner policy 2026-06-13:
+   names MAY repeat across DIFFERENT books, so do NOT rename a name just because
+   another book uses it): build an old→new map for any name reused by two chapters
+   of THIS book (or a name that isn't American/Canadian), new = fresh names from
+   the new name-plan. Rename CONSISTENTLY across every field of the chapter
+   (scenario, whatToDo, whyItMatters, quiz prompts/choices/explanations, card
+   fronts/backs, plan text). One name = one person still holds.
 3. **Hooks**: rewrite each chapter's hook in its dealt hook shape
    (pedagogy plan). The hook must still be true to the chapter.
 4. **`tryThisNow`**: rewrite in the dealt grammar. Keep it ≤220 chars,

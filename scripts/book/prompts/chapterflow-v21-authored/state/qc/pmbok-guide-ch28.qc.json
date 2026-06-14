@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 28,
+  "chapterId": "pmbok-guide-ch28",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "18ee81eb893336bc",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:56:31.872Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "93/100, read full ch28, quiz keys matched tailoring context diagnostics and constraint logic, examples coherent, cards and plan actionable, no corruption found"
+}

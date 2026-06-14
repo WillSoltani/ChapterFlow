@@ -290,6 +290,8 @@ export type CriticCheckId =
   | "BP19.quiz_banned_tail_phrase"
   | "BP20.quiz_ngram_template_repeat"
   | "BP21.quiz_cross_chapter_duplicate"
+  | "BP26.exemplar_chapter_reuse"
+  | "BP27.venue_stamping"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
   | "schema.quiz_unexpected_field"
@@ -435,6 +437,10 @@ export type ExampleV21 = {
     stakes: string;
     format: string;
     requiredBeat: string;
+    /** v21.1 no-api QC scaffolding. Not shown to readers; stripped at promote. */
+    venue?: string;
+    /** v21.1 no-api QC scaffolding. Empty/absent means no marquee exemplar. */
+    exemplar?: string;
   };
   scenario: string;                     // 280–520 chars
   whatToDo: string;                     // 120–240 chars

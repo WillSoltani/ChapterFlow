@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch31",
+  "number": 31,
+  "title": "Artifacts",
+  "readingTimeMinutes": 12,
+  "hook": "After approval, the room was empty except for a risk register with no owner in the status column.",
+  "counterintuition": "The mature artifact question is not whether the charter, register, board, or report exists. It is who used it, what decision it supported, how current it was, and what would fail if it disappeared.",
+  "tryThisNow": "Before your next break, list five project artifacts you touch. Beside each one, mark who used it and what decision or coordination need it supported.",
+  "keyTakeaway": "Teams get value from artifacts when current information supports decisions, coordination, compliance, learning, or control; stale or unused records are theater, not management.",
+  "breakdown": {
+    "fastRead": "After the review, Salvatore sees the room clearly: paper cups, a dashboard still glowing on the screen, and a risk register printed with owner blank and status green. The committee approved the report, yet nobody named the decision the page was meant to support.\n\nThat is the rule. Plans, logs, registers, boards, charts, reports, agreements, and backlogs are information containers. They help when people use them to coordinate, decide, comply, learn, or control. If a risk register has no risk owner and a dashboard is stale, the team has a display of management rather than management.",
+    "deepRead": "Usefulness has a chain: a person needs information, the artifact holds it in a usable form, and the next action changes because the information was current enough to trust. Break any link in that chain and the artifact becomes decoration.\n\nRuby can see the chain on a Kanban board. The left edge is calm, the middle column is crowded, and the dashboard shows WIP climbing for three days. Nobody needs a speech about flow. The board points to a bottleneck, the dashboard confirms the pattern, and the team can change the review queue before another handoff waits overnight.\n\nA risk register works the same way in a different shape. The rows are not the work. The work is the risk owner who watches status, the response that gets triggered, and the review that changes when uncertainty changes. A register with risks but no owner creates false comfort; a register with owners, responses, and current status gives uncertainty somewhere to land.\n\nThis is why the Guide's inventory is broad. A business case, charter, roadmap, backlog, work breakdown structure, requirements document, assumption log, change log, burnup chart, and status report can all be legitimate. The selection test is not the artifact's pedigree. It is whether the project system would lose decision quality, coordination, compliance evidence, learning, or control without it.",
+    "fullRead": "The catalog is not the problem. The catalog is a memory aid. It reminds Ibrahim that different project questions need different containers: a baseline for expectations, a decision log for traceability, a lessons learned register for future work, a Kanban board for flow, a dashboard for performance, and a risk register for uncertainty. The trouble begins when the list becomes a maturity costume.\n\nA team can produce every familiar document and still leave the project poorly managed. Nico's postmortem makes that visible: the risk register existed, the status report existed, the dashboard existed, and the failure still surprised the sponsor. The decisive miss was not absence. Nobody used the information to change a response, challenge a stale assumption, or put an owner on the risk that was growing in plain sight.\n\nThe opposite mistake is just as costly. Some teams hear artifact theater and start deleting records as if lightness were the goal. The earlier tailoring process matters here: fit is the standard, not minimalism. A regulated project may need formal approvals, signed agreements, traceable requirements, and auditable change logs. A small adaptive team may need fewer formal documents but a sharper board, clearer acceptance criteria, and a dashboard that people trust during the work. The correct amount of artifact is the amount that supports use in context.\n\nCurrent enough is the practical phrase. Not every item needs daily polishing. A charter may only need revision when authority, purpose, or high-level constraints change. A dashboard used in a steering meeting may need data fresh enough that the room can decide without guessing. A risk register needs enough care that owners, responses, and status still describe the uncertainty the project is actually carrying.\n\nThis final asset category also connects back to the performance domains. Uncertainty performance may surface through risk records and assumption logs. Measurement performance may surface through forecasts, dashboards, and burnup or burndown charts. Planning performance may surface through baselines, dependency views, and estimates. Delivery performance may surface through acceptance criteria, quality records, and work state. None of those containers proves health alone; they provide signals people must interpret.\n\nThe Artifact Use Test is therefore simple and strict: Who uses this? What decision, coordination need, compliance obligation, learning loop, or control action does it support? How current does it need to be for that use? What would break if it disappeared? If the answers are clear, keep the artifact and care for it at the right cadence. If the answers are vague, the page is asking for effort without paying rent."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch31.ex.risk-register",
+      "title": "Salvatore Restarts the Register Review",
+      "tags": [
+        "reset_moment",
+        "risk register",
+        "governance"
+      ],
+      "planSpec": {
+        "domain": "weekly governance review with a risk register on screen",
+        "audience": "a PMO lead trying to keep artifact review tied to decisions",
+        "stakes": "prevent a completed register from being mistaken for active risk response",
+        "format": "reset_moment",
+        "requiredBeat": "the protagonist interrupts his own checklist routine and restarts from who uses the risk register"
+      },
+      "scenario": "Salvatore begins the governance review by reading the artifact checklist in order: charter, plan, risk register, status report. Then the risk register opens on the wall, and row 14 shows risk owner blank, response \"monitor,\" status green. The usual slide order waits behind him. He stops mid-sentence. The pause is not awkward filler; it is the technique. Salvatore closes the checklist tab, turns back to the room, and restarts with one question: who used this row to make a decision this week?",
+      "whatToDo": "Salvatore pauses the routine, names the blank risk owner, and restarts the review around use: owner, response, status, and the next decision the register should support.",
+      "whyItMatters": "The reset keeps the risk register from becoming a completed worksheet. A register has value when it makes ownership and response visible enough for action."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch31.ex.kanban-dashboard",
+      "title": "Ruby Watches the Board Crowd",
+      "tags": [
+        "vignette",
+        "Kanban board",
+        "dashboard"
+      ],
+      "planSpec": {
+        "domain": "team workspace with a Kanban board and delivery dashboard",
+        "audience": "a coordinator observing flow before a daily team conversation",
+        "stakes": "show how visible work state teaches without a decision fork",
+        "format": "vignette",
+        "requiredBeat": "a close observed detail shows WIP and bottlenecks before anyone explains them"
+      },
+      "scenario": "Ruby stands beside the team desk while the printer warms and the coffee machine clicks. The Kanban board has two cards in Ready, three in Build, and nine in Review, each sticker curling at one corner. Above it, the dashboard line for WIP rises like a small warning. No one is arguing. No vote is needed. The crowded column, the quiet table, and the stalled review cards teach the point: a visual artifact is useful when it lets the team see flow and bottlenecks before the delay becomes a story.",
+      "whatToDo": "Ruby records the WIP count, circles the Review bottleneck on the dashboard, and brings that visible work state into the team's next coordination conversation.",
+      "whyItMatters": "A Kanban board is not wall decoration. When people read it as current work state, it gives flow problems a shape the team can act on."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch31.ex.risk-register",
+      "title": "Nico Finds the Green Row",
+      "tags": [
+        "postmortem",
+        "risk register",
+        "status"
+      ],
+      "planSpec": {
+        "domain": "postmortem after an unresolved supplier risk delays delivery",
+        "audience": "an analyst reconstructing the decisive artifact failure",
+        "stakes": "locate the misstep that turned a listed risk into unmanaged uncertainty",
+        "format": "postmortem",
+        "requiredBeat": "the failure has already happened and the trace points to a green risk row with no real response"
+      },
+      "scenario": "The delivery date had already slipped when Nico opened the postmortem file. The trace was clean: three steering reports, five dashboard exports, and one risk register row labeled supplier certification delay. The row had a risk owner listed for the first week, then no owner after the handoff. The response stayed \"monitor.\" The status stayed green until the missed shipment. Creating the risk register was not the failure. Treating a listed risk as a managed risk after ownership and response had gone stale was the real break.",
+      "whatToDo": "Nico marks the break where the risk owner disappeared and writes the corrective action around ownership review, not around adding another register field.",
+      "whyItMatters": "Postmortems often count artifacts. This one shows why use matters: status, owner, and response have to stay alive for the register to support uncertainty management."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch31.ex.kanban-dashboard",
+      "title": "Dina Catches Her Own Dashboard Error",
+      "tags": [
+        "mistake_recovery",
+        "dashboard",
+        "WIP"
+      ],
+      "planSpec": {
+        "domain": "delivery lead presenting a dashboard beside a Kanban board",
+        "audience": "a delivery lead responsible for current measurement signals",
+        "stakes": "recover from presenting stale performance data before the group relies on it",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist notices her own stale dashboard while the live Kanban board shows a bottleneck"
+      },
+      "scenario": "Dina is halfway through the delivery review when she hears her own sentence: \"The dashboard is green.\" On the wall behind her, the Kanban board says otherwise. WIP is stacked in Review, and the bottleneck is visible in marker ink. She looks back at the laptop and notices the export date: last Thursday. The center of the scene is the noticing, not the repair. Dina has been asking the room to trust a dashboard that no longer matches the work.",
+      "whatToDo": "Dina stops the report, names the stale export date, and uses the current Kanban board to frame the review queue before updating the dashboard.",
+      "whyItMatters": "A stale dashboard can mislead faster than no dashboard. Noticing the mismatch protects the decision before people act on old performance signals."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch31.fact.9",
+      "title": "Ibrahim Writes the Use Memo",
+      "tags": [
+        "decision_memo",
+        "artifact catalog",
+        "tailoring"
+      ],
+      "planSpec": {
+        "domain": "project manager documenting which artifacts the team will keep",
+        "audience": "a project manager explaining artifact choices to a sponsor",
+        "stakes": "justify a fit-for-purpose artifact set without copying the whole catalog",
+        "format": "decision_memo",
+        "requiredBeat": "the written memo carries the scene by naming use before inventory"
+      },
+      "scenario": "Ibrahim's memo begins: \"Subject: artifact set for the next release. We will keep the risk register because every open risk has a risk owner, response, and status review. We will keep the Kanban board and dashboard because WIP and bottlenecks drive the daily coordination meeting. We will not add a separate weekly narrative report unless the sponsor names a decision it would support. Catalog presence is not our standard; use is.\" The final sentence is underlined. The action lives inside the document.",
+      "whatToDo": "Ibrahim writes the artifact decision memo around use, naming each kept item, its owner or audience, its update cadence, and the decision or coordination need it supports.",
+      "whyItMatters": "A memo like this makes tailoring defensible. It shows the team is not avoiding rigor; it is matching effort to decisions, control, learning, and communication."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch31.ex.kanban-dashboard",
+      "title": "Roxane and Tara Split the Same Request",
+      "tags": [
+        "contrast",
+        "dashboard",
+        "artifact use"
+      ],
+      "planSpec": {
+        "domain": "two project leads responding to the same sponsor request for status visibility",
+        "audience": "leads choosing whether visibility means more artifacts or better-used artifacts",
+        "stakes": "show how opposite artifact strategies produce different outcomes",
+        "format": "contrast",
+        "requiredBeat": "two named people face the same request with opposite approaches and outcomes diverge"
+      },
+      "scenario": "Roxane and Tara receive the same sponsor request: \"I need better visibility by Friday.\" Roxane sends a thicker status pack with a copied Kanban board image, a dashboard export, and three new logs nobody owns. The sponsor still asks where work is stuck. Tara sends one current dashboard, the live Kanban board link, and a short note on WIP, bottlenecks, and who will clear Review. Roxane has more artifacts. Tara has fewer containers and clearer use. By Monday, only Tara's team has changed the queue.",
+      "whatToDo": "Tara answers the visibility request with current flow signals and named actions; Roxane's thicker pack becomes the contrast case for artifact volume without use.",
+      "whyItMatters": "The same request can invite theater or control. Visual artifacts help only when people use them to see work state, bottlenecks, and the next coordination move."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch31.fact.7",
+        "prompt": "A risk log shows eight open rows, five with blank risk owner fields and the same \"monitor\" response for three weeks. Which inference should Salvatore make first?",
+        "choices": [
+          "Template-completion proxy: The risk register exists, so uncertainty management is adequately documented.",
+          "Ownership-gap read: Review owner, response, and status before treating the register as active.",
+          "More-fields cure: Add probability and impact columns before asking anyone to act."
+        ],
+        "correctIndex": 1,
+        "explanation": "The problem is not missing decoration; the risk register has lost ownership and response. Extra fields can still leave unmanaged risks sitting green.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch31.fact.8",
+        "prompt": "Ruby inherits a Kanban board people update daily, but the team never discusses the dashboard's WIP spike. What should she do first?",
+        "choices": [
+          "Flow-signal move: Bring the WIP rise and Review bottleneck into the next coordination discussion.",
+          "Wall-art misconception: Leave the board alone because visual artifacts are mainly for transparency.",
+          "Agile-only myth: Remove the dashboard since boards and WIP limits only help agile teams."
+        ],
+        "correctIndex": 0,
+        "explanation": "The Kanban board and dashboard should guide coordination. Treating them as display or as agile-only misses their role in exposing flow and bottlenecks.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch31.fact.6",
+        "prompt": "Dina's steering dashboard says green, but the export date is nine days old and the live board now shows blocked review work. Which reading fits best?",
+        "choices": [
+          "Permanent-value belief: Once created, the dashboard keeps its value until the next formal reporting cycle.",
+          "Pretty-report bias: A polished dashboard should outrank messy live board data.",
+          "Current-enough test: The dashboard is unsafe for decisions until it reflects the work state people need."
+        ],
+        "correctIndex": 2,
+        "explanation": "A dashboard used for decisions has to be current enough for that use. Polish and prior creation do not protect the room from stale signals.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch31.fact.2",
+        "prompt": "Roxane's sponsor asks for \"the full artifact catalog\" on a small internal effort. How should she respond before building the pack?",
+        "choices": [
+          "Catalog-equals-maturity: Produce every listed plan, log, chart, and report to show discipline.",
+          "Use-before-volume: Ask which decisions, coordination needs, duties, or controls the pack must support.",
+          "Minimalism reflex: Refuse the request because small projects should avoid formal artifacts."
+        ],
+        "correctIndex": 1,
+        "explanation": "The catalog is an inventory, not a mandate. Fit may require some artifacts, but volume alone and reflexive deletion both dodge the use question.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch31.fact.9",
+        "prompt": "Which sentence belongs at the top of Ibrahim's artifact decision memo?",
+        "choices": [
+          "Use-standard rule: Keep items used for decisions, coordination, compliance, learning, or control.",
+          "Checklist maturity: The safest project is the one with the longest inventory of completed documents.",
+          "Format loyalty: Use whichever artifact template the previous project used so comparison stays easy."
+        ],
+        "correctIndex": 0,
+        "explanation": "The memo needs a use standard. Completed inventory and copied templates can create work without improving decisions or control.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch31.fact.4",
+        "prompt": "Nico reviews a decision log after a missed handoff. The log has dates and topics, but no owner for follow-up and no status on unresolved items. What is the sharpest diagnosis?",
+        "choices": [
+          "Archival sufficiency: The log did its job by recording that conversations occurred.",
+          "Meeting-volume explanation: The team mainly needs more meetings around the same log.",
+          "Follow-through gap: The log needs ownership and status before it can guide action."
+        ],
+        "correctIndex": 2,
+        "explanation": "Logs and registers support follow-through only when people can see owner, action, and status. More meetings around a passive archive do not fix that.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch31.fact.3",
+        "prompt": "Ibrahim's regulated project team wants to drop the change log because \"artifact theater is bad.\" Which correction protects the hard edge of the idea?",
+        "choices": [
+          "Fit-not-lightness: Keep or adjust the change log if it supports approval, traceability, compliance, or control.",
+          "No-records shortcut: Delete the log because reducing artifacts is the mature reading of the catalog, even in regulated work.",
+          "Approval-only view: Keep the log only until kickoff, then stop updating it once work begins."
+        ],
+        "correctIndex": 0,
+        "explanation": "The warning is against unused artifacts, not against evidence. In regulated work, a current change log may be exactly the control the context requires.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch31.fact.5",
+        "prompt": "A teammate tells Tara that visual boards are decorative status displays and real control lives only in reports. How should Tara answer?",
+        "choices": [
+          "Report-only bias: Agree, since charts and boards cannot guide decisions without a narrative report and signoff pack.",
+          "Dashboard vanity: Replace the board with more graphs so the sponsor sees a cleaner picture.",
+          "Visible-flow answer: Use the board and dashboard to expose progress, WIP, and bottlenecks for coordination."
+        ],
+        "correctIndex": 2,
+        "explanation": "Visual artifacts can guide real coordination when they expose flow and performance. More polish or report-only thinking can hide the same bottleneck.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch31.fact.1",
+        "prompt": "Salvatore sees a project praised for a complete charter, dashboard, risk register, and lessons learned register, but no one can name a decision any item changed. What should he question?",
+        "choices": [
+          "Artifact scarcity concern: The project likely needs even more records before value can be judged.",
+          "Value-proof error: Document completion has been mistaken for information people actually use.",
+          "One-artifact rule: The team should pick a single artifact and discard all others."
+        ],
+        "correctIndex": 1,
+        "explanation": "Artifacts are information containers, not proof of value by themselves. More records or an arbitrary single-artifact rule both miss the use test.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch31.fact.9",
+      "front": "What question should every project artifact answer before the team keeps maintaining it?",
+      "back": "It should answer who uses it, what decision or coordination need it supports, how current it must be, and what would break if it disappeared. The answer justifies the effort.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch31.fact.7",
+      "front": "How does a risk register become useful rather than theatrical?",
+      "back": "It records risks in a way that supports follow-through: risk owner, analysis, response, and status are visible and reviewed. A list without action only creates false comfort.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch31.fact.8",
+      "front": "What can a Kanban board and dashboard reveal that a status paragraph may hide?",
+      "back": "They can show work state, WIP, progress, and bottlenecks directly. When the team reads those signals together, flow problems become coordination work instead of after-the-fact explanation.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch31.fact.2",
+      "front": "Tailoring process recall: how does tailoring change the artifact list?",
+      "back": "Tailoring turns the catalog into a fit question. The team selects plans, logs, boards, reports, and controls that match context, risk, stakeholders, governance, and decision needs.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch31.fact.7",
+      "front": "Uncertainty Performance Domain recall: what should a risk register help the team see?",
+      "back": "It should help the team see uncertainty as active work: risks, owners, responses, and changing status. The register supports domain health only when people use it to monitor and respond.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch31.fact.6",
+      "front": "Why can a stale dashboard be worse than no dashboard?",
+      "back": "A stale dashboard can give confident-looking signals that no longer match the work. If people use it for decisions, outdated information can mislead stakeholders and hide current problems.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Artifact Use Test",
+    "coreSkill": "Practice treating each artifact as a maintained information container, not as proof of maturity. Run the Artifact Use Test by naming who uses the item, what decision or coordination need it supports, how current it must be, and what would break if it disappeared. Keep, revise, or retire the artifact based on those answers.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch31.fact.9",
+        "context": "When someone asks for a template because it appears in the catalog",
+        "plan": "If catalog presence becomes the reason, then Run the Artifact Use Test and ask which decision, coordination need, compliance duty, learning loop, or control action the item will support."
+      },
+      {
+        "sourceAnchorId": "ch31.fact.7",
+        "context": "When a risk register row has no active owner, response, or current status",
+        "plan": "If a risk row looks complete but has no follow-through, then Run the Artifact Use Test by naming the owner, response, status review, and next uncertainty decision."
+      },
+      {
+        "sourceAnchorId": "ch31.fact.8",
+        "context": "When a Kanban board or dashboard shows a queue growing but nobody discusses it",
+        "plan": "If WIP or bottlenecks are visible but unused, then Run the Artifact Use Test and move the signal into the next coordination conversation."
+      },
+      {
+        "sourceAnchorId": "ch31.fact.6",
+        "context": "When a dashboard, plan, or log is being used after its data has gone stale",
+        "plan": "If the artifact is no longer current enough for the decision, then Run the Artifact Use Test and either refresh it, lower its use, or remove it from the discussion."
+      }
+    ],
+    "twentyFourHourChallenge": "Today, choose three artifacts you touched: a plan, log, board, register, chart, or report. Run the Artifact Use Test on each and mark keep, revise, or retire.",
+    "weeklyPractice": "For one week, review one artifact before each project meeting. Ask who used it, what changed because of it, and whether its update cadence matched the decision it supported."
+  },
+  "memorableLines": [
+    {
+      "text": "The catalog is not the problem.",
+      "location": "breakdown.fullRead",
+      "why": "It keeps the artifact inventory useful without turning the catalog itself into the villain."
+    },
+    {
+      "text": "Current enough is the practical phrase.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader a practical standard for maintenance without demanding constant polishing."
+    },
+    {
+      "text": "The selection test is not the artifact's pedigree.",
+      "location": "breakdown.fullRead",
+      "why": "It separates source legitimacy from actual project use."
+    }
+  ]
+}

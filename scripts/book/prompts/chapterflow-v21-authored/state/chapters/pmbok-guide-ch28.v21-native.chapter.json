@@ -1,0 +1,369 @@
+{
+  "chapterId": "pmbok-guide-ch28",
+  "number": 28,
+  "title": "Tailoring",
+  "readingTimeMinutes": 12,
+  "hook": "You open the template drawer, and the project starts asking how much structure it actually needs.",
+  "counterintuition": "A tailored project may need more rigor, not less. The point is fit: context and diagnostics decide which controls disappear and which new ones protect value.",
+  "tryThisNow": "Before your next break, scan four planned choices around you; mark the cue behind each: risk, complexity, stakeholder need, or team capability.",
+  "keyTakeaway": "A team tailors well by reading context, using diagnostics, and revisiting practices so rigor grows or shrinks as evidence changes.",
+  "breakdown": {
+    "fastRead": "Roman has one hour before a transit kickoff. The old folder offers a heavy plan, a short board update, and a risk log no one used. He does not start by cutting pages. He names the context: regulated funding, many stakeholders, new vendor staff, and a fixed launch window. Then he chooses the approach, practices, reviews, and artifacts that fit those facts. Good tailoring is not less management. It is fitted management. A team removes work that does not help decisions and adds controls where risk or complexity would otherwise hide.",
+    "deepRead": "Fit comes from evidence before preference. A project team first looks at the work itself: objectives, uncertainty, product type, governance, stakeholder expectations, law, culture, and skill. Those facts shape the development approach and lifecycle. Stable work may need planned milestones and formal control. Exploratory work may need shorter feedback and scope that can move. Mixed work may need both.\n\nSelection comes next, not copying. The team chooses which processes, methods, artifacts, roles, reviews, and decision rights support value. Then it implements them and watches. If a risk grows, a review may be added. If a report feeds no choice, it can be dropped. The loop is context, approach, practices, monitor, adjust.\n\nMegan feels this in the PMO review. Her routine says every project gets the same pack. The new data migration has low cost but high privacy exposure, a new analyst group, and tight audit rules. Megan pauses before sending the pack. She keeps the signoff trail, cuts two status slides, and adds a weekly data-quality check. The work gets neither the full old machine nor a loose shortcut.\n\nThe useful distinction is between waste and protection. Waste is work no one uses to steer, learn, decide, or comply. Protection is the extra structure that keeps value from leaking when risk, complexity, stakeholders, or team capability demand more care.",
+    "fullRead": "External rules can overrule a team's taste. A payment platform, a clinic workflow, and a public grant all carry limits before the team picks a lifecycle. Law, regulation, audit, policy, and decision rights define the room. A team may still tailor inside that room, but it cannot call a required control optional just because the template feels heavy.\n\nDiagnostics come before preference. Risk asks where failure would hurt. Complexity asks how many moving parts can surprise the plan. Stakeholders ask who needs to see, approve, use, or trust the work. Team capability asks how much guidance and review the people need right now. These questions do not make the answer slow. They make the answer defensible.\n\nGage sees the hard case in a hospital scheduling rollout. The clinicians want weekly demos because the workflow is still unclear. The compliance office needs a signoff record because patient data is involved. A lazy reading would pick a side and call it tailored. Gage builds a hybrid rhythm instead: short feedback cycles for the screen flow, formal change logs for privacy rules, and a named review point before release. The fit is heavier in one place and lighter in another.\n\nThe same logic can cut work. If Eleni's sponsor never reads the 18-page status packet and only uses the risk trend, milestone date, and blocked decision list, the packet should shrink. Cutting it is not rebellion against governance. It is a cleaner link between the artifact and the decision it serves. The saved effort can move to stakeholder feedback or defect review where the project has real uncertainty.\n\nThe limit is important. A team can over-tailor by changing the approach every time the work feels annoying. It can also under-tailor by copying the last project with a new title page. Both errors come from skipping evidence. The corrective question is plain: what has changed in context, risk, complexity, stakeholder need, team capability, or performance data since the last choice?\n\nDuring delivery, evidence keeps arriving. A new regulator asks for proof. A team learns faster than expected. A vendor misses three handoffs. Stakeholders stop opening a dashboard. Each signal can change the fit. The team may add a checkpoint, merge two meetings, change cadence, or replace an artifact with a simpler one. The point is not to keep tweaking for its own sake. The point is to keep the management work matched to the project work.\n\nA good tailored approach leaves a trail. Future reviewers can see why a lifecycle was chosen, why an artifact stayed or left, and which signals would trigger a change. That record protects the team from two weak stories: \"we skipped it because we were busy\" and \"we used it because the template had it.\" The best answer is sharper: we read the context, checked the diagnostics, chose fit, and adjusted when evidence changed."
+  },
+  "examples": [
+    {
+      "exampleId": "ch28-ex01-roman",
+      "sourceAnchorId": "ch28.ex.tailoring-process",
+      "title": "Roman allocates the tailoring hour",
+      "tags": [
+        "planning_choice",
+        "context",
+        "approach"
+      ],
+      "planSpec": {
+        "domain": "grant-funded transit app planning",
+        "audience": "project leads choosing where scarce setup attention goes",
+        "stakes": "the team may spend its only planning hour copying a plan that does not fit",
+        "format": "planning_choice",
+        "requiredBeat": "Roman allocates scarce planning time before any execution begins."
+      },
+      "scenario": "Roman stands at the whiteboard before the meeting starts, marker capped, with one hour left to shape the Tailoring process for a grant-funded bus app. No work begins yet. He weighs context, approach, practices, monitor points, and adjust triggers against the scarce hour: stakeholder interviews need time, the vendor review needs time, and the launch date will not move.",
+      "whatToDo": "Roman keeps the scene as allocation, not execution. He budgets the hour across context, approach, practices, monitoring, and adjustment before anyone starts building the plan.",
+      "whyItMatters": "Roman shows that fit starts before motion. Scarce attention gets aimed at the factors that make later practices useful rather than merely efficient."
+    },
+    {
+      "exampleId": "ch28-ex02-gage",
+      "sourceAnchorId": "ch28.ex.tailoring-diagnostics",
+      "title": "Gage holds the bad fork",
+      "tags": [
+        "dilemma",
+        "diagnostics",
+        "risk"
+      ],
+      "planSpec": {
+        "domain": "hospital scheduling rollout",
+        "audience": "leaders balancing clinical feedback with compliance control",
+        "stakes": "either speed or assurance can fail if the approach treats one pressure as the whole project",
+        "format": "dilemma",
+        "requiredBeat": "Gage faces two bad options and uses diagnostics to build fit."
+      },
+      "scenario": "Gage sits in a hospital conference room at 7:40 a.m., consent forms stacked beside a laptop, with Tailoring diagnostics from the PMO on screen. Minutes before the design review, he must decide between two bad options: keep the lightweight sprint routine that hides privacy risk from stakeholders, or add formal reviews that may overwhelm a team capability already stretched by clinical complexity.",
+      "whatToDo": "Gage names the risk and team capability limits aloud, then proposes a hybrid rhythm: short clinical feedback plus a formal privacy review before release.",
+      "whyItMatters": "A tailored approach can get heavier where failure is costly. Gage avoids treating speed or control as a whole-project identity."
+    },
+    {
+      "exampleId": "ch28-ex03-eleni-navid",
+      "sourceAnchorId": "ch28.ex.tailoring-process",
+      "title": "Eleni answers Navid's copy",
+      "tags": [
+        "dialogue",
+        "stakeholders",
+        "practices"
+      ],
+      "planSpec": {
+        "domain": "warehouse-to-subscription platform reuse",
+        "audience": "sponsors and product leads challenging copied plans",
+        "stakes": "a familiar approach may hide the current project's stakeholder needs",
+        "format": "dialogue",
+        "requiredBeat": "Eleni and Navid let the tailoring lesson emerge through their exchange."
+      },
+      "scenario": "Eleni underlines the word context on a cafe receipt before the meeting starts. Navid points at the copied approach from last year's warehouse project. \"Same practices?\" he asks. \"Not with these stakeholders,\" Eleni says. \"We monitor adoption weekly, adjust the review path after the first release, and keep only the artifacts that help the sponsor decide.\"",
+      "whatToDo": "Eleni turns the copied approach into a spoken fit check. She asks which practices support the current stakeholders and which monitor or adjust points need to be visible.",
+      "whyItMatters": "The exchange keeps tailoring conversational. Navid hears the reason for each change while the copied plan is still easy to reshape."
+    },
+    {
+      "exampleId": "ch28-ex04-hassan",
+      "sourceAnchorId": "ch28.ex.tailoring-diagnostics",
+      "title": "Hassan's green dashboard surprises",
+      "tags": [
+        "predict_reveal",
+        "complexity",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "mobile-payments fraud pilot",
+        "audience": "steering teams reading diagnostic signals against expectations",
+        "stakes": "a low headline risk score may hide the need for more feedback",
+        "format": "predict_reveal",
+        "requiredBeat": "Hassan reveals that diagnostics call for more feedback, not less oversight."
+      },
+      "scenario": "Hassan opens a green risk dashboard in the finance lab ten minutes before steering review, and the room expects Tailoring diagnostics to lighten the mobile-payments pilot. The reveal is the opposite: complexity is high, stakeholders disagree on value, and team capability is thin in fraud testing. Hassan adds a rapid review cadence instead of cutting oversight.",
+      "whatToDo": "Hassan separates low headline risk from hidden complexity. He keeps the pilot lean in scope while adding the review cadence the evidence now warrants.",
+      "whyItMatters": "The surprise teaches the hard edge: lighter is not the goal. Diagnostics can show that the fitted move is more feedback, not less work."
+    },
+    {
+      "exampleId": "ch28-ex05-sora-megan",
+      "sourceAnchorId": "ch28.ex.tailoring-diagnostics",
+      "title": "Sora texts the packet problem",
+      "tags": [
+        "text_thread",
+        "artifact",
+        "capability"
+      ],
+      "planSpec": {
+        "domain": "governance packet cleanup",
+        "audience": "project coordinators turning informal complaints into diagnostic evidence",
+        "stakes": "the team may cut a packet without preserving the controls the context still needs",
+        "format": "text_thread",
+        "requiredBeat": "Sora and Megan use a short message exchange to connect artifact changes to diagnostics."
+      },
+      "scenario": "Sora thumbs the first message on her phone from the train before the next governance check. \"Template is 42 pages.\" Megan replies, \"What do the Tailoring diagnostics say?\" Sora: \"Low risk, loud stakeholders, medium complexity, new team capability.\" Megan: \"Cut the packet, keep a decision log, add onboarding help.\"",
+      "whatToDo": "Sora uses the thread to turn complaint into evidence. She names the diagnostic signals, then lets Megan trim one artifact and add one support control.",
+      "whyItMatters": "Short messages can still force fit. The team avoids copying the packet by tying each change to risk, stakeholders, complexity, and capability."
+    },
+    {
+      "exampleId": "ch28-ex06-megan",
+      "sourceAnchorId": "ch28.ex.tailoring-process",
+      "title": "Megan stops the checklist",
+      "tags": [
+        "reset_moment",
+        "routine",
+        "adjust"
+      ],
+      "planSpec": {
+        "domain": "PMO review cadence reset",
+        "audience": "PMO leads interrupting inherited routines",
+        "stakes": "a familiar checklist may outrun the evidence from a changed release cadence",
+        "format": "reset_moment",
+        "requiredBeat": "Megan interrupts a routine and deliberately restarts from context."
+      },
+      "scenario": "Megan reaches for the old PMO checklist at 8:05 a.m. in the review room, the routine already moving. Then Sora asks why the team is using a monthly approval path for a weekly release. Megan stops before the next agenda item, closes the checklist, and restarts with context, approach, practices, monitor signals, and adjust triggers on a blank page.",
+      "whatToDo": "Megan deliberately pauses the routine and rebuilds the review from a blank page. She lets context and evidence choose the practices before the checklist returns.",
+      "whyItMatters": "The reset matters. A reset moment prevents inherited process from outrunning the facts that should shape fit, especially when cadence has changed."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch28.fact.1",
+        "prompt": "Roman inherits a reliable intake process that the bus-app team quietly skips because it was built for capital projects. Which first step best fits the Tailoring process?",
+        "choices": [
+          "Context Fit: Ask what objectives, stakeholders, governance, uncertainty, and team capability require before changing the process.",
+          "Template Deletion: Remove the longest intake forms so Roman can show the team that tailoring is lighter.",
+          "Last-Project Copy: Use the warehouse project's intake flow because it already passed review."
+        ],
+        "correctIndex": 0,
+        "explanation": "Context analysis comes first; Roman needs evidence before cuts. Template Deletion treats convenience as fit, and Last-Project Copy ignores the bus-app conditions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch28.fact.8",
+        "prompt": "A diagnostics sheet shows low budget exposure, high stakeholder conflict, rising complexity, and a new team. Which reading should Megan make before revising governance?",
+        "choices": [
+          "Lightness Bias: Low budget exposure means Megan should reduce every review on the pilot.",
+          "Preference Tailoring: The team can use its favorite cadence because morale will improve quickly.",
+          "Risk Balance: Budget is not the only signal; stakeholder conflict, complexity, and capability may call for stronger feedback."
+        ],
+        "correctIndex": 2,
+        "explanation": "The diagnostics point beyond budget. Megan should read stakeholder conflict, complexity, and capability together; Lightness Bias mistakes one friendly number for fit.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch28.fact.4",
+        "prompt": "Gage leads a regulated clinic rollout. The team wants fewer signoffs because demos are moving fast. Which constraint should he honor while tailoring?",
+        "choices": [
+          "Compliance Escape: Fast demos let Gage treat audit rules as optional for this release.",
+          "Bounded Adaptation: Keep required legal, policy, and audit controls while changing how the work flows.",
+          "Speed Prestige: A fast cadence proves the clinic rollout needs less governance attention."
+        ],
+        "correctIndex": 1,
+        "explanation": "Tailoring adapts implementation while staying inside legal, policy, and audit limits. Compliance Escape confuses fit with exemption.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch28.fact.6",
+        "prompt": "Your delivery log shows five plan changes in two weeks: three after stakeholder feedback and two after vendor learning. The original approach was set at kickoff. How should the team interpret the log?",
+        "choices": [
+          "Kickoff Freeze: The original approach should stay fixed so the log does not disrupt confidence.",
+          "Live Tailoring: New evidence is a signal to revisit cadence, artifacts, or review points.",
+          "Activity Proof: The number of changes proves the team is managing well enough already."
+        ],
+        "correctIndex": 1,
+        "explanation": "Stakeholder feedback and vendor learning are delivery evidence. Live Tailoring revisits fit; Kickoff Freeze treats the first choice as final.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch28.fact.5",
+        "prompt": "Which question best protects Sora from tailoring by preference?",
+        "choices": [
+          "Evidence Check: What project facts justify this practice, review, artifact, or level of rigor?",
+          "Comfort Check: Which practice will make Sora's team feel least watched this week?",
+          "Reuse Check: Which artifact did the last project keep through closeout?"
+        ],
+        "correctIndex": 0,
+        "explanation": "Diagnostics keep practice choices tied to evidence. Comfort Check and Reuse Check are plausible shortcuts, but neither proves fit for Sora's current project.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch28.fact.2",
+        "prompt": "Navid sponsors a product experiment with unstable requirements but strict funding reports. Which lifecycle choice fits the mixed context?",
+        "choices": [
+          "Predictive Default: Lock all scope early because funding reports exist.",
+          "Adaptive Default: Drop formal reporting because requirements are still moving.",
+          "Hybrid Fit: Use short feedback cycles for discovery and formal reporting for funding control."
+        ],
+        "correctIndex": 2,
+        "explanation": "Lifecycle choice follows conditions, not label loyalty. Navid has discovery uncertainty and governance control, so a hybrid fit answers both pressures.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch28.fact.3",
+        "prompt": "An audit trail shows every status deck is opened by zero stakeholders, but the risk trend is reviewed weekly and drives steering actions. What should Eleni change first?",
+        "choices": [
+          "Artifact Narrowing: Keep the whole deck because tailoring applies only to document length.",
+          "Visibility Theater: Send a larger deck so stakeholders have more material available.",
+          "Decision Link: Shrink the unused deck and preserve the risk trend that guides action."
+        ],
+        "correctIndex": 2,
+        "explanation": "Artifacts serve decisions, coordination, learning, or control. Eleni should cut unused deck material while preserving the risk trend that leaders actually use.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch28.fact.9",
+        "prompt": "When Hassan sees risk fall but team capability fall faster, which move shows the hard edge of fit, not minimalism?",
+        "choices": [
+          "Add Review: Keep the lean scope and add coaching or review where capability has weakened.",
+          "Minimalism Bias: Cut oversight because the risk score is the friendliest number.",
+          "Scoreboard Tunnel: Ignore capability until the dashboard turns red again."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fit can add rigor. Hassan should respond to weaker capability, while Minimalism Bias overweights the friendly risk score.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch28.fact.6",
+        "prompt": "A six-week update shows stakeholders stopped using the dashboard, two handoffs failed, and the team learned the release tool well. Which adjustment is most defensible?",
+        "choices": [
+          "Dashboard Loyalty: Keep the dashboard unchanged because it was approved at kickoff.",
+          "Fit Update: Replace the unused view, fix the handoff control, and relax training support.",
+          "Training Habit: Keep extra tool coaching because the original plan included it."
+        ],
+        "correctIndex": 1,
+        "explanation": "The signals point in different directions. A defensible update changes the dashboard, strengthens handoff control, and removes support the team no longer needs.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch28-rc01",
+      "sourceAnchorId": "ch28.fact.1",
+      "front": "What should a team examine before it changes a project practice?",
+      "back": "Start with context: objectives, uncertainty, governance, stakeholders, culture, constraints, and team capability. Practice changes need evidence before preference.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch28-rc02",
+      "sourceAnchorId": "ch28.fact.9",
+      "front": "When does fitted management add rigor rather than remove it?",
+      "back": "When risk, complexity, regulation, stakeholder need, or weak capability would make a lighter approach unsafe. Fit can mean more review or proof.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch28-rc03",
+      "sourceAnchorId": "ch28.fact.2",
+      "front": "How does lifecycle choice become a tailoring decision?",
+      "back": "The team matches predictive, adaptive, or hybrid flow to requirement stability, feedback need, cadence, and governance instead of choosing a favorite label.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch28-rc04",
+      "sourceAnchorId": "ch28.fact.4",
+      "front": "What keeps tailoring from becoming an excuse to skip standards?",
+      "back": "Law, policy, audit needs, and decision rights still bind the work. The team adapts implementation, not accountability.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch28-rc05",
+      "sourceAnchorId": "ch28.fact.3",
+      "front": "Earlier concept, Focus on Value: what should a team ask before cutting an artifact?",
+      "back": "Ask which decision or outcome the artifact supports. If it does not help value, learning, compliance, or coordination, it may be waste.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch28-rc06",
+      "sourceAnchorId": "ch28.fact.6",
+      "front": "Earlier concept, Uncertainty Performance Domain: when should a tailored plan change midstream?",
+      "back": "Change it when new risks, ambiguity, volatility, or feedback show the current approach no longer supports project health or value.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch28-rc07",
+      "sourceAnchorId": "ch28.fact.8",
+      "front": "Why are diagnostics better than copying the last project?",
+      "back": "Structured questions expose current risk, stakeholders, complexity, and capability. The last project may have solved a different problem.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Fit Check",
+    "coreSkill": "Practice running a Fit Check before you accept or delete a project practice. Name the context, diagnostic signals, constraint, and evidence that justify the choice. Then decide what to keep, lighten, add, monitor, and adjust.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch28.fact.2",
+        "context": "Kickoff approach",
+        "plan": "If a project starts with a copied lifecycle, then list the uncertainty, feedback needs, governance demands, and stakeholder expectations before naming it predictive, adaptive, or hybrid."
+      },
+      {
+        "sourceAnchorId": "ch28.fact.4",
+        "context": "Governance pressure",
+        "plan": "If a team wants to skip a control, then check law, policy, audit, and decision rights before changing the route."
+      },
+      {
+        "sourceAnchorId": "ch28.fact.5",
+        "context": "Diagnostic review",
+        "plan": "If the team argues from preference, then run a quick diagnostic on risk, complexity, stakeholders, and team capability before choosing practices."
+      },
+      {
+        "sourceAnchorId": "ch28.fact.6",
+        "context": "Delivery drift",
+        "plan": "If performance data shows missed handoffs, ignored artifacts, or new risks, then adjust cadence or controls instead of waiting for the next phase."
+      },
+      {
+        "sourceAnchorId": "ch28.fact.3",
+        "context": "Artifact cleanup",
+        "plan": "If an artifact does not support a decision, coordination, compliance, or learning, then shrink it or replace it with a clearer one."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, run the Fit Check on one live project habit. Write the context cue, diagnostic cue, constraint, choice made, and signal that would trigger adjustment.",
+    "weeklyPractice": "Each week, review one practice, artifact, or control. Mark keep, lighten, add, or change, and record the evidence that made the fit defensible."
+  },
+  "memorableLines": [
+    {
+      "text": "Good tailoring is not less management.",
+      "location": "breakdown.fastRead",
+      "why": "It carries the chapter's hard edge in six plain words."
+    },
+    {
+      "text": "Waste is work no one uses to steer, learn, decide, or comply.",
+      "location": "breakdown.deepRead",
+      "why": "It gives readers a practical test for removing a practice."
+    },
+    {
+      "text": "A good tailored approach leaves a trail.",
+      "location": "breakdown.fullRead",
+      "why": "It links flexibility with defensible accountability."
+    }
+  ]
+}

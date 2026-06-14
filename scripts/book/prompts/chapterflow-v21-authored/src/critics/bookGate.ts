@@ -18,6 +18,7 @@ import {
 } from "./quizQuality.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { loadBannedPhrases } from "./shared.js";
+import { checkBookExemplarChapterReuse, checkBookVenueStamping } from "./bookRepetition.js";
 
 export type BookGateFinding = {
   catalogId: string;            // F1, F3, etc. (from FAILURE-MODES.md)
@@ -236,6 +237,24 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
   // shipping "Ranking would make action impossible" in 6 chapters) is a
   // generation artifact, not authored content.
   for (const f of checkBookQuizCrossChapterDuplicates(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
+
+  // ── BP26/BP27 — book-level repetition of marquee exemplars and venues. ───
+  for (const f of checkBookExemplarChapterReuse(bookId, chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
+  for (const f of checkBookVenueStamping(chapters)) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",

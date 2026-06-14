@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch30",
+  "number": 30,
+  "title": "Methods",
+  "coreMove": "Choose a project technique by the work question it improves: analysis, participation, estimates, tradeoffs, priority, or control.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software release governance",
+      "audience": "delivery leads and analysts",
+      "stakes": "a release delay blamed on the wrong requests",
+      "format": "audit",
+      "requiredBeat": "finding the telling detail inside existing release records"
+    },
+    {
+      "domain": "product backlog refinement",
+      "audience": "product owners and scrum teams",
+      "stakes": "scope labels have stopped sorting value from pressure",
+      "format": "inner_monologue",
+      "requiredBeat": "one person's private reasoning corrects a false start"
+    },
+    {
+      "domain": "supplier recovery planning",
+      "audience": "portfolio leads",
+      "stakes": "too little time to run every analysis before the executive review",
+      "format": "planning_choice",
+      "requiredBeat": "allocating scarce attention before any analysis happens"
+    },
+    {
+      "domain": "public-sector portal launch",
+      "audience": "project sponsors and delivery managers",
+      "stakes": "a public launch can slip or a sponsor can feel overruled",
+      "format": "dilemma",
+      "requiredBeat": "one genuine two-bad-options choice"
+    },
+    {
+      "domain": "manufacturing quality recovery",
+      "audience": "facilitators and engineering leads",
+      "stakes": "a quality fix could protect output or hide a costly assumption",
+      "format": "dialogue",
+      "requiredBeat": "two people uncover the lesson through exchange"
+    },
+    {
+      "domain": "health app release planning",
+      "audience": "release managers and stakeholders",
+      "stakes": "a release plan looks overloaded until priorities are tested",
+      "format": "predict_reveal",
+      "requiredBeat": "the expected result breaks after the labels are applied"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "evaluate": 2,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.330Z"
+}

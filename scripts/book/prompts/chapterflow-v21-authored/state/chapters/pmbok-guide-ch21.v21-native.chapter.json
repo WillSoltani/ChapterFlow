@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch21",
+  "number": 21,
+  "title": "Team Performance Domain",
+  "readingTimeMinutes": 11,
+  "hook": "After the vote, eight PMBOK domain cards stayed straight; the team charter sagged below them.",
+  "counterintuition": "Pleasant teamwork can still be weak performance. The Team Performance Domain is healthy only when its signals help decisions, delivery, learning, and value across the other domains.",
+  "tryThisNow": "Draft one sentence naming the working agreement your team keeps bending, then label the next meeting where that signal will be checked.",
+  "keyTakeaway": "Manage Team Performance Domain as evidence of delivery capacity: check the team charter, working agreements, conflict, leadership, and domain interactions before praising activity volume.",
+  "breakdown": {
+    "fastRead": "After the meeting, Lucy studies the wall. Eight PMBOK Guide domain cards hang in a row. The Team Performance Domain card has no notes, though the team charter below it is covered with initials and crossed-out rules.\n\nThe signal is not the paper. It is the gap between paper and behavior.\n\nHealthy team work shows up in handoffs, candor, clear roles, lead habits, and shared care. Treat it as one box in a row and the project misses the leak. Ask what team sign is touching the plan, the build, the scorecard, stakeholder trust, and risk right now.",
+    "deepRead": "Team behavior becomes project performance when small frictions alter the work system. A missed handoff changes delivery. A quiet risk changes uncertainty. A role dispute changes planning. A leadership gap changes measurement because the report no longer shows what people are afraid to say.\n\nRicardo sees the mechanism before a planning workshop. The PMBOK Guide map on the wall shows 8 domains, and he has circled Team Performance Domain, Planning, Delivery, and Uncertainty. The schedule looks late, but the handoff log says something more useful. Every slip followed a change in cadence, and the team charter never named who absorbs cadence changes. Planning did not fail alone. The team signal moved through the system.\n\nA domain is healthy when its outcomes show up in behavior, not when its artifacts look complete.\n\nThat is why a charter, a working agreement, or a facilitation routine is only a signal. It has to help people coordinate, challenge weak assumptions, raise conflict early, learn from friction, and make decisions. If the artifact exists but people keep routing hard choices through side chats, the team domain is not healthy yet. The useful question is plain: what evidence says this team can perform in the context it actually has?",
+    "fullRead": "Noemie expects the problem to be a schedule problem. The dashboard is persuasive: four missed handoffs in six days, each after the sprint cadence changed. The obvious repair is to add a planning meeting. Then she reads the working agreements beside the handoff log and sees the missing line. Nobody knows who owns the handoff when cadence shifts.\n\nThe third angle is fit. Team performance is not a universal style. In a self-directed adaptive group, quick feedback and shared decision rights may matter most. In a vendor-heavy predictive effort, the same need may show up as role formality, escalation paths, and recorded agreements. A hybrid effort may need both. Copying one team's routine into another context can create busy calm while weakening the work.\n\nThis is where the PMBOK Guide's 8 domains matter. Team Performance Domain has seven neighbors: stakeholder work, lifecycle choice, planning, project work, delivery, measurement, and uncertainty. The map is not a staircase. It is a set of live areas that influence one another. Team conflict can delay stakeholder decisions. Weak role clarity can damage delivery. Poor facilitation can hide uncertainty. A measurement dashboard can look clean while people stop reporting risk.\n\nArtifacts help only when they change behavior. A team charter can clarify roles. Working agreements can make conflict visible. A retrospective can teach the team where a decision path failed. Leadership can shift from command to service when the work needs more ownership. None of those items proves health by existing. They prove health when they support decisions, coordination, learning, and value.\n\nHarmony can hide weak performance as easily as conflict can expose it.\n\nThat limit matters. The Team Performance Domain is not a request for constant team therapy, and it is not a demand that everyone agree. Healthy teams may disagree sharply. The difference is that disagreement becomes useful information instead of private resistance. A quiet room can be a sign of trust, or it can be a sign that people learned silence is safer. The evidence has to decide.\n\nLudger sees the limit during a vendor-supported release. The signed team charter says product questions go through Lucy before change requests move. Under schedule pressure, people bypass her and call it speed. The first release still ships. The second release brings rework because the missing product review returns as defects. The team domain was not a soft side issue. It was delivery capacity.\n\nSuzanne uses a simple check after that release. She takes one signal, whether a signed page, an agreed rule, a conflict pattern, or a leadership gap, and asks three questions. What behavior do we see? Which other domain is it touching? What decision should change? The questions keep the domain practical. They stop the team from counting ceremonies and start it reading evidence.\n\nTeam performance is not a phase to finish after kickoff. It is the condition that lets the project keep thinking while it works."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch21.ex.domain-21-artifact",
+      "title": "Liliane Hears the Private Chats",
+      "tags": [
+        "inner monologue",
+        "team signal",
+        "conflict"
+      ],
+      "planSpec": {
+        "domain": "adaptive product-team handoffs",
+        "audience": "facilitators who trust signed agreements too quickly",
+        "stakes": "private conflict may look like calm while team performance degrades",
+        "format": "inner_monologue",
+        "requiredBeat": "the protagonist thinks through wrong readings before naming the team-domain signal"
+      },
+      "scenario": "Liliane keeps the PMBOK Guide open beside the half-filled team charter. First thought: add a morale workshop because the room feels tense. No, that treats Team Performance Domain like a mood problem. Second thought: rewrite roles, but the working agreements already name the decision path. The ugly signal is conflict moving into private chats. Minutes before the standup note goes out, she has to tell the team the behavior, not soothe the room.",
+      "whatToDo": "Liliane writes the signal as conflict moving outside the agreed channel, then uses the team charter to ask which decision path is failing.",
+      "whyItMatters": "The move keeps the domain tied to behavior. A signed charter means little if conflict leaves the place where the team can learn from it."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch21.ex.domain-21-eight",
+      "title": "Ricardo Budgets the Workshop Hour",
+      "tags": [
+        "planning choice",
+        "domain map",
+        "attention"
+      ],
+      "planSpec": {
+        "domain": "planning workshop preparation",
+        "audience": "project leads choosing where scarce review time goes",
+        "stakes": "planning may absorb a problem that belongs to team performance",
+        "format": "planning_choice",
+        "requiredBeat": "the protagonist allocates limited attention before any workshop action occurs"
+      },
+      "scenario": "Ricardo has ninety minutes left in the PMO war room before the planning workshop. As integration lead, he faces a blank agenda. The PMBOK Guide map shows 8 domains, with Team Performance Domain circled beside Planning and Delivery. He has one hour of attention to allocate across schedule review, handoff delays, and team charter questions. Before the meeting starts, he has to choose where the scarce hour belongs.",
+      "whatToDo": "Ricardo gives the first agenda block to handoff evidence and charter questions, then lets the schedule review use what that signal reveals.",
+      "whyItMatters": "Planning time is scarce. Reading the 8 domains together prevents the loud schedule chart from swallowing a team-performance cause."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch21.ex.domain-21-artifact",
+      "title": "Ludger Faces the Bypass",
+      "tags": [
+        "dilemma",
+        "vendor release",
+        "decision rights"
+      ],
+      "planSpec": {
+        "domain": "vendor-supported regulated release",
+        "audience": "project managers under schedule pressure",
+        "stakes": "protecting a date can normalize behavior that damages later delivery",
+        "format": "dilemma",
+        "requiredBeat": "the protagonist confronts two bad choices and chooses the team-domain evidence"
+      },
+      "scenario": "Ludger's vendor-supported release has split into two bad paths. If he enforces the signed team charter, the vendor lead may miss a regulatory date because approvals slow down. If he lets teams bypass working agreements, conflict will stay hidden and the next handoff may fail. The PMBOK Guide review is in fifteen minutes. Ludger must decide whether to protect the date by tolerating the bypass or protect the Team Performance Domain by surfacing the break.",
+      "whatToDo": "Ludger names the bypass in the review and asks for a one-day approval path that keeps the charter visible without pretending the date is easy.",
+      "whyItMatters": "The hard case is schedule pressure with no clean option. Team performance is the delivery capacity lost when broken agreements are hidden."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch21.ex.domain-21-artifact",
+      "title": "Cesaire and Lucy Name the Skip",
+      "tags": [
+        "dialogue",
+        "working agreements",
+        "rework"
+      ],
+      "planSpec": {
+        "domain": "product change review",
+        "audience": "team leads and product owners",
+        "stakes": "fast escalation can create rework when working agreements are skipped",
+        "format": "dialogue",
+        "requiredBeat": "two named people let the lesson emerge through a short exchange"
+      },
+      "scenario": "Minutes before the domain review, Cesaire stops Lucy beside the wall map. Cesaire: The team charter says product questions come to Lucy before change requests move. Lucy: The last three skipped me. Cesaire: The schedule report calls that fast escalation. Lucy: It is not fast if rework comes back later. Cesaire: Then the working agreements are not decoration. Lucy: Put the conflict in the PMBOK Guide review. Do not bury it under planning.",
+      "whatToDo": "Cesaire records the skipped product review as the team signal, while Lucy names the rework it created before the schedule story hardens.",
+      "whyItMatters": "The exchange keeps conflict practical. The working agreement matters only if it changes what the team does before rework spreads."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch21.ex.domain-21-eight",
+      "title": "Noemie Reads Past the Schedule",
+      "tags": [
+        "predict reveal",
+        "hybrid cadence",
+        "handoffs"
+      ],
+      "planSpec": {
+        "domain": "hybrid manufacturing software rollout",
+        "audience": "delivery leads reviewing missed handoffs",
+        "stakes": "the expected planning fix may miss the team-domain cause",
+        "format": "predict_reveal",
+        "requiredBeat": "the expected planning answer breaks when team-domain evidence appears"
+      },
+      "scenario": "Noemie stands at the factory dashboard, and everyone expects a longer schedule. The handoff log shows misses after every change in sprint cadence, so the obvious guess is planning weakness. Then she opens the PMBOK Guide's 8 domains map. The reveal is sharper: the plan changed, but Team Performance Domain failed first. Minutes before the steering note goes out, she has to tell the room the team charter never named cadence handoffs.",
+      "whatToDo": "Noemie moves the review from schedule padding to cadence handoffs, then updates the charter with a clear owner for cross-cadence changes.",
+      "whyItMatters": "The broken expectation teaches the system view. A planning symptom can be the visible end of a team-domain weakness."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch21.ex.domain-21-eight",
+      "title": "Suzanne Pins the Review Thread",
+      "tags": [
+        "text thread",
+        "domain review",
+        "working agreements"
+      ],
+      "planSpec": {
+        "domain": "distributed PMO review",
+        "audience": "remote project teams preparing a domain check",
+        "stakes": "the review may stay on schedule and delivery while the team signal is missed",
+        "format": "text_thread",
+        "requiredBeat": "a short message thread lands the lesson between compressed replies"
+      },
+      "scenario": "Suzanne sends the project chat before the meeting starts: PMBOK Guide review moved to 3. Ricardo: Schedule? Delivery? Suzanne: 8 domains wall says Team Performance Domain too. Ricardo: Signal? Suzanne: Team charter says decisions in channel. Working agreements say no side approvals. Ricardo: So the conflict is the review. Suzanne: Exactly. Pinning it.",
+      "whatToDo": "Suzanne pins the decision-channel breach as the review item and keeps the schedule talk from crowding out the team evidence.",
+      "whyItMatters": "Compressed threads expose habits. If side approvals break the charter, the team domain is already shaping delivery and measurement."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch21.fact.8",
+        "prompt": "Liliane reviews a sprint log where cadence changes were followed by four handoff misses over six days. She sees a signed team charter and quiet meetings. Which inference should she test first?",
+        "choices": [
+          "Phase-box misconception: Treat the misses as planning cleanup after the Team Performance Domain has finished its part.",
+          "Harmony misconception: Read the quiet meetings as proof the team domain is sound enough.",
+          "Signal-interaction reading: Check whether working agreements explain how schedule changes move through handoffs."
+        ],
+        "correctIndex": 2,
+        "explanation": "The pattern points to a team signal touching planning. Quiet meetings and signed pages do not prove health if working agreements do not guide handoffs after schedule changes.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch21.fact.9",
+        "prompt": "When Ricardo inherits a predictive project with a carefully signed team charter, people still route decisions through side chats. What should he do first?",
+        "choices": [
+          "Outcome-evidence reading: Compare the charter with actual decision paths before adding more forms.",
+          "Artifact-volume misconception: Ask everyone to sign a second charter page at the next status meeting.",
+          "Pleasant-room misconception: Treat low open conflict as enough proof that the team is collaborating."
+        ],
+        "correctIndex": 0,
+        "explanation": "The useful evidence is the gap between the artifact and behavior. More signed pages would add activity, while side chats show the domain outcome is still weak.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch21.fact.3",
+        "prompt": "An engagement log shows stakeholders praise demos, but internal defects rise after each rushed handoff. Cesaire says the issue sits outside the team domain because stakeholders are happy. Which reading fits?",
+        "choices": [
+          "Stakeholder-only misconception: Keep engagement work separate since the demo audience sounds satisfied.",
+          "Domain-interaction reading: Investigate how team handoffs are affecting delivery quality despite approval signals.",
+          "Delivery-only misconception: Ignore team behavior and repair each defect as an isolated technical miss."
+        ],
+        "correctIndex": 1,
+        "explanation": "Stakeholder praise does not isolate the domains. Handoff behavior can damage delivery even while demos look accepted, so the interaction is the first thing to inspect.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch21.fact.4",
+        "prompt": "Ludger leads a hybrid project where adaptive squads copy a heavy approval routine from the vendor plan. Team meetings slow, and people stop raising risks. What action fits the domain?",
+        "choices": [
+          "One-method misconception: Keep the same routine so every workstream shares identical team rules.",
+          "Compliance misconception: Praise the routine because it produces a visible approval record each week.",
+          "Context-fit reading: Adjust decision rights and feedback cadence to match the hybrid work."
+        ],
+        "correctIndex": 2,
+        "explanation": "Team practices need to fit context. A routine that suits one workstream can suppress risk sharing in another, so decision rights and feedback cadence need adjustment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch21.ex.domain-21-artifact",
+        "prompt": "A retrospective board shows five conflict items moved to private messages, while the working agreements still say issues are raised in the project channel. What signal should Noemie treat as most important?",
+        "choices": [
+          "Charter-display misconception: Trust the written rule because the working agreements still look current.",
+          "Behavior-signal reading: Treat the private conflict pattern as evidence the team domain needs adjustment.",
+          "Morale-only misconception: Plan a social event and avoid changing decision or conflict routines."
+        ],
+        "correctIndex": 1,
+        "explanation": "The source signal is conflict leaving the agreed channel. Working agreements are useful only when they shape behavior, so the private-message pattern deserves attention.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch21.fact.2",
+        "prompt": "Suzanne's PMO dashboard counts twenty team ceremonies this month, but the same role-confusion defects appear in each release. Which conclusion is strongest?",
+        "choices": [
+          "Outcome-evidence reading: Ceremony volume is weak proof if role clarity and ownership keep failing.",
+          "Activity-volume misconception: More ceremonies show the Team Performance Domain is improving steadily.",
+          "Schedule-pressure misconception: Role defects belong only in planning because ceremonies already happened."
+        ],
+        "correctIndex": 0,
+        "explanation": "Outcomes are the test, not activity count. Repeated role-confusion defects show that ceremonies have not yet improved the behavior the domain needs.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch21.ex.domain-21-eight",
+        "prompt": "Lucy argues that Team Performance Domain is a new label for the old team-management knowledge area, so the team can file it after kickoff. Which reply best preserves the PMBOK Guide logic?",
+        "choices": [
+          "Renaming misconception: Use the old file structure and add the new title for traceability.",
+          "Kickoff-phase misconception: Complete the team charter early and close the team-domain work.",
+          "Eight-domain reading: Keep team performance active with the other domains throughout delivery."
+        ],
+        "correctIndex": 2,
+        "explanation": "The PMBOK Guide uses 8 domains as live performance areas. Team Performance Domain keeps interacting with planning, delivery, measurement, and uncertainty after kickoff.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch21.concept",
+        "prompt": "At a portfolio review, data shows risk silence rose after leadership stopped rotating facilitation. Which first question should Cesaire ask?",
+        "choices": [
+          "Leadership-signal reading: Ask how the leadership change altered risk sharing and decision behavior.",
+          "Risk-register misconception: Move the issue to the risk log and leave team norms untouched.",
+          "Personality misconception: Assume the silence reflects individual caution rather than team conditions."
+        ],
+        "correctIndex": 0,
+        "explanation": "Leadership is part of the team domain when it changes how people speak and decide. Risk silence is evidence to trace, not merely a register item.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch21.fact.6",
+        "prompt": "Your team has a clean team charter, updated working agreements, and late decisions that keep delaying value. Which statement should guide the next review?",
+        "choices": [
+          "Document-maturity misconception: Clean artifacts show the team domain is healthy enough for delivery.",
+          "Value-link reading: Check which team behavior is blocking accepted outcomes and benefits.",
+          "Tool-stack misconception: Add another collaboration app before changing how decisions are made."
+        ],
+        "correctIndex": 1,
+        "explanation": "The domain is tied to value delivery. Clean artifacts do not help if decision behavior prevents outputs from becoming accepted outcomes and benefits.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch21.ex.domain-21-eight",
+      "front": "How does the PMBOK Guide's 8 domains map change how you read Team Performance Domain?",
+      "back": "It keeps Team Performance Domain from becoming a sequence box. The PMBOK Guide treats the 8 domains as live areas that influence one another throughout delivery.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch21.ex.domain-21-artifact",
+      "front": "What should a team charter or working agreement prove before you trust it?",
+      "back": "Trust the artifact only when behavior changes: clearer decisions, visible conflict, better handoffs, and leadership that helps the group act.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch21.fact.9",
+      "front": "Why is activity volume a weak proof of team-domain health?",
+      "back": "A team can run meetings, sign pages, and update artifacts while handoffs, ownership, and decision paths stay weak. The outcome evidence matters more than activity count.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch21.fact.4",
+      "front": "How should predictive, adaptive, or hybrid context change team-domain practices?",
+      "back": "Context changes formality, cadence, and decision rights. A predictive vendor effort may need clearer escalation, while an adaptive team may need faster feedback and broader ownership.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch21.fact.5",
+      "front": "Earlier concept: principle-based standard. How should that idea shape a team charter review?",
+      "back": "Use the charter as practice support, not a compliance trophy. A principle-based standard asks whether the selected artifact helps judgment, coordination, and value in this context.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch21.fact.3",
+      "front": "Earlier concept: stakeholder performance. What link should a team review check when handoffs slow approvals?",
+      "back": "Check how team behavior is affecting stakeholder decisions. Slow handoffs can create late approvals, rework, or mistrust, so the stakeholder and team domains have to be read together.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Team Signal Check",
+    "coreSkill": "Practice reading team performance through evidence, not sentiment. Pick one observable signal, such as a team charter, working agreements, conflict pattern, leadership gap, or missed handoff. Then ask which other PMBOK Guide domain that signal is already touching and what decision it should change.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch21.ex.domain-21-eight",
+        "context": "When a PMBOK Guide review treats the 8 domains as a sequence with Team Performance Domain already finished",
+        "plan": "If the domain map is being read as a staircase, then ask which current planning, delivery, measurement, or uncertainty issue is being shaped by team behavior."
+      },
+      {
+        "sourceAnchorId": "ch21.ex.domain-21-artifact",
+        "context": "When a team charter looks signed but working agreements are bypassed during conflict",
+        "plan": "If the document looks clean while behavior drifts, then name the broken agreement and decide which meeting will repair the decision path."
+      },
+      {
+        "sourceAnchorId": "ch21.fact.4",
+        "context": "When an adaptive team copies a predictive approval routine and risk sharing slows",
+        "plan": "If the practice no longer fits the work, then adjust decision rights, review cadence, or facilitation before treating silence as agreement."
+      },
+      {
+        "sourceAnchorId": "ch21.fact.6",
+        "context": "When delivery slips and the conversation stays only on schedule dates",
+        "plan": "If the schedule is slipping, then check one team behavior that may be blocking accepted outcomes before adding another planning meeting."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, choose one active project and run the Team Signal Check on one artifact or behavior. Record the signal, the linked domain, and the decision it changes.",
+    "weeklyPractice": "Once this week, spend 15 minutes after a team meeting updating one charter or working agreement from evidence. Track whether the next handoff, decision, or conflict improves."
+  },
+  "memorableLines": [
+    {
+      "text": "The signal is not the paper.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the artifact-versus-behavior distinction impossible to miss."
+    },
+    {
+      "text": "A domain is healthy when its outcomes show up in behavior, not when its artifacts look complete.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a practical test for domain health."
+    },
+    {
+      "text": "Harmony can hide weak performance as easily as conflict can expose it.",
+      "location": "breakdown.fullRead",
+      "why": "It protects the idea from being confused with pleasant meetings."
+    }
+  ]
+}

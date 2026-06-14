@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch04",
+  "number": 4,
+  "title": "Functions Associated with Projects",
+  "coreMove": "Start with the project functions that must be performed, then assign titles, authority, and records so coordination, communication, decisions, facilitation, and learning actually happen.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "kickoff responsibility map",
+      "audience": "project manager starting a mixed delivery effort",
+      "stakes": "a clean role slide may hide uncovered decision support",
+      "format": "mistake_recovery",
+      "requiredBeat": "Bernard notices his own title-first error before the sponsor joins"
+    },
+    {
+      "domain": "lab selection governance note",
+      "audience": "project coordinator preserving decision context",
+      "stakes": "a steering call may reopen settled reasoning",
+      "format": "decision_memo",
+      "requiredBeat": "Cassidy writes the action into the decision log instead of relying on hallway memory"
+    },
+    {
+      "domain": "adaptive release blocked by vendor delay",
+      "audience": "team lead comparing title-first and function-first responses",
+      "stakes": "the same delay can become confusion or coordinated action",
+      "format": "contrast",
+      "requiredBeat": "Yvon waits on the project manager title while Margot distributes functions"
+    },
+    {
+      "domain": "sponsor packet preparation",
+      "audience": "workstream lead who confuses status with decision support",
+      "stakes": "governance may receive data without options or consequences",
+      "format": "coach_talk",
+      "requiredBeat": "Folake reframes Serge's packet from raw status to decision support"
+    },
+    {
+      "domain": "project management onboarding class",
+      "audience": "learner new to PMBOK role-neutral language",
+      "stakes": "confusing the project manager title with every project function",
+      "format": "school_case",
+      "requiredBeat": "Agathe's confusion about the project manager role becomes the lesson"
+    },
+    {
+      "domain": "pilot retrofit learning process",
+      "audience": "delivery lead trying to prevent repeated confusion",
+      "stakes": "lessons may arrive after the team has already repeated the error",
+      "format": "before_after",
+      "requiredBeat": "Folake shows the same learning process before and after records are used during delivery"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 3,
+      "understand": 1,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.311Z"
+}

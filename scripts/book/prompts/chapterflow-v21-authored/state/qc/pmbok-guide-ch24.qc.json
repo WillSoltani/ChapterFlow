@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 24,
+  "chapterId": "pmbok-guide-ch24",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "2f06ebb386868deb",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:56:12.841Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "92/100, read full ch24, quiz keys matched Project Work Performance Domain flow and procurement logic, BP15 advisory reviewed as not corruption, examples coherent, cards and plan actionable"
+}

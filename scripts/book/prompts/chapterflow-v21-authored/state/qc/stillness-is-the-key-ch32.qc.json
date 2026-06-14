@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 32,
+  "chapterId": "stillness-is-the-key-ch32",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "5517c4959b3d7709",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:55:24.896Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 93/100; quiz-domain repair verified; gate/source pass, quiz verifies 9/9, examples/cards coherent.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 32,
+      "chapterId": "stillness-is-the-key-ch32",
+      "verdict": "REVISE",
+      "contentHash": "17e8d85255d61dda",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:00:51.189Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "87/100; example_coherence=0.55 due cross-chapter venue-slate reuse with ch15; quiz keys verified 9/9; no corruption found in sampled deep read."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 32,
+      "chapterId": "stillness-is-the-key-ch32",
+      "verdict": "REVISE",
+      "contentHash": "ec8e5805270916e3",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:45:03.901Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "YELLOW 89/100; quiz_distractor_quality=0.58; keys verify 9/9 but quiz wording leaks class/course and semester domains.",
+      "supersededReason": "fresh continuation QC ch32"
+    }
+  ],
+  "supersededReason": "post-r1 re-QC for ch26-32 quiz-domain repair"
+}

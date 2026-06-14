@@ -1,5 +1,12 @@
 # Playbook — Generate a New Book (end to end)
 
+> **CANONICAL WORKSPACE (2026-06-12): all pipeline work — Codex sessions,
+> Claude QC sessions, every CLI command — runs in `~/ChapterFlow-books`
+> (a git worktree pinned to `main`). The original `~/ChapterFlow` checkout
+> belongs to app campaigns on other branches; running pipeline steps there
+> judges/edits STALE copies (this burned a full QC run on 2026-06-11). If a
+> session's paths say plain `ChapterFlow/`, stop it.**
+
 The operating model: **Codex (inline) generates, a separate Claude session QCs,
 the gates + promote enforce.** Nothing ships that the deterministic gates reject
 or that a Claude reviewer hasn't signed off on.
@@ -76,12 +83,29 @@ hit before QC.
 
 ## 5. Semantic QC  (separate Claude session — the no-API judge)
 
-Open a fresh Claude session and give it `QC-SESSION-PROMPT.md`. It reads each
+Open a fresh QC session and give it `QC-SESSION-PROMPT.md`. It reads each
 chapter, scores the publishable bar, and **hidden-key-derives every quiz answer**
-(derive the key independently, then compare). It records each verdict:
+(derive the key independently, then compare). In v21.1 no-api Codex QC mode
+(`CHAPTERFLOW_NO_API_CODEX_QC=1`), first open a role-separated round and produce
+the required artifacts:
+```
+npx tsx src/cli.ts qc-open-round <bookId>
+npx tsx src/cli.ts sweep-pack <bookId> --round <roundId>
+npx tsx src/cli.ts key-pack <bookId> --round <roundId>
+# two independent readers:
+npx tsx src/cli.ts key-derive <bookId> --round <roundId> --role keyA --token <keyA-token> --answers-file <path>
+npx tsx src/cli.ts key-derive <bookId> --round <roundId> --role keyB --token <keyB-token> --answers-file <path>
+npx tsx src/cli.ts key-resolve <bookId> --round <roundId>
+npx tsx src/cli.ts sweep-attest <bookId> --round <roundId> --token <sweep-token> --verdict PASS --reviewer "<id>" --findings-file <sweep-findings.json>
+npx tsx src/cli.ts bar-pack <bookId> --round <roundId>
+npx tsx src/cli.ts bar-attest <bookId> --round <roundId> --token <bar-token> --scores-file <filled-bar-scores.json> --reviewer "<id>"
+npx tsx src/cli.ts major-status <bookId>   # every current major needs major-disposition
+```
+For small/manual rechecks, record one chapter verdict directly:
 ```
 npx tsx src/cli.ts qc-attest state/chapters/<bookId>-chNN.v21-native.chapter.json \
   --verdict PUBLISHABLE|REVISE|CORRUPTION --reviewer "claude-qc:<session>" \
+  --round <roundId> --token <bar|confirm|attest-token> \
   --dimensions "keysCorrect=true,grounded=true,nonTemplated=true,frameworkComplete=true,cardsAnswerFronts=true,distractorsReal=true" \
   --notes "<bar score; reason>"
 ```

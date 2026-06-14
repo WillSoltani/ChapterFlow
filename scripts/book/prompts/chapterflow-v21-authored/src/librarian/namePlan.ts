@@ -35,6 +35,7 @@ import { fileURLToPath } from "url";
 import { ChapterV21 } from "../types.js";
 import { CHAPTERS_DIR, isSiblingFile, normSlug } from "../lib/chapterPaths.js";
 import { extractNamesFromText } from "./libraryState.js";
+import { findSourceSidecar } from "./sourceSidecars.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const CONFIG_DIR = resolve(__dirname, "../../config");
@@ -54,15 +55,16 @@ export type NamePlan = {
   diagnostics: {
     bankSize: number;
     excludedCount: number;
-    /** bank names already used by OTHER books (cross-book exclusion, 2026-06-10 policy). */
-    crossBookExcluded: number;
-    /** names that are fresh catalog-wide; the fallback pool reuses cross-book names when this runs short. */
-    freshAvailable: number;
+    /** bank names that also appear in OTHER books — INFORMATIONAL only. Names may
+     *  repeat across books (owner policy); only within-book uniqueness is enforced. */
+    crossBookReused: number;
     availableCount: number;
     /** chapters that got fewer than perChapter names because the bank ran dry */
     shortChapters: number[];
     /** chapters in [from,to] that already have an authored file (re-planning hazard) */
     alreadyAuthored: number[];
+    /** bank names excluded because this book's source sidecars use them for source figures/cases. */
+    sourceFigureExcluded: number;
   };
 };
 
@@ -178,10 +180,11 @@ export function usedNamesInBook(bookId: string): Set<string> {
   return used;
 }
 
-/** Bank names already used by any OTHER book in state/chapters — the
- *  cross-book exclusion set. Scans every chapter file once (~325 files,
- *  fast enough for plan time). Only BANK members count: junk capitalized
- *  tokens from prose must not poison the exclusion. */
+/** Bank names already used by any OTHER book in state/chapters — INFORMATIONAL
+ *  ONLY (the diagnostics.crossBookReused count). Names may repeat across books by
+ *  owner policy, so this is NOT excluded from the pool. Scans every chapter file
+ *  once (fast enough for plan time). Only BANK members count: junk capitalized
+ *  tokens from prose must not poison the count. */
 export function bankNamesUsedByOtherBooks(bookId: string): Set<string> {
   const bank = new Set(loadNameBank());
   const used = new Set<string>();
@@ -205,6 +208,60 @@ export function bankNamesUsedByOtherBooks(bookId: string): Set<string> {
     }
   }
   return used;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+function sidecarNameTexts(sidecar: unknown): string[] {
+  const texts: string[] = [];
+  if (!isRecord(sidecar)) return texts;
+  const namedExamples = Array.isArray(sidecar.namedExamples) ? sidecar.namedExamples : [];
+  for (const entry of namedExamples) {
+    if (typeof entry === "string") {
+      texts.push(entry);
+      continue;
+    }
+    if (!isRecord(entry)) continue;
+    if (typeof entry.label === "string") texts.push(entry.label);
+    if (typeof entry.summary === "string") texts.push(entry.summary);
+    if (Array.isArray(entry.hardSpecifics)) {
+      for (const specific of entry.hardSpecifics) {
+        if (typeof specific === "string") texts.push(specific);
+      }
+    }
+  }
+  if (Array.isArray(sidecar.properNouns)) {
+    for (const properNoun of sidecar.properNouns) {
+      if (typeof properNoun === "string") texts.push(properNoun);
+    }
+  }
+  return texts;
+}
+
+function sourceFigureBankNames(bookId: string, fromChapter: number, toChapter: number, bank: Set<string>): Set<string> {
+  const excluded = new Set<string>();
+  for (let chapter = fromChapter; chapter <= toChapter; chapter++) {
+    const path = findSourceSidecar(bookId, chapter);
+    if (!path) {
+      console.warn(`name-plan: no source sidecar for "${bookId}" ch${String(chapter).padStart(2, "0")}; source-figure name exclusion skipped for this chapter.`);
+      continue;
+    }
+    let sidecar: unknown;
+    try {
+      sidecar = JSON.parse(readFileSync(path, "utf8"));
+    } catch (err) {
+      console.warn(`name-plan: unreadable source sidecar for "${bookId}" ch${String(chapter).padStart(2, "0")}: ${(err as Error).message}`);
+      continue;
+    }
+    for (const text of sidecarNameTexts(sidecar)) {
+      for (const name of extractNamesFromText(text)) {
+        if (bank.has(name)) excluded.add(name);
+      }
+    }
+  }
+  return excluded;
 }
 
 export function planNames(
@@ -231,28 +288,25 @@ export function planNames(
   const usedAll = new Set<string>();
   for (const names of Object.values(usedByChapter)) for (const n of names) usedAll.add(n);
 
-  // POLICY REVERSED (2026-06-10, catalog campaign): names are now excluded
-  // CROSS-BOOK too. The old "names may repeat across books" call produced the
-  // catalog's single worst churn tell — 358 bank names shared across books,
-  // Farah in 10, and "Asha" starring in chapter 1 of two different books a
-  // subscriber could open in the same week (reader-experience review). The
-  // bank holds 777 names; the whole catalog uses a few hundred, so exclusion
-  // is comfortably affordable. SCALE GUARD: if exclusion leaves fewer names
-  // than this plan needs, fall back to cross-book reuse for the shortfall
-  // (still excluding THIS book's own names) with a loud diagnostic — a dry
-  // bank must degrade to the old policy, never brick authoring.
+  // POLICY (owner, 2026-06-13): names MAY repeat ACROSS books — only WITHIN-book
+  // uniqueness matters (no two chapters of the same book share a protagonist
+  // name). The bank is curated to read as contemporary American/Canadian, so
+  // cross-book reuse is fine; what would actually hurt is a duplicate inside one
+  // book. So the available pool excludes only THIS book's already-used names and
+  // its source figures — NOT names used by other books. (The cross-book overlap
+  // is still reported in diagnostics for visibility, never excluded.)
   const bank = loadNameBank();
+  const bankSet = new Set(bank);
+  const sourceFigures = sourceFigureBankNames(bookId, fromChapter, toChapter, bankSet);
   const crossBook = bankNamesUsedByOtherBooks(bookId);
   const offset = bank.length ? nameHash(bookId) % bank.length : 0;
   const rotated = bank.slice(offset).concat(bank.slice(0, offset));
-  const fresh = rotated.filter((n) => !usedAll.has(n) && !crossBook.has(n));
-  const reusable = rotated.filter((n) => !usedAll.has(n) && crossBook.has(n));
+  const available = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n));
   const needed = perChapter * Math.max(0, toChapter - fromChapter + 1);
-  const available = fresh.length >= needed ? fresh : [...fresh, ...reusable];
-  if (fresh.length < needed) {
+  if (available.length < needed) {
     console.warn(
-      `name-plan: cross-book exclusion leaves ${fresh.length}/${needed} fresh names for "${bookId}" — ` +
-        `falling back to cross-book reuse for the shortfall (grow config/name-bank.json to restore full exclusion).`,
+      `name-plan: only ${available.length}/${needed} names available for "${bookId}" after excluding its own used names — ` +
+        `grow config/name-bank.json (the bank must cover one book's within-book-unique needs).`,
     );
   }
 
@@ -288,11 +342,11 @@ export function planNames(
     diagnostics: {
       bankSize: bank.length,
       excludedCount: usedAll.size,
-      crossBookExcluded: crossBook.size,
-      freshAvailable: fresh.length,
+      crossBookReused: crossBook.size,
       availableCount: available.length,
       shortChapters,
       alreadyAuthored,
+      sourceFigureExcluded: sourceFigures.size,
     },
   };
 }
@@ -312,6 +366,7 @@ export function formatNamePlan(plan: NamePlan): string {
   lines.push(`Name plan — ${plan.bookId}  ch${plan.fromChapter}–${plan.toChapter}  (${plan.perChapter}/chapter)`);
   lines.push(
     `  bank:${d.bankSize}  excluded:${d.excludedCount}  available:${d.availableCount}` +
+      (d.sourceFigureExcluded ? `  source-figures-excluded:${d.sourceFigureExcluded}` : "") +
       (d.shortChapters.length ? `  ⚠ SHORT (bank dry) in ch: ${d.shortChapters.join(",")}` : "") +
       (d.alreadyAuthored.length ? `  ℹ already-authored in range: ${d.alreadyAuthored.join(",")} (showing their real names; only un-authored chapters get fresh allocations)` : ""),
   );

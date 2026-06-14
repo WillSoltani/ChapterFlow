@@ -94,6 +94,128 @@
       "example": "Write one sentence that names the tradeoff you are avoiding, then label the next action it requires."
     }
   ],
+  "tacticFamilies": [
+    {
+      "id": "breath-counting",
+      "definition": "Use a counted physical pause to create a gap before the next choice. The family changes pacing first, then lets the reader choose from a steadier state.",
+      "example": "A reader counts several breaths before answering a message that usually gets an automatic reply."
+    },
+    {
+      "id": "write-one-line",
+      "definition": "Turn the lesson into one short written line that names a decision, boundary, observation, or next move. The action is small enough to complete immediately.",
+      "example": "A reader writes a single sentence that separates the real problem from the louder distraction."
+    },
+    {
+      "id": "subtract-one-thing",
+      "definition": "Ask the reader to remove one commitment, option, step, notification, or demand so the principle has room to operate. The family teaches by subtraction.",
+      "example": "A reader removes one nonessential step from a routine before trying to improve the whole routine."
+    },
+    {
+      "id": "environment-move",
+      "definition": "Change the physical or digital setting so the desired behavior becomes easier to start or the default mistake becomes harder to enter.",
+      "example": "A reader changes where a tool lives so the next right action is the most visible action."
+    },
+    {
+      "id": "single-question-conversation",
+      "definition": "Use one carefully chosen question with another person, then make the listening the exercise. The family depends on an answer the reader cannot invent alone.",
+      "example": "A reader asks a colleague one narrow question and records the first concrete answer without debating it."
+    },
+    {
+      "id": "timer-block",
+      "definition": "Protect a short block of time for one bounded practice. The timer limits scope and prevents the exercise from becoming a vague self-improvement project.",
+      "example": "A reader uses a short block to inspect one recurring task instead of reorganizing the entire day."
+    },
+    {
+      "id": "object-relocation",
+      "definition": "Move one object or artifact so it becomes a cue, barrier, reminder, or proof point. The action works through placement rather than willpower.",
+      "example": "A reader moves a relevant object to the place where tomorrow's decision usually begins."
+    },
+    {
+      "id": "read-aloud",
+      "definition": "Have the reader speak a sentence, plan, or explanation out loud to test whether it is clear, honest, and usable in ordinary language.",
+      "example": "A reader says a draft boundary aloud and revises the part that sounds evasive."
+    },
+    {
+      "id": "walk-and-decide",
+      "definition": "Pair movement with a narrow decision so the reader stops circling the issue in the same chair or screen. The walk is a thinking container, not scenery.",
+      "example": "A reader takes a short walk and returns with one selected option instead of three half-options."
+    },
+    {
+      "id": "comparison-of-two",
+      "definition": "Make the reader compare two concrete options, responses, examples, or tradeoffs, then name the difference that matters for the chapter's principle.",
+      "example": "A reader compares two possible replies and marks which one protects the actual priority."
+    },
+    {
+      "id": "calendar-edit",
+      "definition": "Convert the lesson into a calendar change: add, move, shorten, protect, or delete time. The family treats time placement as the behavior.",
+      "example": "A reader moves a review block next to the work it is supposed to improve."
+    },
+    {
+      "id": "checklist-mark",
+      "definition": "Use a checklist, tick mark, or visible completion mark to make one repeatable behavior observable. The mark is evidence, not decoration.",
+      "example": "A reader marks each completed pass through a process to see whether the habit actually happened."
+    },
+    {
+      "id": "observation-log",
+      "definition": "Ask for a small record of cues, triggers, outcomes, or misses before asking for change. The family teaches the reader to see the pattern first.",
+      "example": "A reader logs several instances of a recurring snag before choosing a fix."
+    },
+    {
+      "id": "teach-someone",
+      "definition": "Have the reader explain the idea to one person in plain language, using a real situation rather than a summary. Teaching reveals unclear thinking.",
+      "example": "A reader explains the principle to a teammate through one shared problem and notices where the explanation gets muddy."
+    },
+    {
+      "id": "rehearse-once",
+      "definition": "Practice one upcoming sentence, handoff, refusal, or sequence once before the real moment. The family lowers friction through a single rehearsal.",
+      "example": "A reader rehearses the first sentence of a hard conversation before entering the room."
+    },
+    {
+      "id": "boundary-script",
+      "definition": "Draft a short boundary, request, or refusal that preserves the lesson under social pressure. The family turns principle into phrasing.",
+      "example": "A reader prepares a brief refusal that keeps the important work from being traded away."
+    },
+    {
+      "id": "stop-doing-list",
+      "definition": "Identify one behavior to stop, pause, or refuse for a limited period. The family makes restraint visible and specific.",
+      "example": "A reader names one habitual response to skip during the next meeting."
+    },
+    {
+      "id": "threshold-cue",
+      "definition": "Attach the practice to a doorway, login, meeting start, commute, or other threshold where the reader naturally crosses into a new mode.",
+      "example": "A reader uses the start of a routine as the cue to perform one check before continuing."
+    },
+    {
+      "id": "ranking-pass",
+      "definition": "Have the reader rank a short list by importance, risk, effort, or reversibility, then act on the ranking rather than the loudest item.",
+      "example": "A reader orders three pending tasks by consequence and chooses from that order."
+    },
+    {
+      "id": "replacement-rule",
+      "definition": "Replace one default action with a named alternative under a specific condition. The family works as an if-this-then-that swap.",
+      "example": "A reader chooses a substitute response for the moment a familiar cue appears."
+    },
+    {
+      "id": "handoff-note",
+      "definition": "Create a small note, label, or message that improves a handoff between present and future self or between two people.",
+      "example": "A reader leaves a concise note that tells the next person what changed and what to check."
+    },
+    {
+      "id": "friction-add",
+      "definition": "Add a small barrier before an unhelpful default so the reader must notice the choice before continuing. The family interrupts autopilot.",
+      "example": "A reader adds one extra confirmation step before a habit that usually happens too fast."
+    },
+    {
+      "id": "friction-remove",
+      "definition": "Remove a small barrier before a desired behavior so the first move becomes obvious and low effort. The family designs for easier entry.",
+      "example": "A reader prepares the first material needed for a practice before the moment arrives."
+    },
+    {
+      "id": "error-review",
+      "definition": "Look at one recent miss without blame and extract the next concrete adjustment. The family treats an error as data for a better repetition.",
+      "example": "A reader reviews one missed commitment and changes the cue that made the miss likely."
+    }
+  ],
   "quizOpeners": [
     {
       "id": "you-situation",

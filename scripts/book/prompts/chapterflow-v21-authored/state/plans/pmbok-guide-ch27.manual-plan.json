@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch27",
+  "number": 27,
+  "title": "Uncertainty Performance Domain",
+  "coreMove": "Manage uncertainty as a live domain: use the risk register, ambiguity signals, probes, reserves, and escalations to adjust the whole project system around value.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "Mariana writes a decision memo after a steering vote",
+      "audience": "project leads who treat risk work as separate from domain performance",
+      "stakes": "a documented risk looks controlled while other PMBOK Guide domains are shifting",
+      "format": "decision_memo",
+      "requiredBeat": "Mariana uses the memo to connect the Uncertainty Performance Domain, 8 domains, and risk register before the next steering update"
+    },
+    {
+      "domain": "Rosa and Jack respond to the same supplier delay",
+      "audience": "teams deciding whether a register update is enough",
+      "stakes": "one project records uncertainty while the other changes behavior",
+      "format": "contrast",
+      "requiredBeat": "Rosa and Jack face the same risk register, ambiguity, complexity, and volatility signals with opposite responses"
+    },
+    {
+      "domain": "Nikolai gets coached by Mabel after a tidy risk review",
+      "audience": "analysts who confuse scored risk with managed uncertainty",
+      "stakes": "a clean review may hide ambiguity, complexity, and volatility",
+      "format": "coach_talk",
+      "requiredBeat": "Mabel gives Nikolai a quotable reframe that separates risk register work from ambiguity probes"
+    },
+    {
+      "domain": "Aditya learns the domain map in a training session",
+      "audience": "learners who expect PMBOK Guide domains to act like sequence steps",
+      "stakes": "the learner may memorize labels without understanding interaction",
+      "format": "school_case",
+      "requiredBeat": "Aditya works through the PMBOK Guide's 8 domains and sees why the Uncertainty Performance Domain is not a risk register phase"
+    },
+    {
+      "domain": "Seraphine revises uncertainty intake for a hybrid project",
+      "audience": "process owners who turn every unknown into the same artifact",
+      "stakes": "the process may score uncertainty instead of selecting the right response",
+      "format": "before_after",
+      "requiredBeat": "Seraphine shows the same intake before and after it distinguishes threats, opportunities, ambiguity, complexity, and volatility"
+    },
+    {
+      "domain": "Mabel audits existing project records for uncertainty signals",
+      "audience": "leaders reviewing artifacts after a project review feels strangely calm",
+      "stakes": "the records may show activity while the uncertainty outcome stays weak",
+      "format": "audit",
+      "requiredBeat": "Mabel reviews records and finds the telling detail in risk register rows, ambiguity notes, complexity notes, and volatility patterns"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 3,
+      "evaluate": 3,
+      "understand": 1,
+      "apply": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.329Z"
+}

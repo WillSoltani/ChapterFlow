@@ -80,3 +80,34 @@ if (!gold) {
     assert.equal(status, 0, `book-gate should pass the gold corpus; output tail:\n${out.slice(-1500)}`);
   });
 }
+
+test("qc-verdict: mechanical reduction — corruption veto, floors, partial-read refusal", () => {
+  const clean = JSON.stringify([
+    { axis: "quiz_key_correctness", score: 1 }, { axis: "quiz_distractor_quality", score: 0.9 },
+    { axis: "card_learning_value", score: 0.9 }, { axis: "example_coherence", score: 0.95 },
+    { axis: "prose_coherence", score: 0.9 }, { axis: "memorable_line_quality", score: 0.85 },
+    { axis: "plan_actionability", score: 0.9 }, { axis: "factual_accuracy", score: 0.95 },
+  ]);
+  const green = runCli(["qc-verdict", "zz-t", "--scores", clean]);
+  assert.equal(green.status, 0, green.out);
+  assert.match(green.out, /GREEN/);
+
+  // corruption veto: high overall cannot launder a cited corruption hit
+  const corrupt = JSON.parse(clean);
+  corrupt[0] = { axis: "quiz_key_correctness", score: 0.9, tier: "CORRUPTION", hits: [{ unitId: "q3", quote: "x", defect: "wrong key" }] };
+  const red = runCli(["qc-verdict", "zz-t", "--scores", JSON.stringify(corrupt)]);
+  assert.equal(red.status, 2, red.out);
+  assert.match(red.out, /RED/);
+
+  // axis floor: one axis under 0.6 caps at YELLOW even with high overall
+  const floored = JSON.parse(clean);
+  floored[5] = { axis: "memorable_line_quality", score: 0.5 };
+  const yellow = runCli(["qc-verdict", "zz-t", "--scores", JSON.stringify(floored)]);
+  assert.equal(yellow.status, 1, yellow.out);
+
+  // partial read refused: missing axes are never defaulted
+  const partial = JSON.stringify(JSON.parse(clean).slice(0, 5));
+  const refused = runCli(["qc-verdict", "zz-t", "--scores", partial]);
+  assert.equal(refused.status, 3, refused.out);
+  assert.match(refused.out, /INCOMPLETE READ/);
+});

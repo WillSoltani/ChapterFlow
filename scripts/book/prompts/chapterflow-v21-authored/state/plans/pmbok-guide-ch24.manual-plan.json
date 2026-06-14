@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch24",
+  "number": 24,
+  "title": "Project Work Performance Domain",
+  "coreMove": "Manage project work as a live system: trace flow, procurement, resources, knowledge, and decisions until the evidence shows useful work can move.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hybrid supplier integration project chat",
+      "audience": "project managers coordinating vendors and internal teams",
+      "stakes": "a green task board could hide procurement and resource drag",
+      "format": "text_thread",
+      "requiredBeat": "A short message exchange reveals work flow, procurement, resources, and knowledge signals before a supplier call"
+    },
+    {
+      "domain": "PMO review of a multi-team release",
+      "audience": "portfolio and program leads",
+      "stakes": "the meeting could treat Project Work as a sequence box instead of an interacting domain",
+      "format": "reset_moment",
+      "requiredBeat": "A routine status review stops and restarts around the PMBOK Guide's 8 domains"
+    },
+    {
+      "domain": "test environment support desk",
+      "audience": "delivery leads and analysts",
+      "stakes": "small physical details reveal the domain signal better than a status summary",
+      "format": "vignette",
+      "requiredBeat": "A close observation of a queue surfaces work flow, procurement, resources, and knowledge without a formal decision"
+    },
+    {
+      "domain": "failed operations handoff after a release",
+      "audience": "project teams running retrospectives",
+      "stakes": "the team may blame a delivery miss while missing the Project Work interaction that caused it",
+      "format": "postmortem",
+      "requiredBeat": "The failure is reconstructed through the PMBOK Guide's 8 domains to locate the decisive misstep"
+    },
+    {
+      "domain": "adaptive product release readiness check",
+      "audience": "delivery leads and product teams",
+      "stakes": "the lead could mistake visible flow for enough domain health",
+      "format": "mistake_recovery",
+      "requiredBeat": "Aurora notices her own error mid-stream and corrects the readiness review"
+    },
+    {
+      "domain": "steering decision for a hybrid implementation",
+      "audience": "sponsors and project managers",
+      "stakes": "leaders may add artifacts instead of adjusting the work system",
+      "format": "decision_memo",
+      "requiredBeat": "A written memo carries the decision to tailor Project Work through PMBOK Guide domain interactions"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.328Z"
+}

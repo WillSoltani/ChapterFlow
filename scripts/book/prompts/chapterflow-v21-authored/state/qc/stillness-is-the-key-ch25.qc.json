@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 25,
+  "chapterId": "stillness-is-the-key-ch25",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "3b0f739fe9490ee1",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:45:04.178Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 91/100; gates/source pass, examples/cards coherent, quiz verifies 9/9.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 25,
+      "chapterId": "stillness-is-the-key-ch25",
+      "verdict": "REVISE",
+      "contentHash": "eefa5ba915358f5b",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:22:34.822Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch25 repeats shifted ch08 venue slate (food truck, community garden, laundry lint screen, museum coat check, clinic intake); quiz keys verified 9/9; no corruption found."
+    }
+  ],
+  "supersededReason": "fresh continuation QC ch25"
+}

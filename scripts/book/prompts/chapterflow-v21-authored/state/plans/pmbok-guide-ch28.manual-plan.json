@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch28",
+  "number": 28,
+  "title": "Tailoring",
+  "coreMove": "A team tailors well by reading context, using diagnostics, and revisiting practices so rigor grows or shrinks as evidence changes.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "grant-funded transit app planning",
+      "audience": "project leads choosing where scarce setup attention goes",
+      "stakes": "the team may spend its only planning hour copying a plan that does not fit",
+      "format": "planning_choice",
+      "requiredBeat": "Roman allocates scarce planning time before any execution begins."
+    },
+    {
+      "domain": "hospital scheduling rollout",
+      "audience": "leaders balancing clinical feedback with compliance control",
+      "stakes": "either speed or assurance can fail if the approach treats one pressure as the whole project",
+      "format": "dilemma",
+      "requiredBeat": "Gage faces two bad options and uses diagnostics to build fit."
+    },
+    {
+      "domain": "warehouse-to-subscription platform reuse",
+      "audience": "sponsors and product leads challenging copied plans",
+      "stakes": "a familiar approach may hide the current project's stakeholder needs",
+      "format": "dialogue",
+      "requiredBeat": "Eleni and Navid let the tailoring lesson emerge through their exchange."
+    },
+    {
+      "domain": "mobile-payments fraud pilot",
+      "audience": "steering teams reading diagnostic signals against expectations",
+      "stakes": "a low headline risk score may hide the need for more feedback",
+      "format": "predict_reveal",
+      "requiredBeat": "Hassan reveals that diagnostics call for more feedback, not less oversight."
+    },
+    {
+      "domain": "governance packet cleanup",
+      "audience": "project coordinators turning informal complaints into diagnostic evidence",
+      "stakes": "the team may cut a packet without preserving the controls the context still needs",
+      "format": "text_thread",
+      "requiredBeat": "Sora and Megan use a short message exchange to connect artifact changes to diagnostics."
+    },
+    {
+      "domain": "PMO review cadence reset",
+      "audience": "PMO leads interrupting inherited routines",
+      "stakes": "a familiar checklist may outrun the evidence from a changed release cadence",
+      "format": "reset_moment",
+      "requiredBeat": "Megan interrupts a routine and deliberately restarts from context."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "understand": 1,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.329Z"
+}

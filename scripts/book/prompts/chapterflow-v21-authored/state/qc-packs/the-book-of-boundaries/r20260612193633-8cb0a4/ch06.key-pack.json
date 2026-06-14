@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "manual-key-pack-v1",
+  "bookId": "the-book-of-boundaries",
+  "roundId": "r20260612193633-8cb0a4",
+  "chapterNumber": 6,
+  "chapterId": "the-book-of-boundaries-ch06",
+  "createdAt": "2026-06-12T20:09:25.308Z",
+  "contentHash": "5cd7de5963f2e426",
+  "sourceHash": "4d26619536609112",
+  "sourceFacts": [
+    {
+      "id": "ch06.fact.1",
+      "claim": "Romantic closeness does not eliminate the need for explicit limits.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "A good partner should know every need without being told.",
+      "errorIsWhy": "Mind-reading expectations create resentment and confusion."
+    },
+    {
+      "id": "ch06.fact.2",
+      "claim": "Saying what is meant is treated as a form of respect.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "Dishes are too small to count as a boundary issue.",
+      "errorIsWhy": "Small repeated tasks can carry large fairness and respect issues."
+    },
+    {
+      "id": "ch06.fact.3",
+      "claim": "A single argument should stay focused on one subject.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "A committed relationship makes sexual access automatic.",
+      "errorIsWhy": "Commitment does not remove bodily autonomy."
+    },
+    {
+      "id": "ch06.fact.4",
+      "claim": "Household labor boundaries convert assumptions into agreements.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "A good partner should know every need without being told.",
+      "errorIsWhy": "Mind-reading expectations create resentment and confusion."
+    },
+    {
+      "id": "ch06.fact.5",
+      "claim": "Sexual boundaries require ongoing consent.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "Dishes are too small to count as a boundary issue.",
+      "errorIsWhy": "Small repeated tasks can carry large fairness and respect issues."
+    },
+    {
+      "id": "ch06.fact.6",
+      "claim": "A romantic boundary can include what the speaker will do next.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "A committed relationship makes sexual access automatic.",
+      "errorIsWhy": "Commitment does not remove bodily autonomy."
+    },
+    {
+      "id": "ch06.fact.7",
+      "claim": "Trust includes allowing a partner to state their own limits.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "A good partner should know every need without being told.",
+      "errorIsWhy": "Mind-reading expectations create resentment and confusion."
+    },
+    {
+      "id": "ch06.fact.8",
+      "claim": "Privacy can remain valid inside a relationship.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "Dishes are too small to count as a boundary issue.",
+      "errorIsWhy": "Small repeated tasks can carry large fairness and respect issues."
+    },
+    {
+      "id": "ch06.fact.9",
+      "claim": "Romantic boundaries aim at repair rather than victory.",
+      "becauseMechanism": "This matters because intimacy becomes safer when both partners receive usable truth instead of hints, tests, or accumulated resentment.",
+      "commonError": "A committed relationship makes sexual access automatic.",
+      "errorIsWhy": "Commitment does not remove bodily autonomy."
+    }
+  ],
+  "questions": [
+    {
+      "questionIndex": 0,
+      "prompt": "Two responses sit beside the same full sink: Mila waits for her partner to notice; Holly says, \"I need us to alternate dishes tonight.\" Which response fits direct intimacy boundaries?",
+      "choices": [
+        "Mind-Reading Test: Mila waits so love can prove it noticed the sink.",
+        "Clear Terms: Holly names the dishes and asks for a shared plan.",
+        "Care Verdict: Mila treats the sink as proof her partner values her less."
+      ]
+    },
+    {
+      "questionIndex": 1,
+      "prompt": "A log of 5 arguments shows each began with one chore and ended with money, sex, and holiday plans. What should Beau infer first?",
+      "choices": [
+        "One-Subject Repair: Beau should keep the next talk on the first chore.",
+        "Archive Sweep: Beau should schedule one talk for several old hurts.",
+        "Intensity Fix: Beau should raise the stakes so the pattern feels serious."
+      ]
+    },
+    {
+      "questionIndex": 2,
+      "prompt": "Ivy says no to sex after a long shift. One reply bargains for reassurance; another accepts tonight's no. Which reply respects the boundary?",
+      "choices": [
+        "Reassurance Bargain: Her partner asks Ivy to prove she still wants the relationship.",
+        "History Claim: Her partner points to past closeness as tonight's reason.",
+        "Consent Respect: Her partner accepts tonight's no and drops the pressure."
+      ]
+    },
+    {
+      "questionIndex": 3,
+      "prompt": "Janelle's chore notes show 6 straight nights of pans done by her, plus 3 hints her partner missed. What is the cleanest boundary move?",
+      "choices": [
+        "Silent Scorekeeping: Janelle keeps counting until the imbalance is obvious.",
+        "Shared Terms: Janelle asks for a named split before the next dinner.",
+        "Moral Guessing: Janelle waits for her partner to discover the right chore."
+      ]
+    },
+    {
+      "questionIndex": 4,
+      "prompt": "Georges wants 20 quiet minutes after work. Two responses are available: apologize for needing space, or state the limit and return at a set time. Which one respects romance and privacy?",
+      "choices": [
+        "Timed Privacy: Georges takes 20 quiet minutes and returns when promised.",
+        "Access Proof: Georges treats constant availability as the price of love.",
+        "Guilt Payment: Georges apologizes until his partner stops feeling uneasy."
+      ]
+    },
+    {
+      "questionIndex": 5,
+      "prompt": "A text thread shows three jokes after Mila already said touch is off tonight. Which follow-through matches the boundary?",
+      "choices": [
+        "Mood Management: Mila softens the no until the jokes fade by themselves.",
+        "Debt Logic: Mila weighs whether past closeness makes the jokes fair.",
+        "Body-Limit Follow-Through: Mila ends the thread and revisits closeness tomorrow."
+      ]
+    },
+    {
+      "questionIndex": 6,
+      "prompt": "At a highway rest stop counter, Georges hears himself bargain after his partner said no to motel sex, and the receipt is still in his hand. What is the first repair move?",
+      "choices": [
+        "Intent Defense: Georges explains he only wanted closeness during the trip.",
+        "Timing Debate: Georges asks whether a shorter pause would feel acceptable.",
+        "Pressure Repair: Georges names the push, stops asking, and respects the no."
+      ]
+    },
+    {
+      "questionIndex": 7,
+      "prompt": "Two partners state limits: Holly will not wash pans nightly; Beau needs Sunday talk to stay on one subject. What should each person allow from the other?",
+      "choices": [
+        "Winner Frame: Each treats the first clear limit as the final relationship rule.",
+        "Reciprocal Clarity: Each hears the limit and answers with their own truth.",
+        "Approval Chase: Each keeps explaining until the other person likes the limit."
+      ]
+    },
+    {
+      "questionIndex": 8,
+      "prompt": "After an argument, Ivy's notes list one apology, one rent-date fix, and three old grievances she wants to add. Which next step aims at repair?",
+      "choices": [
+        "Repair Focus: Ivy handles the rent-date fix before opening another topic.",
+        "History Trial: Ivy adds the old grievances so the repair feels complete.",
+        "Peacekeeping Silence: Ivy drops the rent issue to avoid a second talk."
+      ]
+    }
+  ],
+  "packHash": "4136270f1c82782c"
+}

@@ -42,6 +42,15 @@ function extractClientIp(headers: Headers): string | null {
   return null;
 }
 
+/**
+ * Reduce coordinate precision to ~1 decimal place (≈11 km) so we only ever
+ * store APPROXIMATE, city-level location — never precise coordinates. This is
+ * what the privacy policy discloses and what the admin geography view uses.
+ */
+function coarsenCoord(n: number): number {
+  return Math.round(n * 10) / 10;
+}
+
 function isPrivateIp(ip: string): boolean {
   // Skip private/reserved ranges — they'd always resolve to "unknown"
   // and waste API calls
@@ -114,8 +123,9 @@ export async function fetchLocationByIp(ip: string): Promise<InferredLocation | 
       regionCode: data.region ?? null,
       regionName: data.regionName ?? null,
       city: data.city ?? null,
-      latitude: data.lat != null ? String(data.lat) : null,
-      longitude: data.lon != null ? String(data.lon) : null,
+      // Store APPROXIMATE coordinates only (coarsened to ~city level).
+      latitude: data.lat != null ? String(coarsenCoord(data.lat)) : null,
+      longitude: data.lon != null ? String(coarsenCoord(data.lon)) : null,
       timezone: data.timezone ?? null,
     };
 
@@ -200,6 +210,20 @@ export function inferLocationFromHeaders(headers: Headers): InferredLocation | n
 
   const precision = city ? "city" : regionCode || regionName ? "region" : "country";
 
+  // CDN edge headers (CloudFront / Vercel) can carry precise coordinates. Read
+  // and COARSEN them to ~city level here so the only coordinates we ever store
+  // are approximate — never the raw, meter-level values from the header.
+  const latRaw =
+    source === "cloudfront"
+      ? readFirst(headers, ["cloudfront-viewer-latitude"])
+      : readFirst(headers, ["x-vercel-ip-latitude"]);
+  const lonRaw =
+    source === "cloudfront"
+      ? readFirst(headers, ["cloudfront-viewer-longitude"])
+      : readFirst(headers, ["x-vercel-ip-longitude"]);
+  const latNum = latRaw != null ? Number(latRaw) : NaN;
+  const lonNum = lonRaw != null ? Number(lonRaw) : NaN;
+
   return {
     source,
     precision,
@@ -208,5 +232,7 @@ export function inferLocationFromHeaders(headers: Headers): InferredLocation | n
     regionCode,
     regionName,
     city,
+    latitude: Number.isFinite(latNum) ? String(coarsenCoord(latNum)) : null,
+    longitude: Number.isFinite(lonNum) ? String(coarsenCoord(lonNum)) : null,
   };
 }

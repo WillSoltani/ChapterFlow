@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch26",
+  "number": 26,
+  "title": "Measurement Performance Domain",
+  "coreMove": "Use measurement to guide action, not decorate status: compare KPIs with baselines, read forecasts with context, and connect every dashboard signal to a decision.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "PMBOK Guide domain review",
+      "audience": "project leads learning the domain map",
+      "stakes": "a green dashboard may be read apart from the other domains",
+      "format": "dialogue",
+      "requiredBeat": "Two named people use the 8 domains to keep a KPI tied to action."
+    },
+    {
+      "domain": "quarterly product adoption review",
+      "audience": "PMO leads and product sponsors",
+      "stakes": "a green status pack could hide weak value delivery",
+      "format": "predict_reveal",
+      "requiredBeat": "A green KPI set looks safe until adoption evidence breaks the expectation."
+    },
+    {
+      "domain": "software release standup",
+      "audience": "product owners and delivery leads",
+      "stakes": "green release status could silence a defect trend",
+      "format": "text_thread",
+      "requiredBeat": "A short chat shows that KPIs and baselines still need interpretation."
+    },
+    {
+      "domain": "benefits reporting routine",
+      "audience": "analysts who build sponsor packs",
+      "stakes": "routine reporting could copy colors without asking what action follows",
+      "format": "reset_moment",
+      "requiredBeat": "A routine gets interrupted so the analyst restarts with a decision threshold."
+    },
+    {
+      "domain": "quality trend desk review",
+      "audience": "quality leads and delivery teams",
+      "stakes": "a defect chart could be read outside team load and delivery notes",
+      "format": "vignette",
+      "requiredBeat": "A small desk moment shows a measure placed inside the PMBOK Guide domain map."
+    },
+    {
+      "domain": "missed-release benefits review",
+      "audience": "sponsors and project managers",
+      "stakes": "a failed handoff exposed status measures that never triggered action",
+      "format": "postmortem",
+      "requiredBeat": "The postmortem opens after failure and locates the missed measurement decision."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 3,
+      "understand": 1,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.329Z"
+}

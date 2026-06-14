@@ -19,6 +19,7 @@
  *       HOOK_MIX_STEP=3 for 10 hook shapes
  *       TRY_MIX_STEP=3 for 8 exercise grammars
  *       QUIZ_MIX_STEP=5 for 6 quiz openers
+ *       TACTIC_FAMILY_STEP=5 for 24 tactic families
  *     The invariant: adjacent entries in a book's mix are distinct, and nearby
  *     book rotations do not collapse to the same internal order. Runtime checks
  *     below throw if a future config size breaks this math.
@@ -48,6 +49,7 @@ const PEDAGOGY_PLANS_DIR = resolve(__dirname, "../../state/pedagogy-plans");
 const HOOK_MIX_STEP = 3; // coprime with 10 shipped hook shapes -> distinct dominant/secondary picks
 const TRY_MIX_STEP = 3;  // coprime with 8 shipped grammars -> distinct 3-grammar mix
 const QUIZ_MIX_STEP = 5; // coprime with 6 shipped openers -> distinct opener pair
+const TACTIC_FAMILY_STEP = 5; // coprime with 24 shipped families -> 24-chapter period; no 12-window repeats
 const HOOK_CHAPTER_PATTERN = [0, 1, 0, 2] as const; // circularly no adjacent repeats; 0 remains dominant
 
 export type HookShapePaletteEntry = {
@@ -68,15 +70,23 @@ export type QuizOpener = {
   example: string;
 };
 
+export type TacticFamily = {
+  id: string;
+  definition: string;
+  example: string;
+};
+
 export type PedagogyPalettes = {
   hookShapes: HookShapePaletteEntry[];
   tryThisNowGrammars: TryThisNowGrammar[];
+  tacticFamilies: TacticFamily[];
   quizOpeners: QuizOpener[];
 };
 
 export type PedagogyChapterAllocation = {
   hookShape: string;
   tryThisNowGrammar: string;
+  tacticFamily: string;
   quizOpeners: [string, string];
 };
 
@@ -89,6 +99,7 @@ export type PedagogyPlan = {
     hookShapes: [string, string, string];
     dominantHookShape: string;
     tryThisNowGrammars: [string, string, string];
+    tacticFamilies: string[];
     quizOpeners: [string, string];
   };
   /** chapter number -> dealt slot guidance. Already-authored chapters are
@@ -164,19 +175,33 @@ function cleanQuizOpener(value: unknown): QuizOpener | null {
   return { id, definition, example };
 }
 
+function cleanTacticFamily(value: unknown): TacticFamily | null {
+  if (!isRecord(value)) return null;
+  const id = value.id;
+  const definition = value.definition;
+  const example = value.example;
+  if (typeof id !== "string" || typeof definition !== "string" || typeof example !== "string") return null;
+  return { id, definition, example };
+}
+
 export function loadPedagogyPalettes(): PedagogyPalettes {
   const raw = JSON.parse(readFileSync(PEDAGOGY_PALETTES_PATH, "utf8")) as Record<string, unknown>;
   const hookShapes = Array.isArray(raw.hookShapes) ? raw.hookShapes.map(cleanHookShape).filter((entry): entry is HookShapePaletteEntry => entry !== null) : [];
   const tryThisNowGrammars = Array.isArray(raw.tryThisNowGrammars)
     ? raw.tryThisNowGrammars.map(cleanTryGrammar).filter((entry): entry is TryThisNowGrammar => entry !== null)
     : [];
+  const tacticFamilies = Array.isArray(raw.tacticFamilies)
+    ? raw.tacticFamilies.map(cleanTacticFamily).filter((entry): entry is TacticFamily => entry !== null)
+    : [];
   const quizOpeners = Array.isArray(raw.quizOpeners) ? raw.quizOpeners.map(cleanQuizOpener).filter((entry): entry is QuizOpener => entry !== null) : [];
 
   if (hookShapes.length < 3) throw new Error(`pedagogy-palettes.json has only ${hookShapes.length} usable hook shapes.`);
   if (tryThisNowGrammars.length < 3) throw new Error(`pedagogy-palettes.json has only ${tryThisNowGrammars.length} usable tryThisNow grammars.`);
+  if (tacticFamilies.length < 24) throw new Error(`pedagogy-palettes.json has only ${tacticFamilies.length} usable tactic families.`);
   if (quizOpeners.length < 2) throw new Error(`pedagogy-palettes.json has only ${quizOpeners.length} usable quiz openers.`);
   uniqueIds(hookShapes, "hook shape");
   uniqueIds(tryThisNowGrammars, "tryThisNow grammar");
+  uniqueIds(tacticFamilies, "tactic family");
   uniqueIds(quizOpeners, "quiz opener");
 
   const declarative = hookShapes.filter((entry) => entry.auditClass === "declarative_image").length;
@@ -187,7 +212,7 @@ export function loadPedagogyPalettes(): PedagogyPalettes {
     }
   }
 
-  return { hookShapes, tryThisNowGrammars, quizOpeners };
+  return { hookShapes, tryThisNowGrammars, tacticFamilies, quizOpeners };
 }
 
 function pickIds<T extends { id: string }>(items: T[], rotation: number, count: number, step: number, label: string): string[] {
@@ -234,6 +259,24 @@ function assertNoConsecutiveHookRepeats(plan: PedagogyPlan): void {
   }
 }
 
+function assertTacticFamilyInvariants(plan: PedagogyPlan): void {
+  const chapters = Object.keys(plan.allocation).map(Number).sort((a, b) => a - b);
+  const counts = new Map<string, number>();
+  for (const chapter of chapters) {
+    const family = plan.allocation[chapter]?.tacticFamily;
+    if (!family) continue;
+    counts.set(family, (counts.get(family) ?? 0) + 1);
+    for (let other = chapter + 1; other < chapter + 12 && other <= plan.toChapter; other++) {
+      if (plan.allocation[other]?.tacticFamily === family) {
+        throw new Error(`pedagogy-plan invariant violated: tactic family "${family}" repeats within a 12-chapter window (ch${chapter}->ch${other}).`);
+      }
+    }
+  }
+  for (const [family, count] of counts) {
+    if (count > 2) throw new Error(`pedagogy-plan invariant violated: tactic family "${family}" appears ${count} times in this book plan.`);
+  }
+}
+
 export function planPedagogy(bookId: string, from: number, to: number, opts: PlanPedagogyOpts = {}): PedagogyPlan {
   if (to < from) throw new Error(`to (${to}) < from (${from})`);
   // Chapters are 1-based; a non-positive `from` drives JS's negative modulo
@@ -245,7 +288,8 @@ export function planPedagogy(bookId: string, from: number, to: number, opts: Pla
 
   const hookRotation = hash % palettes.hookShapes.length;
   const tryRotation = Math.floor(hash / palettes.hookShapes.length) % palettes.tryThisNowGrammars.length;
-  const quizRotation = Math.floor(hash / (palettes.hookShapes.length * palettes.tryThisNowGrammars.length)) % palettes.quizOpeners.length;
+  const tacticRotation = Math.floor(hash / (palettes.hookShapes.length * palettes.tryThisNowGrammars.length)) % palettes.tacticFamilies.length;
+  const quizRotation = Math.floor(hash / (palettes.hookShapes.length * palettes.tryThisNowGrammars.length * palettes.tacticFamilies.length)) % palettes.quizOpeners.length;
   const hookPhase = Math.floor(hash / 97) % HOOK_CHAPTER_PATTERN.length;
   const tryPhase = Math.floor(hash / 193) % 3;
   const quizPhase = Math.floor(hash / 389) % 2;
@@ -264,6 +308,7 @@ export function planPedagogy(bookId: string, from: number, to: number, opts: Pla
     allocation[chapterNumber] = {
       hookShape: hookMix[hookPatternIndex],
       tryThisNowGrammar: tryMix[(chapterNumber - 1 + tryPhase) % tryMix.length],
+      tacticFamily: palettes.tacticFamilies[(tacticRotation + (chapterNumber - 1) * TACTIC_FAMILY_STEP) % palettes.tacticFamilies.length].id,
       quizOpeners: [quizMix[quizStart], quizMix[(quizStart + 1) % quizMix.length]],
     };
   }
@@ -277,12 +322,14 @@ export function planPedagogy(bookId: string, from: number, to: number, opts: Pla
       hookShapes: hookMix,
       dominantHookShape: hookMix[0],
       tryThisNowGrammars: tryMix,
+      tacticFamilies: palettes.tacticFamilies.map((entry) => entry.id),
       quizOpeners: quizMix,
     },
     allocation,
     carriedChapters,
   };
   assertNoConsecutiveHookRepeats(plan);
+  assertTacticFamilyInvariants(plan);
   return plan;
 }
 
@@ -297,14 +344,17 @@ export function formatPedagogyPlan(plan: PedagogyPlan): string {
   const palettes = loadPedagogyPalettes();
   const hookDefs = new Map<string, string>();
   const tryDefs = new Map<string, string>();
+  const tacticDefs = new Map<string, string>();
   const quizExamples = new Map<string, string>();
   for (const entry of palettes.hookShapes) hookDefs.set(entry.id, entry.definition);
   for (const entry of palettes.tryThisNowGrammars) tryDefs.set(entry.id, `${entry.definition} Example: ${entry.example}`);
+  for (const entry of palettes.tacticFamilies) tacticDefs.set(entry.id, `${entry.definition} Example: ${entry.example}`);
   for (const entry of palettes.quizOpeners) quizExamples.set(entry.id, entry.example);
 
   const lines: string[] = [`Pedagogy plan — ${plan.bookId} ch${plan.fromChapter}-${plan.toChapter}`];
   lines.push(`  hook mix: ${plan.bookMix.hookShapes.join(", ")} (dominant: ${plan.bookMix.dominantHookShape})`);
   lines.push(`  tryThisNow mix: ${plan.bookMix.tryThisNowGrammars.join(", ")}`);
+  lines.push(`  tactic families: ${plan.bookMix.tacticFamilies.length} families, step ${TACTIC_FAMILY_STEP}`);
   lines.push(`  quiz opener mix: ${plan.bookMix.quizOpeners.join(", ")}`);
   lines.push("");
   for (const [chapterNumber, allocation] of Object.entries(plan.allocation).sort((a, b) => Number(a[0]) - Number(b[0]))) {
@@ -312,13 +362,17 @@ export function formatPedagogyPlan(plan: PedagogyPlan): string {
     const carried = plan.carriedChapters.includes(num);
     lines.push(
       `  ch${String(num).padStart(2, "0")}${carried ? " (authored — carried from disk)" : ""}: ` +
-        `hook=${allocation.hookShape}; try=${allocation.tryThisNowGrammar}; quiz=${allocation.quizOpeners.join(" / ")}`,
+        `hook=${allocation.hookShape}; try=${allocation.tryThisNowGrammar}; family=${allocation.tacticFamily}; quiz=${allocation.quizOpeners.join(" / ")}`,
     );
   }
   lines.push("", "Hook definitions:");
   for (const id of plan.bookMix.hookShapes) lines.push(`  ${id}: ${hookDefs.get(id) ?? "(missing definition)"}`);
   lines.push("", "Try-this-now definitions:");
   for (const id of plan.bookMix.tryThisNowGrammars) lines.push(`  ${id}: ${tryDefs.get(id) ?? "(missing definition)"}`);
+  lines.push("", "Tactic family definitions:");
+  for (const id of [...new Set(Object.values(plan.allocation).map((entry) => entry.tacticFamily))]) {
+    lines.push(`  ${id}: ${tacticDefs.get(id) ?? "(missing definition)"}`);
+  }
   lines.push("", "Quiz opener examples:");
   for (const id of plan.bookMix.quizOpeners) lines.push(`  ${id}: ${quizExamples.get(id) ?? "(missing example)"}`);
   return lines.join("\n");

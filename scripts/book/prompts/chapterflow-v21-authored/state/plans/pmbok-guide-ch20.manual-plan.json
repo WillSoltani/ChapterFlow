@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch20",
+  "number": 20,
+  "title": "Stakeholder Performance Domain",
+  "coreMove": "Stakeholder work earns trust when teams keep the stakeholder register, engagement assessment, communication, and influence signals tied to the other domains and value delivery.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "project sponsor update after a delivery-date change",
+      "audience": "project managers who treat stakeholder work as completed intake",
+      "stakes": "a regulator's influence has changed while the deck still shows old engagement status",
+      "format": "mistake_recovery",
+      "requiredBeat": "the project manager notices his own register error while presenting and corrects the frame before reporting performance"
+    },
+    {
+      "domain": "warehouse rollout decision memo after schedule movement",
+      "audience": "delivery leads deciding who needs a risk discussion",
+      "stakes": "old communication routing hides resistance from supervisors affected by the change",
+      "format": "decision_memo",
+      "requiredBeat": "the written memo uses stakeholder signals to reroute communication before the next decision"
+    },
+    {
+      "domain": "supplier change that affects operations, delivery, and approvals",
+      "audience": "teams learning to read stakeholder evidence across domains",
+      "stakes": "the same change can become late resistance or early coordination",
+      "format": "contrast",
+      "requiredBeat": "two project leads face the same supplier change with opposite approaches and different outcomes"
+    },
+    {
+      "domain": "coaching conversation before a sponsor sync",
+      "audience": "project leads who confuse contact made with performance achieved",
+      "stakes": "the team may report engagement activity while resistance is rising",
+      "format": "coach_talk",
+      "requiredBeat": "a mentor reframes handled stakeholders as live reactions the project must absorb"
+    },
+    {
+      "domain": "onboarding classroom exercise about stakeholder signals",
+      "audience": "learners distinguishing communication from stakeholder performance",
+      "stakes": "confusion in the lesson exposes why communication alone is too narrow",
+      "format": "school_case",
+      "requiredBeat": "a learner's confusion becomes the material for separating communication from influence and engagement evidence"
+    },
+    {
+      "domain": "monthly stakeholder review process before and after a signal redesign",
+      "audience": "project teams maintaining recurring engagement routines",
+      "stakes": "a routine can count updates while missing changes in influence and acceptance",
+      "format": "before_after",
+      "requiredBeat": "the same review process is shown before and after it starts asking what stakeholder signals revealed"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 3,
+      "evaluate": 1,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.324Z"
+}

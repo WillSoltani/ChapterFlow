@@ -33,6 +33,10 @@ import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
+import { loadQcRound, type QcRoundRole } from "../qc/qcRound.js";
+import { isNoApiCodexQcMode } from "../qc/noApiMode.js";
+import { checkBarConfirmArtifactsForPublishable } from "../qc/orchestrator/artifacts.js";
+import { loadAuthorProvenance, violatesSessionIndependence } from "../qc/sessionProvenance.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 
@@ -55,8 +59,25 @@ export type QcAttestation = {
   /** who/what produced the verdict, e.g. "claude-qc:wf_93f0a1dd" or a session id. */
   reviewer: string;
   reviewedAt: string;
+  /** v21.1 no-api QC mode: round-backed role that produced this attestation. */
+  roundId?: string;
+  roundRole?: QcRoundRole;
+  /** The QC session that produced this attestation (CHAPTERFLOW_SESSION_ID at
+   *  attest time). Compared against the chapter's author provenance to enforce
+   *  reviewer != author when CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1. */
+  reviewerSessionId?: string;
   /** per-dimension booleans the reviewer checked (keysCorrect, grounded, …). */
   dimensions?: Record<string, boolean>;
+  evidence?: {
+    orchestratorRoundId?: string;
+    evidenceMatrixPath?: string;
+    manualKeyJudgePath?: string;
+    sweepPath?: string;
+    barReadPath?: string;
+    confirmReadPath?: string;
+    repairLedgerPath?: string;
+    repairBriefPath?: string;
+  };
   findings?: string[];
   notes?: string;
   /** Prior attestations for this chapter, newest last (capped). Overwrites
@@ -208,11 +229,39 @@ export function writeAttestation(att: QcAttestation): string {
 
 export type QcFinding = { checkId: string; severity: "blocker" | "advisory"; message: string };
 
+/** Reviewer-identity allowlist. A PUBLISHABLE attestation only counts at the
+ *  gate if its reviewer carries an approved QC ROLE prefix (the segment before
+ *  the first ":"). This stops the WRITER agent from self-certifying its own
+ *  output — the whole semantic gate assumes reviewer ≠ author (see
+ *  QC-SESSION-PROMPT.md "a separate writer agent (Codex) produces the
+ *  chapters; you evaluate them"). On-disk reviewers are
+ *  claude-qc:/codex-qc:/harness:/human:; the writer identity is codex:writer.
+ *
+ *  NOTE: this is a default-safe GUARDRAIL, not a cryptographic guarantee — a
+ *  single agent willing to relabel itself a reviewer can still pass it. The
+ *  honesty-INDEPENDENT catch for the worst class (wrong quiz keys) is the model
+ *  judge enforced via quizKeyGate.ts. Override the allowed roles with
+ *  CHAPTERFLOW_QC_REVIEWERS (comma-separated role prefixes). */
+const DEFAULT_QC_REVIEWERS = ["claude-qc", "codex-qc", "harness", "human"];
+
+export function approvedReviewerRoles(): string[] {
+  const env = process.env.CHAPTERFLOW_QC_REVIEWERS;
+  if (env && env.trim()) return env.split(",").map((s) => s.trim()).filter(Boolean);
+  return DEFAULT_QC_REVIEWERS;
+}
+
+/** True if the reviewer string carries an approved QC role prefix. */
+export function isApprovedReviewer(reviewer: string): boolean {
+  const role = (reviewer.split(":")[0] ?? "").trim().toLowerCase();
+  return approvedReviewerRoles().some((r) => r.toLowerCase() === role);
+}
+
 /**
  * The gate check. `enforce` true → severities are "blocker" (promote);
  * false → "advisory" (gate-chapter, so iteration isn't blocked).
  * A chapter passes iff it carries a PUBLISHABLE attestation whose contentHash
- * still matches the chapter as it is on disk now.
+ * still matches the chapter as it is on disk now AND whose reviewer is an
+ * approved QC role (not the writer that produced it).
  */
 export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFinding[] {
   const sev = enforce ? "blocker" : "advisory";
@@ -232,6 +281,33 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
     const now = hashForVersion(chapter, att.hashVersion);
     return [{ checkId: "QC0.stale_attestation", severity: sev,
       message: `QC attestation is STALE: the chapter changed since review (attested ${att.contentHash}, now ${now}, hash ${att.hashVersion ?? "v1"}). Re-review before shipping.` }];
+  }
+  if (!isApprovedReviewer(att.reviewer)) {
+    return [{ checkId: "QC0.unverified_reviewer", severity: sev,
+      message: `QC reviewer "${att.reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). A chapter cannot be certified by its own writer — review it in a QC session and re-attest as e.g. "claude-qc:<id>" or "codex-qc:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change the allowed roles).` }];
+  }
+  // Session-independence gate (OFF by default). When CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1
+  // and BOTH the authoring session (sidecar) and reviewing session (attestation)
+  // are recorded, refuse a verdict the authoring session graded itself. Absence
+  // of either id short-circuits, so legacy/un-stamped books are never blocked.
+  {
+    const author = loadAuthorProvenance(chapter.chapterId);
+    if (violatesSessionIndependence(author?.authorSessionId, att.reviewerSessionId)) {
+      return [{ checkId: "QC0.author_graded_own_work", severity: sev,
+        message: `QC session "${att.reviewerSessionId}" is the SAME session that authored ${chapter.chapterId} — the author cannot grade its own work. Re-QC in a fresh session (different CHAPTERFLOW_SESSION_ID).` }];
+    }
+  }
+  if (isNoApiCodexQcMode()) {
+    if (!att.roundId || !att.roundRole || !["bar", "confirm", "attest"].includes(att.roundRole)) {
+      return [{ checkId: "QC0.no_api_round_missing", severity: sev,
+        message: `No-api QC mode requires a fresh round-backed attestation (qc-attest --round <roundId> --token <bar|confirm|attest token>). Legacy attestations remain readable but cannot promote in this mode.` }];
+    }
+    if (!loadQcRound(att.bookId, att.roundId)?.roles?.[att.roundRole]) {
+      return [{ checkId: "QC0.no_api_round_missing", severity: sev,
+        message: `No-api QC mode requires an attestation backed by an existing QC round file. Re-open a round and re-attest ${chapter.chapterId}.` }];
+    }
+    const artifactFindings = checkBarConfirmArtifactsForPublishable(chapter, att, enforce);
+    if (artifactFindings.length > 0) return artifactFindings;
   }
   return [];
 }

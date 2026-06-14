@@ -1,0 +1,364 @@
+{
+  "chapterId": "pmbok-guide-ch24",
+  "number": 24,
+  "title": "Project Work Performance Domain",
+  "readingTimeMinutes": 12,
+  "hook": "You open the work board to move one task, and the whole project asks what is really stuck.",
+  "counterintuition": "Execution can look busy while project work is unhealthy. The useful clue is not volume of activity; it is whether work flow, support, decisions, and learning let value move.",
+  "tryThisNow": "Draft one sentence naming the work signal you keep ignoring, then label the next step: flow, procurement, resources, or knowledge.",
+  "keyTakeaway": "Manage project work as a live system: trace flow, procurement, resources, knowledge, and decisions until the evidence shows useful work can move.",
+  "breakdown": {
+    "fastRead": "Mathilde opens the work board to answer one blocked task. The card says API access. The chat says supplier approval. The risk log says stakeholder reply. None of the signals fits in one neat lane.\n\nThe PMBOK Guide places Project Work inside 8 domains, so the review cannot treat execution as a late chore. Stakeholders, Team, Planning, Delivery, Measurement, and Uncertainty are already touching the work.\n\nBusy is not the same as healthy. A useful review asks how work flow, procurement, resources, and knowledge help value move. Project work is healthy when useful work can move with enough control, support, and learning.",
+    "deepRead": "Work stalls in loops before it fails on the schedule. A task waits for a supplier quote, the supplier waits for a decision, the decision waits for missing context, and the team waits while the board still looks full. The PMBOK Guide's 8 domains make that loop visible. Project Work is one area of attention, yet it changes as Team habits, Planning choices, Delivery needs, Measurement signals, and Uncertainty responses change.\n\nOvide spots the loop in a procurement standup. The contract tracker says the vendor is late. The work flow board says the design task is ready. The resource sheet says the tester was moved. The knowledge base says the vendor asked the same question last week. Each artifact is small. Together, they say the work system is feeding delay back into itself.\n\nA good project manager does not solve that by adding more status traffic. Mathilde asks what outcome the signals point to: can useful work pass through the system with the needed approvals, people, information, and controls? If the answer is no, the next move is adjustment. That could mean clearing an impediment, changing a cadence, improving a decision record, or resetting supplier access.\n\nA domain review earns its name when it changes the work, not when it names the box. The reader's job is to trace the signal until it shows which part of the system needs care.",
+    "fullRead": "The harder case is a project that looks disciplined. Arjun's steering pack has a clean schedule, a tidy issue log, and a color-coded procurement table. No one is careless. Yet three deliverables keep circling through review because the team cannot get the right environment, the supplier needs late clarifications, and the lessons from one handoff do not reach the next handoff.\n\nThat is where the PMBOK Guide's eight-domain map earns its keep. The map names Stakeholders and Team. It also names Development Approach and Life Cycle, Planning, Project Work, Delivery, Measurement, and Uncertainty. It does not ask the project manager to walk through those areas like stations on a route. It asks the project manager to notice the way each area keeps shaping the others.\n\nProject work sits in the middle of that daily motion. A predictive effort may lean on baselines, contract terms, change control, and formal communications. An adaptive effort may watch flow, impediments, backlog movement, and fast learning. A hybrid effort may need both: supplier discipline on one side and frequent feedback on the other. The test is fit, not ceremony.\n\nAurora finds the limit after a release review. She has been using the flow board as proof that the team is healthy. Then Anastasia points at the same cards returning from test with the same missing environment note. The board is not false, but it is too narrow. It shows movement, not enough support. It shows tasks, not whether knowledge is moving to the people who need it.\n\nThat distinction prevents a common overcorrection. The answer is not to collect every artifact in the practice guide, nor to strip the project down to a chat stream. Artifacts help when they improve decisions, coordination, communication, control, or learning. They get in the way when people feed them while the work remains stuck.\n\nPhilippe uses a simpler test in the next review. For each stuck item, he asks four questions. What is blocking work flow? Which procurement or approval path is slowing the next useful step? What resource is missing or misused? What knowledge failed to travel? The questions do not replace judgment. They force judgment to look at evidence.\n\nProject Work also has a value edge. A team can complete many tasks and still fail to deliver accepted outcomes. Work can pass across a board and still fail at the boundary with operations, suppliers, users, or governance. The domain is healthy only when the work system supports the value system.\n\nA domain review earns its name when it changes the work, not when it names the box. Project work is healthy when useful work can move with enough control, support, and learning."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch24.ex.domain-24-artifact",
+      "title": "Mathilde Reads the Thread",
+      "tags": [
+        "text thread",
+        "procurement",
+        "work flow"
+      ],
+      "planSpec": {
+        "domain": "hybrid supplier integration project chat",
+        "audience": "project managers coordinating vendors and internal teams",
+        "stakes": "a green task board could hide procurement and resource drag",
+        "format": "text_thread",
+        "requiredBeat": "A short message exchange reveals work flow, procurement, resources, and knowledge signals before a supplier call"
+      },
+      "scenario": "Mathilde's phone shows three project-chat lines: \"Ovide: procurement approval missed again.\" \"Aurora: work flow board still says ready.\" \"Anastasia: resources shifted to the pilot.\" Before the 3 p.m. supplier call, Mathilde must answer with one line. She types, \"Ready is false until knowledge and access move too.\" The thread lands the lesson without a lecture.",
+      "whatToDo": "Mathilde answers the thread by naming the missing signal, not by accepting the green board. She ties the supplier call to access, resources, and the knowledge gap.",
+      "whyItMatters": "Project work can look ready inside one tool while another signal says it is stuck. The thread teaches the reader to read across signals before escalating noise."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch24.ex.domain-24-eight",
+      "title": "Ovide Restarts the Review",
+      "tags": [
+        "reset moment",
+        "8 domains",
+        "PMBOK Guide"
+      ],
+      "planSpec": {
+        "domain": "PMO review of a multi-team release",
+        "audience": "portfolio and program leads",
+        "stakes": "the meeting could treat Project Work as a sequence box instead of an interacting domain",
+        "format": "reset_moment",
+        "requiredBeat": "A routine status review stops and restarts around the PMBOK Guide's 8 domains"
+      },
+      "scenario": "Ovide starts the Monday review by reading the status order from last week. Planning, then delivery, then risks. Halfway through, he stops, closes the slide, and draws the PMBOK Guide's 8 domains around Project Work Performance Domain. Before the meeting starts again, he asks where work flow is being changed by Team habits, Measurement, or Uncertainty.",
+      "whatToDo": "Ovide pauses the routine and restarts with the domain map in view. He asks for interactions before asking for status, so the room looks for causes instead of sequence.",
+      "whyItMatters": "The stop is the technique. A deliberate reset keeps the team from treating Project Work as a phase and makes the other domains visible in the work."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch24.ex.domain-24-artifact",
+      "title": "Anastasia Notices the Queue",
+      "tags": [
+        "vignette",
+        "resource signal",
+        "knowledge"
+      ],
+      "planSpec": {
+        "domain": "test environment support desk",
+        "audience": "delivery leads and analysts",
+        "stakes": "small physical details reveal the domain signal better than a status summary",
+        "format": "vignette",
+        "requiredBeat": "A close observation of a queue surfaces work flow, procurement, resources, and knowledge without a formal decision"
+      },
+      "scenario": "Anastasia stands beside the support desk before lunch. Three laptops wait with yellow notes. One says work flow paused. One says procurement token missing. One says resources reassigned. A fourth note repeats a knowledge question from yesterday. Before the next board refresh, she copies the notes into one column and circles the repeated words.",
+      "whatToDo": "Anastasia records the repeated signal instead of smoothing the queue into a status count. She keeps the physical notes tied to the work path they are blocking.",
+      "whyItMatters": "A lived detail can show the system faster than a summary. The repeated notes reveal that delays share a cause pattern, not just a queue."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch24.ex.domain-24-eight",
+      "title": "Philippe Finds the Misstep",
+      "tags": [
+        "postmortem",
+        "domain map",
+        "flow"
+      ],
+      "planSpec": {
+        "domain": "failed operations handoff after a release",
+        "audience": "project teams running retrospectives",
+        "stakes": "the team may blame a delivery miss while missing the Project Work interaction that caused it",
+        "format": "postmortem",
+        "requiredBeat": "The failure is reconstructed through the PMBOK Guide's 8 domains to locate the decisive misstep"
+      },
+      "scenario": "Philippe opens after the handoff failed. The operations team received the package, then sent it back in two hours. The trace is clear: the PMBOK Guide's 8 domains were reviewed as separate slides, and Project Work Performance Domain got no link to Delivery or Stakeholders. The decisive mark is a work flow note closed before operations confirmed knowledge transfer.",
+      "whatToDo": "Philippe reconstructs the failure around the premature closure. He marks the slide where the work flow note lost its link to operations knowledge.",
+      "whyItMatters": "A postmortem should locate the misstep that made the failure possible. Here the problem was not one bad task, but a severed domain interaction."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch24.ex.domain-24-artifact",
+      "title": "Aurora Corrects the Board",
+      "tags": [
+        "mistake recovery",
+        "flow board",
+        "learning"
+      ],
+      "planSpec": {
+        "domain": "adaptive product release readiness check",
+        "audience": "delivery leads and product teams",
+        "stakes": "the lead could mistake visible flow for enough domain health",
+        "format": "mistake_recovery",
+        "requiredBeat": "Aurora notices her own error mid-stream and corrects the readiness review"
+      },
+      "scenario": "Aurora is praising the work flow column when her marker hovers over the same stuck card twice. The procurement note is old, resources are missing, and the knowledge link points to last sprint. Minutes before the release check ends, she says, \"I called movement health. That was my error,\" and changes the board label from ready to blocked signal.",
+      "whatToDo": "Aurora names her own overread in front of the team. She changes the review from board movement to the missing procurement, resource, and knowledge signals.",
+      "whyItMatters": "Mistake recovery teaches the domain better than polish. The useful moment is noticing that one signal was being treated as the whole work system."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch24.ex.domain-24-eight",
+      "title": "Arjun Writes the Memo",
+      "tags": [
+        "decision memo",
+        "8 domains",
+        "tailoring"
+      ],
+      "planSpec": {
+        "domain": "steering decision for a hybrid implementation",
+        "audience": "sponsors and project managers",
+        "stakes": "leaders may add artifacts instead of adjusting the work system",
+        "format": "decision_memo",
+        "requiredBeat": "A written memo carries the decision to tailor Project Work through PMBOK Guide domain interactions"
+      },
+      "scenario": "Arjun's decision memo begins: \"The PMBOK Guide's 8 domains show our issue is not a missing form. Project Work Performance Domain is interacting with Planning, Delivery, and Uncertainty through a broken work flow.\" Before the next steering review, he records one action: shorten supplier decision time and update the knowledge handoff.",
+      "whatToDo": "Arjun writes the decision as an adjustment, not an artifact request. He ties the supplier path and knowledge handoff to the domain interaction he wants changed.",
+      "whyItMatters": "A memo can carry action when it names the work signal and the domain link. It prevents leaders from solving a flow problem with more paperwork."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch24.fact.8",
+        "prompt": "Mathilde inherits a reliable reporting process that people quietly skip when supplier approvals slip. What should she inspect first?",
+        "choices": [
+          "Phase-box reading: Mathilde schedules Project Work after Planning and before Delivery to restore order.",
+          "Signal-trace move: Mathilde checks work flow and procurement evidence before changing the review.",
+          "Artifact-volume bet: Mathilde adds two forms so activity becomes easier to audit."
+        ],
+        "correctIndex": 1,
+        "explanation": "Skipped reports are a signal, not just a compliance problem. Work flow and procurement evidence show whether the domain is functioning before Mathilde adds more artifacts.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch24.fact.9",
+        "prompt": "Resource swaps have produced four handoff failures in less than a week. Which inference fits the Project Work lens?",
+        "choices": [
+          "Activity-count reading: Anastasia should count more handoff tasks before changing the work path.",
+          "Schedule-only reading: Anastasia should focus on late dates because the handoffs already happened.",
+          "Outcome-signal move: Anastasia should test whether resource churn is weakening flow and knowledge transfer."
+        ],
+        "correctIndex": 2,
+        "explanation": "The pattern points past activity volume. Resource changes followed by missed handoffs suggest a domain outcome problem in flow and knowledge movement.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch24.fact.3",
+        "prompt": "Ovide sees a clean procurement tracker but hears the team say every supplier question returns through the same architect. Which response uses the domain system well?",
+        "choices": [
+          "Interaction move: Ovide links procurement, resources, and knowledge before judging the tracker healthy.",
+          "Contract-compliance reading: Ovide treats the tracker as healthy because vendor dates are current.",
+          "Single-owner bet: Ovide asks the architect to answer faster so the tracker stays green."
+        ],
+        "correctIndex": 0,
+        "explanation": "The tracker alone hides a resource and knowledge bottleneck. Project Work interacts with other domains, so Ovide should read the side effects together.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch24.fact.2",
+        "prompt": "A dashboard shows 96 completed coordination tasks, but the next deliverable still lacks access, approval, and current notes. What does the data show?",
+        "choices": [
+          "Task-volume reading: Aurora should treat the high completion count as proof of healthy performance.",
+          "Documentation bet: Aurora should add a larger notes field so every task can hold more detail.",
+          "Outcome-check move: Aurora should treat the domain as weak until work can move with needed support."
+        ],
+        "correctIndex": 2,
+        "explanation": "Completed coordination tasks do not prove the domain outcome. Access, approval, and usable notes are signals that useful work still cannot move.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch24.fact.4",
+        "prompt": "During a hybrid release, Arjun wants one common work-control routine for supplier contracts and daily backlog flow. Which concern should Philippe raise?",
+        "choices": [
+          "Uniformity reading: Philippe should prefer one routine because shared language reduces meeting time.",
+          "Tailoring move: Philippe should fit formality and feedback to the contract path and the backlog path.",
+          "Tool-first bet: Philippe should choose the platform with the most fields before discussing cadence."
+        ],
+        "correctIndex": 1,
+        "explanation": "Hybrid work may need different levels of rigor in the same project. Tailoring protects supplier control and fast backlog learning from being forced into one cadence.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch24.fact.5",
+        "prompt": "Which note in Arjun's steering memo should worry the sponsor most?",
+        "choices": [
+          "Artifact-pile warning: Arjun proposes three new logs without naming the decision each log improves.",
+          "Outcome-signal note: Arjun asks which approval path blocks the next useful work step.",
+          "Knowledge-flow note: Arjun links repeated supplier questions to a missing handoff record."
+        ],
+        "correctIndex": 0,
+        "explanation": "Artifacts help only when they improve decisions, coordination, control, or learning. New logs without a purpose can add work while the system stays stuck.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch24.fact.1",
+        "prompt": "Procurement opens smoothly, then a stakeholder objection changes the work path after testing begins. How should Mathilde read the domain timing?",
+        "choices": [
+          "Phase-finish reading: Mathilde should close Project Work attention once the work package starts.",
+          "Continuous-domain move: Mathilde should keep reading Project Work as active while responses change.",
+          "Late-risk bet: Mathilde should move the issue entirely to Uncertainty and stop checking flow."
+        ],
+        "correctIndex": 1,
+        "explanation": "Performance domains remain active as information changes. A stakeholder objection can reshape work flow after testing starts, so the domain cannot be closed like a phase.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch24.fact.7",
+        "prompt": "Philippe teaches a new PMO analyst that the PMBOK Guide has 8 domains. Which explanation avoids the common sequence error?",
+        "choices": [
+          "Checklist reading: Philippe presents the 8 domains as a required order for every project review.",
+          "Side-topic bet: Philippe treats Project Work as optional when the delivery plan is detailed.",
+          "System-map move: Philippe shows the domains as concurrent areas that affect one another."
+        ],
+        "correctIndex": 2,
+        "explanation": "The eight domains organize integrated performance. Treating them as a strict order, or making Project Work optional, misses the system view.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch24.fact.6",
+        "prompt": "You see a team finish many tasks while operations rejects the output for missing access instructions. What should Aurora connect?",
+        "choices": [
+          "Value-link move: Aurora connects domain health to accepted outcomes, not just finished tasks.",
+          "Completion-count reading: Aurora reports the task finish rate because operations can adapt later.",
+          "Ownership-shift bet: Aurora moves the issue to operations so project work remains complete."
+        ],
+        "correctIndex": 0,
+        "explanation": "Project work supports value only when outputs become accepted outcomes and benefits. Finished tasks do not compensate for a handoff that prevents use.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch24.fact.7",
+      "front": "What makes Project Work one of the PMBOK Guide's main performance domains rather than an optional side topic?",
+      "back": "The PMBOK Guide uses performance domains as core areas of attention. Project Work belongs in that map because flow, coordination, procurement, resources, knowledge, and control shape whether the project can deliver value.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch24.fact.8",
+      "front": "How can work flow and procurement signals reveal Project Work health before the schedule slips?",
+      "back": "They show whether useful work can actually pass through the system. A stalled approval, supplier delay, missing resource, or repeated knowledge question may expose weak performance while dates still look recoverable.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch24.fact.9",
+      "front": "Why is activity volume weak evidence for Project Work performance?",
+      "back": "A team can complete many coordination tasks while the work system still blocks value. Domain health depends on outcomes and signals: flow, support, decisions, learning, and fit for the project context.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch24.fact.6",
+      "front": "How does Focus on Value change a Project Work review?",
+      "back": "It makes the review ask whether project work helps outputs become accepted outcomes and benefits. Finished tasks count only when the work system supports use, adoption, handoff, and value.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch24.fact.4",
+      "front": "What does Tailor Based on Context prevent when work flow stalls?",
+      "back": "It prevents copying one practice into every setting. Predictive work may need formal controls, adaptive work may need faster feedback, and hybrid work may need both in different parts of the same project.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch24.ex.domain-24-eight",
+      "front": "Which 8 domains surround Project Work in the PMBOK Guide map?",
+      "back": "The PMBOK Guide names Stakeholders and Team first in the map. It also names Development Approach and Life Cycle, Planning, Project Work, Delivery, Measurement, and Uncertainty. Project Work Performance Domain is read with the other domains, not apart from them.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card07",
+      "sourceAnchorId": "ch24.ex.domain-24-artifact",
+      "front": "What should a team ask when resources, knowledge, and procurement do not line up?",
+      "back": "Ask what is blocking work flow and what signal proves it. Procurement, resources, and knowledge are not side details; they show whether Project Work needs adjustment before delivery suffers.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Trace the Work Signals",
+    "coreSkill": "Practice tracing the signal behind a stalled work item. Use Trace the Work Signals to ask what is blocking flow, procurement or approvals, resources, knowledge, and the next value-producing step. The skill is not more reporting; it is changing the work system from evidence.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch24.fact.8",
+        "context": "When a work item waits while everyone reports task progress",
+        "plan": "If a card stalls, then run Trace the Work Signals and name the missing flow, approval, resource, or knowledge handoff before adding tasks."
+      },
+      {
+        "sourceAnchorId": "ch24.fact.4",
+        "context": "When one routine is proposed for both contracts and daily backlog flow",
+        "plan": "If one routine is stretched across unlike work, then use Trace the Work Signals to choose the formality and feedback each path needs."
+      },
+      {
+        "sourceAnchorId": "ch24.fact.5",
+        "context": "When someone asks for another log, form, or status field",
+        "plan": "If an artifact is proposed, then ask which decision, coordination need, control, or learning loop it improves before accepting the extra work."
+      },
+      {
+        "sourceAnchorId": "ch24.fact.6",
+        "context": "When tasks finish but the receiving group cannot use the output",
+        "plan": "If completion does not become use, then trace the value handoff and adjust the work signal that blocked acceptance."
+      }
+    ],
+    "twentyFourHourChallenge": "For the next 24 hours, pick one active deliverable and run Trace the Work Signals once. Record the strongest signal, the adjustment made, and the evidence you will check tomorrow.",
+    "weeklyPractice": "At the end of each workday for one week, review one stalled item through flow, procurement, resources, and knowledge. Track which signal repeats and change one routine that feeds it."
+  },
+  "memorableLines": [
+    {
+      "text": "Busy is not the same as healthy.",
+      "location": "breakdown.fastRead",
+      "why": "It separates activity volume from domain outcomes in plain language."
+    },
+    {
+      "text": "A domain review earns its name when it changes the work, not when it names the box.",
+      "location": "breakdown.deepRead",
+      "why": "It makes the performance-domain lens practical instead of decorative."
+    },
+    {
+      "text": "Project work is healthy when useful work can move with enough control, support, and learning.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the chapter's health test into one usable sentence."
+    }
+  ]
+}

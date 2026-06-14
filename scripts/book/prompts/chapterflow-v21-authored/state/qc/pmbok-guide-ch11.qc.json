@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 11,
+  "chapterId": "pmbok-guide-ch11",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "3c2b7ab80773bbeb",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:55:52.452Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "91/100, read full ch11, quiz keys matched systems-interactions logic, repeated protagonist and BP15 advisories reviewed as not corruption, examples coherent, cards and plan actionable"
+}

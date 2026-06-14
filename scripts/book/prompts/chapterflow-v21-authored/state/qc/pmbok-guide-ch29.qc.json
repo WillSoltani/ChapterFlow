@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 29,
+  "chapterId": "pmbok-guide-ch29",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "0bb0d3311240da6b",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:56:31.845Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "91/100, read full ch29, quiz keys matched Tuckman Cynefin communication and change-model distinctions, repeated-name and prose advisories reviewed as not corruption, cards and plan actionable"
+}

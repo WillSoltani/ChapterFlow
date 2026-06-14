@@ -1,7 +1,7 @@
 {
   "schemaVersion": "shape-plan-v1",
   "bookId": "the-book-of-boundaries",
-  "createdAt": "2026-06-11T23:34:22.258Z",
+  "createdAt": "2026-06-12T19:15:16.273Z",
   "perChapter": 6,
   "allocation": {
     "1": [
@@ -99,6 +99,14 @@
       "dilemma",
       "dialogue",
       "predict_reveal"
+    ],
+    "13": [
+      "reset_moment",
+      "vignette",
+      "postmortem",
+      "mistake_recovery",
+      "decision_memo",
+      "contrast"
     ]
   },
   "carriedChapters": []

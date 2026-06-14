@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getUserSnapshot, getUserEvents } from "@/app/app/api/book/_lib/admin-metrics";
 import {
   getUserEntitlement,
   getUserProfileItem,
@@ -37,7 +38,21 @@ type ExportData = {
   flowPoints: { balance: number; ledger: Array<Record<string, unknown>> };
   consent: { termsAcceptedAt: string | null; termsVersion: string | null };
   analyticsAndLocation: string;
+  analytics: {
+    snapshot: Record<string, unknown> | null;
+    recentEvents: Array<Record<string, unknown>>;
+  };
 };
+
+/** Strip internal key/index attributes from an analytics-table item. */
+function cleanAnalyticsItem(item: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(item)) {
+    if (k === "PK" || k === "SK" || k.startsWith("GSI")) continue;
+    out[k] = v;
+  }
+  return out;
+}
 
 /**
  * GET /app/api/book/me/export?format=json|csv|markdown
@@ -50,6 +65,7 @@ export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireUser();
     const tableName = await getBookTableName();
+    const analyticsTable = await getBookAnalyticsTableName();
 
     const url = new URL(req.url);
     const format = url.searchParams.get("format") || "json";
@@ -70,6 +86,8 @@ export async function GET(req: Request) {
       badges,
       flowPointsState,
       flowPointsLedger,
+      analyticsSnapshot,
+      analyticsEvents,
     ] = await Promise.all([
       getUserProfileItem(tableName, user.sub).catch(() => null),
       getUserSettingsItem(tableName, user.sub).catch(() => null),
@@ -82,6 +100,12 @@ export async function GET(req: Request) {
       listBadgeAwards(tableName, user.sub).catch(() => []),
       getUserFlowPointsState(tableName, user.sub).catch(() => ({ points: 0 })),
       listRecentFlowPointsLedger(tableName, user.sub).catch(() => []),
+      analyticsTable
+        ? getUserSnapshot(analyticsTable, user.sub).catch(() => null)
+        : Promise.resolve(null),
+      analyticsTable
+        ? getUserEvents(analyticsTable, user.sub, 200).catch(() => [])
+        : Promise.resolve([] as Record<string, unknown>[]),
     ]);
 
     // Respect saveReadingHistory privacy preference
@@ -168,6 +192,12 @@ export async function GET(req: Request) {
           sourceId: l.sourceId,
           createdAt: l.createdAt,
         })),
+      },
+      // Analytics-table data we hold about you (snapshot incl. approximate
+      // location/device + recent events) — included for a complete access copy.
+      analytics: {
+        snapshot: analyticsSnapshot ? cleanAnalyticsItem(analyticsSnapshot) : null,
+        recentEvents: analyticsEvents.map(cleanAnalyticsItem),
       },
     };
 
@@ -430,6 +460,21 @@ function exportToMarkdown(data: ExportData): string {
       lines.push(`| ${l.direction} | ${l.amount} | ${l.sourceType} | ${l.createdAt} |`);
     }
     lines.push("");
+  }
+
+  // Analytics data we hold (snapshot + recent events)
+  if (data.analytics.snapshot || data.analytics.recentEvents.length > 0) {
+    lines.push("## Usage Analytics", "");
+    if (data.analytics.snapshot) {
+      lines.push("**Profile snapshot** (includes approximate location and device, where available):", "");
+      for (const [k, v] of Object.entries(data.analytics.snapshot)) {
+        if (v != null && typeof v !== "object") lines.push(`- **${k}:** ${v}`);
+      }
+      lines.push("");
+    }
+    if (data.analytics.recentEvents.length > 0) {
+      lines.push(`**Recent events:** ${data.analytics.recentEvents.length} (most recent first)`, "");
+    }
   }
 
   return lines.join("\n");

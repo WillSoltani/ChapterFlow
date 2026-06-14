@@ -1,0 +1,350 @@
+{
+  "chapterId": "pmbok-guide-ch05",
+  "number": 5,
+  "title": "The Project Environment",
+  "readingTimeMinutes": 12,
+  "hook": "The project room was empty; a new regulatory update rested on the approved plan.",
+  "counterintuition": "A stable method can become unsafe when conditions move. The plan is never smarter than the culture, regulation, technology, and assets around it.",
+  "tryThisNow": "Place a 20-minute environment scan on next workday's calendar for 9:10 in the project room; trigger it by opening the risk log and latest external notice.",
+  "keyTakeaway": "Use context as live project data: scan internal culture and assets before checking regulation, technology, and markets, then choose practices that fit the work now.",
+  "breakdown": {
+    "fastRead": "The project room is empty after Octave approves the rollout plan. On the table, a regulatory update sits on the signed schedule. The old template waits underneath it.\n\nThe scene shows the rule. Enterprise environmental factors set constraints around the work.\n\nOrganizational process assets can help. Templates and lessons learned are supports, not automatic answers.\n\nA plan is only current inside a current environment.",
+    "deepRead": "Lucie catches the mechanism by sorting the evidence before anyone edits the schedule. One pile constrains the project: governance rules, available skills, market pressure, a cybersecurity requirement, and a regulatory update. Another pile supports the project: templates, lessons learned, historical estimates, and decision records.\n\nThose piles should not be treated alike.\n\nEnterprise environmental factors tell the team what world the project has to survive in. They can limit choices, raise risk, slow approval, or make a practice useful. Organizational process assets are different. They are memory and reusable support. They reduce starting-from-zero effort, but they still need to be fitted to the actual project.\n\nGiulia finds the same problem in the PMO archive. The old lessons learned file warns that a distributed supplier handoff failed when nobody owned the escalation path. The template beside it still assumes a co-located team. If Giulia copies the template unchanged, she preserves the wrong assumption. If she reads the asset against the current environment, she can keep the useful handoff prompts and add the missing supplier trigger.\n\nReusable assets are supports, not handcuffs.\n\nThat distinction changes practice selection. The same status cadence can create control in a regulated, distributed project and waste attention in a small exploratory effort. Context does not excuse sloppy work. It tells disciplined people which kind of discipline the work needs now.",
+    "fullRead": "Ren expects the technology shift to make the project easier. A new platform capability has arrived early, and the demo looks clean. The first guess in the room is obvious: adopt it, cut custom work, and recover two weeks.\n\nThe reveal is quieter. The platform capability solves a build problem while creating a cybersecurity review the original plan never priced. It also changes stakeholder expectations. Once people see the new path, they stop accepting the older delivery promise as valuable. The environment did not simply add a tool. It changed risk, value, and the conversation about what good delivery means.\n\nContext is not scenery; it is operating data.\n\nInventory language can fool a team here. Culture, structure, governance, resources, regulation, market conditions, technology, suppliers, and social expectations all belong on the list, but a list is useful only if it keeps changing decisions. When supply conditions tighten, Marguerite may need a different procurement rhythm. When a regulatory update changes evidence requirements, Lucie may need earlier compliance reviews. When organizational culture punishes bad news, Leon may need escalation paths that protect transparency instead of merely requesting it.\n\nThe limit matters too. Context awareness is not permission to customize everything until no one can recognize the work. Some constraints are real. A mandated security control is not optional because the team prefers speed. A useful template should not be discarded just because it came from the PMO. The work is to tell the difference between a constraint that must be honored, an asset that can be adapted, and a habit that has outlived its setting.\n\nLucas sees this during a distributed launch review. The project has capable specialists, but they are split across time zones, vendors, and approval systems. A daily meeting copied from a co-located product team would drain attention. A monthly steering review copied from a capital program would hide issues too long. The environment asks for a smaller set of explicit handoffs, a written decision log, and faster triggers for vendor or security changes.\n\nEnvironmental scanning therefore continues during delivery. Markets move. Technology changes. Stakeholders learn. Regulations update. Supply networks wobble. Internal culture shapes whether anyone admits the plan no longer fits. The project environment is the evidence around the project, and evidence that is not revisited becomes decoration.\n\nThe reader's move is simple: before importing a practice, ask what current condition makes it necessary, excessive, or dangerous. Then check whether an organizational process asset can help without smuggling in an old assumption. That question keeps PMBOK guidance practical. It turns context from a background paragraph into a live control on tailoring, risk, stakeholder engagement, and measurement."
+  },
+  "examples": [
+    {
+      "exampleId": "ch05-ex01-octave-inner-scan",
+      "sourceAnchorId": "ch05.ex.eef-opa",
+      "title": "Octave Reopens the Old Template",
+      "tags": [
+        "inner_monologue",
+        "templates",
+        "lessons"
+      ],
+      "planSpec": {
+        "domain": "distributed rollout using PMO records",
+        "audience": "project leads tempted to copy a familiar plan",
+        "stakes": "an old template may hide a supplier handoff risk",
+        "format": "inner_monologue",
+        "requiredBeat": "Octave works through the urge to copy the asset and then tests it against current enterprise conditions."
+      },
+      "scenario": "At his desk, Octave keeps writing the easy answer in the margin: use the approved template. Then the second thought arrives. The enterprise environmental factors have changed, and the lessons learned file says the last distributed rollout failed at supplier handoffs. The question is which page earns the morning: the organizational process assets that save time, or the current constraints that may make the old form mislead him.",
+      "whatToDo": "Octave marks the template as a starting aid, then checks each section against the current supplier, governance, and location constraints before planning work from it.",
+      "whyItMatters": "The move preserves the value of organizational memory without letting yesterday's assumptions become today's project controls."
+    },
+    {
+      "exampleId": "ch05-ex02-lucie-scarce-attention",
+      "sourceAnchorId": "ch05.ex.regulation-and-technology",
+      "title": "Lucie's Ninety-Minute Allocation",
+      "tags": [
+        "planning_choice",
+        "regulation",
+        "cybersecurity"
+      ],
+      "planSpec": {
+        "domain": "compliance and platform planning before work starts",
+        "audience": "analysts allocating limited review time",
+        "stakes": "three external signals compete for one planning block",
+        "format": "planning_choice",
+        "requiredBeat": "Lucie allocates scarce attention among a regulatory update, cybersecurity review, and platform capability assessment before anyone executes."
+      },
+      "scenario": "Before the planning block starts, Lucie has ninety minutes and three signals on the board: a regulatory update, a cybersecurity requirement, and a new platform capability. No work has begun. She must pick the order of attention, knowing that each neglected signal can change feasibility. The planning choice is the whole event: spend scarce review time where the environment can most quickly rewrite risk.",
+      "whatToDo": "Lucie reserves the first review for the regulatory and cybersecurity changes, then gives the platform note a shorter feasibility check instead of treating all signals as equal.",
+      "whyItMatters": "Environmental scanning competes for attention. The strongest plan spends that attention where external change can most quickly alter permission, risk, or value."
+    },
+    {
+      "exampleId": "ch05-ex03-ren-release-dilemma",
+      "sourceAnchorId": "ch05.ex.regulation-and-technology",
+      "title": "Ren at the Freeze Gate",
+      "tags": [
+        "dilemma",
+        "release",
+        "external"
+      ],
+      "planSpec": {
+        "domain": "software release affected by compliance change",
+        "audience": "technical leads managing delivery pressure",
+        "stakes": "both release choices carry visible harm",
+        "format": "dilemma",
+        "requiredBeat": "Ren faces two bad options after a regulatory update changes cybersecurity evidence for the release."
+      },
+      "scenario": "Minutes before the release freeze in the control room, Ren has a regulatory update in one tab and the cybersecurity evidence package in another. The platform is stable, but the evidence no longer matches the new rule. Ren must decide between freezing the release and angering stakeholders, or shipping on time with compliance risk already visible. The environment has made yesterday's safe path unsafe.",
+      "whatToDo": "Ren freezes the release long enough to update the evidence package and tells stakeholders which external rule changed the risk profile.",
+      "whyItMatters": "The point is not caution for its own sake. A changed environment can turn an approved plan into a risk the team can already see."
+    },
+    {
+      "exampleId": "ch05-ex04-leon-giulia-dialogue",
+      "sourceAnchorId": "ch05.ex.eef-opa",
+      "title": "Leon and Giulia Trade the Template",
+      "tags": [
+        "dialogue",
+        "PMO",
+        "assets"
+      ],
+      "planSpec": {
+        "domain": "PMO review of reusable project material",
+        "audience": "sponsors and PMO leads deciding how much process to reuse",
+        "stakes": "a helpful archive may become rigid copying",
+        "format": "dialogue",
+        "requiredBeat": "Leon and Giulia separate enterprise environmental factors from organizational process assets in conversation."
+      },
+      "scenario": "In the conference room, Leon points to the approved template on the whiteboard.\nLeon: \"Why not use it?\"\nGiulia: \"Use it, yes. Copy it, no.\"\nLeon: \"What changes?\"\nGiulia: \"Enterprise environmental factors: distributed vendors, stricter governance, new market pressure.\"\nLeon: \"The question is how much trust it gets today.\"\nGiulia: \"Organizational process assets. The lessons learned and templates help us ask better questions.\"",
+      "whatToDo": "Giulia keeps the template in play, but she makes Leon name which current constraints it must be tested against before it becomes the project plan.",
+      "whyItMatters": "The exchange protects both sides of the distinction: environmental factors shape the work, while assets support judgment instead of replacing it."
+    },
+    {
+      "exampleId": "ch05-ex05-marguerite-supplier-reveal",
+      "sourceAnchorId": "ch05.ex.regulation-and-technology",
+      "title": "Marguerite's Supplier Surprise",
+      "tags": [
+        "predict_reveal",
+        "supply",
+        "platform"
+      ],
+      "planSpec": {
+        "domain": "procurement review after a promising technology update",
+        "audience": "procurement leads checking feasibility assumptions",
+        "stakes": "a platform shortcut appears to save time but creates a supplier exposure",
+        "format": "predict_reveal",
+        "requiredBeat": "Marguerite expects the new platform capability to reduce work, then discovers a supply disruption that changes feasibility."
+      },
+      "scenario": "The prediction is cheerful: the new platform capability should cut custom build time. Marguerite writes the saved weeks on the whiteboard before the next vendor call. The reveal arrives in the supplier notice. A supply disruption has delayed the certified component the platform depends on. The shortcut is real, but its value now depends on a constraint the plan had not been measuring.",
+      "whatToDo": "Marguerite keeps the platform option open, then adds supplier certification lead time to the risk review before anyone spends the saved weeks.",
+      "whyItMatters": "External change can improve one part of the project while weakening another. The environment must be read as a system, not as isolated good news."
+    },
+    {
+      "exampleId": "ch05-ex06-lucas-thread-scan",
+      "sourceAnchorId": "ch05.ex.regulation-and-technology",
+      "title": "Lucas in the Chat Window",
+      "tags": [
+        "text_thread",
+        "delivery",
+        "scan"
+      ],
+      "planSpec": {
+        "domain": "team chat during delivery",
+        "audience": "distributed teams catching environmental shifts midstream",
+        "stakes": "short messages must surface an external change before a routine meeting locks the wrong agenda",
+        "format": "text_thread",
+        "requiredBeat": "Lucas uses a short message exchange to turn supply disruption and platform capability signals into a live agenda change."
+      },
+      "scenario": "Lucas: Supplier note just changed lead time.\nRen: Same day as the platform capability patch?\nLucas: Yes. Also a cybersecurity question from review.\nRen: Standup agenda still says build tasks.\nLucas: Before the next sync, I am moving supply disruption, platform capability, and cybersecurity above task status.\nRen: Good. The plan can wait behind the environment.",
+      "whatToDo": "Lucas changes the meeting agenda before the sync starts, putting the new supply, platform, and cybersecurity signals ahead of routine task reporting.",
+      "whyItMatters": "Short updates can keep environmental scanning alive during delivery. The team does not need a ceremony before admitting the context has shifted."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch05.fact.1",
+        "prompt": "A handoff log on Octave's rollout shows four missed approvals in six days, all after schedule changes crossed time zones. What should Octave infer first?",
+        "choices": [
+          "The Process Laziness misconception: the team simply needs stricter reminders to follow the same approval steps.",
+          "The Internal Context read: geography, governance, and resource structure may be shaping how decisions actually move.",
+          "The Tool Upgrade misconception: a new dashboard will solve the misses without changing authority or timing."
+        ],
+        "correctIndex": 1,
+        "explanation": "The pattern points to internal conditions, not just weak effort. Geography and governance can change how quickly approvals, decisions, and support actually travel.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch05.ex.regulation-and-technology",
+        "prompt": "Lucie's risk notes show a regulatory update on Monday and a cybersecurity finding on Tuesday, both after baseline approval. Which first response fits the environment lesson?",
+        "choices": [
+          "Run a fresh context check and update the risk and stakeholder conversations around the regulatory update and cybersecurity finding.",
+          "The Business-Case Freeze misconception: leave the baseline alone because external context was already reviewed at approval.",
+          "The Scope Purity misconception: refuse to discuss regulation or cybersecurity until a formal scope change is requested."
+        ],
+        "correctIndex": 0,
+        "explanation": "The update and finding are live external conditions. Treating approval as a seal would make the plan fit old evidence instead of current risk.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch05.ex.eef-opa",
+        "prompt": "Giulia inherits PMO templates and a lessons learned file, while enterprise environmental factors now include stricter vendor governance. What should she do with the assets?",
+        "choices": [
+          "The Copy-Forward misconception: use the templates unchanged because approved organizational process assets outrank local conditions.",
+          "The Archive Rejection misconception: discard lessons learned because the current project has different suppliers.",
+          "Use the templates and lessons learned as supports, then tailor them against the current governance and supplier context."
+        ],
+        "correctIndex": 2,
+        "explanation": "Organizational process assets help the team avoid starting from zero, but enterprise environmental factors decide what must be adapted.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch05.fact.7",
+        "prompt": "Ren's team is distributed, the supplier is outsourced, and the platform has changed its release model. Which communication choice best follows from those conditions?",
+        "choices": [
+          "The Method Independence misconception: keep the same ceremony set because the delivery method was already chosen.",
+          "The Meeting Volume misconception: add daily meetings for everyone, regardless of time zone cost or decision need.",
+          "Adjust handoffs, written decisions, and review timing so the chosen practices fit the real constraints and supports."
+        ],
+        "correctIndex": 2,
+        "explanation": "Practice selection depends on the environment. More ceremony and method loyalty both miss how constraints and reusable supports shape feasible work.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch05.fact.5",
+        "prompt": "A dashboard shows that issues from Leon's group are reported an average of nine days late, but only after leadership reviews. What should Leon examine before redesigning the form?",
+        "choices": [
+          "The Form-Only misconception: late issue reports prove the reporting template needs more required fields.",
+          "Whether hierarchy, blame, or escalation norms are making people wait before sharing bad news.",
+          "The Training Deficit misconception: require another tool class before asking about culture or transparency."
+        ],
+        "correctIndex": 1,
+        "explanation": "Culture affects transparency. A better form cannot fix a setting where people believe early escalation will be punished or ignored.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch05.ex.eef-opa",
+        "prompt": "The PMO sends Lucas a template and lessons learned from a past launch, but the new project has a different market window. Which move avoids the reusable-asset trap?",
+        "choices": [
+          "Compare the template and lessons learned against current enterprise environmental factors before adopting them.",
+          "The Asset Worship misconception: treat organizational process assets as proof that the old launch pattern is already right.",
+          "The Novelty Bias misconception: ignore the archive because the market window has changed."
+        ],
+        "correctIndex": 0,
+        "explanation": "Templates and lessons learned are useful only when tested against current conditions. The asset should inform the plan, not impersonate the plan.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch05.fact.6",
+        "prompt": "During a steering review, Marguerite closes the context log after initiation and says no one should revisit market, supplier, or stakeholder signals unless scope changes. Which belief is she showing?",
+        "choices": [
+          "We will revisit market, supplier, and stakeholder signals during delivery reviews.",
+          "The One-Time Inventory misconception: we listed the environment during initiation, so context work is complete.",
+          "We should update measurements when conditions change what stakeholders value."
+        ],
+        "correctIndex": 1,
+        "explanation": "The stem asks for the shallow reading. Treating context assessment as finished at initiation is exactly what ongoing environmental scanning corrects.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch05.ex.regulation-and-technology",
+        "prompt": "A supplier message reaches Lucie during delivery: a supply disruption affects a component tied to a recent regulatory update. What should happen next?",
+        "choices": [
+          "The Original Promise misconception: protect the approved schedule because supplier events belong outside project management.",
+          "The Procurement Silo misconception: let purchasing handle the disruption without changing risk, value, or stakeholder communication.",
+          "Refresh the risk read and stakeholder expectations, since the supply disruption and regulatory update may change feasible delivery."
+        ],
+        "correctIndex": 2,
+        "explanation": "Supply and regulation are external conditions that can change constraints after work begins. Keeping them outside the project read hides real feasibility changes.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch05.fact.9",
+        "prompt": "A method that reduced confusion for Giulia's regulated vendor project slows Lucas's small exploratory build. Which inference is most defensible?",
+        "choices": [
+          "The Context Fit inference: the same practice can create control in one environment and waste in another.",
+          "The Best-Practice Absolutism misconception: a proven method should work the same way wherever it is installed.",
+          "The Anti-Process misconception: if a practice feels heavy once, disciplined project management is the problem."
+        ],
+        "correctIndex": 0,
+        "explanation": "The contrast is the point. Practice value changes with regulation, stakeholder needs, available skills, and the cost of feedback.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch05.fact.3",
+      "front": "How do enterprise environmental factors affect the practices a team can realistically use?",
+      "back": "They shape what is possible or costly: tools, governance, labor markets, stakeholder norms, infrastructure, and standards can enable a practice or make it unworkable.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch05.fact.4",
+      "front": "What should you remember when a template or lessons learned file looks perfectly reusable?",
+      "back": "Organizational process assets save time and preserve learning, but they still need tailoring. Copying them unchanged can import assumptions from a different environment.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch05.fact.6",
+      "front": "Why should environmental scanning continue after the project begins?",
+      "back": "Regulation, technology, supply conditions, markets, and stakeholder expectations can change during delivery. A stale context read can make the plan fit yesterday's conditions.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch05.fact.8",
+      "front": "Earlier concept: value creation. How does environment scanning protect outputs, outcomes, and benefits?",
+      "back": "It keeps the team checking whether current conditions still support the intended outcome and benefit. A delivered output can lose value when regulation, technology, or stakeholder needs shift.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch05.fact.5",
+      "front": "Earlier concept: governance for value delivery. Why can escalation paths fail without culture awareness?",
+      "back": "A written escalation path works only if people believe bad news can travel safely. In blame-oriented or rigid cultures, teams may hide risks until governance receives stale information.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Check Environment Before Practice",
+    "coreSkill": "Practice reading the environment before importing a project practice. Check Environment Before Practice by asking what current condition makes the practice necessary, excessive, or risky. Then check whether an organizational process asset can help without carrying an old assumption into the work.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch05.fact.6",
+        "context": "A new external notice arrives after the baseline is approved",
+        "plan": "If regulation, technology, supply, or market news arrives during delivery, then Check Environment Before Practice before the next status review and update one risk, stakeholder, or measurement item."
+      },
+      {
+        "sourceAnchorId": "ch05.fact.4",
+        "context": "A familiar template is about to become the plan",
+        "plan": "If a reusable asset feels ready to copy, then Check Environment Before Practice by naming its hidden assumptions before assigning work from it."
+      },
+      {
+        "sourceAnchorId": "ch05.fact.5",
+        "context": "Bad news reaches governance late",
+        "plan": "If issue reports arrive only after leadership pressure, then Check Environment Before Practice by reading culture and escalation norms before redesigning the form."
+      },
+      {
+        "sourceAnchorId": "ch05.fact.9",
+        "context": "A best practice feels heavy or weak in this project",
+        "plan": "If a respected practice does not fit, then Check Environment Before Practice and name which condition changes its cost, value, or risk."
+      }
+    ],
+    "twentyFourHourChallenge": "Check Environment Before Practice on one current routine. Record three current factors, one reusable asset, and one change you will make before the next review.",
+    "weeklyPractice": "For one week, spend ten minutes before each review updating a context log: one internal factor, one external factor, one asset to reuse, and one practice to tailor."
+  },
+  "memorableLines": [
+    {
+      "text": "A plan is only current inside a current environment.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the chapter's warning against treating approval as permanence."
+    },
+    {
+      "text": "Reusable assets are supports, not handcuffs.",
+      "location": "breakdown.deepRead",
+      "why": "It gives readers a quick distinction between help from the archive and blind copying."
+    },
+    {
+      "text": "Context is not scenery; it is operating data.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the environment from background description into something the team must read."
+    }
+  ]
+}

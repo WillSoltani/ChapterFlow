@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch20",
+  "number": 20,
+  "title": "All Is One",
+  "coreMove": "Treat every choice as part of a wider system: notice where it will travel, make the smallest clean move, and let connection raise your care for the whole.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software release rollback",
+      "audience": "people tempted to save tiny errors for later",
+      "stakes": "show how small starts move through connected systems",
+      "format": "contrast",
+      "requiredBeat": "Rhea fixes the early regression before the next release inherits it"
+    },
+    {
+      "domain": "neighborhood power outage response",
+      "audience": "people who want to blame the last visible person in a chain",
+      "stakes": "turn a slight into a moving consequence",
+      "format": "coach_talk",
+      "requiredBeat": "Marta maps the outage handoffs before passing heat along"
+    },
+    {
+      "domain": "watershed cleanup route",
+      "audience": "learners who need to see initial conditions in motion",
+      "stakes": "use a small physical change to teach downstream effects",
+      "format": "school_case",
+      "requiredBeat": "Dion changes one sandbag and sees the runoff pattern move"
+    },
+    {
+      "domain": "shared compost pickup route",
+      "audience": "people who overlook system design in ordinary waste",
+      "stakes": "show one placement rule changing what households do next",
+      "format": "before_after",
+      "requiredBeat": "Jin changes the first contact point and checks whether the effect travels"
+    },
+    {
+      "domain": "wedding seating chain",
+      "audience": "people tempted to shrink accountability to one visible mistake",
+      "stakes": "protect the person and the whole chain at once",
+      "format": "audit",
+      "requiredBeat": "Eliza reviews the whole reception chain instead of scapegoating one usher"
+    },
+    {
+      "domain": "food allergy prep protocol",
+      "audience": "people tempted by a private shortcut in a shared system",
+      "stakes": "make one small unchecked start visible as someone else's risk",
+      "format": "inner_monologue",
+      "requiredBeat": "Noor catches the unchecked allergy card before the meal inherits it"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 4,
+      "analyze": 1,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-12T17:37:06.492Z"
+}

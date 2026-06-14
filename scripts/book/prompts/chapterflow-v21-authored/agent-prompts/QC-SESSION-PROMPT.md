@@ -10,6 +10,28 @@ other instruction, follow this prompt.
 
 ---
 
+## 0a. WHO MAY RUN THIS — independence rule (Claude OR Codex)
+
+This protocol is **reader-agnostic**: a Claude session or a Codex session may
+run it — every judgment is anchored to tooling (`quiz-blind`/`quiz-verify`,
+`qc-verdict`, `qc-attest`) and the rubric, not to a particular model. Two
+hard conditions:
+
+1. **You must be a FRESH session with NO authoring context for this book.**
+   If your session (or its conversation lineage) wrote, fixed, or remediated
+   ANY chapter of this book, you are the author — stop; authors never grade
+   their own work. (This is the self-attest trap that shipped corrupted
+   redos: the author-session always believes its own fixes.)
+2. **Identify your reader in the attestation**: `--reviewer claude-qc:<bookId>-<date>`
+   or `--reviewer codex-qc:<bookId>-<date>`. Reader identity is part of the
+   audit trail; the operator periodically spot-checks a sample of each
+   reader's attestations.
+
+Batching: for books over ~10 chapters, run multiple sessions
+(`--chapters`-style splits), but the TEMPLATING SWEEP (§2.0) must always
+cover ALL chapters of the book — a batched sweep is blind to cross-batch
+reuse and has produced a false PUBLISHABLE before.
+
 ## 0. THE GOLDEN RULE (read this first)
 
 **A GREEN gate is necessary but NOT sufficient. The deterministic gates check
@@ -28,16 +50,81 @@ read raw content, you did not do QC.
 
 ---
 
+## 0b. COMPLETE THE BOOK — one defect is a finding, not a stopping point
+
+The ONLY legitimate early exit is the systemic-templating exit in §2.0.
+Otherwise you read EVERY chapter in your assigned range, score every axis,
+attest every chapter you fully read, and report everything AT THE END.
+
+- Finding a defect mid-chapter: record it (verbatim quote + unitId) and KEEP
+  READING. A reviewer who stops at the first issue has produced one bug
+  report, not a QC verdict — the author then fixes one thing, you re-run, you
+  find the next thing, and a 9-chapter book takes nine sessions.
+- If your session is running out of room: attest the chapters you fully read,
+  then end your report with `NEEDS-CONTINUATION: chapters <list>` so the next
+  session knows where to pick up.
+- RESUME PROTOCOL: every session starts with
+  `npx tsx src/cli.ts qc-status <bookId>` — chapters already attested FRESH
+  by this round's reviewer can be skipped; start from the first chapter that
+  is unattested or STALE.
+
 ## 1. Setup
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored
+cd /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored
 node --version            # need >= 18
-npx tsx src/cli.ts book-gate start-with-why   # calibration: must print "Book gate: PASS (start-with-why, 14 chapters)"
+npx tsx src/cli.ts book-gate daring-greatly   # instrument check: should print "Book gate: PASS (daring-greatly, 7 chapters)"
 ```
 
-If calibration doesn't PASS, the repo is missing patches — run `git pull origin main` and retry.
+The instrument check is NON-BLOCKING: if it fails, write one line in your
+final report ("instrument check failed: <message>") and PROCEED with the book
+under QC. Do not investigate the gold book, do not read its chapters beyond
+the one calibration skim in §3, and NEVER run QC steps on it — it is a
+reference, not your subject. (A previous reviewer burned its session
+investigating start-with-why because this check used a book whose research
+run isn't on disk.)
 All `npx tsx` commands below run from this directory.
+
+### v21.1 NO-API CODEX QC MODE
+
+If the operator sets `CHAPTERFLOW_NO_API_CODEX_QC=1`, QC is round-backed and
+role-separated. The operator opens the round with:
+
+```bash
+npx tsx src/cli.ts qc-open-round <bookId>
+```
+
+Preferred no-api Codex path: use `QC-AUTO-CODEX-SESSION.md` and `qc-auto`.
+This `QC-SESSION` prompt remains the manual fallback for direct human/Codex
+review:
+
+```bash
+CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<bookId>" --pass
+```
+
+Use only the token for your assigned role. Writers cannot QC; QC readers cannot
+edit chapters; key readers use only blind packs and source facts.
+
+Required no-api artifacts:
+- `source-v2-gate <bookId>` must pass before authoring prompts print.
+- `sweep-pack <bookId> --round <roundId>` then `sweep-attest ... --token <sweep-token> --verdict PASS --findings-file <path>`.
+  The findings file must include `checkedFamilies` with all four sweep families
+  (`scene_skeleton`, `persona_drift`, `repeated_unit`, `location_stamping`) and
+  `findings` (use `[]` when clean).
+- `key-pack <bookId> --round <roundId>`, two independent `key-derive` runs
+  (`keyA`, `keyB`), then `key-resolve`.
+- For the publishable-bar read, prefer full-book batching on large books:
+  `bar-pack <bookId> --round <roundId>` writes `bar-pack.json` plus
+  `bar-scores.template.json`; fill every axis for every chapter, then run
+  `bar-attest <bookId> --round <roundId> --token <bar|attest|confirm-token>
+  --scores-file <filled-template> --reviewer <id>`. Use per-chapter
+  `qc-attest ... --round <roundId> --token <bar|confirm|attest-token>` only
+  for overrides or small/manual rechecks.
+- `major-status <bookId>` must have every current major explicitly open or
+  waived with `major-disposition`; silent ignores never count as pass. New
+  dispositions must use only `open`, `waived_false_positive`, or
+  `waived_accepted_debt`. Legacy `resolved|waived` statuses may be read from old
+  waiver files but must not be newly written.
 
 Required on-disk files for book `<bookId>`:
 - `state/chapters/<bookId>-ch{NN}.v21-native.chapter.json` × N (the chapters)
@@ -51,6 +138,31 @@ If sidecars are genuinely absent (the `ls` above is empty) → source-grounding 
 against notes; grade grounding cautiously and flag it.
 
 ---
+
+## 2.0 TEMPLATING SWEEP — FIRST, before any per-chapter work
+
+Read ALL of the book's chapters in one pass looking ONLY for cross-chapter
+repetition (this is the defect class per-chapter reads structurally miss):
+
+1. **scene_skeleton** — example scenes sharing one frame across chapters,
+   even with different nouns.
+2. **persona_drift** — one name, different people across chapters (incl. a
+   source figure's first name on a fictional protagonist).
+3. **repeated_unit** — near-identical cards/plans/quiz stems/hooks/tactics/
+   marquee exemplars across chapters (an exemplar anchoring 2+ chapters with
+   date/place stamping counts).
+4. **location_stamping** — one venue stamped across many chapters.
+
+Every finding needs a verbatim quote + every chapter number involved.
+FP-guards: shared CONCEPT terms are the book's vocabulary; a consistent
+pedagogical opener with differing content is a convention.
+
+**EARLY EXIT:** if ≥3 structural families each span ≥⅓ of the chapters, the
+book is systemically templated — STOP. Report the families as the fix brief,
+attest NOTHING (per-chapter reads would just re-confirm the cap 30 times),
+and hand back to the author. Otherwise carry your findings forward: any
+chapter touched by a sweep finding caps at REVISE regardless of its
+per-chapter quality.
 
 ## 2. The QC procedure — three layers, in order
 
@@ -159,8 +271,15 @@ self-restraint:**
 ```bash
 grep -oE '"[A-Z][^"]{2,30}: [^"]*; [^"]*"|means The|Source Moment|(Reverse|Flatten|Prefer) ' state/chapters/<bookId>-ch*.v21-native.chapter.json | head
 ```
-The automated `judge-quiz-keys` runner exists but needs a funded model key; until then
-the hidden-key read IS the catch. **A `DID NOT RUN` from any model tool is never a pass.**
+**Automated path (preferred when a provider key is set):** `npx tsx src/cli.ts quiz-judge <bookId>`
+runs the model judge across every chapter (hidden-key, independent derivation), writes
+`state/qc/<bookId>-chNN.keyjudge.json`, and a flagged result **BLOCKS at promote**
+(`QC1.wrong_quiz_key`) — so the wrong-key catch no longer depends on the reviewer's honesty.
+It defaults to the `openai-api` provider (Codex's). Run it, then read its flags. Without a
+key, the manual `quiz-blind`/`quiz-verify` read above IS the catch. **A `DID NOT RUN` from
+any model tool is never a pass** — and for a single agent that both writes and QCs, set
+`CHAPTERFLOW_REQUIRE_KEYJUDGE=1` so promote refuses any chapter without a fresh clean
+`quiz-judge` result.
 
 ### Layer 3 — Source check (if you also QC Step 1)
 
@@ -197,6 +316,21 @@ company/person names, `SC9` on an already-shipped book. See QC-PLAYBOOK §4.
 
 ---
 
+## 3a-bis. Reduce scores mechanically — REQUIRED (`qc-verdict`)
+
+Never compute the verdict yourself. Score every axis 0..1 per the rubric,
+then run:
+
+```
+npx tsx src/cli.ts qc-verdict <chapterId> --scores '[{"axis":"quiz_key_correctness","score":1,"tier":"PUBLISHABLE","hits":[]}, ...all 8 axes...]'
+```
+
+It applies the REAL computeVerdict — the corruption veto and the 85/0.6
+floors are mechanical and cannot be argued with. It refuses partial reads
+(every axis must be scored). Exit code: 0 GREEN, 1 YELLOW (REVISE),
+2 RED (CORRUPTION). The verdict you attest in §3b must be the one this
+command printed.
+
 ## 3b. Record your verdict — REQUIRED (`qc-attest`)
 
 Your read does nothing until it is recorded. `promote-book` **blocks** any chapter
@@ -221,19 +355,45 @@ edits the chapter afterward, the hash no longer matches and the attestation goes
 never attest a chapter you have not actually read. Check coverage any time with
 `npx tsx src/cli.ts qc-status <bookId>` (PASS / STALE / REVISE / CORRUPTION / MISSING).
 
+**Reviewer identity matters.** Attest under an approved QC role — `claude-qc:<id>`,
+`codex-qc:<id>`, `harness:<id>`, or `human:<id>`. `promote` REFUSES a `PUBLISHABLE`
+attestation whose reviewer is the writer (e.g. `codex:writer`): a chapter cannot certify
+itself, so the QC pass must run in a session distinct from the one that wrote the chapter.
+(Override the allowed roles with `CHAPTERFLOW_QC_REVIEWERS`.)
+
 ---
 
-## 4. If RED — draft a redo prompt for Codex
+## 4. If RED or YELLOW — draft a repair prompt that CONVERGES
 
-Write it to `agent-prompts/REDO-<bookId>-<scope>.md`. It must state: exactly
-which fields change, which fields must NOT change, why the redo exists (which
-critic fired or which correctness defect you found, with verbatim broken
-examples), the per-field composition rule, and the done-condition (per-chapter
-`gate-chapter` 0 blockers + `book-gate` 0 blockers + your specific correctness
-fix verified). Use the template in QC-PLAYBOOK §6. The user hands it to Codex.
+Write it to `agent-prompts/REDO-<bookId>-<scope>.md`. The historical failure
+mode of this loop: repair prompts listed the cited quotes, the author fixed
+those exact quotes, and the chapter stayed YELLOW — because **YELLOW is a
+SCORE tier, not a bug list**. A chapter at 82/100 with weak distractors needs
+its distractor CRAFT lifted across the whole quiz, not three quoted
+distractors patched. Therefore a repair prompt must be AXIS-TARGETED:
+
+For every non-GREEN chapter, state:
+1. **The failing axes with their scores** (e.g. `quiz_distractor_quality:
+   0.55`) and the rubric text for each axis (copy it from
+   `src/critics/semantic/publishableBar.ts` AXIS_RUBRIC — it defines what
+   0.85+ looks like, including the FP-guards).
+2. **2-3 of your cited quotes per axis as EXAMPLES of the pattern** — marked
+   "examples, not the complete list: fix the PATTERN everywhere it occurs".
+3. Which fields must NOT change (quiz keys NEVER; anything scoring well).
+4. The done-condition: `gate-chapter` PASS **and** the axis pattern gone on a
+   self-read of every instance — then a FRESH QC session re-scores (the
+   repair session never attests; it is an authoring session).
+
+**CONVERGENCE RULE — mandatory:** track rounds in the repair prompt's
+filename (`REDO-<bookId>-<scope>-r2.md`…). If the SAME axis is still below
+floor on the SAME chapter after TWO repair rounds, DO NOT write a third
+prompt — escalate to the operator with the axis, both rounds' scores, and
+your hypothesis (palette gap, prompt gap, or bar miscalibration). A loop
+that isn't converging means something structural is wrong upstream; round
+three of the same prompt just burns sessions.
 
 If 5+ classes of blocker are firing, or the same defect keeps moving fields
-across 3 redos, recommend a full Step-2 rewrite instead of patching.
+across redos, recommend a full Step-2 rewrite instead of patching.
 
 ---
 

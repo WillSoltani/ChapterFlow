@@ -2,68 +2,67 @@
   "chapterId": "the-book-of-boundaries-ch11",
   "number": 11,
   "title": "Gifts to the World: How to Hold Your Boundaries, and Everyone Else's",
-  "coreMove": "Run the reciprocity check: protect your own limit, receive another person's no cleanly, and support crossed boundaries without making safety depend on you being bold.",
+  "coreMove": "Hold your limits and honor theirs by accepting no first, checking capacity before heavy talks and treating privacy as real access before care becomes control.",
   "exampleCount": 6,
   "exampleSpecs": [
     {
-      "domain": "friend text exchange",
-      "audience": "readers disappointed by a loved one's limit",
-      "stakes": "A friend's no can be honored without guilt, sarcasm, or repeated negotiation.",
-      "format": "text_thread",
-      "requiredBeat": "Show cleanly receiving another person's no without making disappointment the other person's job."
+      "domain": "apartment maintenance favor between friends",
+      "audience": "a tenant tempted to make a friend's no prove itself",
+      "stakes": "a declined invitation can either stay small or become pressure that makes the next ask harder",
+      "format": "postmortem",
+      "requiredBeat": "reconstruct that the friendship was protected because the no received no follow-up pressure"
     },
     {
-      "domain": "coffee shop bystander moment",
-      "audience": "witnesses who need safe intervention choices",
-      "stakes": "A witness can support a crossed boundary without making direct confrontation the only moral option.",
-      "format": "dialogue",
-      "requiredBeat": "Use Right To Be's bystander tools to pick a safe intervention path."
+      "domain": "after-practice conversation with a friend",
+      "audience": "a teammate who starts unloading before checking the listener's room",
+      "stakes": "a difficult story can become emotional labor the listener never agreed to carry",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist notices his own missing capacity check before finishing the difficult story"
     },
     {
-      "domain": "volunteer board meeting",
-      "audience": "people who overextend in public groups",
-      "stakes": "One calm refusal can give a group permission to stop treating capacity as a loyalty test.",
-      "format": "before_after",
-      "requiredBeat": "Show a visible limit changing what other people feel allowed to say."
-    },
-    {
-      "domain": "family dinner repair attempt",
-      "audience": "readers who confuse repair with access",
-      "stakes": "A relative's limit can delay a needed talk without authorizing pressure.",
-      "format": "dilemma",
-      "requiredBeat": "Show a person tolerating a no from family without turning repair into a demand."
-    },
-    {
-      "domain": "clinic lobby privacy incident",
-      "audience": "witnesses weighing safety, privacy, and intervention",
-      "stakes": "Documenting can support a targeted person only when care, consent, and safety guide the record.",
+      "domain": "blood bank break coverage",
+      "audience": "a shift lead protecting staff breaks without banning care",
+      "stakes": "heavy stories near critical equipment can consume breaks and attention without consent",
       "format": "decision_memo",
-      "requiredBeat": "Use Right To Be's options without treating recording as a replacement for care."
+      "requiredBeat": "a written memo makes the capacity check the default before difficult stories during breaks"
     },
     {
-      "domain": "neighborhood meeting",
-      "audience": "people setting norms in informal groups",
-      "stakes": "A person can model limits by redirecting a group before someone is exposed.",
-      "format": "reflection",
-      "requiredBeat": "Show one person's group limit protecting another person's privacy."
+      "domain": "community bike co-op repair night",
+      "audience": "a bystander watching a topic limit get ignored",
+      "stakes": "the group can either normalize pressure or help the person who set the limit stay present",
+      "format": "contrast",
+      "requiredBeat": "two people respond differently to the same topic limit and the outcomes split"
+    },
+    {
+      "domain": "airport pickup request after a delayed flight",
+      "audience": "a traveler disappointed by a friend's declined invitation",
+      "stakes": "a tired request can become pressure if the no is treated as a weak answer",
+      "format": "coach_talk",
+      "requiredBeat": "a peer reframes receiving no as the same skill as setting one"
+    },
+    {
+      "domain": "retail training role-play about privacy and help",
+      "audience": "a learner who confuses helpfulness with access",
+      "stakes": "the learner needs to see that consent covers help, touch, topics, and difficult stories",
+      "format": "school_case",
+      "requiredBeat": "the learner's confusion becomes the lesson about asking before entering emotional labor"
     }
   ],
   "quizFocus": {
     "count": 9,
     "bloomsMix": {
-      "apply": 3,
-      "understand": 1,
       "analyze": 2,
-      "evaluate": 2,
-      "remember": 1
+      "evaluate": 3,
+      "apply": 3,
+      "understand": 1
     },
     "transferEmphasis": 1
   },
   "cardFocus": {
-    "count": 7,
+    "count": 6,
     "retrievalPractice": true
   },
-  "readingTimeMinutes": 11,
+  "readingTimeMinutes": 12,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-10T01:00:31.127Z"
+  "derivedAt": "2026-06-12T20:04:39.332Z"
 }

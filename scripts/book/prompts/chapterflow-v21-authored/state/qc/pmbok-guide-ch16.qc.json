@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "pmbok-guide",
+  "chapterNumber": 16,
+  "chapterId": "pmbok-guide-ch16",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "a9d41c4b4cc7015c",
+  "reviewer": "claude-qc:codex-20260611-pmbok-guide",
+  "reviewedAt": "2026-06-11T02:46:55.558Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "93/100; read full ch16; quiz keys matched risk-response fit; scenes are concrete tradeoff cases; cards and plans are actionable; no corruption found."
+}

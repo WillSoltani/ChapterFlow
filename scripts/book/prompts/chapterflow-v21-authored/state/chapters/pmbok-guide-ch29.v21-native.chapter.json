@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch29",
+  "number": 29,
+  "title": "Models",
+  "readingTimeMinutes": 12,
+  "hook": "The empty war room still showed Cynefin circled, but every action item was a schedule fix.",
+  "counterintuition": "The smartest-sounding lens can make a team less intelligent when it names the situation but leaves the next question, response, and feedback loop unchanged.",
+  "tryThisNow": "Place a 15-minute Working Lens review on tomorrow's calendar at 10:20 in the team room; trigger it when the issue log changes twice in a day.",
+  "keyTakeaway": "Use models as lenses, not badges: choose the one that clarifies cause, communication, change, or team behavior, then let it alter the next decision.",
+  "breakdown": {
+    "fastRead": "The war room is empty after Lia's review. A marker circle sits around Cynefin on the wall, but the action list underneath says only rebaseline, add owners, and request a firmer date. The team named complexity and then answered it with the same linear schedule habits.\n\nThat is model worship.\n\nA useful lens changes diagnosis. If the work is complex, Lia should ask what small experiment will reveal the next signal. If the problem is team maturity, Samantha should ask whether conflict is storming that needs norms or damage that needs repair. The name belongs in the room only when it changes what the team does next.",
+    "deepRead": "Selection is the mechanism. A practitioner starts with the question the team cannot answer, then chooses a lens that makes that question easier to discuss. The lens is deliberately incomplete. It leaves out detail so the team can see a relationship: cause and effect, sender and receiver, resistance and adoption, forming and storming, complex and chaotic.\n\nSamantha sees the difference during a new-team review. The first two meetings were polite, then the third filled with arguments over ownership. A hasty manager calls that failure. Samantha uses Bruce Tuckman's sequence differently: forming has ended, storming has begun, and the leadership response should create working norms rather than scold people for not performing yet. Early friction is not automatic failure.\n\nThe same discipline applies to Cynefin. If cause and effect are obvious, the team can follow known practice. If the situation is complicated, analysis and expertise matter. If it is complex, experimentation and sensing matter more than a larger upfront plan. If it is chaotic, stabilization comes before debate.\n\nThe practical skill is fit. Ask what confusion the team is carrying, what distinction the lens exposes, and what action will change because of that exposure. If no action changes, the lens is decoration.",
+    "fullRead": "The harder case is a team that uses the right lens too early, too late, or too proudly. Lloyd can draw a communication diagram with sender, receiver, message, noise, and feedback. That does not prove anyone understood the maintenance notice. Bianca can say storming in a team meeting. That does not prove the conflict is healthy development. Wilder can print a Cynefin chart. That does not prove the work is complex rather than chaotic.\n\nThe limit matters because PMBOK practice assets are selectable assets, not required doctrine. A model is not a badge of sophistication. It is a temporary simplification used for a management question. Once the question changes, the lens may change too.\n\nThis prevents two common errors. The first error is flat planning, where every uncertainty receives more detail, more dates, and more control language. Cynefin warns against that when the situation is complex: the team may need probes, experiments, and quick learning before a reliable plan exists. The second error is soft labeling, where team conflict gets called storming without any leadership move. Tuckman's sequence is useful only if the leader changes support, norms, and expectations as the group matures.\n\nChange and communication lenses carry the same warning. If adoption is weak, a change model may reveal readiness, resistance, transition, and sustainment work that the technical rollout ignored. If a message keeps failing, a communication model may show noise in the channel, a receiver who decoded the message differently, or missing feedback. In both cases, the practitioner is not collecting labels. The practitioner is reducing confusion.\n\nThere is no virtue in using more models than the situation needs. A simple handoff issue may need a checklist, not a complexity map. A chaotic outage may need immediate stabilization, not a long discussion of stakeholder motivation. A new team's early disagreement may need Tuckman's language; a misconduct pattern needs accountability, not reassurance that every conflict is normal. A familiar chart is not a diagnosis.\n\nChoose the Working Lens before the model becomes theater. Name the management question. Pick the lens that sharpens that question. State the next action the lens changes. Then look for feedback that shows whether the diagnosis improved. A model has done its job when the room can see the situation more clearly and act with better judgment than it had before."
+  },
+  "examples": [
+    {
+      "exampleId": "ch29-ex01-lia-cynefin-postmortem",
+      "sourceAnchorId": "ch29.ex.cynefin",
+      "title": "Cynefin Circle Postmortem",
+      "tags": [
+        "postmortem",
+        "complexity",
+        "planning"
+      ],
+      "planSpec": {
+        "domain": "software recovery review after a failed pilot",
+        "audience": "project leaders choosing a response to uncertain work",
+        "stakes": "the team may name complexity while still forcing linear planning logic",
+        "format": "postmortem",
+        "requiredBeat": "the scene opens after failure and locates the one misstep left on the wall"
+      },
+      "scenario": "The pilot had already failed when Lia opened the recovery packet. The wall photo showed Cynefin circled in blue, a sticky note labeled complex, and eight actions that were all schedule controls. The issue was not that the team ignored the framework. The decisive misstep was naming complexity and then refusing experimentation. No live debate remained, only the trace: a complex customer-adoption problem treated like an obvious execution slip until the pilot collapsed.",
+      "whatToDo": "Lia records the misstep as a diagnosis failure: the team used Cynefin language, then chose no probe, experiment, or sensing loop before rebaselining the pilot.",
+      "whyItMatters": "The postmortem protects future reviews from decorative sophistication. A complexity lens matters only when it changes the response to uncertainty."
+    },
+    {
+      "exampleId": "ch29-ex02-samantha-tuckman-recovery",
+      "sourceAnchorId": "ch29.ex.tuckman",
+      "title": "Samantha Catches Her Storming Error",
+      "tags": [
+        "mistake-recovery",
+        "team",
+        "conflict"
+      ],
+      "planSpec": {
+        "domain": "new cross-functional team review",
+        "audience": "team leads reading early conflict",
+        "stakes": "early friction may be punished as failure instead of shaped into norms",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist notices her own wrong reading mid-stream"
+      },
+      "scenario": "Halfway through the team review, Samantha hears herself say, \"This group is already off track.\" The sentence bothers her before the slide changes. Bruce Tuckman's sequence is printed in her notes: forming, storming, norming, performing. The team had just moved from polite introductions into ownership arguments. Samantha notices her own error in the moment. She was treating storming as proof of failure instead of a signal to build working norms.",
+      "whatToDo": "Samantha stops the critique, names the storming pattern, and asks the team to define decision rules, handoff norms, and escalation boundaries before judging performance.",
+      "whyItMatters": "The recovery is the lesson. Tuckman's model helps only when it changes the leadership response to conflict, not when it becomes a nicer word for blame."
+    },
+    {
+      "exampleId": "ch29-ex03-lloyd-communication-memo",
+      "sourceAnchorId": "ch29.fact.3",
+      "title": "Lloyd's Feedback Memo",
+      "tags": [
+        "decision-memo",
+        "communication",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "maintenance notice that keeps being misread",
+        "audience": "project managers diagnosing information failures",
+        "stakes": "a sent message may be mistaken for shared understanding",
+        "format": "decision_memo",
+        "requiredBeat": "a written artifact carries the action through sender, receiver, noise, and feedback"
+      },
+      "scenario": "Lloyd's memo carries the whole scene. It reads: \"Subject: Stop calling the notice complete. Sender: facilities. Receiver: clinic supervisors. Message: weekend entrance closure. Noise: old floor map attached to the email. Feedback: no supervisor confirmed the new route. Decision: resend only after the receiver names the route in reply.\" The action lives inside the document: Lloyd turns a sent message into a communication diagnosis.",
+      "whatToDo": "Lloyd rewrites the notice workflow so sender, receiver, message, noise, and feedback are checked before the project records communication as complete.",
+      "whyItMatters": "Communication failure often hides inside evidence that a message was sent. Lloyd's memo makes understanding, not transmission, the management question."
+    },
+    {
+      "exampleId": "ch29-ex04-bianca-wilder-contrast",
+      "sourceAnchorId": "ch29.ex.tuckman",
+      "title": "Two Storming Responses",
+      "tags": [
+        "contrast",
+        "team-development",
+        "leadership"
+      ],
+      "planSpec": {
+        "domain": "two product teams entering early conflict",
+        "audience": "managers choosing how to respond to team friction",
+        "stakes": "one team may mature while another suppresses the conflict it needs to work through",
+        "format": "contrast",
+        "requiredBeat": "two named people face the same situation with opposite approaches and divergent outcomes"
+      },
+      "scenario": "Bianca and Wilder each inherit a new product team after forming ends and arguments over ownership begin. Bianca uses Bruce Tuckman's forming, storming, norming, performing sequence to make the conflict discussable. She turns the argument into working agreements and the team reaches performing work sooner. Wilder treats the same storming pattern as disloyalty. He cancels debate, rewards silence, and later discovers hidden rework. Same stage, opposite response, opposite result.",
+      "whatToDo": "Bianca names storming as a development signal and turns it into explicit norms. Wilder's silence-first response becomes the contrast she refuses to copy.",
+      "whyItMatters": "Tuckman's model does not make conflict harmless. It helps a leader tell normal development from unmanaged damage and choose the response that builds maturity."
+    },
+    {
+      "exampleId": "ch29-ex05-stephane-guillaume-coach",
+      "sourceAnchorId": "ch29.ex.cynefin",
+      "title": "Stephane Reframes the Lens",
+      "tags": [
+        "coach-talk",
+        "complexity",
+        "experimentation"
+      ],
+      "planSpec": {
+        "domain": "delivery lead stuck in complexity language",
+        "audience": "leaders who can name uncertainty but still plan it incorrectly",
+        "stakes": "the team may use the right model without changing the response",
+        "format": "coach_talk",
+        "requiredBeat": "a peer reframes the stuck view in one quotable sentence"
+      },
+      "scenario": "\"We already used Cynefin,\" Guillaume says, tapping the chart beside the backlog. \"The client behavior is complex.\" Stephane does not argue with the label. He asks what changed after the label appeared. No probes. No safe-to-try experiment. No sensing cadence. Then he gives the reframe: \"A lens earns its place only when it changes the next move.\" Guillaume stops defending the chart and rewrites the next sprint around experimentation.",
+      "whatToDo": "Guillaume keeps the Cynefin label only after he can point to the probe, experiment, and feedback signal it changes in the next sprint.",
+      "whyItMatters": "Stephane's coaching separates diagnosis from display. Complex work needs learning loops, while chaotic work would need stabilization before experimentation."
+    },
+    {
+      "exampleId": "ch29-ex06-guillaume-school-case",
+      "sourceAnchorId": "ch29.ex.cynefin",
+      "title": "Guillaume Sorts the Classroom Cards",
+      "tags": [
+        "school-case",
+        "training",
+        "complexity"
+      ],
+      "planSpec": {
+        "domain": "project management training exercise",
+        "audience": "learners practicing model selection without workplace stakes",
+        "stakes": "the learner may memorize model names without knowing what question each one answers",
+        "format": "school_case",
+        "requiredBeat": "the learner's confusion becomes the material of the lesson"
+      },
+      "scenario": "In the training room, Guillaume sorts practice cards under two headings: Bruce Tuckman and Cynefin. He places \"new team arguing over roles\" under complex and \"customer behavior changing weekly\" under storming. The instructor leaves the mistake visible. His confusion becomes the exercise. Forming, storming, and performing explain team development; complex, chaotic, and experimentation explain cause-effect uncertainty. Guillaume resorts the cards by the question each lens answers.",
+      "whatToDo": "Guillaume sorts each card by its diagnostic question before naming a model: team maturity for Tuckman, cause-effect clarity and experimentation for Cynefin.",
+      "whyItMatters": "Training works when confusion is usable. The learner stops memorizing labels and starts asking which lens improves diagnosis."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch29.fact.8",
+        "prompt": "Lia's issue log shows 5 plan changes in 8 days, each after customer behavior surprised the team. Cynefin is on the wall. Which inference should lead?",
+        "choices": [
+          "Linear-planning reflex: Add detail to the baseline until surprises stop appearing.",
+          "Recognition bias: Keep Cynefin in the deck because the label shows advanced thinking.",
+          "Complexity fit: Treat the pattern as a call for probes, experimentation, and sensing."
+        ],
+        "correctIndex": 2,
+        "explanation": "Repeated customer surprises suggest a complex setting. More detail and a visible label both miss the response Cynefin points toward: learn through probes and feedback.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch29.fact.7",
+        "prompt": "Samantha inherits a team that moved from polite introductions to tense role arguments during its third week. What should she do first?",
+        "choices": [
+          "Tuckman read: Use storming to build norms before judging performance.",
+          "Harmony shortcut: Suppress the argument so the team can look mature again.",
+          "Failure label: Replace team members because early conflict proves poor fit."
+        ],
+        "correctIndex": 0,
+        "explanation": "Tuckman's sequence can normalize some early friction. The useful response is to shape norms; silence or replacement treats development as defect.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch29.fact.3",
+        "prompt": "Lloyd's communication log lists 12 closure notices sent and 0 receiver confirmations; 4 supervisors used an old entrance map. What should he infer?",
+        "choices": [
+          "Send-count myth: The notice worked because the sender completed transmission.",
+          "Feedback gap: Check receiver, noise, decoding, and confirmation before closure.",
+          "Volume cure: Send the same notice more often so the channel looks active."
+        ],
+        "correctIndex": 1,
+        "explanation": "The log shows transmission without shared meaning. A communication model sends Lloyd toward receiver understanding, channel noise, decoding, and feedback.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch29.fact.9",
+        "prompt": "Bianca finds a steering deck with Tuckman, Cynefin, and a change curve, but every action item is unchanged from last month. What is the strongest critique?",
+        "choices": [
+          "Inventory pride: Add one more model so the deck covers more management topics.",
+          "Presentation polish: Move the charts earlier so executives notice the analysis.",
+          "Model worship: Revise any lens that does not improve diagnosis or action."
+        ],
+        "correctIndex": 2,
+        "explanation": "The hard edge is behavior change. Recognized names and polished charts become decoration when no diagnosis or next decision improves.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch29.fact.8",
+        "prompt": "Wilder's outage board shows a live payment failure, confused ownership, and no stable service path. Which Cynefin response fits before experimentation?",
+        "choices": [
+          "Chaotic response: Stabilize the situation before running learning probes.",
+          "Complex response: Start several safe-to-try experiments while the outage continues.",
+          "Obvious response: Follow the usual checklist and assume cause and effect are clear."
+        ],
+        "correctIndex": 0,
+        "explanation": "A live outage with no stable path is chaotic. Experimentation belongs in complex work after stability exists; obvious-work checklists may be too narrow.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch29.fact.6",
+        "prompt": "Guillaume is asked to pick the model executives will recognize fastest for a kickoff. Which answer best follows the model-worship warning?",
+        "choices": [
+          "Familiarity rule: Choose the best-known model so the room accepts the language.",
+          "Question-first fit: Choose the lens that clarifies the management question.",
+          "Coverage rule: Use several models at once so no topic appears neglected."
+        ],
+        "correctIndex": 1,
+        "explanation": "Recognition is not fit. The model earns attention when it clarifies the question at hand and changes how the team will respond.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch29.fact.1",
+        "prompt": "Which sentence would Stephane put under a model diagram before a team applies it?",
+        "choices": [
+          "Total-map error: This diagram captures the full reality of the project.",
+          "Lens warning: This diagram highlights useful relationships and leaves detail outside the frame.",
+          "Doctrine habit: This diagram must be used before every major decision."
+        ],
+        "correctIndex": 1,
+        "explanation": "A model simplifies reality without replacing judgment. Treating it as a complete map or mandatory doctrine invites overuse.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch29.fact.4",
+        "prompt": "Adoption data in Bianca's rollout file shows training completed, technical defects closed, and daily use still below 25%. What should a change lens surface?",
+        "choices": [
+          "Technical-completion myth: Treat closed defects and finished training as completed change.",
+          "Training-volume cure: Add another class before asking why routines did not shift.",
+          "Adoption gap: Examine readiness, resistance, transition, and sustainment."
+        ],
+        "correctIndex": 2,
+        "explanation": "The technical work can be complete while adoption remains weak. A change lens points to readiness, resistance, transition, and sustainment.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch29.fact.5",
+        "prompt": "Lia prepares a leadership review where the delivery problem is low trust and uneven influence, not missing tasks. Which first move fits?",
+        "choices": [
+          "Collaboration diagnosis: Use a team lens to identify behavior before assigning fixes.",
+          "Task-list default: Add more owners and dates because delivery problems are usually scheduling problems.",
+          "Soft-topic dismissal: Avoid team behavior because it is outside serious project management."
+        ],
+        "correctIndex": 0,
+        "explanation": "Team behavior affects delivery reliability. A leadership or collaboration lens can reveal influence and trust patterns that a task list may hide.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch29.fact.1",
+      "front": "Why does a useful model simplify reality instead of trying to copy all of it?",
+      "back": "A model highlights relationships the team needs for diagnosis, such as cause and effect or team maturity. It leaves out detail, so judgment still has to check fit.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch29.fact.7",
+      "front": "How can Tuckman's team development sequence change a leader's response to early conflict?",
+      "back": "The sequence can show that forming may give way to storming before norming and performing. The leader then builds norms instead of treating all early friction as failure.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch29.fact.8",
+      "front": "What distinction does Cynefin help a team make when uncertainty rises?",
+      "back": "It separates obvious, complicated, complex, chaotic, and confused contexts. The response changes: follow practice, analyze, experiment, stabilize, or clarify before acting.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch29.fact.3",
+      "front": "Why is communication not complete when Lloyd sends the message?",
+      "back": "The receiver still has to decode the message through the channel's noise and provide feedback. Sent evidence is not the same as shared meaning.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch29.fact.9",
+      "front": "Earlier concept, value chain: how can a model serve value delivery instead of decoration?",
+      "back": "It should help the team protect outputs, outcomes, or benefits by improving diagnosis and action. If the lens does not change a value-relevant decision, it is only display.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch29.fact.6",
+      "front": "Earlier concept, Frame First Check: why align vocabulary before choosing a model?",
+      "back": "Shared terms keep people from applying the same model name to different problems. The frame gives the team a common question before it selects a lens.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Choose the Working Lens",
+    "coreSkill": "Practice choosing a model by the question it clarifies, not by recognition or fashion. Choose the Working Lens by naming the confusion, selecting one lens, and writing the next action that should change. If the action does not change, put the lens aside.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch29.fact.7",
+        "context": "Early team conflict appears after a new group leaves polite introductions behind.",
+        "plan": "If a new team starts arguing over roles, then Choose the Working Lens with Tuckman and write the norm or boundary the storming signal requires."
+      },
+      {
+        "sourceAnchorId": "ch29.fact.8",
+        "context": "A plan keeps changing because cause and effect are not yet clear.",
+        "plan": "If repeated surprises show complex work, then Choose the Working Lens with Cynefin and name one safe-to-try experiment before adding schedule detail."
+      },
+      {
+        "sourceAnchorId": "ch29.fact.3",
+        "context": "A message has been sent but people act on different meanings.",
+        "plan": "If sent information does not produce aligned action, then Choose the Working Lens with sender, receiver, noise, and feedback before resending."
+      },
+      {
+        "sourceAnchorId": "ch29.fact.9",
+        "context": "A deck includes a familiar model but the decision list stays unchanged.",
+        "plan": "If the model changes no diagnosis or next move, then Choose the Working Lens by tying it to a decision or removing it from the review."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one current project confusion and write three lines: question, lens, changed action. Share only the version where all three lines connect.",
+    "weeklyPractice": "Each week, review one meeting where a model was used. Through Choose the Working Lens, record whether it improved diagnosis, shared language, or the next decision."
+  },
+  "memorableLines": [
+    {
+      "text": "That is model worship.",
+      "location": "breakdown.fastRead",
+      "why": "It names the chapter's hard edge in one plain sentence."
+    },
+    {
+      "text": "Early friction is not automatic failure.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the practical use of Tuckman's team development sequence."
+    },
+    {
+      "text": "A familiar chart is not a diagnosis.",
+      "location": "breakdown.fullRead",
+      "why": "It warns against mistaking recognition for fit."
+    }
+  ]
+}

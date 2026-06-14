@@ -83,6 +83,11 @@ export type BookAudit = {
   deadlineTicRate: number;
   correctLongestRate: number;
   bankNames: string[];
+  /** Plain-language meters (2026-06-11 direction), measured over breakdown
+   *  prose only. DIRECTION metrics, not gold-calibrated gates — the gold
+   *  corpus is the old abstract style and is EXPECTED to score high here. */
+  nominalizationsPer100Words: number;
+  avgSentenceWords: number;
 };
 
 export type NameCollision = { name: string; books: string[] };
@@ -105,11 +110,32 @@ export type CatalogAuditReport = {
     correctLongestRate: number;
     nameCollisions: NameCollision[];
     varietyScore: number;
+    /** Plain-language direction meters (chapter-weighted averages). */
+    nominalizationsPer100Words: number;
+    avgSentenceWords: number;
   };
 };
 
 function bump(map: Record<string, number>, key: string, by = 1): void {
   map[key] = (map[key] ?? 0) + by;
+}
+
+/** Abstract-noun (nominalization) counter — the measurable core of the
+ *  reader panel's "wall-to-wall abstraction" finding. Counts -tion/-sion/
+ *  -ness/-ity/-ment/-ance/-ence words per 100 words of breakdown prose.
+ *  Crude on purpose: it moves when prose gets concrete, which is all a
+ *  trend meter needs to do. */
+const NOMINALIZATION = /\b[a-z]{3,}(?:tion|sion|ness|ity|ment|ance|ence)s?\b/gi;
+
+export function plainnessMeters(text: string): { nomPer100: number; avgSentenceWords: number } {
+  const words = text.split(/\s+/).filter(Boolean);
+  if (words.length === 0) return { nomPer100: 0, avgSentenceWords: 0 };
+  const noms = (text.match(NOMINALIZATION) ?? []).length;
+  const sentences = text.split(/[.!?]+(?:\s|$)/).filter((s) => s.trim().length > 0);
+  return {
+    nomPer100: (noms / words.length) * 100,
+    avgSentenceWords: words.length / Math.max(1, sentences.length),
+  };
 }
 
 function readerProse(ch: ChapterV21): string {
@@ -139,11 +165,14 @@ export function auditBook(bookId: string, chapters: ChapterV21[]): BookAudit {
     deadlineTicRate: 0,
     correctLongestRate: 0,
     bankNames: [],
+    nominalizationsPer100Words: 0,
+    avgSentenceWords: 0,
   };
   const names = new Set<string>();
   let tryCount = 0, tailCount = 0;
   let deadlineHits = 0;
   let questions = 0, correctLongest = 0;
+  const breakdownProse: string[] = [];
   for (const ch of chapters) {
     if (ch.hook) bump(a.hookShapes, classifyHook(ch.hook));
     if (ch.tryThisNow) {
@@ -172,11 +201,15 @@ export function auditBook(bookId: string, chapters: ChapterV21[]): BookAudit {
       const hits = prose.split(tic).length - 1;
       if (hits > 0) bump(a.ticCounts, tic, hits);
     }
+    breakdownProse.push(ch.breakdown?.fastRead ?? "", ch.breakdown?.deepRead ?? "", ch.breakdown?.fullRead ?? "");
   }
   a.thenNameTailRate = tryCount > 0 ? tailCount / tryCount : 0;
   a.deadlineTicRate = a.scenarioCount > 0 ? deadlineHits / a.scenarioCount : 0;
   a.correctLongestRate = questions > 0 ? correctLongest / questions : 0;
   a.bankNames = [...names].sort();
+  const plain = plainnessMeters(breakdownProse.join(" "));
+  a.nominalizationsPer100Words = Math.round(plain.nomPer100 * 100) / 100;
+  a.avgSentenceWords = Math.round(plain.avgSentenceWords * 10) / 10;
   return a;
 }
 
@@ -236,6 +269,12 @@ export function auditCatalog(byBook: Map<string, ChapterV21[]>): CatalogAuditRep
     .map(([name, bs]) => ({ name, books: bs }))
     .sort((a, b) => b.books.length - a.books.length);
 
+  let nomNum = 0, sentNum = 0, plainDen = 0;
+  for (const b of books) {
+    nomNum += b.nominalizationsPer100Words * b.chapters;
+    sentNum += b.avgSentenceWords * b.chapters;
+    plainDen += b.chapters;
+  }
   const catalog = {
     hookShapes,
     dominantHookShare: dominantShare(hookShapes),
@@ -249,6 +288,8 @@ export function auditCatalog(byBook: Map<string, ChapterV21[]>): CatalogAuditRep
     correctLongestRate: clDen > 0 ? clNum / clDen : 0,
     nameCollisions,
     varietyScore: 0,
+    nominalizationsPer100Words: plainDen > 0 ? Math.round((nomNum / plainDen) * 100) / 100 : 0,
+    avgSentenceWords: plainDen > 0 ? Math.round((sentNum / plainDen) * 10) / 10 : 0,
   };
   catalog.varietyScore = varietyScore(catalog, chapterCount);
   return {
@@ -291,6 +332,7 @@ export function formatCatalogAudit(r: CatalogAuditReport): string {
   lines.push(`  house tics: ${Object.entries(c.ticTotals).map(([k, v]) => `"${k}":${v}`).join("  ")}  (${c.ticsPerChapter.toFixed(2)}/chapter)`);
   lines.push(`  scenario deadline tic: ${(c.deadlineTicRate * 100).toFixed(0)}% of scenarios`);
   lines.push(`  distractor tell (keyed answer is longest): ${(c.correctLongestRate * 100).toFixed(0)}% of questions`);
+  lines.push(`  plainness (direction meters): ${c.nominalizationsPer100Words} nominalizations/100w, ${c.avgSentenceWords}w avg sentence (breakdown prose; lower nominalization = plainer)`);
   lines.push(`  cross-book name collisions: ${c.nameCollisions.length}`);
   for (const col of c.nameCollisions.slice(0, 10)) {
     lines.push(`    ${col.name}: ${col.books.length} books (${col.books.slice(0, 6).join(", ")}${col.books.length > 6 ? ", …" : ""})`);
@@ -301,7 +343,7 @@ export function formatCatalogAudit(r: CatalogAuditReport): string {
   for (const b of r.books) {
     const tics = Object.values(b.ticCounts).reduce((s, n) => s + n, 0);
     lines.push(
-      `    ${b.bookId.padEnd(w)}  ch:${String(b.chapters).padStart(3)}  hooks[${top(b.hookShapes, 2)}]  try[${top(b.tryVerbs, 2)}]  tics:${tics}  deadline:${(b.deadlineTicRate * 100).toFixed(0)}%  tell:${(b.correctLongestRate * 100).toFixed(0)}%`,
+      `    ${b.bookId.padEnd(w)}  ch:${String(b.chapters).padStart(3)}  hooks[${top(b.hookShapes, 2)}]  try[${top(b.tryVerbs, 2)}]  tics:${tics}  deadline:${(b.deadlineTicRate * 100).toFixed(0)}%  tell:${(b.correctLongestRate * 100).toFixed(0)}%  nom:${b.nominalizationsPer100Words}`,
     );
   }
   return lines.join("\n");

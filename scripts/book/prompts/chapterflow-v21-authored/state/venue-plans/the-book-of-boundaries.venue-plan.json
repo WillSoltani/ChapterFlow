@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "venue-plan-v1",
+  "bookId": "the-book-of-boundaries",
+  "createdAt": "2026-06-12T19:15:16.313Z",
+  "fromChapter": 1,
+  "toChapter": 13,
+  "perChapter": 6,
+  "allocation": {
+    "1": [
+      "a town hall microphone stand",
+      "a physical therapy mat bay",
+      "a faculty mailroom",
+      "a food truck service window",
+      "a community garden plot",
+      "a laundry room lint screen"
+    ],
+    "2": [
+      "a museum coat check",
+      "a clinic intake desk",
+      "a gym equipment cage",
+      "a coffee bar register",
+      "a marina fuel dock",
+      "a repair shop pickup shelf"
+    ],
+    "3": [
+      "a public works service desk",
+      "a hospital supply room",
+      "a music practice room",
+      "a catering van shelf",
+      "a park maintenance shed",
+      "a mall information kiosk"
+    ],
+    "4": [
+      "a fire station gear rack",
+      "a ceramics kiln shelf",
+      "a school bus loading zone",
+      "a dishwashing station",
+      "a trailhead signboard",
+      "a furniture showroom tag desk"
+    ],
+    "5": [
+      "a community center bulletin board",
+      "a photography darkroom sink",
+      "a lab safety bench",
+      "a restaurant pass window",
+      "a transit control booth",
+      "a pet supply checkout"
+    ],
+    "6": [
+      "a polling place check-in table",
+      "a podcast studio console",
+      "a tutoring center cubicle",
+      "a bakery proofing rack",
+      "a highway rest stop counter",
+      "a laundromat folding table"
+    ],
+    "7": [
+      "a post office sorting case",
+      "a lab sample freezer",
+      "a library reference counter",
+      "a diner prep counter",
+      "a parking garage pay station",
+      "a barber chair"
+    ],
+    "8": [
+      "a city permit counter",
+      "a rowing boathouse rack",
+      "a campus advising desk",
+      "a loading dock scale",
+      "a bike-share rack",
+      "a bank teller window"
+    ],
+    "9": [
+      "a courthouse records window",
+      "a bowling alley score console",
+      "a classroom supply closet",
+      "a hardware store key desk",
+      "a taxi stand kiosk",
+      "a pharmacy aisle endcap"
+    ],
+    "10": [
+      "a home office printer tray",
+      "a track meet timing table",
+      "a school attendance office",
+      "a tool checkout window",
+      "a ferry ticket booth",
+      "a bookstore returns desk"
+    ],
+    "11": [
+      "a basement breaker panel",
+      "a locker room equipment bin",
+      "a blood bank refrigerator",
+      "a bike repair stand",
+      "an airport gate podium",
+      "a clothing store fitting room"
+    ],
+    "12": [
+      "a nursery changing table",
+      "a rink skate counter",
+      "a nursing station",
+      "a print shop cutter table",
+      "a train signal room",
+      "a climbing gym belay station"
+    ],
+    "13": [
+      "a porch mail slot",
+      "a yoga studio cubby",
+      "a community health tent",
+      "a welding booth",
+      "a bus depot bench",
+      "a sports field sideline"
+    ]
+  }
+}

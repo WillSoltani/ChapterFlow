@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch22",
+  "number": 22,
+  "title": "Development Approach and Life Cycle Performance Domain",
+  "coreMove": "Choose predictive, adaptive, or hybrid work by fit: match uncertainty, cadence, governance, and feedback needs, then keep checking whether the lifecycle still helps value flow.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software release governance",
+      "audience": "project leads reading domain interactions",
+      "stakes": "visible delay may hide lifecycle damage across the project system",
+      "format": "vignette",
+      "requiredBeat": "one lived detail shows the Development Approach and Life Cycle Performance Domain inside the PMBOK Guide map of 8 domains"
+    },
+    {
+      "domain": "payroll system migration",
+      "audience": "teams reviewing delivery failure after release",
+      "stakes": "postmortem must locate the decisive lifecycle misfit behind rework",
+      "format": "postmortem",
+      "requiredBeat": "the failure is already visible, and the trace points to predictive control used where adaptive feedback was needed"
+    },
+    {
+      "domain": "museum visitor app",
+      "audience": "product owners choosing an approach under mixed uncertainty",
+      "stakes": "one method label may flatten different parts of the work",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist notices her own lifecycle-label error midstream and corrects the frame"
+    },
+    {
+      "domain": "airport baggage upgrade",
+      "audience": "project sponsors asking for lifecycle rationale",
+      "stakes": "the artifact must justify approach by signals rather than method preference",
+      "format": "decision_memo",
+      "requiredBeat": "a written memo carries the scene and weighs predictive, adaptive, hybrid, and cadence signals"
+    },
+    {
+      "domain": "finance reporting portal",
+      "audience": "program leads comparing lifecycle choices",
+      "stakes": "same project request produces different outcomes under copied method versus fit-based design",
+      "format": "contrast",
+      "requiredBeat": "two people face the same situation with opposite approaches and equal weight"
+    },
+    {
+      "domain": "city permitting workflow",
+      "audience": "project managers stuck on method identity",
+      "stakes": "a peer conversation reframes lifecycle as a whole-system performance setting",
+      "format": "coach_talk",
+      "requiredBeat": "the coach gives a quotable reframe tied to the PMBOK Guide map of 8 domains"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "remember": 1,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.326Z"
+}

@@ -2,60 +2,61 @@
   "chapterId": "the-book-of-boundaries-ch12",
   "number": 12,
   "title": "The Magic of Boundaries",
-  "coreMove": "Ordinary-life expansion begins when you protect one small limit at a time, so sleep, work, family, movement, friendship, and rest stop being crowded out.",
+  "coreMove": "Boundaries set you free when repeated clear limits replace silence, resentment, and apology loops with cleaner terms, steady follow-through, and self-trust.",
   "exampleCount": 6,
   "exampleSpecs": [
     {
-      "domain": "home wellness routine",
-      "audience": "a reader protecting tomorrow's energy",
-      "stakes": "A fun episode can quietly spend the next morning's workout.",
-      "format": "scene",
-      "requiredBeat": "Show sleep protected over Top Chef and Restaurant Wars."
-    },
-    {
-      "domain": "professional friendship",
-      "audience": "a reader answering a request with warmth and limits",
-      "stakes": "A rushed yes could crowd the week and sour the friendship.",
-      "format": "text_thread",
-      "requiredBeat": "Respond to a friend and colleague's email from capacity."
-    },
-    {
-      "domain": "parenting logistics",
-      "audience": "a working parent trying to keep health in the week",
-      "stakes": "The gym slot can vanish if every family and work need enters first.",
-      "format": "planning_choice",
-      "requiredBeat": "Keep parenting, work, and exercise from consuming one another."
-    },
-    {
-      "domain": "shift recovery",
-      "audience": "a reader learning from a missed self-boundary",
-      "stakes": "A late night can become useful data instead of shame.",
-      "format": "postmortem",
-      "requiredBeat": "Use the morning cost of Restaurant Wars to reset the bedtime boundary."
-    },
-    {
-      "domain": "solo consulting week",
-      "audience": "a reader auditing where the week keeps shrinking",
-      "stakes": "The calendar will keep treating protected time as spare time unless named.",
+      "domain": "childcare handoff records",
+      "audience": "readers who spot resentment after the fact",
+      "stakes": "The same conflict will keep replaying until the first quiet yes is named.",
       "format": "audit",
-      "requiredBeat": "Audit a Monday after school schedule with son, work calendar, and gym."
+      "requiredBeat": "A record review reveals the silence, resentment, blowup, apology loop."
     },
     {
-      "domain": "creative client work",
-      "audience": "a reader balancing friendship with honest response timing",
-      "stakes": "A caring email can become either avoidance or overpromise.",
-      "format": "before_after",
-      "requiredBeat": "Show a friend and colleague email answered within real capacity."
+      "domain": "rink service counter",
+      "audience": "readers who measure worth by being available",
+      "stakes": "One more small yes can quietly erase confidence in follow-through.",
+      "format": "inner_monologue",
+      "requiredBeat": "Interior thought tracks how follow-through becomes evidence."
+    },
+    {
+      "domain": "clinical shift planning",
+      "audience": "readers who say yes before sorting the request",
+      "stakes": "Attention is scarce, and unclear access can drain the next round of care.",
+      "format": "planning_choice",
+      "requiredBeat": "The whole scene stays in pre-action allocation of time and attention."
+    },
+    {
+      "domain": "small print production",
+      "audience": "readers facing costly pushback",
+      "stakes": "A calm client today may cost the crew a louder fight later.",
+      "format": "dilemma",
+      "requiredBeat": "One genuine two-bad-options moment tests whether peace means compliance."
+    },
+    {
+      "domain": "rail operations handoff",
+      "audience": "readers who fear that exact terms sound cold",
+      "stakes": "Hidden expectations create risk when access and timing are unclear.",
+      "format": "dialogue",
+      "requiredBeat": "Two named people talk until the relationship terms become specific."
+    },
+    {
+      "domain": "climbing gym safety",
+      "audience": "readers who expect limits to shrink connection",
+      "stakes": "A posted rule may feel colder until follow-through shows what it protects.",
+      "format": "predict_reveal",
+      "requiredBeat": "Expectation of lost confidence gives way to a cleaner asking pattern."
     }
   ],
   "quizFocus": {
     "count": 9,
     "bloomsMix": {
-      "apply": 3,
-      "analyze": 2,
       "understand": 1,
+      "analyze": 2,
+      "apply": 2,
       "evaluate": 2,
-      "remember": 1
+      "remember": 1,
+      "create": 1
     },
     "transferEmphasis": 1
   },
@@ -63,7 +64,7 @@
     "count": 6,
     "retrievalPractice": true
   },
-  "readingTimeMinutes": 9,
+  "readingTimeMinutes": 11,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-10T01:00:31.127Z"
+  "derivedAt": "2026-06-12T20:04:39.332Z"
 }

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 17,
+  "chapterId": "stillness-is-the-key-ch17",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "bdd82699a9ee08be",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:25:28.024Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "92/100; ch12 plus ch16-ch24 QC refresh; gates/source pass; quiz keys verified 9/9; examples/cards/plans grounded and publishable; no duplicate venue slate found.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 17,
+      "chapterId": "stillness-is-the-key-ch17",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "bdd82699a9ee08be",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:18:19.171Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "92/100; quiz keys verified 9/9; higher-power/surrender chapter coherent, grounded, and example slate fresh in the requested sweep."
+    }
+  ]
+}

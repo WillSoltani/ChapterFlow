@@ -1,32 +1,26 @@
 {
   "bookId": "the-book-of-boundaries",
   "fromChapter": 1,
-  "toChapter": 12,
+  "toChapter": 13,
   "perChapter": 7,
   "allocation": {
     "1": [
       "Hyun",
       "Severin",
-      "Everyone",
-      "Twenty",
       "Lana",
-      "Avoidance",
       "Peyton",
       "Milo",
-      "Theophile"
+      "Theophile",
+      "Hugo"
     ],
     "2": [
-      "Can",
       "Jordan",
-      "Green",
-      "Yellow",
       "Anatole",
       "Brigitte",
       "Benoit",
-      "Red",
-      "Costumes",
       "Zoe",
-      "Lane"
+      "Lane",
+      "Gerard"
     ],
     "3": [
       "Veronique",
@@ -34,8 +28,8 @@
       "Irina",
       "Weston",
       "Eileen",
-      "Minutes",
-      "Finley"
+      "Finley",
+      "Diogo"
     ],
     "4": [
       "Neha",
@@ -43,109 +37,89 @@
       "Glenn",
       "Nikhil",
       "Minh",
-      "Marcel"
+      "Marcel",
+      "Simon"
     ],
     "5": [
       "Lucienne",
-      "Instead",
       "Tatum",
       "Chase",
       "Rowan",
       "Colleen",
-      "Can",
-      "Last",
-      "Apolline"
+      "Apolline",
+      "Gabriel"
     ],
     "6": [
       "Jerome",
-      "Last",
       "Mila",
-      "Fair",
-      "Play",
       "Ivy",
-      "Please",
       "Holly",
       "Georges",
-      "Earlier",
-      "Janelle"
+      "Janelle",
+      "Beau"
     ],
     "7": [
       "Benjamin",
-      "Pickup",
       "Derek",
       "Nadine",
       "Harper",
       "Melodie",
-      "Let",
-      "Last",
       "Soraya",
       "Christophe"
     ],
     "8": [
+      "Etienne",
       "Valerie",
       "Rocco",
       "Jaspreet",
-      "Etienne",
+      "Pascal",
       "Bonnie",
-      "Madeline",
-      "Green"
+      "Madeline"
     ],
     "9": [
       "Olena",
       "Romain",
-      "Please",
-      "Thank",
       "Sunil",
-      "Did",
       "Gilberte",
       "Cedric",
-      "Aspen",
-      "Valeria"
+      "Valeria",
+      "Aspen"
     ],
     "10": [
       "Gwen",
-      "Next",
       "Oliver",
-      "Netflix",
       "Maxime",
-      "None",
-      "Rain",
       "Brielle",
-      "Later",
-      "With",
       "Russell",
-      "Halfway",
       "Tao",
-      "Shame"
+      "Wade"
     ],
     "11": [
       "Hadley",
-      "Must",
       "Florent",
-      "Seconds",
-      "Right",
-      "Distract",
-      "Delegate",
       "Zachary",
       "Albertine",
       "Antonio",
-      "Minutes",
-      "Document",
-      "Delay",
       "Marshall",
       "Willow"
     ],
     "12": [
       "Carmen",
-      "Restaurant",
-      "Wars",
-      "Top",
-      "Chef",
       "Douglas",
       "Nova",
       "Madelyn",
       "Lorraine",
-      "Olivia"
+      "Olivia",
+      "Jude"
+    ],
+    "13": [
+      "Raymond",
+      "Noah",
+      "Kavya",
+      "Gina",
+      "Brock",
+      "Harpreet",
+      "Malcolm"
     ]
   },
   "bannedConnectives": [
@@ -184,24 +158,12 @@
   "connectivePrinciple": "Never let a 5-word run repeat across chapters. Vary the GRAMMAR of how a scene opens, how a decision is framed, and how a consequence lands — not just the nouns. If two of your scenarios could swap their opening clause without anyone noticing, rewrite one.",
   "diagnostics": {
     "bankSize": 777,
-    "excludedCount": 113,
-    "crossBookExcluded": 672,
-    "freshAvailable": 105,
-    "availableCount": 105,
+    "excludedCount": 0,
+    "crossBookExcluded": 777,
+    "freshAvailable": 0,
+    "availableCount": 776,
     "shortChapters": [],
-    "alreadyAuthored": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12
-    ]
+    "alreadyAuthored": [],
+    "sourceFigureExcluded": 1
   }
 }

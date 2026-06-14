@@ -1383,7 +1383,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             <SettingRow
               id="reading-history"
               label="Save reading history"
-              description="Remember which chapters and books you've completed."
+              description="Save your daily reading activity to power your streaks and reading history."
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.privacy.saveReadingHistory : true}

@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch25",
+  "number": 25,
+  "title": "Delivery Performance Domain",
+  "coreMove": "Treat delivery as a live domain: trace each output through requirements, scope, quality, acceptance, and value before calling the work healthy.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "PMBOK Guide domain review",
+      "audience": "project leads who treat delivery as final handoff",
+      "stakes": "a green delivery column hides weak acceptance evidence",
+      "format": "coach_talk",
+      "requiredBeat": "Therese reframes Delivery Performance Domain as a live link from output to value within the 8 domains"
+    },
+    {
+      "domain": "project onboarding classroom",
+      "audience": "learners meeting performance domains for the first time",
+      "stakes": "confusion turns useful signals into paperwork",
+      "format": "school_case",
+      "requiredBeat": "Dmytro learns that requirements, scope, quality, and acceptance criteria are delivery signals"
+    },
+    {
+      "domain": "software release review",
+      "audience": "release leads relying on output counts",
+      "stakes": "a green board hides weak stakeholder use",
+      "format": "before_after",
+      "requiredBeat": "Jasper reviews the same process before and after adding requirements, scope, quality, and acceptance criteria"
+    },
+    {
+      "domain": "project file audit",
+      "audience": "reviewers checking why accepted work failed in use",
+      "stakes": "records show activity but not delivery health",
+      "format": "audit",
+      "requiredBeat": "Garrett finds the telling detail in requirements, scope, quality, and acceptance criteria records"
+    },
+    {
+      "domain": "product steering preparation",
+      "audience": "product owners tempted by simple delivery counts",
+      "stakes": "a high output number may hide poor outcome evidence",
+      "format": "inner_monologue",
+      "requiredBeat": "Whitney works through the wrong turns inside her head before tracing outputs to acceptance and outcomes"
+    },
+    {
+      "domain": "steering review preparation",
+      "audience": "project managers with scarce review time",
+      "stakes": "limited attention must cover delivery signals and domain interactions",
+      "format": "planning_choice",
+      "requiredBeat": "Maeva allocates scarce attention across the 8 domains before any review action begins"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 3,
+      "apply": 2,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.328Z"
+}

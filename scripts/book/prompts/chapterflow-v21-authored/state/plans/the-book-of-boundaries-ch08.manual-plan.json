@@ -2,69 +2,68 @@
   "chapterId": "the-book-of-boundaries-ch08",
   "number": 8,
   "title": "Clearing the Table: Setting Boundaries Around Food, Alcohol, and Table Talk",
-  "coreMove": "Table-boundary autonomy protects food, alcohol, and body-talk limits by making a kind no enough, then escalating when pressure turns the meal into a debate.",
+  "coreMove": "A food or drink boundary holds best when your answer stays short and repeatable, with an exit ready instead of a debate over health, taste, or tradition.",
   "exampleCount": 6,
   "exampleSpecs": [
     {
-      "domain": "friend brunch after a health reset",
-      "audience": "friends who bond through shared food rituals",
-      "stakes": "A simple no to pancakes is being treated as rejection of the group.",
+      "domain": "city permit renewal",
+      "audience": "a person declining food while handling public paperwork",
+      "stakes": "Whether a declined dish becomes a public defense of 30 days of Whole30.",
       "format": "dialogue",
-      "requiredBeat": "Show Whole30 brunch pressure turning pancakes into a belonging test."
+      "requiredBeat": "Two named people let a short food refusal stand without turning it into a nutrition debate."
     },
     {
-      "domain": "office birthday celebration",
-      "audience": "coworkers facing routine treat pressure",
-      "stakes": "Repeated small offers are turning into public negotiation.",
+      "domain": "rowing club fundraiser",
+      "audience": "a guest declining alcohol during a social ritual",
+      "stakes": "Whether a repeated offer makes the drink refusal look like a judgment of the party.",
+      "format": "predict_reveal",
+      "requiredBeat": "Set up the expected awkwardness of refusing alcohol, then reveal the pressure loses steam when the no stays short."
+    },
+    {
+      "domain": "college advising appointment break",
+      "audience": "a student setting terms before a family meal",
+      "stakes": "Whether body comments and diet talk get stopped before dinner starts.",
+      "format": "text_thread",
+      "requiredBeat": "A short message exchange lets the body-talk boundary land between the lines."
+    },
+    {
+      "domain": "warehouse receiving line",
+      "audience": "a lead trying to stop diet talk during a routine count",
+      "stakes": "Whether a joke about bodies becomes part of the normal loading rhythm.",
       "format": "reset_moment",
-      "requiredBeat": "Use break-room donuts and birthday cake as a practice setting for a clear no."
+      "requiredBeat": "A routine gets interrupted by body comments, then restarts with a clear table-talk rule."
     },
     {
-      "domain": "extended-family dinner",
-      "audience": "relatives who use bodies as table conversation",
-      "stakes": "The conversation is making the meal unsafe even without policing one plate.",
-      "format": "before_after",
-      "requiredBeat": "Redirect weight, calories, and diet talk at the dinner table."
+      "domain": "bike-share meetup before a rooftop party",
+      "audience": "a person arriving with a nonalcoholic drink",
+      "stakes": "Whether a repeated offer gets to define party belonging.",
+      "format": "vignette",
+      "requiredBeat": "One small lived moment shows alcohol refusal without a decision speech."
     },
     {
-      "domain": "wedding reception toast",
-      "audience": "guests declining alcohol during celebration",
-      "stakes": "Drinking pressure is arriving disguised as joy and loyalty.",
-      "format": "decision_point",
-      "requiredBeat": "Place alcohol inside the same table-boundary category as food."
-    },
-    {
-      "domain": "holiday dessert table",
-      "audience": "guests protecting health privacy around cultural food",
-      "stakes": "A loving offer could become a debate if the refusal turns into a report.",
-      "format": "inner_monologue",
-      "requiredBeat": "Show how overexplaining a food choice invites negotiation."
-    },
-    {
-      "domain": "post-game restaurant meal",
-      "audience": "friends whose joking keeps escalating",
-      "stakes": "Mockery has outlasted the first polite boundary.",
-      "format": "mistake_recovery",
-      "requiredBeat": "Use Green, Yellow, and Red escalation when pressure continues."
+      "domain": "bank errand after family lunch",
+      "audience": "a person reviewing whether leaving the table was too much",
+      "stakes": "Whether the exit is judged against the pressure that came before it.",
+      "format": "postmortem",
+      "requiredBeat": "Reconstruct the family-table pressure from evidence after the outcome is known."
     }
   ],
   "quizFocus": {
     "count": 9,
     "bloomsMix": {
-      "apply": 3,
-      "analyze": 2,
+      "apply": 2,
+      "analyze": 3,
+      "evaluate": 2,
       "understand": 1,
-      "evaluate": 1,
-      "remember": 1,
       "create": 1
     },
     "transferEmphasis": 1
   },
   "cardFocus": {
-    "count": 7,
+    "count": 6,
     "retrievalPractice": true
   },
   "readingTimeMinutes": 12,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-10T01:00:31.123Z"
+  "derivedAt": "2026-06-12T20:04:39.330Z"
 }

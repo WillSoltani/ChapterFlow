@@ -82,17 +82,33 @@ test("cli: catalog-audit runs on the real corpus and reports the known fingerpri
   assert.match(out, /deadline tic: \d+%/);
 });
 
-test("name-plan excludes names other books already use (2026-06-10 policy reversal)", () => {
-  // zz-fixture book against the REAL catalog: every dealt name must be fresh
-  // catalog-wide (the bank comfortably covers one more book).
+test("name-plan: names are unique WITHIN a book; cross-book reuse is allowed (owner policy)", () => {
+  // Policy (2026-06-13): names MAY repeat across books — only within-book
+  // uniqueness is enforced. The cross-book overlap is reported for visibility,
+  // never excluded (the bank is curated American/Canadian, so reuse is fine).
   const { planNames, bankNamesUsedByOtherBooks } = require("../src/librarian/namePlan.js") as typeof import("../src/librarian/namePlan.js");
   const plan = planNames("zz-fixture-fresh-names", 1, 3);
+  const dealt = Object.values(plan.allocation).flat();
+
+  // WITHIN-book uniqueness: no protagonist name is dealt to two chapters.
+  assert.equal(new Set(dealt).size, dealt.length, "names must be unique within a book");
+
+  // cross-book reuse is permitted; diagnostics expose it as an informational count.
+  assert.equal(typeof plan.diagnostics.crossBookReused, "number", "diagnostics must expose the cross-book reuse count");
   const taken = bankNamesUsedByOtherBooks("zz-fixture-fresh-names");
-  assert.ok(taken.size > 100, `cross-book scan should see the real catalog's used names (got ${taken.size})`);
-  for (const [ch, names] of Object.entries(plan.allocation)) {
-    for (const n of names) {
-      assert.ok(!taken.has(n), `ch${ch} dealt "${n}", which another book already uses — the Asha-in-two-books tell`);
-    }
-  }
-  assert.ok(plan.diagnostics.freshAvailable > 50, "the 777-name bank must leave real headroom after exclusion");
+  assert.ok(taken.size > 100, `cross-book scan should still see the real catalog (got ${taken.size})`);
+});
+
+test("plainness meters: abstraction-dense prose scores higher nominalization than concrete prose", () => {
+  const { plainnessMeters } = require("../src/critics/catalogAudit.js") as typeof import("../src/critics/catalogAudit.js");
+  const abstract = plainnessMeters(
+    "Scarcity culture shrinks courage by teaching deficiency first. Worthiness requires the dissolution of comparison, disengagement, and the persistent insufficiency of external validation. Authenticity emerges through the integration of vulnerability and intention.",
+  );
+  const concrete = plainnessMeters(
+    "Maya checks her phone before her feet hit the floor. Forty new emails. She picks the one from her boss, answers it in bed, and the day belongs to other people before she has brushed her teeth.",
+  );
+  assert.ok(
+    abstract.nomPer100 > concrete.nomPer100 + 5,
+    `abstract prose must meter higher (abstract ${abstract.nomPer100.toFixed(1)} vs concrete ${concrete.nomPer100.toFixed(1)})`,
+  );
 });

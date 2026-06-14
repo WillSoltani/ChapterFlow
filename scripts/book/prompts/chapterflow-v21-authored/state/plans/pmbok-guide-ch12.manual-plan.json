@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch12",
+  "number": 12,
+  "title": "Demonstrate Leadership Behaviors",
+  "coreMove": "A team demonstrates leadership when pressure changes a real behavior: who is heard, what is escalated, which tradeoff is named, and how value stays protected.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "steering update preparation before any meeting action begins",
+      "audience": "a project lead allocating scarce attention under professional standards",
+      "stakes": "a leadership principle becomes a line on a slide or a live agenda choice",
+      "format": "planning_choice",
+      "requiredBeat": "before execution starts, he allocates the final prep minutes to the decision evidence the principle requires"
+    },
+    {
+      "domain": "release governance under schedule pressure",
+      "audience": "a delivery lead facing two costly choices",
+      "stakes": "the baseline can be protected only by hiding a risk, while escalation may damage trust in the date",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist faces the chapter's only explicit two-bad-options decision"
+    },
+    {
+      "domain": "a project room discussing the PMBOK principle set",
+      "audience": "a facilitator learning that authority is not the only source of leadership",
+      "stakes": "expertise may stay unused if the room treats leadership as title-only",
+      "format": "dialogue",
+      "requiredBeat": "two named people let the lesson emerge through the exchange itself"
+    },
+    {
+      "domain": "status reporting under schedule pressure",
+      "audience": "a project manager tempted to let the baseline color carry the meeting",
+      "stakes": "a green report can hide the adoption work that makes the outcome valuable",
+      "format": "predict_reveal",
+      "requiredBeat": "the reader expects baseline defense, then the outcome reveals the leadership behavior"
+    },
+    {
+      "domain": "informal team message exchange before a project decision",
+      "audience": "team members deciding how to use principle language without becoming stiff",
+      "stakes": "a principle can stay ceremonial unless the next message changes a behavior",
+      "format": "text_thread",
+      "requiredBeat": "a compressed chat shows the lesson between the lines"
+    },
+    {
+      "domain": "weekly variance review interrupted by a warning signal",
+      "audience": "a PMO lead using a pause as the leadership technique",
+      "stakes": "routine baseline defense can erase the tradeoff the project needs to confront",
+      "format": "reset_moment",
+      "requiredBeat": "a routine gets interrupted, then the protagonist pauses and restarts differently"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 4,
+      "analyze": 2,
+      "evaluate": 1,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.317Z"
+}

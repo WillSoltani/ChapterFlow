@@ -1,0 +1,69 @@
+{
+  "chapterId": "stillness-is-the-key-ch03",
+  "number": 3,
+  "title": "Limit Your Inputs",
+  "coreMove": "Guard your mind at the door: ask what is necessary, filter work before it becomes duty, and let fewer inputs earn the deeper attention they deserve.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "bus depot commute",
+      "audience": "readers who confuse alerts with guidance",
+      "stakes": "transit news can crowd out the one sign that matters",
+      "format": "predict_reveal",
+      "requiredBeat": "use the bus depot bench to reveal that extra alerts hid the necessary cue"
+    },
+    {
+      "domain": "youth sports practice",
+      "audience": "readers managing informal requests",
+      "stakes": "a stray message can become a needless practice change",
+      "format": "text_thread",
+      "requiredBeat": "use the sports field sideline as a compressed message exchange that filters chaff"
+    },
+    {
+      "domain": "home pantry restock",
+      "audience": "readers interrupted during small routines",
+      "stakes": "one buzz can turn a useful chore into scattered attention",
+      "format": "reset_moment",
+      "requiredBeat": "use the pantry shelf interruption to show the pause as the filtering technique"
+    },
+    {
+      "domain": "baseball team logistics",
+      "audience": "readers sorting requests in a noisy setting",
+      "stakes": "a calm bench can separate useful updates from stray wants",
+      "format": "vignette",
+      "requiredBeat": "use the baseball dugout bench as a close observed moment without a forced decision"
+    },
+    {
+      "domain": "dental sterilization workflow",
+      "audience": "readers reviewing how noise became work",
+      "stakes": "a missed tray shows how unfiltered requests multiply",
+      "format": "postmortem",
+      "requiredBeat": "open after the outcome and reconstruct the intake failure from evidence"
+    },
+    {
+      "domain": "building maintenance safety",
+      "audience": "readers who notice their own distraction mid-task",
+      "stakes": "a small input error can become a safety problem",
+      "format": "mistake_recovery",
+      "requiredBeat": "use the electrical panel room to center the moment of noticing an input mistake"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 3,
+      "apply": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 9,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-12T17:37:06.485Z"
+}

@@ -1,0 +1,364 @@
+{
+  "chapterId": "pmbok-guide-ch25",
+  "number": 25,
+  "title": "Delivery Performance Domain",
+  "readingTimeMinutes": 11,
+  "hook": "After signoff, the war room still smelled of markers; the acceptance column sat blank.",
+  "counterintuition": "A finished output can still be weak delivery. The useful signal is not how much the team produced, but whether scope, quality, acceptance, and value still line up.",
+  "tryThisNow": "Tally the next five completed tasks you notice today, then mark which ones have a user, an acceptance signal, and a value link.",
+  "keyTakeaway": "Treat delivery as a live domain: trace each output through requirements, scope, quality, acceptance, and value before calling the work healthy.",
+  "breakdown": {
+    "fastRead": "Maeva walks back into the war room after signoff. The PMBOK Guide domain map is still taped to the wall. Eight domains circle the page, and Delivery Performance Domain has the most check marks. One column is blank: acceptance.\n\nThat blank is the warning. Delivery is not proved by a shipped output or a closed task. The work has to match requirements, fit scope, meet quality, gain acceptance, and support the outcome people wanted.\n\nA team can look busy and still fail delivery. The safer move is to trace the output to use. If the trace breaks, delivery needs attention now.",
+    "deepRead": "Delivery gets weak when evidence stops at activity. A ticket closes, a file uploads, a form gets signed, and the room relaxes. Those events matter, but none of them can carry the whole claim. The claim is larger: the project produced something fit for purpose, accepted by the right people, and linked to value.\n\nDmytro's PMBOK Guide onboarding exercise makes the failure visible. Philomene gives the class a simple case with four cards: requirements, scope, quality, and acceptance criteria. Dmytro sorts them as paperwork that happens before delivery. Then the case changes. A stakeholder rejects a finished report because the scope note was old. A user passes a feature but the quality data shows failures in a live setting. A regulator wants formal acceptance before launch. The cards stop looking like forms and start looking like signals.\n\nThat is the point of a performance domain. It stays active while the project learns. Requirements may be fixed, refined, ranked, or found as work moves. Acceptance may mean signoff, user validation, approval, readiness, or feedback. The shape changes by approach, but the question holds steady: is production becoming value?\n\nThe PMBOK Guide places Delivery among 8 domains to prevent a narrow reading. Stakeholder concerns, planning choices, project work, measurement, and uncertainty all change the delivery picture. A deliverable can be technically complete and still miss operational use. A scope item can be done and still fail the value test.\n\nA delivery review earns trust when it looks past volume. It asks what evidence connects the output to acceptance and outcome.",
+    "fullRead": "A strict reading of delivery can become too small. Teams sometimes hear the word and picture the final handoff: a release, a report, a building turnover, a signed document. That picture is clean and late. It misses the live work that makes the handoff true.\n\nJasper's release board shows why the late picture fails. Before the change, he counts deliverables shipped, defects closed, and dates met. The board looks green. After the change, he reviews the same release through requirements, scope, quality, acceptance criteria, and stakeholder use. The color changes. One feature meets the written requirement but not the user workflow. One report fits scope but lacks decision value. One package was accepted in a meeting yet rejected by operations the next morning.\n\nThe contrast is not a call for heavier paperwork. It is a call for better evidence. More artifacts do not rescue weak delivery if those artifacts do not help people judge fit, use, and value. A scope statement, backlog, test report, or signoff note is useful only when it helps the team see whether the output is becoming the outcome.\n\nThe eight-domain view also guards against a second error: optimizing delivery alone. Garrett finds the clue during an audit of project files. The acceptance criteria changed after a schedule cut. The quality review passed in the project team, but operations had no readiness note. The measurement dashboard celebrated output count, while stakeholder feedback sat in a separate folder. Nothing dramatic happens in the audit room. The records simply show that delivery trouble was spread across domains.\n\nThat spread matters. Planning can press scope too tightly. Stakeholder work can miss the person who accepts the result. Project work can produce a document no one uses. Measurement can reward volume while the benefit stays vague. Uncertainty can change what fit for purpose means. Delivery performance is healthy only when those links are visible enough to inspect.\n\nApproach changes the evidence, not the concern. Predictive work may use stable requirements and formal approval. Adaptive work may rely on ranked backlog items, demos, user feedback, and fast acceptance learning. Hybrid work may use both. None of those forms is superior by default. The test is fit: does the chosen evidence help the team see scope, quality, acceptance, and value in time to adjust?\n\nWhitney feels the hard part inside her own head. Ship count is tempting. It is clean. It makes the steering update short. But ship count hides the question she keeps avoiding: who can use this now, and what outcome did it change? She wants to defend the work. Then she sees the gap. A deliverable without a use path is only an output with a hopeful label.\n\nDelivery is the proof that production is becoming value.\n\nThat proof is not found in one document or one ceremony. It is built by tracing the line from need to requirement, from requirement to scope, from scope to quality, from quality to acceptance, and from acceptance to outcome. When the line breaks, the domain is speaking. The team does not need to rename the break as progress. It needs to repair the link before more output makes the failure harder to see."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch25.ex.domain-25-eight",
+      "title": "Therese Reframes the Wall Map",
+      "tags": [
+        "coach talk",
+        "8 domains",
+        "value trace"
+      ],
+      "planSpec": {
+        "domain": "PMBOK Guide domain review",
+        "audience": "project leads who treat delivery as final handoff",
+        "stakes": "a green delivery column hides weak acceptance evidence",
+        "format": "coach_talk",
+        "requiredBeat": "Therese reframes Delivery Performance Domain as a live link from output to value within the 8 domains"
+      },
+      "scenario": "Maeva keeps tapping the Delivery Performance Domain box on the PMBOK Guide wall map, sure it belongs after planning. Therese listens, then points to the 8 domains around it and asks where requirements, stakeholder acceptance, and measurement go while work is still changing. Maeva says delivery means the end. Therese gives the reframe: \"Delivery is not the handoff at the end; it is the proof that the work is becoming value.\"",
+      "whatToDo": "Therese has Maeva redraw the map with lines from Delivery Performance Domain to requirements, stakeholders, planning, measurement, and uncertainty before judging the status.",
+      "whyItMatters": "The coaching move breaks the phase-box habit. Delivery becomes an active area of attention, not a label pasted onto the last step."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch25.ex.domain-25-artifact",
+      "title": "Dmytro Sorts the Four Cards",
+      "tags": [
+        "training",
+        "requirements",
+        "acceptance criteria"
+      ],
+      "planSpec": {
+        "domain": "project onboarding classroom",
+        "audience": "learners meeting performance domains for the first time",
+        "stakes": "confusion turns useful signals into paperwork",
+        "format": "school_case",
+        "requiredBeat": "Dmytro learns that requirements, scope, quality, and acceptance criteria are delivery signals"
+      },
+      "scenario": "Dmytro sits in Philomene's onboarding class with four cards in front of him: requirements, scope, quality, and acceptance criteria. He keeps placing all four before delivery, as if the cards are school prerequisites. Philomene does not correct him with a lecture. She asks why a finished feature might still fail. Dmytro moves the cards beside the deliverable and sees his confusion become the lesson.",
+      "whatToDo": "Philomene turns Dmytro's wrong sort into the teaching case, then makes him place each card where it would reveal weak delivery performance.",
+      "whyItMatters": "The class scene keeps the domain concrete. Requirements and scope are not old paperwork; they are signals that show whether an output can become accepted value."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch25.ex.domain-25-artifact",
+      "title": "Jasper's Board Changes Color",
+      "tags": [
+        "before after",
+        "quality",
+        "acceptance"
+      ],
+      "planSpec": {
+        "domain": "software release review",
+        "audience": "release leads relying on output counts",
+        "stakes": "a green board hides weak stakeholder use",
+        "format": "before_after",
+        "requiredBeat": "Jasper reviews the same process before and after adding requirements, scope, quality, and acceptance criteria"
+      },
+      "scenario": "Before: Jasper's release board shows five deliverables shipped, five owners thanked, five dates met. He calls the process green. After: Jasper's release board shows the same five deliverables against requirements, scope, quality results, and acceptance criteria. Two lose their green mark. The process did not change its name. Its evidence changed, and the contrast carries the lesson.",
+      "whatToDo": "Jasper keeps the same board but changes the proof line: each deliverable needs requirement fit, scope fit, quality evidence, and acceptance before it stays green.",
+      "whyItMatters": "The parallel view exposes false health. Delivery performance can look strong by count while the evidence for fit and use is still thin."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch25.ex.domain-25-artifact",
+      "title": "Garrett Finds the Blank Acceptance Thread",
+      "tags": [
+        "audit",
+        "scope",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "project file audit",
+        "audience": "reviewers checking why accepted work failed in use",
+        "stakes": "records show activity but not delivery health",
+        "format": "audit",
+        "requiredBeat": "Garrett finds the telling detail in requirements, scope, quality, and acceptance criteria records"
+      },
+      "scenario": "Garrett reviews the project files after everyone has left: requirements log, scope baseline, quality report, acceptance criteria sheet, and meeting notes. The telling detail sits in the version history. Acceptance criteria changed after scope was frozen, but no user validation followed. Nothing new happens in the room. Garrett only understands why the accepted package failed in use.",
+      "whatToDo": "Garrett marks the version gap between scope freeze and acceptance criteria change, then ties the later failure to missing user validation evidence.",
+      "whyItMatters": "Audit work can reveal domain weakness without fresh drama. The record shows where delivery stopped being linked to the evidence that should have guided it."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch25.concept",
+      "title": "Whitney Checks the Clean Number",
+      "tags": [
+        "inner monologue",
+        "deliverables",
+        "outcomes"
+      ],
+      "planSpec": {
+        "domain": "product steering preparation",
+        "audience": "product owners tempted by simple delivery counts",
+        "stakes": "a high output number may hide poor outcome evidence",
+        "format": "inner_monologue",
+        "requiredBeat": "Whitney works through the wrong turns inside her head before tracing outputs to acceptance and outcomes"
+      },
+      "scenario": "Whitney reads the steering slide in silence. Seven deliverables shipped. Good. Too easy. Maybe quality passed, so delivery is fine. Not enough. Maybe acceptance emails count. Only if the right people can use the result. Her thoughts circle the same line until the wrong turns narrow: deliverables are outputs, not outcomes. The clean number is not the proof she needs.",
+      "whatToDo": "Whitney replaces the shipped-count headline with a trace from each deliverable to quality evidence, acceptance evidence, user use, and intended outcome.",
+      "whyItMatters": "The private correction is the domain's hard edge. Delivery performance is not volume with a better title; it is the link from output to usable value."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch25.ex.domain-25-eight",
+      "title": "Maeva Allocates the Ninety Minutes",
+      "tags": [
+        "planning choice",
+        "PMBOK Guide",
+        "requirements"
+      ],
+      "planSpec": {
+        "domain": "steering review preparation",
+        "audience": "project managers with scarce review time",
+        "stakes": "limited attention must cover delivery signals and domain interactions",
+        "format": "planning_choice",
+        "requiredBeat": "Maeva allocates scarce attention across the 8 domains before any review action begins"
+      },
+      "scenario": "Maeva has ninety minutes before the steering review and a PMBOK Guide sketch of 8 domains across her notebook. Delivery Performance Domain gets one page, but requirements questions, stakeholder acceptance, measurement gaps, and uncertainty notes all press on it. No review has started. She is only allocating attention, giving each signal enough time to show how delivery is interacting with the rest of the system.",
+      "whatToDo": "Maeva budgets the review time before opening the files: requirements trace first, then acceptance, measurement, stakeholder, and uncertainty links around delivery.",
+      "whyItMatters": "Planning the attention prevents a narrow handoff review. The domain map helps Maeva reserve time for interactions before status pressure crowds them out."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch25.fact.8",
+        "prompt": "Jasper's release log shows 12 deliverables closed, but four acceptance criteria fields are blank and two quality checks were skipped. What should he infer first?",
+        "choices": [
+          "Activity-Volume Misread: Jasper can count the 12 closed deliverables as enough delivery evidence for the release.",
+          "Signoff-Shortcut Misread: Jasper can ask owners to approve the blank fields so the log looks complete.",
+          "Outcome-Signal Reading: Jasper should inspect the missing acceptance and quality evidence before calling delivery healthy."
+        ],
+        "correctIndex": 2,
+        "explanation": "Closed items are not enough proof. The blanks are delivery signals, so Jasper should check acceptance and quality before treating output count as health.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch25.ex.domain-25-eight",
+        "prompt": "As project lead, Maeva inherits a team that uses Delivery Performance Domain as a final shipping checklist. Which first move fits the PMBOK Guide's 8 domains?",
+        "choices": [
+          "Domain-Map Reading: Maeva should connect delivery to stakeholder, planning, work, measurement, and uncertainty signals.",
+          "Phase-Box Misread: Maeva should keep delivery after planning so the team sees a clean sequence.",
+          "Department-Owner Misread: Maeva should assign delivery to one owner and leave the other domains outside the review."
+        ],
+        "correctIndex": 0,
+        "explanation": "The eight-domain map treats domains as interacting areas of attention. A final checklist misses how other domains shape delivery evidence while work is active.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch25.fact.3",
+        "prompt": "A scope report for Garrett's audit shows three late changes, each followed by stakeholder complaints and new measurement gaps. Which reading best fits the evidence?",
+        "choices": [
+          "Scope-Freeze Misread: Garrett should read the late changes as proof that scope control was the only delivery problem.",
+          "Interaction Reading: Garrett should trace how scope changes affected stakeholders, measurement, and delivery evidence together.",
+          "Artifact-Stack Misread: Garrett should add more logs to the audit file before looking at the complaint pattern."
+        ],
+        "correctIndex": 1,
+        "explanation": "The pattern crosses domains. Scope changes, stakeholder response, and measurement gaps are linked, so Garrett should inspect the interaction rather than isolate one file.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch25.ex.domain-25-artifact",
+        "prompt": "During Philomene's training case, Dmytro treats requirements, scope, quality, and acceptance criteria as paperwork finished before delivery. How should she use the confusion?",
+        "choices": [
+          "Sequence-Only Misread: Philomene should confirm that the four cards belong before delivery so Dmytro can memorize the order.",
+          "Formality Misread: Philomene should tell Dmytro that formal documents matter more than user feedback in the training case.",
+          "Signal Reading: Philomene should show how each card reveals whether a finished output can be accepted and used."
+        ],
+        "correctIndex": 2,
+        "explanation": "The cards are not just preliminaries. They are signals that help Dmytro judge whether production is becoming accepted, useful value.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch25.fact.6",
+        "prompt": "Whitney's steering slide says seven outputs shipped, yet the benefits note is vague and no user group has confirmed use. Which revision strengthens the slide?",
+        "choices": [
+          "Value-Trace Reading: Whitney should link each output to acceptance evidence, user use, and the intended benefit.",
+          "Output-Pride Misread: Whitney should keep the seven shipped outputs as the headline and save benefit details for later.",
+          "Benefits-Delay Misread: Whitney should discuss benefits only after all outputs are delivered and the steering group has moved on."
+        ],
+        "correctIndex": 0,
+        "explanation": "Delivery performance is tied to value. Whitney's shipped count needs a trace to acceptance, use, and benefit before it can support a strong status claim.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch25.fact.4",
+        "prompt": "An adaptive pilot run by Whitney discovers requirements weekly through demos, while Jasper's fixed-date release uses formal signoff. What should their delivery reviews share?",
+        "choices": [
+          "One-Method Misread: Whitney and Jasper should use the same signoff package so the two reviews look comparable.",
+          "Fit-to-Approach Reading: Whitney and Jasper should use different evidence forms while still checking scope, quality, acceptance, and value.",
+          "Feedback-Only Misread: Whitney should rely on demo reactions, while Jasper should ignore user evidence once signoff is planned."
+        ],
+        "correctIndex": 1,
+        "explanation": "The approach changes the form of evidence, not the concern. Both reviews still need proof of fit, acceptance, and value in their own context.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch25.fact.9",
+        "prompt": "Garrett hears three audit summaries: many tasks closed, many artifacts filed, and many owners thanked. Which warning should he raise before accepting the summaries?",
+        "choices": [
+          "Courtesy Misread: Garrett should treat thanked owners as proof that delivery is accepted by the people who matter.",
+          "Evidence Reading: Garrett should ask which summaries show requirements fit, quality, acceptance, and outcome movement.",
+          "Filing Misread: Garrett should treat the filed artifacts as the strongest sign that domain work was complete."
+        ],
+        "correctIndex": 1,
+        "explanation": "Tasks, artifacts, and thanks can hide weak outcomes. Garrett needs evidence that connects output to fit, acceptance, and movement toward value.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch25.fact.1",
+        "prompt": "A PMBOK Guide wall map in Maeva's room lists 8 domains, and Delivery Performance Domain has a sticky note at the far right as if it starts last. What correction is most useful?",
+        "choices": [
+          "End-Stage Misread: Maeva should leave the sticky note at the far right because delivery begins when handoff begins.",
+          "Checklist Misread: Maeva should replace the wall map with a longer shipping checklist for the team.",
+          "Throughout-Work Reading: Maeva should move the note into the active domain cluster and review delivery while new information appears."
+        ],
+        "correctIndex": 2,
+        "explanation": "Performance domains operate throughout the project. Moving the note helps Maeva see delivery as active while requirements, decisions, and responses change.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch25.fact.5",
+        "prompt": "Philomene gives Dmytro a practice case with a thick scope deck that no one uses in decisions. Which answer shows the right view of artifacts?",
+        "choices": [
+          "Document-Weight Misread: Dmytro should treat the thick scope deck as evidence that delivery is under control.",
+          "Purpose Reading: Dmytro should judge the scope deck by whether it helps decisions, coordination, control, or learning.",
+          "Archive Misread: Dmytro should keep the deck unchanged because filed artifacts preserve the delivery record."
+        ],
+        "correctIndex": 1,
+        "explanation": "Artifacts earn their place by supporting outcomes. A thick deck that does not guide decisions or learning adds work without proving delivery performance.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch25.concept",
+      "front": "What evidence shows a deliverable is more than a finished output?",
+      "back": "Look for a trace from requirements and scope to quality evidence, acceptance by the right stakeholders, and a link to the intended outcome. A finished output without that trace may still be weak delivery.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch25.ex.domain-25-eight",
+      "front": "Why does the PMBOK Guide place Delivery Performance Domain among 8 domains?",
+      "back": "The placement keeps delivery from becoming a final phase box. Stakeholder, team, planning, work, measurement, and uncertainty concerns can all change whether the delivered output is fit, accepted, and valuable.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch25.ex.domain-25-artifact",
+      "front": "How do requirements and scope become delivery signals rather than paperwork?",
+      "back": "They show what the output is meant to satisfy and what boundaries it must fit. When requirements or scope drift without matching quality and acceptance evidence, delivery health is weaker than task status suggests.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch25.fact.6",
+      "front": "Earlier principle, Focus on Value: how should it sharpen a delivery review?",
+      "back": "It pushes the review past output count. The question becomes whether the deliverable is accepted, usable, and tied to the benefit or outcome that justified the work in the first place.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch25.fact.3",
+      "front": "Earlier principle, System Interactions: what should a delivery issue make you inspect?",
+      "back": "Inspect nearby domains, not just the deliverable. A delivery problem may come from stakeholder gaps, planning pressure, project work choices, measurement incentives, or uncertainty that changed what fit for purpose means.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch25.fact.2",
+      "front": "Why can high activity volume hide weak delivery performance?",
+      "back": "Activity can close tasks while outcomes stay weak. Delivery health depends on evidence that the output meets requirements, fits scope, meets quality, gains acceptance, and supports value.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card07",
+      "sourceAnchorId": "ch25.fact.4",
+      "front": "What changes when delivery evidence is tailored to predictive, adaptive, or hybrid work?",
+      "back": "The form changes, not the concern. Formal signoff, user validation, demos, readiness checks, or feedback can all work if they show scope fit, quality, acceptance, and value in the project's context.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Trace Output to Acceptance",
+    "coreSkill": "Use Trace Output to Acceptance whenever a deliverable looks done. Name the output, the requirement or scope signal, the quality evidence, the acceptance path, and the intended value. Then check which of the other 8 domains could weaken that trace.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch25.fact.8",
+        "context": "When a status update shows many completed tasks but few acceptance details",
+        "plan": "If the count looks strong, then Trace Output to Acceptance for one item and mark the missing requirements, scope, quality, or acceptance evidence."
+      },
+      {
+        "sourceAnchorId": "ch25.ex.domain-25-eight",
+        "context": "When Delivery Performance Domain is being treated as the last box on the PMBOK Guide 8 domains map",
+        "plan": "If Delivery Performance Domain is sitting at the end, then Trace Output to Acceptance and add the stakeholder, planning, measurement, uncertainty, and requirements links that affect it now."
+      },
+      {
+        "sourceAnchorId": "ch25.fact.4",
+        "context": "When someone argues that one delivery review format should fit every project",
+        "plan": "If the format is becoming the point, then Trace Output to Acceptance and choose evidence that fits the predictive, adaptive, or hybrid context."
+      },
+      {
+        "sourceAnchorId": "ch25.fact.5",
+        "context": "When an artifact exists but no one uses it for a decision",
+        "plan": "If the artifact is not guiding action, then Trace Output to Acceptance and keep only the parts that support decisions, coordination, control, or learning."
+      }
+    ],
+    "twentyFourHourChallenge": "Choose one deliverable today and run Trace Output to Acceptance in writing: output, requirement or scope signal, quality evidence, acceptance path, and value link. Mark any blank.",
+    "weeklyPractice": "For one week, review three completed outputs through Trace Output to Acceptance. Track which blank recurs most often: requirements, scope, quality, acceptance, or value."
+  },
+  "memorableLines": [
+    {
+      "text": "A team can look busy and still fail delivery.",
+      "location": "breakdown.fastRead",
+      "why": "It captures the chapter's warning against mistaking activity for delivery health."
+    },
+    {
+      "text": "A delivery review earns trust when it looks past volume.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the move from output count to evidence of fit, acceptance, and value."
+    },
+    {
+      "text": "Delivery is the proof that production is becoming value.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the domain a plain test the reader can carry into status work."
+    }
+  ]
+}

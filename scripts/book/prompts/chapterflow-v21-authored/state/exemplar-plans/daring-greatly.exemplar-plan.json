@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "exemplar-plan-v1",
+  "bookId": "daring-greatly",
+  "createdAt": "2026-06-12T14:09:39.106Z",
+  "fromChapter": 1,
+  "toChapter": 1,
+  "allocation": {
+    "1": {
+      "assigned": [
+        "Lynne Twist"
+      ],
+      "forbidden": []
+    }
+  },
+  "diagnostics": {
+    "contested": 0,
+    "chaptersWithoutSidecar": []
+  }
+}

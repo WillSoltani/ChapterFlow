@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 20,
+  "chapterId": "stillness-is-the-key-ch20",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "ee9582567ce4726e",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:45:04.237Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 93/100; r2 quiz-domain repair verified; gate/source pass and quiz verifies 9/9.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 20,
+      "chapterId": "stillness-is-the-key-ch20",
+      "verdict": "REVISE",
+      "contentHash": "77c7fffd1597163b",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:18:19.320Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch20 repeats earlier venue slate (welding booth, bus depot, pantry, baseball, dental sterilization); quiz keys verified 9/9; no corruption found."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 20,
+      "chapterId": "stillness-is-the-key-ch20",
+      "verdict": "REVISE",
+      "contentHash": "3070b85350c0852e",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:25:27.885Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "88/100; prior venue-slate issue resolved, but quiz_distractor_quality=0.55: q04 compost prompt has cereal/shelf/packet choice language, and q05 wedding seating correct choice says inning chain; gates/source pass; quiz keys verified 9/9.",
+      "supersededReason": "Prior REVISE was caused by venue-slate reuse; fresh QC retains REVISE for stale-domain quiz choices in ch20 q04/q05."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 20,
+      "chapterId": "stillness-is-the-key-ch20",
+      "verdict": "REVISE",
+      "contentHash": "14c377cc17d41a8d",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:34:18.763Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "YELLOW 88/100; quiz_distractor_quality=0.55; keys verify 9/9 but stale domain leakage remains in q02 riders and q06 patient wording after r1 repair.",
+      "supersededReason": "post-r1 re-QC for quiz-domain repair"
+    }
+  ],
+  "supersededReason": "post-r2 re-QC for quiz-domain repair"
+}

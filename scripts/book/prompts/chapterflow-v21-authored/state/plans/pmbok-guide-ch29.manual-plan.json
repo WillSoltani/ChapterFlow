@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch29",
+  "number": 29,
+  "title": "Models",
+  "coreMove": "Use models as lenses, not badges: choose the one that clarifies cause, communication, change, or team behavior, then let it alter the next decision.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software recovery review after a failed pilot",
+      "audience": "project leaders choosing a response to uncertain work",
+      "stakes": "the team may name complexity while still forcing linear planning logic",
+      "format": "postmortem",
+      "requiredBeat": "the scene opens after failure and locates the one misstep left on the wall"
+    },
+    {
+      "domain": "new cross-functional team review",
+      "audience": "team leads reading early conflict",
+      "stakes": "early friction may be punished as failure instead of shaped into norms",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist notices her own wrong reading mid-stream"
+    },
+    {
+      "domain": "maintenance notice that keeps being misread",
+      "audience": "project managers diagnosing information failures",
+      "stakes": "a sent message may be mistaken for shared understanding",
+      "format": "decision_memo",
+      "requiredBeat": "a written artifact carries the action through sender, receiver, noise, and feedback"
+    },
+    {
+      "domain": "two product teams entering early conflict",
+      "audience": "managers choosing how to respond to team friction",
+      "stakes": "one team may mature while another suppresses the conflict it needs to work through",
+      "format": "contrast",
+      "requiredBeat": "two named people face the same situation with opposite approaches and divergent outcomes"
+    },
+    {
+      "domain": "delivery lead stuck in complexity language",
+      "audience": "leaders who can name uncertainty but still plan it incorrectly",
+      "stakes": "the team may use the right model without changing the response",
+      "format": "coach_talk",
+      "requiredBeat": "a peer reframes the stuck view in one quotable sentence"
+    },
+    {
+      "domain": "project management training exercise",
+      "audience": "learners practicing model selection without workplace stakes",
+      "stakes": "the learner may memorize model names without knowing what question each one answers",
+      "format": "school_case",
+      "requiredBeat": "the learner's confusion becomes the material of the lesson"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 3,
+      "apply": 3,
+      "evaluate": 1,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.330Z"
+}

@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch08",
+  "number": 8,
+  "title": "Create a Collaborative Project Team Environment",
+  "coreMove": "A team proves collaboration when pressure rises by surfacing hidden signals, naming owners, and letting trust and working agreements shape the next delivery choice.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "project status chat",
+      "audience": "project leads who need hard news to move through informal channels",
+      "stakes": "a risk stays private while the official update remains falsely calm",
+      "format": "text_thread",
+      "requiredBeat": "A brief chat turns a hidden schedule concern into a visible team signal."
+    },
+    {
+      "domain": "build review status update",
+      "audience": "project managers under schedule pressure",
+      "stakes": "the team may defend a clean chart instead of addressing the risk it hides",
+      "format": "reset_moment",
+      "requiredBeat": "A routine reporting move is interrupted and restarted around the hidden risk."
+    },
+    {
+      "domain": "quality review preparation",
+      "audience": "quality leads building practical norms before a review",
+      "stakes": "a defect concern may stay unspoken if the route for raising it is unclear",
+      "format": "vignette",
+      "requiredBeat": "A small physical detail shows how team norms make quality concerns speakable."
+    },
+    {
+      "domain": "procurement delay postmortem",
+      "audience": "procurement leads reconstructing why a warning did not travel",
+      "stakes": "the same supplier exposure will recur if the team misreads the failure",
+      "format": "postmortem",
+      "requiredBeat": "The postmortem locates the missing tradeoff record as the decisive misstep."
+    },
+    {
+      "domain": "adoption readiness briefing",
+      "audience": "stakeholder-facing leads who soften signals under pressure",
+      "stakes": "support concerns may vanish from the rollout record",
+      "format": "mistake_recovery",
+      "requiredBeat": "The protagonist notices her own smoothing and corrects the signal before it disappears."
+    },
+    {
+      "domain": "delivery decision record",
+      "audience": "delivery managers who need collaboration to survive after the meeting",
+      "stakes": "a pressured choice may lose the reason it was made",
+      "format": "decision_memo",
+      "requiredBeat": "A written decision record carries the collaborative evidence and owner."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "understand": 1,
+      "evaluate": 2,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.314Z"
+}

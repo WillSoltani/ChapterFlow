@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch15",
+  "number": 15,
+  "title": "Navigate Complexity",
+  "coreMove": "Navigate Complexity becomes real when ambiguity, interdependence, and emergence change the next tradeoff, especially when schedule pressure tempts the team to defend the baseline.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "municipal permit software rollout",
+      "audience": "project managers defending a public launch date",
+      "stakes": "a visible launch could ship with hidden adoption and integration risk",
+      "format": "reset_moment",
+      "requiredBeat": "A routine status update is interrupted, and the pause itself becomes the technique."
+    },
+    {
+      "domain": "portfolio office principle briefing",
+      "audience": "analysts preparing leaders to use PMBOK principles together",
+      "stakes": "leaders may treat Navigate Complexity as a stand-alone slogan",
+      "format": "vignette",
+      "requiredBeat": "A close observed desk moment teaches through detail without a live decision."
+    },
+    {
+      "domain": "regional payroll release",
+      "audience": "delivery teams reviewing a failed release after schedule recovery",
+      "stakes": "a missed handoff could be misread as bad execution instead of hidden complexity",
+      "format": "postmortem",
+      "requiredBeat": "The scene opens after failure and locates the decisive misstep in the trace."
+    },
+    {
+      "domain": "medical device training rollout",
+      "audience": "delivery leads presenting to a steering group",
+      "stakes": "leaders may hear schedule confidence while adoption risk grows",
+      "format": "mistake_recovery",
+      "requiredBeat": "The protagonist notices her own simplifying error while speaking."
+    },
+    {
+      "domain": "university data migration",
+      "audience": "project managers documenting a pressure decision",
+      "stakes": "leaders need a written decision that shows how complexity changed the choice",
+      "format": "decision_memo",
+      "requiredBeat": "A written artifact carries the action of the scene."
+    },
+    {
+      "domain": "public transit payment upgrade",
+      "audience": "program leaders comparing review habits",
+      "stakes": "two leaders face the same integration surprise with different principle use",
+      "format": "contrast",
+      "requiredBeat": "Two named people face the same situation with opposite approaches and diverging outcomes."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "understand": 1,
+      "evaluate": 2,
+      "apply": 3,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.320Z"
+}

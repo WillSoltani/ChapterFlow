@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "pedagogy-plan-v1",
+  "bookId": "daring-greatly",
+  "fromChapter": 1,
+  "toChapter": 1,
+  "bookMix": {
+    "hookShapes": [
+      "counterfactual-question",
+      "one-number-contrast",
+      "concrete-ironic-image"
+    ],
+    "dominantHookShape": "counterfactual-question",
+    "tryThisNowGrammars": [
+      "write-one",
+      "count-observations",
+      "schedule-event"
+    ],
+    "tacticFamilies": [
+      "breath-counting",
+      "write-one-line",
+      "subtract-one-thing",
+      "environment-move",
+      "single-question-conversation",
+      "timer-block",
+      "object-relocation",
+      "read-aloud",
+      "walk-and-decide",
+      "comparison-of-two",
+      "calendar-edit",
+      "checklist-mark",
+      "observation-log",
+      "teach-someone",
+      "rehearse-once",
+      "boundary-script",
+      "stop-doing-list",
+      "threshold-cue",
+      "ranking-pass",
+      "replacement-rule",
+      "handoff-note",
+      "friction-add",
+      "friction-remove",
+      "error-review"
+    ],
+    "quizOpeners": [
+      "quote-interpretation",
+      "you-situation"
+    ]
+  },
+  "allocation": {
+    "1": {
+      "hookShape": "counterfactual-question",
+      "tryThisNowGrammar": "count-observations",
+      "tacticFamily": "calendar-edit",
+      "quizOpeners": [
+        "quote-interpretation",
+        "you-situation"
+      ]
+    }
+  },
+  "carriedChapters": []
+}

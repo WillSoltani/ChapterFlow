@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch07",
+  "number": 7,
+  "title": "Be a Diligent, Respectful, and Caring Steward",
+  "readingTimeMinutes": 12,
+  "hook": "The project room was quiet, except for an erased risk note and a baseline nobody trusted.",
+  "counterintuition": "Reciting a PMBOK principle can look professional while hiding the very risk the principle was meant to surface. Stewardship is proven by what changes when schedule pressure arrives.",
+  "tryThisNow": "In the next five work messages you read, tally each time time, money, data, or a person is treated as expendable; circle the count that should change.",
+  "keyTakeaway": "Stewardship is visible when schedule pressure changes the decision: protect people, evidence, compliance, resources, and trust before defending a convenient baseline.",
+  "breakdown": {
+    "fastRead": "Ryan sees the project room after the status call. The risk line is gone. The baseline date is still green. Three mugs sit by the screen, and nobody has said what was traded away to keep it green.\n\nPMI names stewardship as one of 12 principles for a reason. It is not a slogan for calm days. It is a duty to guard resources, people, compliance, evidence, and trust while work moves.\n\nThe rule is simple. If pressure makes the responsible choice quieter, make it visible again. A diligent steward can adjust the approach, raise the risk, and protect quality without treating the plan as more important than the people and value it serves.",
+    "deepRead": "Schedule pressure narrows the room. A late task starts asking for one kind of proof: can the date stay green? Stewardship widens the proof. It asks who bears the cost, which rule is being bent, what evidence is missing, and whether trust will survive the choice.\n\nBrooks finds the mechanism in a folder audit. The change log says baseline protected. The resource note says testing time cut. The compliance checklist still shows pending, though the sponsor deck calls the release ready. No one lied in a large way. Each file made one small silence look normal.\n\nDiligence is the part that checks those silences. Respect is the part that treats stakeholders and team members as people with legitimate interests. Care is the part that looks past the next meeting to adoption, safety, and value delivery. Together, they make the principle behavioral.\n\nPMBOK principles travel through predictive plans, adaptive backlogs, and hybrid releases because they describe conduct, not one delivery technique. A predictive team may record an escalation. An adaptive team may reorder a backlog. A hybrid team may change a release slice. The shared test is the same: did the team use authority, resources, information, and time in a way it could defend after the rush passed?",
+    "fullRead": "Convenience is the usual disguise. A team does not announce that ethics, compliance, or well-being no longer matter. It says the baseline is fragile, the window is short, or the stakeholder can hear about it later. Each phrase sounds practical. The cost moves into the dark.\n\nLeontine sees that cost when the adoption team asks for one more week of training. The release plan has no room. Procurement has already warned that a reporting control needs one more review. The quick answer would be to keep the date and let support absorb the confusion. A steward asks a wider set of questions before calling that efficient.\n\nFirst, whose resources are being used? Money is obvious, but attention, trust, data, authority, and team energy are resources too. Second, what duty travels with those resources? Some duties are formal, such as compliance, procurement rules, or privacy. Some are relational, such as telling affected people the truth soon enough to act. Third, what value is the project supposed to protect? A date that damages adoption may be on time and still be poor value delivery.\n\nThis does not make stewardship a license to stall. Projects exist to deliver. Teams still make tradeoffs, accept some risk, and tailor how much governance a situation needs. The point is not to turn every choice into a courtroom. The point is to stop convenience from masquerading as responsibility.\n\nMaelle can apply the principle in a predictive plan by escalating a risk before a gate. Brooks can apply it in an adaptive backlog by moving a safety defect above a popular feature. Ryan can apply it in a hybrid release by shrinking scope so support has time to prepare. The methods differ. The professional standard does not.\n\nThe limit is worth naming. Stewardship is not the same as pleasing every stakeholder. Respect does not mean every concern gets the same weight. Care does not mean avoiding hard news. A diligent steward may still cancel a feature, close a request, or hold a date. The difference is evidence. The decision shows what was considered, who was affected, what rule governed the choice, and how value was protected.\n\nOdilon's two-bad-options moment shows the edge. If he hides a test failure, the release date holds and the team inherits a weak product. If he delays the release, the sponsor loses a public promise. The responsible move is not found by reciting the principle title. It is found by making the tradeoff visible, naming the resource and trust costs, and choosing the path that can survive later review.\n\nA project room after a rushed call tells the truth if anyone knows how to read it. Erased risks, vague minutes, burned-out people, and perfect green charts are not small details. They are evidence about whether stewardship has changed behavior. When pressure rises, the principle asks for proof in the next decision, not praise in the next slide."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch07.ex.principle-7-pmi",
+      "title": "Checklist Before And After",
+      "tags": [
+        "before_after",
+        "PMI principles",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "kickoff checklist for a regulated software project",
+        "audience": "a project manager converting principle language into review evidence",
+        "stakes": "whether ethics and compliance become lived duties or signoff words",
+        "format": "before_after",
+        "requiredBeat": "show the same checklist before and after stewardship changes what gets recorded"
+      },
+      "scenario": "Ryan stands beside two versions of the same kickoff checklist. Before, the PMI slide on the 12 principles is a read-aloud item, and the ethics and compliance rows are blank after signoff. After, the same checklist asks who owns each duty, what evidence proves it, and when the team will revisit it. The room has not done more ceremony; it has made the principle harder to fake.",
+      "whatToDo": "Ryan replaces the read-aloud item with an evidence row. Each owner must name the duty, the proof, and the next check instead of treating the PMI principle as a launch script.",
+      "whyItMatters": "The contrast shows stewardship becoming observable. A principle starts helping when it changes the record people use while work is still moving."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch07.ex.principle-7-tradeoff",
+      "title": "Brooks Finds The Hidden Cut",
+      "tags": [
+        "audit",
+        "schedule pressure",
+        "resources"
+      ],
+      "planSpec": {
+        "domain": "release-folder audit after late commits",
+        "audience": "a quality lead checking whether pressure distorted the record",
+        "stakes": "whether a baseline stayed green by hiding a resource tradeoff",
+        "format": "audit",
+        "requiredBeat": "the audit discovers that the project moved risk out of sight"
+      },
+      "scenario": "Brooks reviews the release folder after three late-night commits. The schedule pressure story is familiar, but the telling detail is in the resources tab: testing hours were cut while the baseline stayed untouched. The tradeoff never appears in the sponsor summary. Brooks stops on the mismatch, seeing that the project did not save time; it moved risk out of sight.",
+      "whatToDo": "Brooks marks the missing tradeoff and brings the resources tab into the release review. The date can stay under discussion only with the cut, risk, and owner visible.",
+      "whyItMatters": "Diligence often looks like reading the record until the quiet detail speaks. A green baseline is not responsible if it depends on hidden risk."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch07.fact.5",
+      "title": "Leontine Stops The Send",
+      "tags": [
+        "inner_monologue",
+        "data care",
+        "pressure"
+      ],
+      "planSpec": {
+        "domain": "privacy-sensitive export before sponsor review",
+        "audience": "a product lead tempted to treat file completion as readiness",
+        "stakes": "whether private data gets sent before the open check is resolved",
+        "format": "inner_monologue",
+        "requiredBeat": "the wrong turn happens inside one person's reasoning"
+      },
+      "scenario": "Leontine rereads the PMI principle card while the export bar creeps across her screen. She thinks: the file is technically complete. Then: the privacy check is still open. Then the tempting thought arrives: the sponsor only asked for the report. She catches the wrong turn. Diligence is not the same as having a file to send, and care includes the person whose data might be exposed.",
+      "whatToDo": "Leontine pauses the send and writes the open privacy check into the review note. She treats the absent control as part of readiness, not as a detail to fix later.",
+      "whyItMatters": "Short-term convenience can sound reasonable in the mind. Naming the duty before acting keeps care attached to the person affected by the data."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch07.ex.principle-7-tradeoff",
+      "title": "Maelle Budgets The Agenda",
+      "tags": [
+        "planning_choice",
+        "attention",
+        "baseline"
+      ],
+      "planSpec": {
+        "domain": "Friday planning session with scarce review time",
+        "audience": "a planning lead allocating attention before execution begins",
+        "stakes": "whether adoption and resource concerns vanish under date pressure",
+        "format": "planning_choice",
+        "requiredBeat": "attention allocation is the whole scene"
+      },
+      "scenario": "Maelle has ninety minutes left in Friday planning and four issues on the board: a schedule pressure update, a baseline change request, a resources gap, and adoption notes from support. No work starts in this scene. She is only placing attention. If all ninety minutes go to the date, the team will leave without a record of whose resources carry the tradeoff.",
+      "whatToDo": "Maelle budgets the agenda before execution starts: date pressure gets time, but so do resources, adoption, and the record of the tradeoff that will travel forward.",
+      "whyItMatters": "Stewardship begins before the visible action. How attention is allocated decides which duties get heard and which ones quietly disappear."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch07.fact.8",
+      "title": "Odilon Names Both Harms",
+      "tags": [
+        "dilemma",
+        "test failure",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "test failure before a steering call",
+        "audience": "a release lead facing two costly paths",
+        "stakes": "whether a known defect is disclosed before a public promise changes",
+        "format": "dilemma",
+        "requiredBeat": "a two-bad-options decision exposes whether principle language changes behavior"
+      },
+      "scenario": "Odilon holds the failed test screenshot minutes before the steering call. The schedule pressure is real. If he reports it, the baseline slips and Gregoire loses a promise made to customers. If he hides it, the release holds and users inherit a defect the team already knows about. Odilon must decide between public damage now and quiet damage later.",
+      "whatToDo": "Odilon reports the failed test and names both harms in the steering note. He does not make the date look clean by pushing known damage onto users.",
+      "whyItMatters": "The principle is tested where every option costs something. Stewardship makes the cost visible so the team can own the tradeoff."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch07.ex.principle-7-pmi",
+      "title": "Ryan Answers The Slide",
+      "tags": [
+        "dialogue",
+        "ethics",
+        "compliance"
+      ],
+      "planSpec": {
+        "domain": "sponsor-call preparation around a procurement exception",
+        "audience": "a delivery lead and sponsor aligning principle words with the call script",
+        "stakes": "whether a hidden exception is masked by polished principle language",
+        "format": "dialogue",
+        "requiredBeat": "the exchange ties PMI words to the exception that must be named"
+      },
+      "scenario": "Gregoire and Ryan sit with the PMI 12 principles page between them before the sponsor call. Gregoire says, \"If we say stewardship, the slide sounds fine.\" Ryan says, \"Ethics and compliance are not slide words if the procurement exception stays hidden.\" Gregoire taps the baseline column. \"Then the call needs the exception, the risk, and the owner.\"",
+      "whatToDo": "Ryan keeps the words tied to the procurement exception. The call script names the risk, the owner, and the follow-up instead of letting the PMI slide carry the room.",
+      "whyItMatters": "Respectful language can still hide a hard fact. Dialogue earns its value when it moves the hidden duty into the conversation."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch07.fact.3",
+        "prompt": "A release log shows three compliance checks moved to after launch in five days, each after schedule pressure rose. Which inference should Ryan test first?",
+        "choices": [
+          "Calendar-first shortcut: Ryan should keep the date green and ask teams to rebuild evidence after launch.",
+          "Stewardship proof check: Ryan should ask which compliance duty, resource, and stakeholder risk the moved checks conceal.",
+          "Documentation-only reading: Ryan should add a note to the log and leave the launch decision untouched."
+        ],
+        "correctIndex": 1,
+        "explanation": "The log points to a repeated pressure pattern, not a paperwork gap alone. Ryan needs to test what duty and resource cost have been hidden before the date stays green.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch07.fact.2",
+        "prompt": "Ryan inherits an adaptive project whose team says formal risk review is too heavy for short cycles. Which response fits the principle?",
+        "choices": [
+          "Method-neutral responsibility: Ryan keeps the agile cadence but adds the missing risk and compliance review.",
+          "Agile-exemption myth: Ryan treats the skipped review as acceptable because the team works in short cycles.",
+          "Ceremony-substitution mistake: Ryan adds a longer standup and leaves the ignored rule outside the work."
+        ],
+        "correctIndex": 0,
+        "explanation": "Adaptive work can tailor the practice, but it cannot drop the duty. The wrong moves confuse light cadence or more ceremony with actual care for risk.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch07.fact.1",
+        "prompt": "A resource report shows Brooks that testing hours doubled for two weeks while the milestone stayed green. What should he read into the pattern first?",
+        "choices": [
+          "Burnout-as-commitment error: Brooks reads the extra hours as proof the team is protecting value.",
+          "Baseline-defense shortcut: Brooks celebrates the green milestone and postpones any talk about team strain.",
+          "Resource stewardship move: Brooks asks what work, risk, or scope changed to create those hours."
+        ],
+        "correctIndex": 2,
+        "explanation": "Extra hours are a resource signal. Brooks should ask what changed and who is carrying the cost, rather than treating the green milestone as full proof.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch07.fact.4",
+        "prompt": "Leontine manages a product rollout that can ship on Friday, but support says users will not understand the change. Which move protects value delivery?",
+        "choices": [
+          "Adoption-later assumption: Leontine ships now and lets support explain the change after confused calls arrive.",
+          "Value-delivery test: Leontine checks whether the date still protects outcomes, benefits, and stakeholder trust.",
+          "Output-completion bias: Leontine treats finished features as enough evidence that the project succeeded."
+        ],
+        "correctIndex": 1,
+        "explanation": "Finished output is not the same as realized value. Leontine has to test adoption and trust before the date can count as a responsible success.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch07.fact.9",
+        "prompt": "Which sentence best passes Maelle's public accountability test before she approves a shortcut under deadline pressure?",
+        "choices": [
+          "Public-accountability test: Maelle records the tradeoff, affected resources, and rule before approving the shortcut.",
+          "Private-efficiency habit: Maelle makes the shortcut quietly so the team can avoid a difficult meeting.",
+          "Principle-recital error: Maelle quotes the PMI phrase in the deck and keeps the decision hidden."
+        ],
+        "correctIndex": 0,
+        "explanation": "The standard is behavioral. Maelle's record shows what was traded and why; the distractors hide the decision behind speed or vocabulary.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch07.fact.3",
+        "prompt": "A decision register shows Odilon that only the loudest stakeholder group received updates during a scope cut. Which correction fits respectful stewardship?",
+        "choices": [
+          "Stakeholder-volume mistake: Odilon counts the complaints and gives the loudest group the next decision.",
+          "Approval-gate reflex: Odilon adds a new signoff and assumes more governance means more stewardship.",
+          "Respectful stewardship move: Odilon maps who is affected, what each needs to know, and when."
+        ],
+        "correctIndex": 2,
+        "explanation": "Respect is not volume scoring. Odilon needs a map of affected people and needed information; adding a signoff may still leave people unseen.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch07.fact.5",
+        "prompt": "Gregoire reviews a predictive plan and sees a risk removed from the gate packet to avoid delaying approval. Which response is most aligned?",
+        "choices": [
+          "Plan-sanctity reading: Gregoire treats the baseline as the ethical object and avoids escalation.",
+          "Diligent escalation: Gregoire preserves traceability, raises the risk, and shows the schedule effect plainly.",
+          "Sponsor-comfort shortcut: Gregoire softens the risk language so the review can end on time."
+        ],
+        "correctIndex": 1,
+        "explanation": "The plan is not the thing to protect at any cost. Gregoire keeps traceability and makes the schedule effect visible so the approval can be real.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch07.fact.6",
+        "prompt": "Maelle's team argues that tailoring means stewardship can look different in each project. Which answer keeps the boundary clear?",
+        "choices": [
+          "Tailoring-as-waiver myth: Maelle removes the principle whenever the chosen method feels lightweight.",
+          "One-method trap: Maelle says stewardship requires the same artifact set across projects.",
+          "Context-tailoring move: Maelle changes the practice while preserving care for resources, people, and compliance."
+        ],
+        "correctIndex": 2,
+        "explanation": "Tailoring changes the form, not the duty. Maelle can adapt the practice while keeping care for resources, people, and compliance intact.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch07.fact.1",
+        "prompt": "A compliance dashboard that Ryan filed at kickoff now shows two stale controls and one unclear owner. How should he treat it?",
+        "choices": [
+          "Continuous-stewardship read: Ryan treats the trend as a current delivery risk, not a planning artifact.",
+          "Kickoff-document belief: Ryan files the dashboard with the original charter and waits for closure review.",
+          "Vocabulary-proof error: Ryan updates the slide title with PMI language and leaves ownership unclear."
+        ],
+        "correctIndex": 0,
+        "explanation": "Stewardship is continuous. Ryan should act on the stale controls now; filing the dashboard or renaming it treats evidence as decoration.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch07.fact.9",
+      "front": "What proves that stewardship is more than reciting the PMI principle title?",
+      "back": "A real application changes a decision: a risk is raised, a resource cost is named, a compliance duty is protected, or a stakeholder receives information soon enough to act.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch07.fact.5",
+      "front": "How does schedule pressure test the stewardship principle?",
+      "back": "Pressure makes convenience attractive. The test is whether the team still makes tradeoffs visible, protects people and evidence, and avoids hiding risk behind a green date.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch07.fact.2",
+      "front": "Why does the same stewardship duty travel across predictive, adaptive, and hybrid work?",
+      "back": "The principle describes professional conduct, not one lifecycle technique. Different approaches can use different practices while keeping the same duty to resources, people, compliance, and value.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch07.fact.4",
+      "front": "Earlier concept: value creation. How does stewardship keep delivery from becoming only output completion?",
+      "back": "It asks whether the output still protects outcomes, benefits, trust, and adoption. A deliverable can be finished and still fail the value creation test if it harms the people meant to use it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch07.fact.3",
+      "front": "Earlier concept: governance for value delivery. What should escalation make visible?",
+      "back": "Escalation should show the decision rights, affected stakeholders, evidence, and tradeoff behind the choice. Governance adds value when it clarifies responsibility, not when it only adds gates.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch07.fact.6",
+      "front": "When tailoring changes the practice, what must not be tailored away?",
+      "back": "The implementation can change, but the responsibility remains. A tailored process still has to protect resources, people, compliance, evidence, trust, and value delivery.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Write the Stewardship Receipt",
+    "coreSkill": "Practice making pressure-visible choices. The Stewardship Receipt records what resource, rule, person, and value would be affected before a convenient baseline wins. The skill is small: write the proof, name the tradeoff, and choose the move you could explain later.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch07.fact.3",
+        "context": "A status update stays green after a risk was removed.",
+        "plan": "If the update stays green after a risk disappears, then write the Stewardship Receipt with the removed risk, affected resource, owner, and next review before the update goes out."
+      },
+      {
+        "sourceAnchorId": "ch07.fact.5",
+        "context": "A deadline request asks you to skip stakeholder notice.",
+        "plan": "If a deadline request cuts stakeholder notice, then write the Stewardship Receipt by naming who loses time to act and what message they need before approval."
+      },
+      {
+        "sourceAnchorId": "ch07.fact.2",
+        "context": "A method argument makes care sound optional.",
+        "plan": "If someone says the chosen lifecycle makes a duty unnecessary, then write the Stewardship Receipt by separating the practice that can change from the responsibility that remains."
+      },
+      {
+        "sourceAnchorId": "ch07.fact.4",
+        "context": "A completed output may not create a usable result.",
+        "plan": "If completion looks strong but adoption looks weak, then write the Stewardship Receipt by comparing the date with outcomes, benefits, trust, and support readiness."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, find one project choice under pressure. Write the resource, rule, person, and value at stake, then record the tradeoff before you answer.",
+    "weeklyPractice": "For one week, close each workday by reviewing one pressured decision. Mark whether the Stewardship Receipt changed the next action, the record, or the escalation."
+  },
+  "memorableLines": [
+    {
+      "text": "Stewardship widens the proof.",
+      "location": "breakdown.deepRead",
+      "why": "It compresses the move from deadline-only evidence to fuller responsibility."
+    },
+    {
+      "text": "The cost moves into the dark.",
+      "location": "breakdown.fullRead",
+      "why": "It gives hidden tradeoffs a physical image readers can recognize."
+    },
+    {
+      "text": "The point is to stop convenience from masquerading as responsibility.",
+      "location": "breakdown.fullRead",
+      "why": "It states the pressure test in a line that can guide a real choice."
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch13",
+  "number": 13,
+  "title": "Tailor Based on Context",
+  "coreMove": "Tailoring is disciplined fit: keep the PMBOK principle alive by changing approach, governance, and communication when context proves the inherited plan is wrong.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "municipal permit portal",
+      "audience": "project managers reviewing a missed release",
+      "stakes": "find the one tailoring decision that failed under pressure",
+      "format": "postmortem",
+      "requiredBeat": "the scene reconstructs a missed tradeoff under schedule pressure"
+    },
+    {
+      "domain": "vendor compliance upgrade",
+      "audience": "leads working with inherited templates",
+      "stakes": "notice when a process has become too broad for the actual risk",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist notices her own process error mid-stream"
+    },
+    {
+      "domain": "mobile claims platform",
+      "audience": "sponsors weighing deadline recovery options",
+      "stakes": "make the tailoring decision legible in writing",
+      "format": "decision_memo",
+      "requiredBeat": "a written memo carries the action"
+    },
+    {
+      "domain": "health benefits enrollment rollout",
+      "audience": "project leads comparing pressure responses",
+      "stakes": "show how opposite approaches produce different outcomes",
+      "format": "contrast",
+      "requiredBeat": "two named people face the same pressure with opposite tailoring moves"
+    },
+    {
+      "domain": "PMO coaching conversation",
+      "audience": "project managers defending inherited process",
+      "stakes": "reframe consistency as fit rather than sameness",
+      "format": "coach_talk",
+      "requiredBeat": "a peer gives a quotable reframe"
+    },
+    {
+      "domain": "project management training",
+      "audience": "new project managers learning PMBOK principles",
+      "stakes": "turn confusion about tailoring into a teachable comparison",
+      "format": "school_case",
+      "requiredBeat": "a learner's confusion becomes the teaching material"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 3,
+      "evaluate": 3,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.318Z"
+}

@@ -1,0 +1,345 @@
+{
+  "chapterId": "pmbok-guide-ch23",
+  "number": 23,
+  "title": "Planning Performance Domain",
+  "readingTimeMinutes": 12,
+  "hook": "The conference room was empty; a red scope note still pointed at the old schedule.",
+  "counterintuition": "A detailed plan can still fail if it no longer guides current choices. The domain is not a planning phase; it is a continuing link among evidence, tradeoffs, and value.",
+  "tryThisNow": "Place a 20-minute planning-signal check on tomorrow's calendar at 10:10 in your project room; trigger it when the next scope or schedule change appears.",
+  "keyTakeaway": "Planning performance is healthy when scope, schedule, budget, and resource signals stay current enough to guide choices across all eight PMBOK Guide domains.",
+  "breakdown": {
+    "fastRead": "The conference room is empty after Sidonie's change meeting, but the wall still shows two realities. A red scope note says the customer portal needs one more approval step. The schedule beside it still assumes no approval step at all. Nobody is arguing now; the plan is simply split.\n\nThat split is the Planning Performance Domain in plain view. PMBOK Guide treats planning as one of 8 domains, not as a box the team leaves behind after kickoff. A plan is only alive where decisions still use it. When scope shifts, the schedule, budget, resources, risks, and stakeholders all start asking for fresh coordination.",
+    "deepRead": "Planning works as a reference system: people compare what they intend to do with what the project is now showing them. If that reference system goes stale, coordination does not fail all at once. It frays through small mismatches. A designer follows the old scope, a vendor books to the prior schedule, a sponsor hears a cost number that no longer includes the new resource need.\n\nBrenda sees the mechanism without calling another meeting. In the PMBOK Guide map taped near her desk, planning is one node in an 8 domains picture, with stakeholder promises, team capacity, life-cycle choice, project work, delivery evidence, measurement, and uncertainty all close enough to tug it. She audits the project file and finds the telling detail. The scope register has changed twice. The schedule baseline has changed once. The delivery forecast still uses the first scope version, and the measurement report still praises the old date.\n\nSignals turn planning from ceremony into control. Brenda does not need more planning activity first. She needs to know whether current planning information is useful enough to guide choices. A busy team can produce minutes, diagrams, and trackers while the domain stays weak. The domain's health shows up when people can coordinate dependencies, anticipate constraints, and make tradeoffs with the same live picture of the work.",
+    "fullRead": "Perry's planning sheet looks impressive at first. It has scope lines, schedule bars, budget columns, resource names, a risk tab, and a communication cadence. The complication is not missing paperwork. The complication is fit. A predictive infrastructure upgrade may need a detailed baseline, firm sequencing, procurement dates, and controlled changes. An adaptive product effort may plan at several horizons: near-term work in detail, later work in lighter sketches, feedback every cycle. A hybrid project may need both rhythms in one room.\n\nThat is why the Planning Performance Domain cannot be reduced to an old knowledge area with a new label. It is an area of performance, active wherever the team defines, coordinates, updates, and communicates the path of work. Vivienne can have a perfect cost worksheet and still be in trouble if the worksheet no longer speaks to the schedule. Pooja can have a lively backlog and still be in trouble if resource constraints never reach the people ordering work. The domain asks for fitness, not paperwork volume.\n\nThe boundary matters. Planning performance is not an excuse to reopen every decision every day. Too much replanning can make the team feel as if nothing is stable enough to execute. Too little updating lets outdated commitments masquerade as discipline. The useful question is narrower: what evidence says the current planning information is still helping people act, coordinate, forecast, and make tradeoffs?\n\nArmand's dilemma shows the edge. The scope change protects product value, but it strains a fixed schedule. Freezing scope would make the date look safe and the deliverable less useful. Reopening the schedule would protect value and upset a sponsor who approved the baseline. The planning problem is not solved by worshiping either baseline or flexibility. It is solved by exposing the tradeoff with current scope, schedule, budget, and resource signals, then choosing in view of the other domains that will feel the consequence.\n\nMeasurement supplies part of the evidence. If the schedule forecast improves only because scope is quietly shrinking, the signal is not health. If budget looks controlled because resource conflicts are being ignored, the signal is not health. If stakeholder updates sound calm while delivery teams are surprised every week, the signal is not health. Planning information earns trust when it helps the project see reality early enough to adjust.\n\nThe earlier principles still apply. Value delivery is the reason planning matters; a plan that protects activity while losing useful outcomes has failed its purpose. Tailoring is the reason plans do not all look alike; predictive, adaptive, and hybrid contexts need different levels of detail, cadence, and formality. Systems thinking is the reason the 8 domains must be read together; a planning choice changes stakeholder expectations, team load, delivery confidence, measurement meaning, and uncertainty exposure.\n\nSo the mature move is not to ask whether a plan exists. Ask what the plan is doing. Is it aligning people before work collides? Is it making constraints visible before they become excuses? Is it connecting scope, schedule, budget, and resources to decisions people actually face? When the answer is yes, planning is not a document archive. It is the project's working memory."
+  },
+  "examples": [
+    {
+      "exampleId": "ch23-ex01-scope-note-schedule",
+      "sourceAnchorId": "ch23.ex.domain-23-artifact",
+      "title": "Scope Note, Old Schedule",
+      "tags": [
+        "before_after",
+        "scope",
+        "schedule"
+      ],
+      "planSpec": {
+        "domain": "Planning Performance Domain signals after a scope change",
+        "audience": "project managers who treat an approved schedule as stable after scope moves",
+        "stakes": "the team may keep executing against a schedule that no longer matches scope, budget, or resources",
+        "format": "before_after",
+        "requiredBeat": "The same wall plan appears before and after the scope change, with the contrast showing whether planning information stayed useful."
+      },
+      "scenario": "Before the change, Sidonie's wall plan is tidy: scope on the left, schedule on the right, budget and resources in smaller boxes below. After the sponsor adds an approval step, the same wall looks different without moving. The scope note is red, the schedule bar is still blue, and the budget box still assumes the old review count. The contrast carries the warning: the plan exists, but planning performance has split from the work.",
+      "whatToDo": "Sidonie marks the scope change, then updates the schedule, budget, and resource boxes in the same view before anyone treats the old timeline as usable.",
+      "whyItMatters": "A visible before-after contrast catches drift without blaming the team. The reader learns to inspect whether planning signals still agree after one signal changes."
+    },
+    {
+      "exampleId": "ch23-ex02-eight-domain-audit",
+      "sourceAnchorId": "ch23.ex.domain-23-eight",
+      "title": "Eight-Domain File Audit",
+      "tags": [
+        "audit",
+        "PMBOK Guide",
+        "domains"
+      ],
+      "planSpec": {
+        "domain": "Eight-domain system around the Planning Performance Domain",
+        "audience": "PMO reviewers checking whether planning has become isolated from other domains",
+        "stakes": "a file can look complete while stakeholder, delivery, measurement, and uncertainty effects remain disconnected",
+        "format": "audit",
+        "requiredBeat": "The reviewer studies records and finds the detail that proves Planning Performance Domain is not being read with the other seven domains."
+      },
+      "scenario": "Brenda reviews the project folder with an 8 domains printout from the PMBOK Guide beside her laptop. Nothing dramatic happens. The finding is in the version history: scope changed on Tuesday, the Planning Performance Domain page was updated on Wednesday, but the Delivery and Measurement notes still cite Monday's target. The question is not who missed a form. It is whether the planning record still connects the domain system.",
+      "whatToDo": "Brenda flags the version mismatch and traces the scope update into delivery, measurement, stakeholder, and uncertainty notes before approving the file.",
+      "whyItMatters": "The audit turns an abstract domain map into evidence. Planning health appears in the connections among records, not in the existence of one updated page."
+    },
+    {
+      "exampleId": "ch23-ex03-budget-resources-monologue",
+      "sourceAnchorId": "ch23.ex.domain-23-artifact",
+      "title": "Budget, Resources, and the Quiet Doubt",
+      "tags": [
+        "inner_monologue",
+        "budget",
+        "resources"
+      ],
+      "planSpec": {
+        "domain": "Planning Performance Domain signal interpretation",
+        "audience": "workstream leads who feel pressure to keep a plan looking settled",
+        "stakes": "a plan can stay polished while budget and resources quietly contradict schedule promises",
+        "format": "inner_monologue",
+        "requiredBeat": "The protagonist works through the wrong turns internally before choosing how to read scope, schedule, budget, and resources together."
+      },
+      "scenario": "Perry stares at the planning sheet and keeps his thoughts inside. Scope is broader than last week. Schedule is unchanged. Budget is not moving. Resources are already split across two releases. Maybe the team can absorb it. No, that is the old comfort talking. Maybe he should ask for a full replan. Too heavy. Perry needs to decide how much evidence is enough to call the signal unhealthy before the next commitment becomes public.",
+      "whatToDo": "Perry writes the four signals in one line, marks the contradiction, and asks for a focused adjustment conversation before the public commitment is repeated.",
+      "whyItMatters": "The useful move is not panic or silence. It is noticing when planning signals no longer support the promise that the team is about to make."
+    },
+    {
+      "exampleId": "ch23-ex04-one-hour-domain-choice",
+      "sourceAnchorId": "ch23.ex.domain-23-eight",
+      "title": "One Hour, Eight Domains",
+      "tags": [
+        "planning_choice",
+        "8 domains",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "Planning Performance Domain interaction with other PMBOK Guide domains",
+        "audience": "planning leads allocating scarce review time before work begins",
+        "stakes": "attention spent on artifact cleanup may leave domain interactions invisible",
+        "format": "planning_choice",
+        "requiredBeat": "Before action begins, the protagonist allocates scarce attention across planning signals and the eight-domain map."
+      },
+      "scenario": "Vivienne has one hour before the steering review opens. Her notebook says PMBOK Guide: 8 domains, and Planning Performance Domain is not the only page needing attention. She has to choose how to spend the hour: polish the scope table, test the schedule dependencies against delivery, scan stakeholder promises, and check uncertainty notes. No execution follows yet. The whole scene is the allocation of scarce attention before the room fills.",
+      "whatToDo": "Vivienne spends the first minutes locating the weakest connection among scope, schedule, delivery, stakeholders, and uncertainty, then assigns the remaining time there.",
+      "whyItMatters": "Planning performance is part of a system. Scarce review time should go where domain interaction is weakest, not where a document can be polished fastest."
+    },
+    {
+      "exampleId": "ch23-ex05-scope-schedule-dilemma",
+      "sourceAnchorId": "ch23.ex.domain-23-artifact",
+      "title": "Scope Versus the Baseline Date",
+      "tags": [
+        "dilemma",
+        "scope",
+        "schedule"
+      ],
+      "planSpec": {
+        "domain": "Planning Performance Domain hard tradeoff",
+        "audience": "project leads facing two damaging planning choices",
+        "stakes": "protecting one signal may damage value, while reopening another may damage trust",
+        "format": "dilemma",
+        "requiredBeat": "The protagonist faces one genuine two-bad-options decision about scope and schedule."
+      },
+      "scenario": "Armand has the sponsor's email open beside the scope register and schedule baseline. The new compliance step protects value, but the date is tied to a public launch. Armand must decide whether to freeze scope and ship a weaker result, or reopen the schedule and break a promise the sponsor has already announced. Budget is tight, resources are fixed, and neither option is clean. The Planning Performance Domain is now a tradeoff, not a chart.",
+      "whatToDo": "Armand prepares the tradeoff with current scope, schedule, budget, and resource signals, then brings the sponsor a decision framed by value and consequence.",
+      "whyItMatters": "The domain does not remove hard choices. It makes the live evidence visible so a painful choice is made knowingly rather than hidden inside a stale baseline."
+    },
+    {
+      "exampleId": "ch23-ex06-dialogue-across-domains",
+      "sourceAnchorId": "ch23.ex.domain-23-eight",
+      "title": "Two Questions at the Door",
+      "tags": [
+        "dialogue",
+        "PMBOK Guide",
+        "8 domains"
+      ],
+      "planSpec": {
+        "domain": "Planning Performance Domain dialogue across the eight-domain system",
+        "audience": "teams learning to talk about planning as current coordination",
+        "stakes": "a plan review can become artifact checking instead of domain interaction",
+        "format": "dialogue",
+        "requiredBeat": "Two named people talk, and the lesson emerges through their exchange rather than a summary."
+      },
+      "scenario": "Pooja pauses at the review-room door with a PMBOK Guide slide showing 8 domains. Sidonie asks, \"Are we checking the plan?\" Pooja answers, \"Only if the plan still helps delivery.\" Sidonie points to the scope note. \"Then the question is where that change hits next.\" Pooja nods toward schedule, measurement, and uncertainty. \"Start there. If those still say Monday, the Planning Performance Domain is not healthy.\"",
+      "whatToDo": "Pooja turns the review from document approval into a trace from scope through schedule, delivery, measurement, and uncertainty before the team leaves.",
+      "whyItMatters": "The dialogue models a planning review as a live coordination check. A plan is useful when its connections help people see what changes next."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "ch23-q01",
+        "sourceAnchorId": "ch23.fact.8",
+        "prompt": "A dashboard shows four missed handoffs in six days, each after a scope change moved schedule dates. What should Sidonie infer before asking for another template?",
+        "choices": [
+          "Signal-health reading: current planning data no longer coordinates the work.",
+          "Meeting-discipline myth: stricter attendance will repair the plan before signal review.",
+          "Phase-box mistake: planning ended once the original schedule was approved."
+        ],
+        "correctIndex": 0,
+        "explanation": "The pattern points to stale planning information after scope and schedule movement. Attendance or phase thinking may feel tidy, but neither tests whether the live signals still guide coordination.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch23-q02",
+        "sourceAnchorId": "ch23.fact.2",
+        "prompt": "Brenda inherits a project with polished plan pages, frequent planning meetings, and delivery teams still surprised every Friday. Which first read best fits the domain?",
+        "choices": [
+          "Artifact-count reflex: more plan pages show that the domain is healthy enough.",
+          "Calendar-busyness bias: frequent planning meetings matter more than outcomes.",
+          "Outcome check: inspect whether planning is producing shared understanding for action."
+        ],
+        "correctIndex": 2,
+        "explanation": "Domain health is signaled by outcomes, not volume. Polished pages and busy meetings can coexist with weak coordination if teams still meet surprises at the point of delivery.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch23-q03",
+        "sourceAnchorId": "ch23.fact.1",
+        "prompt": "After kickoff, Perry hears that the Planning Performance Domain has been completed and the team should now focus only on execution. Which reply uses this domain lens?",
+        "choices": [
+          "Artifact-closure reading: archive the planning files and protect execution from updates.",
+          "Ongoing-domain reading: keep planning active as new evidence changes commitments.",
+          "Department-transfer myth: send planning concerns to a separate office for later review."
+        ],
+        "correctIndex": 1,
+        "explanation": "A performance domain continues while the project changes. Treating it as archived or transferred makes planning look complete while decisions keep needing current information.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch23-q04",
+        "sourceAnchorId": "ch23.fact.4",
+        "prompt": "On an adaptive product effort, Vivienne is urged to copy a predictive baseline package because it looks more professional. What should guide her response?",
+        "choices": [
+          "Tailoring check: choose the planning cadence and detail that fit the context.",
+          "Formality bias: adopt the fullest baseline package so planning appears disciplined.",
+          "Anti-plan reflex: avoid planning artifacts because adaptive work learns by feedback."
+        ],
+        "correctIndex": 0,
+        "explanation": "The domain is practice-neutral. Adaptive work still plans, but its horizons, cadence, and detail differ from a predictive baseline; rejecting planning is as crude as overformalizing it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch23-q05",
+        "sourceAnchorId": "ch23.fact.5",
+        "prompt": "The log shows three new artifacts added this month, yet resource conflicts keep reaching Armand only after commitments are public. What should he question first?",
+        "choices": [
+          "Documentation-volume bias: more artifacts usually means the team is planning better.",
+          "Tool-purpose test: ask whether the artifacts improve decisions, coordination, or control.",
+          "Ownership-diffusion myth: shared resources mean no single planning signal can help."
+        ],
+        "correctIndex": 1,
+        "explanation": "Artifacts are useful only when they support outcomes. If resource conflicts arrive late, the issue is not artifact count; it is whether those artifacts change decisions soon enough.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch23-q06",
+        "sourceAnchorId": "ch23.fact.3",
+        "prompt": "When Pooja updates the schedule but ignores stakeholder promises, delivery dates improve on paper while complaints rise. Which interpretation is strongest?",
+        "choices": [
+          "Schedule-isolation trap: optimize the schedule and let other domains settle afterward.",
+          "Stakeholder-noise myth: complaints are outside planning unless they change scope.",
+          "Domain-interaction reading: planning changes are affecting other areas of performance."
+        ],
+        "correctIndex": 2,
+        "explanation": "The eight-domain view treats planning choices as system moves. A cleaner schedule that worsens stakeholder expectations is a warning, not proof that planning improved.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch23-q07",
+        "sourceAnchorId": "ch23.fact.6",
+        "prompt": "Pooja's team delivers every planned output, but users reject the release because a late scope signal was kept out of planning. How should she connect this to value?",
+        "choices": [
+          "Output-completion bias: delivered items prove planning performance succeeded.",
+          "Acceptance-afterthought myth: value can be checked once outputs are finished.",
+          "Value-link reading: planning weakness can block outputs from becoming accepted outcomes."
+        ],
+        "correctIndex": 2,
+        "explanation": "The domain connects to value delivery. Finishing planned outputs is not enough when planning ignored evidence needed for acceptance, benefits, or stakeholder use.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch23-q08",
+        "sourceAnchorId": "ch23.fact.7",
+        "prompt": "Which response best corrects a sponsor who calls the Planning Performance Domain an optional side topic in the PMBOK Guide?",
+        "choices": [
+          "Map-position response: it is one of the PMBOK Guide's main eight domains.",
+          "Preference-label myth: teams can treat the domain as optional when plans are simple.",
+          "Old-process reading: it is merely a renamed knowledge area with familiar forms."
+        ],
+        "correctIndex": 0,
+        "explanation": "The guide organizes project performance through the eight domains. Calling planning optional or only a renamed process misses how the domain frames ongoing project health.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "ch23-q09",
+        "sourceAnchorId": "ch23.fact.9",
+        "prompt": "A team reports twice as many scope-planning activities this quarter, while forecast misses and dependency surprises increase. Which conclusion should Vivienne avoid?",
+        "choices": [
+          "Signal-quality reading: activity volume needs evidence from outcomes before praise.",
+          "Domain-health check: busy planning work can coexist with weak performance.",
+          "Activity-volume fallacy: more planning activity by itself proves healthier planning."
+        ],
+        "correctIndex": 2,
+        "explanation": "The prompt asks for the conclusion to avoid. More planning activity is the tempting fallacy; performance depends on fit, evidence, and outcomes, not busyness alone.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch23-card01",
+      "sourceAnchorId": "ch23.fact.1",
+      "front": "How does the Planning Performance Domain differ from a project phase?",
+      "back": "A phase ends or hands off. This domain stays active as the project changes, because planning information must keep coordinating decisions, dependencies, and commitments throughout the work.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch23-card02",
+      "sourceAnchorId": "ch23.fact.8",
+      "front": "What can scope and schedule signals reveal before the team rewrites a whole plan?",
+      "back": "They can show whether current planning information still lines up with the work. If scope moved and schedule did not, the problem may be signal drift rather than a need for more templates.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch23-card03",
+      "sourceAnchorId": "ch23.fact.5",
+      "front": "Why can a larger artifact set still leave planning performance unhealthy?",
+      "back": "Artifacts help only when they support decisions, coordination, communication, control, or learning. More pages can hide weak outcomes if people still lack usable planning information.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch23-card04",
+      "sourceAnchorId": "ch23.fact.4",
+      "front": "Earlier concept: tailoring. Why does adaptive planning not need to imitate a predictive baseline?",
+      "back": "Tailoring means matching formality, cadence, and detail to the context. Adaptive work may plan in horizons and feedback cycles; predictive work may need firmer baselines and sequencing.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch23-card05",
+      "sourceAnchorId": "ch23.fact.6",
+      "front": "Earlier concept: value delivery. How can weak planning performance damage value?",
+      "back": "Weak planning can let outputs miss acceptance, benefits, or stakeholder use. Planning supports value when it keeps evidence current enough for decisions that protect useful outcomes.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Trace Planning Signals to Decisions",
+    "coreSkill": "Practice reading planning as current coordination, not as document production. Trace Planning Signals to Decisions by comparing scope, schedule, budget, and resources, then asking which other domain will feel the mismatch next. The skill is to adjust planning information when it stops helping people decide, coordinate, forecast, or trade off.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch23.fact.8",
+        "context": "When a scope change appears after the schedule has already been approved",
+        "plan": "If scope moves after approval, then Trace Planning Signals to Decisions before repeating the old date. Compare scope, schedule, budget, and resources in one view."
+      },
+      {
+        "sourceAnchorId": "ch23.fact.3",
+        "context": "When one planning update seems to improve a single report while complaints rise elsewhere",
+        "plan": "If one metric improves while another domain feels worse, then Trace Planning Signals to Decisions across stakeholder, delivery, measurement, and uncertainty effects."
+      },
+      {
+        "sourceAnchorId": "ch23.fact.5",
+        "context": "When the team adds another planning artifact but surprises keep reaching meetings late",
+        "plan": "If a new artifact does not change decisions, then Trace Planning Signals to Decisions around its purpose. Keep tools that improve coordination and retire decoration."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one active project and Trace Planning Signals to Decisions once. Write the current scope, schedule, budget, and resource signal, then circle the mismatch.",
+    "weeklyPractice": "For one week, spend 15 minutes every Friday reviewing one planning mismatch and the domain it affected next. Track whether adjustments improved decisions or only added paperwork."
+  },
+  "memorableLines": [
+    {
+      "text": "A plan is only alive where decisions still use it.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the chapter's hard edge into a test of use, not existence."
+    },
+    {
+      "text": "Signals turn planning from ceremony into control.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a portable reason to inspect scope, schedule, budget, and resources."
+    },
+    {
+      "text": "The domain asks for fitness, not paperwork volume.",
+      "location": "breakdown.fullRead",
+      "why": "It protects the reader from treating artifact count as planning health."
+    }
+  ]
+}

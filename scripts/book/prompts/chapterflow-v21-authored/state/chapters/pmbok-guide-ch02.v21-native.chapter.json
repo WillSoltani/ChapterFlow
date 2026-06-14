@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch02",
+  "number": 2,
+  "title": "Creating Value",
+  "readingTimeMinutes": 12,
+  "hook": "2 of 10 outputs caused little delay; the 8 untested outcomes carried most of the loss.",
+  "counterintuition": "Completion can hide value failure: the output may be accepted while the outcome never changes and the benefit never arrives.",
+  "tryThisNow": "Put a 20-minute value-chain check on tomorrow's calendar for 9:10 in the project room, triggered by the next status draft.",
+  "keyTakeaway": "A project creates value when its outputs are used, outcomes change, benefits matter, and tradeoffs keep the work tied to strategy after the baseline looks done.",
+  "breakdown": {
+    "fastRead": "Bibiane sees ten green boxes on the city service dashboard. All ten outputs shipped. The new form works, the guide is posted, and the help desk script is live. Yet only two neighborhoods use the form without calling support.\n\nDone is not the same as valuable.\n\nThe value chain asks for the next link. What changed because the output exists? What benefit followed from that changed condition? If no one uses the output, or if the change no longer fits strategy, the project has produced activity instead of value delivery.",
+    "deepRead": "Outputs start the chain, but they do not finish it. An output answers, What did the project produce? An outcome answers, What changed when people used it? A benefit answers, Why did that change matter? The three questions are close enough to blur, which is why they need to be separated before a project is called successful.\n\nPaxton makes the blur visible during a steering review. A sponsor praises the new intake portal because it launched on schedule. Paxton points to the adoption graph and asks for one sentence that connects the portal to faster approvals. The room has output evidence, but only thin outcome evidence. That gap changes the conversation from celebration to feedback.\n\nValue also needs a strategic line. A local team can finish clean work that no longer supports organizational objectives. Funding, staffing, and attention are scarce. A portfolio that keeps a beautiful but low-fit project alive may starve a plain project with stronger mission value.\n\nA baseline can be met while the benefit goes missing.\n\nThe practical test is not softer than scope, schedule, and budget. It is stricter. It asks whether the deliverable still belongs in the value delivery system, whether feedback has changed the value assumption, and whether tradeoffs protect the benefit rather than only the plan.",
+    "fullRead": "Zhen studies the portfolio notes after the Friday funding call. Two projects report clean schedule status. One will replace a form that almost nobody uses. The other will cut permit rework for three agencies that share the same applicant data. The first one has a prettier dashboard. The second one fits the strategy.\n\nThat is where value thinking becomes operational.\n\nIt is easy to treat value as a slogan pasted beside scope, schedule, and cost. The stronger use is earlier and harder. Value should help select work, shape tradeoffs, guide feedback, set acceptance, and judge closure. If it enters only at the end, it becomes a congratulatory label for work that may have drifted away from its purpose.\n\nThe outputs, outcomes, and benefits chain keeps the drift visible. An output is the produced thing: a system, report, submission, training, policy, or process. An outcome is the changed condition that appears when the output is used. A benefit is the advantage created by that change. The advantage may be revenue, compliance, risk reduction, mission impact, learning, capability, safety, reputation, or stakeholder improvement.\n\nBenefits often arrive after project closure. That fact can make teams careless, but it should make them more precise. Closure can mark the end of temporary project work. It does not prove adoption, use, or advantage. A project team may hand over a valid product while operations, customers, or regulators still determine whether the promised benefit appears.\n\nTodd notices the same point in a records review. The compliance submission went in on time, and the archive is tidy. Then he finds the acceptance note: the new process reduced no review cycle time because field teams kept using the old spreadsheet. The output exists. The outcome failed. The benefit was only forecast.\n\nStrategy is the filter that keeps a tidy output from becoming a local victory.\n\nThe filter matters most when tradeoffs arrive. A team might shorten testing to meet a date. That can be wise if the delayed feature has little bearing on the expected benefit. It can be wasteful if the cut removes the one behavior change the project was meant to enable. The right tradeoff is not the one that flatters every baseline measure. It is the one that protects the value chain.\n\nThere is a limit. Value thinking does not give every stakeholder wish equal force. It does not let a team ignore compliance, safety, ethics, or governance because a benefit story sounds attractive. It also does not turn every benefit into money. Public service, risk reduction, reputation, and capability can be real value even when no direct profit appears.\n\nOceane uses the limit in a regulatory project. A late design request would please one department and improve the demo. It would also weaken the evidence package needed for approval. She keeps the evidence package intact and records the design request as a later option. The value chain does not excuse sloppy control; it tells her which control protects the benefit.\n\nThe strongest project review asks three linked questions. What output did the work create? What outcome should that output enable when people use it? What benefit should follow, and does that benefit still align with strategy? Those questions keep delivery honest after the plan looks complete."
+  },
+  "examples": [
+    {
+      "exampleId": "ch02-ex01-bibiane-zhen-dashboard",
+      "sourceAnchorId": "ch02.ex.outputs-outcomes-benefits",
+      "title": "Dashboard Split Result",
+      "tags": [
+        "contrast",
+        "public service",
+        "value chain"
+      ],
+      "planSpec": {
+        "domain": "city service dashboard adoption review",
+        "audience": "project managers checking deliverables after launch",
+        "stakes": "a completed dashboard can hide weak use and weak benefits",
+        "format": "contrast",
+        "requiredBeat": "Two people read the same output report differently and get different value results"
+      },
+      "scenario": "Bibiane reads the Monday city service dashboard and stops at the green outputs: the form, guide, and help script all shipped. Before the closeout vote, she has to choose what the status means and tells the board the project is done. Zhen reads the same dashboard, makes the same choice, and asks how the outputs changed resident behavior, which outcomes improved, and which benefits appeared. Two weeks later, Bibiane's team celebrates while call volume rises. Zhen's team finds one unused step, fixes it, and restores value delivery.",
+      "whatToDo": "Zhen asks the review to trace each shipped output to the outcome it should enable, then marks the missing benefit before the closeout note is approved.",
+      "whyItMatters": "The same status report can support opposite behavior. The useful move is not greener reporting; it is following the chain until use and benefit are visible."
+    },
+    {
+      "exampleId": "ch02-ex02-paxton-mackenzie-coach",
+      "sourceAnchorId": "ch02.ex.strategic-alignment",
+      "title": "Portfolio Coaching Turn",
+      "tags": [
+        "coach talk",
+        "portfolio",
+        "strategy"
+      ],
+      "planSpec": {
+        "domain": "software portfolio funding review",
+        "audience": "product and project leads balancing local delivery with strategy",
+        "stakes": "funding may keep flowing to tidy work with weak strategic fit",
+        "format": "coach_talk",
+        "requiredBeat": "A peer reframes a stuck project lead's delivery view around strategic fit"
+      },
+      "scenario": "\"The release is on time, so why is the portfolio review still tense?\" Mackenzie asks in the conference room before the funding vote. Paxton points to the strategy column beside the burn chart and keeps his voice low. \"A finished output is only value when it still serves the reason it was funded.\" Mackenzie has to say whether the release report should lead with schedule pride or with its fit to organizational objectives. The portfolio sheet shows funding beside a thin benefit line, which makes the reframe harder to avoid.",
+      "whatToDo": "Mackenzie rewrites the release note around strategic alignment first, then lists schedule, cost, and scope as evidence only after the funding purpose is clear.",
+      "whyItMatters": "Paxton's coaching keeps local success from crowding out system value. A project can look controlled while the portfolio reason for paying for it weakens."
+    },
+    {
+      "exampleId": "ch02-ex03-honorine-training",
+      "sourceAnchorId": "ch02.ex.outputs-outcomes-benefits",
+      "title": "Training Room Chain",
+      "tags": [
+        "school case",
+        "onboarding",
+        "terms"
+      ],
+      "planSpec": {
+        "domain": "project coordinator onboarding class",
+        "audience": "new project coordinators learning value terms",
+        "stakes": "learners may memorize labels without seeing how outputs differ from outcomes and benefits",
+        "format": "school_case",
+        "requiredBeat": "A learner's confusion becomes the teaching material for the output to benefit chain"
+      },
+      "scenario": "Honorine sits in the Tuesday onboarding classroom with three sticky notes: outputs, outcomes, benefits. The trainer gives a case about a new request form. Honorine puts \"fewer complaints\" under outputs, then frowns. The class pauses. She has to choose the correct label before the table exercise ends: the form as output, the changed complaint pattern as outcome, or the public trust gain as benefit. Her worksheet now separates what was produced, what changed, and why that change matters for value delivery.",
+      "whatToDo": "Honorine redraws the sticky notes as a sequence: produced form, changed complaint pattern, then trust or service benefit. She tests each term by asking what changed.",
+      "whyItMatters": "The confusion is useful because it exposes the common shortcut. Teams that learn the chain in class are less likely to call the first deliverable value."
+    },
+    {
+      "exampleId": "ch02-ex04-oceane-regulatory",
+      "sourceAnchorId": "ch02.ex.strategic-alignment",
+      "title": "Evidence Package Before After",
+      "tags": [
+        "before after",
+        "regulatory",
+        "alignment"
+      ],
+      "planSpec": {
+        "domain": "regulatory evidence package update",
+        "audience": "teams handling compliance-heavy projects",
+        "stakes": "a late feature request can distract from the strategic obligation behind approval",
+        "format": "before_after",
+        "requiredBeat": "The same review changes after strategic alignment is added to the acceptance check"
+      },
+      "scenario": "Before the change, Oceane's Thursday evidence review starts with a feature list. A late design request gets the longest discussion, and the approval file waits in the folder. After the change, the same table opens with strategy, funding purpose, and organizational objectives. The late request still gets heard, but it no longer outranks the portfolio obligation to secure approval. The project still has a clean schedule, yet the room now sees approval as the value path, not a side concern or a later paperwork chore.",
+      "whatToDo": "Oceane changes the review order so the evidence package is checked against approval strategy before optional design gains receive time.",
+      "whyItMatters": "The parallel review shows the value of order. When strategy opens the meeting, useful extras no longer displace the benefit the project exists to protect."
+    },
+    {
+      "exampleId": "ch02-ex05-todd-records-audit",
+      "sourceAnchorId": "ch02.ex.outputs-outcomes-benefits",
+      "title": "Archive Detail Audit",
+      "tags": [
+        "audit",
+        "records",
+        "benefits"
+      ],
+      "planSpec": {
+        "domain": "benefits audit of a process change archive",
+        "audience": "PMO analysts reviewing closed project files",
+        "stakes": "closure records may prove outputs while hiding failed outcomes",
+        "format": "audit",
+        "requiredBeat": "An auditor finds the telling detail in existing records rather than a new event"
+      },
+      "scenario": "Todd opens the closed project archive after lunch and reads only existing records: acceptance memo, training roster, service report, and benefits note. Nothing dramatic happens. The question is what the file proves. The telling detail is a line in the service report saying field teams still use the old spreadsheet. The output was accepted, but the outcome did not change, so the forecast benefits never entered value delivery. Todd does not interview anyone; the archive itself carries the break in the chain.",
+      "whatToDo": "Todd marks the service-report line as the audit finding and separates accepted output from missing outcome before the benefits note is reused.",
+      "whyItMatters": "An audit can create value by changing understanding. The telling detail protects the next project from copying a benefit claim the records do not support."
+    },
+    {
+      "exampleId": "ch02-ex06-mackenzie-release",
+      "sourceAnchorId": "ch02.ex.strategic-alignment",
+      "title": "Release Note Monologue",
+      "tags": [
+        "inner monologue",
+        "software",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "software release note before a portfolio check",
+        "audience": "project leads preparing status narratives",
+        "stakes": "a tidy release note may hide a strategic tradeoff",
+        "format": "inner_monologue",
+        "requiredBeat": "A project lead thinks through the tradeoff without external dialogue"
+      },
+      "scenario": "Mackenzie rereads the release note at her desk. Schedule first, she thinks. No, schedule is not the reason the portfolio gave funding. Strategy first, then the tradeoff. She needs to choose the first sentence. But if strategy comes first, the missing adoption test looks worse. Good. It should look worse. The organizational objectives need the adoption outcome, not a proud list of finished tickets. The cursor blinks while she lets the uncomfortable link stay on the page. She deletes the opening sentence and starts again.",
+      "whatToDo": "Mackenzie lets the uneasy thought stay visible, then rewrites the note so the strategic outcome appears before delivery facts.",
+      "whyItMatters": "Inner resistance often points to the value risk. When the status story feels cleaner than the strategy story, the status story needs to be rebuilt."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch02.fact.2",
+        "prompt": "A program manager receives a finished training module and a weak adoption report from supervisors. Which reading uses the value chain well?",
+        "choices": [
+          "Output equals outcome: Treat the module as the changed condition because delivery is documented.",
+          "Baseline proof: Close the file because the planned deliverable reached acceptance.",
+          "Outcome trace: Ask what supervisor behavior changed after the module was used."
+        ],
+        "correctIndex": 2,
+        "explanation": "The module is an output. The value question moves to the changed condition it enables. Acceptance alone and delivery records can both miss adoption.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch02.fact.4",
+        "prompt": "Data from a portfolio review shows 4 funded projects with clean schedules, but only 1 still maps to current organizational objectives. What should the reader infer first?",
+        "choices": [
+          "Schedule primacy: Keep all 4 funded because clean schedules show reliable execution.",
+          "Strategic alignment gap: Recheck funding against the objectives before calling the portfolio valuable.",
+          "Effort protection: Preserve the 3 weak-fit projects until their teams finish the current phase."
+        ],
+        "correctIndex": 1,
+        "explanation": "Clean delivery does not prove value. The portfolio consumes scarce capacity, so weak strategic fit has to be surfaced before local success is rewarded.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch02.fact.9",
+        "prompt": "When a sponsor praises a project for meeting scope, schedule, and cost, the use data shows customers stayed with the old process. Which response fits best?",
+        "choices": [
+          "Value test: Acknowledge baseline control, then ask why the delivered process did not change use.",
+          "Control story: Treat the baseline result as proof that value was delivered well enough.",
+          "Adoption delay: Move the use question outside the review because customers may change later."
+        ],
+        "correctIndex": 0,
+        "explanation": "The baseline can be real and still incomplete. If people keep using the old process, the output has not yet produced the outcome behind the benefit claim.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch02.fact.3",
+        "prompt": "A benefits log is blank on the closing date for a new public portal, but use will continue for 6 months. Which plan handles closure responsibly?",
+        "choices": [
+          "Delayed benefit plan: Close project work and assign post-closure tracking for adoption and service gains.",
+          "Closure equals value: Record the blank log as a project success because the portal shipped.",
+          "Open-ended project: Keep the project active until every public benefit has appeared in full."
+        ],
+        "correctIndex": 0,
+        "explanation": "Some benefits appear after temporary project work ends. Closure can be valid only if ownership for later adoption and benefit tracking is clear.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch02.fact.5",
+        "prompt": "A market note says the original customer need has shifted during delivery, while the business case still assumes the old demand. Which move protects value?",
+        "choices": [
+          "Case preservation: Keep the original business case steady so the team avoids churn.",
+          "Scope shield: Finish the approved features first and discuss market changes after launch.",
+          "Feedback update: Revisit the value assumption before more work follows an obsolete need."
+        ],
+        "correctIndex": 2,
+        "explanation": "Feedback protects the value assumption. Treating the first business case as fixed can preserve work that no longer connects to the intended outcome.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch02.fact.1",
+        "prompt": "A public-sector lead says a risk-reduction project has no value because it will not raise revenue. How should that claim be judged?",
+        "choices": [
+          "Profit lens: Accept the claim because revenue is the cleanest proof of project value.",
+          "Reject the claim: Risk reduction can be a valid benefit when stakeholders and obligations define value that way.",
+          "Image lens: Replace the benefit case with reputation language so the work sounds valuable."
+        ],
+        "correctIndex": 1,
+        "explanation": "Value is multi-dimensional. Revenue can matter, but compliance, public benefit, safety, capability, and risk reduction can also justify work.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch02.fact.8",
+        "prompt": "Which action best reveals whether a tidy local project belongs in the wider value delivery system?",
+        "choices": [
+          "Template comfort: Compare its status report with the standard reporting format.",
+          "Activity proof: Count the completed tasks and show that effort was spent efficiently.",
+          "Strategy check: Link its expected benefit to a current objective or obligation."
+        ],
+        "correctIndex": 2,
+        "explanation": "Strategic alignment connects local work to system value. A tidy report and a long task list can both look strong while the reason for doing the work is thin.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch02.fact.6",
+        "prompt": "An engineering team can cut a low-use dashboard export or delay the feature that drives customer self-service. Which tradeoff fits value thinking?",
+        "choices": [
+          "Benefit protection: Cut the export if it has little bearing on the outcome the project exists to enable.",
+          "Schedule optics: Cut the self-service feature because it is larger and threatens the date.",
+          "Scope equality: Treat both features as equally important because both were in the approved plan."
+        ],
+        "correctIndex": 0,
+        "explanation": "Tradeoffs should be judged by effect on outcomes. The export may be expendable if self-service is the behavior change behind the expected benefit.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch02.fact.7",
+        "prompt": "A dashboard shows 12 delivered reports, 3 changed work routines, and 1 measurable service gain. What distinction is the dashboard making?",
+        "choices": [
+          "Volume distinction: It proves the project with the highest count created the most value.",
+          "Chain distinction: It separates produced outputs, enabled outcomes, and realized benefits.",
+          "Closure distinction: It shows benefits must be complete before any output is accepted."
+        ],
+        "correctIndex": 1,
+        "explanation": "The counts map to different links in the chain. More outputs do not prove more value, and acceptance can happen before benefits are fully realized.",
+        "bloomsLevel": "remember",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch02.fact.2",
+      "front": "How do outputs and outcomes differ when a project looks complete?",
+      "back": "Outputs are the things produced, such as forms, systems, reports, or training. Outcomes are the changed conditions that appear when people use those outputs.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch02.fact.7",
+      "front": "What three links should a value review trace before accepting a success story?",
+      "back": "Trace the output, the outcome it should enable, and the benefit that should follow. The links answer what was made, what changed, and why the change matters.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch02.fact.4",
+      "front": "Why can a well-run project still fail the value test?",
+      "back": "It may meet delivery controls while no longer supporting strategy, stakeholder use, or expected benefits. Local control does not prove system value.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch02.fact.5",
+      "front": "What role does feedback play after the original value assumption is approved?",
+      "back": "Feedback checks whether needs, markets, technology, or rules have changed. It keeps the business case from protecting obsolete assumptions.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch02.fact.6",
+      "front": "Earlier concept, principle-based standard: how does it connect to value tradeoffs?",
+      "back": "A principle-based standard supports judgment instead of one fixed recipe. Value tradeoffs use that judgment to protect outcomes and benefits, not just paperwork.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch02.fact.1",
+      "front": "When value is not direct profit, what kinds of benefits can still count?",
+      "back": "Value may appear as compliance, public benefit, safety, risk reduction, capability, learning, reputation, customer satisfaction, or stakeholder improvement.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Trace the Value Chain",
+    "coreSkill": "Practice tracing each important output to the outcome it should enable and the benefit it should create. Use Trace the Value Chain when a project looks done, when a tradeoff appears, or when funding needs a clearer link to strategy.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch02.fact.2",
+        "context": "A status report lists completed deliverables but says little about changed behavior.",
+        "plan": "If the report lists outputs only, then Trace the Value Chain by adding the expected outcome beside each deliverable before the review continues."
+      },
+      {
+        "sourceAnchorId": "ch02.fact.4",
+        "context": "A portfolio conversation rewards a tidy project with weak strategic fit.",
+        "plan": "If a local success lacks a strategic link, then Trace the Value Chain back to the funded objective before approving more capacity."
+      },
+      {
+        "sourceAnchorId": "ch02.fact.5",
+        "context": "New feedback suggests the original benefit assumption may be stale.",
+        "plan": "If fresh evidence weakens the business case, then Trace the Value Chain again and mark which link changed before more scope is added."
+      },
+      {
+        "sourceAnchorId": "ch02.fact.6",
+        "context": "A tradeoff would protect schedule while weakening the expected user change.",
+        "plan": "If the schedule-saving option cuts the outcome driver, then Trace the Value Chain and choose the option that protects the benefit."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, choose one active project and write three columns: output, outcome, benefit. Leave any uncertain link blank and take that gap to the next review.",
+    "weeklyPractice": "Each Friday, review one project decision through Trace the Value Chain. Record whether the week's tradeoffs strengthened strategy, adoption, or benefits."
+  },
+  "memorableLines": [
+    {
+      "text": "Done is not the same as valuable.",
+      "location": "breakdown.fastRead",
+      "why": "It separates completion from value in one plain line."
+    },
+    {
+      "text": "A baseline can be met while the benefit goes missing.",
+      "location": "breakdown.deepRead",
+      "why": "It names the chapter's strict warning without jargon."
+    },
+    {
+      "text": "Strategy is the filter that keeps a tidy output from becoming a local victory.",
+      "location": "breakdown.fullRead",
+      "why": "It links strategic alignment to everyday project review."
+    }
+  ]
+}

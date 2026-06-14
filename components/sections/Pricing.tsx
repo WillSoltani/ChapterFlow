@@ -8,7 +8,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
-import { PRICING, ANNUAL_SAVINGS_PCT, formatAmount, TRIAL_CTA_LABEL } from "@/lib/pricing";
+import { PRICING, ANNUAL_TOTAL_AMOUNT, ANNUAL_SAVINGS_PCT, formatAmount, TRIAL_CTA_LABEL } from "@/lib/pricing";
 
 /* ------------------------------------------------------------------ */
 /*  Inline icons                                                      */
@@ -117,7 +117,7 @@ export function Pricing() {
   const freeHref = loggedIn ? "/book" : AUTH_LOGIN_BOOK_URL;
   const proHref = loggedIn ? "/book/settings" : AUTH_LOGIN_BOOK_URL;
   const perMonthAmount = isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount;
-  const annualTotal = formatAmount(PRICING.annualMonthlyAmount * 12);
+  const annualTotal = formatAmount(ANNUAL_TOTAL_AMOUNT);
 
   const toggleFaq = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));

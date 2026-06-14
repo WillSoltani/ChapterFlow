@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch13",
+  "number": 13,
+  "title": "Tailor Based on Context",
+  "readingTimeMinutes": 11,
+  "hook": "The war room was tidy except for the baseline taped over the risk list.",
+  "counterintuition": "Discipline can mean changing the process, not preserving it. Under schedule pressure, the evidence is a decision that fits context while still protecting value.",
+  "tryThisNow": "During your next five plan touches today, tally the first visible reason each one changed: risk, stakeholder need, quality, governance, or time. Then adjust one rule that no longer fits.",
+  "keyTakeaway": "Tailoring is disciplined fit: keep the PMBOK principle alive by changing approach, governance, and communication when context proves the inherited plan is wrong.",
+  "breakdown": {
+    "fastRead": "Bryce's conference room tells the story after the release miss. The old baseline is still taped above the new risk list. The stakeholder notes are stacked face down. Nothing in the room says the team ignored process. The failure was more exact: the team kept the inherited process after the context had changed.\n\nA project team applies Tailor Based on Context when it makes fit visible. The PMI principle does not ask for a favorite method. It asks the team to match approach, governance, roles, artifacts, and communication to the work in front of it. Risk, uncertainty, stakeholder need, regulation, team skill, and value all count.\n\nThe rule is simple and hard under pressure. When context changes, the way of working must be allowed to change too. A baseline can guide the team, but it cannot become the team.",
+    "deepRead": "Fit works through evidence, not taste. A team first notices the conditions around the work, then changes the way it plans, reviews, communicates, or escalates. That change may be small: a shorter feedback loop, a clearer owner, a lighter artifact, a more formal approval, or a new stakeholder rhythm. The key is that the work system answers the project, rather than forcing the project to serve the system.\n\nChantal sees this while leading a compliance-heavy vendor upgrade. Her inherited approach treats every change request the same way. Then a data-retention rule lands mid-sprint. The template would let the team keep moving, but it would hide the one risk that now needs governance. Chantal stops the review, names her own mistake, and separates routine scope changes from the regulatory decision. The fix is not large. The noticing is the turn.\n\nPMI does something deliberate by placing Tailor Based on Context among 12 principles. It sits near stewardship, stakeholder work, value focus, system awareness, quality, risk response, resilience, and change. The point is connection. Tailoring is not a side preference for adaptive work or a loophole in a predictive plan. It is professional judgment in a predictive plan, an adaptive cadence, or a hybrid mix.\n\nThe common misread is to treat the phrase as vocabulary. A team can say Tailor Based on Context and still copy the same checklist everywhere. The applied version leaves a trace: the risk log changes, a stakeholder is pulled closer, quality evidence gets protected, or a lightweight project drops a form that adds no signal. The reader should be able to point at the decision and say what context made it fit.",
+    "fullRead": "The hard case arrives when the schedule is already tight. In calm work, almost any team can agree that context matters. Under deadline heat, the old process feels safer because it has a name, a baseline, and a path through governance. Changing it can look like drift. Keeping it can look like control. That is where Tailor Based on Context becomes a behavioral standard rather than a slogan.\n\nAryan makes the distinction in a decision memo after a mobile claims project starts slipping. The team has three weeks left. One option is to defend the baseline and compress testing. Another is to tailor the approach: shorten daily handoffs, add the claims supervisor to backlog review, move one risky integration through formal governance, and drop a status artifact nobody uses. The memo does not claim freedom from discipline. It explains why this context needs a different kind of discipline.\n\nThat is the useful boundary. Tailoring does not mean weaker management. A safety-critical infrastructure effort may need more traceability, more reviews, and more documented approval than the organization's usual playbook. A small discovery effort may need fewer documents and more direct feedback. Both can be rigorous. The fit comes from the work's risk, uncertainty, product type, stakeholder exposure, and delivery cadence.\n\nThe opposite error is just as common. A team hears flexibility and treats every control as optional. That is not tailoring; it is avoidance with better language. The question is not, which rule can we escape? The question is, which practice gives this project the evidence, trust, and value protection it needs now?\n\nBryce and Chantal show the split. Bryce reads a late risk signal and protects the baseline because the steering group already approved it. Chantal sees the same signal and changes the communication path before the next review. Bryce can explain compliance with the plan. Chantal can explain fitness to the context. Only one answer helps the project learn in time.\n\nContext also changes during delivery. Early assumptions age. Stakeholders learn. Risks move. The team gains skill or loses capacity. A tailored approach chosen once can become a poor fit later. Good project judgment keeps checking the match between the work and the system used to manage it.\n\nThe decision standard is visible. Did the team change a real choice about approach, governance, communication, quality evidence, escalation, or stakeholder involvement? Did the change protect value rather than convenience? Could another professional understand why the context justified it? If the answer is yes, the principle is working. If the only evidence is that someone recited the phrase, the project has vocabulary, not judgment."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch13.ex.principle-13-tradeoff",
+      "title": "The Taped Baseline",
+      "tags": [
+        "postmortem",
+        "schedule pressure",
+        "governance"
+      ],
+      "planSpec": {
+        "domain": "municipal permit portal",
+        "audience": "project managers reviewing a missed release",
+        "stakes": "find the one tailoring decision that failed under pressure",
+        "format": "postmortem",
+        "requiredBeat": "the scene reconstructs a missed tradeoff under schedule pressure"
+      },
+      "scenario": "Bryce's postmortem folder sits open after the permit portal missed its release. The conference room still has the approved baseline taped over a risk list marked schedule pressure, governance, and stakeholder escalation. The trace is plain: the team saw the tradeoff, kept the baseline review path anyway, and treated Tailor Based on Context as a phrase for the slide deck.",
+      "whatToDo": "Bryce marks the decisive misstep: the team had evidence that governance needed to change, yet left the same baseline path in place.",
+      "whyItMatters": "A postmortem should locate the decision that failed the context. Here the missed adaptation, not the late date alone, explains the release miss."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch13.ex.principle-13-pmi",
+      "title": "Chantal Spots the Overfit",
+      "tags": [
+        "mistake recovery",
+        "PMI principles",
+        "approach"
+      ],
+      "planSpec": {
+        "domain": "vendor compliance upgrade",
+        "audience": "leads working with inherited templates",
+        "stakes": "notice when a process has become too broad for the actual risk",
+        "format": "mistake_recovery",
+        "requiredBeat": "the protagonist notices her own process error mid-stream"
+      },
+      "scenario": "Chantal is halfway through a change-control review when the PMI handout beside her laptop catches the line Tailor Based on Context in the 12 principles. Her approach is treating a data-retention change like routine scope cleanup. Seconds before the vote, she sees her own error: context has shifted, and the template is hiding the risk instead of managing it.",
+      "whatToDo": "Chantal pauses the vote, names the overfit template as her error, and separates the routine changes from the data-retention decision.",
+      "whyItMatters": "The strongest moment is the noticing. Tailoring starts when a lead admits the inherited approach no longer matches the risk on the table."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch13.ex.principle-13-tradeoff",
+      "title": "Aryan's Pressure Memo",
+      "tags": [
+        "decision memo",
+        "baseline",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "mobile claims platform",
+        "audience": "sponsors weighing deadline recovery options",
+        "stakes": "make the tailoring decision legible in writing",
+        "format": "decision_memo",
+        "requiredBeat": "a written memo carries the action"
+      },
+      "scenario": "Aryan's memo fills the first page of the sponsor packet: schedule pressure has made the old baseline unsafe. The recommended tradeoff is not to skip governance, but to narrow it: daily claims-supervisor review, formal approval for the risky integration, and removal of one status artifact that adds no signal. The action lives in the written rationale.",
+      "whatToDo": "Aryan writes the context, the changed governance path, and the artifact he will drop, so the sponsor can see discipline rather than drift.",
+      "whyItMatters": "A memo can make tailoring auditable. It shows which pressure changed the approach and which controls still protect value."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch13.ex.principle-13-tradeoff",
+      "title": "Two Pressure Paths",
+      "tags": [
+        "contrast",
+        "schedule pressure",
+        "communication"
+      ],
+      "planSpec": {
+        "domain": "health benefits enrollment rollout",
+        "audience": "project leads comparing pressure responses",
+        "stakes": "show how opposite approaches produce different outcomes",
+        "format": "contrast",
+        "requiredBeat": "two named people face the same pressure with opposite tailoring moves"
+      },
+      "scenario": "Bryce receives a Friday defect trend on the enrollment rollout and keeps the baseline meeting plan, citing schedule pressure and a clean governance calendar. The defect reaches payroll too late. Chantal receives the same trend on a sister rollout and adds a benefits clerk to the morning review before the next handoff. Her tradeoff costs one hour and saves two rework days.",
+      "whatToDo": "Chantal changes the communication path when the context changes, while Bryce leaves the baseline untouched and loses the signal.",
+      "whyItMatters": "The same pressure can invite opposite behavior. Tailoring is proven by the project outcome shaped by the changed approach."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch13.ex.principle-13-pmi",
+      "title": "The Fit Sentence",
+      "tags": [
+        "coach talk",
+        "12 principles",
+        "judgment"
+      ],
+      "planSpec": {
+        "domain": "PMO coaching conversation",
+        "audience": "project managers defending inherited process",
+        "stakes": "reframe consistency as fit rather than sameness",
+        "format": "coach_talk",
+        "requiredBeat": "a peer gives a quotable reframe"
+      },
+      "scenario": "Aryan closes the PMO laptop after Bryce says changing the approach will make the team look undisciplined. The PMI page with 12 principles is still open to Tailor Based on Context. Aryan answers in one sentence before the steering prep starts: A tailored process is still a disciplined process when it can explain its fit.",
+      "whatToDo": "Aryan asks Bryce to justify the approach against context, risk, stakeholder need, and value, not against the comfort of sameness.",
+      "whyItMatters": "The coach talk gives Bryce a portable test. Consistency is useful only when it still fits the project being managed under real context."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch13.ex.principle-13-pmi",
+      "title": "The Class With Two Plans",
+      "tags": [
+        "school case",
+        "PMI",
+        "approach"
+      ],
+      "planSpec": {
+        "domain": "project management training",
+        "audience": "new project managers learning PMBOK principles",
+        "stakes": "turn confusion about tailoring into a teachable comparison",
+        "format": "school_case",
+        "requiredBeat": "a learner's confusion becomes the teaching material"
+      },
+      "scenario": "Chantal's classroom worksheet shows two practice projects under the PMI 12 principles: a two-week prototype and a regulated plant upgrade. She is confused because both say Tailor Based on Context, yet one approach uses a sketch board and the other uses traceable approvals. Aryan asks the class to name which context each plan serves.",
+      "whatToDo": "Chantal compares the project traits first, then matches the prototype to fast feedback and the plant upgrade to formal control.",
+      "whyItMatters": "A school case lowers the stakes enough to see the pattern. Different practices can honor the same PMBOK principle when the contexts differ."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch13.fact.3",
+        "prompt": "Bryce reviews a six-day change log: four handoffs failed after schedule changes, but the baseline communication plan was approved. What should the reader infer first?",
+        "choices": [
+          "Baseline Loyalty: Bryce should keep the approved handoff plan and treat the misses as execution noise.",
+          "Context Fit: Bryce should adjust the communication path and record why the schedule changes made the baseline plan a poor fit.",
+          "Vocabulary Proof: Bryce should add Tailor Based on Context to the meeting notes and leave the handoff routine alone."
+        ],
+        "correctIndex": 1,
+        "explanation": "The log points to a fit problem, not just poor follow-through. Tailoring requires a visible choice about communication, governance, or tradeoffs when context changes.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch13.fact.2",
+        "prompt": "Chantal inherits a reliable predictive process for a project that has become exploratory and stakeholder-heavy. Which role response applies the principle across approaches?",
+        "choices": [
+          "Chantal should keep useful controls but add faster stakeholder feedback, showing that tailoring travels across predictive, adaptive, and hybrid work.",
+          "Method Fence: Chantal should treat tailoring as an adaptive-only practice and leave predictive governance untouched.",
+          "Template Prestige: Chantal should keep the predictive package intact because a familiar method signals discipline to the sponsor."
+        ],
+        "correctIndex": 0,
+        "explanation": "PMBOK principles describe professional behavior across delivery approaches. Chantal can retain needed rigor while changing feedback cadence for the new context.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch13.fact.5",
+        "prompt": "Minutes before a steering review, Aryan sees schedule pressure pushing the team to skip a quality check on the riskiest component. Which move best preserves Tailor Based on Context?",
+        "choices": [
+          "Deadline Halo: Aryan should let the schedule pressure outrank the quality check because the steering review is already close.",
+          "Process Theater: Aryan should keep the quality check on the slide but quietly remove it from the work plan.",
+          "Aryan should protect the quality check for the risky component and tailor lower-value reporting so the pressure changes the right work."
+        ],
+        "correctIndex": 2,
+        "explanation": "Pressure tests the principle. The fit response protects the control tied to risk and changes lower-value work, rather than using urgency to hide weak management.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch13.fact.1",
+        "prompt": "A tailoring decision from kickoff no longer matches the project after two stakeholder groups change their review needs. How should Bryce treat the original tailoring artifact?",
+        "choices": [
+          "Artifact Closure: Bryce should treat the kickoff artifact as finished proof that tailoring has already happened.",
+          "Bryce should revisit the working approach, update the stakeholder rhythm, and record why the earlier fit no longer holds.",
+          "Paper Shield: Bryce should keep the original artifact unchanged so late stakeholder needs do not disturb the project file."
+        ],
+        "correctIndex": 1,
+        "explanation": "Tailoring is continuous because project conditions move. An early artifact helps only while it fits; changed stakeholder review needs call for a changed approach.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch13.fact.4",
+        "prompt": "Which evidence would best show that Chantal connected tailoring to value delivery on a benefits rollout?",
+        "choices": [
+          "Chantal changes the review cadence so payroll defects reach the right stakeholder sooner and benefits value is protected.",
+          "Method Display: Chantal prints a complete method glossary for the rollout team before the next benefits review.",
+          "Document Comfort: Chantal adds two status forms to make the rollout file look more complete to auditors."
+        ],
+        "correctIndex": 0,
+        "explanation": "Value delivery shows up when the tailored choice protects outcomes, benefits, stakeholder trust, or learning. A glossary or bigger file may not change delivery value.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch13.fact.6",
+        "prompt": "Aryan tells a class that flexibility lets a team ignore governance whenever the work feels urgent. Which correction should the class make?",
+        "choices": [
+          "Loose Freedom: Aryan is right if the team feels blocked by approvals and wants to move faster.",
+          "Ceremony Swap: Aryan should replace governance with a new meeting name so the team still sounds structured.",
+          "Tailoring changes how governance is applied to the context; it does not remove the responsibility to manage risk and value."
+        ],
+        "correctIndex": 2,
+        "explanation": "The principle changes implementation, not responsibility. A team can lighten, strengthen, or redirect governance, but urgency is not a license to abandon it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch13.fact.7",
+        "prompt": "A PMI study group can recite Tailor Based on Context as one of the 12 principles, but their case answer copies one process into every project. Which critique is strongest?",
+        "choices": [
+          "Terminology Trophy: the group knows the principle name, so the copied process is acceptable for the exam case.",
+          "List Completion: the group should memorize the other 11 principle titles before changing any case decision.",
+          "The group has recall without application; the case needs approach and governance choices that fit the project context."
+        ],
+        "correctIndex": 2,
+        "explanation": "The 12-principle set guides behavior. Naming the item is not enough when the case calls for visible choices about approach, governance, and context.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch13.fact.8",
+        "prompt": "When schedule pressure rises, Chantal proposes escalating one integration risk while cutting a low-signal report. A teammate calls this inconsistent. Which reply best follows the principle?",
+        "choices": [
+          "Uniformity Bias: Chantal should apply the same level of control to the report and the integration so the plan looks even.",
+          "The pressure has changed the tradeoff; Chantal can strengthen governance where risk is high and lighten work that adds little signal.",
+          "Deadline Drift: Chantal should cut both the integration review and the report so the calendar recovers faster."
+        ],
+        "correctIndex": 1,
+        "explanation": "Tailoring is not equal treatment of every activity. Under pressure, fit may mean more control in one place and less ceremony in another.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch13.fact.9",
+        "prompt": "Bryce's team says it has applied the principle because every status deck now contains the words Tailor Based on Context. Which audit question would reveal whether behavior changed?",
+        "choices": [
+          "Which concrete decision about approach, governance, communication, or tradeoffs changed because the project's context required it?",
+          "Slogan Audit: which slide uses the principle phrase most often in the status deck Bryce sends?",
+          "Deck Polish: which team member made the principle label easiest to read during the sponsor meeting?"
+        ],
+        "correctIndex": 0,
+        "explanation": "The hard edge is behavioral. Real application leaves evidence in changed decisions; a repeated phrase on a deck can exist with no tailored choice behind it.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch13.concept",
+      "front": "What should a team change when the inherited process no longer fits the project?",
+      "back": "The team can change approach, governance, artifacts, roles, reviews, communication, measurement, or escalation. The change should answer project context, not personal preference.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch13.fact.3",
+      "front": "How can a reader tell whether Tailor Based on Context has moved beyond vocabulary?",
+      "back": "Look for a visible decision: a stakeholder pulled closer, a risk escalated, a quality control protected, an artifact dropped, or a communication path changed because context required it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch13.fact.1",
+      "front": "Why is one tailoring document at kickoff not enough?",
+      "back": "Project conditions change. Stakeholder needs, risk, uncertainty, team capability, and delivery cadence can shift, so the team has to keep checking whether the chosen way of working still fits.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch13.fact.2",
+      "front": "How does the principle travel across predictive, adaptive, and hybrid approaches?",
+      "back": "It is a behavior standard, not a lifecycle technique. Predictive work may need tailored controls, adaptive work may need tailored feedback loops, and hybrid work may need both.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch13.fact.4",
+      "front": "Earlier principle: Focus on Value. How should it shape a tailoring choice?",
+      "back": "A tailored choice should protect outcomes, benefits, trust, or learning. If a process change only makes the team more comfortable and does not support value, it needs a harder look.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch13.fact.6",
+      "front": "Earlier principle: Recognize, Evaluate, and Respond to System Interactions. Why does that matter for tailoring?",
+      "back": "A process change in one place can affect governance, stakeholders, quality, risk, and delivery flow. Tailoring works best when the team checks the system around the practice it wants to change.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Fit the Work System",
+    "coreSkill": "Practice testing the way of working against the project in front of you. Name the context signal, pick the practice it affects, and make one visible change to approach, governance, communication, artifact depth, or escalation. Fit the Work System is complete only when another professional could see why the choice protects value.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch13.fact.1",
+        "context": "When a plan chosen at kickoff stops matching stakeholder reviews, risk, or team capacity",
+        "plan": "If the early fit has aged, then fit the work system and update one practice instead of treating the kickoff artifact as permanent proof."
+      },
+      {
+        "sourceAnchorId": "ch13.fact.5",
+        "context": "When schedule pressure tempts the team to cut the nearest control",
+        "plan": "If urgency is driving the choice, then fit the work system by asking which control protects the highest risk and which activity adds the least signal."
+      },
+      {
+        "sourceAnchorId": "ch13.fact.6",
+        "context": "When someone uses flexibility as a reason to drop governance",
+        "plan": "If tailoring is being used to escape responsibility, then fit the work system and choose a governance form that fits the risk instead of removing the risk owner."
+      },
+      {
+        "sourceAnchorId": "ch13.fact.9",
+        "context": "When a team can recite Tailor Based on Context but cannot name a changed decision",
+        "plan": "If the principle appears only as a phrase, then fit the work system and ask what approach, artifact, communication path, or tradeoff changed because of context."
+      }
+    ],
+    "twentyFourHourChallenge": "Pick one active project today and write three context signals: risk, stakeholder need, uncertainty, or governance constraint. For one signal, change a specific practice and note the value it protects.",
+    "weeklyPractice": "At the end of each week, review one project decision that felt driven by habit. Fit the work system, record whether the inherited practice still fits, and adjust one routine when the evidence says no."
+  },
+  "memorableLines": [
+    {
+      "text": "A baseline can guide the team, but it cannot become the team.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the hard edge into a line about process serving judgment rather than replacing it."
+    },
+    {
+      "text": "Fit works through evidence, not taste.",
+      "location": "breakdown.deepRead",
+      "why": "It separates disciplined tailoring from personal preference in six words."
+    },
+    {
+      "text": "The decision standard is visible.",
+      "location": "breakdown.fullRead",
+      "why": "It reminds the reader that the principle must leave evidence in changed project choices."
+    }
+  ]
+}

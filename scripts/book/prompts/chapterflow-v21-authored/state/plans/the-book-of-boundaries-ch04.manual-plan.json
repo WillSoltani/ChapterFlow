@@ -2,60 +2,59 @@
   "chapterId": "the-book-of-boundaries-ch04",
   "number": 4,
   "title": "When the Drama Is Your Mama: Setting Boundaries with Parents and In-Laws, Grandparents, and Other Family Members",
-  "coreMove": "Family love does not grant unlimited access; boundaries protect parenting, bodies, homes, visits, and holidays so connection can continue without old roles running the house.",
+  "coreMove": "Family boundaries keep love from becoming automatic access: name the advice, visit, holiday, money, or childcare term, then follow through without asking relatives to agree.",
   "exampleCount": 6,
   "exampleSpecs": [
     {
-      "domain": "weekend visit with parents",
-      "audience": "adult children who avoid family after parenting criticism",
-      "stakes": "protect contact with parents by closing the co-parenting debate",
-      "format": "decision_point",
-      "requiredBeat": "Show a visit becoming possible only after co-parenting advice gets a clear limit."
+      "domain": "fire station shift change",
+      "audience": "adult children hearing repeated parenting advice",
+      "stakes": "keep care from becoming decision access",
+      "format": "vignette",
+      "requiredBeat": "one small phone moment shows parents giving coparenting advice after a request to stop"
     },
     {
-      "domain": "family birthday lunch",
-      "audience": "readers who brace for appearance comments at gatherings",
-      "stakes": "stop body scrutiny without turning the whole meal into a trial",
-      "format": "dialogue",
-      "requiredBeat": "Use a mother-in-law's weight, clothes, and makeup comments to show a zero-access topic."
-    },
-    {
-      "domain": "front-door surprise visit",
-      "audience": "households whose relatives treat closeness as automatic entry",
-      "stakes": "protect home space while staying civil at the door",
-      "format": "scene",
-      "requiredBeat": "Turn a surprise visit from in-laws into an advance-notice boundary."
-    },
-    {
-      "domain": "holiday calendar planning",
-      "audience": "readers who say yes until family time turns resentful",
-      "stakes": "convert guilt into a sustainable amount of contact",
-      "format": "audit",
-      "requiredBeat": "Use the magic-number approach to choose how much family participation is sustainable."
-    },
-    {
-      "domain": "post-gathering family debrief",
-      "audience": "parents who notice body comments hurting a child",
-      "stakes": "respond after a family comment without normalizing appearance scrutiny",
+      "domain": "ceramics studio holiday review",
+      "audience": "couples untangling inherited holiday expectations",
+      "stakes": "find the lesson after the declined invitation already happened",
       "format": "postmortem",
-      "requiredBeat": "Show that appearance comments damage trust even when relatives call them honesty."
+      "requiredBeat": "the scene reconstructs how a holiday schedule became a boundary issue after the outcome"
     },
     {
-      "domain": "household privacy reset",
-      "audience": "adults whose relatives still treat the home as shared family space",
-      "stakes": "reclaim home access without arguing about love",
-      "format": "reset_moment",
-      "requiredBeat": "Show adult authority over home access as a consent issue, not a family loyalty test."
+      "domain": "after-school pickup logistics",
+      "audience": "parents who overexplain grandparent access rules",
+      "stakes": "notice the self-betrayal before the visit rule gets blurred",
+      "format": "mistake_recovery",
+      "requiredBeat": "Glenn notices his own overexplaining during a grandparent access problem"
+    },
+    {
+      "domain": "family dinner cleanup",
+      "audience": "adults drafting holiday boundaries before the next invitation",
+      "stakes": "put a December term in writing before dishes and guilt blur it",
+      "format": "decision_memo",
+      "requiredBeat": "the written note carries the action and states a declined invitation without debate"
+    },
+    {
+      "domain": "extended-family hiking day",
+      "audience": "parents comparing two grandparent access responses",
+      "stakes": "show how photo and visit rules diverge when one parent names terms",
+      "format": "contrast",
+      "requiredBeat": "Minh and Marcel handle the same grandparent pressure in opposite ways with different outcomes"
+    },
+    {
+      "domain": "retail shift family call",
+      "audience": "adult children stuck between gratitude and authority",
+      "stakes": "hear a peer reframe parental advice without making parents villains",
+      "format": "coach_talk",
+      "requiredBeat": "a peer reframes Simon's stuck view of repeated parental advice"
     }
   ],
   "quizFocus": {
     "count": 9,
     "bloomsMix": {
-      "apply": 2,
+      "apply": 3,
+      "analyze": 3,
       "evaluate": 2,
-      "create": 1,
-      "analyze": 2,
-      "understand": 2
+      "understand": 1
     },
     "transferEmphasis": 1
   },
@@ -65,5 +64,5 @@
   },
   "readingTimeMinutes": 11,
   "derivedFromInlineMode": true,
-  "derivedAt": "2026-06-10T01:00:31.122Z"
+  "derivedAt": "2026-06-12T20:04:39.327Z"
 }

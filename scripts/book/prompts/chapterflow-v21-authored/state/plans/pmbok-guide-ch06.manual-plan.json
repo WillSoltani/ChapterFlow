@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch06",
+  "number": 6,
+  "title": "Product Management Considerations",
+  "coreMove": "Treat project outputs as entries in a longer product life: name the owner, connect roadmap choices to feedback, and measure value after closure.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "customer portal launch desk",
+      "audience": "project managers preparing closure",
+      "stakes": "avoid handing over an output with no continuing owner",
+      "format": "vignette",
+      "requiredBeat": "a small observed moment shows the product lifecycle extending beyond project closure"
+    },
+    {
+      "domain": "customer portal postmortem",
+      "audience": "teams whose delivery metrics hid adoption problems",
+      "stakes": "locate the misstep that stranded product value after delivery",
+      "format": "postmortem",
+      "requiredBeat": "open after the failure and identify the missed roadmap/backlog decision"
+    },
+    {
+      "domain": "platform migration review",
+      "audience": "project leads moving products across platforms",
+      "stakes": "correct an ownerless handoff before migration work closes",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist notices his own lifecycle error mid-stream"
+    },
+    {
+      "domain": "service roadmap memo",
+      "audience": "sponsors deciding how project scope connects to product work",
+      "stakes": "put continuing prioritization into the written artifact",
+      "format": "decision_memo",
+      "requiredBeat": "the written memo carries the scene and the action"
+    },
+    {
+      "domain": "parallel service teams",
+      "audience": "leaders comparing project-scope and product-priority habits",
+      "stakes": "show how opposite backlog habits change outcomes",
+      "format": "contrast",
+      "requiredBeat": "two named people face the same roadmap/backlog situation with divergent results"
+    },
+    {
+      "domain": "launch hallway coaching",
+      "audience": "teams ready to treat delivery as the end",
+      "stakes": "reframe closure as a handoff into product life",
+      "format": "coach_talk",
+      "requiredBeat": "a peer gives a quotable reframe about lifecycle ownership"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "understand": 2,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 9,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.312Z"
+}

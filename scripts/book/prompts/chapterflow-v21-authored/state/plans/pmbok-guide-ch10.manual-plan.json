@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch10",
+  "number": 10,
+  "title": "Focus on Value",
+  "coreMove": "Focus on Value is visible when pressure changes priorities: protect outcomes, benefits, and the business case before defending activity, deliverable volume, or a stale baseline.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "project recovery meeting after a status review",
+      "audience": "project leads who can recite principles but need to use one",
+      "stakes": "the team can either protect expected outcomes or celebrate work that no longer pays off",
+      "format": "dialogue",
+      "requiredBeat": "Two people use the PMI 12 principles and Focus on Value language to test whether benefits and outcomes still guide the decision."
+    },
+    {
+      "domain": "compressed software release with adoption work removed",
+      "audience": "teams tempted to treat date recovery as value recovery",
+      "stakes": "schedule pressure can create a clean baseline while weakening the business case",
+      "format": "predict_reveal",
+      "requiredBeat": "The setup implies the saved schedule is the success, then reveals the tradeoff damaged the expected benefit."
+    },
+    {
+      "domain": "short team chat during schedule compression",
+      "audience": "project managers making small cuts through informal channels",
+      "stakes": "an informal cut can defend the baseline while weakening the benefit path",
+      "format": "text_thread",
+      "requiredBeat": "A compressed chat shows schedule pressure, baseline defense, business case, and tradeoff logic without a formal meeting."
+    },
+    {
+      "domain": "daily standup that has become a task-completion recital",
+      "audience": "delivery leads who need a practical pause when activity crowds out outcomes",
+      "stakes": "a routine can reward volume unless someone restarts it around value evidence",
+      "format": "reset_moment",
+      "requiredBeat": "A routine is interrupted and deliberately restarted around outcomes, benefits, and evidence."
+    },
+    {
+      "domain": "quiet project room after a governance review",
+      "audience": "readers learning to see value signals in small details",
+      "stakes": "visible completion can crowd out quieter evidence of benefits and outcomes",
+      "format": "vignette",
+      "requiredBeat": "A small observed desk scene contrasts green output stickers with PMI Focus on Value, 12 principles, benefits, and outcomes."
+    },
+    {
+      "domain": "launch postmortem after an on-time deployment misses benefit targets",
+      "audience": "teams reconstructing how value was lost after a schedule win",
+      "stakes": "the review can blame execution noise or locate the one tradeoff that broke value",
+      "format": "postmortem",
+      "requiredBeat": "The scene opens after failure and reconstructs how schedule pressure, baseline defense, business case, and tradeoff evidence point to one decisive misstep."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.315Z"
+}

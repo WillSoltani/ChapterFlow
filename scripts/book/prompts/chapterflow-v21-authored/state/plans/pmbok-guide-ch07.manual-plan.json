@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch07",
+  "number": 7,
+  "title": "Be a Diligent, Respectful, and Caring Steward",
+  "coreMove": "Stewardship is visible when schedule pressure changes the decision: protect people, evidence, compliance, resources, and trust before defending a convenient baseline.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "kickoff checklist for a regulated software project",
+      "audience": "a project manager converting principle language into review evidence",
+      "stakes": "whether ethics and compliance become lived duties or signoff words",
+      "format": "before_after",
+      "requiredBeat": "show the same checklist before and after stewardship changes what gets recorded"
+    },
+    {
+      "domain": "release-folder audit after late commits",
+      "audience": "a quality lead checking whether pressure distorted the record",
+      "stakes": "whether a baseline stayed green by hiding a resource tradeoff",
+      "format": "audit",
+      "requiredBeat": "the audit discovers that the project moved risk out of sight"
+    },
+    {
+      "domain": "privacy-sensitive export before sponsor review",
+      "audience": "a product lead tempted to treat file completion as readiness",
+      "stakes": "whether private data gets sent before the open check is resolved",
+      "format": "inner_monologue",
+      "requiredBeat": "the wrong turn happens inside one person's reasoning"
+    },
+    {
+      "domain": "Friday planning session with scarce review time",
+      "audience": "a planning lead allocating attention before execution begins",
+      "stakes": "whether adoption and resource concerns vanish under date pressure",
+      "format": "planning_choice",
+      "requiredBeat": "attention allocation is the whole scene"
+    },
+    {
+      "domain": "test failure before a steering call",
+      "audience": "a release lead facing two costly paths",
+      "stakes": "whether a known defect is disclosed before a public promise changes",
+      "format": "dilemma",
+      "requiredBeat": "a two-bad-options decision exposes whether principle language changes behavior"
+    },
+    {
+      "domain": "sponsor-call preparation around a procurement exception",
+      "audience": "a delivery lead and sponsor aligning principle words with the call script",
+      "stakes": "whether a hidden exception is masked by polished principle language",
+      "format": "dialogue",
+      "requiredBeat": "the exchange ties PMI words to the exception that must be named"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 3,
+      "evaluate": 2,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.313Z"
+}

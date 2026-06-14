@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 26,
+  "chapterId": "stillness-is-the-key-ch26",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "de46ba5c12c68f7e",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:55:24.897Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 93/100; quiz-domain repair verified; gate/source pass, quiz verifies 9/9, examples/cards coherent.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 26,
+      "chapterId": "stillness-is-the-key-ch26",
+      "verdict": "REVISE",
+      "contentHash": "ba4f1b36bedf9903",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:22:34.834Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch26 repeats shifted ch09 venue slate (coffee bar, marina fuel, repair pickup, public works, hospital supply); quiz keys verified 9/9; no corruption found."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 26,
+      "chapterId": "stillness-is-the-key-ch26",
+      "verdict": "REVISE",
+      "contentHash": "a126e308e2e103ef",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:45:03.619Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "YELLOW 86/100; quiz_distractor_quality=0.42; keys verify 9/9 but quiz choices leak stale domains: lifter, bar, clerk/signature.",
+      "supersededReason": "fresh continuation QC ch26"
+    }
+  ],
+  "supersededReason": "post-r1 re-QC for ch26-32 quiz-domain repair"
+}

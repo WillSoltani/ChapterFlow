@@ -1,0 +1,69 @@
+{
+  "chapterId": "pmbok-guide-ch14",
+  "number": 14,
+  "title": "Build Quality into Processes and Deliverables",
+  "coreMove": "Quality is built when teams define fitness for use, prevent defects in the workflow, and let those standards guide tradeoffs under pressure.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software defect review",
+      "audience": "project managers reviewing late rework",
+      "stakes": "the team may blame testers instead of the process that created the defects",
+      "format": "audit",
+      "requiredBeat": "trace a signoff defect pattern back to skipped prevention work"
+    },
+    {
+      "domain": "release readiness note",
+      "audience": "quality leads under schedule pressure",
+      "stakes": "a status note may hide a weak acceptance standard",
+      "format": "inner_monologue",
+      "requiredBeat": "show the mental shift from schedule defense to quality evidence"
+    },
+    {
+      "domain": "steering packet preparation",
+      "audience": "project leads allocating scarce review time",
+      "stakes": "polishing the visible packet could consume time needed for prevention",
+      "format": "planning_choice",
+      "requiredBeat": "allocate limited attention before action starts"
+    },
+    {
+      "domain": "data migration readiness",
+      "audience": "delivery managers facing a bad deadline tradeoff",
+      "stakes": "either the date slips or the deliverable ships with a known use gap",
+      "format": "dilemma",
+      "requiredBeat": "force the two-bad-options moment where quality changes the decision"
+    },
+    {
+      "domain": "quality review conversation",
+      "audience": "team members checking a thin quality claim",
+      "stakes": "a team may treat the principle as words instead of shared work",
+      "format": "dialogue",
+      "requiredBeat": "let two people expose the gap between vocabulary and process evidence"
+    },
+    {
+      "domain": "validation trend review",
+      "audience": "project analysts reading defect data",
+      "stakes": "the team may expect test execution to be the source when criteria are the source",
+      "format": "predict_reveal",
+      "requiredBeat": "lead the reader toward a test-capacity explanation, then reveal acceptance criteria as the cause"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "understand": 2,
+      "evaluate": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.319Z"
+}

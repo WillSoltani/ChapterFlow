@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 5,
+  "chapterId": "stillness-is-the-key-ch05",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "2f275ca2acf23352",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:13:17.852Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "92/100; post-repair first-8 QC refresh; gates/source pass; quiz keys verified 9/9; examples/cards/plans grounded and publishable; no duplicate venue slate found.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 5,
+      "chapterId": "stillness-is-the-key-ch05",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "2f275ca2acf23352",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:06:06.498Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": true,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "92/100; quiz keys verified 9/9; Frankl/Epictetus chapter has coherent scenes, strong prose, and actionable gap practice."
+    }
+  ]
+}

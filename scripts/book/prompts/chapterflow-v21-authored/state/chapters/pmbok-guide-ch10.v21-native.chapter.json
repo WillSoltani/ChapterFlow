@@ -1,0 +1,357 @@
+{
+  "chapterId": "pmbok-guide-ch10",
+  "number": 10,
+  "title": "Focus on Value",
+  "readingTimeMinutes": 11,
+  "hook": "2 of the 10 cuts saved the date; the other 8 quietly erased the business case.",
+  "counterintuition": "A project can look healthier after the schedule turns green. The surprise is that activity, output, and baseline control can improve while outcomes and benefits quietly get worse.",
+  "tryThisNow": "Mark the next 5 status updates today; beside each, write whether it names an activity, an output, an outcome, or a benefit before drawing any conclusion.",
+  "keyTakeaway": "Focus on Value is visible when pressure changes priorities: protect outcomes, benefits, and the business case before defending activity, deliverable volume, or a stale baseline.",
+  "breakdown": {
+    "fastRead": "Ahmed and Kelsey are reading the PMI list of 12 principles after a recovery meeting. The schedule is tighter now, and every completed task looks comforting. Kelsey points to Focus on Value and asks which item still protects benefits and outcomes, not just the date.\n\nThat is the rule. Value focus is not a slogan beside the baseline. It is a standard for changing a project decision when the visible work no longer serves the business case. A finished task can still be valueless.",
+    "deepRead": "The mechanism is a chain from purpose to evidence. A project begins with a reason: profit, compliance, safety, public service, capability, customer satisfaction, learning, or strategic position. Work then turns that reason into outputs, outcomes, and benefits. Value focus keeps the chain visible while delivery is underway.\n\nPressure tries to shorten the chain. It says the task is done, the deliverable exists, the baseline is defended, the meeting is over. Those facts may matter, but none of them proves value by itself. The question is what the work now does for the expected outcome.\n\nPiper sees the pattern after a compressed release. The team expects praise because the date held. The reveal is in the adoption notes: the training session was cut, the stakeholder walkthrough vanished, and support is fielding the same calls the project was supposed to reduce. The output shipped, but the benefit leaked.\n\nFocus on Value belongs in predictive, adaptive, and hybrid environments because it describes professional judgment, not one lifecycle. In any approach, the team keeps asking whether a tradeoff protects the benefit path. The baseline is a map, not the prize. When the map and the purpose diverge, a value-focused team names the divergence before the green status becomes theater.",
+    "fullRead": "The harder case is not obvious waste. Obvious waste is easy to attack because nearly everyone can see the mismatch. The harder case is useful work that has become less useful than it looks. The report is accurate, the feature is complete, the vendor milestone is approved, and the status page is calm. Yet the market has shifted, a regulation has changed, a stakeholder has withdrawn support, or the operating team cannot adopt what the project is producing.\n\nPMBOK places Focus on Value inside a 12-principle set for that reason. Its neighbors include stewardship, stakeholder attention, systems awareness, disciplined quality, risk judgment, resilience, and change leadership. That placement matters because value is not a private preference owned by one sponsor. It is part of the professional behavior system. A team cannot claim value focus while ignoring risk, skipping stakeholder involvement, weakening quality, or treating change as an annoyance when those choices break the benefit path.\n\nThe principle also has a boundary. Value focus does not mean chasing every new request. It does not mean abandoning governance whenever someone says the word benefit. It does not mean the latest executive preference outranks the business case without scrutiny. The move is more disciplined than that: trace the expected outcome, find the evidence that it still matters, and let that evidence guide the next tradeoff.\n\nEvidence can be humble. It may be a support queue that fails to shrink, a compliance review that still finds the same gap, a training cohort that cannot use the new workflow, or a sponsor who no longer needs the original capability. None of those signals automatically cancels the project. They do make the team ask whether the next hour of work protects the intended benefit or merely preserves the old story of progress.\n\nMathieu's standup shows the boundary in a small way. The routine is built around task movement: done, blocked, next. Halfway through, the lead starts celebrating a finished interface that no customer group has tested. Mathieu stops the rhythm, draws three columns on the whiteboard, and restarts with outcome, benefit, and evidence. The pause changes the conversation. The finished interface is no longer a trophy; it is a question about adoption.\n\nThis is why value focus is continuous rather than a planning ceremony. A business case can become stale. Benefits can move. Stakeholder trust can change faster than the schedule. The discipline is to keep the reason for the work present when convenience, fatigue, and short-term pressure make baseline defense feel safer. Value focus earns its name under pressure."
+  },
+  "examples": [
+    {
+      "exampleId": "ch10-ex01-dialogue-principle-list",
+      "sourceAnchorId": "ch10.ex.principle-10-pmi",
+      "title": "Ahmed and Kelsey Test the Principle",
+      "tags": [
+        "dialogue",
+        "PMI principles",
+        "benefits"
+      ],
+      "planSpec": {
+        "domain": "project recovery meeting after a status review",
+        "audience": "project leads who can recite principles but need to use one",
+        "stakes": "the team can either protect expected outcomes or celebrate work that no longer pays off",
+        "format": "dialogue",
+        "requiredBeat": "Two people use the PMI 12 principles and Focus on Value language to test whether benefits and outcomes still guide the decision."
+      },
+      "scenario": "\"If we quote it, we have to use it,\" Ahmed says, tapping the PMI page where Focus on Value sits inside the 12 principles. Kelsey slides the benefits note back across the table. \"The status deck says the reports are complete.\" Ahmed looks at the outcome column. \"Complete for whom?\" Kelsey does not answer with a slogan. \"The sponsor asked for fewer reconciliation calls, not prettier packets.\" She circles the business benefit the sponsor approved and crosses out two reports nobody will use.",
+      "whatToDo": "Ahmed and Kelsey move the conversation from principle vocabulary to the benefit note. They keep the completed reports only where the outcome column still justifies them.",
+      "whyItMatters": "The exchange shows the PMBOK principle doing work. Focus on Value becomes behavioral when benefits and outcomes change what stays in the plan."
+    },
+    {
+      "exampleId": "ch10-ex02-predict-reveal",
+      "sourceAnchorId": "ch10.ex.principle-10-tradeoff",
+      "title": "Piper Finds the Benefit Leak",
+      "tags": [
+        "schedule pressure",
+        "business case",
+        "reveal"
+      ],
+      "planSpec": {
+        "domain": "compressed software release with adoption work removed",
+        "audience": "teams tempted to treat date recovery as value recovery",
+        "stakes": "schedule pressure can create a clean baseline while weakening the business case",
+        "format": "predict_reveal",
+        "requiredBeat": "The setup implies the saved schedule is the success, then reveals the tradeoff damaged the expected benefit."
+      },
+      "scenario": "Everyone expected Piper's release review to be easy. Schedule pressure had forced a tradeoff, the baseline date survived, and the dashboard finally showed green. The surprise came from the support log on the first morning after launch. Piper had expected applause, not a queue. The business case promised fewer setup calls, but the team had cut the stakeholder walkthrough and adoption notes to save time. The release was on time; the benefit was already leaking through the help desk, one confused call after another.",
+      "whatToDo": "Piper brings the support log into the review and names the missed adoption work as a value risk, not a harmless schedule recovery tactic.",
+      "whyItMatters": "The reveal separates output from benefit. A green baseline can hide a bad tradeoff when the business case depends on adoption after delivery."
+    },
+    {
+      "exampleId": "ch10-ex03-text-thread-pressure",
+      "sourceAnchorId": "ch10.ex.principle-10-tradeoff",
+      "title": "Marlene's Schedule Chat",
+      "tags": [
+        "text thread",
+        "baseline",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "short team chat during schedule compression",
+        "audience": "project managers making small cuts through informal channels",
+        "stakes": "an informal cut can defend the baseline while weakening the benefit path",
+        "format": "text_thread",
+        "requiredBeat": "A compressed chat shows schedule pressure, baseline defense, business case, and tradeoff logic without a formal meeting."
+      },
+      "scenario": "Project chat, 4:18 p.m.\nMarlene: Schedule pressure is real. Which tradeoff protects the business case?\nRami: Drop the pilot group?\nMarlene: That protects the baseline, not the benefit.\nRami: Then shorten the demo?\nMarlene: Keep the pilot. Cut the slide polish.\nRami: The sponsor wanted the polished deck.\nMarlene: The sponsor wanted adoption. If adoption is the outcome, the users stay in the room.\nRami: Pilot stays. Green date, fewer slides, rougher handout.\nMarlene: Good. Green date, still worth doing.",
+      "whatToDo": "Marlene keeps the pilot group in the plan and cuts presentation polish instead. She treats the business case as the filter for the schedule tradeoff.",
+      "whyItMatters": "The compressed thread shows how value focus works in ordinary messages. The baseline matters, but it does not outrank the adoption benefit."
+    },
+    {
+      "exampleId": "ch10-ex04-reset-standup",
+      "sourceAnchorId": "ch10.concept",
+      "title": "Mathieu Restarts the Standup",
+      "tags": [
+        "reset moment",
+        "outcomes",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "daily standup that has become a task-completion recital",
+        "audience": "delivery leads who need a practical pause when activity crowds out outcomes",
+        "stakes": "a routine can reward volume unless someone restarts it around value evidence",
+        "format": "reset_moment",
+        "requiredBeat": "A routine is interrupted and deliberately restarted around outcomes, benefits, and evidence."
+      },
+      "scenario": "The standup had a rhythm: yesterday, today, blocked. Mathieu heard six updates and zero outcomes. On the seventh, the team celebrated a finished interface that no customer group had touched. He uncapped a marker, paused the room, and wrote three columns on the board: outcome, benefit, evidence. \"Restart from there,\" he said. The room lost its speed for a few seconds. Nobody objected. Focus on Value became the new order of the routine, and the interface moved from done to untested.",
+      "whatToDo": "Mathieu pauses the routine and restarts it around outcome, benefit, and evidence. He lets the finished interface count only after adoption evidence appears.",
+      "whyItMatters": "The interruption matters. Value focus often starts by disrupting a familiar reporting rhythm before activity volume becomes the definition of progress."
+    },
+    {
+      "exampleId": "ch10-ex05-vignette-stickers",
+      "sourceAnchorId": "ch10.ex.principle-10-pmi",
+      "title": "Anaya's Green Stickers",
+      "tags": [
+        "vignette",
+        "outputs",
+        "PMI"
+      ],
+      "planSpec": {
+        "domain": "quiet project room after a governance review",
+        "audience": "readers learning to see value signals in small details",
+        "stakes": "visible completion can crowd out quieter evidence of benefits and outcomes",
+        "format": "vignette",
+        "requiredBeat": "A small observed desk scene contrasts green output stickers with PMI Focus on Value, 12 principles, benefits, and outcomes."
+      },
+      "scenario": "Beside Anaya's keyboard, green stickers cover the deliverable list. The PMI 12 principles printout is half under a coffee mug, with Focus on Value highlighted in yellow. One sticky note is different: benefits confirmed by operations. It has no green mark. The desk is quiet, almost tidy; even the marker caps are lined up. The chair remains pushed back from the table. The completed outputs are loud in bright color. The unverified outcome sits in smaller handwriting near the edge of the monitor.",
+      "whatToDo": "Anaya moves the operations note beside the deliverable list and leaves the unverified outcome visible until the benefit has evidence.",
+      "whyItMatters": "The detail teaches without a meeting. Output completion can look dominant, while the value signal is the smaller note that still lacks proof."
+    },
+    {
+      "exampleId": "ch10-ex06-postmortem-trace",
+      "sourceAnchorId": "ch10.ex.principle-10-tradeoff",
+      "title": "Joachim Traces the Missed Tradeoff",
+      "tags": [
+        "postmortem",
+        "business case",
+        "quality"
+      ],
+      "planSpec": {
+        "domain": "launch postmortem after an on-time deployment misses benefit targets",
+        "audience": "teams reconstructing how value was lost after a schedule win",
+        "stakes": "the review can blame execution noise or locate the one tradeoff that broke value",
+        "format": "postmortem",
+        "requiredBeat": "The scene opens after failure and reconstructs how schedule pressure, baseline defense, business case, and tradeoff evidence point to one decisive misstep."
+      },
+      "scenario": "The launch review began after the benefit target had already been missed. Joachim pinned the timeline to the wall: schedule pressure on Monday, baseline recovery on Wednesday, quality check shortened on Friday, customer complaints the next week. The business case had relied on fewer rework tickets. The defect list looked like the visible failure, but the trace pointed earlier. The decisive tradeoff was not the late defect itself. It was the moment the quality check was cut to protect the date.",
+      "whatToDo": "Joachim records the shortened quality check as the decisive value break and links it to the rework tickets the business case was supposed to reduce.",
+      "whyItMatters": "A postmortem should locate the value misstep, not only the visible failure. The date was saved at the exact point the expected benefit was weakened."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch10-q01",
+        "sourceAnchorId": "ch10.fact.1",
+        "prompt": "Kelsey inherits a project whose business case was approved 8 months ago. The team still cites the old benefits page, but customer complaints now point somewhere else. Which response fits Focus on Value?",
+        "choices": [
+          "Document Idol: keep the original benefits page as proof that value was handled during planning.",
+          "Value Receipt: compare current complaints with expected benefits before protecting the old work.",
+          "Scope Freeze: avoid reopening the benefit discussion so the plan does not lose momentum."
+        ],
+        "correctIndex": 1,
+        "explanation": "Value focus is continuous. The old page matters as a starting hypothesis, but changed complaints are new evidence; treating the document as final is the planning-only trap.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch10-q02",
+        "sourceAnchorId": "ch10.fact.8",
+        "prompt": "A release log shows 5 cuts made during schedule pressure: 2 cosmetic, 1 risk review, 1 stakeholder walkthrough, and 1 quality check. The baseline date held. What should Piper infer first?",
+        "choices": [
+          "Schedule Hero: the held date proves the pressure was managed well.",
+          "Cut Count: all 5 removals carry the same value impact until later data arrives.",
+          "Tradeoff Signal: the risk, stakeholder, and quality cuts may have damaged benefits."
+        ],
+        "correctIndex": 2,
+        "explanation": "Pressure tests the principle. Cosmetic cuts differ from cuts to risk, engagement, or quality, because those can break the path from output to benefit even when the date holds.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch10-q03",
+        "sourceAnchorId": "ch10.fact.9",
+        "prompt": "Ahmed can recite Focus on Value during a steering meeting. The next agenda item asks whether to remove adoption support to preserve a milestone. Which move proves application?",
+        "choices": [
+          "Behavior Test: ask how the adoption cut changes outcomes, benefits, and the business case.",
+          "Vocabulary Pass: repeat the principle title so the committee hears the right PMBOK term.",
+          "Milestone Shelter: protect the visible milestone first and revisit benefits after launch."
+        ],
+        "correctIndex": 0,
+        "explanation": "The hard edge is behavioral. Reciting the term does nothing unless Ahmed changes the evidence used for the tradeoff; milestone defense alone is the false proof.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch10-q04",
+        "sourceAnchorId": "ch10.fact.2",
+        "prompt": "The method report lists one predictive plan, one adaptive backlog, and one hybrid rollout. All 3 teams are asked to explain expected benefits. Which reading is strongest?",
+        "choices": [
+          "Method Cage: Focus on Value belongs only to adaptive work because benefits can change.",
+          "Principle Span: the same value standard travels across predictive, adaptive, and hybrid work.",
+          "Plan Supremacy: predictive teams satisfy value focus by approving the baseline early."
+        ],
+        "correctIndex": 1,
+        "explanation": "PMBOK principles describe professional behavior, not one lifecycle. Predictive, adaptive, and hybrid teams all need evidence that work still serves expected benefits.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch10-q05",
+        "sourceAnchorId": "ch10.fact.5",
+        "prompt": "A sponsor asks Piper to skip a stakeholder review because the calendar is tight and the output is nearly finished. Which reply keeps value in the tradeoff?",
+        "choices": [
+          "Adoption Guard: ask what benefit the review protects before removing it from the schedule.",
+          "Calendar Obedience: accept the skip because convenience is part of delivery discipline.",
+          "Output Trophy: treat near-completion as proof that stakeholder review has done its job."
+        ],
+        "correctIndex": 0,
+        "explanation": "Short-term pressure often targets engagement, quality, or learning. The review may protect adoption; convenience and near-completion are not value evidence by themselves.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch10-q06",
+        "sourceAnchorId": "ch10.fact.3",
+        "prompt": "Which sentence would worry Marlene most during a recovery meeting?",
+        "choices": [
+          "Benefit Ledger: the team should show which priority protects the promised outcome.",
+          "Governance Trail: the team should record why a tradeoff changed under pressure.",
+          "Vocabulary Pass: the team said Focus on Value, so no delivery choice needs to move."
+        ],
+        "correctIndex": 2,
+        "explanation": "This item asks for the trap. The dangerous sentence treats the principle as vocabulary instead of a visible choice about priorities, governance, and tradeoffs.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch10-q07",
+        "sourceAnchorId": "ch10.fact.4",
+        "prompt": "A benefits dashboard shows completed training modules, but adoption and stakeholder trust are both falling. Joachim sees the project labeled green. What is the best first challenge?",
+        "choices": [
+          "Training Volume: completed modules are enough evidence because outputs are easy to count.",
+          "Status Comfort: keep the green label until the next formal benefits review arrives.",
+          "Benefit trace: ask why the outputs are not becoming adoption, trust, or usable benefit."
+        ],
+        "correctIndex": 2,
+        "explanation": "Value focus connects to value delivery. Completed modules are outputs; falling adoption and trust show the benefit path needs attention before status comfort hardens.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch10-q08",
+        "sourceAnchorId": "ch10.fact.6",
+        "prompt": "Marlene works in a hybrid environment with unusual compliance rules. The team says context lets them ignore Focus on Value this month. How should she frame tailoring?",
+        "choices": [
+          "Context Translation: adapt the practice, but keep the responsibility to protect expected benefits.",
+          "Tailoring Escape: local constraints make the principle optional until pressure drops.",
+          "Method Substitution: hybrid delivery replaces principle judgment with process selection."
+        ],
+        "correctIndex": 0,
+        "explanation": "Tailoring changes implementation, not responsibility. Context may alter the practice, but abandoning the value standard is the misconception PMBOK rejects.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch10-q09",
+        "sourceAnchorId": "ch10.fact.7",
+        "prompt": "After a PMBOK study session, Anaya lists stewardship, stakeholders, quality, risk, change, and Focus on Value together. What does that grouping imply?",
+        "choices": [
+          "Optional Theme: Focus on Value is useful commentary outside the Standard.",
+          "Behavior System: Focus on Value belongs with the 12 principles that guide project conduct.",
+          "Single Metric: benefits should replace all other professional responsibilities."
+        ],
+        "correctIndex": 1,
+        "explanation": "Focus on Value is part of the Seventh Edition principle architecture. Its placement with other principles makes it integrated behavior, not an optional theme or lone metric.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch10-card01",
+      "sourceAnchorId": "ch10.fact.9",
+      "front": "How can a team tell whether Focus on Value is being applied rather than recited?",
+      "back": "Look for changed decisions. The principle is being applied when benefits, outcomes, and the business case affect priorities, tradeoffs, communication, or governance.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch10-card02",
+      "sourceAnchorId": "ch10.fact.8",
+      "front": "Why does schedule pressure reveal whether value focus is real?",
+      "back": "Pressure forces tradeoffs. If the team protects only the baseline while cutting risk response, stakeholder involvement, quality, or adoption, the principle has not changed behavior.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch10-card03",
+      "sourceAnchorId": "ch10.fact.2",
+      "front": "Why does Focus on Value apply across predictive, adaptive, and hybrid approaches?",
+      "back": "It is a behavioral standard, not a lifecycle technique. Any approach can produce activity and deliverables that need to be checked against expected outcomes and benefits.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch10-card04",
+      "sourceAnchorId": "ch10.fact.4",
+      "front": "Earlier concept - value creation: how does it resurface inside Focus on Value?",
+      "back": "Value creation separates outputs from outcomes and benefits. Value focus keeps that distinction alive during delivery, so completed work is tested against actual value delivery.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch10-card05",
+      "sourceAnchorId": "ch10.fact.6",
+      "front": "When context changes, what part of value focus can be tailored and what cannot?",
+      "back": "Tailoring changes how the team practices the principle in context. Abandoning it means convenience, method habit, or local pressure replaces the duty to protect expected benefits.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch10-card06",
+      "sourceAnchorId": "ch10.fact.5",
+      "front": "Earlier concept - stakeholder engagement: why can it matter when a schedule is compressed?",
+      "back": "Stakeholder engagement involves people affected by outcomes. Under compression, skipping that work can save time while damaging adoption, trust, and the benefit the project exists to create.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Value Receipt Check",
+    "coreSkill": "Practice asking for the receipt that proves work is still worth doing. The Value Receipt Check names the expected outcome, the benefit evidence, and the tradeoff now being proposed. It keeps activity and deliverable volume from posing as value.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch10.fact.1",
+        "context": "If a meeting leans on the original business case while current conditions feel different",
+        "plan": "If the old business case is treated as final, then run the Value Receipt Check: name the expected benefit, the newest evidence, and the decision that should change."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.8",
+        "context": "If schedule pressure turns every discussion into baseline defense",
+        "plan": "If the date starts outranking the reason for the work, then run the Value Receipt Check before approving a cut to risk, quality, stakeholder, or adoption work."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.3",
+        "context": "If someone uses Focus on Value as a phrase but no priority changes",
+        "plan": "If the principle is only being named, then ask which priority, communication, governance step, or tradeoff will move because of the expected benefit."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.6",
+        "context": "If context is offered as a reason to ignore the principle",
+        "plan": "If the team says this project is different, then adapt the Value Receipt Check to the context while keeping the duty to protect outcomes and benefits."
+      }
+    ],
+    "twentyFourHourChallenge": "Within 24 hours, run the Value Receipt Check on 3 pieces of work in progress. For each, write the output, the intended outcome, and the benefit evidence now visible.",
+    "weeklyPractice": "For 1 week, review 5 tradeoffs before they settle. Mark each as baseline defense, benefit protection, or unclear, then rewrite 1 unclear tradeoff as a value question."
+  },
+  "memorableLines": [
+    {
+      "text": "A finished task can still be valueless.",
+      "location": "breakdown.fastRead",
+      "why": "It separates completion from value in a short sentence the reader can carry into status reviews."
+    },
+    {
+      "text": "The baseline is a map, not the prize.",
+      "location": "breakdown.deepRead",
+      "why": "It gives baseline discipline a useful place without letting it replace outcomes."
+    },
+    {
+      "text": "Value focus earns its name under pressure.",
+      "location": "breakdown.fullRead",
+      "why": "It compresses the chapter's hard edge into one testable standard."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "stillness-is-the-key",
+  "chapterNumber": 28,
+  "chapterId": "stillness-is-the-key-ch28",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "527875c38c48d777",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+  "reviewedAt": "2026-06-12T16:55:24.918Z",
+  "dimensions": {
+    "keysCorrect": true,
+    "grounded": true,
+    "nonTemplated": true,
+    "frameworkComplete": true,
+    "cardsAnswerFronts": true,
+    "distractorsReal": true
+  },
+  "notes": "GREEN 91/100; quiz-domain repair verified; gate/source pass, quiz verifies 9/9, examples/cards coherent.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 28,
+      "chapterId": "stillness-is-the-key-ch28",
+      "verdict": "REVISE",
+      "contentHash": "9f91534def764b64",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T15:22:34.733Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": true
+      },
+      "notes": "86/100; example_coherence=0.55 from sweep cap: ch28 repeats shifted ch11/ch10 venue slate (school transportation, event cleanup, retail operations, community programming, photography production); quiz keys verified 9/9; no corruption found."
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "stillness-is-the-key",
+      "chapterNumber": 28,
+      "chapterId": "stillness-is-the-key-ch28",
+      "verdict": "REVISE",
+      "contentHash": "3f64926320e0ea7a",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:qc-run-stillness-is-the-key-2026-06-12",
+      "reviewedAt": "2026-06-12T16:45:04.164Z",
+      "dimensions": {
+        "keysCorrect": true,
+        "grounded": true,
+        "nonTemplated": false,
+        "frameworkComplete": true,
+        "cardsAnswerFronts": true,
+        "distractorsReal": false
+      },
+      "notes": "YELLOW 84/100; quiz_distractor_quality=0.30; keys verify 9/9 but quiz choices leak stale domains: bus team, sink/RFP dinners, chemical timing, trail.",
+      "supersededReason": "fresh continuation QC ch28"
+    }
+  ],
+  "supersededReason": "post-r1 re-QC for ch26-32 quiz-domain repair"
+}

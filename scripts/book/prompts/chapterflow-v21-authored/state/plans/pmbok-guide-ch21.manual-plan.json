@@ -1,0 +1,68 @@
+{
+  "chapterId": "pmbok-guide-ch21",
+  "number": 21,
+  "title": "Team Performance Domain",
+  "coreMove": "Manage Team Performance Domain as evidence of delivery capacity: check the team charter, working agreements, conflict, leadership, and domain interactions before praising activity volume.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "adaptive product-team handoffs",
+      "audience": "facilitators who trust signed agreements too quickly",
+      "stakes": "private conflict may look like calm while team performance degrades",
+      "format": "inner_monologue",
+      "requiredBeat": "the protagonist thinks through wrong readings before naming the team-domain signal"
+    },
+    {
+      "domain": "planning workshop preparation",
+      "audience": "project leads choosing where scarce review time goes",
+      "stakes": "planning may absorb a problem that belongs to team performance",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist allocates limited attention before any workshop action occurs"
+    },
+    {
+      "domain": "vendor-supported regulated release",
+      "audience": "project managers under schedule pressure",
+      "stakes": "protecting a date can normalize behavior that damages later delivery",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist confronts two bad choices and chooses the team-domain evidence"
+    },
+    {
+      "domain": "product change review",
+      "audience": "team leads and product owners",
+      "stakes": "fast escalation can create rework when working agreements are skipped",
+      "format": "dialogue",
+      "requiredBeat": "two named people let the lesson emerge through a short exchange"
+    },
+    {
+      "domain": "hybrid manufacturing software rollout",
+      "audience": "delivery leads reviewing missed handoffs",
+      "stakes": "the expected planning fix may miss the team-domain cause",
+      "format": "predict_reveal",
+      "requiredBeat": "the expected planning answer breaks when team-domain evidence appears"
+    },
+    {
+      "domain": "distributed PMO review",
+      "audience": "remote project teams preparing a domain check",
+      "stakes": "the review may stay on schedule and delivery while the team signal is missed",
+      "format": "text_thread",
+      "requiredBeat": "a short message thread lands the lesson between compressed replies"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 2,
+      "apply": 4,
+      "evaluate": 2,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-11T02:56:41.325Z"
+}
