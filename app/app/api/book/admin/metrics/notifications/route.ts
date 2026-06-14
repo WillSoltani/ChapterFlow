@@ -31,6 +31,9 @@ export async function GET(req: Request) {
 
     // Scan recent notifications from main table (capped)
     const aggMap = new Map<string, NotifAgg>();
+    // Per-day send counts, bucketed by createdAt (YYYY-MM-DD). Populated from the
+    // same scan so the daily-volume chart needs no extra reads.
+    const dayVolume = new Map<string, number>();
     let lastKey: Record<string, unknown> | undefined;
     let scanned = 0;
     const maxItems = 5000;
@@ -57,6 +60,8 @@ export async function GET(req: Request) {
           agg.sent += 1;
           if (item.readAt) agg.read += 1;
           aggMap.set(key, agg);
+          const day = String(item.createdAt ?? "").slice(0, 10);
+          if (day) dayVolume.set(day, (dayVolume.get(day) ?? 0) + 1);
           scanned += 1;
           if (scanned >= maxItems) break;
         }
@@ -77,15 +82,12 @@ export async function GET(req: Request) {
     }));
     aggregates.sort((a, b) => b.sent - a.sent);
 
-    // Daily send volume (from analytics events that mirror notification creates,
-    // if instrumented) — fallback: estimate from scan
-    const dailyVolume = days.map((d) => ({ date: d, value: 0 }));
-
-    // Try to get a per-day estimate from notifications themselves by createdAt slicing
-    if (scanned > 0) {
-      // We don't have full data — leave dailyVolume zero for now,
-      // future improvement: query GSI on createdAt or use analytics events.
-    }
+    // Daily send volume, bucketed from the notifications scanned above by their
+    // createdAt date. Bounded by the same `maxItems` scan cap as the aggregates
+    // (the warning above already surfaces when that cap is hit), so on a very
+    // large table recent days may be under-counted — a createdAt GSI would lift
+    // that, but this is real data rather than a permanently-zero placeholder.
+    const dailyVolume = days.map((d) => ({ date: d, value: dayVolume.get(d) ?? 0 }));
 
     // Channel preference distribution from settings — count NotificationPreferences
     let emailEnabled = 0;
