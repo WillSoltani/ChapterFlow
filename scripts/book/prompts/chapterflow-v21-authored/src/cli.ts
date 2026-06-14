@@ -2224,6 +2224,9 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   console.log("Paste the repair prompt into a fresh Writer Codex session.");
   console.log("After repair, run:");
   console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
+  console.log("If a chapter stays REVISE across rounds on a MAJOR a content edit can't fix, a");
+  console.log("reviewer can check whether it's a false positive (it prints the disposition command):");
+  console.log(`  npx tsx src/cli.ts qc-diagnose ${JSON.stringify(bookId)} --round ${roundId}`);
   return 1;
 }
 

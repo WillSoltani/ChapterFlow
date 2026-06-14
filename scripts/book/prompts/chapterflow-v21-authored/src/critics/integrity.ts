@@ -131,9 +131,15 @@ export function checkSentenceSanity(text: string | undefined, fieldLabel: string
   }
 
   // (4) Three+ commas in the first 80 chars — diagnostic for run-on opener.
+  // List-aware (2026-06-14): a coordinated list ("one hour, call, trip, or work
+  // option") legitimately has 3+ commas and is NOT a run-on. Only flag when no
+  // list coordinator (", or " / ", and ") is present — a true run-on jams
+  // clauses without one. This kills the false positive that left chapters stuck
+  // on REVISE (the comma count alone can't be repaired away on a real list).
   const opener = text.slice(0, 80);
   const commas = (opener.match(/,/g) ?? []).length;
-  if (commas >= 3) {
+  const isCoordinatedList = /,\s+(?:or|and)\s/i.test(opener);
+  if (commas >= 3 && !isCoordinatedList) {
     findings.push(
       finding(
         "integrity.sentence_sanity",

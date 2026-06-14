@@ -22,6 +22,7 @@ import { finding } from "./shared.js";
 import { checkCardTestsRetrieval, checkQuizTestsApplication } from "./pedagogy.js";
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
+  checkQuizAnswerLabelLeak,
   checkQuizAnswerLengthRatio,
   checkQuizCorrectLongestRate,
   checkQuizBannedTailPhrase,
@@ -178,6 +179,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "BP16.quiz_answer_length_major": "major",
   "BP17.quiz_opener_monotony": "major",
   "BP18.quiz_label_shape_correct": "minor",
+  // BP27 — answer-label leak: the key is identifiable from its choice label
+  // alone (e.g. key "…move", every distractor "…misconception"). Lets a reader
+  // ace the quiz without reading. Conservative detector (fires only when a
+  // marker word makes the key uniquely identifiable), so it blocks.
+  "BP27.quiz_answer_label_leak": "blocker",
   "BP19.quiz_banned_tail_phrase": "blocker",
   "BP20.quiz_ngram_template_repeat": "blocker",
   "BP21.quiz_cross_chapter_duplicate": "blocker",
@@ -621,6 +627,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     push(f.checkId as string, "quiz", f.message, f.evidence);
   }
   for (const f of checkQuizLabelShapedCorrect(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizAnswerLabelLeak(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
   }
   for (const f of checkQuizDuplicateChoices(chapter.quiz)) {

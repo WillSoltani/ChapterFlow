@@ -426,6 +426,15 @@ const DECISION_CUES = [
   "considering whether", "torn between", "should she", "should he",
   "should they", "could either", "what to do about", "decision", "deciding",
   "or wait", "or send", "not sure whether", "hesitates", "unsent",
+  // Naturalistic FORK constructions (2026-06-14): high-precision phrasings the
+  // year-of-less authors used that the list missed, so C3 false-flagged scenes
+  // that DO force a choice ("Two paths sit in front of her. She can walk…";
+  // "Lin has to answer before the report goes out"). Each phrase is a genuine
+  // decision signal, so adding them lowers false positives without letting a
+  // decision-LESS scene pass.
+  "two paths", "two options", "two choices", "two ways", "two routes", "two doors",
+  "has to answer", "has to respond", "has to reply", "can either", "either way",
+  "the choice is", "a choice between", "chooses between", "picks between",
 ];
 
 /** Formats whose POINT is a live decision — only these require a decision
