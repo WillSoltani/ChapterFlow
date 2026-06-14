@@ -60,13 +60,59 @@ export function formatAmountWithCurrency(amount: number): string {
 
 /**
  * The ISO 4217 currency ChapterFlow charges in. Single-currency today (same as
- * the display currency). Admin revenue aggregation assumes ONE billing currency
- * and sums across subscriptions; if you start selling in another currency, group
- * MRR/ARR per currency — the admin billing route already warns when it sees more
- * than one distinct currency. Stripe is the source of truth per subscription
- * (entitlement.billingCurrency); this is the expected/default value.
+ * the display currency). The admin billing route groups MRR/ARR per currency
+ * (mrrByCurrency) and only reports a single headline realMrr/realArr when one
+ * currency is in play — with more than one it exposes them as null plus a
+ * warning, because summing across currencies is meaningless. Stripe is the
+ * source of truth per subscription (entitlement.billingCurrency); this is the
+ * expected/default value.
  */
 export const BILLING_CURRENCY = PRICING.currency;
+
+/**
+ * Normalize a Stripe subscription's recurring amount (the price `unit_amount`,
+ * in cents — what the webhook stores as `subscriptionAmountCents`) to a per-
+ * MONTH figure so monthly and annual plans can be summed into one MRR.
+ *
+ * Stripe stores the amount for ONE billing period: a 'month'-interval price
+ * holds one month, a 'year'-interval price holds a FULL YEAR (e.g. the annual
+ * plan's 7188¢ = $71.88/yr, the annual-upfront plan's 5999¢ = $59.99/yr).
+ * Summing the raw amounts counts each annual subscriber as ~12 months of MRR
+ * (and ~144x of ARR), so admin revenue aggregation normalizes through here
+ * before summing.
+ *
+ * `intervalCount` is Stripe's recurring.interval_count (e.g. interval='month',
+ * interval_count=3 → quarterly). It defaults to 1; the webhook does not capture
+ * it today, so callers pass the default until it does.
+ *
+ * Rows with an undefined/unknown interval — legacy entitlements written before
+ * subscriptionInterval was captured — are treated as already-monthly.
+ */
+export function monthlySubscriptionCents(
+  amountCents: number,
+  interval: string | undefined | null,
+  intervalCount = 1,
+): number {
+  // A single corrupt/NaN amount must not poison the whole MRR aggregate.
+  if (!Number.isFinite(amountCents)) return 0;
+  const count =
+    Number.isFinite(intervalCount) && intervalCount > 0 ? intervalCount : 1;
+  const perInterval = amountCents / count;
+  // Case-insensitive: Stripe sends lowercase intervals, but matching loosely
+  // means a stray "Year" can't silently fall through to monthly and re-inflate
+  // MRR ~12x — the exact bug this helper exists to prevent.
+  switch (interval?.toLowerCase()) {
+    case "year":
+      return Math.round(perInterval / 12);
+    case "week":
+      return Math.round((perInterval * 52) / 12);
+    case "day":
+      return Math.round((perInterval * 365) / 12);
+    case "month":
+    default:
+      return Math.round(perInterval);
+  }
+}
 
 /** Canonical CTA shown on every upgrade button, e.g. "Start 14-day free trial". */
 export const TRIAL_CTA_LABEL = `Start ${PRICING.trialDays}-day free trial`;
