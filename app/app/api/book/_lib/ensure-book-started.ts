@@ -26,6 +26,7 @@ import {
   checkReferralFraud,
   type ReferralFraudCheckResult,
 } from "@/app/app/api/book/_lib/referral-fraud";
+import { checkReferralEscalation } from "@/app/app/api/book/_lib/referral-escalation";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 import {
   createProgressIfMissing,
@@ -335,11 +336,29 @@ export async function ensureUserBookStarted(params: {
       ]);
       inviterAwarded = inviterAward.awarded;
       inviteeAwarded = inviteeAward.awarded;
-      await markReferralActivationRewarded(
+      const activationRecorded = await markReferralActivationRewarded(
         tableName,
         referralClaim,
         INSIGHT_POINTS_AMOUNTS.referralActivationInviter
       ).catch(() => false);
+
+      // §6.3 — Referral escalation tiers (3/5/10/25 activations → 4,600 IP +
+      // exclusive frame/theme/badge). markReferralActivationRewarded just
+      // ADD-incremented the inviter's activatedInvites, and checkReferralEscalation
+      // reads that counter, so it MUST run after it. Gate on activationRecorded so
+      // a duplicate/raced call (which did NOT move the count here) doesn't re-run
+      // it. Best-effort: an escalation failure must never block the book-start.
+      if (activationRecorded) {
+        const inviterEntitlement = await getUserEntitlement(
+          tableName,
+          referralClaim.inviterUserId
+        );
+        await checkReferralEscalation(
+          tableName,
+          referralClaim.inviterUserId,
+          inviterEntitlement?.plan ?? "FREE"
+        ).catch(() => null);
+      }
     } else {
       // Fraud detected — consume the claim (so it isn't retried) WITHOUT crediting
       // the inviter. inviterAwarded/inviteeAwarded stay false, so the analytics
