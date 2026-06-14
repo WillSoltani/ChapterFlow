@@ -755,6 +755,50 @@ function parseStored(raw: string | null): BookPreferencesState | null {
   }
 }
 
+/**
+ * The onboarding-complete route (app/app/api/book/me/onboarding/complete) saves
+ * the user's tone / chapter-order / daily-goal picks under `settings.onboarding`
+ * (and hoists tone/chapterOrder/dailyGoal to the top level) but never writes them
+ * into the `extended` / `reading` shapes the reader actually reads from. Map those
+ * picks onto the fields the reader consumes — but only when the user has not
+ * already chosen an explicit value — so a fresh device (which only has the server
+ * copy, not the localStorage seed below) still honors the onboarding tone and
+ * chapter-start order instead of silently falling back to defaults. See H21.
+ */
+function applyOnboardingDefaults(settings: Record<string, unknown>): Record<string, unknown> {
+  const isObject = (v: unknown): v is Record<string, unknown> =>
+    typeof v === "object" && v !== null && !Array.isArray(v);
+
+  const onboarding = isObject(settings.onboarding) ? settings.onboarding : {};
+  // Prefer the nested onboarding profile, fall back to the hoisted top-level copy.
+  const fromOnboarding = (key: string): unknown =>
+    onboarding[key] !== undefined ? onboarding[key] : settings[key];
+
+  const ext: Record<string, unknown> = { ...(isObject(settings.extended) ? settings.extended : {}) };
+  const reading: Record<string, unknown> = { ...(isObject(settings.reading) ? settings.reading : {}) };
+
+  // Tone → reader content tone (identical value space: gentle | direct | competitive).
+  const tone = fromOnboarding("tone");
+  if (ext.contentTone === undefined && (tone === "gentle" || tone === "direct" || tone === "competitive")) {
+    ext.contentTone = tone;
+  }
+
+  // Daily goal → the daily-goal preset the reader reads (10/20/30 are valid presets).
+  const dailyGoal = fromOnboarding("dailyGoal");
+  if (ext.dailyGoalPreset === undefined && (dailyGoal === 10 || dailyGoal === 20 || dailyGoal === 30)) {
+    ext.dailyGoalPreset = dailyGoal;
+  }
+
+  // Chapter order → which tab a chapter opens on. Only "scenarios_first" diverges
+  // from the existing default tab ("summary"), so that's the only case to map.
+  const chapterOrder = fromOnboarding("chapterOrder");
+  if (reading.defaultChapterTab === undefined && chapterOrder === "scenarios_first") {
+    reading.defaultChapterTab = "examples";
+  }
+
+  return { ...settings, extended: ext, reading };
+}
+
 export function useBookPreferences() {
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<BookPreferencesState>(defaultBookPreferencesState);
@@ -808,9 +852,20 @@ export function useBookPreferences() {
           if (typeof ob.learningStyle === "string" && ob.learningStyle in learningMap) {
             seeds.learningMode = learningMap[ob.learningStyle];
           }
-          if (Object.keys(seeds).length > 0) {
+          if (ob.dailyGoalMinutes === 10 || ob.dailyGoalMinutes === 20 || ob.dailyGoalMinutes === 30) {
+            seeds.dailyGoalPreset = ob.dailyGoalMinutes;
+          }
+          // The new /onboarding flow records its chapter-order pick here as
+          // chapterStartMode; only "practical-first" diverges from the default
+          // ("summary") tab, so that's the only value worth seeding.
+          const seededChapterTab =
+            ob.chapterStartMode === "practical-first" ? "examples" : undefined;
+          if (Object.keys(seeds).length > 0 || seededChapterTab) {
             nextState = {
               ...nextState,
+              reading: seededChapterTab
+                ? { ...nextState.reading, defaultChapterTab: seededChapterTab }
+                : nextState.reading,
               extended: parseExtendedSettings({ ...nextState.extended, ...seeds }),
             };
           }
@@ -824,7 +879,7 @@ export function useBookPreferences() {
 
   useEffect(() => {
     let mounted = true;
-    fetchBookJson<{ settings: Partial<BookPreferencesState> | null }>("/app/api/book/me/settings")
+    fetchBookJson<{ settings: Record<string, unknown> | null }>("/app/api/book/me/settings")
       .then((payload) => {
         if (!mounted) return;
         // Only apply server data if this device has no saved preferences
@@ -832,7 +887,14 @@ export function useBookPreferences() {
         // of truth and changes will sync to the server on next state change.
         if (payload.settings && !localStorageHadData.current) {
           skipNextServerSave.current = true;
-          setState(parseStored(JSON.stringify(payload.settings)) ?? defaultBookPreferencesState);
+          // Hydrate the reader's tone / chapter-start order / daily goal from the
+          // onboarding picks the server persisted (settings.onboarding + hoisted
+          // copies) so a fresh device honors them instead of falling back to
+          // defaults — the localStorage seed above only covers the same device.
+          setState(
+            parseStored(JSON.stringify(applyOnboardingDefaults(payload.settings))) ??
+              defaultBookPreferencesState
+          );
         }
       })
       .catch(() => {
