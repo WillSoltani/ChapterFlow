@@ -15,6 +15,7 @@ import type {
   ActiveBook,
   CompletedBook,
   ReaderLevel,
+  ReviewData,
   StepNumber,
   LearningStep,
 } from "./progressTypes";
@@ -22,15 +23,7 @@ import { mockProgressData } from "./progressMockData";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
-import {
-  getDailyReviewCount,
-  getPendingReviewCount,
-  getOverdueReviewCount,
-  getUpcomingThisWeekCount,
-  getTotalReviewItems,
-  buildReviewForecast,
-} from "@/app/book/_lib/spaced-repetition";
-import { ReviewSession } from "@/app/book/components/ReviewSession";
+import { ReviewSessionFSRS } from "@/app/book/components/ReviewSessionFSRS";
 import { HeroSection } from "./HeroSection";
 import { DailyQuests } from "./DailyQuests";
 import { WeeklySummary } from "./WeeklySummary";
@@ -65,12 +58,94 @@ const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber
   unlock: { step: "unlock", stepNumber: 4 },
 };
 
+// ──────────────────────────────────────────────────
+// Server FSRS deck → KnowledgeReview data
+// ──────────────────────────────────────────────────
+// The reviews block reads the server FSRS store (GET /me/reviews) — the same
+// source the home ReviewDueWidget uses — instead of the former per-device
+// localStorage SRS, so the two surfaces no longer contradict each other.
+
+const DAY_MS = 86_400_000;
+
+/** Lite shape of an FSRS card row as returned by GET /me/reviews?mode=all. */
+type FSRSCardLite = { dueAt: string; lastReviewAt: string; reps: number };
+
+const EMPTY_REVIEW_DATA: ReviewData = {
+  overdueCount: 0,
+  dueTodayCount: 0,
+  upcomingThisWeekCount: 0,
+  totalConceptsLearned: 0,
+  forecast: [],
+};
+
+function localDateKey(d: Date): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+/** Whole-day offset of a due date from the start of today (negative = overdue). */
+function dayOffsetFromToday(dueAt: string, todayMs: number): number {
+  const dueDayStart = new Date(dueAt);
+  dueDayStart.setHours(0, 0, 0, 0);
+  return Math.round((dueDayStart.getTime() - todayMs) / DAY_MS);
+}
+
+function buildReviewDataFromCards(cards: FSRSCardLite[]): ReviewData {
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+  const todayMs = startOfToday.getTime();
+
+  // forecast[0] = today (also absorbs overdue, which is actionable now);
+  // forecast[1..6] = each of the next six days.
+  const forecast = Array.from({ length: 7 }, (_, offset) => ({
+    date: localDateKey(new Date(todayMs + offset * DAY_MS)),
+    count: 0,
+  }));
+
+  let overdueCount = 0;
+  let dueTodayCount = 0;
+  let upcomingThisWeekCount = 0;
+
+  for (const card of cards) {
+    const offset = dayOffsetFromToday(card.dueAt, todayMs);
+    if (offset < 0) {
+      overdueCount += 1;
+      forecast[0].count += 1;
+    } else if (offset === 0) {
+      dueTodayCount += 1;
+      forecast[0].count += 1;
+    } else if (offset <= 7) {
+      upcomingThisWeekCount += 1;
+      if (offset <= 6) forecast[offset].count += 1;
+    }
+  }
+
+  return {
+    overdueCount,
+    dueTodayCount,
+    upcomingThisWeekCount,
+    totalConceptsLearned: cards.length,
+    forecast,
+  };
+}
+
+/** Distinct cards actually reviewed today (drives the "Review 5 concepts" quest).
+ *  Guards on reps > 0 because createNewCard seeds lastReviewAt on unreviewed cards. */
+function countReviewedToday(cards: FSRSCardLite[]): number {
+  const todayKey = localDateKey(new Date());
+  return cards.filter(
+    (c) => c.reps > 0 && localDateKey(new Date(c.lastReviewAt)) === todayKey
+  ).length;
+}
+
 function buildProgressData(
   viewerName: string,
   analytics: NonNullable<ReturnType<typeof useBookAnalytics>["analytics"]>,
   insightPointsBalance: number,
   nextMilestonesFromBadges: ReturnType<typeof useBadgeSystem>["nextMilestones"],
-  isPro: boolean
+  isPro: boolean,
+  reviewData: ReviewData,
+  reviewedTodayCount: number,
+  shieldsHeld: number
 ): ProgressPageData {
   const totalCompletedChapters = analytics.totalCompletedChapters;
   const readerLevel = deriveReaderLevel(totalCompletedChapters);
@@ -208,11 +283,10 @@ function buildProgressData(
         };
       }
       if (q.id === "q3") {
-        const reviewCount = getDailyReviewCount();
         return {
           ...q,
-          current: Math.min(reviewCount, q.target),
-          completed: reviewCount >= q.target,
+          current: Math.min(reviewedTodayCount, q.target),
+          completed: reviewedTodayCount >= q.target,
         };
       }
       return q;
@@ -247,8 +321,12 @@ function buildProgressData(
       currentDays: analytics.streakDays,
       bestDays: analytics.longestStreak,
       lastActiveDate: analytics.lastActiveLabel,
-      freezesEquipped: 0,
-      freezesAvailable: 0,
+      // Streak Shields come from the server streak store (GET /me/streak). The
+      // server model holds shields that auto-protect, so "equipped" == "held".
+      // (currentDays/bestDays/consistency still come from useBookAnalytics — a
+      // separate streak-source divergence left for a follow-up reconciliation.)
+      freezesEquipped: shieldsHeld,
+      freezesAvailable: shieldsHeld,
       consistencyLast30Days: analytics.heatmapCells.filter(
         (c) => c.minutes > 0
       ).length,
@@ -266,14 +344,11 @@ function buildProgressData(
     activeBooks,
     completedBooks,
     dailyQuests: wiredQuests,
-    questBonusFP: wiredQuests.filter((q) => !q.completed).length * 25,
-    reviews: {
-      overdueCount: getOverdueReviewCount(),
-      dueTodayCount: getPendingReviewCount(),
-      upcomingThisWeekCount: getUpcomingThisWeekCount(),
-      totalConceptsLearned: getTotalReviewItems(),
-      forecast: buildReviewForecast(),
-    },
+    // Kept for type compatibility (ProgressPageData.questBonusFP) but no longer
+    // surfaced as a currency promise — quests are habit nudges, not an IP award.
+    // Stable full-pool value so it never reads as "+0" if anything consumes it.
+    questBonusFP: wiredQuests.length * 25,
+    reviews: reviewData,
     readingActivity: {
       days: readingDays,
       totalDaysWithData: readingDays.length,
@@ -364,8 +439,11 @@ export function ProgressPage() {
   const [refreshKey, setRefreshKey] = useState(0);
 
   // ── Hooks ──
-  const { state: onboarding, hydrated: onboardingHydrated } =
-    useOnboardingState();
+  const {
+    state: onboarding,
+    hydrated: onboardingHydrated,
+    statusResolved: onboardingStatusResolved,
+  } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
   const { hydrated, analytics } = useBookAnalytics(
     onboarding.selectedBookIds,
@@ -389,6 +467,25 @@ export function ProgressPage() {
       .catch(() => {});
   }, []);
 
+  // Source the KnowledgeReview counts, the "Review 5 concepts" quest, and the
+  // Streak Shield count from the server (FSRS deck + streak store) so this page
+  // agrees with the home ReviewDueWidget instead of a per-device localStorage
+  // SRS. Re-runs when a review session closes (refreshKey bumps).
+  const [reviewData, setReviewData] = useState<ReviewData | null>(null);
+  const [reviewedTodayCount, setReviewedTodayCount] = useState(0);
+  const [shieldsHeld, setShieldsHeld] = useState(0);
+  useEffect(() => {
+    fetchBookJson<{ cards: FSRSCardLite[] }>("/app/api/book/me/reviews?mode=all")
+      .then(({ cards }) => {
+        setReviewData(buildReviewDataFromCards(cards));
+        setReviewedTodayCount(countReviewedToday(cards));
+      })
+      .catch(() => {});
+    fetchBookJson<{ shieldsHeld?: number }>("/app/api/book/me/streak")
+      .then((s) => setShieldsHeld(s.shieldsHeld ?? 0))
+      .catch(() => {});
+  }, [refreshKey]);
+
   useKeyboardShortcut(
     "/",
     (event) => {
@@ -398,13 +495,17 @@ export function ProgressPage() {
     { ignoreWhenTyping: true }
   );
 
-  // Redirect if not onboarded
+  // Redirect if not onboarded — but only after the server onboarding check has
+  // settled (onboardingStatusResolved). A returning user on a fresh browser
+  // starts with the optimistic localStorage default setupComplete=false; without
+  // this gate they'd be bounced to /book (then /dashboard) before the server
+  // confirmation could flip the flag. See finding M36.
   useEffect(() => {
-    if (!onboardingHydrated) return;
+    if (!onboardingHydrated || !onboardingStatusResolved) return;
     if (!onboarding.setupComplete) {
       router.replace("/book");
     }
-  }, [onboarding.setupComplete, onboardingHydrated, router]);
+  }, [onboarding.setupComplete, onboardingHydrated, onboardingStatusResolved, router]);
 
   // ── Build page data ──
   const data = useMemo<ProgressPageData | null>(() => {
@@ -414,10 +515,13 @@ export function ProgressPage() {
       analytics,
       insightPointsPayload?.summary.balance ?? 0,
       badgeMilestones,
-      isPro
+      isPro,
+      reviewData ?? EMPTY_REVIEW_DATA,
+      reviewedTodayCount,
+      shieldsHeld
     );
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, refreshKey]);
+  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, refreshKey]);
 
   // Fetch daily reader metrics for active books.
   const [readerMetrics, setReaderMetrics] = useState<Record<string, number>>({});
@@ -585,7 +689,6 @@ export function ProgressPage() {
         <motion.div variants={sectionVariants}>
           <DailyQuests
             quests={displayData.dailyQuests}
-            bonusIP={displayData.questBonusFP}
             onQuestClick={(questId) => {
               if (questId === "q3") setShowReviewSession(true);
             }}
@@ -683,7 +786,7 @@ export function ProgressPage() {
       </motion.section>
 
       {showReviewSession && (
-        <ReviewSession
+        <ReviewSessionFSRS
           key={refreshKey}
           onClose={() => {
             setShowReviewSession(false);

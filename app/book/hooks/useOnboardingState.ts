@@ -235,6 +235,12 @@ function parseStoredState(
 export function useOnboardingState() {
   const [state, setState] = useState<BookOnboardingState>(defaultState);
   const [hydrated, setHydrated] = useState(false);
+  // Flips true only once we actually know the onboarding status — either
+  // localStorage already says setupComplete, or the server check below has
+  // settled. Redirect guards must wait for this so they never act on the
+  // optimistic `setupComplete: false` default for a returning user on a fresh
+  // browser (see ProgressPage redirect effect / finding M36).
+  const [statusResolved, setStatusResolved] = useState(false);
 
   useEffect(() => {
     const storedEntry = STORAGE_KEYS.map((key) => ({
@@ -262,11 +268,20 @@ export function useOnboardingState() {
 
   // If localStorage says setupComplete is false, check the server.
   // This handles existing users on new browsers or after cache clear.
+  // `statusResolved` flips true once we know the answer — immediately when
+  // localStorage already proves setup is complete, or after this fetch settles
+  // (success OR failure) — so callers don't redirect on the optimistic default.
   useEffect(() => {
-    if (!hydrated || state.setupComplete) return;
+    if (!hydrated) return;
+    if (state.setupComplete) {
+      setStatusResolved(true);
+      return;
+    }
+    let cancelled = false;
     fetch("/app/api/book/me/onboarding/progress")
       .then((r) => (r.ok ? r.json() : null))
       .then((data: { onboardingCompleted?: boolean } | null) => {
+        if (cancelled) return;
         if (data?.onboardingCompleted) {
           setState((prev) => ({
             ...prev,
@@ -275,7 +290,13 @@ export function useOnboardingState() {
           }));
         }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setStatusResolved(true);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [hydrated, state.setupComplete]);
 
   const setCurrentStep = useCallback((step: number) => {
@@ -429,6 +450,7 @@ export function useOnboardingState() {
   return {
     state,
     hydrated,
+    statusResolved,
     selectionsRemaining,
     categorySelectionsRemaining,
     patchState,

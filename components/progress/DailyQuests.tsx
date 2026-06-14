@@ -6,7 +6,6 @@ import type { DailyQuest } from "./progressTypes";
 
 interface DailyQuestsProps {
   quests: DailyQuest[];
-  bonusIP: number;
   onQuestClick?: (questId: string) => void;
 }
 
@@ -28,9 +27,10 @@ function getQuestAccent(questId: string): {
   }
 }
 
-export function DailyQuests({ quests, bonusIP, onQuestClick }: DailyQuestsProps) {
+export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
   const prefersReduced = useReducedMotion();
   const allComplete = quests.every((q) => q.completed);
+  const completedCount = quests.filter((q) => q.completed).length;
   const allPartiallyStarted =
     quests.length > 0 && quests.every((q) => q.current > 0 && !q.completed);
 
@@ -77,7 +77,7 @@ export function DailyQuests({ quests, bonusIP, onQuestClick }: DailyQuestsProps)
               : undefined
           }
         >
-          {"\u{1F381}"} +{bonusIP} IP for all
+          {"\u{1F3AF}"} {completedCount}/{quests.length} done
         </motion.span>
       </div>
 
@@ -90,7 +90,7 @@ export function DailyQuests({ quests, bonusIP, onQuestClick }: DailyQuestsProps)
             color: "var(--accent-emerald)",
           }}
         >
-          {"\u{1F389}"} All quests complete! +{bonusIP} IP earned
+          {"\u{1F389}"} All quests complete!
         </div>
       )}
 
