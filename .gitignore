@@ -81,3 +81,9 @@ scripts/book/prompts/chapterflow-v21-authored/state/gate-attempts.json    # mach
 scripts/book/prompts/chapterflow-v21-authored/state/gate-verdicts/        # derived verdict sidecars (later phases)
 scripts/book/prompts/chapterflow-v21-authored/state/chapters/.backup-*/   # ad-hoc backup snapshots — use git, not dirs
 scripts/book/prompts/chapterflow-v21-authored/scratch/_shadow-drive-backup-*/  # Phase-0 migration backup
+
+# Playwright E2E
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
