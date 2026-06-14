@@ -6,6 +6,7 @@ import {
   getChapterFlowSiteUrl,
   usesDedicatedChapterFlowHosts,
 } from "@/app/_lib/chapterflow-brand";
+import { isSafeInternalPath } from "./return-to-core";
 
 function normalizeUrl(value: string): string {
   return value.trim().replace(/\/+$/, "");
@@ -53,10 +54,16 @@ export function sanitizeReturnTo(
   const raw = String(value ?? "").trim();
   if (!raw) return fallback;
 
+  // Same-origin relative paths: accept only if they cannot escape the host.
+  // Protocol-relative ("//evil.com"), backslash ("/\\evil.com") and control-
+  // character smuggling are rejected here — returning `raw` verbatim for those
+  // would let callback's `new URL(returnTo, origin)` resolve off-origin.
   if (raw.startsWith("/")) {
-    return raw;
+    return isSafeInternalPath(raw) ? raw : fallback;
   }
 
+  // Absolute URLs: only allowed when their origin is in the cross-host
+  // allowlist (e.g. auth.chapterflow.com → app.chapterflow.com SSO).
   try {
     const target = new URL(raw);
     if (!allowedOrigins().has(target.origin)) {
