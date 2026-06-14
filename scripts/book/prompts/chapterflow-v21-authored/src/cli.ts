@@ -103,6 +103,17 @@ Commands:
                                      Record the authoring session (state/provenance/) so a later FRESH QC
                                      session can't grade its own work when
                                      CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1. Uses CHAPTERFLOW_SESSION_ID.
+  book-status "<book name or id>" [--json]
+                                     The whole lifecycle in one view: research → written → gate-clean →
+                                     QC'd → publishable, a cross-book variety read (advisory), and the
+                                     single exact next command. Read-only.
+  doctor [<bookId>]                  Preflight: catches the shadow state dir, dual brief shapes,
+                                     chapter-number drift, and untracked-but-imported source files before
+                                     they cost a run. Exit 0 healthy / 1 warnings / 2 blocking trap.
+  authoring-guardrails <bookId> [--chapters N]
+                                     Write the pre-authoring sheet (per-chapter reserved names +
+                                     banned-phrase registry: house tics, forbidden moves, salting
+                                     connectives, cross-book signature tells) for parallel authors.
   author-check <chapter.json>        Phase 1: run the authoring-contract (field-JOB) checks Codex uses to
                                      converge in-session. Advisory/shadow (calibrated 0 false-positives).
                                      Exit 1 on any finding so a write loop iterates to clean.
@@ -907,6 +918,17 @@ async function runPublish(args: string[], flags: Record<string, string | boolean
     console.error(`  npx tsx src/cli.ts publish ${bookId} --title "..." --author "..."`);
     return 2;
   }
+  // Cross-book variety advisory (non-blocking): surface catalog sameness BEFORE
+  // shipping, so a one-voice / name-reuse book is a visible choice, not a silent
+  // drift. This never blocks promote — promote's gates are unchanged.
+  try {
+    const { computeBookStatus } = await import("./lifecycle/bookStatus.js");
+    const v = computeBookStatus(bookId).variety;
+    if (v && v.notes.length > 0) {
+      console.log("cross-book variety (advisory — does not block):");
+      for (const n of v.notes) console.log(`  ⚠ ${n}`);
+    }
+  } catch { /* advisory only */ }
   console.log(`publish: ${bookId} (title="${title}", author="${author}") — running promote-book gates...`);
   // Delegate to promote-book with the resolved title/author so all gating (incl.
   // the no-API QC-attestation gate) runs exactly once, in one place.
@@ -943,6 +965,60 @@ async function runStampAuthor(args: string[], flags: Record<string, string | boo
   }
   console.log(`qc-stamp-author: recorded ${wrote} author-provenance sidecar(s) for session "${session}".`);
   return 0;
+}
+
+/** `book-status "<book name or id>"` — the whole lifecycle in one view (research →
+ *  written → gate-clean → QC'd → publishable) plus the single exact next command.
+ *  Read-only. Exit 0 always (it's a status read, not a gate). */
+async function runBookStatus(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error('Usage: book-status "<book name or id>" [--json]');
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  const { computeBookStatus, formatBookStatus } = await import("./lifecycle/bookStatus.js");
+  const status = computeBookStatus(bookId);
+  if (flags["json"] === true) console.log(JSON.stringify(status, null, 2));
+  else console.log(formatBookStatus(status));
+  return 0;
+}
+
+/** `doctor [<bookId>]` — preflight that catches the known workspace traps
+ *  (shadow state dir, dual brief, chapter-number drift, untracked imports).
+ *  Exit 0 healthy, 1 warnings, 2 a blocking trap. */
+async function runDoctor(args: string[], _flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const { runDoctorChecks, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
+  const findings = runDoctorChecks(bookId);
+  console.log(formatDoctor(findings));
+  return doctorExitCode(findings);
+}
+
+/** `authoring-guardrails <bookId> [--chapters N]` — write the pre-authoring sheet
+ *  (per-chapter reserved names + banned-phrase registry) that every chapter author
+ *  reads before writing, so parallel authors don't collide on names/stock phrases. */
+async function runAuthoringGuardrails(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: authoring-guardrails <bookId> [--chapters N]");
+    return 2;
+  }
+  const chapters = typeof flags["chapters"] === "string" ? parseInt(flags["chapters"], 10) : undefined;
+  const { writeAuthoringGuardrails } = await import("./librarian/authoringGuardrails.js");
+  try {
+    const path = writeAuthoringGuardrails(bookId, { chapters: Number.isInteger(chapters) ? chapters : undefined });
+    console.log(`authoring-guardrails: wrote ${path}`);
+    console.log("Paste this into every chapter authoring prompt before writing.");
+    return 0;
+  } catch (err) {
+    console.error((err as Error).message);
+    return 1;
+  }
 }
 
 /** `book-gate <bookId>` — standalone book-gate runner.
@@ -3378,6 +3454,12 @@ async function main() {
       return runPublish(args, flags);
     case "qc-stamp-author":
       return runStampAuthor(args, flags);
+    case "book-status":
+      return runBookStatus(args, flags);
+    case "doctor":
+      return runDoctor(args, flags);
+    case "authoring-guardrails":
+      return runAuthoringGuardrails(args, flags);
     case "promote-book":
       return runPromoteBook(args, flags);
     case "gate-chapter":
