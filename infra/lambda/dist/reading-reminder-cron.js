@@ -88,6 +88,7 @@ async function isEmailSuppressed(ddb2, tableName2, email) {
 }
 var warnedMissingSecret = false;
 var warnedMissingAddress = false;
+var warnedMissingAppBaseUrl = false;
 function getEmailConfig() {
   const secret = process.env.EMAIL_UNSUBSCRIBE_SECRET ?? "";
   if (!secret && !warnedMissingSecret) {
@@ -101,7 +102,10 @@ function getEmailConfig() {
     senderName: process.env.EMAIL_SENDER_NAME || "ChapterFlow",
     supportAddress: process.env.EMAIL_SUPPORT_ADDRESS || "support@chapterflow.ca",
     postalAddress: process.env.EMAIL_POSTAL_ADDRESS ?? "",
-    appBaseUrl: (process.env.APP_BASE_URL || "https://chapterflow.siliconx.ca").replace(/\/+$/, ""),
+    // No siliconx.ca fallback: the legacy host no longer serves the unsubscribe
+    // route. An empty value makes sendCompliantEmail refuse to send (below)
+    // rather than mint a non-working one-click-unsubscribe link (CASL violation).
+    appBaseUrl: (process.env.APP_BASE_URL || "").replace(/\/+$/, ""),
     secret,
     configurationSet: process.env.SES_CONFIGURATION_SET ?? ""
   };
@@ -125,18 +129,23 @@ var cachedConfig = null;
 async function resolveEmailConfig() {
   if (cachedConfig) return cachedConfig;
   const base = getEmailConfig();
-  const [postalAddress, secret, senderName, supportAddress] = await Promise.all([
+  const [postalAddress, secret, senderName, supportAddress, appBaseUrl] = await Promise.all([
     ssmParam("EMAIL_POSTAL_ADDRESS"),
     ssmParam("EMAIL_UNSUBSCRIBE_SECRET"),
     ssmParam("EMAIL_SENDER_NAME"),
-    ssmParam("EMAIL_SUPPORT_ADDRESS")
+    ssmParam("EMAIL_SUPPORT_ADDRESS"),
+    // Owner override for the app host (otherwise the Lambda's APP_BASE_URL env,
+    // set from CHAPTERFLOW_APP_BASE_URL at deploy time, is used). Same one-place
+    // SSM model as the other EMAIL_* values.
+    ssmParam("EMAIL_APP_BASE_URL")
   ]);
   cachedConfig = {
     ...base,
     postalAddress: postalAddress ?? base.postalAddress,
     secret: secret ?? base.secret,
     senderName: senderName ?? base.senderName,
-    supportAddress: supportAddress ?? base.supportAddress
+    supportAddress: supportAddress ?? base.supportAddress,
+    appBaseUrl: (appBaseUrl ?? base.appBaseUrl).replace(/\/+$/, "")
   };
   return cachedConfig;
 }
@@ -177,6 +186,15 @@ async function sendCompliantEmail(ses2, ddb2, tableName2, config, params) {
       warnedMissingAddress = true;
       console.warn(
         "[email-compliance] EMAIL_POSTAL_ADDRESS not set \u2014 skipping commercial email (CASL/CAN-SPAM require a postal address). Set it to enable reminder/digest email."
+      );
+    }
+    return;
+  }
+  if (!config.appBaseUrl) {
+    if (!warnedMissingAppBaseUrl) {
+      warnedMissingAppBaseUrl = true;
+      console.warn(
+        "[email-compliance] APP_BASE_URL not set \u2014 skipping commercial email (one-click unsubscribe + CTA links require the live app host). Set CHAPTERFLOW_APP_BASE_URL on the cron Lambda (or EMAIL_APP_BASE_URL in SSM)."
       );
     }
     return;

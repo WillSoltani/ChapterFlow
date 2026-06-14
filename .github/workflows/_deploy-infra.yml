@@ -64,6 +64,34 @@ jobs:
       - name: Install infra dependencies
         run: npm ci --prefix infra
 
+      # The reminder cron + suppression handler deploy from infra/lambda/dist via
+      # CDK fromAsset. Rebuild those bundles from source on every deploy so a stale
+      # committed bundle can never ship silently. Run from infra/ with lambda/...
+      # entry paths so esbuild's source-path comments match the committed bundles,
+      # keeping the drift check below byte-exact.
+      - name: Build Lambda bundles
+        working-directory: infra
+        run: |
+          set -euo pipefail
+          npx esbuild lambda/reading-reminder-cron.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/reading-reminder-cron.js \
+            --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb \
+            --external:@aws-sdk/client-sesv2 --external:@aws-sdk/client-ssm
+          npx esbuild lambda/suppression-handler.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/suppression-handler.js \
+            --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb
+
+      # Fail loudly if the committed bundles are stale (source changed but the
+      # rebuilt dist differs from what's checked in). Forces a rebuild + commit so
+      # the deployed Lambda always matches the .ts source.
+      - name: Verify Lambda bundle freshness
+        run: |
+          set -euo pipefail
+          if ! git diff --exit-code -- infra/lambda/dist; then
+            echo "::error::Committed Lambda bundles in infra/lambda/dist are stale. Rebuild them (see the esbuild commands in infra/lib/chapterflow-backend-stack.ts) and commit the result."
+            exit 1
+          fi
+
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v6
         with:
@@ -77,6 +105,9 @@ jobs:
           CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
           CHAPTERFLOW_ENV: ${{ env.CHAPTERFLOW_ENV }}
           CHAPTERFLOW_OPS_ALERT_EMAIL: ${{ secrets.CHAPTERFLOW_OPS_ALERT_EMAIL }}
+          # Required for prod: the reminder cron mints CASL unsubscribe + CTA links
+          # against this host (the backend stack throws if it is missing for prod).
+          CHAPTERFLOW_APP_BASE_URL: ${{ secrets.CHAPTERFLOW_APP_BASE_URL }}
 
       # Resource names are the single source of truth in SSM (written by the
       # backend stack). Seeding reads them — never hardcoded bucket/table names.

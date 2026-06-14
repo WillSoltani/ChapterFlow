@@ -27,18 +27,25 @@ function normalizeCorsOrigin(raw: string): string | null {
   }
 }
 
-function resolveAllowedWebOrigins(): string[] {
-  const defaults = [
-    "http://localhost:3000",
-    "https://siliconx.ca",
-    "https://www.siliconx.ca",
-    "https://chapterflow.siliconx.ca",
-    "https://auth.siliconx.ca",
+function resolveAllowedWebOrigins(envName: EnvName): string[] {
+  // Canonical prod origins. dev/staging additionally allow localhost and the
+  // legacy siliconx hosts for local/preview testing; prod must NOT — a prod
+  // ingest bucket should never accept localhost or a legacy domain in its CORS.
+  const prodOrigins = [
     "https://chapterflow.ca",
     "https://www.chapterflow.ca",
     "https://app.chapterflow.ca",
     "https://auth.chapterflow.ca",
   ];
+  const nonProdOrigins = [
+    "http://localhost:3000",
+    "https://siliconx.ca",
+    "https://www.siliconx.ca",
+    "https://chapterflow.siliconx.ca",
+    "https://auth.siliconx.ca",
+  ];
+  const defaults =
+    envName === "prod" ? prodOrigins : [...prodOrigins, ...nonProdOrigins];
 
   const envCandidates = [
     process.env.WEB_ALLOWED_ORIGINS || "",
@@ -108,6 +115,12 @@ export interface ChapterFlowBackendStackProps extends cdk.StackProps {
   readonly removalPolicy: cdk.RemovalPolicy;
   readonly deletionProtection: boolean;
   readonly pointInTimeRecovery: boolean;
+  /**
+   * Apex domain for this env (prod resolves to chapterflow.ca), or undefined for
+   * dev/staging without a verified SES identity. Scopes the reminder cron's SES
+   * sender address + SendEmail grant to the env's verified domain.
+   */
+  readonly domainName?: string;
 }
 
 export class ChapterFlowBackendStack extends cdk.Stack {
@@ -115,7 +128,6 @@ export class ChapterFlowBackendStack extends cdk.Stack {
   public readonly analyticsTable: dynamodb.Table;
   public readonly ingestBucket: s3.Bucket;
   public readonly contentBucket: s3.Bucket;
-  public readonly appRunnerRuntimeRole: iam.Role;
   public readonly ssmPrefix: string;
 
   constructor(scope: Construct, id: string, props: ChapterFlowBackendStackProps) {
@@ -124,7 +136,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     cdk.Tags.of(this).add("Environment", props.envName);
 
     const suffix = props.resourceSuffix;
-    const allowedWebOrigins = resolveAllowedWebOrigins();
+    const allowedWebOrigins = resolveAllowedWebOrigins(props.envName);
     this.ssmPrefix = props.ssmPrefix;
 
     this.appTable = new dynamodb.Table(this, "ChapterFlowAppTable", {
@@ -132,6 +144,14 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      // Cron + app writers stamp a numeric `ttl` on ephemeral records only
+      // (nudge dedup markers, pairing invites, Ask-the-Book cache, rate-limit
+      // counters). Without this attribute DynamoDB never reaps them: the
+      // welcome-back nudge (non-rotating dedup key) would fire exactly once per
+      // user for life, and every active user's partition would grow unbounded.
+      // No durable entity stores `ttl`, so enabling it is safe; doing so on an
+      // existing table is a non-destructive online operation.
+      timeToLiveAttribute: "ttl",
       pointInTimeRecoverySpecification: {
         pointInTimeRecoveryEnabled: props.pointInTimeRecovery,
       },
@@ -155,7 +175,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         pointInTimeRecoveryEnabled: props.pointInTimeRecovery,
       },
       deletionProtection: props.deletionProtection,
-      stream: dynamodb.StreamViewType.NEW_AND_OLD_IMAGES,
+      // No DynamoDB stream consumer exists (no DynamoEventSource / grantStreamRead
+      // / tableStreamArn reference anywhere in infra or app); a stream here is dead
+      // cost + the false appearance of a missing consumer. Add it back alongside a
+      // real consumer if one is ever planned.
       removalPolicy: props.removalPolicy,
     });
 
@@ -234,64 +257,12 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       })
     );
 
-    this.appRunnerRuntimeRole = new iam.Role(this, "ChapterFlowAppRuntimeRole", {
-      roleName: `ChapterFlowAppRuntimeRole${suffix}`,
-      assumedBy: new iam.ServicePrincipal("tasks.apprunner.amazonaws.com"),
-      description: "Least-privilege runtime role for the ChapterFlow App Runner service.",
-    });
-
-    const ddbResources = [
-      this.appTable.tableArn,
-      `${this.appTable.tableArn}/index/*`,
-      this.analyticsTable.tableArn,
-      `${this.analyticsTable.tableArn}/index/*`,
-    ];
-
-    this.appRunnerRuntimeRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "ChapterFlowDynamoDbAccess",
-        effect: iam.Effect.ALLOW,
-        actions: [
-          "dynamodb:BatchGetItem",
-          "dynamodb:BatchWriteItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:DescribeTable",
-          "dynamodb:GetItem",
-          "dynamodb:PutItem",
-          "dynamodb:Query",
-          "dynamodb:TransactWriteItems",
-          "dynamodb:UpdateItem",
-        ],
-        resources: ddbResources,
-      })
-    );
-
-    this.appRunnerRuntimeRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "ChapterFlowIngestBucketAccess",
-        effect: iam.Effect.ALLOW,
-        actions: ["s3:GetObject", "s3:PutObject"],
-        resources: [`${this.ingestBucket.bucketArn}/*`],
-      })
-    );
-
-    this.appRunnerRuntimeRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "ChapterFlowContentBucketAccess",
-        effect: iam.Effect.ALLOW,
-        actions: ["s3:GetObject", "s3:PutObject"],
-        resources: [`${this.contentBucket.bucketArn}/*`],
-      })
-    );
-
-    this.appRunnerRuntimeRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "ChapterFlowBucketMetadataAccess",
-        effect: iam.Effect.ALLOW,
-        actions: ["s3:GetBucketLocation"],
-        resources: [this.ingestBucket.bucketArn, this.contentBucket.bucketArn],
-      })
-    );
+    // NOTE: there is no App Runner service. The app deploys to OpenNext Lambda
+    // (ChapterFlowFrontend), whose own role grants DynamoDB/S3/SSM/SES access.
+    // The former `ChapterFlowAppRuntimeRole` (assumed by tasks.apprunner.amazonaws.com)
+    // had no consumer and stood as broad unused privilege — removed. Its CI
+    // counterparts (apprunner:* + iam:PassRole) were dropped from
+    // infra/iam/github-actions-dev-policy.json.
 
     const parameterNames = [
       `${this.ssmPrefix}/BOOK_TABLE_NAME`,
@@ -323,18 +294,6 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       stringValue: this.contentBucket.bucketName,
       description: "ChapterFlow published content bucket name.",
     });
-
-    this.appRunnerRuntimeRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "ChapterFlowSsmConfigAccess",
-        effect: iam.Effect.ALLOW,
-        actions: ["ssm:GetParameter", "ssm:GetParameters"],
-        resources: parameterNames.map(
-          (name) =>
-            `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${name}`
-        ),
-      })
-    );
 
     // Operational-alerts SNS topic. Failures that need a human (table
     // throttling, or a Stripe cancellation that failed during account
@@ -401,16 +360,43 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     // Lambda — Reading reminder cron (hourly)
     // -------------------------------------------------------------------
 
-    // Pre-bundled with esbuild — run before deploying:
+    // Deployed from the pre-bundled lambda/dist asset. The CI deploy workflow
+    // (_deploy-infra.yml) rebuilds these bundles from source with esbuild on
+    // every deploy and fails on drift, so a stale committed bundle can never
+    // ship silently. To rebuild locally (run from the infra/ directory):
     //   npx esbuild lambda/reading-reminder-cron.ts --bundle --platform=node \
     //     --target=node20 --outfile=lambda/dist/reading-reminder-cron.js \
     //     --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb \
     //     --external:@aws-sdk/client-sesv2 --external:@aws-sdk/client-ssm
-    // Reminder emails are always sent from this fixed address on the verified
-    // chapterflow.ca domain, so SES SendEmail is scoped to that domain identity
-    // (covers any @chapterflow.ca sender) rather than "*".
-    const reminderSenderEmail = "info@chapterflow.ca";
-    const reminderSenderDomain = reminderSenderEmail.split("@")[1];
+    //
+    // Reminder emails are sent from this address on the env's verified domain.
+    // prod resolves to info@chapterflow.ca (props.domainName) and scopes SES
+    // SendEmail to that domain identity; dev/staging without a verified domain
+    // fall back to a "*" grant (their commercial sends stay disabled by the
+    // EMAIL_POSTAL_ADDRESS kill-switch until an identity is verified).
+    // SES_SENDER_EMAIL overrides the address.
+    const reminderSenderDomain = props.domainName;
+    const reminderSenderEmail =
+      process.env.SES_SENDER_EMAIL?.trim() ||
+      (reminderSenderDomain ? `info@${reminderSenderDomain}` : "info@chapterflow.ca");
+
+    // The cron mints CASL one-click-unsubscribe URLs, the List-Unsubscribe
+    // header, and CTA links against APP_BASE_URL — it MUST be the live app host.
+    // The legacy chapterflow.siliconx.ca fallback no longer serves the unsubscribe
+    // route, so minting links there is a CASL/CAN-SPAM violation. Require it for
+    // prod (fail the deploy loudly); dev/staging may omit it (commercial sends are
+    // disabled there by the EMAIL_POSTAL_ADDRESS kill-switch, and the runtime
+    // refuses to send when APP_BASE_URL is empty — see email-compliance.ts).
+    const appBaseUrl = process.env.CHAPTERFLOW_APP_BASE_URL?.trim();
+    if (props.envName === "prod" && !appBaseUrl) {
+      throw new Error(
+        "CHAPTERFLOW_APP_BASE_URL is required for a prod backend deploy: the " +
+          "reminder/digest cron mints CASL one-click-unsubscribe + CTA links " +
+          "against it. Set the prod CHAPTERFLOW_APP_BASE_URL secret (the same one " +
+          "the app deploy uses) — refusing to mint email links to the dead " +
+          "chapterflow.siliconx.ca host.",
+      );
+    }
 
     // SES configuration set name — applied to every send so bounce/complaint
     // events flow to the suppression handler (created below).
@@ -434,8 +420,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         BOOK_TABLE_NAME: this.appTable.tableName,
         SES_SENDER_EMAIL: reminderSenderEmail,
         SES_CONFIGURATION_SET: emailConfigSetName,
-        APP_BASE_URL:
-          process.env.CHAPTERFLOW_APP_BASE_URL ?? "https://chapterflow.siliconx.ca",
+        // No siliconx.ca fallback: an empty value makes the runtime refuse to
+        // send rather than mint links to a dead host (prod is guarded above).
+        APP_BASE_URL: appBaseUrl ?? "",
         // Owner-provided email config is read at runtime from SSM
         // (/chapterflow/<env>/EMAIL_*), the same params the app reads — so it is
         // set in ONE place. These are deploy-time fallbacks only.
@@ -449,12 +436,17 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
 
     this.appTable.grantReadWriteData(reminderFn);
+    // Scope SendEmail to the env's verified domain identity when known (prod);
+    // dev/staging without a verified domain fall back to "*" — same conditional
+    // shape as the frontend stack's SesSendAccess statement.
     reminderFn.addToRolePolicy(
       new iam.PolicyStatement({
         actions: ["ses:SendEmail", "sesv2:SendEmail"],
-        resources: [
-          `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${reminderSenderDomain}`,
-        ],
+        resources: reminderSenderDomain
+          ? [
+              `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${reminderSenderDomain}`,
+            ]
+          : ["*"],
       })
     );
     // Read the owner email config (EMAIL_*) from SSM at runtime.
@@ -557,9 +549,6 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
     new cdk.CfnOutput(this, "BookContentBucketName", {
       value: this.contentBucket.bucketName,
-    });
-    new cdk.CfnOutput(this, "AppRunnerRuntimeRoleArn", {
-      value: this.appRunnerRuntimeRole.roleArn,
     });
     new cdk.CfnOutput(this, "SsmParameterPrefix", {
       value: this.ssmPrefix,
