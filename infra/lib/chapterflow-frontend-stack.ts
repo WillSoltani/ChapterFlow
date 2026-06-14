@@ -18,6 +18,8 @@ import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
+import * as logs from "aws-cdk-lib/aws-logs";
+import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import { type EnvName } from "./env-config";
 // ---------------------------------------------------------------------------
 // Props
@@ -355,7 +357,11 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // Common Lambda environment variables
     // -------------------------------------------------------------------
 
-    const commonEnv: Record<string, string> = {
+    // Secrets-free infrastructure env: resource names plus the OpenNext ISR
+    // cache/queue wiring. Safe to hand to the auxiliary functions (image
+    // optimizer, revalidation, dynamo provider, warmer) — none of them run
+    // application code that needs the Stripe / AI / auth secrets.
+    const baseInfraEnv: Record<string, string> = {
       // App data resources
       BOOK_TABLE_NAME: props.appTableName,
       BOOK_ANALYTICS_TABLE_NAME: props.analyticsTableName,
@@ -372,6 +378,15 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       CHAPTERFLOW_DEPLOYMENT_MODE: "standalone",
       CHAPTERFLOW_ENV: props.envName,
       NODE_ENV: "production",
+    };
+
+    // Server-only env: the infra vars PLUS the caller-provided secrets (Stripe
+    // secret/webhook/price keys, Anthropic + ElevenLabs API keys,
+    // AUTH_STATE_SECRET, full Cognito config — see infra/bin/app.ts). Only the
+    // server Lambda needs these, so they are NOT spread into the auxiliary
+    // functions below (least-privilege secret blast radius).
+    const commonEnv: Record<string, string> = {
+      ...baseInfraEnv,
       // Merge caller-provided env vars (secrets come from here)
       ...(props.serverEnv ?? {}),
     };
@@ -392,10 +407,14 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       role: lambdaRole,
       environment: commonEnv,
       architecture: lambda.Architecture.X86_64,
+      logRetention: logs.RetentionDays.ONE_MONTH,
     });
 
+    // AWS_IAM (not NONE): the public Function URL is locked behind CloudFront
+    // Origin Access Control (see serverOrigin below), so only SigV4-signed
+    // requests from this distribution can invoke it — direct hits now get 403.
     const serverFnUrl = this.serverFunction.addFunctionUrl({
-      authType: lambda.FunctionUrlAuthType.NONE,
+      authType: lambda.FunctionUrlAuthType.AWS_IAM,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
 
@@ -412,17 +431,22 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       ),
       memorySize: 1536,
       timeout: cdk.Duration.seconds(25),
-      role: lambdaRole,
+      // Least-privilege: its own auto-created role (basic execution) plus read
+      // on the assets bucket only (granted below). No app secrets, no
+      // DynamoDB / SES / Cognito access — image optimization needs none of it.
       environment: {
         BUCKET_NAME: assetsBucket.bucketName,
         BUCKET_KEY_PREFIX: "_assets",
-        ...commonEnv,
+        ...baseInfraEnv,
       },
       architecture: lambda.Architecture.X86_64,
+      logRetention: logs.RetentionDays.ONE_MONTH,
     });
+    // Image optimization only reads original images from the assets bucket.
+    assetsBucket.grantRead(imageFn);
 
     const imageFnUrl = imageFn.addFunctionUrl({
-      authType: lambda.FunctionUrlAuthType.NONE,
+      authType: lambda.FunctionUrlAuthType.AWS_IAM,
     });
 
     // -------------------------------------------------------------------
@@ -438,10 +462,13 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       ),
       memorySize: 256,
       timeout: cdk.Duration.seconds(30),
-      role: lambdaRole,
-      environment: commonEnv,
+      // Least-privilege: its own auto-created role plus the ISR cache table; SQS
+      // consume permissions are granted by addEventSource() below. No secrets.
+      environment: baseInfraEnv,
       architecture: lambda.Architecture.X86_64,
+      logRetention: logs.RetentionDays.ONE_MONTH,
     });
+    cacheTable.grantReadWriteData(revalidationFn);
 
     revalidationFn.addEventSource(
       new eventSources.SqsEventSource(revalidationQueue, { batchSize: 5 }),
@@ -460,10 +487,12 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       ),
       memorySize: 256,
       timeout: cdk.Duration.minutes(15),
-      role: lambdaRole,
-      environment: commonEnv,
+      // Least-privilege: its own auto-created role plus the ISR cache table only.
+      environment: baseInfraEnv,
       architecture: lambda.Architecture.X86_64,
+      logRetention: logs.RetentionDays.ONE_MONTH,
     });
+    cacheTable.grantReadWriteData(dynamoProviderFn);
 
     // -------------------------------------------------------------------
     // Lambda — Warmer (keeps server function warm)
@@ -476,13 +505,15 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(openNextDir, "warmer-function")),
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
-      role: lambdaRole,
+      // Least-privilege: its own auto-created role plus invoke on the server
+      // function only (granted below via a constructed ARN). No secrets.
       environment: {
         FUNCTION_NAME: name("ChapterFlowServer"),
         CONCURRENCY: "1",
-        ...commonEnv,
+        ...baseInfraEnv,
       },
       architecture: lambda.Architecture.X86_64,
+      logRetention: logs.RetentionDays.ONE_MONTH,
     });
 
     // Invoke warmer every 5 minutes
@@ -491,10 +522,11 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     });
     warmerRule.addTarget(new targets.LambdaFunction(warmerFn));
 
-    // Warmer needs to invoke the server function.
-    // Use a constructed ARN instead of this.serverFunction.functionArn to
-    // avoid a circular dependency: DefaultPolicy → ServerFn → DefaultPolicy.
-    lambdaRole.addToPolicy(
+    // Warmer needs to invoke the server function. Attach this to the warmer's
+    // OWN role (not the shared server role — least-privilege), and use a
+    // constructed ARN instead of this.serverFunction.functionArn to avoid a
+    // circular dependency (WarmerRole → ServerFn GetAtt → …).
+    warmerFn.addToRolePolicy(
       new iam.PolicyStatement({
         sid: "InvokeServerFn",
         actions: ["lambda:InvokeFunction"],
@@ -557,16 +589,6 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // CloudFront Distribution
     // -------------------------------------------------------------------
 
-    // Parse Lambda function URLs to hostnames for CloudFront origins
-    const serverOriginDomain = cdk.Fn.select(
-      2,
-      cdk.Fn.split("/", serverFnUrl.url),
-    );
-    const imageOriginDomain = cdk.Fn.select(
-      2,
-      cdk.Fn.split("/", imageFnUrl.url),
-    );
-
     // Use OAI instead of OAC to avoid circular dependency:
     // OAC creates a bucket policy referencing the Distribution ID, but the
     // Distribution depends on the bucket as origin → cycle.
@@ -576,18 +598,25 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       { originPath: "/_assets" },
     );
 
-    const serverOrigin = new origins.HttpOrigin(serverOriginDomain, {
-      protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
-      // Tell OpenNext the public host (custom domain). With no custom domain
-      // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
-      ...(appDomain
-        ? { customHeaders: { "x-forwarded-host": appDomain } }
-        : {}),
-    });
+    // Lock the Lambda Function URLs to CloudFront with Origin Access Control.
+    // The URLs are authType AWS_IAM (see addFunctionUrl above); OAC makes
+    // CloudFront SigV4-sign every origin request and auto-grants
+    // lambda:InvokeFunctionUrl scoped to this distribution. This closes the
+    // previously-open, unauthenticated public Function URLs (a direct hit that
+    // bypassed CloudFront — and could forge x-forwarded-host — now returns 403).
+    const serverOrigin = origins.FunctionUrlOrigin.withOriginAccessControl(
+      serverFnUrl,
+      {
+        // Tell OpenNext the public host (custom domain). With no custom domain
+        // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
+        ...(appDomain
+          ? { customHeaders: { "x-forwarded-host": appDomain } }
+          : {}),
+      },
+    );
 
-    const imageOrigin = new origins.HttpOrigin(imageOriginDomain, {
-      protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
-    });
+    const imageOrigin =
+      origins.FunctionUrlOrigin.withOriginAccessControl(imageFnUrl);
 
     // Cache policies
     const serverCachePolicy = new cloudfront.CachePolicy(
@@ -633,7 +662,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // IMPORTANT: Do NOT forward the Host header — Lambda Function URLs
     // reject requests where Host doesn't match their own domain, returning
     // {"Message":null}. Instead, we pass the real host via x-forwarded-host
-    // (set as a custom header on the origin — see HttpOrigin customHeaders).
+    // (set as a custom header on the origin — see FunctionUrlOrigin customHeaders).
     //
     // Use the AWS-managed AllViewerExceptHostHeader policy which forwards
     // all viewer headers, cookies, and query strings BUT excludes the Host
@@ -649,6 +678,61 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // CloudFront Function for geo header injection.
     const serverOriginRequestPolicy =
       cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER;
+
+    // -------------------------------------------------------------------
+    // WAFv2 — edge firewall for the distribution
+    // -------------------------------------------------------------------
+    // The SSR app is publicly reachable; the bare Function URLs gave it no edge
+    // rate-limiting or bot protection. Attach a WebACL with the AWS managed
+    // common rule set and a per-IP rate limit. CLOUDFRONT-scoped WebACLs must
+    // live in us-east-1 — this stack is pinned there (env-config REGION) because
+    // its ACM cert is consumed directly by CloudFront, so this is always valid.
+    const webAcl = new wafv2.CfnWebACL(this, "WebAcl", {
+      name: name("ChapterFlowWebAcl"),
+      scope: "CLOUDFRONT",
+      defaultAction: { allow: {} },
+      visibilityConfig: {
+        cloudWatchMetricsEnabled: true,
+        metricName: name("ChapterFlowWebAcl"),
+        sampledRequestsEnabled: true,
+      },
+      rules: [
+        {
+          name: "AWSManagedCommonRuleSet",
+          priority: 1,
+          overrideAction: { none: {} },
+          statement: {
+            managedRuleGroupStatement: {
+              vendorName: "AWS",
+              name: "AWSManagedRulesCommonRuleSet",
+            },
+          },
+          visibilityConfig: {
+            cloudWatchMetricsEnabled: true,
+            metricName: "AWSManagedCommonRuleSet",
+            sampledRequestsEnabled: true,
+          },
+        },
+        {
+          // Per-IP rate limit: block a source IP sending >2000 requests in any
+          // rolling 5-minute window (baseline volumetric/bot mitigation).
+          name: "RateLimitPerIp",
+          priority: 2,
+          action: { block: {} },
+          statement: {
+            rateBasedStatement: {
+              limit: 2000,
+              aggregateKeyType: "IP",
+            },
+          },
+          visibilityConfig: {
+            cloudWatchMetricsEnabled: true,
+            metricName: "RateLimitPerIp",
+            sampledRequestsEnabled: true,
+          },
+        },
+      ],
+    });
 
     this.distribution = new cloudfront.Distribution(this, "Distribution", {
       comment: "ChapterFlow OpenNext",
@@ -737,20 +821,13 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         : {}),
       priceClass: cloudfront.PriceClass.PRICE_CLASS_100,
       httpVersion: cloudfront.HttpVersion.HTTP2_AND_3,
-      errorResponses: [
-        {
-          httpStatus: 403,
-          responseHttpStatus: 200,
-          responsePagePath: "/",
-          ttl: cdk.Duration.seconds(0),
-        },
-        {
-          httpStatus: 404,
-          responseHttpStatus: 200,
-          responsePagePath: "/",
-          ttl: cdk.Duration.seconds(0),
-        },
-      ],
+      webAclId: webAcl.attrArn,
+      // NOTE: deliberately NO errorResponses mapping 403/404 → 200 "/".
+      // CloudFront custom error responses fire on the ORIGIN status regardless
+      // of path, so rewriting 4xx to a 200 homepage would corrupt every JSON
+      // 403/404 the API legitimately returns (account_deleted, chapter_locked,
+      // book_not_found, admin 404s) and turn removed deep links into soft-404s.
+      // OpenNext serves the Next.js not-found page with a real 404 status.
     });
 
     // -------------------------------------------------------------------
