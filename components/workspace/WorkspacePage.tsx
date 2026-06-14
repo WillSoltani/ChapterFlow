@@ -14,6 +14,7 @@ import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
+import { PartnerProgressCard } from "@/app/book/home/components/PartnerProgressCard";
 import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
@@ -646,6 +647,18 @@ function DashboardContent({
           )}
         </div>
       </SectionWrapper>
+
+      {/* Section 5b: Reading Partner (accountability) — only once the reader is
+          past brand-new, so a first-time empty dashboard isn't cluttered. */}
+      {!isNewUser && (
+        <SectionWrapper
+          {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+        >
+          <div className="mt-9">
+            <PartnerProgressCard enabled />
+          </div>
+        </SectionWrapper>
+      )}
 
       {/* Section 6: Personalized Discovery */}
       {showDiscovery && (
