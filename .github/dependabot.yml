@@ -1,0 +1,54 @@
+version: 2
+updates:
+  # Root Next.js app (npm)
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      # Collapse the noisy minor/patch churn into one PR per week.
+      app-minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    labels:
+      - dependencies
+    commit-message:
+      prefix: "deps"
+
+  # AWS CDK infra (npm)
+  - package-ecosystem: npm
+    directory: "/infra"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      infra-minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    labels:
+      - dependencies
+      - infra
+    commit-message:
+      prefix: "deps(infra)"
+
+  # GitHub Actions used by the CI/deploy workflows
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      actions-all:
+        patterns:
+          - "*"
+    labels:
+      - dependencies
+      - ci
+    commit-message:
+      prefix: "ci"
