@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 
 /**
  * Public book-request intake endpoint.
@@ -54,6 +54,185 @@ function jsonError(status: number, error: string, message: string) {
   return NextResponse.json({ ok: false, error, message }, { status });
 }
 
+// --- Abuse controls --------------------------------------------------------
+//
+// This endpoint is intentionally public (logged-out readers must be able to
+// request a book), so it cannot lean on the per-user DynamoDB rate markers the
+// authenticated /app/api/book/* routes use. Instead it self-limits with the
+// same atomic conditional-increment counter pattern as the AI rate limiter
+// (app/app/api/book/books/[bookId]/ask/route.ts), keyed on a fixed time window
+// plus either the caller's IP (per-source cap) or a global bucket (SES cap).
+
+const RATE_WINDOW_SECONDS = 60 * 60; // fixed 1-hour window
+const MAX_REQUESTS_PER_IP = 10; // submissions per source IP, per window
+const MAX_TEAM_EMAILS = 60; // total SES notifications, per window (all IPs)
+
+// Local-dev fallback only (no BOOK_TABLE_NAME). A single dev process is fine;
+// production always has the table, so the weak cross-instance semantics here
+// never apply in prod.
+const memoryCounters = new Map<string, { count: number; resetAt: number }>();
+
+function memoryReserve(key: string, max: number): boolean {
+  const now = Date.now();
+  const slot = memoryCounters.get(key);
+  if (!slot || now >= slot.resetAt) {
+    memoryCounters.set(key, {
+      count: 1,
+      resetAt: now + RATE_WINDOW_SECONDS * 1000,
+    });
+    return true;
+  }
+  if (slot.count >= max) return false;
+  slot.count += 1;
+  return true;
+}
+
+// Trusted proxy hops (CloudFront, plus any edge layer) in front of this app.
+// The real client IP is the X-Forwarded-For entry this many positions from the
+// RIGHT — the one our own edge appended. The leftmost entries are supplied by
+// the client and MUST NOT be trusted for throttling: an attacker could rotate a
+// fake leftmost token to mint a fresh limiter bucket per request. Override via
+// env if the deployment adds/removes a hop (too low → clients collapse into one
+// bucket and over-throttle; too high → re-introduces the spoofable left side).
+const TRUSTED_PROXY_HOPS = Number(process.env.RATE_LIMIT_TRUSTED_PROXY_HOPS) || 1;
+
+function readClientIp(req: Request): string | null {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) {
+    const chain = forwarded
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean);
+    if (chain.length > 0) {
+      // Trust the Nth entry from the right (appended by our edge), never the
+      // leftmost client-controlled token.
+      const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
+      return chain[idx] ?? chain[chain.length - 1];
+    }
+  }
+  const realIp = req.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+  const viewer = req.headers.get("cloudfront-viewer-address")?.trim();
+  if (viewer) {
+    const host = viewer.split(":")[0]?.trim();
+    if (host) return host;
+  }
+  return null;
+}
+
+function hashIp(ip: string): string {
+  // Hash so the limiter partition key never stores a raw IP.
+  return createHash("sha256").update(`book-request:${ip}`).digest("base64url");
+}
+
+// A conditional-write rejection can surface with the marker on either `name`
+// (SDK class) or `__type` (wire field); match both, mirroring the repo-wide
+// isConditionalCheckFailed helpers (e.g. _lib/repo.ts).
+function isConditionalCheckFailed(err: unknown): boolean {
+  if (!err || typeof err !== "object") return false;
+  const rec = err as Record<string, unknown>;
+  return (
+    rec.name === "ConditionalCheckFailedException" ||
+    rec.__type === "ConditionalCheckFailedException"
+  );
+}
+
+/**
+ * Atomically reserve one slot in the current window for (scope, key). Returns
+ * true when the request is allowed, false when the window's cap is exhausted.
+ *
+ * A single conditional UpdateCommand (mirroring the authenticated AI rate
+ * limiter) serializes concurrent requests even across Lambda instances; the
+ * per-window item self-expires via the table's `ttl` attribute.
+ */
+async function reserveSlot(
+  scope: string,
+  key: string,
+  max: number,
+  // Direction on an UNEXPECTED limiter failure (not a cap rejection). The per-IP
+  // throttle fails OPEN — it is a guard, not the source of truth, so a limiter
+  // outage must not block a legitimate reader (persist() still decides whether
+  // the request is saved). The global email cap passes failClosed=true: it is
+  // the ONLY backstop against SES fan-out and the request is already persisted,
+  // so suppressing a notification on an outage is harmless; an unbounded send is
+  // not.
+  failClosed = false,
+): Promise<boolean> {
+  const tableName = process.env.BOOK_TABLE_NAME;
+  if (!tableName) return memoryReserve(`${scope}#${key}`, max);
+
+  const windowStart =
+    Math.floor(Date.now() / 1000 / RATE_WINDOW_SECONDS) * RATE_WINDOW_SECONDS;
+  try {
+    const { ddbDoc } = await import("@/app/app/api/_lib/aws");
+    const { UpdateCommand } = await import("@aws-sdk/lib-dynamodb");
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: { PK: `REQLIMIT#${scope}#${key}`, SK: `WINDOW#${windowStart}` },
+        UpdateExpression:
+          "SET #count = if_not_exists(#count, :zero) + :one, entity = :entity, updatedAt = :now, #ttl = :ttl",
+        ConditionExpression: "attribute_not_exists(#count) OR #count < :max",
+        ExpressionAttributeNames: { "#count": "count", "#ttl": "ttl" },
+        ExpressionAttributeValues: {
+          ":zero": 0,
+          ":one": 1,
+          ":max": max,
+          ":entity": "BOOK_REQUEST_RATELIMIT",
+          ":now": new Date().toISOString(),
+          ":ttl": windowStart + RATE_WINDOW_SECONDS * 2,
+        },
+      }),
+    );
+    return true;
+  } catch (err) {
+    if (isConditionalCheckFailed(err)) {
+      return false; // window cap reached
+    }
+    // Unexpected limiter failure: log and apply the configured fail direction.
+    console.warn("book_request_ratelimit_failed", { scope, err });
+    return !failClosed;
+  }
+}
+
+/**
+ * Optional Cloudflare Turnstile verification. Inert (always passes) until
+ * TURNSTILE_SECRET_KEY is configured, so the server can be wired ahead of the
+ * form. Once configured, a missing/invalid token is rejected; a verification
+ * outage fails OPEN (the IP + global caps still apply) so a Cloudflare incident
+ * cannot take the intake form down.
+ */
+async function verifyCaptcha(
+  obj: Record<string, unknown>,
+  ip: string | null,
+): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true;
+
+  const token =
+    cleanString(obj.turnstileToken, 2048) ||
+    cleanString(obj["cf-turnstile-response"], 2048);
+  if (!token) return false;
+
+  try {
+    const params = new URLSearchParams({ secret, response: token });
+    if (ip) params.set("remoteip", ip);
+    const res = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params,
+      },
+    );
+    const data = (await res.json()) as { success?: boolean };
+    return data?.success === true;
+  } catch (err) {
+    console.warn("book_request_captcha_failed", err);
+    return true;
+  }
+}
+
 export async function POST(req: Request): Promise<NextResponse> {
   let body: unknown;
   try {
@@ -69,11 +248,54 @@ export async function POST(req: Request): Promise<NextResponse> {
   const email = cleanString(obj.email, MAX.email);
   const note = cleanString(obj.note, MAX.note);
 
+  // Honeypot: the public form renders a hidden field a human never sees or
+  // fills (see HANDOFF for the field names). Bots that auto-populate every
+  // input trip it. Respond with the normal success shape but persist nothing
+  // and send no email, so the bot cannot tell its submission was dropped.
+  if (cleanString(obj.website, 1) || cleanString(obj.company, 1)) {
+    return NextResponse.json(
+      {
+        ok: true,
+        requestId: randomUUID(),
+        createdAt: new Date().toISOString(),
+      },
+      { status: 201 },
+    );
+  }
+
   if (title.length < 2) {
     return jsonError(400, "invalid_title", "Please enter the book title.");
   }
   if (!EMAIL_RE.test(email)) {
     return jsonError(400, "invalid_email", "Please enter a valid email address.");
+  }
+
+  const clientIp = readClientIp(req);
+
+  // Per-IP throttle BEFORE any expensive work (DynamoDB write, optional captcha
+  // verification, SES email): a single source is capped to MAX_REQUESTS_PER_IP
+  // per window; over that we 429 without persisting or notifying.
+  const withinIpLimit = await reserveSlot(
+    "ip",
+    clientIp ? hashIp(clientIp) : "unknown",
+    MAX_REQUESTS_PER_IP,
+  );
+  if (!withinIpLimit) {
+    return jsonError(
+      429,
+      "rate_limited",
+      "You’ve sent several requests recently. Please try again in a little while.",
+    );
+  }
+
+  // Optional CAPTCHA, placed after the per-IP throttle so a flood cannot amplify
+  // outbound siteverify calls.
+  if (!(await verifyCaptcha(obj, clientIp))) {
+    return jsonError(
+      403,
+      "captcha_failed",
+      "Please complete the verification challenge and try again.",
+    );
   }
 
   const record: BookRequestRecord = {
@@ -85,9 +307,7 @@ export async function POST(req: Request): Promise<NextResponse> {
     createdAt: new Date().toISOString(),
     source: "website",
     userAgent: req.headers.get("user-agent")?.slice(0, 400) || undefined,
-    ip:
-      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()?.slice(0, 64) ||
-      undefined,
+    ip: clientIp?.slice(0, 64) || undefined,
   };
 
   try {
@@ -101,8 +321,14 @@ export async function POST(req: Request): Promise<NextResponse> {
     );
   }
 
-  // Best-effort team notification — never blocks or fails the request.
-  void notifyTeam(record);
+  // Best-effort team notification — never blocks or fails the request, and is
+  // gated behind a GLOBAL per-window email cap so even a distributed burst
+  // across many IPs cannot fan out unbounded SES sends (cost / quota /
+  // reputation / inbox flooding). The request is already persisted above, so a
+  // suppressed notification only delays team visibility, it never loses data.
+  if (await reserveSlot("email", "global", MAX_TEAM_EMAILS, /* failClosed */ true)) {
+    void notifyTeam(record);
+  }
 
   return NextResponse.json(
     { ok: true, requestId: record.requestId, createdAt: record.createdAt },
