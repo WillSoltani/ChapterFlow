@@ -67,7 +67,7 @@ export default function CookiePolicyPage() {
                 </tr>
                 <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                   <td className="py-2 pr-4 font-mono text-[13px]">cf_device</td>
-                  <td className="py-2 pr-4">Hashed device identifier for abuse prevention. Does not contain personal information.</td>
+                  <td className="py-2 pr-4">Randomly generated device identifier for abuse prevention. An opaque random value that does not contain personal information.</td>
                   <td className="py-2">1 year</td>
                 </tr>
               </tbody>
