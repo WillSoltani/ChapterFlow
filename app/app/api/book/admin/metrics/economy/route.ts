@@ -15,6 +15,9 @@ import {
 } from "@/app/app/api/book/_lib/admin-metrics";
 
 export const runtime = "nodejs";
+// computeEconomyHealth scans the main table for balance distribution — give it
+// headroom so the scan doesn't hit the default timeout and fall back to zeros.
+export const maxDuration = 60;
 
 const FALLBACK_METRICS: EconomyHealthMetrics = {
   computedAt: new Date().toISOString(),
