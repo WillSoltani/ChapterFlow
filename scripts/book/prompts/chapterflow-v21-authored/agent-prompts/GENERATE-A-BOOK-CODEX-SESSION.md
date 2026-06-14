@@ -55,7 +55,7 @@ before authoring, not in repair.
 
 ## Rules
 - Always let `book-status`'s `next:` line decide the next step — don't guess the order.
-- One chapter author = one reserved-name row. Never reuse names across chapters or books.
+- One chapter author = one reserved-name row. Never reuse a name across CHAPTERS of the same book; names MAY repeat across different books — that's fine.
 - Do not QC or publish in THIS session — QC must run in a separate fresh session
   (the author never grades its own work). Stop at `phase: qc` and hand off.
 - No editing chapters to dodge a gate; fix the real field and re-run the gate.

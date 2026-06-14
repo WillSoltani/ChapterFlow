@@ -52,6 +52,31 @@ test("qc-key-derive-v2 requires confidence, source facts, and reason length", ()
   assert.match(errors, /sourceFactIds/);
 });
 
+test("qc-key-derive-v2 rejects an unfilled choiceIndex:null instead of coercing it to 0", () => {
+  // The review-packet skeleton seeds choiceIndex:null; Number(null)===0 used to
+  // pass validation as a silent answer index 0 (a wrong-key-catch hole). An
+  // unfilled index must FAIL, not mean 0.
+  const result = validateSubmission(BOOK, ROUND, "keyA", {
+    schemaVersion: "qc-key-derive-v2",
+    bookId: BOOK,
+    roundId: ROUND,
+    role: "keyA",
+    chapters: [{
+      chapterNumber: 1,
+      packHash: "pack",
+      answers: [{
+        questionIndex: 0,
+        choiceIndex: null,
+        confidence: "high",
+        reason: "A forty-plus character derivation reason long enough to pass the reason length check.",
+        sourceFactIds: ["f1"],
+      }],
+    }],
+  });
+  assert.equal(result.ok, false);
+  assert.match((result as any).errors.join("\n"), /choiceIndex must be a non-negative integer/);
+});
+
 test("qc-sweep-submission-v1 PASS requires all checked families", () => {
   const result = validateSubmission(BOOK, ROUND, "sweep", {
     schemaVersion: "qc-sweep-submission-v1",

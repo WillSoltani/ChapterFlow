@@ -3,7 +3,7 @@
 Before promoting a book, work from `scripts/book/prompts/chapterflow-v21-authored`
 and verify that no-api QC artifacts are fresh.
 
-If `publish-after-qc` or `promote-book` blocks because the latest QC round returned
+If `publish` or `promote-book` blocks because the latest QC round returned
 REVISE, inspect the evidence before launching another repair loop:
 
 ```bash

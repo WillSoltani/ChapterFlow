@@ -180,10 +180,11 @@ export function usedNamesInBook(bookId: string): Set<string> {
   return used;
 }
 
-/** Bank names already used by any OTHER book in state/chapters — the
- *  cross-book exclusion set. Scans every chapter file once (~325 files,
- *  fast enough for plan time). Only BANK members count: junk capitalized
- *  tokens from prose must not poison the exclusion. */
+/** Bank names already used by any OTHER book in state/chapters — INFORMATIONAL
+ *  ONLY (the diagnostics.crossBookReused count). Names may repeat across books by
+ *  owner policy, so this is NOT excluded from the pool. Scans every chapter file
+ *  once (fast enough for plan time). Only BANK members count: junk capitalized
+ *  tokens from prose must not poison the count. */
 export function bankNamesUsedByOtherBooks(bookId: string): Set<string> {
   const bank = new Set(loadNameBank());
   const used = new Set<string>();

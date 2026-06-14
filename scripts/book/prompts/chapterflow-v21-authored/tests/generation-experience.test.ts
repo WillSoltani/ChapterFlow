@@ -6,11 +6,11 @@
  */
 
 import assert from "node:assert/strict";
-import { rmSync } from "fs";
+import { mkdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { PIPELINE_DIR, STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
+import { PIPELINE_DIR, STATE_CHAPTERS, makeChapter, runCli, writeFixtureBook } from "./helpers.js";
 import { runDoctorChecks } from "../src/lifecycle/doctor.js";
 import { computeBookStatus } from "../src/lifecycle/bookStatus.js";
 
@@ -66,6 +66,23 @@ test("book-status: an un-QC'd book is never publishable and points past generati
     assert.ok(["generating (2/2 written)", "gating", "qc"].includes(s.phase), `unexpected phase: ${s.phase}`);
     // The next command must drive PAST generation (gate / qc-auto), not loop research.
     assert.match(s.nextCommand, /gate-chapter|qc-auto|book-gate/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("book-status honors its Exit-0 contract on a corrupt chapter (degrades, never crashes)", () => {
+  try {
+    cleanup();
+    // A valid chapter + a half-written/corrupt sibling (the documented metadata-
+    // drift failure mode). loadBookChapters throws; book-status must NOT crash.
+    writeFixtureBook(STATE_CHAPTERS, [makeChapter(BOOK, 1)]);
+    mkdirSync(STATE_CHAPTERS, { recursive: true });
+    writeFileSync(resolve(STATE_CHAPTERS, `${BOOK}-ch02.v21-native.chapter.json`), "{ this is not valid json", "utf8");
+    const cli = runCli(["book-status", BOOK]);
+    assert.equal(cli.status, 0, "book-status must exit 0 even on a corrupt chapter (it's a status read)");
+    assert.match(cli.out, /could not read status|BOOK STATUS/);
+    assert.match(cli.out, /doctor/, "should point the operator at doctor to diagnose");
   } finally {
     cleanup();
   }

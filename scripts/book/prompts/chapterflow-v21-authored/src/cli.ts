@@ -925,7 +925,7 @@ async function runPublish(args: string[], flags: Record<string, string | boolean
     const { computeBookStatus } = await import("./lifecycle/bookStatus.js");
     const v = computeBookStatus(bookId).variety;
     if (v && v.notes.length > 0) {
-      console.log("cross-book variety (advisory — does not block):");
+      console.log("variety (advisory — does not block):");
       for (const n of v.notes) console.log(`  ⚠ ${n}`);
     }
   } catch { /* advisory only */ }
@@ -969,7 +969,9 @@ async function runStampAuthor(args: string[], flags: Record<string, string | boo
 
 /** `book-status "<book name or id>"` — the whole lifecycle in one view (research →
  *  written → gate-clean → QC'd → publishable) plus the single exact next command.
- *  Read-only. Exit 0 always (it's a status read, not a gate). */
+ *  Read-only: a resolvable read never fails the command (exit 0, even on a corrupt
+ *  chapter — it degrades to an error line and points at `doctor`). Exit 2 only on a
+ *  missing argument. */
 async function runBookStatus(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const input = args.join(" ").trim();
   if (!input) {
@@ -979,10 +981,21 @@ async function runBookStatus(args: string[], flags: Record<string, string | bool
   const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
   const resolved = resolveBookIdentifier(input);
   const bookId = resolved.ok === false ? input : resolved.bookId;
+  if (resolved.ok === false) {
+    console.log(`note: could not resolve "${input}" to a known book — showing status for the raw id "${bookId}".`);
+  }
   const { computeBookStatus, formatBookStatus } = await import("./lifecycle/bookStatus.js");
-  const status = computeBookStatus(bookId);
-  if (flags["json"] === true) console.log(JSON.stringify(status, null, 2));
-  else console.log(formatBookStatus(status));
+  try {
+    const status = computeBookStatus(bookId);
+    if (flags["json"] === true) console.log(JSON.stringify(status, null, 2));
+    else console.log(formatBookStatus(status));
+  } catch (err) {
+    // A status read must never crash with a raw stack (the documented corrupt-
+    // chapter failure mode). Degrade to a one-line error and point at doctor.
+    console.log(`BOOK STATUS — ${bookId}`);
+    console.log(`  could not read status: ${(err as Error).message}`);
+    console.log(`  run: npx tsx src/cli.ts doctor ${bookId}`);
+  }
   return 0;
 }
 
@@ -2022,7 +2035,7 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   if (g) return g;
   const input = args.join(" ").trim();
   if (!input || flags["pass"] !== true) {
-    console.error('Usage: qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest]');
+    console.error('Usage: qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]');
     return 2;
   }
   if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") {

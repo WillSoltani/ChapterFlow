@@ -4,8 +4,9 @@
  * catalog-wide stock phrases (the F1/BP13 collision class).
  *
  * It consolidates what already exists but was scattered or unwritten:
- *   - a per-chapter RESERVED NAME allocation (namePlan, cross-book excluded), so
- *     two agents never pick the same protagonist and no name repeats across books;
+ *   - a per-chapter RESERVED NAME allocation (namePlan), unique WITHIN this book, so
+ *     two parallel agents never pick the same protagonist (names MAY repeat across
+ *     DIFFERENT books — owner policy; only within-book uniqueness is enforced);
  *   - a BANNED-PHRASE REGISTRY (genuinely new): the house tics, the book's own
  *     forbiddenMoves, the banned "salting" connectives, and — the catalog tell —
  *     the signature phrases that already recur across shipped books.
@@ -73,8 +74,8 @@ export type AuthoringGuardrails = {
 export function buildAuthoringGuardrails(bookId: string, opts: { chapters?: number } = {}): AuthoringGuardrails {
   const count = opts.chapters ?? chapterCount(bookId);
   if (count < 1) throw new Error(`Cannot build guardrails for ${bookId}: no chapter index or chapters on disk. Pass --chapters <N>.`);
-  // forceFresh so the sheet proposes a clean reserved pool (cross-book excluded),
-  // not an echo of names already on disk.
+  // forceFresh so the sheet proposes a clean reserved pool (unique within this
+  // book), not an echo of names already on disk.
   const plan = planNames(bookId, 1, count, 7, { forceFresh: true });
   const brief = loadBrief(bookId) as { forbiddenMoves?: string[] } | null;
   return {

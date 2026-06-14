@@ -255,8 +255,12 @@ function validateKeyDerive(bookId: string, roundId: string, role: SubmissionRole
       const choiceIndex = Number(ans?.choiceIndex);
       const reason = String(ans?.reason ?? "");
       const sourceFactIds = Array.isArray(ans?.sourceFactIds) ? ans.sourceFactIds.map(String).filter(Boolean) : [];
-      if (!Number.isInteger(questionIndex) || questionIndex < 0) errors.push(`chapters[${ci}].answers[${ai}].questionIndex must be a non-negative integer`);
-      if (!Number.isInteger(choiceIndex) || choiceIndex < 0) errors.push(`chapters[${ci}].answers[${ai}].choiceIndex must be a non-negative integer`);
+      // Require an actual number — NOT a coercible value. Number(null)===0 and
+      // Number("")===0 would otherwise let an unfilled `choiceIndex: null` (the
+      // review-packet skeleton seed) pass as a silent answer index 0, which would
+      // corrupt the wrong-key catch. An unfilled index must FAIL, not mean 0.
+      if (typeof ans?.questionIndex !== "number" || !Number.isInteger(ans.questionIndex) || ans.questionIndex < 0) errors.push(`chapters[${ci}].answers[${ai}].questionIndex must be a non-negative integer`);
+      if (typeof ans?.choiceIndex !== "number" || !Number.isInteger(ans.choiceIndex) || ans.choiceIndex < 0) errors.push(`chapters[${ci}].answers[${ai}].choiceIndex must be a non-negative integer`);
       if (!confidenceValid(ans?.confidence)) errors.push(`chapters[${ci}].answers[${ai}].confidence is required and must be 0..1, low, medium, or high`);
       if (reason.trim().length < 40) errors.push(`chapters[${ci}].answers[${ai}].reason must be at least 40 characters`);
       if (sourceFactIds.length === 0) errors.push(`chapters[${ci}].answers[${ai}].sourceFactIds must cite at least one source fact`);
