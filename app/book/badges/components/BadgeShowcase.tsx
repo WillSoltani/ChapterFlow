@@ -3,7 +3,6 @@
 import { X } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress } from "../lib/badge-types";
-import { getBadgeRarity } from "../lib/badge-utils";
 
 type BadgeShowcaseProps = {
   badges: BadgeWithProgress[];
@@ -35,7 +34,6 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
           const badge = pinnedBadges[i];
 
           if (badge) {
-            const rarity = getBadgeRarity(badge);
             return (
               <div
                 key={badge.id}
@@ -65,13 +63,10 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 <div className="max-w-20">
                   <p className="truncate text-xs font-medium text-(--accent-amber)">{badge.name}</p>
                   {badge.earnedDate && (
-                    <p className="mt-0.5 text-[10px]" style={{ color: "var(--text-tertiary, var(--cf-text-soft))" }}>
+                    <p className="mt-0.5 text-[10px] text-(--cf-text-soft)">
                       {new Date(badge.earnedDate).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
                     </p>
                   )}
-                  <p className="text-[10px]" style={{ color: "var(--text-tertiary, var(--cf-text-soft))" }}>
-                    Earned by {rarity}%
-                  </p>
                 </div>
               </div>
             );
@@ -85,11 +80,8 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 i >= mobileSlots && "hidden md:flex"
               )}
             >
-              <div
-                className="flex h-18 w-18 items-center justify-center rounded-2xl"
-                style={{ border: "2px dashed rgba(255,255,255,0.15)", background: "transparent" }}
-              >
-                <span className="text-lg" style={{ color: "var(--text-tertiary, var(--cf-text-soft))" }}>+</span>
+              <div className="flex h-18 w-18 items-center justify-center rounded-2xl border-2 border-dashed border-(--cf-border)">
+                <span className="text-lg text-(--cf-text-soft)">+</span>
               </div>
               <p className="text-[10px] text-(--cf-text-soft)">Pin a badge</p>
             </div>

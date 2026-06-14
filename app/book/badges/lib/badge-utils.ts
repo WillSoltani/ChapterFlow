@@ -1,13 +1,12 @@
 import type {
-  Badge,
+  BadgeCategory,
   BadgeCategoryGroup,
   BadgeFilter,
-  BadgeProgressStats,
   BadgeTier,
   BadgeWithProgress,
   UserAchievementProfile,
 } from "./badge-types";
-import { BADGE_DEFINITIONS, CATEGORY_META, CATEGORY_ORDER } from "./badge-data";
+import type { BadgeState } from "./badge-ui-definitions";
 
 // ── Level system ────────────────────────────────────────────────────────────
 
@@ -46,28 +45,52 @@ export function getLevel(fp: number) {
   };
 }
 
-// ── Badge evaluation ────────────────────────────────────────────────────────
+// ── Canonical catalog adapter ───────────────────────────────────────────────
+// badge-ui-definitions.ts is the single source of truth for badges; it is
+// evaluated against server-truth earned state by useBadgeSystem (which fetches
+// /me/badges and honors earnedAt). This adapter reshapes a materialized
+// BadgeState into the BadgeWithProgress contract the /book/badges component
+// tree consumes, so one catalog feeds the dashboard, profile, and this page.
 
-export function evaluateBadges(
-  stats: BadgeProgressStats,
-  earnedHistory: Record<string, string>
-): BadgeWithProgress[] {
-  return BADGE_DEFINITIONS.map((badge) => {
-    const { current, target } = badge.evaluate(stats);
-    const isEarned = current >= target;
-    const percentage = target > 0 ? Math.min(100, Math.round((current / target) * 100)) : 0;
-    const isDiscovered = badge.isSecret ? isEarned || Boolean(earnedHistory[badge.id]) : true;
+function deriveTier(badge: BadgeState): BadgeTier {
+  if (badge.tier) return badge.tier.toLowerCase() as BadgeTier;
+  if (badge.prestige >= 4) return "platinum";
+  if (badge.prestige === 3) return "gold";
+  if (badge.prestige === 2) return "silver";
+  return "bronze";
+}
 
-    return {
-      ...badge,
-      isEarned,
-      earnedDate: earnedHistory[badge.id] ?? null,
-      isDiscovered,
-      current,
-      target,
-      percentage,
-    };
-  });
+export function badgeStateToBadgeWithProgress(badge: BadgeState): BadgeWithProgress {
+  const current = badge.progressValue;
+  const target = badge.targetValue;
+  const percentage = target > 0 ? Math.min(100, Math.round((current / target) * 100)) : 0;
+  const isSecret = Boolean(badge.hiddenUntilDiscovered);
+  const isDiscovered = !isSecret || badge.earned || Boolean(badge.earnedAt) || current > 0;
+  const tier = deriveTier(badge);
+
+  return {
+    id: badge.id,
+    name: badge.name,
+    description: badge.description,
+    narrative: badge.whyItMatters,
+    category: badge.category,
+    tier,
+    icon: badge.icon,
+    fpValue: badge.flowPoints,
+    isSecret,
+    criteria: { type: "count", description: badge.howToEarn, target },
+    relatedBadgeIds: badge.nextTierId ? [badge.nextTierId] : [],
+    tieredProgression: badge.nextTierId
+      ? { currentTier: tier, nextTierBadgeId: badge.nextTierId }
+      : undefined,
+    evaluate: () => ({ current, target }),
+    isEarned: badge.earned,
+    earnedDate: badge.earnedAt,
+    isDiscovered,
+    current,
+    target,
+    percentage,
+  };
 }
 
 // ── Profile computation ─────────────────────────────────────────────────────
@@ -94,6 +117,74 @@ export function computeProfile(
     showcaseBadgeIds,
   };
 }
+
+// ── Category metadata (canonical 9 categories) ──────────────────────────────
+
+export const CATEGORY_ORDER: BadgeCategory[] = [
+  "Getting Started",
+  "Consistency",
+  "Reading Depth",
+  "Mastery",
+  "Books",
+  "Examples",
+  "Notes",
+  "Exploration",
+  "Premium",
+];
+
+export const CATEGORY_META: Record<BadgeCategory, { title: string; description: string }> = {
+  "Getting Started": {
+    title: "Getting Started",
+    description: "Early wins that turn setup into real reading momentum.",
+  },
+  Consistency: {
+    title: "Consistency & Streaks",
+    description: "Building the rhythm of a reading life.",
+  },
+  "Reading Depth": {
+    title: "Reading Depth",
+    description: "Moving beyond quick skims into stronger engagement and retention.",
+  },
+  Mastery: {
+    title: "Mastery & Depth",
+    description: "Performance and review milestones that reflect real understanding.",
+  },
+  Books: {
+    title: "Books & Completion",
+    description: "Finishing what you start — the hardest part.",
+  },
+  Examples: {
+    title: "Examples & Application",
+    description: "Putting ideas to work in personal, school, and work contexts.",
+  },
+  Notes: {
+    title: "Notes & Reflection",
+    description: "The quiet work that makes reading stick.",
+  },
+  Exploration: {
+    title: "Exploration & Discovery",
+    description: "Expanding the boundaries of what you read.",
+  },
+  Premium: {
+    title: "Premium",
+    description: "Subtle markers that reward advanced usage without punishing free readers.",
+  },
+};
+
+export const FILTER_OPTIONS: { value: BadgeFilter; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "earned", label: "Earned" },
+  { value: "locked", label: "Locked" },
+  { value: "Getting Started", label: "Getting Started" },
+  { value: "Consistency", label: "Consistency" },
+  { value: "Reading Depth", label: "Depth" },
+  { value: "Mastery", label: "Mastery" },
+  { value: "Books", label: "Books" },
+  { value: "Examples", label: "Examples" },
+  { value: "Notes", label: "Notes" },
+  { value: "Exploration", label: "Exploration" },
+  { value: "Premium", label: "Premium" },
+];
 
 // ── Category grouping ───────────────────────────────────────────────────────
 
@@ -238,27 +329,6 @@ export function toggleShowcaseBadge(badgeId: string): string[] {
   return next;
 }
 
-// ── Earned history storage ──────────────────────────────────────────────────
-
-const EARNED_KEY = "cf:badge-earned-v2";
-
-export function getEarnedHistory(): Record<string, string> {
-  if (typeof window === "undefined") return {};
-  try {
-    const raw = window.localStorage.getItem(EARNED_KEY);
-    return raw ? (JSON.parse(raw) as Record<string, string>) : {};
-  } catch {
-    return {};
-  }
-}
-
-export function persistEarnedBadge(badgeId: string, earnedAt: string): void {
-  const history = getEarnedHistory();
-  if (history[badgeId]) return;
-  history[badgeId] = earnedAt;
-  window.localStorage.setItem(EARNED_KEY, JSON.stringify(history));
-}
-
 // ── Last-seen timestamp (for celebration gating) ────────────────────────────
 
 const LAST_SEEN_KEY = "cf:badges-last-seen";
@@ -271,15 +341,6 @@ export function getLastSeenTimestamp(): string | null {
 export function setLastSeenTimestamp(): void {
   if (typeof window === "undefined") return;
   window.localStorage.setItem(LAST_SEEN_KEY, new Date().toISOString());
-}
-
-// ── Rarity (mock) ───────────────────────────────────────────────────────────
-
-export function getBadgeRarity(badge: BadgeWithProgress): number {
-  if (!badge.isEarned) return 0;
-  const base = badge.tier === "platinum" ? 2 : badge.tier === "gold" ? 8 : badge.tier === "silver" ? 18 : 34;
-  const jitter = ((badge.id.charCodeAt(0) * 7 + badge.id.charCodeAt(1) * 3) % 20) - 10;
-  return Math.max(1, Math.min(95, base + jitter));
 }
 
 // ── Tier border colors (inline styles) ──────────────────────────────────────

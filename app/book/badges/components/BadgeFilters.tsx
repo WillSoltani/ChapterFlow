@@ -2,7 +2,7 @@
 
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeFilter, BadgeWithProgress } from "../lib/badge-types";
-import { FILTER_OPTIONS } from "../lib/badge-data";
+import { FILTER_OPTIONS } from "../lib/badge-utils";
 
 type BadgeFiltersProps = {
   activeFilter: BadgeFilter;

@@ -4,6 +4,7 @@ import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/li
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, eventParticipationSk, nowIso } from "./keys";
 import { awardFlowPoints } from "./flow-points-repo";
+import { putBadgeAward } from "./repo";
 import { createNotification } from "./notifications-repo";
 import type { EventDefinition, EventParticipationItem } from "./types";
 
@@ -129,7 +130,7 @@ export async function recordEventChapter(
     }),
   );
 
-  // Award IP and send notification on completion (fire-and-forget)
+  // Award IP, persist the completion badge, and notify (fire-and-forget).
   if (justCompleted && eventDef) {
     awardFlowPoints(tableName, {
       userId,
@@ -138,6 +139,17 @@ export async function recordEventChapter(
       sourceId: eventId,
       metadata: { eventTitle: eventDef.title },
     }).catch(() => {});
+
+    // Persist the badge award so it survives in the user's record (parallels
+    // journey-repo). Previously only the badgeAwarded flag was set, so the
+    // badge was claimed but never stored.
+    if (eventDef.badge?.badgeId) {
+      putBadgeAward(tableName, {
+        userId,
+        badgeId: eventDef.badge.badgeId,
+        earnedAt: now,
+      }).catch(() => {});
+    }
 
     createNotification(tableName, {
       userId,

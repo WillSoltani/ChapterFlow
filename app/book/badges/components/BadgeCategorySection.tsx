@@ -13,13 +13,7 @@ type BadgeCategorySectionProps = {
   onBadgeClick: (badge: BadgeWithProgress) => void;
 };
 
-function getCategoryPillContent(group: BadgeCategoryGroup): { text: string; tone: "earned" | "progress" | "discover" | "secret" } {
-  const isSecret = group.id === "secret";
-  if (isSecret) {
-    const discoveredCount = group.badges.filter((b) => b.isDiscovered).length;
-    return { text: `${discoveredCount} of ${group.badges.length} discovered`, tone: "secret" };
-  }
-
+function getCategoryPillContent(group: BadgeCategoryGroup): { text: string; tone: "earned" | "progress" | "discover" } {
   const earnedCount = group.badges.filter((b) => b.isEarned).length;
   if (earnedCount > 0) {
     return { text: `${earnedCount} of ${group.badges.length}`, tone: "earned" };
@@ -42,7 +36,6 @@ export function BadgeCategorySection({
   const reduced = useReducedMotion();
 
   const totalIP = group.badges.reduce((sum, b) => sum + b.fpValue, 0);
-  const isSecret = group.id === "secret";
   const pill = getCategoryPillContent(group);
 
   return (
@@ -82,12 +75,10 @@ export function BadgeCategorySection({
         </div>
 
         <div className="flex shrink-0 items-center gap-3">
-          {!isSecret && (
-            <span className="hidden items-center gap-1 text-xs sm:inline-flex" style={{ color: "var(--accent-violet)" }}>
-              <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L8.5 8.5 2 9.27l4.5 5.05L5.82 22 12 18.77 18.18 22l-.68-7.68L22 9.27 15.5 8.5z"/></svg>
-              {totalIP} IP
-            </span>
-          )}
+          <span className="hidden items-center gap-1 text-xs sm:inline-flex" style={{ color: "var(--accent-violet)" }}>
+            <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L8.5 8.5 2 9.27l4.5 5.05L5.82 22 12 18.77 18.18 22l-.68-7.68L22 9.27 15.5 8.5z"/></svg>
+            {totalIP} IP
+          </span>
           <motion.div
             animate={{ rotate: open ? 180 : 0 }}
             transition={{ duration: 0.2 }}
