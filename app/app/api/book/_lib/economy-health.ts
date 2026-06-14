@@ -62,10 +62,16 @@ export async function computeEconomyHealth(
   const now = new Date();
   const periodStart = new Date(now.getTime() - periodDays * 24 * 60 * 60 * 1000).toISOString();
 
-  // Scan all engagement records to get balance distribution
-  // In production, this should use a GSI or materialized view for efficiency
+  // Scan engagement records to get balance distribution.
+  // In production, this should use a GSI or materialized view for efficiency.
+  // Bound the scan with a page cap + Limit (like estimatePeriodFlows below) so it
+  // cannot run unbounded inside a request handler: an uncapped FilterExpression
+  // scan reads every item in the table and can exceed the Lambda timeout.
   const balances: number[] = [];
   let lastEvaluatedKey: Record<string, unknown> | undefined;
+
+  const maxPages = 10;
+  let pages = 0;
 
   do {
     const res = await ddbDoc.send(
@@ -75,6 +81,7 @@ export async function computeEconomyHealth(
         ExpressionAttributeValues: { ":entity": "BOOK_USER_ENGAGEMENT" },
         ProjectionExpression: "points, lifetimeEarned, lifetimeSpent, updatedAt",
         ExclusiveStartKey: lastEvaluatedKey,
+        Limit: 1000,
       })
     );
 
@@ -84,7 +91,8 @@ export async function computeEconomyHealth(
     }
 
     lastEvaluatedKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
-  } while (lastEvaluatedKey);
+    pages++;
+  } while (lastEvaluatedKey && pages < maxPages);
 
   if (balances.length === 0) {
     return {
