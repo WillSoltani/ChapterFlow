@@ -11,6 +11,7 @@ import {
   LogOut,
   Map,
   MoreHorizontal,
+  NotebookPen,
   Settings,
   Settings2,
   Shield,
@@ -28,7 +29,7 @@ import { ThemeModeToggle } from "@/components/ThemeModeToggle";
 import { NotificationBell } from "@/app/book/_components/NotificationBell";
 import { performLogout } from "@/lib/logout";
 
-export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" | "badges" | "events" | "settings" | "profile";
+export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" | "badges" | "events" | "notebook" | "settings" | "profile";
 
 type TopNavProps = {
   name: string;
@@ -75,6 +76,7 @@ const desktopOnlyNavItems: NavItem[] = [
 const moreNavItems: NavItem[] = [
   ...desktopOnlyNavItems,
   { id: "saved", label: "Read Next", href: "/book/saved", icon: Bookmark },
+  { id: "notebook", label: "Notebook", href: "/book/notebook", icon: NotebookPen },
   { id: "settings", label: "Settings", href: "/book/settings", icon: Settings },
 ];
 
@@ -408,6 +410,13 @@ export function TopNav({
                     >
                       <Bookmark className="h-3.5 w-3.5 text-(--cf-text-3)" />
                       Read Next
+                    </Link>
+                    <Link
+                      href="/book/notebook"
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
+                    >
+                      <NotebookPen className="h-3.5 w-3.5 text-(--cf-text-3)" />
+                      Notebook
                     </Link>
                     <Link
                       href="/book/settings"
