@@ -2,14 +2,50 @@
 
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Users, CheckCircle, AlertCircle } from "lucide-react";
+import { Users, CheckCircle2, AlertCircle } from "lucide-react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import type { BookClientError } from "@/app/book/_lib/book-api";
+import { AuthScreen } from "@/components/auth/AuthScreen";
 
 type AcceptResult = {
   pair: { userId: string; partnerId: string; pairedAt: string };
   accepted: boolean;
 };
+
+function PairCard({
+  icon,
+  tone = "accent",
+  children,
+}: {
+  icon: React.ReactNode;
+  tone?: "accent" | "success" | "danger";
+  children: React.ReactNode;
+}) {
+  const ring =
+    tone === "danger"
+      ? "bg-(--cf-danger-soft) text-(--cf-danger-text)"
+      : tone === "success"
+        ? "bg-(--cf-success-soft) text-(--cf-success-text)"
+        : "bg-(--cf-accent-soft) text-(--cf-accent)";
+  return (
+    <div className="w-full max-w-md rounded-2xl border border-(--cf-border) bg-(--cf-surface) p-8 text-center shadow-(--cf-shadow-lg)">
+      <div className={`mx-auto mb-5 grid h-14 w-14 place-items-center rounded-2xl ${ring}`}>
+        {icon}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function PrimaryButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  const { className = "", ...rest } = props;
+  return (
+    <button
+      {...rest}
+      className={`inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110 ${className}`}
+    />
+  );
+}
 
 function PairAcceptInner() {
   const router = useRouter();
@@ -20,7 +56,7 @@ function PairAcceptInner() {
     code ? "idle" : "error",
   );
   const [errorMessage, setErrorMessage] = useState(
-    code ? "" : "Invalid or expired invite link.",
+    code ? "" : "This invite link is missing its code. Ask your partner to share it again.",
   );
 
   const handleAccept = useCallback(async () => {
@@ -36,13 +72,13 @@ function PairAcceptInner() {
       const msg =
         err && typeof err === "object" && "message" in err
           ? String((err as BookClientError).message)
-          : "Failed to accept invite.";
+          : "We couldn't accept this invite.";
       setErrorMessage(msg);
       setState("error");
     }
   }, [code]);
 
-  // Auto-accept on mount when code is present (ref guards against strict-mode double-fire)
+  // Auto-accept on mount when code is present (ref guards strict-mode double-fire)
   const startedRef = useRef(false);
   useEffect(() => {
     if (code && state === "idle" && !startedRef.current) {
@@ -51,75 +87,45 @@ function PairAcceptInner() {
     }
   }, [code, state, handleAccept]);
 
-  return (
-    <div className="flex min-h-[60vh] items-center justify-center px-4">
-      <div className="w-full max-w-sm rounded-2xl bg-(--cf-card) p-8 text-center shadow-xl">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-(--cf-accent-soft)">
-          <Users className="h-6 w-6 text-(--cf-accent)" />
-        </div>
+  let body: React.ReactNode;
+  if (state === "success") {
+    body = (
+      <PairCard icon={<CheckCircle2 className="h-7 w-7" />} tone="success">
+        <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">You&apos;re reading partners!</h1>
+        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">
+          Head to your dashboard to see your partner and keep each other accountable.
+        </p>
+        <PrimaryButton onClick={() => router.push("/dashboard")}>Go to dashboard</PrimaryButton>
+      </PairCard>
+    );
+  } else if (state === "error") {
+    body = (
+      <PairCard icon={<AlertCircle className="h-7 w-7" />} tone="danger">
+        <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Reading partner invite</h1>
+        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">{errorMessage}</p>
+        <PrimaryButton onClick={() => router.push("/dashboard")}>Go to dashboard</PrimaryButton>
+      </PairCard>
+    );
+  } else {
+    body = (
+      <PairCard icon={<Users className="h-7 w-7" />} tone="accent">
+        <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Reading partner invite</h1>
+        <p className="text-[14px] text-(--cf-text-3)">Accepting your invite…</p>
+      </PairCard>
+    );
+  }
 
-        <h1 className="text-2xl font-bold text-(--cf-text-1) mb-2">
-          Reading Partner Invite
-        </h1>
-
-        {state === "loading" && (
-          <p className="text-sm text-(--cf-text-3)">
-            Accepting invite...
-          </p>
-        )}
-
-        {state === "success" && (
-          <div className="space-y-4">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/15">
-              <CheckCircle className="h-5 w-5 text-emerald-400" />
-            </div>
-            <p className="text-lg font-semibold text-(--cf-accent)">
-              You&apos;re now reading partners!
-            </p>
-            <p className="text-sm text-(--cf-text-3)">
-              Head to your dashboard to see your partner and stay accountable.
-            </p>
-            <button
-              onClick={() => router.push("/book/home")}
-              className="cf-btn cf-btn-primary w-full"
-            >
-              Go to Dashboard
-            </button>
-          </div>
-        )}
-
-        {state === "error" && (
-          <div className="space-y-4">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-red-500/15">
-              <AlertCircle className="h-5 w-5 text-red-400" />
-            </div>
-            <p className="text-sm text-red-400">{errorMessage}</p>
-            <button
-              onClick={() => router.push("/book/home")}
-              className="cf-btn cf-btn-secondary w-full"
-            >
-              Go to Dashboard
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  return <AuthScreen>{body}</AuthScreen>;
 }
 
 function PairAcceptFallback() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center px-4">
-      <div className="w-full max-w-sm rounded-2xl bg-(--cf-card) p-8 text-center shadow-xl">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-(--cf-accent-soft)">
-          <Users className="h-6 w-6 text-(--cf-accent)" />
-        </div>
-        <h1 className="text-2xl font-bold text-(--cf-text-1) mb-2">
-          Reading Partner Invite
-        </h1>
-        <p className="text-sm text-(--cf-text-3)">Loading...</p>
-      </div>
-    </div>
+    <AuthScreen>
+      <PairCard icon={<Users className="h-7 w-7" />} tone="accent">
+        <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Reading partner invite</h1>
+        <p className="text-[14px] text-(--cf-text-3)">Loading…</p>
+      </PairCard>
+    </AuthScreen>
   );
 }
 
