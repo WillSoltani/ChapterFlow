@@ -15,6 +15,12 @@ type UserSettings = {
       channels?: { email?: boolean; push?: boolean };
       streakReminderEnabled?: boolean;
     };
+    // Streak tracking mode chosen in Settings ("off" | "standard" | "flexible"),
+    // persisted by the settings page under settings.extended. Read here so a user
+    // who turned streak tracking off is not nudged about an at-risk streak.
+    extended?: {
+      streakMode?: string;
+    };
   };
 };
 
@@ -50,6 +56,16 @@ export async function processStreakAtRisk(
   for (const item of userItems) {
     const notifications = item.settings?.notifications;
     if (notifications?.streakReminderEnabled === false) {
+      skipped++;
+      continue;
+    }
+
+    // L79 defense-in-depth: honor "Streak mode = Off" even if a stale
+    // streakReminderEnabled=true survives (e.g. a user who disabled streak
+    // tracking before that toggle was coupled to it, or a settings write race).
+    // Server-side streak accrual keeps the STREAK record alive regardless of
+    // mode, so without this such a user would keep getting at-risk nudges.
+    if (item.settings?.extended?.streakMode === "off") {
       skipped++;
       continue;
     }

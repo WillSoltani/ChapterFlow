@@ -25,6 +25,7 @@ import { useToast } from "@/app/book/hooks/useToast";
 import { Toast } from "@/app/book/components/ui/Toast";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { fetchBookJson } from "@/app/book/_lib/book-api";
 
 // New settings hooks
 import { useSettingsPage } from "./hooks/useSettingsPage";
@@ -80,6 +81,17 @@ import type {
   ColorBlindMode,
 } from "./types/settings";
 import type { LearningStyle, QuizIntensity, MotivationStyle } from "@/app/book/hooks/useOnboardingState";
+
+// H26: The reading-reminder cron resolves each user's send time from the
+// device timezone stored in settings.notifications.reminderTimezone. Fall back
+// to "UTC" (the cron's own default) if the browser can't report a zone.
+function detectReminderTimezone(): string {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+  } catch {
+    return "UTC";
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Main Component
@@ -250,6 +262,72 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
     onboarding.reminderTime,
   ]);
 
+  // H26: The reading-reminder cron reads the per-user send time exclusively from
+  // settings.notifications.reminderTimeLocal / reminderTimezone (defaulting to
+  // 20:00 UTC when unset). The TimePicker historically only updated the
+  // onboarding snapshot (persisted as profile.reminderTime, which no Lambda
+  // reads), so every custom time silently fired at 20:00 UTC. Persist the
+  // canonical fields directly: they live outside BookPreferencesState, so they
+  // ride a dedicated PATCH rather than the preferences full-state sync — the
+  // settings allow-list already accepts them and mergeSettings preserves them.
+  const persistReminderSchedule = useCallback((timeLocal: string) => {
+    fetchBookJson("/app/api/book/me/settings", {
+      method: "PATCH",
+      body: JSON.stringify({
+        settings: {
+          notifications: {
+            reminderTimeLocal: timeLocal,
+            reminderTimezone: detectReminderTimezone(),
+          },
+        },
+      }),
+    }).catch(() => {});
+  }, []);
+
+  // H26 backfill: users who chose a reminder time before this fix have
+  // profile.reminderTime but no settings.notifications.reminderTimeLocal/zone,
+  // so the cron defaults them to 20:00 UTC. On first load, if reminders are on
+  // and the canonical fields are absent, seed them from the onboarding time plus
+  // the device timezone. Deferred past the preferences hook's debounced
+  // full-state sync (≤500ms) so the read sees a settled row and the write lands
+  // last (those keys are never carried by the full-state sync, so it can only
+  // preserve them, never overwrite).
+  const reminderBackfilledRef = useRef(false);
+  useEffect(() => {
+    if (!hydrated || reminderBackfilledRef.current) return;
+    if (!preferences.notifications.readingReminderEnabled) return;
+    reminderBackfilledRef.current = true;
+    let cancelled = false;
+    const timer = window.setTimeout(() => {
+      fetchBookJson<{
+        settings: {
+          notifications?: { reminderTimeLocal?: unknown; reminderTimezone?: unknown };
+        } | null;
+      }>("/app/api/book/me/settings")
+        .then((payload) => {
+          if (cancelled) return;
+          const notif = payload.settings?.notifications;
+          if (
+            typeof notif?.reminderTimeLocal === "string" &&
+            typeof notif?.reminderTimezone === "string"
+          ) {
+            return;
+          }
+          persistReminderSchedule(onboarding.reminderTime || "20:00");
+        })
+        .catch(() => {});
+    }, 1200);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [
+    hydrated,
+    preferences.notifications.readingReminderEnabled,
+    onboarding.reminderTime,
+    persistReminderSchedule,
+  ]);
+
   // Derived state
   const isPro = billingState.payload?.entitlement.plan === "PRO";
   const plan = billingState.payload?.entitlement.plan ?? "FREE";
@@ -331,6 +409,14 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
   function handleStreakModeChange(mode: StreakMode) {
     patchExt({ streakMode: mode, profileCustomized: true });
     setOnboardingStreakMode(mode !== "off");
+    // L79: turning streak tracking off must also stop "streak about to expire"
+    // nudges. The streak-at-risk cron gates on settings.notifications
+    // .streakReminderEnabled, so flip it off here. Leave it untouched when
+    // re-enabling so we never silently turn a notification back on — the user
+    // can re-enable Streak alerts themselves.
+    if (mode === "off") {
+      patchSection("notifications", { streakReminderEnabled: false });
+    }
     if (mode !== "off") triggerCelebration("streak-enabled");
     const labels = { off: "Off", standard: "Standard", flexible: "Flexible" };
     announce(`Streak mode changed to ${labels[mode]}`);
@@ -1209,7 +1295,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   >
                     <TimePicker
                       value={hydrated ? onboarding.reminderTime || "20:00" : "20:00"}
-                      onChange={(v) => { setReminderTime(v); announce(`Reminder time changed to ${v}`); triggerToast(); }}
+                      onChange={(v) => { setReminderTime(v); persistReminderSchedule(v); announce(`Reminder time changed to ${v}`); triggerToast(); }}
                       label="Reminder time"
                     />
                   </SettingRow>
@@ -1361,20 +1447,6 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                 checked={hydrated ? preferences.privacy.analyticsParticipation : false}
                 onChange={(v) => { patchSection("privacy", { analyticsParticipation: v }); announce(`Usage analytics ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Share usage analytics"
-              />
-            </SettingRow>
-
-            <Divider />
-
-            <SettingRow
-              id="recommendations"
-              label="Personalized recommendations"
-              description="Use your reading history to suggest books you'll love."
-            >
-              <ToggleSwitch
-                checked={hydrated ? preferences.privacy.personalizedRecommendations : true}
-                onChange={(v) => { patchSection("privacy", { personalizedRecommendations: v }); announce(`Personalized recommendations ${v ? "enabled" : "disabled"}`); triggerToast(); }}
-                label="Personalized recommendations"
               />
             </SettingRow>
 
