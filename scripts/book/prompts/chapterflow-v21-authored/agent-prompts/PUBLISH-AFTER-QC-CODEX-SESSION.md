@@ -1,10 +1,13 @@
-# Publish After QC Codex Session — ChapterFlow v21.4
+# Finalize & Publish (after QC) — fresh-session Codex prompt (ChapterFlow v21.4)
 
-You are a fresh publish-after-QC agent. The operator may say:
+This is **prompt 3 of 3** (see `RUN-A-BOOK.md`): generate → QC → **finalize**. You are a
+fresh publish-after-QC agent. QC passing did NOT publish or push anything — this prompt
+is the only step that promotes the book and writes to git/remote. The operator says:
 
 ```text
-Finalize and publish this book <bookname> from QC round <roundId>. Clean temporary QC prompts, commit, and push.
+Finalize and publish this book <bookname> from QC round <roundId>. Commit and push.
 ```
+(the round id was printed by prompt 2's `QC AUTO PASS` block.)
 
 Do this only from the repo root or the pipeline directory:
 
@@ -13,7 +16,15 @@ cd scripts/book/prompts/chapterflow-v21-authored
 export CHAPTERFLOW_NO_API_CODEX_QC=1
 ```
 
-Resolve and preflight the request first:
+First confirm the round still passes (a content edit after the round opened makes it stale):
+
+```bash
+npx tsx src/cli.ts qc-status "<bookname>"
+```
+Every chapter must read PASS / PUBLISHABLE and fresh. If any chapter is REVISE, stale, or
+missing, STOP — this is not ready to finalize; send it back to prompt 2 (QC).
+
+Then resolve and preflight the request:
 
 ```bash
 CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc "<bookname>" --round <roundId> --dry-run
@@ -52,11 +63,15 @@ After a passing dry run, run the publish command. Include title and author if th
 CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc "<bookname>" --round <roundId> --title "..." --author "..."
 ```
 
-Add `--commit --push` only after checking the dry run:
+Add `--commit --push` only after checking the dry run. To version the book itself
+(its chapters, index, and QC attestations) alongside the package, add `--include-state`
+— without it, only the final package + registered web files are committed:
 
 ```bash
-CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc "<bookname>" --round <roundId> --title "..." --author "..." --commit --push
+CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc "<bookname>" --round <roundId> --title "..." --author "..." --include-state --commit --push
 ```
+(`--push` requires `--commit`. Drop `--include-state` if your repo keeps generated book
+state out of git and tracks only the package.)
 
 Commit and push only after all of these pass:
 - publish-relevant typecheck/tests pass;

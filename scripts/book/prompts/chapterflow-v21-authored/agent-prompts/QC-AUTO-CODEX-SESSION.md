@@ -1,8 +1,10 @@
 # QC Auto Codex Session — ChapterFlow v21.3
 
-> For the full QC **and publish** flow in one fresh session, use
-> [QC-AND-PUBLISH-CODEX-SESSION.md](QC-AND-PUBLISH-CODEX-SESSION.md). This file is
-> the QC-only autopilot it builds on.
+> For the operator-facing QC prompt (prompt 2 of the generate → QC → finalize flow),
+> use [QC-CODEX-SESSION.md](QC-CODEX-SESSION.md); to finalize after a pass, use
+> [PUBLISH-AFTER-QC-CODEX-SESSION.md](PUBLISH-AFTER-QC-CODEX-SESSION.md). See
+> [RUN-A-BOOK.md](RUN-A-BOOK.md) for the three-prompt runbook. This file is the
+> QC-only autopilot those build on.
 
 You are the master QC orchestrator for a no-API ChapterFlow QC run.
 

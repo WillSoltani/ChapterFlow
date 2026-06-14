@@ -36,9 +36,11 @@ What each phase means and what `next:` will point you at:
 - **generating** → keep writing chapters via `next-task`.
 - **gating** → a chapter or the book gate has blockers; `next:` points at the exact
   `gate-chapter` / `book-gate` command. Fix the named fields and re-run.
-- **qc** → all chapters are gate-clean; hand off to the QC + publish session
-  (paste QC-AND-PUBLISH-CODEX-SESSION.md into a NEW session — QC must be independent).
-- **ready to publish** → QC passed; the QC session runs `publish`.
+- **qc** → all chapters are gate-clean; hand off to the QC session
+  (paste QC-CODEX-SESSION.md into a NEW session — QC must be independent). That's
+  prompt 2 of 3; see RUN-A-BOOK.md for the full generate → QC → finalize flow.
+- **ready to publish** → QC passed; a separate finalize session commits/pushes/publishes
+  (PUBLISH-AFTER-QC-CODEX-SESSION.md). This session never publishes.
 
 ## 3. Before writing chapters — lay down the collision guardrails (once per book)
 As soon as the chapter index exists (so the chapter count is known), generate the
@@ -57,5 +59,5 @@ before authoring, not in repair.
 - Always let `book-status`'s `next:` line decide the next step — don't guess the order.
 - One chapter author = one reserved-name row. Never reuse a name across CHAPTERS of the same book; names MAY repeat across different books — that's fine.
 - Do not QC or publish in THIS session — QC must run in a separate fresh session
-  (the author never grades its own work). Stop at `phase: qc` and hand off.
+  (the author never grades its own work). Stop at `phase: qc` and hand off to prompt 2.
 - No editing chapters to dodge a gate; fix the real field and re-run the gate.
