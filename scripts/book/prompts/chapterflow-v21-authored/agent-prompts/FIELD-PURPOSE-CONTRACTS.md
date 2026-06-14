@@ -29,12 +29,14 @@ construction; a field with nothing real to say falls back on the skeletons below
 2. Anchor it to one named source case so the stakes are real, not generic.
 3. State the live tradeoff as a fork the person must take now ("must tell the room whether the problem is entitled kids — or a scarcity culture").
 4. Keep the concept *off-stage*: it is what the choice illustrates, not a prop anyone handles.
+5. Vary the scene SHAPE across the chapter's six examples and FIT the staging to the topic. The dealt venues span kinds (domestic, relational, civic, occupational, commercial, recreational) — a personal/relational subject belongs at a kitchen table, on a phone call, or in a text thread, not at a workplace prop. A venue can be a relationship channel, not only a physical place.
 
 **REJECT:**
 - A concept label made the actor or object — "Cleo lifts a productive vulnerability folder," "Aisha studies scarcity." Ideas can't be held or studied; this fails the reader because it gives them a label to memorize instead of a moment to inhabit (pairs with AC1).
 - A fixed concept-label HEADER reused every chapter — "Aisha, 8:40 a.m. at the rink: Scarcity." The repeated stamp reads as a slot-fill, signals nothing happened, and trains the reader to skim past every scene identically.
 - No decision — a static description or a restated source summary. With no fork to resolve, the reader has nothing to test the concept against.
 - Detached from any named case — a hypothetical "someone, somewhere." Ungrounded stakes feel invented, so the lesson doesn't transfer.
+- The SAME scene skeleton across most examples — every scenario opening "<Name> <tactile-verb>s at/beside a <occupational prop>" (a microphone stand, a mat bay, a service window). Different venues wearing one identical shape still read as templated, and on a personal topic the workplace staging is incongruous; QC caps example_coherence at YELLOW for it (staging uniformity).
 
 **POSITIVE:** "Aisha sits at 7:15 p.m. in a Houston school auditorium with a note card that reads, 'Why are kids so self-absorbed?' The PTA president wants a clean answer before the open mic. Aisha must tell the room whether the problem is entitled children — or a scarcity culture that makes young people fight to seem special."
 **NEGATIVE:** "Aisha, 8:40 a.m. at the auditorium: Scarcity. She studies a productive-scarcity folder." (concept-label header + concept-as-object; no decision, no scene)

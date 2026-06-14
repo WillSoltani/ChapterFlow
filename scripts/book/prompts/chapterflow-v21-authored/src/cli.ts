@@ -1703,7 +1703,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const venueIds = venuePlan.allocation[ch.number] ?? [];
     const venueLines = venueIds.map((venue, i) => `    ${i + 1}. ${venue}`).join("\n");
     const venueLine = venueIds.length
-      ? `• VENUES: example[i] is set at the dealt venue[i] and example[i].planSpec.venue MUST equal that exact venue string (a venue is a PLACE, not a script — furnish it from the scene's own logic). Never relocate two examples to the same venue.\n${venueLines}\n`
+      ? `• VENUES: example[i] is set at the dealt venue[i] and example[i].planSpec.venue MUST equal that exact venue string (a venue is a PLACE or a relationship CHANNEL — a phone call, a text thread — not a script; furnish it from the scene's own logic). Never relocate two examples to the same venue. FIT the staging to THIS chapter's topic: a personal/relational subject belongs at a kitchen table, a phone call, or a text thread, NOT a workplace prop. And VARY the scene SHAPE across the six examples — do NOT open every scenario as "<Name> <tactile-verb>s at/beside a <work prop>"; the dealt venues already span kinds (domestic, relational, civic, occupational, commercial, recreational), so let each scene's grammar differ.\n${venueLines}\n`
       : "";
 
     // Source specifics: the sidecar's real anchors, pasted so the writer
