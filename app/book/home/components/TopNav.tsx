@@ -33,7 +33,9 @@ export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" 
 type TopNavProps = {
   name: string;
   avatarUrl?: string | null;
-  activeTab: BookNavTab;
+  /** Highlighted nav tab. Omit on secondary surfaces (e.g. Notebook) that have
+   *  no entry in the main nav so nothing is mis-highlighted. */
+  activeTab?: BookNavTab;
   searchQuery: string;
   onSearchChange: (value: string) => void;
   searchInputRef: MutableRefObject<HTMLInputElement | null>;

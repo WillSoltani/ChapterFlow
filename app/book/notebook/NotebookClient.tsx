@@ -108,7 +108,6 @@ export function NotebookClient() {
       <TopNav
         name={viewerIdentity.displayName || "Reader"}
         avatarUrl={viewerIdentity.avatarDataUrl}
-        activeTab="home"
         searchQuery=""
         onSearchChange={() => {}}
         searchInputRef={{ current: null }}
