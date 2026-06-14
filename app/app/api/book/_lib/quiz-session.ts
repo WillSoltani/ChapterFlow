@@ -425,8 +425,25 @@ export function buildQuizClientSession(params: {
           status === "ready" || !resultMatchesCurrentQuestionCount
             ? null
             : result?.selectedChoiceId ?? null,
+        // SECURITY (H3 — answer-key leak): correctChoiceId is the canonical
+        // answer and is emitted even for an unanswered ("ready") attempt, so
+        // any authenticated user can read it from the network tab and answer
+        // perfectly. It CANNOT be gated here (the way selectedChoiceId/isCorrect
+        // above are gated) because the live answering UX grades each click
+        // CLIENT-side during the ready phase and structurally needs this value:
+        // QuizPanel.handleAnswer + ImmediateQuestionCard (inline correct/incorrect
+        // feedback and the correct-answer reveal), quizScoring.scoreSessionLocally
+        // (offline provisional scoring), and buildCarryForwardAnswers (retake
+        // carry-forward) all compare against question.correctChoiceId. Withholding
+        // it for "ready" with no replacement compares every answer to undefined and
+        // breaks the product. Closing the leak requires moving per-answer grading
+        // server-side — approach (a): a /check round-trip that returns only
+        // { isCorrect } and never the key, plus rewiring QuizPanel/useQuizSession/
+        // quizScoring — which lives outside this file. See the H3 handoff report.
+        // (correctIndex was a redundant plaintext copy of the answer with no client
+        // consumer and has been dropped from the payload; correctChoiceId remains
+        // the operative, still-open leak until approach (a) lands.)
         correctChoiceId: question.correctChoiceId,
-        correctIndex: question.correctIndex,
         isCorrect:
           status === "ready" || !resultMatchesCurrentQuestionCount
             ? undefined

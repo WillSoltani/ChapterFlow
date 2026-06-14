@@ -96,53 +96,6 @@ export async function getUserAccessibleQuiz(params: {
   return { progress, quiz };
 }
 
-export function sanitizeQuizForClient(
-  quiz: ChapterQuizPayload
-): Omit<ChapterQuizPayload, "questions" | "retryQuestions"> & {
-  questions: Array<{
-    questionId: string;
-    prompt: string;
-    choices: string[];
-    explanation?: string;
-  }>;
-  retryQuestions?: Array<{
-    questionId: string;
-    prompt: string;
-    choices: string[];
-    explanation?: string;
-  }>;
-} {
-  const sanitizeQuestion = (q: ChapterQuizPayload["questions"][number]) => {
-    const prompt =
-      typeof q.prompt === "string"
-        ? q.prompt
-        : typeof q.stem === "string"
-          ? q.stem
-          : "";
-    const choices = Array.isArray(q.choices)
-      ? q.choices
-      : Array.isArray(q.options)
-        ? q.options
-        : [];
-
-    return {
-      questionId: q.questionId,
-      prompt,
-      choices,
-      explanation: typeof q.explanation === "string" ? q.explanation : undefined,
-    };
-  };
-
-  return {
-    chapterId: quiz.chapterId,
-    number: quiz.number,
-    title: quiz.title,
-    passingScorePercent: quiz.passingScorePercent,
-    questions: quiz.questions.map(sanitizeQuestion),
-    retryQuestions: (quiz.retryQuestions ?? []).map(sanitizeQuestion),
-  };
-}
-
 /**
  * Build quiz questions from the local book-package JSON.
  * Returns null when the package or chapter is not found locally.
