@@ -13,10 +13,11 @@ import {
 } from "@/app/app/api/book/_lib/keys";
 import { GetCommand, TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
+import { GIFT_PRO_DAYS } from "../../_constants";
 
 export const runtime = "nodejs";
 
-const PRO_DAYS = 7;
+const PRO_DAYS = GIFT_PRO_DAYS;
 
 export async function POST(
   req: Request,

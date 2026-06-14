@@ -8,7 +8,11 @@ export async function GET(
 ) {
   const { code } = await params;
   const normalized = code.trim().toUpperCase();
-  const destination = new URL("/book", req.url);
+
+  // Land on a branded interstitial that actually acknowledges the referral,
+  // instead of dumping the friend straight into the login wall with no context.
+  // The attribution cookie is consumed at first profile save (onboarding).
+  const destination = new URL("/ref", req.url);
   const response = NextResponse.redirect(destination);
 
   if (normalized) {
