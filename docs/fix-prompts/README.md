@@ -1,8 +1,12 @@
-# ChapterFlow — fix prompts (by category) · branch `main`
+# ChapterFlow — fix prompts (by category)
 
-Ready-to-dispatch agent prompts for every confirmed finding from the production-readiness re-audit of `main` (e90937368): 200 findings + 2 re-confirmed carry-overs the automated pass missed. Each prompt is self-contained — copy one block, give it to one agent. IDs match `docs/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md`.
+Ready-to-dispatch agent prompts for every confirmed finding from the production-readiness re-audit of `main`: 200 findings + 2 re-confirmed carry-overs. Each prompt is self-contained — copy one block, give it to one agent. It tells the agent which branch to use, how to verify, and how to commit. IDs match `docs/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md`.
 
-> ⚠ **Do these first (launch blockers):** `X1` (Stripe webhook dead in prod), `X2` (CloudFront 403/404→200), `C1` (wrong canonical domain), `H4` (chapter-unlock bypass), `H3` (quiz answer-key leak), `H12` (convertEmptyValues breaks paid first-book unlock), `H1` (admin MRR ~12×), `H15`/`H14` (email host + DynamoDB TTL).
+**▶ Read [DISPATCH.md](DISPATCH.md) first** — branch model, parallel-vs-sequential, the worktree spawner, and the same-file collision groups.
+
+**Target branch for all fixes:** `audit/prod-readiness-2026-06-14`
+
+> ⚠ **Launch blockers — do these first:** `X1`, `X2`, `C1`, `H4`, `H3`, `H12`, `H15`, `H14`, `H1`, `H2`, `H19`, `H20`, `H22`, `H23`, `H26`, `H27`, `H28`.
 
 ## Categories
 
@@ -17,15 +21,6 @@ Ready-to-dispatch agent prompts for every confirmed finding from the production-
 | Accessibility | 5 (1 high, 1 medium, 2 low, 1 polish) | [accessibility.md](accessibility.md) |
 | Dead Code | 12 (1 high, 3 medium, 5 low, 3 polish) | [dead-code.md](dead-code.md) |
 | Maintainability | 20 (3 medium, 8 low, 9 polish) | [maintainability.md](maintainability.md) |
-
-**Dispatch order:** launch blockers above → remaining `high` → `medium` → `low`/`polish`.
-
-## Parallel-safety (same-file collisions — route to one agent / run serially)
-- `H3` + `H4` + quiz/state items (quiz-session.ts, me/books/[bookId]/state).
-- `H5` + `H6` (components/progress/ProgressPage.tsx).
-- `H1` + the MRR/currency mediums (admin/metrics/billing).
-- `H14` + `H15` + `H16` (infra backend-stack + cron).
-- `X2` + the CloudFront/log-retention medium (frontend-stack.ts).
 
 ## All items (id → title)
 

@@ -1,17 +1,19 @@
 # Fix prompts — Dead Code
 
-_12 items (1 high, 3 medium, 5 low, 3 polish). ChapterFlow production-readiness remediation — branch `main` (e90937368)._
+_12 items (1 high, 3 medium, 5 low, 3 polish). ChapterFlow production-readiness remediation. Fixes land on branch `audit/prod-readiness-2026-06-14`. See [DISPATCH.md](DISPATCH.md)._
 
 ## Shared context (every prompt below assumes this)
 
-**App:** ChapterFlow — a Next.js 16 (App Router, React 19) "book learning" web app. **These prompts target the `main` branch** (commit e90937368, the freshly-merged post-UI-overhaul-integration state). Backend = DynamoDB single-table (`app/app/api/book/_lib/repo.ts`) behind Cognito JWT auth (`requireUser`/`requireActiveBookUser`/`requireAdminUser`), Stripe billing, S3 content, CDK infra (`infra/`). API routes live under `app/app/api/book/**` (URL `/app/api/book/**`). Error envelope = `withBookApiErrors`+`BookApiError`.
+**App:** ChapterFlow — Next.js 16 (App Router, React 19) "book learning" web app. Backend = DynamoDB single-table (`app/app/api/book/_lib/repo.ts`) behind Cognito JWT auth (`requireUser`/`requireActiveBookUser`/`requireAdminUser`), Stripe billing, S3 content, CDK infra (`infra/`). API routes live under `app/app/api/book/**` (URL `/app/api/book/**`). Error envelope = `withBookApiErrors`+`BookApiError`.
+
+**BRANCH — read this first:** all fixes land on **`audit/prod-readiness-2026-06-14`**. Each prompt tells the agent to confirm it's on that branch (or a `fix/<ID>` worktree branched off it) before editing, and to commit its single fix when done. See [DISPATCH.md](DISPATCH.md) for how to run agents in parallel safely.
 
 **Rules for every fix agent:**
-1. Work on `main`. Change ONLY the cited files + direct deps. Do NOT touch `scripts/`, `book-packages/`, `content/`, `state/`, `graphify-out/`.
+1. Change ONLY the cited files + direct deps. Do NOT touch `scripts/`, `book-packages/`, `content/`, `state/`, `graphify-out/`.
 2. Match surrounding code style; reuse existing helpers (auth guards, `BookApiError`, repo functions, `keys.ts`, `lib/catalog-stats.ts`, `lib/pricing.ts`).
 3. Never make a security/economy/paywall decision from client-supplied data — the server is the source of truth.
-4. When done: run `npm install` (if deps stale), `npm run typecheck`, `npm run test`, and `npx eslint <changed files>`; report results + a short diff summary. Add/adjust a unit test for any security/money/correctness fix.
-5. Line numbers were accurate at audit time — re-read each file and confirm before editing (other agents may be editing in parallel).
+4. Verify, then commit ONLY your changed files (never `docs/`, `scripts/`, lockfiles you didn't intend). Do not push.
+5. Line numbers were accurate at audit time — re-read each file and confirm before editing.
 
 ---
 
@@ -19,12 +21,18 @@ _12 items (1 high, 3 medium, 5 low, 3 polish). ChapterFlow production-readiness 
 `severity: high` · `effort: medium` · `files: app/book/home/components/PartnerProgressCard.tsx:10, app/book/home/page.tsx:1-5, components/workspace/WorkspacePage.tsx, app/pair/[code]/route.ts`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/H7" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/book/home/components/PartnerProgressCard.tsx:10, app/book/home/page.tsx:1-5, components/workspace/WorkspacePage.tsx, app/pair/[code]/route.ts
 
@@ -43,11 +51,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Add or update a unit test that fails before and passes after the fix.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): H7 — Reading-partner (pairs) feature has no UI entry point — enti"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -56,12 +68,18 @@ VERIFY before reporting done:
 `severity: medium` · `effort: small` · `files: app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:317-348, app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:290-315, app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:86-110, app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:561, app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:571-593`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/M33" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:317-348, app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:290-315, app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:86-110, app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:561, app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList.tsx:571-593
 
@@ -80,11 +98,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): M33 — Reflection-IP award flow in ExamplesList is fully dead (endp"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -93,12 +115,18 @@ VERIFY before reporting done:
 `severity: medium` · `effort: small` · `files: app/book/home/page.tsx:1, app/book/home/components/StarterRecommendationCard.tsx, app/book/home/components/CommitmentFollowUpCard.tsx, app/book/home/components/CurrentlyReadingCard.tsx, app/book/home/components/EventBanner.tsx, app/book/home/components/FlowPointsSection.tsx, app/book/home/components/BookMiniCard.tsx, app/book/home/components/TodaySessionCard.tsx, app/book/home/components/PartnerProgressCard.tsx, app/book/home/components/GoalMeter.tsx, app/book/home/components/JourneyBanner.tsx, app/book/home/components/ReviewDueWidget.tsx`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/M34" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/book/home/page.tsx:1, app/book/home/components/StarterRecommendationCard.tsx, app/book/home/components/CommitmentFollowUpCard.tsx, app/book/home/components/CurrentlyReadingCard.tsx, app/book/home/components/EventBanner.tsx, app/book/home/components/FlowPointsSection.tsx, app/book/home/components/BookMiniCard.tsx, app/book/home/components/TodaySessionCard.tsx, app/book/home/components/PartnerProgressCard.tsx, app/book/home/components/GoalMeter.tsx, app/book/home/components/JourneyBanner.tsx, app/book/home/components/ReviewDueWidget.tsx
 
@@ -117,11 +145,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): M34 — Entire app/book/home/components tree's 11 widgets are dead c"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -130,12 +162,18 @@ VERIFY before reporting done:
 `severity: medium` · `effort: medium` · `files: app/_lib/document-theme.ts:149-150, app/_lib/document-theme.ts:153, app/_lib/document-theme.ts:228, app/globals.css`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/M45" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/_lib/document-theme.ts:149-150, app/_lib/document-theme.ts:153, app/_lib/document-theme.ts:228, app/globals.css
 
@@ -154,11 +192,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): M45 — accentColor, interfaceDensity, focusRingStrength are dead th"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -167,12 +209,18 @@ VERIFY before reporting done:
 `severity: low` · `effort: trivial` · `files: app/auth/callback/route.ts:140, app/auth/refresh/route.ts:132, app/app/api/_lib/auth.ts:14`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/L5" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/auth/callback/route.ts:140, app/auth/refresh/route.ts:132, app/app/api/_lib/auth.ts:14
 
@@ -191,11 +239,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): L5 — access_token cookie is set on every auth/callback+refresh bu"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -204,12 +256,18 @@ VERIFY before reporting done:
 `severity: low` · `effort: trivial` · `files: app/app/api/book/billing/webhook/route.ts:12-21, app/app/api/book/billing/webhook/route.ts:27, app/app/api/book/billing/webhook/route.ts:56-64, app/app/api/book/billing/webhook/route.ts:147-151, app/app/api/book/billing/webhook/route.ts:252-256, app/app/api/book/billing/webhook/route.ts:349-353`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/L11" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/app/api/book/billing/webhook/route.ts:12-21, app/app/api/book/billing/webhook/route.ts:27, app/app/api/book/billing/webhook/route.ts:56-64, app/app/api/book/billing/webhook/route.ts:147-151, app/app/api/book/billing/webhook/route.ts:252-256, app/app/api/book/billing/webhook/route.ts:349-353
 
@@ -228,11 +286,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): L11 — Webhook imports a block of dead symbols left over from the r"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -241,12 +303,18 @@ VERIFY before reporting done:
 `severity: low` · `effort: small` · `files: app/book/_lib/flow-points-economy.ts:33, app/book/_lib/flow-points-economy.ts:82, app/app/api/book/me/reviews/[cardId]/route.ts:19-61`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/L28" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/book/_lib/flow-points-economy.ts:33, app/book/_lib/flow-points-economy.ts:82, app/app/api/book/me/reviews/[cardId]/route.ts:19-61
 
@@ -265,11 +333,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): L28 — review_session_complete IP (10) is defined in the economy bu"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -278,12 +350,18 @@ VERIFY before reporting done:
 `severity: low` · `effort: small` · `files: components/progress/progressMockData.ts:3, components/library/libraryData.ts:86, components/library/libraryData.ts:101, components/progress/ProgressPage.tsx:21, components/progress/ProgressPage.tsx:188`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/L92" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: components/progress/progressMockData.ts:3, components/library/libraryData.ts:86, components/library/libraryData.ts:101, components/progress/ProgressPage.tsx:21, components/progress/ProgressPage.tsx:188
 
@@ -302,11 +380,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): L92 — Dead mock-data modules left in the live tree (progressMockDa"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -315,12 +397,18 @@ VERIFY before reporting done:
 `severity: low` · `effort: small` · `files: app/book/home/page.tsx:4, app/book/home/components/CurrentlyReadingCard.tsx, app/book/home/components/TodaySessionCard.tsx, app/book/home/components/FlowPointsSection.tsx, app/book/home/components/StarterRecommendationCard.tsx, app/book/home/components/CommitmentFollowUpCard.tsx, app/book/home/components/BookMiniCard.tsx, app/book/home/components/EventBanner.tsx, app/book/home/components/GoalMeter.tsx, app/book/home/components/JourneyBanner.tsx, app/book/home/components/PartnerProgressCard.tsx, app/book/home/components/ReviewDueWidget.tsx, app/book/hooks/useBookState.ts, app/book/data/mockProgress.ts`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/L93" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/book/home/page.tsx:4, app/book/home/components/CurrentlyReadingCard.tsx, app/book/home/components/TodaySessionCard.tsx, app/book/home/components/FlowPointsSection.tsx, app/book/home/components/StarterRecommendationCard.tsx, app/book/home/components/CommitmentFollowUpCard.tsx, app/book/home/components/BookMiniCard.tsx, app/book/home/components/EventBanner.tsx, app/book/home/components/GoalMeter.tsx, app/book/home/components/JourneyBanner.tsx, app/book/home/components/PartnerProgressCard.tsx, app/book/home/components/ReviewDueWidget.tsx, app/book/hooks/useBookState.ts, app/book/data/mockProgress.ts
 
@@ -339,11 +427,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): L93 — Unmounted legacy home-screen components (CurrentlyReadingCar"
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -352,12 +444,18 @@ VERIFY before reporting done:
 `severity: polish` · `effort: small` · `files: app/legal/privacy/page.tsx:10, app/legal/terms/page.tsx:10, app/legal/cookies/page.tsx:10, app/legal/refund/page.tsx:12, app/legal/copyright/page.tsx:15, app/legal/data-rights/page.tsx:12, app/globals.css:3`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/P9" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/legal/privacy/page.tsx:10, app/legal/terms/page.tsx:10, app/legal/cookies/page.tsx:10, app/legal/refund/page.tsx:12, app/legal/copyright/page.tsx:15, app/legal/data-rights/page.tsx:12, app/globals.css:3
 
@@ -376,11 +474,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): P9 — prose-legal class applied to every legal article is a no-op "
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -389,12 +491,18 @@ VERIFY before reporting done:
 `severity: polish` · `effort: small` · `files: components/library/libraryData.ts:86, components/library/libraryData.ts:101, components/library/libraryData.ts:1159, components/library/libraryData.ts:1207, components/library/libraryData.ts:1150, components/library/libraryData.ts:1155`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/P14" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: components/library/libraryData.ts:86, components/library/libraryData.ts:101, components/library/libraryData.ts:1159, components/library/libraryData.ts:1207, components/library/libraryData.ts:1150, components/library/libraryData.ts:1155
 
@@ -413,11 +521,15 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): P14 — Dead exported mock constants and helpers in libraryData.ts ("
+Then report: the diff summary + the command output. Do NOT push.
 ```
 
 ---
@@ -426,12 +538,18 @@ VERIFY before reporting done:
 `severity: polish` · `effort: small` · `files: app/book/hooks/useBookPreferences.ts:135-136,244-245,738-744, app/book/settings/BookSettingsClient.tsx:1352-1393`
 
 ```text
-ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app on
-the main branch (Next.js 16 App Router / React 19). Backend = DynamoDB single-table
+ROLE: You are fixing ONE production-readiness issue in the ChapterFlow web app
+(Next.js 16 App Router / React 19). Backend = DynamoDB single-table
 (app/app/api/book/_lib/repo.ts) behind Cognito auth + Stripe; API routes under
 app/app/api/book/**. Reuse existing helpers (auth guards, BookApiError/
 withBookApiErrors, repo functions, keys.ts). Change ONLY the cited files + direct
 deps. Do NOT touch scripts/, book-packages/, content/.
+
+BRANCH: Work on "audit/prod-readiness-2026-06-14". First run:
+  git rev-parse --abbrev-ref HEAD
+If it is not "audit/prod-readiness-2026-06-14" and not a "fix/P17" worktree branched off it, run:
+  git checkout audit/prod-readiness-2026-06-14
+Do NOT create unrelated branches and do NOT switch away mid-task.
 
 FILES: app/book/hooks/useBookPreferences.ts:135-136,244-245,738-744, app/book/settings/BookSettingsClient.tsx:1352-1393
 
@@ -450,9 +568,13 @@ ACCEPTANCE CRITERIA:
 - No regression to adjacent behavior; no unrelated refactors.
 - Existing tests still pass.
 
-VERIFY before reporting done:
-- npm run typecheck   (must pass)
-- npm run test        (must pass)
-- npx eslint <each changed file>   (no new errors)
-- Summarize the change and paste the command output.
+VERIFY (must pass before committing):
+  npm run typecheck
+  npm run test
+  npx eslint <each file you changed>
+
+COMMIT (only after the checks pass):
+  git add <only the files you changed>      # NOT docs/, NOT lockfiles you didn't mean to
+  git commit -m "fix(dead-code): P17 — saveQuizHistory and saveNotes privacy fields exist in the sc"
+Then report: the diff summary + the command output. Do NOT push.
 ```
