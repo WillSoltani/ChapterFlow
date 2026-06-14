@@ -57,20 +57,24 @@ export default function TappableCard({
         cursor: disabled ? "default" : "pointer",
         opacity: disabled ? 0.4 : 1,
         pointerEvents: disabled ? "none" : "auto",
+        // Cyan tint reads on BOTH themes (the old `white 6%` vanished on light).
         backgroundColor: selected
-          ? "color-mix(in srgb, white 6%, transparent)"
+          ? "color-mix(in srgb, var(--accent-cyan) 8%, transparent)"
           : "var(--bg-glass)",
+        // Border stays 1px in both states (no layout-shift hack); selection is
+        // signalled with the accent border + a soft ring instead of a 2px edge.
         border: selected
-          ? "2px solid var(--accent-blue)"
+          ? "1px solid var(--accent-cyan)"
           : "1px solid var(--border-subtle)",
         borderRadius: "var(--radius-lg-val)",
-        padding: selected ? "15px" : "16px", // compensate for thicker border
+        padding: 16,
         minHeight: 48,
-        outline: "none",
+        // No `outline: none` — the global :focus-visible cyan ring must show for
+        // keyboard users.
         transition:
-          "border-color 200ms ease, background-color 150ms ease, box-shadow 200ms ease",
+          "border-color var(--duration-fast) var(--ease-out), background-color var(--duration-micro) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out)",
         boxShadow: selected
-          ? "0 0 20px var(--glow-blue), inset 0 0 12px color-mix(in srgb, var(--accent-cyan) 4%, transparent)"
+          ? "0 0 0 1px color-mix(in srgb, var(--accent-cyan) 40%, transparent), 0 0 20px color-mix(in srgb, var(--accent-cyan) 12%, transparent)"
           : "none",
       }}
     >
@@ -91,14 +95,14 @@ export default function TappableCard({
             width: 22,
             height: 22,
             borderRadius: "50%",
-            backgroundColor: "var(--accent-blue)",
+            backgroundColor: "var(--accent-cyan)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             zIndex: 2,
           }}
         >
-          <Check size={14} color="#fff" strokeWidth={3} />
+          <Check size={14} color="var(--cf-accent-contrast)" strokeWidth={3} />
         </motion.div>
       )}
 

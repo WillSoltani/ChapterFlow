@@ -11,11 +11,12 @@ import {
   useReducedMotion,
   type PanInfo,
 } from "framer-motion";
-import { X, Heart, Clock, Check } from "lucide-react";
+import { X, Heart, Clock, Check, ArrowRight } from "lucide-react";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
 import type { OnboardingBook } from "@/app/onboarding/data/books";
 import { getBookCoverPath } from "@/app/onboarding/data/books";
-import { generateSwipeDeck } from "@/app/onboarding/data/recommendations";
+import { generateSwipeDeck, getTopPicks } from "@/app/onboarding/data/recommendations";
+import { Button } from "@/components/ui/button";
 
 interface StepStarterShelfProps {
   onNext: () => void;
@@ -23,15 +24,16 @@ interface StepStarterShelfProps {
 
 const MAX_PICKS = 3;
 
-function getDifficultyStyle(d: string) {
-  switch (d) {
-    case "Easy":
-      return "bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/20";
-    case "Hard":
-      return "bg-[var(--accent-amber)]/10 text-[var(--accent-amber)] border border-[var(--accent-amber)]/20";
-    default:
-      return "bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/20";
-  }
+// Token-based difficulty tint (works in both themes). Returns a style object —
+// the old `bg-[var(--accent-cyan)]/10` form is invalid Tailwind v4 and the
+// opacity modifier on an arbitrary CSS var is silently dropped.
+function difficultyStyle(d: string): React.CSSProperties {
+  const accent = d === "Hard" ? "var(--accent-amber)" : "var(--accent-cyan)";
+  return {
+    background: `color-mix(in srgb, ${accent} 12%, transparent)`,
+    color: accent,
+    border: `1px solid color-mix(in srgb, ${accent} 25%, transparent)`,
+  };
 }
 
 /* ── BookCoverImage — shows real cover or gradient fallback ── */
@@ -52,6 +54,8 @@ function BookCoverImage({
   titleSize?: number;
 }) {
   const coverPath = getBookCoverPath(book.id);
+  const [imgFailed, setImgFailed] = useState(false);
+  const showImg = coverPath && !imgFailed;
 
   return (
     <div
@@ -66,12 +70,13 @@ function BookCoverImage({
         flexShrink: 0,
       }}
     >
-      {coverPath ? (
+      {showImg ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={coverPath}
           alt={book.title}
           draggable={false}
+          onError={() => setImgFailed(true)}
           style={{
             width: "100%",
             height: "100%",
@@ -312,8 +317,8 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
           {book.category}
         </span>
         <span
-          className={`rounded-full px-3 py-1 text-xs ${getDifficultyStyle(book.difficulty)}`}
-          style={{ fontFamily: "var(--font-dm-sans, sans-serif)" }}
+          className="rounded-full px-3 py-1 text-xs"
+          style={{ ...difficultyStyle(book.difficulty), fontFamily: "var(--font-dm-sans, sans-serif)" }}
         >
           {book.difficulty}
         </span>
@@ -537,6 +542,30 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
 
   const backBooks = deck.slice(currentIndex + 1, currentIndex + 3);
   const selectedCount = selectedBooks.length;
+  const deckEmpty = !frontBook && selectedCount < MAX_PICKS;
+
+  // Deck ran out before MAX_PICKS (e.g. the user swiped left on everything).
+  // Round out the shelf with the top remaining recommendations so the promise
+  // "we'll fill your remaining slots" is actually kept — and the step never
+  // dead-ends on an empty card with no way forward.
+  const fillerPicks = useMemo(
+    () =>
+      deckEmpty
+        ? getTopPicks(
+            interests,
+            motivation,
+            selectedBooks.map((b) => b.id),
+            MAX_PICKS - selectedCount,
+          )
+        : [],
+    [deckEmpty, interests, motivation, selectedBooks, selectedCount],
+  );
+
+  const handleContinueWithPicks = useCallback(() => {
+    const finalShelf = [...selectedBooks, ...fillerPicks].slice(0, MAX_PICKS);
+    setStarterShelf(finalShelf);
+    onNext();
+  }, [selectedBooks, fillerPicks, setStarterShelf, onNext]);
 
   if (isComplete) {
     return <ShelfComplete books={selectedBooks} onDone={handleComplete} />;
@@ -676,31 +705,60 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           )}
         </AnimatePresence>
 
-        {/* Empty state */}
-        {!frontBook && selectedCount < MAX_PICKS && (
+        {/* Empty state — deck exhausted before MAX_PICKS. We round out the
+            shelf with top picks (shown below) so the user is never stranded. */}
+        {deckEmpty && (
           <div
-            className="flex items-center justify-center"
+            className="flex flex-col items-center justify-center text-center"
             style={{
               width: "100%",
               height: "100%",
               borderRadius: 24,
               border: "1px dashed var(--cf-border-strong)",
               background: "var(--cf-surface-muted)",
+              padding: 24,
+              gap: 16,
             }}
           >
             <p
               style={{
-                fontFamily: "var(--font-dm-sans, sans-serif)",
-                fontSize: 15,
-                color: "var(--cf-text-soft)",
-                textAlign: "center",
-                padding: 24,
+                fontFamily: "var(--font-sora, sans-serif)",
+                fontSize: 18,
+                fontWeight: 600,
+                color: "var(--cf-text-1)",
+                margin: 0,
               }}
             >
-              No more books in this set.
-              <br />
-              We&apos;ll fill your remaining slots with our best picks.
+              {selectedCount === 0 ? "We picked a starter set for you" : "We rounded out your shelf"}
             </p>
+            <p
+              style={{
+                fontFamily: "var(--font-dm-sans, sans-serif)",
+                fontSize: 14,
+                color: "var(--cf-text-3)",
+                margin: 0,
+                lineHeight: 1.5,
+                maxWidth: 260,
+              }}
+            >
+              {selectedCount === 0
+                ? "These match your interests — you can swap any of them anytime."
+                : `Added ${fillerPicks.length} top ${fillerPicks.length === 1 ? "pick" : "picks"} to fill your remaining ${fillerPicks.length === 1 ? "slot" : "slots"}.`}
+            </p>
+            {fillerPicks.length > 0 && (
+              <div className="flex items-end justify-center gap-3">
+                {fillerPicks.map((book) => (
+                  <BookCoverImage
+                    key={book.id}
+                    book={book}
+                    width={56}
+                    height={80}
+                    radius={8}
+                    titleSize={8}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -768,6 +826,20 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
         </div>
       )}
 
+      {/* Explicit continue when the deck is exhausted — never a dead end */}
+      {deckEmpty && (
+        <div className="flex justify-center" style={{ marginTop: 8 }}>
+          <Button
+            size="lg"
+            className="w-full max-w-80"
+            onClick={handleContinueWithPicks}
+          >
+            Continue with these picks
+            <ArrowRight size={18} strokeWidth={2} />
+          </Button>
+        </div>
+      )}
+
       {/* Selected books thumbnails */}
       <div className="flex items-center justify-center gap-3" style={{ marginTop: 24 }}>
         {Array.from({ length: MAX_PICKS }, (_, i) => {
@@ -823,22 +895,14 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
         }}
       >
         Your 2 free books are included.{" "}
-        <span
+        <button
+          type="button"
           onClick={() => router.push("/pricing")}
-          role="link"
-          tabIndex={0}
-          onKeyDown={(e) => { if (e.key === "Enter") router.push("/pricing"); }}
-          style={{
-            textDecoration: "underline",
-            textUnderlineOffset: 2,
-            cursor: "pointer",
-            transition: "color 200ms",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cf-text-3)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cf-text-soft)")}
+          className="cursor-pointer bg-transparent underline underline-offset-2 transition-colors hover:text-(--cf-text-3)"
+          style={{ color: "inherit", font: "inherit", border: "none", padding: 0 }}
         >
           Add more with Pro.
-        </span>
+        </button>
       </p>
 
       {/* Screen reader live region */}

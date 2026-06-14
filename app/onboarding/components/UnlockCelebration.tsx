@@ -1,14 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Flame, Star, BarChart3 } from "lucide-react";
-import CanvasConfetti from "./CanvasConfetti";
+import { Flame, Star, BarChart3, ArrowRight, Loader2 } from "lucide-react";
+import { Confetti } from "@/components/ui/Confetti";
+import { Button } from "@/components/ui/button";
 import AnimatedCheckmark from "./AnimatedCheckmark";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 interface UnlockCelebrationProps {
   quizScore: number;
-  onFinish: () => void;
+  /** Persists onboarding + navigates. May be async; rejects if the save fails
+   *  so this screen can show an inline retry instead of stranding the user. */
+  onFinish: () => void | Promise<void>;
 }
 
 export default function UnlockCelebration({
@@ -17,6 +21,23 @@ export default function UnlockCelebration({
 }: UnlockCelebrationProps) {
   const prefersReducedMotion = useReducedMotion();
   const noMotion = !!prefersReducedMotion;
+
+  const [submitting, setSubmitting] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  const handleFinish = async () => {
+    if (submitting) return;
+    setSubmitting(true);
+    setFailed(false);
+    try {
+      await onFinish();
+      // On success the app navigates away and this component unmounts; keep the
+      // button in its loading state until then (don't flash back to idle).
+    } catch {
+      setFailed(true);
+      setSubmitting(false);
+    }
+  };
 
   const stats = [
     {
@@ -61,8 +82,10 @@ export default function UnlockCelebration({
         minHeight: 520,
       }}
     >
-      {/* Canvas confetti — fires on mount, longer duration so particles persist */}
-      <CanvasConfetti particleCount={100} duration={4500} />
+      {/* Shared confetti — fires on mount; theme-aware palette stays visible on
+          the default light theme (the old CanvasConfetti's screen-blended white
+          particles vanished there). */}
+      <Confetti particleCount={120} duration={4500} origin="center" />
 
       {/* Ambient glow — instant visual anchor before checkmark draws */}
       <motion.div
@@ -226,48 +249,45 @@ export default function UnlockCelebration({
           Chapter 2 is ready when you are.
         </p>
 
-        <button
-          onClick={onFinish}
-          className="celebration-cta"
-          style={{
-            width: "100%",
-            minHeight: 56,
-            padding: "16px 40px",
-            fontFamily: "var(--font-dm-sans, sans-serif)",
-            fontSize: 17,
-            fontWeight: 600,
-            color: "var(--bg-base)",
-            background: "var(--accent-emerald)",
-            border: "none",
-            borderRadius: 12,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            transition: "transform 0.15s",
-          }}
+        <Button
+          size="lg"
+          className="w-full"
+          onClick={handleFinish}
+          disabled={submitting}
+          aria-busy={submitting}
         >
-          Go to my dashboard
-          <span style={{ fontSize: 18 }}>&rarr;</span>
+          {submitting ? (
+            <>
+              <Loader2 size={18} strokeWidth={2} className="animate-spin" />
+              Saving your setup…
+            </>
+          ) : failed ? (
+            <>
+              Try again
+              <ArrowRight size={18} strokeWidth={2} />
+            </>
+          ) : (
+            <>
+              Go to my dashboard
+              <ArrowRight size={18} strokeWidth={2} />
+            </>
+          )}
+        </Button>
 
-          <style>{`
-            @keyframes celebrationBreathe {
-              0%, 100% { box-shadow: 0 0 15px color-mix(in srgb, var(--accent-emerald) 20%, transparent); }
-              50% { box-shadow: 0 0 28px color-mix(in srgb, var(--accent-emerald) 40%, transparent); }
-            }
-            .celebration-cta {
-              animation: celebrationBreathe 2.5s ease-in-out infinite;
-            }
-            .celebration-cta:hover {
-              transform: translateY(-1px);
-              filter: brightness(1.1);
-            }
-            .celebration-cta:active {
-              transform: translateY(0) scale(0.98);
-            }
-          `}</style>
-        </button>
+        {failed && (
+          <p
+            role="alert"
+            style={{
+              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontSize: 13,
+              color: "var(--accent-rose)",
+              margin: 0,
+              textAlign: "center",
+            }}
+          >
+            We couldn&apos;t save your setup. Check your connection and try again.
+          </p>
+        )}
       </motion.div>
     </div>
   );

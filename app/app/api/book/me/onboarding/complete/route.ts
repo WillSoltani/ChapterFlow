@@ -13,6 +13,9 @@ import {
   putUserSettingsItem,
 } from "@/app/app/api/book/_lib/repo";
 import { generateStarterPrescription } from "@/app/app/api/book/_lib/starter-prescription";
+import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
+import { updateStreakOnLoopComplete } from "@/app/app/api/book/_lib/streak-repo";
+import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
 
@@ -81,6 +84,10 @@ export async function POST(req: Request) {
 
     const firstQuizScore = typeof body.firstQuizScore === "number" ? body.firstQuizScore : 0;
 
+    // IANA timezone for streak day-boundary math; safe default if absent.
+    const timezone =
+      typeof body.timezone === "string" && body.timezone.trim() ? body.timezone.trim() : "UTC";
+
     /* ── Build the onboarding profile ── */
 
     const scenarioFocus = MOTIVATION_TO_SCENARIO_FOCUS[motivation] || "mixed";
@@ -126,10 +133,47 @@ export async function POST(req: Request) {
       createdAt: existing?.createdAt,
     });
 
+    /* ── Grant the rewards the unlock celebration promises ──
+     *
+     * The celebration shows "120 Insight Points" and "1 Day streak"; previously
+     * the new /onboarding flow wrote settings only and granted neither, so the
+     * dashboard the user landed on contradicted the celebration. Both grants
+     * here are idempotent and must never fail onboarding completion (the
+     * profile is already saved):
+     *   • awardFlowPoints is keyed on the shared grant
+     *     POINTSGRANT#onboarding_complete#primary, so a refresh, a double-submit,
+     *     or the legacy profile-PATCH path can't double-award the 120 IP.
+     *   • updateStreakOnLoopComplete counts onboarding's first learning loop as
+     *     the user's first active day (currentStreak → 1); it's a no-op once
+     *     today is already counted, so it can't inflate an existing streak.
+     */
+    let points: number | undefined;
+    let currentStreak: number | undefined;
+    try {
+      const award = await awardFlowPoints(tableName, {
+        userId: user.sub,
+        amount: INSIGHT_POINTS_AMOUNTS.onboardingComplete,
+        sourceType: "onboarding_complete",
+        sourceId: "primary",
+        metadata: { readingGoal: motivation },
+      });
+      points = award.state?.points;
+    } catch {
+      /* non-fatal — onboarding is already saved */
+    }
+    try {
+      const streakResult = await updateStreakOnLoopComplete(tableName, user.sub, timezone);
+      currentStreak = streakResult.streak.currentStreak;
+    } catch {
+      /* non-fatal */
+    }
+
     return bookOk({
       success: true,
       settings: saved.settings,
       updatedAt: saved.updatedAt,
+      points,
+      currentStreak,
     });
   });
 }

@@ -13,7 +13,7 @@ import MiniQuiz from "./MiniQuiz";
 import UnlockCelebration from "./UnlockCelebration";
 
 interface StepFirstLoopProps {
-  onFinish: () => void;
+  onFinish: () => void | Promise<void>;
   onBack: () => void;
   backRef: React.MutableRefObject<(() => void) | null>;
 }
@@ -62,7 +62,7 @@ function SubStepIndicator({ current }: { current: SubStep }) {
               color: isActive
                 ? "var(--accent-cyan)"
                 : isCompleted
-                  ? "var(--accent-teal)"
+                  ? "var(--accent-cyan)"
                   : "var(--cf-text-soft)",
               transition: "all 200ms ease",
             }}
@@ -110,9 +110,11 @@ export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLo
     [setFirstQuizScore]
   );
 
-  const handleCelebrationFinish = useCallback(() => {
+  const handleCelebrationFinish = useCallback(async () => {
     completeFirstChapter();
-    onFinish();
+    // Propagate the save promise so the celebration CTA can show loading and,
+    // on failure, an inline retry instead of silently dropping the user.
+    await onFinish();
   }, [completeFirstChapter, onFinish]);
 
   const isCelebration = subStep === "celebration";

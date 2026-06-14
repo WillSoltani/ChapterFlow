@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Clock } from "lucide-react";
+import { Clock, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { getFirstLoopContent } from "@/app/onboarding/data/chapters";
 import { getBookById, getBookCoverPath } from "@/app/onboarding/data/books";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
@@ -19,7 +20,8 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
   const { tone } = useOnboarding();
   const { summary } = getFirstLoopContent(tone);
   const book = getBookById(summary.bookId);
-  const coverGradient = book?.gradient ?? "linear-gradient(135deg, #D4A574, #C4956A)";
+  const coverGradient =
+    book?.gradient ?? "linear-gradient(135deg, var(--accent-cyan), var(--accent-violet))";
 
   return (
     <motion.div
@@ -141,7 +143,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
           style={{
             margin: 0,
             padding: "16px 20px",
-            borderLeft: "3px solid var(--accent-teal)",
+            borderLeft: "3px solid var(--accent-cyan)",
             background: "var(--cf-surface)",
             borderRadius: "0 var(--radius-md-val, 12px) var(--radius-md-val, 12px) 0",
           }}
@@ -174,41 +176,12 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
         </motion.blockquote>
       )}
 
-      {/* CTA */}
+      {/* CTA — shared brand primary */}
       <motion.div variants={staggerItem}>
-        <button
-          onClick={onContinue}
-          style={{
-            width: "100%",
-            minHeight: 48,
-            padding: "14px 24px",
-            fontFamily: "var(--font-dm-sans, sans-serif)",
-            fontSize: 16,
-            fontWeight: 600,
-            color: "#0A0E1A",
-            background: "#3BD4A0",
-            border: "none",
-            borderRadius: "var(--radius-md-val, 12px)",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            boxShadow: "0 0 20px rgba(59,212,160,0.25)",
-            transition: "filter 0.15s, transform 0.15s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.filter = "brightness(1.1)";
-            e.currentTarget.style.transform = "scale(1.02)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.filter = "brightness(1)";
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
+        <Button size="lg" className="w-full" onClick={onContinue}>
           Continue to scenarios
-          <span>&rarr;</span>
-        </button>
+          <ArrowRight size={18} strokeWidth={2} />
+        </Button>
       </motion.div>
     </motion.div>
   );

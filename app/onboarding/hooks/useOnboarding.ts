@@ -163,7 +163,10 @@ export function useOnboarding() {
         defaults.motivation = "personal";
         break;
       case 2:
-        defaults.interests = ["psychology", "productivity", "habits", "communication", "leadership"];
+        // Skipping interests leaves them empty (a neutral default) rather than
+        // fabricating five picks the user never made. The starter deck falls
+        // back to motivation + general popularity ranking when no interests are
+        // selected, so the flow still works.
         break;
       case 3:
         defaults.tone = "direct";
