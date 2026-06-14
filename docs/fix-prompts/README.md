@@ -2,7 +2,9 @@
 
 Ready-to-dispatch agent prompts for every confirmed finding from the production-readiness re-audit of `main`: 200 findings + 2 re-confirmed carry-overs. Each prompt is self-contained — copy one block, give it to one agent. It tells the agent which branch to use, how to verify, and how to commit. IDs match `docs/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md`.
 
-**▶ Read [DISPATCH.md](DISPATCH.md) first** — branch model, parallel-vs-sequential, the worktree spawner, and the same-file collision groups.
+**▶ Running them in parallel? Paste from [PARALLEL-TASKS.md](PARALLEL-TASKS.md)** — all 202 findings consolidated into 132 file-disjoint tasks, sorted by priority. Each is one copy-paste block that makes an agent create its own worktree+branch, fix, verify, and commit autonomously. That is the file to dispatch from.
+
+**▶ Read [DISPATCH.md](DISPATCH.md)** for the branch model, the worktree spawner, and collision groups. The per-category files below hold the same prompts grouped by category (one item per block) if you prefer that view.
 
 **Target branch for all fixes:** `audit/prod-readiness-2026-06-14`
 
