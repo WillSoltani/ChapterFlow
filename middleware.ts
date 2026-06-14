@@ -28,10 +28,15 @@ function resolveRequestOrigin(req: NextRequest): string {
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Public, unauthenticated endpoints that live under an otherwise-protected
-  // prefix. One-click email unsubscribe (CASL/CAN-SPAM) is token-authenticated
-  // and must work for logged-out recipients and automated mail clients.
-  if (pathname.startsWith("/app/api/book/email/unsubscribe")) {
+  // Never run cookie-based page auth on API routes. Every /app/api/** handler
+  // self-authenticates (requireUser / requireActiveBookUser / requireAdminUser,
+  // or a Stripe-signature check on the billing webhook), so the middleware
+  // redirect is both redundant and harmful here: the Stripe webhook sends no
+  // cookies, so without this carve-out it gets 302'd to /auth/login and Stripe
+  // disables the endpoint — payments/cancellations/refunds silently stop (X1).
+  // This also covers token-authenticated public endpoints like one-click email
+  // unsubscribe (CASL/CAN-SPAM), which must work for logged-out recipients.
+  if (pathname.startsWith("/app/api/")) {
     return NextResponse.next();
   }
 
