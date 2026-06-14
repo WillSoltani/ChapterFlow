@@ -2082,6 +2082,20 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   }
 
   const bookId = resolved.bookId;
+  // Convergence guarantee: QC's book-level major scan (currentMajorFindings →
+  // runBookGate → runBookPatternAudit) must run against the SAME derived brief +
+  // per-chapter plans the final book-gate uses. Otherwise QC under-reports
+  // book-level findings (pattern audit, BP*) that then surface late at book-gate —
+  // after the repair prompt is already written — so the loop can't converge in one
+  // pass. book-gate force-derives for exactly this reason; mirror it at the QC
+  // entry. Deterministic + side-effect-free over on-disk content; non-fatal (a book
+  // without research data still QCs) and skipped on --dry-run to keep previews read-only.
+  if (flags["dry-run"] !== true) {
+    const deriveCode = await runDeriveArtifacts([bookId]).catch(() => 1);
+    if (deriveCode !== 0) {
+      console.error(`note: derive-artifacts incomplete for ${bookId}; QC's book-level audit may be partial until plans exist.`);
+    }
+  }
   const orch = await import("./qc/orchestrator/index.js");
   const artifacts = await import("./qc/orchestrator/artifacts.js");
   const { generateQcAutoWorkflow } = await import("./qc/auto/generateWorkflow.js");
