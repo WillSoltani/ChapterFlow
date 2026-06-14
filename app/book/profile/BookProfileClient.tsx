@@ -22,7 +22,9 @@ import {
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { Button } from "@/app/book/components/ui/Button";
+import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { Toast } from "@/app/book/components/ui/Toast";
+import { CATALOG_BOOK_COUNT, CATALOG_CATEGORY_COUNT } from "@/lib/catalog-stats";
 import {
   getBookProgressStorageKey,
   getChapterReaderStorageKey,
@@ -256,7 +258,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
-  const { analytics, hydrated: analyticsHydrated } = useBookAnalytics(
+  const { analytics, hydrated: analyticsHydrated, error: analyticsError, refetch: refetchAnalytics } = useBookAnalytics(
     onboarding.selectedBookIds,
     onboarding.dailyGoalMinutes
   );
@@ -701,6 +703,33 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     );
   }
 
+  // Error state: the analytics fetch failed and we have no last-good data, so
+  // showing the page would render an all-zero profile (streak/books/chapters/quiz
+  // all `?? 0`) to a user who actually has progress. Surface a retry instead.
+  if (analyticsError && !analytics) {
+    return (
+      <main className="cf-app-shell">
+        <TopNav
+          name={profile.displayName || viewerIdentity.displayName || "Reader"}
+          avatarUrl={profile.avatarDataUrl}
+          activeTab="profile"
+          searchQuery=""
+          onSearchChange={() => undefined}
+          searchInputRef={{ current: null }}
+          showSearch={false}
+          logoVariant="dashboard"
+        />
+        <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 lg:px-10 lg:pt-8 xl:px-16">
+          <ErrorBanner
+            title="We couldn’t load your profile"
+            message={analyticsError}
+            onRetry={refetchAnalytics}
+          />
+        </section>
+      </main>
+    );
+  }
+
   const viewerName = profile.displayName || viewerIdentity.displayName || "Reader";
   const identityLabel = getIdentityLabel(statsSummary.booksCompleted, statsSummary.categoriesCount);
   const streakMicrocopy = getStreakMicrocopy(statsSummary.currentStreak);
@@ -713,10 +742,16 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
       ? `Your longest: ${pluralize(statsSummary.longestStreak, "day")} — ${pluralize(statsSummary.longestStreak - statsSummary.currentStreak, "day")} to beat it`
       : "Start building your record";
 
-  // F2: Upgrade message
+  // F2: Upgrade message — derive the "more books" count from the live catalog
+  // (CATALOG_BOOK_COUNT) minus what the free user can already access, so the
+  // pitch never overstates the library. Clamp to >= 0 for safety.
+  const accessibleBookCount =
+    (billingState.payload?.entitlement.unlockedBooksCount ?? 0) +
+    (billingState.payload?.entitlement.remainingFreeStarts ?? 0);
+  const moreBooksToUnlock = Math.max(0, CATALOG_BOOK_COUNT - accessibleBookCount);
   const upgradeMessage = statsSummary.booksCompleted > 0
-    ? `You've completed ${statsSummary.totalChaptersCompleted} chapters. Unlock 93+ more books, advanced quizzes, streak freezes, and full reading analytics with Pro.`
-    : "Unlock 93+ more books, advanced quizzes, streak freezes, and full reading analytics.";
+    ? `You've completed ${statsSummary.totalChaptersCompleted} chapters. Unlock ${moreBooksToUnlock} more books, advanced quizzes, streak freezes, and full reading analytics with Pro.`
+    : `Unlock ${moreBooksToUnlock} more books, advanced quizzes, streak freezes, and full reading analytics.`;
 
   // H4: Last updated
   const lastUpdated = "Stats updated just now";
@@ -944,7 +979,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                 <div className="mt-6 rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
                   <CategoryMap
                     explored={exploredCategories}
-                    totalCategories={21}
+                    totalCategories={CATALOG_CATEGORY_COUNT}
                     onCategoryClick={(cat) => router.push(`/book/library?category=${encodeURIComponent(cat)}`)}
                   />
                 </div>
@@ -1184,12 +1219,12 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                 <div className="space-y-6">
                   <div className="grid gap-3 sm:grid-cols-2">
                     <StatCard icon={<NotebookPen className="h-4 w-4" />} label="Notes saved" value={localInsights.notes.length} helper="Chapters with written notes" />
-                    <StatCard icon={<Medal className="h-4 w-4" />} label="Pinned takeaways" value={Math.min(localInsights.notes.length, 3)} helper="Top recent insights" />
+                    <StatCard icon={<Medal className="h-4 w-4" />} label="Recent takeaways" value={Math.min(localInsights.notes.length, 3)} helper="Top recent insights" />
                   </div>
 
-                  {/* G2: Pinned takeaways as quote cards */}
+                  {/* G2: Recent takeaways as quote cards */}
                   <div className="space-y-3">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Pinned ideas</p>
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Top recent insights</p>
                     {localInsights.notes.slice(0, 3).map((note) => (
                       <PinnedTakeawayCard key={`${note.id}:pinned`} text={firstLine(note.body)} source={note.title} />
                     ))}
