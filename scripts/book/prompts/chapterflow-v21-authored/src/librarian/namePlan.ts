@@ -55,10 +55,9 @@ export type NamePlan = {
   diagnostics: {
     bankSize: number;
     excludedCount: number;
-    /** bank names already used by OTHER books (cross-book exclusion, 2026-06-10 policy). */
-    crossBookExcluded: number;
-    /** names that are fresh catalog-wide; the fallback pool reuses cross-book names when this runs short. */
-    freshAvailable: number;
+    /** bank names that also appear in OTHER books — INFORMATIONAL only. Names may
+     *  repeat across books (owner policy); only within-book uniqueness is enforced. */
+    crossBookReused: number;
     availableCount: number;
     /** chapters that got fewer than perChapter names because the bank ran dry */
     shortChapters: number[];
@@ -288,30 +287,25 @@ export function planNames(
   const usedAll = new Set<string>();
   for (const names of Object.values(usedByChapter)) for (const n of names) usedAll.add(n);
 
-  // POLICY REVERSED (2026-06-10, catalog campaign): names are now excluded
-  // CROSS-BOOK too. The old "names may repeat across books" call produced the
-  // catalog's single worst churn tell — 358 bank names shared across books,
-  // Farah in 10, and "Asha" starring in chapter 1 of two different books a
-  // subscriber could open in the same week (reader-experience review). The
-  // bank holds 777 names; the whole catalog uses a few hundred, so exclusion
-  // is comfortably affordable. SCALE GUARD: if exclusion leaves fewer names
-  // than this plan needs, fall back to cross-book reuse for the shortfall
-  // (still excluding THIS book's own names) with a loud diagnostic — a dry
-  // bank must degrade to the old policy, never brick authoring.
+  // POLICY (owner, 2026-06-13): names MAY repeat ACROSS books — only WITHIN-book
+  // uniqueness matters (no two chapters of the same book share a protagonist
+  // name). The bank is curated to read as contemporary American/Canadian, so
+  // cross-book reuse is fine; what would actually hurt is a duplicate inside one
+  // book. So the available pool excludes only THIS book's already-used names and
+  // its source figures — NOT names used by other books. (The cross-book overlap
+  // is still reported in diagnostics for visibility, never excluded.)
   const bank = loadNameBank();
   const bankSet = new Set(bank);
   const sourceFigures = sourceFigureBankNames(bookId, fromChapter, toChapter, bankSet);
   const crossBook = bankNamesUsedByOtherBooks(bookId);
   const offset = bank.length ? nameHash(bookId) % bank.length : 0;
   const rotated = bank.slice(offset).concat(bank.slice(0, offset));
-  const fresh = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n) && !crossBook.has(n));
-  const reusable = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n) && crossBook.has(n));
+  const available = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n));
   const needed = perChapter * Math.max(0, toChapter - fromChapter + 1);
-  const available = fresh.length >= needed ? fresh : [...fresh, ...reusable];
-  if (fresh.length < needed) {
+  if (available.length < needed) {
     console.warn(
-      `name-plan: cross-book exclusion leaves ${fresh.length}/${needed} fresh names for "${bookId}" — ` +
-        `falling back to cross-book reuse for the shortfall (grow config/name-bank.json to restore full exclusion).`,
+      `name-plan: only ${available.length}/${needed} names available for "${bookId}" after excluding its own used names — ` +
+        `grow config/name-bank.json (the bank must cover one book's within-book-unique needs).`,
     );
   }
 
@@ -347,8 +341,7 @@ export function planNames(
     diagnostics: {
       bankSize: bank.length,
       excludedCount: usedAll.size,
-      crossBookExcluded: crossBook.size,
-      freshAvailable: fresh.length,
+      crossBookReused: crossBook.size,
       availableCount: available.length,
       shortChapters,
       alreadyAuthored,

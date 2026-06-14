@@ -97,7 +97,8 @@ export function formatGuardrails(g: AuthoringGuardrails): string {
   L.push("Hand this to every chapter author BEFORE writing. It keeps parallel authors from");
   L.push("colliding on names and from reproducing the catalog's stock phrases.");
   L.push("");
-  L.push("## Reserved protagonist names (per chapter — disjoint, cross-book excluded)");
+  L.push("## Reserved protagonist names (per chapter — unique within this book)");
+  L.push("Names are American/Canadian and disjoint across this book's chapters (they may repeat in OTHER books — that's fine).");
   L.push("Use ONLY your chapter's row. Do not reuse another chapter's names or invent recurring ones.");
   for (const [num, names] of Object.entries(g.allocation).sort((a, b) => Number(a[0]) - Number(b[0]))) {
     L.push(`- ch${String(num).padStart(2, "0")}: ${names.join(", ")}`);

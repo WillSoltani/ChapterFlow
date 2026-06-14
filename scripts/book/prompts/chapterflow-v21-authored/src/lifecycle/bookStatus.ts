@@ -18,8 +18,7 @@ import { fileURLToPath } from "url";
 import { runShipGate } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
 import { isAttestationFresh, loadAttestation, type QcVerdict } from "../critics/qcAttestation.js";
-import { auditBook, type BookAudit } from "../critics/catalogAudit.js";
-import { loadLibraryState } from "../librarian/libraryState.js";
+import { auditBook } from "../critics/catalogAudit.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { computeNextTask } from "../next-task.js";
 import type { ChapterV21 } from "../types.js";
@@ -43,8 +42,6 @@ export type VarietyRead = {
   ticsPerChapter: number;
   nominalizationsPer100Words: number;
   avgSentenceWords: number;
-  /** names in THIS book that also appear in other books (the churn tell). */
-  crossBookNames: Array<{ name: string; otherBooks: number }>;
   notes: string[];
 };
 
@@ -102,37 +99,26 @@ function expectedChapterCount(bookId: string, written: ChapterV21[]): number | n
   return written.length > 0 ? written.length : null;
 }
 
-function crossBookNameReuse(bookId: string, audit: BookAudit): Array<{ name: string; otherBooks: number }> {
-  const usage = loadLibraryState().globalNameUsage ?? {};
-  const out: Array<{ name: string; otherBooks: number }> = [];
-  for (const name of audit.bankNames) {
-    const rec = usage[name];
-    const others = rec ? rec.books.filter((b) => b !== bookId).length : 0;
-    if (others > 0) out.push({ name, otherBooks: others });
-  }
-  return out.sort((a, b) => b.otherBooks - a.otherBooks).slice(0, 12);
-}
-
 function readVariety(bookId: string, chapters: ChapterV21[]): VarietyRead | null {
   if (chapters.length === 0) return null;
   const audit = quiet(() => auditBook(bookId, chapters));
   const hookTotal = Object.values(audit.hookShapes).reduce((a, b) => a + b, 0) || 1;
   const dominantHook = Math.max(0, ...Object.values(audit.hookShapes));
   const ticTotal = Object.values(audit.ticCounts).reduce((a, b) => a + b, 0);
-  const crossBookNames = crossBookNameReuse(bookId, audit);
   const notes: string[] = [];
   const dominantHookShare = dominantHook / hookTotal;
   const ticsPerChapter = ticTotal / chapters.length;
+  // Note: cross-book NAME reuse is intentionally NOT flagged — names may repeat
+  // across books by policy; only within-book duplicates matter (and the gates +
+  // namePlan's disjoint allocation already prevent those).
   if (dominantHookShare > 0.6) notes.push(`hooks are ${Math.round(dominantHookShare * 100)}% one shape — vary the openings`);
   if (ticsPerChapter > 1.5) notes.push(`house tics ~${ticsPerChapter.toFixed(1)}/chapter — trim stock phrases`);
-  if (crossBookNames.length > 0) notes.push(`${crossBookNames.length} character name(s) reused from other books (e.g. ${crossBookNames.slice(0, 3).map((n) => n.name).join(", ")})`);
   if (audit.nominalizationsPer100Words > 12) notes.push(`abstract-noun density ${audit.nominalizationsPer100Words.toFixed(1)}/100w — get concrete sooner`);
   return {
     dominantHookShare,
     ticsPerChapter,
     nominalizationsPer100Words: audit.nominalizationsPer100Words,
     avgSentenceWords: audit.avgSentenceWords,
-    crossBookNames,
     notes,
   };
 }
@@ -247,7 +233,7 @@ export function formatBookStatus(s: BookStatus): string {
     }
   }
   if (s.variety) {
-    L.push(`variety (advisory): hooks ${Math.round(s.variety.dominantHookShare * 100)}% dominant · tics ${s.variety.ticsPerChapter.toFixed(1)}/ch · abstraction ${s.variety.nominalizationsPer100Words.toFixed(1)}/100w · cross-book names ${s.variety.crossBookNames.length}`);
+    L.push(`variety (advisory): hooks ${Math.round(s.variety.dominantHookShare * 100)}% dominant · tics ${s.variety.ticsPerChapter.toFixed(1)}/ch · abstraction ${s.variety.nominalizationsPer100Words.toFixed(1)}/100w`);
     for (const n of s.variety.notes) L.push(`  ⚠ ${n}`);
   }
   L.push("next:");

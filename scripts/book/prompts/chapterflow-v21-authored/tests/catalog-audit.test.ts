@@ -82,29 +82,21 @@ test("cli: catalog-audit runs on the real corpus and reports the known fingerpri
   assert.match(out, /deadline tic: \d+%/);
 });
 
-test("name-plan cross-book exclusion: fresh names dealt FIRST, reuse only as the scale-guard fallback", () => {
-  // Against the REAL catalog. Originally this asserted every dealt name was
-  // fresh catalog-wide — true at 26 books, impossible at 116+ books on a
-  // ~779-name bank (the overnight catalog growth left ~14 fresh names). The
-  // CONTRACT at scale: fresh names are exhausted before any cross-book reuse
-  // is dealt, and the diagnostics expose the shortfall so the operator knows
-  // to grow the bank.
+test("name-plan: names are unique WITHIN a book; cross-book reuse is allowed (owner policy)", () => {
+  // Policy (2026-06-13): names MAY repeat across books — only within-book
+  // uniqueness is enforced. The cross-book overlap is reported for visibility,
+  // never excluded (the bank is curated American/Canadian, so reuse is fine).
   const { planNames, bankNamesUsedByOtherBooks } = require("../src/librarian/namePlan.js") as typeof import("../src/librarian/namePlan.js");
   const plan = planNames("zz-fixture-fresh-names", 1, 3);
-  const taken = bankNamesUsedByOtherBooks("zz-fixture-fresh-names");
-  assert.ok(taken.size > 100, `cross-book scan should see the real catalog's used names (got ${taken.size})`);
-
   const dealt = Object.values(plan.allocation).flat();
-  const reusedDealt = dealt.filter((n) => taken.has(n)).length;
-  const freshDealt = dealt.length - reusedDealt;
-  assert.ok(
-    freshDealt >= Math.min(plan.diagnostics.freshAvailable, dealt.length),
-    `every available fresh name must be dealt before any reuse (fresh dealt ${freshDealt}, freshAvailable ${plan.diagnostics.freshAvailable})`,
-  );
-  if (plan.diagnostics.freshAvailable >= dealt.length) {
-    assert.equal(reusedDealt, 0, "with fresh headroom, no dealt name may collide cross-book");
-  }
-  assert.equal(typeof plan.diagnostics.crossBookExcluded, "number", "diagnostics must expose the exclusion size");
+
+  // WITHIN-book uniqueness: no protagonist name is dealt to two chapters.
+  assert.equal(new Set(dealt).size, dealt.length, "names must be unique within a book");
+
+  // cross-book reuse is permitted; diagnostics expose it as an informational count.
+  assert.equal(typeof plan.diagnostics.crossBookReused, "number", "diagnostics must expose the cross-book reuse count");
+  const taken = bankNamesUsedByOtherBooks("zz-fixture-fresh-names");
+  assert.ok(taken.size > 100, `cross-book scan should still see the real catalog (got ${taken.size})`);
 });
 
 test("plainness meters: abstraction-dense prose scores higher nominalization than concrete prose", () => {

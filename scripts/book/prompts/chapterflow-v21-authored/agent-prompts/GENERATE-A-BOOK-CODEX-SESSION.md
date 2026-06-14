@@ -49,9 +49,9 @@ npx tsx src/cli.ts authoring-guardrails <bookId>
 Then, for EVERY chapter you write, paste `state/guardrails/<bookId>.guardrails.md`
 into the authoring context: use ONLY your chapter's reserved-name row, and never use
 the banned phrases (house tics, salting connectives, cross-book signature tells).
-This is the same prevention pattern as the voice bible — set it before authoring,
-not in repair. (If it warns the name bank is exhausted, note it; grow
-config/name-bank.json to restore full cross-book exclusion.)
+Names are American/Canadian and unique WITHIN this book; they may repeat in other
+books — that's fine. This is the same prevention pattern as the voice bible — set it
+before authoring, not in repair.
 
 ## Rules
 - Always let `book-status`'s `next:` line decide the next step — don't guess the order.
