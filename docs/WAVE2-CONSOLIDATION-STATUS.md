@@ -2,6 +2,17 @@
 
 Branch: `ui-overhaul/integration`. Wave 0 + all 9 Wave-1 streams are merged, reviewed, fixed, and verified green (typecheck 0 · tests 103/103 · scan:style · `next build`).
 
+## Primitive-consolidation outcome (2026-06-14)
+
+Investigated every flagged duplicate family with the code + the local-backend visual harness. The audit's "duplicate primitives" concern was **partly overstated**: most same-named "duplicates" are genuinely-different components serving different contexts, not drift. Resolution:
+
+- **Chip** — the crude `components/Chip` was dead + light-broken → **deleted** (done earlier). One Chip remains.
+- **BookCover** — TRUE drift (different candidate ordering; app tile lacked the library's fallback-cursor reset) → **unified the cover-resolution logic into one shared `lib/use-book-cover-source` hook**; both keep their distinct presentations (standalone hover tile vs embedded fill). Verified: /books renders 74 real covers. (commit unifying BookCover)
+- **ProgressRing** — already 2/4 consolidated (`components/ui/ProgressRing` canonical + `components/library` thin wrapper); the `badges` (decorative) and `library/[bookId]` (contextual) rings are intentional variants — left.
+- **BookCard** (92L catalog card vs 270L expandable library card), **DailyGoalRing** (60L ring vs 252L progress widget), **BookRow** (workspace vs progress Active/Completed), **StreakBadge** (localStorage reader badge vs prop workspace badge), **ProBadge** (two brand designs), **EmptyState** (ui/progress/admin) — **justified specializations sharing a name, NOT drift. Left as-is** (force-merging would be over-abstraction).
+
+Net: the genuine duplications are consolidated; the rest are correctly-separate components. No further primitive merges warranted.
+
 ## ✅ Done (committed, verified)
 
 **Visual-QA pass (2026-06-14)** — established a headless-screenshot QA loop using the system Google Chrome (`--headless --screenshot`, no Playwright/network) against `next dev`, with a throwaway `/dev/ui-gallery` route rendering each duplicate primitive old-vs-new in both themes. Outcomes:
