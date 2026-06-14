@@ -1447,7 +1447,9 @@ export function CategoryMap({
   totalCategories: number;
   onCategoryClick?: (category: string) => void;
 }) {
-  const remaining = totalCategories - explored.length;
+  // Clamp to >= 0: `explored` is derived from live per-book categories, so if it
+  // ever exceeds `totalCategories` we must not render a negative "+N more".
+  const remaining = Math.max(0, totalCategories - explored.length);
   return (
     <div>
       <div className="flex items-center justify-between">
