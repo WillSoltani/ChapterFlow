@@ -11,20 +11,17 @@ import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { track } from "@/lib/analytics";
-import { useAuthStatus } from "@/components/auth/useAuthStatus";
 
 // Source the count from the shared catalog-stats module (single source of truth).
 const BOOK_COUNT = CATALOG_BOOK_COUNT;
 const FREE_TO_START_COUNT: number = 2;
 
-// Preserve intent through the login wall: a logged-out reader who clicks a book
-// lands on THAT book after auth (not the generic dashboard). Logged-in readers
-// go straight there.
-function bookHref(id: string, loggedIn: boolean | null): string {
-  const target = `/book/library/${id}`;
-  return loggedIn === true
-    ? target
-    : `/auth/login?returnTo=${encodeURIComponent(target)}`;
+// Always link straight to the book. The server (requireDashboardAccess) carries
+// intent through the login wall via returnTo for logged-out readers, so we never
+// route a logged-in reader through an unnecessary OAuth round-trip during the
+// async auth-status window (the client hook resolves loggedIn lazily).
+function bookHref(id: string): string {
+  return `/book/library/${id}`;
 }
 
 // Derive ordered categories from full catalog (by count, descending)
@@ -50,7 +47,6 @@ const STATS = [
 
 export function Library() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const { loggedIn } = useAuthStatus();
 
   // Show up to 8 books — from the full catalog filtered by category
   const filteredBooks =
@@ -181,7 +177,7 @@ export function Library() {
                       whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.2 } }}
                     >
                       <Link
-                        href={bookHref(book.id, loggedIn)}
+                        href={bookHref(book.id)}
                         aria-label={`Open ${book.title} by ${book.author}`}
                         onClick={() => track("book_card_click", { source: "landing_library", bookId: book.id })}
                         className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded-lg"

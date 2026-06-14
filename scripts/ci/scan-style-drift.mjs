@@ -7,7 +7,8 @@
  *       `[family-name:--x]` (both compile to invalid CSS and are dropped).
  *   (b) var(--cf-…)/var(--cr-…) — and the v4 `(--…)` shorthand — referenced in
  *       app/components but never declared in app/globals.css (renders nothing).
- *   (c) Raw hex / rgba() color literals in components/** and app/book/** TSX
+ *   (c) Raw hex / rgba() color literals in components/**, app/book/**, and the
+ *       auth-flow surfaces (app/signup,auth,ref,onboarding,account-deleted) TSX
  *       (use tokens). Baselined: only NEW literals fail.
  *   (d) Literal catalog-size counts ("93 more books", "60+ books", …) that
  *       bypass lib/catalog-stats. Baselined: only NEW literals fail.
@@ -87,6 +88,15 @@ const read = (rel) => {
 const inApp = (f) => f.startsWith("app/");
 const inComponents = (f) => f.startsWith("components/");
 const inBook = (f) => f.startsWith("app/book/");
+// Neglected surfaces that also ship raw UI but previously escaped the (c) scan.
+const AUTH_FLOW_PREFIXES = [
+  "app/signup/",
+  "app/auth/",
+  "app/ref/",
+  "app/onboarding/",
+  "app/account-deleted/",
+];
+const inAuthFlows = (f) => AUTH_FLOW_PREFIXES.some((p) => f.startsWith(p));
 const isTsx = (f) => f.endsWith(".tsx");
 const isStyleConsumer = (f) => /\.(tsx|ts|css)$/.test(f);
 const norm = (s) => s.replace(/\s+/g, ""); // signature normalization
@@ -154,7 +164,7 @@ function guardRawColors(files, allow) {
   const out = [];
   let baselined = 0;
   for (const f of files) {
-    if (!isTsx(f) || !(inComponents(f) || inBook(f))) continue;
+    if (!isTsx(f) || !(inComponents(f) || inBook(f) || inAuthFlows(f))) continue;
     const src = read(f);
     if (src == null) continue;
     src.split("\n").forEach((line, i) => {

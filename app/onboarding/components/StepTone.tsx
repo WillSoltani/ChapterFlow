@@ -70,9 +70,9 @@ const tonePreviewContent: Record<
     paragraph:
       "Most people walk into negotiations planning what they're going to say. That's already a losing move. Voss figured out what hostage negotiators know that business schools don't: the person who listens hardest wins. Tactical empathy isn't soft. It's a weapon. You mirror their words, you label their fears, and suddenly you're the only person in the room they trust. While everyone else is talking past each other, you're extracting information and building leverage with every sentence. That's not kindness. That's strategy.",
     quizCorrect:
-      "That's the move. You're ahead of 90% of people.",
+      "That's the move most people miss.",
     quizWrong:
-      "Miss. That's the average answer. The real edge here is listening, not persuading.",
+      "Miss — here's the edge most people overlook. The real advantage here is listening, not persuading.",
     borderColor: "var(--accent-amber)",
   },
 };

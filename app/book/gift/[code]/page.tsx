@@ -30,6 +30,19 @@ function proWindowLabel(days: number): string {
   return `${days} days of ChapterFlow Pro`;
 }
 
+/** Format the gift's Pro-expiry ISO timestamp as a friendly date, or null if
+ *  it can't be parsed (so we silently fall back to the generic message). */
+function formatProExpiry(iso: string | null | undefined): string | null {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString(undefined, {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 /** Big centered card used by every terminal state. */
 function GiftCard({
   icon,
@@ -82,7 +95,11 @@ export default function GiftClaimPage() {
 
   const [phase, setPhase] = useState<Phase>("loading");
   const [preview, setPreview] = useState<GiftPreview | null>(null);
-  const [previewError, setPreviewError] = useState<{ notFound: boolean; message: string } | null>(null);
+  const [previewError, setPreviewError] = useState<{
+    notFound: boolean;
+    unauthenticated: boolean;
+    message: string;
+  } | null>(null);
   const [claimError, setClaimError] = useState("");
   const [claimResult, setClaimResult] = useState<ClaimResult | null>(null);
 
@@ -103,6 +120,10 @@ export default function GiftClaimPage() {
         const e = err as BookClientError;
         setPreviewError({
           notFound: e?.code === "gift_not_found" || e?.status === 404,
+          // Token expired mid-mount (middleware usually catches logged-out
+          // users first, but this covers the edge): show a sign-in path
+          // instead of a dead-end generic error.
+          unauthenticated: e?.status === 401 || e?.status === 403,
           message: e?.message || "We couldn't load this gift.",
         });
         setPhase("ready");
@@ -140,11 +161,38 @@ export default function GiftClaimPage() {
       </GiftCard>
     );
   } else if (phase === "claimed" && claimResult) {
+    const expiryLabel = formatProExpiry(claimResult.proExpiresAt);
     body = (
       <GiftCard icon={<CheckCircle2 className="h-7 w-7" />} tone="accent">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">You&apos;re all set</h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">{claimResult.message}</p>
+        <p className="mb-2 text-[14px] leading-relaxed text-(--cf-text-3)">{claimResult.message}</p>
+        {expiryLabel && (
+          <p className="mb-6 text-[14px] font-medium leading-relaxed text-(--cf-text-1)">
+            Pro is yours through {expiryLabel}.
+          </p>
+        )}
         <PrimaryButton onClick={() => router.push("/book/library")}>Start reading</PrimaryButton>
+      </GiftCard>
+    );
+  } else if (previewError?.unauthenticated) {
+    const returnTo = encodeURIComponent(
+      typeof window !== "undefined"
+        ? window.location.pathname + window.location.search
+        : `/book/gift/${code}`,
+    );
+    body = (
+      <GiftCard icon={<Gift className="h-7 w-7" />} tone="accent">
+        <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Sign in to claim your gift</h1>
+        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">
+          You&apos;ll need to be signed in to add this gift to your account. Sign in
+          and we&apos;ll bring you right back here.
+        </p>
+        <a
+          href={`/auth/login?returnTo=${returnTo}`}
+          className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
+        >
+          Sign in to continue
+        </a>
       </GiftCard>
     );
   } else if (previewError) {

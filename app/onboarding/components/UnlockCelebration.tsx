@@ -13,11 +13,15 @@ interface UnlockCelebrationProps {
   /** Persists onboarding + navigates. May be async; rejects if the save fails
    *  so this screen can show an inline retry instead of stranding the user. */
   onFinish: () => void | Promise<void>;
+  /** Real day-streak the completion route reported (the server counts today as
+   *  the user's first active day). Falls back to 1 only if the route omitted it. */
+  currentStreak?: number;
 }
 
 export default function UnlockCelebration({
   quizScore,
   onFinish,
+  currentStreak,
 }: UnlockCelebrationProps) {
   const prefersReducedMotion = useReducedMotion();
   const noMotion = !!prefersReducedMotion;
@@ -39,10 +43,23 @@ export default function UnlockCelebration({
     }
   };
 
+  // What the completion route actually grants on a first onboarding completion:
+  // the onboardingComplete award (120) PLUS the streak_day bonus for today's
+  // first loop (15). We show them as two honest lines so the number on screen
+  // equals what the backend really credited — never a rounder, prettier figure
+  // the account didn't receive.
+  const setupPoints = INSIGHT_POINTS_AMOUNTS.onboardingComplete;
+  const streakBonusPoints = INSIGHT_POINTS_AMOUNTS.streakDayBonus;
+  const totalEarned = setupPoints + streakBonusPoints;
+  // The route counts today as the user's first active day; fall back to 1 only
+  // if it didn't report a streak (e.g. the side-grant failed but the profile saved).
+  const dayStreak =
+    typeof currentStreak === "number" && currentStreak > 0 ? currentStreak : 1;
+
   const stats = [
     {
       icon: Flame,
-      value: "1",
+      value: String(dayStreak),
       label: "Day streak",
       iconColor: "var(--accent-amber)",
       valueColor: "var(--accent-amber)",
@@ -51,7 +68,7 @@ export default function UnlockCelebration({
     },
     {
       icon: Star,
-      value: String(INSIGHT_POINTS_AMOUNTS.onboardingComplete),
+      value: String(totalEarned),
       label: "Insight Points",
       iconColor: "var(--accent-amber)",
       valueColor: "var(--accent-amber)",
@@ -222,6 +239,23 @@ export default function UnlockCelebration({
           );
         })}
       </div>
+
+      {/* Honest breakdown of the Insight Points figure — the total above is the
+          sum of the two grants the backend actually made, shown line-itemed so
+          the number is never an unexplained, un-credited claim. */}
+      <motion.p
+        initial={noMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: noMotion ? 0 : 1.45, duration: 0.3 }}
+        style={{
+          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontSize: 12,
+          color: "var(--cf-text-soft)",
+          margin: "12px 0 0",
+        }}
+      >
+        +{setupPoints} setup · +{streakBonusPoints} first-day streak
+      </motion.p>
 
       {/* CTA section — appears at 1.7s */}
       <motion.div

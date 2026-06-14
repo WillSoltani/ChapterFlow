@@ -444,11 +444,11 @@ html:not(.dark) {
   --text-muted: var(--text-tertiary);
 
   /* ── Accent colors (new unified palette — light mode) ── */
-  --accent-cyan: #0891B2;
+  --accent-cyan: #0E7490;
   --accent-cyan-muted: #155E75;
-  --accent-amber: #D97706;
+  --accent-amber: #B45309;
   --accent-amber-muted: #92400E;
-  --accent-emerald: #059669;
+  --accent-emerald: #047857;
   --accent-emerald-muted: #065F46;
   --accent-violet: #7C3AED;
   --accent-violet-dim: #6D28D9;
@@ -530,7 +530,7 @@ html:not(.dark) {
   --cf-shadow-md: 0 2px 8px rgba(50, 50, 93, 0.09), 0 1px 3px rgba(0, 0, 0, 0.05);
   --cf-shadow-lg: 0 4px 16px rgba(50, 50, 93, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
   --cf-panel-highlight: rgba(0, 0, 0, 0.01);
-  --cf-accent: #0891B2;
+  --cf-accent: #0E7490;
   --cf-accent-strong: #0E7490;
   --cf-accent-soft: rgba(8, 145, 178, 0.08);
   --cf-accent-muted: rgba(8, 145, 178, 0.04);

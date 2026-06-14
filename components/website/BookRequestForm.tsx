@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
 interface BookRequestFormProps {
@@ -19,17 +19,14 @@ function isValidEmail(email: string): boolean {
 
 export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFormProps) {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [bookTitle, setBookTitle] = useState(initialTitle);
+  // Seed the title once from the parent prop via a lazy initializer (avoids a
+  // setState-in-effect). The component is keyed by initialTitle upstream
+  // (BookRequestSection), so a new prefill remounts this with the fresh seed.
+  const [bookTitle, setBookTitle] = useState(() => initialTitle);
   const [authorName, setAuthorName] = useState("");
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-
-  // Prefill the title when a parent supplies one (e.g. the "Request this book"
-  // shortcut from a zero-results search). Only runs when initialTitle changes.
-  useEffect(() => {
-    if (initialTitle) setBookTitle(initialTitle);
-  }, [initialTitle]);
 
   const isFormValid = bookTitle.trim().length >= 2 && isValidEmail(email.trim());
 
@@ -100,7 +97,11 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
     <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
       {/* Book title */}
       <div>
+        <label htmlFor="book-request-title" className="sr-only">
+          Book title
+        </label>
         <input
+          id="book-request-title"
           type="text"
           value={bookTitle}
           onChange={(e) => {
@@ -109,6 +110,8 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           }}
           onBlur={() => handleBlur("title", bookTitle)}
           placeholder="Enter book title..."
+          aria-invalid={!!errors.title && !!touched.title}
+          aria-describedby={errors.title && touched.title ? "book-request-title-error" : undefined}
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={{
             ...inputStyle(!!errors.title && !!touched.title),
@@ -129,7 +132,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           }}
         />
         {errors.title && touched.title && (
-          <p className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-title-error" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.title}
           </p>
         )}
@@ -137,7 +140,11 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
       {/* Author name */}
       <div>
+        <label htmlFor="book-request-author" className="sr-only">
+          Author name (optional)
+        </label>
         <input
+          id="book-request-author"
           type="text"
           value={authorName}
           onChange={(e) => setAuthorName(e.target.value)}
@@ -157,7 +164,11 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
       {/* Email */}
       <div>
+        <label htmlFor="book-request-email" className="sr-only">
+          Your email
+        </label>
         <input
+          id="book-request-email"
           type="email"
           value={email}
           onChange={(e) => {
@@ -166,6 +177,8 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           }}
           onBlur={() => handleBlur("email", email)}
           placeholder="Your email (so we can reach you)"
+          aria-invalid={!!errors.email && !!touched.email}
+          aria-describedby={errors.email && touched.email ? "book-request-email-error" : undefined}
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.email && !!touched.email)}
           onFocus={(e) => {
@@ -180,7 +193,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           }}
         />
         {errors.email && touched.email && (
-          <p className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-email-error" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.email}
           </p>
         )}

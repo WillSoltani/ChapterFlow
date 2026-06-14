@@ -66,6 +66,15 @@ export function TokenExpiryGuard() {
           method: "POST",
           cache: "no-store",
         });
+        // A 401 is terminal: the refresh token is gone/expired/revoked, or the
+        // account was soft-deleted mid-session — in the deleted case the route
+        // also CLEARS auth_expires_at, so the next tick() would early-return on
+        // the null cookie and never reach the failed-countdown redirect, leaving
+        // the user stranded under a stale banner. Redirect to login right now.
+        if (res.status === 401) {
+          window.location.assign(getLoginUrl());
+          return;
+        }
         if (!res.ok) throw new Error(`refresh ${res.status}`);
         // Success: the auth_expires_at cookie was rewritten with a later
         // timestamp; the next tick will see a healthy remaining and reset.
@@ -144,7 +153,7 @@ export function TokenExpiryGuard() {
           height={18}
           viewBox="0 0 24 24"
           fill="none"
-          className="shrink-0 text-(--cf-accent)"
+          className="shrink-0 text-(--cf-warning-text)"
           aria-hidden="true"
         >
           <circle cx={12} cy={12} r={10} stroke="currentColor" strokeWidth={2} />

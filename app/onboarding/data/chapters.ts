@@ -159,8 +159,8 @@ const toneQuizFeedback: Record<Tone, { correct: string; wrongPrefix: string }> =
     wrongPrefix: "Wrong —",
   },
   competitive: {
-    correct: "That's the move. You're ahead of 90% of people.",
-    wrongPrefix: "Miss. That's the average answer —",
+    correct: "That's the move most people miss.",
+    wrongPrefix: "Miss — here's the edge most people overlook —",
   },
 };
 

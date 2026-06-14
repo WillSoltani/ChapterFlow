@@ -3,6 +3,8 @@
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { AuthScreen } from "@/components/auth/AuthScreen";
+import { BrandLockup } from "@/components/auth/BrandLockup";
 
 /* ── Google icon SVG (brand asset — fixed colors by design) ── */
 function GoogleIcon() {
@@ -16,7 +18,7 @@ function GoogleIcon() {
   );
 }
 
-/* ── Apple icon SVG ── */
+/* ── Apple icon SVG (monochrome — inherits currentColor) ── */
 function AppleIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -56,134 +58,50 @@ function SignupInner() {
   const emailReady = consented && email.trim().length > 0;
 
   return (
-    <div
-      className="relative min-h-screen flex items-center justify-center px-5"
-      style={{ background: "var(--bg-base)" }}
-    >
-      {/* Background glow — theme-aware accent tokens (no hardcoded color) */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute"
-          style={{
-            width: 600,
-            height: 600,
-            top: "-15%",
-            left: "-10%",
-            background: "radial-gradient(circle, var(--accent-cyan-glow), transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute"
-          style={{
-            width: 500,
-            height: 500,
-            bottom: "-15%",
-            right: "-10%",
-            background: "radial-gradient(circle, var(--accent-cyan-glow), transparent 70%)",
-          }}
-        />
-      </div>
-
-      {/* Signup card */}
+    <AuthScreen>
       <motion.div
-        className="relative z-10 w-full"
-        style={{
-          maxWidth: 440,
-          padding: 32,
-          background: "var(--bg-surface-1)",
-          backdropFilter: "blur(24px)",
-          WebkitBackdropFilter: "blur(24px)",
-          border: "1px solid var(--border-default)",
-          borderRadius: "var(--radius-xl-val)",
-          boxShadow: "var(--shadow-card)",
-        }}
+        className="w-full max-w-md rounded-2xl border border-(--cf-border) bg-(--cf-surface) p-8 shadow-(--cf-shadow-lg)"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
-        {/* Logo */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="flex items-center gap-2.5 mb-5">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <rect x="3" y="2" width="14" height="20" rx="2" stroke="var(--accent-blue)" strokeWidth="1.5" />
-              <path d="M7 7h6M7 11h6M7 15h4" stroke="var(--accent-blue)" strokeWidth="1.5" strokeLinecap="round" />
-              <rect x="7" y="4" width="14" height="20" rx="2" fill="var(--bg-base)" stroke="var(--accent-blue)" strokeWidth="1.5" />
-              <path d="M11 9h6M11 13h6M11 17h4" stroke="var(--accent-blue)" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <span
-              style={{
-                fontFamily: "var(--font-sora)",
-                fontSize: 20,
-                fontWeight: 700,
-                color: "var(--text-heading)",
-              }}
-            >
-              ChapterFlow
-            </span>
-          </div>
-
-          <h1
-            style={{
-              fontFamily: "var(--font-sora)",
-              fontSize: 28,
-              fontWeight: 600,
-              color: "var(--text-heading)",
-              textAlign: "center",
-            }}
-          >
+        {/* Brand lockup + headline */}
+        <div className="mb-8 flex flex-col items-center text-center">
+          <BrandLockup className="mb-5" />
+          <h1 className="text-[24px] font-bold leading-snug text-(--cf-text-1)">
             Start reading smarter
           </h1>
-          <p
-            className="mt-2"
-            style={{
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              color: "var(--text-secondary)",
-              textAlign: "center",
-            }}
-          >
+          <p className="mt-2 text-[15px] leading-relaxed text-(--cf-text-3)">
             Turn any book into a skill you keep.
           </p>
         </div>
 
         {/* Consent */}
-        <label
-          className="flex items-start gap-2.5 mb-5 cursor-pointer select-none"
-          style={{
-            fontFamily: "var(--font-dm-sans)",
-            fontSize: 13,
-            color: "var(--text-secondary)",
-            lineHeight: 1.5,
-          }}
-        >
+        <label className="mb-5 flex cursor-pointer select-none items-start gap-2.5 text-[13px] leading-relaxed text-(--cf-text-3)">
           <input
             type="checkbox"
             checked={consented}
             onChange={(e) => setConsented(e.target.checked)}
             aria-label="I agree to the Terms of Service and Privacy Policy"
-            style={{
-              marginTop: 2,
-              width: 16,
-              height: 16,
-              accentColor: "var(--accent-blue)",
-              cursor: "pointer",
-              flexShrink: 0,
-            }}
+            className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-(--cf-accent)"
           />
           <span>
             I agree to the{" "}
-            <a href="/legal/terms" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-blue)", textDecoration: "underline" }}>
+            <a
+              href="/legal/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-(--cf-accent) underline underline-offset-2"
+            >
               Terms of Service
             </a>{" "}
             and{" "}
-            <a href="/legal/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-blue)", textDecoration: "underline" }}>
+            <a
+              href="/legal/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-(--cf-accent) underline underline-offset-2"
+            >
               Privacy Policy
             </a>
             .
@@ -197,21 +115,7 @@ function SignupInner() {
             onClick={() => startOAuth("Google")}
             disabled={!consented}
             aria-label="Continue with Google"
-            className="w-full flex items-center justify-center gap-3 cursor-pointer transition-all duration-200 disabled:cursor-not-allowed"
-            style={{
-              minHeight: 48,
-              padding: "12px 16px",
-              background: "#ffffff",
-              color: "#1f2937",
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              fontWeight: 500,
-              borderRadius: "var(--radius-md-val)",
-              border: "1px solid var(--border-default)",
-              opacity: consented ? 1 : 0.5,
-            }}
-            onMouseEnter={(e) => consented && (e.currentTarget.style.transform = "scale(1.01)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong) disabled:cursor-not-allowed disabled:opacity-50"
           >
             <GoogleIcon />
             Continue with Google
@@ -222,30 +126,7 @@ function SignupInner() {
             onClick={() => startOAuth("SignInWithApple")}
             disabled={!consented}
             aria-label="Continue with Apple"
-            className="w-full flex items-center justify-center gap-3 cursor-pointer transition-all duration-200 disabled:cursor-not-allowed"
-            style={{
-              minHeight: 48,
-              padding: "12px 16px",
-              background: "var(--bg-surface-1)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-              color: "var(--text-primary)",
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              fontWeight: 500,
-              borderRadius: "var(--radius-md-val)",
-              border: "1px solid var(--border-subtle)",
-              opacity: consented ? 1 : 0.5,
-            }}
-            onMouseEnter={(e) => {
-              if (!consented) return;
-              e.currentTarget.style.borderColor = "var(--border-default)";
-              e.currentTarget.style.transform = "scale(1.01)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "var(--border-subtle)";
-              e.currentTarget.style.transform = "scale(1)";
-            }}
+            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong) disabled:cursor-not-allowed disabled:opacity-50"
           >
             <AppleIcon />
             Continue with Apple
@@ -253,12 +134,10 @@ function SignupInner() {
         </div>
 
         {/* Divider */}
-        <div className="flex items-center gap-4 my-6">
-          <div className="flex-1" style={{ height: 1, background: "var(--border-subtle)" }} />
-          <span style={{ fontFamily: "var(--font-dm-sans)", fontSize: 13, color: "var(--text-muted)" }}>
-            or
-          </span>
-          <div className="flex-1" style={{ height: 1, background: "var(--border-subtle)" }} />
+        <div className="my-6 flex items-center gap-4">
+          <div className="h-px flex-1 bg-(--cf-border)" />
+          <span className="text-[13px] text-(--cf-text-3)">or</span>
+          <div className="h-px flex-1 bg-(--cf-border)" />
         </div>
 
         {/* Email input */}
@@ -274,86 +153,36 @@ function SignupInner() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
             onKeyDown={(e) => e.key === "Enter" && startEmail()}
-            className="w-full transition-all duration-200"
-            style={{
-              minHeight: 48,
-              padding: "12px 16px",
-              background: "var(--bg-surface-1)",
-              border: "1px solid var(--border-subtle)",
-              borderRadius: "var(--radius-md-val)",
-              color: "var(--text-primary)",
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              outline: "none",
-            }}
-            onFocus={(e) => {
-              e.currentTarget.style.borderColor = "var(--accent-blue)";
-              e.currentTarget.style.boxShadow = "0 0 0 3px var(--accent-cyan-glow)";
-            }}
-            onBlur={(e) => {
-              e.currentTarget.style.borderColor = "var(--border-subtle)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
+            className="min-h-12 w-full rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] text-(--cf-text-1) placeholder:text-(--cf-text-3) transition-colors duration-(--duration-fast) focus:border-(--cf-accent)"
           />
 
           <button
             type="button"
             onClick={startEmail}
             disabled={!emailReady}
-            className="w-full cursor-pointer transition-all duration-200 disabled:cursor-not-allowed"
-            style={{
-              minHeight: 48,
-              padding: "12px 16px",
-              // Cyan brand accent — matches the sibling auth screens (gift,
-              // pair, account-deleted, referral) and the one-accent rule.
-              background: "var(--cf-accent)",
-              color: "var(--cf-accent-contrast)",
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              fontWeight: 600,
-              borderRadius: "var(--radius-md-val)",
-              border: "none",
-              boxShadow: "0 0 20px var(--accent-cyan-glow)",
-              opacity: emailReady ? 1 : 0.5,
-            }}
-            onMouseEnter={(e) => {
-              if (!emailReady) return;
-              e.currentTarget.style.filter = "brightness(1.1)";
-              e.currentTarget.style.transform = "scale(1.02)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.filter = "brightness(1)";
-              e.currentTarget.style.transform = "scale(1)";
-            }}
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[15px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Continue with email &rarr;
           </button>
         </div>
 
         {/* Sign in link */}
-        <p
-          className="text-center mt-5"
-          style={{ fontFamily: "var(--font-dm-sans)", fontSize: 14, color: "var(--text-secondary)" }}
-        >
+        <p className="mt-5 text-center text-[14px] text-(--cf-text-3)">
           Already have an account?{" "}
           <a
             href={loginHref()}
-            className="transition-colors duration-200"
-            style={{ color: "var(--accent-blue)" }}
+            className="font-medium text-(--cf-accent) transition-colors duration-(--duration-fast) hover:brightness-110"
           >
             Sign in
           </a>
         </p>
 
         {/* Trust line */}
-        <p
-          className="text-center mt-6"
-          style={{ fontFamily: "var(--font-dm-sans)", fontSize: 13, color: "var(--text-muted)" }}
-        >
+        <p className="mt-6 text-center text-[13px] text-(--cf-text-3)">
           No credit card required. Free forever for 2 books.
         </p>
       </motion.div>
-    </div>
+    </AuthScreen>
   );
 }
 

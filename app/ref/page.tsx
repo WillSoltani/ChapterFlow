@@ -11,8 +11,9 @@ export const metadata: Metadata = {
 /**
  * Referral interstitial. /ref/[code] sets the attribution cookie and lands the
  * friend here so the promised reward is actually acknowledged before the auth
- * wall. Copy mirrors the rewards page exactly (a free week of Pro is *earned*
- * by completing the first learning loop) — no over-claiming an instant grant.
+ * wall. Copy states the *real* reward: the referral flow grants bonus Insight
+ * Points (180/80) to both sides once the friend finishes their first learning
+ * loop — it does NOT grant a Pro week, so we don't claim one here.
  */
 export default function ReferralLandingPage() {
   return (
@@ -29,9 +30,9 @@ export default function ReferralLandingPage() {
           A friend invited you to ChapterFlow
         </h1>
         <p className="mb-7 text-[14px] leading-relaxed text-(--cf-text-3)">
-          Create your free account and finish your first learning loop to unlock a
-          free week of Pro — for both of you. ChapterFlow turns any book into a
-          skill you actually keep.
+          Create your free account and finish your first learning loop — you&apos;ll
+          both earn bonus Insight Points when you do. ChapterFlow turns any book
+          into a skill you actually keep.
         </p>
 
         <div className="flex flex-col gap-3">

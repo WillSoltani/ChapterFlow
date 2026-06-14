@@ -6,8 +6,6 @@ import {
   useMemo,
   useCallback,
   useRef,
-  createContext,
-  useContext,
 } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,21 +24,15 @@ import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
-import { useAuthStatus } from "@/components/auth/useAuthStatus";
-
-/* Auth state shared with the nested card components (avoids deep prop drilling). */
-const LoggedInContext = createContext<boolean | null>(null);
 
 /**
- * Preserve intent through the login wall: a logged-out reader who clicks a book
- * lands on THAT book after auth (returnTo), not the generic dashboard. Logged-in
- * readers go straight there.
+ * Always link straight to the book. The server (requireDashboardAccess) carries
+ * intent through the login wall via returnTo for logged-out readers, so we never
+ * route a logged-in reader through an unnecessary OAuth round-trip during the
+ * async auth-status window (the client hook resolves loggedIn lazily).
  */
-function bookHref(id: string, loggedIn: boolean | null): string {
-  const target = `/book/library/${id}`;
-  return loggedIn === true
-    ? target
-    : `/auth/login?returnTo=${encodeURIComponent(target)}`;
+function bookHref(id: string): string {
+  return `/book/library/${id}`;
 }
 
 /* ================================================================== */
@@ -229,7 +221,6 @@ function SearchBar({
   onRequestBook: (title: string) => void;
 }) {
   const [focused, setFocused] = useState(false);
-  const loggedIn = useContext(LoggedInContext);
 
   const results = useMemo(() => {
     if (query.length < 2) return [];
@@ -272,7 +263,9 @@ function SearchBar({
         />
         {query && (
           <button
+            type="button"
             onClick={() => onChange("")}
+            aria-label="Clear search"
             className="text-(--text-muted) hover:text-(--text-heading) transition-colors text-sm"
           >
             ✕
@@ -293,8 +286,8 @@ function SearchBar({
             results.map((book) => (
               <Link
                 key={book.id}
-                href={bookHref(book.id, loggedIn)}
-                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-white/5"
+                href={bookHref(book.id)}
+                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-(--bg-glass)"
               >
                 <div className="w-8 h-12 shrink-0 rounded overflow-hidden">
                   <BookCover
@@ -316,7 +309,7 @@ function SearchBar({
                 </div>
                 <span
                   className="text-[10px] px-2 py-0.5 rounded-full shrink-0"
-                  style={{ background: "rgba(255,255,255,0.06)", color: "var(--text-muted)" }}
+                  style={{ background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)", color: "var(--text-muted)" }}
                 >
                   {book.category}
                 </span>
@@ -331,7 +324,7 @@ function SearchBar({
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => onRequestBook(query)}
-                className="text-[12px] mt-1 font-medium hover:underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                className="inline-flex items-center justify-center min-h-[44px] px-2 text-[12px] mt-1 font-medium hover:underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
                 style={{ color: "var(--accent-teal)" }}
               >
                 Request &ldquo;{query}&rdquo; &rarr;
@@ -349,7 +342,6 @@ function SearchBar({
 /* ================================================================== */
 
 function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: string }) {
-  const loggedIn = useContext(LoggedInContext);
   return (
     <div className="flex gap-5 items-center overflow-hidden">
       <div className="shrink-0 w-[100px] sm:w-[130px] md:w-[150px] aspect-[2/3] transform -rotate-2 transition-transform hover:rotate-0 duration-300">
@@ -385,7 +377,7 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
           {book.chapters} chapters · ~{avgMinPerChapter(book)}m each
         </p>
         <Link
-          href={bookHref(book.id, loggedIn)}
+          href={bookHref(book.id)}
           onClick={() => track("book_card_click", { source: "browse_library_featured", bookId: book.id })}
           className="mt-3 text-[13px] font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
           style={{ color: "var(--accent-teal)" }}
@@ -570,7 +562,7 @@ function FilterBar({
                 if (e.key === "Escape") setSortOpen(false);
                 if (e.key === "ArrowDown") { e.preventDefault(); setSortOpen(true); }
               }}
-              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
               style={{ color: "var(--text-secondary)" }}
             >
               <span className="hidden sm:inline">Sort:</span>{" "}
@@ -598,7 +590,7 @@ function FilterBar({
                       if (e.key === "Escape") { setSortOpen(false); }
                       if (e.key === "Enter" || e.key === " ") { onSortChange(opt.value); setSortOpen(false); }
                     }}
-                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
                     style={{
                       color: sortBy === opt.value ? "var(--accent-teal)" : "var(--text-secondary)",
                       fontWeight: sortBy === opt.value ? 600 : 400,
@@ -622,11 +614,10 @@ function FilterBar({
 
 function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCategoryTag?: boolean }) {
   const badge = getBookBadge(book);
-  const loggedIn = useContext(LoggedInContext);
 
   return (
     <Link
-      href={bookHref(book.id, loggedIn)}
+      href={bookHref(book.id)}
       className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded-lg"
       aria-label={`${book.title} by ${book.author} — ${DIFFICULTY_LABEL[book.difficulty]}, ${book.chapters} chapters`}
       onClick={() => track("book_card_click", { source: "browse_library", bookId: book.id })}
@@ -692,14 +683,14 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
         </p>
         <span
           className="sm:hidden inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full"
-          style={{ background: "rgba(255,255,255,0.06)", color: "var(--text-muted)" }}
+          style={{ background: "var(--bg-elevated)", color: "var(--text-muted)" }}
         >
           {DIFFICULTY_LABEL[book.difficulty]}
         </span>
         {showCategoryTag && (
           <span
             className="inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full"
-            style={{ background: "rgba(255,255,255,0.06)", color: "var(--text-muted)", border: "1px solid rgba(255,255,255,0.06)" }}
+            style={{ background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)", color: "var(--text-muted)", border: "1px solid var(--border-subtle)" }}
           >
             {book.category}
           </span>
@@ -985,7 +976,7 @@ function ZeroResults({
       <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
         <button
           onClick={onClear}
-          className="text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+          className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
           style={{ background: "var(--bg-raised)", border: "1px solid var(--border-medium)", color: "var(--text-heading)" }}
         >
           Clear search
@@ -993,7 +984,7 @@ function ZeroResults({
         {query.trim() && (
           <button
             onClick={() => onRequestBook(query)}
-            className="text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-transform duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-transform duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
             style={{ background: "var(--accent-teal)", color: "var(--primary-foreground)" }}
           >
             Request &ldquo;{query.trim()}&rdquo;
@@ -1067,7 +1058,7 @@ export function BrowseLibraryPage() {
   const [sortBy, setSortBy] = useState<SortOption>("popular");
   const [requestTitle, setRequestTitle] = useState("");
   const requestSectionRef = useRef<HTMLDivElement>(null);
-  const { loggedIn } = useAuthStatus();
+  const seededFromUrl = useRef(false);
 
   const categories = useMemo(() => getCategoriesWithCounts(ALL_BOOKS), []);
 
@@ -1088,10 +1079,19 @@ export function BrowseLibraryPage() {
   }, []);
 
   // Seed the search from a ?q= URL param (deep links from JSON-LD / the
-  // WebSite SearchAction, e.g. /books?q=Deep%20Work). Client-only read.
+  // WebSite SearchAction, e.g. /books?q=Deep%20Work). Client-only read, guarded
+  // so it seeds state exactly once (never re-fires setState on a later render
+  // or a StrictMode/fast-refresh remount).
   useEffect(() => {
+    if (seededFromUrl.current) return;
+    seededFromUrl.current = true;
     const q = new URLSearchParams(window.location.search).get("q");
     if (q) {
+      // One-time seed from the client-only URL query on mount. A lazy useState
+      // initializer would read window during SSR (hydration mismatch) and
+      // useSearchParams() would force a Suspense boundary on this client page,
+      // so a ref-guarded mount effect is the correct pattern here.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSearchQuery(q);
       setDebouncedQuery(q);
     }
@@ -1143,7 +1143,6 @@ export function BrowseLibraryPage() {
   const isAllView = activeCategory === "All" && !debouncedQuery.trim();
 
   return (
-    <LoggedInContext.Provider value={loggedIn}>
     <div className="min-h-screen" style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}>
       {/* Noise overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" aria-hidden />
@@ -1226,6 +1225,5 @@ export function BrowseLibraryPage() {
       <BottomCTA />
       <Footer />
     </div>
-    </LoggedInContext.Provider>
   );
 }

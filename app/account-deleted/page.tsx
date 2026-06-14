@@ -48,8 +48,12 @@ export default function AccountDeletedPage() {
         </p>
 
         <div className="flex flex-col gap-3">
+          {/* No returnTo: a relative "/" would be passed verbatim to Cognito's
+              logout_uri, which it rejects (it requires a pre-registered, fully
+              qualified sign-out URL → error page). Omitting it lets the logout
+              route fall back to its registered COGNITO_LOGOUT_REDIRECT_URI. */}
           <Link
-            href="/auth/logout?returnTo=%2F"
+            href="/auth/logout"
             className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
           >
             Sign out completely

@@ -169,9 +169,19 @@ async function persist(record: BookRequestRecord): Promise<void> {
     return;
   }
 
+  // In production the table MUST be configured. If it isn't, fail loudly with a
+  // 500 (the caller's catch returns an honest error to the reader) rather than
+  // silently writing to an ephemeral temp file and telling them we saved it —
+  // a standalone prod build's temp dir is not durable team-visible storage.
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "BOOK_TABLE_NAME is not configured; refusing to silently drop a book request in production.",
+    );
+  }
+
   // Local-dev fallback: no DynamoDB configured. Append to a writable temp file
   // so requests aren't lost and the flow can be verified end-to-end. Production
-  // always has BOOK_TABLE_NAME set, so this branch never runs there.
+  // never reaches here — the guard above throws when the table is unset.
   const [{ appendFile, mkdir }, os, path] = await Promise.all([
     import("node:fs/promises"),
     import("node:os"),

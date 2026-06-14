@@ -72,6 +72,19 @@ export function OnboardingFlow() {
       throw new Error(`Failed to save onboarding (${resp.status})`);
     }
 
+    // Consume the response body so the real grant totals the route reports
+    // (points balance + the day streak it counted for today) are read rather
+    // than silently discarded. The celebration already renders the deterministic
+    // grant amounts before this POST fires, then navigates to /dashboard — which
+    // reads the now-persisted server state — so the user lands on totals that
+    // match what was actually granted. Parsing is best-effort: a malformed body
+    // must not turn an already-persisted save into a failure.
+    try {
+      await resp.json();
+    } catch {
+      /* non-fatal — save already succeeded */
+    }
+
     // Saved — clear the local onboarding state and mark the legacy state
     // complete so the old /book home doesn't bounce the user back.
     clearOnboarding();
@@ -176,7 +189,7 @@ export function OnboardingFlow() {
             <button
               onClick={handleBack}
               aria-label="Go back"
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-(--text-secondary) transition-colors duration-200 hover:bg-(--cf-surface-muted) hover:text-(--text-heading)"
+              className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-(--text-secondary) transition-colors duration-200 hover:bg-(--cf-surface-muted) hover:text-(--text-heading)"
             >
               <ChevronLeft size={20} strokeWidth={2} />
             </button>

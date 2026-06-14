@@ -126,12 +126,10 @@ export default function StepPace({ onNext }: StepPaceProps) {
           variants={staggerContainer}
           initial="hidden"
           animate="show"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 10,
-            width: "100%",
-          }}
+          className="grid w-full grid-cols-3"
+          style={{ gap: 10 }}
+          role="radiogroup"
+          aria-label="Daily reading goal"
         >
           {dailyGoalOptions.map(({ value, label, sublabel, badge, Icon }) => {
             const isSelected = dailyGoal === value;
@@ -245,6 +243,8 @@ export default function StepPace({ onNext }: StepPaceProps) {
             gap: 10,
             width: "100%",
           }}
+          role="radiogroup"
+          aria-label="How should chapters open?"
         >
           {chapterOrderOptions.map(({ value, label, description, Icon }) => {
             const isSelected = chapterOrder === value;

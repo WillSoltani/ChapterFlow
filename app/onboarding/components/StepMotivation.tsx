@@ -109,12 +109,16 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
         This shapes which books and examples show up first.
       </p>
 
-      {/* 1 column on mobile, 2 on larger screens (replaces a [style*=] hack) */}
+      {/* 1 column on mobile, 2 on larger screens (replaces a [style*=] hack).
+          role=radiogroup gives the role="radio" TappableCards a valid parent so
+          assistive tech announces them as a single-select group. */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         animate="show"
         className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2"
+        role="radiogroup"
+        aria-label="What brings you here?"
       >
         {options.map(({ value, label, description, Icon }) => {
           const isSelected = motivation === value;

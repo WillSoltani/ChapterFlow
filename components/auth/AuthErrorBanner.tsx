@@ -3,12 +3,13 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
+// Keys mirror exactly what the auth callback can emit (error / token_error /
+// server_error). state_error and config_error were never produced, so they're
+// dropped rather than left as dead-but-reachable copy.
 const AUTH_ERROR_MESSAGES: Record<string, string> = {
   error: "We couldn’t finish signing you in. Let’s try that again.",
-  state_error: "Your sign-in link expired before we could finish. Start over and you’ll be right in.",
   token_error: "Something interrupted sign-in. One more try should do it.",
   server_error: "That’s on us — a hiccup on our end. Please try again in a moment.",
-  config_error: "Sign-in is briefly unavailable. Please try again shortly.",
 };
 
 const RETRY_URL = "/auth/login?returnTo=%2Fbook";
@@ -50,7 +51,7 @@ export function AuthErrorBanner() {
           height={18}
           viewBox="0 0 24 24"
           fill="none"
-          className="mt-0.5 shrink-0 text-(--accent-teal)"
+          className="mt-0.5 shrink-0 text-(--accent-amber)"
           aria-hidden="true"
         >
           <path
@@ -66,7 +67,7 @@ export function AuthErrorBanner() {
           <p className="text-(--text-secondary)">{message}</p>
           <a
             href={RETRY_URL}
-            className="mt-1.5 inline-block text-[13px] font-semibold text-(--accent-teal) underline underline-offset-2"
+            className="mt-1.5 inline-block text-[13px] font-semibold text-(--accent-amber) underline underline-offset-2"
           >
             Try again
           </a>

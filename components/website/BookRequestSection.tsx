@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BookRequestForm } from "./BookRequestForm";
 import { BookRequestSuccess } from "./BookRequestSuccess";
@@ -14,6 +14,14 @@ interface SubmissionData {
 export function BookRequestSection({ initialTitle }: { initialTitle?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [submissionData, setSubmissionData] = useState<SubmissionData | null>(null);
+
+  // A second "Request X" in the same session changes initialTitle. Without this
+  // the stale success card stays mounted and the new request dead-ends — reset
+  // back to the form so the freshly-prefilled title is editable/submittable.
+  useEffect(() => {
+    setSubmitted(false);
+    setSubmissionData(null);
+  }, [initialTitle]);
 
   const handleSuccess = (data: SubmissionData) => {
     setSubmissionData(data);
@@ -105,7 +113,7 @@ export function BookRequestSection({ initialTitle }: { initialTitle?: string }) 
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
               >
-                <BookRequestForm initialTitle={initialTitle} onSuccess={handleSuccess} />
+                <BookRequestForm key={initialTitle ?? ""} initialTitle={initialTitle} onSuccess={handleSuccess} />
               </motion.div>
             ) : (
               <motion.div
