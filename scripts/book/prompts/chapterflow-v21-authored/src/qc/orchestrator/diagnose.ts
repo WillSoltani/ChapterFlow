@@ -25,6 +25,7 @@ export function renderQcDiagnose(bookId: string, roundId: string): string {
   const common = new Map<string, number>();
   const bookWide = new Map<string, string>();
   const chapterLines: string[] = [];
+  const majors = new Map<string, { id: string; checkId: string; message: string }>();
 
   for (const decision of chapters) {
     if (decision.finalVerdict in verdicts) verdicts[decision.finalVerdict as keyof typeof verdicts]++;
@@ -32,6 +33,9 @@ export function renderQcDiagnose(bookId: string, roundId: string): string {
     for (const f of failed) common.set(f, (common.get(f) ?? 0) + 1);
     if (decision.checks?.bookGate === "FAIL") bookWide.set("bookGate", "bookGate FAIL");
     for (const f of decision.majorStatus?.book ?? []) bookWide.set(`major:${f.id}`, `${f.id} ${f.message}`);
+    for (const f of [...(decision.majorStatus?.chapter ?? []), ...(decision.majorStatus?.book ?? [])]) {
+      if (f?.id) majors.set(f.id, { id: f.id, checkId: f.checkId ?? "?", message: f.message ?? "" });
+    }
     if (failed.length > 0) chapterLines.push(`  ch${String(decision.chapterNumber).padStart(2, "0")}: ${failed.join(", ")}`);
   }
 
@@ -49,6 +53,21 @@ export function renderQcDiagnose(bookId: string, roundId: string): string {
   lines.push("per-chapter failed checks:");
   if (chapterLines.length === 0) lines.push("  none");
   else lines.push(...chapterLines);
+  // Convergence safety-valve: a content-only repair loop CANNOT clear a major
+  // that is a false positive or accepted debt (there's nothing to edit), so the
+  // chapter would loop on REVISE forever. If a reviewer (NOT the writer) reads
+  // the chapter and confirms a major is a false positive, they disposition it
+  // with the command below. This is gated — major-disposition requires an
+  // approved reviewer + a round token — so it cannot be used to dodge a real
+  // defect silently. First try to FIX or recalibrate; waive only a true FP.
+  if (majors.size > 0) {
+    lines.push("majors (fix first; if a reviewer confirms one is a FALSE POSITIVE, disposition it — do NOT use to dodge a real defect):");
+    for (const m of majors.values()) {
+      lines.push(`  # ${m.checkId}: ${m.message.slice(0, 100)}`);
+      lines.push(`  npx tsx src/cli.ts major-disposition ${bookId} --finding ${m.id} --status waived_false_positive --reason "<why this is a false positive>" --round ${roundId} --token <major-token>`);
+    }
+    lines.push("  (the <major-token> is printed by qc-open-round / in the round's task cards.)");
+  }
   lines.push("repair prompt:");
   lines.push(`  ${prompt}`);
   lines.push("next:");
