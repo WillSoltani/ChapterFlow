@@ -2,13 +2,21 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookErr } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
+import { getUserAccessibleChapter } from "@/app/app/api/book/_lib/content-service";
+import { isBookApiError } from "@/app/app/api/book/_lib/errors";
+import { AuthError } from "@/app/app/api/_lib/auth";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { GetCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { bookUserPk, reflectionFeedbackSk, feedbackLimitSk, nowIso } from "@/app/app/api/book/_lib/keys";
 import { streamReflectionFeedback } from "@/app/app/api/book/_lib/ai-service";
 import { getReflectionFeedbackModel } from "@/app/app/api/book/_lib/ai-config";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
+
+// Upper bound for the free-text prompt fields echoed into the Sonnet message.
+// Mirrors the maxLength the scenarios route applies via requireString — keeps
+// per-call input-token cost (and the prompt-injection surface) bounded.
+const MAX_PROMPT_FIELD_LENGTH = 2500;
 
 export const runtime = "nodejs";
 
@@ -17,7 +25,10 @@ type Params = { params: Promise<{ bookId: string; chapterNumber: string }> };
 export async function POST(req: Request, ctx: Params) {
   try {
     const user = await requireActiveBookUser();
-    const tableName = await getBookTableName();
+    const [tableName, contentBucket] = await Promise.all([
+      getBookTableName(),
+      getBookContentBucket(),
+    ]);
     const { bookId, chapterNumber: chapterStr } = await ctx.params;
     const chapterNumber = Number(chapterStr);
 
@@ -26,18 +37,51 @@ export async function POST(req: Request, ctx: Params) {
     }
 
     const body = await req.json();
-    const exampleId = typeof body.exampleId === "string" ? body.exampleId : "";
+    const exampleId = typeof body.exampleId === "string" ? body.exampleId.trim() : "";
     const reflectionText = typeof body.reflectionText === "string" ? body.reflectionText.trim() : "";
     const scenario = typeof body.scenario === "string" ? body.scenario : "";
     const whatToDo = typeof body.whatToDo === "string" ? body.whatToDo : "";
     const whyItMatters = typeof body.whyItMatters === "string" ? body.whyItMatters : "";
     const chapterTitle = typeof body.chapterTitle === "string" ? body.chapterTitle : "";
 
+    if (!exampleId) {
+      return bookErr(req, 400, "invalid_example_id", "exampleId is required");
+    }
     if (reflectionText.length < 20) {
       return bookErr(req, 400, "short_reflection", "Reflection must be at least 20 characters");
     }
     if (reflectionText.length > 2000) {
       return bookErr(req, 400, "long_reflection", "Reflection must be under 2000 characters");
+    }
+    if (
+      scenario.length > MAX_PROMPT_FIELD_LENGTH ||
+      whatToDo.length > MAX_PROMPT_FIELD_LENGTH ||
+      whyItMatters.length > MAX_PROMPT_FIELD_LENGTH ||
+      chapterTitle.length > MAX_PROMPT_FIELD_LENGTH
+    ) {
+      return bookErr(
+        req,
+        400,
+        "field_too_long",
+        `Prompt fields must be under ${MAX_PROMPT_FIELD_LENGTH} characters`,
+      );
+    }
+
+    // Source of truth for exampleId is the published chapter, never the client.
+    // getUserAccessibleChapter also enforces that the chapter is started and
+    // unlocked for this user. Without this, a caller could send a fresh random
+    // exampleId on every request and bypass the per-example rate limit / cache
+    // key below, getting unlimited Sonnet streams.
+    const { chapter } = await getUserAccessibleChapter({
+      tableName,
+      contentBucket,
+      userId: user.sub,
+      bookId,
+      chapterNumber,
+    });
+    const exampleExists = chapter.examples.some((ex) => ex.exampleId === exampleId);
+    if (!exampleExists) {
+      return bookErr(req, 400, "invalid_example_id", "exampleId not found in chapter");
     }
 
     const pk = bookUserPk(user.sub);
@@ -164,6 +208,12 @@ export async function POST(req: Request, ctx: Params) {
       },
     });
   } catch (err) {
+    if (err instanceof AuthError) {
+      return bookErr(req, 401, "unauthenticated", "Authentication is required.");
+    }
+    if (isBookApiError(err)) {
+      return bookErr(req, err.status, err.code, err.message, err.details);
+    }
     console.error("[feedback] Error:", err);
     return bookErr(req, 500, "internal_error", "An unexpected error occurred");
   }
