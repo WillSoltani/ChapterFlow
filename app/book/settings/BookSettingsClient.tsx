@@ -1130,7 +1130,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
               description={
                 preferences.appearance.theme === "dark"
                   ? "You're already in dark mode all the time."
-                  : "Automatically switch to dark mode during evening hours."
+                  : "Automatically switch to dark mode during evening hours while you're reading."
               }
             >
               <ToggleSwitch
