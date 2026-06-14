@@ -41,11 +41,21 @@ function getChapterHeatmapLevel(chapters: number): number {
 
 const HEATMAP_COLORS = [
   "var(--cf-surface-muted)",
-  "rgba(34,211,238,0.2)",
-  "rgba(34,211,238,0.4)",
-  "rgba(34,211,238,0.6)",
+  "color-mix(in srgb, var(--accent-cyan) 25%, transparent)",
+  "color-mix(in srgb, var(--accent-cyan) 50%, transparent)",
+  "color-mix(in srgb, var(--accent-cyan) 75%, transparent)",
   "var(--accent-cyan)",
 ];
+
+type HeatCell = {
+  date: string;
+  minutes: number;
+  chapters: number;
+  level: number;
+  chapterLevel: number;
+  dateLabel: string;
+  isToday: boolean;
+};
 
 function toLocalDateStr(date: Date): string {
   const y = date.getFullYear();
@@ -80,20 +90,21 @@ export function ReadingActivity({
   // Current hour for highlighting
   const currentHour = new Date().getHours();
 
-  // Build heatmap data (84 days = 12 weeks)
-  const heatmapData = useMemo(() => {
+  // Build heatmap data: 84 days (12 weeks), GitHub-style weekday-aligned.
+  // The grid renders grid-flow-col grid-rows-7, so cell row = index % 7. We pad
+  // the start with leading nulls so the earliest real day lands on its true
+  // weekday row (Sun=0 … Sat=6). Every subsequent cell then sits on its real
+  // weekday, today included — and the Mon/Wed/Fri labels (rows 1/3/5) line up.
+  const heatmapData = useMemo<Array<HeatCell | null>>(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const dayMap = new Map(activity.days.map((d) => [d.date, d]));
-    const cells: Array<{
-      date: string;
-      minutes: number;
-      chapters: number;
-      level: number;
-      chapterLevel: number;
-      dateLabel: string;
-      isToday: boolean;
-    }> = [];
+    const cells: Array<HeatCell | null> = [];
+
+    const firstDate = new Date(today);
+    firstDate.setDate(today.getDate() - 83);
+    const leadingPad = firstDate.getDay(); // 0=Sunday … 6=Saturday
+    for (let p = 0; p < leadingPad; p++) cells.push(null);
 
     for (let offset = 83; offset >= 0; offset--) {
       const date = new Date(today);
@@ -119,7 +130,7 @@ export function ReadingActivity({
 
   const hoveredData = useMemo(() => {
     if (!hoveredDay) return null;
-    return heatmapData.find((c) => c.date === hoveredDay) ?? null;
+    return heatmapData.find((c) => c !== null && c.date === hoveredDay) ?? null;
   }, [hoveredDay, heatmapData]);
 
   const maxHourlyMinutes = useMemo(() => {
@@ -222,7 +233,7 @@ export function ReadingActivity({
                           ? "var(--accent-cyan)"
                           : "var(--cf-surface-strong)",
                       boxShadow: isCurrent && slot.minutes > 0
-                        ? "0 0 8px rgba(34,211,238,0.4)"
+                        ? "0 0 8px var(--cf-accent-shadow)"
                         : "none",
                       opacity: isFuture ? 0.3 : 1,
                       borderBottom: isFuture ? "1px dashed var(--cf-border)" : "none",
@@ -281,6 +292,8 @@ export function ReadingActivity({
                 className="grid select-none grid-rows-7 gap-1.5"
                 style={{ gridAutoRows: "1rem" }}
               >
+                {/* Row 0 = Sunday (the heatmap leadingPad guarantees this), so
+                    Mon/Wed/Fri sit on rows 1/3/5 and line up with real cells. */}
                 {["", "Mon", "", "Wed", "", "Fri", ""].map((label, i) => (
                   <span
                     key={i}
@@ -294,24 +307,28 @@ export function ReadingActivity({
 
               {/* Grid cells */}
               <div className="inline-grid grid-flow-col grid-rows-7 gap-1.5">
-                {heatmapData.map((cell) => (
-                  <button
-                    key={cell.date}
-                    type="button"
-                    onMouseEnter={() => setHoveredDay(cell.date)}
-                    onFocus={() => setHoveredDay(cell.date)}
-                    onMouseLeave={() => setHoveredDay(null)}
-                    className="h-4 w-4 transition"
-                    style={{
-                      borderRadius: 3,
-                      background: HEATMAP_COLORS[dataView === "chapters" ? cell.chapterLevel : cell.level],
-                      boxShadow: cell.isToday
-                        ? "0 0 0 1.5px rgba(34,211,238,0.5)"
-                        : "none",
-                    }}
-                    aria-label={`${cell.dateLabel}: ${cell.minutes} min, ${cell.chapters} chapters`}
-                  />
-                ))}
+                {heatmapData.map((cell, i) =>
+                  cell === null ? (
+                    <span key={`pad-${i}`} className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <button
+                      key={cell.date}
+                      type="button"
+                      onMouseEnter={() => setHoveredDay(cell.date)}
+                      onFocus={() => setHoveredDay(cell.date)}
+                      onMouseLeave={() => setHoveredDay(null)}
+                      className="h-4 w-4 transition"
+                      style={{
+                        borderRadius: 3,
+                        background: HEATMAP_COLORS[dataView === "chapters" ? cell.chapterLevel : cell.level],
+                        boxShadow: cell.isToday
+                          ? "0 0 0 1.5px var(--accent-cyan)"
+                          : "none",
+                      }}
+                      aria-label={`${cell.dateLabel}: ${cell.minutes} min, ${cell.chapters} chapters`}
+                    />
+                  )
+                )}
               </div>
             </div>
           </div>

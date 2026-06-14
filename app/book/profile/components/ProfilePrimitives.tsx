@@ -237,7 +237,7 @@ export function SectionCard({
             ) : null}
             <div>
               {eyebrow ? (
-                <p className="text-[11px] uppercase tracking-[0.26em] text-(--cf-text-soft)">
+                <p className="text-[11px] uppercase tracking-[0.26em] text-(--cf-text-3)">
                   {eyebrow}
                 </p>
               ) : null}
@@ -358,7 +358,7 @@ function IdentityTooltip({
       </button>
       {open ? (
         <div className="absolute left-0 top-full z-30 mt-2 w-72 rounded-2xl border border-(--cf-border) bg-(--cf-surface-strong) p-4 shadow-shadow-elevated">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--cf-text-soft)">Reading level progression</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--cf-text-3)">Reading level progression</p>
           {nextLevel ? (
             <p className="mt-2 text-sm text-(--cf-text-2)">
               Next: <span className="font-semibold text-(--cf-text-1)">{nextLevel.label}</span> — Complete {nextLevel.books} books
@@ -531,17 +531,17 @@ export function IdentityHeroBanner({
             {/* Hero stat row */}
             <div className="mt-5 flex flex-wrap gap-6">
               <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Books completed</p>
+                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">Books completed</p>
                 <p className="mt-1 text-2xl font-bold text-(--cf-text-1)">{booksCompleted}</p>
               </div>
               <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Current streak</p>
+                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">Current streak</p>
                 <p className="mt-1 text-2xl font-bold" style={{ color: hasStreak ? "var(--accent-amber)" : "var(--cf-text-1)" }}>
                   {streakDays} <span className="text-base font-medium text-(--cf-text-3)">{streakDays === 1 ? "day" : "days"}</span>
                 </p>
               </div>
               <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Total reading</p>
+                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">Total reading</p>
                 <p className="mt-1 text-2xl font-bold text-(--cf-text-1)">{totalHours}</p>
               </div>
             </div>
@@ -865,8 +865,8 @@ export function AchievementBadgeCard({
       </div>
       <p className={cn("mt-4 text-sm font-semibold", earned ? "text-(--cf-warning-text)" : "text-(--cf-text-1)")}>{title}</p>
       <p className="mt-2 text-sm leading-6 text-(--cf-text-3)">{description}</p>
-      {category ? <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-(--cf-text-soft)">{category}</p> : null}
-      {progressLabel ? <p className="mt-2 text-xs uppercase tracking-[0.18em] text-(--cf-text-soft)">{progressLabel}</p> : null}
+      {category ? <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-(--cf-text-3)">{category}</p> : null}
+      {progressLabel ? <p className="mt-2 text-xs uppercase tracking-[0.18em] text-(--cf-text-3)">{progressLabel}</p> : null}
     </button>
   );
 }
@@ -885,7 +885,7 @@ export function TimelineRow({ title, detail, meta }: { title: string; detail: st
       <div>
         <p className="text-sm font-medium text-(--cf-text-1)">{title}</p>
         <p className="mt-1 text-sm leading-6 text-(--cf-text-3)">{detail}</p>
-        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-(--cf-text-soft)">{meta}</p>
+        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-(--cf-text-3)">{meta}</p>
       </div>
     </div>
   );
@@ -905,7 +905,7 @@ export function NotePreviewCard({
       <p className="text-sm font-semibold text-(--cf-text-1)">{title}</p>
       <p className="mt-3 line-clamp-4 text-sm leading-7 text-(--cf-text-2)">{renderInlineMarkdown(body)}</p>
       <div className="mt-4 flex items-center justify-between gap-3">
-        <p className="text-xs uppercase tracking-[0.18em] text-(--cf-text-soft)">{meta}</p>
+        <p className="text-xs uppercase tracking-[0.18em] text-(--cf-text-3)">{meta}</p>
         {actionLabel && onAction ? (
           <button type="button" onClick={onAction} className="inline-flex items-center gap-1 text-sm text-(--cf-accent) transition hover:text-(--cf-accent-strong)">
             {actionLabel}<ArrowUpRight className="h-4 w-4" />
@@ -981,7 +981,7 @@ export function HeatmapCalendar({ cells }: { cells: HeatmapCell[] }) {
         <div className="flex flex-col gap-1.5 pr-1.5 pt-0">
           {DOW_LABELS.map((label, i) => (
             <div key={i} className="flex h-5 items-center sm:h-6">
-              <span className="w-6 text-right font-mono text-[10px] text-(--cf-text-soft)">{label}</span>
+              <span className="w-6 text-right font-mono text-[10px] text-(--cf-text-3)">{label}</span>
             </div>
           ))}
         </div>
@@ -1027,14 +1027,14 @@ export function HeatmapCalendar({ cells }: { cells: HeatmapCell[] }) {
         </div>
       </div>
       <div className="mt-3 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-[11px] text-(--cf-text-soft)">
+        <div className="flex items-center gap-2 text-[11px] text-(--cf-text-3)">
           <span>Less</span>
           {HEATMAP_COLORS.map((color, i) => (
             <div key={i} className={cn("h-3.5 w-3.5 rounded-[3px] border border-(--cf-border)", color)} />
           ))}
           <span>More</span>
         </div>
-        <span className="text-[11px] text-(--cf-text-soft)">● = today</span>
+        <span className="text-[11px] text-(--cf-text-3)">● = today</span>
       </div>
     </div>
   );
@@ -1165,8 +1165,7 @@ export function UpgradeCard({
         </p>
         <p className="mt-2 text-sm text-(--cf-text-3)">Join readers who chose to go deeper</p>
         <Button variant="primary" size="lg" fullWidth onClick={onUpgrade} className="mt-5">{TRIAL_CTA_LABEL} &rarr;</Button>
-        <p className="mt-3 text-center text-sm text-(--cf-text-soft)">Not now</p>
-        <div className="mt-3 flex flex-wrap justify-center gap-4 text-xs text-(--cf-text-3)">
+        <div className="mt-4 flex flex-wrap justify-center gap-4 text-xs text-(--cf-text-3)">
           <span>Cancel anytime</span><span>&bull;</span><span>No hidden fees</span>
         </div>
       </div>
@@ -1199,15 +1198,15 @@ export function ProStatusCard({
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-2">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-(--cf-text-soft)">Books accessed</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-(--cf-text-3)">Books accessed</p>
             <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">{booksAccessedCount}</p>
           </div>
           <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-2">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-(--cf-text-soft)">Advanced analytics</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-(--cf-text-3)">Advanced analytics</p>
             <p className="mt-1 text-sm font-medium text-(--cf-success-text)">✓ Unlocked</p>
           </div>
           <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-2">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-(--cf-text-soft)">Next renewal</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-(--cf-text-3)">Next renewal</p>
             <p className="mt-1 text-sm font-medium text-(--cf-text-1)">{renewalDate}</p>
           </div>
         </div>
@@ -1320,7 +1319,7 @@ export function QuizBarChart({
       </div>
       {/* Average line indicator */}
       <div className="relative mt-1 h-0 border-t border-dashed border-(--cf-text-soft)/30" style={{ bottom: `${(avg / maxScore) * 80}px`, marginTop: `-${(avg / maxScore) * 80}px`, position: "relative" }}>
-        <span className="absolute -top-3 right-0 text-[10px] text-(--cf-text-soft)">avg {avg}%</span>
+        <span className="absolute -top-3 right-0 text-[10px] text-(--cf-text-3)">avg {avg}%</span>
       </div>
 
       {/* Stat row */}
@@ -1375,7 +1374,7 @@ export function UpNextPreview({
           {label}: <span className="font-medium text-(--cf-text-2) group-hover:text-(--cf-text-1)">{bookTitle}</span>
         </span>
         {category ? (
-          <span className="shrink-0 rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-2 py-0.5 text-[10px] text-(--cf-text-soft)">{category}</span>
+          <span className="shrink-0 rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-2 py-0.5 text-[10px] text-(--cf-text-3)">{category}</span>
         ) : null}
         <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition group-hover:opacity-100" />
       </button>
@@ -1406,7 +1405,7 @@ export function ThisWeekStrip({ cells }: { cells: HeatmapCell[] }) {
 
   return (
     <div className="border-t border-(--cf-divider) pt-3">
-      <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">This week</p>
+      <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">This week</p>
       <div className="flex items-center justify-between gap-1">
         {weekCells.map((cell, i) => {
           const isToday = i === todayDow;
@@ -1414,7 +1413,7 @@ export function ThisWeekStrip({ cells }: { cells: HeatmapCell[] }) {
           const hasActivity = cell ? cell.minutes > 0 : false;
           return (
             <div key={i} className="flex flex-col items-center gap-1">
-              <span className="text-[10px] text-(--cf-text-soft)">{SHORT_DAYS[i]}</span>
+              <span className="text-[10px] text-(--cf-text-3)">{SHORT_DAYS[i]}</span>
               <div
                 className={cn(
                   "flex h-7 w-7 items-center justify-center rounded-full text-xs font-medium transition-all",
@@ -1452,7 +1451,7 @@ export function CategoryMap({
   return (
     <div>
       <div className="flex items-center justify-between">
-        <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">
+        <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">
           Categories explored
         </p>
         <span className="text-xs text-(--cf-text-3)">
@@ -1471,7 +1470,7 @@ export function CategoryMap({
           </button>
         ))}
         {remaining > 0 ? (
-          <span className="px-2 py-1 text-[11px] text-(--cf-text-soft)">
+          <span className="px-2 py-1 text-[11px] text-(--cf-text-3)">
             +{remaining} more to discover
           </span>
         ) : null}

@@ -72,6 +72,7 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
           <ContinueLearningCard
             primaryBook={primaryBook}
             otherBooks={otherBooks}
+            nextMilestone={data.nextMilestones[0] ?? null}
             onSwitchBook={onSwitchBook}
           />
         ) : (

@@ -44,10 +44,10 @@ export function ChapterProgressBar({
                 height,
                 borderRadius: height >= 6 ? 4 : 2,
                 background: isCompleted
-                  ? "#34D399"
+                  ? "var(--accent-emerald)"
                   : isCurrent
-                    ? "rgba(34,211,238,0.15)"
-                    : "rgba(255,255,255,0.06)",
+                    ? "var(--cf-accent-soft)"
+                    : "var(--cf-progress-track)",
               }}
             >
               {isCurrent && (
@@ -56,7 +56,7 @@ export function ChapterProgressBar({
                   style={{
                     width: `${(currentStepNumber / 4) * 100}%`,
                     borderRadius: height >= 6 ? 4 : 2,
-                    background: "#22D3EE",
+                    background: "var(--cf-accent)",
                   }}
                 />
               )}
@@ -75,7 +75,7 @@ export function ChapterProgressBar({
   return (
     <div
       className="relative w-full overflow-hidden rounded-full"
-      style={{ height, background: "rgba(255,255,255,0.06)" }}
+      style={{ height, background: "var(--cf-progress-track)" }}
       role="progressbar"
       aria-valuenow={completedChapters}
       aria-valuemin={0}
@@ -86,7 +86,7 @@ export function ChapterProgressBar({
       {completedPct > 0 && (
         <div
           className="absolute inset-y-0 left-0 rounded-full"
-          style={{ width: `${completedPct}%`, background: "#34D399" }}
+          style={{ width: `${completedPct}%`, background: "var(--accent-emerald)" }}
         />
       )}
       {/* Current chapter progress (within the 4-step loop) */}
@@ -96,7 +96,7 @@ export function ChapterProgressBar({
           style={{
             left: `${completedPct}%`,
             width: `${stepWithinChapter}%`,
-            background: "rgba(34,211,238,0.6)",
+            background: "color-mix(in srgb, var(--cf-accent) 60%, transparent)",
           }}
         />
       )}
@@ -106,7 +106,7 @@ export function ChapterProgressBar({
         style={{
           left: `${completedPct + stepWithinChapter}%`,
           width: Math.max(2, height / 4),
-          background: "#22D3EE",
+          background: "var(--cf-accent)",
         }}
       />
     </div>
