@@ -51,6 +51,7 @@ import {
   checkTiersProgressive,
 } from "./prose.js";
 import { checkReadingLevel } from "./readingLevel.js";
+import { checkPlainLanguage } from "./plainLanguage.js";
 import { runSupportSectionAudit } from "./supportSectionAudit.js";
 
 export type GateSeverity = "blocker" | "major" | "minor";
@@ -173,6 +174,13 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // pedagogical layering — a structural failure, not a stylistic one.
   E2: "blocker",
   E3: "minor",
+  // E7 — plain language: simple vocabulary + short sentences across ALL
+  // reader-facing fields (not just the breakdown tiers E1 scores). See
+  // critics/plainLanguage.ts. complex_word is advisory (word choice is
+  // contextual); run-ons and dense one-liners are majors.
+  "E7.complex_word": "minor",
+  "E7.long_sentence": "major",
+  "E7.dense_headline": "major",
   // Quiz-quality critic (BP15–BP21, schema.quiz_*)
   "BP15.quiz_strawman_distractor": "major",
   "BP16.quiz_answer_length_blocker": "blocker",
@@ -470,6 +478,13 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // retry-loop check fires upstream of any ship-gate verification.
   for (const f of checkSupportCountFloors(chapter)) {
     push(f.checkId as string, `support_counts`, f.message, f.evidence);
+  }
+  // E7 — plain language (simple vocabulary + short sentences) across EVERY
+  // reader-facing field. Closes the gap where only the breakdown tiers were
+  // scored, so jargon/run-ons in quizzes, cards, examples, and headlines no
+  // longer ship unflagged.
+  for (const f of checkPlainLanguage(chapter)) {
+    push(f.checkId as string, `plain_language`, f.message, f.evidence);
   }
   // E2 — tier progression
   for (const f of checkTiersProgressive(
