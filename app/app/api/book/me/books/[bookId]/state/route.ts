@@ -15,29 +15,12 @@ import {
   getUserBookState,
   getUserProgress,
   putUserBookState,
-  upsertUserProgress,
 } from "@/app/app/api/book/_lib/repo";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import type { BookUserBookStateItem } from "@/app/app/api/book/_lib/types";
-import { nowIso } from "@/app/app/api/book/_lib/keys";
-
-function parseStringArray(value: unknown): string[] {
-  return Array.isArray(value)
-    ? value.filter((item): item is string => typeof item === "string")
-    : [];
-}
-
-function parseNumberRecord(value: unknown): Record<string, number> {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
-  return Object.fromEntries(
-    Object.entries(value).filter(
-      ([key, score]) =>
-        typeof key === "string" &&
-        typeof score === "number" &&
-        Number.isFinite(score)
-    )
-  );
-}
+import { bookUserPk, nowIso, progressSk } from "@/app/app/api/book/_lib/keys";
+import { ddbDoc } from "@/app/app/api/_lib/aws";
+import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
 
 function parseStringRecord(value: unknown): Record<string, string> {
   if (!value || typeof value !== "object" || Array.isArray(value)) return {};
@@ -149,90 +132,134 @@ export async function PATCH(
 
     const now = nowIso();
 
-    // Merge incoming state with existing server state using union semantics
-    // so concurrent writes don't lose completed/unlocked chapters.
-    const incomingCompleted = parseStringArray(rawState.completedChapterIds);
-    const incomingUnlocked = parseStringArray(rawState.unlockedChapterIds);
-    const incomingScores = parseNumberRecord(rawState.chapterScores);
-    const incomingCompletedAt = parseStringRecord(rawState.chapterCompletedAt);
+    // ── Gating state is SERVER-TRUTH only ──────────────────────────────────
+    // Which chapters are unlocked/completed (and their best scores) is written
+    // EXCLUSIVELY by the quiz-pass path (buildProgressAfterQuizPass via
+    // recordQuizAttemptOutcome in the quiz submit route) and the quiz-gated
+    // unlock route — both of which require a passed quiz. This PATCH must NEVER
+    // raise unlockedThroughChapterNumber, add completedChapters, or invent
+    // bestScoreByChapter from the request body: the reader auto-PATCHes its
+    // localStorage progress on every change (useBookProgress), so trusting the
+    // body would let any user unlock and "complete" every chapter by editing
+    // localStorage and bypass the quiz gate entirely. We re-derive the
+    // per-chapter projection stored in BOOK_USER_BOOK_STATE from the canonical
+    // BOOK_PROGRESS entitlement, exactly like the GET fallback above.
+    const chapters = published.manifest.chapters;
+    const firstChapterId = chapters[0]?.chapterId ?? "";
+    const chapterIdByNumber = new Map(
+      chapters.map((chapter) => [chapter.number, chapter.chapterId])
+    );
+    const chapterNumberById = new Map(
+      chapters.map((chapter) => [chapter.chapterId, chapter.number])
+    );
 
-    const mergedCompleted = [...new Set([
-      ...(existing?.completedChapterIds ?? []),
-      ...incomingCompleted,
-    ])];
-    const mergedUnlocked = [...new Set([
-      ...(existing?.unlockedChapterIds ?? []),
-      ...incomingUnlocked,
-      ...mergedCompleted,
-    ])];
-    const mergedScores: Record<string, number> = { ...(existing?.chapterScores ?? {}) };
-    for (const [id, score] of Object.entries(incomingScores)) {
-      mergedScores[id] = Math.max(mergedScores[id] ?? 0, score);
-    }
-    const mergedCompletedAt: Record<string, string> = {
-      ...(existing?.chapterCompletedAt ?? {}),
-      ...incomingCompletedAt,
-    };
+    const unlockedThroughChapterNumber = progress?.unlockedThroughChapterNumber ?? 1;
+    const unlockedChapterIds = chapters
+      .filter((chapter) => chapter.number <= unlockedThroughChapterNumber)
+      .map((chapter) => chapter.chapterId);
+    const completedChapterIds = (progress?.completedChapters ?? [])
+      .map((number) => chapterIdByNumber.get(number) ?? "")
+      .filter(Boolean);
+    const chapterScores = Object.fromEntries(
+      Object.entries(progress?.bestScoreByChapter ?? {})
+        .map(([chapterNumber, score]) => {
+          const chapterId = chapterIdByNumber.get(Number(chapterNumber));
+          return chapterId ? [chapterId, score] : null;
+        })
+        .filter((entry): entry is [string, number] => Boolean(entry))
+    );
+
+    const unlockedSet = new Set(unlockedChapterIds);
+    const completedSet = new Set(completedChapterIds);
+
+    // chapterCompletedAt is client UI metadata (when the reader locally marked a
+    // chapter done). It gates nothing, so accept it — but only for chapters the
+    // server actually considers complete, so it stays consistent with truth.
+    const incomingCompletedAt = parseStringRecord(rawState.chapterCompletedAt);
+    const chapterCompletedAt = Object.fromEntries(
+      Object.entries({
+        ...(existing?.chapterCompletedAt ?? {}),
+        ...incomingCompletedAt,
+      }).filter(([chapterId]) => completedSet.has(chapterId))
+    );
+
+    // ── Non-gating UI navigation fields: accepted from the client ──────────
+    // currentChapterId / lastReadChapterId / lastOpenedAt only move the reader's
+    // cursor; they never grant access. Constrain the cursor to unlocked chapters
+    // so it can't point at locked content (which would 403 on read anyway).
+    const requestedCurrent =
+      typeof rawState.currentChapterId === "string" ? rawState.currentChapterId : "";
+    const currentChapterId = unlockedSet.has(requestedCurrent)
+      ? requestedCurrent
+      : existing?.currentChapterId && unlockedSet.has(existing.currentChapterId)
+        ? existing.currentChapterId
+        : firstChapterId;
+
+    const requestedLastRead =
+      typeof rawState.lastReadChapterId === "string" ? rawState.lastReadChapterId : "";
+    const lastReadChapterId = unlockedSet.has(requestedLastRead)
+      ? requestedLastRead
+      : currentChapterId;
+
+    const lastOpenedAt =
+      typeof rawState.lastOpenedAt === "string" ? rawState.lastOpenedAt : now;
 
     const nextState: BookUserBookStateItem = {
       userId: user.sub,
       bookId,
-      currentChapterId:
-        typeof rawState.currentChapterId === "string" ? rawState.currentChapterId : "",
-      completedChapterIds: mergedCompleted,
-      unlockedChapterIds: mergedUnlocked,
-      chapterScores: mergedScores,
-      chapterCompletedAt: mergedCompletedAt,
-      lastReadChapterId:
-        typeof rawState.lastReadChapterId === "string" ? rawState.lastReadChapterId : "",
-      lastOpenedAt:
-        typeof rawState.lastOpenedAt === "string" ? rawState.lastOpenedAt : now,
+      currentChapterId,
+      completedChapterIds,
+      unlockedChapterIds,
+      chapterScores,
+      chapterCompletedAt,
+      lastReadChapterId,
+      lastOpenedAt,
       createdAt: existing?.createdAt ?? now,
       updatedAt: now,
     };
 
     await putUserBookState(tableName, nextState);
 
+    // Sync only the non-gating progress pointers (cursor + activity timestamps).
+    // This MUST be a non-destructive partial update, not a full-item Put built
+    // from the read above: getUserProgress is an eventually-consistent read, so
+    // a spread+Put could overwrite (roll back) an unlock that the quiz-pass
+    // transaction committed moments earlier. By SETting only these attributes we
+    // leave the gating fields (unlockedThroughChapterNumber / completedChapters /
+    // bestScoreByChapter) exactly as the quiz-pass and quiz-gated unlock paths
+    // wrote them.
     if (progress) {
-      const chapterNumberById = new Map(
-        published.manifest.chapters.map((chapter) => [chapter.chapterId, chapter.number])
-      );
-      const completedNumbers = nextState.completedChapterIds
-        .map((chapterId) => chapterNumberById.get(chapterId) ?? 0)
-        .filter((value) => value > 0)
-        .sort((left, right) => left - right);
-      const unlockedNumbers = nextState.unlockedChapterIds
-        .map((chapterId) => chapterNumberById.get(chapterId) ?? 0)
-        .filter((value) => value > 0);
       const currentChapterNumber =
-        chapterNumberById.get(nextState.currentChapterId) ??
-        progress.currentChapterNumber;
-      const bestScoreByChapter = Object.fromEntries(
-        Object.entries(nextState.chapterScores)
-          .map(([chapterId, score]) => {
-            const chapterNumber = chapterNumberById.get(chapterId);
-            return chapterNumber ? [String(chapterNumber), score] : null;
+        chapterNumberById.get(currentChapterId) ?? progress.currentChapterNumber;
+      try {
+        await ddbDoc.send(
+          new UpdateCommand({
+            TableName: tableName,
+            Key: { PK: bookUserPk(user.sub), SK: progressSk(bookId) },
+            ConditionExpression: "attribute_exists(SK)",
+            UpdateExpression:
+              "SET currentChapterNumber = :currentChapterNumber, lastOpenedAt = :lastOpenedAt, lastActiveAt = :lastActiveAt, updatedAt = :updatedAt",
+            ExpressionAttributeValues: {
+              ":currentChapterNumber": currentChapterNumber,
+              ":lastOpenedAt": lastOpenedAt,
+              ":lastActiveAt": now,
+              ":updatedAt": now,
+            },
           })
-          .filter((entry): entry is [string, number] => Boolean(entry))
-      );
-
-      await upsertUserProgress(tableName, {
-        ...progress,
-        currentChapterNumber,
-        unlockedThroughChapterNumber:
-          unlockedNumbers.length > 0
-            ? Math.max(...unlockedNumbers)
-            : progress.unlockedThroughChapterNumber,
-        completedChapters:
-          completedNumbers.length > 0 ? completedNumbers : progress.completedChapters,
-        bestScoreByChapter: {
-          ...progress.bestScoreByChapter,
-          ...bestScoreByChapter,
-        },
-        lastOpenedAt: nextState.lastOpenedAt,
-        lastActiveAt: now,
-        updatedAt: now,
-      });
+        );
+      } catch (error: unknown) {
+        // Progress row vanished between read and write (e.g. account erasure) —
+        // there is nothing to sync, and we must never (re)create a partial
+        // BOOK_PROGRESS item. Any other error is real and re-thrown.
+        const name =
+          error && typeof error === "object"
+            ? (error as Record<string, unknown>).name ??
+              (error as Record<string, unknown>).__type
+            : undefined;
+        if (name !== "ConditionalCheckFailedException") {
+          throw error;
+        }
+      }
     }
 
     return bookOk({ state: nextState });
