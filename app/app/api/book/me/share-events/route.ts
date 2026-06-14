@@ -24,8 +24,8 @@ export async function POST(req: Request) {
     const tableName = await getBookTableName();
     const body = requireBodyObject(await req.json());
 
-    const cardType = requireString(body, "cardType");
-    const destination = requireString(body, "destination");
+    const cardType = requireString(body.cardType, "cardType");
+    const destination = requireString(body.destination, "destination");
 
     if (!VALID_CARD_TYPES.has(cardType)) {
       throw new BookApiError(400, "invalid_card_type", "Invalid cardType.");
