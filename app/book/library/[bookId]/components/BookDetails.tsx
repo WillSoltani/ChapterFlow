@@ -9,7 +9,6 @@ type BookDetailsProps = {
   synopsis: string;
   estimatedDaysToFinish: number;
   onResetProgress: () => void;
-  onRemoveFromLibrary: () => void;
 };
 
 function difficultyNote(difficulty: LibraryBookEntry["difficulty"]): string {
@@ -31,7 +30,6 @@ export function BookDetails({
   synopsis,
   estimatedDaysToFinish,
   onResetProgress,
-  onRemoveFromLibrary,
 }: BookDetailsProps) {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -112,7 +110,7 @@ export function BookDetails({
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent, var(--cf-border-strong, rgba(255,255,255,0.1)), transparent)" }}
+          style={{ background: "linear-gradient(to right, transparent, var(--cf-border-strong), transparent)" }}
           aria-hidden="true"
         />
         <button
@@ -136,22 +134,16 @@ export function BookDetails({
         {settingsOpen && (
           <div id="bd-settings-panel" className="border-t border-(--cf-border) px-5 py-4">
             <p className="text-xs text-(--cf-text-3)">
-              These actions are permanent and cannot be undone.
+              Resetting clears your chapter completion and quiz scores for this
+              book. This cannot be undone.
             </p>
-            <div className="mt-3 space-y-2">
+            <div className="mt-3">
               <button
                 type="button"
                 onClick={onResetProgress}
                 className="cf-btn cf-btn-danger w-full rounded-xl px-3 py-3 text-sm font-medium"
               >
                 Reset progress
-              </button>
-              <button
-                type="button"
-                onClick={onRemoveFromLibrary}
-                className="cf-btn cf-btn-secondary w-full rounded-xl px-3 py-3 text-sm"
-              >
-                Remove from library
               </button>
             </div>
           </div>

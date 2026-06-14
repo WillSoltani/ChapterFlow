@@ -1,24 +1,26 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { BookCover } from "./BookCover";
-import { getBookById, type LibraryBook } from "./libraryData";
+import { useLibraryContext } from "./LibraryContext";
+import { type LibraryBook } from "./libraryData";
 
 interface CompletedShelfProps {
   books: LibraryBook[];
-  onBookClick: (bookId: string) => void;
 }
 
-export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
+export function CompletedShelf({ books }: CompletedShelfProps) {
   const prefersReduced = useReducedMotion();
+  const { booksById } = useLibraryContext();
 
   if (books.length === 0) return null;
 
-  // Recommendations with explanatory "Because you loved" text
+  // Recommendations resolved against the LIVE catalog (not static MOCK_BOOKS)
   const recommendations: { book: LibraryBook; because: LibraryBook }[] = [];
   for (const completed of books) {
     if (completed.similarBookId) {
-      const rec = getBookById(completed.similarBookId);
+      const rec = booksById.get(completed.similarBookId);
       if (
         rec &&
         !rec.userProgress?.isCompleted &&
@@ -41,13 +43,7 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
     >
       {/* Header with gold star */}
       <div className="flex items-center gap-2">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="var(--accent-gold)"
-          stroke="none"
-        >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent-gold)" stroke="none">
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
         </svg>
         <h2
@@ -58,7 +54,7 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
         </h2>
       </div>
 
-      {/* Completed books row — gold borders + gold checkmarks */}
+      {/* Completed books row */}
       <div className="scrollbar-hide mt-5 flex gap-5 overflow-x-auto pb-2">
         {books.map((book, i) => {
           const prog = book.userProgress!;
@@ -73,63 +69,63 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
           return (
             <motion.div
               key={book.id}
-              className="w-[180px] shrink-0 cursor-pointer"
-              onClick={() => onBookClick(book.id)}
+              className="w-[150px] shrink-0 sm:w-[180px]"
               initial={{ opacity: prefersReduced ? 1 : 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.08 }}
             >
-              {/* Cover with gold border + gold checkmark + gold glow (Von Restorff) */}
-              <div
-                className="relative w-full overflow-hidden transition-shadow duration-200"
-                style={{
-                  aspectRatio: "2/3",
-                  borderRadius: "var(--radius-md-val)",
-                  border: "2px solid rgba(245,158,11,0.3)",
-                  boxShadow: "0 4px 20px rgba(245,158,11,0.08)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 30px rgba(245,158,11,0.15)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 20px rgba(245,158,11,0.08)";
-                }}
+              <Link
+                href={`/book/library/${encodeURIComponent(book.id)}`}
+                className="block rounded-[var(--radius-md-val)] outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
+                aria-label={`${book.title} — completed${completedDate ? ` ${completedDate}` : ""}`}
               >
-                <BookCover
-                  title={book.title}
-                  coverGradient={book.coverGradient}
-                  coverImage={book.coverImage}
-                  fill
-                />
-                {/* Gold check badge — 24px circle, amber background, white checkmark */}
+                {/* Cover with gold border + checkmark */}
                 <div
-                  className="absolute bottom-2 right-2 flex items-center justify-center rounded-full"
+                  className="relative w-full overflow-hidden transition-shadow duration-200"
                   style={{
-                    width: 24,
-                    height: 24,
-                    background: "var(--accent-amber)",
-                    boxShadow: "0 2px 8px rgba(245,158,11,0.4)",
+                    aspectRatio: "2/3",
+                    borderRadius: "var(--radius-md-val)",
+                    border: "2px solid var(--cf-gold-border)",
+                    boxShadow: "var(--shadow-book)",
                   }}
                 >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <BookCover
+                    bookId={book.id}
+                    title={book.title}
+                    coverGradient={book.coverGradient}
+                    coverImage={book.coverImage}
+                    fill
+                  />
+                  <div
+                    className="absolute bottom-2 right-2 flex items-center justify-center rounded-full"
+                    style={{ width: 24, height: 24, background: "var(--accent-amber)" }}
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
 
-              <h3
-                className="mt-2.5 truncate text-[14px] font-semibold"
-                style={{ color: "var(--text-heading)" }}
-              >
-                {book.title}
-              </h3>
-              <p className="mt-0.5 text-[12px]" style={{ color: "var(--text-tertiary)" }}>
-                Completed {completedDate}
-              </p>
-              <p className="mt-0.5 text-[12px] font-(family-name:--font-mono)" style={{ color: "var(--accent-violet)" }}>
-                +{prog.xpEarned} IP earned
-              </p>
+                <h3
+                  className="mt-2.5 truncate text-[14px] font-semibold"
+                  style={{ color: "var(--text-heading)" }}
+                >
+                  {book.title}
+                </h3>
+                <p className="mt-0.5 text-[12px]" style={{ color: "var(--text-tertiary)" }}>
+                  Completed {completedDate}
+                </p>
+                {/* Only show IP when a real, non-zero figure exists — never "+0 IP". */}
+                {typeof prog.xpEarned === "number" && prog.xpEarned > 0 && (
+                  <p
+                    className="mt-0.5 text-[12px] font-(family-name:--font-mono)"
+                    style={{ color: "var(--accent-violet)" }}
+                  >
+                    +{prog.xpEarned} IP earned
+                  </p>
+                )}
+              </Link>
             </motion.div>
           );
         })}
@@ -143,11 +139,10 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-4">
             {recommendations.map(({ book, because }) => (
-              <button
+              <Link
                 key={book.id}
-                type="button"
-                onClick={() => onBookClick(book.id)}
-                className="flex cursor-pointer items-center gap-3 rounded-xl px-4 py-3 text-left transition-all"
+                href={`/book/library/${encodeURIComponent(book.id)}`}
+                className="flex cursor-pointer items-center gap-3 rounded-xl px-4 py-3 text-left outline-none transition-all focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
                 style={{
                   background: "var(--bg-glass)",
                   border: "1px solid var(--border-subtle)",
@@ -162,8 +157,9 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
                   e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
-                <div className="shrink-0 overflow-hidden" style={{ width: 50, height: 70, borderRadius: 6 }}>
+                <div className="relative shrink-0 overflow-hidden" style={{ width: 50, height: 70, borderRadius: 6 }}>
                   <BookCover
+                    bookId={book.id}
                     title={book.title}
                     coverGradient={book.coverGradient}
                     coverImage={book.coverImage}
@@ -178,18 +174,14 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
                   <p className="mt-0.5 text-[12px]" style={{ color: "var(--text-muted)" }}>
                     {book.author}
                   </p>
-                  <p
-                    className="mt-1 text-[12px] leading-snug"
-                    style={{ color: "var(--text-primary)", opacity: 0.7 }}
-                  >
+                  <p className="mt-1 text-[12px] leading-snug" style={{ color: "var(--text-primary)", opacity: 0.7 }}>
                     {book.hook}
                   </p>
-                  {/* "Because you loved" — explanatory recommendation */}
                   <p className="mt-1 text-[11px] italic" style={{ color: "var(--cf-amber-text)" }}>
                     Because you loved {because.title}
                   </p>
                 </div>
-              </button>
+              </Link>
             ))}
           </div>
         </div>

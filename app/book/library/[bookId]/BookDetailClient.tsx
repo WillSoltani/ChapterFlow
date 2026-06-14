@@ -4,15 +4,14 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronRight, Search } from "lucide-react";
-import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
+import { ChevronRight, Search, Sparkles } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
-import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import type {
   LibraryBookDetail,
   LibraryBookEntry,
@@ -23,6 +22,7 @@ import { BookHero } from "./components/BookHero";
 import { ChapterCard, type ChapterCardStatus } from "./components/ChapterCard";
 import { BackgroundOrbs } from "./components/BackgroundOrbs";
 import { BookDetails } from "./components/BookDetails";
+import { BookDetailLoading } from "./components/BookDetailSkeleton";
 import { ResetProgressModal } from "./components/ResetProgressModal";
 
 /* ── Types ── */
@@ -52,8 +52,6 @@ export function BookDetailClient({
   const [chapterFilter, setChapterFilter] = useState<ChapterFilter>("all");
   const [lockedToast, setLockedToast] = useState<string | null>(null);
   const [showResetModal, setShowResetModal] = useState(false);
-  const [showRemoveModal, setShowRemoveModal] = useState(false);
-  const [paywallMessage, setPaywallMessage] = useState<string | null>(null);
 
   // Track whether the initial page-load animation has completed
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -64,6 +62,21 @@ export function BookDetailClient({
   const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(
     onboarding.setupComplete,
   );
+
+  // Read-only entitlement check (no slot claim) so we can proactively gate the
+  // start affordances when the free-book limit is already reached for a book
+  // this user hasn't unlocked. The actual slot claim happens downstream when a
+  // chapter is opened (the chapter content route runs ensureUserBookStarted).
+  const { billingState } = useBookEntitlements(
+    onboardingHydrated && onboarding.setupComplete,
+  );
+  const entitlement = billingState.payload?.entitlement ?? null;
+  const accessBlocked = useMemo(() => {
+    if (!entitlement) return false;
+    const alreadyUnlocked = entitlement.unlockedBookIds.includes(bookId);
+    const isPro = entitlement.plan === "PRO";
+    return !alreadyUnlocked && !isPro && entitlement.remainingFreeStarts <= 0;
+  }, [entitlement, bookId]);
 
   const entry = useMemo<LibraryBookEntry>(
     () => ({
@@ -118,23 +131,6 @@ export function BookDetailClient({
     return () => window.clearTimeout(timeout);
   }, [lockedToast]);
 
-  useEffect(() => {
-    if (!onboardingHydrated || !onboarding.setupComplete) return;
-    void fetchBookJson(
-      `/app/api/book/me/books/${encodeURIComponent(bookId)}/start`,
-      { method: "POST" },
-    ).catch((err) => {
-      if (
-        err instanceof BookClientError &&
-        (err.status === 402 || err.code === "paywall_book_limit")
-      ) {
-        setPaywallMessage(
-          "You\u2019ve reached your free book limit. Upgrade to Pro to unlock unlimited books."
-        );
-      }
-    });
-  }, [bookId, onboarding.setupComplete, onboardingHydrated]);
-
   // Mark initial animation as complete after page load
   useEffect(() => {
     const timer = window.setTimeout(() => setHasLoaded(true), 1500);
@@ -153,9 +149,17 @@ export function BookDetailClient({
     return () => window.clearTimeout(timer);
   }, [hydrated, prefersReducedMotion]);
 
+  // When the free-book limit gates this book, no chapter can be opened without
+  // claiming a slot — so every card renders locked, consistent with the gated
+  // hero/sticky CTAs and the paywall banner.
+  const lockedMessage = accessBlocked
+    ? "Upgrade to Pro to start this book"
+    : `Complete Chapter ${currentChapter?.number ?? ""} to unlock this chapter`;
+
   /* ── Derive chapter card status (4-state) ── */
   const getCardStatus = useCallback(
     (chapter: LibraryChapterSummary): ChapterCardStatus => {
+      if (accessBlocked) return "locked";
       const base = getChapterState(chapter.id);
       if (base === "completed") return "completed";
       if (base === "current") return "in-progress";
@@ -168,17 +172,19 @@ export function BookDetailClient({
       }
       return "locked";
     },
-    [getChapterState, currentChapter, chapters],
+    [getChapterState, currentChapter, chapters, accessBlocked],
   );
 
-  /** Steps completed for a chapter (0-4) */
+  /**
+   * Steps completed for a chapter (0-4). We only persist chapter-level
+   * completion, not which of the four in-chapter steps a reader finished — so
+   * a completed chapter shows all four dots, and every other chapter shows
+   * zero (the in-progress chapter's first dot pulses via StepIndicators). No
+   * inventing "Summary complete" for a chapter the reader just opened.
+   */
   const getStepsCompleted = useCallback(
-    (chapterId: string): number => {
-      const state = getChapterState(chapterId);
-      if (state === "completed") return 4;
-      if (state === "current") return 1;
-      return 0;
-    },
+    (chapterId: string): number =>
+      getChapterState(chapterId) === "completed" ? 4 : 0,
     [getChapterState],
   );
 
@@ -209,6 +215,10 @@ export function BookDetailClient({
       chapter: LibraryChapterSummary,
       options?: { sessionMode?: boolean },
     ) => {
+      if (accessBlocked) {
+        setLockedToast("Upgrade to Pro to start this book");
+        return;
+      }
       const state = getChapterState(chapter.id);
       if (state === "locked") {
         setLockedToast(
@@ -220,35 +230,23 @@ export function BookDetailClient({
       const route = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(chapter.id)}`;
       router.push(options?.sessionMode ? `${route}?session=1` : route);
     },
-    [bookId, currentChapter?.number, getChapterState, router, setLastReadChapter],
+    [bookId, currentChapter?.number, getChapterState, router, setLastReadChapter, accessBlocked],
   );
 
   const viewerName = viewerIdentity.displayName || "Reader";
 
-  // Estimate time invested (completed chapters * avg minutes)
-  const timeInvestedMinutes = useMemo(() => {
-    return progress.completedChapterIds.reduce((sum, id) => {
-      const ch = chapters.find((c) => c.id === id);
-      return sum + (ch?.minutes ?? 10);
-    }, 0);
-  }, [progress.completedChapterIds, chapters]);
+  const firstChapterMinutes = chapters[0]?.minutes ?? 8;
 
   const showSearch = chapters.length >= 20;
 
-  /* ── Loading state ── */
+  /* ── Loading state — same skeleton as the route-level loading.tsx ── */
   if (
     !onboardingHydrated ||
     !hydrated ||
     !savedHydrated ||
     !onboarding.setupComplete
   ) {
-    return (
-      <main className="cf-app-shell">
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
-          Loading book details...
-        </div>
-      </main>
-    );
+    return <BookDetailLoading />;
   }
 
   return (
@@ -293,6 +291,8 @@ export function BookDetailClient({
           totalCount={totalCount}
           completedCount={completedCount}
           currentChapterOrder={currentChapter?.number ?? 1}
+          firstChapterMinutes={firstChapterMinutes}
+          accessBlocked={accessBlocked}
           onContinue={() =>
             currentChapter &&
             openChapter(currentChapter, {
@@ -303,26 +303,24 @@ export function BookDetailClient({
           onToggleSaved={() =>
             void toggleSaved(entry.id, { source: "book-detail" })
           }
-          timeInvestedMinutes={timeInvestedMinutes}
         />
 
-        {/* ═══════ Paywall Banner ═══════ */}
-        {paywallMessage && (
+        {/* ═══════ Paywall Banner — shown only when this book is actually gated ═══════ */}
+        {accessBlocked && (
           <motion.div
-            className="mt-6 rounded-xl border p-5 text-center"
-            style={{
-              borderColor: "var(--cf-border-strong, var(--border-default))",
-              background: "var(--cf-surface-muted, var(--bg-surface-1))",
-            }}
-            initial={{ opacity: 0, y: 10 }}
+            className="mt-6 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) p-5 text-center"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <p className="text-sm font-medium text-(--cf-text-1)">{paywallMessage}</p>
+            <p className="text-sm font-medium text-(--cf-text-1)">
+              You&rsquo;ve reached your free book limit. Upgrade to Pro to start
+              this book and unlock unlimited reading.
+            </p>
             <Link
-              href="/book/settings"
-              className="mt-3 inline-flex rounded-xl px-5 py-2.5 text-sm font-semibold text-white"
-              style={{ backgroundColor: "var(--accent-teal, #22d3ee)" }}
+              href="/pricing"
+              className="cf-btn cf-btn-primary mt-3 inline-flex rounded-xl px-5 py-3 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
             >
+              <Sparkles className="h-4 w-4" />
               Upgrade to Pro
             </Link>
           </motion.div>
@@ -459,11 +457,7 @@ export function BookDetailClient({
                         );
                       }
                     }}
-                    onLockedClick={() =>
-                      setLockedToast(
-                        `Complete Chapter ${currentChapter?.number ?? ""} to unlock this chapter`,
-                      )
-                    }
+                    onLockedClick={() => setLockedToast(lockedMessage)}
                   />
                 </div>
               );
@@ -507,29 +501,40 @@ export function BookDetailClient({
               ),
             )}
             onResetProgress={() => setShowResetModal(true)}
-            onRemoveFromLibrary={() => setShowRemoveModal(true)}
           />
         </motion.div>
       </section>
       </PageTransition>
 
-      {/* Mobile sticky CTA */}
-      {currentChapter && (
+      {/* Mobile sticky CTA — gated to /pricing when the free limit blocks this book */}
+      {accessBlocked ? (
         <div className="fixed bottom-20 left-4 right-4 z-50 lg:hidden">
-          <button
-            type="button"
-            onClick={() =>
-              openChapter(currentChapter, {
-                sessionMode: progressPercent === 0,
-              })
-            }
+          <Link
+            href="/pricing"
             className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
           >
-            {completedCount > 0
-              ? `Continue Chapter ${currentChapter.number}`
-              : `Start Chapter ${currentChapter.number}`}
-          </button>
+            <Sparkles className="h-4.5 w-4.5" />
+            Upgrade to start
+          </Link>
         </div>
+      ) : (
+        currentChapter && (
+          <div className="fixed bottom-20 left-4 right-4 z-50 lg:hidden">
+            <button
+              type="button"
+              onClick={() =>
+                openChapter(currentChapter, {
+                  sessionMode: progressPercent === 0,
+                })
+              }
+              className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
+            >
+              {completedCount > 0
+                ? `Continue Chapter ${currentChapter.number}`
+                : `Start Chapter ${currentChapter.number}`}
+            </button>
+          </div>
+        )
       )}
 
       {/* Modals */}
@@ -541,24 +546,6 @@ export function BookDetailClient({
           setShowResetModal(false);
         }}
       />
-
-      <InfoModal
-        open={showRemoveModal}
-        title="Remove from library?"
-        onClose={() => setShowRemoveModal(false)}
-      >
-        <p>
-          Removing this book will clear your reading progress for this title.
-          This cannot be undone.
-        </p>
-        <button
-          type="button"
-          onClick={() => setShowRemoveModal(false)}
-          className="cf-btn cf-btn-secondary mt-4 rounded-xl px-4 py-2 text-sm"
-        >
-          Close
-        </button>
-      </InfoModal>
 
       {/* Locked toast */}
       <AnimatePresence>
