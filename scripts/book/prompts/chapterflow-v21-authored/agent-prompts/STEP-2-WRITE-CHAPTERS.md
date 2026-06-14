@@ -25,7 +25,7 @@ Every field you write must use specific terminology and proper nouns from these 
 
 1. Anchor in ONE of this chapter's `namedExamples` or its `centralConcept`. Each scenario should reference at least one proper noun from the sidecar — a real company, person, product, place, or framework name. `SC9` fires at chapter-gate time if a scenario contains no source-grounded anchor.
 2. Use a DIFFERENT scene structure across scenarios — vary opener style (time-first, place-first, dialogue-led, data-first, role-action), vary protagonist role, vary stakes. Do NOT use the same skeleton with different nouns substituted.
-3. 80–140 words per scenario.
+3. `scenario`: 280–520 chars, usually 55–95 words.
 
 ### Quiz `correctIndex` per chapter
 
@@ -64,6 +64,17 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts book-gate <book
 ```
 
 This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs the full book-level pattern audit. Must report 0 blockers before reporting Step 2 complete.
+
+Before reporting Step 2 complete:
+- every assigned chapter must pass `author-check`;
+- every assigned chapter must pass `gate-chapter` with 0 blockers;
+- `book-gate <bookId>` must have 0 blockers;
+- run `major-status <bookId>`;
+- fix any actionable current major findings that are writing defects;
+- do not waive majors; only QC/operator may write `major-disposition`;
+- if a major seems like a false positive or acceptable debt, report it explicitly instead of claiming completion.
+
+**Warning:** 0 blockers is necessary but not sufficient for no-api QC. Unresolved majors are QC debt and may cause finalizer REVISE.
 
 ---
 
@@ -354,7 +365,7 @@ type ExampleV21 = {
     venue?: string;                // v21.1 no-api QC: exact dealt venue string from fanout
     exemplar?: string;             // v21.1 no-api QC: owned marquee exemplar used, or ""
   };
-  scenario: string;               // 280-520 chars
+  scenario: string;               // 280-520 chars; usually 55-95 words
   whatToDo: string;               // 120-240 chars
   whyItMatters: string;           // 120-240 chars
 };
@@ -498,7 +509,7 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 9. **whyItMatters is the lesson.** What does this scene teach about the chapter's move? Don't repeat the scenario.
 
 **Length floors:**
-- `scenario`: 280-520 chars
+- `scenario`: 280–520 chars, usually 55–95 words
 - `whatToDo`: 120-240 chars
 - `whyItMatters`: 120-240 chars
 

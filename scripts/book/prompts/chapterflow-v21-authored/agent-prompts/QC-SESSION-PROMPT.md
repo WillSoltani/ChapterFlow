@@ -94,6 +94,14 @@ role-separated. The operator opens the round with:
 npx tsx src/cli.ts qc-open-round <bookId>
 ```
 
+Preferred no-api Codex path: use `QC-AUTO-CODEX-SESSION.md` and `qc-auto`.
+This `QC-SESSION` prompt remains the manual fallback for direct human/Codex
+review:
+
+```bash
+CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<bookId>" --pass
+```
+
 Use only the token for your assigned role. Writers cannot QC; QC readers cannot
 edit chapters; key readers use only blind packs and source facts.
 
@@ -112,8 +120,11 @@ Required no-api artifacts:
   --scores-file <filled-template> --reviewer <id>`. Use per-chapter
   `qc-attest ... --round <roundId> --token <bar|confirm|attest-token>` only
   for overrides or small/manual rechecks.
-- `major-status <bookId>` must have every current major explicitly resolved or
-  waived with `major-disposition`; silent ignores never count as pass.
+- `major-status <bookId>` must have every current major explicitly open or
+  waived with `major-disposition`; silent ignores never count as pass. New
+  dispositions must use only `open`, `waived_false_positive`, or
+  `waived_accepted_debt`. Legacy `resolved|waived` statuses may be read from old
+  waiver files but must not be newly written.
 
 Required on-disk files for book `<bookId>`:
 - `state/chapters/<bookId>-ch{NN}.v21-native.chapter.json` × N (the chapters)

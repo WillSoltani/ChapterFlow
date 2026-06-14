@@ -172,6 +172,10 @@ Commands:
   qc-diagnose <bookId> --round <roundId>
                                      Explain evidence-matrix verdicts, common failures, repair prompt,
                                      and the exact next QC command.
+  publish-after-qc "<book name or id>" --round <roundId> [--title "..."] [--author "..."] [--commit] [--push] [--cleanup transient|none|audit-unsafe] [--include-state] [--dry-run]
+                                     Verifies no-api QC pass, promotes/registers the book, removes
+                                     one-time token/task/repair artifacts, and optionally commits/pushes
+                                     the final production outputs.
   qc-ledger-status <bookId> --round <roundId>
                                      Summarize the append-only orchestrator repair ledger.
   qc-repair-brief <bookId> --round <roundId>
@@ -2173,7 +2177,9 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
       qcStatusLabel = "PASS (all chapters fresh + PUBLISHABLE)";
     }
     // A subset run verifies only the named chapters; it is NOT a book-level pass.
-    console.log(`QC AUTO ${isSubset ? "PASS (SUBSET)" : "PASS"} — ${bookId}`);
+    // (Keep the literal "QC AUTO PASS" intact — qc-auto-output.test.ts source-scans for it.)
+    const passLabel = isSubset ? "QC AUTO PASS (SUBSET)" : "QC AUTO PASS";
+    console.log(`${passLabel} — ${bookId}`);
     console.log(`round: ${roundId}`);
     console.log(`chapters selected: ${finalized.chapters.length}${isSubset ? " (subset)" : " (full book)"}`);
     console.log(`attestations written: ${finalized.attestationsWritten} PUBLISHABLE`);
@@ -2184,8 +2190,12 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
       console.log("  # subset only — run a full-book pass before publishing:");
       console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
     } else {
-      console.log(`  npx tsx src/cli.ts publish ${JSON.stringify(bookId)}`);
+      console.log(`  npx tsx src/cli.ts qc-status ${bookId}`);
+      const titleArg = resolved.title ?? "...";
+      console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc ${JSON.stringify(bookId)} --round ${roundId} --title ${JSON.stringify(titleArg)} --author "..." --dry-run`);
+      console.log("  add --commit --push after checking the dry-run");
     }
+
     return 0;
   }
 
@@ -2215,6 +2225,39 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   console.log("After repair, run:");
   console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
   return 1;
+}
+
+async function runPublishAfterQc(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!input || !roundId) {
+    console.error('Usage: publish-after-qc "<book name or id>" --round <roundId> [--title "..."] [--author "..."] [--commit] [--push] [--cleanup transient|none|audit-unsafe] [--include-state] [--dry-run]');
+    return 2;
+  }
+  const cleanup = typeof flags["cleanup"] === "string" ? flags["cleanup"] : "transient";
+  if (!["transient", "none", "audit-unsafe"].includes(cleanup)) {
+    console.error(`--cleanup must be transient, none, or audit-unsafe (got ${JSON.stringify(cleanup)})`);
+    return 2;
+  }
+  const { publishAfterQc, formatPublishAfterQcResult } = await import("./qc/publishAfterQc.js");
+  const result = publishAfterQc({
+    input,
+    roundId,
+    title: typeof flags["title"] === "string" ? flags["title"] : undefined,
+    author: typeof flags["author"] === "string" ? flags["author"] : undefined,
+    commit: flags["commit"] === true,
+    push: flags["push"] === true,
+    cleanup: cleanup as "transient" | "none" | "audit-unsafe",
+    includeState: flags["include-state"] === true,
+    dryRun: flags["dry-run"] === true,
+  });
+  console.log(formatPublishAfterQcResult(result));
+  for (const warning of result.warnings) console.warn(`warning: ${warning}`);
+  if (!result.ok) {
+    for (const error of result.errors.slice(1)) console.error(error);
+    for (const next of result.next ?? []) if (!next.startsWith("repair prompt:")) console.error(next);
+  }
+  return result.ok ? 0 : 1;
 }
 
 async function runQcLedgerStatus(args: string[], flags: Record<string, string | boolean>): Promise<number> {
@@ -3497,6 +3540,8 @@ async function main() {
       return runQcSubmit(args, flags);
     case "qc-auto":
       return runQcAuto(args, flags);
+    case "publish-after-qc":
+      return runPublishAfterQc(args, flags);
     case "qc-ledger-status":
       return runQcLedgerStatus(args, flags);
     case "qc-repair-brief":
