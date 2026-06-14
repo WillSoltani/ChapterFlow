@@ -13,6 +13,18 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      # @types/node must track the Node runtime (Node 20). Take minor/patch,
+      # but not majors that jump ahead of the runtime (e.g. v25).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # TypeScript majors (e.g. 6.0) carry breaking compiler changes — adopt
+      # deliberately, not via an automated bump.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # pdfjs-dist is a dead dependency (the PDF domain was removed; no imports
+      # remain). Stop bumping it; remove the dep in a separate deliberate PR.
+      - dependency-name: "pdfjs-dist"
     labels:
       - dependencies
     commit-message:
@@ -30,6 +42,11 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     labels:
       - dependencies
       - infra
