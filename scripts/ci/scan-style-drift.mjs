@@ -236,15 +236,22 @@ function selftest() {
       fails++;
     }
   };
-  // (a) dead Tailwind
-  expect(RE_DEAD_TW.test('className="text-[--text-heading]"'), "(a) missed -[--");
-  expect(RE_DEAD_TW.test('className="font-[family-name:--font-body]"'), "(a) missed font-[family-name:--");
-  expect(!RE_DEAD_TW.test('className="text-(--text-heading)"'), "(a) false-positive on v4 shorthand");
-  expect(!RE_DEAD_TW.test('className="font-[family-name:var(--font-body)]"'), "(a) false-positive on var() form");
-  expect(RE_DEAD_TW.test('className="[color:--x]"'), "(a) missed [color:--x] bare-var arbitrary prop");
-  expect(!RE_DEAD_TW.test('className="[color:var(--x)]"'), "(a) false-positive on [color:var()]");
+  // (a) dead Tailwind.
+  // NOTE: the example class tokens below are split with string concatenation so
+  // Tailwind's source scanner can't extract them as real utilities. If written
+  // as contiguous literals, `next dev` (Turbopack) compiles e.g. [color:var(--x)]
+  // into invalid `color: var()` and the whole stylesheet fails to parse — and
+  // `@source not "../scripts"` does NOT reliably exclude this file in dev. The
+  // runtime strings are identical, so the regex assertions are unchanged.
+  const cls = (...p) => p.join(""); // breaks the literal token for the scanner
+  expect(RE_DEAD_TW.test(cls('className="text-[', '--text-heading]"')), "(a) missed -[--");
+  expect(RE_DEAD_TW.test(cls('className="font-[', 'family-name:--font-body]"')), "(a) missed font-[family-name:--");
+  expect(!RE_DEAD_TW.test(cls('className="text-(', '--text-heading)"')), "(a) false-positive on v4 shorthand");
+  expect(!RE_DEAD_TW.test(cls('className="font-[', 'family-name:var(--font-body)]"')), "(a) false-positive on var() form");
+  expect(RE_DEAD_TW.test(cls('className="[', 'color:--x]"')), "(a) missed [color:--x] bare-var arbitrary prop");
+  expect(!RE_DEAD_TW.test(cls('className="[', 'color:var(--x)]"')), "(a) false-positive on [color:var()]");
   // (b) token extraction
-  expect([...'bg-(--cf-card)'.matchAll(RE_TOKEN)][0]?.[0] === "--cf-card", "(b) missed shorthand token");
+  expect([...cls('bg-(', '--cf-card)').matchAll(RE_TOKEN)][0]?.[0] === "--cf-card", "(b) missed shorthand token");
   expect([...'var(--cr-danger, red)'.matchAll(RE_TOKEN)][0]?.[0] === "--cr-danger", "(b) missed var() token");
   // (c) raw colors
   expect(RE_HEX.test('color="#FFB874"') , "(c) missed bare hex");
