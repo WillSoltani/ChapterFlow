@@ -19,7 +19,10 @@ import {
 } from "@/app/app/api/book/_lib/keys";
 import type { BookUserStreakItem } from "@/app/app/api/book/_lib/types";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
-import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
+import {
+  awardFlowPoints,
+  getUserFlowPointsState,
+} from "@/app/app/api/book/_lib/flow-points-repo";
 
 // ── Streak milestone thresholds and IP awards (§2.4) ────────────────────────
 
@@ -274,11 +277,14 @@ export async function updateStreakOnLoopComplete(
 
   const newLongestStreak = Math.max(streak.longestStreak, newCurrentStreak);
 
-  // Compute consistency (§2.3)
+  // Compute consistency (§2.3). The query already includes today once the
+  // reading-session beacon has written today's READINGDAY record, so no +1 is
+  // added here — adding one double-counted today and let the score exceed 100%
+  // (e.g. 31/30 -> 103% when the beacon already wrote today's READINGDAY).
   const consistencyLast30 = await computeConsistencyLast30(tableName, userId);
 
-  // Track consistency above 80% for Steady State achievement
-  const consistencyPercent = Math.round(((consistencyLast30 + 1) / 30) * 100); // +1 for today
+  // Track consistency above 80% for Steady State achievement.
+  const consistencyPercent = Math.round((consistencyLast30 / 30) * 100);
   let consistencyAbove80Since = streak.consistencyAbove80Since;
   if (consistencyPercent >= 80) {
     if (!consistencyAbove80Since) {
@@ -302,7 +308,7 @@ export async function updateStreakOnLoopComplete(
         ":lat": userTimezone,
         ":ssh": newShieldsHeld,
         ":sud": newShieldUsedDates,
-        ":c30": consistencyLast30 + 1, // today's activity counted
+        ":c30": consistencyLast30, // query already counts today's READINGDAY
         ":ca80": consistencyAbove80Since,
         ":now": now,
       },
@@ -317,34 +323,40 @@ export async function updateStreakOnLoopComplete(
     lastActiveTimezone: userTimezone,
     streakShieldsHeld: newShieldsHeld,
     shieldUsedDates: newShieldUsedDates,
-    consistencyLast30: consistencyLast30 + 1,
+    consistencyLast30,
     consistencyAbove80Since,
     updatedAt: now,
   };
 
   // §1.1 — Streak day bonus (15 IP, first loop of the day on active streak)
-  // sourceId is anchored to UTC day (not user tz) so a user can't farm multiple
-  // streak day bonuses by switching timezones across UTC midnight on the same day.
-  const utcToday = now.slice(0, 10);
+  // The grant is deduped per user-tz day (the same day the streak decision uses
+  // above) rather than the UTC day. For negative UTC offsets two consecutive
+  // local days can collapse onto a single UTC date, which would reject the
+  // second day's bonus as a duplicate; keying by the local day prevents that
+  // drift. Scoping the sourceId by userId keeps per-user-per-local-day
+  // uniqueness, so timezone switching can shift the day boundary by at most one
+  // award — it can never multiply the bonus.
+  const streakDaySourceId = `${userId}:${today}`;
   if (newCurrentStreak >= 1) {
     const streakDayAward = await awardFlowPoints(tableName, {
       userId,
       amount: INSIGHT_POINTS_AMOUNTS.streakDayBonus,
       sourceType: "streak_day",
-      sourceId: utcToday,
-      metadata: { currentStreak: newCurrentStreak, date: today, utcDate: utcToday },
+      sourceId: streakDaySourceId,
+      metadata: { currentStreak: newCurrentStreak, date: today },
     });
     result.streakDayAwarded = streakDayAward.awarded;
   }
 
   // §1.1 — Welcome back bonus (30 IP, returning after 7+ inactive days)
+  // Keyed by the same per-user local day as the streak decision (see above).
   if (gapDays >= 7) {
     const welcomeBackAward = await awardFlowPoints(tableName, {
       userId,
       amount: INSIGHT_POINTS_AMOUNTS.welcomeBack,
       sourceType: "welcome_back",
-      sourceId: utcToday,
-      metadata: { inactiveDays: gapDays, returnDate: today, utcDate: utcToday },
+      sourceId: streakDaySourceId,
+      metadata: { inactiveDays: gapDays, returnDate: today },
     });
     result.welcomeBackAwarded = welcomeBackAward.awarded;
   }
@@ -406,11 +418,14 @@ export async function purchaseStreakShield(
   const streak = await getOrCreateStreak(tableName, userId);
 
   if (streak.streakShieldsHeld >= 3) {
+    // No points were touched — report the current balance so the caller can
+    // surface an accurate figure instead of a stale 0.
+    const state = await getUserFlowPointsState(tableName, userId);
     return {
       purchased: false,
       error: "shields_full",
       shieldsHeld: streak.streakShieldsHeld,
-      balance: 0,
+      balance: state.points,
     };
   }
 
@@ -478,19 +493,25 @@ export async function purchaseStreakShield(
     );
   } catch (error: unknown) {
     if (isConditionalCheckFailed(error)) {
+      // The TransactWrite was rejected atomically, so no points were deducted —
+      // report the real current balance rather than a stale 0.
+      const state = await getUserFlowPointsState(tableName, userId);
       return {
         purchased: false,
         error: "insufficient_balance",
         shieldsHeld: streak.streakShieldsHeld,
-        balance: 0,
+        balance: state.points,
       };
     }
     throw error;
   }
 
+  // Re-read the engagement balance after the atomic deduction so the caller can
+  // surface an accurate post-purchase IP balance without a separate round-trip.
+  const state = await getUserFlowPointsState(tableName, userId);
   return {
     purchased: true,
     shieldsHeld: streak.streakShieldsHeld + 1,
-    balance: 0, // Caller should re-fetch if needed
+    balance: state.points,
   };
 }
