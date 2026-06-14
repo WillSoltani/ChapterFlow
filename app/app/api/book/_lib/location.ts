@@ -1,4 +1,5 @@
 import "server-only";
+import { getServerEnv } from "@/app/app/api/_lib/server-env";
 
 export type InferredLocation = {
   source: "cloudfront" | "vercel" | "proxy" | "ipapi";
@@ -63,7 +64,17 @@ function isPrivateIp(ip: string): boolean {
 }
 
 /**
- * Look up a client IP using ip-api.com's free endpoint (no key, ~45 req/min).
+ * Look up a client IP via an external geolocation provider over HTTPS only.
+ *
+ * The client's real IP and the derived approximate location are PII, so the
+ * outbound call must be encrypted (the privacy policy promises HTTPS). We never
+ * use ip-api.com's free endpoint here because it is plaintext-HTTP-only:
+ *   - If IPAPI_KEY is set, we use ip-api.com's HTTPS pro endpoint.
+ *   - Otherwise we fall back to ipwho.is, whose free tier supports HTTPS with no
+ *     key.
+ * This is only ever reached as a best-effort fallback after CDN edge headers
+ * (resolveLocation tries inferLocationFromHeaders first, over the existing TLS).
+ *
  * Cached in-memory for 24h. Returns null on any failure.
  */
 export async function fetchLocationByIp(ip: string): Promise<InferredLocation | null> {
@@ -85,12 +96,16 @@ export async function fetchLocationByIp(ip: string): Promise<InferredLocation | 
   const timeout = setTimeout(() => controller.abort(), IPAPI_TIMEOUT_MS);
 
   try {
-    // ip-api.com free tier: no auth, ~45 req/min per IP, HTTP-only.
-    // Using `fields` to minimize payload.
-    const res = await fetch(
-      `http://ip-api.com/json/${encodeURIComponent(ip)}?fields=status,country,countryCode,region,regionName,city,lat,lon,timezone`,
-      { signal: controller.signal },
-    );
+    // The geolocation lookup is PII and MUST go over HTTPS. Prefer ip-api.com's
+    // HTTPS pro endpoint when a key is configured; otherwise fall back to
+    // ipwho.is, whose free tier serves HTTPS with no key. ip-api.com's free
+    // endpoint is HTTP-only and is deliberately never used here.
+    const ipapiKey = (await getServerEnv("IPAPI_KEY"))?.trim();
+    const url = ipapiKey
+      ? `https://pro.ip-api.com/json/${encodeURIComponent(ip)}?fields=status,country,countryCode,region,regionName,city,lat,lon,timezone&key=${encodeURIComponent(ipapiKey)}`
+      : `https://ipwho.is/${encodeURIComponent(ip)}?fields=success,country,country_code,region,region_code,city,latitude,longitude,timezone`;
+
+    const res = await fetch(url, { signal: controller.signal });
     clearTimeout(timeout);
 
     if (!res.ok) {
@@ -98,36 +113,14 @@ export async function fetchLocationByIp(ip: string): Promise<InferredLocation | 
       return null;
     }
 
-    const data = (await res.json()) as {
-      status?: string;
-      country?: string;
-      countryCode?: string;
-      region?: string;
-      regionName?: string;
-      city?: string;
-      lat?: number;
-      lon?: number;
-      timezone?: string;
-    };
+    const loc = ipapiKey
+      ? parseIpApiResponse(await res.json())
+      : parseIpWhoIsResponse(await res.json());
 
-    if (data.status !== "success" || !data.countryCode) {
+    if (!loc) {
       IP_CACHE.set(ip, { loc: null, expiresAt: Date.now() + IP_CACHE_TTL_MS });
       return null;
     }
-
-    const loc: InferredLocation = {
-      source: "ipapi",
-      precision: data.city ? "city" : data.regionName ? "region" : "country",
-      countryCode: data.countryCode,
-      countryName: data.country ?? null,
-      regionCode: data.region ?? null,
-      regionName: data.regionName ?? null,
-      city: data.city ?? null,
-      // Store APPROXIMATE coordinates only (coarsened to ~city level).
-      latitude: data.lat != null ? String(coarsenCoord(data.lat)) : null,
-      longitude: data.lon != null ? String(coarsenCoord(data.lon)) : null,
-      timezone: data.timezone ?? null,
-    };
 
     IP_CACHE.set(ip, { loc, expiresAt: Date.now() + IP_CACHE_TTL_MS });
     return loc;
@@ -137,6 +130,80 @@ export async function fetchLocationByIp(ip: string): Promise<InferredLocation | 
     IP_CACHE.set(ip, { loc: null, expiresAt: Date.now() + 5 * 60 * 1000 });
     return null;
   }
+}
+
+/**
+ * Map an ip-api.com (pro, HTTPS) response into an InferredLocation. Returns null
+ * on a failed/empty lookup. Coordinates are coarsened to ~city level.
+ */
+function parseIpApiResponse(raw: unknown): InferredLocation | null {
+  const data = (raw ?? {}) as {
+    status?: string;
+    country?: string;
+    countryCode?: string;
+    region?: string;
+    regionName?: string;
+    city?: string;
+    lat?: number;
+    lon?: number;
+    timezone?: string;
+  };
+
+  if (data.status !== "success" || !data.countryCode) return null;
+
+  return {
+    source: "ipapi",
+    precision: data.city ? "city" : data.regionName ? "region" : "country",
+    countryCode: data.countryCode,
+    countryName: data.country ?? null,
+    regionCode: data.region ?? null,
+    regionName: data.regionName ?? null,
+    city: data.city ?? null,
+    // Store APPROXIMATE coordinates only (coarsened to ~city level).
+    latitude: data.lat != null ? String(coarsenCoord(data.lat)) : null,
+    longitude: data.lon != null ? String(coarsenCoord(data.lon)) : null,
+    timezone: data.timezone ?? null,
+  };
+}
+
+/**
+ * Map an ipwho.is (free, HTTPS) response into an InferredLocation. Returns null
+ * on a failed/empty lookup. Coordinates are coarsened to ~city level.
+ */
+function parseIpWhoIsResponse(raw: unknown): InferredLocation | null {
+  const data = (raw ?? {}) as {
+    success?: boolean;
+    country?: string;
+    country_code?: string;
+    region?: string;
+    region_code?: string;
+    city?: string;
+    latitude?: number;
+    longitude?: number;
+    // `fields` keeps this a plain string; full responses nest it as { id }.
+    timezone?: string | { id?: string };
+  };
+
+  if (data.success === false || !data.country_code) return null;
+
+  const timezone =
+    typeof data.timezone === "string"
+      ? data.timezone
+      : (data.timezone?.id ?? null);
+
+  return {
+    source: "ipapi",
+    precision: data.city ? "city" : data.region ? "region" : "country",
+    countryCode: data.country_code,
+    countryName: data.country ?? null,
+    regionCode: data.region_code ?? null,
+    regionName: data.region ?? null,
+    city: data.city ?? null,
+    // Store APPROXIMATE coordinates only (coarsened to ~city level).
+    latitude: data.latitude != null ? String(coarsenCoord(data.latitude)) : null,
+    longitude: data.longitude != null ? String(coarsenCoord(data.longitude)) : null,
+    timezone,
+  };
 }
 
 /**
