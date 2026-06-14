@@ -482,7 +482,10 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
 
   let finalized;
   try {
-    finalized = finalizeQcRound(bookId, roundId, { attest: true });
+    // A --dry-run preflight must be READ-ONLY: compute the verdict from current
+    // QC state without re-finalizing/re-attesting (which would overwrite a fresh
+    // PUBLISHABLE attestation with REVISE before the early-return below).
+    finalized = finalizeQcRound(bookId, roundId, { attest: !options.dryRun, dryRun: options.dryRun });
   } catch (err) {
     return { ok: false, bookId, roundId, errors: [`QC finalization failed: ${(err as Error).message}`], warnings, next: [repairPrompt] };
   }

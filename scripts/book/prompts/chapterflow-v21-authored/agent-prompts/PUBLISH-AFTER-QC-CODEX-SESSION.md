@@ -21,8 +21,9 @@ First confirm the round still passes (a content edit after the round opened make
 ```bash
 npx tsx src/cli.ts qc-status "<bookname>"
 ```
-Every chapter must read PASS / PUBLISHABLE and fresh. If any chapter is REVISE, stale, or
-missing, STOP — this is not ready to finalize; send it back to prompt 2 (QC).
+Every chapter must read `PASS` (the status qc-status prints for a fresh PUBLISHABLE
+attestation). If any chapter is REVISE, STALE, CORRUPTION, or MISSING, STOP — this is
+not ready to finalize; send it back to prompt 2 (QC).
 
 Then resolve and preflight the request:
 

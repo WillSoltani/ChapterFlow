@@ -9,8 +9,8 @@ When the operator says: **`Generate the book <book>`** (a title or a bookId) —
 ## 0. Setup (once)
 ```bash
 cd scripts/book/prompts/chapterflow-v21-authored
-# Recommended: stamp this authoring session so a later FRESH QC session can prove
-# it didn't grade its own work.
+# Recommended: tag this authoring session id; at the qc handoff (step 2) you run
+# `qc-stamp-author` so a later FRESH QC session can prove it didn't grade its own work.
 export CHAPTERFLOW_SESSION_ID="author-$(date +%Y%m%d%H%M%S)"
 ```
 
@@ -27,16 +27,23 @@ npx tsx src/cli.ts book-status "<book>"
 ```
 Read the `phase:` and the `next:` block. It prints the single exact next command
 for wherever the book is. Run it, produce the artifact it asks for, then re-run
-`book-status`. Loop until `phase: ready to publish`.
+`book-status`. Loop until `phase: qc` — then STOP: this session never QCs or
+publishes (see Rules). Do NOT run the `qc-auto` command book-status prints at that
+point; hand off to prompt 2.
 
 What each phase means and what `next:` will point you at:
-- **research-bibliography / research-chapter / chapter-index / write-chapter / derive-artifacts**
+- **research-bibliography / research-chapter / chapter-index / write-chapter**
   → `next-task <bookId>` drives these; read the playbook it names (STEP-1-RESEARCH.md,
   STEP-2-WRITE-CHAPTERS.md), produce the JSON, save to the printed path.
 - **generating** → keep writing chapters via `next-task`.
 - **gating** → a chapter or the book gate has blockers; `next:` points at the exact
-  `gate-chapter` / `book-gate` command. Fix the named fields and re-run.
-- **qc** → all chapters are gate-clean; hand off to the QC session
+  `gate-chapter` / `book-gate` command. Fix the named fields and re-run. (Once every
+  chapter exists but the brief/per-chapter plans aren't derived yet, book-status shows
+  `phase: gating` with `next: book-gate <bookId>` — running that auto-derives the
+  brief+plans for you, so just follow `next:`. There is no `derive-artifacts` phase.)
+- **qc** → all chapters are gate-clean. First, if you exported `CHAPTERFLOW_SESSION_ID`
+  in step 0, record this authoring session so QC can prove independence:
+  `npx tsx src/cli.ts qc-stamp-author <bookId>`. Then hand off to the QC session
   (paste QC-CODEX-SESSION.md into a NEW session — QC must be independent). That's
   prompt 2 of 3; see RUN-A-BOOK.md for the full generate → QC → finalize flow.
 - **ready to publish** → QC passed; a separate finalize session commits/pushes/publishes
@@ -56,7 +63,9 @@ books — that's fine. This is the same prevention pattern as the voice bible �
 before authoring, not in repair.
 
 ## Rules
-- Always let `book-status`'s `next:` line decide the next step — don't guess the order.
+- Let `book-status`'s `next:` line decide the next step — don't guess the order —
+  EXCEPT at `phase: qc`: do NOT run the printed `qc-auto` command here; stop and hand
+  off to prompt 2 (the author never grades its own work).
 - One chapter author = one reserved-name row. Never reuse a name across CHAPTERS of the same book; names MAY repeat across different books — that's fine.
 - Do not QC or publish in THIS session — QC must run in a separate fresh session
   (the author never grades its own work). Stop at `phase: qc` and hand off to prompt 2.

@@ -22,10 +22,11 @@ export CHAPTERFLOW_SESSION_ID="qc-$(date +%Y%m%d%H%M%S)"
 ```bash
 CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<book>" --pass
 ```
-Read the final block. It always ends with a `next:` section telling you the exact
-command to run. Branch on the headline:
+Read the final block and branch on the headline; it always prints the exact command
+to run next — labeled `next:` on a PASS, or `rerun or resume:` / `Start a fresh QC
+round:` / `After repair, run:` on the other outcomes. Run that printed command.
 
-- **`QC AUTO INCOMPLETE` + "review packet:"** → first run; no submissions yet. Go to step 2.
+- **`QC AUTO INCOMPLETE` + a "review packet (" line** → first run; no submissions yet. Go to step 2.
 - **`QC AUTO PASS`** → done. Go to step 4 (hand off to finalize).
 - **`QC AUTO PASS (SUBSET)`** → only a `--chapters` subset was verified. Re-run a
   full-book pass (the printed command) before handing off.
