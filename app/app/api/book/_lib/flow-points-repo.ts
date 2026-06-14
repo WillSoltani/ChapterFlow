@@ -634,8 +634,12 @@ export async function redeemFlowPointsReward(
               PK: bookUserPk(params.userId),
               SK: entitlementSk(),
             },
+            // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do
+            // not initialize it here (an empty Set can no longer be marshalled now
+            // that convertEmptyValues is off, and initializing it to NULL is what
+            // broke the later `ADD unlockedBookIds :bookSet`).
             UpdateExpression:
-              "SET #plan = if_not_exists(#plan, :freePlan), updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots) + :slotDelta, unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+              "SET #plan = if_not_exists(#plan, :freePlan), updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots) + :slotDelta",
             ExpressionAttributeNames: {
               "#plan": "plan",
             },
@@ -644,7 +648,6 @@ export async function redeemFlowPointsReward(
               ":updatedAt": now,
               ":defaultSlots": 2,
               ":slotDelta": Math.max(1, Math.floor(params.bookSlotDelta)),
-              ":emptySet": new Set<string>(),
             },
           },
         }
@@ -655,8 +658,12 @@ export async function redeemFlowPointsReward(
               PK: bookUserPk(params.userId),
               SK: entitlementSk(),
             },
+            // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do
+            // not initialize it here (an empty Set can no longer be marshalled now
+            // that convertEmptyValues is off, and initializing it to NULL is what
+            // broke the later `ADD unlockedBookIds :bookSet`).
             UpdateExpression:
-              "SET #plan = :proPlan, proStatus = :activeStatus, proSource = :flowSource, currentPeriodEnd = :periodEnd, licenseKey = :nullValue, licenseExpiresAt = :nullValue, updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+              "SET #plan = :proPlan, proStatus = :activeStatus, proSource = :flowSource, currentPeriodEnd = :periodEnd, licenseKey = :nullValue, licenseExpiresAt = :nullValue, updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
             // Never convert an active paid Stripe subscription into a flow_points
             // pass — that orphans the Stripe sub (it keeps billing while proSource
             // flips). The route also pre-checks (pro passes are freeOnly), but the
@@ -676,7 +683,6 @@ export async function redeemFlowPointsReward(
               ":nullValue": null,
               ":updatedAt": now,
               ":defaultSlots": 2,
-              ":emptySet": new Set<string>(),
             },
           },
         };

@@ -1830,7 +1830,11 @@ export async function updateUserEntitlementFromStripe(
     "stripeSubscriptionId = :stripeSubscriptionId",
     "updatedAt = :updatedAt",
     "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
-    "unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+    // unlockedBookIds is intentionally NOT initialized here. Writing an empty
+    // Set is impossible now that convertEmptyValues is off (marshal throws), and
+    // initializing it to NULL is what broke reserveBookEntitlement's ADD. The
+    // attribute is created lazily by the first `ADD unlockedBookIds :bookSet`;
+    // reads use parseStringArray which returns [] for a missing attribute.
   ];
   const eav: Record<string, unknown> = {
     ":plan": params.plan,
@@ -1842,7 +1846,6 @@ export async function updateUserEntitlementFromStripe(
     ":stripeSubscriptionId": params.stripeSubscriptionId ?? null,
     ":updatedAt": nowIso(),
     ":defaultSlots": 2,
-    ":emptySet": new Set<string>(),
   };
   if (params.currentPeriodEnd !== undefined) {
     setParts.push("currentPeriodEnd = :periodEnd");
@@ -1948,8 +1951,10 @@ export async function attachStripeCustomerToEntitlement(
         PK: bookUserPk(userId),
         SK: entitlementSk(),
       },
+      // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do not
+      // initialize it here (an empty Set can no longer be marshalled).
       UpdateExpression:
-        "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+        "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
       ExpressionAttributeNames: {
         "#plan": "plan",
       },
@@ -1958,7 +1963,6 @@ export async function attachStripeCustomerToEntitlement(
         ":updatedAt": nowIso(),
         ":freePlan": "FREE",
         ":defaultSlots": 2,
-        ":emptySet": new Set<string>(),
       },
     })
   );
@@ -1984,15 +1988,16 @@ export async function attachStripeCustomerIfAbsent(
           SK: entitlementSk(),
         },
         ConditionExpression: "attribute_not_exists(stripeCustomerId)",
+        // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do not
+        // initialize it here (an empty Set can no longer be marshalled).
         UpdateExpression:
-          "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+          "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
         ExpressionAttributeNames: { "#plan": "plan" },
         ExpressionAttributeValues: {
           ":customerId": customerId,
           ":updatedAt": nowIso(),
           ":freePlan": "FREE",
           ":defaultSlots": 2,
-          ":emptySet": new Set<string>(),
         },
       })
     );
@@ -2016,7 +2021,6 @@ export async function adminUpdateUserEntitlement(
   const segments: string[] = ["updatedAt = :updatedAt"];
   const values: Record<string, unknown> = {
     ":updatedAt": updatedAt,
-    ":emptySet": new Set<string>(),
     ":defaultSlots": 2,
     ":defaultPlan": "FREE",
   };
@@ -2036,7 +2040,8 @@ export async function adminUpdateUserEntitlement(
     segments.push("proStatus = :proStatus");
     values[":proStatus"] = params.proStatus;
   }
-  segments.push("unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)");
+  // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do not
+  // initialize it here (an empty Set can no longer be marshalled).
 
   const res = await ddbDoc.send(
     new UpdateCommand({
@@ -3025,8 +3030,11 @@ export async function redeemLicenseKey(
                 "licenseKey = :code,",
                 "licenseExpiresAt = :expiresAt,",
                 "updatedAt = :now,",
-                "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots),",
-                "unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+                // unlockedBookIds is created lazily by reserveBookEntitlement's
+                // ADD; do not initialize it here (an empty Set can no longer be
+                // marshalled). Note: this clause must stay last so the preceding
+                // element carries no trailing comma after the .join(" ").
+                "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
               ].join(" "),
               // Atomically refuse to clobber an active paid Stripe subscription.
               // The route also pre-checks this (license/route.ts), but the read is
@@ -3044,7 +3052,6 @@ export async function redeemLicenseKey(
                 ":expiresAt": expiresAt,
                 ":now": now,
                 ":defaultSlots": 2,
-                ":emptySet": new Set<string>(),
               },
             },
           },

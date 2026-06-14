@@ -18,7 +18,16 @@ export const REGION =
 const ddb = new DynamoDBClient({ region: REGION });
 
 export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
-  marshallOptions: { removeUndefinedValues: true, convertEmptyValues: true },
+  // NOTE: convertEmptyValues is intentionally OFF. With it on, the SDK rewrites
+  // empty strings AND empty Sets to a NULL attribute on write (verified on
+  // @aws-sdk/util-dynamodb 3.996.2). That silently corrupted entitlement
+  // initialization: `unlockedBookIds = if_not_exists(unlockedBookIds, <empty Set>)`
+  // stored unlockedBookIds as NULL, and the later `ADD unlockedBookIds :bookSet`
+  // in reserveBookEntitlement then threw a ValidationException (ADD takes only
+  // Number/Set, not NULL). With the flag off, empty strings store natively as
+  // S:"" and empty Sets must not be written at all (marshal throws on them) —
+  // callers create Set-typed attributes lazily via ADD. Do not re-enable.
+  marshallOptions: { removeUndefinedValues: true },
 });
 
 export async function getTableName(): Promise<string> {
