@@ -11,7 +11,8 @@ import type { LibraryBookEntry } from "@/app/book/_lib/library-data";
 
 type BookHeroProps = {
   entry: LibraryBookEntry;
-  pages: number;
+  /** Real page count from the book package; omitted when unknown (never estimated). */
+  pages?: number;
   progressPercent: number;
   avgScore: number;
   unlockedCount: number;
@@ -143,7 +144,9 @@ export function BookHero({
               >
                 {entry.difficulty}
               </span>
-              <span className="cf-pill rounded-lg px-2.5 py-1 text-xs">{pages} pages</span>
+              {typeof pages === "number" && pages > 0 && (
+                <span className="cf-pill rounded-lg px-2.5 py-1 text-xs">{pages} pages</span>
+              )}
             </motion.div>
 
             {/* Synopsis — clamped above the fold; "More" reveals the full text.
