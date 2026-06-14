@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useRef, useState } from "react";
-import { getBookCoverCandidates } from "@/lib/book-covers";
+import { useBookCoverSource } from "@/lib/use-book-cover-source";
 
 interface BookCoverProps {
   /** Canonical bookId — drives the local raster candidate chain. */
@@ -23,22 +22,14 @@ interface BookCoverProps {
   sizes?: string;
 }
 
-function isExternalSrc(src: string): boolean {
-  return /^https?:\/\//i.test(src);
-}
-
-/** next/image custom loader that returns the src untouched (no optimizer). */
-function externalImageLoader({ src }: { src: string }): string {
-  return src;
-}
-
 /**
- * Renders a real book cover raster through next/image, walking an AVIF-first /
- * WebP-fallback candidate chain (lib/book-covers) on error, plus the remote S3
- * URL as a final source. `unoptimized` keeps every source out of /_next/image
- * (which 400s on these). Only when every source fails do we show the
- * gradient + title fallback. The image is decorative (alt="") because every
- * caller renders the book title as adjacent text.
+ * Renders a real book cover raster through next/image via the shared
+ * useBookCoverSource resolver (AVIF→WebP local rasters, then the remote S3 URL
+ * as a last resort; `unoptimized` keeps every source out of /_next/image, which
+ * 400s on these). Only when every source fails do we show the gradient + title
+ * fallback. The image is decorative (alt="") because every caller renders the
+ * book title as adjacent text. This is the embedded (fill / fixed-size) cover;
+ * the standalone hover tile lives at app/book/components/BookCover.
  */
 export function BookCover({
   bookId,
@@ -52,21 +43,7 @@ export function BookCover({
   borderRadius,
   sizes,
 }: BookCoverProps) {
-  const candidates = useMemo(() => {
-    const local = getBookCoverCandidates(bookId);
-    return coverImage && !local.includes(coverImage) ? [...local, coverImage] : local;
-  }, [bookId, coverImage]);
-
-  const [index, setIndex] = useState(0);
-  // Reset the fallback cursor when the source set changes (e.g. an un-keyed
-  // BookCover instance swaps to a different book on a dashboard refetch) so a
-  // previously-exhausted cover doesn't show the wrong candidate / gradient.
-  const prevCandidates = useRef(candidates);
-  if (prevCandidates.current !== candidates) {
-    prevCandidates.current = candidates;
-    if (index !== 0) setIndex(0);
-  }
-  const src = candidates[index];
+  const { src, onError, loader } = useBookCoverSource(bookId, coverImage);
   const resolvedSizes = sizes ?? (fill ? "(max-width: 768px) 40vw, 200px" : `${width ?? 160}px`);
 
   const imageEl = src ? (
@@ -78,8 +55,8 @@ export function BookCover({
       sizes={resolvedSizes}
       loading="lazy"
       className={`object-cover ${className}`}
-      onError={() => setIndex((i) => i + 1)}
-      loader={isExternalSrc(src) ? externalImageLoader : undefined}
+      onError={onError}
+      loader={loader}
       unoptimized
     />
   ) : null;
