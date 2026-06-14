@@ -6,11 +6,13 @@ import { usePathname } from "next/navigation";
 /**
  * Client-side analytics beacon hook.
  *
- * Collects lightweight, non-invasive usage telemetry (part of the service; see
- * the privacy policy):
+ * When the user has opted in to "Share Usage Analytics", this hook collects
+ * lightweight, non-invasive telemetry (see the privacy policy):
  * - Session context (screen size, timezone, language, color scheme, connection type)
  * - Performance metrics (page load time, DOM content loaded, first contentful paint)
  * - Navigation events (route changes with time-on-page)
+ *
+ * When opted out, this hook does nothing.
  */
 
 const BEACON_ENDPOINT = "/app/api/book/me/analytics/beacon";
@@ -121,9 +123,10 @@ function reportWebVitals() {
 // ─── Hook ────────────────────────────────────────────────────────────────────
 
 /**
- * Mount this hook once in a top-level layout component. Beacons are sent
- * unconditionally — usage analytics is part of the service (see the privacy
- * policy), with no per-user opt-out.
+ * Mount this hook once in a top-level layout component.
+ * It reads the analytics consent preference from localStorage directly
+ * (same key as useBookPreferences) to avoid coupling to the preferences hook.
+ * Beacons are sent only when the user has opted in.
  */
 export function useAnalyticsBeacon() {
   const pathname = usePathname();
@@ -133,6 +136,10 @@ export function useAnalyticsBeacon() {
 
   useEffect(() => {
     prevTimeRef.current = Date.now();
+
+    // Read consent directly from localStorage — fast synchronous check
+    const isOptedIn = readAnalyticsConsent();
+    if (!isOptedIn) return;
 
     // Send session context and performance metrics once per page load
     if (!sentSessionRef.current) {
@@ -144,6 +151,9 @@ export function useAnalyticsBeacon() {
 
   // Track navigation (route changes)
   useEffect(() => {
+    const isOptedIn = readAnalyticsConsent();
+    if (!isOptedIn) return;
+
     const now = Date.now();
     const prev = prevPathRef.current;
 
@@ -160,3 +170,23 @@ export function useAnalyticsBeacon() {
   }, [pathname]);
 }
 
+// ─── Consent check ──────────────────────────────────────────────────────────
+
+const STORAGE_KEY = "book-accelerator:preferences:v2";
+
+/**
+ * Read analytics consent from localStorage. Analytics is opt-in: returns true
+ * only when the user has explicitly enabled "Share Usage Analytics".
+ */
+function readAnalyticsConsent(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false; // Default is opted out (opt-in)
+    const parsed = JSON.parse(raw);
+    const value = parsed?.privacy?.analyticsParticipation;
+    return value === true; // Only an explicit opt-in counts as consent
+  } catch {
+    return false; // Default is opted out (opt-in)
+  }
+}

@@ -17,8 +17,6 @@ type ChapterCardProps = {
   status: ChapterCardStatus;
   score?: number;
   stepsCompleted: number;
-  currentStepProgress?: number;
-  teaser?: string;
   onClick: () => void;
   onLockedClick?: () => void;
   onMouseEnter?: () => void;
@@ -30,8 +28,6 @@ export function ChapterCard({
   status,
   score,
   stepsCompleted,
-  currentStepProgress,
-  teaser,
   onClick,
   onLockedClick,
   onMouseEnter,
@@ -98,7 +94,7 @@ export function ChapterCard({
                 <span className={`shrink-0 text-sm ${codeClass}`}>{chapter.code}</span>
                 <span className={`truncate ${titleClass}`}>{chapter.title}</span>
               </div>
-              <StepIndicators stepsCompleted={0} accentColor="green" lockedDots />
+              <StepIndicators stepsCompleted={0} lockedDots />
             </div>
           </div>
           <span className="shrink-0 whitespace-nowrap text-xs" style={{ color: "var(--text-tertiary)" }}>
@@ -135,15 +131,10 @@ export function ChapterCard({
                 <span className={`shrink-0 text-sm ${codeClass}`}>{chapter.code}</span>
                 <span className={`truncate ${titleClass}`}>{chapter.title}</span>
               </div>
-              <StepIndicators stepsCompleted={0} accentColor="green" lockedDots />
+              <StepIndicators stepsCompleted={0} lockedDots />
               <span className="mt-1 block text-xs font-medium" style={{ color: "var(--accent-emerald)" }}>
                 Up next
               </span>
-              {teaser && (
-                <p className="mt-0.5 max-w-sm text-xs italic leading-relaxed text-(--cf-text-soft)">
-                  &ldquo;{teaser}&rdquo;
-                </p>
-              )}
             </div>
           </div>
           <span className="shrink-0 whitespace-nowrap text-xs" style={{ color: "var(--text-tertiary)" }}>
@@ -229,20 +220,8 @@ export function ChapterCard({
               <StepIndicators
                 stepsCompleted={stepsCompleted}
                 isInProgress={isInProgress}
-                accentColor={isCompleted ? "green" : "indigo"}
               />
-              {isInProgress && (
-                <span className="text-xs text-(--cf-text-soft)">{stepsCompleted}/4 steps</span>
-              )}
             </div>
-            {isInProgress && typeof currentStepProgress === "number" && (
-              <div className="mt-2 h-1 overflow-hidden rounded-full bg-(--cf-progress-track)">
-                <div
-                  className="h-full rounded-full bg-(--cf-accent) transition-[width] duration-300"
-                  style={{ width: `${Math.max(currentStepProgress, 0)}%` }}
-                />
-              </div>
-            )}
           </div>
         </div>
 

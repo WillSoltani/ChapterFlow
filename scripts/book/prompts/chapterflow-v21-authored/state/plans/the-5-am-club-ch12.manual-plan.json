@@ -1,0 +1,70 @@
+{
+  "chapterId": "the-5-am-club-ch12",
+  "number": 12,
+  "title": "The 5 AM Club Discovers the Habit Installation Protocol",
+  "coreMove": "Habit installation becomes realistic when old-pattern destruction, new-behavior practice, and integration are expected before automaticity arrives.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "early rising",
+      "audience": "people quitting during initial disruption",
+      "stakes": "old cues can look like proof the habit is impossible",
+      "format": "decision_point",
+      "requiredBeat": "Use first 22 days as destruction of old pattern"
+    },
+    {
+      "domain": "habit continuation",
+      "audience": "people discouraged after the first month",
+      "stakes": "the middle phase can feel like failure because ease has not arrived",
+      "format": "planning_choice",
+      "requiredBeat": "Show second 22 days as new behavior present but not easy"
+    },
+    {
+      "domain": "habit integration",
+      "audience": "people relaxing too soon",
+      "stakes": "overconfidence can break integration before automaticity stabilizes",
+      "format": "mistake_recovery",
+      "requiredBeat": "Use final 22 days as integration"
+    },
+    {
+      "domain": "creative habit",
+      "audience": "writers applying the protocol beyond waking",
+      "stakes": "other behaviors also need installation rather than mood",
+      "format": "reflection",
+      "requiredBeat": "Show the protocol applying to other behaviors"
+    },
+    {
+      "domain": "habit design",
+      "audience": "people counting days without changing systems",
+      "stakes": "a number can hide poor design",
+      "format": "dialogue",
+      "requiredBeat": "Reject 66 days as magic guarantee"
+    },
+    {
+      "domain": "study routine",
+      "audience": "students quitting when discipline feels bad",
+      "stakes": "discomfort can be misread as a sign that the student is not suited for the habit",
+      "format": "audit",
+      "requiredBeat": "Use expectation management to continue"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:04:11.760Z"
+}

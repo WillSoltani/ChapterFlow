@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-body-keeps-the-score-ch05",
+  "number": 5,
+  "title": "Body-Brain Connections",
+  "coreMove": "Trauma keeps physiology organized for defense; recovery starts by restoring body-level safety through voice, face, breath, movement, and reliable connection.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "hospital trauma intake",
+      "audience": "medical residents learning to read body cues",
+      "stakes": "An intake huddle can treat a flat face as information instead of refusal.",
+      "format": "scene",
+      "requiredBeat": "Use Darwin's emotional expression work to shift attention toward visible body signals."
+    },
+    {
+      "domain": "youth shelter debrief",
+      "audience": "staff supervisors responding after a conflict",
+      "stakes": "A support attempt may feel like threat if staff crowd the doorway.",
+      "format": "dialogue",
+      "requiredBeat": "Apply Polyvagal Theory by rebuilding social engagement before reflection."
+    },
+    {
+      "domain": "school nurse office",
+      "audience": "counselors sorting discipline from survival arousal",
+      "stakes": "A discipline note can miss the body state behind classroom behavior.",
+      "format": "predict_reveal",
+      "requiredBeat": "Use the autonomic safety ladder to read social engagement, fight-or-flight, and collapse."
+    },
+    {
+      "domain": "emergency department recovery bay",
+      "audience": "charge nurses planning a safer handoff",
+      "stakes": "A patient may remain mobilized after danger has passed.",
+      "format": "postmortem",
+      "requiredBeat": "Show sympathetic activation and the need for a recovery pathway."
+    },
+    {
+      "domain": "community center practice group",
+      "audience": "recreation coaches using rhythm without pressure",
+      "stakes": "Bodily energy can be invited safely or interpreted as threat.",
+      "format": "before_after",
+      "requiredBeat": "Show play, rhythm, voice, face, and movement as safety cues."
+    },
+    {
+      "domain": "workplace return plan",
+      "audience": "HR directors supporting staff after a crisis",
+      "stakes": "A return plan can worsen shame if it treats recovery as private toughness.",
+      "format": "decision_memo",
+      "requiredBeat": "Challenge individualistic healing by naming co-regulation and social safety."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "understand": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-10T00:54:13.980Z"
+}

@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch23",
+  "number": 23,
+  "title": "Making the call is making progress",
+  "coreMove": "A decision is progress, not its setup: it turns doubt into movement and produces the next evidence, so choose at the smallest responsible scale instead of waiting for certainty.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "small software studio",
+      "audience": "team leads watching open questions pile up",
+      "stakes": "keep saying think about it or switch the default to decide on it",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist replaces postponement language with a choice"
+    },
+    {
+      "domain": "consumer hardware roadmap",
+      "audience": "planners who defer choices believing they can return calmly",
+      "stakes": "defer once more or resolve the aging calls now",
+      "format": "before_after",
+      "requiredBeat": "the protagonist sees deferred decisions go stale and get rushed"
+    },
+    {
+      "domain": "mobile app pricing",
+      "audience": "founders who expect waiting to reveal the answer",
+      "stakes": "wait for certainty to arrive or make a call that produces evidence",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist learns time alone does not generate clarity"
+    },
+    {
+      "domain": "editorial product team",
+      "audience": "leads watching team energy fade on a long build",
+      "stakes": "hoard decisions for quality or make frequent visible calls",
+      "format": "reflection",
+      "requiredBeat": "the protagonist links frequent decisions to visible morale"
+    },
+    {
+      "domain": "logistics startup",
+      "audience": "leaders confusing decisiveness with irreversible bravado",
+      "stakes": "make a reckless irreversible bet or a scoped revisable call",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist scopes the call instead of betting big to look bold"
+    },
+    {
+      "domain": "bootstrapped app studio",
+      "audience": "small teams carrying unresolved choices too long",
+      "stakes": "let choices float like a big org can or resolve them to keep moving",
+      "format": "postmortem",
+      "requiredBeat": "the protagonist sees a small team cannot absorb stalled decisions"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 1,
+      "evaluate": 3,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.765Z"
+}

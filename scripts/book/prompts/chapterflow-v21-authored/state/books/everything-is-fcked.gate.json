@@ -1,0 +1,1696 @@
+{
+  "bookId": "everything-is-fcked",
+  "title": "Everything Is F*cked",
+  "author": "Mark Manson",
+  "promotedAt": "2026-06-03T06:05:42.299Z",
+  "chapterCount": 9,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "counterintuition",
+            "message": "banned phrase \"strips away\" — 149 hits across 43 books.",
+            "evidence": "Once life's scale strips away comfort, hope has to invent motion for lives that will mostly vanish."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"witold\", \"pilecki\", \"auschwitz\", \"polish\", \"nazi\", \"poland\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "At a noisy career fair, Imani hears a first-year student say that a famous internship will finally make life count. The booth signs promise impact, prestige, and belonging. Imani r"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"witold\", \"pilecki\", \"auschwitz\", \"polish\", \"nazi\", \"poland\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Near midnight, Raul watches a group chat turn a news story into a ritual of contempt. Everyone posts links, insults, and predictions of collapse. The talk feels alive because it gi"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"witold\", \"pilecki\", \"auschwitz\", \"polish\", \"nazi\", \"poland\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Nikhil prepares a board packet that says the next funding round will change everything. The sales notes say otherwise. Customers like the idea, not the product. He feels the pull o"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marta reads Witold Pilecki's smuggled Auschwitz reports in a Warsaw archive before a museum talk. The draft on her laptop calls him proof that hope conquers darkness. The pages in front of her feel h…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a noisy career fair, Imani hears a first-year student say that a famous internship will finally make life count. The booth signs promise impact, prestige, and belonging. Imani recognizes the uncom…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Near midnight, Raul watches a group chat turn a news story into a ritual of contempt. Everyone posts links, insults, and predictions of collapse. The talk feels alive because it gives people a shared…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Near midnight, Raul watches a group chat turn a news story into a ritual of contempt. Everyone posts links, insults, and predictions of collapse. The talk feels alive because it gives people a shared…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Leah sits beside her father's hospital bed while a muted television celebrates medical breakthroughs. She is grateful for the science and still knows the scans are bad. Her family keeps saying to sta…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Nikhil prepares a board packet that says the next funding round will change everything. The sales notes say otherwise. Customers like the idea, not the product. He feels the pull of a grand future be…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nikhil prepares a board packet that says the next funding round will change everything. The sales notes say otherwise. Customers like the idea, not the product. He feels the pull of a grand future be…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In the Witold Pilecki story, what does hope do when safety and success are absent?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Steven Pinker and Hans Rosling can show real material progress. What question do their charts still leave open?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "At the college career fair, why is the student's dream internship an unstable form of hope?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When the late-night group chat turns outrage into a shared ritual, what is the soundest test?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In the hospital waiting area, what kind of hope fits the uncomfortable truth?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does The Uncomfortable Truth say about ordinary striving for status, success, or approval?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which reading best preserves the hard edge of Manson's opening?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can a reader tell whether a hope is worth keeping?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch01-q02 choice[2] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Whether despair is always caused by people misunderstanding statistics."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch01-q03 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Because internships are always distractions from serious moral courage."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch01-q04 choice[2] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Avoid all political emotion because hope always corrupts judgment."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "The Thinking Brain can explain, plan, and compare, but behavior changes only whe"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2/4 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Sana reviews Elliot and Antonio Damasio before meeting a patient who can rank tasks perfectly on paper. At home, bills sit unpaid and meals never get planned. The patient calls himself lazy. Sana hea…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sana reviews Elliot and Antonio Damasio before meeting a patient who can rank tasks perfectly on paper. At home, bills sit unpaid and meals never get planned. The patient calls himself lazy. Sana hea…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Callum brings screen-time studies to dinner, ready to win. His daughter hears judgment before data. The phone is where friends, status, and relief live after school. Callum realizes the Thinking Brai…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nora's budget app shows every category in green and red. She understands the numbers. At 11 p.m., she still buys clothes after a hard client call because the purchase feels like dignity. The Thinking…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Tomas drafts an apology that explains his intentions with lawyerly care. The message is rational and dead. His friend will hear defense, not care. He remembers that the Feeling Brain at the wheel wan…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tomas drafts an apology that explains his intentions with lawyerly care. The message is rational and dead. His friend will hear defense, not care. He remembers that the Feeling Brain at the wheel wan…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Before dawn, Sorin stares at running shoes and hates every motivational phrase on his wall. The plan says five miles. His body hears punishment. He thinks of the Consciousness Car and asks what desti…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Antonio Damasio's patient Elliot matter to Manson's argument about self-control?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In the Consciousness Car image, what role does the Feeling Brain play?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Nora understands her budget but buys clothes after a hard client call. What diagnosis fits this model?"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "Nora understands her budget but buys clothes after a hard client call. What diagnosis fits this model? Her Thinking Brain has not received enough financial information. The purchase is doing an emoti…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Tomas's careful apology draft still fail?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does the idea mean by saying self-control is an illusion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement keeps the hard edge of the Thinking Brain and Feeling Brain model?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A plan looks perfect on paper but collapses after three days. What question should come next?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch02-q04 choice[2] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "She should trust the impulse because feelings are always the wiser guide."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch02-q08 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "The Feeling Brain is always right because it controls behavior."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"isaac\", \"newton\", \"self-worth\", \"punch-in-the-face\", \"self-story\", \"stubbed\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "At the register, Lina hears a customer demand money back for a broken lamp. The policy is clear, but the customer's voice says something else: he feels cheated and small. Lina can "
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"isaac\", \"newton\", \"self-worth\", \"punch-in-the-face\", \"self-story\", \"stubbed\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Zinnia tells her therapist she is simply independent. The notebook tells another story: she never asks for help because asking once felt humiliating at home. The old gap closed wit"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"isaac\", \"newton\", \"self-worth\", \"punch-in-the-face\", \"self-story\", \"stubbed\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Bastien posts a tiny edit in Slack, and his analyst answers with a sharp paragraph. The edit touched more than grammar. The analyst heard a familiar claim that her work is never go"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"isaac\", \"newton\", \"self-worth\", \"punch-in-the-face\", \"self-story\", \"stubbed\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "During a visit, Karim lists every favor he has done for his sister since childhood. He calls it fairness. She hears a debt ledger that never closes. The old family gap has become h"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Coach Ade watches a guard miss practice after a teammate mocks his shot. The insult was brief, but the player now says he has always been a fraud. Ade writes moral gap on the whiteboard and sees the …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At the register, Lina hears a customer demand money back for a broken lamp. The policy is clear, but the customer's voice says something else: he feels cheated and small. Lina can win the rule argume…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Zinnia tells her therapist she is simply independent. The notebook tells another story: she never asks for help because asking once felt humiliating at home. The old gap closed with a rule that need …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Zinnia tells her therapist she is simply independent. The notebook tells another story: she never asks for help because asking once felt humiliating at home. The old gap closed with a rule that need …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bastien posts a tiny edit in Slack, and his analyst answers with a sharp paragraph. The edit touched more than grammar. The analyst heard a familiar claim that her work is never good enough. A small …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "During a visit, Karim lists every favor he has done for his sister since childhood. He calls it fairness. She hears a debt ledger that never closes. The old family gap has become his proof that he de…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "During a visit, Karim lists every favor he has done for his sister since childhood. He calls it fairness. She hears a debt ledger that never closes. The old family gap has become his proof that he de…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At city council, Renata hears residents chant after a promised bus route disappears. The budget memo is real, but so is the moral gap: the neighborhood was told it mattered, then treated as optional.…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At city council, Renata hears residents chant after a promised bus route disappears. The budget memo is real, but so is the moral gap: the neighborhood was told it mattered, then treated as optional.…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In the punch-in-the-face example, what makes the injury emotionally larger than the physical pain?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the point of borrowing Isaac Newton's language for emotion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "The stubbed-toe coffee table scene is absurdly small. Why include it?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In the boy-leaves-girl identity narrative, how can a single wound become a long-term self-story?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can revenge feel emotionally logical after a moral gap opens?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which response is a direct settlement of a moral gap rather than an internal distortion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What keeps the idea from becoming deterministic about childhood pain?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When an old slight still charges a reader years later, what first step fits Newton's Laws of Emotion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How do moral gaps connect pain to identity in Newton's Laws of Emotion?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Name the moral gap it opened before choosing repair, boundary, or reinterpretation."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"money\", \"paper\", \"christianity\", \"islam\", \"judaism\", \"hinduism\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "At a founder retreat, Orestes hears the word growth used like a prayer. Customer trust, employee health, and product quality all become secondary. No one says growth is God, but ev"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"money\", \"paper\", \"christianity\", \"islam\", \"judaism\", \"hinduism\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "A listener named Becca hears a podcast promise that the right partner will make her whole. The advice sounds tender, but it turns romance into redemption. Every date now has to res"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marzena holds up a twenty-dollar bill in class and asks what it can do by itself. The students laugh because the answer is almost nothing. Then she asks why their parents trade hours for it. Money be…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a campaign office, Dovran watches a volunteer delete a poll that complicates the movement's message. The cause began with compassion. Now the team treats any inconvenient fact as betrayal. The God…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Samira moderates a panel with speakers from Christianity, Islam, Judaism, and Hinduism. The useful comparison is not whose doctrine wins. It is how each tradition gives people stories, rules, rituals…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Samira moderates a panel with speakers from Christianity, Islam, Judaism, and Hinduism. The useful comparison is not whose doctrine wins. It is how each tradition gives people stories, rules, rituals…"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Samira moderates a panel with speakers from Christianity, Islam, Judaism, and Hi"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a founder retreat, Orestes hears the word growth used like a prayer. Customer trust, employee health, and product quality all become secondary. No one says growth is God, but every hard decision b…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A listener named Becca hears a podcast promise that the right partner will make her whole. The advice sounds tender, but it turns romance into redemption. Every date now has to rescue her from ordina…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Cyrion designs a launch for a fitness brand that sells discipline, purity, and moral superiority with every hoodie. The product is fine. The pitch is bigger than fabric. Customers are being offered a…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Cyrion designs a launch for a fitness brand that sells discipline, purity, and moral superiority with every hoodie. The product is fine. The pitch is bigger than fabric. Customers are being offered a…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is money such a clean secular example of a God Value system?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What do Christianity, Islam, Judaism, and Hinduism help reveal about belief systems?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is a God Value in Manson's terms?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why do people often fight harder over facts than the facts alone seem to justify?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In the campaign office, why is deleting the inconvenient poll a corruption of the justice cause?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "At the founder retreat, everyone speaks of growth like a prayer. What should the CEO examine?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which reading avoids the idea's easy anti-religious misreading?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does mature handling of a God Value require?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can romance become religious in function?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch04-q04 choice[2] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Facts automatically become tribal once more than two people discuss them."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch04-q05 choice[0] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "It proves justice was never the real value for anyone involved."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch04-q09 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "It always requires rituals, vows, and inherited doctrine."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch04-q01 correct answer is 1.65× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Because it gains power from collective trust even though the paper or screen number has little value by itself."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch04-q03 correct answer is 1.53× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "The highest standard in a belief system, through which lesser values are judged."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch04-q08 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Keep the highest value visible enough that it can be questioned and corrected by reality."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch04-q09 correct answer is 1.53× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "It can promise salvation and make the present self feel defective until rescued."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Because it gains power from collective trust even though the paper or screen number has little value"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"sits at the top\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"friedrich\", \"nietzsche\", \"without\", \"meta\", \"salis\", \"switzerland\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Coach Mei sees a client treat every meal as a down payment on a perfect future body. The plan is disciplined and joyless. The client is not training from strength; he is trying to "
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a seminar, Veyra hears a classmate use Friedrich Nietzsche's God is dead line as a joke about foolish believers. She has Meta von Salis in her notes and Nietzsche's frail late life in mind. The li…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Renee leaves an oncology appointment furious at every phrase about staying hopeful. She does not want despair, but she also does not want to hate her actual days. Amor fati gives her a strange option…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Renee leaves an oncology appointment furious at every phrase about staying hopeful. She does not want despair, but she also does not want to hate her actual days. Amor fati gives her a strange option…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "After the company closes, Avi drafts a post that promises a triumphant comeback. The sentence feels false. He is using the future to disinfect the present. Nietzsche's warning about hope makes him as…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "After the company closes, Avi drafts a post that promises a triumphant comeback. The sentence feels false. He is using the future to disinfect the present. Nietzsche's warning about hope makes him as…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At her brother's memorial, Jo hears relatives insist everything happens for a reason. She wants to scream. Amor fati does not require her to call death good. It asks whether love can remain real with…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At her brother's memorial, Jo hears relatives insist everything happens for a reason. She wants to scream. Amor fati does not require her to call death good. It asks whether love can remain real with…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Coach Mei sees a client treat every meal as a down payment on a perfect future body. The plan is disciplined and joyless. The client is not training from strength; he is trying to escape a hated pres…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How should Nietzsche's line that God is dead be understood here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why do communism and fascism matter to Manson's critique of hope?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "At the cancer appointment, what does amor fati ask Renee to do?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "After the startup closes, why is Avi's triumphant-comeback post false to this model?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "At the memorial service, what answer best fits amor fati?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A fitness client treats every meal as a down payment on a perfect future body. What should the coach change?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement avoids the nihilistic misreading of Hope Is Fucked?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Meta von Salis and Nietzsche's late life keep the idea grounded?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is Manson's deepest objection to hope?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch05-q07 choice[1] uses absolute trigger \"impossible\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Meaning is impossible once old religious foundations lose authority."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch05-q08 choice[0] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Their story proves that illness improves philosophy automatically."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch05-q09 choice[2] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "It always depends on supernatural belief systems."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch05-q03 correct answer is 1.60× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Name the facts without decoration and choose how to live inside them."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch05-q08 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "They remind us that these ideas came through sickness, loneliness, friendship, and a vulnerable body."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch05-q09 correct answer is 1.67× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "It divides life into a deficient now and a later correction that must redeem it."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"god is dead is\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"immanuel\", \"kant\", \"categorical\", \"imperative\", \"nietzsche\", \"developmental\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Ansel receives a dream-client contract with endless unpaid revisions. He tells himself exposure will be worth it. Then he notices the self-use: he is treating his own time as dispo"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Amara builds a staffing grid during a flu surge. The spreadsheet wants bodies in slots. Immanuel Kant is on a sticky note from a leadership class: ends, not merely means. The nurses have families, fa…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Jules can close a software deal by letting a confused client overbuy. The quota pressure is real. So is the client's agency. A purely adolescent bargain says take the win; Kant asks whether the buyer…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Nina signs up for a volunteer project because it will look good, not because she cares. The people served are props, and so is her own exhausted self. The Categorical Imperative suddenly sounds less …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nina signs up for a volunteer project because it will look good, not because she cares. The people served are props, and so is her own exhausted self. The Categorical Imperative suddenly sounds less …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Leo wants his son to stop arguing before guests arrive. The fastest threat would work. It would also turn the child into a quiet display object. The developmental stages remind Leo that adulthood is …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Leo wants his son to stop arguing before guests arrive. The fastest threat would work. It would also turn the child into a quiet display object. The developmental stages remind Leo that adulthood is …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Samira drafts a post that will humiliate an opponent and thrill her followers. The cause matters, but the person has become a prop for group energy. Kant's rule interrupts the pleasure."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Samira drafts a post that will humiliate an opponent and thrill her followers. The cause matters, but the person has become a prop for group energy. Kant's rule interrupts the pleasure."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Ansel receives a dream-client contract with endless unpaid revisions. He tells himself exposure will be worth it. Then he notices the self-use: he is treating his own time as disposable fuel for imag…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ansel receives a dream-client contract with endless unpaid revisions. He tells himself exposure will be worth it. Then he notices the self-use: he is treating his own time as disposable fuel for imag…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is Kant's Formula of Humanity asking a person to preserve?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does the word merely matter in the Formula of Humanity?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What marks moral adulthood in the idea's developmental ladder?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How should consequences be handled under the Formula of Humanity?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can someone violate the Formula of Humanity in their relationship to themselves?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before making a difficult ask, what practical check fits this rule?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which interpretation is the moral-purity misreading of this rule?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In a sales call, what would respect for the Formula of Humanity require?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch06-q02 choice[0] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "It means people should never ask others for help or labor."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch06-q09 choice[2] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Avoid persuasion altogether because persuasion always uses another person."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch06-q09 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Keep the buyer's agency and real benefit visible instead of treating them as quota material."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"merely as a means\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"The mistake is to\" — Narrower form of 'The mistake is' that captures the counter opener template ('The mistake is to [verb]…') without false-firing on body-prose uses like 'The mistake is at line 47.' Used in The Prince (10/26), Power of Habit (7/9), and others.",
+            "evidence": "The Blue Dot Effect is funny until it starts explaining daily life. Participants saw fewer blue dots among purple ones, yet they kept reporting blue. Their standard moved. The mind did not simply rec…"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[3].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"blue\", \"effect\", \"prevalence-induced\", \"similar\", \"problem-frequency\", \"durkheim\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Kellan's support team has been protected from every angry customer by scripts and escalations. Now a mild complaint ruins half a day. The team is not lazy; it has had no practice m"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"blue\", \"effect\", \"prevalence-induced\", \"similar\", \"problem-frequency\", \"durkheim\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Sofia and Ben avoid opening bank statements because the first glance feels awful. The avoidance creates late fees, suspicion, and bigger fights. The original pain is numbers; the s"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Iris reads the Blue Dot Effect before reviewing campus survey comments. Serious problems have fallen, yet reports of harm have widened to include milder friction. She worries that saying this will so…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Iris reads the Blue Dot Effect before reviewing campus survey comments. Serious problems have fallen, yet reports of harm have widened to include milder friction. She worries that saying this will so…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At a spotless neighborhood meeting, Mirek hears twenty minutes of anger about a recycling bin left sideways. He thinks of Durkheim's perfect society: when major violations fade, tiny ones can carry t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mina sits in a meditation hall and feels an itch bloom on her cheek. Her first urge is to scratch and reset the mood. The teacher has mentioned antifragility, so she watches the itch become heat, sto…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Kellan's support team has been protected from every angry customer by scripts and escalations. Now a mild complaint ruins half a day. The team is not lazy; it has had no practice metabolizing discomf…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kellan's support team has been protected from every angry customer by scripts and escalations. Now a mild complaint ruins half a day. The team is not lazy; it has had no practice metabolizing discomf…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Sofia and Ben avoid opening bank statements because the first glance feels awful. The avoidance creates late fees, suspicion, and bigger fights. The original pain is numbers; the secondary pain is sh…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sofia and Ben avoid opening bank statements because the first glance feels awful. The avoidance creates late fees, suspicion, and bigger fights. The original pain is numbers; the secondary pain is sh…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A runner asks Dr. Hayes whether pain means quit or push. Nassim Taleb is useful but incomplete. Some stress strengthens; some stress tears tissue. The skill is reading scale, recovery, and signal."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A runner asks Dr. Hayes whether pain means quit or push. Nassim Taleb is useful but incomplete. Some stress strengthens; some stress tears tissue. The skill is reading scale, recovery, and signal."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does the Blue Dot Effect reveal about human discomfort?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Durkheim's perfect society thought experiment matter here?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does Nassim Taleb's antifragile idea add to this model?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "If pain is the universal constant, what choice remains morally important?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement romanticizes suffering in a way Manson rejects?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the danger of organizing life around insulation from discomfort?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A worker receives hard feedback and wants to flee the conversation. What would antifragility suggest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A wellness product promises a life without anxiety, friction, or disappointment. What is the idea's likely objection?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What daily practice best matches Pain Is the Universal Constant?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch07-q01 choice[2] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Small problems are always imaginary when larger problems have existed before."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch07-q03 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "A promise that disorder is always beneficial if people stay optimistic."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch07-q08 choice[0] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "It fails because products can never reduce genuine suffering."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the blue dot effect\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "hook",
+            "message": "hook opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "The market learned to sell relief, envy, outrage, and a cigarette called freedom"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[1].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"edward\", \"bernays\", \"american\", \"tobacco\", \"robert\", \"putnam\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Luis watches a dashboard spike when a misleading clip triggers outrage. The correction thread is accurate and cold. The angry clip is profitable heat. He recognizes the Feelings Ec"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"edward\", \"bernays\", \"american\", \"tobacco\", \"robert\", \"putnam\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Meena and Rob spend two hours choosing shows to avoid a money conversation. Each option feels like freedom. By midnight, the bills remain and both feel smaller. The diversion bough"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"edward\", \"bernays\", \"american\", \"tobacco\", \"robert\", \"putnam\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "A founder named Kei reviews two roadmap ideas: a tool that saves nurses charting time and a feed feature that keeps users comparing bodies. Both could grow revenue. Only one replac"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Kevara studies Edward Bernays and American Tobacco before a sneaker pitch. The old campaign sold cigarettes as independence, not smoke. Her own deck now sells shoes as moral courage. The product is f…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kevara studies Edward Bernays and American Tobacco before a sneaker pitch. The old campaign sold cigarettes as independence, not smoke. Her own deck now sells shoes as moral courage. The product is f…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At a library board meeting, Alana counts empty seats for the third month. Everyone says they are busy, entertained, and connected online. Robert Putnam's Bowling Alone stops sounding like a title and…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a library board meeting, Alana counts empty seats for the third month. Everyone says they are busy, entertained, and connected online. Robert Putnam's Bowling Alone stops sounding like a title and…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Drew hears a podcast host promise that every public limit is oppression. The line feels good after a hard week. Plato's warning about democracy sliding toward tyranny makes him pause. Maybe appetite …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Drew hears a podcast host promise that every public limit is oppression. The line feels good after a hard week. Plato's warning about democracy sliding toward tyranny makes him pause. Maybe appetite …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Meena and Rob spend two hours choosing shows to avoid a money conversation. Each option feels like freedom. By midnight, the bills remain and both feel smaller. The diversion bought relief and sold t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Meena and Rob spend two hours choosing shows to avoid a money conversation. Each option feels like freedom. By midnight, the bills remain and both feel smaller. The diversion bought relief and sold t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A founder named Kei reviews two roadmap ideas: a tool that saves nurses charting time and a feed feature that keeps users comparing bodies. Both could grow revenue. Only one replaces a worse pain wit…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What do Edward Bernays and American Tobacco show about modern persuasion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the Feelings Economy?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Robert Putnam's Bowling Alone belong in this rule?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What warning does Plato's democracy-to-tyranny arc add to the Feelings Economy?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which reading avoids anti-technology nostalgia?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "An algorithmic feed keeps serving outrage because the user keeps reacting. What is the mature diagnosis?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In a tobacco campaign framed as liberation, what should a reader notice?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does the idea say about pleasure itself?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before buying a product that promises relief, what question best applies this model?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch08-q04 choice[1] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Democracy always fails because citizens enjoy pleasure."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch08-q02 correct answer is 1.88× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "A system that captures attention and money by stimulating desire, fear, envy, outrage, and relief."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch08-q04 correct answer is 1.63× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Unchecked appetite and reactivity can make people easier to manipulate and govern badly."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch08-q08 correct answer is 1.68× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Pleasure is not the enemy; the danger is an economy optimized to keep people emotionally immature."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A system that captures attention and money by stimulating desire, fear, envy, outrage, and relief."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the power to refuse\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"deep\", \"blue\", \"garry\", \"kasparov\", \"ibm\", \"chess\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Leontes audits a news feed after an election week. The algorithm did not endorse a party. It still lifted fear, humiliation, and conflict because those signals kept users watching."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a chess club, Varek shows students the Deep Blue and Garry Kasparov match. One student says humans are pointless now. Varek sets up a second board and asks what chess was for before victory became…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Nerissa watches an Alpha Zero demo and feels the room tilt. Self-play, fast improvement, and alien-looking moves make ordinary training plans feel slow. The team is thrilled, but no one has named the…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Leontes audits a news feed after an election week. The algorithm did not endorse a party. It still lifted fear, humiliation, and conflict because those signals kept users watching. The system governe…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Leontes audits a news feed after an election week. The algorithm did not endorse a party. It still lifted fear, humiliation, and conflict because those signals kept users watching. The system governe…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Dr. Patel receives an AI triage score that says a patient can wait. The patient in front of her is scared, coherent, and describing a symptom the form underweighted. The system may be useful; it is n…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Dr. Patel receives an AI triage score that says a patient can wait. The patient in front of her is scared, coherent, and describing a symptom the form underweighted. The system may be useful; it is n…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ms. Chen reads essays that sound polished and empty after students lean on AI tools. The issue is not grammar. The students are letting the system choose what counts as thought. The machine has becom…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At a platform ethics review, Sayeed sees an AI model that predicts which posts will make users stay angry longest. The metric looks technical. The value is adolescent: keep the Feeling Brain hooked."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a platform ethics review, Sayeed sees an AI model that predicts which posts will make users stay angry longest. The metric looks technical. The value is adolescent: keep the Feeling Brain hooked."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does IBM Deep Blue's victory over Garry Kasparov clarify about machines and values?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Alpha Zero matter beyond being another chess achievement?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What do algorithmic feeds reveal about AI as final religion in ordinary life?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What makes AI religious in function rather than merely useful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which interpretation is the flashy misreading Manson wants to avoid?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What must remain human when powerful optimization tools enter more decisions?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is efficiency not enough evidence of progress in The Final Religion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What safeguard best answers the final-religion warning?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch09-q06 choice[2] uses absolute trigger \"entirely\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Avoid AI entirely because machine help always replaces judgment."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch09-q08 choice[0] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Efficiency matters only in games like chess, never in social systems."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch09-q08 choice[2] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Fast systems are automatically hostile to human dignity."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "everything-is-fcked-ch09-q04 correct answer is 1.55× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "People treat opaque algorithms as higher powers that know, judge, reward, punish, or guide better than humans."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "correct answer is 1.9× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "People treat opaque algorithms as higher powers that know, judge, reward, punish, or guide better th"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"ai can become religious\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 219
+  },
+  "bookGate": {
+    "bookId": "everything-is-fcked",
+    "chapterCount": 9,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        27,
+        27,
+        27
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 81,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "everything-is-fcked",
+        "chapterCount": 9,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

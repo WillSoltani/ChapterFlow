@@ -1,12 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { X, Share2, Check } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/app/book/components/ui/cn";
+import { Dialog } from "@/components/ui/Dialog";
 import type { BadgeWithProgress } from "../lib/badge-types";
-import { TIER_PILL_STYLES, TIER_BORDER_COLORS, getBadgeRarity } from "../lib/badge-utils";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 
@@ -26,23 +26,6 @@ export function BadgeDetailModal({
   const reduced = useReducedMotion();
   const [shareText, setShareText] = useState<string | null>(null);
 
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    },
-    [onClose]
-  );
-
-  useEffect(() => {
-    if (!badge) return;
-    document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [badge, handleKeyDown]);
-
   // Clear share confirmation when badge changes
   useEffect(() => setShareText(null), [badge?.id]);
 
@@ -61,60 +44,42 @@ export function BadgeDetailModal({
     }
   }
 
+  const ariaLabel = badge
+    ? badge.isSecret && !badge.isDiscovered
+      ? "Hidden achievement"
+      : `${badge.name} — badge details`
+    : "Badge details";
+
   return (
-    <AnimatePresence>
+    <Dialog open={Boolean(badge)} onClose={onClose} ariaLabel={ariaLabel} size="md">
       {badge && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-end justify-center md:items-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <div
-            className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
+        <div className="relative p-6">
+          <button
+            type="button"
             onClick={onClose}
-          />
-
-          <motion.div
-            className={cn(
-              "relative z-10 w-full max-w-[480px] overflow-y-auto rounded-t-3xl border border-(--cf-border) bg-(--cf-surface) p-6 shadow-shadow-modal",
-              "md:max-h-[85vh] md:rounded-3xl"
-            )}
-            initial={reduced ? { opacity: 0 } : { y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={reduced ? { opacity: 0 } : { y: 100, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            style={{ maxHeight: "90vh" }}
+            className="absolute right-4 top-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:text-(--cf-text-1)"
+            aria-label="Close"
           >
-            <button
-              type="button"
-              onClick={onClose}
-              className="absolute right-4 top-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:text-(--cf-text-1)"
-              aria-label="Close"
-              autoFocus
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <X className="h-4 w-4" />
+          </button>
 
-            {badge.isSecret && !badge.isDiscovered ? (
-              <SecretModalContent />
-            ) : badge.isEarned ? (
-              <EarnedModalContent
-                badge={badge}
-                reduced={Boolean(reduced)}
-                showcaseBadgeIds={showcaseBadgeIds}
-                onToggleShowcase={onToggleShowcase}
-                onShare={() => handleShare(badge)}
-                shareText={shareText}
-              />
-            ) : (
-              <LockedModalContent badge={badge} reduced={Boolean(reduced)} />
-            )}
-          </motion.div>
-        </motion.div>
+          {badge.isSecret && !badge.isDiscovered ? (
+            <SecretModalContent />
+          ) : badge.isEarned ? (
+            <EarnedModalContent
+              badge={badge}
+              reduced={Boolean(reduced)}
+              showcaseBadgeIds={showcaseBadgeIds}
+              onToggleShowcase={onToggleShowcase}
+              onShare={() => handleShare(badge)}
+              shareText={shareText}
+            />
+          ) : (
+            <LockedModalContent badge={badge} reduced={Boolean(reduced)} />
+          )}
+        </div>
       )}
-    </AnimatePresence>
+    </Dialog>
   );
 }
 
@@ -148,17 +113,8 @@ function EarnedModalContent({
   onShare: () => void;
   shareText: string | null;
 }) {
-  const rarity = getBadgeRarity(badge);
   const isPinned = showcaseBadgeIds.includes(badge.id);
   const showcaseFull = showcaseBadgeIds.length >= 5 && !isPinned;
-
-  const categoryLabel =
-    badge.category === "consistency" ? "Consistency & Streaks" :
-    badge.category === "mastery" ? "Mastery & Depth" :
-    badge.category === "books" ? "Books & Completion" :
-    badge.category === "exploration" ? "Exploration & Discovery" :
-    badge.category === "notes" ? "Notes & Reflection" :
-    "Hidden Achievements";
 
   return (
     <div className="flex flex-col items-center text-center">
@@ -184,21 +140,6 @@ function EarnedModalContent({
       <div className="mt-5 w-full space-y-4 text-left">
         <DetailRow label="Criteria" value={badge.criteria.description} />
 
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Rarity</p>
-          <div className="mt-2 flex items-center gap-3">
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-(--cf-surface-strong)">
-              <div
-                className="h-full rounded-full"
-                style={{ width: `${rarity}%`, background: "var(--accent-amber)" }}
-              />
-            </div>
-            <span className="shrink-0 text-sm text-(--cf-text-3)">
-              Earned by {rarity}% of readers
-            </span>
-          </div>
-        </div>
-
         {badge.earnedDate && (
           <DetailRow
             label="Unlocked on"
@@ -210,7 +151,7 @@ function EarnedModalContent({
           />
         )}
 
-        <DetailRow label="Part of" value={`${categoryLabel} collection`} />
+        <DetailRow label="Part of" value={`${badge.category} collection`} />
       </div>
 
       <div className="mt-6 flex w-full gap-3">
@@ -229,7 +170,7 @@ function EarnedModalContent({
           )}
           style={
             !showcaseFull && isPinned
-              ? { borderColor: "rgba(34,211,238,0.3)", background: "rgba(34,211,238,0.12)", color: "var(--accent-cyan)" }
+              ? { borderColor: "var(--cf-accent-border)", background: "var(--cf-accent-soft)", color: "var(--cf-accent)" }
               : undefined
           }
         >
@@ -257,18 +198,10 @@ function LockedModalContent({
 }) {
   const remaining = badge.target - badge.current;
 
-  const categoryLabel =
-    badge.category === "consistency" ? "Consistency & Streaks" :
-    badge.category === "mastery" ? "Mastery & Depth" :
-    badge.category === "books" ? "Books & Completion" :
-    badge.category === "exploration" ? "Exploration & Discovery" :
-    badge.category === "notes" ? "Notes & Reflection" :
-    "Hidden Achievements";
-
   const ctaHref =
-    badge.category === "consistency" || badge.category === "mastery" || badge.category === "notes"
-      ? "/dashboard"
-      : "/book/library";
+    badge.category === "Books" || badge.category === "Exploration" || badge.category === "Examples"
+      ? "/book/library"
+      : "/dashboard";
 
   return (
     <div className="flex flex-col items-center text-center">
@@ -317,7 +250,7 @@ function LockedModalContent({
           </div>
         </div>
 
-        <DetailRow label="Part of" value={`${categoryLabel} collection`} />
+        <DetailRow label="Part of" value={`${badge.category} collection`} />
       </div>
 
       <div className="mt-6 w-full">
@@ -325,9 +258,9 @@ function LockedModalContent({
           href={ctaHref}
           className="block w-full rounded-2xl border px-4 py-2.5 text-center text-sm font-medium transition"
           style={{
-            borderColor: "rgba(34,211,238,0.2)",
-            background: "rgba(34,211,238,0.1)",
-            color: "var(--accent-cyan)",
+            borderColor: "var(--cf-accent-border)",
+            background: "var(--cf-accent-soft)",
+            color: "var(--cf-accent)",
           }}
         >
           Continue Reading &rarr;

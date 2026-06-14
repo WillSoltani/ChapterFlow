@@ -1,0 +1,70 @@
+{
+  "chapterId": "range-ch08",
+  "number": 8,
+  "title": "The Outsider Advantage",
+  "coreMove": "Outside-in thinking works when insiders frame a problem clearly enough for distant expertise to travel into it.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "eli lilly posting",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "decision_point",
+      "requiredBeat": "Eli Lilly Posting"
+    },
+    {
+      "domain": "innocentive filter",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "reflection",
+      "requiredBeat": "Innocentive Filter"
+    },
+    {
+      "domain": "einstellung chess room",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "business_case",
+      "requiredBeat": "Einstellung Chess Room"
+    },
+    {
+      "domain": "dental solver surprise",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "scene",
+      "requiredBeat": "Dental Solver Surprise"
+    },
+    {
+      "domain": "hospital infection frame",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "planning_choice",
+      "requiredBeat": "Hospital Infection Frame"
+    },
+    {
+      "domain": "startup technical wall",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "audit",
+      "requiredBeat": "Startup Technical Wall"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:17:02.904Z"
+}

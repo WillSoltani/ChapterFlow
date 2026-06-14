@@ -1,0 +1,668 @@
+{
+  "bookId": "contagious",
+  "title": "Contagious",
+  "author": "Jonah Berger",
+  "promotedAt": "2026-06-03T03:12:51.093Z",
+  "chapterCount": 6,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Selin stands at 6:40 p.m. beside the Crif Dogs phone booth with the Please Don't Tell host list on a tablet. A sponsor wants a bright sign outside before Friday's press walk-through. The printer clos…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Declan is in a Dublin video call at 7:50 p.m. with a beta invite counter and a Please Don't Tell note pinned near his webcam. The waitlist is growing. The launch email sends in twenty minutes, and th…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Selin is deciding whether to put a neon sign outside a hidden bar. Which choice best protects social currency?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A blender team wants a demo people will repeat after lunch. Which pitch best uses remarkability?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a beverage cap gives a customer one odd fact, what status payoff does the customer receive?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Amara's airline app hides elite-tier progress in a menu. What change best fits game mechanics?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A startup founder wants exclusivity for a beta launch. Which version avoids empty scarcity?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your retailer says a shoe page should tell buyers they will be envied. Which rewrite better follows social currency?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A loyalty team adds badges, but members do not mention them. Which diagnosis best fits social currency?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A chef wants diners to talk about a plain soup. Which move most directly creates inner remarkability?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"disney\", \"world\", \"cheerios\", \"breakfast\", \"rebecca\", \"black\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Soren stands at 10:45 a.m. in a Toronto convenience store with a Kit Kat and coffee case study on his clipboard. The buyer offers space near gum or beside the espresso machine. Sor"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"disney\", \"world\", \"cheerios\", \"breakfast\", \"rebecca\", \"black\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Yara sits at 1:35 p.m. in a Nairobi gym office with a Kit Kat coffee-break diagram and two referral posters. One uses the word 'summer.' The other appears on locker mirrors after c"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Hanaa is in a London streaming office at 3:18 p.m. on Thursday with a Rebecca Black 'Friday' chart open on her monitor. The social team wants to post the clip now to fill a gap. Hanaa has to answer b…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Lucien can display cereal beside a vacation contest or beside milk. Which choice best uses triggers?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Hanaa wants to revive a song named after a weekday. What timing best follows the Rebecca Black pattern?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A candy brand can sit near gum or near coffee. What is the strongest reason to choose coffee?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Beatrice sees candy sales rise during NASA Mars coverage. Which conclusion is most careful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A gym wants more referrals. Which prompt location best honors cue distance?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your team picks the word 'summer' as a cue for sunscreen, but every brand uses it. What problem should you raise?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A clinic reminder is remembered at home, then forgotten at the bus transfer. Which fix best uses habitat design?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Soren's team says a trigger only needs to be catchy. Which reply is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When the first launch burst fades, what does a trigger provide?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ingrid sits at 9:05 a.m. in a Boston newsroom with Denise Grady's cough photography article and two headline drafts on her screen. One says the research is important. The other shows how a cough clou…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tomas reviews a New York Times Most E-Mailed study summary at 4:35 p.m. in a Madrid analytics room. The team's cheerful travel essays underperform, while anxious consumer warnings spread. He has to b…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Leandro sits at 7:45 a.m. in a Sao Paulo airline office with Dave Carroll's 'United Breaks Guitars' lyrics printed beside a broken-luggage complaint. A musician's video is gaining views. He has to an…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Chiara stands at 1:10 p.m. in a Milan agency room with Google Parisian Love playing silently on the wall. Her search-client script lists speed, filters, and maps. The creative director asks for a dec…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sanaa is in a Minneapolis health department studio at 5:55 p.m. with the New York Times emotion categories taped beside a raw food-safety video. The worst shot is disgusting. She must approve an edit…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Ingrid has a science article with a striking cough photograph. Which edit best uses emotion?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Tomas sees cheerful essays lag behind anxious warnings. What distinction should guide his next lineup?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A producer wants to cut Susan Boyle's doubtful setup and start with the singing. What risk should Farah name?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Leandro faces a musician's complaint about broken luggage. Which response best channels anger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Chiara is selling search software. Which concept follows Google Parisian Love most closely?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A charity clip makes viewers quietly sad but donations and shares are low. What should the team examine?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When an article is useful but not shared, which question best adds the emotion lens?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does high-arousal emotion add to a message?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the new york times\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bruno is in a Berlin product lab at 6:15 p.m. with white iPod earbuds in one hand and matte black prototypes in the other. The new player stays inside a jacket pocket. The supplier call starts in six…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kwame sits at 3:30 p.m. in an Accra nonprofit office with Livestrong wristband photos and a donor receipt mockup. The budget covers either nicer thank-you emails or simple yellow bracelets. The vendo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Anouk is at 8:50 p.m. in an Amsterdam community hall with Movember posters and a sign-up sheet. A sponsor suggests private online pledges instead of mustache photos. She must respond before the launc…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Petra sits at 1:22 p.m. in a Prague student health office with a draft poster saying many students binge drink. An Apple visibility note and a social proof warning sit beside her laptop. She must app…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A music player sits in a pocket. What did white earbuds solve?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Celine wants growth for a free email tool. Which move most resembles Hotmail?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Kwame chooses between thank-you emails and bracelets for donors. Why might bracelets be stronger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Anouk's sponsor wants private pledges instead of a Movember-style visible challenge. What should she protect?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Petra's poster says many students binge drink. What is the public-design risk?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A voting group gives stickers after ballots are cast. What does the sticker add?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your team wants to make a private wellness habit spread. Which first test is most useful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When can visibility become harmful?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to get a free\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Choose one tip, deal, or warning. Add the exact person it helps, the concrete pa"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"craig\", \"corn-shucking\", \"barbecue\", \"buyers\", \"discounts\", \"vaccine-autism\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Greta is in a Stockholm ecommerce office at 9:50 a.m. with the Rule of 100 written on a sticky note. A $40 pan and a $240 mixer both need sale labels before the site refresh. She m"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[5].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"craig\", \"corn-shucking\", \"barbecue\", \"buyers\", \"discounts\", \"vaccine-autism\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "June sits at 6:05 a.m. in a Boise library with a community newsletter draft and a Rule of 100 note beside her mug. Twelve tips fill the page. She must choose before volunteers prin"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Rosa is in a Portland test kitchen at 8:15 a.m. with Ken Craig's corn-shucking video open beside two rough cuts. One starts with family backstory. The other shows silk sliding off a hot ear of corn. …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Samira moderates a parent chat at 7:12 p.m. in Toronto while a vaccine-autism warning gets forwarded with crying emojis. The sender says she only wants to protect children. Samira must answer before …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Pavel is at 11:25 a.m. in a Warsaw customer-success bullpen with Ken Craig's corn example and a draft email titled 'Five dashboard tips.' He must approve the send before lunch. The best tip saves pay…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Rosa has a corn tutorial. Which opening best follows Ken Craig's practical-value lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Nikhil's grill sign can show only a final price or the original price plus markdown. Why show the reference price?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Greta labels a $40 pan and a $240 mixer. Which pair best uses the Rule of 100?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Samira sees a frightening vaccine-autism warning spreading in a parent chat. What should she do first?"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Pavel's software tip saves payroll managers ten minutes on Friday exports. Which subject line best packages practical value? A few workflow thoughts for many teams. Payroll managers: cut Friday expor…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "June has twelve neighborhood tips and one heating-bill tactic that works this week. Which edit helps sharing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A store advertises 5 dollars off a 500 dollar item. Why might that feel weak?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your team wants customers to forward a safety checklist. Which feature is most important?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What social motive powers practical value?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"ken craigs cornshucking video\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.1 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 5 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Soraya sits at 6:30 p.m. in a Minneapolis support classroom with a Land's End zipper replacement note and a warranty slide deck. New hires look bored by policy language. She has to open training in f…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Dalia chooses between a Trojan Horse plot label and an abstract warning label. Which choice best uses stories?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Henrik reviews a weight-loss testimonial where the restaurant appears only as a final logo. What is the problem?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Soraya wants support trainees to remember a warranty promise. Which opening follows the Land's End lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Benji's stunt will get attention, but the sponsor is only printed on a banner nearby. Which test should he apply?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Mei compares two comedy boards. One prank is random; one starts when a diner refuses the cheese. Which is stronger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Alonzo's testers retell a travel mishap but omit the safety feature. What should he do?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does psychological cover let people do?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A story sheds side details as it travels. Where should the intended message sit?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What makes virality valuable rather than merely visible?"
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "q06 correct answer is 1.58× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Rebuild the plot so the safety feature is needed for the story to make sense."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Share product information while feeling like they are telling an interesting story."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"rides inside the event\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 77
+  },
+  "bookGate": {
+    "bookId": "contagious",
+    "chapterCount": 6,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        18,
+        18,
+        18
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 54,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "contagious",
+        "chapterCount": 6,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

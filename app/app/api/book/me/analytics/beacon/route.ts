@@ -2,7 +2,11 @@ import "server-only";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
+import {
+  getBookAnalyticsTableName,
+  getBookTableName,
+} from "@/app/app/api/book/_lib/env";
+import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 import { analyticsTrackBeacon } from "@/app/app/api/book/_lib/analytics-repo";
 import { getUserAgentFromRequest } from "@/app/app/api/book/_lib/user-agent";
 
@@ -16,12 +20,26 @@ const MAX_PAYLOAD_KEYS = 20;
 /**
  * POST /app/api/book/me/analytics/beacon
  *
- * Accepts client-side telemetry events. Usage analytics is part of the service
- * (see the privacy policy); there is no per-user analytics opt-out.
+ * Accepts client-side telemetry events. Only processes data when the user
+ * has opted in via the "Share Usage Analytics" setting.
  */
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
+    const tableName = await getBookTableName();
+
+    // Server-side consent check — respect the user's privacy preference.
+    // Usage analytics is opt-in: off unless the user explicitly enabled it.
+    const settingsItem = await getUserSettingsItem(tableName, user.sub);
+    const privacy = settingsItem?.settings?.privacy as
+      | { analyticsParticipation?: boolean }
+      | undefined;
+    const analyticsParticipation = privacy?.analyticsParticipation ?? false;
+
+    if (!analyticsParticipation) {
+      // User has opted out — silently accept but don't store
+      return bookOk({ accepted: false, reason: "analytics_disabled" });
+    }
 
     const analyticsTable = await getBookAnalyticsTableName();
     if (!analyticsTable) {

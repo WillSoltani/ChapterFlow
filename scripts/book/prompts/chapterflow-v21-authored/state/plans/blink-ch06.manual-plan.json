@@ -1,0 +1,70 @@
+{
+  "chapterId": "blink-ch06",
+  "number": 6,
+  "title": "Seven Seconds in the Bronx: The Delicate Art of Mind Reading",
+  "coreMove": "Under fear and speed, people may lose the face and read only threat, so training and procedure must create time before crisis.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "police scenario training",
+      "audience": "trainers redesigning ambiguous encounters",
+      "stakes": "close pursuit may make a wallet read as a weapon",
+      "format": "decision_point",
+      "requiredBeat": "Patrice uses the Amadou Diallo case to create time and distance"
+    },
+    {
+      "domain": "airport security interview training",
+      "audience": "screeners learning emotion cues",
+      "stakes": "untrained suspicion may miss fear or confusion",
+      "format": "coach_talk",
+      "requiredBeat": "Yara uses Tomkins and Ekman to make facial reading trainable"
+    },
+    {
+      "domain": "executive protection review",
+      "audience": "security teams studying time limits",
+      "stakes": "expert scanning may fail when the window is too short",
+      "format": "postmortem",
+      "requiredBeat": "Bennett uses the John Hinckley and Reagan attack to respect speed limits"
+    },
+    {
+      "domain": "school safety response",
+      "audience": "staff handling ambiguous student movement",
+      "stakes": "a frightened reach may be misread as aggression",
+      "format": "dilemma",
+      "requiredBeat": "Jun applies the officer who waited one extra second lesson"
+    },
+    {
+      "domain": "transit enforcement policy audit",
+      "audience": "supervisors reducing stereotype pressure",
+      "stakes": "ambiguous objects may be sorted through threat expectation",
+      "format": "audit",
+      "requiredBeat": "Saskia connects race-priming risk to procedure before a stop"
+    },
+    {
+      "domain": "psychiatric emergency intake",
+      "audience": "clinicians managing arousal",
+      "stakes": "staff may read panic as aggression when the doorway is crowded",
+      "format": "reset_moment",
+      "requiredBeat": "Mei uses mind reading under pressure to redesign the first seconds"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "understand": 1,
+      "analyze": 1,
+      "evaluate": 2,
+      "create": 2,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:07:46.120Z"
+}

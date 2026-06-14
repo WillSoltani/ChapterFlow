@@ -10,6 +10,7 @@ import * as targets from "aws-cdk-lib/aws-events-targets";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
+import * as ses from "aws-cdk-lib/aws-ses";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import * as path from "path";
 import { type EnvName } from "./env-config";
@@ -404,13 +405,24 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     //   npx esbuild lambda/reading-reminder-cron.ts --bundle --platform=node \
     //     --target=node20 --outfile=lambda/dist/reading-reminder-cron.js \
     //     --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb \
-    //     --external:@aws-sdk/client-sesv2
+    //     --external:@aws-sdk/client-sesv2 --external:@aws-sdk/client-ssm
     // Reminder emails are always sent from this fixed address on the verified
     // chapterflow.ca domain, so SES SendEmail is scoped to that domain identity
     // (covers any @chapterflow.ca sender) rather than "*".
     const reminderSenderEmail = "info@chapterflow.ca";
     const reminderSenderDomain = reminderSenderEmail.split("@")[1];
 
+    // SES configuration set name — applied to every send so bounce/complaint
+    // events flow to the suppression handler (created below).
+    const emailConfigSetName = `ChapterFlowEmail${suffix}`;
+
+    // Email-compliance config for the cron's commercial emails (CASL/CAN-SPAM):
+    // friendly sender, support reply-to, the legally-required postal address,
+    // and the shared HMAC secret that signs one-click unsubscribe tokens. These
+    // come from the deploy environment (same model as app secrets); the SAME
+    // EMAIL_UNSUBSCRIBE_SECRET must be set on the app runtime so its public
+    // unsubscribe route can verify cron-minted tokens. EMAIL_POSTAL_ADDRESS is a
+    // launch blocker — emails are non-compliant until it is set.
     const reminderFn = new lambda.Function(this, "ReadingReminderCron", {
       functionName: `ChapterFlowReadingReminder${suffix}`,
       runtime: lambda.Runtime.NODEJS_20_X,
@@ -421,6 +433,18 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       environment: {
         BOOK_TABLE_NAME: this.appTable.tableName,
         SES_SENDER_EMAIL: reminderSenderEmail,
+        SES_CONFIGURATION_SET: emailConfigSetName,
+        APP_BASE_URL:
+          process.env.CHAPTERFLOW_APP_BASE_URL ?? "https://chapterflow.siliconx.ca",
+        // Owner-provided email config is read at runtime from SSM
+        // (/chapterflow/<env>/EMAIL_*), the same params the app reads — so it is
+        // set in ONE place. These are deploy-time fallbacks only.
+        SSM_PARAMETER_PREFIX: this.ssmPrefix,
+        EMAIL_SENDER_NAME: process.env.EMAIL_SENDER_NAME ?? "ChapterFlow",
+        EMAIL_SUPPORT_ADDRESS:
+          process.env.EMAIL_SUPPORT_ADDRESS ?? "support@chapterflow.ca",
+        EMAIL_POSTAL_ADDRESS: process.env.EMAIL_POSTAL_ADDRESS ?? "",
+        EMAIL_UNSUBSCRIBE_SECRET: process.env.EMAIL_UNSUBSCRIBE_SECRET ?? "",
       },
     });
 
@@ -433,7 +457,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         ],
       })
     );
-    // Allow Lambda to read SSM params (so it could also resolve SES_SENDER_EMAIL from SSM if needed)
+    // Read the owner email config (EMAIL_*) from SSM at runtime.
     reminderFn.addToRolePolicy(
       new iam.PolicyStatement({
         actions: ["ssm:GetParameter", "ssm:GetParameters"],
@@ -442,10 +466,82 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         ],
       })
     );
+    // Decrypt SecureString params — only when the call goes through SSM, so this
+    // grant can't be used to decrypt anything else. Lets EMAIL_UNSUBSCRIBE_SECRET
+    // be stored as a SecureString (a plain String also works).
+    reminderFn.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["kms:Decrypt"],
+        resources: ["*"],
+        conditions: {
+          StringEquals: { "kms:ViaService": `ssm.${cdk.Aws.REGION}.amazonaws.com` },
+        },
+      })
+    );
 
     new events.Rule(this, "ReminderSchedule", {
       schedule: events.Schedule.rate(cdk.Duration.hours(1)),
       targets: [new targets.LambdaFunction(reminderFn)],
+    });
+
+    // -------------------------------------------------------------------
+    // Email deliverability — SES configuration set + bounce/complaint suppression
+    // -------------------------------------------------------------------
+    // SES account-level suppression already blocks hard bounces/complaints; this
+    // adds an app-layer suppression store (checked before commercial sends),
+    // complaint-driven opt-out, and observability. Sends pass this config set so
+    // bounce/complaint events publish to the topic → suppression handler.
+
+    const emailConfigSet = new ses.CfnConfigurationSet(this, "EmailConfigSet", {
+      name: emailConfigSetName,
+    });
+
+    const emailEventsTopic = new sns.Topic(this, "ChapterFlowEmailEvents", {
+      topicName: `ChapterFlowEmailEvents${suffix}`,
+    });
+    // Allow SES to publish bounce/complaint events to the topic.
+    emailEventsTopic.addToResourcePolicy(
+      new iam.PolicyStatement({
+        principals: [new iam.ServicePrincipal("ses.amazonaws.com")],
+        actions: ["sns:Publish"],
+        resources: [emailEventsTopic.topicArn],
+      })
+    );
+
+    const emailEventDest = new ses.CfnConfigurationSetEventDestination(
+      this,
+      "EmailEventDest",
+      {
+        configurationSetName: emailConfigSetName,
+        eventDestination: {
+          enabled: true,
+          matchingEventTypes: ["bounce", "complaint"],
+          snsDestination: { topicArn: emailEventsTopic.topicArn },
+        },
+      }
+    );
+    emailEventDest.addDependency(emailConfigSet);
+
+    // Pre-bundled with esbuild (same as the reminder cron):
+    //   npx esbuild lambda/suppression-handler.ts --bundle --platform=node \
+    //     --target=node20 --outfile=lambda/dist/suppression-handler.js \
+    //     --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb
+    const suppressionFn = new lambda.Function(this, "EmailSuppressionHandler", {
+      functionName: `ChapterFlowSuppressionHandler${suffix}`,
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "suppression-handler.handler",
+      code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+      memorySize: 256,
+      timeout: cdk.Duration.minutes(1),
+      environment: { BOOK_TABLE_NAME: this.appTable.tableName },
+    });
+    this.appTable.grantWriteData(suppressionFn);
+    emailEventsTopic.addSubscription(new snsSubscriptions.LambdaSubscription(suppressionFn));
+
+    // Expose the config-set name to the app runtime (read via getServerEnv → SSM).
+    new ssm.StringParameter(this, "SesConfigurationSetParameter", {
+      parameterName: `${this.ssmPrefix}/SES_CONFIGURATION_SET`,
+      stringValue: emailConfigSetName,
     });
 
     // -------------------------------------------------------------------

@@ -88,7 +88,13 @@ p95, DynamoDB throttles, and the per-day analytics EVENT volume.
 
 ## 5) Deploy & rollback runbook
 
-**Deploy:** see [CI_CD.md §3](./CI_CD.md). prod requires approval.
+**Deploy:** see [CI_CD.md §3](./CI_CD.md). prod requires approval. Deploy
+**through GitHub Actions**, not a local `cdk deploy` — the CI infra job injects
+synth-time secrets the stacks depend on. In particular, the ops-alert SNS
+**email subscription is created only when `CHAPTERFLOW_OPS_ALERT_EMAIL` is set at
+synth**, so a local backend deploy without it exported **deletes the subscription
+and silences every alarm**. (A local `cdk diff` is read-only — it will *show*
+that subscription as a delete when the var is unset, but applies nothing.)
 
 **Before a prod deploy**, confirm no stateful resource will be replaced. The
 **backend** (data-bearing) stack synthesizes standalone:

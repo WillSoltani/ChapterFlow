@@ -1,0 +1,70 @@
+{
+  "chapterId": "the-4-hour-workweek-ch02",
+  "number": 2,
+  "title": "Rules That Change the Rules: Everything Popular Is Wrong",
+  "coreMove": "Treat popular rules as guesses; run small opposite tests where the crowd is unhappy, the downside is repairable, and results can be counted.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "enterprise software sales",
+      "audience": "salespeople stuck behind reception screens",
+      "stakes": "reach the buyer or keep polishing a blocked script",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist tests timing instead of competing inside the normal calling window"
+    },
+    {
+      "domain": "campus recruiting",
+      "audience": "students choosing between prestige and autonomy",
+      "stakes": "accept a default career path or test whether it fits the life desired",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist treats prestige as a default path, not proof of fit"
+    },
+    {
+      "domain": "nonprofit donor outreach",
+      "audience": "teams assuming effort means more of the same hours",
+      "stakes": "find donors directly or exhaust volunteers in blocked windows",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist changes timing to reach decision-makers"
+    },
+    {
+      "domain": "corporate innovation program",
+      "audience": "employees waiting for approval on low-risk experiments",
+      "stakes": "seek permission indefinitely or run a repairable test",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist distinguishes reversible action from reckless rule-breaking"
+    },
+    {
+      "domain": "marketing agency outreach",
+      "audience": "account teams mistaking busyness for better odds",
+      "stakes": "measure an opposite schedule or keep rewarding visible effort",
+      "format": "audit",
+      "requiredBeat": "the protagonist measures whether unusual timing beats the common schedule"
+    },
+    {
+      "domain": "graduate fellowship planning",
+      "audience": "high achievers choosing only crowded moderate goals",
+      "stakes": "pick a safe crowded target or test a stranger aim with fewer rivals",
+      "format": "reflection",
+      "requiredBeat": "the protagonist sees that unreasonable goals may have less competition"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "evaluate": 2,
+      "analyze": 2,
+      "understand": 1,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-05T08:48:29.792Z"
+}

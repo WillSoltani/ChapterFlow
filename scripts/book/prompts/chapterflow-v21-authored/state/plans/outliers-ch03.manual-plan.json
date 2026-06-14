@@ -1,0 +1,69 @@
+{
+  "chapterId": "outliers-ch03",
+  "number": 3,
+  "title": "The Trouble with Geniuses, Part 1",
+  "coreMove": "The threshold effect means intelligence is crucial up to a point, but beyond that point success depends on other traits, supports, and opportunities.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "data-science hiring panel",
+      "audience": "hiring managers over-weighting test scores",
+      "stakes": "tiny score gaps may hide better evidence of fit",
+      "format": "decision_point",
+      "requiredBeat": "Use Chris Langan to challenge a score-heavy hiring decision."
+    },
+    {
+      "domain": "district gifted policy",
+      "audience": "educators designing enrichment access",
+      "stakes": "a child may be judged by one early score for years",
+      "format": "audit",
+      "requiredBeat": "Use Terman's Termites to audit high-IQ selection."
+    },
+    {
+      "domain": "college basketball recruiting",
+      "audience": "scouts evaluating elite athletes",
+      "stakes": "teams may keep ranking a trait after it has served its purpose",
+      "format": "dilemma",
+      "requiredBeat": "Use the basketball height analogy to rank recruits."
+    },
+    {
+      "domain": "city scholarship committee",
+      "audience": "grant panels ranking high achievers",
+      "stakes": "marginal score differences may decide life-changing support",
+      "format": "planning_choice",
+      "requiredBeat": "Apply threshold reasoning to scholarship awards."
+    },
+    {
+      "domain": "high-school math team",
+      "audience": "coaches sorting gifted students",
+      "stakes": "students may be trained to chase rank instead of harder growth",
+      "format": "postmortem",
+      "requiredBeat": "Use the Termites to review gifted-team sorting."
+    },
+    {
+      "domain": "research-lab promotion review",
+      "audience": "lab leaders mentoring brilliant staff",
+      "stakes": "a gifted researcher may stall without conditions for output",
+      "format": "reflection",
+      "requiredBeat": "Use the threshold effect to mentor a brilliant researcher."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:26:52.516Z"
+}

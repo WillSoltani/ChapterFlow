@@ -1,0 +1,274 @@
+{
+  "schemaVersion": "pedagogy-plan-v1",
+  "bookId": "pmbok-guide",
+  "fromChapter": 1,
+  "toChapter": 31,
+  "bookMix": {
+    "hookShapes": [
+      "room-after-action",
+      "you-threshold",
+      "ratio-reversal"
+    ],
+    "dominantHookShape": "room-after-action",
+    "tryThisNowGrammars": [
+      "write-one",
+      "count-observations",
+      "schedule-event"
+    ],
+    "quizOpeners": [
+      "scenario-role",
+      "data-reading"
+    ]
+  },
+  "allocation": {
+    "1": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "2": {
+      "hookShape": "ratio-reversal",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "3": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "4": {
+      "hookShape": "you-threshold",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "5": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "6": {
+      "hookShape": "ratio-reversal",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "7": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "8": {
+      "hookShape": "you-threshold",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "9": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "10": {
+      "hookShape": "ratio-reversal",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "11": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "12": {
+      "hookShape": "you-threshold",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "13": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "14": {
+      "hookShape": "ratio-reversal",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "15": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "16": {
+      "hookShape": "you-threshold",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "17": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "18": {
+      "hookShape": "ratio-reversal",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "19": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "20": {
+      "hookShape": "you-threshold",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "21": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "22": {
+      "hookShape": "ratio-reversal",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "23": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "24": {
+      "hookShape": "you-threshold",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "25": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "26": {
+      "hookShape": "ratio-reversal",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "27": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "28": {
+      "hookShape": "you-threshold",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "29": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "schedule-event",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    },
+    "30": {
+      "hookShape": "ratio-reversal",
+      "tryThisNowGrammar": "write-one",
+      "quizOpeners": [
+        "scenario-role",
+        "data-reading"
+      ]
+    },
+    "31": {
+      "hookShape": "room-after-action",
+      "tryThisNowGrammar": "count-observations",
+      "quizOpeners": [
+        "data-reading",
+        "scenario-role"
+      ]
+    }
+  },
+  "carriedChapters": []
+}

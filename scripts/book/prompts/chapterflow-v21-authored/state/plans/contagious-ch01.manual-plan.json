@@ -1,0 +1,70 @@
+{
+  "chapterId": "contagious-ch01",
+  "number": 1,
+  "title": "Social Currency",
+  "coreMove": "Social currency makes sharing useful to the sharer: give people a real badge of taste, access, surprise, or achievement, and they gain a reason to talk.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "speakeasy reservation design",
+      "audience": "bar operators shaping first-time visits",
+      "stakes": "a hidden entrance can feel cheap unless the guest earns a story",
+      "format": "decision_point",
+      "requiredBeat": "Selin uses Please Don't Tell to protect insider status"
+    },
+    {
+      "domain": "appliance demo planning",
+      "audience": "hardware marketers choosing launch footage",
+      "stakes": "a normal feature list will not give viewers a compact surprise",
+      "format": "planning_choice",
+      "requiredBeat": "Rafael applies Will It Blend? logic to a proof demo"
+    },
+    {
+      "domain": "beverage packaging refresh",
+      "audience": "brand team choosing cap copy",
+      "stakes": "a joke that falls flat gives drinkers nothing worth saying",
+      "format": "mistake_recovery",
+      "requiredBeat": "Keiko replaces failed jokes with Snapple Real Facts"
+    },
+    {
+      "domain": "travel loyalty dashboard",
+      "audience": "airline product managers",
+      "stakes": "miles feel abstract until rank and progress become easy to compare",
+      "format": "audit",
+      "requiredBeat": "Amara uses frequent-flyer status as visible achievement"
+    },
+    {
+      "domain": "beta launch access",
+      "audience": "startup founders choosing rollout mechanics",
+      "stakes": "open signup may erase the feeling of being early",
+      "format": "dilemma",
+      "requiredBeat": "Declan treats exclusivity as identity performance, not hype"
+    },
+    {
+      "domain": "limited sneaker release",
+      "audience": "retail merchandisers writing product copy",
+      "stakes": "forced prestige language can make buyers feel used",
+      "format": "reflection",
+      "requiredBeat": "Imani distinguishes social currency from bragging bait"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "understand": 1,
+      "remember": 1,
+      "evaluate": 1,
+      "create": 2,
+      "analyze": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:12:41.229Z"
+}

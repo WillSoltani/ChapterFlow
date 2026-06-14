@@ -11,18 +11,12 @@ type BadgeRecommendationsProps = {
 
 function getCtaHref(badge: BadgeWithProgress): string {
   switch (badge.category) {
-    case "consistency":
-      return "/dashboard";
-    case "mastery":
-      return "/dashboard";
-    case "books":
+    case "Books":
+    case "Exploration":
+    case "Examples":
       return "/book/library";
-    case "exploration":
-      return "/book/library";
-    case "notes":
-      return "/dashboard";
     default:
-      return "/book/library";
+      return "/dashboard";
   }
 }
 
@@ -30,21 +24,21 @@ function getEstimateText(badge: BadgeWithProgress): string {
   const remaining = badge.target - badge.current;
   if (remaining <= 0) return "Almost there!";
 
-  if (badge.criteria.type === "streak") {
+  if (badge.category === "Consistency") {
     return `~${remaining} more reading ${remaining === 1 ? "day" : "days"}`;
   }
-  if (badge.category === "mastery") {
-    if (badge.id.includes("quiz") || badge.id.includes("examiner") || badge.id.includes("proof")) {
+  if (badge.category === "Mastery" || badge.category === "Reading Depth") {
+    if (badge.id.includes("quiz") || badge.id.includes("perfect")) {
       return `~${remaining} more ${remaining === 1 ? "quiz" : "quizzes"}`;
     }
     if (badge.id.includes("answer")) return `~${remaining} more answers`;
     if (badge.id.includes("focus")) return `~${remaining} more chapters`;
     return `~${remaining} more to go`;
   }
-  if (badge.category === "books") {
+  if (badge.category === "Books") {
     return `~${remaining} more ${remaining === 1 ? "book" : "books"} to finish`;
   }
-  if (badge.category === "notes") {
+  if (badge.category === "Notes") {
     return `~${remaining} more ${remaining === 1 ? "note" : "notes"}`;
   }
   return `~${remaining} more to go`;

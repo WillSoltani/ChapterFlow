@@ -1,0 +1,37 @@
+{
+  "bookId": "unreasonable-hospitality",
+  "chapterCount": 20,
+  "passed": true,
+  "findings": [],
+  "stats": {
+    "answerPositionCounts": [
+      62,
+      58,
+      60
+    ],
+    "answerPositionPctMax": 0.34444444444444444,
+    "totalQuizQuestions": 180,
+    "duplicatedNames": [],
+    "duplicatedHookOpeners": [],
+    "schemaInconsistencies": [],
+    "patternAudit": {
+      "bookId": "unreasonable-hospitality",
+      "chapterCount": 20,
+      "passed": true,
+      "findings": [],
+      "stats": {
+        "repeatedQuizExplanationGroups": 0,
+        "repeatedSurfaceFrameGroups": 0,
+        "repeatedExampleFrameGroups": 0,
+        "repeatedConcreteAnchors": 0,
+        "templatedBreakdownShellGroups": 0,
+        "shortParagraphDuplicateGroups": 0,
+        "literalSubstringGroups": 0,
+        "quizPositionTemplateDuplicates": 0,
+        "missingPlanChapters": [],
+        "missingBrief": false,
+        "sourceAlignmentWarnings": 0
+      }
+    }
+  }
+}

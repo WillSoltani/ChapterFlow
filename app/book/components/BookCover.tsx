@@ -1,26 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
-import { getBookCoverCandidates as getCanonicalBookCoverCandidates } from "@/lib/book-covers";
-
-function getBookCoverCandidates(bookId: string, coverImage?: string): string[] {
-  const localCandidates = getCanonicalBookCoverCandidates(bookId);
-
-  if (!coverImage) return localCandidates;
-  if (localCandidates.includes(coverImage)) {
-    return localCandidates;
-  }
-  return [coverImage, ...localCandidates];
-}
-
-function isExternalSrc(src: string): boolean {
-  return /^https?:\/\//i.test(src);
-}
-
-function externalImageLoader({ src }: { src: string }): string {
-  return src;
-}
+import { useBookCoverSource } from "@/lib/use-book-cover-source";
 
 type BookCoverProps = {
   bookId: string;
@@ -45,12 +26,7 @@ export function BookCover({
   sizes = "120px",
   interactive = true,
 }: BookCoverProps) {
-  const candidates = useMemo(
-    () => getBookCoverCandidates(bookId, coverImage),
-    [bookId, coverImage]
-  );
-  const [activeIndex, setActiveIndex] = useState(0);
-  const src = candidates[activeIndex];
+  const { src, exhausted, onError, loader } = useBookCoverSource(bookId, coverImage);
   const imageClasses = [
     "object-cover bg-(--cf-surface) transition-transform duration-500 ease-out",
     interactive ? "motion-safe:hover:scale-[1.045]" : "",
@@ -79,15 +55,8 @@ export function BookCover({
           sizes={sizes}
           loading="lazy"
           className={imageClasses}
-          onError={() => {
-            setActiveIndex((prev) => {
-              if (prev + 1 >= candidates.length) {
-                return candidates.length;
-              }
-              return prev + 1;
-            });
-          }}
-          loader={isExternalSrc(src) ? externalImageLoader : undefined}
+          onError={onError}
+          loader={loader}
           unoptimized
         />
       ) : null}
@@ -105,7 +74,7 @@ export function BookCover({
         </>
       ) : null}
 
-      {(!src || activeIndex >= candidates.length) ? (
+      {(!src || exhausted) ? (
         <span
           className={[
             "absolute inset-0 flex flex-col items-center justify-center gap-2 bg-linear-to-br from-(--cf-surface-strong) to-(--cf-surface-muted) px-2 text-center",

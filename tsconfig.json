@@ -36,7 +36,9 @@
     "**/*.mts",
     ".next/dev/types/**/*.ts",
     ".next-chapterflow/types/**/*.ts",
-    ".next-chapterflow/dev/types/**/*.ts"
+    ".next-chapterflow/dev/types/**/*.ts",
+    ".next-cf-dev/types/**/*.ts",
+    ".next-cf-dev/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

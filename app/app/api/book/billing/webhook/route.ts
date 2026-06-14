@@ -30,6 +30,7 @@ import { buildRefundRecords, type RefundCharge } from "@/app/app/api/book/_lib/r
 import { extractBillingDetails } from "@/app/app/api/book/_lib/billing-details";
 import { BILLING_CURRENCY } from "@/lib/pricing";
 import { putOpsMetric } from "@/app/app/api/book/_lib/cloudwatch-metrics";
+import { sendTrialEndingEmail } from "@/app/app/api/book/_lib/trial-ending-email";
 
 export const runtime = "nodejs";
 
@@ -377,20 +378,37 @@ export async function POST(req: Request) {
         });
       }
     } else if (event.type === "customer.subscription.trial_will_end") {
-      // Trial ending in ~3 days. Nothing to mutate; analytics-only so the
-      // ops side can drive a "your trial ends soon" email if desired.
-      const subscription = event.data.object as { customer: string };
-      if (subscription.customer && analyticsTable) {
-        const userId = await getUserIdByStripeCustomer(tableName, subscription.customer);
-        if (userId) {
-          analyticsTrackSubscription(analyticsTable, {
-            userId,
-            plan: "PRO",
-            proStatus: "active",
-            proSource: "stripe",
-            stripeCustomerId: subscription.customer,
-          }).catch(() => {});
+      // Trial ending in ~3 days. Send the transactional pre-charge reminder
+      // (card-network requirement for free-trial → paid), and record analytics.
+      const subscription = event.data.object as {
+        customer: string;
+        trial_end?: number | null;
+        items?: {
+          data?: Array<{
+            price?: {
+              unit_amount?: number | null;
+              currency?: string | null;
+              recurring?: { interval?: string | null } | null;
+            } | null;
+          }>;
+        };
+      };
+      if (subscription.customer) {
+        if (analyticsTable) {
+          const userId = await getUserIdByStripeCustomer(tableName, subscription.customer);
+          if (userId) {
+            analyticsTrackSubscription(analyticsTable, {
+              userId,
+              plan: "PRO",
+              proStatus: "active",
+              proSource: "stripe",
+              stripeCustomerId: subscription.customer,
+            }).catch(() => {});
+          }
         }
+        await sendTrialEndingEmail(stripe, tableName, subscription).catch((e) => {
+          console.error("[webhook] trial-ending email failed:", e);
+        });
       }
     } else if (event.type === "charge.refunded") {
       // Persist a durable refund record for the admin finance report. We do NOT

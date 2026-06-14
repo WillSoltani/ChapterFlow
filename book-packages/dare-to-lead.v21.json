@@ -1,0 +1,2523 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "dare-to-lead-v21-1780470762695",
+  "createdAt": "2026-06-03T07:12:42.695Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "dare-to-lead",
+    "title": "Dare to Lead",
+    "author": "Brené Brown",
+    "categories": [
+      "Leadership",
+      "Business",
+      "Communication",
+      "Management"
+    ],
+    "tags": [
+      "courageous leadership",
+      "vulnerability",
+      "trust",
+      "values",
+      "empathy",
+      "resilience"
+    ]
+  },
+  "chapters": [
+    {
+      "schemaVersion": "chapterflow-v21-authored",
+      "chapterId": "dare-to-lead-ch01",
+      "number": 1,
+      "title": "The Moment and the Myths",
+      "readingTimeMinutes": 12,
+      "hook": "Theodore Roosevelt's arena and the Square Squad turn vulnerability into a disciplined feedback practice.",
+      "counterintuition": "Productive vulnerability asks for earned feedback and boundaries, not public approval or emotional dumping.",
+      "tryThisNow": "Draw a one-inch Square Squad for one current risk and remove every spectator from the decision.",
+      "keyTakeaway": "Courage begins when vulnerability stays boundaried, purposeful, and accountable to the work.",
+      "breakdown": {
+        "fastRead": "Vulnerability is the emotional exposure that comes with uncertainty, risk, and outcomes a leader cannot control. Productive vulnerability keeps that exposure tied to the work: it names the risk, protects appropriate boundaries, and refuses emotional dumping. The arena frame helps leaders sort earned critique from distant noise before a risky decision is rewritten by volume. A small circle of trusted critics gives feedback enough intimacy to matter and enough discipline to stay useful. Courage grows when leaders answer small bids for trust and stop outsourcing their inner scoreboard to spectators. In a launch postmortem, that means weighing closer evidence above louder commentary while naming only the risk the team can act on.",
+        "deepRead": "The machinery is not spectacle; it is the daily exchange between earned critique, small bids for trust, and disciplined boundaries. The leader is learning to sort signal from noise while staying honest about risk. Once vulnerability is treated as a leadership skill, discomfort becomes practice data instead of a signal to hide. Teams can separate honest risk from performative exposure and build trust through repeated small moments. No meaningful courage exists without vulnerability, and leaders damage trust when they confuse vulnerability with either weakness or boundaryless disclosure. Feedback deserves a filter: criticism from people taking comparable risks carries more weight than commentary from people staying safely outside the arena. The six vulnerability myths include weakness, personal immunity, solo success, engineered comfort, trust-before-exposure sequencing, and disclosure as the main event. Trust grows through ordinary bids for connection and the small responses that follow them. Daily attentiveness matters more than grand declarations because reliability is accumulated in tiny deposits. Trust and vulnerability grow in tandem through small bids, attentive responses, and daily evidence instead of one dramatic act of openness. Courage listens hardest to the people closest to the risk. Vulnerability serves the work, not the leader's need for rescue. Not every loud critic has earned a seat.",
+        "fullRead": "Read the opening as a warning against outsourcing courage to spectators. The leader's job is to separate exposure that clarifies the work from exposure that asks the room for rescue. The easy misreading is that vulnerable leadership means saying every fear out loud or asking a team to absorb a leader's anxiety. The sharper point is that exposure needs boundaries, purpose, and earned trust; otherwise it becomes self-protection in a softer costume. The opening move reframes courage as participation under conditions of uncertainty, risk, and emotional exposure. Vulnerability is positioned as the unavoidable emotional condition beneath daring work, not a mood reserved for intimate settings. The arena metaphor gives the feedback rule: people who are also risking failure get a seat close enough to influence the work; spectators shouting from safety do not. The Square Squad practice makes that rule operational by shrinking trusted criticism to a deliberately tiny list. Six myths are dismantled in sequence. Boundaries make vulnerability usable; without boundaries, exposure turns into flooding, manipulation, or a demand for caretaking. Vulnerability is not weakness, cannot be opted out of, cannot be survived alone, cannot be stripped of discomfort through planning, does not wait for perfect trust, and is not identical with disclosure. Trust appears as a slow reciprocal process, supported by John Gottman's work on everyday bids for connection and by examples of small moments that either build or erode confidence. Emotional exposure is part of every meaningful human feeling, including love, joy, grief, creativity, and accountability. The hardest distinction is boundaries. Honest exposure can be professional and useful; unloading fear onto employees, investors, or peers to seek rescue is not courage. Leaders who deny vulnerability still transmit it through defensiveness, vague communication, and control behaviors. In practice, the distinction shows up before the meeting even starts. A leader can decide who will be consulted, what criticism is relevant, and which emotional facts belong in the room. That preparation keeps honesty from becoming either a popularity contest or an anxious monologue. The practical endpoint is a smaller feedback circle, a cleaner boundary, and a sentence that keeps responsibility with the leader. Productive vulnerability keeps responsibility with the speaker while inviting clearer connection and braver work."
+      },
+      "examples": [
+        {
+          "exampleId": "dare-to-lead-ch01-ex01",
+          "title": "Arena Filter",
+          "tags": [
+            "product launch retrospective",
+            "productive vulnerability",
+            "Theodore Roosevelt arena frame"
+          ],
+          "planSpec": {
+            "domain": "product launch retrospective",
+            "audience": "Ansel and leaders facing product launch retrospective",
+            "stakes": "the team may confuse productive vulnerability with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Theodore Roosevelt arena frame to practice productive vulnerability in product launch retrospective"
+          },
+          "scenario": "Tuesday at 8:20 a.m. in a product launch retrospective. Ansel has three Slack threads, two executive opinions, and a customer complaint open after the launch missed its date. The loudest opinions are not all equally close to the work, and one quiet complaint contains better evidence than the pile-on.",
+          "whatToDo": "He names the feedback seats before the meeting starts, asks those people for evidence, and parks spectator commentary until it can be tested.",
+          "whyItMatters": "The launch plan improves because Ansel stops treating volume as wisdom while still letting serious critique reach the work."
+        },
+        {
+          "exampleId": "dare-to-lead-ch01-ex02",
+          "title": "Queue Warning",
+          "tags": [
+            "customer support escalation",
+            "productive vulnerability",
+            "Square Squad exercise"
+          ],
+          "planSpec": {
+            "domain": "customer support escalation",
+            "audience": "Beatriz and leaders facing customer support escalation",
+            "stakes": "the team may confuse productive vulnerability with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Square Squad exercise to practice productive vulnerability in customer support escalation"
+          },
+          "scenario": "Thursday after lunch beside the support queue dashboard. Beatriz sees a new support analyst hesitate before saying the escalation script is confusing customers. The warning is tentative, but ignoring it would teach the analyst that candor is not welcome from newer people.",
+          "whatToDo": "She thanks the analyst, asks for two calls that show the pattern, and adds script clarity to the next review agenda.",
+          "whyItMatters": "The analyst learns that a small bid for trust receives attention, which makes future warnings more likely to surface early."
+        },
+        {
+          "exampleId": "dare-to-lead-ch01-ex03",
+          "title": "Calibration Seat",
+          "tags": [
+            "annual performance calibration",
+            "productive vulnerability",
+            "John Gottman trust research"
+          ],
+          "planSpec": {
+            "domain": "annual performance calibration",
+            "audience": "Cleo and leaders facing annual performance calibration",
+            "stakes": "the team may confuse productive vulnerability with comfort, image, or avoidance",
+            "format": "audit",
+            "requiredBeat": "use John Gottman trust research to practice productive vulnerability in annual performance calibration"
+          },
+          "scenario": "Monday at 4:05 p.m. in a performance calibration room. Cleo is about to weigh promotion feedback from someone who has never managed the kind of work being judged. The comment is confident, but its distance from the arena makes it risky evidence.",
+          "whatToDo": "She separates earned perspective from spectator commentary and records why the closer source carries more weight.",
+          "whyItMatters": "The calibration stays fairer because Cleo uses earned perspective instead of seniority, noise, or popularity."
+        },
+        {
+          "exampleId": "dare-to-lead-ch01-ex04",
+          "title": "Founder Boundary",
+          "tags": [
+            "investor update",
+            "productive vulnerability",
+            "Theodore Roosevelt arena frame"
+          ],
+          "planSpec": {
+            "domain": "investor update",
+            "audience": "Dorian and leaders facing investor update",
+            "stakes": "the team may confuse productive vulnerability with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Theodore Roosevelt arena frame to practice productive vulnerability in investor update"
+          },
+          "scenario": "Friday at 6:15 p.m. on an investor update call. Dorian has to tell investors that a forecast is wrong while the company still needs confidence in the next quarter. If he overexplains his fear, the update will ask the board to manage him instead of the miss.",
+          "whatToDo": "He states the miss, names what remains unknown, and owns the next decision without asking for reassurance.",
+          "whyItMatters": "The update becomes steadier because Dorian shares exposure in service of clarity, not as a request for caretaking."
+        },
+        {
+          "exampleId": "dare-to-lead-ch01-ex05",
+          "title": "Studio Circle",
+          "tags": [
+            "design critique",
+            "productive vulnerability",
+            "Square Squad exercise"
+          ],
+          "planSpec": {
+            "domain": "design critique",
+            "audience": "Etta and leaders facing design critique",
+            "stakes": "the team may confuse productive vulnerability with comfort, image, or avoidance",
+            "format": "before_after",
+            "requiredBeat": "use Square Squad exercise to practice productive vulnerability in design critique"
+          },
+          "scenario": "Wednesday morning at the design studio wall. Etta's design team is split between useful critique and comments from people protecting personal taste. The proposal needs pressure-testing, not a vote on everyone's preferences.",
+          "whatToDo": "She asks selected reviewers for one risk, one strength, and one clarifying question before deciding what to protect.",
+          "whyItMatters": "The studio sees that brave work can invite feedback without letting every preference rewrite the proposal."
+        },
+        {
+          "exampleId": "dare-to-lead-ch01-ex06",
+          "title": "Rumor Line",
+          "tags": [
+            "reorganization communication",
+            "productive vulnerability",
+            "John Gottman trust research"
+          ],
+          "planSpec": {
+            "domain": "reorganization communication",
+            "audience": "Finn and leaders facing reorganization communication",
+            "stakes": "the team may confuse productive vulnerability with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use John Gottman trust research to practice productive vulnerability in reorganization communication"
+          },
+          "scenario": "Sunday evening in a conference room after reorganization rumors. Finn knows reorganization rumors are spreading and wants to be honest without flooding the room with anxiety. Employees need usable truth, not a leader's unprocessed fear.",
+          "whatToDo": "He shares confirmed facts, states what cannot yet be promised, and gives the next update time before taking questions.",
+          "whyItMatters": "People get usable truth because Finn makes uncertainty visible while keeping responsibility for the communication."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "dare-to-lead-ch01-q01",
+            "prompt": "A product lead is stung by harsh online comments after a launch misses its mark.",
+            "choices": [
+              "Let the whole comment thread steer the release plan.",
+              "Ignore every criticism because spectators cannot help.",
+              "Filter serious feedback through the small circle that has earned access."
+            ],
+            "correctIndex": 2,
+            "explanation": "The Square Squad limits whose feedback carries weight; the other choices either surrender to the crowd or dismiss useful earned critique.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch01-q02",
+            "prompt": "A support manager hears a quiet warning from a new teammate about a broken escalation script.",
+            "choices": [
+              "Treat the warning as a bid for trust and ask what evidence the teammate is seeing.",
+              "Praise the warning publicly and move on without changing the script.",
+              "Tell the teammate trust is not strong enough for direct criticism yet."
+            ],
+            "correctIndex": 0,
+            "explanation": "Gottman-style trust grows through small bids and reliable responses; the other answers turn the bid into theater or avoidance.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch01-q03",
+            "prompt": "A director is weighing promotion feedback from someone who has never managed similar work.",
+            "choices": [
+              "Let the loudest critic define the promotion standard.",
+              "Give more weight to arena feedback from people taking comparable risks.",
+              "Delay the decision until every observer approves."
+            ],
+            "correctIndex": 1,
+            "explanation": "The arena frame separates participants from spectators; the wrong choices outsource judgment to volume or impossible consensus.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch01-q04",
+            "prompt": "A founder must update investors after a missed forecast.",
+            "choices": [
+              "List every private fear so the board can soothe the founder.",
+              "Hide the miss and speak only about optimism.",
+              "Name uncertainty, state the plan, and keep responsibility with the founder."
+            ],
+            "correctIndex": 2,
+            "explanation": "Productive vulnerability is boundaried truth in service of the work; the distractors become dumping or image management.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch01-q05",
+            "prompt": "A creative director wants feedback before protecting a brave design choice.",
+            "choices": [
+              "Ask the Square Squad for specific critique before deciding.",
+              "Poll the entire studio until the choice feels popular.",
+              "Reject all comments so the design feels independent."
+            ],
+            "correctIndex": 0,
+            "explanation": "The Square Squad keeps courage selective; broad approval seeking and blanket dismissal both miss the tool.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch01-q06",
+            "prompt": "A manager believes trust must be perfect before the team can admit risk.",
+            "choices": [
+              "Wait until trust is complete before naming uncertainty.",
+              "Build trust and vulnerability together through small honest exchanges.",
+              "Create trust with one dramatic disclosure."
+            ],
+            "correctIndex": 1,
+            "explanation": "Brown's trust pattern is iterative; the wrong answers treat trust as either a prerequisite or a single event.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch01-q07",
+            "prompt": "A team asks how much vulnerability belongs in a reorganization meeting.",
+            "choices": [
+              "Share what clarifies the work, the boundary, and the next decision.",
+              "Say every fear out loud so people know the leader is human.",
+              "Avoid emotional truth because work meetings should stay neutral."
+            ],
+            "correctIndex": 0,
+            "explanation": "Boundaries make exposure useful; the alternatives flood the room or hide the reality.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch01-q08",
+            "prompt": "A designer asks whose critique should affect a risky proposal.",
+            "choices": [
+              "Let seniority decide the list automatically.",
+              "Keep changing the proposal until no one objects.",
+              "Choose critics who have earned a seat through care, competence, and comparable risk."
+            ],
+            "correctIndex": 2,
+            "explanation": "Earned access protects the work; hierarchy alone and universal approval both distort feedback.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch01-q09",
+            "prompt": "A leader says disclosure itself is courage.",
+            "choices": [
+              "Courage means talking longer about fear than about the work.",
+              "Disclosure matters only when it serves clarity, connection, and responsibility.",
+              "The bravest leader refuses to acknowledge exposure."
+            ],
+            "correctIndex": 1,
+            "explanation": "The correct answer preserves purpose and boundaries; the other choices confuse vulnerability with either flooding or denial.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "dare-to-lead-ch01-card01",
+          "front": "What makes vulnerability productive instead of performative?",
+          "back": "It names uncertainty or risk in service of the work while keeping clear boundaries. The point is responsibility, not emotional display."
+        },
+        {
+          "cardId": "dare-to-lead-ch01-card02",
+          "front": "How should a leader filter harsh feedback?",
+          "back": "Give more weight to people who understand the work, share the risk, and can offer evidence. Volume alone does not earn authority."
+        },
+        {
+          "cardId": "dare-to-lead-ch01-card03",
+          "front": "Why name a small circle before asking for critique?",
+          "back": "It keeps approval-seeking from turning every opinion into a verdict. The circle protects attention for feedback that has earned access."
+        },
+        {
+          "cardId": "dare-to-lead-ch01-card04",
+          "front": "When does disclosure become unhelpful?",
+          "back": "When it asks others to soothe the leader or absorb anxiety that does not help the decision. Useful exposure clarifies the work."
+        },
+        {
+          "cardId": "dare-to-lead-ch01-card05",
+          "front": "How is trust built during small warnings?",
+          "back": "Leaders respond to modest bids with attention, evidence, and follow-through. Those small responses teach people whether future candor is safe."
+        }
+      ],
+      "implementationPlan": {
+        "title": "The Moment and the Myths practice",
+        "coreSkill": "Name the exposed decision, choose the critics who have earned access, and disclose only what helps the work.",
+        "ifThenPlans": [
+          {
+            "context": "Outside commentary is overwhelming a risky decision",
+            "plan": "If noise starts steering the choice, then return to evidence from people close enough to understand the risk."
+          },
+          {
+            "context": "A quiet concern arrives from someone with relevant evidence",
+            "plan": "If a small warning surfaces, then ask for the examples, thank the speaker, and put the issue on the decision agenda."
+          },
+          {
+            "context": "Disclosure starts asking the team to soothe the leader",
+            "plan": "If sharing begins to seek rescue, then trim the message to the risk, the boundary, and the next accountable action."
+          }
+        ],
+        "twentyFourHourChallenge": "Within one day, write the names that fit inside the Square Squad and remove one spectator opinion from an active decision.",
+        "weeklyPractice": "For the next week, log every feedback moment that stings; mark whether it came from earned arena experience, useful data, or distant noise."
+      },
+      "memorableLines": [
+        {
+          "text": "Courage listens hardest to the people closest to the risk."
+        },
+        {
+          "text": "Vulnerability serves the work, not the leader's need for rescue."
+        },
+        {
+          "text": "Not every loud critic has earned a seat."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "chapterflow-v21-authored",
+      "chapterId": "dare-to-lead-ch02",
+      "number": 2,
+      "title": "The Call to Courage",
+      "readingTimeMinutes": 12,
+      "hook": "Charles's timeline feedback makes courage sound less heroic and more like one precise conversation.",
+      "counterintuition": "Rumbling is not venting; it is discomfort governed by curiosity, behavior rules, and a return to the work.",
+      "tryThisNow": "Before one hard conversation, write the permission slip you need and the rule you will uphold.",
+      "keyTakeaway": "A rumble turns avoided tension into clear agreements without letting blame or appeasement run the meeting.",
+      "breakdown": {
+        "fastRead": "Courage often looks like a scheduled hard conversation before avoidance becomes culture. A rumble is a bounded conversation that stays with facts, feelings, accountability, and curiosity long enough to serve the work. Clear expectations are kinder than vague promises because vagueness passes discomfort to the people who must absorb the chaos. Permission slips help people name fear, risk, and need without turning the meeting into a blame ritual. The practice is not venting; it is disciplined candor that turns private resentment into shared information. When a deadline is unsupported, the courageous move is to test capacity before optimism becomes an agreement.",
+        "deepRead": "The pressure point is overpromising: vague kindness passes discomfort downstream until colleagues inherit the chaos. The rumble gives that discomfort a table, a rule set, and a return path. Teams spend less energy decoding silence and more energy solving the real problem. The practice turns discomfort into shared information instead of private resentment. Clarity is a form of kindness because vague expectations and avoided conversations transfer discomfort onto everyone else. Unclear expectations feel polite in the moment but create rework, disappointment, and hidden blame when reality arrives. Fear and courage can occupy the same room; the leadership move is to name fear without letting fear drive the meeting. A military leader opens direct conversation about fatigue, loneliness, and mental health instead of sanitizing the emotional reality of the work. Performance improves because hidden strain becomes discussable and therefore manageable. Permission slips help people state what they need to show up well, such as patience, honesty, or permission to ask awkward questions. Clear is kind when vague promises pass pain downstream. A rumble gives discomfort a job and a boundary. Avoidance becomes culture faster than leaders expect.",
+        "fullRead": "The useful reading is practical and almost procedural. Courage means naming the timeline, the fear in the room, the rules for conduct, and the return point after a pause. The tempting shortcut is to treat rumbling as unlimited emotional processing or a meeting where everyone vents until relief arrives. The real demand is disciplined clarity: feelings are welcomed as data, but behavior remains boundaried and the work stays at the center. The main movement is from avoided conversation to clear courageous conversation. A finance leader's feedback about unrealistic timelines exposes how overpromising can look generous while actually creating chaos for colleagues. A home example reinforces the same pattern, making time estimation and overfunctioning visible as recurring behaviors instead of a single workplace complaint. The memorable teaching is that clarity serves people better than vague niceness. Clear expectations, direct feedback, and revisiting a conversation after reflection prevent hidden resentment from becoming culture. Binary labels like optimist and realist can trap team members in roles and narrow the range of contributions they are allowed to make. The permission-slip ritual gives teams a low-friction way to state what they need before a difficult discussion begins. The leadership error of assigning people fixed roles, such as optimist or realist, also gets surfaced; role labels can reduce people to a single contribution and excuse leaders from hearing the full range of talent in the room. Tough conversations require behavioral guardrails: no yelling, eye-rolling, interruption, put-downs, or hostile theatrics. A military example widens the application: fatigue, loneliness, and mental health cannot be managed if organizational language refuses to name them. Rumbles need rules, including no contemptuous gestures, verbal attacks, or interruptions. Time-outs preserve the conversation when nervous systems are overloaded; pausing is different from avoiding. That procedure matters because discomfort can otherwise masquerade as tact. A missed expectation, a fixed role, or a contemptuous gesture may look small while it is happening. Once the leader names it, the group can stop decoding each other and start repairing the agreement. The rumble has done its job when role labels drop, expectations sharpen, and regulation gives people enough steadiness to continue. Time-outs make room for regulation without canceling accountability. Courage is treated as the choice to stay with discomfort in service of clearer work."
+      },
+      "examples": [
+        {
+          "exampleId": "dare-to-lead-ch02-ex01",
+          "title": "Sprint Truth",
+          "tags": [
+            "software sprint planning",
+            "rumbling",
+            "Charles and unrealistic timelines"
+          ],
+          "planSpec": {
+            "domain": "software sprint planning",
+            "audience": "Gita and leaders facing software sprint planning",
+            "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Charles and unrealistic timelines to practice rumbling in software sprint planning"
+          },
+          "scenario": "Monday at 9:10 a.m. before sprint planning starts. Gita opens sprint planning and sees that the date depends on work nobody has estimated honestly. The optimistic timeline would sound supportive in the meeting and become punitive once the team has to deliver it.",
+          "whatToDo": "She cuts the commitment, names the overpromising pattern, and asks what must be true before any new date becomes real.",
+          "whyItMatters": "The sprint becomes kinder because Gita removes the hidden transfer of stress that vague planning would create."
+        },
+        {
+          "exampleId": "dare-to-lead-ch02-ex02",
+          "title": "Staffing Permission",
+          "tags": [
+            "hospital staffing",
+            "rumbling",
+            "Family event-planning mirror"
+          ],
+          "planSpec": {
+            "domain": "hospital staffing",
+            "audience": "Harlan and leaders facing hospital staffing",
+            "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Family event-planning mirror to practice rumbling in hospital staffing"
+          },
+          "scenario": "Wednesday at 5:30 p.m. in the hospital staffing huddle. Harlan hears nurses describe exhaustion in hallway whispers but not in the official staffing huddle. The schedule looks covered on paper while the real risk is being kept off the table.",
+          "whatToDo": "He opens with permission slips, then asks each shift lead to name one hidden risk in the current schedule.",
+          "whyItMatters": "The hospital team can manage strain because Harlan turns private fatigue into operational information."
+        },
+        {
+          "exampleId": "dare-to-lead-ch02-ex03",
+          "title": "Fundraiser Mirror",
+          "tags": [
+            "community fundraiser",
+            "rumbling",
+            "Air Force leader naming exhaustion"
+          ],
+          "planSpec": {
+            "domain": "community fundraiser",
+            "audience": "Iris and leaders facing community fundraiser",
+            "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+            "format": "audit",
+            "requiredBeat": "use Air Force leader naming exhaustion to practice rumbling in community fundraiser"
+          },
+          "scenario": "Saturday morning at a community fundraiser table. Iris notices that fundraiser volunteers are repeating the same last-minute scramble she creates at home. The familiar pattern makes it harder to blame the committee or treat the stress as a one-time glitch.",
+          "whatToDo": "She owns the pattern aloud and revises the sign-up sheet so deadlines, backup owners, and handoffs are visible.",
+          "whyItMatters": "The committee gets relief because Iris treats repeated evidence as a behavior to change instead of a complaint to explain away."
+        },
+        {
+          "exampleId": "dare-to-lead-ch02-ex04",
+          "title": "Client Rules",
+          "tags": [
+            "agency review",
+            "rumbling",
+            "Charles and unrealistic timelines"
+          ],
+          "planSpec": {
+            "domain": "agency review",
+            "audience": "Jalen and leaders facing agency review",
+            "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Charles and unrealistic timelines to practice rumbling in agency review"
+          },
+          "scenario": "Tuesday at 2:45 p.m. inside the agency review room. Jalen hears contemptuous sighs during a tense agency review and can feel the room sliding toward performance. The client problem will not get clearer while people are scoring points.",
+          "whatToDo": "He pauses the review, restates the no-contempt rule, and gives the group ten minutes before returning to the decision.",
+          "whyItMatters": "The client discussion stays useful because Jalen regulates the room without abandoning accountability."
+        },
+        {
+          "exampleId": "dare-to-lead-ch02-ex05",
+          "title": "Sales Labels",
+          "tags": [
+            "regional sales planning",
+            "rumbling",
+            "Family event-planning mirror"
+          ],
+          "planSpec": {
+            "domain": "regional sales planning",
+            "audience": "Kira and leaders facing regional sales planning",
+            "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+            "format": "before_after",
+            "requiredBeat": "use Family event-planning mirror to practice rumbling in regional sales planning"
+          },
+          "scenario": "Thursday before lunch on the regional sales call. Kira's sales call has turned one teammate into the optimist and another into the person expected to object. The labels are saving the group from fuller thinking.",
+          "whatToDo": "She asks both people to bring hope, risk, and evidence, then removes the labels from the next agenda.",
+          "whyItMatters": "The region gets fuller thinking because Kira refuses to let fixed roles shrink what people are allowed to contribute."
+        },
+        {
+          "exampleId": "dare-to-lead-ch02-ex06",
+          "title": "Budget Return",
+          "tags": [
+            "school board hearing",
+            "rumbling",
+            "Air Force leader naming exhaustion"
+          ],
+          "planSpec": {
+            "domain": "school board hearing",
+            "audience": "Lucien and leaders facing school board hearing",
+            "stakes": "the team may confuse rumbling with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Air Force leader naming exhaustion to practice rumbling in school board hearing"
+          },
+          "scenario": "Friday night in a school board hearing room. Lucien faces a school board hearing where budget fear is making every question sound like an accusation. Treating the emotion as a nuisance would leave the facts harder to hear.",
+          "whatToDo": "He names the fear, separates facts from interpretations, and states which decision remains open after public comment.",
+          "whyItMatters": "The hearing keeps moving because Lucien treats emotion as data while still protecting the work of deciding."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "dare-to-lead-ch02-q01",
+            "prompt": "An engineering manager sees that the sprint plan depends on promises nobody can keep.",
+            "choices": [
+              "Cut the commitment to what the team can honestly deliver.",
+              "Ask people to work the weekend before naming the pattern.",
+              "Keep the date because optimism protects morale."
+            ],
+            "correctIndex": 0,
+            "explanation": "Charles's feedback shows clarity is kinder than pleasing; the other options continue overpromising.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch02-q02",
+            "prompt": "Nurses stop naming exhaustion because loyalty is being measured by silence.",
+            "choices": [
+              "Begin with a toughness lecture before the staffing facts are named.",
+              "Wait for staff to confess burnout without any prompt.",
+              "Open with permission slips so people can say what they need."
+            ],
+            "correctIndex": 2,
+            "explanation": "Permission slips lower the barrier to honest conversation; toughness lectures and passive waiting keep strain hidden.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch02-q03",
+            "prompt": "A volunteer chair notices the same overcommitment pattern at home and in fundraiser planning.",
+            "choices": [
+              "Blame the committee for poor organization.",
+              "Treat the repeated evidence as a behavior pattern to own.",
+              "Keep home and work separate so the feedback feels less personal."
+            ],
+            "correctIndex": 1,
+            "explanation": "The family mirror makes the pattern harder to dismiss; the distractors avoid ownership.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch02-q04",
+            "prompt": "An account director hears eye-rolling during a tense client review.",
+            "choices": [
+              "Let everyone vent until the charge is gone.",
+              "Set rules for no contempt, no interruptions, and an explicit return after any time-out.",
+              "End the review because conflict means the client is unreasonable."
+            ],
+            "correctIndex": 1,
+            "explanation": "A rumble needs behavioral boundaries; venting and flight do not protect the work.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch02-q05",
+            "prompt": "A sales VP labels one person the optimist and another the realist.",
+            "choices": [
+              "Invite each person to bring data, hope, and concern without role labels.",
+              "Keep the labels because they make meetings efficient.",
+              "Ask the realist to stop making the room uncomfortable."
+            ],
+            "correctIndex": 0,
+            "explanation": "Fixed roles narrow contribution; the right move gives people back their full range.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch02-q06",
+            "prompt": "Charles gives feedback about unrealistic timelines and the leader feels exposed.",
+            "choices": [
+              "Soften the feedback until the sting disappears.",
+              "Collect private complaints and avoid the timeline issue.",
+              "Ask for the impact, name the pattern, and agree on a different planning behavior."
+            ],
+            "correctIndex": 2,
+            "explanation": "Clear feedback can hurt and still be useful; softening or hiding it prevents repair.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch02-q07",
+            "prompt": "A board chair calls time-out during a public budget fight.",
+            "choices": [
+              "Use the pause to avoid the vote indefinitely.",
+              "Treat the time-out as proof accountability can wait.",
+              "State when the group will return and what decision remains open."
+            ],
+            "correctIndex": 2,
+            "explanation": "Regulation is accountable only with a return plan; the wrong choices use time-out as escape.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch02-q08",
+            "prompt": "A regional planning team admits the deadline scares them.",
+            "choices": [
+              "Tell people feelings are not operational data.",
+              "Treat the fear as information while keeping the work visible.",
+              "Move the emotional material to private journals."
+            ],
+            "correctIndex": 1,
+            "explanation": "Rumbling welcomes feelings as data, not as the whole agenda or as forbidden material.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch02-q09",
+            "prompt": "A leader says emotional facts distract from performance.",
+            "choices": [
+              "The Air Force example shows named strain can improve operational effectiveness.",
+              "The family mirror proves personal patterns should stay private.",
+              "Charles's feedback proves kindness means delaying directness."
+            ],
+            "correctIndex": 0,
+            "explanation": "The military case links naming fatigue to performance; the other readings invert Brown's point.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "dare-to-lead-ch02-card01",
+          "front": "What makes a rumble different from venting?",
+          "back": "A rumble has boundaries, curiosity, and a commitment to the work. It welcomes emotion as information without letting the meeting become release for its own sake."
+        },
+        {
+          "cardId": "dare-to-lead-ch02-card02",
+          "front": "Why is clarity a form of kindness?",
+          "back": "Clear requests make ownership, timing, and standards visible. Vague niceness often moves discomfort onto the people who must guess."
+        },
+        {
+          "cardId": "dare-to-lead-ch02-card03",
+          "front": "What should a leader do with an unsupported deadline?",
+          "back": "Name the gap between the promise and the capacity. Then ask what must change before the commitment can be honest."
+        },
+        {
+          "cardId": "dare-to-lead-ch02-card04",
+          "front": "How do permission slips help a hard conversation?",
+          "back": "They make fear, uncertainty, and needs easier to name at the start. That lowers performance pressure and improves the quality of candor."
+        },
+        {
+          "cardId": "dare-to-lead-ch02-card05",
+          "front": "What keeps rumbling honest under pressure?",
+          "back": "The conversation stays tied to behavior, agreements, and decisions. Feelings matter, but they do not replace accountability."
+        }
+      ],
+      "implementationPlan": {
+        "title": "The Call to Courage practice",
+        "coreSkill": "Run one bounded rumble by naming the issue, inviting the missing truth, and ending with a clearer agreement.",
+        "ifThenPlans": [
+          {
+            "context": "An unsupported deadline is about to become a promise",
+            "plan": "If a timeline sounds generous but untested, then ask what work, owner, and constraint must change before it is promised."
+          },
+          {
+            "context": "Private exhaustion is missing from the official conversation",
+            "plan": "If strain only appears in side channels, then open the meeting with permission to name one risk the plan is hiding."
+          },
+          {
+            "context": "A hard conversation is turning into blame or performance",
+            "plan": "If the room overheats, then pause, restate the rule of engagement, and return to the unresolved decision."
+          }
+        ],
+        "twentyFourHourChallenge": "Within one day, rewrite one vague expectation as a direct request with owner, date, and standard of done.",
+        "weeklyPractice": "Across seven days, notice where niceness is hiding resentment and schedule one bounded conversation before the pattern hardens."
+      },
+      "memorableLines": [
+        {
+          "text": "Clear is kind when vague promises pass pain downstream."
+        },
+        {
+          "text": "A rumble gives discomfort a job and a boundary."
+        },
+        {
+          "text": "Avoidance becomes culture faster than leaders expect."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "chapterflow-v21-authored",
+      "chapterId": "dare-to-lead-ch03",
+      "number": 3,
+      "title": "The Armory",
+      "readingTimeMinutes": 12,
+      "hook": "Costco candor, foreboding joy, and the Victim or Viking split expose armor as failed protection.",
+      "counterintuition": "Dropping armor means choosing a concrete counterbehavior, not becoming endlessly unguarded.",
+      "tryThisNow": "Name one armored reflex from today and pair it with its daring replacement.",
+      "keyTakeaway": "Armored leadership hides fear behind control; daring leadership names the defense and practices the alternative.",
+      "breakdown": {
+        "fastRead": "Armored leadership is any protective reflex that gets mistaken for competence: perfectionism, cynicism, power-over control, overwork, or image management. The useful move is substitution, not self-condemnation; each defensive habit needs a braver behavior in its place. Candor answers uncertainty with facts, open questions, and a next update instead of corporate fog. Gratitude interrupts the habit of rehearsing disaster whenever joy appears. Teams become braver when they stop rewarding defenses as professionalism. In a crisis meeting, sarcasm can be converted into a named contribution before distance gets mistaken for skill.",
+        "deepRead": "The armory works because many defenses look competent from a distance: perfectionism, cynicism, overwork, control, and power-over behavior can all pass as standards. The mechanism is status reversal: what once earned approval has to be recognized as protection. Once armor is visible as a pattern, leaders can replace it with observable skills instead of shaming themselves for having fear. Teams gain language for naming unhelpful behaviors without attacking identity. Protective armor promises safety but usually produces the same fear, disconnection, and low accountability it was meant to prevent. Perfectionism is driven by perception management, while healthy striving measures progress against learning and purpose. Foreboding joy blocks celebration by rehearsing future disappointment; gratitude lets people experience success without bracing against loss. A team may hesitate to celebrate a win because joy feels like tempting future disappointment. Gratitude interrupts the impulse to rehearse disaster and lets people recognize real contribution. Numbing can dull pain temporarily, but it also dulls joy, creativity, and connection because emotion cannot be selectively turned off. Armor often looks competent until it starts running the room. Replace the defense with a braver observable behavior. Cynicism is distance pretending to be intelligence.",
+        "fullRead": "Brown asks for substitution, not self-condemnation. Once a protective habit is visible, the leader chooses the paired daring practice and tests it in behavior. The surface takeaway is to remove defenses and become endlessly open. The sharper move is behavioral substitution: every protective move has a daring counterpart, and the goal is not emotional nakedness but more honest responsibility under pressure. Armor is introduced as the ego's preferred equipment when respect, competence, or belonging feel at risk. The pattern list is broad: perfectionism, foreboding joy, numbing, the Victim or Viking split, cynicism, weaponized fear, power-over control, blame, and the celebration of exhaustion. Each protective move gets paired with a braver alternative. Perfectionism gives way to healthy striving; anxious rehearsal gives way to gratitude; numbing gives way to real comfort and boundaries; domination gives way to a strong back with a soft front. The workplace implications are concrete. The Victim or Viking split falsely offers only powerlessness or domination; grounded confidence pairs a strong back with a soft front. Teams that reward weekend work and crisis heroics can look committed while actually training burnout. Leaders who need to be right restrict learning. Cynicism, sarcasm, and criticism are often cheap forms of self-protection that look smart while avoiding contribution. Cynicism can masquerade as intelligence while preventing real contribution. Power-over structures make people dependent and guarded; power-with structures distribute ownership and increase candor. Power-over leadership centralizes control and blame, while power-with leadership creates mutual support, clearer ownership, and shared success. The point is especially sharp when a defense has been rewarded for years. A team may call overwork commitment, call sarcasm intelligence, or call domination accountability. Brown's move is to remove the prestige from the armor and give people a practiced alternative. The leader also has to make the replacement observable, since a team cannot practice gratitude, shared power, or healthy striving if those words never become meeting behavior. The armory audit is useful only when the named defense loses status and the team receives a braver replacement to practice. The Costco example shows the practical force of directness: people respond to truth because it gives them something solid to work with. The central correction is not anti-protection sentiment."
+      },
+      "examples": [
+        {
+          "exampleId": "dare-to-lead-ch03-ex01",
+          "title": "Forum Candor",
+          "tags": [
+            "employee forum",
+            "armored leadership",
+            "Costco CEO employee questions"
+          ],
+          "planSpec": {
+            "domain": "employee forum",
+            "audience": "Marin and leaders facing employee forum",
+            "stakes": "the team may confuse armored leadership with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Costco CEO employee questions to practice armored leadership in employee forum"
+          },
+          "scenario": "Monday at noon during an all-hands employee forum. Marin takes questions at an employee forum and feels the pull to polish away every unknown. Employees can handle a hard answer better than a careful blur.",
+          "whatToDo": "She answers with the facts she has, names the facts she lacks, and commits to the date for the next update.",
+          "whyItMatters": "Employees gain workable truth because Marin chooses candor over image protection."
+        },
+        {
+          "exampleId": "dare-to-lead-ch03-ex02",
+          "title": "Floor Binary",
+          "tags": [
+            "manufacturing quality",
+            "armored leadership",
+            "Victim or Viking workplace stance"
+          ],
+          "planSpec": {
+            "domain": "manufacturing quality",
+            "audience": "Niko and leaders facing manufacturing quality",
+            "stakes": "the team may confuse armored leadership with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Victim or Viking workplace stance to practice armored leadership in manufacturing quality"
+          },
+          "scenario": "Tuesday at 7:40 a.m. on the manufacturing floor. Niko hears a quality defect described as proof that the floor needs a tougher hand. The defect needs a standard, not a story that domination is the only alternative to being weak.",
+          "whatToDo": "He rejects the either-or frame and sets the next inspection boundary without using fear as the enforcement tool.",
+          "whyItMatters": "The floor keeps standards without teaching people that fear is the only path to accountability."
+        },
+        {
+          "exampleId": "dare-to-lead-ch03-ex03",
+          "title": "Grant Gratitude",
+          "tags": [
+            "nonprofit grant award",
+            "armored leadership",
+            "Foreboding joy after team success"
+          ],
+          "planSpec": {
+            "domain": "nonprofit grant award",
+            "audience": "Opal and leaders facing nonprofit grant award",
+            "stakes": "the team may confuse armored leadership with comfort, image, or avoidance",
+            "format": "audit",
+            "requiredBeat": "use Foreboding joy after team success to practice armored leadership in nonprofit grant award"
+          },
+          "scenario": "Thursday at 3:10 p.m. beside the nonprofit grant notice. Opal wins a grant and immediately starts rehearsing all the ways the award could disappear. The risk planning is real, but it is arriving before the team gets to receive the win.",
+          "whatToDo": "She has the team write one gratitude note before moving into the risk plan for the grant.",
+          "whyItMatters": "The nonprofit can prepare without erasing the joy and effort that made the award possible."
+        },
+        {
+          "exampleId": "dare-to-lead-ch03-ex04",
+          "title": "Prototype Striving",
+          "tags": [
+            "prototype review",
+            "armored leadership",
+            "Costco CEO employee questions"
+          ],
+          "planSpec": {
+            "domain": "prototype review",
+            "audience": "Paolo and leaders facing prototype review",
+            "stakes": "the team may confuse armored leadership with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Costco CEO employee questions to practice armored leadership in prototype review"
+          },
+          "scenario": "Wednesday morning in a medical device prototype review. Paolo is tempted to remove clinician objections from a prototype review so the device appears ready. The clean deck would protect status and weaken the product.",
+          "whatToDo": "He keeps the objections in the deck and asks which concern would teach the team fastest.",
+          "whyItMatters": "The prototype gets stronger because Paolo chooses healthy striving over perception management."
+        },
+        {
+          "exampleId": "dare-to-lead-ch03-ex05",
+          "title": "Crisis Contribution",
+          "tags": [
+            "crisis planning",
+            "armored leadership",
+            "Victim or Viking workplace stance"
+          ],
+          "planSpec": {
+            "domain": "crisis planning",
+            "audience": "Rhea and leaders facing crisis planning",
+            "stakes": "the team may confuse armored leadership with comfort, image, or avoidance",
+            "format": "before_after",
+            "requiredBeat": "use Victim or Viking workplace stance to practice armored leadership in crisis planning"
+          },
+          "scenario": "Friday afternoon around the crisis-planning whiteboard. Rhea uses sarcasm around the crisis board and people laugh instead of naming what they can do. The jokes are disguising usable intelligence as distance.",
+          "whatToDo": "She converts the sharpest comment into a concrete contribution and assigns the first owner.",
+          "whyItMatters": "The room stops rewarding distance and starts using the intelligence underneath the cynicism."
+        },
+        {
+          "exampleId": "dare-to-lead-ch03-ex06",
+          "title": "Deadline Repair",
+          "tags": [
+            "deadline recovery",
+            "armored leadership",
+            "Foreboding joy after team success"
+          ],
+          "planSpec": {
+            "domain": "deadline recovery",
+            "audience": "Soren and leaders facing deadline recovery",
+            "stakes": "the team may confuse armored leadership with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Foreboding joy after team success to practice armored leadership in deadline recovery"
+          },
+          "scenario": "Sunday night in a consulting deadline postmortem. Soren's consulting team is being praised for weekend heroics after a preventable deadline collapse. The applause is about to teach the team to repeat the failure.",
+          "whatToDo": "He studies the planning miss and removes the status reward from exhaustion before setting the next deadline rule.",
+          "whyItMatters": "The next deadline has a better chance because Soren treats overwork as a signal, not a badge."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "dare-to-lead-ch03-q01",
+            "prompt": "A retail VP faces employee questions and does not know every answer.",
+            "choices": [
+              "Polish the answer until uncertainty disappears.",
+              "Answer plainly, including what is still unknown.",
+              "Redirect the question to protect executive image."
+            ],
+            "correctIndex": 1,
+            "explanation": "The Costco example values workable truth; the other choices protect image.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch03-q02",
+            "prompt": "A plant supervisor hears Victim or Viking language after a quality defect.",
+            "choices": [
+              "Reject the binary and set boundaries without domination.",
+              "Choose the Viking side so accountability has force.",
+              "Let the victim stance continue because people are afraid."
+            ],
+            "correctIndex": 0,
+            "explanation": "The binary itself is armor; the correct answer keeps strength without crushing people.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch03-q03",
+            "prompt": "A nonprofit wins a grant and the executive director immediately rehearses disaster.",
+            "choices": [
+              "Skip celebration so the team stays vigilant.",
+              "Treat joy as proof that loss is coming.",
+              "Pause for gratitude before starting risk planning."
+            ],
+            "correctIndex": 2,
+            "explanation": "Foreboding joy is answered by gratitude; vigilance without gratitude erases contribution.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch03-q04",
+            "prompt": "A research lead is polishing away clinician concerns before a prototype review.",
+            "choices": [
+              "Invite the concern and practice healthy striving.",
+              "Remove the concern to maintain confidence.",
+              "Delay the review until the prototype looks flawless."
+            ],
+            "correctIndex": 0,
+            "explanation": "Healthy striving learns from friction; the distractors serve perfectionism.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch03-q05",
+            "prompt": "A communications director uses sarcasm during crisis planning.",
+            "choices": [
+              "Reward the cynicism because it sounds intelligent.",
+              "Use humor to end the discussion before people worry.",
+              "Turn the sarcastic remark into one concrete contribution."
+            ],
+            "correctIndex": 2,
+            "explanation": "Cynicism can masquerade as intelligence; contribution is the daring substitute.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch03-q06",
+            "prompt": "A consulting partner praises a team for heroic weekend work after a missed deadline.",
+            "choices": [
+              "Celebrate the weekend because it proves commitment.",
+              "Study the planning failure instead of treating exhaustion as devotion.",
+              "Ask the team to repeat the effort next cycle."
+            ],
+            "correctIndex": 1,
+            "explanation": "Brown names exhaustion-as-status as armor; the right answer repairs the system.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch03-q07",
+            "prompt": "A team calls domination accountability.",
+            "choices": [
+              "Accept domination when the quality issue is serious.",
+              "Frame fear as weakness so the team moves faster.",
+              "Name the power-over pattern and choose the daring counterpart."
+            ],
+            "correctIndex": 2,
+            "explanation": "Accountability does not require power-over behavior; the alternatives intensify armor.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch03-q08",
+            "prompt": "A CEO wants to protect image during an all-hands question session.",
+            "choices": [
+              "Give people truth they can work with instead of fog.",
+              "Offer a confident story even if facts are missing.",
+              "Avoid the question because candor may reduce respect."
+            ],
+            "correctIndex": 0,
+            "explanation": "The Costco-style answer trades image management for usable candor; invented confidence and avoidance both protect appearance at the team's expense.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch03-q09",
+            "prompt": "A leader wants to drop armor by sharing every private anxiety.",
+            "choices": [
+              "Remove every boundary and become emotionally unguarded.",
+              "Replace each defense with a specific daring behavior.",
+              "Keep armor whenever exposure feels risky."
+            ],
+            "correctIndex": 1,
+            "explanation": "The target is behavioral substitution, not emotional flooding or permanent self-protection.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "dare-to-lead-ch03-card01",
+          "front": "What is armored leadership?",
+          "back": "It is a protective behavior that reduces exposure while pretending to be competence. Common forms include control, cynicism, perfectionism, and overwork."
+        },
+        {
+          "cardId": "dare-to-lead-ch03-card02",
+          "front": "How should a leader replace image management?",
+          "back": "Answer with what is known, what is unknown, and when the next update will arrive. Candor builds more trust than a polished blur."
+        },
+        {
+          "cardId": "dare-to-lead-ch03-card03",
+          "front": "What does a toughness binary hide?",
+          "back": "It hides the possibility of standards with humanity. Leaders can set boundaries without domination or collapse."
+        },
+        {
+          "cardId": "dare-to-lead-ch03-card04",
+          "front": "Why practice gratitude after a win?",
+          "back": "Gratitude lets the team receive real contribution before fear starts rehearsing loss. It makes celebration less fragile."
+        },
+        {
+          "cardId": "dare-to-lead-ch03-card05",
+          "front": "What keeps an armor audit useful?",
+          "back": "Name the defensive move and choose the braver substitute behavior. The aim is practice, not shame about having defenses."
+        }
+      ],
+      "implementationPlan": {
+        "title": "The Armory practice",
+        "coreSkill": "Spot one protective reflex and replace it with a specific daring behavior the team can observe.",
+        "ifThenPlans": [
+          {
+            "context": "Uncertainty tempts a polished answer",
+            "plan": "If image management starts smoothing the facts, then say what is known, what is unknown, and when people will hear more."
+          },
+          {
+            "context": "Cynicism or dominance is being rewarded as toughness",
+            "plan": "If sharp distance gets applause, then convert the complaint into a contribution, boundary, or decision."
+          },
+          {
+            "context": "Heroic exhaustion is praised after a preventable collapse",
+            "plan": "If burnout is treated as commitment, then inspect the planning failure and remove the reward for needless overwork."
+          }
+        ],
+        "twentyFourHourChallenge": "Within one day, name one piece of armor you used and write the counter-practice you will try in the next meeting.",
+        "weeklyPractice": "For a week, track when the team rewards control, sarcasm, or overwork; replace one reward with gratitude, boundaries, or shared power."
+      },
+      "memorableLines": [
+        {
+          "text": "Armor often looks competent until it starts running the room."
+        },
+        {
+          "text": "Replace the defense with a braver observable behavior."
+        },
+        {
+          "text": "Cynicism is distance pretending to be intelligence."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "chapterflow-v21-authored",
+      "chapterId": "dare-to-lead-ch04",
+      "number": 4,
+      "title": "Shame and Empathy",
+      "readingTimeMinutes": 12,
+      "hook": "The concussion story and the six empathic misses show why shame breaks accountability.",
+      "counterintuition": "Empathy does not erase consequences; it preserves enough dignity for truth and repair.",
+      "tryThisNow": "Rewrite one feedback sentence so it names behavior without attacking worth.",
+      "keyTakeaway": "Shame attacks identity; empathy keeps people connected enough to own behavior and make repair.",
+      "breakdown": {
+        "fastRead": "Shame turns a mistake or limit into an identity verdict; guilt keeps attention on behavior that can be repaired. Empathy does not require lowering standards, but it does require staying present without centering the helper's discomfort. Leaders can hold people accountable while preserving agency, privacy, and dignity. Feedback works better when it names action, impact, and repair instead of attacking worth. Shame resilience gives teams enough safety to tell the truth and enough structure to change behavior. In a hard review, the leader can correct the behavior privately while keeping the person capable of repair.",
+        "deepRead": "The distinction between guilt and shame matters because behavior can be repaired while worth cannot be productively attacked. That distinction changes the feedbacker's job from exposing a flawed person to naming an action that can be owned. Leaders who can distinguish shame from guilt can correct behavior without attacking personhood. Teams become more capable of apology, repair, feedback, and difficult inclusion work. Shame cannot create brave behavior because it teaches people to hide, attack, appease, or disconnect instead of own mistakes and repair them. Shame is universal, painful to discuss, and more powerful when it stays unnamed. Guilt attaches to a specific behavior and can support apology; shame attacks identity and often blocks repair. Letting someone leave a role can be handled with humiliation or with a process that preserves agency and respect. Accountability remains, but the person is not reduced to the failure. Workplace shame appears as gossip, favoritism, harassment, discrimination, bullying, and public humiliation disguised as management. Guilt can repair what shame turns into identity. Empathy stays present without stealing the center. Accountability works best when dignity remains intact.",
+        "fullRead": "The hardest demand is emotional restraint from the person giving feedback. Shame often leaks from the evaluator, so the first repair may be inside the leader. A common misreading is that empathy means lowering standards, excusing harmful behavior, or making every difficult person feel better. The real distinction is stricter: shame is rejected as a leadership tool precisely because accountability works better when people still have enough dignity to tell the truth and repair. Shame is defined by its attack on worthiness, belonging, and connection. The 1-2-3 framing makes the pattern plain: everyone experiences shame, almost everyone resists talking about it, and silence increases its control. The concussion story gives the idea a concrete body. A real injury requires rest, yet a learned equation of illness with weakness turns recovery into a shame event. That personal pattern maps onto organizations where shame becomes gossip, favoritism, harassment, bullying, public humiliation, and blame-heavy management. People deserve dignity during failure, including exits and terminations, even when accountability requires hard decisions. A crucial distinction separates guilt from shame. Guilt can support repair because it stays attached to behavior; shame turns a mistake into a defective identity and often produces more hiding or aggression. Empathy connects to the emotion underneath an experience without taking over, fixing, ranking, or comparing suffering. Empathy is offered as the antidote, but not as rescue. Effective empathy takes perspective, suspends judgment, understands feeling, communicates understanding, and remains mindful of boundaries. Empathic misses include sympathy from above, shock that intensifies embarrassment, disappointment that forces defense, redirected blame, overpraise that bypasses responsibility, and competitive suffering. That is why the empathy material is not a soft detour. It teaches the leader how to stay with pain without becoming theatrical, dismissive, or punitive. Consequences can remain firm while language protects the possibility of ownership. The feedback lands best when the behavior is specific, the person's agency stays intact, and repair remains possible without pretending consequences vanished. The six empathic misses show how helpers often make pain worse by pitying, gasping, expressing disappointed superiority, launching blame, overpraising away responsibility, or competing with suffering. Self-compassion matters because people tend to judge others most sharply where they fear judgment themselves."
+      },
+      "examples": [
+        {
+          "exampleId": "dare-to-lead-ch04-ex01",
+          "title": "Rest Story",
+          "tags": [
+            "medical leave planning",
+            "shame resilience",
+            "Concussion and forced rest"
+          ],
+          "planSpec": {
+            "domain": "medical leave planning",
+            "audience": "Tamsin and leaders facing medical leave planning",
+            "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Concussion and forced rest to practice shame resilience in medical leave planning"
+          },
+          "scenario": "Monday at 6:30 a.m. in an executive medical leave planning call. Tamsin hears an executive call medical rest a personal failure after a concussion. The coverage plan is getting tangled with an old story about weakness.",
+          "whatToDo": "She names the shame story and builds a recovery plan with coverage, dates, and communication limits.",
+          "whyItMatters": "The leave plan protects both health and work because Tamsin refuses to treat legitimate limits as weak character."
+        },
+        {
+          "exampleId": "dare-to-lead-ch04-ex02",
+          "title": "Exit Dignity",
+          "tags": [
+            "role exit",
+            "shame resilience",
+            "Six empathic misses"
+          ],
+          "planSpec": {
+            "domain": "role exit",
+            "audience": "Usha and leaders facing role exit",
+            "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Six empathic misses to practice shame resilience in role exit"
+          },
+          "scenario": "Thursday at 11:15 a.m. outside the HR conference room. Usha must end a role after misconduct and senses the team wants a public example. The consequence is necessary, but humiliation would make the audience the real client.",
+          "whatToDo": "She holds the consequence in a private meeting that explains agency, next steps, and the dignity standard.",
+          "whyItMatters": "Accountability lands more cleanly because Usha does not turn the person's worth into a lesson for spectators."
+        },
+        {
+          "exampleId": "dare-to-lead-ch04-ex03",
+          "title": "Hallway Presence",
+          "tags": [
+            "school hallway",
+            "shame resilience",
+            "Dignity in termination"
+          ],
+          "planSpec": {
+            "domain": "school hallway",
+            "audience": "Vera and leaders facing school hallway",
+            "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+            "format": "audit",
+            "requiredBeat": "use Dignity in termination to practice shame resilience in school hallway"
+          },
+          "scenario": "Tuesday afternoon in the school hallway after a complaint. Vera watches a colleague respond to a student's pain with dramatic shock and fast reassurance. The student is being asked to comfort the adult's reaction.",
+          "whatToDo": "She stays with the student, reflects the feeling, and keeps the helper's discomfort out of the center.",
+          "whyItMatters": "The hallway gets calmer because Vera practices presence instead of trying to make the pain disappear."
+        },
+        {
+          "exampleId": "dare-to-lead-ch04-ex04",
+          "title": "Safety Language",
+          "tags": [
+            "lab safety",
+            "shame resilience",
+            "Concussion and forced rest"
+          ],
+          "planSpec": {
+            "domain": "lab safety",
+            "audience": "Willem and leaders facing lab safety",
+            "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Concussion and forced rest to practice shame resilience in lab safety"
+          },
+          "scenario": "Wednesday at 4:50 p.m. near the lab safety board. Willem receives a late lab safety report and wants to say the researcher is careless. That label would threaten the reporting channel the lab needs most.",
+          "whatToDo": "He names the late-reporting behavior, explains the required repair, and protects the path for future near misses.",
+          "whyItMatters": "The lab becomes safer because Willem uses guilt language about action instead of shame language about identity."
+        },
+        {
+          "exampleId": "dare-to-lead-ch04-ex05",
+          "title": "Slack Audit",
+          "tags": [
+            "Slack moderation",
+            "shame resilience",
+            "Six empathic misses"
+          ],
+          "planSpec": {
+            "domain": "Slack moderation",
+            "audience": "Xenia and leaders facing Slack moderation",
+            "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+            "format": "before_after",
+            "requiredBeat": "use Six empathic misses to practice shame resilience in Slack moderation"
+          },
+          "scenario": "Friday morning inside the department Slack review. Xenia reviews a Slack thread where jokes about one employee have become normal. The humor is teaching the group that belonging can depend on joining humiliation.",
+          "whatToDo": "She identifies the pattern, removes the thread, and resets the conduct rule for team channels.",
+          "whyItMatters": "The group learns that speed and humor do not justify a shame culture."
+        },
+        {
+          "exampleId": "dare-to-lead-ch04-ex06",
+          "title": "Review Compassion",
+          "tags": [
+            "associate review",
+            "shame resilience",
+            "Dignity in termination"
+          ],
+          "planSpec": {
+            "domain": "associate review",
+            "audience": "Yara and leaders facing associate review",
+            "stakes": "the team may confuse shame resilience with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Dignity in termination to practice shame resilience in associate review"
+          },
+          "scenario": "Sunday evening in a law firm associate review. Yara sees a law firm partner become harsher than usual after an associate's visible error. The feedback is starting to carry the partner's shame instead of the associate's learning need.",
+          "whatToDo": "She asks the partner to separate the mistake's impact from his own reaction before the review is delivered.",
+          "whyItMatters": "The associate receives clearer standards because Yara keeps unworked shame from leaking into judgment."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "dare-to-lead-ch04-q01",
+            "prompt": "A chief of staff notices a leader treating medical rest like moral failure.",
+            "choices": [
+              "Praise the leader for pushing through the injury.",
+              "Keep the leave vague so nobody sees weakness.",
+              "Name the shame story and plan real recovery support."
+            ],
+            "correctIndex": 2,
+            "explanation": "The concussion story exposes shame around legitimate limits; the wrong choices feed that story.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch04-q02",
+            "prompt": "An HR director must end a role after repeated misconduct.",
+            "choices": [
+              "Use the meeting to make an example for everyone.",
+              "Hold the consequence while preserving agency and respect.",
+              "Avoid clarity so the person does not feel pain."
+            ],
+            "correctIndex": 1,
+            "explanation": "Dignity in termination keeps accountability and humanity together; spectacle and vagueness fail both.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch04-q03",
+            "prompt": "A principal hears a colleague respond to pain with shock and hollow reassurance.",
+            "choices": [
+              "Stay present, reflect feeling, and avoid centering the helper.",
+              "Offer quick reassurance so the pain disappears.",
+              "React dramatically to prove the complaint matters."
+            ],
+            "correctIndex": 0,
+            "explanation": "The empathic misses center the helper; real empathy stays with the person in pain.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch04-q04",
+            "prompt": "A lab supervisor responds after a near miss is reported late.",
+            "choices": [
+              "Say the late report proves the person is careless.",
+              "Use guilt language about the action and protect future reporting.",
+              "Hide the incident so nobody feels embarrassed."
+            ],
+            "correctIndex": 1,
+            "explanation": "Guilt can support repair; shame language teaches people to conceal mistakes.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch04-q05",
+            "prompt": "A team lead reviews a Slack thread where mockery has become normal.",
+            "choices": [
+              "Let the thread continue because mockery creates speed.",
+              "Ask the target to develop thicker skin.",
+              "Identify gossip and public humiliation as shame signals."
+            ],
+            "correctIndex": 2,
+            "explanation": "Shame cultures grow through humiliation; the right move names the pattern.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch04-q06",
+            "prompt": "A manager drafts feedback after a mistake.",
+            "choices": [
+              "Say what behavior hurt the process and what repair is required.",
+              "Say the person is not someone the team can trust.",
+              "Tell everyone competent people avoid that error."
+            ],
+            "correctIndex": 0,
+            "explanation": "Behavioral feedback creates repair; calling the person untrustworthy or incompetent attacks identity and teaches shame.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch04-q07",
+            "prompt": "A partner feels unusually harsh toward an associate who made a visible error.",
+            "choices": [
+              "Check the partner's own shame before delivering feedback.",
+              "Lean into harshness because standards are high.",
+              "Delay the review until the associate apologizes first."
+            ],
+            "correctIndex": 0,
+            "explanation": "Self-compassion matters because unworked shame leaks into judgment; harshness and delay both dodge the partner's responsibility for clean feedback.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch04-q08",
+            "prompt": "A termination meeting needs both consequence and care.",
+            "choices": [
+              "Soften the consequence until nobody learns from it.",
+              "Plan the exit so the person is not reduced to the failure.",
+              "Turn the moment into a warning for the whole team."
+            ],
+            "correctIndex": 1,
+            "explanation": "Brown's distinction keeps dignity with accountability; the wrong choices choose only one side.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch04-q09",
+            "prompt": "A manager says empathy means lowering the bar.",
+            "choices": [
+              "Empathy removes consequences when someone feels ashamed.",
+              "Empathy is useful only after behavior has changed.",
+              "Empathy protects dignity so accountability can work."
+            ],
+            "correctIndex": 2,
+            "explanation": "The correct answer keeps standards intact; the distractors confuse empathy with excuse-making or delay.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "dare-to-lead-ch04-card01",
+          "front": "What separates guilt from shame?",
+          "back": "Guilt keeps the focus on a behavior and its repair. Shame turns the event into a verdict on worth."
+        },
+        {
+          "cardId": "dare-to-lead-ch04-card02",
+          "front": "What does empathy require in hard moments?",
+          "back": "Stay present with the person's experience without grabbing the spotlight. Empathy listens before it fixes, performs, or reassures."
+        },
+        {
+          "cardId": "dare-to-lead-ch04-card03",
+          "front": "How can accountability preserve dignity?",
+          "back": "Make the consequence clear while protecting privacy, agency, and next steps. Dignity does not erase standards."
+        },
+        {
+          "cardId": "dare-to-lead-ch04-card04",
+          "front": "What should hard feedback name?",
+          "back": "Name the action, the impact, and the repair request. Avoid language that treats the person's identity as the problem."
+        },
+        {
+          "cardId": "dare-to-lead-ch04-card05",
+          "front": "What is a common empathy miss?",
+          "back": "The helper centers shock, pity, anger, or quick reassurance. That response can leave the hurting person more alone."
+        }
+      ],
+      "implementationPlan": {
+        "title": "Shame and Empathy practice",
+        "coreSkill": "Correct behavior by naming action, impact, and repair while protecting dignity and agency.",
+        "ifThenPlans": [
+          {
+            "context": "Feedback is drifting into a verdict on worth",
+            "plan": "If the sentence attacks identity, then rewrite it around the observable behavior, its impact, and the repair needed."
+          },
+          {
+            "context": "A consequence could become public humiliation",
+            "plan": "If accountability requires a hard meeting, then design it for privacy, agency, next steps, and a clear standard."
+          },
+          {
+            "context": "A helper is rushing to fix pain",
+            "plan": "If reassurance arrives before listening, then pause, reflect the feeling, and ask what support would actually help."
+          }
+        ],
+        "twentyFourHourChallenge": "Within one day, revise a hard feedback sentence so it names action, impact, and repair without shame language.",
+        "weeklyPractice": "For seven days, watch for gossip, humiliation, or contempt; interrupt one pattern and replace it with a dignity-preserving standard."
+      },
+      "memorableLines": [
+        {
+          "text": "Guilt can repair what shame turns into identity."
+        },
+        {
+          "text": "Empathy stays present without stealing the center."
+        },
+        {
+          "text": "Accountability works best when dignity remains intact."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "chapterflow-v21-authored",
+      "chapterId": "dare-to-lead-ch05",
+      "number": 5,
+      "title": "Curiosity and Grounded Confidence",
+      "readingTimeMinutes": 12,
+      "hook": "Stefan Larsson's Old Navy work makes curiosity operational, not decorative.",
+      "counterintuition": "Grounded confidence grows through practiced questions, not through sounding certain early.",
+      "tryThisNow": "Use one sentence starter to replace a defensive answer in a live discussion.",
+      "keyTakeaway": "Grounded confidence is practiced steadiness: ask better questions, hold tension, and keep learning.",
+      "breakdown": {
+        "fastRead": "Grounded confidence combines curiosity, practice, and action under pressure. Curiosity is not softness; it slows certainty long enough to find better data before a decision hardens. Mature leaders can hold paradox, invite dissent, and ask what evidence would change their minds. Skill practice matters because sentence starters, questions, and feedback moves disappear under stress unless rehearsed. The result is confidence that can learn without collapsing into indecision. In an inventory review, the leader treats contradiction from the floor as operational data before choosing the next test.",
+        "deepRead": "Grounded confidence is earned through practice: questions, sentence starters, paradox, and friction prepare leaders for pressure. The mechanism is rehearsal under tension, because unpracticed curiosity usually collapses into advice or defense. A leader with grounded confidence can hold paradoxes, invite dissent, and keep learning under pressure. Teams gain permission to ask better questions instead of defending brittle certainty. Confidence becomes grounded only when people practice discomfort enough to know they can stay curious, skilled, and connected inside it. Easy training may feel popular but often fails to build the strength required for hard leadership moments. Desirable difficulty makes learning effortful enough for retention, transfer, and real skill development. Athletes practice smaller technical movements before relying on them during high-pressure play. Leadership skills need the same repetition before a crisis makes them necessary. Curiosity requires vulnerability because asking a real question admits a gap in knowledge or perspective. Curiosity keeps confidence close to reality. Practice gives brave words somewhere to come from. Paradox is information, not a failure to decide.",
+        "fullRead": "Brown treats inquiry as performance infrastructure. Better questions reveal data, and repeated practice helps the skill survive a tense room. The easy distortion is to treat curiosity as a pleasant personality trait or a softer substitute for decisions. The real point is more demanding: curiosity is a vulnerable discipline that slows certainty long enough to gather better data, build skill, and act with greater confidence. The final vulnerability skill shifts from naming fear to building reliable competence. Grounded confidence is separated from bravado. It is the tested belief that difficult emotional and strategic moments can be handled with skill, curiosity, and boundaries. Leadership practice is compared to athletic practice: small repetitions prepare people for high-pressure moments. Easy learning is criticized because comfort and popularity do not equal durable skill; desirable difficulty gives the brain enough friction to retain and transfer learning. Curiosity and knowledge reinforce each other; enough awareness reveals better questions, and better questions deepen awareness. Curiosity becomes the central behavior because it interrupts defensive certainty. A real question admits that the available data is incomplete, which makes curiosity an act of vulnerability instead of mere friendliness. Sentence starters such as tell me more and I am curious about help leaders interrupt defensiveness and invite fuller data. Curiosity also grows with knowledge: people need enough awareness to notice a gap, and the gap then creates energy for deeper inquiry. Sentence starters such as tell me more, I am curious about, and I am wondering give leaders practical language for staying open. Grounded confidence differs from arrogance because it can hold competing truths without forcing premature certainty. The most useful leader is not the one who performs certainty first. The useful leader can tolerate a complicated answer long enough to learn from it. That stance requires rehearsal, because pressure makes quick certainty feel safer than honest inquiry. The curious leader slows the quick answer, asks for missing evidence, and chooses the next test with more information in view. The CEO example about entrepreneurship paradoxes shows the emotional capacity required to hold opposing truths without panic. Stefan Larsson's Old Navy example links curiosity and trust to improved performance, making the case that inquiry is operational, not ornamental."
+      },
+      "examples": [
+        {
+          "exampleId": "dare-to-lead-ch05-ex01",
+          "title": "Pricing Paradox",
+          "tags": [
+            "pricing strategy",
+            "grounded confidence",
+            "Entrepreneurship paradoxes CEO"
+          ],
+          "planSpec": {
+            "domain": "pricing strategy",
+            "audience": "Zadie and leaders facing pricing strategy",
+            "stakes": "the team may confuse grounded confidence with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Entrepreneurship paradoxes CEO to practice grounded confidence in pricing strategy"
+          },
+          "scenario": "Tuesday at 10:25 a.m. in a startup pricing meeting. Zadie has a pricing team split between a bold launch and a cautious delay. Each side has a real truth, and the room wants one of them to disappear.",
+          "whatToDo": "She asks each side to state the truth in the other position before choosing a test.",
+          "whyItMatters": "The startup gets a wiser experiment because Zadie holds paradox longer than the room wants to."
+        },
+        {
+          "exampleId": "dare-to-lead-ch05-ex02",
+          "title": "Inventory Question",
+          "tags": [
+            "retail inventory",
+            "grounded confidence",
+            "Stefan Larsson and Old Navy"
+          ],
+          "planSpec": {
+            "domain": "retail inventory",
+            "audience": "Basil and leaders facing retail inventory",
+            "stakes": "the team may confuse grounded confidence with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Stefan Larsson and Old Navy to practice grounded confidence in retail inventory"
+          },
+          "scenario": "Wednesday at 7:55 a.m. beside a regional inventory screen. Basil sees inventory reports that look polished while store managers keep describing missing stock. The contradiction is embarrassing only if the deck has to be right.",
+          "whatToDo": "He asks what the deck is not showing and brings two local managers into the review.",
+          "whyItMatters": "The retail plan improves because Basil treats contradiction as data, not embarrassment."
+        },
+        {
+          "exampleId": "dare-to-lead-ch05-ex03",
+          "title": "Rehearsal Skill",
+          "tags": [
+            "client rehearsal",
+            "grounded confidence",
+            "Sports skill practice analogy"
+          ],
+          "planSpec": {
+            "domain": "client rehearsal",
+            "audience": "Corinne and leaders facing client rehearsal",
+            "stakes": "the team may confuse grounded confidence with comfort, image, or avoidance",
+            "format": "audit",
+            "requiredBeat": "use Sports skill practice analogy to practice grounded confidence in client rehearsal"
+          },
+          "scenario": "Friday at 3:35 p.m. in a consulting rehearsal room. Corinne is about to lead a client rehearsal without practicing the opening sentence. The first words will need to work when the client pushes back.",
+          "whatToDo": "She rehearses three sentence starters and chooses the one most likely to hold under tension.",
+          "whyItMatters": "The meeting starts better because Corinne builds skill before pressure, instead of trusting adrenaline."
+        },
+        {
+          "exampleId": "dare-to-lead-ch05-ex04",
+          "title": "Model Concern",
+          "tags": [
+            "architecture review",
+            "grounded confidence",
+            "Entrepreneurship paradoxes CEO"
+          ],
+          "planSpec": {
+            "domain": "architecture review",
+            "audience": "Devan and leaders facing architecture review",
+            "stakes": "the team may confuse grounded confidence with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Entrepreneurship paradoxes CEO to practice grounded confidence in architecture review"
+          },
+          "scenario": "Monday afternoon around an architecture model. Devan hears a structural concern and wants to answer fast so authority stays visible. A quick answer would protect his image and hide the weakest assumption.",
+          "whatToDo": "He asks which assumption would fail first and what evidence would settle it.",
+          "whyItMatters": "The architecture review gets safer because Devan lets inquiry reveal missing information."
+        },
+        {
+          "exampleId": "dare-to-lead-ch05-ex05",
+          "title": "Workshop Friction",
+          "tags": [
+            "training design",
+            "grounded confidence",
+            "Stefan Larsson and Old Navy"
+          ],
+          "planSpec": {
+            "domain": "training design",
+            "audience": "Elian and leaders facing training design",
+            "stakes": "the team may confuse grounded confidence with comfort, image, or avoidance",
+            "format": "before_after",
+            "requiredBeat": "use Stefan Larsson and Old Navy to practice grounded confidence in training design"
+          },
+          "scenario": "Thursday at 9:00 a.m. inside a leadership workshop. Elian's leadership workshop is popular but the skill disappears when conflict begins. The room likes the idea of courage more than the discomfort of practicing it.",
+          "whatToDo": "He adds role-play friction, repetition, and feedback rounds before declaring the training finished.",
+          "whyItMatters": "Participants gain transfer because Elian chooses practice difficulty over inspirational comfort."
+        },
+        {
+          "exampleId": "dare-to-lead-ch05-ex06",
+          "title": "Traffic Evidence",
+          "tags": [
+            "traffic meeting",
+            "grounded confidence",
+            "Sports skill practice analogy"
+          ],
+          "planSpec": {
+            "domain": "traffic meeting",
+            "audience": "Faye and leaders facing traffic meeting",
+            "stakes": "the team may confuse grounded confidence with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Sports skill practice analogy to practice grounded confidence in traffic meeting"
+          },
+          "scenario": "Saturday morning in a city traffic hearing. Faye faces resident traffic evidence that complicates the city plan. The hearing can improve the test without reopening every preference.",
+          "whatToDo": "She asks what has not been heard, then defines the next test instead of reopening every preference.",
+          "whyItMatters": "The planning room stays both curious and decisive because Faye uses questions to improve action."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "dare-to-lead-ch05-q01",
+            "prompt": "A founder team is forcing pricing into either optimism or caution.",
+            "choices": [
+              "Hold both truths long enough to choose a wiser launch test.",
+              "Pick optimism so the team feels brave.",
+              "Pick caution so no one can criticize the launch."
+            ],
+            "correctIndex": 0,
+            "explanation": "Grounded confidence can hold paradox; the wrong choices collapse complexity.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch05-q02",
+            "prompt": "A district manager sees polished reports hiding inventory facts.",
+            "choices": [
+              "Tell stores to simplify the story for headquarters.",
+              "Ask what the reports are missing and listen for local detail.",
+              "Use the polished deck because confidence matters most."
+            ],
+            "correctIndex": 1,
+            "explanation": "Curiosity surfaces operational data; polish without inquiry protects appearances.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch05-q03",
+            "prompt": "A new engagement lead has not practiced the first sentence of a hard client meeting.",
+            "choices": [
+              "Trust instinct because rehearsal sounds scripted.",
+              "Cancel the meeting until confidence feels natural.",
+              "Rehearse sentence starters before the live tension arrives."
+            ],
+            "correctIndex": 2,
+            "explanation": "Leadership skill needs practice before pressure; the wrong answers romanticize instinct or avoidance.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch05-q04",
+            "prompt": "An architect hears a structural concern and wants to answer with swagger.",
+            "choices": [
+              "Answer quickly so authority stays visible.",
+              "Dismiss the concern until proof is perfect.",
+              "Ask a real question that can reveal missing data."
+            ],
+            "correctIndex": 2,
+            "explanation": "Curiosity is vulnerable because it admits incomplete data; swagger shuts learning down.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch05-q05",
+            "prompt": "A learning director sees that popular training collapses during conflict.",
+            "choices": [
+              "Keep the workshop comfortable because people like it.",
+              "Add desirable difficulty so the skill transfers under stress.",
+              "Replace practice with more inspirational stories."
+            ],
+            "correctIndex": 1,
+            "explanation": "Brown's practice analogy favors friction and repetition; comfort alone does not build skill.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch05-q06",
+            "prompt": "A city planning director faces resident evidence that complicates the traffic plan.",
+            "choices": [
+              "Ask what evidence has not been heard, then decide the next test.",
+              "Ask every resident for a new preference before deciding.",
+              "Declare the plan final so debate stops."
+            ],
+            "correctIndex": 0,
+            "explanation": "Curiosity does not postpone action forever; it gathers better data for a clearer next step.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch05-q07",
+            "prompt": "A CEO says grounded confidence means sounding certain before facts are ready.",
+            "choices": [
+              "Sounding certain is the fastest path to trust.",
+              "Grounded confidence comes from practiced skill, not swagger.",
+              "Confidence appears only after all ambiguity is gone."
+            ],
+            "correctIndex": 1,
+            "explanation": "The correct answer separates earned steadiness from performance; sounding certain too early is swagger, while waiting for zero ambiguity makes leadership impossible.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch05-q08",
+            "prompt": "Frontline data contradicts the official inventory story.",
+            "choices": [
+              "Defend the official story until the review ends.",
+              "Punish the frontline report because it creates confusion.",
+              "Treat contradiction as useful data instead of an image threat."
+            ],
+            "correctIndex": 2,
+            "explanation": "Old Navy-style curiosity uses contradiction to improve operations; defending the deck or punishing the report protects image over learning.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch05-q09",
+            "prompt": "A team treats curiosity as niceness.",
+            "choices": [
+              "Curiosity is operational because it surfaces useful information sooner.",
+              "Curiosity is mainly a nicer tone for hard news.",
+              "Curiosity works only when the leader already knows the answer."
+            ],
+            "correctIndex": 0,
+            "explanation": "The Stefan Larsson example connects inquiry with performance, not politeness alone.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "dare-to-lead-ch05-card01",
+          "front": "What is grounded confidence?",
+          "back": "It is the ability to stay curious, practiced, and decisive while pressure is high. Confidence stays grounded when it can keep learning."
+        },
+        {
+          "cardId": "dare-to-lead-ch05-card02",
+          "front": "Why hold paradox before deciding?",
+          "back": "Paradox keeps competing truths visible long enough to inform the next test. Collapsing too early protects comfort, not accuracy."
+        },
+        {
+          "cardId": "dare-to-lead-ch05-card03",
+          "front": "What question interrupts defensiveness?",
+          "back": "Ask what evidence would change the decision or what the current story is missing. The question turns threat into information."
+        },
+        {
+          "cardId": "dare-to-lead-ch05-card04",
+          "front": "Why rehearse courage skills before pressure?",
+          "back": "Stress narrows access to unpracticed moves. Rehearsed openings and questions are more likely to survive the live room."
+        },
+        {
+          "cardId": "dare-to-lead-ch05-card05",
+          "front": "What keeps curiosity from becoming indecision?",
+          "back": "Tie questions to a decision, test, or next action. Curiosity should improve judgment, not postpone it forever."
+        }
+      ],
+      "implementationPlan": {
+        "title": "Curiosity and Grounded Confidence practice",
+        "coreSkill": "Use one real question, one rehearsed sentence, and one test to keep confidence learning under pressure.",
+        "ifThenPlans": [
+          {
+            "context": "Certainty arrives before contradictory evidence has been tested",
+            "plan": "If the answer comes too quickly, then ask what evidence would change the decision before locking the plan."
+          },
+          {
+            "context": "A hard meeting needs an opening sentence",
+            "plan": "If the first words matter, then rehearse three options and choose the one that can hold tension."
+          },
+          {
+            "context": "Training feels inspiring but fails under conflict",
+            "plan": "If the skill disappears in live pressure, then add friction, repetition, and feedback before calling the training complete."
+          }
+        ],
+        "twentyFourHourChallenge": "Within one day, replace one defensive answer with a real question that can reveal information you do not yet have.",
+        "weeklyPractice": "For a week, collect contradictions from frontline data, customer evidence, or colleague concerns and turn one into a better test."
+      },
+      "memorableLines": [
+        {
+          "text": "Curiosity keeps confidence close to reality."
+        },
+        {
+          "text": "Practice gives brave words somewhere to come from."
+        },
+        {
+          "text": "Paradox is information, not a failure to decide."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "chapterflow-v21-authored",
+      "chapterId": "dare-to-lead-ch06",
+      "number": 6,
+      "title": "Living into Our Values",
+      "readingTimeMinutes": 12,
+      "hook": "The values list matters only after the chosen words become visible behavior.",
+      "counterintuition": "Values are not alignment posters; they are tradeoff rules with slippery violations named in advance.",
+      "tryThisNow": "Pick one stated value and write the behavior that would prove it under social pressure.",
+      "keyTakeaway": "Values become real when people can see the behaviors that support or violate them.",
+      "breakdown": {
+        "fastRead": "Values become usable only when they are narrow enough to guide tradeoffs. A long list can sound inclusive while hiding the fact that no priority will win when pressure arrives. Living into values means naming the behaviors, costs, and tempting shortcuts attached to each word. Courage is visible when a leader refuses a discriminatory joke, enforces a boundary, or tells the truth at an approval cost. Values stop being decoration when they change what people do in uncomfortable moments. If a handoff fails, generosity can preserve intent while the agreement, owner, and impact still get named.",
+        "deepRead": "The values work becomes real only when words are translated into behaviors, slippery moments, and costs people can recognize before pressure arrives. The mechanism is specificity: a value guides action only after people can identify the conduct it demands. Organizations stop using values as wall decor and start using them as decision tools. Individuals can handle feedback and conflict with a clearer sense of what must be protected. Aspirational values do not shape culture until they are converted into specific behaviors people can practice, measure, and repair. Integrity means choosing courage over comfort and practicing values instead of merely professing them. A leader needs a very small number of core values because too many priorities become an escape from commitment. The organization names Be Brave, Serve the Work, and Take Good Care as operating priorities. Each phrase is tied to behaviors such as clear communication, boundaries, service, gratitude, and respect. Personal and professional values cannot be split without creating confusion about identity and decision-making. A value earns trust when it decides a tradeoff. Words become values only when behavior pays the cost. Generosity cannot replace a missing agreement.",
+        "fullRead": "Brown rejects decorative alignment. A leader has to decide which values travel across settings and what conduct proves them when approval is at risk. The shallow version is to pick inspiring words and assume alignment will follow. The real assignment is behavioral: name what the value looks like, name the tempting violations, ask for feedback, and accept that values become visible when comfort is at stake. The values work begins by rejecting vague aspiration. Integrity is defined behaviorally: choosing courage over comfort and practicing values instead of simply admiring them. The first task is narrowing. A long list of admirable words lets people avoid tradeoffs, so the exercise pushes toward two core values that can guide both professional and personal decisions. Splitting home values from work values is treated as a false division because identity travels across settings. Most organizations fail to make values teachable and observable, leaving employees with slogans instead of behavioral expectations. The second task is translation. A value must become teachable and observable, which means naming the behaviors that support it and the slippery behaviors that violate it under pressure. Slippery behaviors reveal where pressure pulls people away from their stated values. Courage, for example, can show up as refusing discriminatory humor or setting boundaries around hateful comments. The third task is sustaining values during feedback, privilege conversations, conflict, and exhaustion. Feedback tests values because defensiveness, blame, and self-protection become tempting exactly when learning is most needed. A long list can feel generous, but it often hides the absence of priority. The sharper practice asks which value will govern when two good things cannot both win. Once that choice is made, people need to know the behavior that proves it and the shortcut that violates it. The value also needs a cost test: if nobody risks disapproval, convenience, or status, the word may be admired without being practiced and remembered. The values work succeeds when the chosen word, visible conduct, and refused shortcut are all plain enough to guide a tense tradeoff. Empathy and self-compassion become protective practices because defensiveness often appears when values are tested. The arena seats for trusted empathy and self-compassion keep criticism from turning into shame or collapse."
+      },
+      "examples": [
+        {
+          "exampleId": "dare-to-lead-ch06-ex01",
+          "title": "Offsite Narrowing",
+          "tags": [
+            "values offsite",
+            "values into behavior",
+            "Values list narrowed to two"
+          ],
+          "planSpec": {
+            "domain": "values offsite",
+            "audience": "Gwen and leaders facing values offsite",
+            "stakes": "the team may confuse values into behavior with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Values list narrowed to two to practice values into behavior in values offsite"
+          },
+          "scenario": "Monday at 8:45 a.m. during an executive values offsite. Gwen wants all twelve official values to stay on the offsite wall. The list feels inclusive, but it cannot settle a tradeoff if every word has equal weight.",
+          "whatToDo": "She narrows the list to the few values that can decide a hard tradeoff and records what each one costs.",
+          "whyItMatters": "The division gains guidance because Gwen chooses commitment over inclusive decoration."
+        },
+        {
+          "exampleId": "dare-to-lead-ch06-ex02",
+          "title": "Conference Courage",
+          "tags": [
+            "conference reception",
+            "values into behavior",
+            "Courage shown through discriminatory jokes and social media boundaries"
+          ],
+          "planSpec": {
+            "domain": "conference reception",
+            "audience": "Hiro and leaders facing conference reception",
+            "stakes": "the team may confuse values into behavior with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Courage shown through discriminatory jokes and social media boundaries to practice values into behavior in conference reception"
+          },
+          "scenario": "Thursday night at a sales conference reception. Hiro hears a discriminatory joke at a conference reception and knows silence would be easier. The courage value will either become behavior now or remain private agreement.",
+          "whatToDo": "He states the boundary in the moment and leaves the approval cost with the person who crossed it.",
+          "whyItMatters": "The value becomes visible because Hiro lets behavior, not private agreement, carry the proof."
+        },
+        {
+          "exampleId": "dare-to-lead-ch06-ex03",
+          "title": "Manuscript Work",
+          "tags": [
+            "manuscript review",
+            "values into behavior",
+            "Brene Brown Education and Research Group values"
+          ],
+          "planSpec": {
+            "domain": "manuscript review",
+            "audience": "Ines and leaders facing manuscript review",
+            "stakes": "the team may confuse values into behavior with comfort, image, or avoidance",
+            "format": "audit",
+            "requiredBeat": "use Brene Brown Education and Research Group values to practice values into behavior in manuscript review"
+          },
+          "scenario": "Tuesday at 1:30 p.m. in a research manuscript review. Ines watches manuscript feedback turn Be Brave into permission to attack. The value needs a behavioral definition before it becomes a shield for ego.",
+          "whatToDo": "She asks which comment serves the work and which comment is protecting the speaker's ego.",
+          "whyItMatters": "The research team keeps courage connected to care because Ines defines the value in conduct."
+        },
+        {
+          "exampleId": "dare-to-lead-ch06-ex04",
+          "title": "Remote Boundary",
+          "tags": [
+            "remote operations",
+            "values into behavior",
+            "Values list narrowed to two"
+          ],
+          "planSpec": {
+            "domain": "remote operations",
+            "audience": "Jonas and leaders facing remote operations",
+            "stakes": "the team may confuse values into behavior with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Values list narrowed to two to practice values into behavior in remote operations"
+          },
+          "scenario": "Wednesday morning during a remote handoff review. Jonas's remote team assumes good intent while missed handoffs keep hurting clients. Generosity is present, but the broken agreement still needs a name.",
+          "whatToDo": "He keeps the generous reading and identifies the missed owner, due time, and client impact.",
+          "whyItMatters": "The handoff improves because Jonas refuses to let a generous story erase reliability."
+        },
+        {
+          "exampleId": "dare-to-lead-ch06-ex05",
+          "title": "Forum Inclusion",
+          "tags": [
+            "online forum",
+            "values into behavior",
+            "Courage shown through discriminatory jokes and social media boundaries"
+          ],
+          "planSpec": {
+            "domain": "online forum",
+            "audience": "Keira and leaders facing online forum",
+            "stakes": "the team may confuse values into behavior with comfort, image, or avoidance",
+            "format": "before_after",
+            "requiredBeat": "use Courage shown through discriminatory jokes and social media boundaries to practice values into behavior in online forum"
+          },
+          "scenario": "Friday at 5:20 p.m. in a professional association forum. Keira moderates a professional forum where hateful comments are being defended as openness. Inclusion cannot be both a value and an optional courtesy.",
+          "whatToDo": "She removes the comments and explains the inclusion behavior the forum will enforce.",
+          "whyItMatters": "Members see that inclusion is a standard of conduct, not a word on the page."
+        },
+        {
+          "exampleId": "dare-to-lead-ch06-ex06",
+          "title": "Audit Integrity",
+          "tags": [
+            "audit preparation",
+            "values into behavior",
+            "Brene Brown Education and Research Group values"
+          ],
+          "planSpec": {
+            "domain": "audit preparation",
+            "audience": "Lior and leaders facing audit preparation",
+            "stakes": "the team may confuse values into behavior with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Brene Brown Education and Research Group values to practice values into behavior in audit preparation"
+          },
+          "scenario": "Sunday afternoon beside a finance audit checklist. Lior prepares for an audit and knows pressure will tempt people into small shortcuts. The likely compromises are easiest to stop before they feel necessary.",
+          "whatToDo": "He names the likely shortcuts before the audit starts and ties each one to the value it would violate.",
+          "whyItMatters": "The finance team has a usable guardrail because Lior names slippery behavior before stress makes it attractive."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "dare-to-lead-ch06-q01",
+            "prompt": "A division president wants to keep twelve official values.",
+            "choices": [
+              "Keep all twelve so nobody feels excluded.",
+              "Narrow to the few values that can govern tradeoffs.",
+              "Rotate values monthly to avoid hard choices."
+            ],
+            "correctIndex": 1,
+            "explanation": "The values list forces commitment; keeping every word or rotating them avoids the hierarchy needed for hard tradeoffs.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch06-q02",
+            "prompt": "A regional manager hears a discriminatory joke at a conference reception.",
+            "choices": [
+              "Stay quiet because the event is informal.",
+              "Laugh politely and address inclusion later.",
+              "State the boundary and refuse the joke even if approval drops."
+            ],
+            "correctIndex": 2,
+            "explanation": "Courage becomes visible when behavior costs comfort; silence and polite laughter make the stated value disappear in the moment it matters.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch06-q03",
+            "prompt": "A research team uses Be Brave and Serve the Work during manuscript conflict.",
+            "choices": [
+              "Ask which behavior serves the work and which one protects ego.",
+              "Use Be Brave as permission to attack the weakest draft.",
+              "Take Good Care by avoiding disagreement."
+            ],
+            "correctIndex": 0,
+            "explanation": "Values need behavioral definitions; the wrong choices distort bravery or care.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch06-q04",
+            "prompt": "A remote team assumes positive intent while missed handoffs keep hurting clients.",
+            "choices": [
+              "Assume good intent while naming the agreement that was missed.",
+              "Keep generosity vague so nobody feels blamed.",
+              "Stop trusting the team after the third miss."
+            ],
+            "correctIndex": 0,
+            "explanation": "Generosity needs evidence and boundaries; vague kindness avoids the miss, while blanket distrust throws away useful intent.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch06-q05",
+            "prompt": "A moderator sees hateful comments in a professional association forum.",
+            "choices": [
+              "Leave them up to prove openness to all views.",
+              "Move the thread where fewer members will see it.",
+              "Remove the comments because inclusion is behavioral, not decorative."
+            ],
+            "correctIndex": 2,
+            "explanation": "A stated inclusion value becomes real through conduct; leaving hate visible or hiding it quietly fails the behavior test.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch06-q06",
+            "prompt": "A controller prepares the team for audit pressure.",
+            "choices": [
+              "Wait until the audit starts before discussing pressure.",
+              "Name likely shortcuts and the value each would violate.",
+              "Tell people integrity matters and skip behavioral detail."
+            ],
+            "correctIndex": 1,
+            "explanation": "Slippery behaviors need names before pressure arrives; waiting or using slogans gives people no usable guardrail.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch06-q07",
+            "prompt": "A leader separates home values from work values to avoid tradeoffs.",
+            "choices": [
+              "Work values can contradict home values without consequence.",
+              "Private values count only when they are publicly admired.",
+              "Values travel across settings and should survive discomfort."
+            ],
+            "correctIndex": 2,
+            "explanation": "Brown rejects divided values because identity travels; contradiction and public admiration both make values conditional.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch06-q08",
+            "prompt": "During feedback, a manager says values are obvious because posters list them.",
+            "choices": [
+              "Translate each value into observable actions and slippery behaviors.",
+              "Trust the posters because everyone knows the words.",
+              "Ask employees to memorize the value list before feedback."
+            ],
+            "correctIndex": 0,
+            "explanation": "A value is real only when it changes conduct; posters and memorization preserve words without proving behavior.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch06-q09",
+            "prompt": "A team chooses Take Good Care but has not defined the behavior.",
+            "choices": [
+              "Let each person interpret Take Good Care privately.",
+              "Define how Be Brave, Serve the Work, and Take Good Care behave in meetings.",
+              "Use the value as praise after good outcomes only."
+            ],
+            "correctIndex": 1,
+            "explanation": "Shared values need shared behavioral definitions; private interpretation and after-the-fact praise cannot guide conflict.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "dare-to-lead-ch06-card01",
+          "front": "Why must values be narrowed?",
+          "back": "A short list can guide tradeoffs when pressure arrives. A long list often preserves agreement by avoiding priority."
+        },
+        {
+          "cardId": "dare-to-lead-ch06-card02",
+          "front": "What makes a value operational?",
+          "back": "People can name the behavior, the likely shortcut, and the cost of staying aligned. The word has to change a decision."
+        },
+        {
+          "cardId": "dare-to-lead-ch06-card03",
+          "front": "What proves courage as a value?",
+          "back": "Courage becomes visible when behavior changes despite approval, ease, or convenience being at risk."
+        },
+        {
+          "cardId": "dare-to-lead-ch06-card04",
+          "front": "How should generosity handle missed agreements?",
+          "back": "Keep the charitable reading, then name the commitment, owner, and impact. Good intent does not erase a broken handoff."
+        },
+        {
+          "cardId": "dare-to-lead-ch06-card05",
+          "front": "What keeps values work from becoming decoration?",
+          "back": "Define the uncomfortable behaviors the value requires before stress arrives. Otherwise inspiring words can hide misalignment."
+        }
+      ],
+      "implementationPlan": {
+        "title": "Living into Our Values practice",
+        "coreSkill": "Choose the values that decide tradeoffs, define their behaviors, and name the shortcuts pressure will tempt.",
+        "ifThenPlans": [
+          {
+            "context": "A values list is too long to guide a tradeoff",
+            "plan": "If every value seems equally important, then narrow the list until one priority can actually decide the next hard choice."
+          },
+          {
+            "context": "Casual behavior violates a stated value",
+            "plan": "If a joke, comment, or shortcut crosses the value, then address the behavior immediately and name the standard."
+          },
+          {
+            "context": "Good intent is being used to ignore a missed agreement",
+            "plan": "If generosity is hiding impact, then preserve the charitable reading and still name the broken commitment."
+          }
+        ],
+        "twentyFourHourChallenge": "Within one day, pick one value and write the meeting behavior that would prove it when approval is at risk.",
+        "weeklyPractice": "For seven days, record moments when a value costs comfort; practice one boundary that makes the value observable."
+      },
+      "memorableLines": [
+        {
+          "text": "A value earns trust when it decides a tradeoff."
+        },
+        {
+          "text": "Words become values only when behavior pays the cost."
+        },
+        {
+          "text": "Generosity cannot replace a missing agreement."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "chapterflow-v21-authored",
+      "chapterId": "dare-to-lead-ch07",
+      "number": 7,
+      "title": "Braving Trust",
+      "readingTimeMinutes": 12,
+      "hook": "BRAVING turns trust repair into seven inspectable behaviors instead of one vague accusation.",
+      "counterintuition": "Trust is generous and boundaried; blanket suspicion and blanket forgiveness both miss the repair.",
+      "tryThisNow": "Choose one strained relationship and identify the exact BRAVING letter under pressure.",
+      "keyTakeaway": "Trust is built, broken, and repaired through specific behaviors.",
+      "breakdown": {
+        "fastRead": "Trust gets repairable when a vague accusation becomes a specific behavior. BRAVING gives seven names for that inspection: Boundaries, Reliability, Accountability, Vault, Integrity, Nonjudgment, and Generosity. A missed deadline points toward Reliability; gossip points toward the Vault; hidden data undercuts Integrity. Repair begins by naming the strained letter, the missed behavior, and the observable action that would rebuild trust. In a repair conversation, the leader can distinguish a delivery miss from a confidence breach or a values shortcut before choosing evidence of repair.",
+        "deepRead": "Brown uses BRAVING to break a global trust accusation into seven inspectable behaviors: Boundaries, Reliability, Accountability, Vault, Integrity, Nonjudgment, and Generosity. The inventory makes the conversation smaller without making it softer. Boundaries ask whether limits are clear and respected. Reliability tests whether commitments are realistic and repeatedly kept. Accountability requires ownership, apology, amends, and changed behavior. Vault protects information that is not ours to share. Integrity chooses values over convenience. Nonjudgment makes asking for help safe. Generosity gives the most charitable reading the available facts can honestly support. Trust problems become solvable when people can name the exact behavior that built, strained, or broke trust. A leader who says only, \"trust me,\" is asking for belief without evidence; a leader who names the strained behavior gives the other person something to inspect. The same inventory also exposes self-trust gaps where personal boundaries, follow-through, or judgment have slipped. That matters because leaders sometimes compensate for low self-trust by adding controls to everyone else's work. The repair sequence is practical: name the strain, pick the letter, describe the missed behavior, and choose evidence that would show repair. Trust repair starts with a nameable behavior. A blurred accusation cannot become a concrete repair. The Vault treats gossip as a breach, not bonding.",
+        "fullRead": "The inventory is most useful when trust feels too large to discuss. It lets a leader locate the break without turning the whole relationship into a verdict. The useful point is precise: trust is generous and boundaried, and repair begins by naming the behavior instead of offering blanket suspicion or blanket forgiveness. Trust is treated as operational infrastructure because it affects whether people share information, take risks, collaborate, and recover from mistakes. The problem is that trust language often becomes global and character-based: someone is trusted or not trusted. The BRAVING inventory makes the conversation smaller and therefore more usable: Boundaries, Reliability, Accountability, Vault, Integrity, Nonjudgment, and Generosity. Boundaries ask whether limits are clear and respected. Reliability means doing what was promised repeatedly and realistically, not overcommitting to earn approval. Accountability requires ownership, apology, amends, and changed behavior. Vault protects information that is not ours to share and refuses gossip as counterfeit intimacy. Integrity means choosing values over convenience. Nonjudgment creates room to ask for help without humiliation. Generosity gives the most charitable reading that available facts can honestly support. The repair changes depending on the letter. An overpromise needs a reliability reset with realistic commitments; a breach of confidence needs a vault correction and tighter sharing rules; a harsh assumption needs generosity bounded by evidence. An integrity strain is different again: the leader has to surface the value that was compromised, name the convenient shortcut, and choose the harder behavior in public enough that others can see the value restored. Naming the part prevents a damaged relationship from becoming one blurred accusation. It also keeps self-trust in view, because leaders who cannot rely on themselves often compensate by controlling other people. In that case, repair may start with removing unnecessary checkpoints, asking for help without contempt, or admitting where the leader's own follow-through has been thin. The inventory is equally helpful when the leader is the one asking for trust; instead of demanding belief, the leader can show the boundary, kept commitment, protected confidence, amends, value choice, help-seeking safety, or generous interpretation that would make belief reasonable. The conversation should end with observable evidence: a written access rule, a realistic promise, an apology paired with process change, a protected confidence, a value-honoring disclosure, a safer request for help, or a charitable interpretation held together with a clear limit."
+      },
+      "examples": [
+        {
+          "exampleId": "dare-to-lead-ch07-ex01",
+          "title": "Access Boundary",
+          "tags": [
+            "document access",
+            "BRAVING trust",
+            "BRAVING inventory"
+          ],
+          "planSpec": {
+            "domain": "document access",
+            "audience": "Marta and leaders facing document access",
+            "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use BRAVING inventory to practice BRAVING trust in document access"
+          },
+          "scenario": "Tuesday at 4:10 p.m. in a legal document access review. Marta finds confidential legal documents moving through vague access rules. The team is treating convenience as permission, and one wrong share could break client trust.",
+          "whatToDo": "She states who may see which files, what requires approval, and how exceptions will be logged for review.",
+          "whyItMatters": "The project protects trust because Marta turns a boundary concern into explicit operating rules."
+        },
+        {
+          "exampleId": "dare-to-lead-ch07-ex02",
+          "title": "Campaign Reliability",
+          "tags": [
+            "campaign delivery",
+            "BRAVING trust",
+            "Brent Ladd at Purdue University"
+          ],
+          "planSpec": {
+            "domain": "campaign delivery",
+            "audience": "Noor and leaders facing campaign delivery",
+            "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Brent Ladd at Purdue University to practice BRAVING trust in campaign delivery"
+          },
+          "scenario": "Monday morning beside a marketing campaign tracker. Noor keeps promising campaign approvals faster than the team can deliver. People still believe her motives, but the repeated misses are making her commitments less believable.",
+          "whatToDo": "She recalculates capacity, names the reliability strain, and replaces approval-seeking promises with commitments the team can keep.",
+          "whyItMatters": "The campaign gets more reliable because Noor addresses follow-through instead of defending good intent."
+        },
+        {
+          "exampleId": "dare-to-lead-ch07-ex03",
+          "title": "Advising Vault",
+          "tags": [
+            "advising office",
+            "BRAVING trust",
+            "Gossip as counterfeit closeness"
+          ],
+          "planSpec": {
+            "domain": "advising office",
+            "audience": "Oren and leaders facing advising office",
+            "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+            "format": "audit",
+            "requiredBeat": "use Gossip as counterfeit closeness to practice BRAVING trust in advising office"
+          },
+          "scenario": "Wednesday at 2:05 p.m. in a university advising office. Oren hears advising-office gossip offered as a shortcut to closeness. The story may feel bonding in the moment, but it teaches everyone that private information travels.",
+          "whatToDo": "He declines the story, names the Vault boundary, and redirects the conversation to the student's documented need.",
+          "whyItMatters": "Confidentiality becomes safer because Oren refuses counterfeit trust built on absent people."
+        },
+        {
+          "exampleId": "dare-to-lead-ch07-ex04",
+          "title": "Purdue Control",
+          "tags": [
+            "student success",
+            "BRAVING trust",
+            "BRAVING inventory"
+          ],
+          "planSpec": {
+            "domain": "student success",
+            "audience": "Petra and leaders facing student success",
+            "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use BRAVING inventory to practice BRAVING trust in student success"
+          },
+          "scenario": "Friday at 8:30 a.m. before a student success meeting. Petra notices her Purdue-style program controls increasing whenever she doubts her own judgment. Her self-trust gap is turning into extra approval layers for colleagues.",
+          "whatToDo": "She marks which controls protect students and which ones manage her anxiety, then removes one unnecessary checkpoint.",
+          "whyItMatters": "The team gets breathing room because Petra locates the control pattern before blaming commitment."
+        },
+        {
+          "exampleId": "dare-to-lead-ch07-ex05",
+          "title": "Migration Amends",
+          "tags": [
+            "data migration",
+            "BRAVING trust",
+            "Brent Ladd at Purdue University"
+          ],
+          "planSpec": {
+            "domain": "data migration",
+            "audience": "Quill and leaders facing data migration",
+            "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+            "format": "before_after",
+            "requiredBeat": "use Brent Ladd at Purdue University to practice BRAVING trust in data migration"
+          },
+          "scenario": "Thursday evening in a vendor migration postmortem. Quill's vendor migration failed after several warnings were minimized. The client needs more than regret; they need evidence that the failure path has changed.",
+          "whatToDo": "He owns the miss, apologizes, makes amends, and changes the review checkpoint before the next migration.",
+          "whyItMatters": "The client can judge repair because Quill pairs apology with altered process."
+        },
+        {
+          "exampleId": "dare-to-lead-ch07-ex06",
+          "title": "Partnership Generosity",
+          "tags": [
+            "research partnership",
+            "BRAVING trust",
+            "Gossip as counterfeit closeness"
+          ],
+          "planSpec": {
+            "domain": "research partnership",
+            "audience": "Rina and leaders facing research partnership",
+            "stakes": "the team may confuse BRAVING trust with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Gossip as counterfeit closeness to practice BRAVING trust in research partnership"
+          },
+          "scenario": "Saturday afternoon across a research partnership table. Rina's research partner missed a deadline and the evidence about intent is thin. The partnership can neither excuse the miss nor invent a motive from limited facts.",
+          "whatToDo": "She chooses the kindest reading the facts support, names the delivery impact, and sets the next boundary.",
+          "whyItMatters": "The partnership stays generous without becoming naive because Rina keeps facts and limits together."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "dare-to-lead-ch07-q01",
+            "prompt": "A project attorney discovers vague access rules around confidential files.",
+            "choices": [
+              "Trust everyone broadly because the project is urgent.",
+              "Let the attorney decide privately who can see files.",
+              "Name the boundary problem and set access rules before sharing."
+            ],
+            "correctIndex": 2,
+            "explanation": "BRAVING begins with boundaries; the wrong choices avoid explicit limits.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch07-q02",
+            "prompt": "A creative operations lead keeps making approval-seeking promises.",
+            "choices": [
+              "Reliability is the issue because promises exceed real capacity.",
+              "Vault is the issue because campaign files are confidential.",
+              "Generosity is the issue because the lead means well."
+            ],
+            "correctIndex": 0,
+            "explanation": "The pattern is follow-through, not intent or secrecy; confidentiality and good motives do not fix repeated overcommitment.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch07-q03",
+            "prompt": "A coordinator hears gossip in a university advising office.",
+            "choices": [
+              "Listen quietly because the story creates quick trust.",
+              "Decline the gossip because the vault protects absent people.",
+              "Share a smaller secret so the exchange feels equal."
+            ],
+            "correctIndex": 1,
+            "explanation": "Gossip creates counterfeit closeness while teaching that confidentiality is unsafe.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch07-q04",
+            "prompt": "A Purdue program director notices control rising whenever self-trust drops.",
+            "choices": [
+              "Tighten approvals so the director feels less exposed.",
+              "Call the team uncommitted until they improve.",
+              "Ask where low self-trust is becoming control of colleagues."
+            ],
+            "correctIndex": 2,
+            "explanation": "Brent Ladd's example links control of others to self-trust gaps; tighter approvals and blame protect the director, not the work.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch07-q05",
+            "prompt": "A vendor migration failed after repeated warning signs.",
+            "choices": [
+              "Send a polished apology and move to the next milestone.",
+              "Own the mistake, apologize, make amends, and change the process.",
+              "Explain that vendors often fail during migrations."
+            ],
+            "correctIndex": 1,
+            "explanation": "Accountability requires ownership plus changed behavior; polish and excuses leave the broken process untouched.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch07-q06",
+            "prompt": "A research partnership misunderstanding has thin evidence.",
+            "choices": [
+              "Choose the kindest reading the facts can honestly support.",
+              "Forgive everything so the partnership feels generous.",
+              "Assume bad intent until the other lab proves otherwise."
+            ],
+            "correctIndex": 0,
+            "explanation": "Generosity is bounded by available facts; blanket forgiveness ignores limits, while suspicion outruns evidence.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch07-q07",
+            "prompt": "A leader says transparency matters but quietly hides unfavorable data before a board review. Which BRAVING behavior is under strain?",
+            "choices": [
+              "Vault, because all uncomfortable information must remain private.",
+              "Reliability, because the board meeting might run behind schedule.",
+              "Integrity, because convenience was chosen over a stated value."
+            ],
+            "correctIndex": 2,
+            "explanation": "Integrity is the issue because the leader violated a stated value when hiding data was more convenient. Vault concerns information that is not yours to share, and Reliability concerns kept commitments rather than the value-versus-convenience choice.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch07-q08",
+            "prompt": "Motivation is high on a campaign team, but delivery keeps slipping.",
+            "choices": [
+              "Discuss realistic commitments and follow-through instead of motivation.",
+              "Praise effort so reliability feels less harsh.",
+              "Move the deadline again to preserve enthusiasm."
+            ],
+            "correctIndex": 0,
+            "explanation": "Reliability is about repeated kept commitments; praise and deadline movement may feel kind while preserving the trust break.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch07-q09",
+            "prompt": "A leader judges colleagues who ask for help.",
+            "choices": [
+              "Vault is broken because people are asking questions.",
+              "Generosity means the leader should ignore the pattern.",
+              "Nonjudgment may be weak if help-seeking feels unsafe."
+            ],
+            "correctIndex": 2,
+            "explanation": "Nonjudgment creates room to need help without humiliation; vault and generosity are distractors because the issue is judgment around need.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "dare-to-lead-ch07-card01",
+          "front": "What does Reliability test?",
+          "back": "Whether commitments are realistic and repeatedly kept. Good intent does not repair a pattern of overpromising."
+        },
+        {
+          "cardId": "dare-to-lead-ch07-card02",
+          "front": "What does Accountability require?",
+          "back": "Own the mistake, apologize, make amends, and change the behavior. Repair has to be visible beyond regret."
+        },
+        {
+          "cardId": "dare-to-lead-ch07-card03",
+          "front": "What does the Vault protect?",
+          "back": "Information that is not yours to share. Gossip counts as a trust breach, even when it feels like bonding."
+        },
+        {
+          "cardId": "dare-to-lead-ch07-card04",
+          "front": "What does Generosity mean here?",
+          "back": "Choose the most charitable reading the available facts can honestly support. It is bounded kindness, not denial."
+        },
+        {
+          "cardId": "dare-to-lead-ch07-card05",
+          "front": "What does Integrity choose?",
+          "back": "Values over convenience, especially when hiding or bending the truth would be easier."
+        }
+      ],
+      "implementationPlan": {
+        "title": "Braving Trust practice",
+        "coreSkill": "Use BRAVING to name the strained trust behavior and choose one observable repair.",
+        "ifThenPlans": [
+          {
+            "context": "Confidential information is moving through unclear access rules",
+            "plan": "If sharing rules are blurry, then name the Boundary and Vault strain, define access, and log exceptions."
+          },
+          {
+            "context": "Motivation is high but delivery keeps slipping",
+            "plan": "If promises exceed capacity, then reset Reliability with fewer commitments, clearer owners, and a checkable date."
+          },
+          {
+            "context": "Thin evidence is turning into a story about intent",
+            "plan": "If motive is unclear, then choose Generosity within the facts and set the next boundary for behavior."
+          }
+        ],
+        "twentyFourHourChallenge": "Within one day, choose one strained relationship and mark the single BRAVING letter that needs repair.",
+        "weeklyPractice": "For a week, document kept promises, boundary misses, vault leaks, and repair attempts so trust becomes discussable evidence."
+      },
+      "memorableLines": [
+        {
+          "text": "Trust repair starts with a nameable behavior."
+        },
+        {
+          "text": "A blurred accusation cannot become a concrete repair."
+        },
+        {
+          "text": "The Vault treats gossip as a breach, not bonding."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "chapterflow-v21-authored",
+      "chapterId": "dare-to-lead-ch08",
+      "number": 8,
+      "title": "Learning to Rise",
+      "readingTimeMinutes": 12,
+      "hook": "The Ham Foldover, Box Breathing, and SFD work give failure a recovery path.",
+      "counterintuition": "Learning to rise is not bouncing back fast; it is testing the story before it hardens.",
+      "tryThisNow": "Write one SFD from a recent hook and mark the missing data before acting on it.",
+      "keyTakeaway": "Rising means noticing emotion, testing the first story, and proving the learning through changed behavior.",
+      "breakdown": {
+        "fastRead": "Rising strong is a recovery discipline for failure, hurt, and disappointment. The process starts by noticing the emotional hook before the first story becomes marching orders. Regulation gives the body enough room for curiosity, and the rumble tests the story against missing data. The revolution is not forced positivity; it is changed behavior that proves the learning. Teams can take smarter risks when hard landings have a shared repair path. After a heated standup, recovery means repairing the offloaded impact and returning to the facts with new behavior.",
+        "deepRead": "Brown presents rising strong as a sequence: notice the hook, regulate the body, test the story, and prove the lesson through changed behavior. The sequence protects the team from acting on a confident interpretation before the facts arrive. Teams that can rise do not have to avoid risk to stay safe. They can learn from setbacks instead of converting pain into blame, silence, or false certainty. People take smarter risks when they know how to recover from hard landings, regulate emotion, and reality-check the stories their minds create under threat. Resilience should be taught before major risk because hard landings are part of courageous work. The reckoning begins by noticing bodily emotion and getting curious before the reaction becomes behavior. A rough first story is named as provisional instead of true. Sharing it carefully with another person makes missing data visible and turns a private narrative into a chance for clarity and connection. Common offloading patterns include sudden eruptions, redirected hurt, numbing, stockpiling resentment, false cheerfulness, and getting stuck in avoidance. The first story is a draft, not a verdict. Regulation gives curiosity room to return. Recovery is proven by changed behavior.",
+        "fullRead": "Brown gives failure a recovery path that is neither speed nor forced optimism. The first draft may reveal real emotion, but it still needs data. The quick misreading is that rising means bouncing back fast or putting a positive lesson on every failure. The deeper practice is slower and less decorative: notice the hook, regulate the body, interrogate the invented story, gather data, and let changed behavior prove the learning. The final skill begins from the premise that courage guarantees falls. People who do not know how to recover avoid risk, overprotect others, or turn failure into identity threat. Rising starts with the reckoning: noticing the emotional hook in the body and becoming curious before a reaction hardens into behavior. Several offloading patterns show what happens when pain is not acknowledged, including sudden eruptions after restraint, hurt converted into anger, numbing, stockpiled resentment, false cheerfulness, and stuck avoidance. Calm is presented as a practice that can be trained, with Box Breathing as a concrete regulation tool. Calm is a leadership practice, not a personality setting; breathing and perspective create space between stimulus and response. The rumble stage examines the story the mind creates when information is missing. Meaning-making is automatic, but the first explanation is often biased toward self-protection and simple binaries. When data is missing, the brain invents a story and rewards the feeling of explanation even when the story is wrong. SFD language gives people a way to identify a rough narrative without treating it as truth. Confabulation matters because false stories can feel honest from the inside, especially in workplaces where silence leaves gaps for fear to fill. SFDs are rough first interpretations that need to be surfaced, questioned, and revised with better evidence. This matters because the first story often feels complete precisely when it is least checked. A leader who pauses can separate body sensation, interpretation, missing facts, and repair. The recovery becomes visible only when the next behavior changes. The rising practice marks the story as provisional, checks the missing facts, and repairs whatever the first reaction damaged. Story rumbles and reality-checking turn private interpretations into shared inquiry. The revolution is the cultural result: families, schools, and organizations become braver when recovery, story testing, and changed behavior are practiced openly."
+      },
+      "examples": [
+        {
+          "exampleId": "dare-to-lead-ch08-ex01",
+          "title": "Meeting Story",
+          "tags": [
+            "procurement reschedule",
+            "reckoning, rumble, revolution",
+            "Ham Foldover Debacle"
+          ],
+          "planSpec": {
+            "domain": "procurement reschedule",
+            "audience": "Selene and leaders facing procurement reschedule",
+            "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Ham Foldover Debacle to practice reckoning, rumble, revolution in procurement reschedule"
+          },
+          "scenario": "Monday at 11:50 a.m. after a procurement meeting moves. Selene tells herself a moved procurement meeting proves the sponsor is dismissing her. The story is vivid, but she does not yet know why the calendar changed.",
+          "whatToDo": "She labels the explanation as a first draft and lists the data she needs before assigning motive.",
+          "whyItMatters": "The next conversation gets cleaner because Selene tests the story before making it policy."
+        },
+        {
+          "exampleId": "dare-to-lead-ch08-ex02",
+          "title": "Email Breath",
+          "tags": [
+            "email conflict",
+            "reckoning, rumble, revolution",
+            "Box Breathing"
+          ],
+          "planSpec": {
+            "domain": "email conflict",
+            "audience": "Tariq and leaders facing email conflict",
+            "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Box Breathing to practice reckoning, rumble, revolution in email conflict"
+          },
+          "scenario": "Tuesday at 7:05 p.m. before an executive email reply. Tariq feels heat in his chest before replying to an executive email. His body is already preparing the message before his judgment has caught up.",
+          "whatToDo": "He uses Box Breathing, waits for the physical spike to settle, and then writes the reply.",
+          "whyItMatters": "The email improves because Tariq creates enough space to choose language instead of exporting the spike."
+        },
+        {
+          "exampleId": "dare-to-lead-ch08-ex03",
+          "title": "Roadmap Draft",
+          "tags": [
+            "roadmap exclusion",
+            "reckoning, rumble, revolution",
+            "SFD reality-checking"
+          ],
+          "planSpec": {
+            "domain": "roadmap exclusion",
+            "audience": "Uma and leaders facing roadmap exclusion",
+            "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+            "format": "audit",
+            "requiredBeat": "use SFD reality-checking to practice reckoning, rumble, revolution in roadmap exclusion"
+          },
+          "scenario": "Wednesday at 3:15 p.m. after a roadmap meeting ends. Uma was left off a roadmap invite and has already built a polished exclusion story. The story may be true, but it has not earned authority yet.",
+          "whatToDo": "She shares the SFD as provisional and asks what happened before assigning motive.",
+          "whyItMatters": "The product discussion stays repairable because Uma does not confuse a vivid story with verified data."
+        },
+        {
+          "exampleId": "dare-to-lead-ch08-ex04",
+          "title": "Standup Eruption",
+          "tags": [
+            "bug standup",
+            "reckoning, rumble, revolution",
+            "Ham Foldover Debacle"
+          ],
+          "planSpec": {
+            "domain": "bug standup",
+            "audience": "Vaughn and leaders facing bug standup",
+            "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use Ham Foldover Debacle to practice reckoning, rumble, revolution in bug standup"
+          },
+          "scenario": "Friday morning during engineering standup. Vaughn erupts in standup after weeks of stored frustration about a recurring bug. The bug still matters, but now the room also has a repair problem.",
+          "whatToDo": "He names the offloaded hurt, apologizes to the person hit by it, and returns to the bug facts.",
+          "whyItMatters": "The engineering team can address the defect because Vaughn repairs the harm instead of defending the blast."
+        },
+        {
+          "exampleId": "dare-to-lead-ch08-ex05",
+          "title": "Merger Evidence",
+          "tags": [
+            "merger planning",
+            "reckoning, rumble, revolution",
+            "Box Breathing"
+          ],
+          "planSpec": {
+            "domain": "merger planning",
+            "audience": "Willa and leaders facing merger planning",
+            "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+            "format": "before_after",
+            "requiredBeat": "use Box Breathing to practice reckoning, rumble, revolution in merger planning"
+          },
+          "scenario": "Thursday afternoon in a merger integration planning room. Willa is convinced the merger partner is hiding information, but her evidence is thin. Acting on certainty now would turn a question into an accusation.",
+          "whatToDo": "She separates observation from interpretation and asks for the missing documents directly.",
+          "whyItMatters": "The integration stays grounded because Willa does not let certainty outrun evidence."
+        },
+        {
+          "exampleId": "dare-to-lead-ch08-ex06",
+          "title": "Classroom Recovery",
+          "tags": [
+            "classroom recovery",
+            "reckoning, rumble, revolution",
+            "SFD reality-checking"
+          ],
+          "planSpec": {
+            "domain": "classroom recovery",
+            "audience": "Zev and leaders facing classroom recovery",
+            "stakes": "the team may confuse reckoning, rumble, revolution with comfort, image, or avoidance",
+            "format": "decision_point",
+            "requiredBeat": "use SFD reality-checking to practice reckoning, rumble, revolution in classroom recovery"
+          },
+          "scenario": "Sunday evening in a middle school project debrief. Zev's class project failed and the teaching team wants to rush toward a cheerful lesson. Students will miss the recovery skill if disappointment gets skipped.",
+          "whatToDo": "He helps students reckon with the disappointment, test their story, and choose one repair.",
+          "whyItMatters": "Students learn recovery because Zev treats the revolution as changed behavior, not forced positivity."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "dare-to-lead-ch08-q01",
+            "prompt": "A director tells herself a rescheduled procurement meeting proves she is being dismissed.",
+            "choices": [
+              "Mark the story as a draft and ask what data is missing.",
+              "Treat the slight as proof that respect is gone.",
+              "Make a larger demand before the next meeting."
+            ],
+            "correctIndex": 0,
+            "explanation": "The SFD label makes the first story testable; treating it as proof or escalating demands lets an unchecked story drive behavior.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch08-q02",
+            "prompt": "A COO feels heat in her chest before replying to an email.",
+            "choices": [
+              "Send the reply while the emotion is honest.",
+              "Forward the email to allies for validation.",
+              "Use Box Breathing before choosing words."
+            ],
+            "correctIndex": 2,
+            "explanation": "Regulation creates space for curiosity; instant sending and ally-seeking may spread the reaction before it is understood.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch08-q03",
+            "prompt": "A design lead was left off a roadmap invite and has a polished exclusion story.",
+            "choices": [
+              "Announce the exclusion story so the team feels the impact.",
+              "Share the SFD as provisional and invite missing information.",
+              "Withdraw from roadmap work until someone apologizes."
+            ],
+            "correctIndex": 1,
+            "explanation": "Rumbling with the story asks for data before action; announcing or withdrawing treats the draft as settled truth.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch08-q04",
+            "prompt": "A tech lead erupts during standup after weeks of saved-up frustration.",
+            "choices": [
+              "Name the offloaded hurt and repair with the person affected.",
+              "Defend the eruption because the frustration was real.",
+              "Move the bug discussion to private chat and continue."
+            ],
+            "correctIndex": 0,
+            "explanation": "Offloading hurt explains the pattern but does not excuse the harm; defending or bypassing the eruption skips repair.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch08-q05",
+            "prompt": "A merger lead is certain the other team is hiding information, but data is thin.",
+            "choices": [
+              "Trust the story because it feels sincere.",
+              "Test the confident story before acting on it.",
+              "Wait for the other team to confess first."
+            ],
+            "correctIndex": 1,
+            "explanation": "Confabulation can feel true, so rising tests it; sincerity and passive waiting both leave the story unchecked.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch08-q06",
+            "prompt": "A teacher team wants a failed project to teach recovery.",
+            "choices": [
+              "Identify who caused the failure and move on quickly.",
+              "Turn the lesson positive before feelings slow the class.",
+              "Teach students to reckon, test the story, and practice repair."
+            ],
+            "correctIndex": 2,
+            "explanation": "The revolution is changed behavior; blame and forced cheer both skip the learning process.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "dare-to-lead-ch08-q07",
+            "prompt": "A manager wants recovery to mean bouncing back fast.",
+            "choices": [
+              "Bouncing back fast proves the fall was handled.",
+              "A positive lesson is enough when people are busy.",
+              "Rising is deliberate recovery work, not speed or decoration."
+            ],
+            "correctIndex": 2,
+            "explanation": "Brown's process is slower and more disciplined than positivity; speed and a neat lesson can hide unexamined pain.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "dare-to-lead-ch08-q08",
+            "prompt": "A teammate says the first story is honest because it feels sincere.",
+            "choices": [
+              "Honest emotion makes the first explanation reliable.",
+              "A felt story can still need data before it guides behavior.",
+              "Sincerity means reality-checking is unnecessary."
+            ],
+            "correctIndex": 1,
+            "explanation": "Emotion may be real while the interpretation remains incomplete; honesty and sincerity do not remove the need to check facts.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "dare-to-lead-ch08-q09",
+            "prompt": "A team avoids risk because falls feel like identity threats.",
+            "choices": [
+              "Build a shared recovery practice so risk does not require avoidance.",
+              "Reduce the amount of risk so people stop falling.",
+              "Protect the team from feedback that might hook them."
+            ],
+            "correctIndex": 0,
+            "explanation": "Rising gives courage a recovery path; avoiding all falls shrinks the work.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "dare-to-lead-ch08-card01",
+          "front": "What is a first draft story?",
+          "back": "It is the quick explanation the mind builds from limited data. It should be labeled as provisional before it guides behavior."
+        },
+        {
+          "cardId": "dare-to-lead-ch08-card02",
+          "front": "What starts the reckoning?",
+          "back": "Notice the emotional hook and the body's reaction. That pause keeps the first story from becoming automatic action."
+        },
+        {
+          "cardId": "dare-to-lead-ch08-card03",
+          "front": "Why regulate before replying?",
+          "back": "A settled body gives judgment more room. The leader can choose language instead of exporting the spike."
+        },
+        {
+          "cardId": "dare-to-lead-ch08-card04",
+          "front": "What does rumbling with the story require?",
+          "back": "Separate observation from interpretation and ask what data is missing. The story needs testing before it becomes policy."
+        },
+        {
+          "cardId": "dare-to-lead-ch08-card05",
+          "front": "What proves the revolution?",
+          "back": "Changed behavior proves the learning. Recovery is not complete just because the lesson sounds positive."
+        }
+      ],
+      "implementationPlan": {
+        "title": "Learning to Rise practice",
+        "coreSkill": "Slow the first story, regulate the body, test missing data, and choose one repair that changes behavior.",
+        "ifThenPlans": [
+          {
+            "context": "A slight feels certain before evidence is checked",
+            "plan": "If the story arrives as fact, then label it as a draft and list the missing data before acting."
+          },
+          {
+            "context": "Emotion spikes before a reply",
+            "plan": "If the body is already writing the response, then regulate first and choose words after the spike settles."
+          },
+          {
+            "context": "A hurt reaction has landed on someone else",
+            "plan": "If pain has been offloaded, then repair the impact before debating the original issue."
+          }
+        ],
+        "twentyFourHourChallenge": "Within one day, write one SFD from a recent hook and circle the facts you do not actually have.",
+        "weeklyPractice": "For seven days, track one recurring story, test it with data, and make one repair that shows the learning changed behavior."
+      },
+      "memorableLines": [
+        {
+          "text": "The first story is a draft, not a verdict."
+        },
+        {
+          "text": "Regulation gives curiosity room to return."
+        },
+        {
+          "text": "Recovery is proven by changed behavior."
+        }
+      ]
+    }
+  ]
+}

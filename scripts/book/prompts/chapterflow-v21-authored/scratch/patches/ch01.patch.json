@@ -1,0 +1,169 @@
+{
+  "examples": [
+    {
+      "title": "Last place at the World's 50 Best",
+      "scenario": "At the 2010 World's 50 Best Restaurants ceremony, Renske Adler watched Eleven Madison Park flash onto the screen at number fifty, dead last. Its food was already extraordinary, which made the placement sting. That night Renske faced the same fork in her own work: her city bistro ran flawlessly and felt forgettable. Before she set Monday's priorities, she had to decide whether to push the cooking harder or compete on something the ranking never measured, how a guest feels walking out.",
+      "whatToDo": "Separate the job you must finish from the feeling the exchange should leave behind, write that feeling down first, then redesign one service step so it becomes more likely."
+    },
+    {
+      "title": "The credit union redefines fast",
+      "scenario": "'We already answer every call in under thirty seconds,' the branch lead said. Marisol Quintero, the new head of member experience at a Cleveland credit union, slid a printout across the table: the story of Eleven Madison Park vowing on a cocktail napkin to win on hospitality rather than food. 'Speed is our floor, not our edge,' Marisol said. 'A member can get fast service at any bank. Before the next planning cycle, we have to decide the one feeling a member should carry out the door.'",
+      "whatToDo": "Decide the emotional outcome you want before choosing any metric or script, so the target you manage toward is what members feel, not only how fast you move them through."
+    },
+    {
+      "title": "Budget night at the dermatology clinic",
+      "scenario": "Dr. Aleksy Nowak runs an Austin dermatology clinic that finishes on time and charts perfectly, yet patients keep calling it cold. Two ways to spend the year's last budget compete: a self-check-in kiosk that trims four minutes per visit, or coaching the front desk to greet returning patients by name and recall why they came. The evening before the budget locks, Aleksy has to choose which one truly changes how a patient feels, the way Will Guidara chose hospitality over a better menu.",
+      "whatToDo": "When a faster process and a warmer one compete for the same budget, fund the one the person on the receiving end would actually notice and still remember a week later."
+    },
+    {
+      "title": "Boot store keeps the numbers, adds the names",
+      "scenario": "Before, the Halvard Outfitters flagship in Denver scored its floor staff only on units sold per hour, and greeters were timed like a checkout lane. After Sefton Mbeki took over as store manager, he kept the sales targets but added one rule borrowed from Eleven Madison Park: every associate learned three regulars by name and what each came in to solve. Six months on, revenue per visit was flat, yet repeat visits climbed and shoppers wrote that a boot store had finally made them feel looked after, not rung up.",
+      "whatToDo": "Keep the hard performance numbers, then layer one specific act of recognition on top, so the relationship becomes something you build on purpose rather than a byproduct of a sale."
+    },
+    {
+      "title": "Every SLA met, three accounts gone",
+      "scenario": "The renewal numbers came in soft, so Ingrid Solheim ran the postmortem on her Toronto startup's support team. On paper the quarter looked strong: tickets closed in under an hour, satisfaction scores fine. Yet three major accounts had quietly walked. Reading their exit notes, Ingrid found one refrain: customers felt processed, never quite known. The team had perfected the service and skipped the hospitality, the exact gap that once left Eleven Madison Park flawless on the plate but forgettable in the room.",
+      "whatToDo": "Audit a stretch of work that hit every target for the feeling it left behind, and treat a metrics-clean but cold result as a genuine failure worth fixing, not a quiet success."
+    },
+    {
+      "title": "Orientation: app polish or first names",
+      "scenario": "Two weeks before fall orientation, Carys Bevan, dean of students at a small Vermont college, must decide the first-day plan. One version polishes logistics: faster ID lines, a slicker packet, a campus app. The other spends the same hours teaching orientation leaders to learn new students' names and one worry each carries. The committee leans toward the app. Carys keeps thinking how Will Guidara turned a last-place finish into a bet on how people feel, and weighs which plan a homesick freshman remembers in October.",
+      "whatToDo": "When you design a first encounter, spend your scarce hours on the moments a person will remember emotionally, not only on the logistics that merely run without a hitch."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A hotel front desk clerk checks a guest in flawlessly: keycard ready, paperwork correct, all in ninety seconds. The guest walks away feeling efficiently handled but anonymous. Which reading best fits what happened?",
+        "choices": [
+          "The service was complete, but the hospitality was missing: nothing made the guest feel personally noticed.",
+          "The service failed, because a check-in that fast cannot be accurate enough to trust.",
+          "The hospitality was strong, since speed and accuracy are what make a guest feel cared for."
+        ],
+        "correctIndex": 0,
+        "explanation": "Service is the competent, on-time delivery; hospitality is the added warmth that makes a person feel seen. A fast, correct check-in nails the first and skips the second entirely.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "When a new manager says, 'We compete on price and delivery speed, so how a customer feels is a nice-to-have,' which response best fits the hospitality-economy view?",
+        "choices": [
+          "As products and speed get easy to copy, how a customer feels becomes the last thing rivals cannot match.",
+          "Feeling only matters in luxury businesses, so a fast, low-price company can safely ignore it.",
+          "Price and speed are feelings too, so this company is already competing on emotion."
+        ],
+        "correctIndex": 0,
+        "explanation": "When the product and the logistics are table stakes, the emotional layer is the remaining differentiator. Treating feeling as optional surrenders the one edge rivals struggle to copy.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A regional bank wants one change that makes members feel cared for without slowing transactions. Two ideas compete: a faster mobile-deposit flow, or training tellers to greet repeat members by name and recall their last visit. Which fits the hospitality move?",
+        "choices": [
+          "Train tellers to recognize repeat members, because that adds the personal warmth a faster app cannot deliver.",
+          "Ship the faster mobile-deposit flow, since shaving seconds is what proves the bank cares.",
+          "Do neither yet, because feeling cared for is too vague for a bank to act on."
+        ],
+        "correctIndex": 0,
+        "explanation": "Speed is service the rivals already offer; being recognized by name is the hospitality layer. The personal gesture is what makes a member feel seen rather than processed at a counter.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Your dental practice runs perfectly on time and patients still call it cold. A consultant says the fix is a faster scheduling system. Why might that miss the real problem?",
+        "choices": [
+          "Because faster scheduling will slow the practice down and frustrate the staff who run the front desk.",
+          "Because the practice already nails service; what is missing is the warmth that makes a patient feel known.",
+          "Because patients rarely notice scheduling at all, so the system is beside the point for them."
+        ],
+        "correctIndex": 1,
+        "explanation": "The clinic's coldness is a hospitality gap, not a service gap. A faster schedule sharpens something already strong and leaves the missing human warmth completely untouched.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "After a strong launch, a software team keeps adding features to stay ahead, yet churn climbs and users call the app 'efficient but impersonal.' Which step best fits a hospitality-economy reading of the churn?",
+        "choices": [
+          "Pour the next quarter into more features, since a better product is what keeps users loyal.",
+          "Cut features aggressively, because a smaller app is what makes users feel warmth.",
+          "Move some effort from new features into moments that make users feel personally known."
+        ],
+        "correctIndex": 2,
+        "explanation": "Churn despite a strong, growing product signals a hospitality gap, not a feature gap. Investing in moments that make users feel known addresses what more features cannot reach.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Two coffee chains post identical prices and drink quality. One trains baristas to remember regulars' orders and names; the other invests only in faster machines. A year later the first has far higher repeat visits. What best explains the gap?",
+        "choices": [
+          "The faster machines must have broken often, driving those customers away from the second chain.",
+          "Lower prices at the first chain explain the loyalty, regardless of how the staff behaved.",
+          "Recognition gave regulars a feeling the second chain did not sell, turning a commodity drink into a relationship."
+        ],
+        "correctIndex": 2,
+        "explanation": "Identical price and quality means service parity. The first chain added hospitality, being remembered, and that recognition is the differentiator that drove the repeat visits.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A colleague argues, 'Hospitality is just good service done with a smile, so any well-run operation already has it.' How should you evaluate that claim?",
+        "choices": [
+          "Agree, since a smoothly run operation proves the staff already care about how people feel.",
+          "Push back: smooth service is necessary but separate; warmth must be designed on purpose, not assumed from competence.",
+          "Agree, because adding a smile is the only thing that separates service from hospitality."
+        ],
+        "correctIndex": 1,
+        "explanation": "Competent service and felt hospitality are different layers, and one does not guarantee the other. Warmth that makes people feel seen has to be built deliberately, not assumed from a tidy operation.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A hospital executive wants to raise patient-experience scores and proposes buying nicer waiting-room furniture. Which critique is strongest if the goal is genuine hospitality?",
+        "choices": [
+          "Nicer furniture is wasteful, since patients judge a hospital mostly on its medical outcomes.",
+          "Furniture changes the room, not the interaction; what shifts the feeling is how staff attend to the patient.",
+          "The furniture will fix it, because a comfortable room is the same thing as feeling cared for."
+        ],
+        "correctIndex": 1,
+        "explanation": "Decor changes the backdrop, not the human exchange. Genuine hospitality lives in how staff attend to the person, so the furniture spend addresses the wrong layer of the experience.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "You lead onboarding at a gym where every new member gets a flawless facility tour, but few return after month one. You want one designed moment that adds hospitality. Which plan fits best?",
+        "choices": [
+          "Make the tour faster and more thorough, since a better tour is what builds member commitment.",
+          "Send an automated welcome email, because a templated message reliably makes members feel valued.",
+          "Have a trainer learn each new member's goal and check in by name in week two."
+        ],
+        "correctIndex": 2,
+        "explanation": "A flawless tour is service every gym offers. A trainer who remembers a member's goal and follows up by name adds the personal recognition that turns a transaction into a reason to return.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cardFronts": {
+    "card01": "Beyond finishing the task correctly, what must you decide for an exchange to count as hospitality?",
+    "card02": "When a strong product stops winning, what tells a leader the missing edge is emotional, not technical?",
+    "card03": "Why does a hospitality move invented in a restaurant still work in a bank or a clinic?",
+    "card04": "What is the most common way a team convinces itself the product alone is enough?",
+    "card05": "What single question helps a manager coach the gap between finishing a task and shaping a feeling?",
+    "card06": "When does a feel-good principle about service finally change what a team actually does?"
+  },
+  "coreSkill": "Run each routine exchange through two quick questions before it starts: what task must I finish, and what feeling should the other person leave with? Then change one step so that feeling is more likely. Judge the result by whether they felt seen rather than processed, not by whether the task closed on time.",
+  "ifThenContexts": {
+    "1": "A teammate wants to copy a famous restaurant's grand gesture move for move.",
+    "3": "An exciting new idea for delighting people lands on the table."
+  }
+}

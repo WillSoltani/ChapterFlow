@@ -1,0 +1,70 @@
+{
+  "chapterId": "range-ch02",
+  "number": 2,
+  "title": "How the Wicked World Was Made",
+  "coreMove": "Abstract reasoning grew because modern wicked problems demand transfer across unfamiliar settings, even while local practical knowledge still has value.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "raven hiring screen",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "decision_point",
+      "requiredBeat": "Raven Hiring Screen"
+    },
+    {
+      "domain": "village taxonomy moment",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "reflection",
+      "requiredBeat": "Village Taxonomy Moment"
+    },
+    {
+      "domain": "policy pattern board",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "business_case",
+      "requiredBeat": "Policy Pattern Board"
+    },
+    {
+      "domain": "factory classroom shift",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "scene",
+      "requiredBeat": "Factory Classroom Shift"
+    },
+    {
+      "domain": "clinical handoff puzzle",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "planning_choice",
+      "requiredBeat": "Clinical Handoff Puzzle"
+    },
+    {
+      "domain": "startup market sort",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "audit",
+      "requiredBeat": "Startup Market Sort"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:17:02.903Z"
+}

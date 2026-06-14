@@ -1,0 +1,70 @@
+{
+  "chapterId": "blink-ch02",
+  "number": 2,
+  "title": "The Locked Door: The Secret Life of Snap Decisions",
+  "coreMove": "Respect hidden cognition without worshiping it: some fast judgments are skilled, some are primed, and many explanations are after-the-fact stories.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "junior tennis coaching",
+      "audience": "coaches with hard-to-explain reads",
+      "stakes": "forcing a verbal rule could damage a useful trained hunch",
+      "format": "decision_point",
+      "requiredBeat": "Anouk treats a Braden-like prediction as skilled but narrow"
+    },
+    {
+      "domain": "call-center performance reset",
+      "audience": "team leads designing cues",
+      "stakes": "unseen primes may shift behavior while looking like attitude",
+      "format": "before_after",
+      "requiredBeat": "Keisha uses Bargh's priming logic to alter context before judging workers"
+    },
+    {
+      "domain": "scholarship exam setup",
+      "audience": "program directors protecting fair performance",
+      "stakes": "an identity cue may change the psychological load of a test",
+      "format": "planning_choice",
+      "requiredBeat": "Lionel recognizes the race prompt before the GRE risk"
+    },
+    {
+      "domain": "customer research interviews",
+      "audience": "researchers comparing stated and revealed preferences",
+      "stakes": "participants may narrate criteria after the choice",
+      "format": "dialogue",
+      "requiredBeat": "Farah borrows the speed-dating lesson about after-the-fact reasons"
+    },
+    {
+      "domain": "credit-risk committee",
+      "audience": "analysts weighing gut calls",
+      "stakes": "a hidden cue may be either trained pattern recognition or irrelevant priming",
+      "format": "dilemma",
+      "requiredBeat": "Dmitri separates trained cue history from possible locked-door contamination"
+    },
+    {
+      "domain": "medical entrance exam logistics",
+      "audience": "test designers reducing hidden load",
+      "stakes": "a form cue may alter performance before the test begins",
+      "format": "reset_moment",
+      "requiredBeat": "Soraya moves a race prompt before the GRE style cue out of the timed path"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:07:46.119Z"
+}

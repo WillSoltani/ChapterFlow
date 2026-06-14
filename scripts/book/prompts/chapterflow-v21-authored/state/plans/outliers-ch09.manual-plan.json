@@ -1,0 +1,69 @@
+{
+  "chapterId": "outliers-ch09",
+  "number": 9,
+  "title": "Marita's Bargain",
+  "coreMove": "Time-on-task opportunity reframes achievement gaps as unequal access to learning hours, making school time a concrete but costly lever.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "middle-school calendar review",
+      "audience": "principals designing learning time",
+      "stakes": "students may lose school-year gains during long breaks",
+      "format": "decision_point",
+      "requiredBeat": "Use KIPP and summer learning loss to review the calendar."
+    },
+    {
+      "domain": "district achievement report",
+      "audience": "analysts explaining class gaps",
+      "stakes": "leaders may blame motivation while missing calendar inequality",
+      "format": "audit",
+      "requiredBeat": "Use summer learning-loss data to explain gaps."
+    },
+    {
+      "domain": "family onboarding meeting",
+      "audience": "school staff explaining demanding programs",
+      "stakes": "families may accept a bargain without hearing its real cost",
+      "format": "scene",
+      "requiredBeat": "Use Marita to explain the cost of extra time."
+    },
+    {
+      "domain": "public library learning program",
+      "audience": "civic staff replacing missing enrichment",
+      "stakes": "optional fun may not reach the students losing ground",
+      "format": "planning_choice",
+      "requiredBeat": "Apply time-on-task opportunity to library programming."
+    },
+    {
+      "domain": "nonprofit tutoring contract",
+      "audience": "funders comparing enrichment models",
+      "stakes": "money may fund pleasant programs that do not add enough learning time",
+      "format": "dilemma",
+      "requiredBeat": "Use time-on-task to compare tutoring models."
+    },
+    {
+      "domain": "school wellness review",
+      "audience": "leaders balancing opportunity and burden",
+      "stakes": "a longer day may help learning while straining a child's life",
+      "format": "reflection",
+      "requiredBeat": "Balance Marita's bargain with wellness."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:26:52.520Z"
+}

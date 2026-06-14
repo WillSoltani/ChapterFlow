@@ -36,6 +36,8 @@ type ExportData = {
   savedBooks: Array<Record<string, unknown>>;
   badges: Array<Record<string, unknown>>;
   flowPoints: { balance: number; ledger: Array<Record<string, unknown>> };
+  consent: { termsAcceptedAt: string | null; termsVersion: string | null };
+  analyticsAndLocation: string;
   analytics: {
     snapshot: Record<string, unknown> | null;
     recentEvents: Array<Record<string, unknown>>;
@@ -112,11 +114,21 @@ export async function GET(req: Request) {
       | undefined;
     const saveReadingHistory = privacy?.saveReadingHistory ?? true;
 
+    const rawProfile = (profile?.profile ?? {}) as Record<string, unknown>;
+
     const data: ExportData = {
       exportedAt: new Date().toISOString(),
       userId: user.sub,
       profile: profile?.profile ?? null,
       settings: settings?.settings ?? null,
+      consent: {
+        termsAcceptedAt:
+          typeof rawProfile.termsAcceptedAt === "string" ? rawProfile.termsAcceptedAt : null,
+        termsVersion:
+          typeof rawProfile.termsVersion === "string" ? rawProfile.termsVersion : null,
+      },
+      analyticsAndLocation:
+        "Usage analytics and approximate-location telemetry (collected only if you enabled 'Share Usage Analytics') are not included in this self-serve export. To request a copy, contact support@chapterflow.ca.",
       entitlement: entitlement
         ? {
             plan: entitlement.plan,

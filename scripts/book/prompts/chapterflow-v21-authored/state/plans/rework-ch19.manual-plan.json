@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch19",
+  "number": 19,
+  "title": "Embrace constraints",
+  "coreMove": "Read a real shortage as a design input rather than a stop sign; the limit forces the essential choices, so ask what to cut or simplify before asking for more.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "B2B software company",
+      "audience": "founders who equate more headcount with better output",
+      "stakes": "hire up to match rivals or stay small and stay focused",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist treats a small team as focus rather than a deficiency"
+    },
+    {
+      "domain": "independent film production",
+      "audience": "makers who believe total freedom yields better work",
+      "stakes": "demand a bigger budget or build inside the tight one",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist uses a creative limit to force sharper choices"
+    },
+    {
+      "domain": "nonprofit operations",
+      "audience": "teams that inventory their shortages before starting",
+      "stakes": "wait until the gaps are filled or start with what is on hand",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist stops treating a list of lacks as a precondition"
+    },
+    {
+      "domain": "consumer software design",
+      "audience": "designers who assume more features mean more robustness",
+      "stakes": "ship the feature-heavy build or strip it to the lean core",
+      "format": "before_after",
+      "requiredBeat": "leanness makes a weak part visible and therefore fixable"
+    },
+    {
+      "domain": "hospital supply management",
+      "audience": "leaders tempted to romanticize every shortage",
+      "stakes": "celebrate the deprivation or name the barrier that must be removed",
+      "format": "reflection",
+      "requiredBeat": "the protagonist distinguishes a creative limit from a real obstacle"
+    },
+    {
+      "domain": "civic event planning",
+      "audience": "organizers whose first instinct is to request more budget",
+      "stakes": "lead with a funding request or lead with design questions",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist makes design thinking the first response to a limit"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "understand": 2,
+      "analyze": 2,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.765Z"
+}

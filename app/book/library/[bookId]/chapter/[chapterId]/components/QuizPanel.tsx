@@ -119,33 +119,6 @@ function ProgressRing({
   );
 }
 
-// ─── Confetti ────────────────────────────────────────────────────────────────
-
-function ConfettiBurst() {
-  const particles = useMemo(() =>
-    Array.from({ length: 25 }, (_, i) => ({
-      id: i,
-      x: `${(Math.random() - 0.5) * 300}px`,
-      y: `${-100 - Math.random() * 200}px`,
-      r: `${Math.random() * 720}deg`,
-      color: i % 3 === 0 ? "var(--cr-accent)" : i % 3 === 1 ? "var(--cr-warning)" : "var(--cr-success)",
-      delay: `${Math.random() * 0.3}s`,
-      size: 4 + Math.random() * 4,
-    })), []);
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      {particles.map((p) => (
-        <div key={p.id} className="absolute left-1/2 top-1/2 rounded-sm"
-          style={{ width: p.size, height: p.size, background: p.color,
-            "--cr-confetti-x": p.x, "--cr-confetti-y": p.y, "--cr-confetti-r": p.r,
-            animation: `cr-confetti 1.5s ease-out ${p.delay} forwards`,
-          } as React.CSSProperties} />
-      ))}
-    </div>
-  );
-}
-
 // ─── Progress Dots ───────────────────────────────────────────────────────────
 
 function ProgressDots({
@@ -457,10 +430,11 @@ function ReviewMistakesView({
 // ─── Results Screen ──────────────────────────────────────────────────────────
 
 function ResultsScreen({
-  session, learningMode, onReviewSummary, onRetry, onContinueToPractice, onReviewMistakes,
+  session, learningMode, cooldownSeconds, onReviewSummary, onRetry, onContinueToPractice, onReviewMistakes,
 }: {
   session: QuizSessionView;
   learningMode: LearningMode;
+  cooldownSeconds: number;
   onReviewSummary: () => void;
   onRetry: () => void;
   onContinueToPractice: () => void;
@@ -469,11 +443,15 @@ function ResultsScreen({
   const result = session.result;
   if (!result) return null;
 
+  const coolingDown = cooldownSeconds > 0;
+
   const incorrectCount = session.questions.filter((q) => q.isCorrect === false).length;
 
   return (
     <div className="cr-glass-reading relative overflow-hidden p-8 text-center">
-      {result.passed && <ConfettiBurst />}
+      {/* Confetti is fired at the page level (ChapterReaderClient) on pass — a
+       *  fixed full-screen canvas can't live inside this backdrop-filtered,
+       *  overflow-hidden card or it gets clipped to the card box. */}
 
       {/* 1. Pass/fail headline */}
       <h2
@@ -519,9 +497,16 @@ function ResultsScreen({
           <button
             type="button"
             onClick={onRetry}
-            className="w-full rounded-2xl bg-(--cr-accent) px-6 py-4 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
+            disabled={coolingDown}
+            aria-live="polite"
+            className={[
+              "w-full rounded-2xl px-6 py-4 text-base font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)",
+              coolingDown
+                ? "cursor-not-allowed bg-(--cr-bg-surface-3) text-(--cr-text-disabled)"
+                : "bg-(--cr-accent) text-(--cr-text-inverse) hover:opacity-90",
+            ].join(" ")}
           >
-            Try Again
+            {coolingDown ? `Try again in ${formatDuration(cooldownSeconds)}` : "Try Again"}
           </button>
         )}
 
@@ -649,20 +634,23 @@ export function QuizPanel({
     onSubmit();
   }, [onSubmit]);
 
-  // Keyboard navigation: 1-5 to pick a choice
+  // Keyboard navigation: 1-5 to pick a choice. Must target the questions the
+  // user can actually SEE (displayQuestions) — session.questions includes the
+  // ones hidden by shuffle/retry-incorrect-only, so keying off it could answer
+  // an invisible question.
   const activeQuestionForKeys = useMemo(() => {
     if (!session || Boolean(session.result)) return null;
     if (questionFlow === "one-by-one") {
-      return session.questions[oneByOneIndex] ?? null;
+      return displayQuestions[oneByOneIndex] ?? null;
     }
     // all-at-once: pick first unresolved question
-    const idx = session.questions.findIndex(
+    const idx = displayQuestions.findIndex(
       (q) =>
         !questionFeedback[q.questionId] ||
         questionFeedback[q.questionId] === "incorrect-retry"
     );
-    return idx >= 0 ? session.questions[idx] : null;
-  }, [session, questionFlow, oneByOneIndex, questionFeedback]);
+    return idx >= 0 ? displayQuestions[idx] : null;
+  }, [session, displayQuestions, questionFlow, oneByOneIndex, questionFeedback]);
 
   const pickChoiceByIndex = useCallback(
     (zeroBasedIndex: number) => {
@@ -689,7 +677,7 @@ export function QuizPanel({
       if (!session || session.result) return;
       // Only act if all-resolved in challenge mode (avoids accidental submit)
       if (learningMode === "challenge") {
-        const resolved = session.questions.every(
+        const resolved = displayQuestions.every(
           (q) =>
             questionFeedback[q.questionId] === "correct" ||
             questionFeedback[q.questionId] === "incorrect-final"
@@ -800,7 +788,7 @@ export function QuizPanel({
 
       {/* Results */}
       {submitted && (
-        <ResultsScreen session={session} learningMode={learningMode}
+        <ResultsScreen session={session} learningMode={learningMode} cooldownSeconds={cooldownSeconds}
           onReviewSummary={onReviewSummary} onRetry={onRetry} onContinueToPractice={onContinueToPractice}
           onReviewMistakes={() => setResultView("review-mistakes")} />
       )}

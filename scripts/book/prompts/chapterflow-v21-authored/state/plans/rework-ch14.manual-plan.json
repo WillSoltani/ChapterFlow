@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch14",
+  "number": 14,
+  "title": "Outside money is Plan Z",
+  "coreMove": "Treat outside capital as Plan Z. First shrink the idea, charge customers earlier, and keep control, then raise only when the model truly cannot start without it.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "B2B scheduling software",
+      "audience": "first-time SaaS founders",
+      "stakes": "keep control instead of trading it for a milestone",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist weighs a venture round against 37signals-style customer-funded growth"
+    },
+    {
+      "domain": "translation services agency",
+      "audience": "service founders with an ambitious roadmap",
+      "stakes": "avoid raising to match full scope before testing demand",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist cuts scope so a customer funds the next step"
+    },
+    {
+      "domain": "regional crafts marketplace",
+      "audience": "founders one year past a seed round",
+      "stakes": "notice the customer sliding down the priority list",
+      "format": "reflection",
+      "requiredBeat": "the protagonist sees post-raise attention reorient toward investors"
+    },
+    {
+      "domain": "battery-cell manufacturing",
+      "audience": "hardware founders facing genuine capital needs",
+      "stakes": "tell a true capital need from a reflex to raise",
+      "format": "decision_memo",
+      "requiredBeat": "the protagonist confirms the model truly requires capital"
+    },
+    {
+      "domain": "consumer fitness app",
+      "audience": "founders managing a fresh raise",
+      "stakes": "keep spending discipline after the round lands",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist catches loosened discipline from unearned cash"
+    },
+    {
+      "domain": "web analytics startup",
+      "audience": "venture-backed founders near a roadmap fork",
+      "stakes": "choose product quality over a buyer-friendly metric",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist sees exit thinking compete with product quality"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "analyze": 3,
+      "evaluate": 2,
+      "apply": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.764Z"
+}

@@ -13,9 +13,28 @@ import {
   getUserEntitlement,
   mapStripeCustomerToUser,
 } from "@/app/app/api/book/_lib/repo";
-import { PRICING } from "@/lib/pricing";
+import {
+  PRICING,
+  ANNUAL_TOTAL_AMOUNT,
+  formatAmountWithCurrency,
+} from "@/lib/pricing";
 
 export const runtime = "nodejs";
+
+/** Human-readable renewal terms per interval, for the Stripe Checkout disclosure. */
+function renewalDescription(interval: BillingInterval): string {
+  switch (interval) {
+    case "annual":
+      return `${formatAmountWithCurrency(ANNUAL_TOTAL_AMOUNT)} per year (${formatAmountWithCurrency(
+        PRICING.annualMonthlyAmount,
+      )}/month, billed annually)`;
+    case "annual_upfront":
+      return `${formatAmountWithCurrency(PRICING.annualUpfrontAmount)} per year`;
+    case "monthly":
+    default:
+      return `${formatAmountWithCurrency(PRICING.monthlyAmount)} per month`;
+  }
+}
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -89,6 +108,16 @@ export async function POST(req: Request) {
       grantTrial = priorSubs.data.length === 0;
     }
 
+    // Pre-charge disclosure shown on Stripe's hosted Checkout page (card-network
+    // + consumer-law requirement for free trials / auto-renewing subscriptions).
+    const renewal = renewalDescription(interval);
+    const submitMessage = grantTrial
+      ? `Your ${PRICING.trialDays}-day free trial starts today. When it ends, your subscription ` +
+        `renews automatically at ${renewal} until you cancel. Cancel anytime in your account ` +
+        `settings before the trial ends to avoid being charged. Partial periods are not refunded.`
+      : `Your subscription renews automatically at ${renewal} until you cancel. Cancel anytime in ` +
+        `your account settings; partial periods are not refunded.`;
+
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       customer: customerId,
@@ -104,6 +133,7 @@ export async function POST(req: Request) {
         userId: user.sub,
       },
       allow_promotion_codes: true,
+      custom_text: { submit: { message: submitMessage } },
       // Stripe still collects a card up front and auto-charges when the trial
       // ends, so the "you won't be charged during the trial" copy holds. The
       // trial length is the single source PRICING.trialDays and is shared across

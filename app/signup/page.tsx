@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { AuthScreen } from "@/components/auth/AuthScreen";
+import { BrandLockup } from "@/components/auth/BrandLockup";
 
-/* ── Google icon SVG ── */
+/* ── Google icon SVG (brand asset — fixed colors by design) ── */
 function GoogleIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
       <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
       <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
@@ -16,185 +18,115 @@ function GoogleIcon() {
   );
 }
 
-/* ── Apple icon SVG ── */
+/* ── Apple icon SVG (monochrome — inherits currentColor) ── */
 function AppleIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.32-2.12 4.45-3.74 4.25z" />
     </svg>
   );
 }
 
-export default function SignupPage() {
-  const router = useRouter();
+function SignupInner() {
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
+  const [consented, setConsented] = useState(false);
 
-  const handleEmailContinue = () => {
-    if (email.trim()) {
-      router.push("/onboarding");
-    }
-  };
+  // Preserve where the visitor was headed (e.g. a gift or invite page). The
+  // /auth/login route sanitizes returnTo server-side, so we pass it through raw.
+  const returnTo = searchParams.get("returnTo") || "/book";
 
-  const handleOAuthContinue = () => {
-    router.push("/onboarding");
-  };
+  // Build a real Cognito-initiating URL. These are genuine auth flows — no more
+  // fake router.push into an onboarding that can't save.
+  function loginHref(extra?: Record<string, string>): string {
+    const params = new URLSearchParams({ returnTo, ...(extra ?? {}) });
+    return `/auth/login?${params.toString()}`;
+  }
+
+  function startOAuth(provider: "Google" | "SignInWithApple") {
+    if (!consented) return;
+    window.location.assign(loginHref({ identity_provider: provider }));
+  }
+
+  function startEmail() {
+    if (!consented || !email.trim()) return;
+    // login_hint prefills the email on the hosted UI; it's validated/ignored
+    // server-side if it isn't a real address.
+    window.location.assign(loginHref({ login_hint: email.trim() }));
+  }
+
+  const emailReady = consented && email.trim().length > 0;
 
   return (
-    <div
-      className="relative min-h-screen flex items-center justify-center px-5"
-      style={{ background: "var(--bg-base)" }}
-    >
-      {/* Background orbs */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute"
-          style={{
-            width: 600,
-            height: 600,
-            top: "-15%",
-            left: "-10%",
-            background: "radial-gradient(circle, rgba(124,107,240,0.12), transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute"
-          style={{
-            width: 500,
-            height: 500,
-            bottom: "-15%",
-            right: "-10%",
-            background: "radial-gradient(circle, rgba(34,211,238,0.08), transparent 70%)",
-          }}
-        />
-      </div>
-
-      {/* Signup card */}
+    <AuthScreen>
       <motion.div
-        className="relative z-10 w-full"
-        style={{
-          maxWidth: 440,
-          padding: 32,
-          background: "var(--bg-surface-1)",
-          backdropFilter: "blur(24px)",
-          WebkitBackdropFilter: "blur(24px)",
-          border: "1px solid var(--border-default)",
-          borderRadius: "var(--radius-xl-val)",
-          boxShadow: "var(--shadow-card)",
-        }}
+        className="w-full max-w-md rounded-2xl border border-(--cf-border) bg-(--cf-surface) p-8 shadow-(--cf-shadow-lg)"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
-        {/* Logo */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="flex items-center gap-2.5 mb-5">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="3" y="2" width="14" height="20" rx="2"
-                stroke="var(--accent-blue)" strokeWidth="1.5"
-              />
-              <path
-                d="M7 7h6M7 11h6M7 15h4"
-                stroke="var(--accent-blue)" strokeWidth="1.5" strokeLinecap="round"
-              />
-              <rect
-                x="7" y="4" width="14" height="20" rx="2"
-                fill="var(--bg-base)" stroke="var(--accent-blue)" strokeWidth="1.5"
-              />
-              <path
-                d="M11 9h6M11 13h6M11 17h4"
-                stroke="var(--accent-blue)" strokeWidth="1.5" strokeLinecap="round"
-              />
-            </svg>
-            <span
-              style={{
-                fontFamily: "var(--font-sora)",
-                fontSize: 20,
-                fontWeight: 700,
-                color: "var(--text-heading)",
-              }}
-            >
-              ChapterFlow
-            </span>
-          </div>
-
-          <h1
-            style={{
-              fontFamily: "var(--font-sora)",
-              fontSize: 28,
-              fontWeight: 600,
-              color: "var(--text-heading)",
-              textAlign: "center",
-            }}
-          >
+        {/* Brand lockup + headline */}
+        <div className="mb-8 flex flex-col items-center text-center">
+          <BrandLockup className="mb-5" />
+          <h1 className="text-[24px] font-bold leading-snug text-(--cf-text-1)">
             Start reading smarter
           </h1>
-          <p
-            className="mt-2"
-            style={{
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              color: "var(--text-secondary)",
-              textAlign: "center",
-            }}
-          >
+          <p className="mt-2 text-[15px] leading-relaxed text-(--cf-text-3)">
             Turn any book into a skill you keep.
           </p>
         </div>
 
+        {/* Consent */}
+        <label className="mb-5 flex cursor-pointer select-none items-start gap-2.5 text-[13px] leading-relaxed text-(--cf-text-3)">
+          <input
+            type="checkbox"
+            checked={consented}
+            onChange={(e) => setConsented(e.target.checked)}
+            aria-label="I agree to the Terms of Service and Privacy Policy"
+            className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-(--cf-accent)"
+          />
+          <span>
+            I agree to the{" "}
+            <a
+              href="/legal/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-(--cf-accent) underline underline-offset-2"
+            >
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a
+              href="/legal/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-(--cf-accent) underline underline-offset-2"
+            >
+              Privacy Policy
+            </a>
+            .
+          </span>
+        </label>
+
         {/* OAuth buttons */}
         <div className="flex flex-col gap-3">
           <button
-            onClick={handleOAuthContinue}
-            className="w-full flex items-center justify-center gap-3 cursor-pointer transition-all duration-200"
-            style={{
-              minHeight: 48,
-              padding: "12px 16px",
-              background: "#ffffff",
-              color: "#1f2937",
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              fontWeight: 500,
-              borderRadius: "var(--radius-md-val)",
-              border: "none",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.01)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            type="button"
+            onClick={() => startOAuth("Google")}
+            disabled={!consented}
+            aria-label="Continue with Google"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong) disabled:cursor-not-allowed disabled:opacity-50"
           >
             <GoogleIcon />
             Continue with Google
           </button>
 
           <button
-            onClick={handleOAuthContinue}
-            className="w-full flex items-center justify-center gap-3 cursor-pointer transition-all duration-200"
-            style={{
-              minHeight: 48,
-              padding: "12px 16px",
-              background: "var(--bg-surface-1)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-              color: "var(--text-primary)",
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              fontWeight: 500,
-              borderRadius: "var(--radius-md-val)",
-              border: "1px solid var(--border-subtle)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "var(--border-default)";
-              e.currentTarget.style.transform = "scale(1.01)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "var(--border-subtle)";
-              e.currentTarget.style.transform = "scale(1)";
-            }}
+            type="button"
+            onClick={() => startOAuth("SignInWithApple")}
+            disabled={!consented}
+            aria-label="Continue with Apple"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong) disabled:cursor-not-allowed disabled:opacity-50"
           >
             <AppleIcon />
             Continue with Apple
@@ -202,113 +134,62 @@ export default function SignupPage() {
         </div>
 
         {/* Divider */}
-        <div className="flex items-center gap-4 my-6">
-          <div className="flex-1" style={{ height: 1, background: "var(--border-subtle)" }} />
-          <span
-            style={{
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 13,
-              color: "var(--text-muted)",
-            }}
-          >
-            or
-          </span>
-          <div className="flex-1" style={{ height: 1, background: "var(--border-subtle)" }} />
+        <div className="my-6 flex items-center gap-4">
+          <div className="h-px flex-1 bg-(--cf-border)" />
+          <span className="text-[13px] text-(--cf-text-3)">or</span>
+          <div className="h-px flex-1 bg-(--cf-border)" />
         </div>
 
         {/* Email input */}
         <div className="flex flex-col gap-3">
+          <label htmlFor="signup-email" className="sr-only">
+            Email address
+          </label>
           <input
+            id="signup-email"
             type="email"
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            onKeyDown={(e) => e.key === "Enter" && handleEmailContinue()}
-            className="w-full transition-all duration-200"
-            style={{
-              minHeight: 48,
-              padding: "12px 16px",
-              background: "var(--bg-surface-1)",
-              border: "1px solid var(--border-subtle)",
-              borderRadius: "var(--radius-md-val)",
-              color: "var(--text-primary)",
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              outline: "none",
-            }}
-            onFocus={(e) => {
-              e.currentTarget.style.borderColor = "var(--accent-blue)";
-              e.currentTarget.style.boxShadow = "0 0 0 3px rgba(34,211,238,0.15)";
-            }}
-            onBlur={(e) => {
-              e.currentTarget.style.borderColor = "var(--border-subtle)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
+            onKeyDown={(e) => e.key === "Enter" && startEmail()}
+            className="min-h-12 w-full rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] text-(--cf-text-1) placeholder:text-(--cf-text-3) transition-colors duration-(--duration-fast) focus:border-(--cf-accent)"
           />
 
           <button
-            onClick={handleEmailContinue}
-            className="w-full cursor-pointer transition-all duration-200"
-            style={{
-              minHeight: 48,
-              padding: "12px 16px",
-              background: "var(--accent-green)",
-              color: "#0A0E1A",
-              fontFamily: "var(--font-dm-sans)",
-              fontSize: 15,
-              fontWeight: 600,
-              borderRadius: "var(--radius-md-val)",
-              border: "none",
-              boxShadow: "0 0 20px rgba(52,211,153,0.15)",
-              opacity: email.trim() ? 1 : 0.5,
-              pointerEvents: email.trim() ? "auto" : "none",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.filter = "brightness(1.1)";
-              e.currentTarget.style.transform = "scale(1.02)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.filter = "brightness(1)";
-              e.currentTarget.style.transform = "scale(1)";
-            }}
+            type="button"
+            onClick={startEmail}
+            disabled={!emailReady}
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[15px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Continue with email &rarr;
           </button>
         </div>
 
         {/* Sign in link */}
-        <p
-          className="text-center mt-5"
-          style={{
-            fontFamily: "var(--font-dm-sans)",
-            fontSize: 14,
-            color: "var(--text-secondary)",
-          }}
-        >
+        <p className="mt-5 text-center text-[14px] text-(--cf-text-3)">
           Already have an account?{" "}
           <a
-            href="/auth/login"
-            className="transition-colors duration-200"
-            style={{ color: "var(--accent-blue)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#6EA3FF")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--accent-blue)")}
+            href={loginHref()}
+            className="font-medium text-(--cf-accent) transition-colors duration-(--duration-fast) hover:brightness-110"
           >
             Sign in
           </a>
         </p>
 
         {/* Trust line */}
-        <p
-          className="text-center mt-6"
-          style={{
-            fontFamily: "var(--font-dm-sans)",
-            fontSize: 13,
-            color: "var(--text-muted)",
-          }}
-        >
+        <p className="mt-6 text-center text-[13px] text-(--cf-text-3)">
           No credit card required. Free forever for 2 books.
         </p>
       </motion.div>
-    </div>
+    </AuthScreen>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={null}>
+      <SignupInner />
+    </Suspense>
   );
 }

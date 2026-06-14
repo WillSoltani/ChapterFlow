@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-let-them-theory-ch05",
+  "number": 5,
+  "title": "Let Them Think Bad Thoughts about You",
+  "coreMove": "Stop trying to control what other people privately think of you, and the energy you wasted predicting their judgment comes back for the life you actually want.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "Source case: Early motivational-speaker posts",
+      "audience": "Zora and readers facing opinion release",
+      "stakes": "Reputation management can become the obstacle that prevents meaningful work from reaching people.",
+      "format": "source scene",
+      "requiredBeat": "Show Zora using opinion release in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Mary Oliver's life question",
+      "audience": "Anika and readers facing opinion release",
+      "stakes": "A larger view of mortality can shrink the power of everyday judgment.",
+      "format": "boundary choice",
+      "requiredBeat": "Show Anika using opinion release in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Early",
+      "audience": "Bastien and readers facing opinion release",
+      "stakes": "Reputation management can become the obstacle that prevents meaningful work from reaching people.",
+      "format": "repair decision",
+      "requiredBeat": "Show Bastien using opinion release in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Mary",
+      "audience": "Clara and readers facing opinion release",
+      "stakes": "A larger view of mortality can shrink the power of everyday judgment.",
+      "format": "planning choice",
+      "requiredBeat": "Show Clara using opinion release in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Early",
+      "audience": "Dimitri and readers facing opinion release",
+      "stakes": "Reputation management can become the obstacle that prevents meaningful work from reaching people.",
+      "format": "misuse check",
+      "requiredBeat": "Show Dimitri using opinion release in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Mary",
+      "audience": "Eleri and readers facing opinion release",
+      "stakes": "A larger view of mortality can shrink the power of everyday judgment.",
+      "format": "reflection",
+      "requiredBeat": "Show Eleri using opinion release in the source case without controlling another person."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T08:46:57.475Z"
+}

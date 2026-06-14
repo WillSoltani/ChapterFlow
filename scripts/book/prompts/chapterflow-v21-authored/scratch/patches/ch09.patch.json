@@ -1,0 +1,169 @@
+{
+  "examples": [
+    {
+      "title": "Wave off the critique or mine it",
+      "scenario": "A sharp critic says Augustin Moreau's design studio is technically perfect but lifeless, missing any spirit of Miles Davis. Augustin, the studio's creative director, can bristle and dismiss the jab, or do what the Eleven Madison Park team did: take the metaphor seriously and mine it for an identity. The studio wants him to laugh it off. Minutes before the staff meeting begins, Augustin has to decide whether to wave away the critique or turn it into the north star his team has been missing.",
+      "whatToDo": "Treat a stinging outside critique as raw material for identity rather than an insult, mining the metaphor for a concrete north star your team can actually aim at."
+    },
+    {
+      "title": "Values only in your head",
+      "scenario": "'We have great values, everyone knows them,' the founder said. Bianca Sorrentino, the culture director, was not convinced. 'If they live only in your head, they do nothing. Eleven Madison Park hung eleven words in the kitchen so every choice could be measured against them.' She uncapped a marker. 'Before the offsite ends, you have to decide which few words go on the wall where the team actually sees them every day.'",
+      "whatToDo": "Make your values physical and visible where the team sees them daily, because a vision that lives only in someone's head cannot guide a single concrete choice."
+    },
+    {
+      "title": "Harmony or productive friction",
+      "scenario": "Kwame Osei's team drafted a list of twelve nice-sounding values, and now the team lead must cut it down. The safe path keeps only values that agree with each other. The harder path keeps two that openly conflict, like excellence and hospitality, because forcing them to coexist drives real innovation, a tension Eleven Madison Park kept alive on purpose. The team wants comfort. Before the values are ratified Friday, Kwame has to choose harmony or productive friction.",
+      "whatToDo": "Pick a small set of values together and keep two that genuinely conflict, because forcing competing standards to coexist drives constant innovation instead of an easy, lifeless compromise."
+    },
+    {
+      "title": "Naming the work as noble",
+      "scenario": "Before, Faye Lindgren's warehouse crew saw their jobs as invisible drudgery, and it showed in how they treated each other. After Faye, the site manager, started naming the work as genuinely noble, an idea Eleven Madison Park preached when it told staff that serving others is a pursuit worth real pride, something shifted. She said it out loud, often. A year later the crew carried themselves differently, because someone had finally given them permission to feel proud of the work.",
+      "whatToDo": "Say out loud that the work is noble and name who it cares for, because openly dignifying the work gives people permission to take pride in it instead of treating it as menial."
+    },
+    {
+      "title": "Purpose treated as branding",
+      "scenario": "Engagement scores stayed flat, so the division director Rohan Mehta reviewed the year Monday. He had assumed purpose would simply emerge if he hired good people and kept morale up. Reading the survey, Rohan saw the error: he had treated purpose as a hope, or worse as branding, while daily choices stayed unchanged. Like the deliberate work at Eleven Madison Park, purpose is a construction project, manufactured by naming values, posting them, and refusing easy compromises, none of which he had actually done.",
+      "whatToDo": "Stop hoping purpose will emerge on its own and build it deliberately by naming values, making them visible, and changing daily choices, because purpose is a construction project, not a byproduct."
+    },
+    {
+      "title": "New clinic: task list or a why",
+      "scenario": "Two weeks before the new clinic opens, the practice director Sigrid Holm must decide how to set the team's purpose. The easy plan lists tasks and protocols. The harder plan first names a shared why and the distinction between service, the technical act, and hospitality, how it makes a patient feel, a shared why Eleven Madison Park built deliberately. The board wants the task list. Sigrid weighs efficiency now against a team that knows what it is really for.",
+      "whatToDo": "Before listing tasks, give the team a shared why and the distinction between doing the work and how it makes people feel, because a named purpose is what aligns a team for greatness."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A leader insists, 'If I hire good people and keep morale up, a sense of purpose will just emerge.' Engagement stays flat. What does this miss about purpose?",
+        "choices": [
+          "Nothing; purpose reliably appears on its own wherever morale is high and the people are talented.",
+          "Purpose is built deliberately by naming values and making them visible, not a byproduct that emerges from good vibes.",
+          "Purpose is irrelevant to engagement, so the flat scores must come from something unrelated to meaning."
+        ],
+        "correctIndex": 1,
+        "explanation": "Purpose is a deliberate construction project, not a feel-good byproduct. You build it by naming values, posting them where people see them, and refusing easy compromises, which high morale does not do on its own.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "When a stinging review calls a team technically flawless but lifeless, and the team wants to dismiss it, what is the more useful response?",
+        "choices": [
+          "Take the metaphor seriously and mine it for a concrete identity the team can aim at, rather than brushing it off.",
+          "Reject it outright, since a harsh review rarely contains anything a strong team should act on.",
+          "Demand a retraction, because the only fix for a bad review is to discredit the critic who wrote it."
+        ],
+        "correctIndex": 0,
+        "explanation": "An aspirational identity can be reverse-engineered from outside criticism. Taking the metaphor seriously and mining it for a north star turns a sting into direction, instead of wasted defensiveness.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A founder says everyone already knows the company's values, though they live only in his head. Behavior is inconsistent. What should he do?",
+        "choices": [
+          "Keep the values in his head, since writing them down would only make them feel rigid and corporate.",
+          "Make a few values physical and visible where the team sees them daily, so every choice can be measured against them.",
+          "Replace the values with detailed task rules, because concrete instructions matter more than any stated values."
+        ],
+        "correctIndex": 1,
+        "explanation": "A vision means nothing until it is concrete and visible. Posting a short, shared vocabulary lets everyone measure daily choices against it, which values trapped in one head cannot do.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "While trimming a long values list, one instinct is to keep only values that agree with each other. Which approach better builds productive tension?",
+        "choices": [
+          "Keep only harmonious values, since values that conflict will paralyze the team with constant arguments.",
+          "Keep all twelve values, because more stated values signal a richer, more thoughtful culture.",
+          "Keep two values that genuinely conflict, like excellence and hospitality, since forcing them to coexist drives real innovation."
+        ],
+        "correctIndex": 2,
+        "explanation": "Holding two competing standards in tension drives constant innovation rather than easy compromise. Choosing values that genuinely conflict, not just agreeable ones, is what pushes a team to invent.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A warehouse crew sees their jobs as invisible drudgery and treat each other carelessly. A manager wants to shift that. Which move best fits the idea of dignifying the work?",
+        "choices": [
+          "Offer a small attendance bonus, since money is the only thing that changes how people view their jobs.",
+          "Tell them the work is humble and to simply accept it, because pretending it matters would feel dishonest.",
+          "Name the work as genuinely noble and tie it to the real people it serves, giving the crew permission to feel pride."
+        ],
+        "correctIndex": 2,
+        "explanation": "Affirming the nobility of the work out loud reframes how people see themselves and gives them permission to take pride in caring for others, which a bonus or a shrug cannot do.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A company plasters purpose statements everywhere, but daily decisions never change. Engagement does not move. What best diagnoses the problem?",
+        "choices": [
+          "The statements are not displayed prominently enough, so the fix is simply bigger and bolder signage.",
+          "Engagement is random noise, so no purpose effort could plausibly move it in either direction.",
+          "Purpose was treated as branding while behavior stayed the same; it only works when it changes real daily choices."
+        ],
+        "correctIndex": 2,
+        "explanation": "Purpose treated as branding, with unchanged daily choices, is the failure mode. It becomes real only when values actually govern decisions, not when they are merely posted as slogans.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A new manager tells the team, 'Service and hospitality are the same thing done well, so if we execute cleanly we get both.' How should you evaluate that claim?",
+        "choices": [
+          "Push back: service is the technical act of delivering something, while hospitality is how that delivery makes a person feel.",
+          "Agree, since well-executed service is the same as the feeling that defines hospitality.",
+          "Agree, because the difference between the two is purely academic and rarely affects real work."
+        ],
+        "correctIndex": 0,
+        "explanation": "Service and hospitality are distinct: service is delivering the thing well, hospitality is how it makes the person feel. Collapsing them ignores the emotional layer that actually creates connection.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "You are starting a new team and want a shared why that guides behavior, not just a slogan. What is the strongest plan?",
+        "choices": [
+          "Write an inspiring mission statement, frame it on the wall, and assume the words alone will shape behavior.",
+          "Define a small set of values together, post them visibly, and judge daily choices against them as a team.",
+          "Skip values and focus only on metrics, since numbers are the only purpose a team really needs."
+        ],
+        "correctIndex": 1,
+        "explanation": "Manufacturing purpose means naming values collectively, making them visible, and measuring choices against them. A framed slogan or pure metrics cannot supply the shared why that guides behavior.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Your team gets a harsh outside critique that stings but contains a real metaphor. You want to use it the way a purposeful leader would. What is the best move?",
+        "choices": [
+          "Study the metaphor, pull a concrete vocabulary from it, and post that as a shared roadmap the team can aim at.",
+          "Bury the critique so it does not hurt morale, since dwelling on criticism only demoralizes a team.",
+          "Adopt the critic's exact words as your slogan without interpretation, because the critic clearly knows best."
+        ],
+        "correctIndex": 0,
+        "explanation": "An identity can be reverse-engineered from a critique. Mining the metaphor for a concrete, posted vocabulary turns the sting into a usable north star, rather than hiding it or copying it blindly.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cardFronts": {
+    "card01": "Beyond running things competently, what must a leader decide and change to give a team real purpose?",
+    "card02": "What does a technically perfect but lifeless operation reveal about what its standards are missing?",
+    "card03": "Why does manufacturing purpose on purpose transfer from a restaurant to any organization?",
+    "card04": "What is the most common way leaders let purpose become branding while behavior stays the same?",
+    "card05": "What single question helps a manager coach a team toward a shared, usable purpose?",
+    "card06": "Purpose can be a poster slogan. What turns it into a standard a team measures choices against?"
+  },
+  "coreSkill": "Manufacture purpose on purpose: mine an outside critique or a metaphor for an identity, name a small set of values, including two that productively conflict, and post them where the team sees them daily. Say out loud that the work is noble, and judge choices against the values, because purpose is built deliberately, not hoped into being.",
+  "ifThenContexts": {
+    "1": "A vivid metaphor for the team's identity becomes a slogan no one measures choices against.",
+    "3": "Turning a harsh critique into a north star raises the ambition of the whole room."
+  }
+}

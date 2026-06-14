@@ -1,0 +1,351 @@
+{
+  "summary": "Semantic QC of a book: tooled blind-key verification, dual-lens bar reads, cross-chapter sweep, adversarial adjudication, then qc-attest",
+  "agentCount": 40,
+  "logs": [
+    "Verdicts: ch10=REVISE(89) ch11=REVISE(87) ch12=REVISE(82) ch13=CORRUPTION(79) ch14=CORRUPTION(83) ch15=CORRUPTION(76) ch16=REVISE(83) ch17=REVISE(85) ch18=REVISE(92)",
+    "Attested 9/9 — PUBLISHABLE 0, REVISE 6, CORRUPTION 3; NEEDS_RERUN 0"
+  ],
+  "result": {
+    "bookId": "stillness-is-the-key",
+    "byVerdict": {
+      "PUBLISHABLE": [],
+      "REVISE": [
+        10,
+        11,
+        12,
+        16,
+        17,
+        18
+      ],
+      "CORRUPTION": [
+        13,
+        14,
+        15
+      ]
+    },
+    "needsRerun": [],
+    "perChapter": [
+      {
+        "n": 10,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch10.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 89,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": true
+        },
+        "note": "overall=89; cross-chapter: scene_skeleton/repeated_unit/repeated_unit/repeated_unit/persona_drift; Strong, near-publishable chapter; main blemish is repeated citation-triad-as-prop in several examples (Epictetus/Enchiri",
+        "upheldKeys": 0
+      },
+      {
+        "n": 11,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch11.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 87,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=87; cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit; Finished, human, non-templated chapter near anchor quality; mild systemic anchor-as-written-artifact across examples and",
+        "upheldKeys": 0
+      },
+      {
+        "n": 12,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch12.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 82,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=82; cross-chapter: repeated_unit/location_stamping/repeated_unit; Strong, near-anchor chapter; prose/plan/lines/cards all clean and human; one real defect is ex05's Dorothy Day flyer as ",
+        "upheldKeys": 0
+      },
+      {
+        "n": 13,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch13.v21-native.chapter.json",
+        "verdict": "CORRUPTION",
+        "incomplete": false,
+        "overall": 79,
+        "dims": {
+          "keysCorrect": false,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=79; 1 confirmed wrong key(s); cross-chapter: scene_skeleton/scene_skeleton/repeated_unit/persona_drift/location_stamping; Strong, near-anchor chapter: concrete named-human scenes, plain-language prose, aphoristic",
+        "upheldKeys": 1
+      },
+      {
+        "n": 14,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch14.v21-native.chapter.json",
+        "verdict": "CORRUPTION",
+        "incomplete": false,
+        "overall": 83,
+        "dims": {
+          "keysCorrect": false,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=83; 1 confirmed wrong key(s); cross-chapter: scene_skeleton/repeated_unit/repeated_unit/repeated_unit; Grounded, human, non-templated chapter near anchor quality; main craft flaw is two source anchors appearing a",
+        "upheldKeys": 1
+      },
+      {
+        "n": 15,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch15.v21-native.chapter.json",
+        "verdict": "CORRUPTION",
+        "incomplete": false,
+        "overall": 76,
+        "dims": {
+          "keysCorrect": false,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=76; 1 confirmed wrong key(s); cross-chapter: scene_skeleton/repeated_unit/persona_drift; Strong, human-reading chapter near anchor quality; cards all answer their fronts, plans are real If-X-then-Y triggers, p",
+        "upheldKeys": 1
+      },
+      {
+        "n": 16,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch16.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 83,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=83; cross-chapter: scene_skeleton/repeated_unit; Strong prose and aphorisms (near-anchor); examples are real named-human scenes but 3 of 6 lean on anchor-as-prop set dre",
+        "upheldKeys": 0
+      },
+      {
+        "n": 17,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch17.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 85,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": false
+        },
+        "note": "overall=85; cross-chapter: repeated_unit/persona_drift; Near-anchor craft: concrete human scenes, plain prose with terms explained ('Receptive means able to receive'), three cl",
+        "upheldKeys": 0
+      },
+      {
+        "n": 18,
+        "file": "/Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/chapters/stillness-is-the-key-ch18.v21-native.chapter.json",
+        "verdict": "REVISE",
+        "incomplete": false,
+        "overall": 92,
+        "dims": {
+          "keysCorrect": true,
+          "grounded": true,
+          "nonTemplated": false,
+          "frameworkComplete": true,
+          "cardsAnswerFronts": true,
+          "distractorsReal": true
+        },
+        "note": "overall=92; cross-chapter: scene_skeleton/scene_skeleton/scene_skeleton/scene_skeleton/repeated_unit/repeated_unit/repeated_unit; Strong, near-anchor chapter: concrete named-human scenes, plain-language tiers, cards answ",
+        "upheldKeys": 0
+      }
+    ],
+    "sweepFindings": [
+      {
+        "kind": "scene_skeleton",
+        "chapterNumbers": [
+          11,
+          13,
+          15,
+          18
+        ],
+        "quote": "ch11: \"Keith reviews twelve reflection logs at the library table. The Bhagavad Gita appears in four entries... The telling detail is not what he wrote. It is what never appears: the family call he kept postponing.\" / ch13: \"Maelle reviews three weeks of Catholic Worker sign-in sheets... The telling detail is a set of skipped initials.\" / ch15: \"Sophie's postmortem file, dated Friday in the compliance office... The trace is plain: a receipt marked private, a deleted calendar hold.\" / ch18: \"Stella audits twelve months of recovery notes in a quiet library carrel. Nothing dramatic happens except understanding... the margin phrase keeps returning: I can handle this alone. The telling detail is the sentence that brings denial back.\"",
+        "detail": "A single 'audit/records-review' skeleton is stamped across four chapters with the identical frame: a protagonist reviews ~12 records (logs/months/pages) at a quiet desk; 'nothing dramatic' happens; and 'the telling detail' is either a missing item or a repeated incriminating phrase. ch11 ('twelve reflection logs', 'The telling detail is not what he wrote'), ch13 ('skipped initials... telling detail'), ch15 (Sophie postmortem, 'the trace is plain'), and ch18 ('Stella audits twelve months... The telling detail is the sentence') reuse the same beat structure, the same 'telling detail' phrasing, and even the same library/office setting. A reader sampling these chapters meets the same investigative scene four times with swapped nouns."
+      },
+      {
+        "kind": "scene_skeleton",
+        "chapterNumbers": [
+          10,
+          18
+        ],
+        "quote": "ch10: \"At 7:00 a.m., Joshua has one hand on the sales forecast and one hand on the client tracker... He puts the phone face down and writes two columns on a yellow pad: mine, not mine.\" / ch18: \"Three marks on Tamar's notebook do the work: change, accept, ask for wisdom... The new page has one phone call, one meal, one appointment time, and one blank line marked result.\"",
+        "detail": "The 'sort your worries into columns on paper' scene recurs as a near-identical control-distinction device. ch10's Joshua writes 'two columns... mine, not mine'; ch10 ex02 repeats it ('On a notepad he writes... choice is mine, fortune is not'); and ch18's Tamar/Connor draw 'three columns: mine to do, not mine to command, needs wisdom' (also the tryThisNow and the whole implementationPlan 'Draw the Control Line'). The Stoic 'mine/not mine' two-column worksheet (ch10) and the serenity-prayer three-column worksheet (ch18) are the same physical scene-skeleton: a person at a table writing sortable columns to separate action from outcome. The pedagogical overlap is so close the two chapters read as one exercise."
+      },
+      {
+        "kind": "scene_skeleton",
+        "chapterNumbers": [
+          11,
+          14,
+          16,
+          18
+        ],
+        "quote": "ch11: \"Gisele has forty open minutes on Friday and a blank calendar.\" / ch14: \"Amelia's parent-night agenda has 45 minutes and six hungry topics.\" / ch16: \"Kelsey has 90 rehearsal minutes left on the calendar and no extra money.\" / ch18: \"Coralie's Saturday plan is still blank when three claims arrive at once.\"",
+        "detail": "The 'planning_choice' scenes share one rigid skeleton across four chapters: a named protagonist has a fixed block of scarce minutes (40/45/90/Saturday) and a blank or contested calendar, then must 'allocate scarce attention' among competing pulls before any action begins, choosing the option that serves duty over status/image. ch11 (Gisele, 'forty open minutes... blank calendar'), ch14 (Amelia, '45 minutes and six hungry topics'), ch16 (Kelsey, '90 rehearsal minutes left'), and ch18 (Coralie, 'Saturday plan is still blank') are the same frame with interchangeable nouns. The planSpec stakes line even repeats verbatim across them: 'scarce attention may either feed [X] or [Y].'"
+      },
+      {
+        "kind": "scene_skeleton",
+        "chapterNumbers": [
+          11,
+          13,
+          18
+        ],
+        "quote": "ch11 ex03 (Neil Before and After): \"Neil, before the shift, spends fifteen quiet minutes copying Seneca... Neil, after the shift, spends fifteen quiet minutes with the same Stoicism passage.\" / ch13 ex05 (Vivian's Inbox Turn): \"Before the change, Vivian closes the Catholic Worker inbox by answering praise first... After the change, she opens the same inbox with one question.\" / ch18 ex02 (Tamar Rewrites the Page): \"Before the change, Tamar refreshes the medical portal... After the change, Tamar draws three lines.\"",
+        "detail": "The 'before_after' example format is built from one identical template across chapters: 'Before the change, [Name] does the routine with the old motive; After the change, [Name] does the SAME routine with the corrected motive; nothing external moves, only the inner job changes.' ch11's Neil ('Before, the page makes him feel above the room. After, the page sends him toward one honest sentence'), ch13's Vivian ('The two inboxes look almost the same from the outside'), and ch18's Tamar ('The facts on the screen stay the same; the job on the page changes') all hinge on the same closing move: same external scene, changed internal assignment. The whyItMatters payoff sentence is structurally cloned each time."
+      },
+      {
+        "kind": "repeated_unit",
+        "chapterNumbers": [
+          10,
+          18
+        ],
+        "quote": "ch10 keyTakeaway: \"Stillness grows when you do the next honest act, name what is outside your control, and stop making peace wait for praise, timing, or reply.\" / ch18 keyTakeaway: \"Accept a higher power by doing the next honest task, naming what you cannot command, asking for wisdom, and letting the result stop pretending to be yours.\" / ch18 fullRead close: \"Do the next honest thing, ask for help where help belongs, and let the result be larger than you.\"",
+        "detail": "The 'do the next honest thing / name what you cannot control / release the result' formula is the closing payoff of both ch10 (Let Go) and ch18 (Accept a Higher Power), with near-identical wording ('do the next honest act' vs 'doing the next honest task'; 'name what is outside your control' vs 'naming what you cannot command'; 'stop making peace wait' vs 'let the result stop pretending to be yours'). ch10 ex02's notepad ('choice is mine, fortune is not') and ch18's control-line are the same mechanism. Because these two chapters are supposed to teach distinct concepts (nonattachment vs surrender), the duplicated takeaway makes ch18 read as a reskin of ch10 to a paying reader."
+      },
+      {
+        "kind": "repeated_unit",
+        "chapterNumbers": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "quote": "ch10: \"Before you close this screen, move one result-tracking tab out of your browser's first row...\" / ch11: \"Put a 12-minute service check on tomorrow's calendar for 8:20 at your kitchen table, triggered by your first quiet work block.\" / ch14: \"Put a 12-minute old-threat check on tomorrow's calendar for 8:10 a.m. at your kitchen table, triggered by the first criticism you hear.\" / ch17: \"Mark tomorrow at 3:30 p.m. for 12 minutes by the office window; set the trigger as 'after the second meeting ends.'\" / ch15: \"Start a 10-minute timer. Write one want you keep feeding...\" / ch12: \"Start a 10-minute timer. Write one place where your conduct looks calm but feels bent inside...\"",
+        "detail": "The tryThisNow instruction is generated from two interchangeable molds reused across the whole run. Mold A ('Put/Mark a 12-minute [X] check on tomorrow's calendar for 8:1X a.m. at your kitchen table, triggered by [first cue]') appears almost verbatim in ch11 ('12-minute service check... 8:20... kitchen table, triggered by your first quiet work block') and ch14 ('12-minute old-threat check... 8:10 a.m.... kitchen table, triggered by the first criticism'), with ch17 a close variant. Mold B ('Start a 10-minute timer. Write one [X]...') is shared by ch12 and ch15 verbatim. The repeated '12-minute... kitchen table... triggered by your first...' scaffold is copy-paste a reader would notice across consecutive chapters."
+      },
+      {
+        "kind": "repeated_unit",
+        "chapterNumbers": [
+          10,
+          14,
+          18
+        ],
+        "quote": "ch10 deepRead: \"He puts the phone face down\" / \"the pull to refresh the tracker until it gives him a better mood.\" / ch16 q02: \"you reach for a feed full of people showing larger wins.\" / ch18 fullRead: \"It keeps refreshing the portal, rereading the email, checking the feed, and rehearsing the sentence.\" / ch18 ex02: \"Tamar refreshes the medical portal, circles the same blank lab field, and calls worry a plan.\" / ch10 q01: \"A product lead refreshes the review page every few minutes after shipping a careful update.\"",
+        "detail": "The compulsive-checking image ('refresh the portal / tracker / review page / inbox / feed for a result that will not change') is a recycled unit running through ch10 (refresh the tracker, refresh the review page), ch16 (open the comparison feed), and ch18 (refresh the medical portal, 'circles the same blank lab field'). Each chapter reaches for the identical concrete behavior to dramatize its abstract point, so the 'refreshing for an outcome you cannot command' beat reads as the book's house gesture rather than a per-chapter illustration."
+      },
+      {
+        "kind": "persona_drift",
+        "chapterNumbers": [
+          13,
+          17
+        ],
+        "quote": "ch13 ex03/ex06: \"Maelle freezing before a hard hospitality task\" / \"Bruno finds Maelle outside the volunteer entrance\" and \"Maelle reviews three weeks of Catholic Worker sign-in sheets, donation notes, and pantry camera clips.\" / ch17 ex04: \"Malvina is halfway through a break-room reset for tired nurses, reading from Letters to a Young Poet.\"",
+        "detail": "Within ch13, 'Maelle' is two different people: a nervous first-time volunteer who must be coached through hospitality (ex03), and an experienced records auditor who reviews three weeks of sign-in sheets and rewrites the bed-queue policy (ex06). A frozen newcomer and a systems-fixing auditor cannot be the same character in one short chapter, so the name is stamped onto two unrelated personas."
+      },
+      {
+        "kind": "persona_drift",
+        "chapterNumbers": [
+          10
+        ],
+        "quote": "ex01: \"Joyce's phone lights at 9:12 p.m. in the team chat. Marco: Did the client praise the deck?... Joshua: So we keep refreshing?\" / ex03: \"Marco stands in the pharmacy queue with a cracked phone case under his thumb.\" / ex02: \"Joshua begins his 7:00 a.m. forecast at the kitchen table.\"",
+        "detail": "Within ch10, 'Marco' and 'Joshua' are each reused as different people. In ex01 Marco is a team member texting in a work chat about a client deck and Joshua is another teammate in that thread; in ex03 Marco is a solo stranger standing in a pharmacy queue; in ex02 Joshua is a lone revenue operator doing a 7:00 a.m. forecast at his kitchen table. q03 then introduces yet another Marco ('people quietly skip it because they crave quick praise from Marco') as a praise-giving manager. The same first names are recycled as unconnected characters across the chapter's examples and quiz, which a close reader will register as character incoherence."
+      },
+      {
+        "kind": "persona_drift",
+        "chapterNumbers": [
+          15
+        ],
+        "quote": "ex05: \"Amelie calls the design studio perk 'my one harmless yes' while Landon listens across the conference table.\" / ex06: \"Amelie stares at the worksheet in Landon's evening ethics class and says, 'So Epicurus wants us to want nothing?'\"",
+        "detail": "Within ch15, 'Amelie' is two different people sharing scenes with the same 'Landon': in ex05 she is a working designer rationalizing a concealed studio perk to a peer coach named Landon at a conference table; in ex06 she is a confused student in Landon's evening ethics class. The fullRead introduces a third, unrelated Amelie ('Amelie sees the same pattern in a smaller place. She wants praise after a hard week, so she reaches for one more flattering message'). One short chapter uses the Amelie/Landon pair as two unrelated coach-and-learner dyads plus a separate inner-life vignette, which is persona drift a reader would catch."
+      },
+      {
+        "kind": "location_stamping",
+        "chapterNumbers": [
+          12,
+          13
+        ],
+        "quote": "ch12: \"Lionel wipes tomato soup from the counter before the Catholic Worker supper in New York City.\" and \"Leontine stands at the Catholic Worker sink after supper. New York City rain ticks against the window.\" / ch13: \"The Catholic Worker kitchen in New York is quiet after the line has passed.\" and \"Bruno finds Maelle outside the volunteer entrance... New York rain has pushed more people indoors.\"",
+        "detail": "The 'Catholic Worker soup line / kitchen in New York (City), in the rain, after supper' setting is stamped across ch12 and ch13 as the recurring concrete stage for the service examples. Both chapters open service vignettes at the same soup counter/sink with the same New York rain and the same Dorothy Day / 1933 / Great Depression furniture (ch12 ex01 'wipes tomato soup... before the Catholic Worker supper'; ch12 ex05 'Catholic Worker sink after supper... New York City rain'; ch13 fastRead 'Catholic Worker kitchen in New York is quiet after the line has passed'; ch13 ex03 'New York rain has pushed more people indoors'). Across the two consecutive chapters the same location and weather recur enough to read as one stage redressed."
+      },
+      {
+        "kind": "repeated_unit",
+        "chapterNumbers": [
+          12,
+          14
+        ],
+        "quote": "ch12 ifThenPlans: \"context\": \"A mild comment lands in your body like shame.\" / \"plan\": \"If a mild comment feels like shame, then run the Soul Alignment Check and write the old meaning before you answer the present person.\" / ch14 ifThenPlans: \"context\": \"A mild comment lands like an attack.\" / \"plan\": \"If a mild comment lands like an attack, then Name the Old Threat by writing the exact sentence and the older meaning before you answer.\"",
+        "detail": "The 'mild comment lands as shame/attack -> name the old meaning before you answer' if-then plan is duplicated between ch12 and ch14 with the same trigger, the same instruction ('write the old meaning'/'the older meaning before you answer'), and the same underlying scenario (Xavier in ch12, Warren/Brooklyn in ch14). ch12 q04 ('The words were mild, but your chest reads them as public shame') and ch14 q02 ('You hear mild criticism and answer as if the room is attacking you') restate the same item again. Two adjacent chapters teach an identical reusable plan under two different skill names, which reads as a recycled unit."
+      }
+    ],
+    "attested": [
+      {
+        "chapter": 10,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch10.qc.json\n  stillness-is-the-key-ch10  verdict=REVISE  hash=919abd68f9e94cc4 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 11,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch11.qc.json\n  stillness-is-the-key-ch11  verdict=REVISE  hash=ecfdae89be262f4a (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 12,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch12.qc.json\n  stillness-is-the-key-ch12  verdict=REVISE  hash=ed4013b935136b23 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 13,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch13.qc.json\n  stillness-is-the-key-ch13  verdict=CORRUPTION  hash=94d71e909370b795 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 14,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch14.qc.json\n  stillness-is-the-key-ch14  verdict=CORRUPTION  hash=c6ab29f679745ae1 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 15,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch15.qc.json\n  stillness-is-the-key-ch15  verdict=CORRUPTION  hash=f5875d07c1e814ea (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 16,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch16.qc.json\n  stillness-is-the-key-ch16  verdict=REVISE  hash=bb0a1469e2923da1 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 17,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch17.qc.json\n  stillness-is-the-key-ch17  verdict=REVISE  hash=782c7dde7ab29b45 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      },
+      {
+        "chapter": 18,
+        "attested": true,
+        "output": "QC attestation written: /Users/radinsoltani/ChapterFlow/scripts/book/prompts/chapterflow-v21-authored/state/qc/stillness-is-the-key-ch18.qc.json\n  stillness-is-the-key-ch18  verdict=REVISE  hash=1053992ac3827804 (v2)  reviewer=harness:qc-run-stillness-is-the-key-2026-06-11"
+      }
+    ]
+  }
+}

@@ -12,11 +12,12 @@ interface DailyGoalRingProps {
   hasEndowedProgress?: boolean;
 }
 
-// Color constants
-const CYAN = "#38BDF8";
-const CYAN_TRACK = "rgba(56, 189, 248, 0.15)";
-const PURPLE = "#A78BFA";
-const PURPLE_TRACK = "rgba(167, 139, 250, 0.15)";
+// Color constants — theme-aware tokens (resolve correctly as SVG stroke / inline
+// style / CSS filter values in both light and dark).
+const CYAN = "var(--accent-cyan)";
+const CYAN_TRACK = "var(--cf-progress-track)";
+const PURPLE = "var(--accent-violet)";
+const PURPLE_TRACK = "var(--accent-violet-glow)";
 
 export function DailyGoalRing({
   completedMinutes,
@@ -158,7 +159,7 @@ export function DailyGoalRing({
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {isGoalComplete ? (
             <motion.span
-              className="font-(family-name:--font-display) text-2xl font-bold text-emerald-400"
+              className="font-(family-name:--font-display) text-2xl font-bold text-accent-emerald"
               initial={{ scale: prefersReduced ? 1 : 0.8 }}
               animate={{ scale: 1 }}
               transition={{ delay: 1.2, type: "spring", stiffness: 300 }}
@@ -198,15 +199,14 @@ export function DailyGoalRing({
         {isGoalComplete && (
           <motion.div
             className="pointer-events-none absolute inset-0 rounded-full"
+            // Static theme-aware glow; the opacity pulse below fades it in/out.
+            // (framer-motion can't interpolate between var() box-shadow keyframes,
+            // so we animate opacity instead of the shadow color.)
+            style={{ boxShadow: "0 0 24px var(--accent-emerald-glow)" }}
             initial={{ opacity: 0, scale: 1 }}
             animate={{
-              opacity: [0, 0.4, 0],
+              opacity: [0, 0.6, 0],
               scale: [1, 1.05, 1],
-              boxShadow: [
-                "0 0 0px rgba(52,211,153,0)",
-                "0 0 24px rgba(52,211,153,0.4)",
-                "0 0 0px rgba(52,211,153,0)",
-              ],
             }}
             transition={{
               duration: 1.5,

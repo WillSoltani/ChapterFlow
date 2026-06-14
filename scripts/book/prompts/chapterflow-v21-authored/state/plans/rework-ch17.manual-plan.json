@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch17",
+  "number": 17,
+  "title": "Building to flip is building to flop",
+  "coreMove": "Build a company worth running, not one staged for sale; let customer value pick your priorities, because designing for an acquirer pulls the first decisions toward the wrong audience.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "early-stage SaaS founding",
+      "audience": "founders planning the sale before the first release",
+      "stakes": "aim the roadmap at an acquirer or at a customer",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist chooses commitment strategy over exit strategy"
+    },
+    {
+      "domain": "bootstrapped product company",
+      "audience": "teams unsure whether staying independent is a real strategy",
+      "stakes": "treat independence as an accident or as a deliberate posture",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist frames commitment as an operating stance"
+    },
+    {
+      "domain": "consumer marketplace startup",
+      "audience": "founders conflating buyer appeal with customer value",
+      "stakes": "chase numbers a buyer rewards or value a customer rewards",
+      "format": "contrast",
+      "requiredBeat": "the protagonist separates keeping buyers happy from keeping customers happy"
+    },
+    {
+      "domain": "founder coaching session",
+      "audience": "makers mistaking exit fluency for discipline",
+      "stakes": "read exit fluency as discipline or as detachment",
+      "format": "reflection",
+      "requiredBeat": "the protagonist reads exit talk as a sign of premature absence"
+    },
+    {
+      "domain": "mobile app studio",
+      "audience": "competent teams building only to flip",
+      "stakes": "build as a stepping stone or invest real care",
+      "format": "postmortem",
+      "requiredBeat": "the protagonist traces a hollow product back to its stepping-stone motive"
+    },
+    {
+      "domain": "established software business",
+      "audience": "owners who think commitment forbids ever selling",
+      "stakes": "refuse a fair offer on principle or judge it on merit",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist distinguishes building-to-flip from a sensible sale"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "understand": 2,
+      "analyze": 2,
+      "evaluate": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.764Z"
+}

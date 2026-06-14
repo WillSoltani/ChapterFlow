@@ -1,8 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
-import { BookOpen, FileText, Bookmark, Target, Search, Download } from "lucide-react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import {
+  BookOpen,
+  FileText,
+  Bookmark,
+  Target,
+  Search,
+  Download,
+  AlertTriangle,
+  RefreshCw,
+} from "lucide-react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import type { NotebookEntry, NotebookEntryType } from "@/app/app/api/book/_lib/types";
 import { TopNav } from "@/app/book/home/components/TopNav";
@@ -25,19 +34,28 @@ const TYPE_LABELS: Record<NotebookEntryType, string> = {
 };
 
 export function NotebookClient() {
-  const router = useRouter();
   const { identity: viewerIdentity } = useBookViewer();
   const [entries, setEntries] = useState<NotebookEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<NotebookEntryType | "all">("all");
 
-  useEffect(() => {
+  const loadEntries = useCallback(() => {
+    setLoading(true);
+    setError(false);
     fetchBookJson<NotebookResponse>("/app/api/book/me/notebook")
-      .then((data) => setEntries(data.entries))
-      .catch(() => {})
+      .then((data) => {
+        setEntries(data.entries);
+        setError(false);
+      })
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    loadEntries();
+  }, [loadEntries]);
 
   const filtered = useMemo(() => {
     let result = entries;
@@ -55,6 +73,21 @@ export function NotebookClient() {
     }
     return result;
   }, [entries, typeFilter, searchQuery]);
+
+  // Group entries by book so the list reads like a per-book notebook.
+  const groups = useMemo(() => {
+    const map = new Map<
+      string,
+      { bookId: string; bookTitle: string; entries: NotebookEntry[] }
+    >();
+    for (const e of filtered) {
+      const g =
+        map.get(e.bookId) ?? { bookId: e.bookId, bookTitle: e.bookTitle, entries: [] };
+      g.entries.push(e);
+      map.set(e.bookId, g);
+    }
+    return Array.from(map.values());
+  }, [filtered]);
 
   const handleExport = async (format: string) => {
     try {
@@ -75,10 +108,11 @@ export function NotebookClient() {
       <TopNav
         name={viewerIdentity.displayName || "Reader"}
         avatarUrl={viewerIdentity.avatarDataUrl}
-        activeTab="home"
         searchQuery=""
         onSearchChange={() => {}}
         searchInputRef={{ current: null }}
+        showSearch={false}
+        showGlobalSearchPanel={false}
         logoVariant="dashboard"
       />
 
@@ -89,14 +123,17 @@ export function NotebookClient() {
               Notebook
             </h1>
             <p className="mt-1 text-sm text-(--cf-text-3)">
-              {entries.length} entries across all your books
+              {filtered.length === entries.length
+                ? `${entries.length} ${entries.length === 1 ? "entry" : "entries"} across all your books`
+                : `${filtered.length} of ${entries.length} entries`}
             </p>
           </div>
           <div className="relative">
             <button
               type="button"
               onClick={() => handleExport("markdown")}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-xs font-semibold text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
+              disabled={loading || error || entries.length === 0}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-xs font-semibold text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Download className="h-3.5 w-3.5" />
               Export
@@ -142,6 +179,24 @@ export function NotebookClient() {
                 <div key={i} className="h-24 rounded-2xl bg-(--cf-surface-muted)" />
               ))}
             </div>
+          ) : error ? (
+            <div className="cf-panel rounded-2xl border border-(--cf-danger-border) bg-(--cf-danger-bg) p-8 text-center">
+              <AlertTriangle className="mx-auto h-6 w-6 text-(--cf-danger-text)" />
+              <p className="mt-2 text-sm font-medium text-(--cf-text-1)">
+                Couldn&apos;t load your notebook
+              </p>
+              <p className="mt-1 text-sm text-(--cf-text-3)">
+                Something went wrong fetching your notes. Please try again.
+              </p>
+              <button
+                type="button"
+                onClick={loadEntries}
+                className="mt-4 inline-flex items-center gap-1.5 rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-xs font-semibold text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
+              >
+                <RefreshCw className="h-3.5 w-3.5" />
+                Retry
+              </button>
+            </div>
           ) : filtered.length === 0 ? (
             <div className="cf-panel rounded-2xl p-8 text-center">
               <p className="text-sm text-(--cf-text-3)">
@@ -151,35 +206,59 @@ export function NotebookClient() {
               </p>
             </div>
           ) : (
-            filtered.map((entry) => {
-              const Icon = TYPE_ICONS[entry.type];
-              return (
-                <div
-                  key={entry.id}
-                  className="cf-panel rounded-2xl border border-(--cf-border) p-4"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-(--cf-accent-soft)">
-                      <Icon className="h-4 w-4 text-(--cf-accent)" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-(--cf-text-1) leading-relaxed">
-                        {entry.content.length > 300
-                          ? `${entry.content.slice(0, 300)}...`
-                          : entry.content}
-                      </p>
-                      <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-text-3)">
-                        <span>{entry.bookTitle}</span>
-                        <span>·</span>
-                        <span>Ch. {entry.chapterNumber}</span>
-                        <span>·</span>
-                        <span className="capitalize">{entry.type}</span>
+            groups.map((group) => (
+              <div key={group.bookId} className="space-y-3">
+                <h2 className="flex items-center gap-2 px-1 pt-2 text-xs font-semibold uppercase tracking-wide text-(--cf-text-3)">
+                  <span>{group.bookTitle}</span>
+                  <span className="font-normal normal-case text-(--cf-text-3)">
+                    {group.entries.length}
+                  </span>
+                </h2>
+                {group.entries.map((entry) => {
+                  const Icon = TYPE_ICONS[entry.type];
+                  // Only link when we have a real bookId; a blank one would
+                  // produce /book/library//chapter/N which 404s.
+                  const href = entry.bookId
+                    ? `/book/library/${encodeURIComponent(entry.bookId)}/chapter/${entry.chapterNumber}`
+                    : null;
+                  const inner = (
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-(--cf-accent-soft)">
+                        <Icon className="h-4 w-4 text-(--cf-accent)" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-(--cf-text-1) leading-relaxed">
+                          {entry.content.length > 300
+                            ? `${entry.content.slice(0, 300)}...`
+                            : entry.content}
+                        </p>
+                        <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-text-3)">
+                          <span>Ch. {entry.chapterNumber}</span>
+                          <span>·</span>
+                          <span className="capitalize">{entry.type}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })
+                  );
+                  return href ? (
+                    <Link
+                      key={entry.id}
+                      href={href}
+                      className="cf-panel block rounded-2xl border border-(--cf-border) p-4 transition hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                    >
+                      {inner}
+                    </Link>
+                  ) : (
+                    <div
+                      key={entry.id}
+                      className="cf-panel block rounded-2xl border border-(--cf-border) p-4"
+                    >
+                      {inner}
+                    </div>
+                  );
+                })}
+              </div>
+            ))
           )}
         </div>
       </section>

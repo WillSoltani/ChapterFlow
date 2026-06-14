@@ -4,167 +4,142 @@ import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import {
+  CATALOG_BOOK_COUNT_DISPLAY,
+  CATALOG_CATEGORY_COUNT_DISPLAY,
+} from "@/lib/catalog-stats";
 
-const testimonials = [
+/**
+ * Proof band. Deliberately NOT testimonials — we don't have verifiable user
+ * quotes, and inventing personas would violate the truth rule. Instead this
+ * surfaces things we can stand behind: the method, the real catalog size
+ * (from catalog-stats), and the honest free tier.
+ */
+
+type Proof = {
+  icon: React.ReactNode;
+  stat: string;
+  title: string;
+  body: string;
+};
+
+const PROOFS: Proof[] = [
   {
-    name: "Sarah K.",
-    context: "Senior product manager",
-    role: "Reads 2 books a month",
-    quote:
-      "I've tried Blinkist, I've tried highlighting — nothing stuck. ChapterFlow's quiz step is what changed everything. I actually retained a whole book for the first time.",
-    stars: 5,
-    initials: "SK",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+      </svg>
+    ),
+    stat: "Prove it, then progress",
+    title: "Active recall, not highlighting",
+    body: "Every chapter ends with a quiz you have to pass to unlock the next one — the retrieval practice that actually moves ideas into long-term memory.",
   },
   {
-    name: "Marcus T.",
-    context: "PhD candidate, neuroscience",
-    role: "Studying spaced repetition",
-    quote:
-      "One chapter on my commute. Fifteen minutes and I still remember it weeks later. Replaced my entire notes system.",
-    stars: 5,
-    initials: "MT",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 5h16M4 12h16M4 19h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    ),
+    stat: `${CATALOG_BOOK_COUNT_DISPLAY} books · ${CATALOG_CATEGORY_COUNT_DISPLAY} categories`,
+    title: "One structure across the whole library",
+    body: "Every title is rebuilt into the same four-step loop — summary, real-world scenario, quiz, unlock — so you always know how to read it.",
   },
   {
-    name: "Priya R.",
-    context: "Founder, early-stage startup",
-    role: "Reads on the train",
-    quote:
-      "$8 a month for books I actually retain? My only wish is they had more sci-fi. The non-fiction library is excellent though.",
-    stars: 4,
-    initials: "PR",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9-2.6.9-5.5-4-3.9L9.5 8z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      </svg>
+    ),
+    stat: "2 full books free",
+    title: "Try it before you pay anything",
+    body: "Read two complete books end-to-end with no credit card. Upgrade to Pro only if the method works for you. Cancel anytime.",
   },
 ];
 
-function StarIcon() {
-  return (
-    <svg
-      className="w-4 h-4"
-      style={{ fill: "var(--accent-teal)" }}
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" />
-    </svg>
-  );
-}
-
-interface TestimonialCardProps {
-  name: string;
-  context: string;
-  role: string;
-  quote: string;
-  stars: number;
-  initials: string;
+interface ProofCardProps {
+  proof: Proof;
   index: number;
 }
 
-function TestimonialCard({
-  name,
-  context,
-  role,
-  quote,
-  stars,
-  initials,
-  index,
-}: TestimonialCardProps) {
+function ProofCard({ proof, index }: ProofCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
   const prefersReducedMotion = useReducedMotion();
 
-  const initial = prefersReducedMotion
-    ? { opacity: 1, y: 0 }
-    : { opacity: 0, y: 24 };
-
+  const initial = prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 };
   const animate =
-    prefersReducedMotion || isInView
-      ? { opacity: 1, y: 0 }
-      : { opacity: 0, y: 24 };
+    prefersReducedMotion || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 };
 
   return (
     <motion.div
       ref={ref}
       initial={initial}
       animate={animate}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.15,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className="bg-[--bg-glass] backdrop-blur-[16px] border border-[--border-subtle] rounded-xl p-6 md:p-8 text-left"
+      transition={{ duration: 0.7, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-(--bg-glass) backdrop-blur-[16px] border border-(--border-subtle) rounded-xl p-6 md:p-8 text-left"
     >
-      {/* Stars */}
-      <div className="flex gap-1">
-        {Array.from({ length: stars }).map((_, i) => (
-          <StarIcon key={i} />
-        ))}
+      {/* Icon */}
+      <div
+        className="w-11 h-11 rounded-xl flex items-center justify-center text-(--accent-teal)"
+        style={{
+          background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)",
+          border: "1px solid color-mix(in srgb, var(--accent-cyan) 25%, transparent)",
+        }}
+        aria-hidden="true"
+      >
+        {proof.icon}
       </div>
 
-      {/* Quote */}
-      <p className="text-[15px] md:text-[16px] text-[--text-heading] italic leading-[1.6] mt-4 font-[family-name:--font-body]">
-        &ldquo;{quote}&rdquo;
+      {/* Stat */}
+      <p
+        className="text-[15px] font-bold mt-4 text-(--accent-teal)"
+        style={{ fontFamily: "var(--font-display)" }}
+      >
+        {proof.stat}
       </p>
 
-      {/* Attribution */}
-      <div className="flex items-center gap-3 mt-6">
-        <div
-          className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-[13px] font-bold"
-          style={{
-            background: "linear-gradient(135deg, rgba(34,211,238,0.2), rgba(34,211,238,0.05))",
-            border: "1.5px solid rgba(34,211,238,0.3)",
-            color: "var(--accent-teal)",
-          }}
-        >
-          {initials}
-        </div>
-        <div>
-          <p className="text-[14px] font-semibold text-[--text-heading]">
-            {name}
-          </p>
-          <p className="text-[12px] text-[--text-muted]">{context}</p>
-          <p className="text-[12px] text-[--text-muted]">{role}</p>
-        </div>
-      </div>
+      {/* Title */}
+      <h3 className="text-[16px] font-semibold mt-2 text-(--text-heading) font-(family-name:--font-display)">
+        {proof.title}
+      </h3>
+
+      {/* Body */}
+      <p className="text-[14px] text-(--text-secondary) leading-[1.6] mt-2 font-(family-name:--font-body)">
+        {proof.body}
+      </p>
     </motion.div>
   );
 }
 
 export function SocialProof() {
   return (
-    <section id="social-proof" className="pt-8 pb-14 lg:pt-10 lg:pb-20 max-w-5xl mx-auto px-4">
+    <section id="why-it-works" className="py-14 lg:py-20 max-w-5xl mx-auto px-4">
       {/* Header */}
       <div className="text-center">
         <SectionReveal>
-          <h2 className="text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-[--text-heading] font-[family-name:--font-display] max-w-2xl mx-auto mt-4">
-            They started for the summaries. They stayed for the retention.
-          </h2>
+          <SectionLabel>WHY IT WORKS</SectionLabel>
         </SectionReveal>
 
         <SectionReveal delay={0.1}>
-          <SectionLabel>WHAT READERS SAY</SectionLabel>
+          <h2 className="text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-(--text-heading) font-(family-name:--font-display) max-w-2xl mx-auto mt-4">
+            No magic. Just the method that makes ideas stick.
+          </h2>
         </SectionReveal>
       </div>
 
-      {/* Testimonial Cards */}
+      {/* Proof Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-        {testimonials.map((t, i) => (
-          <TestimonialCard
-            key={t.name}
-            name={t.name}
-            context={t.context}
-            role={t.role}
-            quote={t.quote}
-            stars={t.stars}
-            initials={t.initials}
-            index={i}
-          />
+        {PROOFS.map((proof, i) => (
+          <ProofCard key={proof.title} proof={proof} index={i} />
         ))}
       </div>
 
       {/* Credibility line */}
-      <SectionReveal delay={0.5}>
-        <p className="text-[14px] text-[--text-muted] italic max-w-lg mx-auto text-center mt-10">
-          Built on spaced repetition and active recall — the same science behind
-          Anki and Duolingo.
+      <SectionReveal delay={0.4}>
+        <p className="text-[14px] text-(--text-muted) max-w-lg mx-auto text-center mt-10">
+          Built on spaced repetition and active recall — the same retrieval-practice
+          science behind tools like Anki and Duolingo.
         </p>
       </SectionReveal>
     </section>

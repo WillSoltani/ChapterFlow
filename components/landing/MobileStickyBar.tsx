@@ -54,7 +54,7 @@ export function MobileStickyBar() {
         background: "color-mix(in srgb, var(--bg-base) 90%, transparent)",
         backdropFilter: "blur(24px)",
         WebkitBackdropFilter: "blur(24px)",
-        borderTop: "2px solid rgba(34,211,238,0.35)",
+        borderTop: "2px solid color-mix(in srgb, var(--accent-cyan) 35%, transparent)",
       }}
     >
       <div className="px-4 py-3 flex items-center gap-3">
@@ -72,7 +72,7 @@ export function MobileStickyBar() {
         <button
           type="button"
           onClick={handleDismiss}
-          className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-[--text-muted] hover:text-[--text-heading] hover:bg-[--bg-glass] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+          className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-(--text-muted) hover:text-(--text-heading) hover:bg-(--bg-glass) transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
           aria-label="Dismiss"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">

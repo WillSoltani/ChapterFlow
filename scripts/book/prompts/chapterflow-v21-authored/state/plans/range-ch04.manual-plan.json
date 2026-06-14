@@ -1,0 +1,70 @@
+{
+  "chapterId": "range-ch04",
+  "number": 4,
+  "title": "Learning, Fast and Slow",
+  "coreMove": "Desirable difficulties trade short-term fluency for durable recall and transfer by making learners retrieve, space, interleave, and classify.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "richland math prompt",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "decision_point",
+      "requiredBeat": "Richland Math Prompt"
+    },
+    {
+      "domain": "academy evaluation surprise",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "reflection",
+      "requiredBeat": "Academy Evaluation Surprise"
+    },
+    {
+      "domain": "interleaved homework night",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "business_case",
+      "requiredBeat": "Interleaved Homework Night"
+    },
+    {
+      "domain": "sales retrieval drill",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "scene",
+      "requiredBeat": "Sales Retrieval Drill"
+    },
+    {
+      "domain": "japanese classroom pause",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "planning_choice",
+      "requiredBeat": "Japanese Classroom Pause"
+    },
+    {
+      "domain": "medical board review",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "audit",
+      "requiredBeat": "Medical Board Review"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:17:02.903Z"
+}

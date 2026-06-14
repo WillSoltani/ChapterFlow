@@ -758,6 +758,12 @@ function AddScenarioModal({
             </div>
           </div>
 
+          <p className="text-xs leading-relaxed text-(--cr-text-disabled)">
+            Submitted scenarios are automatically reviewed for quality and safety
+            using AI (Anthropic). Please don&rsquo;t include personal or sensitive
+            information.
+          </p>
+
           {submitError && (
             <p className="rounded-xl border border-(--cr-error)/30 bg-(--cr-error-bg) px-3 py-2 text-sm text-(--cr-error)">
               {submitError}

@@ -495,6 +495,7 @@ function NotifyModal({
             type="button"
             onClick={onClose}
             className="rounded-md p-1 text-(--cf-text-soft) hover:bg-(--cf-surface-muted)"
+            aria-label="Close"
           >
             <X className="h-4 w-4" />
           </button>

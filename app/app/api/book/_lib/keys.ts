@@ -465,3 +465,20 @@ export function erasureLogSk(erasedAtIso: string, userId: string): string {
 export function accountStatusChangeSk(changedAtIso: string): string {
   return `ACCOUNTSTATUSCHANGE#${changedAtIso}`;
 }
+
+// ── Email suppression keys (bounce/complaint deliverability) ──────────────────
+
+/**
+ * PK for an email-suppression record, keyed by the lowercased address so a
+ * send-time check is a single GetItem. Written by the SES bounce/complaint
+ * handler Lambda; read before commercial sends. NOTE: the same key format is
+ * replicated in `infra/lambda/lib/email-compliance.ts` and the suppression
+ * handler (separate build roots) — keep them in sync.
+ */
+export function emailSuppressionPk(email: string): string {
+  return `BOOKSUPPRESS#${email.trim().toLowerCase()}`;
+}
+
+export function emailSuppressionSk(): string {
+  return "SUPPRESSION";
+}

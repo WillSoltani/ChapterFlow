@@ -1,0 +1,69 @@
+{
+  "chapterId": "drive-ch07",
+  "number": 7,
+  "title": "Purpose",
+  "coreMove": "Purpose motivates when profit is paired with contribution, daily choices, and goals that connect work to something beyond status.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "nonprofit board meeting",
+      "audience": "Ilya, a board member deciding whether money follows the mission",
+      "stakes": "A nonprofit claims community health as its purpose while shifting money away from outreach.",
+      "format": "decision_point",
+      "requiredBeat": "Show purpose being tested by a budget tradeoff."
+    },
+    {
+      "domain": "hospital shift huddle",
+      "audience": "Seren, a charge nurse connecting a huddle to patient purpose",
+      "stakes": "A hospital shift risks becoming only a throughput conversation.",
+      "format": "dialogue",
+      "requiredBeat": "Use the Mayo Clinic lesson as a daily decision rule."
+    },
+    {
+      "domain": "shoe company launch review",
+      "audience": "Bruno, a launch lead deciding whether contribution is built in",
+      "stakes": "A shoe company can add charity after the sale or design contribution into the model.",
+      "format": "audit",
+      "requiredBeat": "Show TOMS as an operating-logic lesson, not a marketing label."
+    },
+    {
+      "domain": "career coaching session",
+      "audience": "Cassia, a coach helping a client define contribution",
+      "stakes": "A career plan is drifting toward status goals without a beneficiary.",
+      "format": "planning_choice",
+      "requiredBeat": "Use life-goal research to make purpose concrete."
+    },
+    {
+      "domain": "benefits committee debate",
+      "audience": "Leif, a benefits-committee member testing whom the policy serves",
+      "stakes": "A benefits proposal protects the spreadsheet while claiming to support people.",
+      "format": "postmortem",
+      "requiredBeat": "Show purpose being checked against the people named by it."
+    },
+    {
+      "domain": "city service redesign",
+      "audience": "Noor, a civic designer making public contribution visible",
+      "stakes": "A city service redesign needs a purpose residents can see.",
+      "format": "reflection",
+      "requiredBeat": "Translate purpose into a public proof point."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 8,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:46:25.906Z"
+}

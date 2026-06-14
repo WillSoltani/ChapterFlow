@@ -4,8 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/app/book/components/ui/cn";
+import { Dialog } from "@/components/ui/Dialog";
+import { Confetti } from "@/components/ui/Confetti";
 import type { BadgeWithProgress, BadgeTier } from "../lib/badge-types";
-import { getBadgeRarity } from "../lib/badge-utils";
 import { Share2, Check } from "lucide-react";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
@@ -123,16 +124,22 @@ export function BadgeCelebration({
   return (
     <>
       {/* Toast notifications */}
-      <div className="fixed right-4 top-20 z-[60] flex flex-col gap-2">
+      <div
+        className="fixed right-4 top-20 z-[60] flex flex-col gap-2"
+        role="status"
+        aria-live="polite"
+        aria-atomic="false"
+      >
         <AnimatePresence>
           {toasts.map((badge, i) => (
-            <motion.div
+            <motion.button
               key={badge.id}
+              type="button"
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="cursor-pointer overflow-hidden rounded-2xl border border-accent-amber/20 bg-(--cf-surface-muted) shadow-shadow-elevated"
+              className="cursor-pointer overflow-hidden rounded-2xl border border-accent-amber/20 bg-(--cf-surface-muted) text-left shadow-shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/50"
               onClick={() => router.push("/book/badges")}
             >
               <div className="flex items-center gap-3 px-4 py-3">
@@ -163,110 +170,101 @@ export function BadgeCelebration({
                   transition={{ duration: 5, ease: "linear" }}
                 />
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </AnimatePresence>
       </div>
 
-      {/* Hero celebration modal */}
-      <AnimatePresence>
-        {heroVisible && heroBadge && !reduced && (
-          <motion.div
-            className="fixed inset-0 z-[60] flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div
+      {/* Confetti bursts full-screen behind the celebration (epic only). */}
+      {heroVisible && heroBadge && !reduced && heroLevel === "epic" && (
+        <Confetti trigger origin="center" particleCount={120} zIndex={101} />
+      )}
+
+      {/* Hero celebration modal — Wave-0 Dialog (role=dialog, aria-modal, focus
+          trap, Escape, focus restore). Epic ignores backdrop clicks so a stray
+          tap doesn't end the moment, but Escape and Continue both dismiss it. */}
+      <Dialog
+        open={heroVisible && Boolean(heroBadge) && !reduced}
+        onClose={handleDismissHero}
+        ariaLabel={heroBadge ? `Achievement unlocked: ${heroBadge.name}` : "Achievement unlocked"}
+        size="lg"
+        closeOnBackdrop={heroLevel !== "epic"}
+      >
+        {heroBadge && (
+          <div className="relative flex flex-col items-center px-6 py-10 text-center">
+            {heroLevel === "modal" && <ShimmerOverlay />}
+
+            <motion.span
               className={cn(
-                "absolute inset-0",
-                heroLevel === "epic" ? "bg-(--cf-overlay)" : "bg-(--cf-overlay)"
+                "leading-none",
+                heroLevel === "epic" ? "text-[120px]" : "text-[96px]"
               )}
-              onClick={heroLevel === "epic" ? undefined : handleDismissHero}
-            />
+              initial={{ scale: 0, rotate: -10 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 12, bounce: 0.5 }}
+            >
+              {heroBadge.icon}
+            </motion.span>
 
-            <div className="relative z-10 flex flex-col items-center px-6 text-center">
-              {/* Confetti for epic celebrations */}
-              {heroLevel === "epic" && <ConfettiEffect />}
+            <motion.h2
+              className="mt-6 text-2xl font-semibold text-(--cf-text-1)"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              {heroBadge.name}
+            </motion.h2>
 
-              {/* Shimmer overlay for modal celebrations */}
-              {heroLevel === "modal" && <ShimmerOverlay />}
-
-              <motion.span
-                className={cn(
-                  "leading-none",
-                  heroLevel === "epic" ? "text-[120px]" : "text-[96px]"
-                )}
-                initial={{ scale: 0, rotate: -10 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 12, bounce: 0.5 }}
-              >
-                {heroBadge.icon}
-              </motion.span>
-
-              <motion.h2
-                className="mt-6 text-2xl font-semibold text-(--cf-text-1)"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                {heroBadge.name}
-              </motion.h2>
-
-              {heroLevel === "epic" ? (
-                <TypewriterText
-                  text={heroBadge.narrative}
-                  className="mt-4 max-w-md text-sm italic leading-relaxed text-(--cf-text-2)"
-                />
-              ) : (
-                <motion.p
-                  className="mt-4 max-w-md text-sm italic leading-relaxed text-(--cf-text-2)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  {heroBadge.narrative}
-                </motion.p>
-              )}
-
+            {heroLevel === "epic" ? (
+              <TypewriterText
+                text={heroBadge.narrative}
+                className="mt-4 max-w-md text-sm italic leading-relaxed text-(--cf-text-2)"
+              />
+            ) : (
               <motion.p
-                className="mt-3 text-sm text-(--cf-text-soft)"
+                className="mt-4 max-w-md text-sm italic leading-relaxed text-(--cf-text-2)"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
+                transition={{ delay: 0.5 }}
               >
-                Earned by {getBadgeRarity(heroBadge)}% of readers
-                {heroLevel === "epic" ? " — legendary." : " — impressive!"}
+                {heroBadge.narrative}
               </motion.p>
+            )}
 
-              <motion.div
-                className="mt-8 flex gap-3"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
+            <motion.p
+              className="mt-3 text-sm text-(--cf-text-soft)"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+            >
+              {heroLevel === "epic" ? "A rare achievement — legendary." : "Well earned — impressive!"}
+            </motion.p>
+
+            <motion.div
+              className="mt-8 flex flex-wrap justify-center gap-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              {heroLevel === "epic" && <ShareButton badge={heroBadge} />}
+              <button
+                type="button"
+                onClick={() => onPinToShowcase(heroBadge.id)}
+                className="rounded-2xl border border-accent-amber/30 bg-accent-amber/10 px-5 py-2.5 text-sm font-medium text-accent-amber transition hover:bg-accent-amber/20"
               >
-                {heroLevel === "epic" && (
-                  <ShareButton badge={heroBadge} />
-                )}
-                <button
-                  type="button"
-                  onClick={() => onPinToShowcase(heroBadge.id)}
-                  className="rounded-2xl border border-accent-amber/30 bg-accent-amber/10 px-5 py-2.5 text-sm font-medium text-accent-amber transition hover:bg-accent-amber/20"
-                >
-                  Pin to Showcase
-                </button>
-                <button
-                  type="button"
-                  onClick={handleDismissHero}
-                  className="rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
-                >
-                  Continue
-                </button>
-              </motion.div>
-            </div>
-          </motion.div>
+                Pin to Showcase
+              </button>
+              <button
+                type="button"
+                onClick={handleDismissHero}
+                className="rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+              >
+                Continue
+              </button>
+            </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </Dialog>
     </>
   );
 }
@@ -320,61 +318,6 @@ function TypewriterText({ text, className }: { text: string; className?: string 
   }, [text, reduced]);
 
   return <p className={className}>{displayed}</p>;
-}
-
-function ConfettiEffect() {
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 35 }).map((_, i) => ({
-        id: i,
-        x: 45 + Math.random() * 10, // Start near center
-        delay: Math.random() * 0.8,
-        duration: 2 + Math.random() * 1.5,
-        size: 4 + Math.random() * 6,
-        color: ["#f59e0b", "#ffd700", "#f97316", "#8b7dff", "#e5e4e2"][i % 5],
-        angle: (i / 35) * 360,
-        distance: 200 + Math.random() * 400,
-        rotation: Math.random() * 720 - 360,
-      })),
-    []
-  );
-
-  return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      {particles.map((p) => {
-        const radians = (p.angle * Math.PI) / 180;
-        const endX = Math.cos(radians) * p.distance;
-        const endY = Math.sin(radians) * p.distance + 300; // gravity pull
-
-        return (
-          <motion.div
-            key={p.id}
-            className="absolute rounded-full"
-            style={{
-              width: p.size,
-              height: p.size,
-              backgroundColor: p.color,
-              left: `${p.x}%`,
-              top: "45%",
-            }}
-            initial={{ x: 0, y: 0, opacity: 1, scale: 0 }}
-            animate={{
-              x: endX,
-              y: endY,
-              opacity: 0,
-              scale: 1,
-              rotate: p.rotation,
-            }}
-            transition={{
-              duration: p.duration,
-              delay: p.delay,
-              ease: "easeOut",
-            }}
-          />
-        );
-      })}
-    </div>
-  );
 }
 
 function ShimmerOverlay() {

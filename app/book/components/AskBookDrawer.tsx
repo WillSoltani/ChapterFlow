@@ -263,12 +263,13 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
 
   return (
     <>
-      {/* Floating chat bubble */}
+      {/* Floating chat launcher — reader-tokened and anchored to the bottom-edge
+       *  FAB column (safe-area aware; the audio FAB stacks above it). */}
       {!open && (
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-(--cf-accent) text-white shadow-(--cf-shadow-lg) transition hover:brightness-110 md:bottom-8"
+          className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] md:right-6"
           title="Ask Raymond"
         >
           <Sparkles className="h-5 w-5" />
@@ -445,6 +446,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
                 type="submit"
                 disabled={!input.trim()}
                 className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-(--cf-accent) text-white transition hover:brightness-110 disabled:opacity-50"
+                aria-label="Send message"
               >
                 <Send className="h-4 w-4" />
               </button>

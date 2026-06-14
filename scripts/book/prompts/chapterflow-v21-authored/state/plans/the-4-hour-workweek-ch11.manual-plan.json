@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-4-hour-workweek-ch11",
+  "number": 11,
+  "title": "Income Autopilot III: MBA—Management by Absence",
+  "coreMove": "Design absence before you take it: move routine choices into scripts, vendor authority, thresholds, and exception reports.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "sports nutrition order operations",
+      "audience": "a founder whose product sells but whose inbox still controls shipment decisions",
+      "stakes": "sales growth stays tied to the owner unless routine order choices are moved into rules",
+      "format": "decision_point",
+      "requiredBeat": "show that BrainQUICKEN revenue still leaves the owner trapped by owner approval"
+    },
+    {
+      "domain": "third-party fulfillment support",
+      "audience": "an owner moving replacement decisions to an outside provider",
+      "stakes": "a damaged package can either trigger permission requests or follow a pre-set replacement rule",
+      "format": "dilemma",
+      "requiredBeat": "use fulfillment provider, customer service, scripts, and escalation limit as the operating standard"
+    },
+    {
+      "domain": "online customer support",
+      "audience": "a support lead drowning in repeated delivery questions",
+      "stakes": "without a default answer, each repeated question becomes fresh work",
+      "format": "predict_reveal",
+      "requiredBeat": "show customer service scripts reducing routine support volume"
+    },
+    {
+      "domain": "founder travel test",
+      "audience": "an owner testing whether revenue can continue without daily availability",
+      "stakes": "absence reveals whether the company runs by rules or by founder interruption",
+      "format": "reset_moment",
+      "requiredBeat": "show BrainQUICKEN as a profitable business that can still be a job"
+    },
+    {
+      "domain": "vendor billing authority",
+      "audience": "a founder approving every small provider charge",
+      "stakes": "minor charges either pause operations or pass through a defined authority range",
+      "format": "decision_memo",
+      "requiredBeat": "show control moving into standards and exception reports"
+    },
+    {
+      "domain": "refund fraud monitoring",
+      "audience": "a support manager deciding when routine policy becomes an exception",
+      "stakes": "generous defaults need a signal for abuse without pulling the owner into every refund",
+      "format": "mistake_recovery",
+      "requiredBeat": "show BrainQUICKEN operations using rules while escalating true exceptions"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 3,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-05T08:48:29.796Z"
+}

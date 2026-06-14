@@ -1,0 +1,69 @@
+{
+  "chapterId": "drive-ch03",
+  "number": 3,
+  "title": ". . . and the Special Circumstances When They Do",
+  "coreMove": "Rewards work best after fair pay is settled, the task is routine, and people receive rationale, respect, and some choice.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "warehouse closing checklist",
+      "audience": "Farah, an operations lead choosing a modest routine-task reward",
+      "stakes": "A warehouse checklist is late because the work is dull and easy to postpone.",
+      "format": "decision_point",
+      "requiredBeat": "Show a reward that fits because the task is routine and bounded."
+    },
+    {
+      "domain": "hospital records cleanup",
+      "audience": "Luis, a records supervisor explaining necessary dull work",
+      "stakes": "A hospital cleanup has to happen, but staff resent the extra paperwork.",
+      "format": "dialogue",
+      "requiredBeat": "Pair a dull task with rationale and some choice."
+    },
+    {
+      "domain": "tax office backlog",
+      "audience": "Anwen, a tax office manager repairing baseline fairness first",
+      "stakes": "A backlog bonus is being proposed while temporary staff are underpaid.",
+      "format": "audit",
+      "requiredBeat": "Show fair compensation preceding incentive design."
+    },
+    {
+      "domain": "library shelving project",
+      "audience": "Gideon, a librarian acknowledging routine work without insulting it",
+      "stakes": "A shelving project needs speed and accuracy but offers little variety.",
+      "format": "planning_choice",
+      "requiredBeat": "Use acknowledgment and method choice with a routine task."
+    },
+    {
+      "domain": "field-service maintenance route",
+      "audience": "Rina, a field-service manager keeping incentives out of judgment work",
+      "stakes": "A maintenance route includes both routine checks and customer diagnosis.",
+      "format": "postmortem",
+      "requiredBeat": "Separate algorithmic tasks from judgment tasks."
+    },
+    {
+      "domain": "subscription data migration",
+      "audience": "Sol, a data migration lead choosing appreciation after the fact",
+      "stakes": "A migration needs accuracy more than a race for prizes.",
+      "format": "reflection",
+      "requiredBeat": "Use a now-that reward as thanks, not a lever."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 5,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 8,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:46:25.905Z"
+}

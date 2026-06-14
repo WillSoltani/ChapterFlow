@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type MutableRefObject } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState, type KeyboardEventHandler, type MutableRefObject } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Bookmark,
   ChevronDown,
@@ -10,6 +10,7 @@ import {
   LayoutGrid,
   LogOut,
   Map,
+  MoreHorizontal,
   Settings,
   Settings2,
   Shield,
@@ -18,6 +19,7 @@ import {
   User,
 } from "lucide-react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { Sheet } from "@/components/ui/Dialog";
 import { SearchBox } from "@/app/book/home/components/SearchBox";
 import { GlobalSearchPanel } from "@/app/book/home/components/GlobalSearchPanel";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
@@ -31,7 +33,9 @@ export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" 
 type TopNavProps = {
   name: string;
   avatarUrl?: string | null;
-  activeTab: BookNavTab;
+  /** Highlighted nav tab. Omit on secondary surfaces (e.g. Notebook) that have
+   *  no entry in the main nav so nothing is mis-highlighted. */
+  activeTab?: BookNavTab;
   searchQuery: string;
   onSearchChange: (value: string) => void;
   searchInputRef: MutableRefObject<HTMLInputElement | null>;
@@ -63,6 +67,17 @@ const desktopOnlyNavItems: NavItem[] = [
   { id: "events", label: "Events", href: "/book/events", icon: Trophy },
 ];
 
+/**
+ * Reachable on mobile through the bottom bar's "More" sheet — the desktop-only
+ * nav items (Journeys/Events) plus the secondary destinations, so phone users
+ * aren't cut off from any product area.
+ */
+const moreNavItems: NavItem[] = [
+  ...desktopOnlyNavItems,
+  { id: "saved", label: "Read Next", href: "/book/saved", icon: Bookmark },
+  { id: "settings", label: "Settings", href: "/book/settings", icon: Settings },
+];
+
 export function TopNav({
   name,
   avatarUrl,
@@ -76,10 +91,15 @@ export function TopNav({
   logoVariant = "default",
 }: TopNavProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showSearchPanel, setShowSearchPanel] = useState(false);
+  const [showMoreSheet, setShowMoreSheet] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  // Keyboard navigation over the GlobalSearchPanel results (combobox + listbox).
+  const [searchActiveIndex, setSearchActiveIndex] = useState(-1);
+  const [searchResultHrefs, setSearchResultHrefs] = useState<string[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -133,6 +153,7 @@ export function TopNav({
   useEffect(() => {
     setShowSearchPanel(false);
     setShowProfileMenu(false);
+    setShowMoreSheet(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -142,6 +163,34 @@ export function TopNav({
     }
     setShowSearchPanel(searchQuery.trim().length > 0);
   }, [searchQuery, showGlobalSearchPanel]);
+
+  // Reset the keyboard highlight whenever the query changes or the panel closes.
+  useEffect(() => {
+    setSearchActiveIndex(-1);
+  }, [searchQuery]);
+  useEffect(() => {
+    if (!showSearchPanel) setSearchActiveIndex(-1);
+  }, [showSearchPanel]);
+
+  const onSearchKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if (!showGlobalSearchPanel || !showSearchPanel) return;
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setSearchActiveIndex((i) =>
+        searchResultHrefs.length === 0 ? -1 : Math.min(i + 1, searchResultHrefs.length - 1),
+      );
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setSearchActiveIndex((i) => Math.max(i - 1, -1));
+    } else if (event.key === "Enter") {
+      const trimmed = searchQuery.trim();
+      if (!trimmed) return;
+      event.preventDefault();
+      const href = searchActiveIndex >= 0 ? searchResultHrefs[searchActiveIndex] : null;
+      setShowSearchPanel(false);
+      router.push(href ?? `/book/library?q=${encodeURIComponent(trimmed)}`);
+    }
+  };
 
   useEffect(() => {
     function onPointerDown(event: MouseEvent) {
@@ -257,13 +306,22 @@ export function TopNav({
                     searchInputRef.current = desktopSearchRef.current;
                     setShowSearchPanel(true);
                   }}
+                  onKeyDown={onSearchKeyDown}
                   placeholder={searchPlaceholder}
+                  expanded={showGlobalSearchPanel && showSearchPanel}
+                  controlsId="desktop-global-search-listbox"
+                  activeDescendantId={
+                    searchActiveIndex >= 0 ? `desktop-gs-opt-${searchActiveIndex}` : undefined
+                  }
                 />
                 {showGlobalSearchPanel ? (
                   <GlobalSearchPanel
                     open={showSearchPanel}
                     query={searchQuery}
                     onClose={() => setShowSearchPanel(false)}
+                    idPrefix="desktop"
+                    activeIndex={searchActiveIndex}
+                    onResultsChange={setSearchResultHrefs}
                   />
                 ) : null}
               </div>
@@ -394,13 +452,22 @@ export function TopNav({
                   searchInputRef.current = mobileSearchRef.current;
                   setShowSearchPanel(true);
                 }}
+                onKeyDown={onSearchKeyDown}
                 placeholder={searchPlaceholder}
+                expanded={showGlobalSearchPanel && showSearchPanel}
+                controlsId="mobile-global-search-listbox"
+                activeDescendantId={
+                  searchActiveIndex >= 0 ? `mobile-gs-opt-${searchActiveIndex}` : undefined
+                }
               />
               {showGlobalSearchPanel ? (
                 <GlobalSearchPanel
                   open={showSearchPanel}
                   query={searchQuery}
                   onClose={() => setShowSearchPanel(false)}
+                  idPrefix="mobile"
+                  activeIndex={searchActiveIndex}
+                  onResultsChange={setSearchResultHrefs}
                 />
               ) : null}
             </div>
@@ -439,28 +506,73 @@ export function TopNav({
               </Link>
             );
           })}
-          <Link
-            href="/book/settings"
-            className={[
-              "relative flex flex-1 flex-col items-center gap-1 px-1 py-3 text-[10px] font-semibold transition duration-150",
-              activeTab === "settings"
-                ? "text-(--cf-accent)"
-                : "text-(--cf-text-3) active:text-(--cf-text-1)",
-            ].join(" ")}
-          >
-            {activeTab === "settings" && (
-              <span className="absolute top-0 left-1/2 h-0.75 w-8 -translate-x-1/2 rounded-b-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)" />
-            )}
-            <span className={[
-              "flex h-7 w-7 items-center justify-center rounded-xl transition",
-              activeTab === "settings" ? "bg-(--cf-accent-soft)" : "",
-            ].join(" ")}>
-              <Settings className="h-4.5 w-4.5" />
-            </span>
-            Settings
-          </Link>
+          {(() => {
+            const moreActive = moreNavItems.some((i) => i.id === activeTab);
+            return (
+              <button
+                type="button"
+                onClick={() => setShowMoreSheet(true)}
+                aria-haspopup="dialog"
+                aria-expanded={showMoreSheet}
+                aria-label="More"
+                className={[
+                  "relative flex flex-1 flex-col items-center gap-1 px-1 py-3 text-[10px] font-semibold transition duration-150",
+                  moreActive
+                    ? "text-(--cf-accent)"
+                    : "text-(--cf-text-3) active:text-(--cf-text-1)",
+                ].join(" ")}
+              >
+                {moreActive && (
+                  <span className="absolute top-0 left-1/2 h-0.75 w-8 -translate-x-1/2 rounded-b-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)" />
+                )}
+                <span className={[
+                  "flex h-7 w-7 items-center justify-center rounded-xl transition",
+                  moreActive ? "bg-(--cf-accent-soft)" : "",
+                ].join(" ")}>
+                  <MoreHorizontal className="h-4.5 w-4.5" />
+                </span>
+                More
+              </button>
+            );
+          })()}
         </div>
       </nav>
+
+      {/* Mobile "More" sheet — Journeys, Events + secondary destinations */}
+      <Sheet
+        open={showMoreSheet}
+        onClose={() => setShowMoreSheet(false)}
+        labelledBy="more-sheet-title"
+      >
+        <div className="p-3">
+          <h2 id="more-sheet-title" className="px-2 pb-2 text-sm font-semibold text-(--cf-text-1)">
+            More
+          </h2>
+          <nav className="flex flex-col gap-0.5">
+            {moreNavItems.map((item) => {
+              const active = item.id === activeTab;
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => setShowMoreSheet(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={[
+                    "flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition",
+                    active
+                      ? "bg-(--cf-accent-soft) text-(--cf-accent)"
+                      : "text-(--cf-text-2) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
+                  ].join(" ")}
+                >
+                  <Icon className="h-5 w-5" />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+      </Sheet>
     </>
   );
 }

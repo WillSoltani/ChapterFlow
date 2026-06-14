@@ -1,0 +1,69 @@
+{
+  "chapterId": "outliers-ch01",
+  "number": 1,
+  "title": "The Matthew Effect",
+  "coreMove": "Accumulative advantage begins as a small head start, then grows when institutions hand the early winners more coaching, time, attention, and belief.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "youth hockey selection meeting",
+      "audience": "coaches sorting children early",
+      "stakes": "late-born players may lose elite coaching for a full season",
+      "format": "decision_point",
+      "requiredBeat": "Use the Medicine Hat Tigers roster to question an early hockey selection decision."
+    },
+    {
+      "domain": "elementary gifted placement",
+      "audience": "school leaders using one test score",
+      "stakes": "younger students may be tracked away from richer instruction",
+      "format": "audit",
+      "requiredBeat": "Use fourth-grade standardized test gaps to audit gifted placement."
+    },
+    {
+      "domain": "regional soccer academy",
+      "audience": "talent scouts designing tryouts",
+      "stakes": "smaller children may leave the pipeline before growth catches up",
+      "format": "dilemma",
+      "requiredBeat": "Apply the January 1 cutoff lesson to a soccer academy."
+    },
+    {
+      "domain": "middle-school robotics league",
+      "audience": "teachers assigning advanced practice time",
+      "stakes": "students with early exposure may monopolize the best mentor hours",
+      "format": "planning_choice",
+      "requiredBeat": "Translate accumulative advantage into mentor scheduling."
+    },
+    {
+      "domain": "clinic developmental screening",
+      "audience": "clinicians interpreting child readiness",
+      "stakes": "a young child may be labeled delayed from cohort timing alone",
+      "format": "postmortem",
+      "requiredBeat": "Use cohort timing to interpret a child readiness review."
+    },
+    {
+      "domain": "youth orchestra placement",
+      "audience": "music directors assigning scarce coaching",
+      "stakes": "older beginners may receive the lessons that create future advantage",
+      "format": "scene",
+      "requiredBeat": "Use the Matthew Effect to distribute music coaching."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:26:52.515Z"
+}

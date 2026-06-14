@@ -113,7 +113,10 @@ export function PhaseStepper({
               <button
                 type="button"
                 title={stepTitle}
-                disabled={state === "locked"}
+                // aria-disabled (not the native `disabled` attribute) so a locked
+                // step still receives the click and can explain WHY it's locked.
+                // A native disabled button swallows the event, making the lock
+                // tooltip/toast below unreachable — dead on mobile especially.
                 onClick={(e) => {
                   if (state === "locked") {
                     handleLockedClick(phase.id, e);

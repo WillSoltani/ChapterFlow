@@ -100,7 +100,7 @@ the ones that are present.
 | `BOOK_STRIPE_PRICE_ID_ANNUAL` | O | secret | Annual price id (if offered). |
 | `BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT` | O | secret | Annual-upfront price id (if offered). |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | O | secret | Client publishable key. **Caveat:** as a `NEXT_PUBLIC_*` var it is inlined at **build**; it is currently passed on the `cdk deploy` step (after `open-next build`), so confirm it is present during the build if you rely on client-side inlining. |
-| `ANTHROPIC_API_KEY` | R (AI) | secret | Powers the in-reader "Ask" feature (Claude). |
+| `ANTHROPIC_API_KEY` | R (AI) | secret | Powers all three Claude features — "Ask the Book", reflection feedback, and community-scenario validation. **All degrade gracefully when unset:** Ask/feedback return `503 ai_unavailable`; scenario submissions skip validation and land in the human moderation queue (`queue_for_review`) rather than being auto-approved. See §6 for the model/tuning knobs. |
 | `ELEVENLABS_API_KEY` | O | secret | Chapter audio / TTS narration. Audio routes 4xx without it. |
 
 ### C. Infra / CI secrets — used at deploy time only (not app runtime)
@@ -130,6 +130,11 @@ These are consumed by the app via `getServerEnv` but are **not** in
 | `BOOK_PAYWALL_PRICE` | O | ssm | Display price string; falls back to `lib/pricing` `MONTHLY_PRICE_PER_MONTH`. |
 | `BOOK_ENABLE_SOFT_DECAY` | O | ssm | Feature flag for points/engagement soft-decay. |
 | `COGNITO_CUSTOM_DOMAIN` | O | ssm | Custom Hosted-UI domain; preferred over `COGNITO_DOMAIN` when set. |
+| `BOOK_AI_VALIDATION_MODEL` | O | ssm | Claude model for community-scenario moderation. Default `claude-haiku-4-5`. |
+| `BOOK_AI_FEEDBACK_MODEL` | O | ssm | Claude model for reflection feedback. Default `claude-sonnet-4-6` (replaces the now-deprecated `claude-sonnet-4-20250514`). |
+| `BOOK_AI_ASK_MODEL` | O | ssm | Claude model for "Ask the Book". Default `claude-haiku-4-5`. |
+| `BOOK_AI_TIMEOUT_MS` | O | ssm | Anthropic client request timeout in ms (default `30000`). |
+| `BOOK_AI_MAX_RETRIES` | O | ssm | Anthropic client retry count on 429/5xx/connection errors (default `2`; `0` disables). Does **not** resume a stream that drops mid-response. |
 
 ### E. Local / build-time only — raw `process.env`, no SSM fallback
 
@@ -144,6 +149,39 @@ These are consumed by the app via `getServerEnv` but are **not** in
 | `CHAPTERFLOW_SITE_BASE_URL`, `CHAPTERFLOW_AUTH_BASE_URL` | O | local | Server site/auth origins. In standalone mode they default to the app origin via `app/_lib/chapterflow-brand.ts`. |
 | `ADMIN_EMAILS`, `ADMIN_SUBS` | O | local | A **secondary** admin gate on `app/book/settings/page.tsx` only, read via raw `process.env` (no SSM fallback). **Not injected into the Lambda** → effectively inert in deployed envs. The **real** admin gate is the Cognito group (`BOOK_ADMIN_GROUP`). |
 | `SECURE_DOC_TABLE` | n/a | — | Belongs to the sibling "Cloud Portfolio" product (`app/app/api/_lib/aws.ts`); **not used by ChapterFlow**. |
+
+### F. Email compliance (CASL / CAN-SPAM) — used by BOTH the app and the reminder cron
+
+These power the legally-required footer + one-click unsubscribe on commercial
+(engagement) email. **Set each as a single SSM param `/chapterflow/<env>/<KEY>`**
+(same pattern as `VAPID_*`). Both consumers read that one source:
+- the **app server Lambda** via `getServerEnv` (`email-compliance.ts`), and
+- the **reminder-cron Lambda** via `resolveEmailConfig()`, which reads the same
+  SSM params at runtime (`email-compliance.ts`; the cron role has scoped
+  `ssm:GetParameter` + `kms:Decrypt`-via-SSM). The CDK `process.env` values are
+  deploy-time fallbacks only — you don't need to set anything in the workflow.
+
+| Variable | Req | Source | Purpose |
+|---|---|---|---|
+| `EMAIL_UNSUBSCRIBE_SECRET` | **R (launch blocker)** | secret + ssm | HMAC key that signs one-click unsubscribe tokens. **Must be the SAME value on the app runtime and the cron Lambda**, or cron-minted unsubscribe links won't verify (the `mailto:` fallback still works). Use a random 32+ byte string. Token format is pinned by `email-compliance-core.test.ts`. |
+| `EMAIL_POSTAL_ADDRESS` | **R for engagement email** | secret + ssm | Physical mailing address printed in every commercial-email footer (**CASL §6 / CAN-SPAM 16 CFR 316.4 require it**; a P.O. box works). Acts as a kill-switch: when unset, `sendCompliantEmail` (cron) and `createNotification` (app) **skip all commercial email** automatically. Transactional email (trial-ending, receipts) is exempt and unaffected. |
+| `EMAIL_SENDER_NAME` | O | secret + ssm | Friendly From display name (default `ChapterFlow`) → `ChapterFlow <info@chapterflow.ca>`. |
+| `EMAIL_SUPPORT_ADDRESS` | O | secret + ssm | `Reply-To` + the `List-Unsubscribe` `mailto:` (default `support@chapterflow.ca`). Confirm the mailbox is monitored. |
+| `SES_CONFIGURATION_SET` | auto | auto (CDK) | Name of the SES configuration set applied to every send so bounce/complaint events flow to the suppression handler. **CDK-managed** — the backend stack creates the config set, injects it into the cron Lambda, and writes it to `${ssmPrefix}/SES_CONFIGURATION_SET` for the app. No owner action. |
+
+> **Bounce/complaint suppression (auto):** the backend stack provisions an SES
+> configuration set → SNS topic → `ChapterFlowSuppressionHandler` Lambda that
+> writes hard-bounced/complained addresses to DynamoDB (`BOOKSUPPRESS#<email>`).
+> Commercial **and** transactional sends check this before emailing. This is on
+> top of SES's built-in account-level suppression — no setup beyond deploying
+> the backend stack.
+
+> **SES domain authentication (deliverability, not in code):** before enabling
+> the cron in prod, add **SPF**, **DKIM**, and **DMARC** DNS records for the
+> sender domain (`chapterflow.ca`) and confirm SES is out of the sandbox. See
+> [LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md). The `CHAPTERFLOW_APP_BASE_URL`
+> origin (§3.B) is reused to build absolute unsubscribe links; the cron receives
+> it as `APP_BASE_URL`.
 
 ---
 
@@ -198,3 +236,42 @@ These are consumed by the app via `getServerEnv` but are **not** in
 - **`BOOK_ANALYTICS_TABLE_NAME` is required for admin metrics**, but analytics
   *writes* are fire-and-forget — a missing table degrades dashboards without
   erroring user requests.
+
+---
+
+## 6) AI / LLM configuration
+
+The app calls Claude (Anthropic) in three places. All three resolve their model,
+timeout, and retry policy through `app/app/api/book/_lib/ai-config.ts`, so models
+can be retargeted per environment via the `BOOK_AI_*` SSM params (§3.D) **without
+a code change or redeploy**.
+
+| Feature | Route | Default model | Fallback when `ANTHROPIC_API_KEY` is absent / call fails |
+|---|---|---|---|
+| Scenario validation | `…/me/books/[id]/chapters/[n]/scenarios` | `claude-haiku-4-5` | `queue_for_review` → human moderation queue (**never auto-approved**) |
+| Reflection feedback | `…/me/reflections/[id]/[n]/feedback` | `claude-sonnet-4-6` | `503 ai_unavailable` |
+| Ask the Book | `…/books/[id]/ask` | `claude-haiku-4-5` | `503 ai_unavailable` |
+
+**Why these models.** Validation and Ask are cheap, high-volume tasks → Haiku 4.5
+(\$1/\$5 per 1M in/out). Reflection feedback is user-facing prose → Sonnet 4.6
+(\$3/\$15). The feedback default **replaced `claude-sonnet-4-20250514` (Sonnet 4),
+which is deprecated and retires 2026-06-15** — pinning the old id via
+`BOOK_AI_FEEDBACK_MODEL` would 404 after that date.
+
+**Resilience.** `BOOK_AI_TIMEOUT_MS` (default 30s) and `BOOK_AI_MAX_RETRIES`
+(default 2) are applied to every client. Retries cover request establishment
+(429/5xx/connection) only — they do **not** resume a stream that drops after
+tokens start flowing, so the two streaming features still surface a mid-stream
+error to the client.
+
+**Observability** (CloudWatch namespace `ChapterFlow/Ops`, emitted via
+`putOpsMetric` — see [OPERATIONS.md](./OPERATIONS.md)). Every Claude call records,
+dimensioned by `feature`/`model`/`outcome`:
+`AiRequest`, `AiInputTokens`, `AiOutputTokens`, `AiCostUsd` (estimated from the
+per-model price table in `ai-config.ts`), `AiLatencyMs`, and `AiError` (on
+failure). Scenario submissions that land in the moderation queue additionally
+emit `ScenarioModerationQueued` (dimensioned by a coarse `reason` bucket) — an
+**inflow-rate** signal that complements the on-demand backlog *depth* gauge in
+`app/app/api/book/admin/metrics/moderation`. All metric emits are fire-and-forget
+and require only the existing `cloudwatch:PutMetricData` grant scoped to the
+`ChapterFlow/Ops` namespace (frontend `ServerFn` Lambda) — no IAM change.

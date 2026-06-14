@@ -1,0 +1,69 @@
+{
+  "chapterId": "rework-ch04",
+  "number": 4,
+  "title": "Planning is guessing",
+  "coreMove": "Forecast humility treats plans as provisional bets, so current evidence can update the work before an old document becomes the boss.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "inventory software",
+      "audience": "product leads with long roadmaps",
+      "stakes": "replace false annual certainty with current-week evidence",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist uses the 37signals current-week stance"
+    },
+    {
+      "domain": "independent publishing",
+      "audience": "operators balancing growth and cash",
+      "stakes": "avoid treating a staffing guess as a promise",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist adjusts a hiring plan after new cost evidence"
+    },
+    {
+      "domain": "community festival",
+      "audience": "event organizers",
+      "stakes": "respond to demand without losing direction",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist changes the plan after real ticket behavior"
+    },
+    {
+      "domain": "furniture manufacturing",
+      "audience": "operations teams planning production",
+      "stakes": "keep estimates useful without making them binding",
+      "format": "audit",
+      "requiredBeat": "the protagonist marks which plan lines are guesses"
+    },
+    {
+      "domain": "mobile banking",
+      "audience": "strategy teams under executive pressure",
+      "stakes": "avoid defending a forecast after customer evidence changes",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist refuses to treat revision as embarrassment"
+    },
+    {
+      "domain": "materials research lab",
+      "audience": "technical leads coordinating uncertain work",
+      "stakes": "plan enough to coordinate while leaving room for discovery",
+      "format": "reset_moment",
+      "requiredBeat": "the protagonist keeps preparation but drops false precision"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "create": 2,
+      "evaluate": 2,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.762Z"
+}

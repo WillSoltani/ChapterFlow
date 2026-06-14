@@ -80,6 +80,20 @@ See [ENVIRONMENT.md §3.D](./ENVIRONMENT.md).
       sends from a hardcoded `info@chapterflow.ca`, so the real blocking action
       is to **verify the sender's domain identity in SES** (the IAM identity is
       scoped to the `chapterflow.ca` domain).
+- [ ] **Email compliance (CASL/CAN-SPAM)** — see [ENVIRONMENT.md §3.F](./ENVIRONMENT.md).
+      Set each as **one** SSM param `/chapterflow/<env>/<KEY>` (both the app and
+      the cron read SSM):
+  - [ ] `EMAIL_UNSUBSCRIBE_SECRET` — **⚠ launch-blocking.** Random 32+ byte
+        string. One param, read by both app + cron, so the one-click unsubscribe
+        links verify.
+  - [ ] `EMAIL_POSTAL_ADDRESS` — Physical mailing address printed in every
+        commercial-email footer (CASL/CAN-SPAM require it; a **P.O. box works**).
+        **Until it is set, the reminder/digest cron automatically skips ALL
+        commercial email** (a built-in kill-switch — no manual disable needed).
+        Transactional email (trial-ending, receipts) is exempt and still sends.
+        Set this to turn on engagement email.
+  - [ ] `EMAIL_SENDER_NAME` (default `ChapterFlow`), `EMAIL_SUPPORT_ADDRESS`
+        (default `support@chapterflow.ca` — confirm the mailbox is monitored).
 - [ ] Optional tuning: `BOOK_ADMIN_GROUP` (default `admin`),
       `BOOK_FREE_SLOTS_DEFAULT` (default `2`), `BOOK_PAYWALL_PRICE`,
       `BOOK_ENABLE_SOFT_DECAY`, `COGNITO_CUSTOM_DOMAIN`.
@@ -115,6 +129,13 @@ See [ENVIRONMENT.md §3.D](./ENVIRONMENT.md).
       `OpsFailure`) **and** the frontend alarms (server-fn errors/throttles/
       duration, ISR DLQ depth, CloudFront 5xx, `StripeWebhookFailure`). See
       [OPERATIONS.md §4](./OPERATIONS.md).
+- [ ] **⚠ Never `cdk deploy` the backend *locally*.** The email subscription is
+      created at synth time *only* when `CHAPTERFLOW_OPS_ALERT_EMAIL` is set
+      (`backend-stack.ts`); the CI infra job injects it from the env secret, but
+      a local deploy without it exported **deletes the subscription and silences
+      every ops alarm**. Deploy the backend through GitHub Actions. (Local
+      `cdk diff` is read-only and safe — it will *show* the subscription as a
+      delete when the var is unset, but applies nothing.)
 - [ ] Confirm `COGNITO_USER_POOL_ID` was present at synth (see §4) so **hard
       erasure actually deletes the Cognito user** — otherwise erasure cascades
       DynamoDB/S3/Stripe but **silently skips Cognito** (GDPR gap). See
@@ -151,20 +172,39 @@ Ongoing: merging to `main` auto-syncs **dev** only.
       Stripe **test** checkout → entitlement flips to Pro via the webhook.
 - [ ] Web push registers (VAPID) and a test notification email sends (SES) — only
       if §3 was completed.
+- [ ] **Email compliance:** a commercial email (e.g. a reading reminder) shows the
+      postal-address footer; its `List-Unsubscribe` header is present; clicking
+      the footer **Unsubscribe** link (logged out) lands on the public confirm
+      page and flips the matching notification preference off. If the link says
+      "invalid or expired," the app and cron `EMAIL_UNSUBSCRIBE_SECRET` differ.
+- [ ] **Bounce/complaint suppression** is provisioned (auto, no owner action):
+      the backend stack created the SES config set, the `ChapterFlowEmailEvents`
+      SNS topic, and the `ChapterFlowSuppressionHandler` Lambda. Sanity-check that
+      a SES test bounce (e.g. to `bounce@simulator.amazonses.com`) writes a
+      `BOOKSUPPRESS#…` item and that the address is then skipped. The committed
+      Lambda bundles (`infra/lambda/dist/{reading-reminder-cron,suppression-handler}.js`)
+      must be rebuilt with esbuild when their sources change — CI does not rebuild them.
 
-## 9) Domain / DNS (custom domain only)
+## 9) Domain / DNS
 
-- [ ] `CHAPTERFLOW_DOMAIN_NAME` set as a **per-env** secret; ACM cert + Route53
-      records created by the frontend stack. Verify the apex + app host resolve
-      to CloudFront and the health gate passed on the real domain.
+- [ ] **Email sender-domain authentication (required before enabling the cron):**
+      publish **SPF**, **DKIM**, and **DMARC** DNS records for `chapterflow.ca`,
+      verify the SES domain identity, and confirm SES is **out of the sandbox**
+      in the prod region. Without these, reminder/digest mail lands in spam or is
+      rejected.
+- [ ] **Custom app domain only:** `CHAPTERFLOW_DOMAIN_NAME` set as a **per-env**
+      secret; ACM cert + Route53 records created by the frontend stack. Verify the
+      apex + app host resolve to CloudFront and the health gate passed on the real
+      domain.
 - [ ] Cognito callback/logout URLs and `CHAPTERFLOW_APP_BASE_URL` use the **same**
       origin as the cookie domain.
 
 ## 10) Pre-launch correctness (recommended)
 
-- [ ] Reconcile the **privacy policy** with reality before public launch — the
-      policy page currently claims "no precise location" while reading sessions
-      store city + lat/lon (tracked in the privacy backlog).
+- [ ] **Privacy policy is reconciled with behavior** — location is now disclosed
+      and collected only when "Share Usage Analytics" is on (opt-in, default off),
+      and ip-api.com + Anthropic are listed as processors. Re-verify if the
+      analytics/location code changes.
 - [ ] Confirm there is no stale generated build output committed (the
       `.next*`/`.open-next/` dirs are gitignored; nothing under them should be
       tracked).
@@ -181,6 +221,9 @@ Ongoing: merging to `main` auto-syncs **dev** only.
 | Web push throws "VAPID keys not configured" | `VAPID_*` SSM params missing (§3). |
 | App emails never arrive | `SES_SENDER_EMAIL` SSM param missing (§3). |
 | Reminder/digest cron emails never arrive | The `chapterflow.ca` SES domain identity isn't verified — the cron sender is hardcoded to `info@chapterflow.ca`. |
+| Cron unsubscribe links say "invalid or expired" | `EMAIL_UNSUBSCRIBE_SECRET` differs between the app runtime and the cron Lambda (or is unset on one). Must be identical (§3). |
+| Commercial emails missing the postal address | `EMAIL_POSTAL_ADDRESS` unset (§3) — footer omits the legally-required address. |
+| Reminder/digest mail lands in spam | SPF/DKIM/DMARC records for `chapterflow.ca` not published (§9). |
 | Pro never activates after payment | Stripe webhook endpoint/secret wrong (§5). |
 | Admin console 403 for the operator | Operator not in the Cognito admin group (§4); `ADMIN_EMAILS` does **not** work in deployed envs. |
 | Ops alarms never email | SNS subscription not confirmed (§6). |

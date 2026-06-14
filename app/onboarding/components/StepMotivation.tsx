@@ -109,17 +109,16 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
         This shapes which books and examples show up first.
       </p>
 
-      {/* 2x2 Grid */}
+      {/* 1 column on mobile, 2 on larger screens (replaces a [style*=] hack).
+          role=radiogroup gives the role="radio" TappableCards a valid parent so
+          assistive tech announces them as a single-select group. */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         animate="show"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: 12,
-          width: "100%",
-        }}
+        className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2"
+        role="radiogroup"
+        aria-label="What brings you here?"
       >
         {options.map(({ value, label, description, Icon }) => {
           const isSelected = motivation === value;
@@ -153,7 +152,7 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
                       size={32}
                       style={{
                         color: isSelected
-                          ? "var(--accent-blue)"
+                          ? "var(--accent-cyan)"
                           : "var(--text-secondary)",
                         transition: "color 200ms ease",
                       }}
@@ -191,15 +190,6 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
           );
         })}
       </motion.div>
-
-      {/* Responsive: stack to 1 col on mobile */}
-      <style>{`
-        @media (max-width: 480px) {
-          div[style*="grid-template-columns: repeat(2"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

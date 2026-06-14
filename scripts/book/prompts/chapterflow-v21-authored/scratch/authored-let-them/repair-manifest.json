@@ -1,0 +1,858 @@
+{
+ "1": {
+  "breakdown": [
+   {
+    "phrase": "the whole skill. You cannot",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   },
+   {
+    "phrase": "the same time, and holding",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "whole skill. You cannot control",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     14
+    ]
+   },
+   {
+    "phrase": "same time, and holding both",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "to decide whether to keep",
+    "unit": "examples[2].scenario",
+    "shared_with": [
+     1,
+     2,
+     9,
+     10,
+     12,
+     18
+    ]
+   }
+  ]
+ },
+ "2": {
+  "breakdown": [],
+  "examples": [
+   {
+    "phrase": "to decide whether to keep",
+    "unit": "examples[4].scenario",
+    "shared_with": [
+     1,
+     2,
+     9,
+     10,
+     12,
+     18
+    ]
+   },
+   {
+    "phrase": "to decide whether to keep",
+    "unit": "examples[0].scenario",
+    "shared_with": [
+     1,
+     2,
+     9,
+     10,
+     12,
+     18
+    ]
+   },
+   {
+    "phrase": "sits at the kitchen table",
+    "unit": "examples[5].scenario",
+    "shared_with": [
+     2,
+     4,
+     8,
+     13,
+     15
+    ]
+   }
+  ]
+ },
+ "3": {
+  "breakdown": [
+   {
+    "phrase": "the whole skill. You cannot",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   },
+   {
+    "phrase": "the same time, and holding",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "whole skill. You cannot control",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     14
+    ]
+   },
+   {
+    "phrase": "same time, and holding both",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "must decide whether to keep",
+    "unit": "examples[4].scenario",
+    "shared_with": [
+     3,
+     11,
+     13,
+     18,
+     19
+    ]
+   }
+  ]
+ },
+ "4": {
+  "breakdown": [
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "sits at the kitchen table",
+    "unit": "examples[2].scenario",
+    "shared_with": [
+     2,
+     4,
+     8,
+     13,
+     15
+    ]
+   },
+   {
+    "phrase": "He must decide whether to",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     4,
+     5,
+     11
+    ]
+   }
+  ],
+  "chapterLevel": [
+   "C8: examples 1,3,5 share 'she has to decide whether' (within-chapter) - give each example a DIFFERENT decision-cue phrasing"
+  ]
+ },
+ "5": {
+  "breakdown": [
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   },
+   {
+    "phrase": "The hard edge is easy",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     5,
+     11,
+     14
+    ]
+   },
+   {
+    "phrase": "hard edge is easy to",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     5,
+     11,
+     14
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "He must decide whether to",
+    "unit": "examples[2].scenario",
+    "shared_with": [
+     4,
+     5,
+     11
+    ]
+   },
+   {
+    "phrase": "He must decide whether to",
+    "unit": "examples[4].scenario",
+    "shared_with": [
+     4,
+     5,
+     11
+    ]
+   },
+   {
+    "phrase": "to decide whether to send",
+    "unit": "examples[0].scenario",
+    "shared_with": [
+     5,
+     15,
+     16
+    ]
+   },
+   {
+    "phrase": "decide whether to send the",
+    "unit": "examples[2].scenario",
+    "shared_with": [
+     5,
+     14,
+     16
+    ]
+   },
+   {
+    "phrase": "decide whether to send the",
+    "unit": "examples[0].scenario",
+    "shared_with": [
+     5,
+     14,
+     16
+    ]
+   }
+  ]
+ },
+ "6": {
+  "breakdown": [
+   {
+    "phrase": "the part you cannot force",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     6,
+     12,
+     20
+    ]
+   }
+  ],
+  "examples": []
+ },
+ "7": {
+  "breakdown": [
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   },
+   {
+    "phrase": "the same time, and holding",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "same time, and holding both",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   }
+  ],
+  "examples": []
+ },
+ "8": {
+  "breakdown": [],
+  "examples": [
+   {
+    "phrase": "sits at the kitchen table",
+    "unit": "examples[0].scenario",
+    "shared_with": [
+     2,
+     4,
+     8,
+     13,
+     15
+    ]
+   }
+  ]
+ },
+ "9": {
+  "breakdown": [
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "to decide whether to keep",
+    "unit": "examples[2].scenario",
+    "shared_with": [
+     1,
+     2,
+     9,
+     10,
+     12,
+     18
+    ]
+   },
+   {
+    "phrase": "to decide whether to keep",
+    "unit": "examples[0].scenario",
+    "shared_with": [
+     1,
+     2,
+     9,
+     10,
+     12,
+     18
+    ]
+   },
+   {
+    "phrase": "night at the kitchen table,",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     9,
+     14,
+     17
+    ]
+   }
+  ]
+ },
+ "10": {
+  "breakdown": [],
+  "examples": [
+   {
+    "phrase": "to decide whether to keep",
+    "unit": "examples[3].scenario",
+    "shared_with": [
+     1,
+     2,
+     9,
+     10,
+     12,
+     18
+    ]
+   }
+  ]
+ },
+ "11": {
+  "breakdown": [
+   {
+    "phrase": "The hard edge is easy",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     5,
+     11,
+     14
+    ]
+   },
+   {
+    "phrase": "hard edge is easy to",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     5,
+     11,
+     14
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "must decide whether to keep",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     3,
+     11,
+     13,
+     18,
+     19
+    ]
+   },
+   {
+    "phrase": "He must decide whether to",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     4,
+     5,
+     11
+    ]
+   }
+  ]
+ },
+ "12": {
+  "breakdown": [
+   {
+    "phrase": "the part you cannot force",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     6,
+     12,
+     20
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "to decide whether to keep",
+    "unit": "examples[4].scenario",
+    "shared_with": [
+     1,
+     2,
+     9,
+     10,
+     12,
+     18
+    ]
+   }
+  ]
+ },
+ "13": {
+  "breakdown": [],
+  "examples": [
+   {
+    "phrase": "sits at the kitchen table",
+    "unit": "examples[5].scenario",
+    "shared_with": [
+     2,
+     4,
+     8,
+     13,
+     15
+    ]
+   },
+   {
+    "phrase": "must decide whether to keep",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     3,
+     11,
+     13,
+     18,
+     19
+    ]
+   },
+   {
+    "phrase": "must decide whether to keep",
+    "unit": "examples[3].scenario",
+    "shared_with": [
+     3,
+     11,
+     13,
+     18,
+     19
+    ]
+   }
+  ]
+ },
+ "14": {
+  "breakdown": [
+   {
+    "phrase": "the whole skill. You cannot",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   },
+   {
+    "phrase": "the same time, and holding",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "whole skill. You cannot control",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     14
+    ]
+   },
+   {
+    "phrase": "same time, and holding both",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "The hard edge is easy",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     5,
+     11,
+     14
+    ]
+   },
+   {
+    "phrase": "hard edge is easy to",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     5,
+     11,
+     14
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "decide whether to send the",
+    "unit": "examples[3].scenario",
+    "shared_with": [
+     5,
+     14,
+     16
+    ]
+   },
+   {
+    "phrase": "night at the kitchen table,",
+    "unit": "examples[0].scenario",
+    "shared_with": [
+     9,
+     14,
+     17
+    ]
+   }
+  ],
+  "chapterLevel": [
+   "C13: example[0] scenario contains 'the only person' and example[1] 'the only place' - reword so the word 'only' is not used as 'the only <noun>'"
+  ]
+ },
+ "15": {
+  "breakdown": [],
+  "examples": [
+   {
+    "phrase": "sits at the kitchen table",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     2,
+     4,
+     8,
+     13,
+     15
+    ]
+   },
+   {
+    "phrase": "to decide whether to send",
+    "unit": "examples[0].scenario",
+    "shared_with": [
+     5,
+     15,
+     16
+    ]
+   }
+  ]
+ },
+ "16": {
+  "breakdown": [],
+  "examples": [
+   {
+    "phrase": "to decide whether to send",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     5,
+     15,
+     16
+    ]
+   },
+   {
+    "phrase": "decide whether to send the",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     5,
+     14,
+     16
+    ]
+   }
+  ]
+ },
+ "17": {
+  "breakdown": [
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "night at the kitchen table,",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     9,
+     14,
+     17
+    ]
+   }
+  ]
+ },
+ "18": {
+  "breakdown": [
+   {
+    "phrase": "the whole skill. You cannot",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "true at the same time,",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     4,
+     5,
+     7,
+     9,
+     14,
+     17,
+     18
+    ]
+   },
+   {
+    "phrase": "the same time, and holding",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   },
+   {
+    "phrase": "same time, and holding both",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     1,
+     3,
+     7,
+     14,
+     18
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "phrase": "to decide whether to keep",
+    "unit": "examples[0].scenario",
+    "shared_with": [
+     1,
+     2,
+     9,
+     10,
+     12,
+     18
+    ]
+   },
+   {
+    "phrase": "must decide whether to keep",
+    "unit": "examples[1].scenario",
+    "shared_with": [
+     3,
+     11,
+     13,
+     18,
+     19
+    ]
+   }
+  ]
+ },
+ "19": {
+  "breakdown": [],
+  "examples": [
+   {
+    "phrase": "must decide whether to keep",
+    "unit": "examples[4].scenario",
+    "shared_with": [
+     3,
+     11,
+     13,
+     18,
+     19
+    ]
+   }
+  ],
+  "chapterLevel": [
+   "C10: 4 of 6 example titles have 'the' as 2nd word - rewrite titles to distinct shapes",
+   "B1: reviewCards[4] back contains meta-reference 'the author' - reword to state the idea directly"
+  ]
+ },
+ "20": {
+  "breakdown": [
+   {
+    "phrase": "the part you cannot force",
+    "unit": "breakdown.fullRead",
+    "shared_with": [
+     6,
+     12,
+     20
+    ]
+   }
+  ],
+  "examples": []
+ }
+}

@@ -4,6 +4,7 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { getAskBookModel, getAnthropicClient, recordAiUsage } from "@/app/app/api/book/_lib/ai-config";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { bookUserPk, aiQuestionCountSk, aiCachedAnswerPk, aiCachedAnswerSk } from "@/app/app/api/book/_lib/keys";
@@ -214,8 +215,8 @@ export async function POST(req: Request, ctx: Params) {
       }
     }
 
-    const { default: Anthropic } = await import("@anthropic-ai/sdk");
-    const client = new Anthropic({ apiKey });
+    const client = await getAnthropicClient(apiKey);
+    const model = await getAskBookModel();
     const encoder = new TextEncoder();
 
     const chapterHint = chapterNumber != null
@@ -228,9 +229,11 @@ export async function POST(req: Request, ctx: Params) {
 
     const stream = new ReadableStream({
       async start(controller) {
+        const aiStart = Date.now();
+        let messageStream: ReturnType<typeof client.messages.stream> | null = null;
         try {
-          const messageStream = client.messages.stream({
-            model: "claude-haiku-4-5-20251001",
+          messageStream = client.messages.stream({
+            model,
             max_tokens: 400,
             system: `You are Raymond, a friendly and sharp reading assistant for the book "${bookTitle}". You help readers understand and apply what they're learning.
 
@@ -265,6 +268,30 @@ ${bookContext}`,
           );
           controller.close();
         } finally {
+          // Record AI usage/cost/latency best-effort (success, error, or disconnect).
+          if (messageStream) {
+            const captured = messageStream;
+            void (async () => {
+              try {
+                const final = await captured.finalMessage();
+                recordAiUsage({
+                  feature: "ask_book",
+                  model,
+                  usage: final.usage,
+                  latencyMs: Date.now() - aiStart,
+                  outcome: streamSuccess ? "success" : "error",
+                });
+              } catch {
+                recordAiUsage({
+                  feature: "ask_book",
+                  model,
+                  latencyMs: Date.now() - aiStart,
+                  outcome: streamSuccess ? "success" : "client_abort",
+                });
+              }
+            })();
+          }
+
           if (streamSuccess) {
             // Increment question count
             const ttl = Math.floor(Date.now() / 1000) + 3 * 86400;

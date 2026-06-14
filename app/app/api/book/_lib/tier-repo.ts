@@ -65,8 +65,10 @@ export const TIER_DEFINITIONS: ReadonlyArray<TierDefinition> = [
     name: "luminary",
     displayName: "Luminary",
     loopsRequired: 750,
+    // Catalog spans ~13 distinct categories, so the prior 15 made Luminary
+    // unreachable; 11 keeps it aspirational while the 750-loop bar is the real gate.
     avgScoreRequired: 85,
-    categoriesRequired: 15,
+    categoriesRequired: 11,
     advancementIP: 800,
     identityStatement: "I illuminate understanding for myself and others",
   },

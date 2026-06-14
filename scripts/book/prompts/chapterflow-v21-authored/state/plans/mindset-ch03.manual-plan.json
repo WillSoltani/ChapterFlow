@@ -1,0 +1,69 @@
+{
+  "chapterId": "mindset-ch03",
+  "number": 3,
+  "title": "The Truth About Ability and Accomplishment",
+  "coreMove": "Ability becomes accomplishment when belief keeps learners choosing better strategies, useful feedback, and continued effort after the first easy path fails.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "science museum exhibit planning",
+      "audience": "educators explaining invention",
+      "stakes": "visitors may leave with a lone-genius myth",
+      "format": "decision_memo",
+      "requiredBeat": "use Thomas Edison to restore helpers and trials to the achievement story"
+    },
+    {
+      "domain": "middle school math advising",
+      "audience": "students losing easy success after a transition",
+      "stakes": "a fixed response could harden into low effort",
+      "format": "postmortem",
+      "requiredBeat": "use the seventh-grade transition study to identify strategy withdrawal after work becomes harder"
+    },
+    {
+      "domain": "pre-med chemistry study group",
+      "audience": "students confusing hours with strategy",
+      "stakes": "memorization may fail on integrative exams",
+      "format": "planning_choice",
+      "requiredBeat": "use college chemistry students to show connecting ideas and learning from errors"
+    },
+    {
+      "domain": "urban elementary reading intervention",
+      "audience": "teachers balancing belief and rigor",
+      "stakes": "students may receive easier work because of old labels",
+      "format": "school_case",
+      "requiredBeat": "anchor in Marva Collins and high standards joined to serious instruction"
+    },
+    {
+      "domain": "parent response after a puzzle win",
+      "audience": "adults tempted to praise intelligence",
+      "stakes": "praise may teach the child to protect a label",
+      "format": "dialogue",
+      "requiredBeat": "use intelligence praise experiments to show positive labels increasing fragility"
+    },
+    {
+      "domain": "engineering exam administration",
+      "audience": "faculty trying to reduce threat cues",
+      "stakes": "students may carry label pressure into the test",
+      "format": "audit",
+      "requiredBeat": "use negative labels and stereotype reminders to show attention being diverted from performance"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 3,
+      "understand": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-01T08:14:34.946Z"
+}

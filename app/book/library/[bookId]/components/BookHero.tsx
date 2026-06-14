@@ -1,14 +1,9 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  ArrowRight,
-  Flame,
-  RefreshCw,
-  Users,
-  Trophy,
-  Clock,
-} from "lucide-react";
+import { ArrowRight, RefreshCw, Clock, Sparkles } from "lucide-react";
 import { BookCover } from "@/app/book/components/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
 import { ProgressRing } from "./ProgressRing";
@@ -23,28 +18,13 @@ type BookHeroProps = {
   totalCount: number;
   completedCount: number;
   currentChapterOrder: number;
+  firstChapterMinutes: number;
   onContinue: () => void;
   isSaved: boolean;
   onToggleSaved: () => void;
-  timeInvestedMinutes: number;
+  /** Free-book limit reached for this not-yet-started book — gate the start CTA. */
+  accessBlocked: boolean;
 };
-
-function formatTime(minutes: number): string {
-  if (minutes < 60) return `${minutes}m`;
-  const hours = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-  return mins > 0 ? `${hours}h ${mins}m` : `${hours}h`;
-}
-
-function seededSocial(bookId: string) {
-  let hash = 0;
-  for (let i = 0; i < bookId.length; i++) {
-    hash = (hash << 5) - hash + bookId.charCodeAt(i);
-    hash |= 0;
-  }
-  const abs = Math.abs(hash);
-  return { activeReaders: 120 + (abs % 400), completedReaders: 30 + (abs % 150) };
-}
 
 function difficultyPillStyle(value: LibraryBookEntry["difficulty"]): { background: string; color: string } {
   if (value === "Easy") return { background: "color-mix(in srgb, var(--accent-emerald) 20%, transparent)", color: "var(--accent-emerald)" };
@@ -61,29 +41,34 @@ export function BookHero({
   totalCount,
   completedCount,
   currentChapterOrder,
+  firstChapterMinutes,
   onContinue,
   isSaved,
   onToggleSaved,
-  timeInvestedMinutes,
+  accessBlocked,
 }: BookHeroProps) {
   const prefersReducedMotion = useReducedMotion();
-  const social = seededSocial(entry.id);
+  const [synopsisExpanded, setSynopsisExpanded] = useState(false);
 
-  const displayPercent =
-    progressPercent === 0 && completedCount === 0 ? 8 : progressPercent;
-
+  const hasProgress = progressPercent > 0 || completedCount > 0;
   const allCompleted = completedCount >= totalCount && totalCount > 0;
+
   const ctaText = allCompleted
-    ? "Review Book ↻"
-    : completedCount > 0
-      ? `Continue Chapter ${currentChapterOrder} →`
-      : `Start Chapter ${currentChapterOrder} →`;
+    ? "Review book"
+    : hasProgress
+      ? `Continue Chapter ${currentChapterOrder}`
+      : `Start Chapter ${currentChapterOrder}`;
 
   const ctaIcon = allCompleted ? (
     <RefreshCw className="h-4.5 w-4.5" />
   ) : (
     <ArrowRight className="h-4.5 w-4.5" />
   );
+
+  const synopsis = entry.synopsis?.trim() ?? "";
+  // Only offer a "More" toggle when the synopsis is long enough that a 2-line
+  // clamp actually hides something — otherwise the control would be a no-op.
+  const synopsisIsLong = synopsis.length > 150;
 
   return (
     <motion.section
@@ -111,7 +96,7 @@ export function BookHero({
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.2 }}
             className="shrink-0"
           >
-            <div style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3)", borderRadius: "0.75rem" }}>
+            <div style={{ boxShadow: "var(--shadow-book)", borderRadius: "0.75rem" }}>
               <BookCover
                 bookId={entry.id}
                 title={entry.title}
@@ -161,6 +146,33 @@ export function BookHero({
               <span className="cf-pill rounded-lg px-2.5 py-1 text-xs">{pages} pages</span>
             </motion.div>
 
+            {/* Synopsis — clamped above the fold; "More" reveals the full text.
+                The long-form About (tags, pace, difficulty) lives in the accordion below. */}
+            {synopsis && (
+              <motion.div
+                initial={prefersReducedMotion ? undefined : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.52 }}
+                className="mt-3 max-w-prose"
+              >
+                <p
+                  className={`text-sm leading-relaxed text-(--cf-text-2) ${synopsisExpanded ? "" : "line-clamp-2"}`}
+                >
+                  {synopsis}
+                </p>
+                {synopsisIsLong && (
+                  <button
+                    type="button"
+                    onClick={() => setSynopsisExpanded((prev) => !prev)}
+                    aria-expanded={synopsisExpanded}
+                    className="-mx-1 mt-0.5 inline-flex min-h-11 items-center rounded px-1 text-sm font-medium text-(--cf-accent) transition-colors hover:text-(--cf-accent-strong) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                  >
+                    {synopsisExpanded ? "Less" : "More"}
+                  </button>
+                )}
+              </motion.div>
+            )}
+
             {/* CTA + Save */}
             <motion.div
               initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95 }}
@@ -172,57 +184,58 @@ export function BookHero({
               }
               className="mt-5 flex items-center gap-3"
             >
-              <button
-                type="button"
-                onClick={onContinue}
-                className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
-              >
-                <span>{ctaText}</span>
-                {ctaIcon}
-              </button>
+              {accessBlocked ? (
+                <Link
+                  href="/pricing"
+                  className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                >
+                  <Sparkles className="h-4.5 w-4.5" />
+                  <span>Upgrade to start</span>
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  onClick={onContinue}
+                  className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                >
+                  <span>{ctaText}</span>
+                  {ctaIcon}
+                </button>
+              )}
               <BookSaveButton saved={isSaved} onToggle={onToggleSaved} className="h-11 w-11 rounded-xl" />
             </motion.div>
 
-            {/* Progress ring + stat chips */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-4 md:justify-start">
-              <ProgressRing percent={displayPercent} size={56} strokeWidth={4} />
-              <div className="flex items-center gap-3">
-                <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">
-                  Avg Score: {avgScore}%
+            {/* Progress (real data only) vs. forward-looking zero-state */}
+            {hasProgress ? (
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-4 md:justify-start">
+                <ProgressRing percent={progressPercent} size={56} strokeWidth={4} />
+                <div className="flex flex-wrap items-center gap-3">
+                  {avgScore > 0 && (
+                    <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">
+                      Avg score: {avgScore}%
+                    </span>
+                  )}
+                  <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">
+                    {completedCount}/{totalCount} chapters complete
+                  </span>
+                  <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">
+                    {unlockedCount}/{totalCount} unlocked
+                  </span>
+                </div>
+              </div>
+            ) : totalCount > 0 ? (
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-(--cf-text-3) md:justify-start">
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock className="h-3.5 w-3.5 text-(--cf-text-soft)" />
+                  Chapter 1 takes about {firstChapterMinutes} min
                 </span>
-                <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">
-                  {unlockedCount}/{totalCount} Unlocked
+                <span aria-hidden="true" className="text-(--cf-text-soft)">·</span>
+                <span>
+                  {totalCount} {totalCount === 1 ? "chapter" : "chapters"} to
+                  unlock as you go
                 </span>
               </div>
-            </div>
-
-            {/* Streak + social proof + time invested */}
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-(--cf-text-3) md:justify-start">
-              <span className="inline-flex items-center gap-1.5">
-                <Flame className="h-3.5 w-3.5 text-(--cf-warning-text)" />
-                Start your streak today!
-              </span>
-              {timeInvestedMinutes >= 30 && (
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="h-3.5 w-3.5" />
-                  {formatTime(timeInvestedMinutes)} invested
-                </span>
-              )}
-              <span className="inline-flex items-center gap-1.5">
-                <Users className="h-3.5 w-3.5" style={{ color: "var(--text-secondary)" }} />
-                {social.activeReaders} readers
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Trophy className="h-3.5 w-3.5" style={{ color: "var(--text-secondary)" }} />
-                {social.completedReaders} completed
-              </span>
-            </div>
-
-            {progressPercent === 0 && completedCount === 0 && (
-              <p className="mt-3 text-sm font-medium text-(--cf-success-text)">
-                You&apos;ve started your journey — keep going!
-              </p>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

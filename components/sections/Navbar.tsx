@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
 import { performLogout } from "@/lib/logout";
@@ -51,6 +52,13 @@ const AUTH_URL = AUTH_LOGIN_BOOK_URL;
 
 export function Navbar() {
   const { loggedIn, loading, user } = useAuthStatus();
+  const pathname = usePathname();
+  // Section anchors (#how-it-works, #demo, …) only exist on the home page.
+  // Off-home (e.g. /pricing, /books) they must point back to /#section.
+  const anchorHref = useCallback(
+    (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`),
+    [pathname],
+  );
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
@@ -192,7 +200,7 @@ export function Navbar() {
               return (
                 <a
                   key={link.id}
-                  href={`#${link.id}`}
+                  href={anchorHref(link.id)}
                   onClick={() => handleNavClick(link.id)}
                   className={`relative font-(family-name:--font-body) text-[14px] font-medium transition-colors duration-200 ${
                     isActive
@@ -235,7 +243,7 @@ export function Navbar() {
                 <Link
                   href="/dashboard"
                   onClick={() => track("cta_click", { source: "navbar_desktop_dashboard" })}
-                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[var(--shadow-glow-cyan)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 >
                   {displayName}&rsquo;s Dashboard
                 </Link>
@@ -252,7 +260,7 @@ export function Navbar() {
                 <a
                   href={AUTH_URL}
                   onClick={() => track("cta_click", { source: "navbar_desktop_primary" })}
-                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[var(--shadow-glow-cyan)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 >
                   Start reading free &rarr;
                 </a>
@@ -320,7 +328,7 @@ export function Navbar() {
                   <motion.a
                     key={link.id}
                     ref={i === 0 ? firstLinkRef : undefined}
-                    href={`#${link.id}`}
+                    href={anchorHref(link.id)}
                     onClick={() => handleNavClick(link.id)}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

@@ -13,6 +13,7 @@ import {
   User,
   Keyboard,
   LogOut,
+  Settings2,
 } from "lucide-react";
 
 // Existing hooks
@@ -22,6 +23,8 @@ import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import { MONTHLY_PRICE_WITH_CURRENCY } from "@/lib/pricing";
 import { useToast } from "@/app/book/hooks/useToast";
 import { Toast } from "@/app/book/components/ui/Toast";
+import { TopNav } from "@/app/book/home/components/TopNav";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 
 // New settings hooks
 import { useSettingsPage } from "./hooks/useSettingsPage";
@@ -75,7 +78,6 @@ import type {
   LineSpacing,
   LetterSpacing,
   ColorBlindMode,
-  TTSVoice,
 } from "./types/settings";
 import type { LearningStyle, QuizIntensity, MotivationStyle } from "@/app/book/hooks/useOnboardingState";
 
@@ -89,7 +91,7 @@ type BookSettingsClientProps = {
   appVersion: string;
 };
 
-export function BookSettingsClient({}: BookSettingsClientProps) {
+export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSettingsClientProps) {
   const router = useRouter();
 
   // Existing state hooks
@@ -108,6 +110,13 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   const { billingState, launchBillingAction, redeemLicenseKey } =
     useBookEntitlements(true);
   const { toast, showToast } = useToast();
+
+  // Identity + nav search for the shared TopNav. Settings has its own in-page
+  // search (useSettingsSearch); the global search panel stays disabled here.
+  const { identity: viewerIdentity } = useBookViewer();
+  const viewerName = viewerIdentity.displayName || "Reader";
+  const navSearchRef = useRef<HTMLInputElement | null>(null);
+  const [navSearch, setNavSearch] = useState("");
 
   // New settings hooks
   const {
@@ -416,7 +425,19 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   // ---------------------------------------------------------------------------
 
   return (
-    <PageTransition className="cf-app-shell min-h-screen px-4 py-10 sm:px-6">
+    <PageTransition className="cf-app-shell min-h-screen pb-10">
+      <TopNav
+        name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
+        activeTab="settings"
+        searchQuery={navSearch}
+        onSearchChange={setNavSearch}
+        searchInputRef={navSearchRef}
+        showSearch={false}
+        showGlobalSearchPanel={false}
+        logoVariant="dashboard"
+      />
+      <div className="px-4 pt-7 sm:px-6">
       {/* Header */}
       <div className="mx-auto mb-6 flex max-w-5xl items-center justify-between">
         <div className="flex items-center gap-3">
@@ -705,51 +726,21 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                     <ProBadge />
                   </div>
                   <p className="mt-0.5 text-xs text-(--cf-text-3)">
-                    Listen to chapters read aloud. Perfect for commutes or multitasking.
+                    Listen to chapters read aloud. Open any chapter and tap the
+                    speaker icon to start playback &mdash; perfect for commutes
+                    or multitasking.
                   </p>
-                  <div className="mt-3 space-y-1 border-l-2 border-(--cf-accent)/20 pl-4 ml-1">
-                    <SettingRow label="Voice">
-                      <DropdownSelect
-                        options={[
-                          { value: "clara", label: "Clara (Natural)" },
-                          { value: "james", label: "James (Warm)" },
-                          { value: "aria", label: "Aria (Clear)" },
-                        ]}
-                        value={ext.ttsVoice}
-                        onChange={(v: TTSVoice) => { patchExt({ ttsVoice: v }); announce(`TTS voice changed to ${v}`); triggerToast(); }}
-                        label="TTS Voice"
-                      />
-                    </SettingRow>
-                    <SettingRow label="Speed">
-                      <SliderControl
-                        value={ext.ttsSpeed}
-                        onChange={(v) => { patchExt({ ttsSpeed: v }); announce(`TTS speed changed to ${v}x`); triggerToast(); }}
-                        min={0.5}
-                        max={2.0}
-                        step={0.1}
-                        suffix="x"
-                        label="TTS Speed"
-                        tickMarks={["0.5\u00d7", "1\u00d7", "1.5\u00d7", "2\u00d7"]}
-                      />
-                    </SettingRow>
-                    <SettingRow
-                      label="Auto-advance"
-                      description="Continue to the next section automatically."
-                    >
-                      <ToggleSwitch
-                        checked={ext.ttsAutoAdvance}
-                        onChange={(v) => { patchExt({ ttsAutoAdvance: v }); announce(`TTS auto-advance ${v ? "enabled" : "disabled"}`); triggerToast(); }}
-                        label="TTS Auto-advance"
-                      />
-                    </SettingRow>
-                  </div>
                 </>
+                /* Voice / speed / auto-advance controls were removed: they were
+                   stored but never consumed by the reader's AudioPlayer (they
+                   did nothing). See the READER handoff to wire ttsVoice/ttsSpeed
+                   into AudioPlayer, then they can be re-added here. */
               ) : (
                 <ProFeatureCard
                   icon="&#128266;"
                   title="Text-to-speech"
                   description="Listen to chapters read aloud while you walk, cook, or commute."
-                  detailDescription="Text-to-speech lets you listen to any chapter read aloud with natural-sounding voices. Adjust speed, choose your preferred voice, and let chapters auto-advance so you can learn hands-free."
+                  detailDescription="Text-to-speech lets you listen to any chapter read aloud with natural-sounding narration. Open any chapter in the reader and tap the speaker to start, so you can learn hands-free while you walk, cook, or commute."
                   reducedMotion={reducedMotion}
                   onUpgrade={() => launchBillingAction("upgrade")}
                 />
@@ -1362,6 +1353,20 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             <SubsectionLabel>Privacy</SubsectionLabel>
 
             <SettingRow
+              id="analytics"
+              label="Share usage analytics"
+              description="Off by default. Help improve ChapterFlow by sharing device, performance, and navigation data, plus an approximate (city-level) location. We never sell this data or use it for ads. See our Privacy Policy for details."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.privacy.analyticsParticipation : false}
+                onChange={(v) => { patchSection("privacy", { analyticsParticipation: v }); announce(`Usage analytics ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                label="Share usage analytics"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            <SettingRow
               id="recommendations"
               label="Personalized recommendations"
               description="Use your reading history to suggest books you'll love."
@@ -1453,6 +1458,12 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 <p className="text-xs font-bold uppercase tracking-wider text-(--cf-text-3)">
                   Account
                 </p>
+                {userEmail && (
+                  <p className="mt-1.5 text-sm text-(--cf-text-2)">
+                    Signed in as{" "}
+                    <span className="font-medium text-(--cf-text-1)">{userEmail}</span>
+                  </p>
+                )}
                 <button
                   type="button"
                   onClick={performLogout}
@@ -1466,6 +1477,20 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                     </p>
                   </div>
                 </button>
+                {isAdmin && (
+                  <a
+                    href="/book/admin"
+                    className="mt-2 flex w-full items-center gap-2.5 rounded-xl border border-(--cf-border) px-4 py-3 text-left text-sm font-medium text-(--cf-accent) transition-colors hover:bg-(--cf-accent-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                  >
+                    <Settings2 className="h-4 w-4" />
+                    <div>
+                      <span>Admin dashboard</span>
+                      <p className="text-xs text-(--cf-text-3)">
+                        Manage catalog, users, and billing.
+                      </p>
+                    </div>
+                  </a>
+                )}
               </div>
             </div>
 
@@ -1506,7 +1531,13 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
           </SettingsSection>
         )}
 
+        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-(--cf-text-3)">
+          <span>ChapterFlow</span>
+          <span>&middot;</span>
+          <span>v{appVersion}</span>
+        </div>
         <div className="h-6" />
+      </div>
       </div>
 
       {/* Export Modal */}

@@ -1,7 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-
 type LoopStep = "summary" | "scenarios" | "quiz" | "unlock";
 
 interface LearningLoopIndicatorProps {
@@ -32,8 +30,6 @@ export function LearningLoopIndicator({
   currentStep,
   className = "",
 }: LearningLoopIndicatorProps) {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div
       className={`flex items-center gap-0 ${className}`}
@@ -59,22 +55,10 @@ export function LearningLoopIndicator({
                           : "var(--cf-border-strong)",
                     boxShadow:
                       state === "current"
-                        ? "0 0 0 4px rgba(167,139,250,0.2)"
+                        ? "0 0 0 4px var(--cf-accent-shadow)"
                         : "none",
                   }}
                 />
-                {state === "current" && !prefersReducedMotion && (
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{ background: "var(--cf-accent)" }}
-                    animate={{ scale: [1, 1.15, 1], opacity: [1, 0.7, 1] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-                )}
               </div>
               {/* Label */}
               <span

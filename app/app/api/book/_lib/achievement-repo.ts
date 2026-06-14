@@ -276,20 +276,21 @@ async function checkExplorationAchievements(
     if (r) results.push(r);
   }
 
-  // Cross-Disciplinary — 7 categories
-  if (catCount >= 7) {
+  // Cross-Disciplinary — 6 categories
+  if (catCount >= 6) {
     const r = await awardAchievement(ctx.tableName, ctx.userId, "cross-disciplinary");
     if (r) results.push(r);
   }
 
-  // Renaissance Reader — 12 categories
-  if (catCount >= 12) {
+  // Renaissance Reader — 8 categories
+  if (catCount >= 8) {
     const r = await awardAchievement(ctx.tableName, ctx.userId, "renaissance-reader");
     if (r) results.push(r);
   }
 
-  // Omnivore — 18+ categories
-  if (catCount >= 18) {
+  // Omnivore — 10+ categories (the catalog spans ~13 distinct categories, so
+  // the prior 18 was unreachable; 10 keeps this aspirational but attainable).
+  if (catCount >= 10) {
     const r = await awardAchievement(ctx.tableName, ctx.userId, "omnivore");
     if (r) results.push(r);
   }

@@ -55,6 +55,23 @@ const DEPTH_OPTIONS: Array<{
   { id: "deeper", label: "Deeper", description: "Longer, with edge cases" },
 ];
 
+export type LineSpacingPref = "compact" | "comfortable" | "relaxed";
+
+const LINE_SPACING_OPTIONS: Array<{ id: LineSpacingPref; label: string }> = [
+  { id: "compact", label: "Compact" },
+  { id: "comfortable", label: "Cozy" },
+  { id: "relaxed", label: "Relaxed" },
+];
+
+const WIDTH_OPTIONS: Array<{ id: "narrow" | "medium" | "wide"; label: string; px: number }> = [
+  { id: "narrow", label: "Narrow", px: 640 },
+  { id: "medium", label: "Medium", px: 800 },
+  { id: "wide", label: "Wide", px: 960 },
+];
+
+const FONT_MIN = 12;
+const FONT_MAX = 24;
+
 export type ReaderSettingsMenuProps = {
   open: boolean;
   onClose: () => void;
@@ -68,6 +85,13 @@ export type ReaderSettingsMenuProps = {
   onChangeReadingDepth?: (depth: ReadingDepth) => void;
   focusMode: boolean;
   onToggleFocus: () => void;
+  // Typography controls (Kindle-style), wired to the reading-pref CSS-var pipeline.
+  fontSize: number;
+  onChangeFontSize: (px: number) => void;
+  lineSpacing: LineSpacingPref;
+  onChangeLineSpacing: (value: LineSpacingPref) => void;
+  contentWidth: number;
+  onChangeContentWidth: (px: number) => void;
 };
 
 export function ReaderSettingsMenu({
@@ -83,6 +107,12 @@ export function ReaderSettingsMenu({
   onChangeReadingDepth,
   focusMode,
   onToggleFocus,
+  fontSize,
+  onChangeFontSize,
+  lineSpacing,
+  onChangeLineSpacing,
+  contentWidth,
+  onChangeContentWidth,
 }: ReaderSettingsMenuProps) {
   const popoverRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -114,6 +144,26 @@ export function ReaderSettingsMenu({
     return () => document.removeEventListener("keydown", handler);
   }, [open, onClose]);
 
+  // Non-modal dialog focus management: move focus into the panel on open and
+  // restore it to the opener (the settings trigger) on close. A non-modal
+  // dialog manages focus but does NOT trap it (the background stays
+  // interactive), which matches this popover's behavior.
+  useEffect(() => {
+    if (!open) return;
+    const opener = document.activeElement as HTMLElement | null;
+    const t = window.setTimeout(() => {
+      const panel = popoverRef.current;
+      const first = panel?.querySelector<HTMLElement>(
+        'button:not([disabled]),[tabindex]:not([tabindex="-1"])',
+      );
+      (first ?? panel)?.focus?.();
+    }, 0);
+    return () => {
+      window.clearTimeout(t);
+      opener?.focus?.();
+    };
+  }, [open]);
+
   return (
     <AnimatePresence>
       {open && (
@@ -123,6 +173,7 @@ export function ReaderSettingsMenu({
             // Mobile: bottom-sheet anchored to viewport. Desktop: dropdown.
             "fixed left-0 right-0 bottom-0 z-50 mx-auto max-w-md rounded-t-2xl",
             "sm:absolute sm:left-auto sm:right-0 sm:top-full sm:bottom-auto sm:mt-2 sm:w-80 sm:rounded-2xl sm:max-w-none",
+            "max-h-[85dvh] overflow-y-auto overscroll-contain sm:max-h-[80vh]",
             anchorClassName ?? "",
           ].join(" ")}
           style={{
@@ -136,6 +187,7 @@ export function ReaderSettingsMenu({
           transition={{ duration: 0.18, ease: "easeOut" }}
           role="dialog"
           aria-label="Reading settings"
+          tabIndex={-1}
         >
           {/* Mobile drag handle */}
           <div className="flex sm:hidden justify-center pt-3 pb-1">
@@ -207,6 +259,68 @@ export function ReaderSettingsMenu({
                 </motion.div>
               )}
             </AnimatePresence>
+
+            <div className="border-t border-(--cr-glass-border) pt-3">
+              <SettingsSection label="Text">
+                <div className="space-y-3">
+                  {/* Font size — Kindle-style A− / A+ stepper. */}
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-xs font-medium text-(--cr-text-secondary)">Font size</span>
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => onChangeFontSize(Math.max(FONT_MIN, fontSize - 1))}
+                        disabled={fontSize <= FONT_MIN}
+                        aria-label="Decrease font size"
+                        className="flex h-11 w-11 items-center justify-center rounded-lg border border-(--cr-glass-border) bg-(--cr-bg-surface-3) text-(--cr-text-primary) transition hover:brightness-110 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+                      >
+                        <span className="text-xs font-bold">A</span>
+                      </button>
+                      <span
+                        aria-live="polite"
+                        className="w-12 text-center text-xs font-semibold tabular-nums text-(--cr-text-primary)"
+                      >
+                        {fontSize}px
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => onChangeFontSize(Math.min(FONT_MAX, fontSize + 1))}
+                        disabled={fontSize >= FONT_MAX}
+                        aria-label="Increase font size"
+                        className="flex h-11 w-11 items-center justify-center rounded-lg border border-(--cr-glass-border) bg-(--cr-bg-surface-3) text-(--cr-text-primary) transition hover:brightness-110 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+                      >
+                        <span className="text-lg font-bold leading-none">A</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Line spacing */}
+                  <div>
+                    <p className="mb-1.5 text-xs font-medium text-(--cr-text-secondary)">Line spacing</p>
+                    <Segmented
+                      ariaLabel="Line spacing"
+                      options={LINE_SPACING_OPTIONS}
+                      value={lineSpacing}
+                      onChange={onChangeLineSpacing}
+                    />
+                  </div>
+
+                  {/* Reading width */}
+                  <div>
+                    <p className="mb-1.5 text-xs font-medium text-(--cr-text-secondary)">Width</p>
+                    <Segmented
+                      ariaLabel="Reading width"
+                      options={WIDTH_OPTIONS}
+                      value={contentWidth <= 720 ? "narrow" : contentWidth >= 880 ? "wide" : "medium"}
+                      onChange={(id) => {
+                        const match = WIDTH_OPTIONS.find((w) => w.id === id);
+                        if (match) onChangeContentWidth(match.px);
+                      }}
+                    />
+                  </div>
+                </div>
+              </SettingsSection>
+            </div>
 
             <div className="border-t border-(--cr-glass-border) pt-3">
               <ToggleRow
@@ -296,6 +410,43 @@ function RadioGroup<T extends string>({
                 aria-hidden="true"
               />
             )}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function Segmented<T extends string>({
+  options,
+  value,
+  onChange,
+  ariaLabel,
+}: {
+  options: ReadonlyArray<{ id: T; label: string }>;
+  value: T;
+  onChange: (next: T) => void;
+  ariaLabel: string;
+}) {
+  return (
+    <div role="group" aria-label={ariaLabel} className="flex gap-1 rounded-xl bg-(--cr-bg-surface-3) p-1">
+      {options.map((option) => {
+        const active = option.id === value;
+        return (
+          <button
+            key={option.id}
+            type="button"
+            onClick={() => onChange(option.id)}
+            aria-pressed={active}
+            className={[
+              "flex min-h-11 flex-1 items-center justify-center rounded-lg px-2 text-xs font-semibold transition",
+              active
+                ? "bg-(--cr-accent) text-(--cr-text-inverse)"
+                : "text-(--cr-text-secondary) hover:text-(--cr-text-primary)",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]",
+            ].join(" ")}
+          >
+            {option.label}
           </button>
         );
       })}

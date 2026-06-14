@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Coffee,
   BookOpen,
@@ -15,6 +15,7 @@ import {
   staggerContainer,
   staggerItem,
 } from "@/app/onboarding/utils/animations";
+import { Button } from "@/components/ui/button";
 
 interface StepPaceProps {
   onNext: () => void;
@@ -63,7 +64,6 @@ const chapterOrderOptions: {
 export default function StepPace({ onNext }: StepPaceProps) {
   const { dailyGoal, setDailyGoal, chapterOrder, setChapterOrder } =
     useOnboarding();
-  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div
@@ -126,12 +126,10 @@ export default function StepPace({ onNext }: StepPaceProps) {
           variants={staggerContainer}
           initial="hidden"
           animate="show"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 10,
-            width: "100%",
-          }}
+          className="grid w-full grid-cols-3"
+          style={{ gap: 10 }}
+          role="radiogroup"
+          aria-label="Daily reading goal"
         >
           {dailyGoalOptions.map(({ value, label, sublabel, badge, Icon }) => {
             const isSelected = dailyGoal === value;
@@ -158,7 +156,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
                       strokeWidth={1.5}
                       style={{
                         color: isSelected
-                          ? "var(--accent-blue)"
+                          ? "var(--accent-cyan)"
                           : "var(--text-secondary)",
                         transition: "color 200ms ease",
                       }}
@@ -199,9 +197,9 @@ export default function StepPace({ onNext }: StepPaceProps) {
                             fontFamily: "var(--font-dm-sans)",
                             fontSize: 11,
                             fontWeight: 600,
-                            color: "#E8B931",
-                            backgroundColor: "rgba(232,185,49,0.10)",
-                            border: "1px solid rgba(232,185,49,0.25)",
+                            color: "var(--accent-amber)",
+                            backgroundColor: "color-mix(in srgb, var(--accent-amber) 12%, transparent)",
+                            border: "1px solid color-mix(in srgb, var(--accent-amber) 25%, transparent)",
                             padding: "3px 10px",
                             borderRadius: 999,
                             whiteSpace: "nowrap",
@@ -245,6 +243,8 @@ export default function StepPace({ onNext }: StepPaceProps) {
             gap: 10,
             width: "100%",
           }}
+          role="radiogroup"
+          aria-label="How should chapters open?"
         >
           {chapterOrderOptions.map(({ value, label, description, Icon }) => {
             const isSelected = chapterOrder === value;
@@ -268,7 +268,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
                       strokeWidth={1.5}
                       style={{
                         color: isSelected
-                          ? "var(--accent-blue)"
+                          ? "var(--accent-cyan)"
                           : "var(--text-secondary)",
                         transition: "color 200ms ease",
                         marginTop: 2,
@@ -308,46 +308,11 @@ export default function StepPace({ onNext }: StepPaceProps) {
         </motion.div>
       </div>
 
-      {/* Continue CTA */}
-      <motion.button
-        onClick={onNext}
-        whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
-        whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
-        animate={
-          !prefersReducedMotion
-            ? {
-                boxShadow: [
-                  "0 0 16px var(--glow-green)",
-                  "0 0 24px var(--glow-green)",
-                  "0 0 16px var(--glow-green)",
-                ],
-              }
-            : {}
-        }
-        transition={{
-          boxShadow: { repeat: Infinity, duration: 2, ease: "easeInOut" },
-        }}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 8,
-          padding: "14px 40px",
-          minHeight: 48,
-          borderRadius: "var(--radius-md-val)",
-          backgroundColor: "var(--accent-green)",
-          color: "var(--cf-page-bg)",
-          fontFamily: "var(--font-dm-sans)",
-          fontSize: 16,
-          fontWeight: 600,
-          border: "none",
-          cursor: "pointer",
-          outline: "none",
-        }}
-      >
+      {/* Continue CTA — shared brand primary (focus ring + states built in) */}
+      <Button size="lg" className="min-w-45" onClick={onNext}>
         Continue
         <ArrowRight size={18} strokeWidth={2} />
-      </motion.button>
+      </Button>
     </div>
   );
 }

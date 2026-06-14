@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { BookCard } from "./BookCard";
 import {
@@ -13,11 +14,10 @@ import {
 
 interface BrowseAllProps {
   books: LibraryBook[];
-  onBookClick: (bookId: string) => void;
   showProLock?: boolean;
   /** Pre-applied category filter from external source */
   initialCategory?: Category | null;
-  /** Text search query from navbar search */
+  /** Text search query from the navbar / `?q=` URL param */
   searchQuery?: string;
 }
 
@@ -77,7 +77,6 @@ function Chip({
 
 export function BrowseAll({
   books,
-  onBookClick,
   showProLock = false,
   initialCategory,
   searchQuery = "",
@@ -86,9 +85,10 @@ export function BrowseAll({
   const [status, setStatus] = useState<StatusFilter>("all");
   const [category, setCategory] = useState<Category | null>(initialCategory ?? null);
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
-  const [sort, setSort] = useState<SortOption>("popular");
+  const [sort, setSort] = useState<SortOption>("featured");
   const [showAll, setShowAll] = useState(false);
   const [moodFilter, setMoodFilter] = useState<string | null>(null);
+  const trimmedQuery = searchQuery.trim();
 
   // Status counts
   const counts = useMemo(() => ({
@@ -102,28 +102,31 @@ export function BrowseAll({
     let result = [...books];
 
     // Text search
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
+    if (trimmedQuery) {
+      const q = trimmedQuery.toLowerCase();
       result = result.filter((b) => {
         const searchable = `${b.title} ${b.author} ${b.category} ${b.hook}`.toLowerCase();
         return searchable.includes(q);
       });
     }
 
-    // Mood filter
+    // Mood filter — every option is an honest, derivable signal
     if (moodFilter === "quick") {
       result = result.filter((b) => b.estimatedReadingTimeMinutes <= 120);
     } else if (moodFilter === "deep") {
       result = result.filter(
         (b) => b.estimatedReadingTimeMinutes > 180 || b.difficulty === "hard"
       );
-    } else if (moodFilter === "best") {
-      result.sort((a, b) => b.completionRate - a.completionRate);
+    } else if (moodFilter === "staff") {
+      result = result.filter((b) => Boolean(b.staffPickReason));
     } else if (moodFilter === "decide") {
-      // Show top 3 personalized picks by completion rate, not yet started
+      // A few editorial staff picks the viewer hasn't started yet
       result = result
         .filter((b) => !b.userProgress)
-        .sort((a, b) => b.completionRate - a.completionRate)
+        .sort(
+          (a, b) =>
+            Number(Boolean(b.staffPickReason)) - Number(Boolean(a.staffPickReason))
+        )
         .slice(0, 3);
     }
 
@@ -148,16 +151,10 @@ export function BrowseAll({
       result = result.filter((b) => b.difficulty === difficulty);
     }
 
-    // Sort
+    // Sort. "featured" keeps the catalog's curated order (no fabricated metric).
     switch (sort) {
-      case "popular":
-        result.sort((a, b) => b.readerCount - a.readerCount);
-        break;
       case "shortest":
         result.sort((a, b) => a.estimatedReadingTimeMinutes - b.estimatedReadingTimeMinutes);
-        break;
-      case "completion":
-        result.sort((a, b) => b.completionRate - a.completionRate);
         break;
       case "beginner":
         result.sort((a, b) => {
@@ -171,10 +168,13 @@ export function BrowseAll({
       case "recent":
         result.reverse();
         break;
+      case "featured":
+      default:
+        break;
     }
 
     return result;
-  }, [books, status, category, difficulty, sort, moodFilter]);
+  }, [books, status, category, difficulty, sort, moodFilter, trimmedQuery]);
 
   const displayed = showAll ? filtered : filtered.slice(0, INITIAL_COUNT);
 
@@ -204,12 +204,12 @@ export function BrowseAll({
       const moodLabels: Record<string, string> = {
         quick: "under 2 hours",
         deep: "deep dives",
-        best: "by completion rate",
+        staff: "staff picks",
         decide: "top picks for you",
       };
       parts.push(moodLabels[moodFilter] ?? "");
     }
-    if (sort !== "popular") {
+    if (sort !== "featured") {
       const sortLabel = SORT_OPTIONS.find((o) => o.value === sort)?.label ?? "";
       parts.push(`sorted by ${sortLabel.toLowerCase()}`);
     }
@@ -231,11 +231,33 @@ export function BrowseAll({
         className="font-(family-name:--font-display) text-[22px] font-bold"
         style={{ color: "var(--text-heading)" }}
       >
-        Browse all
+        {trimmedQuery ? "Search results" : "Browse all"}
       </h2>
       <p className="mt-0.5 text-[14px]" style={{ color: "var(--text-secondary)" }}>
         Find your next read · {books.length} books available
       </p>
+
+      {/* Active search banner — `/book/library?q=` lands here */}
+      {trimmedQuery && (
+        <div
+          className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3"
+          style={{ background: "var(--bg-glass)", border: "1px solid var(--border-subtle)" }}
+        >
+          <p className="text-[14px]" style={{ color: "var(--text-heading)" }}>
+            {filtered.length} {filtered.length === 1 ? "result" : "results"} for{" "}
+            <span className="font-semibold" style={{ color: "var(--accent-cyan)" }}>
+              &ldquo;{trimmedQuery}&rdquo;
+            </span>
+          </p>
+          <Link
+            href="/book/library"
+            className="rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors"
+            style={{ border: "1px solid var(--border-subtle)", color: "var(--text-secondary)" }}
+          >
+            Clear search
+          </Link>
+        </div>
+      )}
 
       {/* Guided entry — "What are you in the mood for?" */}
       <div
@@ -252,7 +274,7 @@ export function BrowseAll({
           {[
             { key: "quick", label: "Something quick" },
             { key: "deep", label: "A deep dive" },
-            { key: "best", label: "The best-rated" },
+            { key: "staff", label: "Staff picks" },
             { key: "decide", label: "Help me decide" },
           ].map((opt) => (
             <button
@@ -431,12 +453,7 @@ export function BrowseAll({
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.2, ease: "easeOut", delay: i * 0.03 }}
                 >
-                  <BookCard
-                    book={book}
-                    index={0}
-                    onBookClick={onBookClick}
-                    showProLock={showProLock}
-                  />
+                  <BookCard book={book} index={0} showProLock={showProLock} />
                 </motion.div>
               ))}
             </AnimatePresence>

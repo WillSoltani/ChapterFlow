@@ -179,9 +179,10 @@ function buildProgressData(
     target: m.badge.targetValue,
   }));
 
-  // Use mock milestones if badge system returned none
-  const effectiveMilestones =
-    nextMilestones.length > 0 ? nextMilestones : mockProgressData.nextMilestones;
+  // Drive achievements purely from the real badge system — never render mock
+  // milestones over a user with no real progress. NextAchievements and
+  // PersonalizedGreeting both handle an empty array gracefully.
+  const effectiveMilestones = nextMilestones;
 
   // Build daily quests with real completion data
   const wiredQuests = mockProgressData.dailyQuests

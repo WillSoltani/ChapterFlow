@@ -1,0 +1,1631 @@
+{
+  "bookId": "hooked",
+  "title": "Hooked",
+  "author": "Nir Eyal",
+  "promotedAt": "2026-06-03T05:56:08.715Z",
+  "chapterCount": 8,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 9.2 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "During a search-quality review, Asha compares Google and Bing result samples. The score gap is real but small, while usage logs show people searching again before they ever discuss alternatives. The …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "During a search-quality review, Asha compares Google and Bing result samples. The score gap is real but small, while usage logs show people searching again before they ever discuss alternatives. The …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a commerce roadmap meeting, Ronan admits his marketplace will never be opened as often as Google. The team keeps proposing daily deals anyway. Amazon is the better comparison: the question is whet…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a behavior science workshop, Kira hears a founder promise investors that every user routine will lock in after one month. She pulls up the University College London habit-formation study and point…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The pricing committee wants to raise fees because usage looks high. Nia separates Google-like frequency from true utility: users open the tool often, but only because the company requires it. The Hab…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The pricing committee wants to raise fees because usage looks high. Nia separates Google-like frequency from true utility: users open the tool often, but only because the company requires it. The Hab…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a customer interview lab, Soren asks why a user keeps renewing a small shopping assistant. She says it began as a vitamin, then became painful to lose because it remembered hard-to-find items bett…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a trust review, Iris hears a slide celebrate addictive engagement. She rewrites it around the Habit Zone and Google: automatic use can be valuable when it saves effort and serves a real need. Addi…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Google versus Bing matter to the Habit Zone diagnosis?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Amazon is less frequent than search but still belongs near habit territory when what condition holds?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "In the University College London habit-formation study, what warning should a product team hear?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which statement best separates habit from addiction in this idea?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A service begins as a vitamin and later feels like a painkiller. What changed?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How should a team use the Habit Zone before building retention features?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A product is used often only because an employer requires it. What is the Habit Zone risk?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What business benefits do strong user habits create according to the idea?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch01-q04 choice[1] uses absolute trigger \"impossible\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Habit formation is impossible unless a routine is completed every day for a year."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch01-q07 choice[1] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Start with daily notifications so the frequency axis rises automatically."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch01-q03 correct answer is 1.64× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Some products should remain excellent occasional tools because weak frequency or weak utility keeps them outside habit design."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch01-q05 correct answer is 1.88× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Habit can be automatic and useful; addiction is compulsive, harmful, and not the design goal."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch01-q07 correct answer is 1.52× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Plot the target behavior by natural frequency and perceived utility, then decide which axis deserves work."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch01-q09 correct answer is 1.58× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "They can raise lifetime value, support pricing flexibility, aid growth, and make alternatives feel awkward."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Some products should remain excellent occasional tools because weak frequency or weak utility keeps "
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Habit can be automatic and useful; addiction is compulsive, harmful, and not the design goal."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "They can raise lifetime value, support pricing flexibility, aid growth, and make alternatives feel a"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the university college london\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "On a Saturday photo walk, Yin stops under a mural and opens Instagram without checking notifications. The color, the friend beside her, and the wish to keep the scene do the prompting. The external a…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 7:40 a.m. on a delayed train, Darius opens Facebook after seeing no alert at all. The cue is the small loneliness of standing among strangers and wondering what friends are doing. The feed has bec…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Brielle reviews a dashboard of app icon taps and notification opt-ins. The team celebrates permission as if it were habit. She pauses: an owned trigger is only a temporary surface. If the alert does …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Brielle reviews a dashboard of app icon taps and notification opt-ins. The team celebrates permission as if it were habit. She pauses: an owned trigger is only a temporary surface. If the alert does …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a budget meeting, Keira proposes buying more search ads for every return visit. A teammate brings up Facebook's internal-trigger logic: paid triggers can introduce the product, but paying forever …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a budget meeting, Keira proposes buying more search ads for every return visit. A teammate brings up Facebook's internal-trigger logic: paid triggers can introduce the product, but paying forever …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "During an invite-flow critique, Jae notices that Instagram shares from friends outperform polished banners. The trigger is relational: a person the user trusts has sent something that carries social …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "During an invite-flow critique, Jae notices that Instagram shares from friends outperform polished banners. The trigger is relational: a person the user trusts has sent something that carries social …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a user interview, Alina asks why someone wants better photo filters. The first answer is quality, then memory, then being seen by faraway friends. The 5 Whys turns a feature request into a trigger…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a user interview, Alina asks why someone wants better photo filters. The first answer is quality, then memory, then being seen by faraway friends. The 5 Whys turns a feature request into a trigger…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What changes when Yin's Instagram use becomes habitual?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A user checks Facebook when lonely, with no notification visible. What kind of trigger is operating?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which external trigger is most durable before a habit fully forms?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the danger of sending more notifications without understanding the internal trigger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why are paid triggers weak as the main source of repeat engagement?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does the 5 Whys method help a product team find?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A friend sends a product invitation. Why can that trigger be powerful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which trigger plan best honors the idea's mechanism?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the endpoint of trigger design in Hooked?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch02-q04 choice[2] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "The notification becomes a relationship trigger automatically."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch02-q05 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "They always carry more trust than relationship triggers."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Identify the user's recurring discomfort, then choose an external cue that responsibly connects that"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the 5 whys method\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "A triggered behavior happens only when motivation, ability, and timing meet, so "
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "After a missed support call, Devon refuses to call the customer careless. BJ Fogg's B equals MAT gives three possible failures: the customer may not have wanted the call, may not have been able to an…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "After a missed support call, Devon refuses to call the customer careless. BJ Fogg's B equals MAT gives three possible failures: the customer may not have wanted the call, may not have been able to an…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "The UX lead places Google and Yahoo screenshots beside the new homepage. The team likes every module, but the search action is buried under choices. Google's sparse field wins because the user knows …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a composer sprint, a team compares its long publishing form with Twitter's short messages and Instagram's quick photo flow. Their tool asks for title, tags, category, and settings before expressio…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In onboarding analytics, Meera sees users abandon a long profile form. LinkedIn profile progress suggests a different frame: show that the person has already begun and name the next small missing pie…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In onboarding analytics, Meera sees users abandon a long profile form. LinkedIn profile progress suggests a different frame: show that the person has already begun and name the next small missing pie…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A checkout experiment adds a scarcity banner, but completion barely moves. Sara returns to BJ Fogg: motivation rose for a few users, yet ability stayed low because the page still asks for unnecessary…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "A checkout experiment adds a scarcity banner, but completion barely moves. Sara returns to BJ Fogg: motivation rose for a few users, yet ability stayed low because the page still asks for unnecessary…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "During a mobile usability lab, Andre watches a participant save ideas on Pinterest during a short break. His team's prototype requires opening a desktop editor later. The simplicity factor is routine…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "During a mobile usability lab, Andre watches a participant save ideas on Pinterest during a short break. His team's prototype requires opening a desktop editor later. The simplicity factor is routine…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does BJ Fogg's behavior model require for action?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Google beat a cluttered Yahoo-style portal in the idea's action logic?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which response best fits a failed triggered behavior?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the most practical first lever when motivation is costly to raise?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What do Twitter, Instagram, Pinterest, and Vine illustrate?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does LinkedIn profile progress influence action?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A checkout page adds urgency copy but keeps a long account setup. What is the likely problem?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which set belongs to Fogg's simplicity factors?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the idea's hard warning about heuristics?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch03-q07 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "The trigger arrived too early because scarcity always removes motivation."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch03-q09 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "They should replace interface work because motivation always dominates."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch03-q06 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "It frames the user as already partway through, making the next completion step more motivating."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch03-q09 correct answer is 1.68× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "They can alter perception, but they cannot rescue an action that asks for too much effort."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It frames the user as already partway through, making the next completion step more motivating."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"b equals mat turns\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Name one reward in your product and classify it as tribe, hunt, or self, then as"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "deepRead: Flesch-Kincaid grade 11.1 exceeds ceiling 11 (target grade 9–11). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "After a creator posts on Facebook, she refreshes because the response is socially uncertain. Likes, comments, and silence all say something about belonging and status. The reward is not a fixed badge…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "After a creator posts on Facebook, she refreshes because the response is socially uncertain. Likes, comments, and silence all say something about belonging and status. The reward is not a fixed badge…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a discovery feed lab, Livia watches a user scroll Pinterest for apartment ideas. Each screen is uneven: a forgettable tile, then a perfect shelf, then a color palette. The next valuable image migh…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At a fitness product critique, Jo compares Fitocracy encouragement with a MyFitnessPal logging flow that some users describe as scolding. Both track health behavior, but one can feel like competence …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a fitness product critique, Jo compares Fitocracy encouragement with a MyFitnessPal logging flow that some users describe as scolding. Both track health behavior, but one can feel like competence …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At an operations desk, Kira opens email after lunch. One message is praise from a client, another contains a needed file, and clearing the unread list feels satisfying. The inbox mixes tribe, hunt, a…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a game systems meeting, Basil compares farm-style crops with World of Warcraft raids. A fixed collection pattern becomes predictable after repetition. Coordinating with other players, changing str…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a game systems meeting, Basil compares farm-style crops with World of Warcraft raids. A fixed collection pattern becomes predictable after repetition. Coordinating with other players, changing str…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a behavioral research seminar, Dana hears BF Skinner used as permission for random prizes. She redirects the group: uncertain reinforcement explains persistence, but product rewards still need rel…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a behavioral research seminar, Dana hears BF Skinner used as permission for random prizes. She redirects the group: uncertain reinforcement explains persistence, but product rewards still need rel…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the main power of variable rewards?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Facebook likes and comments are primarily which reward family?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Pinterest fit rewards of the hunt?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which reward type concerns mastery, completion, competence, and control?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What warning does reactance add to reward design?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does email illustrate the idea's categories?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the problem with randomness that does not answer the user's trigger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why can World of Warcraft sustain variability longer than a simple farm-game loops-like pattern?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which design question best captures the hard edge of this idea?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch04-q05 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Users always prefer rigid rules when health is involved."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch04-q07 choice[1] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "It automatically creates infinite variability."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch04-q03 correct answer is 1.56× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "The user searches through uncertain information or inspiration, hoping the next item is useful."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch04-q08 correct answer is 1.60× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Its multiplayer and strategic situations renew uncertainty through people and changing contexts."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The user searches through uncertain information or inspiration, hoping the next item is useful."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It combines social obligation, useful information, and completion satisfaction."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Its multiplayer and strategic situations renew uncertainty through people and changing contexts."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Does this uncertainty satisfy the original need while preserving the user's choice?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: 2 paragraphs open with \"rewards of\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"bf skinners reinforcement research\" appears in both fastRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "BP18.quiz_label_shape_correct",
+            "severity": "minor",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch04-q02 correct answer is 4 words and label-shaped (no verb) — expand to a complete action sentence",
+            "evidence": "Rewards of the tribe."
+          },
+          {
+            "catalogId": "BP18.quiz_label_shape_correct",
+            "severity": "minor",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch04-q04 correct answer is 4 words and label-shaped (no verb) — expand to a complete action sentence",
+            "evidence": "Rewards of the self."
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "During a music app migration, Elian says the competitor has cleaner audio but his iTunes library holds years of choices. Playlists, purchases, and organization make the old service feel personally bu…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "During a music app migration, Elian says the competitor has cleaner audio but his iTunes library holds years of choices. Playlists, purchases, and organization make the old service feel personally bu…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a marketplace seller review, Kira compares a trusted eBay profile with a new account elsewhere. The products may both list goods, but ratings change buyer confidence. Airbnb hosts face the same ec…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a marketplace seller review, Kira compares a trusted eBay profile with a new account elsewhere. The products may both list goods, but ratings change buyer confidence. Airbnb hosts face the same ec…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At renewal time, Noor considers replacing Adobe Photoshop with a cheaper tool. The feature list is close, but her team's years of shortcuts, file habits, and editing judgment live in Photoshop. The s…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At renewal time, Noor considers replacing Adobe Photoshop with a cheaper tool. The feature list is close, but her team's years of shortcuts, file habits, and editing judgment live in Photoshop. The s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "During a messaging feature review, Noah diagrams a Snapchat photo exchange. The user sends a picture after a rewarding moment, and the recipient's reply becomes tomorrow's cue. The investment is soci…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "During a messaging feature review, Noah diagrams a Snapchat photo exchange. The user sends a picture after a rewarding moment, and the recipient's reply becomes tomorrow's cue. The investment is soci…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a consumer psychology seminar, Cora uses the IKEA effect craft research to explain why a simple assembled object can feel special. The labor is part of the valuation. Product investment works only…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a consumer psychology seminar, Cora uses the IKEA effect craft research to explain why a simple assembled object can feel special. The labor is part of the valuation. Product investment works only…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a personalization setup test, Lin asks users for ten preferences before any reward. Completion collapses. The investment idea says the timing is wrong: data can store value, but the user is more w…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a personalization setup test, Lin asks users for ten preferences before any reward. Completion collapses. The investment idea says the timing is wrong: data can store value, but the user is more w…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When should investment usually happen in the hook cycle?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is stored value?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How does an iTunes library create attachment?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why do eBay and Airbnb reputations matter?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Adobe Photoshop illustrates which investment type?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does Snapchat photo exchange show about investment?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the IKEA effect's role in this idea?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which request would violate the idea's hard edge?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which list best matches stored-value categories?"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "User effort that remains in the product and improves later experiences."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the ebay and airbnb\" appears in both fastRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "BP18.quiz_label_shape_correct",
+            "severity": "minor",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch05-q09 correct answer is 6 words and label-shaped (no verb) — expand to a complete action sentence",
+            "evidence": "Content, data, followers, reputation, and skill."
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"facilitator\", \"peddler\", \"entertainer\", \"games\", \"dealer\", \"behavior-design\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "At a trust council, Amira asks whether the team would recommend the product to a younger sibling. The question cuts through quadrant theater. A product called beneficial can still "
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a founder offsite, Anika places her own wellness product in the Manipulation Matrix. She uses it daily and believes it improves a problem she has personally felt. That does not end the ethics, but…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In an edtech roadmap review, the team insists their app helps students, but no one uses it or studies with it. The Manipulation Matrix names the Peddler risk: they may be right about benefit, yet far…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At a game publishing meeting, Brennan enjoys the product and knows players do too. The Manipulation Matrix places it near Entertainer, not Facilitator. The honest claim is fun, challenge, and social …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a game publishing meeting, Brennan enjoys the product and knows players do too. The Manipulation Matrix places it near Entertainer, not Facilitator. The honest claim is fun, challenge, and social …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In an adtech metrics review, Farah asks whether anyone would use the product themselves or believes it improves users' lives. The room talks only about session length. The Manipulation Matrix gives t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In an adtech metrics review, Farah asks whether anyone would use the product themselves or believes it improves users' lives. The room talks only about session length. The Manipulation Matrix gives t…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At a trust council, Amira asks whether the team would recommend the product to a younger sibling. The question cuts through quadrant theater. A product called beneficial can still encourage behavior …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a trust council, Amira asks whether the team would recommend the product to a younger sibling. The question cuts through quadrant theater. A product called beneficial can still encourage behavior …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In a nonprofit app review, the mission statement sounds noble, but field users ignore the feature and staff do not use it either. The team wants Facilitator status; the Manipulation Matrix says the e…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a nonprofit app review, the mission statement sounds noble, but field users ignore the feature and staff do not use it either. The team wants Facilitator status; the Manipulation Matrix says the e…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What two questions define the Manipulation Matrix?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Who is a Facilitator in the matrix?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the Peddler risk?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which claim best describes the Entertainer quadrant?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is the Dealer quadrant ethically dangerous?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the idea's view of manipulation?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A team calls itself beneficial but would not recommend the product to family. What should happen?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does the matrix do with engagement metrics?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which builder posture is most durable according to the idea?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch06-q02 choice[0] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "A maker who never uses the product but thinks others should."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch06-q04 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "It is always unethical because fun has no value."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch06-q07 choice[1] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Move the product automatically into Facilitator status."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch06-q09 choice[1] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Building for users the maker never studies because distance increases objectivity."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch06-q03 correct answer is 1.60× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "The builder believes in the benefit but lacks first-hand use, creating distance from the user's reality."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.8× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "The builder believes in the benefit but lacks first-hand use, creating distance from the user's real"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It treats them as useful business data but insufficient for ethics."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"use the product and\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a church technology office, a product lead studies Bobby Gruenewald and YouVersion. The case is not detached optimization; the founder shares the religious practice the product supports. That pers…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a reading-plan redesign, Soren turns a broad goal into bite-size passages. YouVersion's lesson is that a large sacred text can overwhelm users at the moment of action. A themed plan gives them a s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "During a personalization review, Keira sees that users return to old highlights, notes, and bookmarks in YouVersion. Those markings are not decoration. They store the user's reflection, making the ap…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "During a personalization review, Keira sees that users return to old highlights, notes, and bookmarks in YouVersion. Those markings are not decoration. They store the user's reflection, making the ap…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a small group chat, Dani shares a YouVersion passage and receives a thoughtful reply after dinner. The response becomes a relationship trigger to reopen the app. The reward is not vanity; it is co…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a trust review, Iris praises YouVersion's mission but flags a proposal for guilt-heavy reminders. The app may fit the Facilitator quadrant, yet the hook still needs agency. A noble behavior can be…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is YouVersion a useful case study for Hooked?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What role does the daily verse notification play?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How do reading plans and bite-size passages support action?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What kind of investment do highlights, notes, and bookmarks create?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does Bobby Gruenewald matter to the ethical reading?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which reward is most consistent with the YouVersion case?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the hard edge of the Bible App case?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How can a shared passage load the next trigger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which design summary best generalizes YouVersion?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch07-q05 choice[0] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "His role means every prompt is automatically ethical."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch07-q09 choice[2] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Remove investment so the product never asks users to personalize anything."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch07-q06 correct answer is 1.60× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "A relevant verse, progress in a reading plan, or meaningful social response."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch07-q08 correct answer is 1.86× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "A reply or message from another person can cue the user to return."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch07-q09 correct answer is 1.60× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Cue a user-valued behavior, make the first action small, reward it meaningfully, and store personal value."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "correct answer is 1.7× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A relevant verse, progress in a reading plan, or meaningful social response."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A reply or message from another person can cue the user to return."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Cue a user-valued behavior, make the first action small, reward it meaningfully, and store personal "
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.4 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "In an onboarding analytics review, Zara sees the Twitter 30 follows pattern: newcomers who connect enough accounts are more likely to stay. The finding turns retention from a vague goal into a concre…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In an onboarding analytics review, Zara sees the Twitter 30 follows pattern: newcomers who connect enough accounts are more likely to stay. The finding turns retention from a vague goal into a concre…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At a metrics definition meeting, Ken rejects a single daily-use target for Instagram and Rotten Tomatoes. A photo-sharing app and a movie-review site serve different rhythms. Habit Testing begins by …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a metrics definition meeting, Ken rejects a single daily-use target for Instagram and Rotten Tomatoes. A photo-sharing app and a movie-review site serve different rhythms. Habit Testing begins by …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a startup idea review, Lina studies Facebook at Harvard. The early market was narrow, but the behavior was familiar: students wanted a digital way to see and connect with people around them. The s…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "At a search prototype critique, Arman compares Google with Yahoo and Lycos. The sparse interface was not cosmetic; it lowered effort and exposed how much people wanted direct access to answers. Inter…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a search prototype critique, Arman compares Google with Yahoo and Lycos. The sparse interface was not cosmetic; it lowered effort and exposed how much people wanted direct access to answers. Inter…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "During a technology scan, Ivy compares Instagram filters with Google Glass prototypes. Filters made ordinary mobile photos more shareable immediately. Glass was a bet on a new surface. Both cases ask…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "During a technology scan, Ivy compares Instagram filters with Google Glass prototypes. Filters made ordinary mobile photos more shareable immediately. Glass was a bet on a new surface. Both cases ask…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a cohort analysis desk, Ronan finds just over five percent of users meet the team's devoted-use definition. The room cheers. He points back to Habit Testing: the number is enough to study, not eno…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What are the three moves of Habit Testing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why should Instagram and Rotten Tomatoes use different devoted-use thresholds?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What did Twitter's 30 follows finding provide?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How should a team treat the rough five percent benchmark?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What does codifying a habit path involve?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why is Facebook at Harvard important to opportunity search?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What opportunity lesson comes from Google, Yahoo, and Lycos?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "How should teams use personal frustration in opportunity search?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What is the hard warning about copying retained users?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch08-q02 choice[1] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Rotten Tomatoes should always copy social-photo frequency."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch08-q07 choice[0] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "More portal content always makes action easier."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch08-q01 correct answer is 1.78× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Identify habitual users, codify their shared path, and modify the product to guide more users there."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch08-q02 correct answer is 1.87× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Their natural behavior rhythms differ, so the same frequency target would distort the test."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch08-q06 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "It shows that a small nascent behavior can reveal a broader motivation."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.unknown",
+            "message": "hooked-ch08-q09 correct answer is 1.58× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Do not worship correlation; define the rhythm, test the path, and keep measuring after modifications."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Their natural behavior rhythms differ, so the same frequency target would distort the test."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A concrete early behavior linked to retention that onboarding could emphasize."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"were more likely to\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 206
+  },
+  "bookGate": {
+    "bookId": "hooked",
+    "chapterCount": 8,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        24,
+        24,
+        24
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 72,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "hooked",
+        "chapterCount": 8,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

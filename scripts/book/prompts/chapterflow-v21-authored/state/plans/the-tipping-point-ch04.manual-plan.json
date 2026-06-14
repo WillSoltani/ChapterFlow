@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-tipping-point-ch04",
+  "number": 4,
+  "title": "The Power of Context (Part One): Bernie Goetz and the Rise and Fall of New York City Crime",
+  "coreMove": "Treat the immediate setting as a behavioral lever: visible disorder, time pressure, and role cues can change what people feel licensed to do.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "metro fare enforcement redesign",
+      "audience": "transit managers balancing service and order",
+      "stakes": "ignoring a visible rule break could teach riders that no rule holds",
+      "format": "decision_point",
+      "requiredBeat": "Nadine treats fare-beating as a context signal"
+    },
+    {
+      "domain": "delivery fleet reliability",
+      "audience": "operations leaders trying to reset norms",
+      "stakes": "drivers may infer that damaged tools and sloppy logs are accepted",
+      "format": "before_after",
+      "requiredBeat": "Oleg applies David Gunn's clean-train logic to fleet cues"
+    },
+    {
+      "domain": "hospital hallway escalation",
+      "audience": "clinical leaders reducing ignored patient distress",
+      "stakes": "rushed staff may miss visible suffering while believing they are caring people",
+      "format": "reset_moment",
+      "requiredBeat": "Sofia uses Darley and Batson to reduce hurry pressure"
+    },
+    {
+      "domain": "event security training",
+      "audience": "security supervisors preventing role overreach",
+      "stakes": "a uniform and title may push staff toward dominance instead of service",
+      "format": "coach_talk",
+      "requiredBeat": "Kwame uses Zimbardo's role-pressure warning"
+    },
+    {
+      "domain": "local newsroom crime coverage",
+      "audience": "editors covering a volatile incident",
+      "stakes": "coverage may frame one event as proof of a whole city's character",
+      "format": "decision_memo",
+      "requiredBeat": "Rafael situates a crime story in its emotional context"
+    },
+    {
+      "domain": "customer support office redesign",
+      "audience": "service managers reducing rude escalations",
+      "stakes": "a neglected lobby may tell visitors that order and respect are weak",
+      "format": "audit",
+      "requiredBeat": "Marta treats visible disorder as a norm cue"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "evaluate": 3,
+      "understand": 1,
+      "create": 1,
+      "analyze": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:43:32.863Z"
+}

@@ -1,0 +1,70 @@
+{
+  "chapterId": "contagious-ch02",
+  "number": 2,
+  "title": "Triggers",
+  "coreMove": "Triggers make ideas easy to recall at useful moments; choose cues that are frequent, distinctive, and close to the behavior you want.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "grocery endcap planning",
+      "audience": "retail marketers deciding where reminders belong",
+      "stakes": "an exciting display may miss the breakfast moment",
+      "format": "decision_point",
+      "requiredBeat": "Lucien chooses Cheerios-style frequency over vacation-style intensity"
+    },
+    {
+      "domain": "music catalog promotion",
+      "audience": "streaming editors scheduling throwback clips",
+      "stakes": "a funny song reference loses power if posted away from its natural cue",
+      "format": "planning_choice",
+      "requiredBeat": "Hanaa uses Rebecca Black's weekday cue"
+    },
+    {
+      "domain": "convenience-store merchandising",
+      "audience": "brand managers pairing products with routines",
+      "stakes": "a candy bar can vanish among snacks unless a strong routine calls it up",
+      "format": "business_case",
+      "requiredBeat": "Soren copies Kit Kat and coffee habitat design"
+    },
+    {
+      "domain": "brand monitoring during news cycle",
+      "audience": "consumer goods analysts watching cultural cues",
+      "stakes": "a public event can create recall the brand did not buy",
+      "format": "predict_reveal",
+      "requiredBeat": "Beatrice recognizes NASA Mars mission spillover"
+    },
+    {
+      "domain": "gym referral campaign",
+      "audience": "membership teams choosing reminder cues",
+      "stakes": "a broad cue may remind people of too many unrelated things",
+      "format": "dilemma",
+      "requiredBeat": "Yara checks association strength and cue distance"
+    },
+    {
+      "domain": "clinic appointment reminders",
+      "audience": "public health coordinators reducing missed visits",
+      "stakes": "remembering a clinic at home may not help if transport decisions happen later",
+      "format": "audit",
+      "requiredBeat": "Kofi places the cue near the action moment"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "understand": 1,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:12:41.229Z"
+}

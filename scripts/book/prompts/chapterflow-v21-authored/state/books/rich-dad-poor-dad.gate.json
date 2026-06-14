@@ -1,0 +1,964 @@
+{
+  "bookId": "rich-dad-poor-dad",
+  "title": "Rich Dad Poor Dad",
+  "author": "Robert T. Kiyosaki",
+  "promotedAt": "2026-06-05T11:45:08.379Z",
+  "chapterCount": 9,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Maurice works the back aisle of the small Hawaii store while the owner leaves him with a broom, shelves, and 10 cents an hour. By the time the dustpan is full, his anger has become the loudest thing …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Maurice works the back aisle of the small Hawaii store while the owner leaves him with a broom, shelves, and 10 cents an hour. By the time the dustpan is full, his anger has become the loudest thing …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kathleen crouches beside a backyard flame with Mike and Robert's toothpaste tubes, soft lead, and a plaster mold that suddenly looks less clever than illegal. The words counterfeit coins stop the jok…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Ravi spreads old comic books across the garage floor, then hears two younger kids argue over who gets the next issue. The box had looked like clutter until demand walked into the room. He tapes numbe…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ravi spreads old comic books across the garage floor, then hears two younger kids argue over who gets the next issue. The box had looked like clutter until demand walked into the room. He tapes numbe…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Aisha is halfway through restocking the back shelf when the dime-store raise lesson catches up with her supervisor's better weekend rate. The money would cover the shoes she has been picturing all we…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Aisha is halfway through restocking the back shelf when the dime-store raise lesson catches up with her supervisor's better weekend rate. The money would cover the shoes she has been picturing all we…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Min counts the register after a hard dime-store shift and starts naming the owner as the cause of every stuck month. The drawer comes out even, but the complaint does not. On the schedule form beside…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Caroline arrives ready for a polished money lecture, but the dime-store mentor points her back to the counter and lets the waiting do its work. The silence feels careless until she notices how quickl…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[6]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Joel has a client file open in the shared studio and a half-built template shop on the other screen, his own version of an income-producing comic-book shelf. Another billable hour would pay tonight; …"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "banned phrase \"is not magic\" — 58 hits across 29 books.",
+            "evidence": "Joel says assets sound like free money, so he wants a system that pays him without setup, judgment, or upkeep. Which correction fits the lesson? Joel should expect learning, selection, and maintenanc…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"10 cents an hour\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Beatrice tapes an income statement and a balance sheet to the fridge while her family sorts receipts into piles. The paid-off bike, the new payment plan, and the savings account all want the asset la…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Beatrice tapes an income statement and a balance sheet to the fridge while her family sorts receipts into piles. The paid-off bike, the new payment plan, and the savings account all want the asset la…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Emmett sits in a title office with the house packet open to mortgage terms, property taxes, insurance, and the repair estimate from the inspection. Relatives call the purchase his biggest asset. He c…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Emmett sits in a title office with the house packet open to mortgage terms, property taxes, insurance, and the repair estimate from the inspection. Relatives call the purchase his biggest asset. He c…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Pauline leaves the salary review with a larger number in the offer letter. A car dealer text and a credit-limit notice arrive before she reaches the elevator. She puts the raise into the statement li…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nash lays out the weekend boutique plan across a shared studio table, then draws the income statement and balance sheet the way Beatrice did. The shelves look energetic, but assets and liabilities ar…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Oscar walks the half-finished house with a contractor who is ready to add premium fixtures. The renovation has been wearing the word investment, but the mortgage, property taxes, and repairs already …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Oscar walks the half-finished house with a contractor who is ready to add premium fixtures. The renovation has been wearing the word investment, but the mortgage, property taxes, and repairs already …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Claire wants a luxury purchase after a bonus. Which sequence follows the asset-first rule?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Claire uses credit to buy status items before she owns cash-producing assets. What is the cleanest read of the danger?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Emmett says middle-class families struggle because they are lazy. Which correction matches the cash-flow mechanism?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"mortgage property taxes and\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"the stronger move is\" — Counter payoff template. 48 Laws stubs + others.",
+            "evidence": "The mechanism begins with separation: profession brings earned income, while the real business is the asset base that can keep paying when labor pauses. A banker without bank ownership, a teacher wit…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a University of Texas at Austin alumni workshop, Aline sets Ray Kroc's McDonald's story beside a map of franchise locations. The room keeps talking about hamburger margins. She taps the land parce…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Emilia walks the car-wash site with Keith Cunningham's car washes in mind, soap prices in one folder, and the real estate file in another. The broker praises weekend lines, but the property terms dec…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Blake's promotion letter lands beside a spreadsheet already crowded with taxes, a larger mortgage, and a new bank payment. The employer celebrates the raise; the government and lender have their clai…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Annabelle introduces herself as being in the banking business during a planning meeting, then opens statements with salary, bonuses, taxes, and a mortgage but no bank shares, rentals, royalties, or c…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Annabelle introduces herself as being in the banking business during a planning meeting, then opens statements with salary, bonuses, taxes, and a mortgage but no bank shares, rentals, royalties, or c…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Leopold hears an employee call a private deal easy passive income, the same kind of loose asset talk Kroc warned against. The summary repeats the word asset, yet the fees, debt, and exit path blur to…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Jenna tries on the watch after a strong wage month, then checks the same week's rental reserve, brokerage contribution, and bank payment. Her asset-income line cannot buy the luxury yet. She thanks t…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Jenna tries on the watch after a strong wage month, then checks the same week's rental reserve, brokerage contribution, and bank payment. Her asset-income line cannot buy the luxury yet. She thanks t…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Blake thinks mind your own business means resigning before he has assets. What next move keeps the hard edge intact?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Emilia has excellent professional training but no plan for ownership. What gap should she address?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "q02 choice[1] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "The lesson proves every food franchise is automatically an asset worth buying."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "q04 choice[0] uses absolute trigger \"impossible\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Taxes and mortgages make wealth impossible, so tracking the raise is pointless."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "q05 choice[2] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Reject all paper assets and real estate because unfamiliarity always means fraud."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "q06 choice[0] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Treat luxuries as morally wrong and never buy the watch."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "q07 choice[1] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "A degree automatically creates ownership because higher income counts as an asset."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "q08 choice[2] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "As an asset automatically, since anything outside an employer avoids the cash-flow trap."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "q09 choice[2] uses absolute trigger \"ever\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "The service business is irrelevant, so only raw land should ever be considered."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "q01 correct answer is 1.54× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Her profession earns income, while her business would be the owned assets that can pay her apart from hours worked."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "q05 correct answer is 1.73× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Ask how cash enters, what can drain it, and whether he understands the holding well enough to own it."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"the sharper move is\" — Counter payoff template. Talk Like Ted / 48 Laws stubs / others.",
+            "evidence": "Yvonne hears the Robin Hood story quoted during a lunch debate about taxes. One person says the rich should simply pay more. Another says government wastes too much. Yvonne notices that both argument…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Raoul spreads his employee pay stub, rent notice, and grocery list across the kitchen table. Wages arrived first on paper, but taxes have already moved to the front of the line and expenses are waiti…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"So we just tax the rich like Robin Hood?\" Yvonne asks as the community budget meeting studies a levy chart with the middle-class line climbing. The room wants a clean villain. She keeps the compassi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ella opens her freelance studio checklist in a shared office and finds only clients, software, and a launch date. A mentor circles the missing legs of the desk: accounting, investing, markets, and la…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Mei sorts repair-shop receipts after the corporation papers arrive. A truck part, a supplier lunch, and a family hotel bill sit in one pile, all hoping the entity will make them legitimate. She moves…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Blair stands outside the duplex with a seller's flyer in one hand and financial IQ notes in the other: accounting, investing, markets, and law. The asking price feels exciting until rent, vacancy, an…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Bailey works through a shoebox of tax forms while a cousin turns filing night into a Robin Hood rant about government, taxes, and the middle class. The refund estimate is smaller than hoped, and blam…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bailey works through a shoebox of tax forms while a cousin turns filing night into a Robin Hood rant about government, taxes, and the middle class. The refund estimate is smaller than hoped, and blam…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Ella thinks financial IQ means picking stocks well. Which correction best matches the four-part literacy test?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Bailey is angry about taxes after filing. Which next step turns resentment into useful financial education?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A friend tells Blair accounting is just bookkeeping trivia. Which reply shows why accounting belongs in financial IQ?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Mei earns more this year and assumes higher income will solve tax pressure by itself. Which warning fits the lesson?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"resentment is a poor\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Money is invented when financial creativity turns information, timing, courage, "
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At a licensing review, Finn pins Alexander Graham Bell's telephone patent beside Western Union's rejection letter. One partner treats the no as a final price tag; another is already dreaming in sloga…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Anya walks the tired duplex as a small real estate practice deal, with rent estimates, repair notes, and market timing pressure in the folder. The seller wants speed, but offers only matter if cash f…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kiara stands at the kitchen sink after reading Mike and Robert's story about toothpaste tubes, lead, and plaster molds for counterfeit coins. The scene sounds funny until a side-hustle pitch borrows …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Donovan gets word that a small real estate listing will accept offers before the seller leaves town. The roof is uncertain, the rent check matters, and fear is trying to sound like wisdom. He writes …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Donovan gets word that a small real estate listing will accept offers before the seller leaves town. The roof is uncertain, the rent check matters, and fear is trying to sound like wisdom. He writes …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "In a startup review, Allison listens to an engineer compare their rejected device to Bell's telephone. The slide has Western Union, a patent, and a dramatic arrow, but the customer-call log is thin. …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Thierry sets aside his real estate offer notes and studies a small delivery-route contract whose owner needs an answer before renewing with a competitor. The route has recurring cash flow, but the va…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Finn hears that a buyer dismissed a patented device with clear demand. What should he conclude from the Bell pattern?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Kiara hears someone call a rule-breaking shortcut inventing money. Which correction fits the toothpaste-tube lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Donovan feels fear before making a property offer. Which response preserves the strict lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Allison lacks a prestigious credential but sees a customer problem she can solve. What does the lesson suggest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Anya analyzes ten rentals and buys none. Which reading best fits the practice claim?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Thierry's family says the old advice is always enough: get a secure job and save. What is the most careful response?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Thierry finds a deal but has limited cash. Which option shows financial intelligence expanding choices?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Anya's coworker mocks every investment idea but does not read the numbers. What danger does the lesson name?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[2]",
+            "message": "card back likely restates the front premise (5/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "Alexander Graham Bell's telephone and patent show that Western Union's rejection did not settle the "
+          }
+        ]
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Xiu meets the Singapore reporter in a hotel lounge after the interview recorder clicks off. The clips are strong, the ambition is real, and the word sales lands like an insult. Xiu folds the article …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Karan starts the Xerox role with a prospect list, a headset, and the old promise that he would stop hiding from rejection. A safer analyst job still looks cleaner on paper. He marks each refused call…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Marc stands in a military service training yard with an imperfect map and tired teams waiting for leadership under pressure. The loudest voice wants to rush, and the technical answer will not settle …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Yuki reads the promotion letter in a quiet office and notices how narrow the new role has become. The salary is higher, but the work keeps her away from sales calls, cash-flow questions, and people d…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Yuki reads the promotion letter in a quiet office and notices how narrow the new role has become. The salary is higher, but the work keeps her away from sales calls, cash-flow questions, and people d…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Donat takes over a restaurant shift with a cash-flow sheet, a broken prep system, and two employees arguing over closing duties. Telling people what to do would be the easy version of management. He …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Elaine compares two job offers on her kitchen table. The familiar role pays more for analysis she already knows; the smaller product firm puts her beside sales calls, pricing, cash flow, and team sys…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Nicole stands in a Texas title office with a rental contract, a repair estimate, and a seller who jokes that losses become stories when risk is sized with pride. The numbers still work, but the idea …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Dev opens a tenant file after coworkers fill the break room with Chicken Little warnings about a small commercial lease. Some warnings may be useful; none has earned the right to decide alone. He tur…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Modeste writes fear, cynicism, laziness, bad habits, and arrogance across a kitchen whiteboard while the family says the problem is simply income. The brokerage transfer has been postponed for months…"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "example[2].scenario",
+            "message": "example[2].scenario opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Modeste writes fear, cynicism, laziness, bad habits, and arrogance across a kitc"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Adele receives a freelance payment and watches bills, tax reminders, and store alerts crowd her phone. Bad habits, one of the five obstacles, pay everyone else first and ask the asset column to live …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Adele receives a freelance payment and watches bills, tax reminders, and store alerts crowd her phone. Bad habits, one of the five obstacles, pay everyone else first and ask the asset column to live …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Kira color-codes supplier emails in her bakery office while a refinancing call sits untouched on the calendar. Laziness, one of the five obstacles, is dressed as useful motion and protecting her from…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Jacques scans a partnership agreement and tells his cofounder he understands enough to sign. Arrogance, one of the five obstacles, is guarding the blank spot in the indemnity and tax language. He boo…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Nicole says wealthy people must enjoy losing money, which correction best matches the fear lesson?"
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "q05 correct answer is 1.60× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Laziness disguised as busyness, because activity is crowding out the important move."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "Laziness disguised as busyness, because activity is crowding out the important move."
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Heather reaches the grocery checkout with a bonus alert, a phone-sale banner, and a card in her wallet labeled 10 steps. Peter Lynch is speaking through her earbuds, but the choice is ordinary, not f…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Celestin sits in a broker's office with two rental listings, a commission sheet, and notes from a Warren Buffett article. The cheaper route would skip advice and chase the first property alone. He as…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Cameron opens a bill folder beside client invoices in the shared studio and writes getting-started rule on the cover. Last month, every payment vanished before the asset account was touched. He reser…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sandrine tries on the watch at the boutique counter with a Buffett quote saved on her phone and the phrase asset-funded luxury in her notes. The sale price is tempting because wages can cover it. She…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Travis arrives for dinner with friends who mock investing while a study circle across town is reviewing the 10 steps and recent deal notes. The menu is open, but the real choice is the room that will…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Travis arrives for dinner with friends who mock investing while a study circle across town is reviewing the 10 steps and recent deal notes. The menu is open, but the real choice is the room that will…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a beginner finds one investing formula that worked last year, which habit keeps that formula from becoming stale?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Helene wants every investment to return her first stake quickly. What is the careful reading of recovering capital?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which use of investor heroes would help Cheng act more wisely before a risky purchase?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the asset column is\" appears in both deepRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[5]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "Use Peter Lynch or Warren Buffett as study prompts and courage models. Their names should sharpen qu"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Harriet lays three subscription receipts beside a rent notice and writes stop doing above the assessment column. The charges look too small to deserve drama until the total equals the class she keeps…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Harriet lays three subscription receipts beside a rent notice and writes stop doing above the assessment column. The charges look too small to deserve drama until the total equals the class she keeps…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Clarisse waits outside a library meeting room while a local investor packs the folder from a recent closing. Compliments would be easy and useless. She opens her notebook to three questions about pro…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Elijah stands in a repair shop with a used commercial freezer listed below retail, part of the deal search he is using to study offers, bargains, and markets. Four earlier offers have already taught …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Sabine adds a month of station-cafe receipts on the train platform and writes stop doing beside the assessment. The routine looks too ordinary to matter until the cash flow total matches the fee for …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Joanne meets the bakery owner as a mentor and model after the morning rush, carrying questions about process for a weekend pastry stall. Her first page is full of logo ideas, but the owner keeps glan…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Joanne meets the bakery owner as a mentor and model after the morning rush, carrying questions about process for a weekend pastry stall. Her first page is full of logo ideas, but the owner keeps glan…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Darya stands near the county auction steps with a repair estimate folded into her bidder card, using deal search rules built from offers, bargains, and markets. Two market checks say the property sto…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Darya stands near the county auction steps with a repair estimate folded into her bidder card, using deal search rules built from offers, bargains, and markets. Two market checks say the property sto…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Clarisse is choosing between two weekend seminars. What test should guide the choice?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Darya finds a very cheap property listing. Which response best protects bargain hunting from becoming wishful thinking?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A reader studies biographies of investors from earlier markets. Which use of history best matches the checklist?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the opportunity search routine\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 109
+  },
+  "bookGate": {
+    "bookId": "rich-dad-poor-dad",
+    "chapterCount": 9,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "B13",
+        "severity": "major",
+        "message": "Hook frame clustering: 6 of 9 chapters open with \"a\" as the first word (cap 5, 50% of book). Chapters: 2, 5, 6, 7, 8, 9. Vary hook openers across the book.",
+        "evidence": "a"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        28,
+        28,
+        25
+      ],
+      "answerPositionPctMax": 0.345679012345679,
+      "totalQuizQuestions": 81,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "rich-dad-poor-dad",
+        "chapterCount": 9,
+        "passed": true,
+        "findings": [
+          {
+            "code": "B13",
+            "severity": "major",
+            "chapters": [
+              2,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "count": 6,
+            "unit": "hook.firstWord",
+            "evidence": "a",
+            "message": "Hook frame clustering: 6 of 9 chapters open with \"a\" as the first word (cap 5, 50% of book). Chapters: 2, 5, 6, 7, 8, 9. Vary hook openers across the book.",
+            "maxScoreCap": 80
+          }
+        ],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  },
+  "qcAttestation": {
+    "totalBlockers": 0,
+    "findings": []
+  }
+}

@@ -1,78 +1,78 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useCallback, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { TopNav } from "@/app/book/home/components/TopNav";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
-import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
-import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
-import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
+import { Toast, type ToastTone } from "@/app/book/components/ui/Toast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { buildLibraryCatalog, type LibraryBookEntry } from "@/app/book/data/libraryState";
-import { BookCardLarge } from "@/app/book/library/components/BookCardLarge";
+import { useLibraryDashboard } from "@/app/book/hooks/useLibraryDashboard";
+import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
+import { BookCard } from "@/components/library/BookCard";
+import { LibraryGridSkeleton } from "@/components/library/LibrarySkeleton";
+import {
+  LibraryProvider,
+  type LibraryContextValue,
+} from "@/components/library/LibraryContext";
+import { toLibraryBooks } from "@/components/library/dashboardToLibraryUi";
 
+/**
+ * Read Next — rebuilt on the same `components/library` system as the library
+ * (glass surface, BookCard, live dashboard data + real save state) so the two
+ * screens no longer look like different products one click apart.
+ */
 export function SavedBooksClient() {
-  const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement | null>(null);
-  const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
-  const { identity: viewerIdentity } = useBookViewer();
-  const { analytics, hydrated: analyticsHydrated } = useBookAnalytics(
-    onboarding.selectedBookIds,
-    onboarding.dailyGoalMinutes
-  );
-  const { saved, hydrated: savedHydrated, loading, toggleSaved } = useSavedBooks(
-    onboarding.setupComplete
+  const { identity } = useBookViewer();
+  const { hydrated, catalog, entries, entitlement } = useLibraryDashboard();
+  const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(true);
+
+  const books = useMemo(() => toLibraryBooks(catalog, entries), [catalog, entries]);
+  const booksById = useMemo(() => new Map(books.map((b) => [b.id, b])), [books]);
+  const isFreeUser = entitlement?.plan !== "PRO";
+  const unlockedBookIds = useMemo(
+    () => new Set(entitlement?.unlockedBookIds ?? []),
+    [entitlement],
   );
 
-  useKeyboardShortcut(
-    "/",
-    (event) => {
-      event.preventDefault();
-      searchInputRef.current?.focus();
+  const savedBooks = useMemo(
+    () => books.filter((b) => savedSet.has(b.id)),
+    [books, savedSet],
+  );
+
+  const [toast, setToast] = useState<{ message: string; tone: ToastTone } | null>(null);
+  const onToggleSave = useCallback(
+    async (bookId: string, title: string) => {
+      const result = await toggleSaved(bookId, { source: "saved-page" });
+      if (result.error) {
+        setToast({ message: "Couldn't update Read Next. Please try again.", tone: "error" });
+        return;
+      }
+      setToast({
+        message: result.saved
+          ? `Saved “${title}” to Read Next`
+          : `Removed “${title}” from Read Next`,
+        tone: "success",
+      });
     },
-    { ignoreWhenTyping: true }
+    [toggleSaved],
   );
 
-  useEffect(() => {
-    if (!onboardingHydrated) return;
-    if (!onboarding.setupComplete) router.replace("/book");
-  }, [onboarding.setupComplete, onboardingHydrated, router]);
+  const libraryContext = useMemo<LibraryContextValue>(
+    () => ({ booksById, isFreeUser, unlockedBookIds, savedSet, onToggleSave }),
+    [booksById, isFreeUser, unlockedBookIds, savedSet, onToggleSave],
+  );
 
-  const entries = useMemo<LibraryBookEntry[]>(() => {
-    const base = analytics
-      ? analytics.bookSnapshots.map((snapshot) => ({
-          ...snapshot.book,
-          status: snapshot.status,
-          progressPercent: snapshot.progressPercent,
-          chaptersTotal: snapshot.totalChapters,
-          chaptersCompleted: snapshot.completedChapters,
-          isNew: snapshot.status === "not_started",
-          lastActivityAt: snapshot.lastActivityAt,
-        }))
-      : buildLibraryCatalog();
-
-    const byId = new Map(base.map((entry) => [entry.id, entry]));
-    return saved
-      .map((item) => byId.get(item.bookId))
-      .filter((entry): entry is LibraryBookEntry => Boolean(entry));
-  }, [analytics, saved]);
-  const viewerName = viewerIdentity.displayName || "Reader";
-
-  if (!onboardingHydrated || !analyticsHydrated || !savedHydrated || !onboarding.setupComplete) {
-    return (
-      <main className="cf-app-shell">
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
-          Loading your saved books...
-        </div>
-      </main>
-    );
-  }
+  const viewerName = identity.displayName || "Reader";
+  const loading = !hydrated || !savedHydrated;
 
   return (
-    <main className="cf-app-shell">
+    <main
+      className="min-h-screen"
+      style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}
+    >
       <TopNav
         name={viewerName}
-        avatarUrl={viewerIdentity.avatarDataUrl}
+        avatarUrl={identity.avatarDataUrl}
         activeTab="saved"
         searchQuery=""
         onSearchChange={() => {}}
@@ -81,51 +81,67 @@ export function SavedBooksClient() {
         logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 lg:px-10 xl:px-16">
-        <div className="mb-5 flex items-end justify-between gap-3">
+      <section
+        className="mx-auto w-full px-5 pb-24 pt-7 md:px-7"
+        style={{ maxWidth: 1080 }}
+      >
+        <div className="mb-6 flex items-end justify-between gap-3">
           <div>
-            <h1 className="text-5xl font-semibold tracking-tight text-(--cf-text-1)">Read Next</h1>
-            <p className="mt-2 text-sm text-(--cf-text-3)">
+            <h1
+              className="font-(family-name:--font-display) text-[28px] font-bold leading-tight"
+              style={{ color: "var(--text-heading)" }}
+            >
+              Read Next
+            </h1>
+            <p className="mt-1.5 text-[14px]" style={{ color: "var(--text-secondary)" }}>
               Books you intentionally saved for your next stretch of reading.
             </p>
           </div>
-          <p className="text-sm text-(--cf-text-soft)">
-            {entries.length} {entries.length === 1 ? "book" : "books"} saved
-          </p>
+          {!loading && savedBooks.length > 0 && (
+            <p className="shrink-0 text-[13px]" style={{ color: "var(--text-muted)" }}>
+              {savedBooks.length} {savedBooks.length === 1 ? "book" : "books"} saved
+            </p>
+          )}
         </div>
 
         {loading ? (
-          <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) px-6 py-12 text-(--cf-text-2)">
-            Loading saved books...
-          </div>
-        ) : entries.length === 0 ? (
-          <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) px-6 py-12 text-center">
-            <h2 className="text-2xl font-semibold text-(--cf-text-1)">No saved books yet</h2>
-            <p className="mt-2 text-(--cf-text-2)">
-              Save books from the library and they will appear here as your reading queue.
+          <LibraryGridSkeleton count={8} />
+        ) : savedBooks.length === 0 ? (
+          <div
+            className="mx-auto max-w-md rounded-2xl px-8 py-12 text-center"
+            style={{ background: "var(--bg-glass)", border: "1px solid var(--border-subtle)" }}
+          >
+            <p className="text-[16px] font-semibold" style={{ color: "var(--text-heading)" }}>
+              No saved books yet
             </p>
-            <button
-              type="button"
-              onClick={() => router.push("/book/library")}
-              className="mt-5 rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-2.5 text-sm font-medium text-(--cf-accent) transition hover:bg-(--cf-accent-muted)"
+            <p className="mt-2 text-[13px]" style={{ color: "var(--text-secondary)" }}>
+              Tap the bookmark on any book in the library to add it to your Read Next queue.
+            </p>
+            <Link
+              href="/book/library"
+              className="mt-5 inline-block rounded-lg px-5 py-2.5 text-[13px] font-semibold transition-colors"
+              style={{ background: "var(--accent-cyan)", color: "var(--bg-base)" }}
             >
               Browse library
-            </button>
+            </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {entries.map((entry) => (
-              <BookCardLarge
-                key={entry.id}
-                entry={entry}
-                saved
-                onToggleSaved={() => void toggleSaved(entry.id, { source: "saved-page" })}
-                onOpen={() => router.push(`/book/library/${encodeURIComponent(entry.id)}`)}
-              />
-            ))}
-          </div>
+          <LibraryProvider value={libraryContext}>
+            <div className="grid grid-cols-2 gap-x-5 gap-y-6 md:grid-cols-4 lg:grid-cols-5">
+              {savedBooks.map((book, i) => (
+                <BookCard key={book.id} book={book} index={i} showProLock={isFreeUser} />
+              ))}
+            </div>
+          </LibraryProvider>
         )}
       </section>
+
+      <Toast
+        open={Boolean(toast)}
+        message={toast?.message ?? ""}
+        tone={toast?.tone ?? "info"}
+        onClose={() => setToast(null)}
+      />
     </main>
   );
 }

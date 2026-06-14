@@ -1,0 +1,69 @@
+{
+  "chapterId": "who-moved-my-cheese-ch01",
+  "number": 1,
+  "title": "A Gathering: Chicago",
+  "coreMove": "Before advice about change can help, make fear speakable; a low-threat room turns denial into shared language and lets simple counsel reach adult pride.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "alumni reunion lunch",
+      "audience": "professionals comparing changed lives",
+      "stakes": "The Chicago Sunday lunch and high school reunion can lower shame before anyone offers advice.",
+      "format": "reflection",
+      "requiredBeat": "Show a friendly reunion making private change anxiety speakable."
+    },
+    {
+      "domain": "distribution company turnaround",
+      "audience": "operations managers facing stalled performance",
+      "stakes": "Company trouble can keep old habits alive unless workplace sharing makes business improvement discussable.",
+      "format": "business_case",
+      "requiredBeat": "Use a shared metaphor to coordinate behavior during company trouble."
+    },
+    {
+      "domain": "leadership debrief",
+      "audience": "chief of staff after a tense meeting",
+      "stakes": "The unnamed executive and colleague reactions reveal the gap between knowing and changing.",
+      "format": "postmortem",
+      "requiredBeat": "Show intellectual agreement failing the behavior test."
+    },
+    {
+      "domain": "post-reunion peer support",
+      "audience": "former classmates keeping the conversation alive",
+      "stakes": "The Chicago Sunday lunch can become a safer follow-up channel after the high school reunion.",
+      "format": "text_thread",
+      "requiredBeat": "Carry the lunch's social permission into the next honest message."
+    },
+    {
+      "domain": "sales leadership",
+      "audience": "regional sales directors",
+      "stakes": "Company trouble and workplace sharing can turn a red chart into business improvement instead of blame.",
+      "format": "predict_reveal",
+      "requiredBeat": "Show a shared metaphor changing what the team predicts about the red chart."
+    },
+    {
+      "domain": "strategy workshop",
+      "audience": "facilitators teaching change",
+      "stakes": "Simple advice may be dismissed before people test whether they actually practice it.",
+      "format": "reset_moment",
+      "requiredBeat": "Treat a simplistic reaction as evidence of the knowing-doing gap."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "analyze": 2,
+      "apply": 2,
+      "evaluate": 2,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 7,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-06T10:08:20.683Z"
+}

@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch13",
+  "number": 13,
+  "title": "Mission statement impossible",
+  "coreMove": "Treat every stated value as a behavioral prediction: name what the company would refuse to honor it, then check the product and the refusals against the words.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software company offsite",
+      "audience": "founders and leads",
+      "stakes": "credibility of stated values",
+      "format": "decision_point",
+      "requiredBeat": "convert a slogan into a refusal or reject it"
+    },
+    {
+      "domain": "product roadmap review",
+      "audience": "product team",
+      "stakes": "a claimed value versus a feature",
+      "format": "dilemma",
+      "requiredBeat": "test the simplicity claim against the actual build"
+    },
+    {
+      "domain": "customer support operations",
+      "audience": "support and revenue leads",
+      "stakes": "a lucrative client against a stated value",
+      "format": "decision_point",
+      "requiredBeat": "let a refusal reveal the real value"
+    },
+    {
+      "domain": "engineering staffing policy",
+      "audience": "engineering manager",
+      "stakes": "a stated belief versus crunch",
+      "format": "mistake_recovery",
+      "requiredBeat": "embody a belief in an operating rule, not a slogan"
+    },
+    {
+      "domain": "consumer brand marketing",
+      "audience": "brand and CX leads",
+      "stakes": "publicity versus lived experience",
+      "format": "contrast",
+      "requiredBeat": "weigh the lived encounter over the messaging"
+    },
+    {
+      "domain": "startup leadership offsite",
+      "audience": "cofounders",
+      "stakes": "cynicism versus operational purpose",
+      "format": "predict_reveal",
+      "requiredBeat": "reject abandoning purpose for embodying it"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 2,
+      "evaluate": 3,
+      "analyze": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.763Z"
+}

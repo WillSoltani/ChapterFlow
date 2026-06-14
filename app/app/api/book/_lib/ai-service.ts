@@ -1,5 +1,16 @@
 import "server-only";
 
+import {
+  getAnthropicClient,
+  getScenarioValidationModel,
+  parseScenarioValidation,
+  recordAiUsage,
+  type ScenarioValidationResult,
+} from "@/app/app/api/book/_lib/ai-config";
+
+// Re-exported so existing importers (scenarios route) keep working unchanged.
+export type { ScenarioValidationResult } from "@/app/app/api/book/_lib/ai-config";
+
 const SYSTEM_PROMPT = `You are a reading coach for ChapterFlow, a guided reading app.
 The user just read a real-world example from a book chapter and wrote a reflection.
 Give brief, encouraging feedback (2-4 sentences) that:
@@ -28,11 +39,6 @@ Respond with ONLY valid JSON (no markdown, no backticks):
 - auto_reject: clearly spam, offensive, gibberish, or completely irrelevant
 - queue_for_review: borderline — a human should decide`;
 
-export type ScenarioValidationResult = {
-  decision: "auto_approve" | "auto_reject" | "queue_for_review";
-  reason: string;
-};
-
 export async function validateScenario(params: {
   title: string;
   scenario: string;
@@ -43,12 +49,13 @@ export async function validateScenario(params: {
   bookTitle: string;
   apiKey: string;
 }): Promise<ScenarioValidationResult> {
+  const model = await getScenarioValidationModel();
+  const start = Date.now();
   try {
-    const { default: Anthropic } = await import("@anthropic-ai/sdk");
-    const client = new Anthropic({ apiKey: params.apiKey });
+    const client = await getAnthropicClient(params.apiKey);
 
     const response = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
+      model,
       max_tokens: 200,
       system: VALIDATION_PROMPT,
       messages: [
@@ -59,24 +66,27 @@ export async function validateScenario(params: {
       ],
     });
 
+    recordAiUsage({
+      feature: "scenario_validation",
+      model,
+      usage: response.usage,
+      latencyMs: Date.now() - start,
+      outcome: "success",
+    });
+
     const text =
       response.content[0]?.type === "text" ? response.content[0].text : "";
-    const parsed = JSON.parse(text) as { decision?: string; reason?: string };
-
-    if (
-      parsed.decision === "auto_approve" ||
-      parsed.decision === "auto_reject" ||
-      parsed.decision === "queue_for_review"
-    ) {
-      return {
-        decision: parsed.decision,
-        reason: typeof parsed.reason === "string" ? parsed.reason : "No reason provided",
-      };
-    }
-
-    return { decision: "queue_for_review", reason: "Unexpected AI response format" };
+    return parseScenarioValidation(text, model);
   } catch {
-    return { decision: "queue_for_review", reason: "Validation unavailable" };
+    // Request failure (network/timeout/rate-limit/4xx) — never auto-decide; queue
+    // for a human and surface the failure on the cost/error dashboard.
+    recordAiUsage({
+      feature: "scenario_validation",
+      model,
+      latencyMs: Date.now() - start,
+      outcome: "error",
+    });
+    return { decision: "queue_for_review", reason: "Validation unavailable", model };
   }
 }
 
@@ -89,12 +99,14 @@ export async function* streamReflectionFeedback(params: {
   whyItMatters: string;
   chapterTitle: string;
   apiKey: string;
+  model: string;
 }): AsyncGenerator<string> {
-  const { default: Anthropic } = await import("@anthropic-ai/sdk");
-  const client = new Anthropic({ apiKey: params.apiKey });
+  const { model } = params;
+  const start = Date.now();
+  const client = await getAnthropicClient(params.apiKey);
 
   const stream = client.messages.stream({
-    model: "claude-sonnet-4-20250514",
+    model,
     max_tokens: 300,
     system: SYSTEM_PROMPT,
     messages: [
@@ -105,12 +117,41 @@ export async function* streamReflectionFeedback(params: {
     ],
   });
 
-  for await (const event of stream) {
-    if (
-      event.type === "content_block_delta" &&
-      event.delta.type === "text_delta"
-    ) {
-      yield event.delta.text;
+  let threw = false;
+  try {
+    for await (const event of stream) {
+      if (
+        event.type === "content_block_delta" &&
+        event.delta.type === "text_delta"
+      ) {
+        yield event.delta.text;
+      }
     }
+  } catch {
+    threw = true;
+    throw new Error("AI feedback failed");
+  } finally {
+    // Runs on normal completion, an upstream error, and consumer disconnect
+    // (the runtime calls .return() on the suspended generator). Best-effort —
+    // never let usage capture surface an error to the consumer.
+    void (async () => {
+      try {
+        const final = await stream.finalMessage();
+        recordAiUsage({
+          feature: "reflection_feedback",
+          model,
+          usage: final.usage,
+          latencyMs: Date.now() - start,
+          outcome: threw ? "error" : "success",
+        });
+      } catch {
+        recordAiUsage({
+          feature: "reflection_feedback",
+          model,
+          latencyMs: Date.now() - start,
+          outcome: threw ? "error" : "client_abort",
+        });
+      }
+    })();
   }
 }

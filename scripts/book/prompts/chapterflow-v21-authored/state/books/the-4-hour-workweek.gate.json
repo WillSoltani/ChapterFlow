@@ -1,0 +1,1047 @@
+{
+  "bookId": "the-4-hour-workweek",
+  "title": "The 4-Hour Workweek",
+  "author": "Tim Ferriss",
+  "promotedAt": "2026-06-04T17:17:34.338Z",
+  "chapterCount": 17,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Judge money by lifestyle output: if it does not improve what, when, where, or wh"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Write your current income beside the four W's: what, when, where, whom. Circle t"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "Status is the hardest decoy because it borrows the language of freedom. A first-class flight, a Las Vegas bankroll, and jewelry all look like options from the outside. Mark's $500,000 to $1,000,000 n…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Russell reviews the sales contest at 6:10 p.m. in the conference room as the prize slide shows a first-class flight to Las Vegas. The finance team cites Mark and his $500,000 to $1,000,000 nights as …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your calendar is packed, your rent is high, and your pay just rose. Which check best uses the four W's?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which audit would reveal whether a high income is being converted well?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Gina finishes a hospital shift at 1:05 a.m. and opens the Stoicism note she keeps for hard choices. Asking for a rotation change could annoy her supervisor. Avoiding it costs sleep, focus, and health…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "At a lease deadline, Kavya says imagining the worst will only make her freeze. Which response uses the worksheet well?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Brock's product test could fail publicly. What question best tests whether that failure is as permanent as it feels?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Kabir says a possible downside should decide the matter by itself. What is missing from his decision frame?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your team has a useful experiment mapped, but everyone still feels nervous. Which conclusion follows from fear-setting?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A colleague calls fear-setting positive thinking with darker stationery. Which reply preserves the hard edge?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3/7 (43%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "At 9:05 p.m. in a camera shop classroom, Sabrina's list has three lenses under have and nothing under be or do. The Dreamline worksheet asks for having, being, and doing, so she must answer before th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"So what counts as learning?\" Noel asks at 1:30 p.m. in the library language room. Her notebook says \"study more,\" but the Dreamline worksheet asks for a performance target. Before the tutor leaves, …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Bilal brings a salary guess to the dining table at 8:40 p.m. and calls it the price of freedom. Danielle slides over the Dreamline worksheet with six months, twelve months, and target monthly income …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A language learner writes \"study more\" and buys another workbook. Which target would make the dreamline observable?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which dreamline entry has passed the hard test rather than becoming a vision-board line with math sprinkled nearby?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"have be and do\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Laurence waits outside courtroom 3B at 8:35 with a twelve-page status brief and a judge who asked for one issue. The margin note reads C. Northcote Parkinson, Parkinson's Law, and 1955 deadline. Minu…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A colleague says a twelve-hour day proves the team outperformed. Which reply best reflects a result-based metric?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3/7 (43%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the oneweek media fast\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Roland is on a 3:15 PM client call when the client asks why the team no longer answers every email in five minutes. Roland reads the email autoresponder aloud: scheduled checking twice daily, batchin…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Donna hears the packing line stop at 7:40 AM because tape ran out and no one has permissions to buy more. The vendor waits by the loading door, the clerk waits for Donna, and Donna has become the bot…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A client complains that Donna's slower replies feel unpredictable. Which response uses the autoresponder idea well?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Tracy receives a short meeting invite with no agenda, what should she test before accepting?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Roland keeps getting asked to approve tiny purchases his team already understands. Which diagnosis is most useful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Nicholas has twelve vendor questions that each need similar facts. Which handling would reduce context switching?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Arlo says yes to status calls because refusing in the moment feels rude. What tool best addresses the pressure?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which rule keeps Hudson's communication boundary from becoming irresponsible?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A service desk sends every $20 choice to Donna for approval. What would reduce the owner bottleneck?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"names the urgent phone\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Write one task you dislike, then mark delete, document, or keep. If it earns doc"
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Euphemie compares two months of freelance income at noon in a train station cafe, using her target hourly rate as the baseline. In one city, rent and services swallow the margin. In another, living e…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Andriy says outsourcing is useful only for saving a few hours this week. Which added benefit is he missing?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a virtual assistant in\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Aubrey calculates two prices for a simple training product before the association newsletter deadline. The cheap version needs hundreds of buyers to reach the target monthly income; the premium versi…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Estelle hears a client ask for weekly custom consulting after a trade magazine column brings new attention. The fee would be profitable, but each call would place Estelle's calendar at the center of …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Addison understands the association's niche market from years of membership, but not the technical details buyers keep asking about. Instead of pretending, Addison calls a credentialed specialist and…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which description best defines a muse?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "q01 choice[0] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "The business is automatically a muse because any product revenue beats service revenue."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "q02 choice[1] uses absolute trigger \"always\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Choose the broad trend because a larger theoretical market is always safer."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "q04 choice[0] uses absolute trigger \"never\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "Services never earn enough money to be worth considering."
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "q04 choice[2] uses absolute trigger \"automatically\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "A product will remove every future support question automatically."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "q09 correct answer is 1.52× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "A small automated cash-flow vehicle, usually product-based, that funds a target lifestyle with minimal owner time."
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "correct answer is 1.5× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "It may be a business, but it is not serving the lifestyle-design purpose if owner absence is impossi"
+          },
+          {
+            "catalogId": "C18.answer_length_telegraphed",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "correct answer is 1.6× the average distractor length (target ≤1.5×) — trim correct choice or expand distractors",
+            "evidence": "A small automated cash-flow vehicle, usually product-based, that funds a target lifestyle with minim"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"sports nutrition product business\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Eleanor hears ten dinner guests praise her jar opener, then pauses beside the sink with a notebook full of names. Her cousin says the survey is enough. Eleanor answers that the landing page needs pay…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Eleanor hears ten dinner guests praise her jar opener, then pauses beside the sink with a notebook full of names. Her cousin says the survey is enough. Eleanor answers that the landing page needs pay…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Josephine thinks she needs finished inventory before testing a desk accessory. What move best matches micro-testing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Lacey's relatives love her course idea, but her ad traffic is cold. Which interpretation is strongest?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Forrest wants to launch every part of his travel kit business at once. Which sequence keeps the risk small?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Eleanor's jar opener test misses its target, and she feels embarrassed. What verdict fits disciplined micro-testing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Julia's waitlist grows for a free version, but the product needs a $49 price to work. What should the next test ask?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Walker's second clean test still shows weak buyer behavior, what does disciplined persistence require?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3/7 (43%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Tanner lands in Lisbon at 2:10 p.m. and turns on his phone to find thirty-one BrainQUICKEN operations messages. None asks about strategy. Most ask for owner approval on coupons, shipments, and routin…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Seo drafts a memo after the fulfillment provider pauses three BrainQUICKEN orders over a small packing surcharge. Customer service can see the delay, but nobody owns the answer. Before the afternoon …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A colleague says BrainQUICKEN proves a muse is passive once sales begin. What correction best matches the hard lesson?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before handing support to a vendor, a founder leaves refund authority vague. Which failure is most likely?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which result would show that owner absence improved operations rather than weakened them?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"customer service uses scripts\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Henri drafts a remote-work proposal at 7:35 a.m. in the operations bullpen while release tickets stack beside his keyboard. The manager wants all analysts visible during launch week. Henri must send …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Jesse stands beside the support queue at 4:05 p.m. as an escalation list blinks red. His manager asks how anyone will find him from home during renewal calls. Jesse must answer before the roster lock…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Harold finishes payroll variance reports at 6:30 p.m. above the plant floor while the shift supervisor waits for numbers. The manager worries a remote day will create a precedent. Harold must reply b…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Carly files contract summaries from home on a rainy Tuesday and beats the office average by four cases. The managing clerk praises the numbers, then changes the subject. Carly has to ask before the p…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Kyle asks for a permanent remote arrangement before any test, what is the strongest objection to his sequence?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Natalia's proposal lists deliverables but says little about messages. What should she add before sending it?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Carly worries that mentioning failure will weaken her remote proposal. Which line would actually strengthen it?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Valentin has missed several deadlines and wants remote work to regain focus. What should happen before the request?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "After one successful remote Friday, Jesse wants three remote days the next week. What is the wiser expansion path?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Natalie closes the cafe register after midnight and compares the payroll binder with her side income report. Savings cover four months; the muse covers insurance; runway still looks thin if repairs f…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Claude reviews three dated repair requests at 2:10 p.m. in the plant office: fewer low-value meetings, output measures, and two fixed remote days. Each came back no. The resignation memo is open, but…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Trang calculates savings, reduced rent, and side income before giving notice, what is she building?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Skylar says staying is safer because resignation has visible risks. Which missing comparison should be added?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Trang treats employment status as one variable beside income, time, and place. Which choice follows that frame?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before Easton calls a role beyond repair, which record would make the conclusion stronger?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the job can be\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.7 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶2: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"is not magic\" — 58 hits across 29 books.",
+            "evidence": "The hard limit is romance without structure. A person can fly to Buenos Aires, rent a pretty room, take pictures for a week, and still return with the same postponed life. The stronger claim is less …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Evelyn lands in Argentina with a Buenos Aires apartment booked for five weeks, not five nights. Her first calendar entries are Spanish class, laundry, groceries, and a nearby tango studio. The questi…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Eloi compares two RTW drafts on a cafe receipt: twelve cities in six weeks, or four long-stay travel bases with lower daily cost. The crowded itinerary looks impressive. The slower one leaves room fo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Eloi compares two RTW drafts on a cafe receipt: twelve cities in six weeks, or four long-stay travel bases with lower daily cost. The crowded itinerary looks impressive. The slower one leaves room fo…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Wendy's second week in Buenos Aires starts badly: too many tabs open, no plan after lunch, and a guilty feeling that Argentina should be transforming her faster. She buys a Spanish workbook and pays …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Carla marks the home expenses that pause during long-stay travel: commuting, childcare gaps, weekend spending, and a storage unit. Then she prices a smaller apartment abroad by daily cost. The RTW bl…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Carla marks the home expenses that pause during long-stay travel: commuting, childcare gaps, weekend spending, and a storage unit. Then she prices a smaller apartment abroad by daily cost. The RTW bl…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Alice schedules a 21-day long-stay travel rehearsal before buying the RTW ticket. She sets one client window, one emergency rule, and one daily cost cap. If every problem requires her home office, th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Alice schedules a 21-day long-stay travel rehearsal before buying the RTW ticket. She sets one client window, one emergency rule, and one daily cost cap. If every problem requires her home office, th…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Ayaan cannot move the family to Argentina for a year, but a school break gives them four weeks in Buenos Aires. Bradley handles remote client mornings while the children take Spanish lessons nearby. …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "What separates a mini-retirement in Buenos Aires from a long vacation with better photos?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Carla assumes a month abroad must cost more than staying home. Which calculation should she run first?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why do Argentina, Spanish, tango, and Buenos Aires matter to the mini-retirement model?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Eloi wants to visit twelve countries in six weeks so the RTW itinerary feels efficient. What should he reconsider?"
+          },
+          {
+            "catalogId": "BP15.quiz_strawman_distractor",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "q07 choice[1] uses absolute trigger \"completely\" — rewrite as a scenario-anchored wrong-but-plausible claim",
+            "evidence": "The parent is right because family obligations cancel location choice completely."
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "q04 correct answer is 1.50× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "They show how a location becomes a lived season through language, dance, and city routine."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a miniretirement is not\" appears in both fastRead and deepRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 4 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Subtract work, then add chosen life: learning, service, relationships, and chall"
+          },
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "tryThisNow",
+            "message": "tryThisNow opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Write one free hour on today's calendar, then label it with a language, sport, a"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Min sets two bowls on the balcony table at 6:15 p.m. after the overseas Monday email hour has passed. His partner asks whether the business absence is really working. A notification lights under his …"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Kathleen keeps refreshing a calm order queue during a business absence, which question should interrupt the habit?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Joel has three free mornings and wants to keep them from becoming drift. Which schedule best uses active leisure?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which sign suggests Emmett had been using work to hide an identity gap?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Pauline checks a refund thread at 8:05 a.m. in the apartment kitchen while the outsourcers wait in chat. The 13 mistakes checklist is open beside the laptop, and the line about work for work's sake f…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Oscar reviews an ad proposal at noon in a coworking phone booth. The campaign could add customers, but the current income already funds the travel plan. The 13 mistakes list warns against work for wo…"
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "banned phrase \"the better move is\" — Counter payoff template. Recurs across books in this audit batch.",
+            "evidence": "A small website typo appears during Claire's planned afternoon off. The assistant has already scheduled it for tomorrow. Which response protects the system? Claire can fix the typo now since small ta…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which use of the 13 mistakes checklist is strongest after Emilia's business begins running smoothly?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"work for works sake\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Leopold waits in a coworking booth at noon with a draft message to three buyers. A sticky note says Steve Jobs, Stanford University, 2005, mortality. He has rewritten the offer for weeks because emba…"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "\"Read the poem first,\" Jenna tells herself at 8:50 p.m. in the hallway, phone in hand. David L. Weatherford's Slow Dance is printed on the fridge, and attention is circled twice. Her brother's number…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Leopold treats lifestyle design as a contest to optimize every hour. Which correction preserves the ending's warning?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Henry is overwhelmed by twelve volunteer roles and five personal projects. Which audit fits the closing use of 80/20?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Which evidence would show that the closing message has actually changed Leopold's life?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"steve jobss 2005 stanford\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 111
+  },
+  "bookGate": {
+    "bookId": "the-4-hour-workweek",
+    "chapterCount": 17,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "F4",
+        "severity": "major",
+        "message": "soft-banned phrase \"rather than\" appears 20 times (budget 15). Massively overused (top content bigram). Allow in moderation.",
+        "evidence": "rather than"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        56,
+        48,
+        49
+      ],
+      "answerPositionPctMax": 0.3660130718954248,
+      "totalQuizQuestions": 153,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "the-4-hour-workweek",
+        "chapterCount": 17,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  },
+  "qcAttestation": {
+    "totalBlockers": 0,
+    "findings": []
+  }
+}

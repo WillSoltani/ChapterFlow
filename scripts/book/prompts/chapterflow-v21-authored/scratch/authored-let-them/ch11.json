@@ -1,0 +1,254 @@
+{
+  "keyTakeaway": "Adult friendships drift because proximity, timing, and shared energy fade, not because people stopped caring. Name the missing condition and you can stop reading distance as rejection.",
+  "tryThisNow": "Pick one friend you have quietly resented for going quiet. Spend sixty seconds asking what changed in their proximity, timing, or energy, then send one low-pressure text that asks nothing of them.",
+  "breakdown": {
+    "fastRead": "A school bus, a shared locker hall, a team bench, the same summer vacation weeks. Childhood stacks hundreds of shared hours on top of you before anyone plans a thing. Then everyone scatters. Friends relocate to other cities, start jobs, marry, have kids, divorce, retire, or lose someone, all on their own clock. The bus stops coming. The hard part is that the same friendship that ran on autopilot now needs proximity you no longer have, timing that lines up, and energy that clicks. When one of those drops out, the bond cools. That cooling feels like rejection. Usually the structure has simply left.",
+    "deepRead": "The Great Scattering is the long stretch after early adulthood when the people you grew up alongside spread out across different cities, schedules, marriages, kids, careers, breakups, and griefs. School handed you friendship for free. Buses, classrooms, dorms, clubs, and neighborhoods put bodies in the same place for hours, so closeness grew without effort. Strip out the institution and the free contact vanishes with it. What replaces it carries conditions: repeated proximity, a compatible life stage, and mutual energy. A young worker can sit beside the same colleagues forty hours a week and still come home lonely, because the people nearby are talking about mortgages, teenagers, and retirement dates while she is figuring out rent. The proximity is high; the timing is off, so weekend closeness never forms on its own. Numbers make the loss less mysterious and less personal. A University of Kansas study put a casual friendship at roughly seventy-four hours of contact and a close one at more than two hundred. Adults rarely stumble into that many hours by accident anymore. The tempting read is that drifting friends do not care. The truer read is gentler and harder: the conditions changed, so the friendship needs a different level of expectation or a more deliberate investment. That reframe lets you stop treating normal drift as a verdict on your worth and start building connection on purpose.",
+    "fullRead": "Two things hold for adult friendship together. You cannot manufacture the hours, the shared life stage, or the spark that another person brings, and you also cannot keep waiting to be swept into a structure that no longer exists. Childhood ran friendship as a group sport. The same hallways, the same practices, the same vacation calendar gave everyone hundreds of overlapping hours without a single deliberate decision. That setup taught a quiet lie: that closeness should always feel automatic, and that being included is the default. Then adulthood pulls the field apart. People follow jobs to new cities, partner up, have babies, split up, bury parents, get sick, and retire, each on a different timeline. None of it is a betrayal. It is just the structure walking out the door.\n\nWhen the structure leaves, three pillars decide what survives. Proximity gives you the repeated contact that closeness feeds on. Timing gives you a shared life context, so what one person is living through actually maps onto the other. Energy gives you the click, the felt pull toward each other that makes the effort feel worth it. Drop proximity and a beloved friend slowly becomes someone you mean to call. Drop timing and you get the coworker case: a young employee logs more weekday hours with older colleagues than with anyone else, yet the icebreakers run on marriage, grandkids, and pensions, so the nearness never ripens into a weekend friendship. The American Time Use Survey points at exactly this, that adults from twenty-one to sixty often spend more time with coworkers than with family and friends combined, and still feel short on real connection. Nearness alone was never the whole recipe.\n\nThat blunt truth is simple to twist. Naming the conditions can curdle into a shrug, as if drift proves no one was ever worth the trouble. That is the lazy version. Chris and a couple about fifteen years older stay genuinely fun and meaningful, and at the same time the friendship has a ceiling, because their grandparent life and daily worries sit a long way from a younger person's. Affection is real even when depth is capped. The grown-up move is to let that ceiling exist without resentment, and to keep investing where the conditions can actually carry a closer bond. Releasing the demand to be included is the Let Them half. Choosing to go to the nearby friend, to plan the dinner, to log the hours where life stages line up, that is the Let Me half.\n\nThe payoff is concrete, not warm and fuzzy. When you stop reading every quiet group chat as a personal rejection, you get back the energy you were spending on the autopsy. You can put it toward the friendships where proximity, timing, and energy still line up, and you can stop grading yourself against a childhood standard that no living adult can meet. The feeling underneath is grief, and it is fair to feel it. The buses really did stop. But the truth that no one warns you about is also a kind of permission: friendship after your early twenties is built, not inherited, and that is a thing you are allowed to do on purpose."
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "front": "What does the Great Scattering describe in adult life?",
+      "back": "It is the long stretch after early adulthood when people you grew up with spread out across different cities, jobs, marriages, kids, breakups, and retirements on separate timelines, so the built-in structure that once made friendship automatic falls away.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "front": "Why did friendship feel effortless in school and college?",
+      "back": "Buses, classrooms, dorms, teams, clubs, and neighborhoods stacked hundreds of overlapping hours on everyone without anyone planning it, so closeness grew for free off institutional structure, not personal effort.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card03",
+      "front": "What three conditions determine if an adult friendship survives the scattering?",
+      "back": "Proximity supplies repeated contact, timing supplies a shared life stage so each person's life maps onto the other's, and energy supplies the felt click that makes the effort worthwhile. When one drops out, the bond usually cools.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "front": "How does the coworker case prove nearness alone is not enough?",
+      "back": "A young worker can spend most weekday hours beside older colleagues yet stay lonely, because their talk runs on marriage, grandkids, and retirement while her life stage is different. High proximity plus mismatched timing rarely ripens into real closeness.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "front": "What is the tempting misread of friendship drift, and what is the truer one?",
+      "back": "The misread is that fading friends simply stopped caring. The truer one is that the conditions changed, so the bond needs a different level of expectation or a more deliberate investment, which removes the blame without denying the loss.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "front": "What does the case of Chris and an older couple teach about depth?",
+      "back": "A connection can stay genuinely fun and meaningful and still have a ceiling, because their grandparent life and daily concerns sit far from a younger person's. Affection is real even when the friendship cannot become a deepest one.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Building Friendship After the Buses Stop",
+    "coreSkill": "You learn to read a quiet friendship by its conditions instead of its feelings. When a bond cools, you ask which pillar slipped, proximity, timing, or energy, instead of asking whether you were rejected. Then you choose to invest deliberately where the conditions can carry closeness or to lower the expectation where they cannot.",
+    "ifThenPlans": [
+      {
+        "context": "A friend has gone quiet and you feel the sting of being left out",
+        "plan": "If you catch yourself reading silence as rejection, then name the missing condition out loud, proximity, timing, or energy, before you decide what it means."
+      },
+      {
+        "context": "You spend most weekday hours with coworkers but feel no real friendship there",
+        "plan": "If high proximity at work is not turning into closeness, then accept the life-stage mismatch and put your free hours toward people whose timing actually lines up with yours."
+      },
+      {
+        "context": "A warm but limited friendship, like Chris and the older couple, leaves you wanting more depth than it can give",
+        "plan": "If a connection has a clear ceiling, then enjoy it for what it is and stop demanding a closeness its conditions cannot hold."
+      },
+      {
+        "context": "You realize closeness now takes the kind of hours the University of Kansas study describes",
+        "plan": "If you want one casual friend to become a close one, then schedule the repeated contact on purpose instead of waiting for it to happen by accident."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, pick one drifted friend, pinpoint which pillar slipped between you, and take one concrete action that fits the real condition, a plan if proximity is fixable, or a softened expectation if timing is not.",
+    "weeklyPractice": "For one week, each evening name one friendship that felt distant that day, label which of the three pillars was missing, and choose either to invest a real hour or to release the demand to be included."
+  },
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A woman notices her oldest friend rarely texts back since moving across the country. Reading the situation through the Great Scattering, what is the most accurate way to understand the distance?",
+        "choices": [
+          "The repeated contact that proximity supplied has dropped away, which cools the bond without proving she stopped caring.",
+          "The friend has quietly decided the whole friendship is over and is sending that message through her slow, thinned-out replies.",
+          "The friendship was hollow to begin with, since a person who truly valued her would keep up the old pace from any distance at all."
+        ],
+        "correctIndex": 0,
+        "explanation": "The Great Scattering reads cooling through changed conditions; here the lost proximity explains the drift, while the other two leap to a blame the relationship has not earned.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Someone explains why school-age friendship felt effortless while adult friendship feels like work. Which explanation matches the source?",
+        "choices": [
+          "Adults are simply worse at friendship than kids are, having let the skill quietly weaken and rust over the passing years.",
+          "People grow more selfish and guarded after their twenties and stop making the kind of room for others that they used to.",
+          "School handed over free hours through buses, classes, and teams, and adulthood removes that built-in structure."
+        ],
+        "correctIndex": 2,
+        "explanation": "The ease came from institutions stacking proximity for free; once that scaffolding leaves, friendship has to be built deliberately, not because anyone got worse or more selfish.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A new graduate spends forty hours a week beside older coworkers who talk about mortgages and grandkids, yet weekends stay empty. Applying the three pillars, what should she conclude?",
+        "choices": [
+          "She should take the high proximity as solid proof that these coworkers will turn into close friends once she puts in more effort.",
+          "Proximity is high but timing is off, so she should invest free time where life stages line up.",
+          "She should push much harder to match their topics about mortgages and retirement so that the work friendships finally begin to deepen."
+        ],
+        "correctIndex": 1,
+        "explanation": "Nearness without a shared life stage rarely ripens; the source points her toward people whose timing fits instead of forcing a closeness the conditions cannot hold.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A man wants to turn a casual friend into a close one and recalls the University of Kansas figures on friendship hours. Which action best applies that frame?",
+        "choices": [
+          "Wait patiently for the friendship to deepen on its own, the same easy way it would have back in their college dorm days.",
+          "Deliberately schedule repeated time together, since close friendship takes hundreds of hours adults rarely log by chance.",
+          "Send one long, heartfelt message and then assume the real depth will simply follow along behind the warm sentiment all by itself."
+        ],
+        "correctIndex": 1,
+        "explanation": "The hours figure shows depth needs logged, repeated contact; only the deliberate scheduling supplies what adults no longer pile up by chance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Two friends both lost touch after one had a baby. One says the other clearly stopped caring; the other says the timing pillar shifted. Why does the second reading fit the source better?",
+        "choices": [
+          "Because blaming the friend who pulled back is usually the more honest, clear-eyed, and accurate way to interpret almost any drift.",
+          "Because a new baby tends to wreck friendships outright, so the friend who went quiet had no real say in the matter at all.",
+          "Because the source explains drift through changed conditions like life stage, removing the verdict on worth without denying loss."
+        ],
+        "correctIndex": 2,
+        "explanation": "The source reads drift as a shift in conditions instead of a referendum on caring; the timing reading explains the gap without the blame the first option assumes.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Chris stays close to a couple fifteen years older who are warm and fun, yet the bond has a ceiling. What does this case reveal about adult friendship?",
+        "choices": [
+          "A genuine friendship should be able to grow into a person's single deepest bond, provided both people are willing to put in the effort.",
+          "Warm but limited friendships stop being worth the trouble of keeping the moment you notice the ceiling sitting over them.",
+          "A connection can be deeply meaningful yet still capped by mismatched life stage, and the affection is real anyway."
+        ],
+        "correctIndex": 2,
+        "explanation": "The case shows depth can be limited by conditions like grandparent life and daily concerns while the affection stays genuine, so the friendship is worth keeping for what it is.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A reader uses the Great Scattering to excuse himself from ever reaching out, saying everyone just drifts. Evaluate this use of the idea.",
+        "choices": [
+          "It misuses the idea, since naming changed conditions should guide deliberate investment, not excuse quitting.",
+          "It is a sound use, because the framework basically proves that reaching out to anyone is pointless once people have scattered.",
+          "It is perfectly fine, because the source quietly recommends letting most of your friendships fade away in order to save your energy."
+        ],
+        "correctIndex": 0,
+        "explanation": "The Let Them half releases the demand to be included, but the Let Me half calls for proactive effort; using drift as a blanket excuse drops the second half entirely.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A friend argues that the American Time Use Survey point about coworkers proves work is the best place to find close friends. Judge that claim against the source.",
+        "choices": [
+          "It misjudges the point, since high coworker proximity often sits beside mismatched timing and thin connection.",
+          "It is correct, because the place where a person logs the most weekly hours with others is bound to produce their deepest friendships.",
+          "It is right, since proximity is really the one condition that closeness depends on, and the other two pillars hardly matter much at all."
+        ],
+        "correctIndex": 0,
+        "explanation": "The survey highlights that many coworker hours do not convert to intimacy when life stages differ, so volume of contact alone does not make work the best source of close friends.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Design a short plan for someone lonely after a cross-country move who wants to rebuild friendship using the three pillars. Which plan best fits the source?",
+        "choices": [
+          "Keep messaging the old hometown friends every single day and just assume that the original closeness will steadily come back on its own.",
+          "Find local people at a similar life stage and schedule repeated contact, while easing expectations on distant friends.",
+          "Wait until some fresh built-in structure shows up and then let new friendships form on their own the same easy way they once used to."
+        ],
+        "correctIndex": 1,
+        "explanation": "A workable plan rebuilds proximity and timing locally through repeated contact while releasing the demand for closeness where conditions have changed, which is exactly the Let Them and Let Me split.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The empty school-bus stop",
+      "scenario": "On a Tuesday morning Katya watches her kid climb onto the school bus and feels a sharp pang for her own childhood, when that same yellow bus delivered three best friends to her door for free. Now those friends live in four different cities and the group chat has gone quiet for weeks. Before she answers the urge to send a hurt, why-did-everyone-disappear message, she remembers reading about the University of Kansas hours and that closeness used to be stacked up by the bus and the hallway, not by anyone choosing it. The question is whether to read the silence as rejection or as the structure simply being gone.",
+      "whatToDo": "Katya should name the missing pillar, the daily proximity the bus once supplied, and send one warm, no-strings message instead of an accusation. Let the old automatic closeness be over without grading anyone for it.",
+      "whyItMatters": "Reading the quiet as a lost condition instead of a verdict frees Katya from a fight no one started and keeps the door open for connection she now builds on purpose."
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Lunch table full of mortgages",
+      "scenario": "It is 12:30 on a Wednesday and Lior, fresh out of school, sits at the office lunch table while his older coworkers swap stories about refinancing, teenagers, and counting down to retirement. He logs more weekday hours with these people than with anyone, and the American Time Use Survey would call that proximity huge, yet he goes home every weekend alone. A coworker invites him to a Saturday barbecue full of couples his parents' age, and Lior is torn between forcing himself to belong there and admitting the timing just does not fit. The real decision is whether to keep chasing closeness at the lunch table or protect his weekend energy for friends at his own life stage.",
+      "whatToDo": "Lior should stay friendly at lunch without expecting it to become deep friendship, and reserve his free evenings to find people whose life stage matches his. Set the boundary inside himself, not by snubbing anyone.",
+      "whyItMatters": "Naming the timing mismatch keeps Lior from burning energy on a closeness the conditions cannot hold and points his effort where a real friendship can actually grow."
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Dinner with the older couple",
+      "scenario": "At a Friday dinner out on her back patio, Mika hosts a couple fifteen years older, the kind of warm, generous friendship that stays meaningful even when it cannot run deep, and the night is genuinely fun. But when the talk turns to their grandkids and their retirement plans, Mika feels the familiar gap and a flash of resentment that this friendship never goes as deep as she wants. Before she answers that resentment by pulling away or by pushing for more intimacy than the bond can carry, she remembers that the Great Scattering caps some friendships by life stage, not by how much affection is there. She is deciding whether to repair the friendship inside her own head by lowering the expectation instead of the affection.",
+      "whatToDo": "Mika should keep enjoying the couple for the real warmth they offer and quietly let go of the demand that they become her deepest friends. Repair the resentment by adjusting what she expects, not by ending the connection.",
+      "whyItMatters": "Accepting the ceiling lets Mika treasure a meaningful friendship without souring it, and saves her closeness-hunger for relationships whose life stage can actually meet it."
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Planning a friendship from scratch",
+      "scenario": "On a Sunday night Nell sits with her calendar after a lonely week and admits the obvious: she has no built-in structure handing her friends anymore, no dorm hall, no team, no shared bus route. She thinks about the University of Kansas figure, that a close friend takes more than two hundred hours, and how she used to bank those hours without trying. A neighbor she likes keeps suggesting a standing weekly walk. Nell weighs waiting for closeness to reappear by accident the way it once did against scheduling the repeated contact on purpose, and before the season slips she must pick the path.",
+      "whatToDo": "Nell should treat friendship like something she now builds, blocking a recurring time with the neighbor so the hours accumulate deliberately. Plan the proximity instead of hoping for it.",
+      "whyItMatters": "Scheduling the contact replaces a structure that no longer exists, so Nell stops blaming herself for drift and starts logging the real hours closeness needs."
+    },
+    {
+      "exampleId": "ex05",
+      "title": "The weekend with nothing on it",
+      "scenario": "Saturday stretches empty in front of Orin, and his first instinct is to declare that everyone scatters anyway, so reaching out is pointless. He has used that line before, citing the Great Scattering and the University of Kansas hours as proof that adult friendship is a lost cause, then spent the day alone scrolling. This time he catches the misuse: the idea was supposed to explain drift, not excuse him from ever trying. He must choose between hiding behind the framework and actually putting it to work.",
+      "whatToDo": "Orin should notice that he is using a true idea to dodge effort, then take the Let Me half seriously by texting one nearby friend at a similar life stage to make a concrete plan. Use the framework to act, not to opt out.",
+      "whyItMatters": "Catching the misuse keeps the Great Scattering from becoming an alibi for loneliness and turns it back into a tool that pushes Orin toward the contact closeness actually requires."
+    },
+    {
+      "exampleId": "ex06",
+      "title": "The thread that used to buzz",
+      "scenario": "Late one night Paola scrolls back through a text thread with a college friend that used to buzz daily and now goes weeks between messages. The grief is real, and she thinks of how the Great Scattering keeps old bonds fond even as lives move onto different tracks. She remembers that buses and dorms once handed her this friendship for free and that the proximity is simply gone now, not the affection. She sits with the feeling instead of forcing a conclusion about who failed whom.",
+      "whatToDo": "Paola should let herself feel the loss honestly while reminding herself that the changed conditions, not a lack of love, explain the gap. Hold both the grief and the fact that nobody did anything wrong.",
+      "whyItMatters": "Naming the drift as lost structure rather than betrayal lets Paola grieve cleanly and decide, from a calmer place, whether to rebuild the contact or accept a gentler kind of closeness."
+    }
+  ],
+  "memorableLines": [
+    {
+      "text": "When one of those drops out, the bond cools.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the whole three-pillar idea into one blunt cause-and-effect line."
+    },
+    {
+      "text": "The tempting read is that drifting friends do not care.",
+      "location": "breakdown.deepRead",
+      "why": "It names the exact misread the whole idea is built to correct."
+    },
+    {
+      "text": "The buses really did stop.",
+      "location": "breakdown.fullRead",
+      "why": "It lands the grief in one plain image that gives the reader permission to mourn."
+    }
+  ]
+}

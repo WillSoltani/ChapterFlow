@@ -1,0 +1,69 @@
+{
+  "chapterId": "rework-ch01",
+  "number": 1,
+  "title": "The new reality",
+  "coreMove": "Low-friction business asks you to test the useful offer first, then add machinery only after real demand proves the need.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "independent fitness coaching",
+      "audience": "solo operators with a service idea",
+      "stakes": "avoid delaying a paid test behind business theater",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist chooses a low-friction test before renting space"
+    },
+    {
+      "domain": "small SaaS product",
+      "audience": "technical founders",
+      "stakes": "reach buyers before building a corporate shell",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist uses 37signals as a scale reference"
+    },
+    {
+      "domain": "specialty retail",
+      "audience": "craft sellers",
+      "stakes": "sell beyond local foot traffic without heavy setup",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist treats cheap distribution as a behavioral change"
+    },
+    {
+      "domain": "operations consulting",
+      "audience": "small professional teams",
+      "stakes": "avoid copying large-firm structure",
+      "format": "decision_memo",
+      "requiredBeat": "the protagonist identifies old overhead masquerading as seriousness"
+    },
+    {
+      "domain": "online education",
+      "audience": "subject experts building paid lessons",
+      "stakes": "turn knowledge into a sale without waiting for a platform team",
+      "format": "predict_reveal",
+      "requiredBeat": "the protagonist sees cheap tools as a test, not a guarantee"
+    },
+    {
+      "domain": "remote bookkeeping",
+      "audience": "solo professionals testing a niche service",
+      "stakes": "serve early buyers without inventing a larger firm",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist chooses direct customer contact over a staffed facade"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "understand": 1,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.761Z"
+}

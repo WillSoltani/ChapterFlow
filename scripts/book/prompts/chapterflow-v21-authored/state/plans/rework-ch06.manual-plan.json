@@ -1,0 +1,69 @@
+{
+  "chapterId": "rework-ch06",
+  "number": 6,
+  "title": "Workaholism",
+  "coreMove": "Unsustainable effort is not proof of value; measure work by useful results, clear judgment, and whether the method can be repeated without exhaustion.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software release management",
+      "audience": "team leads normalizing late launches",
+      "stakes": "replace recurring heroics with a scope decision",
+      "format": "mistake_recovery",
+      "requiredBeat": "the protagonist uses the real hero already home contrast"
+    },
+    {
+      "domain": "warehouse operations",
+      "audience": "operations managers",
+      "stakes": "stop using overtime as proof of loyalty",
+      "format": "audit",
+      "requiredBeat": "the protagonist measures results rather than public strain"
+    },
+    {
+      "domain": "brand design studio",
+      "audience": "creative directors",
+      "stakes": "keep quality high without rewarding constant availability",
+      "format": "planning_choice",
+      "requiredBeat": "the protagonist distinguishes focused intensity from chronic overwork"
+    },
+    {
+      "domain": "early-stage hardware company",
+      "audience": "founders using exhaustion as identity",
+      "stakes": "avoid making burnout a leadership signal",
+      "format": "reflection",
+      "requiredBeat": "the protagonist rejects workaholism as a status badge"
+    },
+    {
+      "domain": "nonprofit grant writing",
+      "audience": "directors managing deadline pressure",
+      "stakes": "use temporary intensity without turning it into culture",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist respects a focused burst but limits it"
+    },
+    {
+      "domain": "marketing agency",
+      "audience": "agency partners setting client expectations",
+      "stakes": "keep sane schedules from looking lazy",
+      "format": "dialogue",
+      "requiredBeat": "the protagonist changes a norm that rewards constant replies"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "create": 1,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.762Z"
+}

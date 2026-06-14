@@ -1,0 +1,169 @@
+{
+  "examples": [
+    {
+      "title": "Veterans or a fresh crew",
+      "scenario": "Ulrike Mann is the founder opening a second location, and she must staff it fast. She can hire a fresh crew for the new place and hope the culture follows, or transplant trusted veterans from the original to carry the values in person from day one. New hires are cheaper and easier. But culture travels through people, the way a flagship seeded its second restaurant with veterans and a written Field Manual. Minutes before the staffing plan is set, Ulrike has to decide whether to seed the new room with veterans or staff it from scratch.",
+      "whatToDo": "Seed a new location by transplanting trusted veterans who carry the culture in person, because culture travels through people, and established norms arrive only when the people who embody them do."
+    },
+    {
+      "title": "Values only in your head",
+      "scenario": "'Everyone here just knows how we do things,' the founder said. Callum Reid, his operations partner, pushed back. 'That works in one room. To scale, the values cannot live only in your head; they have to be written down. A growing restaurant captured its principles in a Field Manual and funded real training.' He opened a blank doc. 'Before we open the second site, you have to decide which core principles get codified so a new team can learn them.'",
+      "whatToDo": "Codify your culture's core principles into a written manual backed by real training, because values that live only in a founder's head cannot scale to a second team that never absorbed them firsthand."
+    },
+    {
+      "title": "Internal fit or the right outsider",
+      "scenario": "Devorah Stein is the managing director, and she needs a leader for a new, higher-volume venture that no insider fits. She can force-fit a loyal internal candidate, or make a rare external hire chosen for high-volume operational experience and personal style over pedigree, the way a flagship brought in Jeff Tascarella to run its more accessible second restaurant. Promoting from within feels safer culturally. Before the offer goes out, Devorah has to choose between a comfortable internal fit and the outsider better suited to the room.",
+      "whatToDo": "When no insider fits a different kind of operation, make a deliberate outside hire chosen for the right experience and style, because fit for the specific room can matter more than internal loyalty or pedigree."
+    },
+    {
+      "title": "Running two at once",
+      "scenario": "Before, Anselm Roth tried to personally run both his original team and a new venture, certain his presence everywhere held it together. After the original's morale and standards slipped, Anselm, the managing partner, admitted the truth: splitting his attention had starved the flagship of leadership, the mistake a restaurateur owned before handing a second restaurant to a leader like Kirk Kelewae. He stopped trying to be everywhere. Within months the original recovered, because someone was actually leading it again.",
+      "whatToDo": "Resist personally running two operations at once, because dividing your attention starves the original of leadership and lets its standards and morale slip while you are stretched thin."
+    },
+    {
+      "title": "Indispensable, and distrusted",
+      "scenario": "Her best people kept leaving, so the founder Wei Lin reviewed the year Monday. Proud of being indispensable, she had never named a successor or handed anyone real authority. Reading the exits, Wei saw the message she had sent: refusing to name a successor was not faith in her systems but a signal that she trusted no one to run the place, the failure a restaurateur confessed before promoting Kirk Kelewae and handing over real authority. Her indispensability had read as distrust.",
+      "whatToDo": "Name a successor and hand over real authority instead of staying indispensable, because refusing to name one does not signal faith in your systems; your best people read it as proof you trust no one."
+    },
+    {
+      "title": "Spin it or own it",
+      "scenario": "Two weeks before the all-hands, the founder Gloria Okeke must decide how to repair the damage from a season she stretched herself too thin. The guarded option spins it. The braver option is a direct, unguarded apology to the team, paired with promoting a not-quite-ready insider and committing visibly to that bet, the way a leader owned his failure and elevated Kirk Kelewae. Her instinct is to protect her authority. Gloria weighs a polished spin against vulnerable accountability that actually rebuilds trust.",
+      "whatToDo": "Repair a leadership failure with a direct, unguarded apology and a real handoff of authority, because vulnerable accountability strengthens rather than weakens trust, and promoting before someone feels ready is often the better bet."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "A company opens a second location and staffs it entirely with new hires, assuming the culture will simply follow. The new site feels nothing like the original. What was missed?",
+        "choices": [
+          "Nothing; a strong culture spreads on its own to any new location regardless of who staffs it.",
+          "The new site just needs more time, since any fresh team eventually drifts into the parent company's culture.",
+          "Culture travels through people, so seeding the new site with transplanted veterans is what carries the established norms."
+        ],
+        "correctIndex": 2,
+        "explanation": "Culture travels through people: moving long-tenured veterans into a new room seeds it with established norms from day one. A fresh crew alone cannot absorb a culture no one carried over.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "A founder runs one beloved location on values that live entirely in his head, and now wants to expand. Why will that approach struggle to scale?",
+        "choices": [
+          "It will not struggle, since a founder's instincts transfer perfectly to any number of new locations on their own.",
+          "Values that live only in a founder's head cannot scale; without codifying them, a new team has nothing concrete to learn.",
+          "The only real obstacle is funding, so with enough money the unwritten values will spread on their own."
+        ],
+        "correctIndex": 1,
+        "explanation": "Values that live only in a founder's head cannot scale. Codifying them into a written manual, backed by real training, is what turns implicit culture into something a new team can actually learn.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "You are launching a higher-volume venture and no internal candidate has the right experience. What is the wisest approach to hiring its leader?",
+        "choices": [
+          "Promote from within regardless, since an outside hire rarely absorbs a company's culture well enough to lead.",
+          "Delay the launch indefinitely until an internal candidate happens to develop the missing experience.",
+          "Make a deliberate outside hire chosen for the right operational experience and style, since fit for the room can beat pedigree."
+        ],
+        "correctIndex": 2,
+        "explanation": "One genuinely senior outside hire, chosen for the relevant experience and personal style rather than pedigree, can be the right call when no insider fits. Fit for the specific room matters most.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A leader insists on personally running both the original operation and a new one. The original's standards start slipping. What does this illustrate?",
+        "choices": [
+          "That the original team is simply weak, since a present leader could not possibly be the cause of any slip.",
+          "That dividing attention starves the original of leadership, so trying to run two operations at once backfires.",
+          "That the leader should work even longer hours, because being everywhere at once is the only way to scale."
+        ],
+        "correctIndex": 1,
+        "explanation": "Trying to personally run two operations at once is a serious mistake: dividing attention starves the original of leadership and lets its morale and standards slip. The fix is to stop being everywhere.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "A leader prides herself on being indispensable and has never named a successor. Her best people are leaving. How should you read that?",
+        "choices": [
+          "Refusing to name a successor reads to staff as distrust of all of them, which is what drives the best people out.",
+          "Her indispensability is a strength, so the departures must be unrelated to her refusal to share authority.",
+          "Naming a successor would only create rivals, so staying indispensable was clearly the safer choice for her."
+        ],
+        "correctIndex": 0,
+        "explanation": "An indispensable leader who never names a successor is not showing faith in systems; staff read it as proof she trusts no one to run the place. That signal drives the best people away.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "After admitting he overstretched, a leader gives an unguarded, direct apology to his team. A peer fears it will undermine his authority. What is the better analysis?",
+        "choices": [
+          "The peer is right, since apologizing to a team usually makes a leader look weak and erodes respect.",
+          "The apology is irrelevant, because how a leader handles a failure has no effect on the team's trust.",
+          "Public, unguarded accountability tends to strengthen authority, since owning a failure rebuilds the trust that hiding it would corrode."
+        ],
+        "correctIndex": 2,
+        "explanation": "Repairing the damage required public, unguarded accountability, which strengthened rather than weakened authority. Owning a failure directly rebuilds trust that spin or silence would erode.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A leader refuses to promote a promising manager until she is 'completely ready,' and the role sits unfilled for months. A peer disagrees. Which reasoning best supports the peer?",
+        "choices": [
+          "The peer is wrong, since promoting anyone before they are fully proven is reckless and usually ends badly.",
+          "Promoting before someone feels fully ready, with a visible commitment to the bet, is often better than waiting for perfect readiness.",
+          "The peer is right only because the role is urgent, not because early promotion is genuinely wise in general."
+        ],
+        "correctIndex": 1,
+        "explanation": "Promoting someone before they feel fully ready, and committing visibly to that bet, is often the better path; waiting for perfect readiness keeps both the leader and the person stuck.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "You are opening a second site and want it to carry the original's spirit without you hovering over it. What is the strongest plan?",
+        "choices": [
+          "Transplant trusted veterans, codify the core principles in writing, and then hand the new team real authority to run it.",
+          "Personally oversee every decision at both sites, since only your constant presence can keep the culture intact.",
+          "Hire an all-new team and send a copy of the mission statement, trusting the words alone to reproduce the culture."
+        ],
+        "correctIndex": 0,
+        "explanation": "Culture scales through embodied people plus documented, teachable values, not osmosis or a leader's omnipresence. Seeding with veterans, codifying principles, and granting authority is what lets it travel.",
+        "bloomsLevel": "create",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "You stretched yourself thin during an expansion and the original team's morale has slipped. You want to rebuild trust. What is the best move?",
+        "choices": [
+          "Own the failure in a direct apology and hand real authority to a capable leader, even one not yet fully seasoned.",
+          "Reassert tight personal control over the original, since the slip proves the team cannot be trusted on its own.",
+          "Say nothing and quietly work harder, because admitting the expansion hurt the original would only alarm the team."
+        ],
+        "correctIndex": 0,
+        "explanation": "Vulnerable accountability plus a real handoff of authority restores trust and proves delegation is genuine. Owning the failure and empowering a leader, rather than reasserting control or hiding it, rebuilds the culture.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cardFronts": {
+    "card01": "Beyond opening a second site, what must a leader move and write down for culture to travel?",
+    "card02": "What does a flagship whose standards slip during expansion reveal about a leader's attention?",
+    "card03": "Why does seeding culture through people transfer from restaurants to any growing organization?",
+    "card04": "What is the most common way leaders export rituals without handing the new team real authority?",
+    "card05": "What one question helps a leader decide whether they have truly let a new team lead itself?",
+    "card06": "Scaling culture sounds like a slide deck. What makes a second team actually carry the original's spirit?"
+  },
+  "coreSkill": "Scale a culture by transplanting trusted veterans to seed it in person and codifying core principles into a written manual backed by real training. Resist running everything yourself, name a successor and hand over real authority, and repair failures with unguarded accountability, because staying indispensable broadcasts that you trust no one to carry the culture forward.",
+  "ifThenContexts": {
+    "1": "A story about one successful culture transplant becomes admired but never documented to repeat.",
+    "3": "Handing one new team real authority raises the whole organization's belief that culture can travel."
+  }
+}

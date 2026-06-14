@@ -20,9 +20,20 @@ import {
   getBookSynopsis,
   getBookChapterCount,
 } from "@/app/book/data/booksCatalog";
+import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
+
+/**
+ * Always link straight to the book. The server (requireDashboardAccess) carries
+ * intent through the login wall via returnTo for logged-out readers, so we never
+ * route a logged-in reader through an unnecessary OAuth round-trip during the
+ * async auth-status window (the client hook resolves loggedIn lazily).
+ */
+function bookHref(id: string): string {
+  return `/book/library/${id}`;
+}
 
 /* ================================================================== */
 /*  TYPES                                                              */
@@ -62,8 +73,6 @@ const FREE_IDS = new Set<string>();
 
 const STAFF_PICK_IDS = new Set<string>();
 
-const TOTAL_BOOK_COUNT = BOOKS_CATALOG.length;
-
 function truncateSynopsis(text: string, max = 120): string {
   if (text.length <= max) return text;
   const periodIdx = text.indexOf(".", 40);
@@ -96,10 +105,12 @@ const FEATURED_BOOK =
   ALL_BOOKS.find((b) => b.popular) ??
   ALL_BOOKS[0];
 
+// Editorial labels only — these rows are curated from hand-picked ID sets, not
+// real usage telemetry, so the copy must not imply "trending"/"most read".
 const FEATURED_REASON =
-  STAFF_PICK_IDS.has(FEATURED_BOOK.id) ? "Editor's Pick" :
-  POPULAR_IDS.has(FEATURED_BOOK.id) ? "Trending Now" :
-  NEW_IDS.has(FEATURED_BOOK.id) ? "New This Month" :
+  STAFF_PICK_IDS.has(FEATURED_BOOK.id) ? "Staff Pick" :
+  POPULAR_IDS.has(FEATURED_BOOK.id) ? "Staff Pick" :
+  NEW_IDS.has(FEATURED_BOOK.id) ? "Recently Added" :
   "Featured";
 
 /* ================================================================== */
@@ -144,8 +155,8 @@ const DIFFICULTY_LABEL: Record<string, string> = {
 function getBookBadge(book: LibraryBook): { label: string; color: string } | null {
   if (book.isFree) return { label: "Free", color: "var(--accent-emerald)" };
   if (book.isNew) return { label: "New", color: "var(--accent-cyan)" };
-  if (book.popular) return { label: "Trending", color: "var(--accent-amber)" };
-  if (book.staffPick) return { label: "Editor's Pick", color: "var(--accent-amber)" };
+  if (book.popular) return { label: "Staff Pick", color: "var(--accent-amber)" };
+  if (book.staffPick) return { label: "Staff Pick", color: "var(--accent-amber)" };
   return null;
 }
 
@@ -202,10 +213,12 @@ function SearchBar({
   query,
   onChange,
   books,
+  onRequestBook,
 }: {
   query: string;
   onChange: (q: string) => void;
   books: LibraryBook[];
+  onRequestBook: (title: string) => void;
 }) {
   const [focused, setFocused] = useState(false);
 
@@ -229,8 +242,8 @@ function SearchBar({
       <div
         className="flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200"
         style={{
-          background: "rgba(255,255,255,0.04)",
-          border: `1px solid ${focused ? "rgba(34,211,238,0.3)" : "rgba(255,255,255,0.08)"}`,
+          background: "var(--bg-glass)",
+          border: `1px solid ${focused ? "color-mix(in srgb, var(--accent-cyan) 30%, transparent)" : "var(--border-subtle)"}`,
         }}
       >
         <SearchIcon />
@@ -244,14 +257,16 @@ function SearchBar({
             setTimeout(() => setFocused(false), 200);
           }}
           placeholder="Search by title, author, or topic..."
-          className="flex-1 bg-transparent outline-none text-[14px] placeholder:text-[--text-muted]"
+          className="flex-1 bg-transparent outline-none text-[14px] placeholder:text-(--text-muted)"
           style={{ color: "var(--text-heading)", fontFamily: "var(--font-body)" }}
           aria-label="Search books"
         />
         {query && (
           <button
+            type="button"
             onClick={() => onChange("")}
-            className="text-[--text-muted] hover:text-[--text-heading] transition-colors text-sm"
+            aria-label="Clear search"
+            className="text-(--text-muted) hover:text-(--text-heading) transition-colors text-sm"
           >
             ✕
           </button>
@@ -271,8 +286,8 @@ function SearchBar({
             results.map((book) => (
               <Link
                 key={book.id}
-                href={`/book/library/${book.id}`}
-                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-white/5"
+                href={bookHref(book.id)}
+                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-(--bg-glass)"
               >
                 <div className="w-8 h-12 shrink-0 rounded overflow-hidden">
                   <BookCover
@@ -294,7 +309,7 @@ function SearchBar({
                 </div>
                 <span
                   className="text-[10px] px-2 py-0.5 rounded-full shrink-0"
-                  style={{ background: "rgba(255,255,255,0.06)", color: "var(--text-muted)" }}
+                  style={{ background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)", color: "var(--text-muted)" }}
                 >
                   {book.category}
                 </span>
@@ -305,9 +320,15 @@ function SearchBar({
               <p className="text-[14px]" style={{ color: "var(--text-muted)" }}>
                 No books found for &ldquo;{query}&rdquo;
               </p>
-              <p className="text-[12px] mt-1 cursor-pointer hover:underline" style={{ color: "var(--accent-teal)" }}>
-                Request this book
-              </p>
+              <button
+                type="button"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => onRequestBook(query)}
+                className="inline-flex items-center justify-center min-h-[44px] px-2 text-[12px] mt-1 font-medium hover:underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                style={{ color: "var(--accent-teal)" }}
+              >
+                Request &ldquo;{query}&rdquo; &rarr;
+              </button>
             </div>
           )}
         </div>
@@ -336,7 +357,7 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
       <div className="flex flex-col min-w-0 flex-1">
         <span
           className="text-[10px] px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider w-fit"
-          style={{ background: "rgba(34,211,238,0.1)", color: "var(--accent-teal)" }}
+          style={{ background: "color-mix(in srgb, var(--accent-cyan) 10%, transparent)", color: "var(--accent-teal)" }}
         >
           {reason}
         </span>
@@ -356,7 +377,7 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
           {book.chapters} chapters · ~{avgMinPerChapter(book)}m each
         </p>
         <Link
-          href={`/book/library/${book.id}`}
+          href={bookHref(book.id)}
           onClick={() => track("book_card_click", { source: "browse_library_featured", bookId: book.id })}
           className="mt-3 text-[13px] font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
           style={{ color: "var(--accent-teal)" }}
@@ -375,9 +396,11 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
 function LibraryHero({
   searchQuery,
   onSearchChange,
+  onRequestBook,
 }: {
   searchQuery: string;
   onSearchChange: (q: string) => void;
+  onRequestBook: (title: string) => void;
 }) {
   return (
     <section className="pt-28 lg:pt-32 pb-10 lg:pb-14">
@@ -397,11 +420,11 @@ function LibraryHero({
                 className="mt-3 text-[15px] md:text-[16px] leading-[1.7] max-w-[520px]"
                 style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
               >
-                {TOTAL_BOOK_COUNT}+ non-fiction titles across psychology, productivity, leadership, and more.
+                {CATALOG_BOOK_COUNT_DISPLAY} non-fiction titles across psychology, productivity, leadership, and more.
                 Each one broken into chapter summaries, real-world scenarios, and retention quizzes.
               </p>
               <div className="mt-5">
-                <SearchBar query={searchQuery} onChange={onSearchChange} books={ALL_BOOKS} />
+                <SearchBar query={searchQuery} onChange={onSearchChange} books={ALL_BOOKS} onRequestBook={onRequestBook} />
               </div>
             </div>
           </SectionReveal>
@@ -499,8 +522,8 @@ function FilterBar({
                 className="shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-200"
                 style={
                   activeCategory === "All"
-                    ? { background: "var(--accent-teal)", color: "#0a0f1a", fontWeight: 600 }
-                    : { background: "rgba(255,255,255,0.05)", color: "var(--text-secondary)", border: "1px solid rgba(255,255,255,0.08)" }
+                    ? { background: "var(--accent-teal)", color: "var(--primary-foreground)", fontWeight: 600 }
+                    : { background: "var(--bg-elevated)", color: "var(--text-secondary)", border: "1px solid var(--border-subtle)" }
                 }
               >
                 All
@@ -514,8 +537,8 @@ function FilterBar({
                   className="shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-200 whitespace-nowrap"
                   style={
                     activeCategory === cat.name
-                      ? { background: "var(--accent-teal)", color: "#0a0f1a", fontWeight: 600 }
-                      : { background: "rgba(255,255,255,0.05)", color: "var(--text-secondary)", border: "1px solid rgba(255,255,255,0.08)" }
+                      ? { background: "var(--accent-teal)", color: "var(--primary-foreground)", fontWeight: 600 }
+                      : { background: "var(--bg-elevated)", color: "var(--text-secondary)", border: "1px solid var(--border-subtle)" }
                   }
                 >
                   {cat.name} ({cat.count})
@@ -539,7 +562,7 @@ function FilterBar({
                 if (e.key === "Escape") setSortOpen(false);
                 if (e.key === "ArrowDown") { e.preventDefault(); setSortOpen(true); }
               }}
-              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
               style={{ color: "var(--text-secondary)" }}
             >
               <span className="hidden sm:inline">Sort:</span>{" "}
@@ -567,7 +590,7 @@ function FilterBar({
                       if (e.key === "Escape") { setSortOpen(false); }
                       if (e.key === "Enter" || e.key === " ") { onSortChange(opt.value); setSortOpen(false); }
                     }}
-                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
                     style={{
                       color: sortBy === opt.value ? "var(--accent-teal)" : "var(--text-secondary)",
                       fontWeight: sortBy === opt.value ? 600 : 400,
@@ -594,7 +617,7 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
 
   return (
     <Link
-      href={`/book/library/${book.id}`}
+      href={bookHref(book.id)}
       className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded-lg"
       aria-label={`${book.title} by ${book.author} — ${DIFFICULTY_LABEL[book.difficulty]}, ${book.chapters} chapters`}
       onClick={() => track("book_card_click", { source: "browse_library", bookId: book.id })}
@@ -614,7 +637,7 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
         {badge && (
           <span
             className="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full z-10"
-            style={{ background: badge.color, color: "#0a0f1a" }}
+            style={{ background: badge.color, color: "var(--primary-foreground)" }}
           >
             {badge.label}
           </span>
@@ -660,14 +683,14 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
         </p>
         <span
           className="sm:hidden inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full"
-          style={{ background: "rgba(255,255,255,0.06)", color: "var(--text-muted)" }}
+          style={{ background: "var(--bg-elevated)", color: "var(--text-muted)" }}
         >
           {DIFFICULTY_LABEL[book.difficulty]}
         </span>
         {showCategoryTag && (
           <span
             className="inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full"
-            style={{ background: "rgba(255,255,255,0.06)", color: "var(--text-muted)", border: "1px solid rgba(255,255,255,0.06)" }}
+            style={{ background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)", color: "var(--text-muted)", border: "1px solid var(--border-subtle)" }}
           >
             {book.category}
           </span>
@@ -856,14 +879,14 @@ function CategoryRows({
 
   return (
     <div className="space-y-12 py-8">
-      {/* Most Read This Week */}
+      {/* Staff Picks — curated, not telemetry-driven */}
       {popularBooks.length >= MIN_CURATED_ROW && (
-        <BookRow title="Most Read This Week" icon="🔥" books={popularBooks} showCategoryTag />
+        <BookRow title="Staff Picks" icon="⭐" books={popularBooks} showCategoryTag />
       )}
 
-      {/* New This Month */}
+      {/* Recently Added — curated "new" set */}
       {newBooks.length >= MIN_CURATED_ROW && (
-        <BookRow title="New This Month" icon="✨" books={newBooks} showCategoryTag />
+        <BookRow title="Recently Added" icon="✨" books={newBooks} showCategoryTag />
       )}
 
       {/* Fallback when neither curated row meets the threshold */}
@@ -928,15 +951,17 @@ function CategoryGrid({
 function ZeroResults({
   query,
   onClear,
+  onRequestBook,
 }: {
   query: string;
   onClear: () => void;
+  onRequestBook: (title: string) => void;
 }) {
   return (
     <div className="max-w-md mx-auto px-4 py-20 text-center">
       <div
         className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
-        style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.1)" }}
+        style={{ background: "color-mix(in srgb, var(--accent-cyan) 6%, transparent)", border: "1px solid color-mix(in srgb, var(--accent-cyan) 10%, transparent)" }}
       >
         <SearchIcon />
       </div>
@@ -948,13 +973,24 @@ function ZeroResults({
           Nothing matched &ldquo;{query}&rdquo;. Try a different search or browse by category.
         </p>
       )}
-      <button
-        onClick={onClear}
-        className="mt-5 text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer"
-        style={{ background: "var(--bg-raised)", border: "1px solid var(--border-medium)", color: "var(--text-heading)" }}
-      >
-        Clear search
-      </button>
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+        <button
+          onClick={onClear}
+          className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+          style={{ background: "var(--bg-raised)", border: "1px solid var(--border-medium)", color: "var(--text-heading)" }}
+        >
+          Clear search
+        </button>
+        {query.trim() && (
+          <button
+            onClick={() => onRequestBook(query)}
+            className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-transform duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+            style={{ background: "var(--accent-teal)", color: "var(--primary-foreground)" }}
+          >
+            Request &ldquo;{query.trim()}&rdquo;
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -996,7 +1032,7 @@ function BottomCTA() {
               href={AUTH_LOGIN_BOOK_URL}
               onClick={() => track("cta_click", { source: "browse_library_bottom_cta" })}
               className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-[15px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
-              style={{ backgroundColor: "var(--accent-teal)", color: "#0a0f1a" }}
+              style={{ backgroundColor: "var(--accent-teal)", color: "var(--primary-foreground)" }}
             >
               Open my first book →
             </Link>
@@ -1020,8 +1056,46 @@ export function BrowseLibraryPage() {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState<SortOption>("popular");
+  const [requestTitle, setRequestTitle] = useState("");
+  const requestSectionRef = useRef<HTMLDivElement>(null);
+  const seededFromUrl = useRef(false);
 
   const categories = useMemo(() => getCategoriesWithCounts(ALL_BOOKS), []);
+
+  // Prefill the request form with the searched title and scroll to it. Used by
+  // the zero-results states so the "Request this book" affordance is real.
+  const handleRequestBook = useCallback((title: string) => {
+    setRequestTitle(title.trim());
+    track("book_request_prefill", { source: "browse_zero_results", title: title.trim() });
+    requestAnimationFrame(() => {
+      const reduce =
+        typeof window !== "undefined" &&
+        window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      requestSectionRef.current?.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  }, []);
+
+  // Seed the search from a ?q= URL param (deep links from JSON-LD / the
+  // WebSite SearchAction, e.g. /books?q=Deep%20Work). Client-only read, guarded
+  // so it seeds state exactly once (never re-fires setState on a later render
+  // or a StrictMode/fast-refresh remount).
+  useEffect(() => {
+    if (seededFromUrl.current) return;
+    seededFromUrl.current = true;
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q) {
+      // One-time seed from the client-only URL query on mount. A lazy useState
+      // initializer would read window during SSR (hydration mismatch) and
+      // useSearchParams() would force a Suspense boundary on this client page,
+      // so a ref-guarded mount effect is the correct pattern here.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSearchQuery(q);
+      setDebouncedQuery(q);
+    }
+  }, []);
 
   // Debounce search
   useEffect(() => {
@@ -1087,7 +1161,11 @@ export function BrowseLibraryPage() {
 
       <Navbar />
 
-      <LibraryHero searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+      <LibraryHero
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onRequestBook={handleRequestBook}
+      />
 
       <FilterBar
         categories={categories}
@@ -1109,7 +1187,11 @@ export function BrowseLibraryPage() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <ZeroResults query={debouncedQuery} onClear={handleClearSearch} />
+            <ZeroResults
+              query={debouncedQuery}
+              onClear={handleClearSearch}
+              onRequestBook={handleRequestBook}
+            />
           </motion.div>
         ) : isAllView ? (
           <motion.div
@@ -1137,8 +1219,8 @@ export function BrowseLibraryPage() {
         )}
       </AnimatePresence>
 
-      <div className="-mb-10">
-        <BookRequestSection />
+      <div className="-mb-10" ref={requestSectionRef}>
+        <BookRequestSection initialTitle={requestTitle} />
       </div>
       <BottomCTA />
       <Footer />

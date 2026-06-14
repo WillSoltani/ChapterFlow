@@ -3,8 +3,9 @@ import {
   GetCommand,
   PutCommand,
 } from "@aws-sdk/lib-dynamodb";
-import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { SESv2Client } from "@aws-sdk/client-sesv2";
 import { streakAtRiskEmail } from "./email-templates/streak-at-risk";
+import { sendCompliantEmail, type EmailConfig } from "./email-compliance";
 
 type UserSettings = {
   PK: string;
@@ -40,7 +41,7 @@ export async function processStreakAtRisk(
   ddb: DynamoDBDocumentClient,
   ses: SESv2Client,
   tableName: string,
-  senderEmail: string,
+  config: EmailConfig,
   userItems: UserSettings[],
 ): Promise<{ sent: number; skipped: number }> {
   let sent = 0;
@@ -132,22 +133,20 @@ export async function processStreakAtRisk(
         const email = (profileResult.Item as { email?: string })?.email;
         const name = (profileResult.Item as { displayName?: string })?.displayName ?? "Reader";
         if (email) {
-          const tpl = streakAtRiskEmail({ name, currentStreak: streak.currentStreak, hoursRemaining });
-          await ses.send(
-            new SendEmailCommand({
-              FromEmailAddress: senderEmail,
-              Destination: { ToAddresses: [email] },
-              Content: {
-                Simple: {
-                  Subject: { Data: tpl.subject },
-                  Body: {
-                    Text: { Data: tpl.textBody },
-                    Html: { Data: tpl.htmlBody },
-                  },
-                },
-              },
-            }),
-          );
+          const tpl = streakAtRiskEmail({
+            name,
+            currentStreak: streak.currentStreak,
+            hoursRemaining,
+            appBaseUrl: config.appBaseUrl,
+          });
+          await sendCompliantEmail(ses, ddb, tableName, config, {
+            to: email,
+            userId,
+            category: "streak",
+            subject: tpl.subject,
+            textBody: tpl.textBody,
+            htmlBody: tpl.htmlBody,
+          });
         }
       } catch (err) {
         console.error(`[streak-at-risk] Failed to send email for ${userId}:`, err);

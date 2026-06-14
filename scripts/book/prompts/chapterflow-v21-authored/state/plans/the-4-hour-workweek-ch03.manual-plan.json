@@ -1,0 +1,68 @@
+{
+  "chapterId": "the-4-hour-workweek-ch03",
+  "number": 3,
+  "title": "Dodging Bullets: Fear-Setting and Escaping Paralysis",
+  "coreMove": "Fear-setting makes risk legible: name the worst case, reduce its odds, map repair, and compare it with the cost of inaction.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software career decision",
+      "audience": "professionals delaying a hard test",
+      "stakes": "A stable job feels safe while the cost of another year keeps rising.",
+      "format": "decision_point",
+      "requiredBeat": "Use worst case, prevention, repair, and cost of inaction before deciding."
+    },
+    {
+      "domain": "independent consulting launch",
+      "audience": "operators weighing a reversible experiment",
+      "stakes": "A failed launch sounds permanent until repair steps are named.",
+      "format": "planning_choice",
+      "requiredBeat": "Show repair steps testing whether the feared outcome is recoverable."
+    },
+    {
+      "domain": "medical training schedule",
+      "audience": "high performers ignoring compounding costs",
+      "stakes": "Doing nothing preserves today while draining the next year.",
+      "format": "audit",
+      "requiredBeat": "Make the cost of inaction visible across months and years."
+    },
+    {
+      "domain": "enterprise sales forecast",
+      "audience": "leaders afraid to name a downside",
+      "stakes": "A missed target can be planned for or hidden until it spreads.",
+      "format": "dialogue",
+      "requiredBeat": "Use Seneca-style negative visualization to create steadier action."
+    },
+    {
+      "domain": "small business loan decision",
+      "audience": "founders treating risk as fixed",
+      "stakes": "A feared loan can be made less dangerous before the application is filed.",
+      "format": "decision_memo",
+      "requiredBeat": "Show prevention lowering probability rather than merely describing danger."
+    },
+    {
+      "domain": "graduate program application",
+      "audience": "readers waiting to feel ready",
+      "stakes": "A life change stalls when bravery is treated as a mood requirement.",
+      "format": "inner_monologue",
+      "requiredBeat": "Show action following analysis rather than a fearless mood."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-05T08:48:29.793Z"
+}

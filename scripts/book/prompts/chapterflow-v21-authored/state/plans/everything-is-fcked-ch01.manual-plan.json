@@ -1,0 +1,69 @@
+{
+  "chapterId": "everything-is-fcked-ch01",
+  "number": 1,
+  "title": "The Uncomfortable Truth",
+  "coreMove": "Hope is not cheerfulness. It is a story that gives pain a direction, and that story can steady a person or trap them inside a false rescue plan.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "Warsaw archive room",
+      "audience": "historian",
+      "stakes": "whether to present Pilecki as inspiration or as a warning about hope under terror",
+      "format": "decision_point",
+      "requiredBeat": "Uses Witold Pilecki to test The Uncomfortable Truth."
+    },
+    {
+      "domain": "progress dashboard",
+      "audience": "public health analyst",
+      "stakes": "why better numbers do not calm a frightened town meeting",
+      "format": "reflection",
+      "requiredBeat": "Uses Auschwitz to test The Uncomfortable Truth."
+    },
+    {
+      "domain": "college career fair",
+      "audience": "student mentor",
+      "stakes": "a student using achievement to avoid mortality and insignificance",
+      "format": "audit",
+      "requiredBeat": "Uses Steven Pinker to test The Uncomfortable Truth."
+    },
+    {
+      "domain": "late-night group chat",
+      "audience": "friend",
+      "stakes": "whether outrage is giving the group meaning or just a target",
+      "format": "dialogue",
+      "requiredBeat": "Uses Hans Rosling to test The Uncomfortable Truth."
+    },
+    {
+      "domain": "hospital waiting area",
+      "audience": "daughter",
+      "stakes": "how to act when no promised ending can fix grief",
+      "format": "reset_moment",
+      "requiredBeat": "Uses Witold Pilecki to test The Uncomfortable Truth."
+    },
+    {
+      "domain": "startup board packet",
+      "audience": "founder",
+      "stakes": "whether a rescue narrative is hiding a weak product",
+      "format": "business_case",
+      "requiredBeat": "Uses Auschwitz to test The Uncomfortable Truth."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:05:31.586Z"
+}

@@ -72,10 +72,9 @@ export function toUserStats(options: {
   };
 }
 
-// TODO: no backend source for a weekly challenge yet — static editorial config.
+// Static editorial nudge — no backend source. Honest: just a category to
+// explore (no fabricated reward/progress; see WeeklyChallenge type).
 export const WEEKLY_CHALLENGE: WeeklyChallenge = {
   description: "Start a book in Psychology",
   category: "Psychology",
-  reward: { xp: 100, badge: "Explorer" },
-  progress: { current: 1, target: 2 },
 };

@@ -24,7 +24,8 @@ export default function TermsOfServicePage() {
             1. Acceptance of Terms
           </h2>
           <p>
-            By accessing or using ChapterFlow (&quot;the Service&quot;), operated by SiliconX, you agree to be bound
+            By accessing or using ChapterFlow (&quot;the Service&quot;), operated by SiliconX Software Solutions, a business
+            registered in Nova Scotia, Canada (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;), you agree to be bound
             by these Terms of Service. If you do not agree, do not use the Service.
           </p>
         </section>
@@ -66,8 +67,20 @@ export default function TermsOfServicePage() {
           </h2>
           <ul className="list-disc pl-6 space-y-2">
             <li>Pro subscriptions are billed through Stripe on a recurring monthly or annual basis.</li>
+            <li>
+              <strong style={{ color: "var(--text-heading)" }}>Auto-renewal:</strong> A valid payment method is
+              required to begin the 14-day free trial. Your subscription renews automatically — the free trial
+              converts to a paid subscription when it ends, and paid subscriptions renew each billing period — and
+              your payment method is charged at the then-current price until you cancel.
+            </li>
             <li>You may cancel your subscription at any time through the Billing section in Settings. Cancellation takes effect at the end of your current billing period.</li>
             <li>If you cancel during the 14-day free trial, you will not be charged.</li>
+            <li>
+              <strong style={{ color: "var(--text-heading)" }}>No refunds:</strong> Except where required by law or
+              in the case of a duplicate charge or billing error, subscription fees are non-refundable, including the
+              unused portion of an annual term. See our{" "}
+              <a href="/legal/refund" className="underline" style={{ color: "var(--accent-teal)" }}>Refund &amp; Cancellation Policy</a>.
+            </li>
             <li>After cancellation, you retain access to your completed books and reading progress. To start new books beyond the free limit, you must resubscribe.</li>
             <li>We reserve the right to change pricing with 30 days&apos; notice. Existing subscribers remain on their current rate until their next renewal after the notice period.</li>
           </ul>
@@ -113,13 +126,30 @@ export default function TermsOfServicePage() {
           <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             8. Content and Intellectual Property
           </h2>
+          <p className="mb-3">
+            ChapterFlow provides original educational summaries, scenarios, and quizzes inspired by ideas from
+            published non-fiction books. All ChapterFlow-original content (summaries, examples, quiz questions,
+            interface design) is owned by SiliconX Software Solutions. Original book content remains the property
+            of its respective authors and publishers.
+          </p>
+          <p className="mb-3">
+            <strong style={{ color: "var(--text-heading)" }}>Not affiliated:</strong> ChapterFlow&apos;s materials
+            are original, transformative works of commentary and education. They are not the original books and are{" "}
+            <strong style={{ color: "var(--text-heading)" }}>not authorized, endorsed, licensed, or sponsored</strong>{" "}
+            by the authors or publishers of those books, and are not a substitute for reading the original works.
+            Book titles, author names, and trademarks belong to their respective owners and are used only to
+            identify the works discussed. If you believe content infringes your rights, see our{" "}
+            <a href="/legal/copyright" className="underline" style={{ color: "var(--accent-teal)" }}>Copyright &amp; Takedown Policy</a>.
+          </p>
           <p>
-            ChapterFlow provides educational summaries, scenarios, and quizzes derived from published non-fiction
-            books. All ChapterFlow-original content (summaries, examples, quiz questions, interface design) is
-            owned by SiliconX. Original book content remains the property of its respective authors and publishers.
-            Your reading progress, notes, quiz responses, and scenario submissions are your data, subject to our{" "}
+            <strong style={{ color: "var(--text-heading)" }}>Your content:</strong> Your reading progress, notes,
+            quiz responses, and scenario submissions are your data, subject to our{" "}
             <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-teal)" }}>Privacy Policy</a>.
-            You can export all your data at any time from Settings in JSON, CSV, or Markdown format.
+            By submitting content such as scenarios, you grant SiliconX Software Solutions a non-exclusive,
+            worldwide, royalty-free license to store, display, adapt, and distribute that content within the
+            Service to operate and improve it; you retain ownership and may request its removal, and you confirm
+            your submissions do not infringe anyone else&apos;s rights. You can export all your data at any time from
+            Settings in JSON, CSV, or Markdown format.
           </p>
         </section>
 
@@ -128,7 +158,7 @@ export default function TermsOfServicePage() {
             9. Limitation of Liability
           </h2>
           <p>
-            ChapterFlow is provided &quot;as is&quot; without warranties of any kind, either express or implied. SiliconX
+            ChapterFlow is provided &quot;as is&quot; without warranties of any kind, either express or implied. SiliconX Software Solutions
             shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising
             from your use of or inability to use the Service, including but not limited to loss of data, loss of
             progress, or service interruptions. Our total liability for any claim shall not exceed the amount you
@@ -169,8 +199,8 @@ export default function TermsOfServicePage() {
             12. Governing Law
           </h2>
           <p>
-            These Terms are governed by the laws of the Province of Ontario, Canada. Any disputes shall be
-            resolved in the courts of Ontario.
+            These Terms are governed by the laws of the Province of Nova Scotia, Canada. Any disputes shall be
+            resolved in the courts of Nova Scotia.
           </p>
         </section>
 

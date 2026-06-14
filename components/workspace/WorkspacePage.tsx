@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Sparkles, X } from "lucide-react";
+import { CheckCircle2, X } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedBackground } from "./AnimatedBackground";
@@ -20,11 +19,10 @@ import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
 import { getBookRating } from "@/app/book/data/bookRatings";
 import { getBookCoverPath } from "@/lib/book-covers";
-import { matchesBookQuery, normalizeQuery } from "@/lib/book-search";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { evaluateBadges } from "@/app/book/badges/lib/badge-ui-definitions";
-import { BookCardWorkspace } from "./BookCardWorkspace";
 import { INSIGHT_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
+import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -65,7 +63,6 @@ interface WorkspaceData {
     currentLoopStep: "summary" | "scenarios" | "quiz" | "unlock" | null;
     estimatedMinutes: number;
     gradient?: string;
-    glowColor?: string;
   } | null;
   starterShelfBooks: Array<{
     id: string;
@@ -108,17 +105,6 @@ interface WorkspaceData {
     category: string;
     gradient?: string;
     reason?: string;
-  }>;
-  /** Full catalog mapped for in-place dashboard search. */
-  allBooks: Array<{
-    id: string;
-    title: string;
-    author: string;
-    coverUrl: string;
-    category: string;
-    categories: string[];
-    progressPercent: number;
-    status: "not_started" | "in_progress" | "completed";
   }>;
   nextReward: {
     name: string;
@@ -275,7 +261,6 @@ function mapAnalyticsToWorkspaceData(
       progressPercent: lead.progressPercent,
       currentLoopStep: lead.currentLoopStep ?? "summary",
       estimatedMinutes: avgChapterMinutes,
-      glowColor: lead.book.coverImage ? undefined : "rgba(139,92,246,0.35)",
     };
   }
 
@@ -344,16 +329,6 @@ function mapAnalyticsToWorkspaceData(
       .filter(({ snap }) => !recommendedProBookIds.has(snap.book.id))
       .slice(0, 4)
       .map(({ snap, reason }) => toRecommendationCard(snap, reason)),
-    allBooks: analytics.bookSnapshots.map((snap) => ({
-      id: snap.book.id,
-      title: snap.book.title,
-      author: snap.book.author ?? "",
-      coverUrl: getBookCoverPath(snap.book.id),
-      category: snap.book.category ?? "General",
-      categories: snap.book.categories ?? [],
-      progressPercent: snap.progressPercent,
-      status: snap.status,
-    })),
     nextReward: {
       name: INSIGHT_POINTS_REWARDS[0]?.name ?? "Bonus Book Unlock",
       pointsRequired: INSIGHT_POINTS_REWARDS[0]?.costPoints ?? 900,
@@ -531,7 +506,7 @@ function getSubtitle(state: UserState, data: WorkspaceData): string {
     case "returning":
       return "Welcome back — your books are waiting";
     case "free_limit_reached":
-      return "Unlock 93 more books with Pro";
+      return `Go Pro to unlock all ${CATALOG_BOOK_COUNT_DISPLAY} books`;
     default:
       return "";
   }
@@ -566,162 +541,18 @@ const itemVariants = {
 };
 
 /* ────────────────────────────────────────────
-   Mobile Bottom Nav
-   ──────────────────────────────────────────── */
-
-function MobileBottomNav() {
-  const tabs = [
-    { label: "Home", icon: HomeIcon, active: true, href: "/dashboard" },
-    { label: "Library", icon: LibraryIcon, active: false, href: "/book/library" },
-    { label: "Progress", icon: ProgressIcon, active: false, href: "/book/progress" },
-    { label: "Profile", icon: ProfileIcon, active: false, href: "/book/profile" },
-  ];
-
-  return (
-    <nav
-      className="fixed bottom-0 left-0 right-0 z-40 flex h-14 items-center justify-around md:hidden"
-      style={{
-        background: "var(--cf-topbar-bg)",
-        backdropFilter: "blur(20px) saturate(1.4)",
-        WebkitBackdropFilter: "blur(20px) saturate(1.4)",
-        borderTop: "1px solid var(--cf-border)",
-      }}
-    >
-      {tabs.map((tab) => (
-        <Link
-          key={tab.label}
-          href={tab.href}
-          className="flex min-h-11 min-w-11 flex-col items-center gap-1"
-        >
-          <tab.icon active={tab.active} />
-          <span
-            className="text-[10px]"
-            style={{
-              color: tab.active ? "var(--cf-text-1)" : "var(--cf-text-soft)",
-            }}
-          >
-            {tab.label}
-          </span>
-        </Link>
-      ))}
-    </nav>
-  );
-}
-
-function HomeIcon({ active }: { active: boolean }) {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-    </svg>
-  );
-}
-
-function LibraryIcon({ active }: { active: boolean }) {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
-    </svg>
-  );
-}
-
-function ProgressIcon({ active }: { active: boolean }) {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 20V10M12 20V4M6 20v-6" />
-    </svg>
-  );
-}
-
-function ProfileIcon({ active }: { active: boolean }) {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-      <circle cx={12} cy={7} r={4} />
-    </svg>
-  );
-}
-
-/* ────────────────────────────────────────────
    Dashboard Content (rendered after data loads)
    ──────────────────────────────────────────── */
-
-function DashboardSearchResults({
-  query,
-  books,
-}: {
-  query: string;
-  books: WorkspaceData["allBooks"];
-}) {
-  const normalized = normalizeQuery(query);
-  const results = books.filter((book) =>
-    matchesBookQuery(
-      {
-        title: book.title,
-        author: book.author,
-        category: book.category,
-        categories: book.categories,
-      },
-      normalized,
-    ),
-  );
-
-  return (
-    <div className="mt-2">
-      <h2
-        className="mb-4 font-(family-name:--font-display) text-xl font-semibold"
-        style={{ color: "var(--cf-text-1)" }}
-      >
-        {results.length > 0
-          ? `Results for “${query.trim()}”`
-          : `No books match “${query.trim()}”`}
-      </h2>
-      {results.length > 0 && (
-        <div className="flex flex-wrap gap-3">
-          {results.map((book) => (
-            <BookCardWorkspace
-              key={book.id}
-              variant="user"
-              book={{
-                id: book.id,
-                title: book.title,
-                author: book.author,
-                coverUrl: book.coverUrl,
-                progressPercent: book.progressPercent,
-                status: book.status,
-              }}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 
 function DashboardContent({
   data,
   prefersReducedMotion,
-  searchQuery,
 }: {
   data: WorkspaceData;
   prefersReducedMotion: boolean | null;
-  searchQuery: string;
 }) {
   const userState = deriveUserState(data);
   const subtitle = getSubtitle(userState, data);
-  const isSearching = normalizeQuery(searchQuery).length > 0;
-
-  if (isSearching) {
-    return <DashboardSearchResults query={searchQuery} books={data.allBooks} />;
-  }
   const dailyProgress = Math.min(
     (data.user.dailyProgressMinutes / (data.user.dailyGoalMinutes || 20)) * 100,
     100
@@ -856,13 +687,19 @@ export function WorkspacePage() {
     () => searchParams.get("billing") === "success",
   );
 
-  // Show a success banner when Stripe redirects back after payment, then
-  // clean the URL so a refresh doesn't re-show it.
+  // Single owner of the post-Stripe ?billing redirect (BillingStatusBanner used
+  // to double up here). On success we flag the upgrade and show the in-page Pro
+  // banner; for any billing value we strip just that param (preserving others)
+  // so a refresh doesn't re-trigger.
   useEffect(() => {
-    if (searchParams.get("billing") === "success") {
+    const billing = searchParams.get("billing");
+    if (!billing) return;
+    if (billing === "success") {
       sessionStorage.setItem("cf:billing-upgraded", "1");
-      router.replace("/dashboard");
     }
+    const url = new URL(window.location.href);
+    url.searchParams.delete("billing");
+    router.replace(url.pathname + url.search);
   }, [searchParams, router]);
 
   return (
@@ -876,11 +713,14 @@ export function WorkspacePage() {
       {/* Noise texture overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" />
 
-      {/* Pro upgrade banner */}
+      {/* Pro upgrade success banner (the single billing-success surface) */}
       {showProBanner && (
-        <div className="relative z-20 flex items-center justify-between gap-3 bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-4 py-3 text-white sm:px-6">
+        <div
+          role="status"
+          className="relative z-20 flex items-center justify-between gap-3 border-b border-(--cf-success-border) bg-(--cf-success-bg) px-4 py-3 text-(--cf-success-text) sm:px-6"
+        >
           <div className="flex items-center gap-2.5">
-            <Sparkles className="h-4 w-4 shrink-0" />
+            <CheckCircle2 className="h-4 w-4 shrink-0" />
             <p className="text-sm font-medium">
               You&apos;re now on Pro — enjoy unlimited access to the full library.
             </p>
@@ -889,7 +729,7 @@ export function WorkspacePage() {
             type="button"
             onClick={() => setShowProBanner(false)}
             aria-label="Dismiss"
-            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full hover:bg-white/20"
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition hover:bg-(--cf-success-soft)"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -905,7 +745,6 @@ export function WorkspacePage() {
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           searchInputRef={searchRef}
-          showGlobalSearchPanel={false}
           logoVariant="dashboard"
         />
 
@@ -925,15 +764,16 @@ export function WorkspacePage() {
             <DashboardContent
               data={data}
               prefersReducedMotion={prefersReducedMotion}
-              searchQuery={searchQuery}
             />
           )}
 
-          {/* Bottom spacer for mobile nav */}
-          <div className="h-20 md:hidden" />
+          {/* Spacer so content clears TopNav's fixed mobile bottom bar (~4.5rem + safe-area) */}
+          <div
+            aria-hidden="true"
+            className="md:hidden"
+            style={{ height: "calc(4.5rem + env(safe-area-inset-bottom, 0px))" }}
+          />
         </main>
-
-        <MobileBottomNav />
       </div>
     </div>
   );

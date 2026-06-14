@@ -1,0 +1,70 @@
+{
+  "chapterId": "contagious-ch06",
+  "number": 6,
+  "title": "Stories",
+  "coreMove": "Stories carry ideas when the payload is integral: make the message the hinge of the narrative, not a sponsor tag people can forget.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "museum education exhibit",
+      "audience": "curators explaining ancient lessons to visitors",
+      "stakes": "a label may state the lesson while the display fails to carry it",
+      "format": "decision_point",
+      "requiredBeat": "Dalia uses the Trojan Horse as payload inside plot"
+    },
+    {
+      "domain": "restaurant campaign review",
+      "audience": "brand managers judging testimonial stories",
+      "stakes": "a dramatic customer story may drop the restaurant if the product is not causal",
+      "format": "business_case",
+      "requiredBeat": "Henrik checks the Jared Fogle/Subway structural tie"
+    },
+    {
+      "domain": "customer service training",
+      "audience": "support leaders teaching warranty values",
+      "stakes": "a policy statement may not be remembered or believed",
+      "format": "vignette",
+      "requiredBeat": "Soraya turns Land's End zipper replacement into a service story"
+    },
+    {
+      "domain": "sports sponsorship pitch",
+      "audience": "agency strategists evaluating stunt ideas",
+      "stakes": "attention can detach from the sponsor and waste the spend",
+      "format": "postmortem",
+      "requiredBeat": "Benji diagnoses Golden Palace Olympic pool crash"
+    },
+    {
+      "domain": "food ad storyboard",
+      "audience": "creative directors judging comedy scripts",
+      "stakes": "a funny scene can be retold without naming the food",
+      "format": "planning_choice",
+      "requiredBeat": "Mei uses Panda Cheese's refusal-trigger structure"
+    },
+    {
+      "domain": "launch message testing",
+      "audience": "founders checking whether stories retain payload",
+      "stakes": "early testers may remember the anecdote and forget the idea",
+      "format": "audit",
+      "requiredBeat": "Alonzo runs a payload-retention retell test"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "create": 2,
+      "evaluate": 1,
+      "understand": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 12,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T03:12:41.233Z"
+}

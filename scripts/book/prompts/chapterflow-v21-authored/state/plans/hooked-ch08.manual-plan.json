@@ -1,0 +1,70 @@
+{
+  "chapterId": "hooked-ch08",
+  "number": 8,
+  "title": "Habit Testing and Where To Look For Habit-Forming Opportunities",
+  "coreMove": "Habit Testing identifies habitual users, codifies their shared path, and modifies the product so more users can reach that path through measured behavior.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "onboarding analytics",
+      "audience": "growth lead",
+      "stakes": "how a retained-user path becomes a product change",
+      "format": "data-first",
+      "requiredBeat": "Apply Twitter to how a retained-user path becomes a product change without flattening the source case."
+    },
+    {
+      "domain": "metrics definition meeting",
+      "audience": "data scientist",
+      "stakes": "why devoted use must fit the category",
+      "format": "definition debate",
+      "requiredBeat": "Apply Instagram to why devoted use must fit the category without flattening the source case."
+    },
+    {
+      "domain": "startup idea review",
+      "audience": "founder",
+      "stakes": "how a small nascent behavior can point to a larger need",
+      "format": "origin case",
+      "requiredBeat": "Apply Facebook to how a small nascent behavior can point to a larger need without flattening the source case."
+    },
+    {
+      "domain": "search prototype critique",
+      "audience": "interface designer",
+      "stakes": "how interface change can unlock behavior",
+      "format": "interface critique",
+      "requiredBeat": "Apply Google to how interface change can unlock behavior without flattening the source case."
+    },
+    {
+      "domain": "new-technology scan",
+      "audience": "product scout",
+      "stakes": "how technology shifts can make old motives easier",
+      "format": "trend scan",
+      "requiredBeat": "Apply Instagram filters to how technology shifts can make old motives easier without flattening the source case."
+    },
+    {
+      "domain": "cohort analysis desk",
+      "audience": "product analyst",
+      "stakes": "why a benchmark is a starting signal, not proof",
+      "format": "analytics caution",
+      "requiredBeat": "Apply five percent to why a benchmark is a starting signal, not proof without flattening the source case."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 13,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:55:57.484Z"
+}

@@ -58,14 +58,17 @@ export async function POST(req: Request) {
         : nowIso();
     const dayKey = toDayKey(occurredAt) || toDayKey(nowIso());
 
-    // Check the user's "Save Reading History" preference (server-side enforcement).
+    // Check the user's privacy preferences (server-side enforcement).
     // Reading progress (current chapter, lastActiveAt) is always updated since it's
-    // essential for "continue reading". Only readingDay records are gated.
+    // essential for "continue reading". Reading-history records are gated behind
+    // "Save Reading History"; usage analytics + approximate location are gated
+    // behind "Share Usage Analytics" (opt-in: off unless the user enabled it).
     const settingsItem = await getUserSettingsItem(tableName, user.sub);
     const privacy = settingsItem?.settings?.privacy as
-      | { saveReadingHistory?: boolean }
+      | { saveReadingHistory?: boolean; analyticsParticipation?: boolean }
       | undefined;
     const saveReadingHistory = privacy?.saveReadingHistory ?? true;
+    const analyticsParticipation = privacy?.analyticsParticipation ?? false;
 
     let readingDay = { totalActiveMs: 0 };
 
@@ -89,50 +92,54 @@ export async function POST(req: Request) {
       });
     }
 
-    // Analytics — fire-and-forget, includes device context from User-Agent
-    const ua = getUserAgentFromRequest(req);
-    const acceptLanguage = req.headers.get("accept-language") ?? undefined;
-    // Freeze the request headers for async use — Request.headers can't be
-    // accessed after the handler returns if the stream has closed.
-    const headersSnapshot = new Headers(req.headers);
+    // Usage analytics (session stats + approximate location) — fire-and-forget,
+    // and only when the user has opted in to "Share Usage Analytics". When opted
+    // out we never resolve location or write to the analytics table.
+    if (analyticsParticipation) {
+      const ua = getUserAgentFromRequest(req);
+      const acceptLanguage = req.headers.get("accept-language") ?? undefined;
+      // Freeze the request headers for async use — Request.headers can't be
+      // accessed after the handler returns if the stream has closed.
+      const headersSnapshot = new Headers(req.headers);
 
-    getBookAnalyticsTableName().then(async (analyticsTable) => {
-      if (!analyticsTable) return;
+      getBookAnalyticsTableName().then(async (analyticsTable) => {
+        if (!analyticsTable) return;
 
-      // Fire the session tracker immediately (non-blocking for geo).
-      analyticsTrackReadingSession(analyticsTable, {
-        userId: user.sub,
-        bookId,
-        deltaMs,
-        dayKey,
-        deviceType: ua.deviceType,
-        browserName: ua.browserName,
-        osName: ua.osName,
-      }).catch(() => {});
-
-      // Resolve location from headers (free) or IP lookup (external, cached)
-      const loc = await resolveLocation(headersSnapshot).catch(() => null);
-      if (loc) {
-        await analyticsSetUserLocale(analyticsTable, {
+        // Fire the session tracker immediately (non-blocking for geo).
+        analyticsTrackReadingSession(analyticsTable, {
           userId: user.sub,
-          countryCode: loc.countryCode ?? undefined,
-          countryName: loc.countryName ?? undefined,
-          regionCode: loc.regionCode ?? undefined,
-          regionName: loc.regionName ?? undefined,
-          city: loc.city ?? undefined,
-          viewerTimezone:
-            loc.timezone ??
-            headersSnapshot.get("cloudfront-viewer-time-zone") ??
-            undefined,
-          // loc.latitude/longitude are already coarsened to ~city level in
-          // location.ts. Do NOT fall back to the raw cloudfront-viewer-*
-          // headers — those are precise and would defeat the coarsening.
-          latitude: loc.latitude ?? undefined,
-          longitude: loc.longitude ?? undefined,
-          acceptLanguage,
+          bookId,
+          deltaMs,
+          dayKey,
+          deviceType: ua.deviceType,
+          browserName: ua.browserName,
+          osName: ua.osName,
         }).catch(() => {});
-      }
-    }).catch(() => {});
+
+        // Resolve location from headers (free) or IP lookup (external, cached)
+        const loc = await resolveLocation(headersSnapshot).catch(() => null);
+        if (loc) {
+          await analyticsSetUserLocale(analyticsTable, {
+            userId: user.sub,
+            countryCode: loc.countryCode ?? undefined,
+            countryName: loc.countryName ?? undefined,
+            regionCode: loc.regionCode ?? undefined,
+            regionName: loc.regionName ?? undefined,
+            city: loc.city ?? undefined,
+            viewerTimezone:
+              loc.timezone ??
+              headersSnapshot.get("cloudfront-viewer-time-zone") ??
+              undefined,
+            // loc.latitude/longitude are already coarsened to ~city level in
+            // location.ts. Do NOT fall back to the raw cloudfront-viewer-*
+            // headers — those are precise and would defeat the coarsening.
+            latitude: loc.latitude ?? undefined,
+            longitude: loc.longitude ?? undefined,
+            acceptLanguage,
+          }).catch(() => {});
+        }
+      }).catch(() => {});
+    }
 
     return bookOk({
       readingDay,

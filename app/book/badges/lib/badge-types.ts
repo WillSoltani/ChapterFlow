@@ -1,6 +1,16 @@
 import type { BadgeProgressStats } from "@/app/book/badges/lib/badge-ui-definitions";
 
-export type BadgeCategory = "consistency" | "mastery" | "books" | "exploration" | "notes" | "secret";
+// Categories mirror the canonical catalog (badge-ui-definitions.ts BadgeCategory).
+export type BadgeCategory =
+  | "Getting Started"
+  | "Consistency"
+  | "Reading Depth"
+  | "Mastery"
+  | "Books"
+  | "Examples"
+  | "Notes"
+  | "Exploration"
+  | "Premium";
 
 export type BadgeTier = "bronze" | "silver" | "gold" | "platinum" | "unique" | "secret";
 

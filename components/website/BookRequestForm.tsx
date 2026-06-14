@@ -19,7 +19,10 @@ function isValidEmail(email: string): boolean {
 
 export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFormProps) {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [bookTitle, setBookTitle] = useState(initialTitle);
+  // Seed the title once from the parent prop via a lazy initializer (avoids a
+  // setState-in-effect). The component is keyed by initialTitle upstream
+  // (BookRequestSection), so a new prefill remounts this with the fresh seed.
+  const [bookTitle, setBookTitle] = useState(() => initialTitle);
   const [authorName, setAuthorName] = useState("");
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<ValidationErrors>({});
@@ -58,16 +61,23 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
     if (!isFormValid) return;
 
+    const payload = {
+      title: bookTitle.trim(),
+      author: authorName.trim(),
+      email: email.trim(),
+    };
+
     setFormState("submitting");
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      setFormState("success");
-      onSuccess({
-        title: bookTitle.trim(),
-        author: authorName.trim(),
-        email: email.trim(),
+      const res = await fetch("/api/book-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
+      if (!res.ok) throw new Error(`request failed: ${res.status}`);
+      setFormState("success");
+      onSuccess(payload);
     } catch {
       setFormState("error");
     }
@@ -87,7 +97,11 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
     <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
       {/* Book title */}
       <div>
+        <label htmlFor="book-request-title" className="sr-only">
+          Book title
+        </label>
         <input
+          id="book-request-title"
           type="text"
           value={bookTitle}
           onChange={(e) => {
@@ -96,6 +110,8 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           }}
           onBlur={() => handleBlur("title", bookTitle)}
           placeholder="Enter book title..."
+          aria-invalid={!!errors.title && !!touched.title}
+          aria-describedby={errors.title && touched.title ? "book-request-title-error" : undefined}
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={{
             ...inputStyle(!!errors.title && !!touched.title),
@@ -106,8 +122,8 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           onFocus={(e) => {
             e.currentTarget.style.borderColor = errors.title && touched.title ? "var(--accent-rose)" : "var(--accent-blue)";
             e.currentTarget.style.boxShadow = errors.title && touched.title
-              ? "0 0 0 3px rgba(244,63,94,0.15)"
-              : "0 0 0 3px rgba(34,211,238,0.15)";
+              ? "0 0 0 3px var(--accent-rose-glow)"
+              : "0 0 0 3px var(--accent-cyan-glow)";
           }}
           onMouseLeave={() => {}}
           onBlurCapture={(e) => {
@@ -116,7 +132,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           }}
         />
         {errors.title && touched.title && (
-          <p className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-title-error" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.title}
           </p>
         )}
@@ -124,7 +140,11 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
       {/* Author name */}
       <div>
+        <label htmlFor="book-request-author" className="sr-only">
+          Author name (optional)
+        </label>
         <input
+          id="book-request-author"
           type="text"
           value={authorName}
           onChange={(e) => setAuthorName(e.target.value)}
@@ -133,7 +153,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           style={inputStyle(false)}
           onFocus={(e) => {
             e.currentTarget.style.borderColor = "var(--accent-blue)";
-            e.currentTarget.style.boxShadow = "0 0 0 3px rgba(34,211,238,0.15)";
+            e.currentTarget.style.boxShadow = "0 0 0 3px var(--accent-cyan-glow)";
           }}
           onBlurCapture={(e) => {
             e.currentTarget.style.borderColor = "var(--border-subtle)";
@@ -144,7 +164,11 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
       {/* Email */}
       <div>
+        <label htmlFor="book-request-email" className="sr-only">
+          Your email
+        </label>
         <input
+          id="book-request-email"
           type="email"
           value={email}
           onChange={(e) => {
@@ -152,14 +176,16 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
             if (touched.email) validateField("email", e.target.value);
           }}
           onBlur={() => handleBlur("email", email)}
-          placeholder="Your email, we will notify you when it is ready"
+          placeholder="Your email (so we can reach you)"
+          aria-invalid={!!errors.email && !!touched.email}
+          aria-describedby={errors.email && touched.email ? "book-request-email-error" : undefined}
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.email && !!touched.email)}
           onFocus={(e) => {
             e.currentTarget.style.borderColor = errors.email && touched.email ? "var(--accent-rose)" : "var(--accent-blue)";
             e.currentTarget.style.boxShadow = errors.email && touched.email
-              ? "0 0 0 3px rgba(244,63,94,0.15)"
-              : "0 0 0 3px rgba(34,211,238,0.15)";
+              ? "0 0 0 3px var(--accent-rose-glow)"
+              : "0 0 0 3px var(--accent-cyan-glow)";
           }}
           onBlurCapture={(e) => {
             e.currentTarget.style.borderColor = errors.email && touched.email ? "var(--accent-rose)" : "var(--border-subtle)";
@@ -167,7 +193,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           }}
         />
         {errors.email && touched.email && (
-          <p className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-email-error" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.email}
           </p>
         )}
@@ -177,9 +203,10 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
       <motion.button
         type="submit"
         disabled={!isFormValid || formState === "submitting"}
-        className="w-full h-12 rounded-lg text-[15px] font-semibold text-white cursor-pointer transition-all duration-200 flex items-center justify-center gap-2"
+        className="w-full h-12 rounded-lg text-[15px] font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
         style={{
-          background: "var(--accent-green)",
+          background: "var(--accent-teal)",
+          color: "var(--primary-foreground)",
           opacity: !isFormValid || formState === "submitting" ? 0.5 : 1,
           cursor: !isFormValid || formState === "submitting" ? "not-allowed" : "pointer",
           fontFamily: "var(--font-body)",
@@ -188,7 +215,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           isFormValid && formState !== "submitting"
             ? {
                 scale: 1.02,
-                boxShadow: "0 0 20px rgba(34,197,94,0.3)",
+                boxShadow: "var(--shadow-glow-cyan)",
               }
             : {}
         }
@@ -208,7 +235,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
                 cx="8"
                 cy="8"
                 r="6"
-                stroke="white"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeDasharray="28"
@@ -231,12 +258,23 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
         )}
       </motion.button>
 
-      {/* Social proof */}
+      {/* Error state — shown only when the submission actually failed */}
+      {formState === "error" && (
+        <p
+          className="text-[12px] text-center mt-1"
+          style={{ color: "var(--accent-rose)" }}
+          role="alert"
+        >
+          Something went wrong sending your request. Please try again.
+        </p>
+      )}
+
+      {/* Honest microcopy — a statement of intent, not a fabricated metric */}
       <p
         className="text-[12px] text-center mt-2"
         style={{ color: "var(--text-muted)" }}
       >
-        We have added 12 books from user requests this month.
+        We read every request and build the most-asked-for titles first.
       </p>
     </form>
   );

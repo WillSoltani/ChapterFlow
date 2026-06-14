@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-tipping-point-ch01",
+  "number": 1,
+  "title": "The Three Rules of Epidemics",
+  "coreMove": "Diagnose fast change by separating carriers, contagious features, and setting; a small shift in one lever can push a whole pattern past threshold.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "city clinic triage during an STI rise",
+      "audience": "health directors diagnosing sudden case growth",
+      "stakes": "a broad campaign could miss the network that is keeping syphilis active",
+      "format": "decision_memo",
+      "requiredBeat": "Rina separates core transmitters, clinic delay, and neighborhood movement"
+    },
+    {
+      "domain": "consumer product relaunch",
+      "audience": "founders reading weak adoption signals",
+      "stakes": "money may go into ads before the right carrier group is found",
+      "format": "planning_choice",
+      "requiredBeat": "Desmond uses Hush Puppies to look for carriers and context before spend"
+    },
+    {
+      "domain": "nonprofit reputation response",
+      "audience": "communications leads tracing a damaging rumor",
+      "stakes": "a search for blame could miss the network path that keeps the rumor alive",
+      "format": "mistake_recovery",
+      "requiredBeat": "Kavita treats apparent centrality like the Dugas tracing problem"
+    },
+    {
+      "domain": "college vaccination reminder",
+      "audience": "student health teams improving uptake",
+      "stakes": "a broad reminder may be noticed once and forgotten before action",
+      "format": "predict_reveal",
+      "requiredBeat": "Noor treats message persistence as its own lever"
+    },
+    {
+      "domain": "public transit safety campaign",
+      "audience": "operations teams watching rider behavior",
+      "stakes": "behavior may be blamed on riders while the setting keeps cueing disorder",
+      "format": "audit",
+      "requiredBeat": "Gideon studies context before blaming average riders"
+    },
+    {
+      "domain": "middle school attendance rumor",
+      "audience": "principals responding to fast-moving student talk",
+      "stakes": "punishing the loudest student could leave the rumor's path intact",
+      "format": "dilemma",
+      "requiredBeat": "Marisol separates carrier path from message content"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 3,
+      "evaluate": 2,
+      "create": 1,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:43:32.862Z"
+}

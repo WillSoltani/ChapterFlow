@@ -29,7 +29,7 @@ export function FinalCTALinks() {
       <Link
         href={AUTH_LOGIN_BOOK_URL}
         onClick={() => track("cta_click", { source: "final_cta_signin" })}
-        className="text-[14px] font-medium transition-colors duration-200 hover:text-[--text-heading] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded"
+        className="text-[14px] font-medium transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded"
         style={{ color: "var(--text-secondary)" }}
       >
         Already have an account? Sign in

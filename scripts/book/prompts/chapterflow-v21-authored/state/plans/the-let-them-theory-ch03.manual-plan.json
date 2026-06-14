@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-let-them-theory-ch03",
+  "number": 3,
+  "title": "Shocker: Life Is Stressful",
+  "coreMove": "A slow line cannot steal your day unless your body hands it over. The pause is what lets you spend the next hour on what matters.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "Source case: Garden-center checkout line",
+      "audience": "Marta and readers facing stress response interruption",
+      "stakes": "The cost of a minor delay is often smaller than the cost of the stress reaction attached to it.",
+      "format": "source scene",
+      "requiredBeat": "Show Marta using stress response interruption in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Airport and coughing passenger",
+      "audience": "Noor and readers facing stress response interruption",
+      "stakes": "Regulation does not require silence; it creates enough steadiness to choose an appropriate response.",
+      "format": "boundary choice",
+      "requiredBeat": "Show Noor using stress response interruption in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Dr. Aditi Neurukar on chronic stress",
+      "audience": "Otto and readers facing stress response interruption",
+      "stakes": "Stress management is partly a nervous-system skill, not merely a better attitude.",
+      "format": "repair decision",
+      "requiredBeat": "Show Otto using stress response interruption in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Garden",
+      "audience": "Paloma and readers facing stress response interruption",
+      "stakes": "The cost of a minor delay is often smaller than the cost of the stress reaction attached to it.",
+      "format": "planning choice",
+      "requiredBeat": "Show Paloma using stress response interruption in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Airport",
+      "audience": "Quinn and readers facing stress response interruption",
+      "stakes": "Regulation does not require silence; it creates enough steadiness to choose an appropriate response.",
+      "format": "misuse check",
+      "requiredBeat": "Show Quinn using stress response interruption in the source case without controlling another person."
+    },
+    {
+      "domain": "Source case: Aditi",
+      "audience": "Risa and readers facing stress response interruption",
+      "stakes": "Stress management is partly a nervous-system skill, not merely a better attitude.",
+      "format": "reflection",
+      "requiredBeat": "Show Risa using stress response interruption in the source case without controlling another person."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T08:46:57.475Z"
+}

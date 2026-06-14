@@ -1,0 +1,70 @@
+{
+  "chapterId": "hooked-ch01",
+  "number": 1,
+  "title": "The Habit Zone",
+  "coreMove": "A product belongs in the Habit Zone only when a real behavior happens often enough and feels useful enough to become the user's default answer.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "search analytics review",
+      "audience": "search product lead",
+      "stakes": "whether a rival can beat habit with marginal quality",
+      "format": "data-first",
+      "requiredBeat": "Apply Google to whether a rival can beat habit with marginal quality without flattening the source case."
+    },
+    {
+      "domain": "commerce roadmap meeting",
+      "audience": "marketplace founder",
+      "stakes": "how to compete with Amazon without faking daily use",
+      "format": "boardroom",
+      "requiredBeat": "Apply Amazon to how to compete with Amazon without faking daily use without flattening the source case."
+    },
+    {
+      "domain": "behavior science workshop",
+      "audience": "research translator",
+      "stakes": "why a fixed habit deadline is misleading",
+      "format": "teaching scene",
+      "requiredBeat": "Apply University College London to why a fixed habit deadline is misleading without flattening the source case."
+    },
+    {
+      "domain": "pricing committee",
+      "audience": "growth analyst",
+      "stakes": "whether habitual use can support pricing power",
+      "format": "economic case",
+      "requiredBeat": "Apply Google to whether habitual use can support pricing power without flattening the source case."
+    },
+    {
+      "domain": "customer interview lab",
+      "audience": "product researcher",
+      "stakes": "whether a nice-to-have service has become painful to lose",
+      "format": "interview",
+      "requiredBeat": "Apply Amazon to whether a nice-to-have service has become painful to lose without flattening the source case."
+    },
+    {
+      "domain": "trust review",
+      "audience": "product ethicist",
+      "stakes": "how to separate useful habit from harmful compulsion",
+      "format": "boundary audit",
+      "requiredBeat": "Apply addiction to how to separate useful habit from harmful compulsion without flattening the source case."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "remember": 1,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T05:55:57.482Z"
+}

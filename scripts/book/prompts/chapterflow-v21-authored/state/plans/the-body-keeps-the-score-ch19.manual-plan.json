@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-body-keeps-the-score-ch19",
+  "number": 19,
+  "title": "Applied Neuroscience: Rewiring the Fear-Driven Mind with Brain/Computer Interface Technology",
+  "coreMove": "Neurofeedback is a training route, not a miracle: use real-time signals to reward steadier rhythms, then keep claims tied to skilled practice and research.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "clinical research lab",
+      "audience": "trauma clinicians learning EEG context",
+      "stakes": "Ernest Hartmann's Boston State Hospital sleep laboratory shows why EEG tracings can reveal regulation problems ordinary symptom reports miss.",
+      "format": "lab_aftermath",
+      "requiredBeat": "Use the sleep-lab trace as a doorway into regulation rather than as a diagnostic shortcut."
+    },
+    {
+      "domain": "therapy consultation",
+      "audience": "clinicians considering neurofeedback",
+      "stakes": "Sebern Fisher's 2007 neurofeedback work with Lisa shows how severe dissociation may need a regulation route beyond verbal insight.",
+      "format": "dialogue_consult",
+      "requiredBeat": "Frame neurofeedback as active training for dysregulation rather than passive monitoring."
+    },
+    {
+      "domain": "school neuropsychology",
+      "audience": "evaluators reading trauma-related attention problems",
+      "stakes": "Alexander McFarlane's 2000 work makes irrelevant information a clinical problem rather than a classroom nuisance.",
+      "format": "data_first",
+      "requiredBeat": "Show poor filtering during an ordinary task, outside direct traumatic reminders."
+    },
+    {
+      "domain": "outpatient neurofeedback session",
+      "audience": "clinicians translating EEG insight into practice",
+      "stakes": "EEG tracings from the Hartmann sleep-lab tradition matter only when a session tracks whether regulation changes the person's lived state.",
+      "format": "mid_action",
+      "requiredBeat": "Connect visible brain rhythms to present-moment regulation without making the equipment the hero."
+    },
+    {
+      "domain": "clinic program review",
+      "audience": "directors building ethical treatment materials",
+      "stakes": "The promise of neurofeedback needs research caution, especially when EEG frequency-band language can be oversold.",
+      "format": "place_first",
+      "requiredBeat": "Temper enthusiasm about delta, theta, alpha, and beta with disciplined evidence claims."
+    },
+    {
+      "domain": "community clinic board meeting",
+      "audience": "program leaders deciding how to evaluate a new service",
+      "stakes": "Lisa's severe childhood abuse and neurofeedback improvement can motivate a program without being treated as proof of universal efficacy.",
+      "format": "aftermath_debrief",
+      "requiredBeat": "Turn a dramatic case into a disciplined evidence plan."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 2,
+      "remember": 1,
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-10T00:54:13.983Z"
+}

@@ -1,0 +1,68 @@
+{
+  "chapterId": "rework-ch16",
+  "number": 16,
+  "title": "Start a business, not a startup",
+  "coreMove": "A startup is still a business: it must earn more than it spends. Make the path to a paying customer visible from day one, even if first amounts stay modest.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "bootstrapped software venture",
+      "audience": "founders choosing how the venture gets funded",
+      "stakes": "build on customer payment or on investor capital",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist picks customer-funded over investor-funded software"
+    },
+    {
+      "domain": "consumer subscription venture",
+      "audience": "teams running on a raise with no paid users",
+      "stakes": "keep spending capital or test whether anyone will pay",
+      "format": "dilemma",
+      "requiredBeat": "the protagonist sees investor money hiding the willingness-to-pay test"
+    },
+    {
+      "domain": "marketplace venture",
+      "audience": "teams deferring the profit question",
+      "stakes": "treat later as a schedule or as a missing answer",
+      "format": "contrast",
+      "requiredBeat": "the protagonist exposes deferred profit as a masked unproven model"
+    },
+    {
+      "domain": "B2B software venture",
+      "audience": "builders deciding when profit pressure starts",
+      "stakes": "treat profit as early constraint or late cleanup",
+      "format": "before_after",
+      "requiredBeat": "profit pressure sharpens value, support, pricing, and restraint"
+    },
+    {
+      "domain": "hardware-software venture",
+      "audience": "founders confusing the edge with instant riches",
+      "stakes": "demand instant large profit or a visible path",
+      "format": "decision_point",
+      "requiredBeat": "the protagonist applies the edge as a visible path, not instant profit"
+    },
+    {
+      "domain": "design-studio venture",
+      "audience": "founders who think business sounds small-minded",
+      "stakes": "chase startup mythology or build an ambitious business",
+      "format": "reflection",
+      "requiredBeat": "the protagonist reframes business as clarifying, not limiting"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "analyze": 2,
+      "evaluate": 3,
+      "apply": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 11,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-04T12:12:30.764Z"
+}

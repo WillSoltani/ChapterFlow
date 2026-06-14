@@ -1,0 +1,541 @@
+{
+  "bookId": "the-let-them-theory",
+  "title": "The Let Them Theory",
+  "author": "Mel Robbins",
+  "promotedAt": "2026-06-03T08:47:16.260Z",
+  "chapterCount": 20,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "After someone stops managing every detail of a loved one's choices, what does control separation say returns to them?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"oakley and his friends\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Keon takes a twenty-minute walk around the block to cool off after the girls' weekend social-media spiral leaves him stewing over a trip he was left out of. Partway around, he notices he is using let…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A reader sees the two steps as separate halves and asks what each one actually does. Which description is accurate?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "After the weekend-photos spiral, what is Chris on the couch doing that makes the moment useful?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a person stops wrestling with whether the friends should have invited them, what actually comes back to them?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A friend wants to start the practice the next time she feels left out. What is the right first move?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the friends are allowed\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "On a delayed evening flight, Noor is buckled into 14C when the passenger directly behind her starts a wet, uncovered cough every few minutes. Her shoulders climb and a sigh builds in her chest. This …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Paloma is two minutes from the school pickup line when a driver cuts her off and throws up a rude gesture at the red light. Her heart spikes and she wants to lean on the horn. She remembers the Garde…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "After someone gets good at stress response interruption on everyday annoyances, what actually returns to them?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Looking closely at the airport scene, what distinction is it built to teach that the garden-center line does not?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "On her evening walk after another long day, Yasmin notices she has spent the whole loop narrating an imaginary argument with her boss again. The hostility Aditi connects to burnout has become her def…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Twenty minutes before a community talk, Anika stands in a room of empty folding chairs, rehearsing how to soften her message so a skeptical relative in the front row will not frown. Mary Oliver's que…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A person says, before I share my new art online I just need to be certain no one will mock it. How sound is that plan?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Late one evening after a heavy holiday dinner, Jules notices a comfortable lie taking shape: because his mother grew up controlling and fearful, maybe he should just absorb her constant cutting remar…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When Lisa Bilyeu describes a frame of reference, what is she pointing to in a tense family moment?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 4 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A friend throws a guilt trip to get you to drop your weekend plans. Applying the Lego aisle lesson, what do you do?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "memorableLines[1]",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "It feels like honesty and it works like a wound."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.deepRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Measuring yourself against a fixed advantage and then treating the difference as evidence that you are worth less is a quiet form of self-harm. It feels like honesty and it works like a wound. Sawyer…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "To turn the downward look the clean-water example points to into a daily habit, which design works best?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B7",
+            "severity": "minor",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 2 paragraphs open with \"there is\" — vary paragraph openers"
+          },
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"a different body and\" appears in both deepRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 10,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Late one night Isak is about to quit his stable job to chase a flashy creator's lifestyle, fired up by envy alone. Before he answers the urge, he runs the test the way Molly's case demands: is this o…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 11,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "A13",
+            "severity": "major",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway opens with 3 commas in the first 80 characters — likely a run-on opener",
+            "evidence": "Adult friendships drift because proximity, timing, and shared energy fade, not b"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Late one night Paola scrolls back through a text thread with a college friend that used to buzz daily and now goes weeks between messages. The grief is real, and she thinks of how the Great Scatterin…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 12,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 10.3 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 3 four-plus-syllable words (max 2 for grade 8–9 reader). Replace academic vocabulary with plain words."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "E3",
+            "severity": "minor",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead: opens with a definition — start with a scene, a specific image, or a direct question instead"
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When someone describes going first in adult friendship, which behavior captures it most accurately?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 14,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.6 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[2].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"friend\", \"peloton\", \"passive-aggressive\", \"personal\", \"attempts\", \"healthy\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "Late at night, after another argument over money, Faye sits with the spreadsheet her partner keeps abandoning and feels the pull to just take over the bills herself. She recalls Dr"
+          },
+          {
+            "catalogId": "SC9.example_not_source_grounded",
+            "severity": "major",
+            "unit": "examples",
+            "message": "examples[4].scenario does not reference any named entity from this chapter's source notes (sidecar offers anchors like \"friend\", \"peloton\", \"passive-aggressive\", \"personal\", \"attempts\", \"healthy\"). Rewrite this scenario to use one of the chapter's namedExamples — invented set pieces (a generic name + a generic location) drift into templating because they're untethered from real source material.",
+            "evidence": "On a Wednesday evening with her journal open, Hila notices she has slid from supporting her husband's health into quietly policing his snacks, much like the wife in Dr. K's marriag"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "On a Wednesday evening with her journal open, Hila notices she has slid from supporting her husband's health into quietly policing his snacks, much like the wife in Dr. K's marriage story who turned …"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 15,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 16,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "B4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "banned phrase \"It feels like\" — Counter opener template. 3 of 6 Seeking Wisdom chapters opened with 'It feels like X. The real Y is Z.' Banning the opener stem.",
+            "evidence": "Most of the pain here comes from a single confusion: people treat rescuing and supporting as the same act of love, when one quietly steals strength and the other builds it. Robbins is blunt about whe…"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Using the ball-field image, which everyday move shows a helper crossing from support into enabling?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 17,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "After reading how Chris's brother refused the loan, Amara feels ready to get tough with her struggling adult daughter and is about to block her number and stop all contact. Sitting in the parking lot…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 18,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 3/6 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When someone treats dating as choosing love instead of chasing love, what are they actually doing?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Why does the dating-app world tend to pull people toward chasing the wrong fit instead of being genuinely chosen?"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 19,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.8 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When someone runs a commitment clarity conversation the way Audrey did, what are they primarily trying to accomplish?"
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "After a calm talk, Lena's partner clearly says he does not want marriage. Analyze where her power now lives."
+          },
+          {
+            "catalogId": "D1",
+            "severity": "major",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Adapting Audrey's conversation for a partner who avoids labels, which line best fits the spirit of commitment clarity?"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"sat matthew hussey down\" appears in both fastRead and fullRead — vary one of them"
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 42
+  },
+  "bookGate": {
+    "bookId": "the-let-them-theory",
+    "chapterCount": 20,
+    "passed": true,
+    "findings": [],
+    "stats": {
+      "answerPositionCounts": [
+        60,
+        60,
+        60
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 180,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "the-let-them-theory",
+        "chapterCount": 20,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  }
+}

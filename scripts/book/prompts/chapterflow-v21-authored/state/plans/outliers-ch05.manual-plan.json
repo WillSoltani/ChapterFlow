@@ -1,0 +1,69 @@
+{
+  "chapterId": "outliers-ch05",
+  "number": 5,
+  "title": "The Three Lessons of Joe Flom",
+  "coreMove": "Historical fit appears when background, exclusion, birth cohort, and market timing converge so yesterday's unwanted work becomes tomorrow's central skill.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "law-firm staffing meeting",
+      "audience": "junior lawyers choosing practice areas",
+      "stakes": "a low-status desk may become tomorrow's core skill",
+      "format": "decision_point",
+      "requiredBeat": "Use Joe Flom and Skadden Arps to choose practice work."
+    },
+    {
+      "domain": "startup advisory service",
+      "audience": "founders choosing neglected services",
+      "stakes": "a company may miss a market shift because the work looks ugly",
+      "format": "audit",
+      "requiredBeat": "Apply hostile takeover work to neglected startup services."
+    },
+    {
+      "domain": "family retail shop",
+      "audience": "owners using inherited work habits",
+      "stakes": "family skill may be missed because it looks ordinary",
+      "format": "scene",
+      "requiredBeat": "Use Louis and Regina Borgenicht to see family work habits."
+    },
+    {
+      "domain": "bar association program",
+      "audience": "professional groups mentoring outsiders",
+      "stakes": "young lawyers may be steered only toward already crowded prestige paths",
+      "format": "postmortem",
+      "requiredBeat": "Use Flom to review mentorship for outsider lawyers."
+    },
+    {
+      "domain": "regional law firm training",
+      "audience": "partners designing apprenticeship reps",
+      "stakes": "associates may avoid the practice area that will teach durable skills",
+      "format": "planning_choice",
+      "requiredBeat": "Use hostile takeover practice to design legal training."
+    },
+    {
+      "domain": "manufacturing strategy review",
+      "audience": "leaders judging family know-how",
+      "stakes": "a firm may overlook old skills just as demand returns",
+      "format": "reflection",
+      "requiredBeat": "Use historical fit to judge family manufacturing knowledge."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "understand": 1,
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T06:26:52.517Z"
+}

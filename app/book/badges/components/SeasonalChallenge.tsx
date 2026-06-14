@@ -1,12 +1,16 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { SeasonalChallenge as SeasonalChallengeType } from "../lib/badge-types";
 
 type SeasonalChallengeProps = {
   challenge: SeasonalChallengeType | null;
+  /** When set, the whole card links here (the matching event on /book/events). */
+  href?: string;
 };
 
-export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
+export function SeasonalChallenge({ challenge, href }: SeasonalChallengeProps) {
   if (!challenge) return null;
 
   const now = new Date();
@@ -32,8 +36,8 @@ export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
 
   const daysColor = onTrack ? "var(--accent-emerald)" : "var(--accent-amber)";
 
-  return (
-    <div className="relative overflow-hidden rounded-2xl border border-accent-amber/20 bg-(--cf-surface-muted) p-5 backdrop-blur-xl">
+  const inner = (
+    <>
       <div
         className="pointer-events-none absolute inset-0 rounded-2xl"
         style={{
@@ -45,7 +49,12 @@ export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
         <div className="flex items-center gap-3">
           <span className="text-4xl">{challenge.badgeIcon}</span>
           <div>
-            <h3 className="text-base font-semibold text-(--cf-text-1)">{challenge.title}</h3>
+            <div className="flex items-center gap-1.5">
+              <h3 className="text-base font-semibold text-(--cf-text-1)">{challenge.title}</h3>
+              {href && (
+                <ArrowRight className="h-3.5 w-3.5 text-(--cf-text-soft) transition-transform group-hover:translate-x-0.5" />
+              )}
+            </div>
             <p className="mt-0.5 text-sm text-(--cf-text-3)">{challenge.description}</p>
           </div>
         </div>
@@ -69,6 +78,23 @@ export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
           <p className="text-xs text-(--cf-text-soft)">remaining</p>
         </div>
       </div>
-    </div>
+    </>
   );
+
+  const cardClass =
+    "group relative block overflow-hidden rounded-2xl border border-accent-amber/20 bg-(--cf-surface-muted) p-5 backdrop-blur-xl";
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        aria-label={`${challenge.title} — view event`}
+        className={`${cardClass} transition hover:border-accent-amber/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)`}
+      >
+        {inner}
+      </Link>
+    );
+  }
+
+  return <div className={cardClass}>{inner}</div>;
 }

@@ -1,0 +1,2683 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "the-tipping-point-v21-1780465422607",
+  "createdAt": "2026-06-03T05:43:42.607Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "the-tipping-point",
+    "title": "The Tipping Point",
+    "author": "Malcolm Gladwell",
+    "categories": [
+      "Psychology",
+      "Business",
+      "Communication",
+      "Behavioral Economics"
+    ],
+    "tags": [
+      "social epidemics",
+      "influence",
+      "networks",
+      "stickiness",
+      "context",
+      "change"
+    ]
+  },
+  "chapters": [
+    {
+      "chapterId": "the-tipping-point-ch01",
+      "number": 1,
+      "title": "The Three Rules of Epidemics",
+      "readingTimeMinutes": 11,
+      "hook": "Baltimore's syphilis map changed before the city understood what had moved.",
+      "counterintuition": "A sudden outbreak can begin with a tiny shift in who carries it, what clings to memory, or where people meet. Big social change often asks for narrow diagnosis before broad force.",
+      "tryThisNow": "Pick one stalled change and write three headings on a note: carrier, message, setting. Put one concrete fact under each before choosing your next move.",
+      "keyTakeaway": "Diagnose fast change by separating carriers, contagious features, and setting; a small shift in one lever can push a whole pattern past threshold.",
+      "breakdown": {
+        "fastRead": "Baltimore saw syphilis rise in the 1990s, and no single cause explained the jump. Crack markets changed where people met. Clinics had less room to treat cases fast. Housing demolition scattered old networks across new blocks. Each fact was small beside the city. Together they changed the map.\n\n+The rule is simple: treat social spread like an epidemic. Ask who carries the agent, what makes it lodge, and where the setting lowers resistance. John Potterat's work on core transmitters shows why average cases mislead. Hush Puppies shows how a fad can leap after the right carriers notice it. The point is not mystery. It is diagnosis before action.",
+        "deepRead": "Transmission is uneven, so averages hide the path of spread. In a disease outbreak, one person with many contacts can matter more than dozens of isolated cases. In a social fad, one small group can move a style from odd to coveted. The three epidemic levers keep those facts apart: carrier, agent, and setting.\n\n+John Potterat's research on sexually transmitted disease makes the first lever vivid. The task is not to blame one person. It is to see network position. A core transmitter touches enough paths that a slow infection can keep moving. The Gaetan Dugas AIDS tracing story has the same danger. It can tempt people into moral judgment, when the useful lesson is structural: some people sit at intersections.\n\n+Baltimore adds the other two levers. Crack cocaine changed movement and risk. Clinic cuts slowed treatment. Housing demolition moved residents and altered contact patterns. None of those causes had to look huge at first. Their force came from timing and fit.\n\n+Hush Puppies extends the model beyond disease. A quiet shoe can become a signal when the carrier group gives it status and the setting makes that signal visible. The practical move is to resist one-cause stories. First split the outbreak into people, message, and place. Then decide where a small change could do the most work.",
+        "fullRead": "Hush Puppies looked like a fashion surprise, not a public health case. A shoe that had seemed dated began to appear on the feet of downtown style carriers, and then the signal moved. The lesson is not that shoes behave exactly like bacteria. It is that social spread can cross a threshold after a small change in attention, status, or setting.\n\n+Baltimore gives the harder version of the same logic. Syphilis did not rise because one neat cause arrived. Crack cocaine markets drew people into different patterns of contact. Public clinics lost some power to diagnose and treat quickly. Housing demolition broke up old blocks and sent people into new neighborhoods. The visible outbreak was one curve. Under it sat several moving parts.\n\n+The first lever is the carrier. John Potterat's work on core transmitters shows why a few people can hold a network together. In many epidemics, the average infected person is not the main unit. The critical unit is the person with reach, frequency, and placement. Gaetan Dugas became a famous AIDS tracing figure for this reason, though the useful claim is not blame. Network position can make a carrier look outsized.\n\n+The second lever is the agent. Some messages pass through people with no grip. Others remain in mind long enough to be retold, tried, worn, or acted on. In the opening frame, this is the Stickiness Factor waiting to be named. Reach without retention leaks away. A fad, warning, habit, or health prompt must stay alive after first contact.\n\n+The third lever is context. Behavior bends when the setting changes the cost, cue, stress, or timing around a choice. A city block, a clinic waiting room, a crowded party, or a school hallway can make the same person act in a new way. Context is easy to miss because it looks like background. In an epidemic frame, background can be a cause.\n\n+Good diagnosis keeps the levers separate before joining them again. A clinic delay may matter only because a network has active carriers. A memorable warning may fail if the room gives no cue to act. A visible setting may matter only after a small group gives the behavior status. The frame protects the reader from treating one true detail as the whole story.\n\n+The limit is important. The model does not promise a clever hidden cause for every large shift. It asks for disciplined sorting. Some outbreaks need carrier targeting. Some need a stickier message. Some need a changed setting. Many need more than one. The power comes from testing small, specific levers before spending all effort on broad pressure."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Rina's clinic memo",
+          "tags": [
+            "health",
+            "network spread",
+            "Baltimore"
+          ],
+          "planSpec": {
+            "domain": "city clinic triage during an STI rise",
+            "audience": "health directors diagnosing sudden case growth",
+            "stakes": "a broad campaign could miss the network that is keeping syphilis active",
+            "format": "decision_memo",
+            "requiredBeat": "Rina separates core transmitters, clinic delay, and neighborhood movement"
+          },
+          "scenario": "Rina opens the 7:15 a.m. case board in a Baltimore health office and sees syphilis visits clustered near two closed clinics. As deputy director, she has to brief the mayor before the noon budget call. The easy memo blames low awareness. Her second pass marks three columns: core transmitters, treatment delay, and housing moves after demolition.",
+          "whatToDo": "Rina should frame the memo around the three epidemic levers, then ask for one test in each column before funding a citywide awareness push.",
+          "whyItMatters": "The Baltimore pattern shows why one broad cause can mislead. Sorting people, agent, and context helps public health action meet the actual path of spread."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Desmond tests the shoe signal",
+          "tags": [
+            "product",
+            "Hush Puppies",
+            "carriers"
+          ],
+          "planSpec": {
+            "domain": "consumer product relaunch",
+            "audience": "founders reading weak adoption signals",
+            "stakes": "money may go into ads before the right carrier group is found",
+            "format": "planning_choice",
+            "requiredBeat": "Desmond uses Hush Puppies to look for carriers and context before spend"
+          },
+          "scenario": "Desmond stands at 9:40 p.m. outside a Nolita sample sale with photos of old Hush Puppies on his phone. His footwear startup has cash for one campaign, and the board wants subway ads by Friday. He has to choose between reach and diagnosis. He counts who wears the odd style, where they gather, and which story makes the shoe feel scarce.",
+          "whatToDo": "Desmond should study the carrier group and the setting before buying ads, using Hush Puppies as a warning that status can move through narrow paths.",
+          "whyItMatters": "A product can fail with broad reach if the right transmitters never make it visible. The carrier lever can matter before mass attention."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Kavita redraws the rumor path",
+          "tags": [
+            "communications",
+            "Dugas",
+            "network tracing"
+          ],
+          "planSpec": {
+            "domain": "nonprofit reputation response",
+            "audience": "communications leads tracing a damaging rumor",
+            "stakes": "a search for blame could miss the network path that keeps the rumor alive",
+            "format": "mistake_recovery",
+            "requiredBeat": "Kavita treats apparent centrality like the Dugas tracing problem"
+          },
+          "scenario": "Kavita sits in a Chicago conference room at 3:05 p.m. with a donor Slack thread projected on the wall. One volunteer appears in every screenshot, so the director wants a public reprimand. Kavita must answer before the board meeting starts. She treats the case like Gaetan Dugas network tracing: central on the map does not mean sole cause.",
+          "whatToDo": "Kavita should map the rumor's intersections before assigning blame, then address the rooms and handoffs that keep repeating the claim.",
+          "whyItMatters": "The Dugas example warns against turning network position into moral certainty. The useful question is how the path works."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Noor rewrites the reminder",
+          "tags": [
+            "student health",
+            "stickiness",
+            "message"
+          ],
+          "planSpec": {
+            "domain": "college vaccination reminder",
+            "audience": "student health teams improving uptake",
+            "stakes": "a broad reminder may be noticed once and forgotten before action",
+            "format": "predict_reveal",
+            "requiredBeat": "Noor treats message persistence as its own lever"
+          },
+          "scenario": "Noor checks a 10:30 a.m. dashboard at the Rutgers student health desk and sees that vaccine emails are opened but appointments stay flat. Her supervisor asks for a larger mailing list by lunch. Noor has to decide before the portal batch closes. She predicts the problem is not reach but stickiness: the note vanishes before students pick a time.",
+          "whatToDo": "Noor should alter the message so it carries one visible next step, then test whether appointment clicks rise before expanding the list.",
+          "whyItMatters": "The Stickiness Factor separates contact from action. A message that fails to lodge can touch many people and still leave behavior unchanged."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Gideon audits the platform",
+          "tags": [
+            "transit",
+            "context",
+            "behavior"
+          ],
+          "planSpec": {
+            "domain": "public transit safety campaign",
+            "audience": "operations teams watching rider behavior",
+            "stakes": "behavior may be blamed on riders while the setting keeps cueing disorder",
+            "format": "audit",
+            "requiredBeat": "Gideon studies context before blaming average riders"
+          },
+          "scenario": "Gideon walks the Queensboro platform at 6:20 p.m. with a clipboard, a radio, and three complaint logs. Riders keep crossing the yellow line near one stairwell. The poster draft blames carelessness, but he must approve it before the print window. He notes crowding, glare, and a broken sign as context cues, not rider traits.",
+          "whatToDo": "Gideon should fix the platform cues before scolding riders, because the Power of Context asks what the setting is inviting people to do.",
+          "whyItMatters": "Context can make behavior look like character. A small environmental cue may be the cheapest point of intervention."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Marisol separates hallway talk",
+          "tags": [
+            "school",
+            "rumor",
+            "diagnosis"
+          ],
+          "planSpec": {
+            "domain": "middle school attendance rumor",
+            "audience": "principals responding to fast-moving student talk",
+            "stakes": "punishing the loudest student could leave the rumor's path intact",
+            "format": "dilemma",
+            "requiredBeat": "Marisol separates carrier path from message content"
+          },
+          "scenario": "Marisol hears the first chant at 8:02 a.m. beside the eighth-grade lockers in Fresno. Students say Friday attendance will not count, and three homerooms are already repeating it. As principal, she has to speak before first period ends. Punishing the loudest student is tempting, but she separates the carrier path from the sticky false claim.",
+          "whatToDo": "Marisol should correct the claim at the hallway junction where it travels fastest, using the carrier route and message wording as separate facts.",
+          "whyItMatters": "A rumor spreads through both people and content. Treating the loudest voice as the whole cause misses the epidemic structure."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A city sees a sudden rise in clinic visits after two neighborhood health offices close and several housing blocks are demolished. Which first diagnosis best fits the epidemic frame?",
+            "choices": [
+              "Separate carriers, message features, and setting changes before choosing the intervention.",
+              "Fund a general awareness campaign because the clinic rise proves residents need more warnings.",
+              "Search for the single resident who appears in the most clinic files and center the response there."
+            ],
+            "correctIndex": 0,
+            "explanation": "The epidemic frame starts by sorting the levers. Clinic access and housing movement point to context, while carrier patterns may still matter. A broad campaign or a single culprit skips the diagnosis.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "When a startup notices that its niche shoe is worn by a few downtown stylists, the team wants to buy national ads. What should the Hush Puppies lesson make them check first?",
+            "choices": [
+              "Whether the national ads can mention every feature customers listed in interviews.",
+              "Whether the stylists are carriers who make the shoe visible in the right setting.",
+              "Whether the company can lower the price enough for large retailers to accept it."
+            ],
+            "correctIndex": 1,
+            "explanation": "Hush Puppies points to carrier position and social setting before mass reach. The stylists may create the signal that lets the product tip; price and feature lists do not test that path.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A donor rumor map shows one volunteer near many message paths. The director wants to blame that volunteer by name. Which response best preserves the Gaetan Dugas lesson?",
+            "choices": [
+              "Ask the volunteer to deny the rumor publicly so donors can see a clear response.",
+              "Remove the volunteer from all donor channels while the nonprofit drafts a statement.",
+              "Treat centrality as network evidence and inspect the handoffs that make the rumor travel."
+            ],
+            "correctIndex": 2,
+            "explanation": "The Dugas story warns that a central node can be mistaken for sole cause or moral blame. Network position tells the team where to inspect transmission, not whom to condemn first.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Your campus email about flu shots gets opened often, but appointments do not rise. Which change tests the agent lever rather than the carrier or context lever?",
+            "choices": [
+              "Rewrite the email around one appointment action that students can remember after closing it.",
+              "Ask resident advisers with many friendships to forward the same email in their halls.",
+              "Move the clinic table to the dining hall so students pass it after lunch."
+            ],
+            "correctIndex": 0,
+            "explanation": "The agent lever asks whether the message sticks after contact. Resident advisers test carriers, and the dining hall tests context. A clearer appointment action tests retention.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Which test best reveals whether a transit safety problem is a Power of Context issue?",
+            "choices": [
+              "Compare riders who break the rule with riders who obey it and rank their attitudes.",
+              "Change the confusing platform cue for one week and watch whether the same riders behave differently.",
+              "Print a stronger warning poster that tells riders the rule has been ignored too often."
+            ],
+            "correctIndex": 1,
+            "explanation": "Context is tested by altering the setting around the same behavior. If the platform cue changes conduct, the issue was not just rider attitude or weak warning language.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A health team keeps asking for the average patient's behavior during an outbreak. What does John Potterat's core transmitter work challenge in that habit?",
+            "choices": [
+              "The team should focus only on medical treatment because network data can distract the clinic.",
+              "The team should count public fear because emotion explains why patients avoid treatment.",
+              "The team should inspect high-contact positions because average cases can hide the active path."
+            ],
+            "correctIndex": 2,
+            "explanation": "Potterat's work makes uneven transmission visible. Averages can blur the few highly connected cases that keep spread alive, so contact position belongs in the diagnosis.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "If a school rumor moves through one hallway, one catchy sentence, and three socially active students, which plan fits the three-lever frame?",
+            "choices": [
+              "Map the students, replace the sentence, and correct the hallway handoff where the rumor travels.",
+              "Call an assembly so the principal can warn every grade about repeating unverified claims.",
+              "Discipline the three students in private and let teachers decide how to handle hallway talk."
+            ],
+            "correctIndex": 0,
+            "explanation": "The three-lever frame separates carrier, agent, and context. The school plan addresses all three without assuming one assembly or private discipline will reach the actual route.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A colleague says large public shifts must have large public causes. Which Baltimore detail most directly weakens that claim?",
+            "choices": [
+              "The city had more than one expert explanation, so no diagnosis could be useful.",
+              "Several small changes in clinics, crack markets, and housing movement combined into one spike.",
+              "The syphilis rise was medical, so the lesson should stay inside public health."
+            ],
+            "correctIndex": 1,
+            "explanation": "Baltimore weakens proportional thinking. Clinic capacity, drug-market movement, and housing disruption were separate shifts that combined into a sudden public outcome.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A product team has reach, a memorable slogan, and no setting where customers see one another using the product. What is the missing diagnostic question?",
+            "choices": [
+              "Can the team make the slogan longer so customers receive more reasons to buy?",
+              "Can the team survey a broader sample before deciding whether the product has appeal?",
+              "Where does the setting make use visible enough for the behavior to spread?"
+            ],
+            "correctIndex": 2,
+            "explanation": "Reach and message do not settle the context lever. The team needs to find where use becomes visible and socially meaningful enough for spread to build.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What are the three epidemic levers?",
+          "back": "Carrier, agent, and context: who transmits, what sticks, and where the setting makes spread easier or harder.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why does the Baltimore syphilis case resist a one-cause explanation?",
+          "back": "Crack markets, clinic capacity, and housing demolition changed different parts of the system at once, so the visible spike came from interacting levers.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "What does John Potterat's core transmitter work add to diagnosis?",
+          "back": "It shows that spread is uneven. The average participant may matter less than a few highly connected people who keep paths open.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "What is the useful reading of the Gaetan Dugas tracing story?",
+          "back": "Network centrality is evidence about transmission paths, not proof of personal blame or a single source.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card05",
+          "front": "How does Hush Puppies fit the epidemic model?",
+          "back": "The shoe revival shows that a social signal can tip when the right carriers make it visible in the right places.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card06",
+          "front": "What mistake does the three-lever frame prevent?",
+          "back": "It prevents jumping from a large outcome to one large cause. The frame asks which small lever changed before choosing action.",
+          "difficulty": "easy"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Run A Three Lever Diagnosis",
+        "coreSkill": "Before reacting to a fast change, split the pattern into carrier, agent, and context. Name one observable fact for each lever. Then choose the smallest test that would show which lever is doing real work.",
+        "ifThenPlans": [
+          {
+            "context": "A trend rises faster than expected",
+            "plan": "If the curve jumps, then list the carrier group before debating the message. Ask who touches more paths than an average participant."
+          },
+          {
+            "context": "A message reaches people but action stays flat",
+            "plan": "If contact is high and behavior is low, then test stickiness. Rewrite the message around one remembered action."
+          },
+          {
+            "context": "People act differently in one place",
+            "plan": "If the same people change behavior by location, then inspect context. Alter one cue in the setting before blaming character."
+          },
+          {
+            "context": "The team wants one simple culprit",
+            "plan": "If the room hunts for a single cause, then pause the decision. Require one fact for each epidemic lever."
+          }
+        ],
+        "twentyFourHourChallenge": "Choose one active problem at work or home. Write a carrier fact, an agent fact, and a context fact, then run one low-cost test on the weakest column.",
+        "weeklyPractice": "Once this week, review a fast-moving pattern and update the three columns with evidence. Keep only facts you could point to in a scene, log, map, or message."
+      },
+      "memorableLines": [
+        {
+          "text": "The point is not mystery.",
+          "location": "breakdown.fastRead",
+          "why": "The short sentence strips the idea down to diagnosis rather than fascination."
+        },
+        {
+          "text": "Transmission is uneven, so averages hide the path of spread.",
+          "location": "breakdown.deepRead",
+          "why": "It names why the Law of the Few changes how a reader looks at data."
+        },
+        {
+          "text": "Context is easy to miss because it looks like background.",
+          "location": "breakdown.fullRead",
+          "why": "It makes the setting lever memorable without overexplaining it."
+        }
+      ]
+    },
+    {
+      "chapterId": "the-tipping-point-ch02",
+      "number": 2,
+      "title": "The Law of the Few: Connectors, Mavens, and Salesmen",
+      "readingTimeMinutes": 12,
+      "hook": "Two riders left with the same alarm, but only one woke the countryside.",
+      "counterintuition": "Word of mouth is not a fair relay. The same message can stall or race depending on whether it finds people with reach, trusted knowledge, or emotional force.",
+      "tryThisNow": "Write the name of one person who bridges groups, one who knows the details, and one who changes the room's mood. Do not put the same name in all three slots.",
+      "keyTakeaway": "Match the job to the few: Connectors move messages across groups, Mavens make them credible, and Salesmen turn attention into assent.",
+      "breakdown": {
+        "fastRead": "Paul Revere and William Dawes carried similar warnings on April 18, 1775. The difference was not the sentence they spoke. Revere knew the right towns, the right leaders, and the trust routes that made alarm spread. Dawes rode too, but his warning did not travel with the same force.\n\n+That contrast names the Law of the Few. Connectors bridge many worlds. Mavens collect useful facts and pass them on as help. Salesmen make people feel the force of a choice. A message that needs reach should not be handed to the person who only has charm. A message that needs trust should not be carried by a celebrity with no facts. Influence has jobs.",
+        "deepRead": "Social distance is not spread evenly across a town, a market, or a company. Some people hold many weak ties. They belong lightly to several worlds, so information can jump from one circle to another. Roger Horchow and Lois Weisberg make that role visible. Their power is not command. It is the number of doors they can open without making the visit feel forced.\n\n+Mavens solve a different problem. Mark Alpert does not matter because he knows everyone. He matters because he gathers prices, features, and practical warnings, then gives them away in a helpful spirit. His advice travels because it feels like service. The receiver does not smell a pitch.\n\n+Salesmen bring the third force. Tom Gau, the Torrance financial planner, shows persuasion as rhythm and rapport. Donald Moine's analysis focuses on mimicry, timing, and emotional alignment. Facts can sit inert until a listener feels safe enough to agree.\n\n+The midnight ride works because it joins message and messenger. Revere had social routes that Dawes did not activate with the same strength. The lesson is exacting: before spending to reach everyone, ask which human function is missing. Need distance crossed? Find a Connector. Need trust in the content? Find a Maven. Need action from the undecided? Find a Salesman.",
+        "fullRead": "Stanley Milgram's small-world work and the Six Degrees of Kevin Bacon game make one fact hard to ignore: the social world is short because a few people bridge long gaps. Most people know a set of people like themselves. A Connector knows people from many scenes, and that light membership can move news farther than a dense clique can.\n\n+Paul Revere's ride becomes clearer through that lens. The warning about British movement was urgent, but urgency did not spread itself. Revere had standing among colonial groups and a path into local leadership. William Dawes carried a similar alarm, yet the response was weaker. The message was not enough. The messenger's network gave the words reach.\n\n+Roger Horchow and Lois Weisberg show the quieter form of the same gift. They collect relationships across business, art, civic life, politics, and neighborhood worlds. A Connector is not merely popular. Popular people can sit at the center of one circle. A Connector links circles that would otherwise remain apart.\n\n+Mark Alpert gives the Maven role its shape. A Maven watches the market with pleasure. He remembers which stereo is priced fairly, which deal hides a flaw, and which product solves a real problem. The key is motive. Advice from a Maven feels useful because it is offered as a gift, not a trap. That credibility can make a message safe to repeat.\n\n+Tom Gau gives Salesmanship a different texture. The persuasive force comes through warmth, pacing, and small cues that bring the listener into sync. Donald Moine's reading of Gau points to mimicry and emotional timing. This is not mere charm. It is the felt sense that the speaker is with you, so action becomes less cold.\n\n+The hard part is keeping the roles distinct. A famous person may lack bridge ties. A careful Maven may dislike persuading. A natural Salesman may not know enough to be trusted on technical detail. Some rare people overlap, but a campaign fails when it assumes influence is one trait.\n\n+Role confusion is the common failure mode. A team hires a well-known face when it needs a bridge into another community. A manager asks an expert to persuade a frightened room when that expert can only add facts. A founder picks a charming advocate who cannot answer practical buyer doubts. Each error looks like outreach, yet each misses the human channel the message needs.\n\n+The useful test is functional. If the message is trapped inside one group, seek a Connector. If people doubt the content, recruit a Maven. If people understand but hesitate, put a Salesman near the decision. The Law of the Few turns influence from a vague hunt for buzz into a match between social job and human gift."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Soren chooses the alarm rider",
+          "tags": [
+            "emergency",
+            "Revere",
+            "messengers"
+          ],
+          "planSpec": {
+            "domain": "emergency neighborhood mobilization",
+            "audience": "organizers choosing messengers under time pressure",
+            "stakes": "a correct warning may fail if the messenger lacks trust routes",
+            "format": "decision_point",
+            "requiredBeat": "Soren contrasts Revere-style ties with a weaker Dawes-style route"
+          },
+          "scenario": "Soren stands at 5:50 a.m. in a Somerville church basement with a flood map, a phone tree, and fifteen minutes before sirens start. One volunteer has the loudest voice, but another knows the landlords, coaches, and cafe owners. Remembering Paul Revere and William Dawes, Soren has to choose the messenger whose ties will wake the most blocks.",
+          "whatToDo": "Soren should send the volunteer with Revere-like trust routes, because the warning needs social reach more than volume.",
+          "whyItMatters": "The same alarm can spread unevenly. A Connector turns a correct message into many trusted handoffs."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Helena gives Maven advice",
+          "tags": [
+            "retail",
+            "Mark Alpert",
+            "trust"
+          ],
+          "planSpec": {
+            "domain": "independent electronics store advice",
+            "audience": "retail teams trying to earn customer referrals",
+            "stakes": "paid promotion could sound hollow if buyers need credible detail",
+            "format": "dialogue",
+            "requiredBeat": "Helena uses Mark Alpert's Maven role to make advice useful"
+          },
+          "scenario": "Helena opens the display case at 11:10 a.m. in her Portland audio shop as a customer compares two headphones. The register prompt offers a rebate script, but the customer asks which model fails after a year. Helena must answer before the buyer leaves. She channels Mark Alpert's Maven role and names the cheaper model's real strength and flaw.",
+          "whatToDo": "Helena should give the precise comparison even when it lowers the sale, making her advice worth repeating.",
+          "whyItMatters": "A Maven spreads trust by serving the buyer's problem. Useful knowledge travels farther than a polished pitch."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Ibrahim coaches rapport",
+          "tags": [
+            "finance",
+            "Tom Gau",
+            "persuasion"
+          ],
+          "planSpec": {
+            "domain": "retirement planning consultation",
+            "audience": "advisers learning ethical persuasion",
+            "stakes": "facts may not move a nervous client without emotional alignment",
+            "format": "coach_talk",
+            "requiredBeat": "Ibrahim separates Tom Gau-style rapport from more data"
+          },
+          "scenario": "Ibrahim pauses a 2:25 p.m. training video in a Torrance advisory office while a new planner floods a widow with charts. The planner has to call the client back before markets close. Ibrahim points to Tom Gau's Salesman pattern: match pace, lower tension, and let the client feel understood before adding another figure.",
+          "whatToDo": "Ibrahim should coach the planner to earn emotional alignment first, then use the data only after the client can hear it.",
+          "whyItMatters": "Salesmanship is not more information. Rapport, timing, and emotional sync can decide whether facts become action."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Mei finds the civic bridge",
+          "tags": [
+            "museum",
+            "Lois Weisberg",
+            "Connector"
+          ],
+          "planSpec": {
+            "domain": "museum membership drive",
+            "audience": "cultural institutions seeking new communities",
+            "stakes": "an elegant invitation may stay inside the same donor circle",
+            "format": "decision_point",
+            "requiredBeat": "Mei looks for a Lois Weisberg-style civic bridge"
+          },
+          "scenario": "Mei reviews the 8:00 p.m. guest list in a Chicago museum office and sees the same patrons as last spring. The director wants a prettier invitation by morning. Mei has to decide before the printer locks files. She thinks of Lois Weisberg and searches for a civic bridge who belongs lightly to arts, schools, neighborhood councils, and city hall.",
+          "whatToDo": "Mei should recruit the cross-domain bridge before redesigning the invitation, because the problem is trapped reach.",
+          "whyItMatters": "Connectors help messages leave their home circle. A refined appeal can still fail if it never crosses social distance."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Lucia repairs the supply list",
+          "tags": [
+            "school",
+            "Maven",
+            "guidance"
+          ],
+          "planSpec": {
+            "domain": "parent purchasing guide",
+            "audience": "school administrators reducing bad purchases",
+            "stakes": "families may ignore advice that sounds like a school sales pitch",
+            "format": "before_after",
+            "requiredBeat": "Lucia turns a supply list into Maven-style guidance"
+          },
+          "scenario": "Lucia reads parent emails at 7:35 a.m. in a San Antonio elementary office. Last year's tablet supply list sent families toward costly bundles that broke by winter. Before posting the new list, she adds Maven-style notes: the durable case, the model to avoid, and the store that honors repairs without a fee.",
+          "whatToDo": "Lucia should publish the guide as practical buyer help, not as a command from school staff.",
+          "whyItMatters": "Maven credibility grows when advice saves people effort or money. The helper motive makes the message safer to share."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Anika splits beta roles",
+          "tags": [
+            "software",
+            "role matching",
+            "few"
+          ],
+          "planSpec": {
+            "domain": "software beta rollout",
+            "audience": "product managers choosing early advocates",
+            "stakes": "one admired employee may not supply every social function",
+            "format": "planning_choice",
+            "requiredBeat": "Anika assigns Connector, Maven, and Salesman jobs separately"
+          },
+          "scenario": "Anika watches a 4:45 p.m. beta dashboard in a Berlin software office while signups stall outside engineering. The CEO wants the most admired designer to promote it alone. Anika has to answer before the launch standup. She assigns a Connector for departments, a Maven for feature proof, and a Salesman for hesitant managers.",
+          "whatToDo": "Anika should split the rollout jobs across three people, matching each person to reach, credibility, or persuasion.",
+          "whyItMatters": "Role matching is functional. One admired person may not solve every diffusion problem."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A neighborhood warning must travel before a storm hits. One volunteer knows every agency head, coach, and shop owner; another has a louder megaphone. Which choice follows the Revere lesson?",
+            "choices": [
+              "Choose the louder volunteer because the storm warning needs to sound urgent.",
+              "Choose the bridge volunteer because trusted routes move the warning across groups.",
+              "Ask both volunteers to repeat the same script from the same street corner."
+            ],
+            "correctIndex": 1,
+            "explanation": "Revere's advantage was network position and trust, not just the warning itself. The bridge volunteer can move the message through many local paths before the storm arrives.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "When a museum invitation keeps reaching the same patrons, which sign would point to a Connector problem?",
+            "choices": [
+              "The invitation copy lists benefits but does not include the museum's newest exhibit.",
+              "The donor chair dislikes the invitation color and asks for a more formal design.",
+              "The guest list has few people who belong to several civic worlds at once."
+            ],
+            "correctIndex": 2,
+            "explanation": "A Connector problem appears when the message cannot jump circles. People who belong lightly to several civic worlds can carry the invitation beyond the usual donor group.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A parent asks which tablet will survive the school year. The administrator knows one cheaper model has better repairs. What would a Maven-like response do?",
+            "choices": [
+              "Share the repair detail plainly so the parent can make the better purchase.",
+              "Repeat the official supply list because parents may distrust extra detail.",
+              "Steer the parent to the premium bundle because it makes the school look prepared."
+            ],
+            "correctIndex": 0,
+            "explanation": "Mavens gain influence by giving useful, specific information as help. The repair detail solves the parent's problem and builds trust better than official polish.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Your team has a technical report that people trust but do not act on. Which missing role should you test before rewriting every chart?",
+            "choices": [
+              "A Maven who can add more comparative facts to the report's appendix.",
+              "A Salesman who can create emotional assent around the decision.",
+              "A Connector who can send the report to a larger mailing list."
+            ],
+            "correctIndex": 1,
+            "explanation": "Trust in the report suggests Maven work may already be present. If people understand but hesitate, the Salesman role may convert passive agreement into action.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Which hiring brief best avoids treating influence as one vague trait?",
+            "choices": [
+              "Find the most charismatic person available and let that person handle all public contact.",
+              "Select the person with the largest follower count and ask them to publish each update.",
+              "Assign reach, knowledge, and persuasion to people who actually show those separate strengths."
+            ],
+            "correctIndex": 2,
+            "explanation": "The Law of the Few distinguishes social functions. Reach, credibility, and persuasion can overlap, but a strong plan checks each role instead of naming one generic influencer.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A financial planner keeps adding facts while a nervous client grows quieter. What Tom Gau-style adjustment fits the Salesman role?",
+            "choices": [
+              "Slow the pace, mirror the client's concern, and rebuild rapport before adding numbers.",
+              "Bring a longer projection so the client sees the technical case in more detail.",
+              "Ask a colleague with more contacts to introduce the planner again next week."
+            ],
+            "correctIndex": 0,
+            "explanation": "Tom Gau's persuasive force lies in rapport, timing, and emotional alignment. More figures or a bigger network does not address the client's immediate resistance.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "If a campaign has a trusted product expert and a warm speaker but still cannot leave one social circle, which role is most likely missing?",
+            "choices": [
+              "A Maven who can add more details about price, quality, and hidden tradeoffs.",
+              "A Salesman who can make the speaker sound more confident during meetings.",
+              "A Connector who can bridge the campaign into communities it does not already touch."
+            ],
+            "correctIndex": 2,
+            "explanation": "The campaign has credibility and persuasion but lacks cross-group movement. A Connector solves the distance problem by linking otherwise separate circles.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A manager says Kevin Bacon-style network distance is just trivia. Which practical use best answers that objection?",
+            "choices": [
+              "Use network distance to find bridge people who shorten the path between groups.",
+              "Use network distance to rank employees by popularity for every internal message.",
+              "Use network distance to replace product quality research with social mapping."
+            ],
+            "correctIndex": 0,
+            "explanation": "The practical use is identifying bridge people. Small-world examples make social distance concrete, but they do not reduce all influence to popularity or replace product work.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A launch team wants one famous employee to handle the beta. Which question would best test whether that employee fits the Law of the Few?",
+            "choices": [
+              "Can the famous employee make the beta feel more exciting in the launch meeting?",
+              "Which function does the famous employee actually perform: bridge, expert helper, or persuader?",
+              "Will the famous employee agree to send the beta link at least three times?"
+            ],
+            "correctIndex": 1,
+            "explanation": "The key is function. Fame may help one part of diffusion, but the team needs to know whether the person supplies reach, Maven credibility, or Salesman energy.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What does the Law of the Few claim about influence?",
+          "back": "Influence is uneven. A small number of people can move messages faster because they supply reach, trusted knowledge, or persuasion.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why does Paul Revere outperform William Dawes as a diffusion example?",
+          "back": "Revere had stronger trust routes and social ties into the right communities, so a similar warning spread with greater force.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "What is a Connector's distinct job?",
+          "back": "A Connector bridges social worlds through many weak ties, letting information cross boundaries that would stop a normal message.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card04",
+          "front": "What makes Mark Alpert a Maven rather than a salesperson?",
+          "back": "His influence comes from collecting useful market knowledge and sharing it as help, not from closing a sale.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "What does Tom Gau reveal about Salesmen?",
+          "back": "Persuasion can come through rhythm, mimicry, timing, and emotional alignment that make the listener ready to act.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "What failure does role matching prevent?",
+          "back": "It prevents handing every diffusion problem to one admired person when the message needs a bridge, an expert helper, or a persuader.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Match The Human Channel",
+        "coreSkill": "Name the social job before choosing the messenger. Reach, credibility, and persuasion are different needs. The right few are the people whose actual ties, knowledge, or emotional skill match the message's bottleneck.",
+        "ifThenPlans": [
+          {
+            "context": "The message is trapped in one circle",
+            "plan": "If the same audience keeps hearing the message, then find a Connector. Choose someone with real ties across groups, not just status inside one group."
+          },
+          {
+            "context": "People doubt the recommendation",
+            "plan": "If listeners suspect a pitch, then use a Maven. Let the most helpful expert share the practical details."
+          },
+          {
+            "context": "People agree but delay",
+            "plan": "If the facts are accepted but action stalls, then bring in a Salesman. Use rapport and timing to help people cross the decision line."
+          },
+          {
+            "context": "One influencer is asked to do every job",
+            "plan": "If one person is assigned the whole campaign, then split the role map. Mark whether that person actually bridges, informs, or persuades."
+          }
+        ],
+        "twentyFourHourChallenge": "For one message you need to spread, write the bottleneck as reach, trust, or assent. Ask one person who fits that exact job to help with a small test.",
+        "weeklyPractice": "During the week, track three recommendations you accept. Label the source as Connector, Maven, or Salesman, and note which social job moved you."
+      },
+      "memorableLines": [
+        {
+          "text": "Influence has jobs.",
+          "location": "breakdown.fastRead",
+          "why": "The line turns a vague social trait into a practical sorting rule."
+        },
+        {
+          "text": "Advice from a Maven feels useful because it is offered as a gift, not a trap.",
+          "location": "breakdown.fullRead",
+          "why": "It captures why Maven credibility travels without sounding like a pitch."
+        },
+        {
+          "text": "The message was not enough.",
+          "location": "breakdown.fullRead",
+          "why": "The sentence makes Revere and Dawes a clean warning about messenger fit."
+        }
+      ]
+    },
+    {
+      "chapterId": "the-tipping-point-ch03",
+      "number": 3,
+      "title": "The Stickiness Factor: Sesame Street, Blue's Clues, and the Educational Virus",
+      "readingTimeMinutes": 12,
+      "hook": "A child can stare at the screen and still miss the lesson hiding in plain sight.",
+      "counterintuition": "Attention is only the first gate. A message spreads when its form helps the intended audience notice, remember, rehearse, and use it.",
+      "tryThisNow": "Take one instruction you repeat often and circle the action verb. Move that verb to the first line, then add one deliberate repeat before the next handoff.",
+      "keyTakeaway": "Make the message itself carry the lesson: test attention, remove distraction, repeat the useful step, and give the audience time to respond.",
+      "breakdown": {
+        "fastRead": "Joan Ganz Cooney wanted television to teach preschool children, but reach was not the win. Sesame Street had to hold a child's eye and point that eye toward letters, numbers, and meaning. A funny scene could win attention while the learning target slipped past.\n\n+The Stickiness Factor is the craft of making content lodge. Children's Television Workshop testing treated stickiness as something visible. Blue's Clues pushed the idea further. It slowed the pace, asked direct questions, repeated episodes, and let children feel mastery. Adults may crave novelty. The audience in front of the screen may need a clear path back to the same lesson.",
+        "deepRead": "Stickiness begins with a hard split: looking is not learning. A child may watch a loud puppet, a moving prop, or a joke and still miss the letter on the screen. Sesame Street became powerful because Joan Ganz Cooney and the Children's Television Workshop treated that split as a design problem. They watched real children, measured attention, and changed the show when the lesson lost the child's eye.\n\n+Blue's Clues made the design rule sharper. Instead of fast variety, it used one host, one animated dog, one puzzle, and repeated clues. The pause after a question was not dead air. It gave the child room to answer. The rerun was not laziness. It gave the child the joy of knowing what came next.\n\n+That lesson travels outside children's television. A safety video, medical instruction, app tutorial, or public notice can reach people and still fail if the key action is buried. The fix is not just more distribution. Put the important bit where the audience looks. Cut the joke that steals attention. Repeat the step that must survive memory. Then test the result with the people who must act, not with the adults who approve the script.",
+        "fullRead": "Children's Television Workshop began with a bold premise: television could do more than amuse preschool children. It could teach. Joan Ganz Cooney's project joined entertainment craft with research because the medium's reach was not enough. A child could sit in front of the set, laugh at the right moment, and still fail to grasp the educational target.\n\n+That gap makes stickiness practical. Attention is a doorway, not the room. Sesame Street had to learn where children looked, when they drifted, and which production choices helped letters and numbers stay visible. A busy scene might satisfy an adult producer while pulling a child's attention away from the learning cue. Testing made that failure plain.\n\n+Blue's Clues took the insight in a spare direction. The cast was simple. The story moved through one puzzle. The host asked the viewer to help. The pause after each question invited participation. The same episode ran across a week, which would bore many adults. For preschool viewers, the repeat could create mastery. They knew the clue before it arrived. That recognition was part of the learning.\n\n+The deeper point is humility before the audience. Adults are poor judges of what children retain. Experts can love wit, pace, and variety while children need focus, placement, and return. Stickiness is not the producer's feeling that a segment is clever. It is the observed fact that the intended audience can remember and use what the segment was meant to teach.\n\n+The same failure happens in grown-up settings. A hospital handoff video can look polished and leave nurses unsure which sentence to say. A discharge sheet can include every warning and still leave a patient unclear about the evening dose. A factory poster can sit beside the machine while the lockout step hides in the bottom corner. Reach, polish, and approval do not prove stickiness.\n\n+Design has to carry action. Put the clue where the eye already goes. Slow the moment that needs a response. Repeat the exact step that must move from screen to memory. Remove the flourish that wins attention from the wrong object. Test with the people who will use the message under real pressure.\n\n+The limit is that repetition alone is not a cure. Repeating a muddy instruction makes the mud familiar. Pausing after a vague question only lets confusion last longer. Stickiness works when clarity, placement, and rehearsal point toward one usable move. The question is not whether the audience was exposed. The question is what survived exposure."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Farah slows the handoff",
+          "tags": [
+            "hospital",
+            "Blue's Clues",
+            "practice"
+          ],
+          "planSpec": {
+            "domain": "hospital handoff training",
+            "audience": "nurse educators simplifying a safety behavior",
+            "stakes": "staff may watch the video without practicing the handoff phrase",
+            "format": "decision_point",
+            "requiredBeat": "Farah borrows Blue's Clues pacing for adult practice"
+          },
+          "scenario": "Farah stands at 6:05 a.m. in a Cleveland simulation lab with a paused handoff video and twelve nurses waiting for shift change. The old clip explains five risks in one rush. She must choose before training starts. Borrowing from Blue's Clues, she slows the key phrase, asks the room to say it, and repeats the exact handoff twice.",
+          "whatToDo": "Farah should design the handoff around rehearsal, not viewing, so the phrase survives the next noisy shift.",
+          "whyItMatters": "Blue's Clues used pauses and repetition to create participation. Safety messages need the same path from attention to usable memory."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Jamal catches the stolen glance",
+          "tags": [
+            "edtech",
+            "Sesame Street",
+            "testing"
+          ],
+          "planSpec": {
+            "domain": "math app lesson design",
+            "audience": "edtech teams testing child attention",
+            "stakes": "a funny animation may steal focus from the number relation",
+            "format": "mistake_recovery",
+            "requiredBeat": "Jamal uses Sesame Street testing logic to separate looking from learning"
+          },
+          "scenario": "Jamal watches a 2:15 p.m. screen recording in a Brooklyn edtech office as first graders laugh at a skateboard frog. The lesson is supposed to teach greater-than signs, but eye tracking shows the children miss the numbers. Before the sprint review, he has to admit the app won looking and lost learning, the same split Sesame Street testing exposed.",
+          "whatToDo": "Jamal should move the animation away from the number relation and retest whether children notice the actual math target.",
+          "whyItMatters": "Children's Television Workshop treated attention as evidence to inspect. A delightful moment can still steal focus from the lesson."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Leonie repeats the dose",
+          "tags": [
+            "clinic",
+            "memory",
+            "instruction"
+          ],
+          "planSpec": {
+            "domain": "clinic discharge instruction",
+            "audience": "patient educators reducing medication confusion",
+            "stakes": "patients may hear the instruction once and forget the exact sequence",
+            "format": "before_after",
+            "requiredBeat": "Leonie treats repetition as a memory tool"
+          },
+          "scenario": "Leonie sits beside a 4:30 p.m. discharge cart in Marseille with a pill bottle, a paper schedule, and a tired patient who nods at every sentence. The old script names side effects first and dosage last. She rewrites it before evening rounds: morning blue pill, dinner white pill, then asks the patient to repeat the sequence back.",
+          "whatToDo": "Leonie should put the dose sequence first and ask for one repeat, making the key action the part that sticks.",
+          "whyItMatters": "Repetition is useful when it rehearses the needed behavior. Hearing a fact once is not the same as being ready to act."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Bastien watches story hour",
+          "tags": [
+            "library",
+            "audience",
+            "early reading"
+          ],
+          "planSpec": {
+            "domain": "library story-hour redesign",
+            "audience": "librarians teaching early reading habits",
+            "stakes": "adult enthusiasm may hide that children cannot retell the sound pattern",
+            "format": "audit",
+            "requiredBeat": "Bastien observes the actual audience before trusting adult taste"
+          },
+          "scenario": "Bastien kneels at 10:00 a.m. beside the carpet in a Lyon library while parents praise the rhyming show. When he asks the children to repeat the sound pattern, most remember the puppet's hat instead. Before next week's program, he audits the scene like a Workshop test and moves the rhyme card beside the puppet's mouth.",
+          "whatToDo": "Bastien should trust the children's recall test over adult applause, then place the sound cue where their attention already goes.",
+          "whyItMatters": "Stickiness belongs to the intended audience. Adult delight can hide the fact that children retained the wrong object."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Celeste centers the lockout cue",
+          "tags": [
+            "factory",
+            "visual cue",
+            "safety"
+          ],
+          "planSpec": {
+            "domain": "factory lockout reminder",
+            "audience": "safety managers designing floor prompts",
+            "stakes": "workers may see the poster but miss the action before maintenance",
+            "format": "planning_choice",
+            "requiredBeat": "Celeste makes the cue visually central like a tested clue"
+          },
+          "scenario": "Celeste checks the 1:20 p.m. maintenance bay in Toledo and sees a lockout poster half hidden behind spare belts. A supervisor wants a harsher slogan before the audit team arrives. She has to decide before the print order closes. Thinking of Blue's Clues, she makes the lock and tag the visual center, not a footnote.",
+          "whatToDo": "Celeste should redesign the prompt so the required lockout action sits at eye level beside the machine.",
+          "whyItMatters": "A message can be present and still miss attention. Placement decides whether the action becomes visible at the needed moment."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Hiro reruns the first win",
+          "tags": [
+            "software",
+            "mastery",
+            "onboarding"
+          ],
+          "planSpec": {
+            "domain": "software onboarding sequence",
+            "audience": "product teams reducing first-week churn",
+            "stakes": "new users may complete a tutorial once without gaining confidence",
+            "format": "predict_reveal",
+            "requiredBeat": "Hiro uses rerun logic to create mastery"
+          },
+          "scenario": "Hiro reviews a 9:10 a.m. activation chart in a Tokyo product room and sees new users finish the tutorial once, then vanish. The team wants three new features in onboarding. Hiro has to answer before roadmap lock. He predicts a Blue's Clues-style repeat of the first successful task will build confidence better than more novelty.",
+          "whatToDo": "Hiro should rerun the first core task with a small variation, letting users recognize the pattern and feel control.",
+          "whyItMatters": "Repetition can build mastery when it returns to the action users must own. Novelty can distract before confidence forms."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A safety video gets high completion, but nurses cannot repeat the handoff phrase afterward. Which redesign best tests stickiness?",
+            "choices": [
+              "Add a more dramatic opening scene so nurses watch the whole video with more interest.",
+              "Send the video to more units so completion data includes a larger staff sample.",
+              "Pause on the handoff phrase, ask nurses to say it, and repeat it in the same words."
+            ],
+            "correctIndex": 2,
+            "explanation": "Completion shows exposure, not retention. Pausing, saying the phrase, and repeating it test whether the key action moves into usable memory.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "When an app's funny animation draws children's eyes away from the number relation, what did Sesame Street-style testing reveal?",
+            "choices": [
+              "Looking at the screen can hide a failure to learn the intended target.",
+              "Animation should be removed from children's lessons whenever math is involved.",
+              "Children prefer jokes, so the app should make the number relation less central."
+            ],
+            "correctIndex": 0,
+            "explanation": "The testing logic separates attention from learning. The animation may be engaging, but the design fails if it pulls children away from the educational cue.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A discharge sheet lists every warning, but patients forget the evening dose. Which change fits the Stickiness Factor?",
+            "choices": [
+              "Add more warnings to the sheet so patients see how serious the medicine is.",
+              "Place the dose sequence first and ask patients to repeat the sequence once.",
+              "Give the sheet to a family member and skip the repeat because the text is complete."
+            ],
+            "correctIndex": 1,
+            "explanation": "Stickiness asks what survives into action. Moving the dose and rehearsing it makes the needed behavior easier to remember than a full warning list does.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Your training team says adults will dislike repeated modules. Which Blue's Clues insight should shape the reply?",
+            "choices": [
+              "Adult preference is a useful signal when the same adults approve the training budget.",
+              "Repeated modules work mainly when the topic is meant for preschool viewers.",
+              "The audience's mastery matters more than the producer's appetite for novelty."
+            ],
+            "correctIndex": 2,
+            "explanation": "Blue's Clues shows that repetition can support prediction and mastery even when adults find it dull. The design should be judged by the intended audience's learning.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A factory poster is visible near a machine, yet workers miss the lockout step before maintenance. Which test best fits sticky message design?",
+            "choices": [
+              "Move the lockout cue to the worker's eye path and compare behavior for a week.",
+              "Ask workers to sign a form saying they saw the poster near the machine.",
+              "Replace the poster with a longer policy summary for the maintenance bay."
+            ],
+            "correctIndex": 0,
+            "explanation": "Visibility is not the same as attention to the right action. Moving the cue tests whether placement helps the lockout step survive real work pressure.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A product tutorial shows every feature once, and users leave after finishing it. Which change borrows the useful rerun logic?",
+            "choices": [
+              "Add a survey after the tutorial so users can rank which feature seemed most polished.",
+              "Repeat the first core task with a small variation so users recognize and practice it.",
+              "Shorten each feature explanation so the tutorial feels faster on the first attempt."
+            ],
+            "correctIndex": 1,
+            "explanation": "The rerun logic builds mastery through recognition and rehearsal. A survey or faster tour may improve feedback or pace without helping users own the core task.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "Which claim would be weakest under the Children's Television Workshop approach?",
+            "choices": [
+              "The workshop should watch children because producer taste may misread their attention.",
+              "The segment is strong because the adult review panel laughed at the clever scene.",
+              "The team should revise if children look at the joke but miss the letter."
+            ],
+            "correctIndex": 1,
+            "explanation": "Adult approval does not prove child learning. The Workshop approach gives weight to observed child behavior, especially whether attention lands on the intended learning target.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "If a public message has wide reach but people do not remember what to do, which lever is failing?",
+            "choices": [
+              "The Connector role, because a wider bridge would make the message reach more groups.",
+              "The context lever, because people need a different physical place to hear it.",
+              "The Stickiness Factor, because contact is not turning into memory or action."
+            ],
+            "correctIndex": 2,
+            "explanation": "The problem is not reach. The message is touching people but failing to lodge, so the content's structure, clarity, or rehearsal needs redesign.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A library story hour delights parents, but children cannot retell the sound pattern. What should the librarian do first?",
+            "choices": [
+              "Observe what children remember and move the sound cue into their attention path.",
+              "Keep the story hour unchanged because parent enthusiasm is the audience signal.",
+              "Add more puppets so children have several routes into the same reading habit."
+            ],
+            "correctIndex": 0,
+            "explanation": "Stickiness belongs to the learner, not the approving adult. The librarian should test child recall and redesign the cue around where children actually look.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What does the Stickiness Factor add to reach?",
+          "back": "It asks whether the message is memorable, repeatable, and usable after contact, not merely whether many people saw it.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why was Sesame Street a design and research problem?",
+          "back": "Joan Ganz Cooney and the Children's Television Workshop had to learn which production choices held children's attention on the educational target.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "What is the danger in equating attention with learning?",
+          "back": "The audience can look at a funny or busy moment while missing the exact idea or action the message was meant to teach.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "How did Blue's Clues use repetition differently from adult variety television?",
+          "back": "It repeated episodes, patterns, questions, and clues so children could predict, answer, and feel mastery.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card05",
+          "front": "What should be tested when a message seems polished but behavior does not change?",
+          "back": "Test whether the intended audience notices, remembers, and can use the key action under realistic conditions.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "Why can adult taste mislead message design?",
+          "back": "Adults may value wit, speed, and novelty while the intended audience needs focus, placement, pause, and repeatable structure.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Make The Message Stick",
+        "coreSkill": "Treat the message as a designed object. Identify the exact action or idea that must survive contact. Then test whether the intended audience notices it, remembers it, and can use it without help.",
+        "ifThenPlans": [
+          {
+            "context": "People saw the message but forgot the action",
+            "plan": "If exposure is high and recall is low, then move the action earlier and repeat it once in the same words."
+          },
+          {
+            "context": "A clever element draws attention away",
+            "plan": "If the audience remembers the flourish instead of the lesson, then remove or reposition the flourish. Put the clue beside the target."
+          },
+          {
+            "context": "Adults dislike a useful repeat",
+            "plan": "If reviewers call the repeat boring, then test mastery with the intended audience before cutting it."
+          },
+          {
+            "context": "A tutorial feels complete but users stall",
+            "plan": "If users finish once and do not return, then rerun the core task with a small change. Let recognition build confidence."
+          }
+        ],
+        "twentyFourHourChallenge": "Pick one recurring instruction. Test it with one real user or colleague by asking them to repeat the action after thirty seconds.",
+        "weeklyPractice": "For one week, collect three places where people saw a message but missed the action. Redesign one for placement, pause, or repetition."
+      },
+      "memorableLines": [
+        {
+          "text": "Attention is a doorway, not the room.",
+          "location": "breakdown.fullRead",
+          "why": "It sharply separates seeing from learning."
+        },
+        {
+          "text": "Repeating a muddy instruction makes the mud familiar.",
+          "location": "breakdown.fullRead",
+          "why": "It keeps repetition from becoming a lazy cure-all."
+        },
+        {
+          "text": "The rerun was not laziness.",
+          "location": "breakdown.deepRead",
+          "why": "It recasts a production choice as a learning mechanism."
+        }
+      ]
+    },
+    {
+      "chapterId": "the-tipping-point-ch04",
+      "number": 4,
+      "title": "The Power of Context (Part One): Bernie Goetz and the Rise and Fall of New York City Crime",
+      "readingTimeMinutes": 13,
+      "hook": "A dirty subway car can change what fear, rule breaking, and restraint feel like.",
+      "counterintuition": "Character does not vanish, but the setting can rewrite the script fast. Small cues of disorder, haste, or authority can move ordinary people toward acts they would not predict.",
+      "tryThisNow": "Walk through one shared space you manage and name the first visible cue that says rules are weak. Choose one concrete repair you can make this week.",
+      "keyTakeaway": "Treat the immediate setting as a behavioral lever: visible disorder, time pressure, and role cues can change what people feel licensed to do.",
+      "breakdown": {
+        "fastRead": "Bernie Goetz became a symbol because the subway already felt like a symbol. In 1984 New York, graffiti, crime, fear, and disorder made one train car feel larger than itself. The same act would read differently after the city changed.\n\n+The Power of Context says behavior is more sensitive to surroundings than we like to admit. Broken Windows treated graffiti and fare-beating as public signals that rules had lost force. David Gunn cleaned trains as an operating priority. William Bratton treated turnstile jumping as a clue about the whole system. The claim is not that paint prevents crime by itself. The claim is that visible cues teach people what kind of place they are in.",
+        "deepRead": "A place can hand people a script before they know they are reading it. The New York subway in the 1980s gave riders cues of danger and abandonment. That is why Bernie Goetz's shooting became more than a criminal case. It touched the public mood of a city that felt out of control.\n\n+Broken Windows gives the policy form of the idea. Graffiti, vandalism, and fare-beating are small acts, but they speak loudly. They tell riders whether rules are watched. David Gunn's clean-train campaign attacked that signal. William Bratton's fare enforcement did the same from another angle. The point was to change the felt rules of the subway.\n\n+The psychology examples make the claim more unsettling. Philip Zimbardo's prison simulation showed how quickly roles and settings can pull harsh behavior from students. Darley and Batson's seminary study showed that hurry could decide whether people stopped for a groaning man, even after some had prepared a talk on the Good Samaritan.\n\n+Context is not a pardon. Harm still matters. Yet diagnosis gets sharper when the setting is treated as a cause to inspect. Ask what the room, clock, role, and visible disorder are telling people before you decide that character explains everything.",
+        "fullRead": "Bernie Goetz did not enter public memory only because shots were fired on a train. The story landed inside a New York subway system that many residents already read as unsafe, dirty, and ungoverned. Graffiti covered cars. Fare evasion looked routine. Fear was not an abstract mood. It had a platform, a turnstile, a car, and a daily ride.\n\n+That setting shaped moral interpretation. In the 1980s, Goetz could be seen by many as a vigilante answer to a city that had lost control. Years later, after crime fell and the subway felt different, the same act looked less like rough justice and more like a violent breach. The public did not merely change its mind about one man. The city changed the frame through which the act was read.\n\n+Broken Windows takes that frame seriously. The claim begins with visible disorder. A broken window left unrepaired says nobody is watching. Graffiti on a train says damage is normal. Fare-beating says rules can be crossed in public. These cues need not force anyone to commit a serious crime. Their power is softer and wider: they alter what the place seems to permit.\n\n+David Gunn's graffiti cleanup used that logic. Clean trains were not treated as cosmetic extras. They were treated as signs of control. William Bratton's subway policing of fare evasion worked from a related premise. A turnstile jump was a small offense, but it was also a public lesson about rules. Change the visible lesson, and behavior may shift.\n\n+Philip Zimbardo's prison simulation moves the same idea from subway policy to psychology. Students assigned guard and prisoner roles began to act inside the pressure of the setting. The point is not that personality means nothing. It is that roles, uniforms, rooms, and authority cues can call forth conduct that surprises the person doing it.\n\n+Darley and Batson make the claim almost painfully ordinary. Princeton seminary students walked past a slumped, groaning man on the way to give a talk. The strongest predictor of helping was not their religious reason for being there. It was whether they had been told they were late. Even a Good Samaritan theme did less work than the clock.\n\n+The limit keeps the idea honest. Cleaning graffiti does not mechanically solve every crime problem. Context does not erase responsibility for harm. A rushed person who fails to help still failed to help. But the setting belongs in the explanation. It can make fear feel justified, neglect feel normal, and rule breaking feel cheap.\n\n+The practical question is concrete. What does the place say before anyone speaks? What does the clock demand? What does the role invite? What small sign tells people that care, order, or restraint is expected here? A context diagnosis starts with those cues because people often obey them before they obey their stated values."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Nadine watches the turnstile",
+          "tags": [
+            "transit",
+            "Bratton",
+            "rules"
+          ],
+          "planSpec": {
+            "domain": "metro fare enforcement redesign",
+            "audience": "transit managers balancing service and order",
+            "stakes": "ignoring a visible rule break could teach riders that no rule holds",
+            "format": "decision_point",
+            "requiredBeat": "Nadine treats fare-beating as a context signal"
+          },
+          "scenario": "Nadine stands at 7:30 a.m. beside the Eastlake Metro turnstiles with a fare report and two supervisors waiting. Riders hop the gate while a guard stares at his phone. She has to set next month's priorities before the budget meeting. Remembering William Bratton's subway work, she treats fare-beating as a public rule signal, not a tiny loss.",
+          "whatToDo": "Nadine should reset the visible rule at the turnstile, because open fare-beating teaches riders what the station permits.",
+          "whyItMatters": "Small violations can act as context cues. Bratton's lesson is that public order signals may shape larger behavior."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Oleg cleans the fleet board",
+          "tags": [
+            "operations",
+            "David Gunn",
+            "norms"
+          ],
+          "planSpec": {
+            "domain": "delivery fleet reliability",
+            "audience": "operations leaders trying to reset norms",
+            "stakes": "drivers may infer that damaged tools and sloppy logs are accepted",
+            "format": "before_after",
+            "requiredBeat": "Oleg applies David Gunn's clean-train logic to fleet cues"
+          },
+          "scenario": "Oleg arrives at 5:45 a.m. in a Newark delivery depot and sees cracked scanners, coffee-stained route sheets, and a repair board from last month. Drivers joke that nobody checks anything. Before the Monday rollout, he applies David Gunn's clean-train logic: repair the visible cues first so the depot stops teaching neglect.",
+          "whatToDo": "Oleg should fix the broken tools and stale board before lecturing drivers about discipline.",
+          "whyItMatters": "Visible disorder can train a norm. Gunn's graffiti cleanup shows why the small sign may carry the larger rule."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Sofia lowers the hurry",
+          "tags": [
+            "hospital",
+            "Good Samaritan",
+            "time pressure"
+          ],
+          "planSpec": {
+            "domain": "hospital hallway escalation",
+            "audience": "clinical leaders reducing ignored patient distress",
+            "stakes": "rushed staff may miss visible suffering while believing they are caring people",
+            "format": "reset_moment",
+            "requiredBeat": "Sofia uses Darley and Batson to reduce hurry pressure"
+          },
+          "scenario": "Sofia hears coughing at 11:55 a.m. near a Boston hospital elevator while residents rush to grand rounds. Two staff step around a patient who has slid low in a chair. She must intervene before the hallway fills again. Darley and Batson are on her mind, so she changes the schedule cue that makes hurry stronger than care.",
+          "whatToDo": "Sofia should create a staffed pause point before rounds, making the patient check part of the route rather than an interruption.",
+          "whyItMatters": "The Good Samaritan study shows that haste can overpower identity. Reducing hurry can make caring behavior easier to enact."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Kwame adjusts the uniform script",
+          "tags": [
+            "security",
+            "Zimbardo",
+            "roles"
+          ],
+          "planSpec": {
+            "domain": "event security training",
+            "audience": "security supervisors preventing role overreach",
+            "stakes": "a uniform and title may push staff toward dominance instead of service",
+            "format": "coach_talk",
+            "requiredBeat": "Kwame uses Zimbardo's role-pressure warning"
+          },
+          "scenario": "Kwame stops a 3:10 p.m. rehearsal at a stadium gate after new security staff start barking at volunteers. The vests, radios, and raised platform have changed their tone. Before doors open, he has to reset the role. He cites Zimbardo's warning and rewrites the first instruction as guest safety, not guard control.",
+          "whatToDo": "Kwame should rename the role behavior in training before the uniform and platform define it for the staff.",
+          "whyItMatters": "Roles can pull conduct from people quickly. Zimbardo's example makes the setting part of ethical training."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Rafael frames the subway story",
+          "tags": [
+            "newsroom",
+            "Goetz",
+            "public mood"
+          ],
+          "planSpec": {
+            "domain": "local newsroom crime coverage",
+            "audience": "editors covering a volatile incident",
+            "stakes": "coverage may frame one event as proof of a whole city's character",
+            "format": "decision_memo",
+            "requiredBeat": "Rafael situates a crime story in its emotional context"
+          },
+          "scenario": "Rafael edits a 9:25 p.m. crime brief in a Queens newsroom as social feeds compare a platform fight to Bernie Goetz. The headline desk wants a verdict about the city's character. Rafael must file before the late edition. He adds transit-crime data, rider fear, and station conditions so one event is not forced to explain the whole city.",
+          "whatToDo": "Rafael should place the incident inside its local cues and history before turning it into a symbol.",
+          "whyItMatters": "Goetz shows how public meaning changes with context. Coverage should reveal the frame rather than hide it."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Marta reads the lobby",
+          "tags": [
+            "service",
+            "Broken Windows",
+            "audit"
+          ],
+          "planSpec": {
+            "domain": "customer support office redesign",
+            "audience": "service managers reducing rude escalations",
+            "stakes": "a neglected lobby may tell visitors that order and respect are weak",
+            "format": "audit",
+            "requiredBeat": "Marta treats visible disorder as a norm cue"
+          },
+          "scenario": "Marta enters the Phoenix support lobby at 8:18 a.m. with last week's escalation log. Two chairs are torn, the ticket screen flashes an error, and old forms spill from a tray. Visitors start the day irritated. Before retraining agents, she audits the Broken Windows cues that tell customers the office is already out of order.",
+          "whatToDo": "Marta should repair the lobby's visible order before asking agents to absorb preventable anger.",
+          "whyItMatters": "A neglected setting can cue rude behavior before anyone speaks. Context work can remove some friction from the interaction."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A transit manager sees riders jump a turnstile while staff look away. Which first move best reflects Broken Windows logic?",
+            "choices": [
+              "Treat the visible fare evasion as a rule signal and reset enforcement at that spot.",
+              "Ignore the fare evasion until major crimes rise enough to prove a larger pattern.",
+              "Post a citywide warning about crime so riders know the system is being monitored."
+            ],
+            "correctIndex": 0,
+            "explanation": "Broken Windows logic treats public small violations as cues about whether rules hold. The first move is to change that visible lesson where riders see it.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A hospital team values compassion, yet rushed residents step around a groaning patient. What does the Good Samaritan study suggest testing?",
+            "choices": [
+              "Whether residents entered medicine for reasons that sound compassionate enough.",
+              "Whether posters about compassion should be added near every elevator.",
+              "Whether schedule pressure is making hurry stronger than the patient cue."
+            ],
+            "correctIndex": 2,
+            "explanation": "Darley and Batson found that hurry predicted helping more than stable identity or talk topic. The hospital should test the time cue, not just values language.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A delivery depot has damaged scanners and stale route boards. Drivers now treat late logs as normal. Which analogy is closest?",
+            "choices": [
+              "Tom Gau's rapport, because drivers need a more persuasive supervisor.",
+              "David Gunn's clean trains, because visible repair can reset what the place permits.",
+              "Blue's Clues repeats, because drivers need the same route lesson each day."
+            ],
+            "correctIndex": 1,
+            "explanation": "The depot's damaged tools work like disorder cues. Gunn's cleanup treated visible condition as a signal of control, not as cosmetic polish.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "An event security crew becomes harsher after wearing radios and standing on a raised platform. Which diagnosis fits Zimbardo's warning?",
+            "choices": [
+              "The role and setting may be pulling staff toward dominance before they notice it.",
+              "The crew needs more legal facts so each guard understands the rules fully.",
+              "The platform should stay because visible authority reassures every guest."
+            ],
+            "correctIndex": 0,
+            "explanation": "Zimbardo's example points to role pressure and setting cues. Radios, titles, and platforms can shape behavior before staff explain it as personal choice.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A newsroom wants to make one subway assault proof that the whole city has changed. Which editorial choice best uses the Goetz lesson?",
+            "choices": [
+              "Quote the loudest online reaction because public fear is the story's main evidence.",
+              "Delay all coverage until crime trends become simple enough for a short headline.",
+              "Show the local fear, crime data, and station conditions that shape how the act is read."
+            ],
+            "correctIndex": 2,
+            "explanation": "Goetz became a symbol through the city's emotional and physical setting. Good coverage should make that frame visible instead of turning one incident into total proof.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A service manager blames rude visitors but the lobby has broken screens, torn chairs, and messy forms. What context test should come before retraining agents?",
+            "choices": [
+              "Repair the visible disorder and track whether escalations fall in the same lobby.",
+              "Ask agents to use warmer scripts when visitors arrive already frustrated.",
+              "Survey visitors about whether they remember seeing the support rules."
+            ],
+            "correctIndex": 0,
+            "explanation": "The broken lobby may be teaching visitors that order and respect are weak. Repairing the visible cue tests context before treating rudeness as fixed character.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "Which claim goes too far beyond the Power of Context?",
+            "choices": [
+              "Graffiti can signal that rules have lost force in a public system.",
+              "Time pressure can change whether caring people stop to help.",
+              "A cleaned setting removes responsibility from anyone who still causes harm."
+            ],
+            "correctIndex": 2,
+            "explanation": "The context claim is diagnostic, not an excuse. Settings shape behavior and deserve attention, but harmful acts still matter and responsibility does not disappear.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "When a city sees petty rule breaking spread in one public space, which question best starts a context audit?",
+            "choices": [
+              "Which offenders have the worst motives compared with the average resident?",
+              "What visible cues tell people that rules are weak, ignored, or optional here?",
+              "How can the city produce a broader media campaign about civic pride?"
+            ],
+            "correctIndex": 1,
+            "explanation": "A context audit begins with visible cues and perceived norms. Motives and campaigns may matter later, but the setting's signal is the first object of inspection.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A supervisor says behavior comes from character, so changing the room is superficial. Which example most directly challenges that view?",
+            "choices": [
+              "Seminary students in a hurry often passed a slumped man despite their stated values.",
+              "Mavens share price details because they enjoy helping buyers make better choices.",
+              "Hush Puppies spread after style carriers made the shoes visible in downtown scenes."
+            ],
+            "correctIndex": 0,
+            "explanation": "The seminary study shows a small situational pressure altering helping behavior. It challenges the idea that stated character alone predicts what people do.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What does the Power of Context claim?",
+          "back": "Immediate surroundings, roles, time pressure, and visible disorder can change what behavior feels normal or permissible.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why did Bernie Goetz become a symbol in 1980s New York?",
+          "back": "The subway already carried cues of crime, fear, and disorder, so the shooting was read through that charged setting.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "What did David Gunn's graffiti cleanup treat as operational?",
+          "back": "Clean trains were a signal that the system was watched and rules had force, not just an aesthetic preference.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "What does fare-beating represent in Broken Windows logic?",
+          "back": "It is a visible public violation that can teach riders whether rules are enforced or optional.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card05",
+          "front": "What does Zimbardo add to the context argument?",
+          "back": "Roles and settings can pull surprising behavior from people quickly, even when they do not expect to act that way.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "What did the Good Samaritan seminary study show?",
+          "back": "Being in a hurry predicted helping more strongly than character claims or even preparing a talk on the Good Samaritan parable.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Audit The Behavioral Setting",
+        "coreSkill": "Before explaining behavior through character, inspect the setting. Look for visible disorder, time pressure, authority cues, and public signals about rules. Change one cue and watch whether behavior moves.",
+        "ifThenPlans": [
+          {
+            "context": "A small public rule break is spreading",
+            "plan": "If the violation is visible, then repair the rule signal where it happens. Make the expected behavior clear in that exact place."
+          },
+          {
+            "context": "Good people miss obvious needs",
+            "plan": "If caring people are rushing past distress, then reduce the time-pressure cue. Build a pause into the route."
+          },
+          {
+            "context": "A role changes people's tone",
+            "plan": "If a title, uniform, or platform changes behavior, then rename the role's purpose before the next shift begins."
+          },
+          {
+            "context": "A room starts with friction",
+            "plan": "If people enter angry or careless, then inspect the first visible cues. Repair the sign that says nobody is in charge."
+          }
+        ],
+        "twentyFourHourChallenge": "Pick one room, platform, inbox, or lobby. Remove or repair one cue of neglect, then note one behavior that might change because of it.",
+        "weeklyPractice": "Once a day, ask what the setting is telling people before anyone speaks. Record one cue of order, hurry, role pressure, or permission."
+      },
+      "memorableLines": [
+        {
+          "text": "A place can hand people a script before they know they are reading it.",
+          "location": "breakdown.deepRead",
+          "why": "It makes context feel active without excusing behavior."
+        },
+        {
+          "text": "Fear was not an abstract mood.",
+          "location": "breakdown.fullRead",
+          "why": "The line grounds public emotion in concrete subway cues."
+        },
+        {
+          "text": "Context is not a pardon.",
+          "location": "breakdown.deepRead",
+          "why": "It protects the idea from the common misreading that setting erases responsibility."
+        }
+      ]
+    },
+    {
+      "chapterId": "the-tipping-point-ch05",
+      "number": 5,
+      "title": "The Power of Context (Part Two): The Magic Number One Hundred and Fifty",
+      "readingTimeMinutes": 12,
+      "hook": "A group can grow so large that its culture stops knowing its own members.",
+      "counterintuition": "Scale is not just more people. Past a rough threshold, trust, shame, praise, and shared memory stop traveling through the same informal channels.",
+      "tryThisNow": "List the people in one group you lead or belong to. Mark who knows one another's work well enough to praise, correct, or warn without a meeting.",
+      "keyTakeaway": "Protect culture by designing group size; when people stop knowing one another, peer trust and informal discipline need a new container.",
+      "breakdown": {
+        "fastRead": "Robin Dunbar gave a number to a social strain many leaders feel before they can name it. Human beings can track only so many real relationships. Around 150 becomes a rough ceiling for groups that depend on mutual knowledge.\n\n+The Rule of 150 is not a spell. It is a warning about social architecture. Hutterite colonies split to preserve intimacy and discipline. W. L. Gore keeps work units small enough for trust to stay personal. John Wesley's Methodist classes made belief repeatable in known groups. Size is context. If the container grows past what people can know, the culture needs new structure.",
+        "deepRead": "Group size changes behavior because anonymity changes pressure. In a small community, people know names, habits, favors, debts, and reputations. Praise and correction move fast. Past a certain size, those channels thin out. The group may keep the same values on paper while losing the daily knowledge that made those values enforceable.\n\n+Robin Dunbar's primate work gives the claim a biological spine. Bigger social brains support larger groups, but not without limit. For humans, the rough number around 150 appears again and again in places that rely on stable personal knowledge.\n\n+Hutterite colonies show the cost and discipline of respecting the limit. When a colony grows too large, division is not failure. It protects a way of life that depends on being known. W. L. Gore applies a related idea to work. Small plants and teams reduce the need for heavy command because people can still find, trust, and pressure one another directly.\n\n+The point is not exact arithmetic. A group of 143 can be unhealthy, and a group of 170 can work with the right structure. The useful move is to notice when culture no longer travels person to person. Then split, cell, or redesign the group before asking slogans to do work that mutual knowledge used to do.",
+        "fullRead": "Robin Dunbar's research begins far from a company org chart. By linking primate neocortex size to social group size, he gave a biological reason to suspect that social life has a carrying capacity. Human beings are not built to hold endless mutual relationships in active memory. Names, histories, favors, status, and obligations take mental room.\n\n+That is why 150 matters as an approximate threshold. The number recurs because many groups need more than membership. They need people to know one another well enough for trust and pressure to work. Below the threshold, a norm can travel through reputation. Above it, the same norm may need bureaucracy, formal reporting, or subgroups.\n\n+Hutterite colonies make the logic visible because they divide when growth threatens cohesion. Splitting can look inefficient from the outside. One community becomes two. Yet the division preserves the dense social knowledge that supports shared discipline. A larger colony might keep the same creed and lose the social setting that made the creed enforceable.\n\n+W. L. Gore and Associates gives the business version. The company behind Gore-Tex has been known for keeping plants and teams small enough that people can know one another. The structure supports initiative because trust has a human scale. Workers can find the right person, judge a promise, and feel peer pressure without waiting for a chain of command.\n\n+John Wesley's Methodist groups show how belief spreads through a small container. The classes and societies made faith regular, social, and accountable. A sermon could inspire, but the small group helped convert inspiration into repeated practice. Rebecca Wells's Divine Secrets of the Ya-Ya Sisterhood offers a literary echo. Reading groups made recommendation intimate, not anonymous.\n\n+The mechanism is peer reinforcement. People act differently when they are known. A promise has weight when the group remembers it. A lapse is harder to hide when the people around you know your usual pattern. A good idea gains force when someone trusted brings it into a circle small enough for talk, not broadcast.\n\n+The limit guards against worshiping the number. The Rule of 150 is not a tape measure for every team. Task type, communication tools, history, and leadership all matter. The number is useful because it asks a better question: can this group still carry culture through personal knowledge?\n\n+When the answer is no, the fix may be structural. Split the plant. Create cells. Form classes. Build smaller circles inside the large body. Do not keep adding people to one social field and then wonder why trust feels thin. Culture spreads through containers, and the container has a size."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Yara splits the new plant",
+          "tags": [
+            "operations",
+            "Gore",
+            "trust"
+          ],
+          "planSpec": {
+            "domain": "specialty materials plant expansion",
+            "audience": "operations executives preserving trust during growth",
+            "stakes": "a larger plant could replace peer trust with slow hierarchy",
+            "format": "planning_choice",
+            "requiredBeat": "Yara uses W. L. Gore's small-unit logic"
+          },
+          "scenario": "Yara studies the 6:40 a.m. floor plan in a Delaware materials plant as headcount projections pass 180. Finance wants one large unit to save rent. She has to decide before the lease call. W. L. Gore is on her desk, and she marks two smaller work areas where technicians can still know one another's promises, habits, and skills.",
+          "whatToDo": "Yara should protect the Gore-style small unit, even if the lease looks less tidy, because trust is part of the operating capacity.",
+          "whyItMatters": "A growing plant can lose the informal knowledge that keeps work quick and honest. Group size becomes a design lever."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Elias audits the all-hands",
+          "tags": [
+            "remote work",
+            "Dunbar",
+            "scale"
+          ],
+          "planSpec": {
+            "domain": "remote engineering organization",
+            "audience": "founders reorganizing after rapid hiring",
+            "stakes": "informal trust may collapse if everyone is treated as one team",
+            "format": "audit",
+            "requiredBeat": "Elias uses Dunbar as a strain signal, not a rigid law"
+          },
+          "scenario": "Elias opens a 9:00 a.m. remote all-hands from Lisbon and sees 162 engineers, half with cameras off. Pull requests now wait on strangers. The founder asks for a stronger culture deck by Friday. Elias must answer in the reorg channel, so he uses Robin Dunbar as a strain signal and audits where mutual knowledge has already broken.",
+          "whatToDo": "Elias should form smaller engineering circles around real dependencies instead of writing a louder culture deck.",
+          "whyItMatters": "Dunbar's number is a warning light, not a rigid law. The question is whether people still know enough to trust and correct one another."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Samira protects the commune",
+          "tags": [
+            "community",
+            "Hutterites",
+            "division"
+          ],
+          "planSpec": {
+            "domain": "intentional community governance",
+            "audience": "community boards managing growth",
+            "stakes": "shared discipline may weaken as members stop knowing daily conduct",
+            "format": "dilemma",
+            "requiredBeat": "Samira frames a Hutterite-style division as protection"
+          },
+          "scenario": "Samira chairs a 7:15 p.m. meeting in a Vermont intentional community where the roster has reached 156. Older members call a split betrayal. New members say chores already vanish unnoticed. She has to guide the vote before winter housing orders close. She frames a Hutterite-style division as protection of daily accountability, not rejection.",
+          "whatToDo": "Samira should name the split as a way to preserve mutual knowledge while the community can still divide carefully.",
+          "whyItMatters": "Hutterite colonies show that division can protect culture. Bigger unity may dilute the very habits the group wants to keep."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Tobias rebuilds the class",
+          "tags": [
+            "faith",
+            "Wesley",
+            "practice"
+          ],
+          "planSpec": {
+            "domain": "faith community small groups",
+            "audience": "pastors reviving weak participation",
+            "stakes": "belief may remain abstract without repeated known-group practice",
+            "format": "reset_moment",
+            "requiredBeat": "Tobias draws from John Wesley's Methodist classes"
+          },
+          "scenario": "Tobias reviews attendance at 8:30 p.m. in a Manchester church office after another crowded Sunday produces thin weekday service. The board wants a better sermon series. Before the planning vote, he points to John Wesley's Methodist classes and proposes groups of twelve where members are known, expected, and missed.",
+          "whatToDo": "Tobias should build small accountable classes around practice rather than relying on one larger weekly message.",
+          "whyItMatters": "Wesley's structure made belief social and repeated. Ideas need containers where people are known by name."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Priestley shrinks the launch",
+          "tags": [
+            "library",
+            "reading groups",
+            "recommendation"
+          ],
+          "planSpec": {
+            "domain": "library reading initiative",
+            "audience": "librarians growing a community recommendation network",
+            "stakes": "one huge event may weaken the intimate recommendation channel",
+            "format": "business_case",
+            "requiredBeat": "Priestley uses reading-group intimacy as spread context"
+          },
+          "scenario": "Priestley walks through a 1:00 p.m. library atrium in Cardiff with posters for a single 400-person author night. The grant officer wants scale. He has to submit the plan by close of day. Thinking of Divine Secrets of the Ya-Ya Sisterhood and reading-group spread, he swaps one big event for twenty small circles.",
+          "whatToDo": "Priestley should fund the small reading circles, because intimate recommendation is the channel the program needs.",
+          "whyItMatters": "Novels can spread through known groups where endorsement feels personal. One large room may weaken that social force."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Mina cells the volunteer pool",
+          "tags": [
+            "relief",
+            "accountability",
+            "threshold"
+          ],
+          "planSpec": {
+            "domain": "disaster relief volunteer network",
+            "audience": "coordinators preventing drift in large volunteer pools",
+            "stakes": "volunteers may become anonymous and stop feeling accountable",
+            "format": "decision_memo",
+            "requiredBeat": "Mina uses the rough threshold to preserve peer regulation"
+          },
+          "scenario": "Mina drafts a 6:10 a.m. memo in a Houston relief warehouse as the volunteer roster climbs past 240. Missed shifts no longer draw notice. The director asks for stricter rules by noon. Mina uses the rough 150 threshold to argue for neighborhood cells with captains who know names, tools, and reliability.",
+          "whatToDo": "Mina should divide the volunteer pool into known cells before adding more rules to an anonymous crowd.",
+          "whyItMatters": "Peer regulation weakens when people become faceless. Smaller groups can restore the social pressure that keeps promises alive."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A materials plant can add 190 people in one large facility or split into two smaller units. Which reason best fits the Gore example?",
+            "choices": [
+              "The large facility is risky mainly because employees may dislike a longer walk to meetings.",
+              "The smaller units preserve personal knowledge, trust, and peer pressure that support initiative.",
+              "The split should happen only if every unit lands below the exact number of 150."
+            ],
+            "correctIndex": 1,
+            "explanation": "Gore's small-unit logic protects human-scale collaboration. The point is not exact arithmetic but whether people can know and trust one another enough to coordinate.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "When a remote company passes 160 engineers and pull requests wait on strangers, what should Dunbar's work make leaders inspect?",
+            "choices": [
+              "Whether mutual knowledge has thinned enough that smaller working circles are needed.",
+              "Whether the company can replace informal trust with a longer values document.",
+              "Whether every engineer has attended the same onboarding talk about collaboration."
+            ],
+            "correctIndex": 0,
+            "explanation": "Dunbar's work points to a cognitive and social ceiling. Leaders should inspect whether trust and reputation still travel through the group.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A community at 156 members fears that splitting would betray unity, but chores and discipline are already slipping. Which Hutterite reading is strongest?",
+            "choices": [
+              "Keep everyone together because shared values become stronger when the roster grows.",
+              "Replace chores with anonymous reporting so members do not need daily knowledge.",
+              "Treat division as a way to preserve intimacy and accountability before scale erodes them."
+            ],
+            "correctIndex": 2,
+            "explanation": "Hutterite division protects the social container that makes shared discipline possible. A split can preserve culture rather than reject it.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A pastor's crowded services produce little weekday practice. Which John Wesley-inspired move fits the mechanism?",
+            "choices": [
+              "Create small classes where members are known, expected, and accountable.",
+              "Make the sermon series more vivid so the Sunday crowd feels more inspired.",
+              "Invite a famous speaker so the church reaches people outside the congregation."
+            ],
+            "correctIndex": 0,
+            "explanation": "Wesley's classes made belief social and repeated. The issue is not only inspiration but a small group that turns belief into regular accountable practice.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A library wants a new novel to spread by recommendation. What plan best uses the Divine Secrets reading-group lesson?",
+            "choices": [
+              "Host one large author event so the library can report the highest attendance.",
+              "Send a polished flyer to every cardholder with a short plot description.",
+              "Seed many small reading circles where members can recommend the novel personally."
+            ],
+            "correctIndex": 2,
+            "explanation": "The reading-group mechanism depends on intimate endorsement. Smaller circles can make recommendation social in a way one large event may not.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A relief network has 240 volunteers and missed shifts now disappear in the crowd. Which redesign best protects peer regulation?",
+            "choices": [
+              "Publish a stricter handbook so every volunteer sees the same attendance rule.",
+              "Create named neighborhood cells led by captains who know volunteers' patterns.",
+              "Hold a larger kickoff meeting so volunteers feel part of one broad mission."
+            ],
+            "correctIndex": 1,
+            "explanation": "Peer regulation works when people are known. Smaller named cells restore the mutual knowledge that an anonymous pool has lost.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "Which statement treats the Rule of 150 as a shallow rule instead of a useful diagnostic?",
+            "choices": [
+              "Any group above 150 should be declared broken regardless of task, history, or structure.",
+              "A leader should ask whether people still know enough to trust and correct one another.",
+              "A growing group may need cells or smaller units before culture can keep traveling."
+            ],
+            "correctIndex": 0,
+            "explanation": "The number is approximate. The useful diagnostic asks whether social knowledge still works, not whether a roster has crossed a mechanically exact line.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "If a group keeps its values language but members no longer know one another's daily conduct, what has most likely changed?",
+            "choices": [
+              "The message has become too sticky, so members no longer need reminders.",
+              "The social container has outgrown the informal channels that carried culture.",
+              "The group has gained enough scale for trust to spread without peer knowledge."
+            ],
+            "correctIndex": 1,
+            "explanation": "The culture may still be stated, but the container no longer supports reputation, correction, and known practice. Size has changed the social physics.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A founder says culture can scale if the values are clear enough. Which question best challenges that confidence?",
+            "choices": [
+              "Can every member still name who depends on their work and who will notice a lapse?",
+              "Can the founder repeat the values in a shorter phrase at the next all-hands?",
+              "Can the company hire a Connector to broadcast the values across departments?"
+            ],
+            "correctIndex": 0,
+            "explanation": "The challenge is whether values still travel through mutual knowledge. Clear slogans cannot fully replace the pressure of being known by the people affected.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What does the Rule of 150 diagnose?",
+          "back": "It diagnoses whether a group is near the rough ceiling where mutual knowledge, trust, and informal accountability begin to strain.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why is 150 not a magic exact number?",
+          "back": "Task, history, tools, and structure matter. The number is useful because it asks whether culture still travels through personal knowledge.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "What does Robin Dunbar contribute to the argument?",
+          "back": "His primate research links brain size and group size, giving biological plausibility to a ceiling on stable social relationships.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card04",
+          "front": "Why do Hutterite colonies split?",
+          "back": "They split to preserve intimacy, shared discipline, and mutual accountability when population growth threatens those social conditions.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "How does W. L. Gore use group size?",
+          "back": "Gore keeps work units small enough for personal familiarity, trust, and initiative to survive without heavy hierarchy.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card06",
+          "front": "What does John Wesley's small-group structure show?",
+          "back": "Belief spreads and lasts when it is practiced in small, known groups that reinforce conduct over time.",
+          "difficulty": "medium"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Design The Social Container",
+        "coreSkill": "Treat group size as part of the system. Ask whether people still know enough about one another to trust, praise, warn, and correct without a formal process. If not, redesign the container before demanding stronger culture.",
+        "ifThenPlans": [
+          {
+            "context": "A group grows past easy familiarity",
+            "plan": "If names, skills, and promises no longer travel, then create smaller units around real work or shared practice."
+          },
+          {
+            "context": "Rules multiply while trust falls",
+            "plan": "If hierarchy is replacing peer judgment, then check whether group size is forcing the change. Split the field before adding another policy."
+          },
+          {
+            "context": "A movement inspires but does not sustain conduct",
+            "plan": "If belief fades after big meetings, then form small accountable groups where members are expected and missed."
+          },
+          {
+            "context": "A recommendation needs intimacy",
+            "plan": "If one large event feels impressive but thin, then seed small circles. Let known people carry the endorsement."
+          }
+        ],
+        "twentyFourHourChallenge": "Map one group into the smallest circles where people truly know one another's work. Mark the place where the map first becomes anonymous.",
+        "weeklyPractice": "This week, split one oversized meeting, channel, or volunteer pool into named smaller units and watch whether response quality changes."
+      },
+      "memorableLines": [
+        {
+          "text": "Size is context.",
+          "location": "breakdown.fastRead",
+          "why": "It compresses the chapter's shift from physical setting to social architecture."
+        },
+        {
+          "text": "Culture spreads through containers, and the container has a size.",
+          "location": "breakdown.fullRead",
+          "why": "It makes the Rule of 150 practical without making it exact."
+        },
+        {
+          "text": "Group size changes behavior because anonymity changes pressure.",
+          "location": "breakdown.deepRead",
+          "why": "It names the mechanism behind the threshold."
+        }
+      ]
+    },
+    {
+      "chapterId": "the-tipping-point-ch06",
+      "number": 6,
+      "title": "Case Study: Rumors, Sneakers, and the Power of Translation",
+      "readingTimeMinutes": 13,
+      "hook": "A sneaker can lose its edge at the exact moment everyone learns its name.",
+      "counterintuition": "Mainstream adoption usually requires change, not pure copying. The risk is changing so much that the original carriers no longer recognize the signal.",
+      "tryThisNow": "Write one idea you want to spread. Under it, list what must stay true for insiders and what must become clearer for newcomers.",
+      "keyTakeaway": "Translate for spread by adapting form, language, and access while preserving the subcultural signal or trust source that made adoption begin.",
+      "breakdown": {
+        "fastRead": "Airwalk grew because Lambesis could hear signals from skate and youth scenes, then turn them into ads the mainstream could read. The work was translation. The brand did not simply copy the edge. It made the edge legible.\n\n+Rumors do a rougher version of the same thing. Gordon Allport showed how retelling levels, sharpens, and fits stories to local belief. The Maine tourist rumor turned ambiguity into wartime suspicion. Baltimore's needle exchange improved when street networks translated official health work into local trust. Translation helps ideas cross distance, but it has a cost. If the bridge loses contact with the edge, the signal goes stale.",
+        "deepRead": "Diffusion often stalls between early adoption and broad use. Innovators may love a product, phrase, or practice because it feels risky, coded, or special. The Early Majority often needs that same thing made safer and easier to understand. Translation is the social edit that closes the gap.\n\n+Allport's rumor work shows translation without good intent. As a story passes from person to person, details drop away. Memorable pieces sharpen. The story bends toward what the community already fears or expects. The Chinese tourist rumor in Maine shows the dark form. A visitor becomes a suspected Japanese spy because wartime anxiety supplies the frame.\n\n+Baltimore's needle exchange shows translation as useful adaptation. Official outreach had limits. Street-level participants could move clean needles through trust routes and small exchanges that public-health workers could not enter in the same way. The intervention worked better when it traveled in local form.\n\n+Airwalk adds the commercial lesson. Lambesis used youth correspondents in cities such as New York, London, and Tokyo to keep the brand close to fresh signals. Ads translated those signals for wider buyers. When Airwalk became too available and lost that listening loop, translation became repetition. The bridge only works while it stays attached to both sides.",
+        "fullRead": "Airwalk's rise was not just a sneaker story. It was a story about how a signal moves from a small scene into the mainstream without becoming flat. Skate culture gave the brand edge, but the mass market could not adopt that edge in its raw form. Lambesis helped convert it into images and ads that wider audiences could understand.\n\n+That conversion is translation. It changes the form so a new audience can carry the idea. Translation may simplify language, change the setting, select a symbol, or make a risky identity feel accessible. It is not copying. Copying keeps the original shape and hopes outsiders catch up. Translation asks what outsiders need in order to enter.\n\n+Rumor research gives the principle a darker shape. Gordon Allport showed that retold stories are leveled, sharpened, and assimilated. Leveling drops details. Sharpening keeps the memorable piece. Assimilation bends the story toward what listeners already believe. The Maine rumor about a Chinese tourist becoming a suspected Japanese spy shows the danger. Wartime fear edited the story into a more contagious falsehood.\n\n+Baltimore's needle exchange gives a better version of the same mechanism. A formal program had clean needles and public-health goals, but formal contact could miss the people most at risk. Street-level users who collected and redistributed needles acted as translators. They brought the intervention into the trust network, economy, and habits of the people who needed it.\n\n+Airwalk joined both sides of translation. Lambesis listened to youth correspondents in trend-sensitive cities. Those correspondents were not decoration. They were the early warning system. Their reports kept the brand near Innovators and Early Adopters. The agency then turned those signals into ads, such as the Tibet-themed campaign, that could travel beyond the original scene.\n\n+The double constraint is brutal. If the product remains too raw, the mainstream cannot use it. If it becomes too clean, the Innovators leave. Early adopters can make a thing desirable precisely because it is not everywhere. Mass distribution can sell more units while draining the reason anyone cared.\n\n+That is why translation must keep listening. The bridge has two ends. One end faces the wider audience and asks for clarity. The other faces the source scene and asks whether the signal is still alive. Airwalk weakened when availability and repeated formulas outran fresh subcultural input.\n\n+The practical rule is to decide what can change and what cannot. Language can change. Packaging can change. Access can change. The trust source, the felt edge, or the insider reason for caring may need protection. Translation is not dilution when it preserves the signal that made spread possible."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Nico keeps the listening loop",
+          "tags": [
+            "streetwear",
+            "Airwalk",
+            "Innovators"
+          ],
+          "planSpec": {
+            "domain": "streetwear brand expansion",
+            "audience": "brand managers moving from niche to national retail",
+            "stakes": "mass distribution may erase the subcultural signal that created demand",
+            "format": "decision_point",
+            "requiredBeat": "Nico protects the Lambesis-style listening loop"
+          },
+          "scenario": "Nico studies a 10:40 p.m. sell-through sheet in a Los Angeles streetwear studio as a national chain offers 600 stores. The CFO wants yes by morning. Nico pulls up Lambesis notes on Airwalk and asks which skate crews still signal the brand. He must choose between scale now and a listening loop that keeps Innovators from walking away.",
+          "whatToDo": "Nico should accept only the rollout that preserves fresh feedback from the subculture before the product floods wider retail.",
+          "whyItMatters": "Airwalk grew through translation from edge to mass taste. It faded when the brand lost contact with new edge signals."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Rehema changes the exchange route",
+          "tags": [
+            "health",
+            "Baltimore",
+            "trust"
+          ],
+          "planSpec": {
+            "domain": "harm-reduction outreach",
+            "audience": "public-health teams working with informal networks",
+            "stakes": "official language may fail where street trust decides access",
+            "format": "dialogue",
+            "requiredBeat": "Rehema adapts the Baltimore needle-exchange lesson"
+          },
+          "scenario": "Rehema sits on a 3:30 p.m. folding chair outside a Nairobi clinic van while outreach workers wait with unused clean kits. A former user says the van feels like surveillance. Rehema has to revise the route before the next stop. She uses the Baltimore needle-exchange lesson and lets trusted street participants carry kits through their own exchanges.",
+          "whatToDo": "Rehema should route the intervention through trusted local carriers instead of asking the formal van to do every handoff.",
+          "whyItMatters": "Translation can make public health usable. The same clean needle means more when it arrives through a trusted network."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Inez repairs the rumor",
+          "tags": [
+            "rumor",
+            "Allport",
+            "distortion"
+          ],
+          "planSpec": {
+            "domain": "community rumor response",
+            "audience": "town officials correcting a distorted story",
+            "stakes": "anxious retelling may turn ambiguity into accusation",
+            "format": "mistake_recovery",
+            "requiredBeat": "Inez uses Allport's leveling and sharpening to correct distortion"
+          },
+          "scenario": "Inez opens a 7:05 p.m. town chat in Bar Harbor and sees a tourist question retold as a threat. Details have vanished, and one frightening phrase keeps getting sharper. Before the council livestream, she names Allport's pattern of leveling and sharpening, then posts the missing facts in the same channels where the anxious version spread.",
+          "whatToDo": "Inez should correct the story by restoring the leveled details and addressing the sharpened fear directly.",
+          "whyItMatters": "Rumors become contagious by fitting local anxiety. Repair has to meet the distorted form, not only state the accurate one."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Mateusz edits the lab pitch",
+          "tags": [
+            "research",
+            "translation",
+            "buyers"
+          ],
+          "planSpec": {
+            "domain": "university research commercialization",
+            "audience": "scientists explaining a niche tool to hospital buyers",
+            "stakes": "the tool may sound brilliant to insiders and opaque to users",
+            "format": "before_after",
+            "requiredBeat": "Mateusz translates without deleting the source of value"
+          },
+          "scenario": "Mateusz reviews a 12:15 p.m. slide deck in a Warsaw lab before hospital buyers arrive. The engineers describe an elegant signal-processing method, and the clinicians look lost in rehearsal. He cuts jargon, adds one patient workflow, and keeps the accuracy advantage that made the tool valuable to insiders. The pitch changes form without gutting the source.",
+          "whatToDo": "Mateusz should translate the tool into the buyer's workflow while protecting the technical advantage experts care about.",
+          "whyItMatters": "Good translation is not simplification alone. It preserves the reason insiders believed while making adoption easier for outsiders."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Keiko reads the correspondents",
+          "tags": [
+            "advertising",
+            "Lambesis",
+            "youth signals"
+          ],
+          "planSpec": {
+            "domain": "youth advertising research",
+            "audience": "creative directors using correspondent networks",
+            "stakes": "a national campaign may miss local meaning if signals arrive too late",
+            "format": "audit",
+            "requiredBeat": "Keiko reads youth correspondents as translators, not decorators"
+          },
+          "scenario": "Keiko scans 8:50 a.m. voice notes from youth correspondents in Tokyo, London, and New York while the creative team polishes one national ad. A director wants the notes reduced to slang. Keiko has to stop the storyboard meeting. She treats the correspondents like Lambesis did: translators of local meaning, not style ornaments.",
+          "whatToDo": "Keiko should use the correspondent notes to change the campaign's meaning, not merely sprinkle youth language on a finished idea.",
+          "whyItMatters": "Trend listening works when it informs translation. Decorative slang can make a brand sound late and false."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Bruno guards the expert edge",
+          "tags": [
+            "software",
+            "mainstream",
+            "double constraint"
+          ],
+          "planSpec": {
+            "domain": "developer tool mainstream rollout",
+            "audience": "product leads crossing from expert users to regular teams",
+            "stakes": "mainstream simplification may alienate the expert users who generate credibility",
+            "format": "planning_choice",
+            "requiredBeat": "Bruno manages the double constraint of translation"
+          },
+          "scenario": "Bruno watches a 5:05 p.m. onboarding prototype in a Lisbon software office. Expert users love the command palette, but regular teams need templates. Sales wants to hide the expert mode before launch. Bruno must decide before the beta email. He keeps the expert edge visible while translating the first path for newcomers.",
+          "whatToDo": "Bruno should add a guided entry path without hiding the expert feature that gives the tool credibility.",
+          "whyItMatters": "Translation has two sides. New users need access, while early believers need proof that the original value still lives."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A streetwear brand gets a national retail offer after skaters make it desirable. Which response best protects the Airwalk lesson?",
+            "choices": [
+              "Ship to every store quickly so the mainstream sees the same product everywhere.",
+              "Replace subculture research with polished national ads once demand appears.",
+              "Scale only while keeping a live listening loop with the scenes that created the signal."
+            ],
+            "correctIndex": 2,
+            "explanation": "Airwalk needed translation and continued contact with Innovators. Broad retail can help spread, but stale mainstream repetition can drain the source of appeal.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "When a clinic van feels like surveillance to the people it serves, what does the Baltimore needle-exchange example suggest?",
+            "choices": [
+              "Use stricter official language so the program's public-health purpose is clear.",
+              "Let trusted street participants carry the intervention through local exchange routes.",
+              "Move the van more often so clients cannot predict where officials will be."
+            ],
+            "correctIndex": 1,
+            "explanation": "The needle exchange worked better when informal carriers translated the intervention into trusted local practice. The barrier was not only supply; it was the route and social meaning.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A town rumor drops key details and keeps one frightening phrase. Which Allport idea explains the mutation?",
+            "choices": [
+              "Leveling removes detail, sharpening preserves the vivid part, and assimilation fits local fear.",
+              "Connectors shorten social distance, Mavens add facts, and Salesmen create emotional assent.",
+              "Repetition creates mastery, pauses invite response, and placement directs attention."
+            ],
+            "correctIndex": 0,
+            "explanation": "Allport's rumor work describes how content changes in transmission. Details are leveled, vivid parts sharpen, and the story bends toward existing assumptions.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A lab tool is brilliant to engineers and opaque to hospital buyers. Which translation move is strongest?",
+            "choices": [
+              "Keep the engineer slides unchanged so buyers can see the tool's full sophistication.",
+              "Remove the technical advantage and pitch only the easiest workflow screen.",
+              "Explain the buyer workflow while preserving the advantage that made experts believe."
+            ],
+            "correctIndex": 2,
+            "explanation": "Translation changes form for the new audience but protects the source of value. Cutting all expert substance would make the tool easier and weaker.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A creative team wants youth correspondents only to supply slang for an ad that is already finished. What is the likely failure?",
+            "choices": [
+              "The ad may decorate a late idea instead of translating live local meaning.",
+              "The ad may become too technical for the mainstream audience to understand.",
+              "The ad may rely on Mavens when the campaign only needs more Salesmen."
+            ],
+            "correctIndex": 0,
+            "explanation": "Lambesis-style listening used correspondents to detect meaning and signals, not to garnish a fixed campaign. Decorative slang can make translation false.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A developer tool needs templates for regular teams but expert users love its command palette. Which plan manages the double constraint?",
+            "choices": [
+              "Hide the command palette so newcomers only see the simplest possible path.",
+              "Add a guided template path while keeping the command palette visible to experts.",
+              "Delay mainstream rollout until regular teams can use the expert workflow unaided."
+            ],
+            "correctIndex": 1,
+            "explanation": "The double constraint asks for access without killing the original signal. A guided path helps newcomers, while visible expert power reassures early users.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "Which situation shows translation rather than simple broadcast?",
+            "choices": [
+              "A message is sent to a larger list with the same wording and same assumptions.",
+              "A practice is reshaped for a new audience while the original appeal remains intact.",
+              "A brand stops listening to early users after it gains wider retail placement."
+            ],
+            "correctIndex": 1,
+            "explanation": "Translation adapts the message so a new audience can carry it. Broadcast expands exposure without necessarily changing the form or protecting the source signal.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A wartime town changes an ambiguous tourist story into a spy accusation. What made the story more contagious?",
+            "choices": [
+              "The retelling fit local anxiety and gave the community a clearer villain frame.",
+              "The tourist story gained credibility because every retelling added more detail.",
+              "The town used small groups to preserve accountability around the accusation."
+            ],
+            "correctIndex": 0,
+            "explanation": "The Maine rumor became contagious by assimilating ambiguity into wartime fear. The story did not become richer; it became sharper and more locally meaningful.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A brand manager says, 'Early adopters like it, so we should copy their version exactly for everyone.' What is the best reply?",
+            "choices": [
+              "Exact copying is safest because mainstream users want the same raw signal.",
+              "Early adopters should be dropped once mainstream retail interest appears.",
+              "A wider audience may need adaptation, but the source of appeal must stay protected."
+            ],
+            "correctIndex": 2,
+            "explanation": "The translation challenge is two-sided. Raw copying can be too strange for the mainstream, while careless dilution can drive away the early believers.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What does translation mean in diffusion?",
+          "back": "Translation adapts an idea's form so a wider audience can understand and carry it while preserving the source of appeal.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "What are Allport's rumor processes?",
+          "back": "Leveling drops detail, sharpening keeps vivid parts, and assimilation bends the story toward existing beliefs or fears.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "What does the Maine tourist rumor show?",
+          "back": "A community can translate ambiguity into a contagious falsehood when fear supplies a simpler frame.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "How did Baltimore's needle exchange use informal carriers?",
+          "back": "Street participants moved clean needles through trust networks that official outreach could not reach in the same way.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card05",
+          "front": "What did Lambesis provide Airwalk?",
+          "back": "A listening system that detected youth and skate signals, then translated them into ads a broader market could understand.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card06",
+          "front": "Why did Airwalk's translation weaken?",
+          "back": "The brand became too available and repetitive while losing fresh input from the Innovator scenes that had made it desirable.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Translate Without Diluting",
+        "coreSkill": "Separate the source signal from the surface form. Keep the reason insiders care, then change language, access, or packaging so newcomers can carry the idea. Keep listening to the edge after the mainstream arrives.",
+        "ifThenPlans": [
+          {
+            "context": "A niche idea confuses newcomers",
+            "plan": "If outsiders cannot enter, then translate the first step into their language. Preserve the insider value that made the idea worth spreading."
+          },
+          {
+            "context": "A mainstream version feels stale",
+            "plan": "If the campaign repeats yesterday's signal, then return to the source community. Refresh the listening loop before scaling further."
+          },
+          {
+            "context": "A rumor mutates under anxiety",
+            "plan": "If details are dropping and fear is sharpening, then restore the missing facts in the same channels where the rumor travels."
+          },
+          {
+            "context": "Formal outreach lacks trust",
+            "plan": "If the official route is blocked, then find trusted carriers inside the community. Let them adapt the handoff without changing the core benefit."
+          }
+        ],
+        "twentyFourHourChallenge": "Choose one message for a wider audience. Write what can change in form and what must stay true in signal, then revise one sentence accordingly.",
+        "weeklyPractice": "This week, interview one insider and one newcomer about the same idea. Use the gap between their words to plan a translation."
+      },
+      "memorableLines": [
+        {
+          "text": "The bridge has two ends.",
+          "location": "breakdown.fullRead",
+          "why": "It captures the double audience in any act of translation."
+        },
+        {
+          "text": "Translation is not dilution when it preserves the signal that made spread possible.",
+          "location": "breakdown.fullRead",
+          "why": "It names the core distinction the chapter depends on."
+        },
+        {
+          "text": "The brand did not simply copy the edge.",
+          "location": "breakdown.fastRead",
+          "why": "It makes the Airwalk example about adaptation rather than imitation."
+        }
+      ]
+    },
+    {
+      "chapterId": "the-tipping-point-ch07",
+      "number": 7,
+      "title": "Case Study: Suicide, Smoking, and the Search for the Unsticky Cigarette",
+      "readingTimeMinutes": 13,
+      "hook": "A teenager can know the danger and still follow the person who makes it look alive.",
+      "counterintuition": "Risk facts do not cancel social meaning. Dangerous behavior can spread when a public act or admired peer supplies a script, a badge, or permission.",
+      "tryThisNow": "For one risky behavior you want to reduce, write the admired carrier, the identity signal, and the sticky hook. Do not start with a warning poster.",
+      "keyTakeaway": "Reduce harmful contagion by weakening both the social spark that makes the act meaningful and the sticky hook that turns trial into dependence.",
+      "breakdown": {
+        "fastRead": "Sima's death in Micronesia is painful because it did not stay private. Later adolescents could read the act as a script for distress, conflict, and status. David Phillips's work on suicide contagion gives the wider pattern: publicized deaths can make later acts more imaginable.\n\n+Smoking carries the same logic in a less sudden form. Many teens know cigarettes are dangerous. The first pull often comes from a person who makes smoking look adult, defiant, or magnetic. Warnings fight facts against identity. The better diagnosis asks who makes the behavior contagious and what makes it stick after a first trial.",
+        "deepRead": "Behavioral contagion begins when an act says more than the act itself. In Micronesia, adolescent self-harm could become a shared script after fights with parents or romantic partners. The point is not that young people copy without thought. The point is that a visible act can give private distress a social form.\n\n+David Phillips's research on publicized suicides gives the pattern statistical force. The Marilyn Monroe aftermath makes it vivid. A high-status death can change what vulnerable people imagine as possible. The danger lies in permission and template, not simple sadness.\n\n+Teen smoking brings the mechanism into daily life. The health warning is already known. Yet first-cigarette memories often center on an older sibling, a magnetic friend, or someone who seems mature and fearless. The carrier gives the cigarette meaning before nicotine gives it grip.\n\n+That distinction changes intervention. One task is social: reduce the status signal and avoid amplifying scripts. Another is biological: make the cigarette less sticky after experimentation. If nicotine delivery or tolerance thresholds can be changed, the first trial is less likely to harden into addiction. The strongest response attacks both the badge and the hook.",
+        "fullRead": "Micronesian teen suicide is one of the hardest examples because it asks for social analysis without coldness. Sima's death after conflict with his father became part of a wider pattern among adolescent boys. Later acts were not random copies. They carried recognizable meanings around anger, shame, romance, family pressure, and public identity.\n\n+The disturbing claim is that an extreme act can become communicative. It can say something to parents, peers, or a community. Once an act has that social meaning, later vulnerable adolescents may see not only despair but a script. The danger is greatest when the act gains status, drama, or a sense of available permission.\n\n+David Phillips's work on suicide contagion broadens the claim beyond one island setting. Publicized suicides can be followed by increases in later deaths, sometimes with patterns that suggest imitation. The Marilyn Monroe aftermath is the stark celebrity example. A famous model can make an act more imaginable to people already near risk.\n\n+This is why public treatment of self-harm needs care. Sensational detail can supply a template. Heroic framing can lend status. Repetition can turn a private tragedy into a public script. The useful response is not silence, but responsible framing: less method, less glamour, more help, more context, and more paths back to life.\n\n+Smoking looks far more ordinary, but the same social mechanics appear. Teenagers do not usually start because they missed the health unit. They start because someone makes the act mean adulthood, rebellion, sex, coolness, or nerve. The first cigarette is often attached to a person remembered with unusual force.\n\n+That person is a behavioral carrier. Like a Salesman, the carrier transmits emotional meaning. Like a Connector, the carrier can move the behavior through peer space. The cigarette becomes a badge before it becomes a habit. Health facts arrive in the wrong language when the teen is seeking identity.\n\n+Nicotine then adds the sticky hook. Social meaning may invite the first trial, but biology can keep the behavior in place. This is why the search for an unsticky cigarette matters. If the product could be changed so casual trials less often become dependence, public health would not need to win every first encounter.\n\n+The limit is moral and practical. Calling behavior contagious does not mean teens are empty vessels or that education has no role. It means education alone can be too weak when a risky act carries status and chemical grip. A strong intervention reduces the attractive script, blocks careless amplification, and weakens the hook that makes a trial last."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Amara maps the first cigarette",
+          "tags": [
+            "school",
+            "smoking",
+            "peer status"
+          ],
+          "planSpec": {
+            "domain": "high school smoking prevention",
+            "audience": "school health teams designing peer interventions",
+            "stakes": "risk facts may miss the admired person who makes cigarettes attractive",
+            "format": "audit",
+            "requiredBeat": "Amara traces smoking to a magnetic peer, not information gaps"
+          },
+          "scenario": "Amara reviews a 2:20 p.m. survey in a Detroit high school office and sees that ninth graders can recite cancer risks. Their first-cigarette stories point to one older student outside the gym. Before ordering new posters, she audits the peer signal: who makes smoking look adult, funny, and untouchable.",
+          "whatToDo": "Amara should design the intervention around the admired carrier and the identity signal, not around another fact sheet.",
+          "whyItMatters": "Teen smoking often starts with social meaning before addiction. The carrier can matter more than the warning."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Dorian edits the tribute",
+          "tags": [
+            "media",
+            "David Phillips",
+            "copycat risk"
+          ],
+          "planSpec": {
+            "domain": "local media suicide coverage",
+            "audience": "editors handling sensitive deaths",
+            "stakes": "coverage may supply a method script and public permission",
+            "format": "decision_memo",
+            "requiredBeat": "Dorian uses David Phillips to limit copycat cues"
+          },
+          "scenario": "Dorian sits in a 6:35 p.m. newsroom in Boise with a draft about a student's death and a photo gallery already queued. The memorial language is warm but too vivid. He has to file guidance before the web producer publishes. David Phillips's research pushes him to remove script-like detail and add help routes.",
+          "whatToDo": "Dorian should publish with restraint: less detail, no glamour, clear support resources, and context that avoids turning grief into a template.",
+          "whyItMatters": "Suicide contagion risk rises when coverage supplies permission or a script. Responsible framing can reduce harm."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Leila names the shared script",
+          "tags": [
+            "counseling",
+            "Sima",
+            "youth"
+          ],
+          "planSpec": {
+            "domain": "island youth counseling program",
+            "audience": "counselors responding to clustered self-harm",
+            "stakes": "treating each crisis as isolated may miss a shared script",
+            "format": "reflection",
+            "requiredBeat": "Leila treats Sima as a painful script problem"
+          },
+          "scenario": "Leila writes field notes at 8:10 p.m. in a youth center after three boys describe family fights with nearly the same phrases. The staff wants separate case files only. Thinking of Sima in Micronesia, she names a shared distress script and plans group work that gives boys other public ways to signal pain.",
+          "whatToDo": "Leila should treat the cluster as a script problem while still caring for each young person individually.",
+          "whyItMatters": "Behavioral contagion can give distress a recognizable form. Intervention needs safer scripts, not just isolated treatment."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Nikhil separates trial from dependence",
+          "tags": [
+            "policy",
+            "nicotine",
+            "stickiness"
+          ],
+          "planSpec": {
+            "domain": "tobacco regulation research",
+            "audience": "policy analysts evaluating harm reduction",
+            "stakes": "preventing every first trial may be impossible while addiction remains sticky",
+            "format": "predict_reveal",
+            "requiredBeat": "Nikhil separates first trial from addictive stickiness"
+          },
+          "scenario": "Nikhil studies a 9:45 a.m. nicotine chart in an Ottawa policy lab as a committee argues over another teen warning campaign. He predicts the warning will miss the social spark. Then he points to the unsticky cigarette idea: if experimentation happens, lower the biological grip before casual use crosses into dependence.",
+          "whatToDo": "Nikhil should evaluate both peer-status prevention and nicotine-threshold changes, rather than treating first trial as the only target.",
+          "whyItMatters": "The first cigarette and the addictive hook are different problems. Harm reduction can work by making the trial less sticky."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Soraya slows the ranking",
+          "tags": [
+            "platform",
+            "Marilyn Monroe",
+            "amplification"
+          ],
+          "planSpec": {
+            "domain": "social platform crisis response",
+            "audience": "trust and safety teams handling celebrity death posts",
+            "stakes": "viral memorial content may amplify permission for vulnerable users",
+            "format": "dilemma",
+            "requiredBeat": "Soraya applies the Marilyn Monroe aftermath to platform ranking"
+          },
+          "scenario": "Soraya watches a 1:30 a.m. crisis dashboard in Dublin as posts about a celebrity death surge. The top clips are emotional and method-adjacent. Product leaders want memorial content left untouched. She has to decide before the ranking refresh. The Marilyn Monroe aftermath makes her reduce amplification and elevate support resources.",
+          "whatToDo": "Soraya should down-rank script-like posts and raise safer context, because viral grief can become contagious permission.",
+          "whyItMatters": "High-status deaths can alter what vulnerable people imagine. Platform ranking is part of the contagion environment."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Callum asks about the carrier",
+          "tags": [
+            "counseling",
+            "first use",
+            "identity"
+          ],
+          "planSpec": {
+            "domain": "youth cessation counseling",
+            "audience": "counselors probing first-use memories",
+            "stakes": "a teen may know the risks yet still chase the identity attached to smoking",
+            "format": "dialogue",
+            "requiredBeat": "Callum uses first-cigarette memory to find the social carrier"
+          },
+          "scenario": "Callum meets a 4:00 p.m. counseling client in Glasgow who shrugs through every health warning. Instead of repeating risk facts, he asks who handed over the first cigarette and what that person seemed to promise. The teen names an older cousin with a leather jacket, a laugh, and a crowd around him.",
+          "whatToDo": "Callum should explore the identity attached to the first cigarette, then build a replacement signal the teen can actually use.",
+          "whyItMatters": "The teen may already know the danger. Counseling improves when it addresses the social badge that made the behavior attractive."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A school survey shows students know cigarette risks, yet many remember one admired older student as their first smoking model. What should the health team inspect first?",
+            "choices": [
+              "The peer status signal that makes smoking feel adult or magnetic.",
+              "The wording of the risk poster, because students may need clearer statistics.",
+              "The parents' smoking habits, because family modeling explains the survey pattern."
+            ],
+            "correctIndex": 0,
+            "explanation": "The issue is not lack of risk knowledge. The first spark often comes from a high-status peer who gives smoking identity value.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "An editor is covering a student suicide and wants to include vivid narrative detail. Which David Phillips-informed choice is safest?",
+            "choices": [
+              "Publish the vivid detail because readers need the full story to understand grief.",
+              "Delay coverage until the community stops talking about the death.",
+              "Reduce script-like detail, avoid glamour, and include support resources."
+            ],
+            "correctIndex": 2,
+            "explanation": "Phillips's work suggests publicized deaths can transmit permission and templates. Responsible coverage lowers those cues while still acknowledging the loss.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "Counselors see several boys frame family conflict with the same harmful script. Which response fits the Sima example?",
+            "choices": [
+              "Treat each case as unrelated so the counselors avoid giving the pattern attention.",
+              "Name the shared script carefully and create safer ways for distress to be seen.",
+              "Focus only on discipline because repeated conflict shows the boys need firmer rules."
+            ],
+            "correctIndex": 1,
+            "explanation": "The Sima pattern points to a communicative script moving through a group. Care still belongs to individuals, but the shared meaning also needs intervention.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A policy team cannot prevent every first cigarette trial. Which research direction follows the unsticky cigarette idea?",
+            "choices": [
+              "Change nicotine delivery or thresholds so casual trials less often become dependence.",
+              "Stop peer programs because biology is the only force keeping teenagers smoking.",
+              "Focus only on posters that repeat the long-term disease risks of cigarettes."
+            ],
+            "correctIndex": 0,
+            "explanation": "The unsticky cigarette idea separates trial from addiction. It looks for ways to reduce the biological grip after experimentation occurs.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A platform sees celebrity death posts going viral, with emotional clips that edge toward a method script. Which ranking change best reflects the Marilyn Monroe lesson?",
+            "choices": [
+              "Boost the clips because public mourning helps users process a famous death together.",
+              "Remove every mention of the celebrity so users cannot discuss the event.",
+              "Limit amplification of script-like clips and elevate safer context and support."
+            ],
+            "correctIndex": 2,
+            "explanation": "The Monroe aftermath shows that high-status deaths can affect vulnerable observers. Ranking should avoid amplifying permission or templates.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A counselor keeps giving health facts to a teen smoker who already knows them. Which question better targets behavioral contagion?",
+            "choices": [
+              "Which disease statistic did the teen find least clear during health class?",
+              "Who made the first cigarette seem like a badge, and what identity did it offer?",
+              "How many times did the teen's parents discuss smoking at home?"
+            ],
+            "correctIndex": 1,
+            "explanation": "Behavioral contagion asks what social meaning the act carried. The key may be the admired person and identity signal, not another health fact.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "Which statement best captures the link between teen suicide contagion and teen smoking without flattening the moral difference?",
+            "choices": [
+              "Both behaviors spread only when young people lack enough factual warnings.",
+              "Both behaviors are identical public-health problems and should be handled the same way.",
+              "Both can transmit scripts or status signals, even though the harms and responses differ."
+            ],
+            "correctIndex": 2,
+            "explanation": "The link is transmission logic, not moral equivalence. Each behavior can carry social meaning, but the interventions and stakes are different.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A prevention campaign says, 'Just tell teens the truth and they will stop.' Which observation most directly challenges that plan?",
+            "choices": [
+              "Many teens know cigarettes are dangerous but still respond to peer identity and status.",
+              "Parents who smoke are the main reason any teen first tries a cigarette.",
+              "Nicotine dependence begins only after every teen fully understands the risk."
+            ],
+            "correctIndex": 0,
+            "explanation": "Risk knowledge can lose to social meaning. The campaign must address the person and identity that make the act attractive.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A health agency wants to reduce teenage smoking by attacking both the first spark and the lasting hook. Which plan fits?",
+            "choices": [
+              "Run a broad lecture series and assume better information will weaken both forces.",
+              "Reduce high-status peer appeal while supporting product rules that lower addictive grip.",
+              "Focus on parental smoking because peer effects are too hard to measure."
+            ],
+            "correctIndex": 1,
+            "explanation": "The first spark is social, and the lasting hook is biological. A combined plan addresses peer meaning and nicotine stickiness.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What is behavioral contagion?",
+          "back": "It is spread through scripts, status, permission, or identity signals that make an act more imaginable or attractive.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "What does Sima's story show about harmful scripts?",
+          "back": "A private act can become socially legible, giving later vulnerable adolescents a script for distress or protest.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card03",
+          "front": "What does David Phillips add to the suicide-contagion claim?",
+          "back": "His research suggests publicized suicides can produce copycat patterns by transmitting permission and behavioral templates.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card04",
+          "front": "Why do risk facts often fail against teen smoking?",
+          "back": "The first cigarette can carry status, adulthood, rebellion, or peer magnetism before addiction takes hold.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "What is the unsticky cigarette idea?",
+          "back": "Change nicotine delivery or dependence thresholds so casual experimentation is less likely to become addiction.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card06",
+          "front": "What two forces should harm reduction address here?",
+          "back": "The social spark that makes the behavior meaningful and the sticky hook that keeps it in place after trial.",
+          "difficulty": "easy"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Weaken Script And Hook",
+        "coreSkill": "For risky behavior, separate social contagion from lasting attachment. Identify who makes the act meaningful, what script it supplies, and what keeps it sticky after trial. Build prevention around all three.",
+        "ifThenPlans": [
+          {
+            "context": "Warnings are understood but behavior continues",
+            "plan": "If facts are known, then inspect the status signal. Find who makes the act look desirable."
+          },
+          {
+            "context": "A harmful act becomes public",
+            "plan": "If coverage or posts could supply a script, then reduce vivid detail and add safer paths for help."
+          },
+          {
+            "context": "Experimentation is hard to eliminate",
+            "plan": "If first trials will happen, then reduce stickiness after the trial. Look for policy or design changes that weaken dependence."
+          },
+          {
+            "context": "A cluster appears",
+            "plan": "If several incidents share a script, then respond to the shared meaning while supporting each person individually."
+          }
+        ],
+        "twentyFourHourChallenge": "Choose one risky behavior in your setting. Write the carrier, the script, and the hook, then draft one intervention for the script instead of another warning.",
+        "weeklyPractice": "During the week, review one prevention message. Revise it so it addresses social meaning and the sticky mechanism, not just information."
+      },
+      "memorableLines": [
+        {
+          "text": "Warnings fight facts against identity.",
+          "location": "breakdown.fastRead",
+          "why": "It explains why rational health messages often lose."
+        },
+        {
+          "text": "The cigarette becomes a badge before it becomes a habit.",
+          "location": "breakdown.fullRead",
+          "why": "It cleanly separates social initiation from biological dependence."
+        },
+        {
+          "text": "Behavioral contagion begins when an act says more than the act itself.",
+          "location": "breakdown.deepRead",
+          "why": "It names the mechanism without sensationalizing the examples."
+        }
+      ]
+    },
+    {
+      "chapterId": "the-tipping-point-ch08",
+      "number": 8,
+      "title": "Conclusion: Focus, Test, and Believe",
+      "readingTimeMinutes": 11,
+      "hook": "The right room did more for a health message than the larger meeting ever could.",
+      "counterintuition": "Small change is not enough by itself. It works when focused effort, real testing, and disciplined belief locate the point where behavior is already sensitive.",
+      "tryThisNow": "Choose one change effort and write the next smallest test: one messenger, one message detail, one setting, and one behavior you can observe.",
+      "keyTakeaway": "Focus on the few sensitive points, test against real behavior, and keep revising until a small change finds the system's movable place.",
+      "breakdown": {
+        "fastRead": "Georgia Sadler tried church meetings first. The choice made sense, but it did not reach the women who most needed breast-cancer and diabetes information. Beauty salons worked better. Women stayed longer, trusted stylists, talked naturally, and returned.\n\n+That is the final ethic: focus, test, and believe. Focus means stop spreading effort everywhere. Test means stop trusting the plan because it sounds plausible. Believe means keep looking for the sensitive point after the first respectable idea fails. The salon did not make the health message true. It made the message travel through trust, time, and repeated contact.",
+        "deepRead": "Focused intervention begins with humility. A church meeting looked like the right venue for Georgia Sadler's outreach because the community already gathered there. Yet the people who came were often already informed or already willing. The setting was respectable, but it did not create the needed exchange.\n\n+The beauty salon changed the social mechanics. A stylist had local trust. A client had time in the chair. Conversation could repeat without feeling like a lecture. The message became personal enough to ask questions and sticky enough to return in later visits.\n\n+That story recombines the epidemic rules. The stylist is a messenger with credibility. The repeated conversation gives the information grip. The salon is a context with dwell time and ease. None of those parts needs to be grand. Together they make the intervention more precise.\n\n+Testing protects the effort from good intentions. Sesame Street and Blue's Clues had to watch real children. Sadler had to see that a plausible venue was not enough. Belief is the courage to keep the system open in your mind. If one route fails, the pattern may still move through another, smaller route.",
+        "fullRead": "Georgia Sadler's outreach problem looked ordinary at first. She needed to get breast-cancer and diabetes information to Black women in San Diego. Church meetings seemed like a strong answer. Churches had trust, community standing, and regular attendance. The plan was sensible enough to be dangerous, because sensible plans can fail quietly.\n\n+Attendance was thin, and the room often contained women already more receptive to health information. The intervention had reach of a kind, but not the right kind. It asked people to attend a formal program, sit in a meeting frame, and receive a message that belonged somewhere more personal.\n\n+Beauty salons changed the equation. Clients sat for long stretches. Stylists had trust that came from repeated contact. Talk flowed without a podium. Questions could surface in the middle of ordinary conversation. The health message entered a place where women already spent time and where the messenger already had standing.\n\n+This is focus. The answer was not a bigger campaign, a louder poster, or a more official sponsor. The answer was a narrower social location with more leverage. The salon combined carrier, stickiness, and context in one small room. That is what a focused intervention looks for.\n\n+This is also testing. Adult confidence is not evidence. A venue that sounds right may not work. A script that reads well may not be remembered. A campaign that reaches many people may move few. The only cure is contact with real behavior: who comes, who listens, who repeats, who acts.\n\n+Sesame Street and Blue's Clues return as models of this discipline. The producers could have trusted professional taste. Instead, they watched children. Sadler could have trusted the symbolic strength of churches. Instead, the results sent her toward salons. Testing is not a bureaucratic add-on. It is the way a theory becomes honest.\n\n+Belief is the last word because social systems can look fixed. Crime, smoking, health behavior, rumors, and habits all seem too large for one small intervention. The epidemic model refuses both despair and fantasy. It says the system may move, but only if the right lever is found.\n\n+The limit matters. Not every small push works. Not every trusted person is the right messenger. Not every intimate setting makes a message stick. Disciplined belief keeps the search alive without pretending that wishful action is enough. It tests, revises, and concentrates effort where the pattern shows a response.\n\n+The practical close is simple. Find the few carriers. Build the message so it survives attention and memory. Put it in the setting where action is easiest. Then watch what happens. If the behavior does not move, learn rather than quit. Large change begins to feel less mystical when the next test is small enough to run."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Rochelle moves the outreach",
+          "tags": [
+            "health",
+            "Georgia Sadler",
+            "salons"
+          ],
+          "planSpec": {
+            "domain": "breast-cancer outreach redesign",
+            "audience": "health educators choosing community venues",
+            "stakes": "a formal meeting may miss women who trust everyday relationships more",
+            "format": "decision_point",
+            "requiredBeat": "Rochelle follows Sadler from church meetings to salon trust"
+          },
+          "scenario": "Rochelle sits at 7:25 p.m. in a San Diego church basement after twelve chairs stay empty for a breast-cancer session. The pastor is supportive, but the same informed women came again. Before next month's budget closes, she follows Georgia Sadler's lesson and tests beauty salons where women have time, trust, and repeated conversation.",
+          "whatToDo": "Rochelle should move one pilot to salons before expanding the church program, then compare questions asked and screening appointments made.",
+          "whyItMatters": "Sadler's success came from matching messenger and setting. A smaller trusted room can beat a larger formal plan."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Devon revises after the children",
+          "tags": [
+            "reading",
+            "Sesame Street",
+            "testing"
+          ],
+          "planSpec": {
+            "domain": "after-school reading program",
+            "audience": "program directors revising a plausible plan",
+            "stakes": "a beloved adult idea may not produce child recall",
+            "format": "postmortem",
+            "requiredBeat": "Devon uses Sesame Street-style testing to revise"
+          },
+          "scenario": "Devon reviews a 4:45 p.m. postmortem in a Tulsa after-school room. Adults loved the pirate reading game, but children remember the plastic swords and not the vowel pattern. The donor report is due tomorrow. He uses Sesame Street testing discipline, admits that attention went to the wrong object, and redesigns the cue.",
+          "whatToDo": "Devon should revise around child recall rather than adult delight, then test the new cue before claiming success.",
+          "whyItMatters": "Testing keeps plausible ideas honest. The audience's behavior must overrule the planner's affection for the design."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Hassan picks the stylist network",
+          "tags": [
+            "diabetes",
+            "messengers",
+            "trust"
+          ],
+          "planSpec": {
+            "domain": "diabetes screening campaign",
+            "audience": "community health workers reducing broad outreach waste",
+            "stakes": "generic posters may reach everyone and move almost no one",
+            "format": "planning_choice",
+            "requiredBeat": "Hassan focuses on stylists as trusted local messengers"
+          },
+          "scenario": "Hassan stands at 10:05 a.m. beside a stack of diabetes posters in an Oakland clinic. The print vendor wants a citywide order. A community worker mentions three stylists whose clients ask health questions during appointments. Hassan has to choose before the invoice goes out, and he focuses the first test on trusted local messengers.",
+          "whatToDo": "Hassan should fund the stylist pilot and measure screening follow-through before buying broad poster distribution.",
+          "whyItMatters": "Focused intervention spends where behavior may move. Trust and dwell time can matter more than total exposure."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Bianca audits tenant carriers",
+          "tags": [
+            "housing",
+            "trusted few",
+            "focus"
+          ],
+          "planSpec": {
+            "domain": "housing rights outreach",
+            "audience": "advocates choosing community messengers",
+            "stakes": "legal information may fail if tenants distrust formal workshops",
+            "format": "audit",
+            "requiredBeat": "Bianca searches for the few trusted carriers before scaling"
+          },
+          "scenario": "Bianca enters a 6:00 p.m. tenant workshop in Queens and sees more lawyers than renters. The handout is accurate, but residents avoid the sign-in table. Before scheduling five more sessions, she audits the building WhatsApp groups and laundry-room conversations to find the few tenants others already trust with private problems.",
+          "whatToDo": "Bianca should recruit the trusted tenant carriers first, then let the legal message travel through existing relationships.",
+          "whyItMatters": "Accurate information can fail in the wrong social route. Focus starts by finding where trust already lives."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Jun stays with the tests",
+          "tags": [
+            "transit",
+            "belief",
+            "iteration"
+          ],
+          "planSpec": {
+            "domain": "youth transit safety campaign",
+            "audience": "city teams iterating after weak pilots",
+            "stakes": "early failures may end the search before the right context is found",
+            "format": "reflection",
+            "requiredBeat": "Jun keeps disciplined belief through multiple tests"
+          },
+          "scenario": "Jun writes a 9:30 p.m. reflection after two youth transit safety pilots fail in Vancouver. Posters at stations were ignored, and a school assembly drew polite silence. The team wants to end the project. Jun keeps disciplined belief and proposes a third test inside late-night basketball runs, where peer captains already set travel norms.",
+          "whatToDo": "Jun should treat the failed pilots as information and test the setting where youth transit choices are actually discussed.",
+          "whyItMatters": "Belief is not denial of failure. It is the decision to keep diagnosing until the sensitive point is found."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Elodie changes the coaching room",
+          "tags": [
+            "finance",
+            "dwell time",
+            "context"
+          ],
+          "planSpec": {
+            "domain": "financial coaching for single parents",
+            "audience": "social-service teams improving participation",
+            "stakes": "a formal workshop may ask busy parents to enter the wrong context",
+            "format": "before_after",
+            "requiredBeat": "Elodie applies salon dwell time and trust to a new domain"
+          },
+          "scenario": "Elodie compares sign-in sheets at 2:00 p.m. in a Montreal family-services office. The budgeting workshop drew four parents, while the childcare pickup line has the same parents waiting twenty minutes daily. Before printing another flyer, she borrows the salon logic and moves coaching into short trusted conversations during pickup.",
+          "whatToDo": "Elodie should place coaching in the existing wait, where parents already have dwell time and a trusted staff member nearby.",
+          "whyItMatters": "Context can make advice possible. The right setting lowers the cost of hearing and acting on a practical message."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A health educator's church meeting draws only women already informed about screening. Which next test best follows Georgia Sadler's lesson?",
+            "choices": [
+              "Make the church presentation longer so attendees receive more complete medical detail.",
+              "Try beauty salons where trusted stylists have time for repeated personal conversation.",
+              "Mail the same presentation notes to every household near the church."
+            ],
+            "correctIndex": 1,
+            "explanation": "Sadler's shift worked because salons changed messenger, stickiness, and context. The issue was not simply message length or a bigger mailing list.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A reading game delights adult donors, but children remember the props instead of the vowel pattern. What should the director do?",
+            "choices": [
+              "Revise based on child recall and test whether the learning cue now survives.",
+              "Keep the game because donor enthusiasm proves the program has energy.",
+              "Add more props so children have several ways to stay engaged."
+            ],
+            "correctIndex": 0,
+            "explanation": "Testing must follow the real audience's behavior. Adult delight does not prove children noticed or retained the intended reading cue.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A clinic can buy citywide diabetes posters or run a small stylist-led pilot with screening follow-up. Which plan best uses focused intervention?",
+            "choices": [
+              "Buy the posters because wider exposure gives the campaign a fairer chance.",
+              "Run both plans at full scale so the clinic does not have to choose early.",
+              "Test the stylist pilot first because trust and dwell time may be the sensitive point."
+            ],
+            "correctIndex": 2,
+            "explanation": "Focused intervention looks for the high-leverage point before broad spending. Stylists may combine trusted messenger, repeated conversation, and useful setting.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A tenant-rights workshop has accurate legal information but few tenants attend. Which question should come before adding more sessions?",
+            "choices": [
+              "Who already carries trust inside the tenant network, and can they host the message?",
+              "Can the lawyers make the handout more detailed so tenants see its authority?",
+              "Will a bigger room make the workshop look more official to the building?"
+            ],
+            "correctIndex": 0,
+            "explanation": "The problem may be social route, not legal accuracy. Trusted tenant carriers can move information where formal workshops cannot.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Two safety pilots fail, and the team wants to quit. What does disciplined belief require?",
+            "choices": [
+              "Treat failure as evidence, revise the diagnosis, and test a more plausible context.",
+              "Keep repeating the same pilot until the public notices the team's persistence.",
+              "Announce that small interventions do not work and shift to broad enforcement."
+            ],
+            "correctIndex": 0,
+            "explanation": "Disciplined belief is not blind repetition. It keeps the search alive by learning from failed tests and looking for a more sensitive point.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "A social-service team has low turnout for budgeting workshops, but parents wait twenty minutes at pickup. Which move uses context well?",
+            "choices": [
+              "Offer shorter budget lectures in the same formal workshop room.",
+              "Require signups during pickup and send parents to the workshop later.",
+              "Move brief coaching into the pickup wait with a trusted staff member."
+            ],
+            "correctIndex": 2,
+            "explanation": "The pickup line supplies dwell time and a natural setting. Like the salon, it lowers the cost of conversation and uses existing trust.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "Which statement turns small-change optimism into wishful thinking?",
+            "choices": [
+              "Small interventions should be tested against observable behavior.",
+              "Any small push can change a large system if the team believes strongly enough.",
+              "A narrow setting can outperform broad effort when it contains the sensitive point."
+            ],
+            "correctIndex": 1,
+            "explanation": "The disciplined claim is stricter than optimism. Small changes matter when diagnosis finds a sensitive point and tests show behavior moving.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A campaign reaches many people but produces little action. Which sequence best matches the final working ethic?",
+            "choices": [
+              "Broadcast wider, defend the original plan, and wait for delayed results.",
+              "Focus the likely lever, test real behavior, and revise with disciplined belief.",
+              "Choose one charismatic messenger and let that person solve the campaign."
+            ],
+            "correctIndex": 1,
+            "explanation": "The ethic is focus, test, and believe. It narrows effort, checks actual behavior, and keeps revising instead of relying on reach or one generic influencer.",
+            "bloomsLevel": "remember",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A planner says, 'Our venue is respected, so it should work.' Which response best applies the Sadler and testing lessons?",
+            "choices": [
+              "A respected venue still has to be tested for attendance, trust, repetition, and action.",
+              "A respected venue should work once the message is repeated often enough.",
+              "A respected venue matters less than whether the campaign has enough funds."
+            ],
+            "correctIndex": 0,
+            "explanation": "Sadler's church venue was plausible but weak for the target behavior. Testing asks what the venue actually does for trust, time, and follow-through.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What is focused intervention?",
+          "back": "It is the search for the few people, message details, or settings where a small change can move a larger pattern.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why did Georgia Sadler move from churches to beauty salons?",
+          "back": "Salons gave the message trusted stylists, dwell time, repeated contact, and natural conversation with the women she wanted to reach.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "How does Sadler's salon example recombine the three epidemic rules?",
+          "back": "Stylists act as messengers, repeated conversation makes the information stickier, and the salon supplies a helpful context.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card04",
+          "front": "Why is testing central to the final ethic?",
+          "back": "Plausible plans can fail. Testing shows what real audiences notice, trust, remember, and act on.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "What does disciplined belief mean?",
+          "back": "It means continuing to revise and test because social systems may move when the right sensitive point is found.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card06",
+          "front": "What misreading of small interventions should be avoided?",
+          "back": "Avoid assuming any small push works. Small changes matter only when diagnosis and testing locate a real leverage point.",
+          "difficulty": "easy"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Run The Smallest Real Test",
+        "coreSkill": "Turn a broad change effort into one observable test. Choose a likely messenger, message detail, or setting. Then measure behavior, not enthusiasm, and revise from what happened.",
+        "ifThenPlans": [
+          {
+            "context": "The plan sounds plausible but untested",
+            "plan": "If the plan only sounds right, then run one small trial with the real audience before scaling it."
+          },
+          {
+            "context": "Broad reach produces little action",
+            "plan": "If many people see the message and few act, then narrow the lever. Look for trust, dwell time, or repeated contact."
+          },
+          {
+            "context": "A first attempt fails",
+            "plan": "If the first pilot fails, then extract one lesson and test a changed setting. Do not confuse one bad route with a fixed system."
+          },
+          {
+            "context": "The team wants to spend everywhere",
+            "plan": "If resources are spreading thin, then pick the one carrier, cue, or room most likely to move behavior and test there first."
+          }
+        ],
+        "twentyFourHourChallenge": "Design one small test for a current change effort. Define the audience, the lever, the behavior to watch, and the decision you will make after the result.",
+        "weeklyPractice": "Run or observe one small test this week. Write what moved, what did not, and which lever you will adjust next."
+      },
+      "memorableLines": [
+        {
+          "text": "The plan was sensible enough to be dangerous, because sensible plans can fail quietly.",
+          "location": "breakdown.fullRead",
+          "why": "It gives the testing ethic a sharp reason to exist."
+        },
+        {
+          "text": "Belief is the courage to keep the system open in your mind.",
+          "location": "breakdown.deepRead",
+          "why": "It defines optimism as disciplined search, not cheerfulness."
+        },
+        {
+          "text": "The salon did not make the health message true.",
+          "location": "breakdown.fastRead",
+          "why": "It separates message accuracy from the social conditions that let it spread."
+        }
+      ]
+    }
+  ]
+}

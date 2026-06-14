@@ -1,0 +1,69 @@
+{
+  "chapterId": "the-4-hour-workweek-ch12",
+  "number": 12,
+  "title": "Disappearing Act: How to Escape the Office",
+  "coreMove": "Sell remote work as a controlled trial with clear output, reachability, and rollback terms; personal freedom follows when employer risk falls.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "software operations",
+      "audience": "an analyst asking for remote work",
+      "stakes": "A broad request may sound like disappearing unless the manager sees proof and limits.",
+      "format": "decision_memo",
+      "requiredBeat": "Use a remote-work proposal with trial period and manager rollback terms."
+    },
+    {
+      "domain": "consulting delivery",
+      "audience": "a project lead comparing work sites",
+      "stakes": "The office may be treated as productive even when meetings break the work apart.",
+      "format": "before_after",
+      "requiredBeat": "Use a remote day and productivity comparison against office interruptions."
+    },
+    {
+      "domain": "customer success",
+      "audience": "a support lead handling escalation coverage",
+      "stakes": "A remote request can fail if the manager imagines unanswered messages.",
+      "format": "dialogue",
+      "requiredBeat": "Make communication rules explicit before the manager raises reachability fears."
+    },
+    {
+      "domain": "publishing production",
+      "audience": "an editor seeking a flexible schedule",
+      "stakes": "Asking too soon can make remote work look like a cover for weak delivery.",
+      "format": "mistake_recovery",
+      "requiredBeat": "Show strong performance coming before leverage."
+    },
+    {
+      "domain": "manufacturing finance",
+      "audience": "a controller negotiating one admin day away",
+      "stakes": "A manager may reject the plan if approval feels permanent.",
+      "format": "dilemma",
+      "requiredBeat": "Use reversibility to make approval safer."
+    },
+    {
+      "domain": "legal administration",
+      "audience": "a coordinator seeking more location control",
+      "stakes": "Winning the whole arrangement at once may trigger resistance.",
+      "format": "planning_choice",
+      "requiredBeat": "Show one successful trial creating the basis for more."
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "understand": 1,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 10,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-05T08:48:29.796Z"
+}

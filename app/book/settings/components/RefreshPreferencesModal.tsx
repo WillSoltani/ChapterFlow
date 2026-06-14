@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
+import { Dialog } from "@/components/ui/Dialog";
 import { CardSelector } from "./controls/CardSelector";
 import { ToggleSwitch } from "./controls/ToggleSwitch";
 import { DropdownSelect } from "./controls/DropdownSelect";
@@ -63,14 +64,6 @@ export function RefreshPreferencesModal({
   const [highContrast, setHighContrast] = useState(currentHighContrast);
   const [colorBlind, setColorBlind] = useState<ColorBlindMode>(currentColorBlind);
 
-  // Close on Escape
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") handleClose(); };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [open]);
-
   function goNext() {
     if (step < TOTAL_STEPS) {
       setDirection(1);
@@ -94,8 +87,6 @@ export function RefreshPreferencesModal({
     setStep(1);
   }
 
-  if (!open) return null;
-
   const slideVariants = {
     enter: (d: number) => ({
       x: d > 0 ? 60 : -60,
@@ -109,19 +100,8 @@ export function RefreshPreferencesModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center px-4">
-      <motion.div
-        initial={reducedMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={reducedMotion ? undefined : { opacity: 0 }}
-        className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
-        onClick={handleClose}
-      />
-      <motion.div
-        initial={reducedMotion ? false : { y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="relative w-full max-w-lg rounded-t-3xl sm:rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-shadow-elevated overflow-hidden"
-      >
+    <Dialog open={open} onClose={handleClose} labelledBy="refresh-title" size="lg">
+      <div className="relative overflow-hidden p-6">
         <button
           type="button"
           onClick={handleClose}
@@ -137,7 +117,7 @@ export function RefreshPreferencesModal({
             <div
               key={i}
               className={`h-1.5 flex-1 rounded-full transition-colors ${
-                i < step ? "bg-(--cf-accent)" : "bg-(--cf-surface-strong)"
+                i < step ? "bg-(--cf-accent)" : "bg-(--cf-progress-track)"
               }`}
             />
           ))}
@@ -156,8 +136,8 @@ export function RefreshPreferencesModal({
           >
             {step === 1 && (
               <div>
-                <p className="text-xs text-(--cf-text-soft) mb-1">Step 1 of {TOTAL_STEPS}</p>
-                <h3 className="text-lg font-bold text-(--cf-text-1)">
+                <p className="text-xs text-(--cf-text-3) mb-1">Step 1 of {TOTAL_STEPS}</p>
+                <h3 id="refresh-title" className="text-lg font-bold text-(--cf-text-1)">
                   What best describes your reading style?
                 </h3>
                 <div className="mt-4">
@@ -181,8 +161,8 @@ export function RefreshPreferencesModal({
 
             {step === 2 && (
               <div>
-                <p className="text-xs text-(--cf-text-soft) mb-1">Step 2 of {TOTAL_STEPS}</p>
-                <h3 className="text-lg font-bold text-(--cf-text-1)">
+                <p className="text-xs text-(--cf-text-3) mb-1">Step 2 of {TOTAL_STEPS}</p>
+                <h3 id="refresh-title" className="text-lg font-bold text-(--cf-text-1)">
                   How much time can you dedicate daily?
                 </h3>
                 <div className="mt-4">
@@ -207,8 +187,8 @@ export function RefreshPreferencesModal({
 
             {step === 3 && (
               <div>
-                <p className="text-xs text-(--cf-text-soft) mb-1">Step 3 of {TOTAL_STEPS}</p>
-                <h3 className="text-lg font-bold text-(--cf-text-1)">
+                <p className="text-xs text-(--cf-text-3) mb-1">Step 3 of {TOTAL_STEPS}</p>
+                <h3 id="refresh-title" className="text-lg font-bold text-(--cf-text-1)">
                   How do you like to be motivated?
                 </h3>
                 <div className="mt-4">
@@ -232,8 +212,8 @@ export function RefreshPreferencesModal({
 
             {step === 4 && (
               <div>
-                <p className="text-xs text-(--cf-text-soft) mb-1">Step 4 of {TOTAL_STEPS}</p>
-                <h3 className="text-lg font-bold text-(--cf-text-1)">
+                <p className="text-xs text-(--cf-text-3) mb-1">Step 4 of {TOTAL_STEPS}</p>
+                <h3 id="refresh-title" className="text-lg font-bold text-(--cf-text-1)">
                   Any accessibility needs?
                 </h3>
                 <div className="mt-4 space-y-4">
@@ -294,11 +274,11 @@ export function RefreshPreferencesModal({
               </button>
             )}
             <Button variant="primary" size="sm" onClick={goNext}>
-              {step === TOTAL_STEPS ? "Done \u2014 Update my preferences" : "Next"}
+              {step === TOTAL_STEPS ? "Done — Update my preferences" : "Next"}
             </Button>
           </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </Dialog>
   );
 }

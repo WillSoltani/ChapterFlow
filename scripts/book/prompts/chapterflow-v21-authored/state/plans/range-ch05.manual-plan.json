@@ -1,0 +1,70 @@
+{
+  "chapterId": "range-ch05",
+  "number": 5,
+  "title": "Thinking Outside Experience",
+  "coreMove": "Deep analogical thinking improves judgment by comparing hidden relationships across domains instead of matching surface appearances.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "kepler product mystery",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "decision_point",
+      "requiredBeat": "Kepler Product Mystery"
+    },
+    {
+      "domain": "fortress oncology brief",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "reflection",
+      "requiredBeat": "Fortress Oncology Brief"
+    },
+    {
+      "domain": "dunbar lab meeting",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "business_case",
+      "requiredBeat": "Dunbar Lab Meeting"
+    },
+    {
+      "domain": "retail strategy comparison",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "scene",
+      "requiredBeat": "Retail Strategy Comparison"
+    },
+    {
+      "domain": "kepler classroom debate",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "planning_choice",
+      "requiredBeat": "Kepler Classroom Debate"
+    },
+    {
+      "domain": "warehouse flow fix",
+      "audience": "practitioners applying Range",
+      "stakes": "misreading the source case",
+      "format": "audit",
+      "requiredBeat": "Warehouse Flow Fix"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 1,
+      "create": 1,
+      "remember": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 4,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 14,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-06-03T07:17:02.903Z"
+}

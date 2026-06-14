@@ -4,8 +4,9 @@ import {
   QueryCommand,
   PutCommand,
 } from "@aws-sdk/lib-dynamodb";
-import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { SESv2Client } from "@aws-sdk/client-sesv2";
 import { weeklyDigestEmail } from "./email-templates/weekly-digest";
+import { sendCompliantEmail, type EmailConfig } from "./email-compliance";
 
 type UserSettings = {
   PK: string;
@@ -22,7 +23,7 @@ export async function processWeeklyDigest(
   ddb: DynamoDBDocumentClient,
   ses: SESv2Client,
   tableName: string,
-  senderEmail: string,
+  config: EmailConfig,
   userItems: UserSettings[],
 ): Promise<{ sent: number; skipped: number }> {
   // Only run on Sundays
@@ -126,22 +127,21 @@ export async function processWeeklyDigest(
 
     // Send email digest
     try {
-      const tpl = weeklyDigestEmail({ name, chaptersCompleted, currentStreak, ipBalance });
-      await ses.send(
-        new SendEmailCommand({
-          FromEmailAddress: senderEmail,
-          Destination: { ToAddresses: [email] },
-          Content: {
-            Simple: {
-              Subject: { Data: tpl.subject },
-              Body: {
-                Text: { Data: tpl.textBody },
-                Html: { Data: tpl.htmlBody },
-              },
-            },
-          },
-        }),
-      );
+      const tpl = weeklyDigestEmail({
+        name,
+        chaptersCompleted,
+        currentStreak,
+        ipBalance,
+        appBaseUrl: config.appBaseUrl,
+      });
+      await sendCompliantEmail(ses, ddb, tableName, config, {
+        to: email,
+        userId,
+        category: "weekly_digest",
+        subject: tpl.subject,
+        textBody: tpl.textBody,
+        htmlBody: tpl.htmlBody,
+      });
       sent++;
     } catch (err) {
       console.error(`[weekly-digest] Failed for ${userId}:`, err);
