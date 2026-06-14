@@ -446,6 +446,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
                 type="submit"
                 disabled={!input.trim()}
                 className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-(--cf-accent) text-white transition hover:brightness-110 disabled:opacity-50"
+                aria-label="Send message"
               >
                 <Send className="h-4 w-4" />
               </button>
