@@ -2,7 +2,8 @@ import "server-only";
 
 import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { bookUserPk, pairSk, pairInvitePk, pairInviteSk, pairNudgeSk, nowIso } from "./keys";
+import { bookUserPk, pairSk, pairInvitePk, pairInviteSk, pairNudgeSk, streakSk, nowIso } from "./keys";
+import { getUserProfileItem, listAllUserProgress } from "./repo";
 import type { BookUserPairItem, BookPairInviteItem } from "./types";
 
 function generateInviteCode(): string {
@@ -157,6 +158,99 @@ export async function getUserActivePair(
 
   const pairs = (result.Items ?? []) as BookUserPairItem[];
   return pairs.find((p) => p.status === "active") ?? null;
+}
+
+/**
+ * A PII-safe summary of a reading partner for the accountability UI. Both users
+ * opted into this view by pairing, so coarse activity signals are exposed —
+ * never the partner's email, user id, or the titles of the books they're reading.
+ */
+export type PairPartnerSummary = {
+  /** The partner's chosen display name only (mirrors the gift-preview pattern); null if they never set one. */
+  displayName: string | null;
+  currentStreak: number;
+  booksInProgress: number;
+  /** Coarse last-active day (YYYY-MM-DD) from the streak record; null if the partner has no recorded activity. */
+  lastActiveDate: string | null;
+};
+
+export type ActivePairResult = {
+  pair: BookUserPairItem | null;
+  partner: PairPartnerSummary | null;
+};
+
+/**
+ * Read-only streak snapshot. Unlike getOrCreateStreak, this NEVER writes — it
+ * must not create a streak record as a side effect of viewing someone else's data.
+ */
+async function getPartnerStreakSnapshot(
+  tableName: string,
+  partnerId: string,
+): Promise<{ currentStreak: number; lastActiveDate: string | null }> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: { PK: bookUserPk(partnerId), SK: streakSk() },
+    }),
+  );
+  const item = res.Item;
+  const rawStreak = item?.currentStreak;
+  const currentStreak =
+    typeof rawStreak === "number" && Number.isFinite(rawStreak) ? Math.max(0, rawStreak) : 0;
+  const lastActiveDate = typeof item?.lastActiveDate === "string" ? item.lastActiveDate : null;
+  return { currentStreak, lastActiveDate };
+}
+
+/**
+ * The viewer's active pair plus a PII-safe summary of the partner so the card
+ * can show whether the partner is actually active (the point of an accountability
+ * partner) rather than just "paired since {date}". Each partner lookup is
+ * best-effort: a missing profile/streak/progress degrades that one field to its
+ * neutral default instead of failing the whole request.
+ */
+export async function getActivePairWithPartner(
+  tableName: string,
+  userId: string,
+): Promise<ActivePairResult> {
+  const pair = await getUserActivePair(tableName, userId);
+  if (!pair) return { pair: null, partner: null };
+
+  const partnerId = pair.partnerId;
+  const [displayName, streak, progress] = await Promise.all([
+    getUserProfileItem(tableName, partnerId)
+      .then((p) => {
+        const dn = p?.profile?.displayName;
+        return typeof dn === "string" && dn.trim() ? dn.trim() : null;
+      })
+      .catch(() => null),
+    getPartnerStreakSnapshot(tableName, partnerId).catch(() => ({
+      currentStreak: 0,
+      lastActiveDate: null,
+    })),
+    listAllUserProgress(tableName, partnerId).catch(() => []),
+  ]);
+
+  // "In progress" must mean started-with-real-activity AND not yet completed, to
+  // match the app's canonical classifier (useBookAnalytics.statusFromCounts:
+  // in_progress only once completed > 0). Counting bare PROGRESS records would
+  // inflate the number with books the partner merely opened but never read a
+  // chapter of (createProgressIfMissing seeds completedChapters: []), which their
+  // own dashboard would call not_started. The not-completed half is the negation
+  // of repo.summarizeProgress's completion predicate.
+  const booksInProgress = progress.filter(
+    (p) =>
+      p.completedChapters.length > 0 && p.currentChapterNumber > p.completedChapters.length,
+  ).length;
+
+  return {
+    pair,
+    partner: {
+      displayName,
+      currentStreak: streak.currentStreak,
+      booksInProgress,
+      lastActiveDate: streak.lastActiveDate,
+    },
+  };
 }
 
 export async function deletePair(

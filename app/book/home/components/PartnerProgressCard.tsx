@@ -5,10 +5,54 @@ import { Users, Bell, UserPlus, X, Copy, Check } from "lucide-react";
 import { fetchBookJson, BookClientError } from "@/app/book/_lib/book-api";
 import type { BookUserPairItem } from "@/app/app/api/book/_lib/types";
 
-type PairResponse = { pair: BookUserPairItem | null };
+/** PII-safe partner summary returned by GET /me/pairs (see pair-repo.getActivePairWithPartner). */
+type PairPartner = {
+  displayName: string | null;
+  currentStreak: number;
+  booksInProgress: number;
+  lastActiveDate: string | null;
+};
+
+type PairResponse = { pair: BookUserPairItem | null; partner: PairPartner | null };
+
+/**
+ * Coarse, day-granularity activity label — never reveals an exact timestamp.
+ * The partner's lastActiveDate is stored in their own local calendar day, so we
+ * anchor "today" to the viewer's LOCAL day (not UTC) to avoid a systematic
+ * off-by-one for every non-UTC viewer. A partner in a different timezone is
+ * inherently imprecise at day granularity, which this label is fine with.
+ */
+function formatLastActive(dateStr: string | null): string | null {
+  if (!dateStr) return null;
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  if (dateStr >= today) return "active today";
+  // Anchor both sides to local midnight so the delta is whole days (Math.round absorbs DST).
+  const days = Math.round((Date.parse(`${today}T00:00:00`) - Date.parse(`${dateStr}T00:00:00`)) / 86_400_000);
+  if (!Number.isFinite(days) || days < 1) return null;
+  if (days === 1) return "active yesterday";
+  return `active ${days}d ago`;
+}
+
+/** Build the partner's activity subtitle, e.g. "12-day streak · 2 books in progress · active today". */
+function partnerActivityLabel(partner: PairPartner | null, pairedAt: string): string {
+  const parts: string[] = [];
+  if (partner) {
+    if (partner.currentStreak > 0) parts.push(`${partner.currentStreak}-day streak`);
+    if (partner.booksInProgress > 0) {
+      parts.push(`${partner.booksInProgress} book${partner.booksInProgress === 1 ? "" : "s"} in progress`);
+    }
+    const active = formatLastActive(partner.lastActiveDate);
+    if (active) parts.push(active);
+  }
+  if (parts.length > 0) return parts.join(" · ");
+  // No activity signal yet — fall back to the pairing date.
+  return `Paired since ${new Date(pairedAt).toLocaleDateString()}`;
+}
 
 export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
   const [pair, setPair] = useState<BookUserPairItem | null>(null);
+  const [partner, setPartner] = useState<PairPartner | null>(null);
   const [loading, setLoading] = useState(true);
   const [inviteUrl, setInviteUrl] = useState<string | null>(null);
   const [nudging, setNudging] = useState(false);
@@ -25,7 +69,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
     if (!enabled || fetchingRef.current) return;
     fetchingRef.current = true;
     fetchBookJson<PairResponse>("/app/api/book/me/pairs")
-      .then((data) => setPair(data.pair))
+      .then((data) => { setPair(data.pair); setPartner(data.partner); })
       .catch(() => {})
       .finally(() => { fetchingRef.current = false; });
   }, [enabled]);
@@ -34,7 +78,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
   useEffect(() => {
     if (!enabled) { setLoading(false); return; }
     fetchBookJson<PairResponse>("/app/api/book/me/pairs")
-      .then((data) => setPair(data.pair))
+      .then((data) => { setPair(data.pair); setPartner(data.partner); })
       .catch(() => {})
       .finally(() => setLoading(false));
   }, [enabled]);
@@ -111,6 +155,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
         method: "DELETE",
       });
       setPair(null);
+      setPartner(null);
       setConfirmEnd(false);
     } catch {
       setEndError(true);
@@ -217,12 +262,12 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--cf-accent-soft)">
           <Users className="h-5 w-5 text-(--cf-accent)" />
         </div>
-        <div className="flex-1">
-          <p className="text-sm font-semibold text-(--cf-text-1)">
-            Reading Partner
+        <div className="flex-1 min-w-0">
+          <p className="truncate text-sm font-semibold text-(--cf-text-1)">
+            {partner?.displayName || "Reading Partner"}
           </p>
-          <p className={`mt-0.5 text-xs ${nudgeError ? "text-red-400" : "text-(--cf-text-3)"}`}>
-            {nudgeError || `Paired since ${new Date(pair.pairedAt).toLocaleDateString()}`}
+          <p className={`mt-0.5 truncate text-xs ${nudgeError ? "text-red-400" : "text-(--cf-text-3)"}`}>
+            {nudgeError || partnerActivityLabel(partner, pair.pairedAt)}
           </p>
         </div>
         <button
