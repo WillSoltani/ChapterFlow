@@ -14,7 +14,7 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { getOrCreateStreak } from "@/app/app/api/book/_lib/streak-repo";
 import { getOrCreateTier } from "@/app/app/api/book/_lib/tier-repo";
-import { S3Client, GetObjectCommand, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import {
   getBookPackageByIdForTone,
   type ToneKey,
@@ -36,6 +36,17 @@ import {
 export const runtime = "nodejs";
 
 const s3 = new S3Client({});
+
+// Per-request diagnostic logging is gated behind a debug flag so the audio hot
+// path stays quiet in production (CloudWatch cost/noise) and never writes
+// user-derived strings (display name, Cognito sub) into logs. Genuine failures
+// still use console.error unconditionally.
+const AUDIO_DEBUG =
+  process.env.NODE_ENV !== "production" || process.env.AUDIO_DEBUG_LOG === "1";
+
+function audioDebug(message: string): void {
+  if (AUDIO_DEBUG) console.log(message);
+}
 
 type Params = { params: Promise<{ bookId: string; chapterNumber: string }> };
 
@@ -142,7 +153,7 @@ function extractSegmentText(
         }
       }
 
-      console.log(`[audio] Takeaways extracted: ${structured.length} (from summaryBlocks bullets + keyTakeaways + takeaways)`);
+      audioDebug(`[audio] Takeaways extracted: ${structured.length} (from summaryBlocks bullets + keyTakeaways + takeaways)`);
 
       const connectedText = buildTakeawayText(structured);
       if (connectedText) parts.push(connectedText);
@@ -241,7 +252,7 @@ async function generateAndCacheBodySegment(
       CacheControl: "public, max-age=31536000",
     }),
   ).then(() => {
-    console.log(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
+    audioDebug(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
   }).catch((err) => {
     console.error(`[audio] S3 cache write failed for ${segment}:`, err);
   });
@@ -344,7 +355,7 @@ export async function GET(req: Request, ctx: Params) {
     const plan = buildSegmentPlan(narrationCtx);
     const segmentKeys = getSegmentKeys(plan, narrationCtx, tone, variant);
 
-    console.log(
+    audioDebug(
       `[audio] Plan: greeting=${plan.greetingId} score=${plan.scoreId} transition=${plan.transitionId} closing=${plan.closingId} segments=${segmentKeys.length}`,
     );
 
@@ -359,26 +370,33 @@ export async function GET(req: Request, ctx: Params) {
 
     const elevenLabsKey = await getServerEnv("ELEVENLABS_API_KEY");
 
-    // First pass: load all segments from S3, identify missing body segments
-    const loadResults: Array<{ key: string; buffer: Buffer | null; bodyType: BodySegmentType | null }> = [];
-    for (const key of segmentKeys) {
-      const buffer = await loadSegmentFromS3(bucket, key);
-      loadResults.push({ key, buffer, bodyType: bodySegmentKeyMap.get(key) ?? null });
-    }
+    // First pass: load all segments from S3 in parallel, identify missing body
+    // segments. (Serial awaits here previously added ~11 round-trips of latency
+    // to every play; the GETs are independent so they fan out cleanly.)
+    const loadResults: Array<{ key: string; buffer: Buffer | null; bodyType: BodySegmentType | null }> =
+      await Promise.all(
+        segmentKeys.map(async (key) => ({
+          key,
+          buffer: await loadSegmentFromS3(bucket, key),
+          bodyType: bodySegmentKeyMap.get(key) ?? null,
+        })),
+      );
 
     // Auto-generate greeting clip if missing and we have a name + API key
     const greetingKey = userName ? userGreetingS3Key(user.sub, narrationCtx.timeOfDay) : null;
 
-    // Log what loaded and what's missing
-    for (const { key, buffer, bodyType } of loadResults) {
-      if (buffer) {
-        console.log(`[audio] Loaded: ${key} (${buffer.length} bytes)`);
-      } else if (bodyType) {
-        console.log(`[audio] Missing body segment: ${key} (${bodyType})`);
-      } else if (key === greetingKey) {
-        console.log(`[audio] Missing greeting clip: ${key} (will auto-generate)`);
-      } else {
-        console.log(`[audio] Missing narration segment: ${key}`);
+    // Log what loaded and what's missing (debug-only — keys can embed user.sub).
+    if (AUDIO_DEBUG) {
+      for (const { key, buffer, bodyType } of loadResults) {
+        if (buffer) {
+          audioDebug(`[audio] Loaded: ${key} (${buffer.length} bytes)`);
+        } else if (bodyType) {
+          audioDebug(`[audio] Missing body segment: ${key} (${bodyType})`);
+        } else if (key === greetingKey) {
+          audioDebug(`[audio] Missing greeting clip: ${key} (will auto-generate)`);
+        } else {
+          audioDebug(`[audio] Missing narration segment: ${key}`);
+        }
       }
     }
 
@@ -386,7 +404,9 @@ export async function GET(req: Request, ctx: Params) {
     if (greetingKey && elevenLabsKey && userName) {
       const greetingResult = loadResults.find((r) => r.key === greetingKey);
       if (greetingResult && !greetingResult.buffer) {
-        console.log(`[audio] Generating greeting clip for "${userName}"...`);
+        // Never log the user's display name (PII). The presence of a name is
+        // implied by reaching this branch.
+        audioDebug(`[audio] Generating greeting clip (${narrationCtx.timeOfDay})...`);
         const allTods: TimeOfDay[] = ["morning", "afternoon", "evening"];
         // Generate all 3 time-of-day greetings in parallel so they're cached for next time
         const greetingResults = await Promise.allSettled(
@@ -409,7 +429,7 @@ export async function GET(req: Request, ctx: Params) {
         for (const r of greetingResults) {
           if (r.status === "fulfilled" && r.value && r.value.tod === narrationCtx.timeOfDay) {
             greetingResult.buffer = r.value.buf;
-            console.log(`[audio] Generated greeting: ${greetingKey} (${r.value.buf.length} bytes)`);
+            audioDebug(`[audio] Generated greeting (${r.value.buf.length} bytes)`);
           }
         }
       }
@@ -422,7 +442,7 @@ export async function GET(req: Request, ctx: Params) {
       return bookErr(req, 503, "tts_unavailable", "Audio generation is not available — chapter audio has not been cached yet");
     }
     if (missingBody.length > 0 && elevenLabsKey) {
-      console.log(`[audio] Generating ${missingBody.length} missing body segments in parallel...`);
+      audioDebug(`[audio] Generating ${missingBody.length} missing body segments in parallel...`);
       const generated = await Promise.allSettled(
         missingBody.map((r) =>
           generateAndCacheBodySegment(
@@ -436,11 +456,11 @@ export async function GET(req: Request, ctx: Params) {
         const idx = loadResults.indexOf(missingBody[i]);
         if (idx >= 0 && result.status === "fulfilled" && result.value) {
           loadResults[idx].buffer = result.value;
-          console.log(`[audio] Generated ${missingBody[i].bodyType}: ${missingBody[i].key} (${result.value.length} bytes)`);
+          audioDebug(`[audio] Generated ${missingBody[i].bodyType}: ${missingBody[i].key} (${result.value.length} bytes)`);
         } else if (result.status === "rejected") {
           console.error(`[audio] Failed to generate ${missingBody[i].bodyType}:`, result.reason);
         } else {
-          console.log(`[audio] No content for ${missingBody[i].bodyType} (empty chapter section)`);
+          audioDebug(`[audio] No content for ${missingBody[i].bodyType} (empty chapter section)`);
         }
       }
     }
@@ -451,7 +471,7 @@ export async function GET(req: Request, ctx: Params) {
       if (buffer) {
         segmentBuffers.push(buffer);
       } else {
-        console.log(`[audio] Segment skipped: ${key}`);
+        audioDebug(`[audio] Segment skipped: ${key}`);
       }
     }
 
@@ -462,25 +482,18 @@ export async function GET(req: Request, ctx: Params) {
     const finalAudio = Buffer.concat(segmentBuffers);
     const totalSize = finalAudio.length;
 
-    console.log(
+    audioDebug(
       `[audio] Stitched ${segmentBuffers.length}/${segmentKeys.length} segments, total=${totalSize} bytes`,
     );
 
-    // Cache stitched audio to S3 for future range requests (fire-and-forget)
-    const stitchedKey = `book-content/audio-stitched/${bookId}/ch${String(chapterNumber).padStart(4, "0")}.${tone}.${variant}.${user.sub}.mp3`;
-    s3.send(
-      new PutObjectCommand({
-        Bucket: bucket,
-        Key: stitchedKey,
-        Body: finalAudio,
-        ContentType: "audio/mpeg",
-        CacheControl: "public, max-age=3600",
-      }),
-    ).then(() => {
-      console.log(`[audio] Cached stitched audio to S3: ${stitchedKey}`);
-    }).catch((err) => {
-      console.error("[audio] Failed to cache stitched audio:", err);
-    });
+    // NOTE: we intentionally do NOT cache the stitched MP3 to S3. The stitched
+    // result is per-user and per-request (greeting, score callout, streak, and
+    // time-of-day segments all vary with user state), so a cached copy would be
+    // stale on the next play and was never read back — the previous write-only
+    // PutObject under an audio-stitched/<user.sub> key only accumulated dead
+    // objects with no lifecycle. The expensive TTS body segments are still
+    // cached and reused via chapterBodySegmentS3Key; only the cheap final
+    // concat happens per request.
 
     // Return the full MP3 directly
     return new Response(finalAudio, {
