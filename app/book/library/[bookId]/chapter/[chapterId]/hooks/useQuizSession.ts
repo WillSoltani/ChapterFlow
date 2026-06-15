@@ -147,6 +147,12 @@ export function useQuizSession(params: {
   const [lastLoopPipeline, setLastLoopPipeline] = useState<LoopPipelineResult | null>(null);
   const startedAtRef = useRef<number | null>(null);
   const trackedExplanationIds = useRef<Set<string>>(new Set());
+  // Per-invocation request token. Each load() captures the current value and
+  // only writes its response into state if the token still matches — so an
+  // in-flight load() for a previous chapter/difficulty (or one that resolves
+  // after unmount) can't clobber the current session. Mirrors the mounted-flag
+  // guard in the sibling useChapterContent/useBookViewer hooks.
+  const loadTokenRef = useRef(0);
 
   const syncFromSession = useCallback((nextSession: QuizSessionView | null) => {
     if (!nextSession) {
@@ -218,6 +224,8 @@ export function useQuizSession(params: {
 
   const load = useCallback(async () => {
     if (!enabled) return null;
+    const token = loadTokenRef.current;
+    const isStale = () => token !== loadTokenRef.current;
     setLoading(true);
     try {
       const payload = await fetchBookJson<{
@@ -225,11 +233,16 @@ export function useQuizSession(params: {
       }>(
         `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}/quiz?difficulty=${encodeURIComponent(difficulty)}&tone=${encodeURIComponent(contentTone)}`
       );
+      // Ignore a response that resolved after the chapter/difficulty changed or
+      // the hook unmounted — otherwise the prior chapter's quiz overwrites the
+      // current one (and submits against the wrong attempt).
+      if (isStale()) return null;
       setSession(payload.quiz);
       syncFromSession(payload.quiz);
       setError(null);
       return payload.quiz;
     } catch (loadError: unknown) {
+      if (isStale()) return null;
       // Fall back to local quiz data if API fails
       const local = buildLocalSession();
       if (local) {
@@ -243,7 +256,7 @@ export function useQuizSession(params: {
       setError(message);
       return null;
     } finally {
-      setLoading(false);
+      if (!isStale()) setLoading(false);
     }
   }, [bookId, chapterNumber, difficulty, contentTone, enabled, syncFromSession, buildLocalSession]);
 
@@ -252,6 +265,10 @@ export function useQuizSession(params: {
   // chapter's quiz for one render until `load()` resolves, which can briefly
   // flash a "passed"/"failed" results screen for the wrong chapter.
   useEffect(() => {
+    // Invalidate any in-flight load() for the previous chapter/difficulty so it
+    // can't write its (now stale) response after we've reset state. The load()
+    // effect below runs after this one and captures the incremented token.
+    loadTokenRef.current += 1;
     setSession(null);
     setAnswers({});
     setExplanationOpen({});
@@ -261,6 +278,11 @@ export function useQuizSession(params: {
     startedAtRef.current = null;
     trackedExplanationIds.current = new Set();
   }, [bookId, chapterNumber, difficulty, contentTone]);
+
+  // Invalidate any in-flight load() on unmount so it can't setState afterward.
+  useEffect(() => () => {
+    loadTokenRef.current += 1;
+  }, []);
 
   useEffect(() => {
     if (!enabled) return;
