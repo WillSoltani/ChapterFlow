@@ -70,7 +70,7 @@ export function StreakDisplay({ streak }: StreakDisplayProps) {
             ) : (
               <Link
                 href="/rewards"
-                className="cursor-pointer transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 rounded"
+                className="cursor-pointer transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/50 rounded"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Get a Flow Freeze {"\u2192"}

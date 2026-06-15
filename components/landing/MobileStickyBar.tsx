@@ -61,7 +61,7 @@ export function MobileStickyBar() {
         <a
           href={AUTH_LOGIN_BOOK_URL}
           onClick={() => track("cta_click", { source: "mobile_sticky_bar" })}
-          className="flex-1 text-center font-semibold py-3 rounded-full text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+          className="flex-1 text-center font-semibold py-3 rounded-full text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{
             backgroundColor: "var(--accent-cyan)",
             color: "var(--primary-foreground)",
@@ -72,7 +72,7 @@ export function MobileStickyBar() {
         <button
           type="button"
           onClick={handleDismiss}
-          className="flex-shrink-0 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full text-(--text-muted) hover:text-(--text-heading) hover:bg-(--bg-glass) transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+          className="flex-shrink-0 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full text-(--text-muted) hover:text-(--text-heading) hover:bg-(--bg-glass) transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
           aria-label="Dismiss"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">

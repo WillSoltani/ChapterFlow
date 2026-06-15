@@ -89,7 +89,7 @@ export function Library() {
               <Link
                 href="/books"
                 onClick={() => track("browse_library_click", { source: "landing_library" })}
-                className="inline-flex items-center gap-1.5 border rounded-lg px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-1.5 border rounded-lg px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                 style={{
                   borderColor: "color-mix(in srgb, var(--accent-cyan) 35%, transparent)",
                   color: "var(--text-heading)",
@@ -118,7 +118,7 @@ export function Library() {
                   <button
                     key={category}
                     onClick={() => setActiveCategory(category)}
-                    className={`flex-shrink-0 rounded-full px-4 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 ${
+                    className={`flex-shrink-0 rounded-full px-4 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 ${
                       isActive
                         ? "bg-(--accent-cyan) text-primary-foreground font-semibold"
                         : "bg-transparent border border-(--border-subtle) text-(--text-secondary) hover:text-(--text-heading)"
@@ -152,7 +152,7 @@ export function Library() {
                     category: activeCategory,
                   })
                 }
-                className="mt-3 inline-block text-[13px] font-semibold hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                className="mt-3 inline-block text-[13px] font-semibold hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                 style={{ color: "var(--accent-cyan)" }}
               >
                 Browse all {activeCategory} books &rarr;
@@ -180,7 +180,7 @@ export function Library() {
                         href={bookHref(book.id)}
                         aria-label={`Open ${book.title} by ${book.author}`}
                         onClick={() => track("book_card_click", { source: "landing_library", bookId: book.id })}
-                        className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded-lg"
+                        className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded-lg"
                       >
                         <div className="overflow-hidden rounded-lg shadow-shadow-elevated group-hover:shadow-[var(--shadow-glow-cyan)] transition-shadow duration-300">
                           <BookCover

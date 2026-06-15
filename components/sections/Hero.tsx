@@ -109,7 +109,7 @@ export function Hero() {
                 <Link
                   href={AUTH_LOGIN_BOOK_URL}
                   onClick={() => track("cta_click", { source: "hero_primary" })}
-                  className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                  className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                   style={{
                     backgroundColor: "var(--accent-cyan)",
                     color: "var(--primary-foreground)",
