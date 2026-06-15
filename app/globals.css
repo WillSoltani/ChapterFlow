@@ -217,7 +217,7 @@ body {
   --text-primary: #E8ECF1;
   --text-secondary: #8899AA;
   --text-heading: var(--cf-text-1);
-  --text-tertiary: #5C6B7A;
+  --text-tertiary: #7C8B9A;
   --text-muted: var(--text-tertiary);
 
   /* ── Accent colors (new unified palette) ── */
@@ -347,7 +347,7 @@ body {
   --cf-accent-muted: rgba(34, 211, 238, 0.07);
   --cf-accent-border: rgba(34, 211, 238, 0.26);
   --cf-accent-shadow: rgba(34, 211, 238, 0.2);
-  --cf-accent-contrast: #ffffff;
+  --cf-accent-contrast: #0B0E14;
   --cf-warm-soft: rgba(245, 158, 11, 0.09);
   --cf-info-soft: rgba(34, 211, 238, 0.1);
   --cf-info-bg: rgba(34, 211, 238, 0.1);
@@ -365,7 +365,7 @@ body {
   --cf-danger-bg: rgba(244, 63, 94, 0.1);
   --cf-danger-border: rgba(244, 63, 94, 0.24);
   --cf-danger-text: #F43F5E;
-  --cf-focus-ring: 0 0 0 3px rgba(34, 211, 238, 0.2);
+  --cf-focus-ring: 0 0 0 3px rgba(34, 211, 238, 0.9);
   --cf-blue-soft: rgba(34, 211, 238, 0.1);
   --cf-blue-border: rgba(34, 211, 238, 0.24);
   --cf-teal-soft: rgba(34, 211, 238, 0.1);
@@ -560,7 +560,7 @@ html:not(.dark) {
   --cf-danger-bg: #FFF1F2;
   --cf-danger-border: rgba(225, 29, 72, 0.2);
   --cf-danger-text: #E11D48;
-  --cf-focus-ring: 0 0 0 3px rgba(8, 145, 178, 0.2);
+  --cf-focus-ring: 0 0 0 3px rgba(8, 145, 178, 0.9);
   --cf-blue-soft: rgba(8, 145, 178, 0.06);
   --cf-blue-border: rgba(8, 145, 178, 0.2);
   --cf-teal-soft: rgba(8, 145, 178, 0.06);
@@ -824,7 +824,7 @@ html.transitioning *::after {
   .cf-app-shell-subtle {
     position: relative;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
     color: var(--cf-text-1);
     font-family: var(--reading-font-family, inherit);
     font-size: var(--reading-font-size, 1rem);
