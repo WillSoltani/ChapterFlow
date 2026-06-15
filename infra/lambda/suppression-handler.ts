@@ -76,6 +76,7 @@ type SnsEvent = { Records?: Array<{ Sns?: { Message?: string } }> };
 
 export async function handler(event: SnsEvent) {
   let suppressed = 0;
+  let failed = 0;
   for (const record of event.Records ?? []) {
     const message = record.Sns?.Message;
     if (!message) continue;
@@ -100,10 +101,18 @@ export async function handler(event: SnsEvent) {
         suppressed++;
         console.log(`[suppression] ${entry.reason} suppressed ${email.slice(0, 3)}***`);
       } catch (e) {
+        failed++;
         console.error("[suppression] write failed:", e);
       }
     }
   }
   console.log(`[suppression] processed ${event.Records?.length ?? 0} records, suppressed ${suppressed}`);
+  // Rethrow if any suppression write failed so the async (SNS) invoke retries and
+  // ultimately routes to the Lambda's onFailure/DLQ rather than silently dropping a
+  // hard-bounce/complaint — leaving the address unsuppressed is a deliverability /
+  // CASL/CAN-SPAM implied-opt-out violation.
+  if (failed > 0) {
+    throw new Error(`[suppression] ${failed} write(s) failed; ${suppressed} suppressed`);
+  }
   return { suppressed };
 }

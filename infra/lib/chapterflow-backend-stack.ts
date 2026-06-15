@@ -11,6 +11,7 @@ import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as ses from "aws-cdk-lib/aws-ses";
+import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import * as path from "path";
 import { type EnvName } from "./env-config";
@@ -518,6 +519,16 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     //   npx esbuild lambda/suppression-handler.ts --bundle --platform=node \
     //     --target=node20 --outfile=lambda/dist/suppression-handler.js \
     //     --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb
+    // Dead-letter queue for the async (SNS-invoked) suppression Lambda. The
+    // handler rethrows on a DynamoDB write failure so the async invoke retries;
+    // once Lambda exhausts its retries, CDK routes the failed event here instead
+    // of dropping the bounce/complaint silently (M9 / #79). A 14-day retention
+    // gives operators a window to inspect/replay.
+    const suppressionDlq = new sqs.Queue(this, "ChapterFlowSuppressionDlq", {
+      retentionPeriod: cdk.Duration.days(14),
+      enforceSSL: true,
+    });
+
     const suppressionFn = new lambda.Function(this, "EmailSuppressionHandler", {
       functionName: `ChapterFlowSuppressionHandler${suffix}`,
       runtime: lambda.Runtime.NODEJS_20_X,
@@ -526,9 +537,25 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
       environment: { BOOK_TABLE_NAME: this.appTable.tableName },
+      deadLetterQueue: suppressionDlq,
     });
     this.appTable.grantWriteData(suppressionFn);
     emailEventsTopic.addSubscription(new snsSubscriptions.LambdaSubscription(suppressionFn));
+
+    // Page operators when the suppression Lambda errors (e.g. repeated DynamoDB
+    // write failures that will exhaust async retries and land in the DLQ above),
+    // so a backlog of un-suppressed bounces/complaints never goes unnoticed.
+    const suppressionErrorsAlarm = new cloudwatch.Alarm(this, "ChapterFlowSuppressionErrorsAlarm", {
+      metric: suppressionFn.metricErrors({ period: cdk.Duration.minutes(5) }),
+      threshold: 1,
+      evaluationPeriods: 1,
+      datapointsToAlarm: 1,
+      comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+      treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+      alarmDescription:
+        "The SES suppression Lambda is erroring (likely DynamoDB write failures). After async retries are exhausted, failed bounce/complaint events land in ChapterFlowSuppressionDlq — inspect/replay them.",
+    });
+    suppressionErrorsAlarm.addAlarmAction(opsAlarmAction);
 
     // Expose the config-set name to the app runtime (read via getServerEnv → SSM).
     new ssm.StringParameter(this, "SesConfigurationSetParameter", {
