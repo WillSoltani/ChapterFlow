@@ -46,7 +46,13 @@ export async function POST(req: Request) {
     if (!Array.isArray(body.books) || body.books.length === 0) {
       throw new BookApiError(400, "invalid_books", "books must be a non-empty array of book IDs.");
     }
-    const books = body.books as string[];
+    if (body.books.length > 200) {
+      throw new BookApiError(400, "invalid_books", "books must contain at most 200 book IDs.");
+    }
+    if (!body.books.every((b) => typeof b === "string" && b.trim().length > 0)) {
+      throw new BookApiError(400, "invalid_books", "books must contain only non-empty string book IDs.");
+    }
+    const books = body.books.map((b) => (b as string).trim());
 
     const badge = body.badge as { badgeId: string; name: string; icon: string } | undefined;
     if (!badge || !badge.badgeId || !badge.name || !badge.icon) {
