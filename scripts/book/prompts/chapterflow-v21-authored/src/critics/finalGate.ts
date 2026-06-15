@@ -165,6 +165,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "C17.required_beat_verbatim": "blocker",
   // Pedagogy (D)
   D1: "major",
+  // D1's "short prompt, no application opener" case is authored as a soft hint
+  // (minor) by checkQuizTestsApplication, but pushing it under "D1" re-stamped it
+  // major and made it a convergence-blocking finding. Route the hint to its own
+  // minor id so only the real recall-about-text case (D1, major) blocks.
+  "D1.short_prompt": "minor",
   D2: "minor",
   // Reading level (E)
   E1: "major",
@@ -629,8 +634,10 @@ export function runShipGate(chapter: ChapterV21): GateReport {
       const isBloomFail = f.message.includes("bloomsLevel");
       push(isBloomFail ? (q.bloomsLevel ? "A1" : "A3") : "A2", unit, f.message);
     }
-    // D1 — application vs recall
-    for (const f of checkQuizTestsApplication(q as any)) push("D1", unit, f.message, f.evidence);
+    // D1 — application vs recall. The critic's own severity decides the catalog id:
+    // the recall-about-text case is a real major (D1); the short-prompt hint is a
+    // minor (D1.short_prompt) and must not block convergence.
+    for (const f of checkQuizTestsApplication(q as any)) push(f.severity === "minor" ? "D1.short_prompt" : "D1", unit, f.message, f.evidence);
     // Register checks on prompt + choices + explanation
     runRegisterChecks(unit, `${q.prompt} ${q.choices.join(" ")} ${q.explanation ?? ""}`, push);
   });
