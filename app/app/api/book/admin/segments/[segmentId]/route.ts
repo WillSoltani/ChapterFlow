@@ -9,6 +9,7 @@ import {
   putSegment,
 } from "@/app/app/api/book/_lib/admin-segments-repo";
 import type { SegmentFilter } from "@/app/app/api/book/_lib/segment-engine";
+import { validateSegmentFilters } from "@/app/app/api/book/admin/segments/route";
 
 export const runtime = "nodejs";
 
@@ -44,7 +45,7 @@ export async function PATCH(req: Request, { params }: Ctx) {
       ...existing,
       ...(body.name ? { name: body.name.trim() } : {}),
       ...(body.description !== undefined ? { description: body.description?.trim() } : {}),
-      ...(body.filters ? { filters: body.filters } : {}),
+      ...(body.filters !== undefined ? { filters: validateSegmentFilters(body.filters) } : {}),
       ...(body.lastRunCount !== undefined
         ? { lastRunCount: body.lastRunCount, lastRunAt: new Date().toISOString() }
         : {}),
