@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthCookieBase } from "@/app/auth/_lib/auth-cookie";
-import { INSIGHT_POINTS_COOKIE_NAME } from "@/app/book/_lib/flow-points-economy";
+import { REFERRAL_ATTRIBUTION_COOKIE_NAME } from "@/app/book/_lib/flow-points-economy";
 
 export async function GET(
   req: NextRequest,
@@ -16,7 +16,7 @@ export async function GET(
   const response = NextResponse.redirect(destination);
 
   if (normalized) {
-    response.cookies.set(INSIGHT_POINTS_COOKIE_NAME, normalized, {
+    response.cookies.set(REFERRAL_ATTRIBUTION_COOKIE_NAME, normalized, {
       ...getAuthCookieBase(),
       maxAge: 30 * 24 * 60 * 60,
     });

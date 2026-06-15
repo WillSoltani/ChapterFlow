@@ -32,7 +32,7 @@ import {
 } from "@/app/book/_lib/onboarding-personalization";
 import {
   INSIGHT_POINTS_AMOUNTS,
-  INSIGHT_POINTS_COOKIE_NAME,
+  REFERRAL_ATTRIBUTION_COOKIE_NAME,
 } from "@/app/book/_lib/flow-points-economy";
 import {
   awardFlowPoints,
@@ -394,7 +394,7 @@ export async function PATCH(req: Request) {
       riskDevice = await recordRiskSignals(tableName, req, user, "onboarding_completed").catch(
         () => null
       );
-      const pendingReferralCode = readCookieValue(req, INSIGHT_POINTS_COOKIE_NAME);
+      const pendingReferralCode = readCookieValue(req, REFERRAL_ATTRIBUTION_COOKIE_NAME);
       if (pendingReferralCode) {
         clearReferralCookie = true;
         const referralClaim = await createReferralClaimFromCode(tableName, {
@@ -492,7 +492,7 @@ export async function PATCH(req: Request) {
       issuedDeviceId: riskDevice?.issuedDeviceId,
     });
     if (clearReferralCookie) {
-      response.cookies.set(INSIGHT_POINTS_COOKIE_NAME, "", {
+      response.cookies.set(REFERRAL_ATTRIBUTION_COOKIE_NAME, "", {
         ...getAuthCookieBase(),
         maxAge: 0,
       });
