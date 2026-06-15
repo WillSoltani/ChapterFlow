@@ -1,3 +1,4 @@
+import { BookApiError } from "./errors";
 import type {
   BookUserProgress,
   BookUserQuizStateItem,
@@ -147,8 +148,20 @@ export function buildQuizAttemptQuestions(params: {
       : Array.isArray(question.options)
         ? question.options
         : [];
-    const authoredCorrectIndex: number =
-      question.correctAnswerIndex ?? question.correctIndex ?? 0;
+    // Fail loudly on a missing answer key. This is the LIVE grade/build path,
+    // so silently defaulting to 0 would treat choice A as correct for a content
+    // defect — grading every reader against an arbitrary key, corrupting
+    // scores/IP for the chapter with no operator signal.
+    const authoredCorrectIndex: number | undefined =
+      question.correctAnswerIndex ?? question.correctIndex;
+    if (typeof authoredCorrectIndex !== "number") {
+      throw new BookApiError(
+        500,
+        "quiz_question_missing_answer_key",
+        "This quiz is temporarily unavailable. Please try again later.",
+        { bookId, chapterNumber, questionId: question.questionId }
+      );
+    }
     const choicePool = authoredChoices.map((text, canonicalIndex) => ({
       text,
       canonicalIndex,

@@ -1,81 +1,10 @@
 import { BookApiError } from "./errors";
 import type { ChapterQuizPayload } from "./types";
 
-export function scoreQuizSubmission(
-  quiz: ChapterQuizPayload,
-  answers: number[]
-): {
-  total: number;
-  correct: number;
-  scorePercent: number;
-  passed: boolean;
-  review: Array<{
-    questionId: string;
-    selectedIndex: number;
-    correctIndex: number;
-    isCorrect: boolean;
-  }>;
-} {
-  if (!Array.isArray(answers) || answers.length !== quiz.questions.length) {
-    throw new BookApiError(
-      400,
-      "invalid_answers",
-      `answers must include exactly ${quiz.questions.length} entries.`
-    );
-  }
-
-  const review: Array<{
-    questionId: string;
-    selectedIndex: number;
-    correctIndex: number;
-    isCorrect: boolean;
-  }> = [];
-  let correct = 0;
-
-  for (let i = 0; i < quiz.questions.length; i += 1) {
-    const question = quiz.questions[i];
-    const selected = answers[i];
-    const choices: string[] = Array.isArray(question.choices)
-      ? question.choices
-      : Array.isArray(question.options)
-        ? question.options
-        : [];
-    const correctIndex: number = question.correctAnswerIndex ?? question.correctIndex ?? 0;
-    if (
-      typeof selected !== "number" ||
-      !Number.isFinite(selected) ||
-      Math.floor(selected) !== selected ||
-      selected < 0 ||
-      selected >= choices.length
-    ) {
-      throw new BookApiError(
-        400,
-        "invalid_answers",
-        `answers[${i}] is out of range for question ${question.questionId}.`
-      );
-    }
-    const isCorrect = selected === correctIndex;
-    if (isCorrect) correct += 1;
-    review.push({
-      questionId: question.questionId,
-      selectedIndex: selected,
-      correctIndex,
-      isCorrect,
-    });
-  }
-
-  const total = quiz.questions.length;
-  const scorePercent = total > 0 ? Math.round((correct / total) * 100) : 0;
-  const passed = scorePercent >= quiz.passingScorePercent;
-
-  return {
-    total,
-    correct,
-    scorePercent,
-    passed,
-    review,
-  };
-}
+// NOTE: The former `scoreQuizSubmission(quiz, number[])` helper was removed
+// (L21). It had zero callers — the live submit path uses
+// gradeQuizAttemptQuestions / scoreQuizResponsesByQuestionId — and it silently
+// defaulted a missing answer key to index 0, treating choice A as correct.
 
 export function scoreQuizResponsesByQuestionId(
   quiz: ChapterQuizPayload,
@@ -138,7 +67,18 @@ export function scoreQuizResponsesByQuestionId(
       : Array.isArray(question.options)
         ? question.options
         : [];
-    const correctIndex: number = question.correctAnswerIndex ?? question.correctIndex ?? 0;
+    // Fail loudly on a missing answer key rather than treating choice A (index
+    // 0) as correct for a content defect — a 500, not a 400, since this is a
+    // server-side content problem, not a bad client submission.
+    const correctIndex = question.correctAnswerIndex ?? question.correctIndex;
+    if (typeof correctIndex !== "number") {
+      throw new BookApiError(
+        500,
+        "quiz_question_missing_answer_key",
+        "This quiz is temporarily unavailable. Please try again later.",
+        { questionId }
+      );
+    }
     if (selected < 0 || selected >= choices.length) {
       throw new BookApiError(
         400,
