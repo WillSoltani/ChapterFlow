@@ -1,7 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+  useInView,
+} from "framer-motion";
 
 import { PhaseStepper } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseStepper";
 import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
@@ -65,6 +70,12 @@ export function DesktopReaderShell() {
 
   const prefersReducedMotion = useReducedMotion();
 
+  // Only run the auto-advance loop while the demo is actually on-screen.
+  // Off-screen the interval would otherwise keep cycling + AnimatePresence-
+  // swapping the heavy reader subtree, burning main-thread time for no benefit.
+  const rootRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(rootRef, { amount: 0.3 });
+
   const hasInteracted = useRef(false);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -83,8 +94,10 @@ export function DesktopReaderShell() {
   // Auto-advance until user interaction. Skipped entirely when the user
   // prefers reduced motion — they step through via the PhaseStepper /
   // ContinueButton instead (WCAG 2.2.2: no auto-updating moving content).
+  // Also gated on `isInView` so the loop never cycles while off-screen.
   useEffect(() => {
     if (prefersReducedMotion) return;
+    if (!isInView) return;
     if (hasInteracted.current) return;
     const dwell = PHASE_DURATIONS_MS[activeTab];
     advanceRef.current = setTimeout(() => {
@@ -93,7 +106,7 @@ export function DesktopReaderShell() {
       setActiveTab(next);
     }, dwell);
     return () => stopAutoAdvance();
-  }, [activeTab, stopAutoAdvance, prefersReducedMotion]);
+  }, [activeTab, stopAutoAdvance, prefersReducedMotion, isInView]);
 
   const handleTabChange = useCallback(
     (tab: ChapterTab) => {
@@ -159,6 +172,7 @@ export function DesktopReaderShell() {
 
   return (
     <div
+      ref={rootRef}
       className="overflow-hidden rounded-2xl border"
       style={{
         background: "var(--cr-bg-root)",

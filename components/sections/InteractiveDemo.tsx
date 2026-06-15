@@ -1,10 +1,87 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { DesktopReaderShell } from "@/components/landing/reader-demo/DesktopReaderShell";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
+
+/**
+ * Lightweight placeholder shown while the heavy reader shell chunk loads.
+ * Matches the real shell's dimensions (rounded bordered card + tall content
+ * area) so there's no layout shift when the lazy chunk swaps in.
+ */
+function DesktopReaderShellSkeleton() {
+  return (
+    <div
+      aria-hidden="true"
+      className="overflow-hidden rounded-2xl border animate-pulse"
+      style={{
+        background: "var(--cr-bg-root)",
+        borderColor: "var(--cr-glass-border)",
+      }}
+    >
+      {/* Window chrome bar */}
+      <div
+        className="h-10 border-b"
+        style={{
+          background: "var(--cr-bg-surface-1)",
+          borderColor: "var(--cr-glass-border)",
+        }}
+      />
+      {/* Phase stepper bar */}
+      <div
+        className="px-6 py-5 border-b"
+        style={{
+          background: "var(--cr-bg-surface-1)",
+          borderColor: "var(--cr-glass-border)",
+        }}
+      >
+        <div
+          className="h-6 w-2/3 rounded-full"
+          style={{ background: "var(--cr-glass-border)" }}
+        />
+      </div>
+      {/* Content area placeholder (mirrors max-h-[720px] reader body) */}
+      <div className="px-6 py-8 md:px-10 md:py-10 min-h-[480px] space-y-4">
+        <div
+          className="h-7 w-1/2 rounded-md"
+          style={{ background: "var(--cr-glass-border)" }}
+        />
+        <div
+          className="h-4 w-full rounded-md"
+          style={{ background: "var(--cr-glass-border)" }}
+        />
+        <div
+          className="h-4 w-11/12 rounded-md"
+          style={{ background: "var(--cr-glass-border)" }}
+        />
+        <div
+          className="h-4 w-4/5 rounded-md"
+          style={{ background: "var(--cr-glass-border)" }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The reader shell statically pulls in the 5 real in-app reader components
+ * plus DesktopQuizPanel (~2,500 lines). It lives below the fold, so we load
+ * it lazily (client-only, no SSR) to keep it out of the landing first-paint
+ * bundle. A dimension-matched skeleton fills the slot until the chunk loads.
+ */
+const DesktopReaderShell = dynamic(
+  () =>
+    import("@/components/landing/reader-demo/DesktopReaderShell").then(
+      (m) => m.DesktopReaderShell
+    ),
+  {
+    ssr: false,
+    loading: () => <DesktopReaderShellSkeleton />,
+  }
+);
 
 /**
  * The interactive demo section. Renders the actual ChapterFlow reader
