@@ -13,6 +13,14 @@ export default function OnboardingProgress({
 }: OnboardingProgressProps) {
   const prefersReducedMotion = useReducedMotion();
 
+  // On the terminal celebration step the visible label and the aria-label both
+  // switch to "Setup complete" so the announced and visible copy stay in sync
+  // (no more "Almost there" / "step 6 of 6" mismatch).
+  const isComplete = currentStep >= totalSteps;
+  const statusLabel = isComplete
+    ? "Setup complete"
+    : `Step ${currentStep} of ${totalSteps}`;
+
   return (
     <div
       style={{
@@ -40,7 +48,7 @@ export default function OnboardingProgress({
             userSelect: "none",
           }}
         >
-          {currentStep >= totalSteps ? "Almost there" : `Step ${currentStep} of ${totalSteps}`}
+          {statusLabel}
         </span>
       </div>
 
@@ -55,7 +63,9 @@ export default function OnboardingProgress({
         aria-valuenow={currentStep}
         aria-valuemin={1}
         aria-valuemax={totalSteps}
-        aria-label={`Onboarding progress: step ${currentStep} of ${totalSteps}`}
+        aria-label={
+          isComplete ? "Onboarding progress: setup complete" : `Onboarding progress: step ${currentStep} of ${totalSteps}`
+        }
       >
         {Array.from({ length: totalSteps }, (_, i) => {
           const stepIndex = i + 1;
