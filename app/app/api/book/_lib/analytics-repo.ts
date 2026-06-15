@@ -17,7 +17,7 @@
  *   → Query all PRO/FREE users sorted by last activity (churn, DAU, retention)
  *
  * Snapshot fields captured:
- *   Identity:         userId, email, emailDomain, firstSeenAt, createdAt
+ *   Identity:         userId, email, emailLower, emailDomain, firstSeenAt, createdAt
  *   Subscription:     plan, proStatus, proSource, stripeCustomerId,
  *                     stripeSubscriptionId, subscriptionStartedAt, currentPeriodEnd
  *   Onboarding:       onboardingCompletedAt, onboardingGoal, dailyGoalMinutes
@@ -555,6 +555,12 @@ export async function analyticsTrackOnboarding(
     sets.push("#email = :email");
     names["#email"] = "email";
     values[":email"] = args.email;
+    // Persist a lowercased copy so admin email search (DynamoDB `contains`,
+    // which is byte-exact / case-sensitive) matches regardless of the casing
+    // Cognito stored the address with. See searchUsersByEmail in admin-metrics.ts.
+    sets.push("#emailLower = :emailLower");
+    names["#emailLower"] = "emailLower";
+    values[":emailLower"] = args.email.toLowerCase();
     const domain = args.email.includes("@") ? args.email.split("@")[1] : undefined;
     if (domain) {
       sets.push("#emailDomain = :emailDomain");

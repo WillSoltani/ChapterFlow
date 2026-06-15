@@ -89,7 +89,10 @@ export async function GET(req: Request) {
     // that, but this is real data rather than a permanently-zero placeholder.
     const dailyVolume = days.map((d) => ({ date: d, value: dayVolume.get(d) ?? 0 }));
 
-    // Channel preference distribution from settings — count NotificationPreferences
+    // Channel preference distribution from settings — count NotificationPreferences.
+    // Capped at the same `maxItems` budget as the notifications scan above so a
+    // growing user table can't drive an unbounded full-table scan on every
+    // dashboard open; the cap is surfaced as a warning when hit.
     let emailEnabled = 0;
     let pushEnabled = 0;
     let inAppEnabled = 0;
@@ -115,11 +118,18 @@ export async function GET(req: Request) {
           if (channels?.inApp !== false) inAppEnabled += 1;
           if (channels?.email === true) emailEnabled += 1;
           if (channels?.push === true) pushEnabled += 1;
+          if (totalSettings >= maxItems) break;
         }
         settingsLastKey = res.LastEvaluatedKey;
-      } while (settingsLastKey);
+      } while (settingsLastKey && totalSettings < maxItems);
     } catch (err) {
       console.warn("[admin-notifications] settings scan failed:", err);
+    }
+
+    if (totalSettings >= maxItems) {
+      warnings.push(
+        `Channel preferences sampled from first ${maxItems} users. Older items not included.`,
+      );
     }
 
 
