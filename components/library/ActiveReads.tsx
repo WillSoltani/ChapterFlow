@@ -19,7 +19,7 @@ interface ActiveReadsProps {
 export function ActiveReads({ books }: ActiveReadsProps) {
   const prefersReduced = useReducedMotion();
 
-  if (books.length < 2) return null;
+  if (books.length < 1) return null;
 
   // Most recently read first
   const sorted = [...books].sort(
