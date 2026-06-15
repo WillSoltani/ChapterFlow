@@ -61,31 +61,34 @@ spawn one subagent per chapter, in parallel, each with this contract:
 Wait for a batch to finish before starting the next. Collect only each subagent's result
 (file path + gate verdict) — never its prose.
 
-## 3. Barrier — run the book-wide gate after ALL chapters exist
+## 3. Barrier — gate the whole book and get the re-dispatch list (one command)
 ```bash
-npx tsx src/cli.ts book-gate <bookId>
+npx tsx src/cli.ts fanout <bookId> --barrier
 ```
-This auto-derives the brief + plans and runs the cross-chapter audit. The book-wide
-defects (F3 answer-position drift, B11 counterintuition shell, B13 hook clustering,
-F1 name reuse, BP13 verbatim runs) surface **only here** — a chapter can be clean on its
-own and still be part of a book-wide collision.
+This auto-derives the brief + plans, runs the cross-chapter book-gate, and prints the
+exact re-dispatch command for ONLY the offending chapters. Book-wide defects surface
+**only here** — a chapter can be clean on its own and still be part of a book-wide
+collision:
+- **F3** answer-position drift · **B11/B13/B14** opener/counter clustering · **F1/BP13** name/phrase collision
+- **BP28** review-card callback-frame reuse (the spaced-recall cards collapse onto one concept + question shell)
+- **BP29** try-now clock-stamp reuse (the same "9:10 a.m." across chapters)
+- scene-skeleton sameness is prevented at the deal (the card's SCENE STANCE); the model QC sweep backstops it
 
 ## 4. Re-dispatch only the offenders, then loop
-If `book-gate` reports blockers/majors, they name the offending chapters. Re-deal +
-re-dispatch ONLY those chapters with the specific finding text added to the subagent's
-instructions:
+Run the printed command(s) — each re-emits ONLY that offender's card with its (idempotent)
+dealt variety. Add the specific finding text to the subagent's instructions:
 ```bash
-npx tsx src/cli.ts fanout <bookId> --from <ch> --to <ch> --all   # re-emits that chapter's card
+npx tsx src/cli.ts fanout <bookId> --from <ch> --to <ch> --all
 ```
-- B11/B13/B14 (opener clustering) → the offenders DRIFTED from their dealt rhetoric
-  shape; re-author them to the card's assigned counter/hook shape.
-- F3 (answer drift) → re-author the chapters whose distribution deviates most from their
-  ANSWER-KEY TARGET, arranging choices to the target.
-- F1 / BP13 (name/phrase collision) → re-author the named chapters off the collision.
+- B11/B13/B14 → the offender DRIFTED from its dealt counter/hook shape; re-author to the card.
+- F3 → re-author the chapters whose distribution deviates most from their ANSWER-KEY TARGET.
+- F1 / BP13 → re-author the named chapters off the collision.
+- **BP28** → the offenders reused one callback concept + frame; re-author to the card's dealt CALLBACK target + question frame.
+- **BP29** → the offenders reused a clock stamp; re-anchor the action to the card's dealt ACTION TIMING trigger (no clock time).
 
-Re-run `book-gate`. Loop until **0 blockers**. **Round cap: 3.** If a book-wide blocker
-survives 3 re-dispatch rounds, STOP and surface a one-paragraph status — that's a Step-1
-source problem, not an authoring one, and grinding more rounds won't fix it.
+Re-run `fanout <bookId> --barrier`. Loop until it prints **PASS**. **Round cap: 3.** If a
+book-wide finding survives 3 re-dispatch rounds, STOP and surface a one-paragraph status —
+that's a Step-1 source problem, not an authoring one, and grinding more rounds won't fix it.
 
 ## 5. Stop at `phase: qc` — hand off
 When `book-status` shows `phase: qc` (every chapter gate-clean and book-gate clean):

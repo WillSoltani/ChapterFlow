@@ -239,6 +239,15 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "BP25.quiz_correct_longest_rate": "minor",
   "BP26.exemplar_chapter_reuse": "minor",
   "BP27.venue_stamping": "major",
+  // BP28/BP29 — the structural-sameness axes the model sweep caught on
+  // the-daily-stoic (repeated_unit callback frames / location_stamping try-now
+  // clock stamps) that no deterministic gate saw. BP28 is SHADOW major
+  // (calibrated to zero on the clean corpus; promote to blocker only after a
+  // reproducible clean zero + a confirmed true positive — the SC9-reversal
+  // caution). BP29 is lexically FP-safe (clean corpus = zero try-now clock
+  // stamps), so it is a fast blocker-promotion candidate once calibration holds.
+  "BP28.callback_frame_reuse": "major",
+  "BP29.timing_anchor_stamping": "major",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"

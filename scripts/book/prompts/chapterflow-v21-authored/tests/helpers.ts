@@ -289,3 +289,23 @@ export function goldChapterFiles(): { bookId: string; files: string[] }[] {
     ).filter((p) => existsSync(p)),
   }));
 }
+
+/** Shipped books used to calibrate the NEW book-gate cross-chapter detectors
+ *  (BP28 callback-frame, BP29 timing-stamp) to ZERO. These are kept SEPARATE
+ *  from goldChapterFiles() — they are not pinned ship-gate-clean against the
+ *  current per-chapter gate, but they must stay clean of the new detectors.
+ *  (daring-greatly + start-with-why are already covered via the gold book-gate
+ *  major-pin in book-repetition.test.ts.) */
+export function cleanCorpusChapterFiles(): { bookId: string; files: string[] }[] {
+  const CLEAN = [
+    { bookId: "stillness-is-the-key", count: 32 },
+    { bookId: "the-year-of-less", count: 12 },
+    { bookId: "the-gifts-of-imperfection", count: 13 },
+  ];
+  return CLEAN.map((g) => ({
+    bookId: g.bookId,
+    files: Array.from({ length: g.count }, (_, i) =>
+      resolve(STATE_CHAPTERS, `${g.bookId}-ch${String(i + 1).padStart(2, "0")}.v21-native.chapter.json`),
+    ).filter((p) => existsSync(p)),
+  }));
+}
