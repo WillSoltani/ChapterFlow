@@ -15,6 +15,12 @@ export async function GET() {
     });
   } catch (error: unknown) {
     if (error instanceof AuthError) {
+      // The verifier could not be reached (JWKS fetch failed). We cannot
+      // conclude the user is logged out, so report transient unavailability
+      // (503) and let the client retry instead of forcing a re-login.
+      if (error.message === "VERIFIER_UNAVAILABLE") {
+        return NextResponse.json({ error: "auth_verifier_unavailable" }, { status: 503 });
+      }
       return NextResponse.json({ authenticated: false }, { status: 401 });
     }
     console.error("GET /api/me unexpected error:", error);
