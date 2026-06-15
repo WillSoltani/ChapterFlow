@@ -118,6 +118,13 @@ export function monthlySubscriptionCents(
 export const TRIAL_CTA_LABEL = `Start ${PRICING.trialDays}-day free trial`;
 
 /**
+ * Canonical phrasing for the free-tier offer, shared across every prospect-
+ * facing surface (Hero, SocialProof, Pricing, BrowseLibraryPage) so the
+ * permanent free tier is described one way in a single visit.
+ */
+export const FREE_OFFER_LABEL = "2 free books";
+
+/**
  * Where the "Start free trial" / upgrade CTA must land so it actually presents
  * the trial-start (Stripe checkout) step — the settings Billing tab, which
  * renders the upgrade action (ProFeatureCard → launchBillingAction("upgrade")).

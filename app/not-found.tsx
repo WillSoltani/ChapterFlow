@@ -47,7 +47,7 @@ export default function NotFound() {
             href="/"
             className="px-6 py-3 font-semibold rounded-full text-[14px] transition-colors hover:brightness-110"
             style={{
-              background: "var(--accent-amber)",
+              background: "var(--accent-cyan)",
               color: "var(--bg-base)",
             }}
           >

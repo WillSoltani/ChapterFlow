@@ -8,6 +8,11 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
+  grantUpgradeConditionExpression,
+  GRANT_UPGRADE_CONDITION_NAMES,
+  GRANT_UPGRADE_CONDITION_VALUES,
+} from "@/app/app/api/book/_lib/pro-grant-guard-core";
+import {
   BookApiError,
   isTransactionConditionFailedAt,
 } from "@/app/app/api/book/_lib/errors";
@@ -669,16 +674,20 @@ export async function redeemFlowPointsReward(
             // flips). The route also pre-checks (pro passes are freeOnly), but the
             // read is not atomic with this write. proSource is only "stripe" while
             // a sub is active/retrying.
-            ConditionExpression:
-              "attribute_not_exists(proSource) OR proSource <> :stripeSource",
+            // Apply the pro-pass only when it does not shorten/destroy a longer
+            // non-stripe grant (license/admin/gift/flow_points), mirroring the
+            // gift-claim guard. NULL-aware (attribute_type ... :nullType) because
+            // this very write stores licenseExpiresAt as a DynamoDB NULL, so a
+            // stored-NULL expiry must not block a legitimate extend.
+            // Spec + truth-table tests: _lib/pro-grant-guard-core.ts (keep in sync).
+            ConditionExpression: grantUpgradeConditionExpression(":periodEnd"),
             ExpressionAttributeNames: {
-              "#plan": "plan",
+              ...GRANT_UPGRADE_CONDITION_NAMES,
             },
             ExpressionAttributeValues: {
-              ":proPlan": "PRO",
+              ...GRANT_UPGRADE_CONDITION_VALUES,
               ":activeStatus": "active",
               ":flowSource": "flow_points",
-              ":stripeSource": "stripe",
               ":periodEnd": params.passExpiresAt ?? now,
               ":nullValue": null,
               ":updatedAt": now,
@@ -789,10 +798,26 @@ export async function redeemFlowPointsReward(
     // fails its guard, the caller already has an active paid Stripe subscription
     // (the slot-add branch carries no such guard, so it can't trip this).
     if (isTransactionConditionFailedAt(error, 4)) {
+      // The pro-pass upgrade was refused because the user already has a stripe or
+      // longer-lived non-stripe grant. The points deduction rolled back
+      // atomically (nothing charged). Re-read to report the accurate reason.
+      const entRes = await ddbDoc.send(
+        new GetCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(params.userId), SK: entitlementSk() },
+        })
+      );
+      if (entRes.Item?.proSource === "stripe") {
+        throw new BookApiError(
+          409,
+          "active_subscription",
+          "You already have an active paid subscription. Pro passes are for free-plan accounts only — manage your subscription from billing settings."
+        );
+      }
       throw new BookApiError(
         409,
-        "active_subscription",
-        "You already have an active paid subscription. Pro passes are for free-plan accounts only — manage your subscription from billing settings."
+        "longer_grant_active",
+        "You already have Pro access that lasts longer than this pass, so it was not applied. Your Insight Points were not spent."
       );
     }
     throw error;

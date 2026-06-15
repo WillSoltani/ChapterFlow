@@ -225,15 +225,22 @@ async function userHasRecentSpend(
     new QueryCommand({
       TableName: tableName,
       KeyConditionExpression: "PK = :pk AND SK > :start",
-      FilterExpression: "entity = :entity AND direction = :spend AND createdAt > :since",
+      // Exclude soft-decay's own `expiration` spend rows so a decay write isn't
+      // mistaken for user spend. `<>` is false for items missing sourceType, so
+      // OR attribute_not_exists keeps legacy spend rows (written before
+      // sourceType existed) counted. No Limit: with a FilterExpression, Limit
+      // bounds items READ before filtering, so Limit:1 could return COUNT 0 even
+      // when matching spend exists just past the first row.
+      FilterExpression:
+        "entity = :entity AND direction = :spend AND createdAt > :since AND (attribute_not_exists(sourceType) OR sourceType <> :expiration)",
       ExpressionAttributeValues: {
         ":pk": bookUserPk(userId),
         ":start": `FLOWPOINTS#${since}`,
         ":entity": "BOOK_USER_FLOW_POINTS_LEDGER",
         ":spend": "spend",
         ":since": since,
+        ":expiration": "expiration",
       },
-      Limit: 1,
       Select: "COUNT",
     })
   );

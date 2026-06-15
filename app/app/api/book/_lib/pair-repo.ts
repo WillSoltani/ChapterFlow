@@ -10,8 +10,10 @@ import {
 import crypto from "crypto";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, pairSk, pairInvitePk, pairInviteSk, pairNudgeSk, streakSk, nowIso } from "./keys";
+import { getBookContentBucket } from "./env";
+import { listPublishedLibraryCatalog } from "./library-catalog";
 import { getUserProfileItem, listAllUserProgress } from "./repo";
-import type { BookUserPairItem, BookPairInviteItem } from "./types";
+import type { BookUserPairItem, BookPairInviteItem, BookUserProgress } from "./types";
 
 function generateInviteCode(): string {
   // CSPRNG-backed (matches the referral-code generator's crypto path). The
@@ -235,6 +237,39 @@ async function getPartnerStreakSnapshot(
 }
 
 /**
+ * Map of bookId -> published chapter count, used to classify completion exactly
+ * (mirroring repo.summarizeProgress, which compares completedChapters.length
+ * against the book's real chapterCount). Read-only and best-effort.
+ */
+async function loadCatalogChapterCounts(tableName: string): Promise<Map<string, number>> {
+  const contentBucket = await getBookContentBucket();
+  const catalog = await listPublishedLibraryCatalog({ tableName, contentBucket });
+  const counts = new Map<string, number>();
+  for (const book of catalog) {
+    if (Number.isFinite(book.chapterCount) && book.chapterCount > 0) {
+      counts.set(book.id, book.chapterCount);
+    }
+  }
+  return counts;
+}
+
+/**
+ * Canonical in-progress predicate: started (completed > 0) AND not yet completed.
+ * With the book's real chapterCount, completed === completedChapters.length >=
+ * total (matches statusFromCounts / summarizeProgress and handles out-of-order
+ * completion). When the count is unknown, fall back to summarizeProgress's
+ * currentChapterNumber heuristic.
+ */
+function isBookInProgress(p: BookUserProgress, totalChapters: number | undefined): boolean {
+  const completed = p.completedChapters.length;
+  if (completed <= 0) return false;
+  if (totalChapters !== undefined) {
+    return completed < totalChapters;
+  }
+  return p.currentChapterNumber > completed;
+}
+
+/**
  * The viewer's active pair plus a PII-safe summary of the partner so the card
  * can show whether the partner is actually active (the point of an accountability
  * partner) rather than just "paired since {date}". Each partner lookup is
@@ -249,7 +284,7 @@ export async function getActivePairWithPartner(
   if (!pair) return { pair: null, partner: null };
 
   const partnerId = pair.partnerId;
-  const [displayName, streak, progress] = await Promise.all([
+  const [displayName, streak, progress, chapterCounts] = await Promise.all([
     getUserProfileItem(tableName, partnerId)
       .then((p) => {
         const dn = p?.profile?.displayName;
@@ -261,18 +296,24 @@ export async function getActivePairWithPartner(
       lastActiveDate: null,
     })),
     listAllUserProgress(tableName, partnerId).catch(() => []),
+    // Per-book real chapter counts so completion is exact rather than inferred
+    // from currentChapterNumber. Best-effort: a catalog read failure degrades to
+    // the per-record heuristic below, never failing the whole pair request.
+    loadCatalogChapterCounts(tableName).catch(() => new Map<string, number>()),
   ]);
 
   // "In progress" must mean started-with-real-activity AND not yet completed, to
-  // match the app's canonical classifier (useBookAnalytics.statusFromCounts:
-  // in_progress only once completed > 0). Counting bare PROGRESS records would
-  // inflate the number with books the partner merely opened but never read a
-  // chapter of (createProgressIfMissing seeds completedChapters: []), which their
-  // own dashboard would call not_started. The not-completed half is the negation
-  // of repo.summarizeProgress's completion predicate.
-  const booksInProgress = progress.filter(
-    (p) =>
-      p.completedChapters.length > 0 && p.currentChapterNumber > p.completedChapters.length,
+  // match the app's canonical classifier (useBookAnalytics.statusFromCounts and
+  // repo.summarizeProgress: in_progress === completed > 0 && completed < total).
+  // Counting bare PROGRESS records would inflate the number with books the
+  // partner merely opened but never read a chapter of (createProgressIfMissing
+  // seeds completedChapters: []), which their own dashboard would call
+  // not_started. Completion is keyed off the book's real chapterCount when known
+  // — so a finished book (currentChapterNumber = last + 1) is excluded and a book
+  // the reader jumped back into still counts — falling back to summarizeProgress's
+  // currentChapterNumber heuristic only when the count is unavailable.
+  const booksInProgress = progress.filter((p) =>
+    isBookInProgress(p, chapterCounts.get(p.bookId)),
   ).length;
 
   return {

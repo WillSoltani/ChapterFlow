@@ -97,18 +97,10 @@ export function antifragileSourceProvenanceSummary(sourceLedger) {
   return `Frozen source bundle for the 2012 English Random House edition using authorized preview, official publisher metadata, and chapter-structure crosschecks (${sourceLabel}).`;
 }
 
-export function matchesAntifragilePackage(pkg, inputPath = "") {
+export function matchesAntifragilePackage(pkg) {
   const book = pkg?.book ?? pkg;
   const bookId = normalizeLooseText(book?.bookId).toLowerCase();
-  const title = normalizeLooseText(book?.title).toLowerCase();
-  const author = normalizeLooseText(book?.author).toLowerCase();
-  const pathText = normalizeLooseText(inputPath).toLowerCase();
-  return (
-    bookId === ANTIFRAGILE_BOOK_ID ||
-    title.includes("antifragile") ||
-    author.includes("nassim nicholas taleb") ||
-    pathText.includes("antifragile")
-  );
+  return bookId === ANTIFRAGILE_BOOK_ID;
 }
 
 export function buildAntifragileBookMetadata({

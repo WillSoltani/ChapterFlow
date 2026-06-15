@@ -4,6 +4,7 @@ import { Fragment, useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { LEARNING_LOOP_STEPS } from "@/lib/learning-loop";
 
 const steps = [
   {
@@ -95,7 +96,7 @@ export function HowItWorks() {
   const isInView = useInView(gridRef, { once: true, amount: 0.15 });
   const prefersReducedMotion = useReducedMotion();
 
-  const renderCard = (step: (typeof steps)[number]) => (
+  const renderCard = (step: (typeof steps)[number], index: number) => (
     <div
       key={step.number}
       className={`group relative overflow-hidden rounded-xl border bg-(--bg-glass) backdrop-blur-[16px] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-(--border-medium) ${
@@ -123,12 +124,15 @@ export function HowItWorks() {
         {step.icon}
       </div>
 
-      {/* Label */}
+      {/* Label — gloss paired with the canonical in-app step name */}
       <p
         className="mt-4 text-[12px] font-semibold uppercase tracking-[0.15em] text-(--accent-teal)"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {step.label}
+        <span className="ml-2 font-medium normal-case tracking-normal text-(--text-secondary)">
+          {LEARNING_LOOP_STEPS[index]}
+        </span>
       </p>
 
       {/* Title */}
@@ -180,7 +184,7 @@ export function HowItWorks() {
           >
             {steps.map((step, i) => (
               <Fragment key={step.number}>
-                {renderCard(step)}
+                {renderCard(step, i)}
                 {i < steps.length - 1 && (
                   <div className="hidden lg:flex items-center justify-center self-center -mx-3 z-10 flex-shrink-0">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -209,7 +213,7 @@ export function HowItWorks() {
             {steps.map((step, i) => (
               <Fragment key={step.number}>
                 <motion.div variants={cardVariants}>
-                  {renderCard(step)}
+                  {renderCard(step, i)}
                 </motion.div>
                 {i < steps.length - 1 && (
                   <div className="hidden lg:flex items-center justify-center self-center -mx-3 z-10 flex-shrink-0">

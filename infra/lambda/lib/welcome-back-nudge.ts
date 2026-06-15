@@ -96,43 +96,37 @@ export async function processWelcomeBackNudge(
       }),
     );
 
-    if (!email || notifications?.channels?.email === false) {
-      // In-app was written; skip email send, write dedup and continue
-      const ttl = Math.floor(Date.now() / 1000) + 30 * 86400;
-      await ddb.send(
-        new PutCommand({
-          TableName: tableName,
-          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
-        }),
-      );
-      sent++;
-      continue;
-    }
-
-    try {
-      const tpl = welcomeBackEmail({ name, daysSinceActive, appBaseUrl: config.appBaseUrl });
-      await sendCompliantEmail(ses, ddb, tableName, config, {
-        to: email,
-        userId,
-        category: "welcome_back",
-        subject: tpl.subject,
-        textBody: tpl.textBody,
-        htmlBody: tpl.htmlBody,
-      });
-      sent++;
-    } catch (err) {
-      console.error(`[welcome-back] Failed for ${userId}:`, err);
-      skipped++;
-    }
-
-    // Write dedup (30 day TTL)
+    // The in-app notification above is the guaranteed nudge channel and has been
+    // delivered, so record the 30-day dedup marker NOW — exactly-once. The email
+    // below is a best-effort second channel; its failure must not leave the
+    // marker unwritten, or the next cron run would re-send a duplicate in-app
+    // nudge every hour until the email finally succeeds.
     const ttl = Math.floor(Date.now() / 1000) + 30 * 86400;
     await ddb.send(
       new PutCommand({
         TableName: tableName,
-        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: new Date().toISOString(), ttl },
+        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
       }),
     );
+    sent++;
+
+    // Best-effort email (second channel). A send failure is logged but not
+    // retried: the in-app notification already counts as the delivered nudge.
+    if (email && notifications?.channels?.email !== false) {
+      try {
+        const tpl = welcomeBackEmail({ name, daysSinceActive, appBaseUrl: config.appBaseUrl });
+        await sendCompliantEmail(ses, ddb, tableName, config, {
+          to: email,
+          userId,
+          category: "welcome_back",
+          subject: tpl.subject,
+          textBody: tpl.textBody,
+          htmlBody: tpl.htmlBody,
+        });
+      } catch (err) {
+        console.error(`[welcome-back] email send failed for ${userId}:`, err);
+      }
+    }
   }
 
   return { sent, skipped };

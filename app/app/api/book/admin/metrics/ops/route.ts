@@ -92,11 +92,14 @@ export async function GET(req: Request) {
       }),
     ]);
 
-    // Tally subscription cancellations
-    const accountChanges = { deactivated: 0, deleted: 0, reactivated: 0 };
+    // Tally subscription cancellations. NOTE: these are Stripe billing events
+    // (subscription_change with proStatus === "canceled"), NOT account
+    // deactivations/deletions — account lifecycle transitions are written as
+    // status audit records, not analytics events, so they aren't queryable here.
+    let subscriptionCancellations = 0;
     for (const { events } of subscriptionEventsByDay) {
       for (const e of events) {
-        if (e.proStatus === "canceled") accountChanges.deactivated += 1;
+        if (e.proStatus === "canceled") subscriptionCancellations += 1;
       }
     }
 
@@ -130,7 +133,11 @@ export async function GET(req: Request) {
       eventsToday: eventsTodayResult.events.length,
       eventsYesterday: eventsYesterdayResult.events.length,
       ingestionJobs,
-      accountChanges,
+      subscriptionCancellations,
+      // Back-compat alias for the Ops dashboard's "Cancellations" tile. The
+      // deleted/reactivated buckets are not derivable from analytics events
+      // (account lifecycle changes aren't recorded there), so they stay 0.
+      accountChanges: { deactivated: subscriptionCancellations, deleted: 0, reactivated: 0 },
       beaconErrors: beaconErrors.map((d) => ({ date: d.date, value: d.events })),
       lambdaHealth,
       ddbHealth,

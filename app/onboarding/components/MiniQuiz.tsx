@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { CheckCircle, XCircle, ArrowRight } from "lucide-react";
 import { getFirstLoopContent, getQuizFeedback } from "@/app/onboarding/data/chapters";
@@ -48,15 +48,14 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
       setShowMiniConfetti(true);
       setTimeout(() => setShowMiniConfetti(false), 2000);
     }
-    // No auto-advance here. Correct answers auto-advance via the effect below
-    // (the feedback is short); wrong answers wait for the user to read the
-    // explanation and tap "Next" — never force-advancing past it.
+    // No auto-advance — both correct and wrong answers wait for the user to read
+    // the feedback and tap the explicit "Next" button. The user controls pacing.
   };
 
   // Advance to the next question, or finish the quiz on the last one. Guarded
-  // against double-firing: on the last question a manual "See your result" tap
-  // and the correct-answer auto-advance timer could both call this, so bail
-  // once the quiz is already finished.
+  // against double-firing: a rapid double-tap on the "See your result" button
+  // could call this twice on the last question, so bail once the quiz is
+  // already finished.
   const advance = useCallback(() => {
     if (!showFeedback || quizFinished) return;
     if (!isLastQuestion) {
@@ -68,14 +67,6 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
       setTimeout(() => onComplete(score), 1200);
     }
   }, [showFeedback, quizFinished, isLastQuestion, score, onComplete]);
-
-  // Auto-advance ONLY on a correct answer, after a comfortable read beat.
-  // Wrong answers stay put until the user taps "Next".
-  useEffect(() => {
-    if (!showFeedback || !isCorrect) return;
-    const t = setTimeout(advance, 4000);
-    return () => clearTimeout(t);
-  }, [showFeedback, isCorrect, advance]);
 
   if (quizFinished) {
     const finalScore = score;
@@ -306,8 +297,8 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
             )}
           </AnimatePresence>
 
-          {/* User-paced advance. Wrong answers wait here so the explanation can
-              be read; correct answers also auto-advance after a short beat. */}
+          {/* User-paced advance. Both correct and wrong answers wait here so the
+              feedback can be read; the user taps to move on. */}
           {showFeedback && (
             <motion.div
               initial={noMotion ? false : { opacity: 0 }}

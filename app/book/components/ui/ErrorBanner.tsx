@@ -21,15 +21,15 @@ export function ErrorBanner({
       role="alert"
       className={cn("rounded-2xl border px-4 py-3", className)}
       style={{
-        borderColor: "rgba(245, 158, 11, 0.24)",
-        background: "rgba(245, 158, 11, 0.08)",
+        borderColor: "var(--cf-danger-border)",
+        background: "var(--cf-danger-bg)",
       }}
     >
       <p
         className="flex items-center gap-2 text-sm font-semibold"
-        style={{ color: "var(--accent-amber)" }}
+        style={{ color: "var(--cf-danger-text)" }}
       >
-        <AlertTriangle className="h-4 w-4" style={{ color: "var(--accent-amber)" }} />
+        <AlertTriangle className="h-4 w-4" style={{ color: "var(--cf-danger-text)" }} />
         {title}
       </p>
       <p
@@ -44,8 +44,8 @@ export function ErrorBanner({
           onClick={onRetry}
           className="mt-3 cursor-pointer rounded-lg px-4 py-1.5 text-sm font-medium transition-colors hover:brightness-110"
           style={{
-            background: "var(--accent-amber)",
-            color: "var(--bg-base)",
+            background: "var(--cf-danger-text)",
+            color: "var(--cf-accent-contrast)",
           }}
         >
           Try again

@@ -6,6 +6,7 @@ import { PhoneMockup } from "@/components/landing/PhoneMockup";
 import { PhoneReaderShell } from "@/components/landing/reader-demo/PhoneReaderShell";
 import { PulseCTA } from "@/components/landing/PulseCTA";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { FREE_OFFER_LABEL } from "@/lib/pricing";
 import { track } from "@/lib/analytics";
 
 const fadeUp = {
@@ -36,7 +37,7 @@ export function Hero() {
       />
 
       <div className="relative mx-auto max-w-[1200px] px-5 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[60%_40%] gap-12 lg:gap-8 items-center">
           {/* Left column — text */}
           <motion.div
             initial="hidden"
@@ -125,7 +126,7 @@ export function Hero() {
               style={{ color: "var(--text-muted)" }}
               variants={fadeUp}
             >
-              No credit card &middot; 2 full books free
+              No credit card &middot; {FREE_OFFER_LABEL}
             </motion.p>
           </motion.div>
 

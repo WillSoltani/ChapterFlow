@@ -9,6 +9,7 @@ import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, referralClaimSk } from "@/app/app/api/book/_lib/keys";
 import { listRecentRiskEvents } from "@/app/app/api/book/_lib/repo";
+import { coarseNetworkPrefix } from "@/app/app/api/book/_lib/client-ip";
 import {
   evaluateReferralFraud,
   DEVICE_VELOCITY_THRESHOLD,
@@ -21,23 +22,9 @@ function sha(value: string): string {
   return createHash("sha256").update(value).digest("base64url");
 }
 
-// Coarsen an IP to the same /24 (IPv4) or /64 (IPv6) prefix that abuse.ts uses
-// when it records "network"-scope risk events, so the fingerprint we look up
-// here matches what recordRiskSignals wrote.
-function coarseNetworkPrefix(ip: string | null): string | null {
-  if (!ip) return null;
-  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(ip)) {
-    const octets = ip.split(".");
-    if (octets.length !== 4) return null;
-    return `${octets[0]}.${octets[1]}.${octets[2]}.0/24`;
-  }
-  if (ip.includes(":")) {
-    const segments = ip.split(":").filter(Boolean);
-    if (segments.length < 4) return null;
-    return `${segments.slice(0, 4).join(":")}::/64`;
-  }
-  return null;
-}
+// coarseNetworkPrefix is imported from client-ip.ts so this fraud check and
+// abuse.ts compute byte-identical network fingerprints (previously each kept its
+// own copy and they drifted on compressed/IPv4-mapped IPv6).
 
 // ── Main fraud check (§6.6) ────────────────────────────────────────────────
 

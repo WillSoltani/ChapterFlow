@@ -8,6 +8,7 @@ import {
   CATALOG_BOOK_COUNT_DISPLAY,
   CATALOG_CATEGORY_COUNT_DISPLAY,
 } from "@/lib/catalog-stats";
+import { FREE_OFFER_LABEL } from "@/lib/pricing";
 
 /**
  * Proof band. Deliberately NOT testimonials — we don't have verifiable user
@@ -51,7 +52,7 @@ const PROOFS: Proof[] = [
         <path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9-2.6.9-5.5-4-3.9L9.5 8z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
       </svg>
     ),
-    stat: "2 full books free",
+    stat: FREE_OFFER_LABEL,
     title: "Try it before you pay anything",
     body: "Read two complete books end-to-end with no credit card. Upgrade to Pro only if the method works for you. Cancel anytime.",
   },

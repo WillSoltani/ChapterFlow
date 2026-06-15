@@ -313,15 +313,20 @@ export function AudioPlayer({
             <div className="min-w-0 flex-1">
               <p className="truncate text-[12px] font-medium text-(--cr-text-primary)">{chapterTitle}</p>
               <div className="mt-0.5 flex items-center gap-2">
-                <div className="h-1 flex-1 cursor-pointer rounded-full bg-(--cr-bg-surface-1)" onClick={handleProgressClick} ref={progressBarRef}>
-                  <div className="h-1 rounded-full bg-(--cr-accent) transition-none" style={{ width: `${progress}%` }} />
+                {/* Padded transparent wrapper enlarges the touch target to
+                 * ~44px tall; the seek math reads this element's width (flex-1,
+                 * unchanged by the vertical padding), so positioning holds. */}
+                <div className="flex flex-1 cursor-pointer items-center py-[20px] -my-[20px]" onClick={handleProgressClick} ref={progressBarRef}>
+                  <div className="relative h-1 w-full rounded-full bg-(--cr-bg-surface-1)">
+                    <div className="h-1 rounded-full bg-(--cr-accent) transition-none" style={{ width: `${progress}%` }} />
+                  </div>
                 </div>
                 <span className="shrink-0 text-[10px] tabular-nums text-(--cr-text-disabled)">{fmt(currentTime)} / {fmt(duration)}</span>
               </div>
             </div>
             <button type="button" onClick={cycleSpeed} className="shrink-0 rounded-md border border-(--cr-glass-border) px-2 py-1 text-[10px] font-bold tabular-nums text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-2)">{speed}x</button>
-            <button type="button" onClick={() => setMinimized(false)} className="shrink-0 rounded-md p-1.5 text-(--cr-text-disabled) hover:text-(--cr-text-primary)" aria-label="Expand"><Maximize2 className="h-3.5 w-3.5" /></button>
-            <button type="button" onClick={handleClose} className="shrink-0 rounded-md p-1.5 text-(--cr-text-disabled) hover:text-(--cr-text-primary)" aria-label="Close"><X className="h-3.5 w-3.5" /></button>
+            <button type="button" onClick={() => setMinimized(false)} className="shrink-0 min-h-11 min-w-11 inline-flex items-center justify-center rounded-md p-1.5 text-(--cr-text-disabled) hover:text-(--cr-text-primary)" aria-label="Expand"><Maximize2 className="h-3.5 w-3.5" /></button>
+            <button type="button" onClick={handleClose} className="shrink-0 min-h-11 min-w-11 inline-flex items-center justify-center rounded-md p-1.5 text-(--cr-text-disabled) hover:text-(--cr-text-primary)" aria-label="Close"><X className="h-3.5 w-3.5" /></button>
           </div>
         </div>
       </>
@@ -341,8 +346,8 @@ export function AudioPlayer({
             </span>
           </div>
           <div className="flex items-center gap-1">
-            {audioReady && <button type="button" onClick={() => setMinimized(true)} className="rounded-md p-1 text-(--cr-text-disabled) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary)" aria-label="Minimize" title="Minimize"><Minimize2 className="h-3.5 w-3.5" /></button>}
-            <button type="button" onClick={handleClose} className="rounded-md p-1 text-(--cr-text-disabled) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary)" aria-label="Close"><X className="h-3.5 w-3.5" /></button>
+            {audioReady && <button type="button" onClick={() => setMinimized(true)} className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-md p-1 text-(--cr-text-disabled) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary)" aria-label="Minimize" title="Minimize"><Minimize2 className="h-3.5 w-3.5" /></button>}
+            <button type="button" onClick={handleClose} className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-md p-1 text-(--cr-text-disabled) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary)" aria-label="Close"><X className="h-3.5 w-3.5" /></button>
           </div>
         </div>
 
@@ -362,9 +367,17 @@ export function AudioPlayer({
 
         {!error && (
           <div className="px-4 pt-2 pb-1">
-            <div ref={progressBarRef} className="group relative h-2 w-full cursor-pointer rounded-full bg-(--cr-bg-surface-1)" onClick={handleProgressClick} role="slider" aria-valuenow={Math.round(currentTime)} aria-valuemin={0} aria-valuemax={Math.round(duration)} aria-label="Audio progress" tabIndex={0} onKeyDown={(e) => { if (e.key === "ArrowRight") seekTo(currentTime + 10); if (e.key === "ArrowLeft") seekTo(currentTime - 10); if (e.key === " ") { e.preventDefault(); togglePlay(); } }}>
-              <div className="absolute inset-y-0 left-0 rounded-full bg-(--cr-accent) transition-none" style={{ width: `${progress}%` }} />
-              <div className="absolute top-1/2 -translate-y-1/2 h-3.5 w-3.5 rounded-full border-2 border-(--cr-accent) bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-opacity" style={{ left: `calc(${Math.min(progress, 98)}% - 7px)` }} />
+            {/* Padded transparent wrapper gives the seek control a ~44px-tall
+             * touch target while the visual track stays thin. The seek math
+             * reads this element's width (unchanged by the vertical padding),
+             * so drag/click positioning is preserved. */}
+            <div ref={progressBarRef} className="group relative flex w-full cursor-pointer items-center py-[18px] -my-[18px]" onClick={handleProgressClick} role="slider" aria-valuenow={Math.round(currentTime)} aria-valuemin={0} aria-valuemax={Math.round(duration)} aria-label="Audio progress" tabIndex={0} onKeyDown={(e) => { if (e.key === "ArrowRight") seekTo(currentTime + 10); if (e.key === "ArrowLeft") seekTo(currentTime - 10); if (e.key === " ") { e.preventDefault(); togglePlay(); } }}>
+              <div className="relative h-2 w-full rounded-full bg-(--cr-bg-surface-1)">
+                <div className="absolute inset-y-0 left-0 rounded-full bg-(--cr-accent) transition-none" style={{ width: `${progress}%` }} />
+                {/* Thumb: hover-reveal on fine pointers, always visible on touch
+                 * (pointer-coarse) so it is tappable without a hover state. */}
+                <div className="absolute top-1/2 -translate-y-1/2 h-3.5 w-3.5 rounded-full border-2 border-(--cr-accent) bg-white shadow-sm opacity-0 transition-opacity group-hover:opacity-100 pointer-coarse:opacity-100" style={{ left: `calc(${Math.min(progress, 98)}% - 7px)` }} />
+              </div>
             </div>
             <div className="mt-1 flex justify-between text-[10px] tabular-nums text-(--cr-text-disabled)">
               <span>{fmt(currentTime)}</span>

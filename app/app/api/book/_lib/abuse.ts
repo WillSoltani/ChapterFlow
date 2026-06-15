@@ -7,6 +7,7 @@ import type { AuthedUser } from "@/app/app/api/_lib/auth";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { listRecentRiskEvents, recordRiskEvent } from "@/app/app/api/book/_lib/repo";
 import type { BookRiskEventScope, BookRiskEventType } from "@/app/app/api/book/_lib/types";
+import { readClientIp as readIp, coarseNetworkPrefix } from "@/app/app/api/book/_lib/client-ip";
 
 export const BOOK_DEVICE_COOKIE = "cf_device";
 const BOOK_DEVICE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
@@ -41,37 +42,6 @@ function parseCookie(cookieHeader: string | null, name: string): string | null {
     const trimmed = part.trim();
     if (!trimmed.startsWith(prefix)) continue;
     return decodeURIComponent(trimmed.slice(prefix.length));
-  }
-  return null;
-}
-
-function readIp(req: Request): string | null {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const first = forwarded.split(",")[0]?.trim();
-    if (first) return first;
-  }
-  const realIp = req.headers.get("x-real-ip")?.trim();
-  if (realIp) return realIp;
-  const cloudfrontViewer = req.headers.get("cloudfront-viewer-address")?.trim();
-  if (cloudfrontViewer) {
-    const host = cloudfrontViewer.split(":")[0]?.trim();
-    if (host) return host;
-  }
-  return null;
-}
-
-function coarseNetworkPrefix(ip: string | null): string | null {
-  if (!ip) return null;
-  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(ip)) {
-    const octets = ip.split(".");
-    if (octets.length !== 4) return null;
-    return `${octets[0]}.${octets[1]}.${octets[2]}.0/24`;
-  }
-  if (ip.includes(":")) {
-    const segments = ip.split(":").filter(Boolean);
-    if (segments.length < 4) return null;
-    return `${segments.slice(0, 4).join(":")}::/64`;
   }
   return null;
 }

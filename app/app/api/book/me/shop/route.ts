@@ -5,7 +5,7 @@ import "server-only";
 // Separate from the bridge redemption endpoint (flow-points/redeem) which
 // handles the 3 preserved freeOnly sinks.
 
-import { GetCommand, PutCommand, TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
+import { GetCommand, TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   getBookAnalyticsTableName,
@@ -39,6 +39,25 @@ import {
 import type { TierName } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
+
+/**
+ * Generate a CSPRNG-backed gift code with a non-ambiguous alphabet.
+ * 20 chars over a 32-symbol alphabet = 100 bits of entropy (well above the
+ * ~96-bit target), defeating online enumeration of claimable Pro grants.
+ * The 32-char alphabet is a power of two, so masking each random byte with
+ * & 31 maps it onto the alphabet uniformly — no modulo bias. Mirrors the
+ * generator in pair-repo.ts, using the global Web Crypto already relied on
+ * elsewhere in this file (crypto.randomUUID).
+ */
+function generateGiftCode(): string {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const bytes = crypto.getRandomValues(new Uint8Array(20));
+  let code = "";
+  for (let i = 0; i < bytes.length; i++) {
+    code += chars[bytes[i] & 31];
+  }
+  return `GIFT-${code}`;
+}
 
 /** GET — List available shop items with user's inventory and tier context */
 export async function GET(req: Request) {
@@ -103,7 +122,12 @@ export async function POST(req: Request) {
     if (itemId === GIFT_A_FRIEND.id) {
       const cost = GIFT_A_FRIEND.ipCost;
 
-      // Deduct IP and record ledger entry
+      // Generate the gift code up front so it can be persisted in the SAME
+      // transaction as the IP deduction — both commit or neither does, so the
+      // user can never be debited without receiving a code (and vice versa).
+      const giftCode = generateGiftCode();
+
+      // Atomic: deduct IP + record ledger entry + persist the gift code.
       try {
         await ddbDoc.send(
           new TransactWriteCommand({
@@ -143,6 +167,23 @@ export async function POST(req: Request) {
                   ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
                 },
               },
+              {
+                Put: {
+                  TableName: tableName,
+                  Item: {
+                    PK: giftCodePk(),
+                    SK: giftCodeSk(giftCode),
+                    entity: "BOOK_USER_GIFT_CODE",
+                    code: giftCode,
+                    giverUserId: user.sub,
+                    giftType: "pro_week",
+                    ipCost: cost,
+                    status: "available",
+                    createdAt: now,
+                  },
+                  ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+                },
+              },
             ],
           })
         );
@@ -152,26 +193,6 @@ export async function POST(req: Request) {
         }
         throw error;
       }
-
-      // Generate a unique gift code and persist it in DDB.
-      const giftCode = `GIFT-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
-      await ddbDoc.send(
-        new PutCommand({
-          TableName: tableName,
-          Item: {
-            PK: giftCodePk(),
-            SK: giftCodeSk(giftCode),
-            entity: "BOOK_USER_GIFT_CODE",
-            code: giftCode,
-            giverUserId: user.sub,
-            giftType: "pro_week",
-            ipCost: cost,
-            status: "available",
-            createdAt: now,
-          },
-          ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-        })
-      );
 
       // Fire-and-forget analytics
       getBookAnalyticsTableName()

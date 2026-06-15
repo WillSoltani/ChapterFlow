@@ -112,50 +112,42 @@ export async function processWeeklyDigest(
       }),
     );
 
-    if (!email || notifications?.channels?.email === false) {
-      // In-app was written; skip email send, write dedup and continue
-      const ttl = Math.floor(Date.now() / 1000) + 8 * 86400;
-      await ddb.send(
-        new PutCommand({
-          TableName: tableName,
-          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
-        }),
-      );
-      sent++;
-      continue;
-    }
-
-    // Send email digest
-    try {
-      const tpl = weeklyDigestEmail({
-        name,
-        chaptersCompleted,
-        currentStreak,
-        ipBalance,
-        appBaseUrl: config.appBaseUrl,
-      });
-      await sendCompliantEmail(ses, ddb, tableName, config, {
-        to: email,
-        userId,
-        category: "weekly_digest",
-        subject: tpl.subject,
-        textBody: tpl.textBody,
-        htmlBody: tpl.htmlBody,
-      });
-      sent++;
-    } catch (err) {
-      console.error(`[weekly-digest] Failed for ${userId}:`, err);
-      skipped++;
-    }
-
-    // Write dedup
+    // The in-app digest above is the guaranteed channel and has been delivered,
+    // so record the per-week dedup marker NOW — exactly-once — regardless of the
+    // email outcome below. (Writing it only after the email still ran on a failed
+    // send, self-suppressing the week; this makes in-app the source of truth.)
     const ttl = Math.floor(Date.now() / 1000) + 8 * 86400;
     await ddb.send(
       new PutCommand({
         TableName: tableName,
-        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: new Date().toISOString(), ttl },
+        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
       }),
     );
+    sent++;
+
+    // Best-effort email digest (second channel). A send failure is logged but not
+    // retried: the in-app notification already counts as the delivered digest.
+    if (email && notifications?.channels?.email !== false) {
+      try {
+        const tpl = weeklyDigestEmail({
+          name,
+          chaptersCompleted,
+          currentStreak,
+          ipBalance,
+          appBaseUrl: config.appBaseUrl,
+        });
+        await sendCompliantEmail(ses, ddb, tableName, config, {
+          to: email,
+          userId,
+          category: "weekly_digest",
+          subject: tpl.subject,
+          textBody: tpl.textBody,
+          htmlBody: tpl.htmlBody,
+        });
+      } catch (err) {
+        console.error(`[weekly-digest] email send failed for ${userId}:`, err);
+      }
+    }
   }
 
   return { sent, skipped };

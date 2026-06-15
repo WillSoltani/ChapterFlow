@@ -50,7 +50,7 @@ export function BookCover({
         <Image
           key={src}
           src={src}
-          alt={`${title} cover`}
+          alt=""
           fill
           sizes={sizes}
           loading="lazy"

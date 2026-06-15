@@ -23,11 +23,28 @@ const RATE_LIMIT_MAX_ATTEMPTS = 10;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
 
+// Trusted proxy hops (CloudFront, plus any edge layer) in front of this app.
+// The real client IP is the X-Forwarded-For entry this many positions from the
+// RIGHT — the one our own edge appended. The leftmost entries are supplied by
+// the client and MUST NOT be trusted for throttling: an attacker could rotate a
+// fake leftmost token to mint a fresh limiter bucket per request. Override via
+// env if the deployment adds/removes a hop (too low → clients collapse into one
+// bucket and over-throttle; too high → re-introduces the spoofable left side).
+const TRUSTED_PROXY_HOPS = Number(process.env.RATE_LIMIT_TRUSTED_PROXY_HOPS) || 1;
+
 function readClientIp(req: NextRequest): string | null {
   const forwarded = req.headers.get("x-forwarded-for");
   if (forwarded) {
-    const first = forwarded.split(",")[0]?.trim();
-    if (first) return first;
+    const chain = forwarded
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean);
+    if (chain.length > 0) {
+      // Trust the Nth entry from the right (appended by our edge), never the
+      // leftmost client-controlled token.
+      const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
+      return chain[idx] ?? chain[chain.length - 1];
+    }
   }
   const realIp = req.headers.get("x-real-ip")?.trim();
   if (realIp) return realIp;

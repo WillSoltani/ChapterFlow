@@ -9,6 +9,7 @@ import {
 } from "react";
 import Image from "next/image";
 import { MONTHLY_PRICE_WITH_CURRENCY, TRIAL_CTA_LABEL } from "@/lib/pricing";
+import { LEARNING_LOOP_STEPS as STEP_LABELS } from "@/lib/learning-loop";
 import {
   ArrowUpRight,
   BookOpen,
@@ -653,8 +654,6 @@ export function StickyMiniHeader({
 /* ═══════════════════════════════════════════════════════
    4-Step Learning Loop Indicator (B1)
    ═══════════════════════════════════════════════════════ */
-
-const STEP_LABELS = ["Summary", "Scenarios", "Quiz", "Unlock"] as const;
 
 function LearningLoopSteps({ completedSteps }: { completedSteps: boolean[] }) {
   const currentStep = completedSteps.findIndex((s) => !s);
