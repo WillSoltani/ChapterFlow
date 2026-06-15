@@ -7,6 +7,7 @@ import Link from "next/link";
 import { cn } from "@/app/book/components/ui/cn";
 import { Dialog } from "@/components/ui/Dialog";
 import type { BadgeWithProgress } from "../lib/badge-types";
+import { METALLIC_GRADIENTS } from "./BadgeCard";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 
@@ -278,15 +279,6 @@ function DetailRow({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
-
-const METALLIC_GRADIENTS: Record<string, string> = {
-  bronze: "linear-gradient(135deg, #CD7F32, #E8A862)",
-  silver: "linear-gradient(135deg, #C0C0C0, #E8E8E8)",
-  gold: "linear-gradient(135deg, #FFD700, #FFF0A0)",
-  platinum: "linear-gradient(135deg, #E5E4E2, #FFFFFF)",
-  unique: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-  secret: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-};
 
 function TierPillDisplay({ tier, earned, className }: { tier: string; earned: boolean; className?: string }) {
   const label = tier === "unique" ? "Unique" : tier === "secret" ? "Secret" : tier.charAt(0).toUpperCase() + tier.slice(1);
