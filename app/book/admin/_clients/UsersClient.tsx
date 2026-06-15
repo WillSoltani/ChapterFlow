@@ -407,9 +407,7 @@ function UserDetailDrawer({
 
               {detail.entitlement && (
                 <Section title="Entitlement">
-                  <pre className="cf-panel-muted overflow-x-auto rounded-lg p-3 text-[11px] text-(--cf-text-2)">
-                    {JSON.stringify(detail.entitlement, null, 2)}
-                  </pre>
+                  <EntitlementView entitlement={detail.entitlement} />
                 </Section>
               )}
 
@@ -619,11 +617,7 @@ function AccountLifecycleSection({
           </div>
         )}
 
-        {eraseSummary && (
-          <pre className="cf-panel-muted overflow-x-auto rounded-lg p-3 text-[11px] text-(--cf-text-2)">
-            {JSON.stringify(eraseSummary, null, 2)}
-          </pre>
-        )}
+        {eraseSummary && <EraseSummaryView summary={eraseSummary} />}
 
         {history.length > 0 && (
           <div className="cf-panel-muted max-h-56 overflow-y-auto rounded-lg">
@@ -658,6 +652,152 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       </h3>
       {children}
     </div>
+  );
+}
+
+/** Mask an identifier, keeping a short suffix for cross-referencing without exposing it verbatim. */
+function maskIdentifier(value: unknown): string {
+  if (typeof value !== "string" || !value) return "—";
+  if (value.length <= 6) return "••••";
+  return `••••${value.slice(-4)}`;
+}
+
+function asString(value: unknown): string {
+  if (value === null || value === undefined || value === "") return "—";
+  if (typeof value === "boolean") return value ? "Yes" : "No";
+  if (typeof value === "number") return value.toLocaleString();
+  return String(value);
+}
+
+function formatCents(value: unknown, currency: unknown): string {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "—";
+  const amount = (value / 100).toFixed(2);
+  const code = typeof currency === "string" && currency ? currency.toUpperCase() : "";
+  return code ? `${amount} ${code}` : amount;
+}
+
+/**
+ * Render the entitlement as labeled StatBox rows (mirroring the Snapshot section),
+ * masking raw Stripe / license identifiers. The full raw object stays available
+ * behind a collapsible "Show raw" for debugging.
+ */
+function EntitlementView({ entitlement }: { entitlement: Record<string, unknown> }) {
+  const e = entitlement;
+  const rows: Array<{ label: string; value: string; hint?: string }> = [
+    { label: "Plan", value: asString(e.plan) },
+    { label: "PRO status", value: asString(e.proStatus) },
+    { label: "PRO source", value: asString(e.proSource) },
+    { label: "Free book slots", value: asString(e.freeBookSlots) },
+    {
+      label: "Current period end",
+      value: formatRelative(typeof e.currentPeriodEnd === "string" ? e.currentPeriodEnd : null),
+    },
+    { label: "Cancel at period end", value: asString(e.cancelAtPeriodEnd) },
+    { label: "Subscription interval", value: asString(e.subscriptionInterval) },
+    {
+      label: "Subscription amount",
+      value: formatCents(e.subscriptionAmountCents, e.billingCurrency),
+    },
+    { label: "Billing country", value: asString(e.billingCountry) },
+    { label: "Card brand", value: asString(e.cardBrand) },
+    {
+      label: "Last invoice",
+      value: formatCents(e.lastInvoiceAmountCents, e.lastInvoiceCurrency),
+      hint:
+        typeof e.lastInvoicePaidAt === "string"
+          ? `paid ${formatRelative(e.lastInvoicePaidAt)}`
+          : undefined,
+    },
+    {
+      label: "License expires",
+      value: formatRelative(typeof e.licenseExpiresAt === "string" ? e.licenseExpiresAt : null),
+    },
+    { label: "Stripe customer", value: maskIdentifier(e.stripeCustomerId) },
+    { label: "Stripe subscription", value: maskIdentifier(e.stripeSubscriptionId) },
+    { label: "License key", value: maskIdentifier(e.licenseKey) },
+    { label: "Updated", value: formatRelative(typeof e.updatedAt === "string" ? e.updatedAt : null) },
+  ];
+
+  const unlocked = Array.isArray(e.unlockedBookIds) ? e.unlockedBookIds.length : null;
+  if (unlocked !== null) rows.push({ label: "Unlocked books", value: asString(unlocked) });
+
+  return (
+    <div className="space-y-2">
+      <div className="grid grid-cols-2 gap-2">
+        {rows.map((r) => (
+          <StatBox key={r.label} label={r.label} value={r.value} hint={r.hint} />
+        ))}
+      </div>
+      <RawDetails data={entitlement} />
+    </div>
+  );
+}
+
+/**
+ * Render the hard-erasure summary as labeled StatBox rows with a clear
+ * partial / residual-warning treatment. Raw JSON stays behind "Show raw".
+ */
+function EraseSummaryView({ summary }: { summary: Record<string, unknown> }) {
+  const s = summary;
+  const partial = s.partial === true;
+  const warnings = Array.isArray(s.residualWarnings)
+    ? s.residualWarnings.filter((w): w is string => typeof w === "string")
+    : [];
+
+  return (
+    <div className="space-y-2">
+      <div
+        className={[
+          "rounded-lg border px-3 py-2 text-[12px] font-medium",
+          partial
+            ? "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text)"
+            : "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)",
+        ].join(" ")}
+      >
+        {partial ? "Erasure completed with residual items" : "Erasure completed"}
+        {typeof s.erasedAt === "string" ? ` · ${formatTime(s.erasedAt)}` : ""}
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        <StatBox label="Main items deleted" value={asString(s.mainItemsDeleted)} />
+        <StatBox label="Quiz attempts deleted" value={asString(s.quizAttemptItemsDeleted)} />
+        <StatBox label="Quiz partitions" value={asString(s.quizAttemptPartitions)} />
+        <StatBox label="Analytics deleted" value={asString(s.analyticsItemsDeleted)} />
+        <StatBox label="Pair invites deleted" value={asString(s.pairInviteItemsDeleted)} />
+        <StatBox label="Unprocessed items" value={asString(s.unprocessedItems)} />
+        <StatBox label="Stripe customer" value={asString(s.stripeCustomer)} />
+        <StatBox label="Cognito user" value={asString(s.cognitoUser)} />
+      </div>
+
+      {warnings.length > 0 && (
+        <div className="rounded-lg border border-(--cf-warning-border) bg-(--cf-warning-soft)/50 p-2.5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-(--cf-warning-text)">
+            Residual warnings
+          </p>
+          <ul className="mt-1 list-disc space-y-0.5 pl-4 text-[12px] text-(--cf-warning-text)">
+            {warnings.map((w, i) => (
+              <li key={i}>{w}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <RawDetails data={summary} />
+    </div>
+  );
+}
+
+/** Collapsible raw-JSON escape hatch for debugging (collapsed by default). */
+function RawDetails({ data }: { data: unknown }) {
+  return (
+    <details className="cf-panel-muted rounded-lg">
+      <summary className="cursor-pointer select-none px-3 py-2 text-[11px] font-medium text-(--cf-text-soft) transition hover:text-(--cf-text-2)">
+        Show raw
+      </summary>
+      <pre className="overflow-x-auto px-3 pb-3 text-[11px] text-(--cf-text-2)">
+        {JSON.stringify(data, null, 2)}
+      </pre>
+    </details>
   );
 }
 
