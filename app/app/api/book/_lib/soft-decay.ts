@@ -225,13 +225,15 @@ async function userHasRecentSpend(
     new QueryCommand({
       TableName: tableName,
       KeyConditionExpression: "PK = :pk AND SK > :start",
-      FilterExpression: "entity = :entity AND direction = :spend AND createdAt > :since",
+      FilterExpression:
+        "entity = :entity AND direction = :spend AND createdAt > :since AND sourceType <> :expiration",
       ExpressionAttributeValues: {
         ":pk": bookUserPk(userId),
         ":start": `FLOWPOINTS#${since}`,
         ":entity": "BOOK_USER_FLOW_POINTS_LEDGER",
         ":spend": "spend",
         ":since": since,
+        ":expiration": "expiration",
       },
       Limit: 1,
       Select: "COUNT",
