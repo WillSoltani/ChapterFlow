@@ -29,7 +29,7 @@ construction; a field with nothing real to say falls back on the skeletons below
 2. Anchor it to one named source case so the stakes are real, not generic.
 3. State the live tradeoff as a fork the person must take now ("must tell the room whether the problem is entitled kids — or a scarcity culture").
 4. Keep the concept *off-stage*: it is what the choice illustrates, not a prop anyone handles.
-5. Vary the scene SHAPE across the chapter's six examples and FIT the staging to the topic. The dealt venues span kinds (domestic, relational, civic, occupational, commercial, recreational) — a personal/relational subject belongs at a kitchen table, on a phone call, or in a text thread, not at a workplace prop. A venue can be a relationship channel, not only a physical place.
+5. Vary the scene SHAPE across the chapter's six examples and FIT the staging to the topic. Span venue kinds (domestic, relational, civic, occupational, commercial, recreational) — a personal/relational subject belongs at a kitchen table, on a phone call, or in a text thread, not at a workplace prop. A venue can be a relationship channel, not only a physical place.
 
 **REJECT:**
 - A concept label made the actor or object — "Cleo lifts a productive vulnerability folder," "Aisha studies scarcity." Ideas can't be held or studied; this fails the reader because it gives them a label to memorize instead of a moment to inhabit (pairs with AC1).

@@ -59,6 +59,28 @@ test("SP plan enforcement blocks shape/venue/exemplar planSpec mismatches", () =
   }
 });
 
+test("a book with no dealt shape/venue plan (next-task flow) is not blocked on plan bookkeeping", () => {
+  try {
+    cleanup(); // no shape-plan / venue-plan on disk
+    const ch = makeChapter(BOOK, 1);
+    // next-task authoring leaves planSpec.venue unset and never deals a plan.
+    ch.examples.forEach((ex: any, i) => {
+      ex.planSpec.format = `shape_${i}`; // distinct shapes per example
+      delete ex.planSpec.venue;
+      ex.planSpec.exemplar = "";
+    });
+    assert.deepEqual(checkPlanEnforcement(BOOK, [ch]), [], "unstamped, undealt book should not block at publish");
+
+    // SP3 (within-chapter shape reuse) is a real quality check and still fires.
+    (ch.examples[1] as any).planSpec.format = (ch.examples[0] as any).planSpec.format;
+    const ids = checkPlanEnforcement(BOOK, [ch]).map((f) => f.checkId);
+    assert.ok(ids.includes("SP3.shape_slot_reused"), ids.join(", "));
+    assert.ok(!ids.includes("SP4.venue_plan_mismatch"), `venue must stay opt-in: ${ids.join(", ")}`);
+  } finally {
+    cleanup();
+  }
+});
+
 test("promote stripping still removes planSpec, including no-api venue/exemplar scaffolding", () => {
   const ch = makeChapter(BOOK, 1);
   (ch.examples[0] as any).planSpec.venue = "a clinic desk";
