@@ -1,9 +1,8 @@
 # Documentation
 
-This repository contains two application domains that share deployment and infrastructure:
-
-- `Cloud Portfolio` document workflows
-- `ChapterFlow` guided reading and learning workflows
+This repository ships a single application: `ChapterFlow`, the guided reading and
+learning product. (An earlier `Cloud Portfolio` document-workflow domain was
+removed from HEAD; only ChapterFlow remains.)
 
 Use the documents below based on the task you are doing.
 

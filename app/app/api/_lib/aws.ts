@@ -30,10 +30,6 @@ export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
   marshallOptions: { removeUndefinedValues: true },
 });
 
-export async function getTableName(): Promise<string> {
-  return mustServerEnv("SECURE_DOC_TABLE");
-}
-
 export const s3 = new S3Client({ region: REGION });
 
 export const sfn = new SFNClient({ region: REGION });

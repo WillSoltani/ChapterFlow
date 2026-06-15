@@ -148,7 +148,7 @@ These are consumed by the app via `getServerEnv` but are **not** in
 | `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_CHAPTERFLOW_SITE_URL`, `NEXT_PUBLIC_CHAPTERFLOW_APP_URL`, `NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL` | O | local/build | Public origins inlined at **build** time. In standalone single-host mode they collapse to one origin; set them at build if you need client-side absolute URLs. |
 | `CHAPTERFLOW_SITE_BASE_URL`, `CHAPTERFLOW_AUTH_BASE_URL` | O | local | Server site/auth origins. In standalone mode they default to the app origin via `app/_lib/chapterflow-brand.ts`. |
 | `ADMIN_EMAILS`, `ADMIN_SUBS` | O | local | A **secondary** admin gate on `app/book/settings/page.tsx` only, read via raw `process.env` (no SSM fallback). **Not injected into the Lambda** → effectively inert in deployed envs. The **real** admin gate is the Cognito group (`BOOK_ADMIN_GROUP`). |
-| `SECURE_DOC_TABLE` | n/a | — | Belongs to the sibling "Cloud Portfolio" product (`app/app/api/_lib/aws.ts`); **not used by ChapterFlow**. |
+| `SECURE_DOC_TABLE` | n/a | — | **Legacy / removed.** Belonged to the former "Cloud Portfolio" document product, which was deleted from HEAD. **Not used by ChapterFlow** — the dead reader was removed from `app/app/api/_lib/aws.ts`. Do not set; `scripts/book/render-apprunner-update.mjs` strips it from deploy env. |
 
 ### F. Email compliance (CASL / CAN-SPAM) — used by BOTH the app and the reminder cron
 
