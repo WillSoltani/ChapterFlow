@@ -67,7 +67,9 @@ test("qc orchestrator create writes round layout, packs, and role task cards", (
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
     setup();
-    const result = createQcOrchestrationRound(BOOK, { roundId: ROUND, chapters: [1] });
+    // Minimal synthetic fixtures intentionally fail book-gate; this test exercises
+    // round MECHANICS, so it opts out of the F6a preflight block.
+    const result = createQcOrchestrationRound(BOOK, { roundId: ROUND, chapters: [1], allowDirtyPreflight: true });
     assert.equal(result.ok, true, result.errors.join("\n"));
     assert.ok(existsSync(roundRecordPath(BOOK, ROUND)));
     assert.ok(existsSync(resolve(taskCardsDir(BOOK, ROUND), "00-sweep.md")));
@@ -85,6 +87,23 @@ test("qc orchestrator create writes round layout, packs, and role task cards", (
     const round = JSON.parse(readFileSync(roundRecordPath(BOOK, ROUND), "utf8"));
     assert.deepEqual(round.chapters, [1]);
     assert.equal(round.schemaVersion, "qc-orchestrator-round-v1");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanup();
+  }
+});
+
+test("F6a: a book-gate-dirty book is REFUSED a round (no allowDirtyPreflight) and opens none", () => {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    setup(); // synthetic 2-chapter fixture fails book-gate (F1/BP7/BP3/…)
+    const result = createQcOrchestrationRound(BOOK, { roundId: ROUND, chapters: [1] });
+    assert.equal(result.ok, false, "must refuse a round on a book-gate-dirty book");
+    assert.match(result.errors.join("\n"), /book-gate BLOCK/);
+    assert.equal(result.roundId, "", "no round id is minted when the preflight blocks");
+    assert.equal(existsSync(roundRecordPath(BOOK, ROUND)), false, "no round record is written");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;

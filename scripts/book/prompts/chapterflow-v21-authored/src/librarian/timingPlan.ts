@@ -75,8 +75,12 @@ export function planTiming(bookId: string, from: number, to: number): TimingPlan
   const N = to - from + 1;
   if (N >= 5) {
     const maxTrigger = Math.max(0, ...Object.values(triggerCounts));
-    if (maxTrigger / N >= 0.5) {
-      throw new Error(`timing-plan invariant violated: one trigger class lands ${maxTrigger}/${N} >= 0.50.`);
+    // 0.40 (not 0.50): sits strictly under the gate-family density threshold so a
+    // fresh deal clears with margin, matching the rhetoricPlan/callbackPlan
+    // convention (deal-cap < gate). Round-robin over 7 triggers keeps the real max
+    // at ceil(N/7) ≈ 0.14–0.17, far below this guard.
+    if (maxTrigger / N >= 0.4) {
+      throw new Error(`timing-plan invariant violated: one trigger class lands ${maxTrigger}/${N} >= 0.40.`);
     }
   }
   return {

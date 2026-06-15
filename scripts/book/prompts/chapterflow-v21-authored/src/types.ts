@@ -294,6 +294,7 @@ export type CriticCheckId =
   | "BP27.venue_stamping"
   | "BP28.callback_frame_reuse"
   | "BP29.timing_anchor_stamping"
+  | "BP30.action_container_reuse"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
   | "schema.quiz_unexpected_field"

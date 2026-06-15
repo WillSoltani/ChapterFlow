@@ -174,21 +174,18 @@ export function checkRoundFreshness(bookId: string, roundId: string, chapters?: 
   return { fresh: staleChapters.length === 0, staleChapters, missingHashes: false };
 }
 
-export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string } = {}): OrchestratorResult {
+export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean } = {}): OrchestratorResult {
   const errors: string[] = [];
   const messages: string[] = [];
   if (!isNoApiCodexQcMode()) {
     return { ok: false, roundId: options.roundId ?? "", roundDir: options.roundId ? orchestratorRoundDir(bookId, options.roundId) : "", errors: ["qc-orchestrate --create requires CHAPTERFLOW_NO_API_CODEX_QC=1."], messages };
   }
-  let opened: ReturnType<typeof openQcRound>;
-  try {
-    opened = openQcRound(bookId, options.roundId);
-  } catch (err) {
-    return { ok: false, roundId: options.roundId ?? "", roundDir: options.roundId ? orchestratorRoundDir(bookId, options.roundId) : "", errors: [(err as Error).message], messages };
-  }
-  const roundId = opened.record.roundId;
-  ensureRoundLayout(bookId, roundId);
-
+  // Deterministic preflight runs BEFORE the round is opened. F6a: these gates were
+  // computed but only pushed to `messages` — a source-v2-dirty or book-gate-dirty
+  // (even book-gate-BLOCKER) book still opened a round, so reviewers graded content
+  // that cannot pass and a finalize could bless book-wide defects. Now they BLOCK:
+  // a dirty book never opens a round. (book-gate.passed fails on BLOCKERS; the
+  // shadow-major sweep families surface but don't block, per their calibration.)
   const allChapters = loadBookChapters(bookId);
   const only = options.chapters?.length ? new Set(options.chapters) : null;
   const selected = allChapters.filter((ch) => !only || only.has(ch.number));
@@ -197,6 +194,24 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   messages.push(`source-v2-gate: ${source.passed ? "PASS" : "BLOCK"} (${source.findings.length} blocker(s))`);
   const bookGate = runBookGate(bookId, allChapters);
   messages.push(`book-gate: ${bookGate.passed ? "PASS" : "BLOCK"} (${bookGate.findings.length} finding(s))`);
+  // `allowDirtyPreflight` is an explicit operator/test override: round-MECHANICS
+  // unit tests use minimal synthetic fixtures that intentionally fail book-gate,
+  // and an operator may force a diagnostic round. Production entrypoints (qc-auto,
+  // qc-orchestrate --create) never set it, so the block is live for real books.
+  if (!options.allowDirtyPreflight && (!source.passed || !bookGate.passed)) {
+    if (!source.passed) errors.push(`source-v2-gate BLOCK (${source.findings.length} blocker(s)) — fix sources before opening a QC round.`);
+    if (!bookGate.passed) errors.push(`book-gate BLOCK (${bookGate.findings.filter((f) => f.severity === "blocker").length} blocker(s)) — fix book-wide blockers before opening a QC round.`);
+    return { ok: false, roundId: "", roundDir: "", errors, messages };
+  }
+
+  let opened: ReturnType<typeof openQcRound>;
+  try {
+    opened = openQcRound(bookId, options.roundId);
+  } catch (err) {
+    return { ok: false, roundId: options.roundId ?? "", roundDir: options.roundId ? orchestratorRoundDir(bookId, options.roundId) : "", errors: [(err as Error).message], messages };
+  }
+  const roundId = opened.record.roundId;
+  ensureRoundLayout(bookId, roundId);
 
   let keyPackPaths: string[] = [];
   let keyPackError: string | undefined;

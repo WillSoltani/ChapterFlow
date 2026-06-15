@@ -204,9 +204,20 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
   }
 
   if (decision.checks.sweep === "FAIL" && raw.sweepRecord) {
+    // F6b: a sweep finding spans many chapters (f.chapters). This function runs
+    // once PER chapter, and the old emission stamped a per-chapter `chapterNumber`,
+    // so stableFindingId (which keys on chapterNumber when present) minted N
+    // distinct ledger ids for ONE cross-chapter finding — inflating the open count
+    // (the-daily-stoic's single location_stamping sweep finding became 6). The fix
+    // is to DROP the per-chapter chapterNumber (below): with it absent,
+    // stableFindingId keys the finding on its sorted `chapters` span, so every
+    // spanned chapter's emission collapses to ONE ledger id (appendFindings dedups
+    // by findingId). This mirrors the book-gate handler above exactly. NB: do NOT
+    // also gate this on `min(f.chapters) === chapterNumber` — on a partial/subset
+    // round (or when the min chapter is STALE while siblings still FAIL) the min
+    // chapter may never be processed, which would drop the finding entirely.
     for (const f of raw.sweepRecord.findings.filter((x) => x.chapters.includes(chapterNumber))) {
       out.push({
-        chapterNumber,
         chapters: f.chapters,
         unitId: f.unitId,
         repairClass: f.family,

@@ -40,11 +40,14 @@ const HEADLINE_SENTENCE_CAP = 24;
  *  only words that almost always read better as the swap in general-audience
  *  nonfiction. No domain terms, no proper nouns. */
 const PLAIN_WORD_SWAPS: ReadonlyArray<{ re: RegExp; simple: string }> = [
-  { re: /\butilis?(?:e|es|ed|ing|ation)\b/i, simple: "use" },
+  // -ize/-ise words must match BOTH spellings: `utilis?e` matched British
+  // "utilise" but missed American "utilize" (the s was optional instead of the
+  // s/z alternating), so the headline jargon word slipped the gate.
+  { re: /\butili[sz](?:e|es|ed|ing|ation)\b/i, simple: "use" },
   { re: /\bfacilitat(?:e|es|ed|ing|ion)\b/i, simple: "help / run" },
   { re: /\bdemonstrat(?:e|es|ed|ing|ion)\b/i, simple: "show" },
   { re: /\bleverag(?:e|es|ed|ing)\b/i, simple: "use / build on" },
-  { re: /\boptimiz(?:e|es|ed|ing|ation)\b/i, simple: "improve" },
+  { re: /\boptimi[sz](?:e|es|ed|ing|ation)\b/i, simple: "improve" },
   { re: /\bnumerous\b/i, simple: "many" },
   { re: /\bapproximately\b/i, simple: "about" },
   { re: /\bsufficient(?:ly)?\b/i, simple: "enough" },

@@ -19,6 +19,7 @@ import {
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { loadBannedPhrases } from "./shared.js";
 import {
+  checkBookActionContainerReuse,
   checkBookCallbackFrameReuse,
   checkBookExemplarChapterReuse,
   checkBookTimingAnchorStamping,
@@ -294,6 +295,18 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
     });
   }
   for (const f of checkBookTimingAnchorStamping(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+  // ── BP30 — try-now timer/calendar action-container density (location_stamping,
+  // action-mechanism variant). SHADOW major; calibrated to zero on the clean
+  // corpus by fraction. Carries chapters[] for the barrier.
+  for (const f of checkBookActionContainerReuse(chapters)) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",

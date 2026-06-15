@@ -80,7 +80,16 @@ export function writeReviewPacket(
   // ── Sweep (book-wide cross-chapter templating) ─────────────────────────────
   L.push("## 1. Sweep — book-wide cross-chapter templating");
   L.push(`Families to check: ${REQUIRED_SWEEP_FAMILIES.join(", ")}. PASS only if none fire.`);
-  L.push(`Set verdict to PASS / REVISE / CORRUPTION (replace FILL_ME). REVISE/CORRUPTION need ≥1 quote-backed finding.`);
+  L.push("What each family means (a SHELL reused across chapters with only the content swapped):");
+  L.push("  - scene_skeleton: example scenes (or the fullRead boundary close) sharing one frame across chapters — same opening shape / same 'there is a limit' hinge, different nouns.");
+  L.push("  - persona_drift: one name = two different people or roles across the book; or a real source-figure's name reused for a fictional actor.");
+  L.push("  - repeated_unit: near-identical review cards, implementation plans, weeklyPractice shells ('for seven days, keep one X log'), quiz stems, hooks, or tactics across chapters.");
+  L.push("  - location_stamping: the same venue/place, clock stamp, or action container (timer/calendar) reused as the setting/anchor across chapters.");
+  L.push("FP-GUARDS (do NOT flag these — they are alignment, not templating):");
+  L.push("  - Shared CONCEPT vocabulary: the book's central terms recurring across chapters is the SUBJECT, not a templated shell. Only flag a reused STRUCTURE with the content swapped.");
+  L.push("  - A consistent pedagogical opener ('The mechanism is:') across chapters is a CONVENTION when the content differs and the prose reads as human teaching.");
+  L.push("  - Two chapters that happen to share a venue or a card frame are fine; the defect is a SHELL spanning many chapters. Rule of thumb: REVISE the whole book only when ≥3 families each span ≥1/3 of the chapters, or any single shell saturates the book.");
+  L.push(`Set verdict to PASS / REVISE / CORRUPTION (replace FILL_ME). REVISE/CORRUPTION need ≥1 quote-backed finding citing the SPECIFIC chapters and the shared shell.`);
   L.push(submitCmd(bookId, roundId, "sweep", tokens.sweep, "<sweep.json>"));
   L.push(json({
     schemaVersion: "qc-sweep-submission-v1",

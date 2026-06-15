@@ -51,7 +51,9 @@ function runQcAuto(envOn: boolean): { status: number; out: string } {
   const env = { ...process.env };
   if (envOn) env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
   else delete env.CHAPTERFLOW_NO_API_CODEX_QC;
-  const r = spawnSync("npx", ["tsx", "src/cli.ts", "qc-auto", BOOK, "--pass", "--round", ROUND, "--chapters", "1", "--dry-run"], {
+  // Synthetic 2-chapter fixture intentionally fails book-gate; this test exercises
+  // the qc-auto round MECHANICS, so it opts out of the F6a preflight block.
+  const r = spawnSync("npx", ["tsx", "src/cli.ts", "qc-auto", BOOK, "--pass", "--round", ROUND, "--chapters", "1", "--dry-run", "--allow-dirty-preflight"], {
     cwd: PIPELINE_DIR,
     env,
     encoding: "utf8",

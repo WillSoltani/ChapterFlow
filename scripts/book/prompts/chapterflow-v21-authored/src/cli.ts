@@ -118,6 +118,8 @@ Commands:
                                      converge in-session. Advisory/shadow (calibrated 0 false-positives).
                                      Exit 1 on any finding so a write loop iterates to clean.
   gate-chapter <chapter.json>        Run the per-chapter ship gate against a single chapter JSON.
+  publishable-rubric                 Print the 8-axis publishable-bar rubric the QC reviewer uses, so a
+                                     writer self-scores its draft before submit (gate-clean ≠ bar PUBLISHABLE).
                                      Useful when an agent is producing chapters by hand (e.g.,
                                      Codex sessions writing inline) and wants to validate
                                      output before saving / before assembling a book package.
@@ -1592,6 +1594,13 @@ async function runCategorize(args: string[]): Promise<number> {
  *  self-gate command — all filled in. Paste each block into its own Codex agent to
  *  write the whole book in parallel. Skips already-written chapters unless --all. */
 async function runFanout(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  // fanout WRITES plan artifacts to state/ (name/shape/pedagogy/exemplar/venue/
+  // rhetoric/answerKey/callback/sceneMode/timing/actionMechanism/weeklyPractice/
+  // fullReadSkeleton). Like every other state-writing gate command, refuse to run
+  // when the forbidden repo-root /state shadow exists, so plan output can't land
+  // in the wrong copy the gates don't read.
+  const g = shadowGuard();
+  if (g) return g;
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: fanout <bookId> [--from N --to M] [--all]");
@@ -1692,6 +1701,25 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const { planTiming, writeTimingPlan } = await import("./librarian/timingPlan.js");
   const timingPlan = planTiming(bookId, from, to);
   writeTimingPlan(timingPlan);
+  // Action-mechanism plan: per-chapter ACTION CONTAINER for the try-this-now /
+  // 24-hour action so the practice doesn't funnel into one timer/calendar shell
+  // across chapters (the location_stamping sweep family, action-mechanism variant
+  // / BP30). Reserves the timer/calendar container for the one scheduling chapter.
+  const { planActionMechanisms, writeActionMechanismPlan } = await import("./librarian/actionMechanismPlan.js");
+  const actionMechanismPlan = planActionMechanisms(bookId, from, to);
+  writeActionMechanismPlan(actionMechanismPlan);
+  // Weekly-practice plan: per-chapter practice FORM so weeklyPractice doesn't
+  // collapse onto one "seven-day log" shell (the repeated_unit sweep family).
+  // Prevention-only (no gate — not separable from the clean corpus).
+  const { planWeeklyPractices, writeWeeklyPracticePlan } = await import("./librarian/weeklyPracticePlan.js");
+  const weeklyPracticePlan = planWeeklyPractices(bookId, from, to);
+  writeWeeklyPracticePlan(weeklyPracticePlan);
+  // Full-read skeleton plan: per-chapter boundary BEAT so breakdown.fullRead
+  // doesn't close every chapter with the same bare "limit" hinge (the
+  // scene_skeleton sweep family). Prevention-only (no gate — not separable).
+  const { planFullReadSkeletons, writeFullReadSkeletonPlan } = await import("./librarian/fullReadSkeletonPlan.js");
+  const fullReadSkeletonPlan = planFullReadSkeletons(bookId, from, to);
+  writeFullReadSkeletonPlan(fullReadSkeletonPlan);
   // Carried name allocations for authored chapters include every capitalized
   // token the extractor saw ("University", "All", "Tonight" — junk from
   // scenario text). Pasting those as an exclusive allowlist breaks redo
@@ -1808,6 +1836,26 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const timingLine = tm
       ? `• ACTION TIMING (try-this-now): ${tm.directive} Do NOT schedule the action at an arbitrary clock time (no "9:10 a.m.") — anchor it to a situational moment in the reader's own day.\n`
       : "";
+    // Action mechanism: the CONTAINER the try-now/24-hour action lives in, so the
+    // book doesn't funnel every action into a timer/calendar (BP30). Distinct
+    // from pedagogy's tacticFamily (the teaching tactic) — this governs ONLY the
+    // tryThisNow + 24-hour challenge fields.
+    const am = actionMechanismPlan.allocation[ch.number];
+    const actionMechanismLine = am
+      ? `• ACTION MECHANISM (tryThisNow + 24-hour challenge ONLY): ${am.directive} Unless this is the dealt timer/calendar chapter, do NOT use a timer, calendar event, alarm, or reminder as the action container.\n`
+      : "";
+    // Weekly-practice form: vary the practice shape so weeklyPractice doesn't
+    // collapse onto one "seven-day log" shell (repeated_unit).
+    const wp = weeklyPracticePlan.allocation[ch.number];
+    const weeklyPracticeLine = wp
+      ? `• WEEKLY PRACTICE FORM (implementationPlan.weeklyPractice): ${wp.directive}\n`
+      : "";
+    // Full-read boundary beat: vary the third-angle caveat so fullRead doesn't
+    // close every chapter with the same bare "limit" hinge (scene_skeleton).
+    const fr = fullReadSkeletonPlan.allocation[ch.number];
+    const fullReadSkeletonLine = fr
+      ? `• FULLREAD THIRD-ANGLE / BOUNDARY (breakdown.fullRead close): ${fr.directive}\n`
+      : "";
 
     blocks.push(
       `─── Chapter ${ch.number} — "${ch.title}"${written ? "  (already written — re-do)" : ""} ───\n` +
@@ -1823,6 +1871,9 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         pedagogyLines +
         answerKeyLine +
         timingLine +
+        actionMechanismLine +
+        weeklyPracticeLine +
+        fullReadSkeletonLine +
         specificsLine +
         exemplarLine +
         voiceLine +
@@ -1833,8 +1884,14 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• Save to state/chapters/${chapterId}.v21-native.chapter.json\n` +
         `• PLAIN LANGUAGE (R2.7 — product direction): every abstract claim is followed within TWO sentences by something the reader can SEE (a person, a scene, a number). Say it like you'd say it to a smart friend at lunch. Define terms-of-art in everyday words the first time; never stack two undefined abstractions in one sentence. Each breakdown tier OPENS concrete, not with a thesis. Short common words win. This applies to EVERY reader-facing field (quiz, cards, examples, hook, keyTakeaway, plan), not just the breakdown — a gate (E7) flags fancy words with their plain swap (utilize→use, leverage→use, facilitate→help) and any sentence over 34 words (over 24 in a one-liner). Target grade 7–9.\n` +
         `• TWO-PASS: after drafting, self-critique against agent-prompts/FIELD-PURPOSE-CONTRACTS.md (concept-as-actor, templated loops, echo-template explanations, bare-label card fronts, proposition-not-action whatToDo) AND against R2.7 (read your fastRead aloud — if a sentence wouldn't survive being said to a friend, rewrite it) and FIX what you find before gating.\n` +
+        `• THE REAL TARGET IS THE PUBLISHABLE BAR, NOT THE GATE. QC's verdict comes from a reviewer scoring your chapter on 8 weighted axes (PASS = ≥85/100, no axis <0.6). A gate-clean chapter can still be REVISE'd. BEFORE you finish, run \`npx tsx src/cli.ts publishable-rubric\` and self-score this draft on every axis; fix any axis you'd score below ~0.85 and ANY corruption-axis hit (quiz_key_correctness, example_coherence, prose_coherence, factual_accuracy). The biggest levers: derive each quiz key yourself from the source and confirm the keyed index, make distractors real misconceptions, give each example a concrete acting scene with a decision, keep prose concrete + plain.\n` +
+        `• gate-chapter majors are DIAGNOSTIC HINTS toward those axes, not the bar itself: C2/E4 → example_coherence/prose_coherence (specific scenes, concrete openers), E7/E1/A13 → prose readability, C23 → example variety. Fix the ones that are real quality defects (the gold reference books trip some of these and still pass — don't game a threshold; fix the underlying scene/sentence).\n` +
+        `• QUIZ KEYS (quiz_key_correctness, weight 18 — the heaviest axis): the blind keyA/keyB judge re-derives each answer from prompt + choices + this chapter's source testableFacts[] ONLY (claim/becauseMechanism/commonError/errorIsWhy), never your prose. Anchor each question to a testableFact (set its sourceAnchorId), key the choice that fact uniquely supports, and build the two distractors from that fact's commonError. See STEP-2 "Derive every key the way the BLIND judge will".\n` +
+        `• SOURCE FIDELITY (factual_accuracy — a CORRUPTION veto; one drifted fact RED-gates the whole book): every fact, number, date, and attributed quote traces to this chapter's source sidecar; complete every named framework with the source's EXACT member names (no renames, no dropped items). If the sidecar can't ground a claim, cut it — never invent.\n` +
+        `• REVIEW CARDS (card_learning_value — CORRUPTION if the back doesn't answer the front): each back ANSWERS its front in the card's OWN words and tests understanding (give the mechanism / named parts), is NOT pasted from the breakdown, and ENDS on a complete sentence (80–400 chars). Fronts retrieve an idea, not a bare label.\n` +
+        `• MEMORABLE LINES (memorable_line_quality): each must be a portable APHORISM — one compact, complete claim (~12 words), not a 16–23-word teaching sentence or a list. Since memorableLines must be verbatim from the breakdown (A11), WRITE three short maxim-shaped sentences INTO the tiers on purpose, then point memorableLines at those exact lines.\n` +
         `• Then run: npx tsx src/cli.ts gate-chapter state/chapters/${chapterId}.v21-native.chapter.json\n` +
-        `  Fix every blocker it reports and re-run until it prints "Gate verdict: PASS — 0 blockers". Only stop when it is clean.`,
+        `  Fix every blocker, then re-run until it prints "Gate verdict: PASS — 0 blockers". Stop only when it is gate-clean AND you'd self-score every bar axis ≥0.85.`,
     );
   }
   console.log(
@@ -1860,7 +1917,10 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const offenders = new Set<number>();
     for (const f of report.findings) {
       const actionable =
-        f.severity === "blocker" || f.catalogId.startsWith("BP28") || f.catalogId.startsWith("BP29");
+        f.severity === "blocker" ||
+        f.catalogId.startsWith("BP28") ||
+        f.catalogId.startsWith("BP29") ||
+        f.catalogId.startsWith("BP30");
       if (actionable) for (const c of f.chapters ?? []) offenders.add(c);
     }
     if (gateCode === 0 && offenders.size === 0) {
@@ -2072,6 +2132,7 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     const result = orch.createQcOrchestrationRound(bookId, {
       roundId: roundId || undefined,
       chapters: orch.parseChapterList(flags["chapters"]),
+      allowDirtyPreflight: flags["allow-dirty-preflight"] === true,
     });
     for (const m of result.messages) console.log(m);
     if (result.errors.length) for (const e of result.errors) console.error(e);
@@ -2253,7 +2314,7 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   let roundId = typeof flags["round"] === "string" ? flags["round"] : "";
 
   if (!roundId || !existsSyncFs(artifacts.roundRecordPath(bookId, roundId))) {
-    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters });
+    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters, allowDirtyPreflight: flags["allow-dirty-preflight"] === true });
     for (const m of created.messages) console.log(m);
     if (created.errors.length) for (const e of created.errors) console.error(e);
     roundId = created.roundId;
@@ -3443,6 +3504,17 @@ async function runBookGate(args: string[]): Promise<number> {
   return report.passed ? 0 : 1;
 }
 
+/** `publishable-rubric` — print the SAME 8-axis publishable-bar rubric the QC bar
+ *  reviewer scores against, so a writer self-scores its draft BEFORE submitting.
+ *  Read-only, no book/round needed. Closes the writer↔QC gap: gate-chapter is
+ *  deterministic and does NOT predict the model bar verdict; this is the standard
+ *  that actually decides PUBLISHABLE vs REVISE. */
+async function runPublishableRubric(): Promise<number> {
+  const { formatWriterRubric } = await import("./critics/semantic/publishableBar.js");
+  console.log(formatWriterRubric());
+  return 0;
+}
+
 async function runGateChapter(args: string[]): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
@@ -3717,6 +3789,8 @@ async function main() {
       return runGateChapter(args);
     case "book-gate":
       return runBookGate(args);
+    case "publishable-rubric":
+      return runPublishableRubric();
     case "name-plan":
       return runNamePlan(args, flags);
     case "shape-plan":

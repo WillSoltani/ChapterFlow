@@ -248,6 +248,14 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // stamps), so it is a fast blocker-promotion candidate once calibration holds.
   "BP28.callback_frame_reuse": "major",
   "BP29.timing_anchor_stamping": "major",
+  // BP30 — try-now timer/calendar action-container DENSITY (location_stamping).
+  // SHADOW major (surfaces, does not flip the gate): calibrated to zero on the
+  // clean corpus by FRACTION (fires only when the scheduling container saturates
+  // >= 50% of chapters; clean max is stillness 0.31), fires on the-daily-stoic
+  // 0.67. Promote to blocker only after the clean-zero pin holds in CI and a
+  // second true-positive confirms it (the SC9-reversal caution). The sibling
+  // families repeated_unit/scene_skeleton get NO gate — not separable from clean.
+  "BP30.action_container_reuse": "major",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
@@ -267,6 +275,29 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "SC11.1.missing_provenance": "blocker",
   "SC11.2.anchor_specific_not_present": "blocker",
 };
+
+/**
+ * ENFORCED_MAJOR — the curated set of MAJOR catalog ids that additionally FAIL
+ * `runShipGate().passed` (the per-chapter write self-gate), promoting them from
+ * "surfaced QC debt" to "must fix before submit".
+ *
+ * It is **deliberately empty.** The audit proposed enforcing the high-frequency
+ * REVISE drivers (C2/C3/E1/E4/E7/A13/C23) here, but a calibration over the 5 clean
+ * reference books REFUTED that: every one of those critics fires on clean books
+ * that shipped — often HARDER than on the book they were meant to catch. E4 fires
+ * at 50% of paragraphs on a clean stillness chapter vs 43% on the-daily-stoic
+ * defect; C23 fires on a clean stillness chapter doing the exact thing the stoic
+ * defect does. There is no threshold that fires on the defect but not the clean
+ * corpus, so enforcing any of them would retroactively fail reference-quality
+ * books — the SC9-reversal trap. Those majors are handled by PREVENTION (the
+ * writer cards / STEP-2 "write-time-preventable majors") + the model QC, which
+ * judges them in context the way a deterministic gate cannot.
+ *
+ * An id belongs here ONLY after it is shown to fire ZERO times across the clean
+ * corpus (guarded by the enforced-major calibration test). Adding one is then a
+ * one-line change. Until a critic is made genuinely precise, this stays empty.
+ */
+export const ENFORCED_MAJOR = new Set<string>([]);
 
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
 
@@ -759,8 +790,16 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   const majors = findings.filter((f) => f.severity === "major");
   const minors = findings.filter((f) => f.severity === "minor");
 
+  // The gate fails on any blocker OR any ENFORCED major (a curated, clean-corpus-
+  // calibrated subset of majors that block the write self-gate). ENFORCED_MAJOR is
+  // currently empty — see its definition for why no quality major is enforceable —
+  // so this is presently equivalent to `blockers.length === 0`, but the mechanism
+  // is wired and test-guarded so a genuinely-precise critic can be promoted in one
+  // line without touching every `gate.passed` consumer.
+  const enforcedMajors = majors.filter((f) => ENFORCED_MAJOR.has(f.catalogId));
+
   return {
-    passed: blockers.length === 0,
+    passed: blockers.length === 0 && enforcedMajors.length === 0,
     blockers,
     majors,
     minors,
