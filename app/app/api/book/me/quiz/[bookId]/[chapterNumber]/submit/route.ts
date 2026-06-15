@@ -326,6 +326,21 @@ export async function POST(
       preserveAuthoredOrder: strictV12,
     });
 
+    // Enforce full coverage before grading on BOTH the strict and legacy
+    // (index-only) paths. The strict gradeQuizAttemptQuestions already checks
+    // questionResults.length === questions.length, but the legacy scorer
+    // computes its score over responses.length, so a single correct index-only
+    // answer would otherwise grade as 100% and pass the quiz (unlocking the
+    // next chapter and farming Insight Points). Require one answer per
+    // attempt question so neither path can pass on partial coverage.
+    if (responses.length !== attemptQuestions.length) {
+      throw new BookApiError(
+        400,
+        "invalid_answers",
+        `responses must include exactly ${attemptQuestions.length} answers.`
+      );
+    }
+
     let graded;
     try {
       const hasChoiceIds = responses.some((response) => Boolean(response.selectedChoiceId));
@@ -345,11 +360,17 @@ export async function POST(
                 questionPool: quiz.questions,
               }
             );
+            // Score over the full attempt question set, not responses.length,
+            // so the legacy path can't inflate the percentage by submitting
+            // fewer answers than the chapter requires.
+            const attemptTotal = attemptQuestions.length;
+            const legacyScorePercent =
+              attemptTotal > 0 ? Math.round((legacy.correct / attemptTotal) * 100) : 0;
             return {
-              total: legacy.total,
+              total: attemptTotal,
               correct: legacy.correct,
-              scorePercent: legacy.scorePercent,
-              passed: legacy.scorePercent >= passingScorePercent,
+              scorePercent: legacyScorePercent,
+              passed: legacyScorePercent >= passingScorePercent,
               questionResults: legacy.review.map((review) => ({
                 questionId: review.questionId,
                 selectedChoiceId:
