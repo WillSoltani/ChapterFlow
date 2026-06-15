@@ -36,6 +36,11 @@ export function AudioPlayer({
   const autoPlayedRef = useRef(false);
   const loadedParamsRef = useRef("");
   const knownDurationRef = useRef(0);
+  // Render-readable mirror of loadedParamsRef. The ref stays the source of
+  // truth for the synchronous cache guard in loadAudio and the forced-reload
+  // handlers (which set it to "" *before* calling loadAudio); this state is
+  // updated alongside every ref write so the "settings changed" prompt can be
+  // derived during render without reading the ref (react-hooks/refs).
   const speedRef = useRef(1);
 
   const [open, setOpen] = useState(false);
@@ -47,9 +52,10 @@ export function AudioPlayer({
   const [speed, setSpeed] = useState(1);
   const [error, setError] = useState<string | null>(null);
   const [audioReady, setAudioReady] = useState(false);
+  const [loadedParams, setLoadedParams] = useState("");
 
   const paramsKey = `${bookId}:${chapterNumber}:${tone}:${variant}`;
-  const audioMatchesCurrent = !audioReady || loadedParamsRef.current === paramsKey;
+  const audioMatchesCurrent = !audioReady || loadedParams === paramsKey;
   const audioUrl = `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}/audio?tone=${encodeURIComponent(tone)}&variant=${encodeURIComponent(variant)}`;
 
   // Keep a ref in sync so the audio-events effect (deps [open]) reads the
@@ -126,6 +132,7 @@ export function AudioPlayer({
         // onCanPlay reapplies it too, in case the element reloads later.
         audioRef.current.playbackRate = speedRef.current;
         loadedParamsRef.current = paramsKey;
+        setLoadedParams(paramsKey);
       }
     } catch {
       setError("Network error — check your connection and try again");
@@ -342,14 +349,14 @@ export function AudioPlayer({
         <div className="px-4 pb-1">
           <p className="truncate text-[13px] font-medium text-(--cr-text-primary)">{chapterTitle}</p>
           {!audioMatchesCurrent && !loading && (
-            <button type="button" onClick={() => { loadedParamsRef.current = ""; loadAudio(); }} className="mt-1 text-[11px] text-(--cr-warning) hover:underline">Reading settings changed — tap to reload audio</button>
+            <button type="button" onClick={() => { loadedParamsRef.current = ""; setLoadedParams(""); loadAudio(); }} className="mt-1 text-[11px] text-(--cr-warning) hover:underline">Reading settings changed — tap to reload audio</button>
           )}
         </div>
 
         {error && (
           <div className="px-4 py-2">
             <p className="text-[12px] text-(--cr-danger)">{error}</p>
-            <button type="button" onClick={() => { loadedParamsRef.current = ""; loadAudio(); }} className="mt-1 text-[12px] font-semibold text-(--cr-accent) hover:underline">Try Again</button>
+            <button type="button" onClick={() => { loadedParamsRef.current = ""; setLoadedParams(""); loadAudio(); }} className="mt-1 text-[12px] font-semibold text-(--cr-accent) hover:underline">Try Again</button>
           </div>
         )}
 
