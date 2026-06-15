@@ -5,9 +5,9 @@ import { ChevronDown, ChevronUp, RotateCcw, Layers } from "lucide-react";
 import type { ReviewCardItem } from "@/app/book/data/bookChapters";
 
 const DIFFICULTY_COLORS: Record<string, string> = {
-  easy: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-  medium: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  hard: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+  easy: "bg-accent-emerald/10 text-accent-emerald border-accent-emerald/20",
+  medium: "bg-accent-amber/10 text-accent-amber border-accent-amber/20",
+  hard: "bg-accent-rose/10 text-accent-rose border-accent-rose/20",
 };
 
 type ReviewCardsPanelProps = {

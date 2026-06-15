@@ -178,7 +178,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
             <p className="text-sm font-semibold text-(--cf-text-1)">
               Invite Sent
             </p>
-            <p className={`mt-0.5 text-xs ${inviteError ? "text-red-400" : "text-(--cf-text-3)"}`}>
+            <p className={`mt-0.5 text-xs ${inviteError ? "text-accent-rose" : "text-(--cf-text-3)"}`}>
               {inviteError || "Share the link — expires in 7 days"}
             </p>
           </div>
@@ -207,7 +207,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
             <p className="text-sm font-semibold text-(--cf-text-1)">
               Find a Reading Partner
             </p>
-            <p className={`mt-0.5 text-xs ${inviteError ? "text-red-400" : "text-(--cf-text-3)"}`}>
+            <p className={`mt-0.5 text-xs ${inviteError ? "text-accent-rose" : "text-(--cf-text-3)"}`}>
               {inviteError || "Pair up with a friend to stay accountable"}
             </p>
           </div>
@@ -231,7 +231,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
         <p className="text-sm font-semibold text-(--cf-text-1) mb-2">
           End partnership?
         </p>
-        <p className={`text-xs mb-3 ${endError ? "text-red-400" : "text-(--cf-text-3)"}`}>
+        <p className={`text-xs mb-3 ${endError ? "text-accent-rose" : "text-(--cf-text-3)"}`}>
           {endError ? "Something went wrong. Try again." : "You can always pair with someone new later."}
         </p>
         <div className="flex gap-2">
@@ -239,7 +239,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
             type="button"
             onClick={endPartnership}
             disabled={ending}
-            className="flex-1 rounded-xl bg-red-500/15 px-3 py-2 text-xs font-semibold text-red-400 transition hover:bg-red-500/25 disabled:opacity-50"
+            className="flex-1 rounded-xl bg-accent-rose/15 px-3 py-2 text-xs font-semibold text-accent-rose transition hover:bg-accent-rose/25 disabled:opacity-50"
           >
             {ending ? "Ending..." : "Yes, end it"}
           </button>
@@ -266,7 +266,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
           <p className="truncate text-sm font-semibold text-(--cf-text-1)">
             {partner?.displayName || "Reading Partner"}
           </p>
-          <p className={`mt-0.5 truncate text-xs ${nudgeError ? "text-red-400" : "text-(--cf-text-3)"}`}>
+          <p className={`mt-0.5 truncate text-xs ${nudgeError ? "text-accent-rose" : "text-(--cf-text-3)"}`}>
             {nudgeError || partnerActivityLabel(partner, pair.pairedAt)}
           </p>
         </div>

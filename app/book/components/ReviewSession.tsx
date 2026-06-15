@@ -11,9 +11,9 @@ import {
 const OPTION_LABELS = ["A", "B", "C", "D"];
 
 const DIFFICULTY_COLORS: Record<string, string> = {
-  easy: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
-  medium: "bg-amber-500/10 text-amber-400 border border-amber-500/20",
-  hard: "bg-rose-500/10 text-rose-400 border border-rose-500/20",
+  easy: "bg-accent-emerald/10 text-accent-emerald border border-accent-emerald/20",
+  medium: "bg-accent-amber/10 text-accent-amber border border-accent-amber/20",
+  hard: "bg-accent-rose/10 text-accent-rose border border-accent-rose/20",
 };
 
 type ReviewSessionProps = {
@@ -260,7 +260,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                       <button
                         type="button"
                         onClick={() => handleSelfRate(false)}
-                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2.5 text-sm font-semibold text-amber-400 transition-colors hover:bg-amber-500/20"
+                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-accent-amber/30 bg-accent-amber/10 px-4 py-2.5 text-sm font-semibold text-accent-amber transition-colors hover:bg-accent-amber/20"
                       >
                         <RotateCcw className="h-3.5 w-3.5" />
                         Still learning
@@ -268,7 +268,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                       <button
                         type="button"
                         onClick={() => handleSelfRate(true)}
-                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-sm font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/20"
+                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-accent-emerald/30 bg-accent-emerald/10 px-4 py-2.5 text-sm font-semibold text-accent-emerald transition-colors hover:bg-accent-emerald/20"
                       >
                         <Check className="h-3.5 w-3.5" />
                         Got it
@@ -283,7 +283,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                     </div>
                   )}
                   {feedback === "incorrect" && (
-                    <div className="mt-3 rounded-lg border-l-3 border-amber-500 bg-amber-500/10 px-4 py-2.5 text-sm text-amber-400">
+                    <div className="mt-3 rounded-lg border-l-3 border-accent-amber bg-accent-amber/10 px-4 py-2.5 text-sm text-accent-amber">
                       <RotateCcw className="mr-1.5 inline h-4 w-4" /> We&apos;ll review this again tomorrow.
                     </div>
                   )}
