@@ -36,6 +36,7 @@ export function AudioPlayer({
   const autoPlayedRef = useRef(false);
   const loadedParamsRef = useRef("");
   const knownDurationRef = useRef(0);
+  const speedRef = useRef(1);
 
   const [open, setOpen] = useState(false);
   const [minimized, setMinimized] = useState(false);
@@ -50,6 +51,12 @@ export function AudioPlayer({
   const paramsKey = `${bookId}:${chapterNumber}:${tone}:${variant}`;
   const audioMatchesCurrent = !audioReady || loadedParamsRef.current === paramsKey;
   const audioUrl = `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}/audio?tone=${encodeURIComponent(tone)}&variant=${encodeURIComponent(variant)}`;
+
+  // Keep a ref in sync so the audio-events effect (deps [open]) reads the
+  // latest speed after each (re)load instead of a stale closure value.
+  useEffect(() => {
+    speedRef.current = speed;
+  }, [speed]);
 
   // ── Load audio ─────────────────────────────────────────────────────
   const loadAudio = useCallback(async () => {
@@ -115,6 +122,9 @@ export function AudioPlayer({
           audioRef.current.load();
         }
 
+        // Setting src resets playbackRate to 1x; restore the chosen speed.
+        // onCanPlay reapplies it too, in case the element reloads later.
+        audioRef.current.playbackRate = speedRef.current;
         loadedParamsRef.current = paramsKey;
       }
     } catch {
@@ -138,6 +148,9 @@ export function AudioPlayer({
         knownDurationRef.current = audio.duration;
         setDuration(audio.duration);
       }
+      // Reapply the reader's chosen speed: a fresh src resets playbackRate to
+      // 1x, but the speed state (and the Nx pill) is unchanged.
+      audio.playbackRate = speedRef.current;
       if (!autoPlayedRef.current) {
         autoPlayedRef.current = true;
         audio.play().catch(() => {});
