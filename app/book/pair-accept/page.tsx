@@ -58,6 +58,7 @@ function PairAcceptInner() {
   const [errorMessage, setErrorMessage] = useState(
     code ? "" : "This invite link is missing its code. Ask your partner to share it again.",
   );
+  const [errorStatus, setErrorStatus] = useState<number | null>(null);
 
   const handleAccept = useCallback(async () => {
     if (!code) return;
@@ -69,10 +70,17 @@ function PairAcceptInner() {
       );
       setState("success");
     } catch (err: unknown) {
+      const status =
+        err && typeof err === "object" && "status" in err
+          ? Number((err as BookClientError).status)
+          : null;
       const msg =
-        err && typeof err === "object" && "message" in err
-          ? String((err as BookClientError).message)
-          : "We couldn't accept this invite.";
+        status === 401
+          ? "Your session has expired. Sign in again and we'll finish accepting this invite."
+          : err && typeof err === "object" && "message" in err
+            ? String((err as BookClientError).message)
+            : "We couldn't accept this invite.";
+      setErrorStatus(status);
       setErrorMessage(msg);
       setState("error");
     }
@@ -99,11 +107,38 @@ function PairAcceptInner() {
       </PairCard>
     );
   } else if (state === "error") {
+    // A 401 here means the page shell loaded with a cookie but the access token
+    // was expired/invalid at the API. Offer re-auth with a relative returnTo back
+    // to this invite so the auto-accept retries once the session is refreshed.
+    const returnTo = encodeURIComponent(
+      typeof window !== "undefined"
+        ? window.location.pathname + window.location.search
+        : code
+          ? `/book/pair-accept?code=${encodeURIComponent(code)}`
+          : "/book/pair-accept",
+    );
     body = (
       <PairCard icon={<AlertCircle className="h-7 w-7" />} tone="danger">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Reading partner invite</h1>
         <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">{errorMessage}</p>
-        <PrimaryButton onClick={() => router.push("/dashboard")}>Go to dashboard</PrimaryButton>
+        {errorStatus === 401 ? (
+          <>
+            <a
+              href={`/auth/login?returnTo=${returnTo}`}
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
+            >
+              Sign in to continue
+            </a>
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-xl px-4 text-[14px] font-semibold text-(--cf-text-3) transition duration-(--duration-fast) hover:text-(--cf-text-1)"
+            >
+              Go to dashboard
+            </button>
+          </>
+        ) : (
+          <PrimaryButton onClick={() => router.push("/dashboard")}>Go to dashboard</PrimaryButton>
+        )}
       </PairCard>
     );
   } else {
