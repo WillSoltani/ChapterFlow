@@ -21,7 +21,7 @@
 
 import { randomBytes } from "crypto";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
 
 // ─── CLI argument parsing ───────────────────────────────────────────────────
 
@@ -103,44 +103,50 @@ if (!dryRun) {
 
 async function seedKey(code, noteText) {
   const now = new Date().toISOString();
-  await Promise.all([
-    ddb.send(
-      new PutCommand({
-        TableName: TABLE_NAME,
-        Item: {
-          PK: licenseKeyPk(code),
-          SK: "META",
-          entity: "BOOK_LICENSE_KEY",
-          code,
-          plan: "PRO",
-          validMonths,
-          status: "available",
-          createdAt: now,
-          updatedAt: now,
-          note: noteText ?? null,
+  // Write the META item and the admin-index item atomically so the two can
+  // never disagree about which keys exist (partial-failure rollback).
+  await ddb.send(
+    new TransactWriteCommand({
+      TransactItems: [
+        {
+          Put: {
+            TableName: TABLE_NAME,
+            Item: {
+              PK: licenseKeyPk(code),
+              SK: "META",
+              entity: "BOOK_LICENSE_KEY",
+              code,
+              plan: "PRO",
+              validMonths,
+              status: "available",
+              createdAt: now,
+              updatedAt: now,
+              note: noteText ?? null,
+            },
+            // Do not overwrite an already-existing key (collision guard)
+            ConditionExpression: "attribute_not_exists(PK)",
+          },
         },
-        // Do not overwrite an already-existing key (collision guard)
-        ConditionExpression: "attribute_not_exists(PK)",
-      })
-    ),
-    // Write index item for admin listing
-    ddb.send(
-      new PutCommand({
-        TableName: TABLE_NAME,
-        Item: {
-          PK: licenseIndexPk(),
-          SK: licenseIndexSk(code),
-          entity: "BOOK_LICENSE_KEY_INDEX",
-          code,
-          status: "available",
-          validMonths,
-          createdAt: now,
-          note: noteText ?? null,
+        {
+          // Write index item for admin listing
+          Put: {
+            TableName: TABLE_NAME,
+            Item: {
+              PK: licenseIndexPk(),
+              SK: licenseIndexSk(code),
+              entity: "BOOK_LICENSE_KEY_INDEX",
+              code,
+              status: "available",
+              validMonths,
+              createdAt: now,
+              note: noteText ?? null,
+            },
+            ConditionExpression: "attribute_not_exists(SK)",
+          },
         },
-        ConditionExpression: "attribute_not_exists(PK)",
-      })
-    ),
-  ]);
+      ],
+    })
+  );
 }
 
 // ─── Main ───────────────────────────────────────────────────────────────────
@@ -153,17 +159,26 @@ let seeded = 0;
 
 for (let i = 0; i < count; i++) {
   const code = generateKey();
-  generated.push(code);
 
   if (dryRun) {
+    generated.push(code);
     console.log(`  ${String(i + 1).padStart(3, "0")}. ${code}`);
   } else {
     try {
       await seedKey(code, note);
+      // Only record the code for distribution once it is actually seeded by
+      // this run, so a colliding pre-existing key never leaks into the list.
+      generated.push(code);
       console.log(`  ✓ ${code}${note ? `  (${note})` : ""}`);
       seeded++;
     } catch (err) {
-      if (err.name === "ConditionalCheckFailedException") {
+      // A collision trips the attribute_not_exists guards, which surface as a
+      // TransactionCanceledException (per-item ConditionalCheckFailed) inside
+      // a TransactWriteCommand.
+      if (
+        err.name === "TransactionCanceledException" ||
+        err.name === "ConditionalCheckFailedException"
+      ) {
         // Extremely unlikely collision — regenerate
         console.log(`  ~ ${code}  [collision — regenerating]`);
         i--; // retry this index

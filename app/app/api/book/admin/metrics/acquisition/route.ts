@@ -5,6 +5,7 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { ADMIN_SCAN_MAX_ITEMS } from "@/app/app/api/book/_lib/admin-metrics";
 
 export const runtime = "nodejs";
 
@@ -50,7 +51,12 @@ export async function GET(req: Request) {
           if (src) referralCounts.set(src, (referralCounts.get(src) ?? 0) + 1);
         }
         lastKey = res.LastEvaluatedKey;
-      } while (lastKey);
+      } while (lastKey && totalProfiles < ADMIN_SCAN_MAX_ITEMS);
+      if (lastKey) {
+        warnings.push(
+          `Profile data sampled (scan capped at ${ADMIN_SCAN_MAX_ITEMS} profiles).`,
+        );
+      }
     } catch (err) {
       console.warn("[admin-acquisition] profile scan failed:", err);
       warnings.push("Profile data unavailable (database scan failed).");

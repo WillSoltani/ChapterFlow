@@ -18,6 +18,7 @@ import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3
 import {
   getBookPackageByIdForTone,
   type ToneKey,
+  type VariantKey,
 } from "@/app/book/data/bookPackages";
 import {
   buildSegmentPlan,
@@ -49,6 +50,30 @@ function audioDebug(message: string): void {
 }
 
 type Params = { params: Promise<{ bookId: string; chapterNumber: string }> };
+
+// The tone/variant query params are interpolated into S3 keys used to both read
+// and (on cache miss) write TTS segments, so they must be constrained to the
+// known key sets. An unvalidated variant lets a caller mint unlimited distinct
+// values, each forcing a fresh billable ElevenLabs generation and a new cached
+// S3 object (cost amplification / S3 pollution). Validate against the allowed
+// sets and 400 on anything else before either value is used in a key.
+const VALID_TONES = new Set<ToneKey>(["gentle", "direct", "competitive"]);
+const VALID_VARIANTS = new Set<VariantKey>([
+  "easy",
+  "medium",
+  "hard",
+  "precise",
+  "balanced",
+  "challenging",
+]);
+
+function isToneKey(value: string): value is ToneKey {
+  return VALID_TONES.has(value as ToneKey);
+}
+
+function isVariantKey(value: string): value is VariantKey {
+  return VALID_VARIANTS.has(value as VariantKey);
+}
 
 // ── Helpers ──────────────────────────────────────────────────────────
 
@@ -279,8 +304,16 @@ export async function GET(req: Request, ctx: Params) {
     }
 
     const url = new URL(req.url);
-    const tone = (url.searchParams.get("tone") ?? "direct") as ToneKey;
-    const variant = url.searchParams.get("variant") ?? "medium";
+    const toneParam = url.searchParams.get("tone") ?? "direct";
+    const variantParam = url.searchParams.get("variant") ?? "medium";
+    if (!isToneKey(toneParam)) {
+      return bookErr(req, 400, "invalid_params", "Invalid tone");
+    }
+    if (!isVariantKey(variantParam)) {
+      return bookErr(req, 400, "invalid_params", "Invalid variant");
+    }
+    const tone: ToneKey = toneParam;
+    const variant: VariantKey = variantParam;
     const bucket = await getBookContentBucket();
 
     const pkg = getBookPackageByIdForTone(bookId, tone);

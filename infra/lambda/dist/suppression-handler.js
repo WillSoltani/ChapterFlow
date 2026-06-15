@@ -72,6 +72,7 @@ function parseSesSuppressionEvent(raw) {
 }
 async function handler(event) {
   let suppressed = 0;
+  let failed = 0;
   for (const record of event.Records ?? []) {
     const message = record.Sns?.Message;
     if (!message) continue;
@@ -96,11 +97,15 @@ async function handler(event) {
         suppressed++;
         console.log(`[suppression] ${entry.reason} suppressed ${email.slice(0, 3)}***`);
       } catch (e) {
+        failed++;
         console.error("[suppression] write failed:", e);
       }
     }
   }
   console.log(`[suppression] processed ${event.Records?.length ?? 0} records, suppressed ${suppressed}`);
+  if (failed > 0) {
+    throw new Error(`[suppression] ${failed} write(s) failed; ${suppressed} suppressed`);
+  }
   return { suppressed };
 }
 // Annotate the CommonJS export names for ESM import in node:

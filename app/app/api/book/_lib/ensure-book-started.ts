@@ -15,6 +15,7 @@ import {
   assertFreeUnlockAllowed,
   recordRiskSignals,
 } from "@/app/app/api/book/_lib/abuse";
+import { readClientIp } from "@/app/app/api/book/_lib/client-ip";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
   awardFlowPoints,
@@ -56,26 +57,6 @@ function sortUniqueNumbers(values: number[]): number[] {
 
 function isValidIsoTimestamp(value: string | undefined): value is string {
   return Boolean(value && Number.isFinite(new Date(value).getTime()));
-}
-
-// Best-effort client IP for referral same-network screening. Mirrors the
-// header precedence used by abuse.ts (trusted-edge first). Only used as a
-// fraud SIGNAL (never for a paywall/economy decision on its own), so a spoofed
-// value can at worst over-flag a referral, not award one.
-function readClientIp(req: Request): string | null {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const first = forwarded.split(",")[0]?.trim();
-    if (first) return first;
-  }
-  const realIp = req.headers.get("x-real-ip")?.trim();
-  if (realIp) return realIp;
-  const cloudfrontViewer = req.headers.get("cloudfront-viewer-address")?.trim();
-  if (cloudfrontViewer) {
-    const host = cloudfrontViewer.split(":")[0]?.trim();
-    if (host) return host;
-  }
-  return null;
 }
 
 function buildProgressFromLegacyState(params: {

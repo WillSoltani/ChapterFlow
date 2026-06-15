@@ -93,18 +93,41 @@ export async function POST(req: Request) {
       }
     }
 
-    // Free trials are for NEW subscribers only (Terms: "14-day free trial for
-    // new subscribers"). A pre-existing customer that already has ANY Stripe
-    // subscription — active, canceled, or past (status "all") — has used their
-    // trial, so suppress it to prevent cancel-and-resubscribe trial farming. A
-    // freshly created customer provably has none, so they keep the trial.
+    // Inspect the customer's Stripe subscription history once and use it for two
+    // purposes: (1) block creating a duplicate subscription for someone who is
+    // already paying, and (2) decide trial eligibility. A freshly created
+    // customer provably has neither, so skip the lookup entirely.
     let grantTrial = true;
     if (customerExisted && customerId) {
       const priorSubs = await stripe.subscriptions.list({
         customer: customerId,
         status: "all",
-        limit: 1,
+        limit: 100,
       });
+
+      // Duplicate-subscription guard: Stripe permits multiple active
+      // subscriptions per customer, so an authenticated subscriber hitting this
+      // endpoint again (the UI hides the button, but the API is reachable)
+      // would create a SECOND subscription and be double-billed. Refuse if any
+      // billable subscription already exists.
+      const hasActiveSubscription = priorSubs.data.some(
+        (sub) =>
+          sub.status === "active" ||
+          sub.status === "trialing" ||
+          sub.status === "past_due"
+      );
+      if (hasActiveSubscription) {
+        throw new BookApiError(
+          409,
+          "subscription_already_active",
+          "You already have an active subscription. Manage it from your account settings."
+        );
+      }
+
+      // Free trials are for NEW subscribers only (Terms: "14-day free trial for
+      // new subscribers"). A pre-existing customer that already has ANY Stripe
+      // subscription — active, canceled, or past (status "all") — has used their
+      // trial, so suppress it to prevent cancel-and-resubscribe trial farming.
       grantTrial = priorSubs.data.length === 0;
     }
 

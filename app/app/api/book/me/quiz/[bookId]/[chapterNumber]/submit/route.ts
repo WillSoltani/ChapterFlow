@@ -36,6 +36,7 @@ import {
   gradeQuizAttemptQuestions,
   remainingCooldownSeconds,
 } from "@/app/app/api/book/_lib/quiz-session";
+import { answersCoverAssignedQuestions } from "@/app/app/api/book/_lib/quiz-coverage-core";
 import {
   countRecentQuizAttempts,
   getUserBookState,
@@ -326,6 +327,30 @@ export async function POST(
       preserveAuthoredOrder: strictV12,
     });
 
+    // Enforce full coverage before grading on BOTH the strict and legacy
+    // (index-only) paths. The strict gradeQuizAttemptQuestions already checks
+    // questionResults.length === questions.length, but the legacy scorer
+    // computes its score over responses.length, so a single correct index-only
+    // answer would otherwise grade as 100% and pass the quiz (unlocking the
+    // next chapter and farming Insight Points). Require one answer per
+    // attempt question so neither path can pass on partial coverage.
+    // Require the responses to answer EXACTLY the assigned attempt questions —
+    // not just the right count. The legacy index-only scorer grades against the
+    // full quiz.questions pool, so a count-only check could be satisfied with
+    // answers to non-assigned pool questions (whose correct indices are exposed),
+    // re-opening the pass/unlock bypass. See answersCoverAssignedQuestions (tested).
+    const answersExactlyCoverAttempt = answersCoverAssignedQuestions(
+      attemptQuestions.map((q) => q.questionId),
+      responses.map((r) => r.questionId)
+    );
+    if (!answersExactlyCoverAttempt) {
+      throw new BookApiError(
+        400,
+        "invalid_answers",
+        `responses must answer exactly the ${attemptQuestions.length} assigned question(s).`
+      );
+    }
+
     let graded;
     try {
       const hasChoiceIds = responses.some((response) => Boolean(response.selectedChoiceId));
@@ -345,11 +370,17 @@ export async function POST(
                 questionPool: quiz.questions,
               }
             );
+            // Score over the full attempt question set, not responses.length,
+            // so the legacy path can't inflate the percentage by submitting
+            // fewer answers than the chapter requires.
+            const attemptTotal = attemptQuestions.length;
+            const legacyScorePercent =
+              attemptTotal > 0 ? Math.round((legacy.correct / attemptTotal) * 100) : 0;
             return {
-              total: legacy.total,
+              total: attemptTotal,
               correct: legacy.correct,
-              scorePercent: legacy.scorePercent,
-              passed: legacy.scorePercent >= passingScorePercent,
+              scorePercent: legacyScorePercent,
+              passed: legacyScorePercent >= passingScorePercent,
               questionResults: legacy.review.map((review) => ({
                 questionId: review.questionId,
                 selectedChoiceId:

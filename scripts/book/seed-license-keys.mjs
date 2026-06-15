@@ -16,7 +16,7 @@
  */
 
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, PutCommand, TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
@@ -83,50 +83,61 @@ async function seedKey({ code, note }) {
   const condNames = { "#status": "status" };
   const condValues = { ":available": "available" };
   try {
-    await Promise.all([
-      ddb.send(
-        new PutCommand({
-          TableName: TABLE_NAME,
-          Item: {
-            PK: licenseKeyPk(normalized),
-            SK: "META",
-            entity: "BOOK_LICENSE_KEY",
-            code: normalized,
-            plan: "PRO",
-            validMonths: VALID_MONTHS,
-            status: "available",
-            createdAt: now,
-            updatedAt: now,
-            note: note ?? null,
+    // Write META + admin-index atomically so the two can never disagree about
+    // which keys exist (a Promise.all of two Puts could half-succeed).
+    await ddb.send(
+      new TransactWriteCommand({
+        TransactItems: [
+          {
+            Put: {
+              TableName: TABLE_NAME,
+              Item: {
+                PK: licenseKeyPk(normalized),
+                SK: "META",
+                entity: "BOOK_LICENSE_KEY",
+                code: normalized,
+                plan: "PRO",
+                validMonths: VALID_MONTHS,
+                status: "available",
+                createdAt: now,
+                updatedAt: now,
+                note: note ?? null,
+              },
+              ConditionExpression: condExpr,
+              ExpressionAttributeNames: condNames,
+              ExpressionAttributeValues: condValues,
+            },
           },
-          ConditionExpression: condExpr,
-          ExpressionAttributeNames: condNames,
-          ExpressionAttributeValues: condValues,
-        })
-      ),
-      // Write index item for admin listing
-      ddb.send(
-        new PutCommand({
-          TableName: TABLE_NAME,
-          Item: {
-            PK: licenseIndexPk(),
-            SK: licenseIndexSk(normalized),
-            entity: "BOOK_LICENSE_KEY_INDEX",
-            code: normalized,
-            status: "available",
-            validMonths: VALID_MONTHS,
-            createdAt: now,
-            note: note ?? null,
+          {
+            // Index item for admin listing
+            Put: {
+              TableName: TABLE_NAME,
+              Item: {
+                PK: licenseIndexPk(),
+                SK: licenseIndexSk(normalized),
+                entity: "BOOK_LICENSE_KEY_INDEX",
+                code: normalized,
+                status: "available",
+                validMonths: VALID_MONTHS,
+                createdAt: now,
+                note: note ?? null,
+              },
+              ConditionExpression: condExpr,
+              ExpressionAttributeNames: condNames,
+              ExpressionAttributeValues: condValues,
+            },
           },
-          ConditionExpression: condExpr,
-          ExpressionAttributeNames: condNames,
-          ExpressionAttributeValues: condValues,
-        })
-      ),
-    ]);
+        ],
+      })
+    );
     console.log(`  ✓ ${normalized}${note ? `  (${note})` : ""}`);
   } catch (err) {
-    if (err.name === "ConditionalCheckFailedException") {
+    // A guard failure cancels the whole transaction (TransactionCanceledException);
+    // treat that — like the old per-Put ConditionalCheckFailedException — as a skip.
+    if (
+      err.name === "TransactionCanceledException" ||
+      err.name === "ConditionalCheckFailedException"
+    ) {
       console.log(`  ~ ${normalized}  [already redeemed — skipped]`);
     } else {
       console.error(`  ✗ ${normalized}  ERROR: ${err.message}`);
