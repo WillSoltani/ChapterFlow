@@ -139,8 +139,17 @@ export async function recordEventChapter(
       ":dp": dailyProgress,
       ":total": totalChaptersCompleted,
       ":now": now,
-      ":expected": current.updatedAt,
     };
+
+    // Optimistic-concurrency guard on the value we read. A legacy record may have
+    // no updatedAt; in that case :expected would be dropped (removeUndefinedValues)
+    // and `updatedAt = :expected` would fail with a non-retryable ValidationException,
+    // so match attribute_not_exists(updatedAt) instead.
+    const conditionExpression =
+      current.updatedAt === undefined
+        ? "attribute_not_exists(updatedAt)"
+        : "updatedAt = :expected";
+    if (current.updatedAt !== undefined) exprValues[":expected"] = current.updatedAt;
 
     if (justCompleted) {
       updateParts.push("completed = :t", "completedAt = :now");
@@ -154,7 +163,7 @@ export async function recordEventChapter(
           TableName: tableName,
           Key: { PK: bookUserPk(userId), SK: eventParticipationSk(eventId) },
           UpdateExpression: `SET ${updateParts.join(", ")}`,
-          ConditionExpression: "updatedAt = :expected",
+          ConditionExpression: conditionExpression,
           ExpressionAttributeValues: exprValues,
           ReturnValues: "ALL_NEW",
         }),
