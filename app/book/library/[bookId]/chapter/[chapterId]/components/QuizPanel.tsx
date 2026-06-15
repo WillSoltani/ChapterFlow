@@ -552,6 +552,16 @@ export function QuizPanel({
   // Polite SR announcement for per-question grading + final score (WCAG 4.1.3).
   // The live region is always mounted (below); only its text changes.
   const [liveMessage, setLiveMessage] = useState("");
+  // aria-live only re-announces on a DOM text change, and React's setState bails
+  // out (Object.is) when the next string equals the current one — so two
+  // consecutive identical results (e.g. "Correct." then "Correct.") would be
+  // silent. When the new message equals the current text, append a trailing
+  // zero-width space (invisible, not spoken) so the text node still mutates and
+  // the announcement fires. Uses functional setState (no ref) to read the
+  // previous value during the update, not during render.
+  const announce = useCallback((msg: string) => {
+    setLiveMessage((prev) => (prev === msg ? `${msg}\u200B` : msg));
+  }, []);
 
   const maxRetries = QUIZ_RETRIES_PER_QUESTION[learningMode];
   const [oneByOneIndex, setOneByOneIndex] = useState(0);
@@ -609,12 +619,12 @@ export function QuizPanel({
     }
     if (announcedResultRef.current) return;
     announcedResultRef.current = true;
-    setLiveMessage(
+    announce(
       result.passed
         ? `Quiz passed — score ${result.correctAnswers} of ${result.totalQuestions}.`
         : `Quiz not passed — score ${result.correctAnswers} of ${result.totalQuestions}.`
     );
-  }, [session?.result]);
+  }, [session?.result, announce]);
 
   const handleAnswer = useCallback(
     (questionId: string, choiceId: string) => {
@@ -627,7 +637,7 @@ export function QuizPanel({
       if (isCorrect) {
         onAnswer(questionId, choiceId);
         setQuestionFeedback((prev) => ({ ...prev, [questionId]: "correct" }));
-        setLiveMessage("Correct.");
+        announce("Correct.");
       } else {
         const used = (retriesUsed[questionId] ?? 0) + 1;
         setRetriesUsed((prev) => ({ ...prev, [questionId]: used }));
@@ -642,11 +652,11 @@ export function QuizPanel({
           setQuestionFeedback((prev) => ({ ...prev, [questionId]: "incorrect-final" }));
           const correctIndex = question.choices.findIndex((c) => c.choiceId === question.correctChoiceId);
           const correctLetter = OPTION_LABELS[correctIndex] ?? "?";
-          setLiveMessage(`Incorrect. The correct answer is ${correctLetter}.`);
+          announce(`Incorrect. The correct answer is ${correctLetter}.`);
         } else {
           setQuestionFeedback((prev) => ({ ...prev, [questionId]: "incorrect-retry" }));
           const retriesLeft = maxRetries - used;
-          setLiveMessage(
+          announce(
             retriesLeft > 0
               ? `Incorrect — ${retriesLeft} ${retriesLeft === 1 ? "retry" : "retries"} left.`
               : "Incorrect — try once more."
@@ -654,7 +664,7 @@ export function QuizPanel({
         }
       }
     },
-    [session, questionFeedback, retriesUsed, maxRetries, onAnswer]
+    [session, questionFeedback, retriesUsed, maxRetries, onAnswer, announce]
   );
 
   const handleSeeResults = useCallback(() => {
