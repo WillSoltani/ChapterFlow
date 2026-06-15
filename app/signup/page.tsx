@@ -66,8 +66,6 @@ function SignupInner() {
     window.location.assign(loginHref({ login_hint: email.trim() }));
   }
 
-  const emailReady = consented && email.trim().length > 0;
-
   return (
     <AuthScreen>
       <motion.div
@@ -127,7 +125,7 @@ function SignupInner() {
         {/* Consent hint — shown only when a sign-up path is attempted without
             ticking the box, so the gate points back to the checkbox instead of
             silently doing nothing. */}
-        {consentHint && (
+        {consentHint ? (
           <p
             id="signup-consent-hint"
             role="alert"
@@ -135,6 +133,14 @@ function SignupInner() {
           >
             Please agree to the Terms to continue.
           </p>
+        ) : (
+          !consented && (
+            /* Static helper so the consent gate is legible before any click,
+               without dimming the (visually enabled) action buttons. */
+            <p className="-mt-3 mb-5 text-[13px] leading-relaxed text-(--cf-text-3)">
+              Agree to the Terms to continue.
+            </p>
+          )
         )}
 
         {/* OAuth buttons */}
@@ -142,9 +148,9 @@ function SignupInner() {
           <button
             type="button"
             onClick={() => startOAuth("Google")}
-            disabled={!consented}
             aria-label="Continue with Google"
-            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong) disabled:cursor-not-allowed disabled:opacity-50"
+            aria-describedby={consentHint ? "signup-consent-hint" : undefined}
+            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong)"
           >
             <GoogleIcon />
             Continue with Google
@@ -153,9 +159,9 @@ function SignupInner() {
           <button
             type="button"
             onClick={() => startOAuth("SignInWithApple")}
-            disabled={!consented}
             aria-label="Continue with Apple"
-            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong) disabled:cursor-not-allowed disabled:opacity-50"
+            aria-describedby={consentHint ? "signup-consent-hint" : undefined}
+            className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong)"
           >
             <AppleIcon />
             Continue with Apple
@@ -188,8 +194,8 @@ function SignupInner() {
           <button
             type="button"
             onClick={startEmail}
-            disabled={!emailReady}
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[15px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+            aria-describedby={consentHint ? "signup-consent-hint" : undefined}
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[15px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
           >
             Continue with email &rarr;
           </button>
