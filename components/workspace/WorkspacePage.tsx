@@ -298,6 +298,15 @@ function mapAnalyticsToWorkspaceData(
         .map(({ snap, reason }) => toRecommendationCard(snap, reason));
   const recommendedProBookIds = new Set(recommendedProBooks.map((b) => b.id));
 
+  // The reward catalog is sorted cost-ascending (900, 2400, 6500). Surface the
+  // cheapest reward the reader can't yet afford as their "next" goal so the
+  // progress bar keeps advancing past the first tier; once every reward is
+  // affordable, fall back to the highest tier (bar stays at 100%, but the label
+  // points at the top reward rather than the cheapest one).
+  const nextReward =
+    INSIGHT_POINTS_REWARDS.find((r) => r.costPoints > analytics.insightPoints) ??
+    INSIGHT_POINTS_REWARDS.at(-1);
+
   return {
     user: {
       firstName,
@@ -333,8 +342,8 @@ function mapAnalyticsToWorkspaceData(
       .slice(0, 4)
       .map(({ snap, reason }) => toRecommendationCard(snap, reason)),
     nextReward: {
-      name: INSIGHT_POINTS_REWARDS[0]?.name ?? "Bonus Book Unlock",
-      pointsRequired: INSIGHT_POINTS_REWARDS[0]?.costPoints ?? 900,
+      name: nextReward?.name ?? "Bonus Book Unlock",
+      pointsRequired: nextReward?.costPoints ?? 900,
       currentPoints: analytics.insightPoints,
     },
     nextAchievement: deriveNextAchievement(analytics),

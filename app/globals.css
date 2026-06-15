@@ -196,21 +196,27 @@ body {
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: rgba(34, 211, 238, 0.28);
 
-  /* ── Backgrounds — 3-tier tonal elevation system ── */
-  --bg-base: #0B0E14;
-  --bg-surface-1: #111827;
-  --bg-surface-2: #1A2332;
-  --bg-surface-3: #243044;
+  /* ── Backgrounds — 3-tier tonal elevation system ──
+        Neutral surfaces are aliased to the canonical --cf-* family below: they
+        resolve to identical values in both themes, so a theme tweak only has to
+        be made once (on --cf-*) and these legacy names follow automatically. */
+  --bg-base: var(--cf-page-bg);
+  --bg-surface-1: var(--cf-surface);
+  --bg-surface-2: var(--cf-surface-muted);
+  --bg-surface-3: var(--cf-surface-strong);
   --bg-raised: var(--bg-surface-1);
   --bg-elevated: var(--bg-surface-2);
   --bg-glass: rgba(255, 255, 255, 0.06);
   --bg-glass-hover: rgba(255, 255, 255, 0.10);
   --bg-glass-active: rgba(255, 255, 255, 0.14);
 
-  /* ── Text hierarchy ── */
+  /* ── Text hierarchy ──
+        --text-heading is aliased to the canonical --cf-text-1 (identical value
+        in both themes); aliasing also lets it correctly track high-contrast
+        mode, which only overrides the --cf-* tokens. */
   --text-primary: #E8ECF1;
   --text-secondary: #8899AA;
-  --text-heading: #F7F8FA;
+  --text-heading: var(--cf-text-1);
   --text-tertiary: #5C6B7A;
   --text-muted: var(--text-tertiary);
 
@@ -425,21 +431,21 @@ html:not(.dark) {
   --sidebar-border: #E7E5E4;
   --sidebar-ring: rgba(13, 148, 136, 0.3);
 
-  /* ── Backgrounds ── */
-  --bg-base: #FAFAF9;
-  --bg-surface-1: #FFFFFF;
-  --bg-surface-2: #F5F5F4;
-  --bg-surface-3: #E7E5E4;
+  /* ── Backgrounds ── (aliased to canonical --cf-* — see dark :root note) */
+  --bg-base: var(--cf-page-bg);
+  --bg-surface-1: var(--cf-surface);
+  --bg-surface-2: var(--cf-surface-muted);
+  --bg-surface-3: var(--cf-surface-strong);
   --bg-raised: var(--bg-surface-1);
   --bg-elevated: var(--bg-surface-2);
   --bg-glass: rgba(255, 255, 255, 0.55);
   --bg-glass-hover: rgba(255, 255, 255, 0.7);
   --bg-glass-active: rgba(255, 255, 255, 0.82);
 
-  /* ── Text hierarchy ── */
+  /* ── Text hierarchy ── (--text-heading aliased to canonical --cf-text-1) */
   --text-primary: #1C1917;
   --text-secondary: #57534E;
-  --text-heading: #1C1917;
+  --text-heading: var(--cf-text-1);
   --text-tertiary: #78716C;
   --text-muted: var(--text-tertiary);
 
