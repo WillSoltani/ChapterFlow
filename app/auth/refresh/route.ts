@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getAccountStatus } from "@/app/app/api/book/_lib/repo";
-import { getOrCreateDeviceId } from "@/app/app/api/book/_lib/abuse";
+import { BOOK_DEVICE_COOKIE } from "@/app/app/api/book/_lib/abuse";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 
@@ -40,14 +40,20 @@ function readClientIp(req: NextRequest): string | null {
 }
 
 /**
- * Returns true when this caller has exceeded the per-window attempt cap. Keyed
- * by a stable device id (falling back to client IP, then a shared bucket) so a
- * single runaway client is contained without blocking unrelated callers behind
- * the same NAT. Also opportunistically prunes expired buckets to bound memory.
+ * Returns true when this caller has exceeded the per-window attempt cap. Keyed by
+ * the EXISTING cf_device cookie, falling back to client IP (then a shared bucket)
+ * so a single runaway client is contained without blocking unrelated callers
+ * behind the same NAT. Also opportunistically prunes expired buckets to bound
+ * memory.
  */
 function isRateLimited(req: NextRequest): boolean {
-  const { deviceId } = getOrCreateDeviceId(req);
-  const key = deviceId || readClientIp(req) || "unknown";
+  // Read the raw cf_device cookie rather than getOrCreateDeviceId(): the latter
+  // MINTS a fresh random id when the cookie is missing/malformed, so keying on it
+  // would hand a cookieless caller a new bucket every request (never throttled)
+  // and make the IP fallback dead code. Reading the cookie directly makes a
+  // stripped-cookie flood collapse onto its shared IP bucket.
+  const rawDevice = req.cookies.get(BOOK_DEVICE_COOKIE)?.value?.trim() || null;
+  const key = rawDevice || readClientIp(req) || "unknown";
   const now = Date.now();
 
   const existing = rateLimitBuckets.get(key);
