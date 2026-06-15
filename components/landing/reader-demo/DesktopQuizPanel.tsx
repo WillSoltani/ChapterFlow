@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   Check,
@@ -91,23 +91,21 @@ function ProgressRing({
 /* ────────────────────────────────────────────────────────────────── */
 
 function ConfettiBurst() {
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 25 }, (_, i) => ({
-        id: i,
-        x: `${(Math.random() - 0.5) * 300}px`,
-        y: `${-100 - Math.random() * 200}px`,
-        r: `${Math.random() * 720}deg`,
-        color:
-          i % 3 === 0
-            ? "var(--cr-accent)"
-            : i % 3 === 1
-              ? "var(--cr-warning)"
-              : "var(--cr-success)",
-        delay: `${Math.random() * 0.3}s`,
-        size: 4 + Math.random() * 4,
-      })),
-    []
+  const [particles] = useState(() =>
+    Array.from({ length: 25 }, (_, i) => ({
+      id: i,
+      x: `${(Math.random() - 0.5) * 300}px`,
+      y: `${-100 - Math.random() * 200}px`,
+      r: `${Math.random() * 720}deg`,
+      color:
+        i % 3 === 0
+          ? "var(--cr-accent)"
+          : i % 3 === 1
+            ? "var(--cr-warning)"
+            : "var(--cr-success)",
+      delay: `${Math.random() * 0.3}s`,
+      size: 4 + Math.random() * 4,
+    }))
   );
 
   return (

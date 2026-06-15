@@ -4,12 +4,14 @@ import {
   bookOk,
   requireBodyObject,
   requireInteger,
+  requireString,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
   adminUpdateUserEntitlement,
   getUserEntitlement,
+  writeAdminAudit,
 } from "@/app/app/api/book/_lib/repo";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 
@@ -61,7 +63,7 @@ export async function PATCH(
   { params }: { params: Promise<{ userId: string }> }
 ) {
   return withBookApiErrors(req, async () => {
-    await requireAdminUser();
+    const admin = await requireAdminUser();
     const { userId } = await params;
     if (!userId) throw new BookApiError(400, "invalid_user_id", "userId is required.");
 
@@ -92,13 +94,62 @@ export async function PATCH(
       throw new BookApiError(400, "invalid_input", "No entitlement fields to update.");
     }
 
+    // A money-equivalent comp (PRO grant / proStatus / freeBookSlots) must carry
+    // a justification, mirroring insight-points/adjust's 10-char minimum.
+    const reason = requireString(body.reason, "reason", {
+      minLength: 10,
+      maxLength: 1000,
+    });
+
     const tableName = await getBookTableName();
+    // Snapshot the before-state so the audit row records what actually changed.
+    const before = await getUserEntitlement(tableName, userId).catch(() => null);
     const entitlement = await adminUpdateUserEntitlement(tableName, {
       userId,
       freeBookSlots,
       plan,
       proStatus,
     });
+
+    // Record an immutable audit trail of the override (who, target, before/after
+    // plan/proStatus/freeBookSlots, reason). Without this a comped PRO grant is
+    // invisible in the audit log and untraceable in billing reconciliation.
+    await writeAdminAudit(tableName, {
+      adminUserId: admin.sub,
+      action: "entitlement_override",
+      targetUserId: userId,
+      params: {
+        reason,
+        adminEmail: admin.email,
+        before: {
+          plan: before?.plan ?? null,
+          proStatus: before?.proStatus ?? null,
+          proSource: before?.proSource ?? null,
+          freeBookSlots: before?.freeBookSlots ?? null,
+        },
+        after: {
+          plan: entitlement.plan,
+          proStatus: entitlement.proStatus ?? null,
+          // adminUpdateUserEntitlement stamps proSource="admin" on a manual PRO
+          // grant and clears it on FREE; a slots/status-only change leaves it
+          // unchanged. Derive it here to record the actual written value (the
+          // return type's proSource union does not surface "admin").
+          proSource:
+            plan === "PRO"
+              ? "admin"
+              : plan === "FREE"
+                ? null
+                : (before?.proSource ?? null),
+          freeBookSlots: entitlement.freeBookSlots,
+        },
+        requested: {
+          plan: plan ?? null,
+          proStatus: proStatus ?? null,
+          freeBookSlots: freeBookSlots ?? null,
+        },
+      },
+    });
+
     return bookOk({ entitlement });
   });
 }

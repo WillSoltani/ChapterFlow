@@ -1,7 +1,5 @@
 import { getSiteUrl } from "@/app/_lib/site-url";
 
-const DEFAULT_CHAPTERFLOW_SITE_URL = "https://siliconx.ca";
-const DEFAULT_CHAPTERFLOW_DEV_URL = "http://localhost:3000";
 const LOCAL_CHAPTERFLOW_HOSTS = new Set([
   "localhost:3000",
   "127.0.0.1:3000",
@@ -30,10 +28,11 @@ function normalizeHost(value: string | null | undefined): string {
 }
 
 function siteBaseUrl(): string {
-  const siteUrl = getSiteUrl();
-  return siteUrl || (process.env.NODE_ENV === "production"
-    ? DEFAULT_CHAPTERFLOW_SITE_URL
-    : DEFAULT_CHAPTERFLOW_DEV_URL);
+  // Standalone single-host mode: site/app/auth all collapse to one origin.
+  // getSiteUrl() always returns a non-empty origin (configured env, the
+  // canonical prod apex, or the dev localhost), so there is exactly one
+  // production default and no second off-brand fallback.
+  return getSiteUrl();
 }
 
 export function getChapterFlowDeploymentMode(): "embedded" | "standalone" {

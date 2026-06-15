@@ -9,7 +9,6 @@ interface EmptyStateProps {
   description: string;
   ctaLabel?: string;
   onCtaClick?: () => void;
-  actionHref?: string;
   className?: string;
 }
 
@@ -20,36 +19,22 @@ export function EmptyState({
   description,
   ctaLabel,
   onCtaClick,
-  actionHref,
   className = "",
 }: EmptyStateProps) {
   const prefersReduced = useReducedMotion();
 
-  const button = ctaLabel && (actionHref || onCtaClick) && (
-    actionHref ? (
-      <a
-        href={actionHref}
-        className="mt-4 inline-block cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors hover:brightness-110"
-        style={{
-          background: "var(--accent-cyan)",
-          color: "#FFFFFF",
-        }}
-      >
-        {ctaLabel}
-      </a>
-    ) : (
-      <button
-        type="button"
-        onClick={onCtaClick}
-        className="mt-4 cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors hover:brightness-110"
-        style={{
-          background: "var(--accent-cyan)",
-          color: "#FFFFFF",
-        }}
-      >
-        {ctaLabel}
-      </button>
-    )
+  const button = ctaLabel && onCtaClick && (
+    <button
+      type="button"
+      onClick={onCtaClick}
+      className="mt-4 cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors hover:brightness-110"
+      style={{
+        background: "var(--accent-cyan)",
+        color: "#FFFFFF",
+      }}
+    >
+      {ctaLabel}
+    </button>
   );
 
   return (

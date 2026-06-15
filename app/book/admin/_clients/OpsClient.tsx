@@ -388,7 +388,12 @@ export function OpsClient() {
                     <td className="py-2 pr-3 text-(--cf-text-3)">{fmt(j.updatedAt)}</td>
                     <td className="py-2 pr-3 text-(--cf-text-3)">
                       {j.errorReportKey ? (
-                        <span className="text-(--cf-danger-text)">view</span>
+                        <span
+                          className="font-mono text-[11px] text-(--cf-danger-text)"
+                          title={j.errorReportKey}
+                        >
+                          error
+                        </span>
                       ) : (
                         "—"
                       )}

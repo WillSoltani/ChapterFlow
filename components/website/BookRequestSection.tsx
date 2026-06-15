@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BookRequestForm } from "./BookRequestForm";
 import { BookRequestSuccess } from "./BookRequestSuccess";
@@ -18,10 +18,15 @@ export function BookRequestSection({ initialTitle }: { initialTitle?: string }) 
   // A second "Request X" in the same session changes initialTitle. Without this
   // the stale success card stays mounted and the new request dead-ends — reset
   // back to the form so the freshly-prefilled title is editable/submittable.
-  useEffect(() => {
+  // Done via the React "store previous prop, adjust state during render" pattern
+  // (https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes)
+  // instead of an effect, so no setState runs inside a useEffect body.
+  const [prevTitle, setPrevTitle] = useState(initialTitle);
+  if (initialTitle !== prevTitle) {
+    setPrevTitle(initialTitle);
     setSubmitted(false);
     setSubmissionData(null);
-  }, [initialTitle]);
+  }
 
   const handleSuccess = (data: SubmissionData) => {
     setSubmissionData(data);

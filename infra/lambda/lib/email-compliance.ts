@@ -81,6 +81,7 @@ export async function isEmailSuppressed(
 
 let warnedMissingSecret = false;
 let warnedMissingAddress = false;
+let warnedMissingAppBaseUrl = false;
 
 export function getEmailConfig(): EmailConfig {
   const secret = process.env.EMAIL_UNSUBSCRIBE_SECRET ?? "";
@@ -96,7 +97,10 @@ export function getEmailConfig(): EmailConfig {
     senderName: process.env.EMAIL_SENDER_NAME || "ChapterFlow",
     supportAddress: process.env.EMAIL_SUPPORT_ADDRESS || "support@chapterflow.ca",
     postalAddress: process.env.EMAIL_POSTAL_ADDRESS ?? "",
-    appBaseUrl: (process.env.APP_BASE_URL || "https://chapterflow.siliconx.ca").replace(/\/+$/, ""),
+    // No siliconx.ca fallback: the legacy host no longer serves the unsubscribe
+    // route. An empty value makes sendCompliantEmail refuse to send (below)
+    // rather than mint a non-working one-click-unsubscribe link (CASL violation).
+    appBaseUrl: (process.env.APP_BASE_URL || "").replace(/\/+$/, ""),
     secret,
     configurationSet: process.env.SES_CONFIGURATION_SET ?? "",
   };
@@ -131,11 +135,15 @@ let cachedConfig: EmailConfig | null = null;
 export async function resolveEmailConfig(): Promise<EmailConfig> {
   if (cachedConfig) return cachedConfig;
   const base = getEmailConfig();
-  const [postalAddress, secret, senderName, supportAddress] = await Promise.all([
+  const [postalAddress, secret, senderName, supportAddress, appBaseUrl] = await Promise.all([
     ssmParam("EMAIL_POSTAL_ADDRESS"),
     ssmParam("EMAIL_UNSUBSCRIBE_SECRET"),
     ssmParam("EMAIL_SENDER_NAME"),
     ssmParam("EMAIL_SUPPORT_ADDRESS"),
+    // Owner override for the app host (otherwise the Lambda's APP_BASE_URL env,
+    // set from CHAPTERFLOW_APP_BASE_URL at deploy time, is used). Same one-place
+    // SSM model as the other EMAIL_* values.
+    ssmParam("EMAIL_APP_BASE_URL"),
   ]);
   cachedConfig = {
     ...base,
@@ -143,6 +151,7 @@ export async function resolveEmailConfig(): Promise<EmailConfig> {
     secret: secret ?? base.secret,
     senderName: senderName ?? base.senderName,
     supportAddress: supportAddress ?? base.supportAddress,
+    appBaseUrl: (appBaseUrl ?? base.appBaseUrl).replace(/\/+$/, ""),
   };
   return cachedConfig;
 }
@@ -231,6 +240,22 @@ export async function sendCompliantEmail(
       console.warn(
         "[email-compliance] EMAIL_POSTAL_ADDRESS not set — skipping commercial email " +
           "(CASL/CAN-SPAM require a postal address). Set it to enable reminder/digest email.",
+      );
+    }
+    return;
+  }
+
+  // Mirror the postal-address kill-switch for the app host. Without a real app
+  // base URL the one-click unsubscribe link, List-Unsubscribe header, and CTA
+  // links would point at nothing (or the dead legacy host). A non-working
+  // unsubscribe link is itself a CASL/CAN-SPAM violation, so refuse to send.
+  if (!config.appBaseUrl) {
+    if (!warnedMissingAppBaseUrl) {
+      warnedMissingAppBaseUrl = true;
+      console.warn(
+        "[email-compliance] APP_BASE_URL not set — skipping commercial email " +
+          "(one-click unsubscribe + CTA links require the live app host). Set " +
+          "CHAPTERFLOW_APP_BASE_URL on the cron Lambda (or EMAIL_APP_BASE_URL in SSM).",
       );
     }
     return;

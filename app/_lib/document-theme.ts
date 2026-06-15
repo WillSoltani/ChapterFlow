@@ -7,24 +7,28 @@ export type ResolvedThemeMode = "dark" | "light";
 
 export type DocumentThemeSettings = {
   theme?: ThemePreference;
-  accentColor?: AccentColor;
-  interfaceDensity?: InterfaceDensity;
   reducedMotion?: boolean;
   highContrastMode?: boolean;
-  focusRingStrength?: FocusRingStrength;
   colorBlindMode?: ColorBlindMode;
+  // accentColor / interfaceDensity / focusRingStrength are accepted (callers such
+  // as useBookPreferences still pass them) but intentionally ignored: nothing in
+  // globals.css consumes [data-accent], [data-density], or [data-focus-ring], and
+  // there is no Settings UI control that sets them. They are kept on the input
+  // type only so existing call sites type-check; they no longer drive any DOM
+  // attribute. Remove them from callers + this type once that path is wired or
+  // confirmed dead. See M45.
+  accentColor?: AccentColor;
+  interfaceDensity?: InterfaceDensity;
+  focusRingStrength?: FocusRingStrength;
 };
 
 type StoredThemePayload = {
   appearance?: Partial<{
     theme: ThemePreference;
-    accentColor: AccentColor;
-    interfaceDensity: InterfaceDensity;
     reducedMotion: boolean;
   }>;
   accessibility?: Partial<{
     highContrastMode: boolean;
-    focusRingStrength: FocusRingStrength;
   }>;
   // colorBlindMode is persisted by useBookPreferences under `extended`.
   extended?: Partial<{
@@ -34,13 +38,20 @@ type StoredThemePayload = {
 
 export const BOOK_THEME_STORAGE_KEY = "book-accelerator:preferences:v2";
 
-const DEFAULT_THEME_SETTINGS: Required<DocumentThemeSettings> = {
+// The settings that actually drive document attributes. accentColor /
+// interfaceDensity / focusRingStrength are deliberately excluded: nothing reads
+// the attributes they used to write (see DocumentThemeSettings note + M45).
+type ActiveThemeSettings = {
+  theme: ThemePreference;
+  reducedMotion: boolean;
+  highContrastMode: boolean;
+  colorBlindMode: ColorBlindMode;
+};
+
+const DEFAULT_THEME_SETTINGS: ActiveThemeSettings = {
   theme: "light",
-  accentColor: "sky",
-  interfaceDensity: "comfortable",
   reducedMotion: false,
   highContrastMode: false,
-  focusRingStrength: "strong",
   colorBlindMode: "off",
 };
 
@@ -61,24 +72,6 @@ function pickThemePreference(value: unknown): ThemePreference {
     : DEFAULT_THEME_SETTINGS.theme;
 }
 
-function pickAccentColor(value: unknown): AccentColor {
-  return value === "emerald" || value === "amber" || value === "rose" || value === "sky"
-    ? value
-    : DEFAULT_THEME_SETTINGS.accentColor;
-}
-
-function pickDensity(value: unknown): InterfaceDensity {
-  return value === "compact" || value === "spacious" || value === "comfortable"
-    ? value
-    : DEFAULT_THEME_SETTINGS.interfaceDensity;
-}
-
-function pickFocusRingStrength(value: unknown): FocusRingStrength {
-  return value === "standard" || value === "maximum" || value === "strong"
-    ? value
-    : DEFAULT_THEME_SETTINGS.focusRingStrength;
-}
-
 function pickColorBlindMode(value: unknown): ColorBlindMode {
   return value === "protanopia" || value === "deuteranopia" || value === "tritanopia" || value === "off"
     ? value
@@ -89,7 +82,7 @@ function pickBoolean(value: unknown, fallback: boolean) {
   return typeof value === "boolean" ? value : fallback;
 }
 
-export function readStoredDocumentThemeSettings(raw?: string | null): Required<DocumentThemeSettings> {
+export function readStoredDocumentThemeSettings(raw?: string | null): ActiveThemeSettings {
   const parsed = parseStoredThemePayload(raw ?? null);
   const appearance = parsed?.appearance ?? {};
   const accessibility = parsed?.accessibility ?? {};
@@ -97,14 +90,11 @@ export function readStoredDocumentThemeSettings(raw?: string | null): Required<D
 
   return {
     theme: pickThemePreference(appearance.theme),
-    accentColor: pickAccentColor(appearance.accentColor),
-    interfaceDensity: pickDensity(appearance.interfaceDensity),
     reducedMotion: pickBoolean(appearance.reducedMotion, DEFAULT_THEME_SETTINGS.reducedMotion),
     highContrastMode: pickBoolean(
       accessibility.highContrastMode,
       DEFAULT_THEME_SETTINGS.highContrastMode
     ),
-    focusRingStrength: pickFocusRingStrength(accessibility.focusRingStrength),
     colorBlindMode: pickColorBlindMode(extended.colorBlindMode),
   };
 }
@@ -134,9 +124,11 @@ export function applyDocumentTheme(settings: DocumentThemeSettings, animate = fa
   if (typeof document === "undefined") return;
 
   const root = document.documentElement;
-  const next = {
-    ...DEFAULT_THEME_SETTINGS,
-    ...settings,
+  const next: ActiveThemeSettings = {
+    theme: settings.theme ?? DEFAULT_THEME_SETTINGS.theme,
+    reducedMotion: settings.reducedMotion ?? DEFAULT_THEME_SETTINGS.reducedMotion,
+    highContrastMode: settings.highContrastMode ?? DEFAULT_THEME_SETTINGS.highContrastMode,
+    colorBlindMode: settings.colorBlindMode ?? DEFAULT_THEME_SETTINGS.colorBlindMode,
   };
   const dark = resolveDocumentThemeMode(next.theme);
 
@@ -146,11 +138,8 @@ export function applyDocumentTheme(settings: DocumentThemeSettings, animate = fa
 
   root.classList.toggle("dark", dark);
   root.style.colorScheme = dark ? "dark" : "light";
-  root.dataset.accent = next.accentColor;
-  root.dataset.density = next.interfaceDensity;
   root.dataset.motion = next.reducedMotion ? "reduced" : "normal";
   root.dataset.contrast = next.highContrastMode ? "high" : "standard";
-  root.dataset.focusRing = next.focusRingStrength;
   root.dataset.colorBlindMode = next.colorBlindMode;
 
   if (animate) {
@@ -180,16 +169,9 @@ function mergeStoredThemePayload(
   };
 
   if (settings.theme !== undefined) nextAppearance.theme = settings.theme;
-  if (settings.accentColor !== undefined) nextAppearance.accentColor = settings.accentColor;
-  if (settings.interfaceDensity !== undefined) {
-    nextAppearance.interfaceDensity = settings.interfaceDensity;
-  }
   if (settings.reducedMotion !== undefined) nextAppearance.reducedMotion = settings.reducedMotion;
   if (settings.highContrastMode !== undefined) {
     nextAccessibility.highContrastMode = settings.highContrastMode;
-  }
-  if (settings.focusRingStrength !== undefined) {
-    nextAccessibility.focusRingStrength = settings.focusRingStrength;
   }
   if (settings.colorBlindMode !== undefined) {
     nextExtended.colorBlindMode = settings.colorBlindMode;
@@ -225,5 +207,5 @@ export function applyAndPersistDocumentTheme(settings: DocumentThemeSettings) {
 }
 
 export function buildDocumentThemeBootstrapScript() {
-  return `(function(){try{var root=document.documentElement;var raw=localStorage.getItem('${BOOK_THEME_STORAGE_KEY}')||'{}';var parsed=JSON.parse(raw);var appearance=(parsed&&parsed.appearance)||{};var accessibility=(parsed&&parsed.accessibility)||{};var extended=(parsed&&parsed.extended)||{};var theme=appearance.theme==='light'||appearance.theme==='system'||appearance.theme==='dark'?appearance.theme:'light';var accent=appearance.accentColor==='emerald'||appearance.accentColor==='amber'||appearance.accentColor==='rose'||appearance.accentColor==='sky'?appearance.accentColor:'sky';var density=appearance.interfaceDensity==='compact'||appearance.interfaceDensity==='spacious'||appearance.interfaceDensity==='comfortable'?appearance.interfaceDensity:'comfortable';var reducedMotion=appearance.reducedMotion===true;var highContrast=accessibility.highContrastMode===true;var focusRing=accessibility.focusRingStrength==='standard'||accessibility.focusRingStrength==='maximum'||accessibility.focusRingStrength==='strong'?accessibility.focusRingStrength:'strong';var prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches===true;var dark=theme==='light'?false:theme==='system'?prefersDark:true;root.classList.toggle('dark',dark);root.style.colorScheme=dark?'dark':'light';root.dataset.accent=accent;root.dataset.density=density;root.dataset.motion=reducedMotion?'reduced':'normal';root.dataset.contrast=highContrast?'high':'standard';root.dataset.focusRing=focusRing;root.dataset.colorBlindMode=(extended.colorBlindMode==='protanopia'||extended.colorBlindMode==='deuteranopia'||extended.colorBlindMode==='tritanopia')?extended.colorBlindMode:'off';}catch(e){var root=document.documentElement;root.classList.remove('dark');root.style.colorScheme='light';root.dataset.accent='sky';root.dataset.density='comfortable';root.dataset.motion='normal';root.dataset.contrast='standard';root.dataset.focusRing='strong';root.dataset.colorBlindMode='off';}})();`;
+  return `(function(){try{var root=document.documentElement;var raw=localStorage.getItem('${BOOK_THEME_STORAGE_KEY}')||'{}';var parsed=JSON.parse(raw);var appearance=(parsed&&parsed.appearance)||{};var accessibility=(parsed&&parsed.accessibility)||{};var extended=(parsed&&parsed.extended)||{};var theme=appearance.theme==='light'||appearance.theme==='system'||appearance.theme==='dark'?appearance.theme:'light';var reducedMotion=appearance.reducedMotion===true;var highContrast=accessibility.highContrastMode===true;var prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches===true;var dark=theme==='light'?false:theme==='system'?prefersDark:true;root.classList.toggle('dark',dark);root.style.colorScheme=dark?'dark':'light';root.dataset.motion=reducedMotion?'reduced':'normal';root.dataset.contrast=highContrast?'high':'standard';root.dataset.colorBlindMode=(extended.colorBlindMode==='protanopia'||extended.colorBlindMode==='deuteranopia'||extended.colorBlindMode==='tritanopia')?extended.colorBlindMode:'off';}catch(e){var root=document.documentElement;root.classList.remove('dark');root.style.colorScheme='light';root.dataset.motion='normal';root.dataset.contrast='standard';root.dataset.colorBlindMode='off';}})();`;
 }

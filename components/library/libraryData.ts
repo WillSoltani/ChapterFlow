@@ -1,10 +1,6 @@
 // ── Extended library data for the psychology-driven redesign ──
 
 import { getBookCoverPath } from "@/lib/book-covers";
-import {
-  BOOKS_CATALOG_METADATA,
-  type BookCatalogMetadata,
-} from "@/app/book/data/booksCatalog";
 import type {
   LibraryCatalogBook,
   LibraryBookEntry,
@@ -81,27 +77,6 @@ export interface WeeklyChallenge {
 type LibraryBookOverride = Partial<
   Omit<LibraryBook, "id" | "title" | "author" | "totalChapters" | "estimatedReadingTimeMinutes">
 >;
-
-// ── Mock user stats ──
-export const MOCK_USER_STATS: UserStats = {
-  firstName: "Will",
-  level: 4,
-  xp: 1250,
-  xpToNextLevel: 2000,
-  booksCompleted: 0,
-  currentStreak: 5,
-  streakIsActiveToday: true,
-  nextBadge: { name: "Avid Reader", booksAway: 2 },
-  isPro: true,
-  freeBooksUsed: 1,
-  freeBooksLimit: 2,
-};
-
-// ── Mock weekly challenge ──
-export const MOCK_WEEKLY_CHALLENGE: WeeklyChallenge = {
-  description: "Start a book in Psychology",
-  category: "Psychology",
-};
 
 function inferLibraryCategory(categories: string[]): Category {
   const normalized = categories.map((category) => category.toLowerCase());
@@ -1045,52 +1020,15 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
   },
 };
 
-function buildLibraryBookFromMetadata(
-  entry: BookCatalogMetadata,
-): LibraryBook {
-  const bookId = entry.id;
-  const category = inferLibraryCategory(entry.categories);
-  const overrides = GENERATED_LIBRARY_BOOK_OVERRIDES[bookId] ?? {};
-
-  return {
-    id: bookId,
-    title: entry.title,
-    author: entry.author,
-    authorCredentials: overrides.authorCredentials,
-    coverImage: overrides.coverImage ?? entry.coverImage,
-    coverGradient: overrides.coverGradient ?? inferCoverGradient(bookId),
-    hook:
-      overrides.hook ??
-      entry.synopsis.split(".")[0]?.trim() ??
-      "A focused, chapter-based learning experience with practical examples and quiz gates.",
-    description: overrides.description ?? entry.synopsis,
-    whatYoullLearn:
-      overrides.whatYoullLearn ??
-      buildLearningPoints(entry.tags, entry.categories),
-    bestFor: overrides.bestFor ?? inferBestFor(category),
-    category: overrides.category ?? category,
-    difficulty:
-      (overrides.difficulty as Difficulty | undefined) ??
-      (entry.difficulty.toLowerCase() as Difficulty),
-    totalChapters: entry.chapterCount,
-    estimatedReadingTimeMinutes: entry.estimatedMinutes,
-    isPro: overrides.isPro ?? true,
-    badges: overrides.badges ?? ["new"],
-    staffPickReason: overrides.staffPickReason,
-    similarBookId: overrides.similarBookId,
-    userProgress: overrides.userProgress,
-  };
-}
-
 /**
  * Build the presentational `LibraryBook` UI shape from a published catalog book
  * (`/api/book/me/dashboard` → `catalog[]`) plus the viewer's per-book progress
- * entry. This is the production-data counterpart to `buildLibraryBookFromMetadata`
- * (which reads the local static catalog). Editorial config (overrides + visual
- * fields) is reused so the presentational components don't change. Fields with
- * no backend source (gradient, badges) are deterministic/static — see TODOs in
- * `dashboardToLibraryUi.ts`. Social-proof fields (reader counts, completion
- * rates) were removed: there is no honest source for them.
+ * entry. This is the sole production data path for the library UI. Editorial
+ * config (overrides + visual fields) is reused so the presentational components
+ * don't change. Fields with no backend source (gradient, badges) are
+ * deterministic/static — see TODOs in `dashboardToLibraryUi.ts`. Social-proof
+ * fields (reader counts, completion rates) were removed: there is no honest
+ * source for them.
  */
 export function buildLibraryBookFromCatalog(
   book: LibraryCatalogBook,
@@ -1146,21 +1084,6 @@ export function buildLibraryBookFromCatalog(
   };
 }
 
-// ── All books ──
-const BASE_LIBRARY_BOOKS: LibraryBook[] = [
-];
-
-const BASE_LIBRARY_BOOK_IDS = new Set(BASE_LIBRARY_BOOKS.map((book) => book.id));
-
-const GENERATED_LIBRARY_BOOKS: LibraryBook[] = BOOKS_CATALOG_METADATA
-  .filter((entry) => !BASE_LIBRARY_BOOK_IDS.has(entry.id))
-  .map((entry) => buildLibraryBookFromMetadata(entry));
-
-export const MOCK_BOOKS: LibraryBook[] = [
-  ...BASE_LIBRARY_BOOKS,
-  ...GENERATED_LIBRARY_BOOKS,
-];
-
 // ── Curated section config (NO duplication across sections) ──
 export interface CuratedSectionConfig {
   narrativeTitle: string;
@@ -1203,29 +1126,6 @@ export const CURATED_SECTIONS: CuratedSectionConfig[] = [
 ];
 
 // ── Helpers ──
-
-export function getBookById(id: string): LibraryBook | undefined {
-  return MOCK_BOOKS.find((b) => b.id === id);
-}
-
-export function getBooksById(ids: string[]): LibraryBook[] {
-  const map = new Map(MOCK_BOOKS.map((b) => [b.id, b]));
-  return ids.map((id) => map.get(id)).filter((b): b is LibraryBook => !!b);
-}
-
-export function getInProgressBooks(): LibraryBook[] {
-  return MOCK_BOOKS.filter(
-    (b) => b.userProgress && !b.userProgress.isCompleted && b.userProgress.percentComplete > 0
-  );
-}
-
-export function getCompletedBooks(): LibraryBook[] {
-  return MOCK_BOOKS.filter((b) => b.userProgress?.isCompleted);
-}
-
-export function getNotStartedBooks(): LibraryBook[] {
-  return MOCK_BOOKS.filter((b) => !b.userProgress);
-}
 
 export function formatReadingTime(minutes: number): string {
   if (minutes < 60) return `${minutes} min`;
@@ -1296,18 +1196,19 @@ export function getFreePlanColor(used: number, limit: number): string {
 }
 
 // "popular" / "completion" were dropped — both sorted on fabricated metrics.
+// "recent" was dropped too: LibraryCatalogBook has no addedAt/publishedAt/createdAt
+// field, so labelling a catalog-order reversal "Recently added" is the same
+// fabricated-signal class. Restore it only when a real date field exists.
 // "featured" keeps the catalog's curated order (no claim of popularity).
 export type SortOption =
   | "featured"
   | "shortest"
   | "beginner"
-  | "recent"
   | "alphabetical";
 
 export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: "featured", label: "Featured" },
   { value: "shortest", label: "Shortest first" },
   { value: "beginner", label: "Best for beginners" },
-  { value: "recent", label: "Recently added" },
   { value: "alphabetical", label: "Alphabetical" },
 ];

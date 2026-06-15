@@ -82,8 +82,12 @@ export async function POST(
                   PK: bookUserPk(user.sub),
                   SK: entitlementSk(),
                 },
+                // unlockedBookIds is created lazily by reserveBookEntitlement's ADD;
+                // do not initialize it here (an empty Set can no longer be marshalled
+                // now that convertEmptyValues is off, and initializing it to NULL is
+                // what broke the later `ADD unlockedBookIds :bookSet`).
                 UpdateExpression:
-                  "SET #plan = :proPlan, proStatus = :active, proSource = :giftSource, currentPeriodEnd = :expires, updatedAt = :now, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+                  "SET #plan = :proPlan, proStatus = :active, proSource = :giftSource, currentPeriodEnd = :expires, updatedAt = :now, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
                 // Never overwrite an active paid Stripe subscription with a gift
                 // grant — that would flip proSource off "stripe" while Stripe keeps
                 // billing, leaving the account unreconcilable. proSource is only
@@ -99,7 +103,6 @@ export async function POST(
                   ":expires": proExpires,
                   ":now": now,
                   ":defaultSlots": 2,
-                  ":emptySet": new Set<string>(),
                 },
               },
             },

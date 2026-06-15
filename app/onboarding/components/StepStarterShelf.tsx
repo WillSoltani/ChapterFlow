@@ -585,6 +585,19 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isComplete || !frontBook) return;
+      // Don't hijack arrow keys from text controls or modified shortcuts so the
+      // global listener can never trap keyboard or screen-reader users editing
+      // an input/textarea/contenteditable on this step.
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const active = document.activeElement;
+      if (
+        active instanceof HTMLElement &&
+        (active.tagName === "INPUT" ||
+          active.tagName === "TEXTAREA" ||
+          active.isContentEditable)
+      ) {
+        return;
+      }
       if (e.key === "ArrowRight") {
         e.preventDefault();
         buttonSwipeRef.current?.("right");

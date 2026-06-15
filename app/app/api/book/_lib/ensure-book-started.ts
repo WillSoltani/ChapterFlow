@@ -26,6 +26,7 @@ import {
   checkReferralFraud,
   type ReferralFraudCheckResult,
 } from "@/app/app/api/book/_lib/referral-fraud";
+import { checkReferralEscalation } from "@/app/app/api/book/_lib/referral-escalation";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 import {
   createProgressIfMissing,
@@ -55,6 +56,26 @@ function sortUniqueNumbers(values: number[]): number[] {
 
 function isValidIsoTimestamp(value: string | undefined): value is string {
   return Boolean(value && Number.isFinite(new Date(value).getTime()));
+}
+
+// Best-effort client IP for referral same-network screening. Mirrors the
+// header precedence used by abuse.ts (trusted-edge first). Only used as a
+// fraud SIGNAL (never for a paywall/economy decision on its own), so a spoofed
+// value can at worst over-flag a referral, not award one.
+function readClientIp(req: Request): string | null {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) {
+    const first = forwarded.split(",")[0]?.trim();
+    if (first) return first;
+  }
+  const realIp = req.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+  const cloudfrontViewer = req.headers.get("cloudfront-viewer-address")?.trim();
+  if (cloudfrontViewer) {
+    const host = cloudfrontViewer.split(":")[0]?.trim();
+    if (host) return host;
+  }
+  return null;
 }
 
 function buildProgressFromLegacyState(params: {
@@ -300,7 +321,7 @@ export async function ensureUserBookStarted(params: {
       inviteeEmail: user.email ?? "",
       inviteeDeviceId: riskDeviceId,
       inviterDeviceId: null,
-      inviteeIp: null,
+      inviteeIp: readClientIp(req),
       inviterIp: null,
     }).catch(
       (): ReferralFraudCheckResult => ({
@@ -335,11 +356,29 @@ export async function ensureUserBookStarted(params: {
       ]);
       inviterAwarded = inviterAward.awarded;
       inviteeAwarded = inviteeAward.awarded;
-      await markReferralActivationRewarded(
+      const activationRecorded = await markReferralActivationRewarded(
         tableName,
         referralClaim,
         INSIGHT_POINTS_AMOUNTS.referralActivationInviter
       ).catch(() => false);
+
+      // §6.3 — Referral escalation tiers (3/5/10/25 activations → 4,600 IP +
+      // exclusive frame/theme/badge). markReferralActivationRewarded just
+      // ADD-incremented the inviter's activatedInvites, and checkReferralEscalation
+      // reads that counter, so it MUST run after it. Gate on activationRecorded so
+      // a duplicate/raced call (which did NOT move the count here) doesn't re-run
+      // it. Best-effort: an escalation failure must never block the book-start.
+      if (activationRecorded) {
+        const inviterEntitlement = await getUserEntitlement(
+          tableName,
+          referralClaim.inviterUserId
+        );
+        await checkReferralEscalation(
+          tableName,
+          referralClaim.inviterUserId,
+          inviterEntitlement?.plan ?? "FREE"
+        ).catch(() => null);
+      }
     } else {
       // Fraud detected — consume the claim (so it isn't retried) WITHOUT crediting
       // the inviter. inviterAwarded/inviteeAwarded stay false, so the analytics

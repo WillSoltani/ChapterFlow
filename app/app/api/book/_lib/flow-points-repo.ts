@@ -634,8 +634,12 @@ export async function redeemFlowPointsReward(
               PK: bookUserPk(params.userId),
               SK: entitlementSk(),
             },
+            // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do
+            // not initialize it here (an empty Set can no longer be marshalled now
+            // that convertEmptyValues is off, and initializing it to NULL is what
+            // broke the later `ADD unlockedBookIds :bookSet`).
             UpdateExpression:
-              "SET #plan = if_not_exists(#plan, :freePlan), updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots) + :slotDelta, unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+              "SET #plan = if_not_exists(#plan, :freePlan), updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots) + :slotDelta",
             ExpressionAttributeNames: {
               "#plan": "plan",
             },
@@ -644,7 +648,6 @@ export async function redeemFlowPointsReward(
               ":updatedAt": now,
               ":defaultSlots": 2,
               ":slotDelta": Math.max(1, Math.floor(params.bookSlotDelta)),
-              ":emptySet": new Set<string>(),
             },
           },
         }
@@ -655,8 +658,12 @@ export async function redeemFlowPointsReward(
               PK: bookUserPk(params.userId),
               SK: entitlementSk(),
             },
+            // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do
+            // not initialize it here (an empty Set can no longer be marshalled now
+            // that convertEmptyValues is off, and initializing it to NULL is what
+            // broke the later `ADD unlockedBookIds :bookSet`).
             UpdateExpression:
-              "SET #plan = :proPlan, proStatus = :activeStatus, proSource = :flowSource, currentPeriodEnd = :periodEnd, licenseKey = :nullValue, licenseExpiresAt = :nullValue, updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+              "SET #plan = :proPlan, proStatus = :activeStatus, proSource = :flowSource, currentPeriodEnd = :periodEnd, licenseKey = :nullValue, licenseExpiresAt = :nullValue, updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
             // Never convert an active paid Stripe subscription into a flow_points
             // pass — that orphans the Stripe sub (it keeps billing while proSource
             // flips). The route also pre-checks (pro passes are freeOnly), but the
@@ -676,7 +683,6 @@ export async function redeemFlowPointsReward(
               ":nullValue": null,
               ":updatedAt": now,
               ":defaultSlots": 2,
-              ":emptySet": new Set<string>(),
             },
           },
         };
@@ -767,6 +773,18 @@ export async function redeemFlowPointsReward(
     })
     );
   } catch (error: unknown) {
+    // The reward-claim Put is TransactItem index 1, guarded by
+    // attribute_not_exists so a one-time reward can only be claimed once. The
+    // route pre-checks existingClaim, but that read is not atomic with this
+    // write, so two concurrent redemptions can both pass it; DynamoDB cancels
+    // the loser here. Surface it as the same 409 the route returns, not a 500.
+    if (isTransactionConditionFailedAt(error, 1)) {
+      throw new BookApiError(
+        409,
+        "reward_already_claimed",
+        "You have already claimed this reward."
+      );
+    }
     // The entitlement upgrade is the final TransactItem (index 4). When only it
     // fails its guard, the caller already has an active paid Stripe subscription
     // (the slot-add branch carries no such guard, so it can't trip this).

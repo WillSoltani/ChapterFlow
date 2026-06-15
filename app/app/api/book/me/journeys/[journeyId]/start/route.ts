@@ -4,6 +4,8 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { startJourney, listUserJourneys } from "@/app/app/api/book/_lib/journey-repo";
+import journeyDefinitions from "@/content/journeys/journeys.json";
+import type { JourneyDefinition } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
 
@@ -14,6 +16,13 @@ export async function POST(req: Request, ctx: Params) {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const { journeyId } = await ctx.params;
+
+    const def = (journeyDefinitions as JourneyDefinition[]).find(
+      (d) => d.journeyId === journeyId,
+    );
+    if (!def) {
+      return bookErr(req, 404, "not_found", "Journey not found");
+    }
 
     // Check max 3 active journeys
     const existing = await listUserJourneys(tableName, user.sub);

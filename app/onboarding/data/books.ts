@@ -1,10 +1,10 @@
 /* ── Onboarding book catalog ──────────────────────────────────────────────
  *
  * Sourced from the REAL published catalog (app/book/data/booksCatalog) — the
- * same 67 books the user lands in after onboarding — not a hand-maintained
- * stub. The previous 3-book list (crucial-conversations / thinking-fast-and-
- * slow / almanack) dead-ended the swipe deck after one left-swipe. Now every
- * catalog book is a swipeable card, ranked by how well its tags/categories
+ * same published catalog the user lands in after onboarding — not a hand-
+ * maintained stub. The previous 3-book list (crucial-conversations / thinking-
+ * fast-and-slow / almanack) dead-ended the swipe deck after one left-swipe. Now
+ * every catalog book is a swipeable card, ranked by how well its tags/categories
  * match the interests the user picked.
  *
  * The catalog module is client-safe (it only imports a static metadata JSON +

@@ -13,7 +13,7 @@ import {
   listRecentBillingEvents,
   type BillingEventRecord,
 } from "@/app/app/api/book/_lib/repo";
-import { BILLING_CURRENCY } from "@/lib/pricing";
+import { BILLING_CURRENCY, monthlySubscriptionCents } from "@/lib/pricing";
 
 export const runtime = "nodejs";
 
@@ -48,36 +48,78 @@ export async function GET(req: Request) {
     );
     const stripePro = activePro.filter((e) => e.proSource === "stripe");
 
-    // Real MRR = sum of subscriptionAmountCents over active stripe PROs. We bill
-    // in a single currency (BILLING_CURRENCY), so this sum is meaningful as-is.
-    // If multiple billing currencies ever appear (see the mixed-currency warning
-    // below) this sum is no longer valid and needs per-currency grouping.
-    const mrrCents = stripePro.reduce(
-      (sum, e) => sum + (e.subscriptionAmountCents ?? 0),
-      0,
-    );
+    // Normalize each active stripe subscription's recurring amount to a per-
+    // MONTH figure. subscriptionAmountCents is stored straight from the Stripe
+    // price's unit_amount, which is the amount for ONE billing period — one
+    // month for a monthly plan, a FULL YEAR for an annual plan. Summing the raw
+    // amounts would count each annual subscriber as ~12 months of MRR (and
+    // ~144x of ARR), so we divide annual amounts by 12 via monthlySubscriptionCents
+    // BEFORE any aggregation (MRR, by-country, top payers).
+    //
+    // Legacy rows written before subscriptionInterval was captured fall back to
+    // monthly; we count them so the dashboard can warn that any annual plans
+    // among them may be overstated until the next webhook backfills the interval.
+    let intervalMissing = 0;
+    const normalizedPro = stripePro.map((e) => {
+      const amountCents = e.subscriptionAmountCents ?? 0;
+      if (amountCents > 0 && !e.subscriptionInterval) intervalMissing += 1;
+      return {
+        ent: e,
+        currency: e.billingCurrency ?? BILLING_CURRENCY,
+        monthlyCents: monthlySubscriptionCents(amountCents, e.subscriptionInterval),
+      };
+    });
+    if (intervalMissing > 0) {
+      warnings.push(
+        `${intervalMissing} active subscription(s) missing subscriptionInterval — treated as monthly; MRR/ARR may be overstated for any annual plans among them until the next Stripe webhook backfills the interval.`,
+      );
+    }
 
     // Determine the billing currency from the live data, defaulting to the
-    // configured single currency. Surface a warning (rather than silently
-    // mis-summing) the moment more than one currency is in play.
-    const distinctCurrencies = [
-      ...new Set(stripePro.map((e) => e.billingCurrency ?? BILLING_CURRENCY)),
-    ];
+    // configured single currency. We bill single-currency today; summing CAD+USD
+    // cents as if identical would be meaningless, so MRR is grouped per currency
+    // and a single headline realMrr/realArr is only reported when exactly one
+    // currency is in play (otherwise null + a warning — see below).
+    const distinctCurrencies = [...new Set(normalizedPro.map((p) => p.currency))];
     const currency =
       distinctCurrencies.length === 1 ? distinctCurrencies[0] : BILLING_CURRENCY;
     if (distinctCurrencies.length > 1) {
       warnings.push(
         `Mixed billing currencies in active subscriptions (${distinctCurrencies.join(
           ", ",
-        )}). realMrr/realArr sum across currencies and assume one — add per-currency grouping before reporting these.`,
+        )}). realMrr/realArr are reported as null — use the per-currency mrrByCurrency breakdown instead.`,
       );
     }
 
-    // Real MRR by country
+    // MRR per currency (interval-normalized). Never sum across currencies.
+    const mrrCentsByCurrency: Record<string, number> = {};
+    for (const { currency: cur, monthlyCents } of normalizedPro) {
+      mrrCentsByCurrency[cur] = (mrrCentsByCurrency[cur] ?? 0) + monthlyCents;
+    }
+    const mrrByCurrency = Object.entries(mrrCentsByCurrency)
+      .sort((a, b) => b[1] - a[1])
+      .map(([cur, cents]) => ({
+        currency: cur,
+        mrrCents: cents,
+        mrr: cents / 100,
+        arrCents: cents * 12,
+        arr: (cents * 12) / 100,
+      }));
+
+    // A single headline MRR/ARR only makes sense within one currency. With more
+    // than one, a single number is nonsensical → null (the warning + the
+    // mrrByCurrency breakdown carry the real figures). Zero subscriptions also
+    // lands here with one (default) currency → 0, matching prior behavior.
+    const mrrCents =
+      distinctCurrencies.length <= 1
+        ? Object.values(mrrCentsByCurrency).reduce((sum, c) => sum + c, 0)
+        : null;
+
+    // Real MRR by country (interval-normalized monthly cents).
     const byCountry: Record<string, number> = {};
-    for (const e of stripePro) {
-      const c = e.billingCountry ?? "UNKNOWN";
-      byCountry[c] = (byCountry[c] ?? 0) + (e.subscriptionAmountCents ?? 0);
+    for (const { ent, monthlyCents } of normalizedPro) {
+      const c = ent.billingCountry ?? "UNKNOWN";
+      byCountry[c] = (byCountry[c] ?? 0) + monthlyCents;
     }
     const revenueByCountry = Object.entries(byCountry)
       .sort((a, b) => b[1] - a[1])
@@ -138,20 +180,21 @@ export async function GET(req: Request) {
       createdAt: e.createdAt,
     });
 
-    // Top paying users
-    const topPayingUsers = stripePro
-      .filter((e) => (e.subscriptionAmountCents ?? 0) > 0)
-      .sort(
-        (a, b) => (b.subscriptionAmountCents ?? 0) - (a.subscriptionAmountCents ?? 0),
-      )
+    // Top paying users — ranked by interval-normalized MONTHLY amount so annual
+    // subscribers (whose raw amount is a full year) don't dominate the list.
+    // amountCents is the monthly-equivalent; interval lets the UI label it.
+    const topPayingUsers = normalizedPro
+      .filter((p) => p.monthlyCents > 0)
+      .sort((a, b) => b.monthlyCents - a.monthlyCents)
       .slice(0, 25)
-      .map((e) => ({
-        userId: e.userId,
-        country: e.billingCountry ?? null,
-        currency: e.billingCurrency ?? null,
-        amountCents: e.subscriptionAmountCents ?? 0,
-        cardBrand: e.cardBrand ?? null,
-        lastInvoicePaidAt: e.lastInvoicePaidAt ?? null,
+      .map(({ ent, monthlyCents }) => ({
+        userId: ent.userId,
+        country: ent.billingCountry ?? null,
+        currency: ent.billingCurrency ?? null,
+        amountCents: monthlyCents,
+        interval: ent.subscriptionInterval ?? null,
+        cardBrand: ent.cardBrand ?? null,
+        lastInvoicePaidAt: ent.lastInvoicePaidAt ?? null,
       }));
 
     // Upgrade coverage — % of stripe PROs with full billing data
@@ -165,8 +208,9 @@ export async function GET(req: Request) {
     return bookOk({
       generatedAt: new Date().toISOString(),
       currency,
-      realMrr: mrrCents / 100,
-      realArr: (mrrCents * 12) / 100,
+      realMrr: mrrCents === null ? null : mrrCents / 100,
+      realArr: mrrCents === null ? null : (mrrCents * 12) / 100,
+      mrrByCurrency,
       stripeProCount: stripePro.length,
       revenueByCountry,
       currencyMix,

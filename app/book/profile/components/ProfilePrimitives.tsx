@@ -112,6 +112,19 @@ const MILESTONE_STREAKS = new Set([7, 14, 21, 30, 50, 100, 200, 365]);
 function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; size?: number; streakDays?: number }) {
   const celebratedRef = useRef(false);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [particles] = useState(() => {
+    const colors = ["#f59e0b", "#fb923c", "#fbbf24", "#fde68a"];
+    return Array.from({ length: 7 }).map((_, i) => {
+      const angle = (i / 7) * 360 + Math.random() * 30;
+      const dist = 30 + Math.random() * 25;
+      const rad = (angle * Math.PI) / 180;
+      return {
+        x: Math.cos(rad) * dist,
+        y: Math.sin(rad) * dist,
+        color: colors[i % colors.length],
+      };
+    });
+  });
   const isMilestone = MILESTONE_STREAKS.has(streakDays);
 
   useEffect(() => {
@@ -160,27 +173,21 @@ function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; s
       {/* Milestone celebration particles */}
       {showCelebration ? (
         <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          {Array.from({ length: 7 }).map((_, i) => {
-            const angle = (i / 7) * 360 + Math.random() * 30;
-            const dist = 30 + Math.random() * 25;
-            const rad = (angle * Math.PI) / 180;
-            const colors = ["#f59e0b", "#fb923c", "#fbbf24", "#fde68a"];
-            return (
-              <motion.span
-                key={i}
-                className="absolute h-1 w-1 rounded-full"
-                style={{ backgroundColor: colors[i % colors.length] }}
-                initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
-                animate={{
-                  x: Math.cos(rad) * dist,
-                  y: Math.sin(rad) * dist,
-                  opacity: 0,
-                  scale: 0.5,
-                }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-              />
-            );
-          })}
+          {particles.map((p, i) => (
+            <motion.span
+              key={i}
+              className="absolute h-1 w-1 rounded-full"
+              style={{ backgroundColor: p.color }}
+              initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+              animate={{
+                x: p.x,
+                y: p.y,
+                opacity: 0,
+                scale: 0.5,
+              }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            />
+          ))}
         </span>
       ) : null}
 
@@ -364,7 +371,7 @@ function IdentityTooltip({
               Next: <span className="font-semibold text-(--cf-text-1)">{nextLevel.label}</span> — Complete {nextLevel.books} books
             </p>
           ) : (
-            <p className="mt-2 text-sm text-accent-amber">You've reached the highest level!</p>
+            <p className="mt-2 text-sm text-accent-amber">You&apos;ve reached the highest level!</p>
           )}
           {nextLevel ? (
             <div className="mt-2 text-xs text-(--cf-text-3)">
@@ -1447,7 +1454,9 @@ export function CategoryMap({
   totalCategories: number;
   onCategoryClick?: (category: string) => void;
 }) {
-  const remaining = totalCategories - explored.length;
+  // Clamp to >= 0: `explored` is derived from live per-book categories, so if it
+  // ever exceeds `totalCategories` we must not render a negative "+N more".
+  const remaining = Math.max(0, totalCategories - explored.length);
   return (
     <div>
       <div className="flex items-center justify-between">

@@ -31,7 +31,7 @@ import { nowIso } from "@/app/app/api/book/_lib/keys";
 import { LEGAL_TERMS_VERSION } from "@/lib/legal-entity";
 import {
   INSIGHT_POINTS_AMOUNTS,
-  INSIGHT_POINTS_COOKIE_NAME,
+  REFERRAL_ATTRIBUTION_COOKIE_NAME,
 } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
@@ -217,7 +217,7 @@ export async function POST(req: Request) {
     let clearReferralCookie = false;
     if (firstCompletion) {
       // Referral attribution — consume the invite cookie and credit the inviter.
-      const pendingReferralCode = readCookieValue(req, INSIGHT_POINTS_COOKIE_NAME);
+      const pendingReferralCode = readCookieValue(req, REFERRAL_ATTRIBUTION_COOKIE_NAME);
       if (pendingReferralCode) {
         clearReferralCookie = true;
         try {
@@ -303,7 +303,7 @@ export async function POST(req: Request) {
       currentStreak,
     });
     if (clearReferralCookie) {
-      response.cookies.set(INSIGHT_POINTS_COOKIE_NAME, "", {
+      response.cookies.set(REFERRAL_ATTRIBUTION_COOKIE_NAME, "", {
         ...getAuthCookieBase(),
         maxAge: 0,
       });

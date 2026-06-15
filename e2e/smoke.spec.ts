@@ -44,6 +44,11 @@ test.describe("public funnel", () => {
 // Authenticated app shell — reachable locally via DEV_AUTH_BYPASS=1 (set by the
 // `dev` script). Book data may be empty without BOOK_TABLE_NAME, so we assert
 // the shell renders and the route does not bounce to auth or crash.
+//
+// IMPORTANT: these run ONLY in the dev-bypass E2E mode (E2E_MODE unset/"dev").
+// They prove the shell renders with auth bypassed and no data plane — they do
+// NOT prove the production bundle, real-auth redirects, or DynamoDB-backed pages
+// work. That coverage is the "@prod" block below, run against `next start`.
 test.describe("app shell (dev-auth-bypass)", () => {
   for (const path of ["/dashboard", "/book", "/book/library", "/book/progress"]) {
     test(`${path} renders without error`, async ({ page }) => {
@@ -52,6 +57,46 @@ test.describe("app shell (dev-auth-bypass)", () => {
       await expect(page).toHaveURL(new RegExp(escapeRegex(path)));
       await expectNoErrorOverlay(page);
       await expectNotBlank(page);
+    });
+  }
+});
+
+// Production-bundle smoke — runs ONLY in E2E_MODE=prod, against `next build` +
+// `next start` (NODE_ENV=production, no DEV_AUTH_BYPASS). This catches
+// prod-build-only crashes and dev/prod hydration drift that the dev-bypass
+// shell tests above cannot, and it asserts the REAL middleware auth bounce: an
+// unauthenticated request to a protected route must redirect to /auth/login
+// (with a returnTo back to the original path). With auth bypassed in dev mode
+// this bounce is invisible, so it is verified here exclusively.
+test.describe("prod-build smoke (@prod)", () => {
+  test("public landing renders on the prod bundle @prod", async ({ page }) => {
+    const res = await page.goto("/");
+    expect(res?.status()).toBeLessThan(400);
+    await expect(page).toHaveTitle(/ChapterFlow/i);
+    await expectNoErrorOverlay(page);
+    await expectNotBlank(page);
+  });
+
+  for (const path of ["/dashboard", "/book", "/book/library"]) {
+    test(`${path} bounces unauthenticated visitor to /auth/login @prod`, async ({
+      request,
+    }) => {
+      // /auth/login is a 302 redirector that immediately hands off to the Cognito
+      // hosted UI, so its URL never becomes a browser document URL — asserting
+      // toHaveURL(/auth/login) can never match, and following the chain onward
+      // requires full COGNITO_* env the CI prod bundle intentionally omits.
+      // Assert the middleware's bounce at the HTTP level instead: an
+      // unauthenticated request to a protected route must 3xx to /auth/login
+      // carrying a relative returnTo back to the original path. maxRedirects:0
+      // stops at the middleware response (we never reach Cognito).
+      const res = await request.get(path, { maxRedirects: 0 });
+      expect(res.status(), `${path} should redirect when unauthenticated`).toBeGreaterThanOrEqual(300);
+      expect(res.status()).toBeLessThan(400);
+      const location = res.headers()["location"];
+      expect(location, `${path} redirect must carry a Location header`).toBeTruthy();
+      const loc = new URL(location, "http://127.0.0.1:3000");
+      expect(loc.pathname).toBe("/auth/login");
+      expect(loc.searchParams.get("returnTo")).toBe(path);
     });
   }
 });

@@ -6,7 +6,7 @@ import {
   type EmailCategory,
 } from "@/app/app/api/book/_lib/email-compliance";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { getUserSettingsItem, putUserSettingsItem } from "@/app/app/api/book/_lib/repo";
+import { updateUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -156,14 +156,12 @@ export async function POST(req: Request) {
 
   const category: EmailCategory = scopeAll ? "all" : claim.category;
   const tableName = await getBookTableName();
-  const existing = await getUserSettingsItem(tableName, claim.userId);
-  const nextSettings = applyUnsubscribe(existing?.settings ?? {}, category);
 
-  await putUserSettingsItem(tableName, {
-    userId: claim.userId,
-    settings: nextSettings,
-    createdAt: existing?.createdAt,
-  });
+  // Read-modify-write under optimistic concurrency so a near-simultaneous
+  // in-app settings save cannot clobber this opt-out (CASL §6 correctness).
+  await updateUserSettingsItem(tableName, claim.userId, (current) =>
+    applyUnsubscribe(current, category),
+  );
 
   const label = CATEGORY_LABELS[category];
   return htmlResponse(

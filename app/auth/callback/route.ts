@@ -16,6 +16,9 @@ function readString(value: unknown): string | null {
 // tokens silently, instead of hard-ending the session at the ~1h access-token
 // expiry. The exact value only needs to be an upper bound — a stale cookie just
 // yields a 401 from /auth/refresh, which falls back to re-login.
+// NOTE: this 30-day lifetime (refresh_token, and the auth_expires_at cookie that
+// shares it) is disclosed in app/legal/cookies/page.tsx — keep that policy in
+// sync if this value changes.
 const REFRESH_TOKEN_MAX_AGE = 30 * 24 * 60 * 60;
 
 /**
@@ -29,16 +32,17 @@ async function resolveAuthState(
 ): Promise<{
   verifier: string | null;
   returnTo: string;
-  nonce: string | null;
   acquisition?: { referer?: string; utmSource?: string; utmMedium?: string; utmCampaign?: string };
 }> {
-  // Primary path: decrypt from URL state parameter
+  // Primary path: decrypt from URL state parameter. Integrity of the AES-256-GCM
+  // ciphertext IS the CSRF control here: an attacker can't forge a valid state
+  // carrying their own PKCE verifier, so verifier-binding gives implicit CSRF
+  // protection — no separate nonce comparison is needed on this path.
   const decrypted = await decryptState(stateParam);
   if (decrypted) {
     return {
       verifier: decrypted.v,
       returnTo: sanitizeReturnTo(decrypted.r, "/book"),
-      nonce: decrypted.n,
       acquisition: {
         referer: decrypted.ref,
         utmSource: decrypted.us,
@@ -48,15 +52,27 @@ async function resolveAuthState(
     };
   }
 
-  // Fallback: read from cookies (pre-upgrade compatibility)
-  const verifier = req.cookies.get("pkce_verifier")?.value ?? null;
-  const rawReturnTo = req.cookies.get("post_auth_redirect")?.value;
+  // Fallback: read from cookies (pre-upgrade compatibility). This path is only
+  // taken when decryptState returned null (AUTH_STATE_SECRET unset/rotated/too
+  // short — see state-crypto getSecret + encryptState's catch). In that case the
+  // raw `state` query param login sent equals the bare nonce (login: `state =
+  // encrypted ?? nonce`), so it MUST match the oauth_state cookie we set at flow
+  // start. Without this check the cookie-only exchange has no CSRF binding
+  // between the IdP response and the user's flow-initiation (login-CSRF /
+  // session-fixation). On mismatch (or missing cookie), return verifier:null so
+  // GET restarts a fresh flow via the existing "no verifier" redirect.
   const nonce = req.cookies.get("oauth_state")?.value ?? null;
+  const rawReturnTo = req.cookies.get("post_auth_redirect")?.value;
+
+  if (!nonce || nonce !== stateParam) {
+    return { verifier: null, returnTo: sanitizeReturnTo(rawReturnTo, "/book") };
+  }
+
+  const verifier = req.cookies.get("pkce_verifier")?.value ?? null;
 
   return {
     verifier,
     returnTo: sanitizeReturnTo(rawReturnTo, "/book"),
-    nonce,
   };
 }
 
@@ -82,7 +98,7 @@ export async function GET(req: NextRequest) {
 
     // Recover PKCE verifier + returnTo from encrypted state (primary)
     // or cookies (fallback).
-    const { verifier, returnTo, nonce, acquisition } = await resolveAuthState(
+    const { verifier, returnTo, acquisition } = await resolveAuthState(
       stateParam,
       req,
     );
@@ -137,6 +153,11 @@ export async function GET(req: NextRequest) {
     };
 
     res.cookies.set("id_token", idToken, commonCookie);
+    // NOTE: identity is verified exclusively from id_token (see
+    // app/app/api/_lib/auth.ts COOKIE_NAME). Nothing currently READS
+    // access_token as a credential — it is persisted only to be available for a
+    // future Cognito resource-server / API Gateway authorizer call. Keep it
+    // httpOnly so it isn't a usable browser-side credential while unused.
     res.cookies.set("access_token", accessToken, commonCookie);
 
     // Persist the refresh token (httpOnly) so /auth/refresh can silently renew

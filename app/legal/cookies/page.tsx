@@ -56,13 +56,18 @@ export default function CookiePolicyPage() {
                   <td className="py-2">1 hour</td>
                 </tr>
                 <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                  <td className="py-2 pr-4 font-mono text-[13px]">refresh_token</td>
+                  <td className="py-2 pr-4">Silently renews your sign-in session — it is exchanged for fresh id/access tokens before they expire so you are not signed out every hour. Secure, httpOnly.</td>
+                  <td className="py-2">30 days</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                   <td className="py-2 pr-4 font-mono text-[13px]">auth_expires_at</td>
-                  <td className="py-2 pr-4">Session expiry timestamp for proactive session management. Client-readable (not httpOnly).</td>
-                  <td className="py-2">1 hour</td>
+                  <td className="py-2 pr-4">Session expiry timestamp for proactive session management. Client-readable (not httpOnly). The stored value is the current access-token expiry (about 1 hour out), while the cookie itself persists for the full refresh window so the client can detect an expired session and renew it.</td>
+                  <td className="py-2">30 days</td>
                 </tr>
                 <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                   <td className="py-2 pr-4 font-mono text-[13px]">cf_device</td>
-                  <td className="py-2 pr-4">Hashed device identifier for abuse prevention. Does not contain personal information.</td>
+                  <td className="py-2 pr-4">Randomly generated device identifier for abuse prevention. An opaque random value that does not contain personal information.</td>
                   <td className="py-2">1 year</td>
                 </tr>
               </tbody>
@@ -98,6 +103,11 @@ export default function CookiePolicyPage() {
                   <td className="py-2 pr-4 font-mono text-[13px]">cf_ref</td>
                   <td className="py-2 pr-4">Tracks referral attribution when you sign up through an invite link. Used to credit Insight Points to the referrer.</td>
                   <td className="py-2">30 days</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                  <td className="py-2 pr-4 font-mono text-[13px]">cf_acq_ref, cf_acq_us, cf_acq_um, cf_acq_uc</td>
+                  <td className="py-2 pr-4">First-party attribution. Briefly record how you reached ChapterFlow (the referring page and any utm_source / utm_medium / utm_campaign parameters on the link you followed) so that source can be saved to your account when you finish onboarding. These are first-party only — they are never shared with advertisers and are not used for cross-site tracking.</td>
+                  <td className="py-2">30 minutes</td>
                 </tr>
               </tbody>
             </table>

@@ -92,6 +92,18 @@ export async function validateScenario(params: {
 
 // ── Reflection Feedback ─────────────────────────────────────────────────────
 
+// Hard backstop on the length of each field interpolated into the user message.
+// The feedback route already rejects oversized fields (400) before calling this,
+// so this never truncates legitimate traffic — it bounds input-token cost for any
+// future caller that forgets to validate. Set above the route's user-facing limit.
+const MAX_PROMPT_FIELD_CHARS = 4000;
+
+function clampPromptField(value: string): string {
+  return value.length > MAX_PROMPT_FIELD_CHARS
+    ? value.slice(0, MAX_PROMPT_FIELD_CHARS)
+    : value;
+}
+
 export async function* streamReflectionFeedback(params: {
   reflectionText: string;
   scenario: string;
@@ -112,7 +124,7 @@ export async function* streamReflectionFeedback(params: {
     messages: [
       {
         role: "user",
-        content: `Chapter: ${params.chapterTitle}\n\nExample scenario: ${params.scenario}\nRecommended approach: ${params.whatToDo}\nWhy it matters: ${params.whyItMatters}\n\nUser's reflection:\n${params.reflectionText}`,
+        content: `Chapter: ${clampPromptField(params.chapterTitle)}\n\nExample scenario: ${clampPromptField(params.scenario)}\nRecommended approach: ${clampPromptField(params.whatToDo)}\nWhy it matters: ${clampPromptField(params.whyItMatters)}\n\nUser's reflection:\n${clampPromptField(params.reflectionText)}`,
       },
     ],
   });

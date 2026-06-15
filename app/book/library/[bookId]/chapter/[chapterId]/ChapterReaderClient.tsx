@@ -43,6 +43,7 @@ import { AskBookDrawer } from "@/app/book/components/AskBookDrawer";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
 import { ChapterCompleteModal } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal";
 import { Confetti } from "@/components/ui/Confetti";
+import { Dialog } from "@/components/ui/Dialog";
 import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
 import { useChapterState, type ChapterTab, type FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
@@ -253,19 +254,42 @@ export function ChapterReaderClient({
     preferredFontScale
   );
 
-  // Derive quiz passed state for practice phase gating
-  const quizPassed = state.quizResult?.passed === true;
+  const chapterState = chapter ? getChapterState(chapter.id) : "locked";
+  const isLocked = chapterState === "locked";
 
-  // §1.1 reconciliation — if quiz was already passed on a previous visit
-  // but the loop-complete IP was never claimed, silently claim it now.
-  useEffect(() => {
-    if (!quizPassed || !chapter?.order) return;
-    fetchBookJson(
-      `/app/api/book/me/chapters/${encodeURIComponent(bookId)}/${chapter.order}/unlock`,
-      { method: "POST" }
-    ).catch(() => {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quizPassed, bookId, chapter?.order]);
+  const showQuiz = state.activeTab === "quiz";
+  const activeDepth: ReadingDepth = chapter?.isStrictV12
+    ? state.readingDepth
+    : modeToDepth(learningMode);
+  const quiz = useQuizSession({
+    bookId,
+    chapterNumber: chapter?.order ?? baseChapter?.order ?? 1,
+    difficulty: activeDepth,
+    contentTone,
+    enabled:
+      Boolean(chapter) &&
+      onboardingHydrated &&
+      hydrated &&
+      chapterHydrated &&
+      onboarding.setupComplete &&
+      bookAccessStatus === "ready" &&
+      !isLocked &&
+      showQuiz,
+    localQuiz: chapter
+      ? {
+          chapterId: chapter.id,
+          questions: chapter.quizByDepth[activeDepth] ?? chapter.quiz,
+          passingScorePercent: chapter.quizPassingScorePercent,
+        }
+      : undefined,
+    retryIncorrectOnly: bookPrefs.learning.retryIncorrectOnly,
+  });
+
+  // Single source of truth for "the quiz has been passed": the live quiz
+  // session. The legacy `state.quizResult` path was never written in the live
+  // flow (setQuizResult is unused and the PATCH route stores it as null), so it
+  // was always false; the previously persisted state never reflected reality.
+  const quizPassed = quiz.session?.result?.passed === true;
 
   // Total scenarios count for phase completion gating
   const totalScenarios = chapter?.examplesDetailed?.length ?? 0;
@@ -500,8 +524,6 @@ export function ChapterReaderClient({
     };
   }, [bookId, chapter, scenariosRefetchKey]);
 
-  const chapterState = chapter ? getChapterState(chapter.id) : "locked";
-  const isLocked = chapterState === "locked";
   const dailyGoalMinutes = bookPrefs.extended.dailyGoalPreset || 10;
   const readingSession = useReadingSessionTracker({
     bookId,
@@ -527,34 +549,6 @@ export function ChapterReaderClient({
       setToast(msg);
     }
   }, [readingSession.dailyGoalReached, dailyGoalMinutes, bookPrefs.extended.motivationPersona]);
-
-  const showQuiz = state.activeTab === "quiz";
-  const activeDepth: ReadingDepth = chapter?.isStrictV12
-    ? state.readingDepth
-    : modeToDepth(learningMode);
-  const quiz = useQuizSession({
-    bookId,
-    chapterNumber: chapter?.order ?? baseChapter?.order ?? 1,
-    difficulty: activeDepth,
-    contentTone,
-    enabled:
-      Boolean(chapter) &&
-      onboardingHydrated &&
-      hydrated &&
-      chapterHydrated &&
-      onboarding.setupComplete &&
-      bookAccessStatus === "ready" &&
-      !isLocked &&
-      showQuiz,
-    localQuiz: chapter
-      ? {
-          chapterId: chapter.id,
-          questions: chapter.quizByDepth[activeDepth] ?? chapter.quiz,
-          passingScorePercent: chapter.quizPassingScorePercent,
-        }
-      : undefined,
-    retryIncorrectOnly: bookPrefs.learning.retryIncorrectOnly,
-  });
 
   const [committedToChapter, setCommittedToChapter] = useState(false);
 
@@ -1234,23 +1228,17 @@ export function ChapterReaderClient({
         </ChapterCompleteModal>
       )}
 
-      {/* Keyboard shortcuts overlay */}
+      {/* Keyboard shortcuts overlay \u2014 rendered through the shared Dialog so it
+       *  gets a portal, focus trap, initial focus, focus restore, scroll lock,
+       *  aria-modal and Escape/backdrop close for free (a11y launch gap fix). */}
       {showShortcuts && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{
-            background: "rgba(0,0,0,0.6)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-          }}
-          onClick={() => setShowShortcuts(false)}
-          role="dialog"
-          aria-label="Keyboard shortcuts"
+        <Dialog
+          open={showShortcuts}
+          onClose={() => setShowShortcuts(false)}
+          size="sm"
+          ariaLabel="Keyboard shortcuts"
         >
-          <div
-            className="rounded-2xl p-6 max-w-sm w-full bg-(--cr-bg-surface-2) border border-(--cr-glass-border)"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="p-6">
             <h3 className="text-[16px] font-semibold mb-4 text-(--cr-text-heading)">
               Keyboard Shortcuts
             </h3>
@@ -1283,7 +1271,7 @@ export function ChapterReaderClient({
               Close
             </button>
           </div>
-        </div>
+        </Dialog>
       )}
 
       {/* Phase transition interstitial */}

@@ -139,8 +139,8 @@ export function AcquisitionClient() {
       </div>
 
       <p className="mt-4 text-[11px] text-(--cf-text-soft)">
-        New signups will be tagged with referer + UTM (utm_source, utm_medium, utm_campaign) once
-        Phase 3 instrumentation is live in production.
+        Referer and UTM (utm_source, utm_medium, utm_campaign) are captured at signup; these
+        breakdowns populate as users arrive through tagged links.
       </p>
     </div>
   );

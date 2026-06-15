@@ -31,26 +31,6 @@
       "Resource": [
         "arn:aws:dynamodb:us-east-1:928413605677:table/ChapterFlowApp"
       ]
-    },
-    {
-      "Sid": "AppRunnerDeploy",
-      "Effect": "Allow",
-      "Action": [
-        "apprunner:DescribeService",
-        "apprunner:UpdateService",
-        "apprunner:ListOperations"
-      ],
-      "Resource": [
-        "arn:aws:apprunner:us-east-1:928413605677:service/*"
-      ]
-    },
-    {
-      "Sid": "PassRoleToAppRunner",
-      "Effect": "Allow",
-      "Action": "iam:PassRole",
-      "Resource": [
-        "arn:aws:iam::928413605677:role/ChapterFlowAppRuntimeRole"
-      ]
     }
   ]
 }

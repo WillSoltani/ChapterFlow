@@ -1,3 +1,5 @@
+import { DeleteObjectsCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
+import { s3 } from "@/app/app/api/_lib/aws";
 import { BookApiError } from "./errors";
 import {
   buildBookJsonKey,
@@ -16,7 +18,14 @@ import type {
 } from "./types";
 import { validateBookPackage } from "./validate-book-package";
 import { putJsonStringToS3, readJsonFromS3, writeJsonToS3 } from "./storage";
-import { createBookVersionDraft, getNextVersionNumber, publishBookVersion, upsertBookMetaAndCatalog } from "./repo";
+import {
+  createBookVersionDraft,
+  deleteBookVersion,
+  getNextVersionNumber,
+  listBookVersions,
+  publishBookVersion,
+  upsertBookMetaAndCatalog,
+} from "./repo";
 
 export async function ingestBookPackageFromS3(params: {
   tableName: string;
@@ -35,6 +44,33 @@ export async function ingestBookPackageFromS3(params: {
   const raw = await readJsonFromS3<unknown>(params.ingestBucket, params.ingestKey);
   const pkg = validateBookPackage(raw);
   const { manifest, chapterPayloads, quizPayloads } = buildArtifacts(pkg);
+
+  // Idempotency: if a version with this exact packageId already exists, reuse it
+  // instead of allocating a new version. Identical re-uploads (e.g. a retry after
+  // a transient failure) must not multiply versions and orphan content prefixes.
+  if (pkg.packageId) {
+    const existingVersions = await listBookVersions(params.tableName, pkg.book.bookId);
+    const existing = existingVersions.find((v) => v.packageId === pkg.packageId);
+    if (existing) {
+      const existingPrefix = existing.contentPrefix || buildContentPrefix(pkg.book.bookId, existing.version);
+      const existingManifestKey = existing.manifestKey || buildManifestKey(existingPrefix);
+      return {
+        bookId: pkg.book.bookId,
+        version: existing.version,
+        manifestKey: existingManifestKey,
+        contentPrefix: existingPrefix,
+        manifest: {
+          ...manifest,
+          version: existing.version,
+          chapters: manifest.chapters.map((chapter) => ({
+            ...chapter,
+            chapterKey: buildChapterKey(existingPrefix, chapter.number),
+            quizKey: buildQuizKey(existingPrefix, chapter.number),
+          })),
+        },
+      };
+    }
+  }
 
   let version: number | null = null;
   let draftCreated = false;
@@ -72,6 +108,7 @@ export async function ingestBookPackageFromS3(params: {
   const contentPrefix = buildContentPrefix(pkg.book.bookId, version);
   const manifestKey = buildManifestKey(contentPrefix);
   const bookJsonKey = buildBookJsonKey(contentPrefix);
+  const originalUploadKey = `${contentPrefix}/original-upload.json`;
   const manifestWithVersion: BookManifest = {
     ...manifest,
     version,
@@ -82,40 +119,56 @@ export async function ingestBookPackageFromS3(params: {
     })),
   };
 
-  await putJsonStringToS3(params.contentBucket, bookJsonKey, JSON.stringify(raw));
-  await writeJsonToS3(params.contentBucket, manifestKey, manifestWithVersion);
+  // The canonical book.json must match what is actually served (manifest /
+  // chapters / quizzes are built from the validated+adapted pkg, not the raw
+  // blob). Writing JSON.stringify(raw) here would diverge from every served
+  // artifact — most starkly for v21 uploads, where validateBookPackage
+  // dispatches through adaptV21ToV13 so pkg is v13-shaped while raw stays v21.
+  // Preserve the original upload separately for forensics / re-ingest.
+  try {
+    await putJsonStringToS3(params.contentBucket, bookJsonKey, JSON.stringify(pkg));
+    await putJsonStringToS3(params.contentBucket, originalUploadKey, JSON.stringify(raw));
+    await writeJsonToS3(params.contentBucket, manifestKey, manifestWithVersion);
 
-  for (const chapter of chapterPayloads) {
-    await writeJsonToS3(
-      params.contentBucket,
-      buildChapterKey(contentPrefix, chapter.number),
-      chapter
-    );
-  }
-  for (const quiz of quizPayloads) {
-    await writeJsonToS3(params.contentBucket, buildQuizKey(contentPrefix, quiz.number), quiz);
-  }
+    for (const chapter of chapterPayloads) {
+      await writeJsonToS3(
+        params.contentBucket,
+        buildChapterKey(contentPrefix, chapter.number),
+        chapter
+      );
+    }
+    for (const quiz of quizPayloads) {
+      await writeJsonToS3(params.contentBucket, buildQuizKey(contentPrefix, quiz.number), quiz);
+    }
 
-  if (pkg.conceptGraph) {
-    await writeJsonToS3(
-      params.contentBucket,
-      buildConceptGraphKey(contentPrefix),
-      pkg.conceptGraph
-    );
-  }
+    if (pkg.conceptGraph) {
+      await writeJsonToS3(
+        params.contentBucket,
+        buildConceptGraphKey(contentPrefix),
+        pkg.conceptGraph
+      );
+    }
 
-  await upsertBookMetaAndCatalog(params.tableName, {
-    bookId: pkg.book.bookId,
-    title: pkg.book.title,
-    author: pkg.book.author,
-    categories: pkg.book.categories,
-    tags: pkg.book.tags ?? [],
-    cover: pkg.book.cover,
-    variantFamily: pkg.book.variantFamily,
-    latestVersion: version,
-    currentPublishedVersion: params.publishNow ? version : undefined,
-    status: params.publishNow ? "PUBLISHED" : "DRAFT",
-  });
+    await upsertBookMetaAndCatalog(params.tableName, {
+      bookId: pkg.book.bookId,
+      title: pkg.book.title,
+      author: pkg.book.author,
+      categories: pkg.book.categories,
+      tags: pkg.book.tags ?? [],
+      cover: pkg.book.cover,
+      variantFamily: pkg.book.variantFamily,
+      latestVersion: version,
+      currentPublishedVersion: params.publishNow ? version : undefined,
+      status: params.publishNow ? "PUBLISHED" : "DRAFT",
+    });
+  } catch (error: unknown) {
+    // A mid-write failure would otherwise leave the DRAFT row + a partial
+    // content prefix orphaned for manual cleanup. Best-effort roll both back so
+    // a retry (or the idempotency check above) starts from a clean slate.
+    await deleteContentPrefix(params.contentBucket, contentPrefix).catch(() => {});
+    await deleteBookVersion(params.tableName, pkg.book.bookId, version).catch(() => {});
+    throw error;
+  }
 
   if (params.publishNow) {
     await publishBookVersion(params.tableName, pkg.book.bookId, version, params.createdBy);
@@ -128,6 +181,34 @@ export async function ingestBookPackageFromS3(params: {
     contentPrefix,
     manifest: manifestWithVersion,
   };
+}
+
+// Best-effort deletion of every S3 object under a content prefix. Used to roll
+// back partial artifact writes when an ingest fails mid-flight. Paginates
+// ListObjectsV2 and batch-deletes (DeleteObjects accepts up to 1000 keys).
+async function deleteContentPrefix(bucket: string, prefix: string): Promise<void> {
+  let continuationToken: string | undefined;
+  do {
+    const listed = await s3.send(
+      new ListObjectsV2Command({
+        Bucket: bucket,
+        Prefix: `${prefix}/`,
+        ContinuationToken: continuationToken,
+      })
+    );
+    const keys = (listed.Contents ?? [])
+      .map((obj) => obj.Key)
+      .filter((key): key is string => typeof key === "string" && key.length > 0);
+    if (keys.length > 0) {
+      await s3.send(
+        new DeleteObjectsCommand({
+          Bucket: bucket,
+          Delete: { Objects: keys.map((Key) => ({ Key })), Quiet: true },
+        })
+      );
+    }
+    continuationToken = listed.IsTruncated ? listed.NextContinuationToken : undefined;
+  } while (continuationToken);
 }
 
 function buildArtifacts(pkg: BookPackage): {

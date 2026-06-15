@@ -3,15 +3,18 @@
 /**
  * Convert an array of objects to CSV and trigger a download.
  * Headers are derived from the keys of the first row (or passed explicitly).
+ *
+ * Returns `true` if a download was triggered, `false` if there was nothing to
+ * export. Callers should surface the empty case with their own in-page toast
+ * rather than relying on a blocking native dialog.
  */
 export function downloadCSV<T extends Record<string, unknown>>(
   rows: T[],
   filename: string,
   headers?: Array<keyof T | { key: keyof T; label: string }>,
-): void {
+): boolean {
   if (rows.length === 0) {
-    alert("Nothing to export");
-    return;
+    return false;
   }
 
   const cols =
@@ -26,7 +29,13 @@ export function downloadCSV<T extends Record<string, unknown>>(
 
   const escape = (val: unknown): string => {
     if (val === null || val === undefined) return "";
-    const str = typeof val === "object" ? JSON.stringify(val) : String(val);
+    let str = typeof val === "object" ? JSON.stringify(val) : String(val);
+    // Neutralize spreadsheet formula triggers (OWASP CSV-injection mitigation):
+    // prefix a leading '=', '+', '-', '@', tab, or CR with a single quote so the
+    // value is treated as text when opened in Excel/Sheets.
+    if (/^[=+\-@\t\r]/.test(str)) {
+      str = `'${str}`;
+    }
     if (/[",\n\r]/.test(str)) {
       return `"${str.replace(/"/g, '""')}"`;
     }
@@ -47,4 +56,5 @@ export function downloadCSV<T extends Record<string, unknown>>(
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+  return true;
 }

@@ -210,7 +210,6 @@ export function RewardsPageClient() {
       <TopNav
         name={identity.displayName || "Reader"}
         avatarUrl={identity.avatarDataUrl}
-        activeTab="badges"
         searchQuery=""
         onSearchChange={() => {}}
         searchInputRef={searchRef}
@@ -252,12 +251,18 @@ export function RewardsPageClient() {
           <AnimatePresence>
             {redeemMessage && (
               <motion.div
+                role={redeemMessage.tone === "error" ? "alert" : undefined}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) p-3 text-center text-[14px] font-medium text-(--cf-accent)"
+                className={
+                  "rounded-xl border p-3 text-center text-[14px] font-medium " +
+                  (redeemMessage.tone === "error"
+                    ? "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)"
+                    : "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)")
+                }
               >
-                {redeemMessage}
+                {redeemMessage.message}
               </motion.div>
             )}
           </AnimatePresence>

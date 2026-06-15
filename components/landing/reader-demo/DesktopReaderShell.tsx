@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 import { PhaseStepper } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseStepper";
 import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
@@ -49,6 +49,11 @@ const PHASE_DURATIONS_MS: Record<ChapterTab, number> = {
  * Auto-advances through the 4 phases until the user interacts (clicks
  * a phase, depth selector, accordion, etc.) at which point control
  * transfers to the user.
+ *
+ * Respects `useReducedMotion` (WCAG 2.2.2): when the user prefers
+ * reduced motion the auto-advance timer is skipped entirely (the demo
+ * is driven manually via the PhaseStepper / ContinueButton) and the
+ * phase-transition animation is disabled.
  */
 export function DesktopReaderShell() {
   const [activeTab, setActiveTab] = useState<ChapterTab>("summary");
@@ -57,6 +62,8 @@ export function DesktopReaderShell() {
     new Set()
   );
   const [exampleFilter, setExampleFilter] = useState<ExampleFilter>("all");
+
+  const prefersReducedMotion = useReducedMotion();
 
   const hasInteracted = useRef(false);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -73,8 +80,11 @@ export function DesktopReaderShell() {
     stopAutoAdvance();
   }, [stopAutoAdvance]);
 
-  // Auto-advance until user interaction
+  // Auto-advance until user interaction. Skipped entirely when the user
+  // prefers reduced motion — they step through via the PhaseStepper /
+  // ContinueButton instead (WCAG 2.2.2: no auto-updating moving content).
   useEffect(() => {
+    if (prefersReducedMotion) return;
     if (hasInteracted.current) return;
     const dwell = PHASE_DURATIONS_MS[activeTab];
     advanceRef.current = setTimeout(() => {
@@ -83,7 +93,7 @@ export function DesktopReaderShell() {
       setActiveTab(next);
     }, dwell);
     return () => stopAutoAdvance();
-  }, [activeTab, stopAutoAdvance]);
+  }, [activeTab, stopAutoAdvance, prefersReducedMotion]);
 
   const handleTabChange = useCallback(
     (tab: ChapterTab) => {
@@ -185,10 +195,14 @@ export function DesktopReaderShell() {
         <AnimatePresence mode="wait">
           <motion.div
             key={`${activeTab}-${readingDepth}`}
-            initial={{ opacity: 0, y: 8 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            exit={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
+            }
           >
             {activeTab === "summary" && (
               <>

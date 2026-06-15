@@ -2,6 +2,7 @@ import {
   GetCommand,
   PutCommand,
   QueryCommand,
+  type QueryCommandInput,
   type TransactWriteCommandInput,
   UpdateCommand,
   DeleteCommand,
@@ -48,6 +49,8 @@ import {
   webhookSk,
   emailSuppressionPk,
   emailSuppressionSk,
+  trialEndingEmailPk,
+  trialEndingEmailSk,
   billingEventPk,
   billingEventSk,
   licenseKeyPk,
@@ -193,20 +196,54 @@ function isConditionalCheckFailed(error: unknown): boolean {
   );
 }
 
+/**
+ * Hard cap on the number of 1MB pages a full-partition query will follow.
+ * Guards against a pathological/runaway partition pinning a request forever.
+ * 50 pages × 1MB is well beyond any realistic per-user or catalog partition.
+ */
+const MAX_QUERY_PAGES = 50;
+
+/**
+ * Run a DynamoDB Query and follow `LastEvaluatedKey` until the full result set
+ * has been read, accumulating every page's `Items`. A single `QueryCommand`
+ * returns at most 1MB, so any unbounded full-partition list must paginate or it
+ * silently truncates as the partition grows. Mirrors the loop already used in
+ * admin-metrics.ts / economy-health.ts / soft-decay.ts.
+ *
+ * Pass the same input you would give `QueryCommand` (without
+ * `ExclusiveStartKey`); a `Limit`, if supplied, is treated as a per-page hint.
+ */
+async function queryAllItems(
+  input: Omit<QueryCommandInput, "ExclusiveStartKey">
+): Promise<Record<string, unknown>[]> {
+  const items: Record<string, unknown>[] = [];
+  let lastKey: Record<string, unknown> | undefined;
+  let pages = 0;
+  do {
+    const res = await ddbDoc.send(
+      new QueryCommand({ ...input, ExclusiveStartKey: lastKey })
+    );
+    for (const item of res.Items ?? []) {
+      items.push(item);
+    }
+    lastKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
+    pages += 1;
+  } while (lastKey && pages < MAX_QUERY_PAGES);
+  return items;
+}
+
 export async function listPublishedCatalogItems(tableName: string): Promise<BookCatalogItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": catalogPk(),
-        ":prefix": "BOOK#",
-      },
-      ScanIndexForward: true,
-    })
-  );
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": catalogPk(),
+      ":prefix": "BOOK#",
+    },
+    ScanIndexForward: true,
+  });
   const out: BookCatalogItem[] = [];
-  for (const item of res.Items ?? []) {
+  for (const item of rows) {
     const bookId = readStr(item.bookId);
     const title = readStr(item.title);
     const author = readStr(item.author);
@@ -642,7 +679,9 @@ export async function getUserEntitlement(
           ? "flow_points"
           : item.proSource === "gift_code"
             ? "gift_code"
-            : undefined;
+            : item.proSource === "admin"
+              ? "admin"
+              : undefined;
   const licenseKey = readStr(item.licenseKey);
   const licenseExpiresAt = readStr(item.licenseExpiresAt);
   const currentPeriodEnd = readStr(item.currentPeriodEnd);
@@ -687,7 +726,53 @@ export async function getUserEntitlement(
   };
 }
 
+function isNullSetValidationError(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  return (error as { name?: unknown }).name === "ValidationException";
+}
+
 export async function reserveBookEntitlement(
+  tableName: string,
+  params: {
+    userId: string;
+    bookId: string;
+    freeSlotsDefault: number;
+  }
+): Promise<BookUserEntitlement> {
+  try {
+    return await reserveBookEntitlementOnce(tableName, params);
+  } catch (error: unknown) {
+    // C1 / H12 self-heal: while convertEmptyValues:true was deployed, an
+    // entitlement initialized before the user's first unlock (e.g. by
+    // attachStripeCustomerIfAbsent at checkout) persisted unlockedBookIds as a
+    // NULL attribute — the SDK marshalled an empty `new Set()` to {NULL:true}.
+    // The `ADD unlockedBookIds` below then fails with a ValidationException (ADD
+    // onto a NULL-typed attribute) instead of unlocking — the exact first-unlock
+    // outage H12 targeted, still latent for the already-corrupted cohort. Heal it
+    // once: drop the NULL attribute (conditionally, so a genuine set is never
+    // touched) and retry. A NULL unlockedBookIds is semantically an empty set (no
+    // real unlocks), so removing it loses no data.
+    if (!isNullSetValidationError(error)) throw error;
+    await ddbDoc
+      .send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(params.userId), SK: entitlementSk() },
+          UpdateExpression: "REMOVE unlockedBookIds",
+          ConditionExpression: "attribute_type(unlockedBookIds, :nullType)",
+          ExpressionAttributeValues: { ":nullType": "NULL" },
+        })
+      )
+      .catch((healErr: unknown) => {
+        // Not actually NULL (a concurrent writer healed it, or the error was
+        // unrelated) — let the retry below surface the real failure.
+        if (!isConditionalCheckFailed(healErr)) throw healErr;
+      });
+    return await reserveBookEntitlementOnce(tableName, params);
+  }
+}
+
+async function reserveBookEntitlementOnce(
   tableName: string,
   params: {
     userId: string;
@@ -708,7 +793,7 @@ export async function reserveBookEntitlement(
           "SET #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :freeSlots), updatedAt = :updatedAt ADD unlockedBookIds :bookSet",
         // A user may bypass the slot limit only when they are PRO with a non-expired entitlement.
         ConditionExpression: [
-          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now) OR (proSource = :giftSource AND currentPeriodEnd >= :now)))",
+          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :adminSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now) OR (proSource = :giftSource AND currentPeriodEnd >= :now)))",
           "OR contains(unlockedBookIds, :bookId)",
           "OR attribute_not_exists(unlockedBookIds)",
           "OR attribute_not_exists(freeBookSlots)",
@@ -721,6 +806,7 @@ export async function reserveBookEntitlement(
           ":freePlan": "FREE",
           ":proPlan": "PRO",
           ":stripeSource": "stripe",
+          ":adminSource": "admin",
           ":licenseSource": "license",
           ":flowPointsSource": "flow_points",
           ":giftSource": "gift_code",
@@ -743,7 +829,9 @@ export async function reserveBookEntitlement(
             ? "flow_points"
             : item.proSource === "gift_code"
               ? "gift_code"
-              : undefined;
+              : item.proSource === "admin"
+                ? "admin"
+                : undefined;
     return {
       userId: params.userId,
       plan: item.plan === "PRO" ? "PRO" : "FREE",
@@ -854,19 +942,17 @@ export async function listAllUserProgress(
   tableName: string,
   userId: string
 ): Promise<BookUserProgress[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "PROGRESS#",
-      },
-      ScanIndexForward: false,
-    })
-  );
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "PROGRESS#",
+    },
+    ScanIndexForward: false,
+  });
   const out: BookUserProgress[] = [];
-  for (const item of res.Items ?? []) {
+  for (const item of rows) {
     const bookId = readStr(item.bookId);
     if (!bookId) continue;
     out.push({
@@ -1595,6 +1681,41 @@ export async function recordStripeWebhookEvent(
   }
 }
 
+/**
+ * Atomically claim the right to send the transactional "trial ends soon" email
+ * for a (customer, trial_end) pair. Returns true exactly once: the first caller
+ * wins via a ConditionExpression, every redelivery loses and gets false (skip
+ * the send). This prevents duplicate pre-charge notices when the
+ * customer.subscription.trial_will_end webhook is retried after a successful
+ * send but a later step (recordStripeWebhookEvent / metrics) fails (L12).
+ */
+export async function markTrialEndingEmailSent(
+  tableName: string,
+  customerId: string,
+  trialEndUnix: number
+): Promise<boolean> {
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: trialEndingEmailPk(customerId),
+          SK: trialEndingEmailSk(trialEndUnix),
+          entity: "BOOK_TRIAL_ENDING_EMAIL",
+          customerId,
+          trialEndUnix,
+          createdAt: nowIso(),
+        },
+        ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
+}
+
 // ── Email suppression (bounce/complaint deliverability) ───────────────────────
 
 export type EmailSuppressionRecord = {
@@ -1687,34 +1808,48 @@ export type BillingEventRecord = {
 /**
  * Persist a refund or dispute (chargeback) as a durable, append-only billing
  * event for the admin finance reports. Idempotent: the SK embeds the Stripe
- * object id + its created timestamp, so webhook redelivery overwrites in place
- * rather than duplicating.
+ * object id + its created timestamp, so webhook redelivery overwrites the same
+ * item rather than duplicating. The ConditionExpression hardens this against a
+ * redelivery that computes a different fallback timestamp (e.g. a dispute with a
+ * missing `created`): a second Put for an already-recorded SK is a benign no-op
+ * instead of a duplicate finance row. Callers should pass a deterministic
+ * createdAt (the Stripe object's `created`) so the SK is stable across retries.
  */
 export async function recordBillingEvent(
   tableName: string,
   e: BillingEventRecord
 ): Promise<void> {
   const skKind = e.kind === "refund" ? "REFUND" : "DISPUTE";
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: billingEventPk(),
-        SK: billingEventSk(skKind, e.createdAt, e.eventId),
-        entity: "BOOK_BILLING_EVENT",
-        kind: e.kind,
-        eventId: e.eventId,
-        userId: e.userId,
-        stripeCustomerId: e.stripeCustomerId,
-        chargeId: e.chargeId,
-        amountCents: e.amountCents,
-        currency: e.currency,
-        reason: e.reason,
-        status: e.status,
-        createdAt: e.createdAt,
-      },
-    })
-  );
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: billingEventPk(),
+          SK: billingEventSk(skKind, e.createdAt, e.eventId),
+          entity: "BOOK_BILLING_EVENT",
+          kind: e.kind,
+          eventId: e.eventId,
+          userId: e.userId,
+          stripeCustomerId: e.stripeCustomerId,
+          chargeId: e.chargeId,
+          amountCents: e.amountCents,
+          currency: e.currency,
+          reason: e.reason,
+          status: e.status,
+          createdAt: e.createdAt,
+        },
+        // Preserve chronological-Query ordering (the SK still embeds createdAt)
+        // while guaranteeing a webhook redelivery can never create a second row
+        // for an already-recorded event.
+        ConditionExpression: "attribute_not_exists(SK)",
+      })
+    );
+  } catch (error: unknown) {
+    // Already recorded (idempotent redelivery) — not an error.
+    if (isConditionalCheckFailed(error)) return;
+    throw error;
+  }
 }
 
 /** List the most recent refund or dispute events (newest first) for admin reports. */
@@ -1810,6 +1945,13 @@ export async function updateUserEntitlementFromStripe(
     lastInvoiceCurrency?: string;
     lastInvoicePaidAt?: string;
     failedPaymentLastReason?: string;
+    // Sticky chargeback marker. Set true when charge.dispute.created revokes
+    // access so a stale/redelivered PRO-activation event (invoice.paid,
+    // customer.subscription.*) cannot silently re-grant Pro to a user who
+    // reversed payment. Cleared (true → removed) on charge.dispute.closed with
+    // status="won". A PRO-activation write is refused while it is present.
+    setDisputeOpen?: boolean;
+    clearDisputeOpen?: boolean;
   }
 ): Promise<void> {
   // When entering a Pro state via Stripe, we must persist proSource so that
@@ -1817,6 +1959,7 @@ export async function updateUserEntitlementFromStripe(
   // Stripe-backed Pro. When leaving Pro (FREE/canceled), clear proSource.
   const proSourceValue =
     params.plan === "PRO" ? params.proSource ?? "stripe" : null;
+  const isProActivation = params.plan === "PRO";
 
   // Build the SET clause dynamically. Only fields explicitly provided by the
   // event source are written, so e.g. invoice.paid (which has no
@@ -1830,7 +1973,11 @@ export async function updateUserEntitlementFromStripe(
     "stripeSubscriptionId = :stripeSubscriptionId",
     "updatedAt = :updatedAt",
     "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
-    "unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+    // unlockedBookIds is intentionally NOT initialized here. Writing an empty
+    // Set is impossible now that convertEmptyValues is off (marshal throws), and
+    // initializing it to NULL is what broke reserveBookEntitlement's ADD. The
+    // attribute is created lazily by the first `ADD unlockedBookIds :bookSet`;
+    // reads use parseStringArray which returns [] for a missing attribute.
   ];
   const eav: Record<string, unknown> = {
     ":plan": params.plan,
@@ -1842,7 +1989,6 @@ export async function updateUserEntitlementFromStripe(
     ":stripeSubscriptionId": params.stripeSubscriptionId ?? null,
     ":updatedAt": nowIso(),
     ":defaultSlots": 2,
-    ":emptySet": new Set<string>(),
   };
   if (params.currentPeriodEnd !== undefined) {
     setParts.push("currentPeriodEnd = :periodEnd");
@@ -1905,6 +2051,38 @@ export async function updateUserEntitlementFromStripe(
     eav[":sint"] = params.subscriptionInterval;
   }
 
+  // Sticky chargeback marker (L13). The dispute downgrade sets it; a "won"
+  // dispute clears it. setDisputeOpen wins if both are passed (defensive).
+  const removeParts: string[] = [];
+  if (params.setDisputeOpen) {
+    setParts.push("disputeOpen = :disputeOpen");
+    eav[":disputeOpen"] = true;
+  } else if (params.clearDisputeOpen) {
+    removeParts.push("disputeOpen");
+  }
+
+  // Guard: only allow Stripe to write entitlement when the existing proSource is
+  // absent or already "stripe". This prevents a delayed Stripe webhook from
+  // clobbering a user who upgraded via license key or flow_points after the
+  // Stripe subscription ended.
+  const conditionParts = [
+    "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)",
+  ];
+  // Additionally, a PRO-activation must not re-grant access while an unresolved
+  // chargeback marker is present (L13). After a dispute downgrade proSource is
+  // null, which the proSource guard alone treats as writable — so a stale,
+  // redelivered invoice.paid / customer.subscription.* could otherwise
+  // re-activate a chargebacked user. The dispute downgrade itself (plan FREE,
+  // setDisputeOpen) and the dispute-won clear are not PRO activations, so they
+  // are intentionally exempt from this guard.
+  if (isProActivation && !params.setDisputeOpen) {
+    conditionParts.push("attribute_not_exists(disputeOpen)");
+  }
+
+  const updateExpression =
+    "SET " + setParts.join(", ") +
+    (removeParts.length > 0 ? " REMOVE " + removeParts.join(", ") : "");
+
   try {
     await ddbDoc.send(
       new UpdateCommand({
@@ -1913,20 +2091,16 @@ export async function updateUserEntitlementFromStripe(
           PK: bookUserPk(params.userId),
           SK: entitlementSk(),
         },
-        // Guard: only allow Stripe to write entitlement when the existing
-        // proSource is absent or already "stripe". This prevents a delayed
-        // Stripe webhook from clobbering a user who upgraded via license key
-        // or flow_points after the Stripe subscription ended.
-        ConditionExpression:
-          "attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource",
-        UpdateExpression: "SET " + setParts.join(", "),
+        ConditionExpression: conditionParts.join(" AND "),
+        UpdateExpression: updateExpression,
         ExpressionAttributeNames: { "#plan": "plan" },
         ExpressionAttributeValues: eav,
       })
     );
   } catch (error: unknown) {
     if (isConditionalCheckFailed(error)) {
-      // The user is currently on a non-Stripe Pro source (license / flow_points).
+      // Either the user is on a non-Stripe Pro source (license / flow_points),
+      // or an unresolved chargeback marker is blocking PRO re-activation.
       // Refuse to overwrite. The Stripe customer/subscription IDs themselves
       // are still safe to attach via attachStripeCustomerToEntitlement; here we
       // simply skip the entitlement mutation.
@@ -1948,8 +2122,10 @@ export async function attachStripeCustomerToEntitlement(
         PK: bookUserPk(userId),
         SK: entitlementSk(),
       },
+      // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do not
+      // initialize it here (an empty Set can no longer be marshalled).
       UpdateExpression:
-        "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+        "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
       ExpressionAttributeNames: {
         "#plan": "plan",
       },
@@ -1958,7 +2134,6 @@ export async function attachStripeCustomerToEntitlement(
         ":updatedAt": nowIso(),
         ":freePlan": "FREE",
         ":defaultSlots": 2,
-        ":emptySet": new Set<string>(),
       },
     })
   );
@@ -1984,15 +2159,16 @@ export async function attachStripeCustomerIfAbsent(
           SK: entitlementSk(),
         },
         ConditionExpression: "attribute_not_exists(stripeCustomerId)",
+        // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do not
+        // initialize it here (an empty Set can no longer be marshalled).
         UpdateExpression:
-          "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+          "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
         ExpressionAttributeNames: { "#plan": "plan" },
         ExpressionAttributeValues: {
           ":customerId": customerId,
           ":updatedAt": nowIso(),
           ":freePlan": "FREE",
           ":defaultSlots": 2,
-          ":emptySet": new Set<string>(),
         },
       })
     );
@@ -2016,7 +2192,6 @@ export async function adminUpdateUserEntitlement(
   const segments: string[] = ["updatedAt = :updatedAt"];
   const values: Record<string, unknown> = {
     ":updatedAt": updatedAt,
-    ":emptySet": new Set<string>(),
     ":defaultSlots": 2,
     ":defaultPlan": "FREE",
   };
@@ -2036,7 +2211,22 @@ export async function adminUpdateUserEntitlement(
     segments.push("proStatus = :proStatus");
     values[":proStatus"] = params.proStatus;
   }
-  segments.push("unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)");
+  // A manual PRO grant is a comp, not a Stripe-billed subscription. Stamp
+  // proSource="admin" so revenue/reconciliation routes (scanAllEntitlements →
+  // revenue MRR filter, reconciliation prosource_mismatch) exclude it from
+  // Stripe MRR while still surfacing it in the proSourceBreakdown. When an admin
+  // sets the plan back to FREE, clear proSource so a previously comped row no
+  // longer claims a PRO source. A pure freeBookSlots/proStatus tweak (no plan
+  // change) leaves proSource untouched so we never clobber a real Stripe source.
+  if (params.plan === "PRO") {
+    segments.push("proSource = :proSource");
+    values[":proSource"] = "admin";
+  } else if (params.plan === "FREE") {
+    segments.push("proSource = :proSource");
+    values[":proSource"] = null;
+  }
+  // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do not
+  // initialize it here (an empty Set can no longer be marshalled).
 
   const res = await ddbDoc.send(
     new UpdateCommand({
@@ -2071,6 +2261,42 @@ export async function adminUpdateUserEntitlement(
     currentPeriodEnd: readStr(item.currentPeriodEnd),
     updatedAt: readStr(item.updatedAt) || updatedAt,
   };
+}
+
+/**
+ * Write a back-office admin audit record. Generalizes the segment-shaped
+ * writeAuditEntry in admin-segments-repo.ts to any admin action that mutates a
+ * single target user (entitlement overrides, etc.) so comped/granted state is
+ * traceable for fraud investigation and accountability.
+ *
+ * Shape matches the existing ADMIN_AUDIT rows: PK groups every action by the
+ * acting admin (BOOKAUDIT#<adminUserId>), SK orders them by time#action.
+ */
+export async function writeAdminAudit(
+  tableName: string,
+  entry: {
+    adminUserId: string;
+    action: string;
+    targetUserId: string;
+    params?: Record<string, unknown>;
+  }
+): Promise<void> {
+  const now = nowIso();
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: `BOOKAUDIT#${entry.adminUserId}`,
+        SK: `${now}#${entry.action}`,
+        entity: "ADMIN_AUDIT",
+        adminUserId: entry.adminUserId,
+        action: entry.action,
+        targetUserId: entry.targetUserId,
+        params: entry.params ?? {},
+        createdAt: now,
+      },
+    })
+  );
 }
 
 export async function deleteBookVersion(
@@ -2161,7 +2387,13 @@ export async function readManifest(
 
 export function summarizeProgress(
   entries: BookUserProgress[],
-  ent: BookUserEntitlement | null
+  ent: BookUserEntitlement | null,
+  // Per-book total chapter count (e.g. from book manifests / catalog). When a
+  // book's real chapterCount is supplied, "completed" means every chapter is
+  // done (completedChapters.length >= chapterCount), which is exact and handles
+  // out-of-order completion. When a count is unknown the legacy heuristic is
+  // used so callers that cannot supply counts keep their previous behaviour.
+  chapterCounts?: Map<string, number> | Record<string, number>
 ): {
   booksStarted: number;
   booksCompleted: number;
@@ -2171,6 +2403,13 @@ export function summarizeProgress(
   freeBookSlots: number;
   unlockedBooksCount: number;
 } {
+  const chapterCountFor = (bookId: string): number | undefined => {
+    if (!chapterCounts) return undefined;
+    const raw =
+      chapterCounts instanceof Map ? chapterCounts.get(bookId) : chapterCounts[bookId];
+    return typeof raw === "number" && Number.isFinite(raw) && raw > 0 ? raw : undefined;
+  };
+
   const booksStarted = entries.length;
   let booksCompleted = 0;
   let chaptersCompleted = 0;
@@ -2178,7 +2417,15 @@ export function summarizeProgress(
 
   for (const p of entries) {
     chaptersCompleted += p.completedChapters.length;
-    if (p.completedChapters.length > 0 && p.currentChapterNumber <= p.completedChapters.length) {
+    const totalChapters = chapterCountFor(p.bookId);
+    const isCompleted =
+      totalChapters !== undefined
+        ? // Exact: every chapter of the book has been completed.
+          p.completedChapters.length >= totalChapters
+        : // Fallback heuristic when the book's real chapter count is unknown.
+          p.completedChapters.length > 0 &&
+          p.currentChapterNumber <= p.completedChapters.length;
+    if (isCompleted) {
       booksCompleted += 1;
     }
     for (const value of Object.values(p.bestScoreByChapter)) {
@@ -2475,24 +2722,43 @@ export async function putUserSettingsItem(
     userId: string;
     settings: Record<string, unknown>;
     createdAt?: string;
+    /**
+     * Optimistic-concurrency guard. When provided, the write only succeeds if
+     * the stored `updatedAt` still equals this value (or the item is absent for
+     * `""`). On mismatch a ConditionalCheckFailedException is thrown so callers
+     * can re-read and retry instead of silently clobbering a concurrent write.
+     */
+    expectedUpdatedAt?: string;
   }
 ): Promise<BookUserSettingsItem> {
   const now = nowIso();
   const createdAt = params.createdAt || now;
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: bookUserPk(params.userId),
-        SK: settingsSk(),
-        entity: "BOOK_USER_SETTINGS",
-        userId: params.userId,
-        settings: params.settings,
-        createdAt,
-        updatedAt: now,
-      },
-    })
-  );
+
+  const put = new PutCommand({
+    TableName: tableName,
+    Item: {
+      PK: bookUserPk(params.userId),
+      SK: settingsSk(),
+      entity: "BOOK_USER_SETTINGS",
+      userId: params.userId,
+      settings: params.settings,
+      createdAt,
+      updatedAt: now,
+    },
+  });
+
+  if (params.expectedUpdatedAt !== undefined) {
+    if (params.expectedUpdatedAt === "") {
+      // First write for this user: succeed only if no settings item exists yet.
+      put.input.ConditionExpression = "attribute_not_exists(PK)";
+    } else {
+      // Subsequent write: succeed only if nobody else has written since we read.
+      put.input.ConditionExpression = "updatedAt = :expected";
+      put.input.ExpressionAttributeValues = { ":expected": params.expectedUpdatedAt };
+    }
+  }
+
+  await ddbDoc.send(put);
   return {
     userId: params.userId,
     settings: params.settings,
@@ -2501,22 +2767,55 @@ export async function putUserSettingsItem(
   };
 }
 
+/**
+ * Read-modify-write a user's settings under optimistic concurrency. `apply`
+ * receives the latest persisted settings (`{}` when none exist) and returns the
+ * next full settings object. The conditional Put is retried on a concurrent
+ * write so near-simultaneous updates (e.g. an in-app settings save racing a
+ * one-click email unsubscribe) cannot silently overwrite each other.
+ */
+export async function updateUserSettingsItem(
+  tableName: string,
+  userId: string,
+  apply: (current: Record<string, unknown>) => Record<string, unknown>,
+  maxAttempts = 4
+): Promise<BookUserSettingsItem> {
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    const existing = await getUserSettingsItem(tableName, userId);
+    const nextSettings = apply(existing?.settings ?? {});
+    try {
+      return await putUserSettingsItem(tableName, {
+        userId,
+        settings: nextSettings,
+        createdAt: existing?.createdAt,
+        expectedUpdatedAt: existing?.updatedAt ?? "",
+      });
+    } catch (error: unknown) {
+      if (!isConditionalCheckFailed(error)) throw error;
+      // A concurrent writer won the race; loop to re-read and re-apply.
+    }
+  }
+  throw new BookApiError(
+    409,
+    "settings_write_conflict",
+    "Settings were updated concurrently. Please retry."
+  );
+}
+
 export async function listSavedBooks(
   tableName: string,
   userId: string
 ): Promise<BookUserSavedBookItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "SAVED#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserSavedBookItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "SAVED#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserSavedBookItem | null> = rows
     .map((item) => {
       const bookId = readStr(item.bookId);
       if (!bookId) return null;
@@ -2650,18 +2949,16 @@ export async function listAllUserBookStates(
   tableName: string,
   userId: string
 ): Promise<BookUserBookStateItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "BOOKSTATE#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserBookStateItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "BOOKSTATE#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserBookStateItem | null> = rows
     .map((item) => {
       const bookId = readStr(item.bookId);
       if (!bookId) return null;
@@ -2731,18 +3028,16 @@ export async function listUserChapterStates(
   tableName: string,
   userId: string
 ): Promise<BookUserChapterStateItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "CHAPTERSTATE#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserChapterStateItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "CHAPTERSTATE#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserChapterStateItem | null> = rows
     .map((item) => {
       const bookId = readStr(item.bookId);
       const chapterNumber = readNum(item.chapterNumber);
@@ -2805,18 +3100,16 @@ export async function listReadingDays(
   tableName: string,
   userId: string
 ): Promise<BookUserReadingDayItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "READINGDAY#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserReadingDayItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "READINGDAY#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserReadingDayItem | null> = rows
     .map((item) => {
       const dayKey = readStr(item.dayKey);
       if (!dayKey) return null;
@@ -2835,18 +3128,16 @@ export async function listBadgeAwards(
   tableName: string,
   userId: string
 ): Promise<BookUserBadgeAwardItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "BADGE#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserBadgeAwardItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "BADGE#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserBadgeAwardItem | null> = rows
     .map((item) => {
       const badgeId = readStr(item.badgeId);
       if (!badgeId) return null;
@@ -3025,8 +3316,11 @@ export async function redeemLicenseKey(
                 "licenseKey = :code,",
                 "licenseExpiresAt = :expiresAt,",
                 "updatedAt = :now,",
-                "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots),",
-                "unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+                // unlockedBookIds is created lazily by reserveBookEntitlement's
+                // ADD; do not initialize it here (an empty Set can no longer be
+                // marshalled). Note: this clause must stay last so the preceding
+                // element carries no trailing comma after the .join(" ").
+                "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
               ].join(" "),
               // Atomically refuse to clobber an active paid Stripe subscription.
               // The route also pre-checks this (license/route.ts), but the read is
@@ -3044,7 +3338,6 @@ export async function redeemLicenseKey(
                 ":expiresAt": expiresAt,
                 ":now": now,
                 ":defaultSlots": 2,
-                ":emptySet": new Set<string>(),
               },
             },
           },
@@ -3146,32 +3439,31 @@ export async function listLicenseKeys(
   tableName: string,
   statusFilter?: "available" | "redeemed" | "revoked"
 ): Promise<LicenseKeyItem[]> {
-  const params: Record<string, unknown> = {
+  // All license-key index items live under one constant partition, so a single
+  // page (1MB) silently truncates once the program scales. Read every page
+  // first, then apply the status filter client-side: a server-side
+  // FilterExpression is evaluated per 1MB page before truncation, so it would
+  // under-count whenever the partition exceeds one page.
+  const rows = await queryAllItems({
     TableName: tableName,
     KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
     ExpressionAttributeValues: {
       ":pk": licenseIndexPk(),
       ":prefix": "CODE#",
-    } as Record<string, unknown>,
-  };
-
-  if (statusFilter) {
-    params.FilterExpression = "#status = :statusFilter";
-    params.ExpressionAttributeNames = { "#status": "status" };
-    (params.ExpressionAttributeValues as Record<string, unknown>)[":statusFilter"] = statusFilter;
-  }
-
-  const res = await ddbDoc.send(new QueryCommand(params as never));
-  return (res.Items ?? []).map((item) => ({
-    code: item.code as string,
-    plan: "PRO" as const,
-    validMonths: (item.validMonths as number) ?? 1,
-    status: item.status as "available" | "redeemed" | "revoked",
-    redeemedBy: item.redeemedBy as string | undefined,
-    redeemedAt: item.redeemedAt as string | undefined,
-    createdAt: item.createdAt as string,
-    note: item.note as string | undefined,
-  }));
+    },
+  });
+  return rows
+    .map((item) => ({
+      code: item.code as string,
+      plan: "PRO" as const,
+      validMonths: (item.validMonths as number) ?? 1,
+      status: item.status as "available" | "redeemed" | "revoked",
+      redeemedBy: item.redeemedBy as string | undefined,
+      redeemedAt: item.redeemedAt as string | undefined,
+      createdAt: item.createdAt as string,
+      note: item.note as string | undefined,
+    }))
+    .filter((key) => !statusFilter || key.status === statusFilter);
 }
 
 /** Revoke a license key. Updates both the main record and the index item. */

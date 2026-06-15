@@ -1,4 +1,5 @@
 import "server-only";
+import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
 import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
@@ -14,6 +15,11 @@ export async function GET(
   { params }: { params: Promise<{ bookId: string }> }
 ) {
   return withBookApiErrors(req, async () => {
+    // Mirror sibling content routes (e.g. chapters/[chapterNumber]) so the
+    // concept graph follows the same route-level JWT-verify + active-account
+    // (soft-delete) gating instead of relying solely on middleware's
+    // lightweight cookie-presence check.
+    await requireActiveBookUser();
     const { bookId } = await params;
     if (!bookId) {
       throw new BookApiError(400, "invalid_book_id", "bookId is required.");

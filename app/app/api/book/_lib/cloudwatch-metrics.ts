@@ -86,22 +86,12 @@ function sumDatapoints(points: Datapoint[]): number {
   return points.reduce((acc, p) => acc + (p.Sum ?? 0), 0);
 }
 
-function extractStat(points: Datapoint[], field: keyof Datapoint): number[] {
-  return points
-    .map((p) => {
-      const v = p[field];
-      return typeof v === "number" ? v : 0;
-    })
-    .sort((a, b) => a - b);
-}
-
-function quantile(sorted: number[], p: number): number {
-  if (sorted.length === 0) return 0;
-  const idx = Math.min(
-    sorted.length - 1,
-    Math.max(0, Math.floor((p / 100) * sorted.length)),
-  );
-  return sorted[idx];
+/** Read an ExtendedStatistics percentile (e.g. "p95") from the first datapoint. */
+function extPercentile(point: Datapoint | undefined, key: string): number {
+  if (!point) return 0;
+  const ext = point.ExtendedStatistics as Record<string, number> | undefined;
+  const v = ext?.[key];
+  return typeof v === "number" ? v : 0;
 }
 
 // ─── Lambda metrics ──────────────────────────────────────────────────────────
@@ -120,6 +110,13 @@ export type LambdaHealth = {
 /**
  * Get 24-hour Lambda health for a function. All queries run in parallel.
  * Gracefully returns zeros if CloudWatch denies or times out.
+ *
+ * Percentiles are fetched as a SINGLE 24h-period datapoint (Period: 86400) so
+ * CloudWatch computes the true 24h p50/p95/p99 over the whole window. Fetching
+ * 1h buckets and then aggregating the per-bucket percentiles client-side would
+ * under-report tail latency: the median of 24 hourly p95s is far below the true
+ * 24h p95. Counts (Invocations/Errors/Throttles) Sum over the same single
+ * window. coldStarts is the count of InitDuration samples in the window.
  */
 export async function getLambdaHealth(functionName: string): Promise<LambdaHealth> {
   const endTime = new Date();
@@ -131,11 +128,11 @@ export async function getLambdaHealth(functionName: string): Promise<LambdaHealt
     Dimensions: [{ Name: "FunctionName", Value: functionName }],
     StartTime: startTime,
     EndTime: endTime,
-    Period: 3600, // 1h buckets
+    Period: 86400, // single 24h window — CloudWatch computes the true window percentiles
   };
 
   try {
-    const [invRes, errRes, thRes, durRes] = await Promise.all([
+    const [invRes, errRes, thRes, durRes, initRes] = await Promise.all([
       cw.send(new GetMetricStatisticsCommand({ ...baseInput, MetricName: "Invocations", Statistics: ["Sum"] })),
       cw.send(new GetMetricStatisticsCommand({ ...baseInput, MetricName: "Errors", Statistics: ["Sum"] })),
       cw.send(new GetMetricStatisticsCommand({ ...baseInput, MetricName: "Throttles", Statistics: ["Sum"] })),
@@ -147,42 +144,38 @@ export async function getLambdaHealth(functionName: string): Promise<LambdaHealt
           ExtendedStatistics: ["p50", "p95", "p99"],
         }),
       ),
+      // InitDuration is only emitted on a cold start, so its SampleCount over the
+      // window is the number of cold starts.
+      cw.send(
+        new GetMetricStatisticsCommand({
+          ...baseInput,
+          MetricName: "InitDuration",
+          Statistics: ["SampleCount"],
+        }),
+      ),
     ]);
 
     const invocations = sumDatapoints(invRes.Datapoints ?? []);
     const errors = sumDatapoints(errRes.Datapoints ?? []);
     const throttles = sumDatapoints(thRes.Datapoints ?? []);
+    const coldStarts = (initRes.Datapoints ?? []).reduce(
+      (acc, p) => acc + (p.SampleCount ?? 0),
+      0,
+    );
 
-    // Duration percentiles come in ExtendedStatistics per datapoint
-    const durPoints = durRes.Datapoints ?? [];
-    const p50s = durPoints
-      .map((p) => {
-        const ext = p.ExtendedStatistics as Record<string, number> | undefined;
-        return ext?.p50 ?? 0;
-      })
-      .sort((a, b) => a - b);
-    const p95s = durPoints
-      .map((p) => {
-        const ext = p.ExtendedStatistics as Record<string, number> | undefined;
-        return ext?.p95 ?? 0;
-      })
-      .sort((a, b) => a - b);
-    const p99s = durPoints
-      .map((p) => {
-        const ext = p.ExtendedStatistics as Record<string, number> | undefined;
-        return ext?.p99 ?? 0;
-      })
-      .sort((a, b) => a - b);
+    // A single 86400 window yields at most one Duration datapoint carrying the
+    // true 24h p50/p95/p99 (no client-side aggregation needed).
+    const durPoint = (durRes.Datapoints ?? [])[0];
 
     return {
       functionName,
       invocations: Math.round(invocations),
       errors: Math.round(errors),
       throttles: Math.round(throttles),
-      durationP50Ms: Math.round(quantile(p50s, 50)),
-      durationP95Ms: Math.round(quantile(p95s, 50)),
-      durationP99Ms: Math.round(quantile(p99s, 50)),
-      coldStarts: 0, // placeholder — requires init duration metric parsing
+      durationP50Ms: Math.round(extPercentile(durPoint, "p50")),
+      durationP95Ms: Math.round(extPercentile(durPoint, "p95")),
+      durationP99Ms: Math.round(extPercentile(durPoint, "p99")),
+      coldStarts: Math.round(coldStarts),
     };
   } catch (err) {
     console.warn(`[cloudwatch] getLambdaHealth failed for ${functionName}:`, err);
@@ -278,16 +271,61 @@ export async function getS3BucketSize(bucketName: string): Promise<number> {
 
 // ─── Cost projections ────────────────────────────────────────────────────────
 
+/**
+ * On-demand AWS pricing constants used by {@link estimateMonthlyCost}.
+ *
+ * SINGLE SOURCE OF TRUTH for the cost dashboard. These are list prices and
+ * drift over time and across regions, so they are tagged with the region and
+ * the date they were captured. Update `pricingAsOf` whenever a value changes.
+ *
+ *   region:      us-east-1 (N. Virginia)
+ *   as-of:       2025-06-01
+ *   source:      https://aws.amazon.com/dynamodb/pricing/on-demand/
+ *                https://aws.amazon.com/lambda/pricing/
+ *                https://aws.amazon.com/s3/pricing/
+ */
+export const AWS_PRICING = {
+  region: "us-east-1",
+  pricingAsOf: "2025-06-01",
+  /** DynamoDB on-demand write request units, USD per million. */
+  dynamoWriteUsdPerMillion: 1.25,
+  /** DynamoDB on-demand read request units, USD per million. */
+  dynamoReadUsdPerMillion: 0.25,
+  /** DynamoDB stored data, USD per GB-month. */
+  dynamoStorageUsdPerGbMonth: 0.25,
+  /** Lambda requests, USD per million. */
+  lambdaRequestUsdPerMillion: 0.2,
+  /** Lambda compute, USD per GB-second. */
+  lambdaGbSecondUsd: 0.0000166667,
+  /** S3 Standard storage, USD per GB-month. */
+  s3StorageUsdPerGbMonth: 0.023,
+  /** Days assumed per month when extrapolating last-24h usage. */
+  daysPerMonth: 30,
+} as const;
+
 export type CostEstimate = {
   dynamoDBMonthlyUsd: number;
   lambdaMonthlyUsd: number;
   s3MonthlyUsd: number;
   totalMonthlyUsd: number;
+  /** Region + date the pricing constants were captured (see {@link AWS_PRICING}). */
+  pricingBasis: string;
+  /**
+   * True when read/write request counts were NOT supplied, so the DynamoDB
+   * figure reflects STORAGE ONLY (request charges are omitted and the real
+   * DynamoDB cost is higher). Callers should surface this caveat.
+   */
+  dynamoDBStorageOnly: boolean;
 };
 
 /**
  * Rough cost projection using on-demand AWS pricing constants.
  * Assumes ongoing daily usage matches last 24h.
+ *
+ * If `dynamoWritesLast24h`/`dynamoReadsLast24h` are omitted, the DynamoDB
+ * estimate covers storage only and `dynamoDBStorageOnly` is set so the caller
+ * can flag that request charges are missing (rather than silently reporting a
+ * too-low number).
  */
 export function estimateMonthlyCost(input: {
   dynamoWritesLast24h?: number;
@@ -298,30 +336,31 @@ export function estimateMonthlyCost(input: {
   lambdaMemoryMB: number;
   s3TotalBytes: number;
 }): CostEstimate {
-  const daysPerMonth = 30;
+  const { daysPerMonth } = AWS_PRICING;
 
-  // DynamoDB on-demand
-  // Writes: $1.25 per million WCU-equivalent requests
-  // Reads: $0.25 per million RCU-equivalent
-  // Storage: $0.25 per GB-month
+  // DynamoDB on-demand. Request counts are optional; when absent we report
+  // storage only and flag it via `dynamoDBStorageOnly`.
+  const dynamoDBStorageOnly =
+    input.dynamoWritesLast24h === undefined && input.dynamoReadsLast24h === undefined;
   const dynamoWritesMonthly = (input.dynamoWritesLast24h ?? 0) * daysPerMonth;
   const dynamoReadsMonthly = (input.dynamoReadsLast24h ?? 0) * daysPerMonth;
   const dynamoStorageGB = input.dynamoTableSizeBytes / (1024 ** 3);
   const dynamoDBMonthlyUsd =
-    (dynamoWritesMonthly / 1_000_000) * 1.25 +
-    (dynamoReadsMonthly / 1_000_000) * 0.25 +
-    dynamoStorageGB * 0.25;
+    (dynamoWritesMonthly / 1_000_000) * AWS_PRICING.dynamoWriteUsdPerMillion +
+    (dynamoReadsMonthly / 1_000_000) * AWS_PRICING.dynamoReadUsdPerMillion +
+    dynamoStorageGB * AWS_PRICING.dynamoStorageUsdPerGbMonth;
 
-  // Lambda: $0.20 per million requests + $0.0000166667 per GB-second
+  // Lambda: per-million requests + per GB-second compute.
   const invocationsMonthly = input.lambdaInvocationsLast24h * daysPerMonth;
   const avgDurationSec = input.lambdaAvgDurationMs / 1000;
   const gbSeconds = invocationsMonthly * avgDurationSec * (input.lambdaMemoryMB / 1024);
   const lambdaMonthlyUsd =
-    (invocationsMonthly / 1_000_000) * 0.2 + gbSeconds * 0.0000166667;
+    (invocationsMonthly / 1_000_000) * AWS_PRICING.lambdaRequestUsdPerMillion +
+    gbSeconds * AWS_PRICING.lambdaGbSecondUsd;
 
-  // S3 standard: $0.023 per GB-month
+  // S3 standard.
   const s3GB = input.s3TotalBytes / (1024 ** 3);
-  const s3MonthlyUsd = s3GB * 0.023;
+  const s3MonthlyUsd = s3GB * AWS_PRICING.s3StorageUsdPerGbMonth;
 
   const totalMonthlyUsd = dynamoDBMonthlyUsd + lambdaMonthlyUsd + s3MonthlyUsd;
 
@@ -330,6 +369,8 @@ export function estimateMonthlyCost(input: {
     lambdaMonthlyUsd: round2(lambdaMonthlyUsd),
     s3MonthlyUsd: round2(s3MonthlyUsd),
     totalMonthlyUsd: round2(totalMonthlyUsd),
+    pricingBasis: `${AWS_PRICING.region} pricing as of ${AWS_PRICING.pricingAsOf}`,
+    dynamoDBStorageOnly,
   };
 }
 

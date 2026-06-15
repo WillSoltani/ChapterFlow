@@ -196,21 +196,27 @@ body {
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: rgba(34, 211, 238, 0.28);
 
-  /* ── Backgrounds — 3-tier tonal elevation system ── */
-  --bg-base: #0B0E14;
-  --bg-surface-1: #111827;
-  --bg-surface-2: #1A2332;
-  --bg-surface-3: #243044;
+  /* ── Backgrounds — 3-tier tonal elevation system ──
+        Neutral surfaces are aliased to the canonical --cf-* family below: they
+        resolve to identical values in both themes, so a theme tweak only has to
+        be made once (on --cf-*) and these legacy names follow automatically. */
+  --bg-base: var(--cf-page-bg);
+  --bg-surface-1: var(--cf-surface);
+  --bg-surface-2: var(--cf-surface-muted);
+  --bg-surface-3: var(--cf-surface-strong);
   --bg-raised: var(--bg-surface-1);
   --bg-elevated: var(--bg-surface-2);
   --bg-glass: rgba(255, 255, 255, 0.06);
   --bg-glass-hover: rgba(255, 255, 255, 0.10);
   --bg-glass-active: rgba(255, 255, 255, 0.14);
 
-  /* ── Text hierarchy ── */
+  /* ── Text hierarchy ──
+        --text-heading is aliased to the canonical --cf-text-1 (identical value
+        in both themes); aliasing also lets it correctly track high-contrast
+        mode, which only overrides the --cf-* tokens. */
   --text-primary: #E8ECF1;
   --text-secondary: #8899AA;
-  --text-heading: #F7F8FA;
+  --text-heading: var(--cf-text-1);
   --text-tertiary: #5C6B7A;
   --text-muted: var(--text-tertiary);
 
@@ -425,21 +431,21 @@ html:not(.dark) {
   --sidebar-border: #E7E5E4;
   --sidebar-ring: rgba(13, 148, 136, 0.3);
 
-  /* ── Backgrounds ── */
-  --bg-base: #FAFAF9;
-  --bg-surface-1: #FFFFFF;
-  --bg-surface-2: #F5F5F4;
-  --bg-surface-3: #E7E5E4;
+  /* ── Backgrounds ── (aliased to canonical --cf-* — see dark :root note) */
+  --bg-base: var(--cf-page-bg);
+  --bg-surface-1: var(--cf-surface);
+  --bg-surface-2: var(--cf-surface-muted);
+  --bg-surface-3: var(--cf-surface-strong);
   --bg-raised: var(--bg-surface-1);
   --bg-elevated: var(--bg-surface-2);
   --bg-glass: rgba(255, 255, 255, 0.55);
   --bg-glass-hover: rgba(255, 255, 255, 0.7);
   --bg-glass-active: rgba(255, 255, 255, 0.82);
 
-  /* ── Text hierarchy ── */
+  /* ── Text hierarchy ── (--text-heading aliased to canonical --cf-text-1) */
   --text-primary: #1C1917;
   --text-secondary: #57534E;
-  --text-heading: #1C1917;
+  --text-heading: var(--cf-text-1);
   --text-tertiary: #78716C;
   --text-muted: var(--text-tertiary);
 
@@ -793,6 +799,27 @@ html.transitioning *::after {
    COMPONENT CLASSES (from original)
    ───────────────────────────────────────── */
 @layer components {
+  /*
+   * Centralized legal-document typography. Used by every page under
+   * app/legal/** via `<article className="prose-legal">`. The
+   * @tailwindcss/typography plugin ships `prose` and its modifiers but not a
+   * `legal` variant, so without this rule `prose-legal` would be a no-op class
+   * and the pages would rely entirely on per-element inline styles. These
+   * defaults mirror the legal pages' base text treatment; per-element inline
+   * styles (headings, link colors) still win on specificity, so this is
+   * non-regressive while giving the class real meaning for future edits.
+   */
+  .prose-legal {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .prose-legal a {
+    color: var(--accent-teal);
+    text-decoration: underline;
+  }
+
   .cf-app-shell,
   .cf-app-shell-subtle {
     position: relative;
@@ -1691,16 +1718,94 @@ html:not(.dark) {
 }
 
 /* ─────────────────────────────────────────
-   COLOR BLIND MODE FILTERS
-   ───────────────────────────────────────── */
-html[data-color-blind-mode="protanopia"] {
-  filter: url(#cf-protanopia);
-}
+   COLOR BLIND MODE — palette remap (no global raster filter)
+   ─────────────────────────────────────────
+   Previously each mode set `filter: url(#cf-<mode>)` on <html>, an SVG
+   feColorMatrix that forced the browser to rasterize + re-filter the WHOLE page
+   on every paint (scroll / animation / hover) — a heavy GPU/jank source, worst
+   on the animated reader & dashboard — and made <html> the containing block for
+   every position:fixed descendant. It was also the wrong UX: a *simulation*
+   matrix on an end-user's screen compounds the color confusion instead of
+   relieving it.
+
+   Instead we remap the semantic palette to colorblind-distinguishable hues:
+     • the CANONICAL accent tokens (--accent-emerald / -rose / -amber / -cyan
+       and their glows), which the --cr-* reader/quiz tokens alias, AND
+     • the --cf-* banner/pill/chip semantic tokens (text/bg/border), which carry
+       their OWN per-theme-tuned hex (NOT pure aliases of --accent-*, so they
+       must be remapped explicitly or banners/pills would keep the confusable
+       colors).
+   So success vs error vs warning vs info stay distinguishable everywhere without
+   any filter, without rasterizing the page, and without disturbing layout. The
+   remap inherits into both light and dark themes (no .dark variant needed: the
+   colorblind-safe hues are chosen to read on either). See M47.
+
+   Palettes (deuteranopia/protanopia = red-green; tritanopia = blue-yellow) use
+   the IBM / Wong colorblind-safe families: blue, orange, and high-luminance
+   contrast so the pairs separate by both hue and lightness. */
+
+/* Red-green deficiencies: push "error" to a warm orange and "success" to a
+   distinct blue so they no longer collapse onto the same axis. */
+html[data-color-blind-mode="protanopia"],
 html[data-color-blind-mode="deuteranopia"] {
-  filter: url(#cf-deuteranopia);
+  /* canonical accents (mapped to --cr- and quiz tokens) */
+  --accent-emerald: #0072B2;            /* success → blue */
+  --accent-emerald-muted: #004B73;
+  --accent-emerald-dim: var(--accent-emerald-muted);
+  --accent-emerald-glow: rgba(0, 114, 178, 0.15);
+  --accent-rose: #E69F00;               /* error → orange */
+  --accent-rose-dim: #8A5E00;
+  --accent-rose-glow: rgba(230, 159, 0, 0.15);
+  --accent-amber: #F0E442;              /* warning → yellow (lighter than orange) */
+  --accent-amber-muted: #8A7F00;
+  --accent-amber-dim: var(--accent-amber-muted);
+  --accent-amber-glow: rgba(240, 228, 66, 0.15);
+  /* --cf-* semantic surfaces (banners / pills / chips) */
+  --cf-success-text: #0072B2;
+  --cf-success-border: rgba(0, 114, 178, 0.5);
+  --cf-success-bg: rgba(0, 114, 178, 0.12);
+  --cf-success-soft: rgba(0, 114, 178, 0.12);
+  --cf-danger-text: #C77700;
+  --cf-danger-border: rgba(230, 159, 0, 0.55);
+  --cf-danger-bg: rgba(230, 159, 0, 0.14);
+  --cf-danger-soft: rgba(230, 159, 0, 0.14);
+  --cf-error: var(--cf-danger-text);
+  --cf-warning-text: #8A7F00;
+  --cf-warning-border: rgba(138, 127, 0, 0.5);
+  --cf-warning-bg: rgba(240, 228, 66, 0.18);
+  --cf-warning-soft: rgba(240, 228, 66, 0.18);
 }
+
+/* Blue-yellow deficiency: separate the blue (info/accent) and yellow (warning)
+   axis; shift warning to vermillion and error to magenta so the warm pair no
+   longer collapses against blue. */
 html[data-color-blind-mode="tritanopia"] {
-  filter: url(#cf-tritanopia);
+  /* canonical accents (mapped to --cr- and quiz tokens) */
+  --accent-cyan: #009E9E;               /* info/accent → teal */
+  --accent-cyan-muted: #006666;
+  --accent-cyan-dim: var(--accent-cyan-muted);
+  --accent-cyan-glow: rgba(0, 158, 158, 0.15);
+  --accent-amber: #D55E00;              /* warning → vermillion (off the blue axis) */
+  --accent-amber-muted: #7A3500;
+  --accent-amber-dim: var(--accent-amber-muted);
+  --accent-amber-glow: rgba(213, 94, 0, 0.15);
+  --accent-rose: #CC79A7;               /* error → magenta-pink */
+  --accent-rose-dim: #7A4865;
+  --accent-rose-glow: rgba(204, 121, 167, 0.15);
+  /* --cf-* semantic surfaces (banners / pills / chips) */
+  --cf-info-text: #009E9E;
+  --cf-info-border: rgba(0, 158, 158, 0.5);
+  --cf-info-bg: rgba(0, 158, 158, 0.12);
+  --cf-info-soft: rgba(0, 158, 158, 0.12);
+  --cf-warning-text: #D55E00;
+  --cf-warning-border: rgba(213, 94, 0, 0.55);
+  --cf-warning-bg: rgba(213, 94, 0, 0.14);
+  --cf-warning-soft: rgba(213, 94, 0, 0.14);
+  --cf-danger-text: #B14C8A;
+  --cf-danger-border: rgba(204, 121, 167, 0.55);
+  --cf-danger-bg: rgba(204, 121, 167, 0.16);
+  --cf-danger-soft: rgba(204, 121, 167, 0.16);
+  --cf-error: var(--cf-danger-text);
 }
 
 /* ─────────────────────────────────────────
@@ -1722,8 +1827,39 @@ html.dark[data-contrast="high"] {
   --cf-border: rgba(255, 255, 255, 0.35);
   --cf-border-strong: rgba(255, 255, 255, 0.5);
 }
-html[data-contrast="high"] * {
-  border-color: var(--cf-border) !important;
+/* High-contrast neutralizes generic borders by redefining --cf-border /
+   --cf-border-strong above (every neutral border consumes those). We deliberately
+   do NOT blanket-override border-color on `*`: a bare `*` rule sits outside
+   @layer and outranks the layered component rules, so it would flatten the
+   color-coded semantic borders (quiz correct/incorrect, banner/pill
+   success/warning/danger/info, active chip) to the same neutral gray — an a11y
+   regression inside an a11y feature. Instead we give those state classes a
+   HIGHER-contrast border in high-contrast mode (strong semantic text color),
+   so the affordances get MORE differentiation, not less. See M46. */
+html[data-contrast="high"] .cf-banner-info,
+html[data-contrast="high"] .cf-pill-info {
+  border-color: var(--cf-info-text) !important;
+}
+html[data-contrast="high"] .cf-banner-success,
+html[data-contrast="high"] .cf-pill-success {
+  border-color: var(--cf-success-text) !important;
+}
+html[data-contrast="high"] .cf-banner-warning,
+html[data-contrast="high"] .cf-pill-warning {
+  border-color: var(--cf-warning-text) !important;
+}
+html[data-contrast="high"] .cf-banner-danger,
+html[data-contrast="high"] .cf-pill-danger {
+  border-color: var(--cf-danger-text) !important;
+}
+html[data-contrast="high"] .cf-chip-active {
+  border-color: var(--cf-accent) !important;
+}
+html[data-contrast="high"] .cr-answer-correct {
+  border-color: var(--cr-success) !important;
+}
+html[data-contrast="high"] .cr-answer-incorrect {
+  border-color: var(--cr-error) !important;
 }
 html[data-contrast="high"] button,
 html[data-contrast="high"] a,

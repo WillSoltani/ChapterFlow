@@ -30,7 +30,16 @@ export function resolvePublicOrigin(params: {
   forwardedProtoHeader?: string | null;
   fallbackOrigin?: string;
 }): string {
-  const configuredBaseUrl = process.env.APP_BASE_URL?.trim();
+  // Prefer an explicitly-configured, trusted base URL over any request header.
+  // `x-forwarded-host` is attacker-controllable on a directly-reachable origin,
+  // so a deploy-provided value must always win over it. We honour both
+  // APP_BASE_URL and CHAPTERFLOW_APP_BASE_URL — the latter is the variable the
+  // deploy pipeline actually injects into the server Lambda (see
+  // infra/bin/app.ts), so production now resolves from trusted config instead of
+  // falling through to the forwarded host header.
+  const configuredBaseUrl =
+    process.env.APP_BASE_URL?.trim() ||
+    process.env.CHAPTERFLOW_APP_BASE_URL?.trim();
   if (configuredBaseUrl) {
     const normalizedConfigured = normalizeOrigin(configuredBaseUrl);
     const allowConfiguredInDev = process.env.ALLOW_APP_BASE_URL_IN_DEV === "1";

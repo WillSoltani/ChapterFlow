@@ -23,9 +23,11 @@ export default function DataRightsPage() {
       <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
         <section>
           <p>
-            You control your personal data on ChapterFlow. Most rights can be exercised yourself from{" "}
-            <a href="/book/settings" className="underline" style={{ color: "var(--accent-teal)" }}>Settings</a>;
-            for anything else, email{" "}
+            You control your personal data on ChapterFlow. Once you&apos;re signed in, you can exercise most rights
+            yourself from{" "}
+            <a href="/book/settings" className="underline" style={{ color: "var(--accent-teal)" }}>Settings</a>{" "}
+            (if you&apos;re signed out, opening Settings prompts you to sign in first). You don&apos;t need an account to
+            reach us — to make a request without signing in, or for anything Settings doesn&apos;t cover, email{" "}
             <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>.
             This page summarizes how; see our{" "}
             <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-teal)" }}>Privacy Policy</a>{" "}
@@ -40,9 +42,11 @@ export default function DataRightsPage() {
           <p>
             Download your data anytime from Settings in JSON, CSV, or Markdown format. The export includes your
             profile, settings, entitlement, reading progress and history, completed chapters, quiz and badge
-            records, saved books, and Insight Points. Usage analytics and approximate-location telemetry (which is
-            only collected if you opt in to &quot;Share Usage Analytics&quot;) are not part of the self-serve export — to
-            request a copy, email us.
+            records, saved books, and Insight Points. Any usage analytics and approximate-location telemetry we
+            hold for you (collected while &quot;Share Usage Analytics&quot; is enabled) are included too: the JSON and
+            Markdown exports contain your analytics snapshot (approximate location and device) and your most recent
+            activity. For your complete event history beyond the most recent 200 events, email{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>.
           </p>
         </section>
 

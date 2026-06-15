@@ -2,13 +2,74 @@ import { NextRequest, NextResponse } from "next/server";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getAccountStatus } from "@/app/app/api/book/_lib/repo";
+import { BOOK_DEVICE_COOKIE } from "@/app/app/api/book/_lib/abuse";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 
 export const runtime = "nodejs";
 
-// Mirrors the refresh-token validity persisted by the callback.
+// Mirrors the refresh-token validity persisted by the callback. This 30-day
+// lifetime is disclosed in app/legal/cookies/page.tsx — keep that policy in sync.
 const REFRESH_TOKEN_MAX_AGE = 30 * 24 * 60 * 60;
+
+// Lightweight per-instance throttle so a looping/misbehaving first-party client
+// can't hammer Cognito's token endpoint (cookies are SameSite=lax, so a true
+// cross-site amplification isn't possible, but a same-origin loop is). The cap
+// is intentionally generous: TokenExpiryGuard self-throttles with a 30s retry
+// cooldown, so legitimate renewals stay far under this. This is best-effort
+// in-memory state (per server instance, cleared on restart) — Cognito's own
+// throttling remains the hard backstop.
+const RATE_LIMIT_MAX_ATTEMPTS = 10;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
+
+function readClientIp(req: NextRequest): string | null {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) {
+    const first = forwarded.split(",")[0]?.trim();
+    if (first) return first;
+  }
+  const realIp = req.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+  const cloudfrontViewer = req.headers.get("cloudfront-viewer-address")?.trim();
+  if (cloudfrontViewer) {
+    const host = cloudfrontViewer.split(":")[0]?.trim();
+    if (host) return host;
+  }
+  return null;
+}
+
+/**
+ * Returns true when this caller has exceeded the per-window attempt cap. Keyed by
+ * the EXISTING cf_device cookie, falling back to client IP (then a shared bucket)
+ * so a single runaway client is contained without blocking unrelated callers
+ * behind the same NAT. Also opportunistically prunes expired buckets to bound
+ * memory.
+ */
+function isRateLimited(req: NextRequest): boolean {
+  // Read the raw cf_device cookie rather than getOrCreateDeviceId(): the latter
+  // MINTS a fresh random id when the cookie is missing/malformed, so keying on it
+  // would hand a cookieless caller a new bucket every request (never throttled)
+  // and make the IP fallback dead code. Reading the cookie directly makes a
+  // stripped-cookie flood collapse onto its shared IP bucket.
+  const rawDevice = req.cookies.get(BOOK_DEVICE_COOKIE)?.value?.trim() || null;
+  const key = rawDevice || readClientIp(req) || "unknown";
+  const now = Date.now();
+
+  const existing = rateLimitBuckets.get(key);
+  if (!existing || existing.resetAt <= now) {
+    rateLimitBuckets.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    if (rateLimitBuckets.size > 5_000) {
+      for (const [bucketKey, bucket] of rateLimitBuckets) {
+        if (bucket.resetAt <= now) rateLimitBuckets.delete(bucketKey);
+      }
+    }
+    return false;
+  }
+
+  existing.count += 1;
+  return existing.count > RATE_LIMIT_MAX_ATTEMPTS;
+}
 
 function readString(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value : null;
@@ -45,6 +106,13 @@ function subFromIdToken(idToken: string): string | null {
  * the client should fall back to a full login.
  */
 export async function POST(req: NextRequest) {
+  if (isRateLimited(req)) {
+    return NextResponse.json(
+      { ok: false, error: "rate_limited" },
+      { status: 429, headers: { "Retry-After": "30" } },
+    );
+  }
+
   const refreshToken = req.cookies.get("refresh_token")?.value;
   if (!refreshToken) {
     return unauthorized("no_refresh_token");
@@ -86,7 +154,15 @@ export async function POST(req: NextRequest) {
     return res;
   }
 
-  const tokens = (await tokenRes.json()) as Record<string, unknown>;
+  // Cognito (or an intervening proxy/WAF during a partial outage) can return
+  // HTTP 200 with a non-JSON body (e.g. an HTML maintenance page); .json() then
+  // rejects. Catch it and return a clean 502 instead of letting the route 500.
+  let tokens: Record<string, unknown>;
+  try {
+    tokens = (await tokenRes.json()) as Record<string, unknown>;
+  } catch {
+    return NextResponse.json({ ok: false, error: "bad_upstream_body" }, { status: 502 });
+  }
   const idToken = readString(tokens.id_token);
   const accessToken = readString(tokens.access_token);
   // Rotation is off by default, so a new refresh_token is usually absent;

@@ -110,13 +110,14 @@ export function BillingClient() {
               label="Real MRR"
               value={Math.round(data?.realMrr ?? 0)}
               format="currency"
-              hint={data?.currency ? `actual Stripe revenue · ${data.currency}` : "actual Stripe revenue"}
+              currency={data?.currency}
+              hint="actual Stripe revenue"
             />
             <KPITile
               label="Real ARR"
               value={Math.round(data?.realArr ?? 0)}
               format="currency"
-              hint={data?.currency ?? undefined}
+              currency={data?.currency}
             />
             <KPITile label="Paying PROs" value={data?.stripeProCount ?? 0} hint="stripe source" />
             <KPITile label="Past due" value={data?.pastDue30d ?? 0} hint="last 30d" />

@@ -17,6 +17,57 @@ const VALID_BEACON_TYPES = new Set(["session_context", "performance", "navigatio
 /** Max payload fields to prevent abuse. */
 const MAX_PAYLOAD_KEYS = 20;
 
+// ─── In-memory consent cache ────────────────────────────────────────────────
+// The beacon endpoint is high-frequency: the client hook fires a beacon on
+// every route change plus session_context/performance per page load. The
+// consent flag (privacy.analyticsParticipation) changes rarely, yet each
+// beacon previously did a fresh getUserSettingsItem GetItem to re-verify it.
+// Cache the resolved flag per user in the warm container (like location.ts's
+// IP_CACHE) with a short TTL. To honour the opt-in privacy commitment we cache
+// ONLY the opt-OUT result (see isAnalyticsOptedIn): an opted-out user — the
+// default, high-volume case — collapses to one settings read per TTL window,
+// while an opted-IN user re-reads DynamoDB per beacon. That asymmetry means
+// DISABLING analytics takes effect on the very next beacon (we never serve a
+// stale "opted in" from cache), even though we can't invalidate from the settings
+// PATCH route here. On cold start the map is empty (safe — we re-resolve).
+type ConsentCacheEntry = { optedIn: boolean; expiresAt: number };
+const CONSENT_CACHE = new Map<string, ConsentCacheEntry>();
+const CONSENT_CACHE_TTL_MS = 60 * 1000;
+const CONSENT_CACHE_MAX = 5000;
+
+async function isAnalyticsOptedIn(tableName: string, userId: string): Promise<boolean> {
+  const now = Date.now();
+  const cached = CONSENT_CACHE.get(userId);
+  if (cached && cached.expiresAt > now) {
+    return cached.optedIn;
+  }
+
+  const settingsItem = await getUserSettingsItem(tableName, userId);
+  const privacy = settingsItem?.settings?.privacy as
+    | { analyticsParticipation?: boolean }
+    | undefined;
+  const optedIn = privacy?.analyticsParticipation ?? false;
+
+  // Cache ONLY the opt-OUT direction. Caching opt-IN would keep storing beacons
+  // for up to one TTL after a user disables analytics (no invalidation hook on the
+  // settings PATCH route), violating the opt-in privacy commitment. Opt-out is the
+  // default/common case, so this still collapses the GetItem flood for everyone
+  // who never enabled analytics; the rare opted-in user re-reads per beacon and a
+  // fresh opt-OUT takes effect on the next beacon.
+  if (!optedIn) {
+    // Trim cache if bloated (drop the oldest insertion).
+    if (CONSENT_CACHE.size >= CONSENT_CACHE_MAX) {
+      const firstKey = CONSENT_CACHE.keys().next().value;
+      if (firstKey) CONSENT_CACHE.delete(firstKey);
+    }
+    CONSENT_CACHE.set(userId, { optedIn: false, expiresAt: now + CONSENT_CACHE_TTL_MS });
+  } else {
+    // Drop any stale opt-out entry so a re-enabled user isn't held at false.
+    CONSENT_CACHE.delete(userId);
+  }
+  return optedIn;
+}
+
 /**
  * POST /app/api/book/me/analytics/beacon
  *
@@ -30,11 +81,9 @@ export async function POST(req: Request) {
 
     // Server-side consent check — respect the user's privacy preference.
     // Usage analytics is opt-in: off unless the user explicitly enabled it.
-    const settingsItem = await getUserSettingsItem(tableName, user.sub);
-    const privacy = settingsItem?.settings?.privacy as
-      | { analyticsParticipation?: boolean }
-      | undefined;
-    const analyticsParticipation = privacy?.analyticsParticipation ?? false;
+    // Resolved via a short-TTL warm-container cache to avoid a DynamoDB read
+    // on every high-frequency beacon; still server-authoritative (see above).
+    const analyticsParticipation = await isAnalyticsOptedIn(tableName, user.sub);
 
     if (!analyticsParticipation) {
       // User has opted out — silently accept but don't store

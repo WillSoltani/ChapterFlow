@@ -165,9 +165,6 @@ export function BrowseAll({
       case "alphabetical":
         result.sort((a, b) => a.title.localeCompare(b.title));
         break;
-      case "recent":
-        result.reverse();
-        break;
       case "featured":
       default:
         break;

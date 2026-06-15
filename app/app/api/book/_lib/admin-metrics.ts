@@ -248,6 +248,13 @@ export async function getUserEvents(
 /**
  * Search users by email substring. Scans the analytics table snapshot rows.
  * Cheap at solo-founder scale; bounded by `limit`.
+ *
+ * DynamoDB `contains` is byte-exact / case-sensitive and stored emails come
+ * verbatim from Cognito (e.g. "John.Doe@Gmail.com"), so we match against the
+ * persisted lowercased `emailLower` field (written in analytics-repo.ts). For
+ * snapshots written before that field existed, `emailLower` is absent, so we
+ * also project `email` and apply a case-insensitive JS fallback filter — this
+ * keeps search working through the backfill window without an extra round-trip.
  */
 export async function searchUsersByEmail(
   analyticsTable: string,
@@ -259,24 +266,42 @@ export async function searchUsersByEmail(
 
   const results: Record<string, unknown>[] = [];
   let lastKey: Record<string, unknown> | undefined;
+  // Hard cap so a search miss can't paginate the entire table.
+  let scanned = 0;
+  const maxScan = 5000;
 
   do {
     const res = await ddbDoc.send(
       new ScanCommand({
         TableName: analyticsTable,
-        FilterExpression: "SK = :sk AND contains(#e, :q)",
-        ExpressionAttributeNames: { "#e": "email" },
+        // Match the lowercased index field when present, OR fall back to the
+        // raw email so legacy snapshots without emailLower still surface; the
+        // raw-email branch is case-sensitive at the DB level and re-checked in
+        // JS below for case-insensitivity.
+        FilterExpression:
+          "SK = :sk AND (contains(#el, :q) OR contains(#e, :q))",
+        ExpressionAttributeNames: { "#el": "emailLower", "#e": "email" },
         ExpressionAttributeValues: { ":sk": "SNAPSHOT", ":q": q },
         ExclusiveStartKey: lastKey,
         Limit: 200,
       }),
     );
     for (const item of res.Items ?? []) {
+      const emailLower =
+        typeof item.emailLower === "string"
+          ? item.emailLower
+          : typeof item.email === "string"
+            ? item.email.toLowerCase()
+            : "";
+      // Guard the legacy fallback branch: contains(#e, :q) can match on case
+      // by accident, so re-verify case-insensitively before returning.
+      if (!emailLower.includes(q)) continue;
       results.push(item);
       if (results.length >= limit) return results;
     }
+    scanned += res.ScannedCount ?? res.Items?.length ?? 0;
     lastKey = res.LastEvaluatedKey;
-  } while (lastKey);
+  } while (lastKey && scanned < maxScan);
 
   return results;
 }
@@ -371,6 +396,15 @@ function toSegUser(
  * analytics snapshot's `plan` field is only updated on Stripe
  * webhook events, so it can be stale for license-granted PRO users.
  */
+/**
+ * Defensive ceiling for the cross-cutting table scans below. These scans have
+ * no GSI (the code flags "this should use a GSI or materialized view"); the cap
+ * stops a single admin dashboard open from paginating an arbitrarily large
+ * table. It is well above current scale, so behaviour is unchanged today — it
+ * exists purely to bound the blast radius until a rollup/GSI lands.
+ */
+export const ADMIN_SCAN_MAX_ITEMS = 50000;
+
 export async function scanAllEntitlements(
   bookTableName: string,
 ): Promise<EntitlementSnapshot[]> {
@@ -443,7 +477,7 @@ export async function scanAllEntitlements(
       });
     }
     lastKey = res.LastEvaluatedKey;
-  } while (lastKey);
+  } while (lastKey && out.length < ADMIN_SCAN_MAX_ITEMS);
 
   return out;
 }
@@ -494,7 +528,7 @@ export async function scanAllUserSnapshots(
     );
     for (const item of res.Items ?? []) out.push(item);
     lastKey = res.LastEvaluatedKey;
-  } while (lastKey);
+  } while (lastKey && out.length < ADMIN_SCAN_MAX_ITEMS);
 
   return out;
 }

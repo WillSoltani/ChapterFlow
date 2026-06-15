@@ -14,9 +14,6 @@ import type { ChapterExample, ReadingDepth } from "@/app/book/data/bookChapters"
 import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 import { track } from "@/lib/analytics";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
-import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
-import { AnimatePresence, motion } from "framer-motion";
 
 // ─── types ────────────────────────────────────────────────────────────────────
 
@@ -102,9 +99,6 @@ function ScenarioCard({
   onInteraction?: () => void;
   chapterId?: string;
   onVisible?: (index: number) => void;
-  // Deprecated: textarea-based reflection was removed. Prop kept on the type
-  // briefly so callers don't need to be updated in lockstep.
-  onSubmitReflection?: (exampleId: string, length: number) => void;
   bookId: string;
   chapterNumber: number;
   chapterTitle: string;
@@ -287,65 +281,6 @@ export function ExamplesList({
   onRetryFetch,
 }: ExamplesListProps) {
   void _submissionPoints;
-  const reflectionAwardsKey = `cf-reflection-awards-${bookId}-${chapterNumber}`;
-  const [reflectionAwards, setReflectionAwards] = useState<Set<string>>(new Set());
-  const [reflectionToasts, setReflectionToasts] = useState<Array<{ id: string; exampleId: string; amount: number }>>([]);
-
-  useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(reflectionAwardsKey);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) {
-          setReflectionAwards(new Set(parsed.filter((v): v is string => typeof v === "string")));
-        }
-      }
-    } catch {
-      // ignore
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reflectionAwardsKey]);
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(reflectionAwardsKey, JSON.stringify(Array.from(reflectionAwards)));
-    } catch {
-      // ignore
-    }
-  }, [reflectionAwards, reflectionAwardsKey]);
-
-  const handleSubmitReflection = useCallback(
-    async (exampleId: string, length: number) => {
-      if (reflectionAwards.has(exampleId)) return;
-      try {
-        const result = await fetchBookJson<{
-          awarded: boolean;
-          amount: number;
-          alreadyClaimed: boolean;
-        }>(`/app/api/book/me/reflections/${encodeURIComponent(bookId)}/${chapterNumber}`, {
-          method: "POST",
-          body: JSON.stringify({ exampleId, reflectionLength: length }),
-        });
-        setReflectionAwards((prev) => {
-          const next = new Set(prev);
-          next.add(exampleId);
-          return next;
-        });
-        if (result.awarded && result.amount > 0) {
-          const toastId = `${exampleId}-${Date.now()}`;
-          setReflectionToasts((prev) => [...prev.slice(-2), { id: toastId, exampleId, amount: result.amount }]);
-          emitBookStorageChanged("insight-points");
-          window.setTimeout(() => {
-            setReflectionToasts((prev) => prev.filter((t) => t.id !== toastId));
-          }, 3000);
-        }
-      } catch (err) {
-        // Non-blocking — analysis already revealed
-        console.warn("[reflection] Failed to submit:", err);
-      }
-    },
-    [bookId, chapterNumber, reflectionAwards]
-  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleVisible = useCallback((index: number) => {
     setCurrentIndex(index);
@@ -558,7 +493,6 @@ export function ExamplesList({
               onInteraction={onScenarioInteraction}
               chapterId={chapterId}
               onVisible={handleVisible}
-              onSubmitReflection={handleSubmitReflection}
               bookId={bookId}
               chapterNumber={chapterNumber}
               chapterTitle={chapterTitle}
@@ -566,31 +500,6 @@ export function ExamplesList({
           ))
         )}
       </div>
-
-      <AnimatePresence>
-        {reflectionToasts.map((toast, i) => (
-          <motion.div
-            key={toast.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed left-1/2 -translate-x-1/2 z-40 px-4 py-2.5 rounded-full text-[13px] font-semibold flex items-center gap-2 bg-(--cr-bg-surface-2) text-(--cr-accent)"
-            style={{
-              bottom: `${24 + i * 48}px`,
-              border:
-                "1px solid color-mix(in srgb, var(--cr-accent) 35%, transparent)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
-            }}
-            role="status"
-            aria-live="polite"
-          >
-            <span>{"\u2728"}</span>
-            +{toast.amount} IP for thinking deeply
-          </motion.div>
-        ))}
-      </AnimatePresence>
 
       {/* ── Add Scenario modal ── */}
       {showModal && (

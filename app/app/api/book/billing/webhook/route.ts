@@ -9,22 +9,12 @@ import {
   recordStripeWebhookEvent,
   updateUserEntitlementFromStripe,
 } from "@/app/app/api/book/_lib/repo";
-import {
-  analyticsTrackFlowPointsTransaction,
-  analyticsTrackReferral,
-  analyticsTrackSubscription,
-} from "@/app/app/api/book/_lib/analytics-repo";
-import {
-  awardFlowPoints,
-  getUserReferralClaim,
-  markReferralProRewarded,
-} from "@/app/app/api/book/_lib/flow-points-repo";
+import { analyticsTrackSubscription } from "@/app/app/api/book/_lib/analytics-repo";
 import {
   getStripeClient,
   getStripeWebhookSecretOrThrow,
 } from "@/app/app/api/book/_lib/stripe-service";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 import { mapSubscriptionStatus } from "@/app/app/api/book/_lib/subscription-status";
 import { buildRefundRecords, type RefundCharge } from "@/app/app/api/book/_lib/refund-events";
 import { extractBillingDetails } from "@/app/app/api/book/_lib/billing-details";
@@ -49,19 +39,10 @@ async function resolveUserIdForEvent(
   return getUserIdByStripeCustomer(tableName, customerId);
 }
 
-// §6.1 amended — The referral_pro_inviter 600 IP payout has been REMOVED entirely.
-// Rationale: uncapped per-occurrence faucet, sender-benefit framing.
-// Motivational value redistributed into escalation tier bonuses (§6.3, P3).
-// The function is retained as a no-op to avoid breaking callers during migration.
-async function maybeAwardReferralProConversion(_params: {
-  tableName: string;
-  analyticsTable: string | null;
-  userId: string;
-}) {
-  // No-op — Pro conversion reward removed per spec §6.1 amendment.
-  // Referral rewards are now milestone-gated via escalation tiers (§6.3).
-  return;
-}
+// §6.1 amended — The referral_pro_inviter 600 IP payout has been REMOVED
+// entirely (uncapped per-occurrence faucet, sender-benefit framing). Referral
+// rewards are now milestone-gated via escalation tiers (§6.3, P3), so the
+// webhook no longer fires any referral payout on Pro conversion.
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -144,11 +125,6 @@ export async function POST(req: Request) {
             stripeSubscriptionId: session.subscription ?? undefined,
           }).catch(() => {});
         }
-        maybeAwardReferralProConversion({
-          tableName,
-          analyticsTable: analyticsTable ?? null,
-          userId,
-        }).catch(() => {});
       }
     } else if (event.type === "checkout.session.async_payment_failed") {
       // Delayed payment method failed before funds cleared. The user never
@@ -248,19 +224,17 @@ export async function POST(req: Request) {
             currentPeriodEnd: isoFromUnix(subscription.current_period_end),
           }).catch(() => {});
         }
-        if (mapped.plan === "PRO" && mapped.proStatus === "active") {
-          maybeAwardReferralProConversion({
-            tableName,
-            analyticsTable: analyticsTable ?? null,
-            userId,
-          }).catch(() => {});
-        }
       }
     } else if (event.type === "invoice.payment_failed") {
       const invoice = event.data.object as {
         customer: string | null;
         subscription?: string | null;
+        // last_finalization_error only carries invoice-FINALIZATION failures, a
+        // rare category. The real card-decline reason (card_declined,
+        // insufficient_funds, expired_card) lives on the associated
+        // PaymentIntent's last_payment_error.code, resolved below.
         last_finalization_error?: { code?: string; message?: string };
+        payment_intent?: string | { id?: string; last_payment_error?: { code?: string } } | null;
       };
       if (invoice.customer) {
         const userId = await getUserIdByStripeCustomer(tableName, invoice.customer);
@@ -271,6 +245,26 @@ export async function POST(req: Request) {
             `invoice.payment_failed: no user for customer ${invoice.customer}`
           );
         }
+        // Resolve the decline reason from the PaymentIntent's last_payment_error
+        // so admin dunning can distinguish a declined card from insufficient
+        // funds. Best-effort: a retrieve failure must NOT block the past_due
+        // entitlement write (mirrors invoice.paid's charge retrieve above).
+        let declineCode: string | undefined;
+        try {
+          const pi = invoice.payment_intent;
+          if (pi && typeof pi === "object" && pi.last_payment_error?.code) {
+            // Already expanded on the event payload.
+            declineCode = pi.last_payment_error.code;
+          } else {
+            const piId = typeof pi === "string" ? pi : pi?.id;
+            if (piId) {
+              const paymentIntent = await stripe.paymentIntents.retrieve(piId);
+              declineCode = paymentIntent.last_payment_error?.code;
+            }
+          }
+        } catch {
+          declineCode = undefined;
+        }
         await updateUserEntitlementFromStripe(tableName, {
           userId,
           plan: "PRO",
@@ -279,7 +273,7 @@ export async function POST(req: Request) {
           stripeCustomerId: invoice.customer,
           stripeSubscriptionId: invoice.subscription ?? undefined,
           failedPaymentLastReason:
-            invoice.last_finalization_error?.code ?? "payment_failed",
+            declineCode ?? invoice.last_finalization_error?.code ?? "payment_failed",
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
@@ -346,11 +340,6 @@ export async function POST(req: Request) {
             stripeSubscriptionId: invoice.subscription ?? undefined,
           }).catch(() => {});
         }
-        maybeAwardReferralProConversion({
-          tableName,
-          analyticsTable: analyticsTable ?? null,
-          userId,
-        }).catch(() => {});
       }
     } else if (event.type === "invoice.payment_action_required") {
       // 3D Secure / SCA challenge needed. Mark as past_due so the UI can
@@ -458,9 +447,11 @@ export async function POST(req: Request) {
       // blip must not silently skip revoking access. A charge that genuinely has
       // no customer just yields null → record-only, no downgrade.
       let customerId: string | null = null;
+      let chargeCreatedUnix: number | undefined;
       if (typeof dispute.charge === "string") {
         const charge = await stripe.charges.retrieve(dispute.charge);
         customerId = typeof charge.customer === "string" ? charge.customer : null;
+        chargeCreatedUnix = charge.created;
       }
       const userId = customerId
         ? await getUserIdByStripeCustomer(tableName, customerId)
@@ -475,7 +466,14 @@ export async function POST(req: Request) {
         currency: (dispute.currency ?? BILLING_CURRENCY).toUpperCase(),
         reason: dispute.reason ?? null,
         status: dispute.status ?? "needs_response",
-        createdAt: isoFromUnix(dispute.created) ?? new Date().toISOString(),
+        // Deterministic timestamp so a redelivery yields the same SK and cannot
+        // create a duplicate finance row (L14). dispute.created is normally
+        // present; fall back to the disputed charge's created (stable across
+        // retries) before resorting to wall-clock now.
+        createdAt:
+          isoFromUnix(dispute.created) ??
+          isoFromUnix(chargeCreatedUnix) ??
+          new Date().toISOString(),
       });
       if (userId) {
         await updateUserEntitlementFromStripe(tableName, {
@@ -483,7 +481,40 @@ export async function POST(req: Request) {
           plan: "FREE",
           proStatus: "canceled",
           stripeCustomerId: customerId ?? undefined,
+          // Sticky chargeback marker — refuses any later PRO re-activation
+          // (stale invoice.paid / subscription.* reordered after the dispute)
+          // until the dispute is won (L13).
+          setDisputeOpen: true,
         });
+      }
+    } else if (event.type === "charge.dispute.closed") {
+      // A dispute resolved. If we WON, the chargeback was reversed in our favor,
+      // so lift the sticky marker that blocks PRO re-activation (L13). A LOST
+      // dispute leaves the marker in place — access stays revoked. We do not
+      // auto-restore Pro here; the user must re-subscribe (a fresh invoice.paid
+      // /customer.subscription.* will then be allowed through the cleared guard).
+      const dispute = event.data.object as {
+        charge?: string | null;
+        status?: string | null;
+      };
+      if (dispute.status === "won" && typeof dispute.charge === "string") {
+        const charge = await stripe.charges.retrieve(dispute.charge);
+        const customerId =
+          typeof charge.customer === "string" ? charge.customer : null;
+        const userId = customerId
+          ? await getUserIdByStripeCustomer(tableName, customerId)
+          : null;
+        if (userId) {
+          await updateUserEntitlementFromStripe(tableName, {
+            userId,
+            // Leave the plan as-is (FREE/canceled from the downgrade); only
+            // clear the marker so a future legitimate re-subscribe can activate.
+            plan: "FREE",
+            proStatus: "canceled",
+            stripeCustomerId: customerId ?? undefined,
+            clearDisputeOpen: true,
+          });
+        }
       }
     } else if (event.type === "customer.deleted") {
       // Customer wiped from Stripe. Downgrade the user (subject to the

@@ -15,6 +15,12 @@ import {
 } from "@/app/app/api/book/_lib/admin-metrics";
 
 export const runtime = "nodejs";
+// NOTE (M13/N2): do NOT add `export const maxDuration = ...` here. OpenNext bundles
+// every route into the single `default` ServerFn (open-next.config.ts) whose CDK
+// timeout is hard-set to 30s; Next's per-route `maxDuration` is a Vercel-platform
+// hint that OpenNext/Lambda does NOT honour, so it was dead config giving false
+// confidence. computeEconomyHealth falls back to FALLBACK_METRICS if its table
+// scan can't complete in the request budget.
 
 const FALLBACK_METRICS: EconomyHealthMetrics = {
   computedAt: new Date().toISOString(),

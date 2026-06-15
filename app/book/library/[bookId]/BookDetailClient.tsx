@@ -52,6 +52,7 @@ export function BookDetailClient({
   const [chapterFilter, setChapterFilter] = useState<ChapterFilter>("all");
   const [lockedToast, setLockedToast] = useState<string | null>(null);
   const [showResetModal, setShowResetModal] = useState(false);
+  const [resetting, setResetting] = useState(false);
 
   // Track whether the initial page-load animation has completed
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -106,7 +107,13 @@ export function BookDetailClient({
     resetProgress,
   } = useBookProgress(bookId, chapters);
 
-  const pages =
+  // Real page count from the book package, when present. Never synthesise one —
+  // a fabricated "560 pages" rendered as an exact attribute misleads readers
+  // (the hero already shows real estimatedMinutes + chapter count).
+  const pages = book.pages;
+  // Internal length proxy for the "days to finish" projection only; never shown
+  // to the reader as an exact page count.
+  const estimatedLength =
     book.pages ?? Math.max(120, Math.round(book.estimatedMinutes * 2.8));
 
   useKeyboardShortcut(
@@ -496,7 +503,7 @@ export function BookDetailClient({
             estimatedDaysToFinish={Math.max(
               1,
               Math.ceil(
-                Math.max(pages / 2.8, 120) /
+                Math.max(estimatedLength / 2.8, 120) /
                   Math.max(onboarding.dailyGoalMinutes, 10),
               ),
             )}
@@ -540,10 +547,26 @@ export function BookDetailClient({
       {/* Modals */}
       <ResetProgressModal
         open={showResetModal}
-        onClose={() => setShowResetModal(false)}
-        onConfirm={() => {
-          resetProgress();
-          setShowResetModal(false);
+        // Block dismissal (backdrop / Escape) while the reset POST is in flight so
+        // the modal can't vanish mid-request and leave the user without feedback.
+        onClose={() => {
+          if (!resetting) setShowResetModal(false);
+        }}
+        onConfirm={async () => {
+          // Guard against double-submit, then await the server-side reset before
+          // closing. On failure keep the modal open and surface a toast — never
+          // report a destructive action as done when the server still holds the
+          // old progress.
+          if (resetting) return;
+          setResetting(true);
+          try {
+            await resetProgress();
+            setShowResetModal(false);
+          } catch {
+            setLockedToast("Couldn't reset progress. Please try again.");
+          } finally {
+            setResetting(false);
+          }
         }}
       />
 

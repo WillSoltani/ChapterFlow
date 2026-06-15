@@ -7,6 +7,7 @@ import {
   requireBodyObject,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
+import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
   getEventDefinition,
@@ -46,13 +47,30 @@ export async function PATCH(req: Request, ctx: Params) {
       return bookErr(req, 404, "not_found", "Event not found");
     }
 
+    // L39 — validate `books` on update with the same rules the POST creator
+    // enforces (non-empty array of ≤200 non-empty string IDs) so a PATCH can't
+    // slip a malformed/oversized book list past the creator's guard.
+    let books = existing.books;
+    if (body.books !== undefined) {
+      if (!Array.isArray(body.books) || body.books.length === 0) {
+        throw new BookApiError(400, "invalid_books", "books must be a non-empty array of book IDs.");
+      }
+      if (body.books.length > 200) {
+        throw new BookApiError(400, "invalid_books", "books must contain at most 200 book IDs.");
+      }
+      if (!body.books.every((b) => typeof b === "string" && b.trim().length > 0)) {
+        throw new BookApiError(400, "invalid_books", "books must contain only non-empty string book IDs.");
+      }
+      books = body.books.map((b) => (b as string).trim());
+    }
+
     const updated: EventDefinitionItem = {
       ...existing,
       title: typeof body.title === "string" ? body.title : existing.title,
       description: typeof body.description === "string" ? body.description : existing.description,
       startDate: typeof body.startDate === "string" ? body.startDate : existing.startDate,
       endDate: typeof body.endDate === "string" ? body.endDate : existing.endDate,
-      books: Array.isArray(body.books) ? (body.books as string[]) : existing.books,
+      books,
       dailyChapterTarget: typeof body.dailyChapterTarget === "number" ? body.dailyChapterTarget : existing.dailyChapterTarget,
       targetChapters: typeof body.targetChapters === "number" ? body.targetChapters : existing.targetChapters,
       bonusIP: typeof body.bonusIP === "number" ? body.bonusIP : existing.bonusIP,

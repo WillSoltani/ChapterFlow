@@ -282,7 +282,7 @@ export function LibraryPage() {
           />
 
           <div className="px-5 pb-24 md:px-7">
-            {/* Section 2: Active Reads (only if 2+ in-progress, since hero shows 1) */}
+            {/* Section 2: Active Reads (any in-progress book beyond the hero) */}
             {otherInProgress.length >= 1 && <ActiveReads books={otherInProgress} />}
 
             {/* Free-tier exhaustion banner */}

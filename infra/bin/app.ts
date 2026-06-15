@@ -25,6 +25,7 @@ new ChapterFlowBackendStack(app, cfg.backendStackId, {
   tableName: cfg.tableName,
   analyticsTableName: cfg.analyticsTableName,
   ssmPrefix: cfg.ssmPrefix,
+  domainName: cfg.domainName,
   removalPolicy: cfg.removalPolicy,
   deletionProtection: cfg.deletionProtection,
   pointInTimeRecovery: cfg.pointInTimeRecovery,
@@ -82,6 +83,38 @@ if (!skipFrontend && openNextExists) {
         "this), or pass `-c skipFrontend=true` to synth/diff the backend alone. " +
         "Refusing to synth the frontend against unknown buckets.",
     );
+  }
+
+  // Prod must never ship a silently-degraded frontend. Every launch-critical
+  // secret below is injected via a conditional spread (`...(process.env.X && …)`),
+  // so a MISSING one is quietly omitted and the app would boot without Stripe,
+  // Cognito/auth, the live app URL, or AI config. Assert their presence here and
+  // fail the prod synth loudly instead. dev/staging may run degraded. (Annual
+  // price IDs, logout redirect, cookie domain, and ElevenLabs stay optional —
+  // they degrade gracefully.)
+  if (cfg.env === "prod") {
+    const requiredSecrets = [
+      "BOOK_STRIPE_SECRET_KEY",
+      "BOOK_STRIPE_WEBHOOK_SECRET",
+      "BOOK_STRIPE_PRICE_ID",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+      "COGNITO_DOMAIN",
+      "COGNITO_CLIENT_ID",
+      "COGNITO_REGION",
+      "COGNITO_USER_POOL_ID",
+      "COGNITO_REDIRECT_URI",
+      "AUTH_STATE_SECRET",
+      "CHAPTERFLOW_APP_BASE_URL",
+      "ANTHROPIC_API_KEY",
+    ];
+    const missing = requiredSecrets.filter((key) => !process.env[key]?.trim());
+    if (missing.length > 0) {
+      throw new Error(
+        "Refusing to synth the prod ChapterFlowFrontend stack — launch-critical " +
+          `secrets are missing from the deploy environment: ${missing.join(", ")}. ` +
+          "Set them as prod GitHub Environment secrets before deploying.",
+      );
+    }
   }
 
   new ChapterFlowFrontendStack(app, cfg.frontendStackId, {

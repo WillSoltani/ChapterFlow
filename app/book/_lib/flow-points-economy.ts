@@ -4,7 +4,9 @@
 
 import { BADGE_DEFINITIONS } from "@/app/book/badges/lib/badge-ui-definitions";
 
-export const INSIGHT_POINTS_COOKIE_NAME = "cf_ref";
+// Referral attribution cookie. The value "cf_ref" is preserved to keep existing
+// cookies valid and to match the disclosure in app/legal/cookies/page.tsx.
+export const REFERRAL_ATTRIBUTION_COOKIE_NAME = "cf_ref";
 
 export type FlowPointsSourceType =
   | "onboarding_complete"
@@ -30,7 +32,6 @@ export type FlowPointsSourceType =
   | "commitment_follow_through"
   | "pair_daily_bonus"
   | "journey_complete"
-  | "review_session_complete"
   | "event_complete";
 
 export type FlowPointsRewardId =
@@ -79,7 +80,6 @@ export const INSIGHT_POINTS_AMOUNTS = {
   commitmentFollowThrough: 25,
   pairDailyBonus: 20,
   journeyComplete: 500,
-  reviewSessionComplete: 10,
 } as const;
 
 /** Mode-dependent Insight Points for the chapter reading experience.
@@ -186,7 +186,7 @@ export const INSIGHT_POINTS_EARNING_RULES: InsightPointsEarningRule[] = [
     displayValue: "+5 IP",
     detail: "Type your own answer in the 'Think First' prompt before revealing the analysis. Awarded once per example.",
     cadence: "per_example",
-    note: "One-time per example. Empty submissions don't count.",
+    note: "One-time per example. Write a real answer (at least 20 characters) — empty or one-word submissions don't count.",
   },
   {
     sourceType: "streak_day",
@@ -237,10 +237,6 @@ export const INSIGHT_POINTS_EARNING_RULES: InsightPointsEarningRule[] = [
 
 export function getInsightPointsReward(rewardId: FlowPointsRewardId): FlowPointsRewardDefinition | null {
   return INSIGHT_POINTS_REWARDS.find((reward) => reward.rewardId === rewardId) ?? null;
-}
-
-export function getAchievementIP(badgeId: string): number {
-  return BADGE_DEFINITIONS.find((badge) => badge.id === badgeId)?.flowPoints ?? 0;
 }
 
 export function getBadgeName(badgeId: string): string | null {

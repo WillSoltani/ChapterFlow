@@ -88,6 +88,7 @@ async function isEmailSuppressed(ddb2, tableName2, email) {
 }
 var warnedMissingSecret = false;
 var warnedMissingAddress = false;
+var warnedMissingAppBaseUrl = false;
 function getEmailConfig() {
   const secret = process.env.EMAIL_UNSUBSCRIBE_SECRET ?? "";
   if (!secret && !warnedMissingSecret) {
@@ -101,7 +102,10 @@ function getEmailConfig() {
     senderName: process.env.EMAIL_SENDER_NAME || "ChapterFlow",
     supportAddress: process.env.EMAIL_SUPPORT_ADDRESS || "support@chapterflow.ca",
     postalAddress: process.env.EMAIL_POSTAL_ADDRESS ?? "",
-    appBaseUrl: (process.env.APP_BASE_URL || "https://chapterflow.siliconx.ca").replace(/\/+$/, ""),
+    // No siliconx.ca fallback: the legacy host no longer serves the unsubscribe
+    // route. An empty value makes sendCompliantEmail refuse to send (below)
+    // rather than mint a non-working one-click-unsubscribe link (CASL violation).
+    appBaseUrl: (process.env.APP_BASE_URL || "").replace(/\/+$/, ""),
     secret,
     configurationSet: process.env.SES_CONFIGURATION_SET ?? ""
   };
@@ -125,18 +129,23 @@ var cachedConfig = null;
 async function resolveEmailConfig() {
   if (cachedConfig) return cachedConfig;
   const base = getEmailConfig();
-  const [postalAddress, secret, senderName, supportAddress] = await Promise.all([
+  const [postalAddress, secret, senderName, supportAddress, appBaseUrl] = await Promise.all([
     ssmParam("EMAIL_POSTAL_ADDRESS"),
     ssmParam("EMAIL_UNSUBSCRIBE_SECRET"),
     ssmParam("EMAIL_SENDER_NAME"),
-    ssmParam("EMAIL_SUPPORT_ADDRESS")
+    ssmParam("EMAIL_SUPPORT_ADDRESS"),
+    // Owner override for the app host (otherwise the Lambda's APP_BASE_URL env,
+    // set from CHAPTERFLOW_APP_BASE_URL at deploy time, is used). Same one-place
+    // SSM model as the other EMAIL_* values.
+    ssmParam("EMAIL_APP_BASE_URL")
   ]);
   cachedConfig = {
     ...base,
     postalAddress: postalAddress ?? base.postalAddress,
     secret: secret ?? base.secret,
     senderName: senderName ?? base.senderName,
-    supportAddress: supportAddress ?? base.supportAddress
+    supportAddress: supportAddress ?? base.supportAddress,
+    appBaseUrl: (appBaseUrl ?? base.appBaseUrl).replace(/\/+$/, "")
   };
   return cachedConfig;
 }
@@ -177,6 +186,15 @@ async function sendCompliantEmail(ses2, ddb2, tableName2, config, params) {
       warnedMissingAddress = true;
       console.warn(
         "[email-compliance] EMAIL_POSTAL_ADDRESS not set \u2014 skipping commercial email (CASL/CAN-SPAM require a postal address). Set it to enable reminder/digest email."
+      );
+    }
+    return;
+  }
+  if (!config.appBaseUrl) {
+    if (!warnedMissingAppBaseUrl) {
+      warnedMissingAppBaseUrl = true;
+      console.warn(
+        "[email-compliance] APP_BASE_URL not set \u2014 skipping commercial email (one-click unsubscribe + CTA links require the live app host). Set CHAPTERFLOW_APP_BASE_URL on the cron Lambda (or EMAIL_APP_BASE_URL in SSM)."
       );
     }
     return;
@@ -228,6 +246,10 @@ async function processStreakAtRisk(ddb2, ses2, tableName2, config, userItems) {
   for (const item of userItems) {
     const notifications = item.settings?.notifications;
     if (notifications?.streakReminderEnabled === false) {
+      skipped++;
+      continue;
+    }
+    if (item.settings?.extended?.streakMode === "off") {
       skipped++;
       continue;
     }
@@ -589,6 +611,7 @@ Open ChapterFlow: ${cta}`,
 
 // lambda/reading-reminder-cron.ts
 var tableName = process.env.BOOK_TABLE_NAME;
+var REMINDER_CONCURRENCY = 8;
 var ddb = import_lib_dynamodb5.DynamoDBDocumentClient.from(new import_client_dynamodb.DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true }
 });
@@ -604,13 +627,122 @@ function resolveHour(timeLocal, timezone) {
     return -1;
   }
 }
+async function runWithConcurrency(items, limit, task) {
+  const results = new Array(items.length);
+  let cursor = 0;
+  const workerCount = Math.min(Math.max(1, limit), items.length);
+  const workers = Array.from({ length: workerCount }, async () => {
+    while (cursor < items.length) {
+      const index = cursor++;
+      results[index] = await task(items[index]);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+async function batchGetByKeys(keys, projection) {
+  const collected = [];
+  let pending = keys;
+  for (let attempt = 0; attempt < 4 && pending.length > 0; attempt++) {
+    const res = await ddb.send(
+      new import_lib_dynamodb5.BatchGetCommand({
+        RequestItems: {
+          [tableName]: { Keys: pending, ProjectionExpression: projection }
+        }
+      })
+    );
+    collected.push(...res.Responses?.[tableName] ?? []);
+    pending = res.UnprocessedKeys?.[tableName]?.Keys ?? [];
+    if (pending.length > 0) {
+      await new Promise((r) => setTimeout(r, 50 * (attempt + 1)));
+    }
+  }
+  if (pending.length > 0) {
+    console.warn(
+      `[reading-reminder-cron] batchGet left ${pending.length} key(s) unprocessed after retries`
+    );
+  }
+  return collected;
+}
+async function processReminderUser(user, today, emailConfig) {
+  const { pk, userId, notifPrefs } = user;
+  const dedupKey = `REMINDER_SENT#${today}`;
+  try {
+    const rows = await batchGetByKeys(
+      [
+        { PK: pk, SK: dedupKey },
+        { PK: pk, SK: "PROFILE" }
+      ],
+      "PK, SK, displayName, email"
+    );
+    if (rows.some((r) => r.SK === dedupKey)) {
+      return "skipped";
+    }
+    const profile = rows.find((r) => r.SK === "PROFILE");
+    const name = profile?.displayName ?? "Reader";
+    const email = profile?.email;
+    const notifId = crypto.randomUUID();
+    const now = (/* @__PURE__ */ new Date()).toISOString();
+    await ddb.send(
+      new import_lib_dynamodb5.UpdateCommand({
+        TableName: tableName,
+        Key: { PK: pk, SK: `NOTIF#${now}#${notifId}` },
+        UpdateExpression: "SET entity = :e, userId = :uid, notificationId = :nid, #type = :type, title = :title, body = :body, channel = :ch, readAt = :null, createdAt = :now",
+        ExpressionAttributeNames: { "#type": "type" },
+        ExpressionAttributeValues: {
+          ":e": "BOOK_USER_NOTIFICATION",
+          ":uid": userId,
+          ":nid": notifId,
+          ":type": "reading_reminder",
+          ":title": "Time to read!",
+          ":body": "A few minutes of focused reading can make a real difference.",
+          ":ch": "in_app",
+          ":null": null,
+          ":now": now
+        }
+      })
+    );
+    if (email && notifPrefs.channels?.email === true) {
+      try {
+        const tpl = readingReminderEmail({ name, appBaseUrl: emailConfig.appBaseUrl });
+        await sendCompliantEmail(ses, ddb, tableName, emailConfig, {
+          to: email,
+          userId,
+          category: "reading_reminder",
+          subject: tpl.subject,
+          textBody: tpl.textBody,
+          htmlBody: tpl.htmlBody
+        });
+      } catch (e) {
+        console.error(`[reading-reminder-cron] email failed for ${userId.slice(0, 8)}:`, e);
+      }
+    }
+    await ddb.send(
+      new import_lib_dynamodb5.PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: pk,
+          SK: dedupKey,
+          entity: "NUDGE_DEDUP",
+          createdAt: now,
+          ttl: Math.floor(Date.now() / 1e3) + 2 * 24 * 60 * 60
+        }
+      })
+    );
+    return "sent";
+  } catch (e) {
+    console.error(`[reading-reminder-cron] reminder failed for ${userId.slice(0, 8)}:`, e);
+    return "error";
+  }
+}
 async function handler() {
   console.log(`[reading-reminder-cron] Running at ${(/* @__PURE__ */ new Date()).toISOString()}`);
   const emailConfig = await resolveEmailConfig();
   let lastKey;
-  let sent = 0;
   let skipped = 0;
   const allUserItems = [];
+  const dueUsers = [];
+  const today = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
   do {
     const scan = await ddb.send(
       new import_lib_dynamodb5.ScanCommand({
@@ -636,82 +768,21 @@ async function handler() {
         skipped++;
         continue;
       }
-      const today = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
-      const dedupKey = `REMINDER_SENT#${today}`;
-      const pk = item.PK;
-      const dedupCheck = await ddb.send(
-        new import_lib_dynamodb5.GetCommand({
-          TableName: tableName,
-          Key: { PK: pk, SK: dedupKey },
-          ProjectionExpression: "PK"
-        })
-      );
-      if (dedupCheck.Item) {
-        skipped++;
-        continue;
-      }
-      const profileRes = await ddb.send(
-        new import_lib_dynamodb5.GetCommand({
-          TableName: tableName,
-          Key: { PK: pk, SK: "PROFILE" },
-          ProjectionExpression: "displayName, email"
-        })
-      );
-      const name = profileRes.Item?.displayName ?? "Reader";
-      const email = profileRes.Item?.email;
-      const notifId = crypto.randomUUID();
-      const now = (/* @__PURE__ */ new Date()).toISOString();
-      await ddb.send(
-        new import_lib_dynamodb5.UpdateCommand({
-          TableName: tableName,
-          Key: { PK: pk, SK: `NOTIF#${now}#${notifId}` },
-          UpdateExpression: "SET entity = :e, userId = :uid, notificationId = :nid, #type = :type, title = :title, body = :body, channel = :ch, readAt = :null, createdAt = :now",
-          ExpressionAttributeNames: { "#type": "type" },
-          ExpressionAttributeValues: {
-            ":e": "BOOK_USER_NOTIFICATION",
-            ":uid": userId,
-            ":nid": notifId,
-            ":type": "reading_reminder",
-            ":title": "Time to read!",
-            ":body": "A few minutes of focused reading can make a real difference.",
-            ":ch": "in_app",
-            ":null": null,
-            ":now": now
-          }
-        })
-      );
-      if (email && notifPrefs.channels?.email === true) {
-        try {
-          const tpl = readingReminderEmail({ name, appBaseUrl: emailConfig.appBaseUrl });
-          await sendCompliantEmail(ses, ddb, tableName, emailConfig, {
-            to: email,
-            userId,
-            category: "reading_reminder",
-            subject: tpl.subject,
-            textBody: tpl.textBody,
-            htmlBody: tpl.htmlBody
-          });
-        } catch (e) {
-          console.error(`[reading-reminder-cron] email failed for ${userId.slice(0, 8)}:`, e);
-        }
-      }
-      await ddb.send(
-        new import_lib_dynamodb5.PutCommand({
-          TableName: tableName,
-          Item: {
-            PK: pk,
-            SK: dedupKey,
-            entity: "NUDGE_DEDUP",
-            createdAt: now,
-            ttl: Math.floor(Date.now() / 1e3) + 2 * 24 * 60 * 60
-          }
-        })
-      );
-      sent++;
+      dueUsers.push({ pk: item.PK, userId, notifPrefs });
     }
     lastKey = scan.LastEvaluatedKey;
   } while (lastKey);
-  console.log(`[reading-reminder-cron] Reminders done. Sent: ${sent}, Skipped: ${skipped}`);
+  const outcomes = await runWithConcurrency(
+    dueUsers,
+    REMINDER_CONCURRENCY,
+    (u) => processReminderUser(u, today, emailConfig)
+  );
+  const sent = outcomes.filter((o) => o === "sent").length;
+  const errors = outcomes.filter((o) => o === "error").length;
+  skipped += outcomes.filter((o) => o === "skipped").length;
+  console.log(
+    `[reading-reminder-cron] Reminders done. Sent: ${sent}, Skipped: ${skipped}, Errors: ${errors}`
+  );
   const [streakResult, digestResult, welcomeResult] = await Promise.allSettled([
     processStreakAtRisk(ddb, ses, tableName, emailConfig, allUserItems),
     processWeeklyDigest(ddb, ses, tableName, emailConfig, allUserItems),
@@ -722,7 +793,7 @@ async function handler() {
     weeklyDigest: digestResult.status === "fulfilled" ? digestResult.value : "failed",
     welcomeBack: welcomeResult.status === "fulfilled" ? welcomeResult.value : "failed"
   });
-  return { sent, skipped };
+  return { sent, skipped, errors };
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

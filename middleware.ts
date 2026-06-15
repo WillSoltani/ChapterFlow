@@ -28,10 +28,18 @@ function resolveRequestOrigin(req: NextRequest): string {
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Public, unauthenticated endpoints that live under an otherwise-protected
-  // prefix. One-click email unsubscribe (CASL/CAN-SPAM) is token-authenticated
-  // and must work for logged-out recipients and automated mail clients.
-  if (pathname.startsWith("/app/api/book/email/unsubscribe")) {
+  // API routes never get cookie-based auth middleware. Routes under /app/api
+  // either enforce their own auth at the route level (requireUser /
+  // requireActiveBookUser / requireAdminUser), verify a signature (the Stripe
+  // billing webhook) or token (email unsubscribe), or are intentionally public
+  // reads (the published-catalog storefront endpoints) — none depend on this
+  // cookie check for protection. Several are also called by un-cookied
+  // server-to-server clients: the Stripe webhook and one-click email
+  // unsubscribe (CASL/CAN-SPAM) carry no id_token cookie. Redirecting those to
+  // /auth/login (a 302) makes Stripe treat every delivery as failed — it
+  // retries, then disables the endpoint, silently breaking all subscription
+  // processing (checkout grants, cancellations, disputes, refunds).
+  if (pathname.startsWith("/app/api/")) {
     return NextResponse.next();
   }
 
@@ -71,12 +79,18 @@ export function middleware(req: NextRequest) {
 
   if (!token || isExpired) {
     const publicOrigin = resolveRequestOrigin(req);
-    const currentTarget = new URL(
-      `${req.nextUrl.pathname}${req.nextUrl.search}`,
-      publicOrigin,
-    );
     const loginUrl = new URL("/auth/login", publicOrigin);
-    loginUrl.searchParams.set("returnTo", currentTarget.toString());
+    // Emit a RELATIVE returnTo (path + query only). sanitizeReturnTo accepts
+    // same-origin relative paths unconditionally (isSafeInternalPath), so the
+    // original destination survives regardless of which host/alias served the
+    // request. An absolute returnTo would be matched against allowedOrigins(),
+    // which is built solely from env vars — on any host those don't cover (a
+    // new CloudFront alias, a preview/staging domain, a forwarded-host
+    // mismatch) the deep link is silently dropped and the user lands on /book.
+    loginUrl.searchParams.set(
+      "returnTo",
+      `${req.nextUrl.pathname}${req.nextUrl.search}`,
+    );
     const res = NextResponse.redirect(loginUrl);
 
     // Clear any stale token fragments

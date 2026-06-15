@@ -2,8 +2,37 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
-import { getBookProgressStorageKey } from "@/app/book/_lib/reader-storage";
+import {
+  CHAPTER_READER_STORAGE_PREFIX,
+  getBookProgressStorageKey,
+} from "@/app/book/_lib/reader-storage";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
+
+// Mirror of usePhaseCompletion.ts STORAGE_KEY_PREFIX. Duplicated here (rather than
+// imported) because that constant lives in the chapter-reader tree; keep in sync.
+const PHASE_COMPLETION_STORAGE_PREFIX = "book-accelerator:phase-completion:v1";
+
+// Remove every per-chapter reader artefact for a book so a stale reader tab — or
+// the next page load — can't resurrect chapter completion through the GET union
+// merge below. The server's canonical gating state is reset separately via the
+// reset endpoint; this only clears the local mirrors that could re-push it.
+function clearBookReaderStorage(bookId: string): void {
+  if (typeof window === "undefined") return;
+  const prefixes = [
+    `${CHAPTER_READER_STORAGE_PREFIX}:${bookId}:`,
+    `${PHASE_COMPLETION_STORAGE_PREFIX}:${bookId}:`,
+  ];
+  const toRemove: string[] = [];
+  for (let index = 0; index < window.localStorage.length; index += 1) {
+    const key = window.localStorage.key(index);
+    if (key && prefixes.some((prefix) => key.startsWith(prefix))) {
+      toRemove.push(key);
+    }
+  }
+  for (const key of toRemove) {
+    window.localStorage.removeItem(key);
+  }
+}
 
 type ChapterState = "completed" | "current" | "locked";
 type ProgressChapter = { id: string };
@@ -391,9 +420,20 @@ export function useBookProgress<TChapter extends ProgressChapter>(
     [markChapterComplete, progress.currentChapterId]
   );
 
-  const resetProgress = useCallback(() => {
+  const resetProgress = useCallback(async () => {
+    // Hard-reset the server's canonical gating entitlement FIRST; only mutate
+    // local state once it succeeds, so a failed network call leaves progress
+    // untouched and the caller can surface the error. We can't rely on the
+    // debounced merge-PATCH (it re-derives gating from server truth and never
+    // clears it), and the GET union-merge would otherwise resurrect any
+    // completion still on the server / in a stale tab.
+    await fetchBookJson<{ state: PersistedBookProgress | null }>(
+      `/app/api/book/me/books/${encodeURIComponent(bookId)}/state/reset`,
+      { method: "POST" }
+    );
+    clearBookReaderStorage(bookId);
     setProgress(initialProgress(chapters));
-  }, [chapters]);
+  }, [bookId, chapters]);
 
   return {
     hydrated,

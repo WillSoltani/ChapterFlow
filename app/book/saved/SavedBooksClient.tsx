@@ -68,7 +68,7 @@ export function SavedBooksClient() {
   return (
     <main
       className="min-h-screen"
-      style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}
+      style={{ background: "var(--cf-page-bg)", color: "var(--cf-text-2)" }}
     >
       <TopNav
         name={viewerName}
@@ -89,16 +89,16 @@ export function SavedBooksClient() {
           <div>
             <h1
               className="font-(family-name:--font-display) text-[28px] font-bold leading-tight"
-              style={{ color: "var(--text-heading)" }}
+              style={{ color: "var(--cf-text-1)" }}
             >
               Read Next
             </h1>
-            <p className="mt-1.5 text-[14px]" style={{ color: "var(--text-secondary)" }}>
+            <p className="mt-1.5 text-[14px]" style={{ color: "var(--cf-text-3)" }}>
               Books you intentionally saved for your next stretch of reading.
             </p>
           </div>
           {!loading && savedBooks.length > 0 && (
-            <p className="shrink-0 text-[13px]" style={{ color: "var(--text-muted)" }}>
+            <p className="shrink-0 text-[13px]" style={{ color: "var(--cf-text-soft)" }}>
               {savedBooks.length} {savedBooks.length === 1 ? "book" : "books"} saved
             </p>
           )}
@@ -111,16 +111,16 @@ export function SavedBooksClient() {
             className="mx-auto max-w-md rounded-2xl px-8 py-12 text-center"
             style={{ background: "var(--bg-glass)", border: "1px solid var(--border-subtle)" }}
           >
-            <p className="text-[16px] font-semibold" style={{ color: "var(--text-heading)" }}>
+            <p className="text-[16px] font-semibold" style={{ color: "var(--cf-text-1)" }}>
               No saved books yet
             </p>
-            <p className="mt-2 text-[13px]" style={{ color: "var(--text-secondary)" }}>
+            <p className="mt-2 text-[13px]" style={{ color: "var(--cf-text-3)" }}>
               Tap the bookmark on any book in the library to add it to your Read Next queue.
             </p>
             <Link
               href="/book/library"
               className="mt-5 inline-block rounded-lg px-5 py-2.5 text-[13px] font-semibold transition-colors"
-              style={{ background: "var(--accent-cyan)", color: "var(--bg-base)" }}
+              style={{ background: "var(--cf-accent)", color: "var(--cf-page-bg)" }}
             >
               Browse library
             </Link>
