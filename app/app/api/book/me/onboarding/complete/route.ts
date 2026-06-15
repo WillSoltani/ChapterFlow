@@ -9,8 +9,7 @@ import {
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
-  getUserSettingsItem,
-  putUserSettingsItem,
+  updateUserSettingsItem,
   getUserProfileItem,
   putUserProfileItem,
 } from "@/app/app/api/book/_lib/repo";
@@ -143,26 +142,21 @@ export async function POST(req: Request) {
       starterPrescription,
     };
 
-    /* ── Merge into existing settings ── */
-
-    const existing = await getUserSettingsItem(tableName, user.sub);
-    const currentSettings = existing?.settings ?? {};
-
-    const mergedSettings: Record<string, unknown> = {
-      ...currentSettings,
+    /* ── Merge into existing settings ──
+     *
+     * Read-modify-write under optimistic concurrency so a settings PATCH (or a
+     * one-click email unsubscribe writing settings.notifications) that
+     * interleaves with onboarding completion cannot be silently clobbered.
+     */
+    const saved = await updateUserSettingsItem(tableName, user.sub, (current) => ({
+      ...current,
       onboarding: onboardingProfile,
       // Also hoist key preferences to top-level for easy access
       tone,
       dailyGoal,
       chapterOrder,
       scenarioFocus,
-    };
-
-    const saved = await putUserSettingsItem(tableName, {
-      userId: user.sub,
-      settings: mergedSettings,
-      createdAt: existing?.createdAt,
-    });
+    }));
 
     /* ── Grant the rewards the unlock celebration promises ──
      *
