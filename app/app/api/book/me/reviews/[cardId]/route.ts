@@ -1,5 +1,7 @@
 import "server-only";
 
+import { GetCommand } from "@aws-sdk/lib-dynamodb";
+import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
@@ -8,13 +10,25 @@ import {
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { bookUserPk, fsrsCardSk } from "@/app/app/api/book/_lib/keys";
 import { recordReview } from "@/app/app/api/book/_lib/fsrs-repo";
 import { getRetrievability } from "@/app/app/api/book/_lib/fsrs";
-import type { FSRSRating } from "@/app/app/api/book/_lib/types";
+import type { FSRSCardState, FSRSRating } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
 
 const VALID_RATINGS = new Set<FSRSRating>([1, 2, 3, 4]);
+
+// Idempotency window: collapse duplicate grades for the same card (double-click,
+// client retry, two open tabs) that arrive within this many milliseconds of the
+// previous review. FSRS pushes a freshly-reviewed card's next due date at least
+// a full day out, so a legitimate second review of the same card seconds later
+// never happens — anything inside this window is a duplicate submit. Running
+// scheduleCard twice would advance reps/stability again and over-schedule the
+// card, plus write a phantom review log, so we no-op and return the card already
+// scheduled by the first submit. (A new, never-reviewed card has reps === 0 and
+// state "new"; its recent lastReviewAt comes from creation, so it is excluded.)
+const REVIEW_DEDUPE_WINDOW_MS = 5_000;
 
 export async function POST(
   req: Request,
@@ -42,14 +56,48 @@ export async function POST(
     const tableName = await getBookTableName();
     const decodedCardId = decodeURIComponent(cardId);
 
+    const now = new Date();
+
+    // Read the current card first so we can reject duplicate submits before
+    // re-running the (stateful) scheduler. recordReview itself has no
+    // optimistic-concurrency guard, so without this a retry/double-click would
+    // advance the card a second time and write a duplicate review log.
+    const existing = await ddbDoc.send(
+      new GetCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(user.sub),
+          SK: fsrsCardSk(decodedCardId),
+        },
+      })
+    );
+
+    const current = existing.Item as FSRSCardState | undefined;
+    if (!current) {
+      throw new BookApiError(404, "card_not_found", "FSRS card not found.");
+    }
+
+    if (
+      current.reps > 0 &&
+      now.getTime() - new Date(current.lastReviewAt).getTime() <
+        REVIEW_DEDUPE_WINDOW_MS
+    ) {
+      // Duplicate submit inside the dedupe window — return the already-scheduled
+      // card without advancing the scheduler or writing another review log.
+      return bookOk({
+        card: {
+          ...current,
+          retrievability: getRetrievability(current, now),
+        },
+      });
+    }
+
     const updated = await recordReview(
       tableName,
       user.sub,
       decodedCardId,
       rating as FSRSRating
     );
-
-    const now = new Date();
 
     return bookOk({
       card: {
