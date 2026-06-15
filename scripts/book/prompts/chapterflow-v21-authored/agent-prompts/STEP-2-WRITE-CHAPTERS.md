@@ -26,6 +26,8 @@ Every field you write must use specific terminology and proper nouns from these 
 1. Anchor in ONE of this chapter's `namedExamples` or its `centralConcept`. Each scenario should reference at least one proper noun from the sidecar — a real company, person, product, place, or framework name. `SC9` fires at chapter-gate time if a scenario contains no source-grounded anchor.
 2. Use a DIFFERENT scene structure across scenarios — vary opener style (time-first, place-first, dialogue-led, data-first, role-action), vary protagonist role, vary stakes. Do NOT use the same skeleton with different nouns substituted.
 3. `scenario`: 280–520 chars, usually 55–95 words.
+4. **The named source case is the STAGE; the dealt venue is fallback-only.** The case (and `planSpec.requiredBeat`) is the binding setting — the person in it is the scene's actor. If the dealt `planSpec.venue` can't host that case, DISCARD the venue and stage the case in its own setting. Never relocate the scene to the venue and demote the real case to notes/a report "glowing on a phone," and never invent a spectator who reads the case off a screen — that is the anchor-as-prop failure (deterministic blocker `SL3`).
+5. **Never write scaffolding into prose.** A format id (`coach_talk`, `inner_monologue`, `predict_reveal`, …) or a Title-Case paste of the `planSpec.domain` ("Peyton's Teacher Setting Terms For…") are planning notes, not reader text. They block at chapter-gate (`SL1`/`SL2`).
 
 ### Quiz `correctIndex` per chapter
 

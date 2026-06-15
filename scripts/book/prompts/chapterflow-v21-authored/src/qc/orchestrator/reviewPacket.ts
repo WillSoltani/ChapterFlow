@@ -23,6 +23,7 @@ import { AXIS_WEIGHTS, type AxisId } from "../../critics/semantic/publishableBar
 import type { ChapterV21 } from "../../types.js";
 import { loadKeyPack } from "../manualKeyJudge.js";
 import type { QcRoundRole } from "../qcRound.js";
+import { qcReviewerId } from "../reviewerId.js";
 import { sourceHashFor } from "../sourceV2Gate.js";
 import { REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
 import { barPackPath } from "../barReview.js";
@@ -69,7 +70,10 @@ export function writeReviewPacket(
   L.push("AND every axis ≥0.6; one cited CORRUPTION hit on a corruption axis is RED):");
   for (const axis of Object.keys(AXIS_WEIGHTS) as AxisId[]) L.push(`  - ${axis} (weight ${AXIS_WEIGHTS[axis]})`);
   L.push("");
-  L.push("Reviewer label: use an approved QC role prefix, e.g. \"codex-qc:<your-id>\".");
+  L.push("Reviewer label: each skeleton below is PRE-FILLED with its own derived reviewer id");
+  L.push("(codex-qc:<round>:<role>:ch<NN>). Do NOT change it — the bar and confirm ids for a");
+  L.push("chapter are deliberately different so the confirm read counts as an independent second");
+  L.push("reviewer. If a human/other agent reviews instead, keep the same role prefix (codex-qc).");
   L.push("Submit each filled skeleton to its own file, then run its qc-submit command.");
   L.push("");
 
@@ -83,7 +87,7 @@ export function writeReviewPacket(
     bookId,
     roundId,
     role: "sweep",
-    reviewer: "codex-qc:<your-id>",
+    reviewer: qcReviewerId(roundId, "sweep"),
     verdict: "FILL_ME",
     checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
     findings: [],
@@ -101,7 +105,7 @@ export function writeReviewPacket(
       bookId,
       roundId,
       role,
-      reviewer: "codex-qc:<your-id>",
+      reviewer: qcReviewerId(roundId, role),
       chapters: chapters.map((ch) => {
         const pack = loadKeyPack(bookId, roundId, ch.number);
         const qCount = pack?.questions.length ?? ch.quiz?.questions?.length ?? 0;
@@ -134,7 +138,7 @@ export function writeReviewPacket(
       bookId,
       roundId,
       role: "bar",
-      reviewer: "codex-qc:<your-id>",
+      reviewer: qcReviewerId(roundId, "bar", ch.number),
       chapterNumber: ch.number,
       chapterId: ch.chapterId,
       contentHash: chapterContentHash(ch),
@@ -158,7 +162,7 @@ export function writeReviewPacket(
       bookId,
       roundId,
       role: "confirm",
-      reviewer: "codex-qc:<a-DIFFERENT-id>",
+      reviewer: qcReviewerId(roundId, "confirm", ch.number),
       chapterNumber: ch.number,
       chapterId: ch.chapterId,
       contentHash: chapterContentHash(ch),

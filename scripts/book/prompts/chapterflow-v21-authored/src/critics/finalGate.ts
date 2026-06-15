@@ -52,6 +52,7 @@ import {
 } from "./prose.js";
 import { checkReadingLevel } from "./readingLevel.js";
 import { checkPlainLanguage } from "./plainLanguage.js";
+import { checkScaffoldLeak } from "./scaffoldLeak.js";
 import { runSupportSectionAudit } from "./supportSectionAudit.js";
 
 export type GateSeverity = "blocker" | "major" | "minor";
@@ -181,6 +182,12 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "E7.complex_word": "minor",
   "E7.long_sentence": "major",
   "E7.dense_headline": "major",
+  // SL — scaffold leak: authoring scaffolding that surfaced as reader prose.
+  // Format-tag tokens are unambiguous (underscore_forms can't occur in English),
+  // so they BLOCK; domain-label paste and spectator-prop staging are majors.
+  "SL1.format_tag_leak": "blocker",
+  "SL2.domain_label_leak": "major",
+  "SL3.spectator_prop": "major",
   // Quiz-quality critic (BP15–BP21, schema.quiz_*)
   "BP15.quiz_strawman_distractor": "major",
   "BP16.quiz_answer_length_blocker": "blocker",
@@ -485,6 +492,12 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // longer ship unflagged.
   for (const f of checkPlainLanguage(chapter)) {
     push(f.checkId as string, `plain_language`, f.message, f.evidence);
+  }
+  // SL — scaffold leak: format-tag tokens / domain-label paste / spectator-prop
+  // staging surfacing as reader prose (the-book-of-boundaries shipped these in
+  // 12/13 chapters). See critics/scaffoldLeak.ts.
+  for (const f of checkScaffoldLeak(chapter)) {
+    push(f.checkId as string, f.unit, f.message, f.evidence);
   }
   // E2 — tier progression
   for (const f of checkTiersProgressive(
