@@ -109,13 +109,29 @@ export function getLocalQuizQuestions(
   if (!pkg) return null;
   const chapter = pkg.chapters.find((ch) => ch.number === chapterNumber);
   if (!chapter?.quiz?.questions) return null;
-  return chapter.quiz.questions.map((q) => ({
-    questionId: q.questionId ?? "",
-    prompt: q.prompt ?? "",
-    choices: Array.isArray(q.choices) ? q.choices : [],
-    correctAnswerIndex: q.correctAnswerIndex ?? q.correctIndex ?? 0,
-    explanation: typeof q.explanation === "string" ? q.explanation : undefined,
-  }));
+  return chapter.quiz.questions.map((q) => {
+    // Fail loudly on a missing answer key. Silently defaulting to 0 would grade
+    // every reader against choice A for a content defect, corrupting scores/IP
+    // for the chapter with no operator signal. Publish-time validation
+    // (validate-book-package.ts) already enforces this; this guard catches any
+    // content that reaches runtime without an answer-key field.
+    const correctAnswerIndex = q.correctAnswerIndex ?? q.correctIndex;
+    if (typeof correctAnswerIndex !== "number") {
+      throw new BookApiError(
+        500,
+        "quiz_question_missing_answer_key",
+        "This quiz is temporarily unavailable. Please try again later.",
+        { bookId, chapterNumber, questionId: q.questionId ?? null }
+      );
+    }
+    return {
+      questionId: q.questionId ?? "",
+      prompt: q.prompt ?? "",
+      choices: Array.isArray(q.choices) ? q.choices : [],
+      correctAnswerIndex,
+      explanation: typeof q.explanation === "string" ? q.explanation : undefined,
+    };
+  });
 }
 
 /**
