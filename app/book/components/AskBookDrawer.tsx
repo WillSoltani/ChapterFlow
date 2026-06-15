@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Send, Sparkles, Square, Trash2, X } from "lucide-react";
+import { useBodyScrollLock } from "@/components/ui/use-body-scroll-lock";
 
 type Message = {
   role: "user" | "assistant";
@@ -159,23 +160,11 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, handleClose]);
 
-  // Body scroll lock while the drawer is open (with scrollbar-gutter
-  // compensation to avoid layout shift), restoring the previous values on
-  // close/unmount. Mirrors the shared OverlayShell pattern in
-  // components/ui/Dialog.tsx so behavior matches NotesDrawer's Sheet.
-  useEffect(() => {
-    if (!open) return;
-    const body = document.body;
-    const prevOverflow = body.style.overflow;
-    const prevPad = body.style.paddingRight;
-    const gutter = window.innerWidth - document.documentElement.clientWidth;
-    body.style.overflow = "hidden";
-    if (gutter > 0) body.style.paddingRight = `${gutter}px`;
-    return () => {
-      body.style.overflow = prevOverflow;
-      body.style.paddingRight = prevPad;
-    };
-  }, [open]);
+  // Body scroll lock while the drawer is open. Uses the shared ref-counted lock
+  // so it composes with NotesDrawer's Sheet (OverlayShell) — both can be open at
+  // once in the reader, and an uncoordinated save/restore would leave the body
+  // permanently locked when they close out of order.
+  useBodyScrollLock(open);
 
   // Auto-focus input when drawer opens
   useEffect(() => {
@@ -446,7 +435,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
         </div>
 
         {/* Input */}
-        <div className="border-t border-(--cf-divider) px-4 py-3 pb-safe">
+        <div className="border-t border-(--cf-divider) px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
           <form
             onSubmit={(e) => {
               e.preventDefault();

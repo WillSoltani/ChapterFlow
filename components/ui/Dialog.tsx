@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
+import { useBodyScrollLock } from "@/components/ui/use-body-scroll-lock";
 
 const FOCUSABLE =
   'a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),button:not([disabled]),[tabindex]:not([tabindex="-1"]),iframe,object,embed,[contenteditable="true"],audio[controls],video[controls]';
@@ -102,19 +103,9 @@ function OverlayShell({
   const isTopmost = () => overlayStack[overlayStack.length - 1] === overlayIdRef.current;
 
   // Body scroll lock (with scrollbar-gutter compensation to avoid layout shift).
-  useEffect(() => {
-    if (!open) return;
-    const body = document.body;
-    const prevOverflow = body.style.overflow;
-    const prevPad = body.style.paddingRight;
-    const gutter = window.innerWidth - document.documentElement.clientWidth;
-    body.style.overflow = "hidden";
-    if (gutter > 0) body.style.paddingRight = `${gutter}px`;
-    return () => {
-      body.style.overflow = prevOverflow;
-      body.style.paddingRight = prevPad;
-    };
-  }, [open]);
+  // Shared ref-counted lock so stacked overlays (e.g. NotesDrawer's Sheet +
+  // AskBookDrawer) compose without corrupting body.style on out-of-order close.
+  useBodyScrollLock(open);
 
   // Escape to close. Only the topmost overlay reacts: e.stopPropagation() does
   // NOT stop sibling document-level listeners, so without the stack check every
