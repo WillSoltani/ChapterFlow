@@ -18,11 +18,14 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
   const [confirmText, setConfirmText] = useState("");
   const [deleteStep, setDeleteStep] = useState<1 | 2>(1);
   const [loading, setLoading] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [deactivateError, setDeactivateError] = useState<string | null>(null);
 
   function handleStartDelete() {
     setDeleteModal(true);
     setDeleteStep(1);
     setConfirmText("");
+    setDeleteError(null);
   }
 
   async function handleConfirmDelete() {
@@ -30,20 +33,40 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
       setDeleteStep(2);
     } else if (confirmText === "DELETE") {
       setLoading(true);
-      await onDelete();
-      // If onDelete doesn't redirect, reset state
-      setLoading(false);
-      setDeleteModal(false);
-      setConfirmText("");
+      setDeleteError(null);
+      try {
+        await onDelete();
+        // On success onDelete redirects to /auth/logout (page unloads). If it
+        // returns without redirecting, fall through and reset state.
+        setDeleteModal(false);
+        setConfirmText("");
+      } catch {
+        // Backend failure: keep the destructive modal open and surface an
+        // inline error so the user knows the deletion did NOT happen.
+        setDeleteError(
+          "We couldn't delete your account. Your account is still active — please try again.",
+        );
+      } finally {
+        setLoading(false);
+      }
     }
   }
 
   async function handleConfirmDeactivate() {
     setLoading(true);
-    await onDeactivate();
-    // If onDeactivate doesn't redirect, reset state
-    setLoading(false);
-    setDeactivateModal(false);
+    setDeactivateError(null);
+    try {
+      await onDeactivate();
+      // On success onDeactivate redirects to /auth/logout (page unloads).
+      setDeactivateModal(false);
+    } catch {
+      // Backend failure: keep the modal open with an inline error.
+      setDeactivateError(
+        "We couldn't deactivate your account. Your account is still active — please try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -55,7 +78,10 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
         <div className="mt-3 space-y-2">
           <button
             type="button"
-            onClick={() => setDeactivateModal(true)}
+            onClick={() => {
+              setDeactivateError(null);
+              setDeactivateModal(true);
+            }}
             className="flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)"
           >
             <LogOut className="h-4 w-4 text-(--cf-danger-text)" />
@@ -99,6 +125,14 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
             Your reading history, streaks, and progress will be saved. You can
             reactivate anytime by signing back in.
           </p>
+          {deactivateError && (
+            <p
+              role="alert"
+              className="mt-4 rounded-xl border border-(--cf-danger-border) bg-(--cf-danger-bg) px-3 py-2 text-sm text-(--cf-danger-text)"
+            >
+              {deactivateError}
+            </p>
+          )}
           <div className="mt-5 flex gap-2.5">
             <Button
               variant="secondary"
@@ -190,6 +224,14 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
                 className="cf-input mt-3 w-full rounded-xl px-3 py-2 text-sm font-mono uppercase tracking-widest"
                 autoFocus
               />
+              {deleteError && (
+                <p
+                  role="alert"
+                  className="mt-4 rounded-xl border border-(--cf-danger-border) bg-(--cf-danger-bg) px-3 py-2 text-sm text-(--cf-danger-text)"
+                >
+                  {deleteError}
+                </p>
+              )}
               <div className="mt-5 flex gap-2.5">
                 <Button
                   variant="secondary"
