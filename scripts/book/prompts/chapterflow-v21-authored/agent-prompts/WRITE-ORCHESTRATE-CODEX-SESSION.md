@@ -51,10 +51,14 @@ spawn one subagent per chapter, in parallel, each with this contract:
 > choices to the target positions), and the source-case-binding rule (the named case is
 > the stage; the dealt venue is fallback-only — never demote the case to notes on a phone
 > or write a format tag / domain label into prose). Then run
-> `npx tsx src/cli.ts author-check <file>` and `npx tsx src/cli.ts gate-chapter <file>`
-> and FIX until gate-chapter prints "Gate verdict: PASS — 0 blockers". Do NOT QC, publish,
-> or touch any other chapter. If gate-chapter halts on a circuit-breaker (exit 3), STOP
-> and report — do not keep patching.
+> `npx tsx src/cli.ts author-check <file>` and `npx tsx src/cli.ts gate-chapter <file>` and FIX
+> until gate-chapter prints "Gate verdict: PASS — 0 blockers". THEN — the step that actually
+> stops the QC loop — run `npx tsx src/cli.ts publishable-rubric` and self-score the chapter on
+> the 8 bar axes QC grades on (PASS = ≥85/100, no axis <0.6); fix any axis below ~0.85 and any
+> corruption-axis hit before you return. gate-chapter is deterministic and does NOT predict the
+> bar — a gate-clean chapter is routinely REVISE'd. Do NOT QC, publish, or touch any other
+> chapter. If gate-chapter halts on a circuit-breaker (exit 3), STOP and report — do not keep
+> patching.
 >
 > <paste this chapter's fanout card here>
 

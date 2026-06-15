@@ -35,8 +35,8 @@ test("E7 flags a run-on prose sentence as a major and lets a short one pass", ()
 });
 
 test("E7 holds one-liner fields to a tighter cap than prose", () => {
-  // 26 words — fine as prose, too dense for a one-liner headline.
-  const line = "The point here is simply that you should always try to write the kind of sentence a tired reader can finish without stopping once.";
+  // 26 words — fine as prose (≤34), too dense for a one-liner headline (>24).
+  const line = "The point here is simply that you should always try hard to write the kind of sentence a tired reader can finish without ever stopping once.";
   assert.deepEqual(checkSentenceLength(line, "hook"), [], "26 words is under the prose cap");
   const head = checkSentenceLength(line, "hook", { headline: true });
   assert.ok(head.some((x) => x.severity === "major" && /one-liner/.test(x.message)), JSON.stringify(head));

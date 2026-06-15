@@ -31,6 +31,12 @@ Every field you write must use specific terminology and proper nouns from these 
 
 ### Quiz `correctIndex` per chapter
 
+**Derive every key the way the BLIND judge will (quiz_key_correctness — the heaviest QC axis, weight 18, and a CORRUPTION veto).** The keyA/keyB key-judge re-derives the correct answer with access to ONLY the prompt + the three choices + this chapter's `testableFacts[]` (each: `claim` / `becauseMechanism` / `commonError` / `errorIsWhy`). It NEVER sees your breakdown, examples, keyTakeaway, or explanation. So:
+- **Anchor every question to a `testableFacts[]` entry** and set its `sourceAnchorId` to that fact's id. A question built only from the breakdown or an example — with no backing testableFact — cannot be cited by the judge and lands in NEEDS_ADJUDICATION (a non-PASS). With 9 questions, reuse facts across questions if needed, but each key must be derivable from one.
+- **The keyed choice must be the answer that entry's `claim` + `becauseMechanism` supports** — uniquely, against the other two choices. If a choice is "correct" by your prose but not by the testableFact, the blind judge will land on a different index → wrong-key CORRUPTION.
+- **Build the two distractors from the source's named wrong move** — the entry's `commonError` (and `errorIsWhy`). A distractor that mirrors the real misconception is a tempting near-miss; an invented one risks being a second defensible answer the judge can't rule out.
+- **Read the keyed choice and its explanation together, last:** the explanation must defend the keyed index and name why a distractor fails. If it could be pasted under a different choice unchanged, or argues toward a non-keyed choice, the key is wrong — fix the index.
+
 1. After writing the 9 questions, score each choice independently for correctness.
 2. Distribute `correctIndex` across positions 0/1/2 with a balanced count (3-3-3 ideal; 4-3-2 acceptable; never 5+ of one position).
 3. Your chapter's full 9-element sequence must be DIFFERENT from every prior chapter's. `AS12` fires at chapter-gate time on duplicates.
@@ -68,15 +74,27 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts book-gate <book
 This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs the full book-level pattern audit. Must report 0 blockers before reporting Step 2 complete.
 
 Before reporting Step 2 complete:
+- **Self-score every chapter against the PUBLISHABLE BAR — the standard QC actually grades on.** Run `npx tsx src/cli.ts publishable-rubric` and score the draft on all 8 weighted axes (PASS = overall ≥85/100 AND no axis <0.6). A gate-clean chapter is routinely REVISE'd; the bar is the real target. Fix any axis you'd score below ~0.85, and ANY corruption-axis hit (quiz_key_correctness, example_coherence, prose_coherence, factual_accuracy), before you submit. The dominant axes are quiz_key_correctness (18) and example_coherence (16) — spend your effort there.
 - every assigned chapter must pass `author-check`;
 - every assigned chapter must pass `gate-chapter` with 0 blockers;
 - `book-gate <bookId>` must have 0 blockers;
 - run `major-status <bookId>`;
-- fix any actionable current major findings that are writing defects;
+- treat `gate-chapter` majors as **diagnostic hints toward the bar axes**, not a separate checklist to zero out: fix the ones that are real quality defects (a weak scene, a run-on, a templated cast). The gold reference books trip some of these deterministic checks and still pass the bar, so do NOT game a threshold — fix the underlying writing the bar would dock;
 - do not waive majors; only QC/operator may write `major-disposition`;
-- if a major seems like a false positive or acceptable debt, report it explicitly instead of claiming completion.
+- if a major seems like a genuine false positive, report it explicitly with the reason instead of claiming completion.
 
-**Warning:** 0 blockers is necessary but not sufficient for no-api QC. Unresolved majors are QC debt and may cause finalizer REVISE.
+### Write-time quality hints (the gate-chapter majors → which bar axis they point at)
+`gate-chapter` reports these (severity in brackets). They are NOT blockers, so "0 blockers" can still hide all of them — read the `majors:` list, and fix the ones the bar would penalize (example_coherence / prose_coherence).
+
+- **C2 (specific scene)** — an example scenario reads abstract. PASS needs a scenario ≥180 chars that names a concrete setting: a **time/occasion**, a **place**, a **role**, AND a concrete object/artifact in the scene. "During the seminar" is not enough; "As the 9 a.m. seminar breaks up, Joan slides *On Anger* back into her bag" is.
+- **C3 (decision point)** — fires only on `decision_point`/`dilemma` example formats. The scenario must contain an explicit decision cue ("weighs", "torn between", "should she", "two paths", "has to choose") that puts the reader in the protagonist's shoes. Do NOT force decision language into `audit`/`vignette` formats (the check exempts them).
+- **E4 (concrete fullRead openers)** — fires when >40% of a tier's paragraphs open with an abstract claim ("The X is…", "There is…", "Most people…", a numbered rule). Open paragraphs with a scene, a named person, or direct address.
+- **E7.long_sentence (≤34 words)** / **E7.dense_headline (≤24 words in a one-liner: hook, keyTakeaway, tryThisNow, example title)** — break long sentences in two.
+- **A13 (clean openers)** — no doubled periods, no "Name, plural-noun verb" appositive orphan, no missing-connective decision fragment; keep ≤2 commas before the first verb unless it is a real list (`, or `/`, and `).
+- **E1 (reading level)** — a breakdown tier's Flesch-Kincaid grade is over its ceiling. Plainer words, shorter clauses. (The "≤2 four-plus-syllable words per fastRead ¶" hint is a *minor*, not this major.)
+- **C23 (unique protagonist per scene)** — no proper name may be the protagonist of two example scenarios in one chapter; each scene gets its own dealt name.
+
+**Warning:** 0 blockers is necessary but not sufficient for no-api QC. Unresolved majors are QC debt and the finalizer REVISE drivers — clear them, don't bank them.
 
 ---
 

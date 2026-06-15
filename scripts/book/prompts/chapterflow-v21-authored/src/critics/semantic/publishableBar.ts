@@ -134,6 +134,37 @@ export const AXIS_RUBRIC: Record<AxisId, string> = {
     "Named-framework enumerations are complete and correctly named (BRAVING = 7 items incl. 'Vault', not 6 with 'Vault' renamed 'confidentiality'). CORRUPTION on a wrong/incomplete named enumeration or a fabricated fact. Needs the source as ground truth; when absent, mark 'could not verify' (never silently pass).",
 };
 
+/**
+ * Writer-facing rendering of the SAME publishable-bar rubric the QC bar reviewer
+ * scores against (AXIS_RUBRIC / AXIS_WEIGHTS / thresholds). Surfaced via the
+ * `publishable-rubric` CLI command so a writer self-scores its draft against the
+ * reviewer's actual standard BEFORE submitting — closing the writer↔QC gap that
+ * the deterministic gate cannot (gate-clean ≠ bar PUBLISHABLE). Single source of
+ * truth: this reads the same constants the bar pack hands the reviewer, so the
+ * two can never drift.
+ */
+export function formatWriterRubric(): string {
+  const order = (Object.keys(AXIS_WEIGHTS) as AxisId[]).sort((a, b) => AXIS_WEIGHTS[b] - AXIS_WEIGHTS[a]);
+  const lines: string[] = [];
+  lines.push("PUBLISHABLE BAR — the exact rubric the QC bar reviewer scores your chapter against.");
+  lines.push("Self-score your draft on every axis BEFORE submitting. This is the standard that decides");
+  lines.push("PUBLISHABLE vs REVISE — not gate-chapter (a gate-clean chapter can still be REVISE'd).");
+  lines.push("");
+  lines.push(`PASS = overall weighted score ≥ ${PUBLISHABLE_FLOOR}/100 AND no axis below ${AXIS_FLOOR.toFixed(2)}.`);
+  lines.push(`CORRUPTION axes (a single cited hit RED-fails the whole chapter): ${[...CORRUPTION_AXES].join(", ")}.`);
+  lines.push("Fix any axis you would score below ~0.85, and ANY corruption-axis hit, before you submit.");
+  lines.push("");
+  for (const axis of order) {
+    const corrupt = CORRUPTION_AXES.has(axis) ? "  [CORRUPTION axis]" : "";
+    lines.push(`── ${axis} (weight ${AXIS_WEIGHTS[axis]})${corrupt}`);
+    lines.push(`   ${AXIS_RUBRIC[axis]}`);
+    lines.push("");
+  }
+  lines.push("SELF-SCORE TEMPLATE (fill in before submit; redo any axis < 0.85 or any corruption hit):");
+  for (const axis of order) lines.push(`  ${axis}: _.__  — what would a skeptical reviewer cite?`);
+  return lines.join("\n");
+}
+
 /** Pretty-print a verdict for the QC session / reports. */
 export function formatVerdict(v: PublishableVerdict): string {
   const lines: string[] = [];

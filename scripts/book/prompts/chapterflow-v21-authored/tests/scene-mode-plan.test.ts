@@ -32,3 +32,15 @@ test("dampenRetrospectiveShapes removes postmortem/audit from non-retrospective 
   // A chapter dealt the retrospective stance keeps its dealt shapes untouched.
   assert.deepEqual(dampenRetrospectiveShapes(slots, "retrospective_review"), slots);
 });
+
+test("dampenRetrospectiveShapes throws (not silently re-emits) when the live palette is exhausted", () => {
+  // 8 retrospective slots but only 7 live substitutes — the 8th has no clean
+  // swap. The old behaviour re-emitted the retrospective shape into a live
+  // chapter (defeating the dampening); the contract is now to fail loud.
+  const overpacked = ["postmortem", "audit", "postmortem", "audit", "postmortem", "audit", "postmortem", "audit"];
+  assert.throws(
+    () => dampenRetrospectiveShapes(overpacked, "live_unfolding"),
+    /no live substitute left/,
+    "must throw rather than ship a retrospective shape into a live chapter",
+  );
+});

@@ -76,7 +76,13 @@ export function planRhetoric(bookId: string, from: number, to: number): Rhetoric
   if (!Number.isInteger(from) || !Number.isInteger(to) || from < 1 || to < from) {
     return { schemaVersion: "rhetoric-plan-v1", bookId, createdAt: new Date().toISOString(), allocation: {}, diagnostics: { counterShapeCounts: {}, hookClassCounts: {} } };
   }
-  const counterOffset = fnv1a(bookId) % COUNTER_SHAPES.length;
+  // Namespaced seed (`${bookId}:counter`): the bare `fnv1a(bookId)` used before is
+  // the SAME hash shapePlan.ts uses for its shape rotation, so the counter-shape
+  // deal and the scene-shape deal moved in lockstep across the book — a hidden
+  // correlation that narrowed the real variety. Every sibling allocator namespaces
+  // its seed (`:hook`, `:stance`, `:timing`); the counter offset was the lone
+  // un-namespaced one.
+  const counterOffset = fnv1a(`${bookId}:counter`) % COUNTER_SHAPES.length;
   const hookOffset = fnv1a(`${bookId}:hook`) % HOOK_OPENER_CLASSES.length;
   const allocation: Record<number, RhetoricAllocation> = {};
   const counterShapeCounts: Record<string, number> = {};

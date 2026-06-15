@@ -120,6 +120,16 @@ test("STEP-2 teaches no-api major debt before completion", () => {
   assert.match(s, /Unresolved majors are QC debt/, "STEP-2 must name unresolved majors as QC debt");
 });
 
+test("STEP-2 aligns the writer to the real QC arbiters (publishable bar + blind key-judge)", () => {
+  const s = doc("agent-prompts/STEP-2-WRITE-CHAPTERS.md");
+  // The writer must self-score against the bar QC actually grades on — not stop at gate-clean.
+  assert.match(s, /publishable-rubric/, "STEP-2 must point the writer at the publishable-bar rubric command");
+  assert.match(s, /PUBLISHABLE BAR/, "STEP-2 must name the publishable bar as the real target");
+  // Quiz keys must be derived the way the blind keyA/keyB judge re-derives them (from testableFacts).
+  assert.match(s, /testableFacts/, "STEP-2 must teach quiz-key derivation from testableFacts");
+  assert.match(s, /blind/i, "STEP-2 must explain the blind key-judge");
+});
+
 test("STEP-2 scenario length guidance stays consistent", () => {
   const s = doc("agent-prompts/STEP-2-WRITE-CHAPTERS.md");
   assert.doesNotMatch(s, /80[–-]140 words per scenario/, "old scenario word target conflicts with the schema char floor");

@@ -192,9 +192,10 @@ construction; a field with nothing real to say falls back on the skeletons below
 - Generic filler ("reflect daily," "keep practicing") — not bounded, not checkable, so it goes undone.
 - Identical 24-hour and weekly actions with one word swapped — the two slots must differ in scale and cadence, or one is wasted.
 - Editor/pipeline language ("the reader should be instructed to…") — address the reader, not the assembler.
+- **The SAME weekly FORM as other chapters** — "for seven days, keep one X log" / "end each day reviewing one X" with only the noun swapped, book-wide. The model QC sweep reads weeklyPractice across all chapters and flags a reused shell as **repeated_unit**, capping every involved chapter at REVISE. There is **no deterministic gate** for this — it is on the writer/orchestrator. Across the book the weekly FORM must vary: a single rehearsal, a paired check-in (ask one person to flag the behavior), an environment change, a count-and-tally, a swap experiment, a teach-it, spaced reps — not all a daily log. (A daily-review log is a legitimate form for ONE chapter; it must not be the default for most.)
 
 **POSITIVE (24h):** "For one day, catch three not-enough thoughts in writing. Beside each, mark shame, comparison, or disengagement, then write the next concrete choice."
-**POSITIVE (weekly):** "End each day by reviewing one scarcity cue and one enoughness response. Track which cue appears most often and adjust one routine that keeps feeding it."
+**POSITIVE (weekly):** "Once this week, ask a person you trust to flag the moment your voice tilts toward proving; compare what they noticed with what you felt." (a paired check-in — a DIFFERENT form from any daily-log chapter)
 **NEGATIVE:** "24h: Reflect on scarcity in your life. Weekly: Continue reflecting on scarcity in your life each week." (unbounded, uncheckable, duplicated; no named move)
 
 ---
@@ -249,10 +250,11 @@ construction; a field with nothing real to say falls back on the skeletons below
 **WRITE:**
 1. Introduce the angle the prior tiers could not hold: where the idea breaks down, what it costs, or how it interacts with a competing force.
 2. Develop it with distinct sentences, each carrying a new claim or example — the prose builds, it does not iterate.
-3. Name the boundary: when the move does *not* apply, so the reader is not over-applying a hammer.
+3. Name the boundary: when the move does *not* apply, so the reader is not over-applying a hammer — but earn it from THIS chapter's case, and vary the boundary BEAT across the book (see REJECT).
 4. Close on a complete, landed thought that resolves the chapter's argument.
 
 **REJECT:**
+- **The bare "limit" hinge as the boundary, book-wide** — closing chapter after chapter on "there is a limit" / "the limit matters" / "one limit matters" with only the noun changed. The model QC sweep reads the fullRead boundary across all chapters and flags a shared hinge as **scene_skeleton**, capping every involved chapter at REVISE. There is **no deterministic gate** for this. Vary the boundary BEAT: where the move breaks (a concrete case it can't handle), what it costs (the tradeoff), when to do the opposite, who it misleads, the precondition it assumes. Do not let "limit/limits" be the default transition word.
 - A clause-loop with a rotating label ("Trust shows up in the roster. Trust shows up in the memo. Trust shows up in the call…") (pairs with AC8). This fails the reader because swapping one noun per line creates the appearance of coverage while teaching one point; the reader's time buys nothing.
 - Repeating the fast/deep tiers at greater length instead of opening a new angle. The three tiers must *progress* (the E2 rule); a longer restatement is not a third angle, it is the first tier padded.
 - Ending mid-sentence or mid-word. A truncated final tier tells the reader the author ran out, not that the thought completed — it breaks trust at the moment understanding should close.

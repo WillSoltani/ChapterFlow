@@ -6,6 +6,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "fs";
 
 import {
+  checkBookActionContainerReuse,
   checkBookCallbackFrameReuse,
   checkBookExemplarChapterReuse,
   checkBookTimingAnchorStamping,
@@ -91,6 +92,48 @@ test("BP29 does not fire on situational (clock-free) try-now actions", () => {
   assert.deepEqual(checkBookTimingAnchorStamping(chapters), []);
 });
 
+test("BP30 fires when the timer/calendar container saturates >=50% of chapters", () => {
+  const book = "zz-fixture-bp30";
+  // 7 of 8 chapters funnel the action into a timer/calendar container (0.875),
+  // even though the surrounding action differs — the-daily-stoic's migrated
+  // location_stamping (the container, not the clock).
+  const chapters = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => {
+    const ch = makeChapter(book, n);
+    if (n !== 4) ch.tryThisNow = `Set a 10-minute timer before you handle situation ${n}.`;
+    return ch;
+  });
+  const findings = checkBookActionContainerReuse(chapters);
+  assert.ok(
+    findings.some((f) => f.checkId === "BP30.action_container_reuse" && f.chapters.length >= 4),
+    JSON.stringify(findings),
+  );
+});
+
+test("BP30 does NOT count NEGATED container mentions (the actionMechanismPlan prevention copy)", () => {
+  const book = "zz-fixture-bp30-negation";
+  // Every chapter echoes the prevention directive's negation ("not a timer / NOT a
+  // calendar event") but the actual action is a non-scheduling one. BP30 must read
+  // these as zero container use, not a saturating reuse.
+  const chapters = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => {
+    const ch = makeChapter(book, n);
+    ch.tryThisNow = `Write one line about today — NOT a timer or calendar event, just the sentence.`;
+    return ch;
+  });
+  assert.deepEqual(checkBookActionContainerReuse(chapters), []);
+});
+
+test("BP30 does NOT fire when the timer/calendar container is sparse (one scheduling chapter)", () => {
+  const book = "zz-fixture-bp30-clean";
+  // Only ch2 uses a timer (the one scheduling chapter); the rest are varied
+  // situational actions. 1/8 = 0.125, well under the 0.50 density floor.
+  const chapters = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => {
+    const ch = makeChapter(book, n);
+    if (n === 2) ch.tryThisNow = "Set a 5-minute timer and free-write what you are avoiding.";
+    return ch;
+  });
+  assert.deepEqual(checkBookActionContainerReuse(chapters), []);
+});
+
 // Clean-corpus calibration: the new cross-chapter detectors must emit ZERO on
 // shipped books. (daring-greatly + start-with-why are covered by the gold
 // book-gate major-pin below.)
@@ -99,7 +142,7 @@ for (const { bookId, files } of cleanCorpusChapterFiles()) {
     skip(`clean corpus: ${bookId} BP28/BP29 stay zero`, `no ${bookId} chapters in state/chapters/ on this machine`);
     continue;
   }
-  test(`clean corpus: ${bookId} — BP28 + BP29 emit ZERO findings across ${files.length} chapters`, () => {
+  test(`clean corpus: ${bookId} — BP28 + BP29 + BP30 emit ZERO findings across ${files.length} chapters`, () => {
     const chapters = files.map((file) => JSON.parse(readFileSync(file, "utf8")) as ChapterV21);
     assert.deepEqual(
       checkBookCallbackFrameReuse(chapters).map((f) => `${f.evidence} → ${f.chapters.join(",")}`),
@@ -110,6 +153,11 @@ for (const { bookId, files } of cleanCorpusChapterFiles()) {
       checkBookTimingAnchorStamping(chapters).map((f) => `${f.evidence} → ${f.chapters.join(",")}`),
       [],
       `BP29 timing-stamp false-positive on ${bookId}`,
+    );
+    assert.deepEqual(
+      checkBookActionContainerReuse(chapters).map((f) => `${f.evidence} → ${f.chapters.join(",")}`),
+      [],
+      `BP30 action-container false-positive on ${bookId}`,
     );
   });
 }

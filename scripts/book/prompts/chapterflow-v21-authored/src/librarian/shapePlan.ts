@@ -103,6 +103,19 @@ export function planShapes(bookId: string, from: number, to: number, perChapter 
   for (let n = from; n <= to; n++) {
     const disk = opts.forceFresh ? null : onDiskFormats(bookId, n);
     if (disk) {
+      // Carry the authored chapter's REAL formats so planEnforcement (SP2 "obeyed
+      // the allocation" / SP3 "no shape-slot reused") compares the chapter against
+      // its OWN plan, not a fresh one. The dealt branch throws on intra-chapter
+      // duplicates; the carry branch must NOT (carrying reflects reality, and
+      // re-dealing here would make SP2 spuriously fire). But a carried duplicate
+      // is the SP3 defect the redo exists to break, so surface it at deal time
+      // (it was silently skipped before) — SP3 still blocks it at QC/book-gate.
+      if (new Set(disk).size !== disk.length) {
+        console.warn(
+          `shape-plan: carried on-disk formats for ${bookId} ch${n} reuse a shape slot ` +
+            `(${disk.join(", ")}) — SP3 will flag this at QC. Re-deal with fanout --all to break it.`,
+        );
+      }
       allocation[n] = disk;
       carried.push(n);
       continue;

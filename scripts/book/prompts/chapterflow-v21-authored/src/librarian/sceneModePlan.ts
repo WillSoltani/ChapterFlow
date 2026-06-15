@@ -140,13 +140,20 @@ export function dampenRetrospectiveShapes(shapeIds: string[], stance: NarrativeS
       continue;
     }
     const sub = LIVE_SHAPE_SUBSTITUTES.find((s) => !used.has(s));
-    if (sub) {
-      used.delete(id);
-      used.add(sub);
-      out.push(sub);
-    } else {
-      out.push(id); // palette exhausted (won't happen with a real palette) — leave as-is
+    if (!sub) {
+      // Palette exhausted: re-emitting the retrospective `id` here would silently
+      // defeat the dampening (the very shape we must remove survives under a
+      // non-retrospective stance). With 7 live substitutes and ≤6 shape slots this
+      // is unreachable, so a hit means the palette/slot config drifted — fail loud
+      // rather than ship a retrospective shape into a live chapter (scene_skeleton).
+      throw new Error(
+        `dampenRetrospectiveShapes: no live substitute left for "${id}" (stance=${stance}). ` +
+          `LIVE_SHAPE_SUBSTITUTES (${LIVE_SHAPE_SUBSTITUTES.length}) is exhausted by this chapter's ${shapeIds.length} slots.`,
+      );
     }
+    used.delete(id);
+    used.add(sub);
+    out.push(sub);
   }
   return out;
 }

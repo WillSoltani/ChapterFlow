@@ -284,3 +284,84 @@ export function checkBookTimingAnchorStamping(chapters: ChapterV21[]): BookRepet
   }
   return findings;
 }
+
+// ── BP30 — try-now action-container DENSITY (the `location_stamping` family) ───
+//
+// The migrated twin of BP29. BP29 catches a reused CLOCK STAMP; BP30 catches the
+// timer/calendar-event scheduling CONTAINER funnelling the action in chapter after
+// chapter — the-daily-stoic put "Set a 10-minute timer" / "Put a calendar event"
+// in 8 of 12 chapters (0.67) even after the clocks varied. timingPlan deals the
+// TRIGGER and actionMechanismPlan deals the MECHANISM (write / say / move /
+// observe / …, with timer-or-calendar dealt to AT MOST the one scheduling
+// chapter), so the container saturating the book means the deal was ignored.
+//
+// CALIBRATION (why DENSITY, not count): the clean corpus uses the timer/calendar
+// container too, but sparsely — stillness-is-the-key has it in 10/32 chapters
+// (0.31) and shipped; the-daily-stoic has it in 8/12 (0.67) and was REVISE'd. The
+// absolute count does NOT separate them (10 > 8); the DENSITY does. So we fire
+// only when the container saturates >= BP30_MIN_FRACTION of the book (with an
+// absolute floor so a tiny book can't trip on 2 chapters). Measured densities:
+// daring 0.14, start-with-why 0.00, stillness 0.31, year-of-less 0.00, gifts
+// 0.08 — all clear at 0.50; the-daily-stoic 0.67 fires. SHADOW major: a saturated
+// container is semantic-adjacent, so it surfaces (and names chapters for the
+// barrier) without flipping the gate until the clean-zero pin + a confirmed
+// true-positive justify a blocker promotion (the SC9-reversal caution).
+//
+// NOTE: the sibling sweep families repeated_unit (weeklyPractice "seven-day log"
+// shell) and scene_skeleton (fullRead "limit" hinge) are NOT given deterministic
+// gates: calibration proved they are not separable from the clean corpus
+// (start-with-why uses a limit hinge in 14/14 fullReads; stillness uses the
+// seven-day-log shell in 28/32 weeklyPractices — both shipped). Those families are
+// handled by PREVENTION only (weeklyPracticePlan / fullReadSkeletonPlan deal a
+// distinct form/beat per chapter) with the model sweep as the backstop; shipping a
+// gate on a zero the clean corpus violates would be exactly the SC9 trap.
+const BP30_MIN_FRACTION = 0.5;
+const BP30_MIN_CHAPTERS = 4;
+// An explicit timer or calendar-EVENT the reader sets/puts — the saturating
+// container, not any mention of scheduling. Kept narrow (verb "schedule"/"block"
+// alone over-fires on the clean corpus, which uses "schedule an evening review").
+const ACTION_CONTAINER_RE: RegExp[] = [
+  /\btimers?\b/gi,
+  /\bcalendar (?:event|block|invite|reminder|hold)\b/gi,
+  /\bput (?:a|an)[^.]{0,30}\bcalendar\b/gi,
+  /\bset (?:a|an)[^.]{0,12}\b(?:alarm|timer)\b/gi,
+];
+// A container mention NEGATED in the same clause ("write a line — NOT a timer") is
+// not the reader using the container; it's prevention copy. Don't count it — the
+// actionMechanismPlan directives that steer writers AWAY from the timer/calendar
+// shell literally say "not a timer / NOT a clock alarm or calendar event", so a
+// writer who echoes that phrasing must not trip BP30 on the disclaimer.
+const NEGATION_BEFORE = /\b(?:not|no|never|without|avoid|skip|isn['’]t|aren['’]t|don['’]t)\b[^.?!;]{0,30}$/i;
+
+function usesSchedulingContainer(text: string): boolean {
+  if (!text) return false;
+  for (const re of ACTION_CONTAINER_RE) {
+    re.lastIndex = 0;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+      const before = text.slice(Math.max(0, m.index - 30), m.index);
+      if (!NEGATION_BEFORE.test(before)) return true; // an affirmative container use
+    }
+  }
+  return false;
+}
+
+export function checkBookActionContainerReuse(chapters: ChapterV21[]): BookRepetitionFinding[] {
+  const N = chapters.length;
+  if (N === 0) return [];
+  const hits: number[] = [];
+  for (const ch of chapters) {
+    if (usesSchedulingContainer(tryNowText(ch))) hits.push(ch.number);
+  }
+  if (hits.length < BP30_MIN_CHAPTERS || hits.length / N < BP30_MIN_FRACTION) return [];
+  const chs = [...hits].sort((a, b) => a - b);
+  return [{
+    ...finding(
+      "BP30.action_container_reuse",
+      "major",
+      `the try-this-now action funnels into the timer/calendar container in ${chs.length} of ${N} chapters (${(chs.length / N * 100).toFixed(0)}%): ch${chs.join(", ch")}. The practice keeps landing in the same arbitrary scheduling shell instead of a chapter-specific action. Deal each chapter a distinct action mechanism (write a line / say it aloud / move an object / observe-and-count / …); reserve the timer/calendar container for the one chapter genuinely about scheduling (actionMechanismPlan).`,
+      `${chs.length}/${N} chapters use a timer/calendar container`,
+    ),
+    chapters: chs,
+  }];
+}
