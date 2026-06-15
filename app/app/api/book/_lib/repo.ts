@@ -679,7 +679,9 @@ export async function getUserEntitlement(
           ? "flow_points"
           : item.proSource === "gift_code"
             ? "gift_code"
-            : undefined;
+            : item.proSource === "admin"
+              ? "admin"
+              : undefined;
   const licenseKey = readStr(item.licenseKey);
   const licenseExpiresAt = readStr(item.licenseExpiresAt);
   const currentPeriodEnd = readStr(item.currentPeriodEnd);
@@ -826,7 +828,9 @@ async function reserveBookEntitlementOnce(
             ? "flow_points"
             : item.proSource === "gift_code"
               ? "gift_code"
-              : undefined;
+              : item.proSource === "admin"
+                ? "admin"
+                : undefined;
     return {
       userId: params.userId,
       plan: item.plan === "PRO" ? "PRO" : "FREE",
