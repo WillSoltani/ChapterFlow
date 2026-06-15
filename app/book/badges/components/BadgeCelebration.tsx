@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/app/book/components/ui/cn";
@@ -54,51 +54,41 @@ export function BadgeCelebration({
   // First badge gets full celebration, rest become toasts
   const heroBadge = sorted[0] ?? null;
   const heroLevel = heroBadge ? getCelebrationLevel(heroBadge.tier) : "bronze";
-  const remainingBadges = sorted.slice(1);
+  const remainingBadges = useMemo(() => sorted.slice(1), [sorted]);
 
   const [heroVisible, setHeroVisible] = useState(false);
   const [toasts, setToasts] = useState<BadgeWithProgress[]>([]);
   const [dismissed, setDismissed] = useState(false);
 
-  // Show hero celebration
-  useEffect(() => {
-    if (!heroBadge || dismissed) return;
+  // Track every pending setTimeout so we can clear them on unmount / re-run and
+  // avoid setState-after-unmount and replayed/late toasts during rapid bursts.
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-    if (reduced || heroLevel === "bronze") {
-      // Show all as toasts
-      setToasts(sorted);
-      const timer = setTimeout(() => {
-        setToasts([]);
-        onDismiss();
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
+  const clearTimeouts = useCallback(() => {
+    for (const id of timeoutsRef.current) clearTimeout(id);
+    timeoutsRef.current = [];
+  }, []);
 
-    // Show hero modal
-    setHeroVisible(true);
+  const schedule = useCallback((fn: () => void, delay: number) => {
+    const id = setTimeout(fn, delay);
+    timeoutsRef.current.push(id);
+  }, []);
 
-    // Auto-dismiss bronze/unique hero after 5s
-    if (heroLevel === "modal") {
-      const timer = setTimeout(() => {
-        handleDismissHero();
-      }, 6000);
-      return () => clearTimeout(timer);
-    }
-    // Epic celebrations require manual dismiss
-  }, [heroBadge, dismissed, reduced]);
-
-  function handleDismissHero() {
+  const handleDismissHero = useCallback(() => {
     setHeroVisible(false);
+
+    // Cancel any in-flight staggered toasts before scheduling new ones.
+    clearTimeouts();
 
     // Show remaining as toasts (staggered) or summary
     if (remainingBadges.length > 0 && remainingBadges.length <= 3) {
       // Stagger toasts
       remainingBadges.forEach((badge, i) => {
-        setTimeout(() => {
+        schedule(() => {
           setToasts((prev) => [...prev, badge]);
         }, i * 1500);
       });
-      setTimeout(() => {
+      schedule(() => {
         setToasts([]);
         setDismissed(true);
         onDismiss();
@@ -106,7 +96,7 @@ export function BadgeCelebration({
     } else if (remainingBadges.length > 3) {
       // Summary toast
       setToasts([remainingBadges[0]!]); // Use first as placeholder for summary
-      setTimeout(() => {
+      schedule(() => {
         setToasts([]);
         setDismissed(true);
         onDismiss();
@@ -115,7 +105,45 @@ export function BadgeCelebration({
       setDismissed(true);
       onDismiss();
     }
-  }
+  }, [remainingBadges, onDismiss, clearTimeouts, schedule]);
+
+  // Show hero celebration
+  useEffect(() => {
+    if (!heroBadge || dismissed) return;
+
+    if (reduced || heroLevel === "bronze") {
+      // Show all as toasts
+      setToasts(sorted);
+      schedule(() => {
+        setToasts([]);
+        onDismiss();
+      }, 5000);
+      return clearTimeouts;
+    }
+
+    // Show hero modal
+    setHeroVisible(true);
+
+    // Auto-dismiss bronze/unique hero after 5s
+    if (heroLevel === "modal") {
+      schedule(() => {
+        handleDismissHero();
+      }, 6000);
+      return clearTimeouts;
+    }
+    // Epic celebrations require manual dismiss
+    return clearTimeouts;
+  }, [
+    heroBadge,
+    dismissed,
+    reduced,
+    heroLevel,
+    sorted,
+    onDismiss,
+    handleDismissHero,
+    schedule,
+    clearTimeouts,
+  ]);
 
   if (newlyEarned.length === 0) return null;
 
