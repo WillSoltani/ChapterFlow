@@ -88,21 +88,44 @@ export async function POST(
                 // what broke the later `ADD unlockedBookIds :bookSet`).
                 UpdateExpression:
                   "SET #plan = :proPlan, proStatus = :active, proSource = :giftSource, currentPeriodEnd = :expires, updatedAt = :now, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
-                // Never overwrite an active paid Stripe subscription with a gift
-                // grant — that would flip proSource off "stripe" while Stripe keeps
-                // billing, leaving the account unreconcilable. proSource is only
-                // ever "stripe" while a sub is active/retrying (cleared to null on
-                // cancellation), so this allows free/license/flow_points/gift users.
-                ConditionExpression: "attribute_not_exists(proSource) OR proSource <> :stripeSource",
+                // Apply the gift only when it does not shorten or destroy a
+                // longer-lived Pro grant. Either the user has no active PRO grant
+                // (so the gift simply starts/refreshes access), OR every existing
+                // grant's effective expiry is strictly shorter than the gift's:
+                //  - stripe: never overwrite an active paid sub — that flips
+                //    proSource off "stripe" while Stripe keeps billing, leaving
+                //    the account unreconcilable (proSource is only ever "stripe"
+                //    while a sub is active/retrying, cleared to null on cancel).
+                //  - admin: open-ended grant that never time-expires; a 7-day
+                //    gift would always shorten it, so never overwrite it.
+                //  - license: expiry lives in licenseExpiresAt — apply only if
+                //    the gift outlasts it (a stale licenseExpiresAt in the past
+                //    is < :expires, so an expired license is refreshable).
+                //  - flow_points / gift_code: expiry lives in currentPeriodEnd —
+                //    apply only if the gift outlasts it.
+                // Because the guard requires the gift to outlast any existing
+                // expiry, the unconditional `currentPeriodEnd = :expires` above is
+                // always the max of (existing, new).
+                // NOTE: licenseExpiresAt / currentPeriodEnd may be stored as a
+                // DynamoDB NULL (e.g. redeemFlowPointsReward writes
+                // licenseExpiresAt = null), where attribute_not_exists is false but
+                // the value carries no expiry. Treat NULL as "no constraint from
+                // this field" via attribute_type(..., :nullType) so a flow_points/
+                // license user can still apply a gift that extends a shorter or
+                // already-expired grant.
+                ConditionExpression:
+                  "(attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :expires) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :expires))",
                 ExpressionAttributeNames: { "#plan": "plan" },
                 ExpressionAttributeValues: {
                   ":proPlan": "PRO",
                   ":active": "active",
                   ":giftSource": "gift_code",
                   ":stripeSource": "stripe",
+                  ":adminSource": "admin",
                   ":expires": proExpires,
                   ":now": now,
                   ":defaultSlots": 2,
+                  ":nullType": "NULL",
                 },
               },
             },
@@ -121,12 +144,28 @@ export async function POST(
             "This gift code has already been redeemed."
           );
         }
-        // Index 1 = entitlement guard: claimant has an active paid Stripe sub.
+        // Index 1 = entitlement guard: the claim would clobber/shorten an
+        // existing Pro grant. The guard fires for an active paid Stripe sub OR
+        // for any longer-lived non-stripe grant (admin/license/flow_points/
+        // gift_code). Re-read the entitlement to report the accurate reason.
         if (reasons[1]?.Code === "ConditionalCheckFailed") {
+          const entRes = await ddbDoc.send(
+            new GetCommand({
+              TableName: tableName,
+              Key: { PK: bookUserPk(user.sub), SK: entitlementSk() },
+            })
+          );
+          if (entRes.Item?.proSource === "stripe") {
+            throw new BookApiError(
+              409,
+              "active_subscription",
+              "You already have an active paid subscription. Gift codes are for free-pass access only — manage your subscription from billing settings."
+            );
+          }
           throw new BookApiError(
             409,
-            "active_subscription",
-            "You already have an active paid subscription. Gift codes are for free-pass access only — manage your subscription from billing settings."
+            "longer_grant_active",
+            "You already have Pro access that lasts longer than this gift, so the gift was not applied. Save it for when your current access ends or share it with a friend."
           );
         }
         // Cancellation with no item-specific reason — preserve historical default.
