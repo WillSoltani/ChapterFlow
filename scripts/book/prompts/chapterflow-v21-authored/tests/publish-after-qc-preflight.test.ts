@@ -5,7 +5,7 @@ import { dirname, resolve } from "path";
 import { test } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS, runCli, writeFixtureBook } from "./helpers.js";
 import type { ChapterV21 } from "../src/types.js";
-import { chapterContentHash, attestationPath } from "../src/critics/qcAttestation.js";
+import { chapterContentHash, attestationPath, writeAttestation } from "../src/critics/qcAttestation.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../src/critics/semantic/publishableBar.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { keyDerivationPath, keyPackDir, loadKeyPack, manualKeyJudgePath, writeKeyPacks, type KeyDerivation } from "../src/qc/manualKeyJudge.js";
@@ -206,6 +206,34 @@ function setupGreen(bookId: string): void {
   writeKeys(bookId, chapter);
   writeSweepRecordFromSubmission(sweepPassSubmission(bookId));
   writeBarConfirm(bookId, chapter);
+  writeAttestation({
+    schemaVersion: "qc-attest-v1",
+    bookId,
+    chapterNumber: chapter.number,
+    chapterId: chapter.chapterId,
+    verdict: "PUBLISHABLE",
+    contentHash: chapterContentHash(chapter),
+    hashVersion: "v2",
+    reviewer: "codex-qc:publish-confirm",
+    reviewedAt: "2026-06-13T00:00:00.000Z",
+    roundId: ROUND,
+    roundRole: "confirm",
+    dimensions: {
+      keysCorrect: true,
+      grounded: true,
+      examplesDistinct: true,
+      noCorruption: true,
+      pedagogicallyUseful: true,
+    },
+    evidence: {
+      orchestratorRoundId: ROUND,
+      manualKeyJudgePath: manualKeyJudgePath(bookId, chapter.number),
+      sweepPath: sweepRecordPath(bookId),
+      repairLedgerPath: repairLedgerPath(bookId, ROUND),
+    },
+    findings: [],
+    notes: "Synthetic publish-after-qc all-green fixture attestation.",
+  });
 }
 
 function appendOpenLedgerFinding(bookId: string): void {
