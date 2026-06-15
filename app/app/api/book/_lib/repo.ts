@@ -793,7 +793,7 @@ async function reserveBookEntitlementOnce(
           "SET #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :freeSlots), updatedAt = :updatedAt ADD unlockedBookIds :bookSet",
         // A user may bypass the slot limit only when they are PRO with a non-expired entitlement.
         ConditionExpression: [
-          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now) OR (proSource = :giftSource AND currentPeriodEnd >= :now)))",
+          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :adminSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now) OR (proSource = :giftSource AND currentPeriodEnd >= :now)))",
           "OR contains(unlockedBookIds, :bookId)",
           "OR attribute_not_exists(unlockedBookIds)",
           "OR attribute_not_exists(freeBookSlots)",
@@ -806,6 +806,7 @@ async function reserveBookEntitlementOnce(
           ":freePlan": "FREE",
           ":proPlan": "PRO",
           ":stripeSource": "stripe",
+          ":adminSource": "admin",
           ":licenseSource": "license",
           ":flowPointsSource": "flow_points",
           ":giftSource": "gift_code",

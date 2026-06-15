@@ -30,8 +30,8 @@ A follow-up hardening batch landed five of the deferred follow-ups below (each o
 - **L38 — DONE.** The segment **PATCH** route now runs `validateSegmentFilters` on `body.filters`.
 - **L39 — DONE.** The event **PATCH** route now validates `books` with the creator's rules (non-empty array of ≤200 non-empty string IDs, trimmed).
 
-### New finding surfaced while fixing M17 (NOT fixed — needs an owner decision)
-- **Admin comp slot bypass** — `reserveBookEntitlement`'s slot-limit `ConditionExpression` only bypasses the free-book cap for `attribute_not_exists(proSource)` / `stripe` / valid `license` / `flow_points` / `gift_code`. It does **not** list `proSource="admin"`, so an admin-comped PRO user gets PRO *features* (plan=PRO) but is still **book-slot-limited** on unlocks. If comps are meant to grant unlimited unlocks (likely), add `OR proSource = :adminSource` to that condition. Deliberately left for an owner call — it changes entitlement gating.
+### Admin comp slot bypass — FIXED (2026-06-15)
+Surfaced while fixing M17: `reserveBookEntitlement`'s slot-limit `ConditionExpression` bypassed the free-book cap for `attribute_not_exists(proSource)` / `stripe` / valid `license` / `flow_points` / `gift_code` but NOT `proSource="admin"`, so an admin-comped PRO user got PRO *features* yet stayed **book-slot-limited** on unlocks. Added `OR proSource = :adminSource` (`:adminSource="admin"`) so a comp grants unlimited unlocks like any other PRO source — unconditional (no expiry, matching how `getUserEntitlement` treats `admin`). Only an admin route can write `proSource="admin"`, so this only ever expands access for admin-set rows.
 
 ## Owner-action (cannot be done by an automated agent)
 - **M50** — a stray **untracked** `book-packages/pmbok-guide.v21.json` sits in the working tree, and the real fix needs a `scripts/` build-time manifest generator (or a CI scan) to guarantee `bookPackages.ts` never imports an untracked file. Both are outside any app task's scope. Remove/commit the stray file and add the generator/CI check.
