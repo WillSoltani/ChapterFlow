@@ -125,7 +125,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
 
           {incorrectCount > 0 && (
             <p className="mt-2 text-sm text-(--cr-text-secondary)">
-              We'll revisit {incorrectCount} concept{incorrectCount !== 1 ? "s" : ""} tomorrow.
+              We&apos;ll revisit {incorrectCount} concept{incorrectCount !== 1 ? "s" : ""} tomorrow.
             </p>
           )}
 
@@ -284,7 +284,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                   )}
                   {feedback === "incorrect" && (
                     <div className="mt-3 rounded-lg border-l-3 border-amber-500 bg-amber-500/10 px-4 py-2.5 text-sm text-amber-400">
-                      <RotateCcw className="mr-1.5 inline h-4 w-4" /> We'll review this again tomorrow.
+                      <RotateCcw className="mr-1.5 inline h-4 w-4" /> We&apos;ll review this again tomorrow.
                     </div>
                   )}
                 </>
