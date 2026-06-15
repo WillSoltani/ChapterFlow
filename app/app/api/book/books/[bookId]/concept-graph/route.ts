@@ -2,7 +2,7 @@ import "server-only";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
 import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
-import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { BookApiError, isBookApiError } from "@/app/app/api/book/_lib/errors";
 import { getCatalogBook, getBookVersion } from "@/app/app/api/book/_lib/repo";
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import { buildConceptGraphKey, buildContentPrefix } from "@/app/app/api/book/_lib/keys";
@@ -44,8 +44,18 @@ export async function GET(
     try {
       const graph = await readJsonFromS3<ConceptGraph>(contentBucket, key);
       return bookOk({ conceptGraph: graph });
-    } catch {
-      return bookOk({ conceptGraph: null as unknown as ConceptGraph });
+    } catch (error: unknown) {
+      // Only a genuinely-absent (or empty) concept-graph object is reported as
+      // "no graph". Any other failure (transient S3 throttling, network, or a
+      // malformed object) is rethrown so it surfaces as a real error instead of
+      // being masked as an empty graph the client renders with no signal.
+      if (
+        isBookApiError(error) &&
+        (error.code === "content_not_found" || error.code === "empty_content")
+      ) {
+        return bookOk({ conceptGraph: null as unknown as ConceptGraph });
+      }
+      throw error;
     }
   });
 }
