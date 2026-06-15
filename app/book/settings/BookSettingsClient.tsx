@@ -511,6 +511,13 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
     return !isSectionVisible(sectionId);
   }
 
+  // While searching, force-expand a matched (but collapsed) section so the
+  // matched row is actually visible instead of hidden behind a collapsed header.
+  function isSectionShown(sectionId: string) {
+    if (isSearching && results?.matchedSections.has(sectionId)) return true;
+    return isSectionExpanded(sectionId);
+  }
+
   // ---------------------------------------------------------------------------
   // Render
   // ---------------------------------------------------------------------------
@@ -574,7 +581,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             icon={BookOpen}
             title="Reading Experience"
             summary={getReadingSummary()}
-            expanded={isSectionExpanded("reading")}
+            expanded={isSectionShown("reading")}
             onToggle={() => toggleSection("reading")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("reading")}
@@ -848,7 +855,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             icon={Target}
             title="Goals & Motivation"
             summary={getGoalsSummary()}
-            expanded={isSectionExpanded("goals")}
+            expanded={isSectionShown("goals")}
             onToggle={() => toggleSection("goals")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("goals")}
@@ -1101,7 +1108,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             icon={Palette}
             title="Appearance"
             summary={getAppearanceSummary()}
-            expanded={isSectionExpanded("appearance")}
+            expanded={isSectionShown("appearance")}
             onToggle={() => toggleSection("appearance")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("appearance")}
@@ -1200,7 +1207,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             icon={Accessibility}
             title="Accessibility"
             summary={getAccessibilitySummary()}
-            expanded={isSectionExpanded("accessibility")}
+            expanded={isSectionShown("accessibility")}
             onToggle={() => toggleSection("accessibility")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("accessibility")}
@@ -1266,7 +1273,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             icon={Bell}
             title="Notifications"
             summary={getNotificationsSummary()}
-            expanded={isSectionExpanded("notifications")}
+            expanded={isSectionShown("notifications")}
             onToggle={() => toggleSection("notifications")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("notifications")}
@@ -1418,7 +1425,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             icon={User}
             title="Account & Subscription"
             summary={getAccountSummary()}
-            expanded={isSectionExpanded("account")}
+            expanded={isSectionShown("account")}
             onToggle={() => toggleSection("account")}
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("account")}
