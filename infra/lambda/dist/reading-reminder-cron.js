@@ -559,11 +559,11 @@ async function processWelcomeBackNudge(ddb2, ses2, tableName2, config, userItems
       })
     );
     if (!email || notifications?.channels?.email === false) {
-      const ttl2 = Math.floor(Date.now() / 1e3) + 30 * 86400;
+      const ttl = Math.floor(Date.now() / 1e3) + 30 * 86400;
       await ddb2.send(
         new import_lib_dynamodb4.PutCommand({
           TableName: tableName2,
-          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl: ttl2 }
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
         })
       );
       sent++;
@@ -579,18 +579,18 @@ async function processWelcomeBackNudge(ddb2, ses2, tableName2, config, userItems
         textBody: tpl.textBody,
         htmlBody: tpl.htmlBody
       });
+      const ttl = Math.floor(Date.now() / 1e3) + 30 * 86400;
+      await ddb2.send(
+        new import_lib_dynamodb4.PutCommand({
+          TableName: tableName2,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: (/* @__PURE__ */ new Date()).toISOString(), ttl }
+        })
+      );
       sent++;
     } catch (err) {
       console.error(`[welcome-back] Failed for ${userId}:`, err);
       skipped++;
     }
-    const ttl = Math.floor(Date.now() / 1e3) + 30 * 86400;
-    await ddb2.send(
-      new import_lib_dynamodb4.PutCommand({
-        TableName: tableName2,
-        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: (/* @__PURE__ */ new Date()).toISOString(), ttl }
-      })
-    );
   }
   return { sent, skipped };
 }

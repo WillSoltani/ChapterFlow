@@ -119,20 +119,21 @@ export async function processWelcomeBackNudge(
         textBody: tpl.textBody,
         htmlBody: tpl.htmlBody,
       });
+
+      // Write dedup (30 day TTL) only after a successful send, so a transient
+      // SES failure doesn't suppress the nudge for the next 30 days.
+      const ttl = Math.floor(Date.now() / 1000) + 30 * 86400;
+      await ddb.send(
+        new PutCommand({
+          TableName: tableName,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: new Date().toISOString(), ttl },
+        }),
+      );
       sent++;
     } catch (err) {
       console.error(`[welcome-back] Failed for ${userId}:`, err);
       skipped++;
     }
-
-    // Write dedup (30 day TTL)
-    const ttl = Math.floor(Date.now() / 1000) + 30 * 86400;
-    await ddb.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: new Date().toISOString(), ttl },
-      }),
-    );
   }
 
   return { sent, skipped };
