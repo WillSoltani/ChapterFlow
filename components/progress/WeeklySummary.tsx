@@ -54,7 +54,6 @@ function AnimatedNumber({ value }: { value: number }) {
 
   useEffect(() => {
     if (prefersReduced) {
-      setDisplayValue(value);
       return;
     }
     spring.set(value);
@@ -62,7 +61,7 @@ function AnimatedNumber({ value }: { value: number }) {
     return unsubscribe;
   }, [value, spring, display, prefersReduced]);
 
-  return <>{displayValue}</>;
+  return <>{prefersReduced ? value : displayValue}</>;
 }
 
 export function WeeklySummary({
