@@ -1721,7 +1721,7 @@ html:not(.dark) {
    distinct blue so they no longer collapse onto the same axis. */
 html[data-color-blind-mode="protanopia"],
 html[data-color-blind-mode="deuteranopia"] {
-  /* canonical accents (→ --cr-*/quiz) */
+  /* canonical accents (mapped to --cr- and quiz tokens) */
   --accent-emerald: #0072B2;            /* success → blue */
   --accent-emerald-muted: #004B73;
   --accent-emerald-dim: var(--accent-emerald-muted);
@@ -1753,7 +1753,7 @@ html[data-color-blind-mode="deuteranopia"] {
    axis; shift warning to vermillion and error to magenta so the warm pair no
    longer collapses against blue. */
 html[data-color-blind-mode="tritanopia"] {
-  /* canonical accents (→ --cr-*/quiz) */
+  /* canonical accents (mapped to --cr- and quiz tokens) */
   --accent-cyan: #009E9E;               /* info/accent → teal */
   --accent-cyan-muted: #006666;
   --accent-cyan-dim: var(--accent-cyan-muted);
