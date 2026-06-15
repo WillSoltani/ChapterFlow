@@ -151,7 +151,7 @@ export function JourneysClient() {
                           <div className="h-2 rounded-full bg-(--cf-surface-muted)">
                             <div
                               className="h-2 rounded-full bg-(--cf-accent)"
-                              style={{ width: `${(completedCount / totalBooks) * 100}%` }}
+                              style={{ width: totalBooks > 0 ? `${(completedCount / totalBooks) * 100}%` : "0%" }}
                             />
                           </div>
                           <p className="mt-1 text-xs text-(--cf-text-3)">
