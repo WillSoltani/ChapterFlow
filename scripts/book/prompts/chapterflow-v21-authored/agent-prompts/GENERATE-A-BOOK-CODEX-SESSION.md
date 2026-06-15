@@ -45,7 +45,8 @@ What each phase means and what `next:` will point you at:
   in step 0, record this authoring session so QC can prove independence:
   `npx tsx src/cli.ts qc-stamp-author <bookId>`. Then hand off to the QC session
   (paste QC-CODEX-SESSION.md into a NEW session — QC must be independent). That's
-  prompt 2 of 3; see RUN-A-BOOK.md for the full generate → QC → finalize flow.
+  the QC phase; see RUN-A-BOOK.md for the full flow (this single-session prompt is the
+  research+write fallback; the 4-step path splits it into Research + Write-orchestrate).
 - **ready to publish** → QC passed; a separate finalize session commits/pushes/publishes
   (PUBLISH-AFTER-QC-CODEX-SESSION.md). This session never publishes.
 

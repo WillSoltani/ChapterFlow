@@ -10,11 +10,14 @@ When the operator says **`QC <book>`** — do exactly this.
 
 > Trust model (don't subvert it): the per-unit reviewer ids are PRE-DERIVED in the
 > review packet (`codex-qc:<round>:<role>:ch<NN>`), so a chapter's bar and confirm
-> reviewers differ BY CONSTRUCTION — that's what lets a confirm read count as an
-> independent second reviewer. Subagents only ever produce a `qc-submit`; the parent
-> CLI re-runs every deterministic gate from scratch at finalize and computes the
-> verdict. A subagent therefore CANNOT make a failing chapter publishable, and no
-> subagent may attest, collect, finalize, promote, or edit.
+> reviewers DIFFER by construction — which makes finalize's "confirm reviewer must
+> differ from bar reviewer" check pass for genuinely separate reviewers. The ids only
+> guarantee the strings differ; genuine independence still requires YOU to dispatch a
+> SEPARATE subagent for each chapter's confirm read — never let a chapter's bar
+> subagent also fill/submit that chapter's confirm. Subagents only ever produce a
+> `qc-submit`; the parent CLI re-runs every deterministic gate from scratch at finalize
+> and computes the verdict, so a subagent CANNOT make a failing chapter publishable,
+> and no subagent may attest, collect, finalize, promote, or edit.
 
 ## 0. Setup
 ```bash
@@ -70,9 +73,12 @@ CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<book>" --pass --round
 ```
 Branch on the headline:
 - **`QC AUTO PASS`** → go to step 6.
-- **`NEEDS_MORE_QC`** → it lists which units are missing/stale (e.g. a bar subagent didn't
-  submit). Re-spawn ONLY those units against the SAME round (content hasn't changed), then
-  re-run this finalize. Never fabricate a missing submission or force a pass.
+- **`QC AUTO INCOMPLETE`** (per-chapter reasons read `NEEDS_MORE_QC` — a unit missing or
+  stale, e.g. a bar subagent didn't submit) → re-spawn ONLY those units against the SAME
+  round (content hasn't changed), then re-run this finalize. Never fabricate a missing
+  submission or force a pass.
+- **`status: STALE_ROUND`** → a chapter changed after the round opened. Start a FRESH round
+  (step 1); never finalize a stale round.
 - **`QC AUTO REPAIR REQUIRED`** → real defects. Open the printed **repair-prompt.md** in a
   fresh **Writer** session (NOT this one, NOT a subagent — one session reviews OR edits,
   never both). After the writer edits, the round is stale → start a FRESH round (step 1).

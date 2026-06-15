@@ -36,7 +36,7 @@ function writePlans(): { shapes: string[]; venues: string[] } {
   return { shapes, venues };
 }
 
-test("SP plan enforcement blocks shape/venue/exemplar planSpec mismatches", () => {
+test("SP plan enforcement blocks shape/exemplar planSpec mismatches (venue is NOT enforced)", () => {
   try {
     const { shapes, venues } = writePlans();
     const ch = makeChapter(BOOK, 1);
@@ -48,12 +48,14 @@ test("SP plan enforcement blocks shape/venue/exemplar planSpec mismatches", () =
     assert.deepEqual(checkPlanEnforcement(BOOK, [ch]), [], "matching planSpec should pass");
 
     (ch.examples[2] as any).planSpec.format = "wrong-shape";
-    (ch.examples[3] as any).planSpec.venue = "wrong venue";
+    (ch.examples[3] as any).planSpec.venue = "a venue that is NOT the dealt slot";
     (ch.examples[4] as any).planSpec.exemplar = "Case Beta";
-    const ids = checkPlanEnforcement(BOOK, [ch]).map((f) => f.checkId);
+    const ids = checkPlanEnforcement(BOOK, [ch]).map((f) => f.checkId as string);
     assert.ok(ids.includes("SP2.shape_plan_mismatch"), ids.join(", "));
-    assert.ok(ids.includes("SP4.venue_plan_mismatch"), ids.join(", "));
     assert.ok(ids.includes("SP5.exemplar_ownership_violation"), ids.join(", "));
+    // The venue plan is a fallback palette, not a mandate — stamping a real setting
+    // that differs from the dealt slot must NOT block (variety = BP27 + bar rubric).
+    assert.ok(!ids.includes("SP4.venue_plan_mismatch"), `venue must not be enforced: ${ids.join(", ")}`);
   } finally {
     cleanup();
   }
@@ -73,7 +75,7 @@ test("a book with no dealt shape/venue plan (next-task flow) is not blocked on p
 
     // SP3 (within-chapter shape reuse) is a real quality check and still fires.
     (ch.examples[1] as any).planSpec.format = (ch.examples[0] as any).planSpec.format;
-    const ids = checkPlanEnforcement(BOOK, [ch]).map((f) => f.checkId);
+    const ids = checkPlanEnforcement(BOOK, [ch]).map((f) => f.checkId as string);
     assert.ok(ids.includes("SP3.shape_slot_reused"), ids.join(", "));
     assert.ok(!ids.includes("SP4.venue_plan_mismatch"), `venue must stay opt-in: ${ids.join(", ")}`);
   } finally {

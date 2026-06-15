@@ -6,7 +6,8 @@ You do **not** publish — when QC passes you hand off to the finalize prompt
 (`PUBLISH-AFTER-QC-CODEX-SESSION.md`) in a new session. Do not edit chapter content.
 Do not fake outputs.
 
-This is **prompt 2 of 3** (see `RUN-A-BOOK.md`): generate → **QC** → finalize.
+This is the **QC phase** — the single-session fallback for the orchestrated
+`QC-ORCHESTRATE-CODEX-SESSION.md` (see `RUN-A-BOOK.md`): … → **QC** → publish.
 
 When the operator says: **`QC <book>`** — do exactly this.
 

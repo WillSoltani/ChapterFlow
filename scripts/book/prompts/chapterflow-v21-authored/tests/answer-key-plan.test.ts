@@ -23,6 +23,14 @@ test("answer-key plan is deterministic and hands distinct targets across chapter
   assert.equal(new Set(seqs).size, seqs.length, "no two chapters share an identical target sequence");
 });
 
+test("a single-chapter redo gets the same target as the full-book deal (range-independent)", () => {
+  const full = planAnswerKeys("zz-fixture-book", 1, 13, 9, 3);
+  for (const ch of [1, 5, 9, 13]) {
+    const redo = planAnswerKeys("zz-fixture-book", ch, ch, 9, 3);
+    assert.deepEqual(redo.allocation[ch], full.allocation[ch], `ch${ch} redo target must match the full-book deal`);
+  }
+});
+
 test("checkChapterAnswerBalance fires advisory only on distribution drift", () => {
   const plan = planAnswerKeys("zz-fixture-book", 1, 1, 9, 3);
   const target = plan.allocation[1];

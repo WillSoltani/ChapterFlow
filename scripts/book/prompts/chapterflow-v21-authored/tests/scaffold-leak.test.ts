@@ -31,6 +31,9 @@ test("SL2 flags a Title-Case paste of the planSpec.domain", () => {
 test("SL3 flags source-notes glowing on a screen, not an incoming name/message", () => {
   const bad = checkScaffoldLeak(chapterWith("The town-hall notes about the dispute glow on his phone while he waits."));
   assert.ok(bad.some((x) => x.checkId === "SL3.spectator_prop"), JSON.stringify(bad));
+  // Reverse word order ("phone glowed with the notes") must also fire.
+  const reverse = checkScaffoldLeak(chapterWith("His phone glowed with the case notes about the dispute as he waited."));
+  assert.ok(reverse.some((x) => x.checkId === "SL3.spectator_prop"), JSON.stringify(reverse));
   const ok = checkScaffoldLeak(chapterWith("His sister's name glows on the phone before the doctor calls."));
   assert.deepEqual(ok.filter((x) => x.checkId === "SL3.spectator_prop"), []);
 });

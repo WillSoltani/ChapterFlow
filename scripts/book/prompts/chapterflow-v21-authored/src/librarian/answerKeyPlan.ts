@@ -105,7 +105,11 @@ export function planAnswerKeys(
 ): AnswerKeyPlan {
   const allocation: Record<number, number[]> = {};
   const seen = new Set<string>();
-  for (let n = from; n <= to; n++) {
+  // Iterate from chapter 1 (not `from`) so a single-chapter redo resolves collisions
+  // against the SAME prior chapters as the full-book deal — making each chapter's
+  // target a pure function of (bookId, n, Q, P), independent of the requested range.
+  // Only chapters in [from, to] are emitted.
+  for (let n = 1; n <= to; n++) {
     // Keep targets distinct across chapters: a followable duplicate would trip
     // AS12 (cross-chapter quiz-position sequence). Re-shuffle with a bumped salt
     // on collision (re-shuffle, not rotate — rotations stay in the same family).
@@ -116,7 +120,7 @@ export function planAnswerKeys(
       salt++;
     }
     seen.add(seq.join(""));
-    allocation[n] = seq;
+    if (n >= from) allocation[n] = seq;
   }
   const counts = new Array(positions).fill(0);
   let total = 0;
@@ -126,8 +130,12 @@ export function planAnswerKeys(
       total++;
     }
   }
+  const emitted = Math.max(0, to - from + 1);
   const maxFraction = total > 0 ? Math.max(...counts) / total : 0;
-  if (maxFraction >= AGGREGATE_CEILING) {
+  // The aggregate ceiling is a BOOK-wide guarantee; only assert it for a full/large
+  // range (>=5 chapters, F3's threshold). A 1-chapter redo with a non-divisible
+  // question count (e.g. Q=10 → 4/10) is balanced book-wide once the remainder rotates.
+  if (emitted >= 5 && maxFraction >= AGGREGATE_CEILING) {
     throw new Error(
       `answer-key-plan invariant violated: max position fraction ${maxFraction.toFixed(3)} >= ${AGGREGATE_CEILING} (F3 risk). counts=${counts.join(",")}.`,
     );

@@ -45,7 +45,10 @@ const FORMAT_TAG_RE = new RegExp(`\\b(${UNDERSCORE_FORMAT_TAGS.join("|")})\\b`, 
 // phone" (a real incoming call) is legitimate and must NOT fire; "town-hall notes
 // about <the real case> glow on his phone" (the case demoted to a prop) must.
 const SOURCE_PROP_NOUN = /\b(notes?|the case|case file|casefile|report|transcript|summary|dossier|record|memo|write-?up|account|brief)\b/i;
-const SCREEN_GLOW_RE = /\b(glow\w*|lit up|lights? up|light\w* up)\b[^.?!]{0,40}\b(phone|screen|laptop|tablet|monitor)\b/i;
+const GLOW = "(?:glow\\w*|lit up|lights? up|light\\w* up)";
+const DEVICE = "(?:phone|screen|laptop|tablet|monitor)";
+// Match either word order: "notes glow on his phone" OR "his phone glowed with the notes".
+const SCREEN_GLOW_RE = new RegExp(`\\b${GLOW}\\b[^.?!]{0,40}\\b${DEVICE}\\b|\\b${DEVICE}\\b[^.?!]{0,40}\\b${GLOW}\\b`, "i");
 
 const STOP = new Set(["the", "a", "an", "and", "or", "but", "of", "to", "in", "on", "for", "with", "at", "by", "about", "during", "after", "before", "their", "his", "her", "a's"]);
 
@@ -75,6 +78,11 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
     }
   }
 
+  // Legit recurring proper nouns (a real framework/place/person that IS the subject)
+  // show up in the chapter's own title/keyTakeaway — exempt runs that appear there so
+  // SL2 doesn't false-fire on "New York City Council"-style names.
+  const allowlist = `${chapter.title ?? ""} ${chapter.keyTakeaway ?? ""}`.toLowerCase();
+
   // SL2 / SL3 — per example scenario.
   (chapter.examples ?? []).forEach((ex: any, i: number) => {
     const scenario: string = typeof ex?.scenario === "string" ? ex.scenario : "";
@@ -87,6 +95,7 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
       if (domainTokens.size >= 3) {
         const runs = scenario.match(/\b[A-Z][a-z']+(?:\s+[A-Z][a-z']+){2,}\b/g) ?? [];
         for (const run of runs) {
+          if (allowlist.includes(run.toLowerCase())) continue; // a legit proper noun, not a domain-label paste
           const runTokens = run.toLowerCase().split(/\s+/).filter((t) => !STOP.has(t));
           const overlap = runTokens.filter((t) => domainTokens.has(t)).length;
           if (overlap >= 3) {

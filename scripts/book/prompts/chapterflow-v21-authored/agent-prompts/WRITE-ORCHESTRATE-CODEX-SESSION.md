@@ -23,10 +23,10 @@ npx tsx src/cli.ts doctor <bookId>
 npx tsx src/cli.ts book-status "<book>"
 ```
 Fix anything FATAL from `doctor`. If `book-status` shows a **research** phase
-(`research-bibliography` / `research-chapter` / `chapter-index`), STOP — research
-isn't done; run the research phase first (GENERATE-A-BOOK-CODEX-SESSION.md drives it),
-then come back. Proceed only when the phase is `write-chapter`/`generating` and every
-chapter has a source sidecar.
+(`research-bibliography` / `research-chapter` / `chapter-index`), STOP — research isn't
+done; run **phase 1 first** (`RESEARCH-CODEX-SESSION.md`, or the research portion of the
+single-session `GENERATE-A-BOOK-CODEX-SESSION.md` fallback), then come back. Proceed only
+when the phase is `write-chapter`/`generating` and every chapter has a source sidecar.
 
 ## 1. Deal the plans + get the per-chapter authoring cards
 ```bash

@@ -1093,7 +1093,9 @@ async function runAuthorCheck(args: string[]): Promise<number> {
   // Advisory: answer-position balance vs the dealt answer-key plan (the chapter-time
   // twin of book-gate F3). Only fires when a plan exists; never blocks here.
   const { loadAnswerKeyPlan, checkChapterAnswerBalance } = await import("./librarian/answerKeyPlan.js");
-  const bookId = chapter.chapterId.replace(/-ch\d+$/i, "");
+  // normSlug via parseChapterId so capital-cased chapterIds (e.g. Unreasonable-Hospitality-Ch01)
+  // resolve to the canonical bookId the answer-key plan is filed under.
+  const bookId = parseChapterId(chapter.chapterId)?.bookId ?? chapter.chapterId.replace(/-ch\d+$/i, "");
   const balance = checkChapterAnswerBalance(chapter, loadAnswerKeyPlan(bookId));
   for (const f of balance) console.log(`  [${f.checkId}] ${f.message}`);
   return findings.length === 0 ? 0 : 1;
@@ -1717,7 +1719,6 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         } — at most a passing mention, never with date/place stamping, never as a teaching unit, never in quiz/cards. Set example[i].planSpec.exemplar to the owned exemplar used by that scene, or "" when none is used.\n`
       : "";
     const venueIds = venuePlan.allocation[ch.number] ?? [];
-    const venueLines = venueIds.map((venue, i) => `    ${i + 1}. ${venue}`).join("\n");
     const venueLine = venueIds.length
       ? `• VENUES (a FALLBACK palette for variety — NOT a mandate): the SOURCE CASE is the stage. Stage each example in its source case's own natural setting. Only if a case has no natural setting, draw a venue from the list below for variety. NEVER relocate the real case to a dealt venue and demote the case to notes "glowing on a phone" or an invented onlooker (SL3 blocks this). A venue may be a relationship CHANNEL (a phone call, a text thread), not only a place. Don't put two examples at the same venue; FIT staging to the topic (a personal/relational subject belongs at a kitchen table or on a phone call, not a workplace prop). VARY the scene SHAPE — don't open every scenario "<Name> <verb>s at/beside a <prop>". Set example[i].planSpec.venue to the setting you actually used (optional).\n    palette: ${venueIds.join("; ")}\n`
       : "";

@@ -8,8 +8,12 @@ import type { QcRoundRole } from "./qcRound.js";
  * fanned out across parallel subagents, they would otherwise all inherit one
  * reviewer label and `sameReviewerConfirm` would fire on every publishable
  * candidate — parking the whole book in NEEDS_MORE_QC forever. Deriving the id
- * per (round, role, chapter) makes `bar(ch) !== confirm(ch)` true BY CONSTRUCTION
- * rather than by asking a reviewer to "remember to use a different id".
+ * per (round, role, chapter) makes the bar and confirm reviewer STRINGS differ by
+ * construction, so finalize's check passes for genuinely separate reviewers without
+ * asking anyone to "remember to use a different id". (It guarantees distinctness, not
+ * independence — the orchestrator must still dispatch a SEPARATE subagent for each
+ * confirm read; a lying read is still caught by the deterministic gates re-run at
+ * finalize, which no submission can bypass.)
  *
  * The prefix stays `codex-qc`, so isApprovedReviewer() (which only inspects the
  * substring before the first ':') still passes. The id is a PURE function of its

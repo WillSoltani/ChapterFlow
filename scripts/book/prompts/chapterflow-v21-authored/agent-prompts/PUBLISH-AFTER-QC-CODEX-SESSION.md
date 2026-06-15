@@ -1,13 +1,14 @@
 # Finalize & Publish (after QC) — fresh-session Codex prompt (ChapterFlow v21.4)
 
-This is **prompt 3 of 3** (see `RUN-A-BOOK.md`): generate → QC → **finalize**. You are a
+This is the **final phase** (see `RUN-A-BOOK.md`): Research → Write → QC → **Publish**
+(the single-session fallback path numbers it generate → QC → finalize). You are a
 fresh publish-after-QC agent. QC passing did NOT publish or push anything — this prompt
 is the only step that promotes the book and writes to git/remote. The operator says:
 
 ```text
 Finalize and publish this book <bookname> from QC round <roundId>. Commit and push.
 ```
-(the round id was printed by prompt 2's `QC AUTO PASS` block.)
+(the round id was printed by the QC phase's `QC AUTO PASS` block.)
 
 Do this only from the repo root or the pipeline directory:
 
@@ -23,7 +24,7 @@ npx tsx src/cli.ts qc-status "<bookname>"
 ```
 Every chapter must read `PASS` (the status qc-status prints for a fresh PUBLISHABLE
 attestation). If any chapter is REVISE, STALE, CORRUPTION, or MISSING, STOP — this is
-not ready to finalize; send it back to prompt 2 (QC).
+not ready to finalize; send it back to the QC phase.
 
 Then resolve and preflight the request:
 
