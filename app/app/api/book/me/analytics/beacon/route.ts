@@ -23,12 +23,13 @@ const MAX_PAYLOAD_KEYS = 20;
 // consent flag (privacy.analyticsParticipation) changes rarely, yet each
 // beacon previously did a fresh getUserSettingsItem GetItem to re-verify it.
 // Cache the resolved flag per user in the warm container (like location.ts's
-// IP_CACHE) with a short TTL so a flurry of beacons collapses to (at most) one
-// settings read per user per TTL window. The flag stays server-authoritative:
-// we still read DynamoDB on a cold start or once the TTL lapses, so a privacy
-// toggle takes effect within CONSENT_CACHE_TTL_MS even though we can't
-// invalidate from the settings PATCH route here. On cold start the map is
-// empty (safe — we re-resolve).
+// IP_CACHE) with a short TTL. To honour the opt-in privacy commitment we cache
+// ONLY the opt-OUT result (see isAnalyticsOptedIn): an opted-out user — the
+// default, high-volume case — collapses to one settings read per TTL window,
+// while an opted-IN user re-reads DynamoDB per beacon. That asymmetry means
+// DISABLING analytics takes effect on the very next beacon (we never serve a
+// stale "opted in" from cache), even though we can't invalidate from the settings
+// PATCH route here. On cold start the map is empty (safe — we re-resolve).
 type ConsentCacheEntry = { optedIn: boolean; expiresAt: number };
 const CONSENT_CACHE = new Map<string, ConsentCacheEntry>();
 const CONSENT_CACHE_TTL_MS = 60 * 1000;
@@ -47,12 +48,23 @@ async function isAnalyticsOptedIn(tableName: string, userId: string): Promise<bo
     | undefined;
   const optedIn = privacy?.analyticsParticipation ?? false;
 
-  // Trim cache if bloated (drop the oldest insertion).
-  if (CONSENT_CACHE.size >= CONSENT_CACHE_MAX) {
-    const firstKey = CONSENT_CACHE.keys().next().value;
-    if (firstKey) CONSENT_CACHE.delete(firstKey);
+  // Cache ONLY the opt-OUT direction. Caching opt-IN would keep storing beacons
+  // for up to one TTL after a user disables analytics (no invalidation hook on the
+  // settings PATCH route), violating the opt-in privacy commitment. Opt-out is the
+  // default/common case, so this still collapses the GetItem flood for everyone
+  // who never enabled analytics; the rare opted-in user re-reads per beacon and a
+  // fresh opt-OUT takes effect on the next beacon.
+  if (!optedIn) {
+    // Trim cache if bloated (drop the oldest insertion).
+    if (CONSENT_CACHE.size >= CONSENT_CACHE_MAX) {
+      const firstKey = CONSENT_CACHE.keys().next().value;
+      if (firstKey) CONSENT_CACHE.delete(firstKey);
+    }
+    CONSENT_CACHE.set(userId, { optedIn: false, expiresAt: now + CONSENT_CACHE_TTL_MS });
+  } else {
+    // Drop any stale opt-out entry so a re-enabled user isn't held at false.
+    CONSENT_CACHE.delete(userId);
   }
-  CONSENT_CACHE.set(userId, { optedIn, expiresAt: now + CONSENT_CACHE_TTL_MS });
   return optedIn;
 }
 
