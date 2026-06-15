@@ -1296,18 +1296,19 @@ export function getFreePlanColor(used: number, limit: number): string {
 }
 
 // "popular" / "completion" were dropped — both sorted on fabricated metrics.
+// "recent" was dropped too: LibraryCatalogBook has no addedAt/publishedAt/createdAt
+// field, so labelling a catalog-order reversal "Recently added" is the same
+// fabricated-signal class. Restore it only when a real date field exists.
 // "featured" keeps the catalog's curated order (no claim of popularity).
 export type SortOption =
   | "featured"
   | "shortest"
   | "beginner"
-  | "recent"
   | "alphabetical";
 
 export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: "featured", label: "Featured" },
   { value: "shortest", label: "Shortest first" },
   { value: "beginner", label: "Best for beginners" },
-  { value: "recent", label: "Recently added" },
   { value: "alphabetical", label: "Alphabetical" },
 ];
