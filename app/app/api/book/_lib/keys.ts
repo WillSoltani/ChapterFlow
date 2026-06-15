@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+
 export function nowIso(): string {
   return new Date().toISOString();
 }
@@ -265,7 +267,10 @@ export function inventorySk(itemType: string, itemId: string): string {
 // ── Device token keys ──────────────────────────────────────────────────────
 
 export function deviceTokenSk(endpoint: string): string {
-  const hash = endpoint.slice(-32).replace(/[^a-zA-Z0-9]/g, "");
+  // Hash the FULL endpoint (not just the trailing 32 chars) so two distinct
+  // push endpoints can never collide onto the same SK and clobber each other's
+  // device row. register + unregister both call this, so they stay aligned.
+  const hash = createHash("sha256").update(endpoint).digest("base64url");
   return `DEVICE#${hash}`;
 }
 
