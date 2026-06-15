@@ -162,13 +162,19 @@ jobs:
           fi
           echo "Health gate PASSED" >> "$GITHUB_STEP_SUMMARY"
 
-      # NON-BLOCKING readiness smoke — probes deep dependency checks
-      # (dynamo / catalog / content / billing / auth) and reports them to the
-      # job summary. Never fails the deploy: /api/health?deep=1 always returns
-      # 200, and this step is continue-on-error, so a degraded dependency is
-      # surfaced for follow-up without triggering a rollback.
-      - name: Readiness smoke (deep, non-blocking)
-        continue-on-error: true
+      # Readiness smoke — probes deep dependency checks (dynamo / catalog /
+      # content / billing / auth) and reports them to the job summary.
+      #
+      # L91: /api/health?deep=1 always returns HTTP 200 (status: "degraded" in
+      # the body when a dependency fails), so the health gate above can't catch a
+      # degraded dependency. For NON-prod this stays informational
+      # (continue-on-error). For PROD this step is BLOCKING: a degraded auth /
+      # billing / content / catalog / dynamo dependency FAILS the deploy instead
+      # of merely being tabled, so launch-blocker regressions cannot reach live
+      # users behind a green deploy. (An unreachable endpoint -> empty body ->
+      # status "unknown" also fails prod.)
+      - name: Readiness smoke (deep)
+        continue-on-error: ${{ inputs.environment != 'prod' }}
         run: |
           set -uo pipefail
           APP_URL="https://${{ steps.cf.outputs.distribution_domain }}"
@@ -176,13 +182,23 @@ jobs:
             "${APP_URL}/api/health?deep=1" || echo '{}')
           echo "Deep health: ${body}"
           status=$(echo "${body}" | jq -r '.status // "unknown"')
+          blocking="${{ inputs.environment == 'prod' && 'true' || 'false' }}"
           {
-            echo "### Readiness smoke (non-blocking) — status: \`${status}\`"
+            echo "### Readiness smoke (status: \`${status}\`, blocking: \`${blocking}\`)"
             echo ""
             echo "| Check | OK |"
             echo "|-------|----|"
             echo "${body}" | jq -r '(.checks // {}) | to_entries[] | "| \(.key) | \(if .value then "✅" else "❌" end) |"'
           } >> "$GITHUB_STEP_SUMMARY" || true
+          if [ "${blocking}" = "true" ] && [ "${status}" != "ok" ]; then
+            echo "::error::prod readiness FAILED — deep health status is '${status}' (expected 'ok'). A critical dependency (auth/billing/content/catalog/dynamo) is degraded; failing the deploy."
+            {
+              echo ""
+              echo "❌ **Prod readiness gate FAILED** — deep health status \`${status}\`."
+              echo "A critical dependency is degraded. See the table above for the failing check, then re-deploy once resolved (or roll back per the health-gate rollback steps)."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
 
       - name: Deployment summary
         if: success()
