@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BookOpen } from "lucide-react";
 import {
   Bar,
@@ -63,13 +63,16 @@ export function ContentClient() {
   }, [range]);
 
   const sortedBooks = data ? [...data.books].sort((a, b) => b[sort] - a[sort]) : [];
-  const scenarioCombined = data
-    ? data.scenarioSubmissions.map((s, i) => ({
-        date: s.date,
-        submitted: s.value,
-        approved: data.scenarioApprovals[i]?.value ?? 0,
-      }))
-    : [];
+  const scenarioCombined = useMemo(() => {
+    if (!data) return [];
+    const map: Record<string, { date: string; submitted: number; approved: number }> = {};
+    for (const s of data.scenarioSubmissions) map[s.date] = { date: s.date, submitted: s.value, approved: 0 };
+    for (const a of data.scenarioApprovals) {
+      if (!map[a.date]) map[a.date] = { date: a.date, submitted: 0, approved: 0 };
+      map[a.date].approved = a.value;
+    }
+    return Object.values(map).sort((a, b) => a.date.localeCompare(b.date));
+  }, [data]);
 
   return (
     <div>
