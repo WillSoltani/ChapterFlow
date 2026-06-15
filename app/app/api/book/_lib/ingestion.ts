@@ -43,6 +43,28 @@ export async function ingestBookPackageFromS3(params: {
 }> {
   const raw = await readJsonFromS3<unknown>(params.ingestBucket, params.ingestKey);
   const pkg = validateBookPackage(raw);
+
+  // bookId is interpolated directly into every S3 content key via
+  // buildContentPrefix(`book-content/books/{bookId}/...`). validateBookPackage
+  // only length-bounds it, so a bookId containing '/' or '../' segments would
+  // let the written prefix escape the intended namespace and scatter/overwrite
+  // objects under attacker-chosen keys. Restrict it to a slug charset before any
+  // key is derived. (Issue #85.)
+  if (!/^[a-z0-9._-]+$/.test(pkg.book.bookId)) {
+    throw new BookApiError(
+      422,
+      "invalid_package",
+      "Book package validation failed.",
+      [
+        {
+          path: "book.bookId",
+          message:
+            "bookId must contain only lowercase letters, digits, '.', '_', or '-' (no path separators).",
+        },
+      ]
+    );
+  }
+
   const { manifest, chapterPayloads, quizPayloads } = buildArtifacts(pkg);
 
   // Idempotency: if a version with this exact packageId already exists, reuse it
