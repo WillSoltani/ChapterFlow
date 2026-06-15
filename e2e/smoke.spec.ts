@@ -79,16 +79,24 @@ test.describe("prod-build smoke (@prod)", () => {
 
   for (const path of ["/dashboard", "/book", "/book/library"]) {
     test(`${path} bounces unauthenticated visitor to /auth/login @prod`, async ({
-      page,
+      request,
     }) => {
-      await page.goto(path);
-      // No id_token cookie + NODE_ENV=production -> middleware.ts redirects to
-      // /auth/login and carries the original path as a relative returnTo
-      // (URL-encoded, e.g. returnTo=%2Fdashboard).
-      await expect(page).toHaveURL(/\/auth\/login/);
-      const returnTo = new URL(page.url()).searchParams.get("returnTo");
-      expect(returnTo).toBe(path);
-      await expectNoErrorOverlay(page);
+      // /auth/login is a 302 redirector that immediately hands off to the Cognito
+      // hosted UI, so its URL never becomes a browser document URL — asserting
+      // toHaveURL(/auth/login) can never match, and following the chain onward
+      // requires full COGNITO_* env the CI prod bundle intentionally omits.
+      // Assert the middleware's bounce at the HTTP level instead: an
+      // unauthenticated request to a protected route must 3xx to /auth/login
+      // carrying a relative returnTo back to the original path. maxRedirects:0
+      // stops at the middleware response (we never reach Cognito).
+      const res = await request.get(path, { maxRedirects: 0 });
+      expect(res.status(), `${path} should redirect when unauthenticated`).toBeGreaterThanOrEqual(300);
+      expect(res.status()).toBeLessThan(400);
+      const location = res.headers()["location"];
+      expect(location, `${path} redirect must carry a Location header`).toBeTruthy();
+      const loc = new URL(location, "http://127.0.0.1:3000");
+      expect(loc.pathname).toBe("/auth/login");
+      expect(loc.searchParams.get("returnTo")).toBe(path);
     });
   }
 });
