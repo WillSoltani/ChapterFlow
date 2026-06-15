@@ -70,7 +70,7 @@ export function BookRequestSection({ initialTitle }: { initialTitle?: string }) 
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--accent-blue)"
+            stroke="var(--accent-cyan)"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"

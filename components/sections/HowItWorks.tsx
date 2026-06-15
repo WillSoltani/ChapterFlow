@@ -101,7 +101,7 @@ export function HowItWorks() {
       key={step.number}
       className={`group relative overflow-hidden rounded-xl border bg-(--bg-glass) backdrop-blur-[16px] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-(--border-medium) ${
         step.number === "01"
-          ? "border-(--accent-teal)/30"
+          ? "border-(--accent-cyan)/30"
           : "border-(--border-subtle)"
       }`}
       style={
@@ -112,7 +112,7 @@ export function HowItWorks() {
     >
       {/* Watermark number */}
       <span
-        className="pointer-events-none absolute top-4 right-4 select-none text-[6rem] font-bold leading-none opacity-[0.10] text-(--accent-teal)"
+        className="pointer-events-none absolute top-4 right-4 select-none text-[6rem] font-bold leading-none opacity-[0.10] text-(--accent-cyan)"
         style={{ fontFamily: "var(--font-display)" }}
         aria-hidden="true"
       >
@@ -120,13 +120,13 @@ export function HowItWorks() {
       </span>
 
       {/* Icon */}
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-(--accent-teal)/10 text-(--accent-teal)">
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-(--accent-cyan)/10 text-(--accent-cyan)">
         {step.icon}
       </div>
 
       {/* Label — gloss paired with the canonical in-app step name */}
       <p
-        className="mt-4 text-[12px] font-semibold uppercase tracking-[0.15em] text-(--accent-teal)"
+        className="mt-4 text-[12px] font-semibold uppercase tracking-[0.15em] text-(--accent-cyan)"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {step.label}
@@ -190,7 +190,7 @@ export function HowItWorks() {
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                       <path
                         d="M3 8h10M9 4l4 4-4 4"
-                        stroke="var(--accent-teal)"
+                        stroke="var(--accent-cyan)"
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -220,7 +220,7 @@ export function HowItWorks() {
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                       <path
                         d="M3 8h10M9 4l4 4-4 4"
-                        stroke="var(--accent-teal)"
+                        stroke="var(--accent-cyan)"
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"

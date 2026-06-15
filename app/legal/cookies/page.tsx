@@ -165,7 +165,7 @@ export default function CookiePolicyPage() {
           </h2>
           <p>
             For questions about our use of cookies, contact us at{" "}
-            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.
+            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-cyan)" }}>support@chapterflow.ca</a>.
           </p>
         </section>
       </div>

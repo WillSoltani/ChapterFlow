@@ -83,7 +83,7 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
       {/* Heading */}
       <h1
         style={{
-          fontFamily: "var(--font-sora)",
+          fontFamily: "var(--font-display)",
           fontWeight: 600,
           fontSize: "clamp(28px, 5vw, 36px)",
           color: "var(--text-heading)",
@@ -98,7 +98,7 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
       {/* Subtitle */}
       <p
         style={{
-          fontFamily: "var(--font-dm-sans)",
+          fontFamily: "var(--font-body)",
           fontSize: 16,
           color: "var(--text-secondary)",
           textAlign: "center",
@@ -163,7 +163,7 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
                   <div>
                     <p
                       style={{
-                        fontFamily: "var(--font-sora)",
+                        fontFamily: "var(--font-display)",
                         fontWeight: 600,
                         fontSize: 15,
                         color: "var(--text-heading)",
@@ -175,7 +175,7 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
                     </p>
                     <p
                       style={{
-                        fontFamily: "var(--font-dm-sans)",
+                        fontFamily: "var(--font-body)",
                         fontSize: 13,
                         color: "var(--text-secondary)",
                         lineHeight: 1.4,

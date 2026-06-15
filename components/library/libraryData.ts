@@ -1144,8 +1144,8 @@ export function getProgressMicrocopy(percent: number, chaptersLeft: number): str
 
 export function getProgressColor(percent: number): string {
   if (percent >= 75) return "var(--accent-gold)";
-  if (percent >= 50) return "var(--accent-green)";
-  return "var(--accent-teal)";
+  if (percent >= 50) return "var(--accent-emerald)";
+  return "var(--accent-cyan)";
 }
 
 export function timeAgo(date: Date): string {
@@ -1170,8 +1170,8 @@ export function daysSince(date: Date): number {
 /** Returns urgency color based on days since last read */
 export function getLastReadUrgencyColor(date: Date): string {
   const days = daysSince(date);
-  if (days >= 6) return "var(--accent-red)";
-  if (days >= 3) return "var(--accent-flame)";
+  if (days >= 6) return "var(--accent-rose)";
+  if (days >= 3) return "var(--accent-amber)";
   return "var(--text-muted)";
 }
 
@@ -1190,9 +1190,9 @@ export function getPerChapterMinutes(book: LibraryBook): number {
 
 /** Free-plan progress bar color */
 export function getFreePlanColor(used: number, limit: number): string {
-  if (used >= limit) return "var(--accent-red)";
-  if (used >= limit / 2) return "var(--accent-flame)";
-  return "var(--accent-teal)";
+  if (used >= limit) return "var(--accent-rose)";
+  if (used >= limit / 2) return "var(--accent-amber)";
+  return "var(--accent-cyan)";
 }
 
 // "popular" / "completion" were dropped — both sorted on fabricated metrics.

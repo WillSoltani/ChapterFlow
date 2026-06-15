@@ -40,16 +40,16 @@ export function PhoneMockup({ children }: { children: React.ReactNode }) {
           <span className="relative flex h-2 w-2">
             <span
               className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
-              style={{ background: "var(--accent-green)" }}
+              style={{ background: "var(--accent-emerald)" }}
             />
             <span
               className="relative inline-flex rounded-full h-2 w-2"
-              style={{ background: "var(--accent-green)" }}
+              style={{ background: "var(--accent-emerald)" }}
             />
           </span>
           <span
             className="text-[10px] font-semibold uppercase"
-            style={{ color: "var(--accent-teal)", letterSpacing: "0.1em" }}
+            style={{ color: "var(--accent-cyan)", letterSpacing: "0.1em" }}
           >
             Live Demo
           </span>

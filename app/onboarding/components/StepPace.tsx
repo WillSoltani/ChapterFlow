@@ -80,7 +80,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
       {/* Heading */}
       <h1
         style={{
-          fontFamily: "var(--font-sora)",
+          fontFamily: "var(--font-display)",
           fontWeight: 600,
           fontSize: "clamp(28px, 5vw, 36px)",
           color: "var(--text-heading)",
@@ -95,7 +95,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
       {/* Subtitle */}
       <p
         style={{
-          fontFamily: "var(--font-dm-sans)",
+          fontFamily: "var(--font-body)",
           fontSize: 16,
           color: "var(--text-secondary)",
           textAlign: "center",
@@ -110,7 +110,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
       <div style={{ width: "100%", marginBottom: 32 }}>
         <p
           style={{
-            fontFamily: "var(--font-dm-sans)",
+            fontFamily: "var(--font-body)",
             fontSize: 11,
             fontWeight: 600,
             color: "var(--text-muted)",
@@ -165,7 +165,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
                     <div>
                       <p
                         style={{
-                          fontFamily: "var(--font-sora)",
+                          fontFamily: "var(--font-display)",
                           fontWeight: 600,
                           fontSize: 16,
                           color: "var(--text-heading)",
@@ -176,7 +176,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
                       </p>
                       <p
                         style={{
-                          fontFamily: "var(--font-dm-sans)",
+                          fontFamily: "var(--font-body)",
                           fontSize: 13,
                           color: "var(--text-secondary)",
                           lineHeight: 1.3,
@@ -194,7 +194,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
                             alignItems: "center",
                             gap: 4,
                             marginTop: 8,
-                            fontFamily: "var(--font-dm-sans)",
+                            fontFamily: "var(--font-body)",
                             fontSize: 11,
                             fontWeight: 600,
                             color: "var(--accent-amber)",
@@ -221,7 +221,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
       <div style={{ width: "100%", marginBottom: 40 }}>
         <p
           style={{
-            fontFamily: "var(--font-dm-sans)",
+            fontFamily: "var(--font-body)",
             fontSize: 11,
             fontWeight: 600,
             color: "var(--text-muted)",
@@ -279,7 +279,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
                     <div>
                       <p
                         style={{
-                          fontFamily: "var(--font-sora)",
+                          fontFamily: "var(--font-display)",
                           fontWeight: 600,
                           fontSize: 15,
                           color: "var(--text-heading)",
@@ -291,7 +291,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
                       </p>
                       <p
                         style={{
-                          fontFamily: "var(--font-dm-sans)",
+                          fontFamily: "var(--font-body)",
                           fontSize: 13,
                           color: "var(--text-secondary)",
                           lineHeight: 1.5,

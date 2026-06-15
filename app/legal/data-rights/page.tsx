@@ -25,12 +25,12 @@ export default function DataRightsPage() {
           <p>
             You control your personal data on ChapterFlow. Once you&apos;re signed in, you can exercise most rights
             yourself from{" "}
-            <a href="/book/settings" className="underline" style={{ color: "var(--accent-teal)" }}>Settings</a>{" "}
+            <a href="/book/settings" className="underline" style={{ color: "var(--accent-cyan)" }}>Settings</a>{" "}
             (if you&apos;re signed out, opening Settings prompts you to sign in first). You don&apos;t need an account to
             reach us — to make a request without signing in, or for anything Settings doesn&apos;t cover, email{" "}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>.
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{SUPPORT_EMAIL}</a>.
             This page summarizes how; see our{" "}
-            <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-teal)" }}>Privacy Policy</a>{" "}
+            <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-cyan)" }}>Privacy Policy</a>{" "}
             for full detail.
           </p>
         </section>
@@ -46,7 +46,7 @@ export default function DataRightsPage() {
             hold for you (collected while &quot;Share Usage Analytics&quot; is enabled) are included too: the JSON and
             Markdown exports contain your analytics snapshot (approximate location and device) and your most recent
             activity. For your complete event history beyond the most recent 200 events, email{" "}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>.
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{SUPPORT_EMAIL}</a>.
           </p>
         </section>
 
@@ -73,7 +73,7 @@ export default function DataRightsPage() {
               <strong style={{ color: "var(--text-heading)" }}>Delete</strong> from Settings to permanently close
               your account. A deleted account is marked deleted and becomes non-functional. To request complete
               erasure of your underlying data, email{" "}
-              <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>.
+              <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{SUPPORT_EMAIL}</a>.
             </li>
           </ul>
         </section>
@@ -107,7 +107,7 @@ export default function DataRightsPage() {
           </h2>
           <p>
             Email{" "}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{SUPPORT_EMAIL}</a>{" "}
             from your account email. We may need to verify your identity before acting on a request, and we&apos;ll
             respond as promptly as we can.
           </p>

@@ -68,7 +68,7 @@ export default function NotFound() {
 
         <p className="mt-8 text-[13px]" style={{ color: "var(--text-muted)" }}>
           Think this is a mistake?{" "}
-          <Link href="/contact" className="underline" style={{ color: "var(--accent-teal)" }}>
+          <Link href="/contact" className="underline" style={{ color: "var(--accent-cyan)" }}>
             Contact us
           </Link>
           .

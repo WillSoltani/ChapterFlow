@@ -68,7 +68,7 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
     <div className="mx-auto flex w-full max-w-160 flex-col items-center px-4 pb-24">
       {/* Heading */}
       <h1
-        className="mb-2 text-center font-(family-name:--font-sora) text-[clamp(28px,5vw,36px)] font-semibold leading-tight"
+        className="mb-2 text-center font-(family-name:--font-display) text-[clamp(28px,5vw,36px)] font-semibold leading-tight"
         style={{ color: "var(--text-heading)" }}
       >
         What interests you most?

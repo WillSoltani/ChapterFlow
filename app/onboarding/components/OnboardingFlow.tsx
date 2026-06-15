@@ -231,7 +231,7 @@ export function OnboardingFlow() {
             </svg>
             <span
               style={{
-                fontFamily: "var(--font-sora)",
+                fontFamily: "var(--font-display)",
                 fontSize: 16,
                 fontWeight: 600,
                 color: "var(--text-heading)",
@@ -246,7 +246,7 @@ export function OnboardingFlow() {
         {currentStep < 5 && (
           <button
             onClick={handleSkip}
-            className="flex min-h-12 cursor-pointer items-center border-none bg-transparent font-(family-name:--font-dm-sans) text-[13px] text-(--text-muted) transition-colors duration-200 hover:text-(--text-secondary)"
+            className="flex min-h-12 cursor-pointer items-center border-none bg-transparent font-(family-name:--font-body) text-[13px] text-(--text-muted) transition-colors duration-200 hover:text-(--text-secondary)"
           >
             Skip
           </button>

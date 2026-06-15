@@ -63,7 +63,7 @@ export function MobileStickyBar() {
           onClick={() => track("cta_click", { source: "mobile_sticky_bar" })}
           className="flex-1 text-center font-semibold py-3 rounded-full text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
           style={{
-            backgroundColor: "var(--accent-teal)",
+            backgroundColor: "var(--accent-cyan)",
             color: "var(--primary-foreground)",
           }}
         >

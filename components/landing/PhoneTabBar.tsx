@@ -96,7 +96,7 @@ export function PhoneTabBar() {
           <div
             style={{
               color: tab.active
-                ? "var(--accent-blue)"
+                ? "var(--accent-cyan)"
                 : "var(--text-muted)",
             }}
           >
@@ -106,7 +106,7 @@ export function PhoneTabBar() {
             className="text-[9px] font-medium"
             style={{
               color: tab.active
-                ? "var(--accent-blue)"
+                ? "var(--accent-cyan)"
                 : "var(--text-muted)",
             }}
           >

@@ -42,7 +42,7 @@ export default function OnboardingProgress({
       >
         <span
           style={{
-            fontFamily: "var(--font-dm-sans)",
+            fontFamily: "var(--font-body)",
             fontSize: 12,
             color: "var(--text-muted)",
             userSelect: "none",

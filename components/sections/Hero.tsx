@@ -55,7 +55,7 @@ export function Hero() {
                 className="inline-flex items-center gap-2 text-[11px] tracking-wider font-medium px-3.5 py-1.5 rounded-full border"
                 style={{
                   letterSpacing: "0.18em",
-                  color: "var(--accent-teal)",
+                  color: "var(--accent-cyan)",
                   backgroundColor: "color-mix(in srgb, var(--accent-cyan) 8%, transparent)",
                   borderColor: "color-mix(in srgb, var(--accent-cyan) 20%, transparent)",
                 }}
@@ -81,7 +81,7 @@ export function Hero() {
                 className="bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    "linear-gradient(135deg, var(--accent-teal), color-mix(in srgb, var(--accent-cyan), white 35%))",
+                    "linear-gradient(135deg, var(--accent-cyan), color-mix(in srgb, var(--accent-cyan), white 35%))",
                   WebkitBackgroundClip: "text",
                 }}
               >
@@ -111,7 +111,7 @@ export function Hero() {
                   onClick={() => track("cta_click", { source: "hero_primary" })}
                   className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                   style={{
-                    backgroundColor: "var(--accent-teal)",
+                    backgroundColor: "var(--accent-cyan)",
                     color: "var(--primary-foreground)",
                   }}
                 >
