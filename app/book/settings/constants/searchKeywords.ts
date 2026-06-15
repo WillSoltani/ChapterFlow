@@ -220,6 +220,13 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     description: "A brief digest of your reading progress every Monday",
     keywords: ["weekly", "summary", "email", "digest", "progress"],
   },
+  {
+    id: "welcome-back",
+    section: "notifications",
+    label: "Welcome-back emails",
+    description: "A friendly email if you've been away for a while, with a bonus to welcome you back",
+    keywords: ["welcome", "back", "return", "comeback", "email"],
+  },
 
   // Section 6: Account & Subscription
   {
@@ -228,6 +235,13 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     label: "Subscription status",
     description: "Your current plan and billing",
     keywords: ["subscription", "plan", "billing", "pro", "free", "upgrade", "price"],
+  },
+  {
+    id: "analytics",
+    section: "account",
+    label: "Share usage analytics",
+    description: "Help improve ChapterFlow by sharing device, performance, and navigation data",
+    keywords: ["analytics", "privacy", "tracking", "data", "telemetry", "consent", "usage"],
   },
   {
     id: "recommendations",
