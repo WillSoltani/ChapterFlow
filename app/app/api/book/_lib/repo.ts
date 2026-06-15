@@ -49,6 +49,8 @@ import {
   webhookSk,
   emailSuppressionPk,
   emailSuppressionSk,
+  trialEndingEmailPk,
+  trialEndingEmailSk,
   billingEventPk,
   billingEventSk,
   licenseKeyPk,
@@ -1628,6 +1630,41 @@ export async function recordStripeWebhookEvent(
   }
 }
 
+/**
+ * Atomically claim the right to send the transactional "trial ends soon" email
+ * for a (customer, trial_end) pair. Returns true exactly once: the first caller
+ * wins via a ConditionExpression, every redelivery loses and gets false (skip
+ * the send). This prevents duplicate pre-charge notices when the
+ * customer.subscription.trial_will_end webhook is retried after a successful
+ * send but a later step (recordStripeWebhookEvent / metrics) fails (L12).
+ */
+export async function markTrialEndingEmailSent(
+  tableName: string,
+  customerId: string,
+  trialEndUnix: number
+): Promise<boolean> {
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: trialEndingEmailPk(customerId),
+          SK: trialEndingEmailSk(trialEndUnix),
+          entity: "BOOK_TRIAL_ENDING_EMAIL",
+          customerId,
+          trialEndUnix,
+          createdAt: nowIso(),
+        },
+        ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
+}
+
 // ── Email suppression (bounce/complaint deliverability) ───────────────────────
 
 export type EmailSuppressionRecord = {
@@ -1720,34 +1757,48 @@ export type BillingEventRecord = {
 /**
  * Persist a refund or dispute (chargeback) as a durable, append-only billing
  * event for the admin finance reports. Idempotent: the SK embeds the Stripe
- * object id + its created timestamp, so webhook redelivery overwrites in place
- * rather than duplicating.
+ * object id + its created timestamp, so webhook redelivery overwrites the same
+ * item rather than duplicating. The ConditionExpression hardens this against a
+ * redelivery that computes a different fallback timestamp (e.g. a dispute with a
+ * missing `created`): a second Put for an already-recorded SK is a benign no-op
+ * instead of a duplicate finance row. Callers should pass a deterministic
+ * createdAt (the Stripe object's `created`) so the SK is stable across retries.
  */
 export async function recordBillingEvent(
   tableName: string,
   e: BillingEventRecord
 ): Promise<void> {
   const skKind = e.kind === "refund" ? "REFUND" : "DISPUTE";
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: billingEventPk(),
-        SK: billingEventSk(skKind, e.createdAt, e.eventId),
-        entity: "BOOK_BILLING_EVENT",
-        kind: e.kind,
-        eventId: e.eventId,
-        userId: e.userId,
-        stripeCustomerId: e.stripeCustomerId,
-        chargeId: e.chargeId,
-        amountCents: e.amountCents,
-        currency: e.currency,
-        reason: e.reason,
-        status: e.status,
-        createdAt: e.createdAt,
-      },
-    })
-  );
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: billingEventPk(),
+          SK: billingEventSk(skKind, e.createdAt, e.eventId),
+          entity: "BOOK_BILLING_EVENT",
+          kind: e.kind,
+          eventId: e.eventId,
+          userId: e.userId,
+          stripeCustomerId: e.stripeCustomerId,
+          chargeId: e.chargeId,
+          amountCents: e.amountCents,
+          currency: e.currency,
+          reason: e.reason,
+          status: e.status,
+          createdAt: e.createdAt,
+        },
+        // Preserve chronological-Query ordering (the SK still embeds createdAt)
+        // while guaranteeing a webhook redelivery can never create a second row
+        // for an already-recorded event.
+        ConditionExpression: "attribute_not_exists(SK)",
+      })
+    );
+  } catch (error: unknown) {
+    // Already recorded (idempotent redelivery) — not an error.
+    if (isConditionalCheckFailed(error)) return;
+    throw error;
+  }
 }
 
 /** List the most recent refund or dispute events (newest first) for admin reports. */
@@ -1843,6 +1894,13 @@ export async function updateUserEntitlementFromStripe(
     lastInvoiceCurrency?: string;
     lastInvoicePaidAt?: string;
     failedPaymentLastReason?: string;
+    // Sticky chargeback marker. Set true when charge.dispute.created revokes
+    // access so a stale/redelivered PRO-activation event (invoice.paid,
+    // customer.subscription.*) cannot silently re-grant Pro to a user who
+    // reversed payment. Cleared (true → removed) on charge.dispute.closed with
+    // status="won". A PRO-activation write is refused while it is present.
+    setDisputeOpen?: boolean;
+    clearDisputeOpen?: boolean;
   }
 ): Promise<void> {
   // When entering a Pro state via Stripe, we must persist proSource so that
@@ -1850,6 +1908,7 @@ export async function updateUserEntitlementFromStripe(
   // Stripe-backed Pro. When leaving Pro (FREE/canceled), clear proSource.
   const proSourceValue =
     params.plan === "PRO" ? params.proSource ?? "stripe" : null;
+  const isProActivation = params.plan === "PRO";
 
   // Build the SET clause dynamically. Only fields explicitly provided by the
   // event source are written, so e.g. invoice.paid (which has no
@@ -1941,6 +2000,38 @@ export async function updateUserEntitlementFromStripe(
     eav[":sint"] = params.subscriptionInterval;
   }
 
+  // Sticky chargeback marker (L13). The dispute downgrade sets it; a "won"
+  // dispute clears it. setDisputeOpen wins if both are passed (defensive).
+  const removeParts: string[] = [];
+  if (params.setDisputeOpen) {
+    setParts.push("disputeOpen = :disputeOpen");
+    eav[":disputeOpen"] = true;
+  } else if (params.clearDisputeOpen) {
+    removeParts.push("disputeOpen");
+  }
+
+  // Guard: only allow Stripe to write entitlement when the existing proSource is
+  // absent or already "stripe". This prevents a delayed Stripe webhook from
+  // clobbering a user who upgraded via license key or flow_points after the
+  // Stripe subscription ended.
+  const conditionParts = [
+    "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)",
+  ];
+  // Additionally, a PRO-activation must not re-grant access while an unresolved
+  // chargeback marker is present (L13). After a dispute downgrade proSource is
+  // null, which the proSource guard alone treats as writable — so a stale,
+  // redelivered invoice.paid / customer.subscription.* could otherwise
+  // re-activate a chargebacked user. The dispute downgrade itself (plan FREE,
+  // setDisputeOpen) and the dispute-won clear are not PRO activations, so they
+  // are intentionally exempt from this guard.
+  if (isProActivation && !params.setDisputeOpen) {
+    conditionParts.push("attribute_not_exists(disputeOpen)");
+  }
+
+  const updateExpression =
+    "SET " + setParts.join(", ") +
+    (removeParts.length > 0 ? " REMOVE " + removeParts.join(", ") : "");
+
   try {
     await ddbDoc.send(
       new UpdateCommand({
@@ -1949,20 +2040,16 @@ export async function updateUserEntitlementFromStripe(
           PK: bookUserPk(params.userId),
           SK: entitlementSk(),
         },
-        // Guard: only allow Stripe to write entitlement when the existing
-        // proSource is absent or already "stripe". This prevents a delayed
-        // Stripe webhook from clobbering a user who upgraded via license key
-        // or flow_points after the Stripe subscription ended.
-        ConditionExpression:
-          "attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource",
-        UpdateExpression: "SET " + setParts.join(", "),
+        ConditionExpression: conditionParts.join(" AND "),
+        UpdateExpression: updateExpression,
         ExpressionAttributeNames: { "#plan": "plan" },
         ExpressionAttributeValues: eav,
       })
     );
   } catch (error: unknown) {
     if (isConditionalCheckFailed(error)) {
-      // The user is currently on a non-Stripe Pro source (license / flow_points).
+      // Either the user is on a non-Stripe Pro source (license / flow_points),
+      // or an unresolved chargeback marker is blocking PRO re-activation.
       // Refuse to overwrite. The Stripe customer/subscription IDs themselves
       // are still safe to attach via attachStripeCustomerToEntitlement; here we
       // simply skip the entitlement mutation.

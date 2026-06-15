@@ -196,6 +196,19 @@ export function billingEventSk(
   return `${kind}#${createdAtIso}#${id}`;
 }
 
+/**
+ * Per-(customer, trial_end) dedup marker for the transactional "trial ends soon"
+ * email. A conditional Put on this key gates the send so a webhook redelivery of
+ * customer.subscription.trial_will_end cannot re-send the same notice.
+ */
+export function trialEndingEmailPk(customerId: string): string {
+  return `BOOKBILLING#TRIALEMAIL#${customerId}`;
+}
+
+export function trialEndingEmailSk(trialEndUnix: number): string {
+  return `SENT#${trialEndUnix}`;
+}
+
 export function stripeCustomerPk(customerId: string): string {
   return `BOOKBILLING#CUSTOMER#${customerId}`;
 }
