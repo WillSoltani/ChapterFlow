@@ -410,11 +410,17 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
 
-    // AWS_IAM (not NONE): the public Function URL is locked behind CloudFront
-    // Origin Access Control (see serverOrigin below), so only SigV4-signed
-    // requests from this distribution can invoke it — direct hits now get 403.
+    // authType NONE — public Function URL fronted by CloudFront. An earlier
+    // change (X2) locked this to AWS_IAM + Origin Access Control, but OAC SigV4
+    // signing against a RESPONSE_STREAM Function URL was rejected at runtime:
+    // every route 403'd with Lambda "Forbidden / Function URL authorization"
+    // (AccessDeniedException), a failure cdk synth cannot catch. Reverted to
+    // restore service. Data is still gated by the app's own auth (requireUser /
+    // requireActiveBookUser); re-locking via OAC is a tracked follow-up that MUST
+    // be validated on a non-prod deploy (custom origin-request policy excluding
+    // Host + Authorization, and UNSIGNED-PAYLOAD signing for the stream).
     const serverFnUrl = this.serverFunction.addFunctionUrl({
-      authType: lambda.FunctionUrlAuthType.AWS_IAM,
+      authType: lambda.FunctionUrlAuthType.NONE,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
 
@@ -446,7 +452,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     assetsBucket.grantRead(imageFn);
 
     const imageFnUrl = imageFn.addFunctionUrl({
-      authType: lambda.FunctionUrlAuthType.AWS_IAM,
+      // authType NONE — see the serverFnUrl note above (OAC lock reverted).
+      authType: lambda.FunctionUrlAuthType.NONE,
     });
 
     // -------------------------------------------------------------------
@@ -598,25 +605,17 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       { originPath: "/_assets" },
     );
 
-    // Lock the Lambda Function URLs to CloudFront with Origin Access Control.
-    // The URLs are authType AWS_IAM (see addFunctionUrl above); OAC makes
-    // CloudFront SigV4-sign every origin request and auto-grants
-    // lambda:InvokeFunctionUrl scoped to this distribution. This closes the
-    // previously-open, unauthenticated public Function URLs (a direct hit that
-    // bypassed CloudFront — and could forge x-forwarded-host — now returns 403).
-    const serverOrigin = origins.FunctionUrlOrigin.withOriginAccessControl(
-      serverFnUrl,
-      {
-        // Tell OpenNext the public host (custom domain). With no custom domain
-        // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
-        ...(appDomain
-          ? { customHeaders: { "x-forwarded-host": appDomain } }
-          : {}),
-      },
-    );
+    // Plain Function URL origins (no OAC). The OAC lock (X2) is reverted here —
+    // see the serverFnUrl note above for why and the re-locking follow-up.
+    const serverOrigin = new origins.FunctionUrlOrigin(serverFnUrl, {
+      // Tell OpenNext the public host (custom domain). With no custom domain
+      // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
+      ...(appDomain
+        ? { customHeaders: { "x-forwarded-host": appDomain } }
+        : {}),
+    });
 
-    const imageOrigin =
-      origins.FunctionUrlOrigin.withOriginAccessControl(imageFnUrl);
+    const imageOrigin = new origins.FunctionUrlOrigin(imageFnUrl);
 
     // Cache policies
     const serverCachePolicy = new cloudfront.CachePolicy(
