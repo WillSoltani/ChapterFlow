@@ -141,26 +141,45 @@ export async function GET(req: Request) {
   });
 }
 
+const INGESTION_JOBS_TO_RETURN = 20;
+
 async function fetchIngestionJobs(tableName: string): Promise<IngestionJob[]> {
-  const ingestionRes = await ddbDoc.send(
-    new ScanCommand({
-      TableName: tableName,
-      FilterExpression: "entity = :e",
-      ExpressionAttributeValues: { ":e": "BOOK_INGEST_JOB" },
-      Limit: 50,
-    }),
-  );
-  return (ingestionRes.Items ?? [])
-    .map((item) => ({
-      jobId: String(item.jobId ?? ""),
-      status: String(item.status ?? "unknown"),
-      createdAt: String(item.createdAt ?? ""),
-      updatedAt: String(item.updatedAt ?? ""),
-      bookId: typeof item.bookId === "string" ? item.bookId : null,
-      errorReportKey: typeof item.errorReportKey === "string" ? item.errorReportKey : null,
-    }))
+  // A filtered Scan's `Limit` caps items SCANNED (pre-filter), not items MATCHED,
+  // so a single Limit:50 page can be fully consumed by unrelated rows and return
+  // few/no jobs even when many exist. Paginate until we have enough matching jobs
+  // (or run out), bounded by page count so this can't scan the whole table.
+  const jobs: IngestionJob[] = [];
+  let ExclusiveStartKey: Record<string, unknown> | undefined;
+  let pages = 0;
+  do {
+    const ingestionRes = await ddbDoc.send(
+      new ScanCommand({
+        TableName: tableName,
+        FilterExpression: "entity = :e",
+        ExpressionAttributeValues: { ":e": "BOOK_INGEST_JOB" },
+        Limit: 200,
+        ExclusiveStartKey,
+      }),
+    );
+    for (const item of ingestionRes.Items ?? []) {
+      jobs.push({
+        jobId: String(item.jobId ?? ""),
+        status: String(item.status ?? "unknown"),
+        createdAt: String(item.createdAt ?? ""),
+        updatedAt: String(item.updatedAt ?? ""),
+        bookId: typeof item.bookId === "string" ? item.bookId : null,
+        errorReportKey: typeof item.errorReportKey === "string" ? item.errorReportKey : null,
+      });
+    }
+    ExclusiveStartKey = ingestionRes.LastEvaluatedKey as Record<string, unknown> | undefined;
+    pages += 1;
+    // Stop early once we have comfortably more than we return, so the recency
+    // sort+slice below has a full window without paginating the entire table.
+  } while (ExclusiveStartKey && jobs.length < INGESTION_JOBS_TO_RETURN * 5 && pages < 10);
+
+  return jobs
     .sort((a, b) => (b.updatedAt ?? "").localeCompare(a.updatedAt ?? ""))
-    .slice(0, 20);
+    .slice(0, INGESTION_JOBS_TO_RETURN);
 }
 
 function dayKey(date: Date): string {
