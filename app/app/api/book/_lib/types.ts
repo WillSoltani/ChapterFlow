@@ -284,7 +284,7 @@ export type BookUserEntitlement = {
   plan: "FREE" | "PRO";
   proStatus?: "inactive" | "active" | "past_due" | "canceled";
   /** How the user obtained PRO — "stripe" for paid subscription, "license" for a free-pass key, "flow_points" for a timed reward pass, "gift_code" for a gifted Pro window. license/flow_points/gift_code are time-limited and expire (see getUserEntitlement). */
-  proSource?: "stripe" | "license" | "flow_points" | "gift_code";
+  proSource?: "stripe" | "license" | "flow_points" | "gift_code" | "admin";
   freeBookSlots: number;
   unlockedBookIds: string[];
   stripeCustomerId?: string;
