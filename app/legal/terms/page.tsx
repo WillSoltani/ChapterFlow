@@ -15,7 +15,7 @@ export default function TermsOfServicePage() {
         Terms of Service
       </h1>
       <p className="text-[14px] mb-10" style={{ color: "var(--text-muted)" }}>
-        Effective date: April 2, 2026
+        Effective date: June 10, 2026
       </p>
 
       <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
