@@ -724,7 +724,53 @@ export async function getUserEntitlement(
   };
 }
 
+function isNullSetValidationError(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  return (error as { name?: unknown }).name === "ValidationException";
+}
+
 export async function reserveBookEntitlement(
+  tableName: string,
+  params: {
+    userId: string;
+    bookId: string;
+    freeSlotsDefault: number;
+  }
+): Promise<BookUserEntitlement> {
+  try {
+    return await reserveBookEntitlementOnce(tableName, params);
+  } catch (error: unknown) {
+    // C1 / H12 self-heal: while convertEmptyValues:true was deployed, an
+    // entitlement initialized before the user's first unlock (e.g. by
+    // attachStripeCustomerIfAbsent at checkout) persisted unlockedBookIds as a
+    // NULL attribute — the SDK marshalled an empty `new Set()` to {NULL:true}.
+    // The `ADD unlockedBookIds` below then fails with a ValidationException (ADD
+    // onto a NULL-typed attribute) instead of unlocking — the exact first-unlock
+    // outage H12 targeted, still latent for the already-corrupted cohort. Heal it
+    // once: drop the NULL attribute (conditionally, so a genuine set is never
+    // touched) and retry. A NULL unlockedBookIds is semantically an empty set (no
+    // real unlocks), so removing it loses no data.
+    if (!isNullSetValidationError(error)) throw error;
+    await ddbDoc
+      .send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(params.userId), SK: entitlementSk() },
+          UpdateExpression: "REMOVE unlockedBookIds",
+          ConditionExpression: "attribute_type(unlockedBookIds, :nullType)",
+          ExpressionAttributeValues: { ":nullType": "NULL" },
+        })
+      )
+      .catch((healErr: unknown) => {
+        // Not actually NULL (a concurrent writer healed it, or the error was
+        // unrelated) — let the retry below surface the real failure.
+        if (!isConditionalCheckFailed(healErr)) throw healErr;
+      });
+    return await reserveBookEntitlementOnce(tableName, params);
+  }
+}
+
+async function reserveBookEntitlementOnce(
   tableName: string,
   params: {
     userId: string;
