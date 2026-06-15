@@ -39,12 +39,23 @@ function deriveLevel(xp: number): { level: number; xpToNextLevel: number } {
   return { level, xpToNextLevel: level * 500 };
 }
 
+// The dashboard payload has no streak or next-badge source, so toUserStats()
+// only produces the fields backed by real data. We omit currentStreak /
+// streakIsActiveToday / nextBadge rather than emit fabricated constants (a
+// hardcoded "streak 0" / "Avid Reader, N to go" would be wrong for every user
+// and a trap for any future consumer). Wire them through here once a real
+// /api/book/me/streak (and a tier/badge endpoint) exists.
+export type LibraryUserStats = Omit<
+  UserStats,
+  "currentStreak" | "streakIsActiveToday" | "nextBadge"
+>;
+
 export function toUserStats(options: {
   entitlement: DashboardEntitlement;
   entries: LibraryBookEntry[];
   insightPointsBalance: number;
   firstName: string;
-}): UserStats {
+}): LibraryUserStats {
   const { entitlement, entries, insightPointsBalance, firstName } = options;
   const booksCompleted = entries.filter((entry) => entry.status === "completed").length;
   const isPro = entitlement?.plan === "PRO";
@@ -62,10 +73,6 @@ export function toUserStats(options: {
     xp,
     xpToNextLevel,
     booksCompleted,
-    // TODO: no streak in the dashboard payload — wire /api/book/me/streak later.
-    currentStreak: 0,
-    streakIsActiveToday: false,
-    nextBadge: { name: "Avid Reader", booksAway: Math.max(0, 2 - booksCompleted) },
     isPro,
     freeBooksUsed,
     freeBooksLimit,
