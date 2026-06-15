@@ -1,5 +1,7 @@
 "use client";
 
+import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
+
 type ProgressRingProps = {
   size?: number;
   strokeWidth?: number;
@@ -9,47 +11,32 @@ type ProgressRingProps = {
   className?: string;
 };
 
+/**
+ * Badges "earned" ring. Thin wrapper over the shared
+ * components/ui/ProgressRing so it inherits progressbar ARIA and
+ * reduced-motion handling (OS media query + in-app toggle) instead of the
+ * previous aria-hidden, off-token, always-animating reimplementation.
+ * Defaults to the amber accent token (was the hardcoded #f59e0b).
+ * New code should import @/components/ui/ProgressRing directly.
+ */
 export function ProgressRing({
   size = 36,
   strokeWidth = 3,
   progress,
   trackColor = "var(--cf-ring-track)",
-  fillColor = "#f59e0b",
+  fillColor = "var(--accent-amber)",
   className,
 }: ProgressRingProps) {
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (Math.min(100, Math.max(0, progress)) / 100) * circumference;
-
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox={`0 0 ${size} ${size}`}
+    <SharedProgressRing
+      percent={progress}
+      size={size}
+      strokeWidth={strokeWidth}
       className={className}
-      aria-hidden="true"
-    >
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        fill="none"
-        stroke={trackColor}
-        strokeWidth={strokeWidth}
-      />
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        fill="none"
-        stroke={fillColor}
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-        strokeDasharray={circumference}
-        strokeDashoffset={offset}
-        transform={`rotate(-90 ${size / 2} ${size / 2})`}
-        style={{ transition: "stroke-dashoffset 0.6s ease" }}
-      />
-    </svg>
+      color={fillColor}
+      trackColor={trackColor}
+      showLabel={false}
+      ariaLabel={`Badges earned: ${Math.round(Math.max(0, Math.min(100, progress)))}% complete`}
+    />
   );
 }

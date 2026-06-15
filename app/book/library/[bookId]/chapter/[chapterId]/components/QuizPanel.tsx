@@ -24,6 +24,7 @@ import {
   QUIZ_AUTO_ADVANCE_DELAY,
 } from "@/app/book/_lib/flow-points-economy";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
+import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
 
 const OPTION_LABELS = ["A", "B", "C", "D", "E"];
 
@@ -91,31 +92,28 @@ function ProgressRing({
   strokeWidth?: number;
   passed: boolean;
 }) {
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  // For 0%, show a tiny arc so the ring isn't completely empty
-  const offset = percent === 0
-    ? circumference * 0.97
-    : circumference - (percent / 100) * circumference;
+  // For 0%, show a tiny arc so the ring isn't completely empty, while the
+  // center label still reads the true percent.
+  const ringPercent = percent === 0 ? 3 : percent;
 
   return (
-    <div className="relative mx-auto inline-flex items-center justify-center">
-      <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={radius} fill="none"
-          stroke="var(--cr-fill-subtle)" strokeWidth={strokeWidth} />
-        <circle cx={size / 2} cy={size / 2} r={radius} fill="none"
-          stroke={passed ? "var(--cr-success)" : "var(--cr-error)"}
-          strokeWidth={strokeWidth} strokeLinecap="round"
-          strokeDasharray={circumference} strokeDashoffset={offset}
-          style={{ transition: "stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1)" }} />
-      </svg>
+    <SharedProgressRing
+      percent={ringPercent}
+      size={size}
+      strokeWidth={strokeWidth}
+      className="mx-auto"
+      color={passed ? "var(--cr-success)" : "var(--cr-error)"}
+      trackColor="var(--cr-fill-subtle)"
+      showCompletionGlow={false}
+      ariaLabel={`Quiz score: ${percent}% (${correctAnswers} of ${totalQuestions} correct)`}
+    >
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-4xl font-bold text-(--cr-text-heading)">{percent}%</span>
         <span className="text-sm text-(--cr-text-secondary)">
           {correctAnswers}/{totalQuestions}
         </span>
       </div>
-    </div>
+    </SharedProgressRing>
   );
 }
 
