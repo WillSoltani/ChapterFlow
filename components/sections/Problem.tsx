@@ -231,8 +231,8 @@ export function Problem() {
               className="mt-3 text-center text-[12px] italic font-(family-name:--font-body)"
               style={{ color: "var(--text-muted)" }}
             >
-              Based on Ebbinghaus&apos;s Forgetting Curve — active recall is the
-              only proven method to beat it.
+              Based on Ebbinghaus&apos;s Forgetting Curve — spaced repetition and
+              active recall are among the most reliably proven ways to beat it.
             </p>
           </div>
         </SectionReveal>
