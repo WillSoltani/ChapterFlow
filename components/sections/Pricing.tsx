@@ -14,6 +14,7 @@ import {
   ANNUAL_SAVINGS_PCT,
   formatAmount,
   TRIAL_CTA_LABEL,
+  FREE_OFFER_LABEL,
   UPGRADE_RETURN_PATH,
   UPGRADE_LOGIN_URL,
 } from "@/lib/pricing";
@@ -192,19 +193,21 @@ export function Pricing() {
 
         {/* ---- Billing toggle ---- */}
         <SectionReveal delay={0.05}>
-          <div className="mt-8 flex items-center justify-center gap-3">
-            <span
-              className="text-[14px] transition-colors"
+          <div className="mt-8 min-h-11 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => setIsAnnual(false)}
+              className="flex items-center min-h-11 px-1 text-[14px] transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
               style={{ color: isAnnual ? "var(--text-muted)" : "var(--text-heading)" }}
             >
               Monthly
-            </span>
+            </button>
             <button
               onClick={() => setIsAnnual((v) => !v)}
               role="switch"
               aria-checked={isAnnual}
               aria-label="Toggle annual pricing"
-              className="relative w-12 h-6 rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+              className="relative w-12 h-6 rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
               style={{ background: isAnnual ? "var(--accent-teal)" : "var(--bg-elevated)" }}
             >
               <div
@@ -212,8 +215,10 @@ export function Pricing() {
                 style={{ transform: isAnnual ? "translateX(26px)" : "translateX(2px)" }}
               />
             </button>
-            <span
-              className="text-[14px] transition-colors"
+            <button
+              type="button"
+              onClick={() => setIsAnnual(true)}
+              className="flex items-center min-h-11 px-1 text-[14px] transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
               style={{ color: isAnnual ? "var(--text-heading)" : "var(--text-muted)" }}
             >
               Annual
@@ -223,8 +228,19 @@ export function Pricing() {
               >
                 Save {ANNUAL_SAVINGS_PCT}%
               </span>
-            </span>
+            </button>
           </div>
+        </SectionReveal>
+
+        {/* ---- Free-access models clarifier ---- */}
+        <SectionReveal delay={0.08}>
+          <p
+            className="mt-4 text-[13px] text-(--text-muted) text-center max-w-xl mx-auto leading-[1.6]"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Read {FREE_OFFER_LABEL} with no card — or start a {PRICING.trialDays}-day
+            Pro trial for unlimited access.
+          </p>
         </SectionReveal>
 
         {/* ---- Pricing cards ---- */}
@@ -283,10 +299,10 @@ export function Pricing() {
               <Link
                 href={freeHref}
                 onClick={() => track("cta_click", { source: "pricing_free" })}
-                className="mt-8 block w-full text-center border border-(--border-medium) text-(--text-heading) hover:bg-(--bg-glass) rounded-xl py-3.5 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                className="mt-8 block w-full text-center border border-(--border-medium) text-(--text-heading) hover:bg-(--bg-glass) rounded-xl py-3.5 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Get 2 free books
+                Get {FREE_OFFER_LABEL}
               </Link>
             </div>
           </SectionReveal>
@@ -384,7 +400,7 @@ export function Pricing() {
               <Link
                 href={proHref}
                 onClick={() => track("cta_click", { source: "pricing_pro" })}
-                className="block w-full text-center bg-(--accent-teal) text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                className="block w-full text-center bg-(--accent-cyan) text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {TRIAL_CTA_LABEL}
@@ -408,7 +424,7 @@ export function Pricing() {
                   }}
                   aria-expanded={openIndex === index}
                   aria-controls={`faq-answer-${index}`}
-                  className="flex w-full items-center justify-between py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                  className="flex w-full items-center justify-between py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                 >
                   <span
                     className="text-[16px] text-(--text-heading) font-medium"

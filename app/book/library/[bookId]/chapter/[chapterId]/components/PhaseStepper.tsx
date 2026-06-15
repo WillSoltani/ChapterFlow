@@ -65,6 +65,7 @@ export function PhaseStepper({
 }: PhaseStepperProps) {
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
   const [mobileToast, setMobileToast] = useState<string | null>(null);
+  const clampedProgress = Math.min(100, Math.max(0, progressPercent));
 
   const handleLockedClick = useCallback(
     (phase: ChapterTab, event: React.MouseEvent) => {
@@ -113,6 +114,10 @@ export function PhaseStepper({
               <button
                 type="button"
                 title={stepTitle}
+                // stepTitle carries the lock reason for locked steps, so exposing
+                // it as the accessible name lets SR users learn WHY a step is
+                // locked (the title attribute alone is not reliably announced).
+                aria-label={stepTitle}
                 // aria-disabled (not the native `disabled` attribute) so a locked
                 // step still receives the click and can explain WHY it's locked.
                 // A native disabled button swallows the event, making the lock
@@ -179,12 +184,15 @@ export function PhaseStepper({
               {!isLast && (
                 <div className="mx-3 h-0.5 w-12 sm:mx-4 sm:w-20 md:w-28">
                   <div className="relative h-full w-full overflow-hidden rounded-full">
-                    {/* Dashed locked underlay */}
+                    {/* Dashed locked/incomplete underlay. This dash is the sole
+                     * cue distinguishing a locked/incomplete connector from the
+                     * solid accent completed one, so it uses a ≥3:1 text-level
+                     * token (not the sub-3:1 decorative glass-border at 50%). */}
                     <div
-                      className="absolute inset-0 rounded-full opacity-50"
+                      className="absolute inset-0 rounded-full"
                       style={{
                         backgroundImage:
-                          "repeating-linear-gradient(to right, var(--cr-glass-border) 0 4px, transparent 4px 8px)",
+                          "repeating-linear-gradient(to right, var(--cr-text-secondary) 0 4px, transparent 4px 8px)",
                       }}
                     />
                     <motion.div
@@ -218,27 +226,38 @@ export function PhaseStepper({
         <div
           className="h-[3px] w-full overflow-hidden rounded-full"
           style={{ background: "var(--cr-glass-border)" }}
+          role="progressbar"
+          aria-label="Chapter progress"
+          aria-valuenow={Math.round(clampedProgress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
         >
           <div
             className="h-full rounded-full bg-(--cr-accent) transition-[width] duration-300 ease-out"
-            style={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
+            style={{ width: `${clampedProgress}%` }}
           />
         </div>
       )}
 
-      {/* Desktop tooltip */}
+      {/* Desktop tooltip — announced to SR users as a polite status update */}
       {tooltip && (
         <div
           className="pointer-events-none fixed z-50 hidden -translate-x-1/2 -translate-y-full rounded-lg border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-xs text-(--cr-text-secondary) shadow-shadow-elevated sm:block"
           style={{ left: tooltip.x, top: tooltip.y }}
+          role="status"
+          aria-live="polite"
         >
           {tooltip.text}
         </div>
       )}
 
-      {/* Mobile toast */}
+      {/* Mobile toast — announced to SR users as a polite status update */}
       {mobileToast && (
-        <div className="fixed bottom-24 left-4 right-4 z-50 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-center text-sm text-(--cr-text-secondary) shadow-shadow-elevated sm:hidden">
+        <div
+          className="fixed bottom-24 left-4 right-4 z-50 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-center text-sm text-(--cr-text-secondary) shadow-shadow-elevated sm:hidden"
+          role="status"
+          aria-live="polite"
+        >
           {mobileToast}
         </div>
       )}

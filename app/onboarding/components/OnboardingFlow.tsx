@@ -122,7 +122,7 @@ export function OnboardingFlow() {
   return (
     <div
       id="onboarding-root"
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-dvh overflow-hidden"
       style={{ background: "var(--bg-base)" }}
     >
       {/* Background gradient orbs */}
@@ -204,8 +204,8 @@ export function OnboardingFlow() {
             </button>
           )}
 
-          {/* Logo */}
-          <div className="flex items-center gap-2">
+          {/* Logo — decorative, not interactive */}
+          <div className="flex cursor-default items-center gap-2">
             <svg
               width="24"
               height="24"
@@ -255,7 +255,7 @@ export function OnboardingFlow() {
       </header>
 
       {/* Main content */}
-      <main className="flex-1 flex items-center justify-center min-h-screen px-5 md:px-8 pt-20 pb-8">
+      <main className="flex-1 flex items-center justify-center md:justify-start min-h-dvh px-5 md:px-8 pt-20 md:pt-24 pb-8">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentStep}

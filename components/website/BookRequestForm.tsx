@@ -91,7 +91,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
   });
 
   const inputFocusClass =
-    "focus:outline-none focus:ring-0 transition-all duration-200";
+    "transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
@@ -113,26 +113,10 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           aria-invalid={!!errors.title && !!touched.title}
           aria-describedby={errors.title && touched.title ? "book-request-title-error" : undefined}
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
-          style={{
-            ...inputStyle(!!errors.title && !!touched.title),
-            ...(errors.title && touched.title
-              ? {}
-              : {}),
-          }}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = errors.title && touched.title ? "var(--accent-rose)" : "var(--accent-blue)";
-            e.currentTarget.style.boxShadow = errors.title && touched.title
-              ? "0 0 0 3px var(--accent-rose-glow)"
-              : "0 0 0 3px var(--accent-cyan-glow)";
-          }}
-          onMouseLeave={() => {}}
-          onBlurCapture={(e) => {
-            e.currentTarget.style.borderColor = errors.title && touched.title ? "var(--accent-rose)" : "var(--border-subtle)";
-            e.currentTarget.style.boxShadow = "none";
-          }}
+          style={inputStyle(!!errors.title && !!touched.title)}
         />
         {errors.title && touched.title && (
-          <p id="book-request-title-error" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-title-error" role="alert" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.title}
           </p>
         )}
@@ -151,14 +135,6 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           placeholder="Author name (optional)"
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(false)}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = "var(--accent-blue)";
-            e.currentTarget.style.boxShadow = "0 0 0 3px var(--accent-cyan-glow)";
-          }}
-          onBlurCapture={(e) => {
-            e.currentTarget.style.borderColor = "var(--border-subtle)";
-            e.currentTarget.style.boxShadow = "none";
-          }}
         />
       </div>
 
@@ -181,19 +157,9 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           aria-describedby={errors.email && touched.email ? "book-request-email-error" : undefined}
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.email && !!touched.email)}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = errors.email && touched.email ? "var(--accent-rose)" : "var(--accent-blue)";
-            e.currentTarget.style.boxShadow = errors.email && touched.email
-              ? "0 0 0 3px var(--accent-rose-glow)"
-              : "0 0 0 3px var(--accent-cyan-glow)";
-          }}
-          onBlurCapture={(e) => {
-            e.currentTarget.style.borderColor = errors.email && touched.email ? "var(--accent-rose)" : "var(--border-subtle)";
-            e.currentTarget.style.boxShadow = "none";
-          }}
         />
         {errors.email && touched.email && (
-          <p id="book-request-email-error" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-email-error" role="alert" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.email}
           </p>
         )}
@@ -203,9 +169,9 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
       <motion.button
         type="submit"
         disabled={!isFormValid || formState === "submitting"}
-        className="w-full h-12 rounded-lg text-[15px] font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+        className="w-full h-12 rounded-lg text-[15px] font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
         style={{
-          background: "var(--accent-teal)",
+          background: "var(--accent-cyan)",
           color: "var(--primary-foreground)",
           opacity: !isFormValid || formState === "submitting" ? 0.5 : 1,
           cursor: !isFormValid || formState === "submitting" ? "not-allowed" : "pointer",

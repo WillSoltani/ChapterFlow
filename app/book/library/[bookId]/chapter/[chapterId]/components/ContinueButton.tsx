@@ -7,58 +7,29 @@ type ContinueButtonProps = {
   onClick: () => void;
   readyText: string;
   lockedText?: string;
-  /** Scroll percent 0-100 */
+  /**
+   * Progress/threshold props are still accepted from the caller (which spreads
+   * `getPhaseThresholds(...)` plus live progress) but are intentionally no
+   * longer rendered — the locked label is comprehension-framed and hides the
+   * raw time/scroll quota. The gate logic that uses these lives upstream.
+   */
   scrollPercent?: number;
-  /** Time on phase in seconds */
   timeOnPhase?: number;
-  /** Minimum seconds required */
   minTime?: number;
-  /** Minimum scroll percent (0-1) required */
   minScroll?: number;
 };
-
-function buildLockedLabel(
-  fallback: string,
-  scrollPercent?: number,
-  timeOnPhase?: number,
-  minTime?: number,
-  minScroll?: number
-): string {
-  const minScrollPct = typeof minScroll === "number" ? Math.round(minScroll * 100) : 0;
-  const haveTime = typeof timeOnPhase === "number" && typeof minTime === "number" && minTime > 0;
-  const haveScroll = typeof scrollPercent === "number" && minScrollPct > 0;
-
-  const timeRatio = haveTime ? (timeOnPhase as number) / (minTime as number) : 0;
-  const scrollRatio = haveScroll ? (scrollPercent as number) / minScrollPct : 0;
-
-  // Prefer the metric that's closer to (or above) completion
-  const preferScroll = haveScroll && scrollRatio >= timeRatio && scrollRatio > 0.5;
-
-  if (preferScroll) {
-    return `Reading… ${Math.min(100, Math.round(scrollPercent as number))}% scrolled`;
-  }
-  if (haveTime) {
-    return `Reading… ${Math.min(minTime as number, Math.floor(timeOnPhase as number))}s / ${minTime}s`;
-  }
-  if (haveScroll) {
-    return `Reading… ${Math.min(100, Math.round(scrollPercent as number))}% scrolled`;
-  }
-  return fallback;
-}
 
 export function ContinueButton({
   ready,
   onClick,
   readyText,
-  lockedText = "Keep reading to continue...",
-  scrollPercent,
-  timeOnPhase,
-  minTime,
-  minScroll,
+  lockedText = "Take a moment with this section…",
 }: ContinueButtonProps) {
-  const label = ready
-    ? readyText
-    : buildLockedLabel(lockedText, scrollPercent, timeOnPhase, minTime, minScroll);
+  // Comprehension-framed locked copy: we intentionally hide the raw time/scroll
+  // quota so the gate reads as "spend a moment with this section" rather than a
+  // number to game. The gate logic itself (which uses the threshold props) is
+  // unchanged and lives upstream.
+  const label = ready ? readyText : lockedText;
 
   const button = (
     <div className="mt-8 flex justify-center">

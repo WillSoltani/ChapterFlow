@@ -62,7 +62,7 @@ export function RewardsCard({
           {insightPoints.toLocaleString()}
         </span>
         <span className="text-xs" style={{ color: "var(--cf-text-3)" }}>
-          Insight Points
+          Insight Points (IP)
         </span>
       </div>
 

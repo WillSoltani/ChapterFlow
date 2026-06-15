@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Send, Sparkles, Square, Trash2, X } from "lucide-react";
+import { useBodyScrollLock } from "@/components/ui/use-body-scroll-lock";
 
 type Message = {
   role: "user" | "assistant";
@@ -159,6 +160,12 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, handleClose]);
 
+  // Body scroll lock while the drawer is open. Uses the shared ref-counted lock
+  // so it composes with NotesDrawer's Sheet (OverlayShell) — both can be open at
+  // once in the reader, and an uncoordinated save/restore would leave the body
+  // permanently locked when they close out of order.
+  useBodyScrollLock(open);
+
   // Auto-focus input when drawer opens
   useEffect(() => {
     if (open) {
@@ -303,7 +310,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
       <aside
         className={[
           "fixed z-[60] flex flex-col border-(--cf-border) bg-(--cf-surface-strong) shadow-(--shadow-modal) transition-transform duration-200",
-          "inset-x-0 bottom-0 h-[70vh] rounded-t-3xl border md:inset-y-0 md:right-0 md:left-auto md:h-full md:w-[400px] md:rounded-none md:border-l md:border-t-0",
+          "inset-x-0 bottom-0 h-[70dvh] max-h-[90dvh] rounded-t-3xl border md:inset-y-0 md:right-0 md:left-auto md:h-full md:max-h-none md:w-[400px] md:rounded-none md:border-l md:border-t-0",
           open ? "translate-y-0 md:translate-x-0" : "translate-y-full md:translate-y-0 md:translate-x-full",
         ].join(" ")}
         role="dialog"
@@ -428,7 +435,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
         </div>
 
         {/* Input */}
-        <div className="border-t border-(--cf-divider) px-4 py-3">
+        <div className="border-t border-(--cf-divider) px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
           <form
             onSubmit={(e) => {
               e.preventDefault();

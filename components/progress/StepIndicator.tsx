@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  LEARNING_LOOP_STEPS as STEP_LABELS,
+  LEARNING_LOOP_STEPS_SHORT as STEP_LABELS_SHORT,
+} from "@/lib/learning-loop";
 import type { StepNumber } from "./progressTypes";
-
-const STEP_LABELS = ["Summary", "Scenarios", "Quiz", "Unlock"] as const;
-const STEP_LABELS_SHORT = ["Sum", "Scen", "Quiz", "Unlk"] as const;
 
 interface StepIndicatorProps {
   currentStep: StepNumber;

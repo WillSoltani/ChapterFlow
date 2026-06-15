@@ -21,6 +21,7 @@ import {
   getBookChapterCount,
 } from "@/app/book/data/booksCatalog";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import { FREE_OFFER_LABEL } from "@/lib/pricing";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
@@ -411,7 +412,7 @@ function LibraryHero({
   return (
     <section className="pt-28 lg:pt-32 pb-10 lg:pb-14">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-10 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[55%_45%] gap-10 lg:gap-8 items-center">
           {/* Left column */}
           <SectionReveal>
             <div>
@@ -1045,7 +1046,7 @@ function BottomCTA() {
           </div>
 
           <p className="mt-3 text-[12px]" style={{ color: "var(--text-muted)" }}>
-            No credit card · 2 books free · Cancel anytime
+            No credit card · {FREE_OFFER_LABEL} · Cancel anytime
           </p>
         </div>
       </SectionReveal>

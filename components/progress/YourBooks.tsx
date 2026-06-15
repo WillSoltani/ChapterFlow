@@ -119,12 +119,24 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
 
           {/* Empty filter state */}
           {filter === "active" && activeBooks.length === 0 && (
-            <p
-              className="py-4 text-center text-sm"
-              style={{ color: "var(--text-muted)" }}
-            >
-              No active books
-            </p>
+            <div className="flex flex-col items-center py-6 text-center">
+              <p
+                className="text-sm"
+                style={{ color: "var(--text-muted)" }}
+              >
+                No active books right now — pick one up and start reading!
+              </p>
+              <Link
+                href="/book/library"
+                className="mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium transition-colors"
+                style={{
+                  color: "var(--text-secondary)",
+                  border: "1px solid var(--border-subtle)",
+                }}
+              >
+                Browse Library {"\u2192"}
+              </Link>
+            </div>
           )}
           {filter === "completed" && completedBooks.length === 0 && (
             <p

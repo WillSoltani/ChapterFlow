@@ -120,6 +120,9 @@ export function TopNav({
   const headerRef = useRef<HTMLDivElement | null>(null);
   const desktopSearchRef = useRef<HTMLInputElement | null>(null);
   const mobileSearchRef = useRef<HTMLInputElement | null>(null);
+  // Profile-menu trigger — focus is returned here when the menu closes (a11y).
+  const profileTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const wasProfileMenuOpen = useRef(false);
 
   const initial = name.trim().charAt(0).toUpperCase() || "R";
   const showAvatar = !!avatarUrl && !avatarError;
@@ -157,6 +160,15 @@ export function TopNav({
     setShowProfileMenu(false);
     setShowMoreSheet(false);
   }, [pathname]);
+
+  // Return focus to the trigger whenever the profile menu transitions open → closed
+  // (Escape, click-away, selecting an item) so keyboard users aren't dropped.
+  useEffect(() => {
+    if (wasProfileMenuOpen.current && !showProfileMenu) {
+      profileTriggerRef.current?.focus();
+    }
+    wasProfileMenuOpen.current = showProfileMenu;
+  }, [showProfileMenu]);
 
   useEffect(() => {
     if (!showGlobalSearchPanel) {
@@ -339,7 +351,7 @@ export function TopNav({
               <Link
                 href="/book/settings"
                 className={[
-                  "hidden h-9 w-9 items-center justify-center rounded-xl border transition md:inline-flex",
+                  "hidden min-h-11 min-w-11 items-center justify-center rounded-xl border transition md:inline-flex",
                   activeTab === "settings"
                     ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
                     : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
@@ -376,15 +388,17 @@ export function TopNav({
               </Link>
 
               <button
+                ref={profileTriggerRef}
                 type="button"
                 onClick={() => setShowProfileMenu((prev) => !prev)}
                 className={[
-                  "inline-flex h-9 w-9 items-center justify-center rounded-xl border transition",
+                  "inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border transition",
                   activeTab === "profile"
                     ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
                     : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
                 ].join(" ")}
                 aria-label="Open profile menu"
+                aria-haspopup="menu"
                 aria-expanded={showProfileMenu}
               >
                 <ChevronDown className="h-4 w-4" />

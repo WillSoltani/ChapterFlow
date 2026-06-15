@@ -23,12 +23,17 @@ export default async function OnboardingPage() {
       redirect("/dashboard");
     }
   } catch (e) {
-    // Re-throw Next.js redirects so they take effect.
+    // Re-throw Next.js redirects so the already-completed → /dashboard bounce
+    // takes effect.
     if (e instanceof Error && "digest" in e) throw e;
-    // Only swallow AuthError (dev bypass / token issues); surface everything
-    // else (DynamoDB, network) to the error boundary rather than silently
-    // showing onboarding.
-    if (!(e instanceof AuthError)) throw e;
+    // Re-throw auth failures so token/session problems still propagate to the
+    // auth boundary.
+    if (e instanceof AuthError) throw e;
+    // The settings lookup is only an optimization (it skips re-running a
+    // completed flow). A non-auth failure here — a transient DynamoDB or
+    // network error at the most fragile first-run moment — should NOT crash the
+    // route to the generic error boundary. Swallow it and render the flow; the
+    // server route still enforces correctness on completion.
   }
 
   return <OnboardingFlow />;

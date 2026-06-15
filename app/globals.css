@@ -86,19 +86,8 @@ body {
   /* JetBrains Mono is the mono face actually loaded in app/layout.tsx
      (--font-geist-mono was never defined → --font-mono resolved to nothing). */
   --font-mono: var(--font-jetbrains);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  /* shadcn chart/sidebar color aliases removed: zero consumers repo-wide
+     (no var() refs, no minted bg-sidebar/text-chart-N utilities). */
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -182,19 +171,7 @@ body {
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.08);
   --ring: rgba(34, 211, 238, 0.28);
-  --chart-1: #22D3EE;
-  --chart-2: #10B981;
-  --chart-3: #F59E0B;
-  --chart-4: #8B5CF6;
-  --chart-5: #F43F5E;
-  --sidebar: #111827;
-  --sidebar-foreground: #E8ECF1;
-  --sidebar-primary: #22D3EE;
-  --sidebar-primary-foreground: #0B0E14;
-  --sidebar-accent: rgba(34, 211, 238, 0.14);
-  --sidebar-accent-foreground: #22D3EE;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: rgba(34, 211, 238, 0.28);
+  /* shadcn chart/sidebar tokens removed (dark): zero consumers repo-wide. */
 
   /* ── Backgrounds — 3-tier tonal elevation system ──
         Neutral surfaces are aliased to the canonical --cf-* family below: they
@@ -217,7 +194,7 @@ body {
   --text-primary: #E8ECF1;
   --text-secondary: #8899AA;
   --text-heading: var(--cf-text-1);
-  --text-tertiary: #5C6B7A;
+  --text-tertiary: #7C8B9A;
   --text-muted: var(--text-tertiary);
 
   /* ── Accent colors (new unified palette) ── */
@@ -347,7 +324,7 @@ body {
   --cf-accent-muted: rgba(34, 211, 238, 0.07);
   --cf-accent-border: rgba(34, 211, 238, 0.26);
   --cf-accent-shadow: rgba(34, 211, 238, 0.2);
-  --cf-accent-contrast: #ffffff;
+  --cf-accent-contrast: #0B0E14;
   --cf-warm-soft: rgba(245, 158, 11, 0.09);
   --cf-info-soft: rgba(34, 211, 238, 0.1);
   --cf-info-bg: rgba(34, 211, 238, 0.1);
@@ -365,7 +342,7 @@ body {
   --cf-danger-bg: rgba(244, 63, 94, 0.1);
   --cf-danger-border: rgba(244, 63, 94, 0.24);
   --cf-danger-text: #F43F5E;
-  --cf-focus-ring: 0 0 0 3px rgba(34, 211, 238, 0.2);
+  --cf-focus-ring: 0 0 0 3px rgba(34, 211, 238, 0.9);
   --cf-blue-soft: rgba(34, 211, 238, 0.1);
   --cf-blue-border: rgba(34, 211, 238, 0.24);
   --cf-teal-soft: rgba(34, 211, 238, 0.1);
@@ -417,19 +394,7 @@ html:not(.dark) {
   --border: #E7E5E4;
   --input: #D6D3D1;
   --ring: rgba(13, 148, 136, 0.3);
-  --chart-1: #0D9488;
-  --chart-2: #16a34a;
-  --chart-3: #EA580C;
-  --chart-4: #D97706;
-  --chart-5: #DC2626;
-  --sidebar: #F5F5F4;
-  --sidebar-foreground: #1C1917;
-  --sidebar-primary: #0D9488;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F0FDFA;
-  --sidebar-accent-foreground: #0D9488;
-  --sidebar-border: #E7E5E4;
-  --sidebar-ring: rgba(13, 148, 136, 0.3);
+  /* shadcn chart/sidebar tokens removed (light): zero consumers repo-wide. */
 
   /* ── Backgrounds ── (aliased to canonical --cf-* — see dark :root note) */
   --bg-base: var(--cf-page-bg);
@@ -529,7 +494,7 @@ html:not(.dark) {
   --cf-divider: #E7E5E4;
   --cf-text-1: #1C1917;
   --cf-text-2: #57534E;
-  --cf-text-3: #78716C;
+  --cf-text-3: #6B6560;                       /* was #78716C (4.40:1 on muted / 3.82:1 on strong) → 5.27:1 on muted, ≥4.58:1 incl. on #E7E5E4 */
   --cf-text-soft: #736E68;                    /* was #A8A29E (2.5:1) → ≥4.6:1 incl. on #F5F5F4 */
   --cf-overlay: rgba(0, 0, 0, 0.3);
   --cf-shadow-sm: 0 1px 2px rgba(50, 50, 93, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
@@ -560,7 +525,7 @@ html:not(.dark) {
   --cf-danger-bg: #FFF1F2;
   --cf-danger-border: rgba(225, 29, 72, 0.2);
   --cf-danger-text: #E11D48;
-  --cf-focus-ring: 0 0 0 3px rgba(8, 145, 178, 0.2);
+  --cf-focus-ring: 0 0 0 3px rgba(8, 145, 178, 0.9);
   --cf-blue-soft: rgba(8, 145, 178, 0.06);
   --cf-blue-border: rgba(8, 145, 178, 0.2);
   --cf-teal-soft: rgba(8, 145, 178, 0.06);
@@ -824,7 +789,7 @@ html.transitioning *::after {
   .cf-app-shell-subtle {
     position: relative;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
     color: var(--cf-text-1);
     font-family: var(--reading-font-family, inherit);
     font-size: var(--reading-font-size, 1rem);
@@ -1173,6 +1138,79 @@ html[data-motion="reduced"] *::after {
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
+}
+
+/* ─────────────────────────────────────────
+   FORCED COLORS (Windows High Contrast / forced-colors mode)
+   ─────────────────────────────────────────
+   In forced-colors mode the OS replaces our palette and DROPS box-shadows, so
+   the controls that signal focus only via a box-shadow ring (.cf-input,
+   .cf-btn) and the suppressed-outline cases lose any visible focus indicator.
+   Restore a real, system-colored outline on every focused element and map state
+   borders onto system color keywords so they stay perceivable. Additive only —
+   it neither sets custom colors (forbidden here) nor changes default rendering. */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid CanvasText;
+    outline-offset: 2px;
+  }
+
+  /* These suppress the outline by default and rely on a (now-dropped) box-shadow
+     ring — re-assert a visible system outline so keyboard focus survives. */
+  .cf-input:focus-visible,
+  .cf-btn:focus-visible,
+  [data-phase-heading]:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  /* Map decorative/state borders to system colors so panels, banners, pills and
+     quiz states keep a perceivable edge (their alpha/brand borders are flattened
+     to the forced palette otherwise). */
+  .cf-panel,
+  .cf-panel-muted,
+  .cf-panel-strong,
+  .cf-banner,
+  .cf-pill,
+  .cf-chip,
+  .cf-input,
+  .glass-card,
+  .cr-glass-reading,
+  .cr-glass-card {
+    border-color: CanvasText;
+  }
+
+  .cf-chip-active,
+  .cr-answer-selected,
+  .cr-answer-correct,
+  .cr-answer-incorrect {
+    border-color: Highlight;
+  }
+}
+
+/* ─────────────────────────────────────────
+   PREFERS-CONTRAST: MORE
+   ─────────────────────────────────────────
+   Users requesting higher contrast get solid, higher-contrast borders in place
+   of the low-alpha neutral/glass borders (which read as nearly invisible edges).
+   Conservative + additive: only swaps border tokens, leaves text/backgrounds to
+   the existing high-contrast paths. Per-theme so each direction stays legible. */
+@media (prefers-contrast: more) {
+  html:not(.dark) {
+    --cf-border: rgba(0, 0, 0, 0.32);
+    --cf-border-strong: rgba(0, 0, 0, 0.5);
+    --border-subtle: rgba(0, 0, 0, 0.32);
+    --border-default: rgba(0, 0, 0, 0.42);
+    --border-glass-top: rgba(0, 0, 0, 0.32);
+  }
+
+  html.dark {
+    --cf-border: rgba(255, 255, 255, 0.34);
+    --cf-border-strong: rgba(255, 255, 255, 0.5);
+    --border-subtle: rgba(255, 255, 255, 0.34);
+    --border-default: rgba(255, 255, 255, 0.44);
+    --border-glass-top: rgba(255, 255, 255, 0.34);
+  }
 }
 
 /* ─────────────────────────────────────────
@@ -1585,7 +1623,7 @@ html:not(.dark) .bd-chapter-shimmer::before {
   --cr-text-primary: var(--text-primary);
   --cr-text-heading: var(--text-heading);
   --cr-text-secondary: var(--text-secondary);
-  --cr-text-disabled: #8A97A6;                  /* bumped to ≥4.5:1 on --bg-base */
+  --cr-text-disabled: #95A1AF;                  /* was #8A97A6 (4.46:1 on --cr-bg-surface-3 #243044, below AA for the informational labels that use this) → 5.06:1 there; ≥4.5:1 on all reader surfaces */
   --cr-text-inverse: var(--primary-foreground);
 
   /* ── Chapter Reader Accent (brand cyan, was teal) ── */

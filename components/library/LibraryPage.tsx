@@ -5,7 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { Toast, type ToastTone } from "@/app/book/components/ui/Toast";
+import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { useLibraryDashboard } from "@/app/book/hooks/useLibraryDashboard";
+import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { getBookCoverPath } from "@/lib/book-covers";
@@ -243,12 +245,10 @@ export function LibraryPage() {
   );
 
   return (
-    <main
+    <div
       className="min-h-screen"
       style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}
     >
-      <h1 className="sr-only">Your library</h1>
-
       <TopNav
         name={userStats.firstName}
         activeTab="library"
@@ -258,14 +258,21 @@ export function LibraryPage() {
         logoVariant="dashboard"
       />
 
-      {!hydrated ? (
-        <LibrarySkeleton />
+      <main>
+        <h1 className="sr-only">Your library</h1>
+
+        {!hydrated ? (
+          <LibrarySkeleton />
       ) : !heroBook ? (
         error ? (
-          <LibraryStateMessage
-            title="We couldn't load your library"
-            body="Please refresh the page. If this keeps happening, your library may not be published yet."
-          />
+          <div className="grid min-h-[60vh] place-content-center px-5 py-16 md:px-7">
+            <ErrorBanner
+              className="mx-auto max-w-md"
+              title="We couldn't load your library"
+              message="Something went wrong loading your library. If this keeps happening, your library may not be published yet."
+              onRetry={() => emitBookStorageChanged("library-retry")}
+            />
+          </div>
         ) : (
           <LibraryStateMessage
             title="No books available yet"
@@ -373,6 +380,7 @@ export function LibraryPage() {
           </div>
         </LibraryProvider>
       )}
+      </main>
 
       {/* Completion celebration toast (Change 11) */}
       {celebratedBookData && (
@@ -392,6 +400,6 @@ export function LibraryPage() {
         tone={toast?.tone ?? "info"}
         onClose={() => setToast(null)}
       />
-    </main>
+    </div>
   );
 }

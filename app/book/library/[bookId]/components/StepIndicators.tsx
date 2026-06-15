@@ -1,6 +1,6 @@
 "use client";
 
-const STEP_LABELS = ["Summary", "Scenarios", "Quiz", "Unlock"] as const;
+import { LEARNING_LOOP_STEPS as STEP_LABELS } from "@/lib/learning-loop";
 
 type StepIndicatorsProps = {
   stepsCompleted: number;

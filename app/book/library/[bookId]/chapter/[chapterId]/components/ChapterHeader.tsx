@@ -187,7 +187,7 @@ export function ChapterHeader({
           <div className="flex min-w-0 items-center gap-3">
             <Link
               href={`/book/library/${encodeURIComponent(bookId)}`}
-              className="inline-flex items-center gap-1 rounded-lg p-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
+              className="min-h-11 min-w-11 inline-flex items-center justify-center gap-1 rounded-lg p-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
               aria-label="Back to library"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -231,7 +231,7 @@ export function ChapterHeader({
         <div className="flex min-w-0 items-center gap-2">
           <Link
             href={`/book/library/${encodeURIComponent(bookId)}`}
-            className="inline-flex items-center gap-1.5 rounded-lg p-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center gap-1.5 rounded-lg p-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
             aria-label="Back to library"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -255,7 +255,7 @@ export function ChapterHeader({
             <button
               type="button"
               onClick={() => setSettingsOpen((v) => !v)}
-              className="inline-flex items-center gap-1.5 rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
+              className="min-h-11 min-w-11 inline-flex items-center justify-center gap-1.5 rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
               aria-expanded={settingsOpen}
               aria-haspopup="dialog"
               aria-label="Reading settings"
@@ -290,7 +290,7 @@ export function ChapterHeader({
           <button
             type="button"
             onClick={onOpenNotes}
-            className="inline-flex items-center justify-center rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
             aria-label="Open notes"
             title="Notes (N)"
           >
@@ -300,7 +300,7 @@ export function ChapterHeader({
             <button
               type="button"
               onClick={onOpenShortcuts}
-              className="hidden md:inline-flex items-center justify-center rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
+              className="hidden md:inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
               aria-label="Show keyboard shortcuts"
               title="Keyboard shortcuts (?)"
             >

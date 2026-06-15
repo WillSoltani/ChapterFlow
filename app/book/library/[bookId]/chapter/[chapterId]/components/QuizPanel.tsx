@@ -476,7 +476,7 @@ function ResultsScreen({
       </p>
 
       {session.provisional && (
-        <p className="mt-2 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-400">
+        <p className="mt-2 rounded-lg bg-accent-amber-glow px-3 py-1.5 text-xs font-medium text-(--cr-warning)">
           Scored offline \u2014 result will be verified when you reconnect.
         </p>
       )}
@@ -549,6 +549,19 @@ export function QuizPanel({
   const [retriesUsed, setRetriesUsed] = useState<Record<string, number>>({});
   const [resultView, setResultView] = useState<"results" | "review-mistakes">("results");
   const [previousIncorrectIds, setPreviousIncorrectIds] = useState<Set<string>>(new Set());
+  // Polite SR announcement for per-question grading + final score (WCAG 4.1.3).
+  // The live region is always mounted (below); only its text changes.
+  const [liveMessage, setLiveMessage] = useState("");
+  // aria-live only re-announces on a DOM text change, and React's setState bails
+  // out (Object.is) when the next string equals the current one — so two
+  // consecutive identical results (e.g. "Correct." then "Correct.") would be
+  // silent. When the new message equals the current text, append a trailing
+  // zero-width space (invisible, not spoken) so the text node still mutates and
+  // the announcement fires. Uses functional setState (no ref) to read the
+  // previous value during the update, not during render.
+  const announce = useCallback((msg: string) => {
+    setLiveMessage((prev) => (prev === msg ? `${msg}\u200B` : msg));
+  }, []);
 
   const maxRetries = QUIZ_RETRIES_PER_QUESTION[learningMode];
   const [oneByOneIndex, setOneByOneIndex] = useState(0);
@@ -596,6 +609,23 @@ export function QuizPanel({
     }
   }, [session]);
 
+  // Announce the final score to screen readers once the result lands (WCAG 4.1.3).
+  const announcedResultRef = useRef(false);
+  useEffect(() => {
+    const result = session?.result;
+    if (!result) {
+      announcedResultRef.current = false;
+      return;
+    }
+    if (announcedResultRef.current) return;
+    announcedResultRef.current = true;
+    announce(
+      result.passed
+        ? `Quiz passed — score ${result.correctAnswers} of ${result.totalQuestions}.`
+        : `Quiz not passed — score ${result.correctAnswers} of ${result.totalQuestions}.`
+    );
+  }, [session?.result, announce]);
+
   const handleAnswer = useCallback(
     (questionId: string, choiceId: string) => {
       if (!session) return;
@@ -607,6 +637,7 @@ export function QuizPanel({
       if (isCorrect) {
         onAnswer(questionId, choiceId);
         setQuestionFeedback((prev) => ({ ...prev, [questionId]: "correct" }));
+        announce("Correct.");
       } else {
         const used = (retriesUsed[questionId] ?? 0) + 1;
         setRetriesUsed((prev) => ({ ...prev, [questionId]: used }));
@@ -619,12 +650,21 @@ export function QuizPanel({
         if (used >= maxRetries + 1) {
           onAnswer(questionId, choiceId);
           setQuestionFeedback((prev) => ({ ...prev, [questionId]: "incorrect-final" }));
+          const correctIndex = question.choices.findIndex((c) => c.choiceId === question.correctChoiceId);
+          const correctLetter = OPTION_LABELS[correctIndex] ?? "?";
+          announce(`Incorrect. The correct answer is ${correctLetter}.`);
         } else {
           setQuestionFeedback((prev) => ({ ...prev, [questionId]: "incorrect-retry" }));
+          const retriesLeft = maxRetries - used;
+          announce(
+            retriesLeft > 0
+              ? `Incorrect — ${retriesLeft} ${retriesLeft === 1 ? "retry" : "retries"} left.`
+              : "Incorrect — try once more."
+          );
         }
       }
     },
-    [session, questionFeedback, retriesUsed, maxRetries, onAnswer]
+    [session, questionFeedback, retriesUsed, maxRetries, onAnswer, announce]
   );
 
   const handleSeeResults = useCallback(() => {
@@ -738,6 +778,11 @@ export function QuizPanel({
   return (
     <section className="cr-reading-content space-y-5">
       <h2 data-phase-heading className="sr-only">Quiz</h2>
+      {/* Persistent polite live region: announces per-question grading and the
+       *  final score to screen readers (WCAG 4.1.3). Stays mounted; text only. */}
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {liveMessage}
+      </div>
       {/* Sticky question progress bar */}
       {!submitted && (
         <div
