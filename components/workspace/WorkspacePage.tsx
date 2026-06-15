@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { CheckCircle2, X } from "lucide-react";
+import { CheckCircle, CheckCircle2, Clock, SkipForward, X } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedBackground } from "./AnimatedBackground";
@@ -12,9 +12,11 @@ import { BookRow } from "./BookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { PartnerProgressCard } from "@/app/book/home/components/PartnerProgressCard";
+import { fetchBookJson, BookClientError } from "@/app/book/_lib/book-api";
+import type { BookUserCommitmentItem } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
@@ -542,6 +544,195 @@ const itemVariants = {
 };
 
 /* ────────────────────────────────────────────
+   Commitment Follow-Up (re-introduces the proactive
+   "how did your if-then plan go?" prompt on the live
+   dashboard). Commitments have no standalone page —
+   the API lives at /me/commitments — so this is the
+   only place a reader is reminded to follow through.
+   Self-contained (fetches its own data) and renders
+   nothing until there's an active commitment that has
+   reached its follow-up date, so it never adds noise.
+   ──────────────────────────────────────────── */
+
+function CommitmentFollowUpSection() {
+  // Holds only the follow-up reminders that are actually DUE — active commitments
+  // whose follow-up date has passed. The server is the source of truth for
+  // status; the date gate ("is it time yet?") is applied once at fetch time
+  // (inside the effect, where reading the clock is allowed) rather than during
+  // render, so this list never reshuffles on an unrelated re-render.
+  const [due, setDue] = useState<BookUserCommitmentItem[]>([]);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [reflections, setReflections] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [skippingId, setSkippingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchBookJson<{ commitments: BookUserCommitmentItem[] }>(
+      "/app/api/book/me/commitments?status=active",
+    )
+      .then((data) => {
+        if (cancelled) return;
+        const now = Date.now();
+        setDue(
+          (data.commitments ?? []).filter(
+            (c) => c.status === "active" && Date.parse(c.followUpDate) <= now,
+          ),
+        );
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const activeReflection = activeId ? (reflections[activeId] ?? "") : "";
+
+  const removeCommitment = useCallback((commitmentId: string) => {
+    setDue((prev) => prev.filter((c) => c.commitmentId !== commitmentId));
+  }, []);
+
+  const handleComplete = useCallback(async () => {
+    if (!activeId || activeReflection.trim().length < 10 || submitting) return;
+    setSubmitting(true);
+    setError(null);
+    try {
+      await fetchBookJson(`/app/api/book/me/commitments/${activeId}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          action: "complete",
+          followThroughReflection: activeReflection.trim(),
+        }),
+      });
+      setReflections((prev) => {
+        const next = { ...prev };
+        delete next[activeId];
+        return next;
+      });
+      removeCommitment(activeId);
+      setActiveId(null);
+    } catch (e) {
+      const message =
+        e instanceof BookClientError && e.status === 409
+          ? "This commitment was already updated."
+          : "Failed to submit reflection. Please try again.";
+      setError(message);
+    }
+    setSubmitting(false);
+  }, [activeId, activeReflection, submitting, removeCommitment]);
+
+  const handleSkip = useCallback(
+    async (id: string) => {
+      if (skippingId) return;
+      setSkippingId(id);
+      setError(null);
+      try {
+        await fetchBookJson(`/app/api/book/me/commitments/${id}`, {
+          method: "PATCH",
+          body: JSON.stringify({ action: "skip" }),
+        });
+        removeCommitment(id);
+        if (activeId === id) setActiveId(null);
+      } catch (e) {
+        const message =
+          e instanceof BookClientError && e.status === 409
+            ? "This commitment was already updated."
+            : "Failed to skip. Please try again.";
+        setError(message);
+      }
+      setSkippingId(null);
+    },
+    [skippingId, activeId, removeCommitment],
+  );
+
+  if (due.length === 0) return null;
+
+  return (
+    <section className="cf-panel rounded-[26px] border border-(--cf-warning-border) bg-(--cf-surface) p-5 sm:p-6">
+      <div className="mb-3 flex items-center gap-2">
+        <Clock className="h-4 w-4 text-(--cf-warning-text)" />
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-(--cf-warning-text)">
+          Time to Check In
+        </p>
+      </div>
+
+      {error && <p className="mb-2 text-xs text-(--cf-error)">{error}</p>}
+
+      <div className="space-y-3">
+        {due.map((c) => (
+          <div
+            key={c.commitmentId}
+            className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-4"
+          >
+            <p className="text-sm font-medium leading-relaxed text-(--cf-text-1)">
+              {c.ifThenPlan}
+            </p>
+            <p className="mt-1 text-xs text-(--cf-text-3)">
+              Committed {new Date(c.commitDate).toLocaleDateString()}
+            </p>
+
+            {activeId === c.commitmentId ? (
+              <div className="mt-3">
+                <textarea
+                  value={reflections[c.commitmentId] ?? ""}
+                  onChange={(e) =>
+                    setReflections((prev) => ({
+                      ...prev,
+                      [c.commitmentId]: e.target.value,
+                    }))
+                  }
+                  placeholder="How did it go? What happened when you tried it?"
+                  rows={3}
+                  className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-3) focus:border-(--cf-accent) focus:outline-none"
+                />
+                <div className="mt-2 flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={handleComplete}
+                    disabled={activeReflection.trim().length < 10 || submitting}
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-(--cf-accent) px-3 py-1.5 text-xs font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+                  >
+                    <CheckCircle className="h-3.5 w-3.5" />
+                    {submitting ? "Saving..." : "Submit (+25 IP)"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveId(null)}
+                    className="text-xs text-(--cf-text-3) hover:text-(--cf-text-2)"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-3 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveId(c.commitmentId)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1.5 text-xs font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
+                >
+                  How did it go?
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleSkip(c.commitmentId)}
+                  disabled={skippingId === c.commitmentId}
+                  className="inline-flex items-center gap-1 text-xs text-(--cf-text-3) hover:text-(--cf-text-2) disabled:opacity-50"
+                >
+                  <SkipForward className="h-3 w-3" />
+                  {skippingId === c.commitmentId ? "Skipping..." : "Skip"}
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────
    Dashboard Content (rendered after data loads)
    ──────────────────────────────────────────── */
 
@@ -588,6 +779,21 @@ function DashboardContent({
           isNewUser={isNewUser}
         />
       </SectionWrapper>
+
+      {/* Section 1b: Commitment Follow-Up — proactively reminds the reader to
+          report back on an if-then plan whose follow-up date has arrived. Renders
+          nothing when nothing is due, and is hidden for brand-new users so a
+          first-time dashboard stays clean. Commitments have no standalone page,
+          so this is the only surface that prompts follow-through. */}
+      {!isNewUser && (
+        <SectionWrapper
+          {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+        >
+          <div className="mt-9">
+            <CommitmentFollowUpSection />
+          </div>
+        </SectionWrapper>
+      )}
 
       {/* Section 2: Hero Session Card */}
       <SectionWrapper
