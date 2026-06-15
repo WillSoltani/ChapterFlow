@@ -8,10 +8,11 @@ import {
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
+import { nowIso } from "@/app/app/api/book/_lib/keys";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { listBadgeAwards, putBadgeAward } from "@/app/app/api/book/_lib/repo";
 import { analyticsTrackBadge } from "@/app/app/api/book/_lib/analytics-repo";
-import { getBadgeName } from "@/app/book/_lib/flow-points-economy";
+import { BADGE_DEFINITIONS } from "@/app/book/badges/lib/badge-ui-definitions";
 
 export const runtime = "nodejs";
 
@@ -19,6 +20,11 @@ export const runtime = "nodejs";
 // in the loop pipeline via checkAchievementsAfterLoopComplete (achievement-repo.ts).
 // This endpoint records the cosmetic badge display state but never grants IP —
 // the client cannot be trusted to claim arbitrary badge IDs.
+//
+// Hardening (L27): the only client-trusted field is badgeId, and it must match a
+// badge in the canonical catalog. earnedAt and tier are derived server-side
+// (current time + the badge definition's tier) so a client cannot backdate an
+// award or claim a tier it did not earn the right to display.
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -42,15 +48,18 @@ export async function PUT(req: Request) {
     }
     const body = requireBodyObject(bodyRaw);
     const badgeId = requireString(body.badgeId, "badgeId", { maxLength: 120 });
-    const earnedAt = requireString(body.earnedAt, "earnedAt", { maxLength: 120 });
-    const tier =
-      typeof body.tier === "string" && body.tier.trim()
-        ? requireString(body.tier, "tier", { maxLength: 40 })
-        : undefined;
-    const badgeName = getBadgeName(badgeId);
-    if (!badgeName) {
+
+    // The badge must exist in the canonical catalog. We deliberately ignore any
+    // client-supplied earnedAt/tier: the client cannot be trusted to backdate an
+    // award or claim an arbitrary tier. The display timestamp is the moment the
+    // server records the award, and the tier is taken from the badge definition.
+    const badgeDefinition = BADGE_DEFINITIONS.find((badge) => badge.id === badgeId);
+    if (!badgeDefinition) {
       throw new BookApiError(400, "invalid_badge", "Unknown badge.");
     }
+
+    const earnedAt = nowIso();
+    const tier = badgeDefinition.tier;
 
     const created = await putBadgeAward(tableName, {
       userId: user.sub,
