@@ -558,38 +558,28 @@ async function processWelcomeBackNudge(ddb2, ses2, tableName2, config, userItems
         }
       })
     );
-    if (!email || notifications?.channels?.email === false) {
-      const ttl = Math.floor(Date.now() / 1e3) + 30 * 86400;
-      await ddb2.send(
-        new import_lib_dynamodb4.PutCommand({
-          TableName: tableName2,
-          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
-        })
-      );
-      sent++;
-      continue;
-    }
-    try {
-      const tpl = welcomeBackEmail({ name, daysSinceActive, appBaseUrl: config.appBaseUrl });
-      await sendCompliantEmail(ses2, ddb2, tableName2, config, {
-        to: email,
-        userId,
-        category: "welcome_back",
-        subject: tpl.subject,
-        textBody: tpl.textBody,
-        htmlBody: tpl.htmlBody
-      });
-      const ttl = Math.floor(Date.now() / 1e3) + 30 * 86400;
-      await ddb2.send(
-        new import_lib_dynamodb4.PutCommand({
-          TableName: tableName2,
-          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: (/* @__PURE__ */ new Date()).toISOString(), ttl }
-        })
-      );
-      sent++;
-    } catch (err) {
-      console.error(`[welcome-back] Failed for ${userId}:`, err);
-      skipped++;
+    const ttl = Math.floor(Date.now() / 1e3) + 30 * 86400;
+    await ddb2.send(
+      new import_lib_dynamodb4.PutCommand({
+        TableName: tableName2,
+        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
+      })
+    );
+    sent++;
+    if (email && notifications?.channels?.email !== false) {
+      try {
+        const tpl = welcomeBackEmail({ name, daysSinceActive, appBaseUrl: config.appBaseUrl });
+        await sendCompliantEmail(ses2, ddb2, tableName2, config, {
+          to: email,
+          userId,
+          category: "welcome_back",
+          subject: tpl.subject,
+          textBody: tpl.textBody,
+          htmlBody: tpl.htmlBody
+        });
+      } catch (err) {
+        console.error(`[welcome-back] email send failed for ${userId}:`, err);
+      }
     }
   }
   return { sent, skipped };
