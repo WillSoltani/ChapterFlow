@@ -70,6 +70,19 @@ export async function withBookApiErrors<T>(
     return await fn();
   } catch (error: unknown) {
     if (error instanceof AuthError) {
+      // A transient JWKS-verifier outage is reported as AuthError
+      // "VERIFIER_UNAVAILABLE" — surface it as 503 (not a definitive 401) so
+      // clients retry instead of treating a still-valid session as unauthenticated.
+      if (error.message === "VERIFIER_UNAVAILABLE") {
+        return bookErr(
+          req,
+          503,
+          "verifier_unavailable",
+          "Authentication is temporarily unavailable. Please retry.",
+          undefined,
+          requestId
+        );
+      }
       return bookErr(req, 401, "unauthenticated", "Authentication is required.", undefined, requestId);
     }
     if (isBookApiError(error)) {
