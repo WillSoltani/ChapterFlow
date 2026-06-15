@@ -35,9 +35,15 @@ function pickFollowUps(messages: Message[]): string[] {
   // Pick 2 follow-ups that haven't been asked yet
   const asked = new Set(messages.filter((m) => m.role === "user").map((m) => m.content.toLowerCase()));
   const available = FOLLOW_UP_QUESTIONS.filter((q) => !asked.has(q.toLowerCase()));
-  // Shuffle and take 2
-  const shuffled = available.sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 2);
+  // Seeded Fisher-Yates shuffle (uniform, unbiased) — seed derives from the
+  // number of messages so the result is stable within a turn (mirroring the
+  // followUpsRef memoization keyed on messages.length).
+  const seed = messages.length;
+  for (let i = available.length - 1; i > 0; i--) {
+    const j = ((seed * 2654435761 + i * 40503) >>> 0) % (i + 1);
+    [available[i], available[j]] = [available[j], available[i]];
+  }
+  return available.slice(0, 2);
 }
 
 function SimpleMarkdown({ text }: { text: string }) {
