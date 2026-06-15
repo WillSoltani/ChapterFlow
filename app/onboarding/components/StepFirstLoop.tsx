@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
 import {
@@ -90,7 +90,9 @@ export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLo
   }, [subStep, onBack]);
 
   // Register back handler with parent so the header back button can call it
-  backRef.current = handleBack;
+  useEffect(() => {
+    backRef.current = handleBack;
+  }, [backRef, handleBack]);
   const [quizScore, setQuizScore] = useState(0);
 
   const handleSummaryContinue = useCallback(() => {
