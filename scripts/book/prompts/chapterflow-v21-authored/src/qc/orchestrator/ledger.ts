@@ -5,6 +5,7 @@ import { dirname } from "path";
 import { chapterContentHash } from "../../critics/qcAttestation.js";
 import { loadBookChapters } from "../manualKeyJudge.js";
 import { repairLedgerPath } from "./artifacts.js";
+import { citesNonexistentField } from "./findingValidity.js";
 import { findingsFromSubmission, type SubmissionFinding, type SubmissionRole, type ValidatedSubmission } from "./schemas.js";
 
 export type LedgerStatus = "open" | "stale_after_repair" | "still_open" | "needs_qc_rerun";
@@ -170,6 +171,10 @@ export function appendFindings(args: {
   findings: SubmissionFinding[];
 }): { appended: number; duplicates: number; findingIds: string[] } {
   if (args.findings.length === 0) return { appended: 0, duplicates: 0, findingIds: [] };
+  // Drop fabricated findings (a model reviewer that cites a chapter field which
+  // does not exist) before they can pollute the repair ledger / repair prompt.
+  const findings = args.findings.filter((f) => citesNonexistentField(f) === null);
+  if (findings.length === 0) return { appended: 0, duplicates: 0, findingIds: [] };
   const existing = new Set(effectiveLedger(args.bookId, args.roundId).map((f) => f.findingId));
   const chapterHashes = hashByChapter(args.bookId);
   const now = new Date().toISOString();
@@ -177,7 +182,7 @@ export function appendFindings(args: {
   let appended = 0;
   let duplicates = 0;
   const findingIds: string[] = [];
-  for (const finding of args.findings) {
+  for (const finding of findings) {
     const findingId = stableFindingId(args.bookId, args.roundId, finding);
     findingIds.push(findingId);
     const source: LedgerSource = { sourceRole: args.role, submissionFile: args.submissionFile, observedAt: now };
