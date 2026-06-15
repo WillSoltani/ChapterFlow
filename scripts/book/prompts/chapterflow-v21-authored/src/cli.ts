@@ -1090,6 +1090,12 @@ async function runAuthorCheck(args: string[]): Promise<number> {
   const sidecar = loadChapterSidecar(chapter.chapterId);
   const findings = checkAuthoringContract(chapter, { sidecar, filePath: resolve(chapterFile) });
   console.log(formatAuthoringReport(chapter.chapterId, findings));
+  // Advisory: answer-position balance vs the dealt answer-key plan (the chapter-time
+  // twin of book-gate F3). Only fires when a plan exists; never blocks here.
+  const { loadAnswerKeyPlan, checkChapterAnswerBalance } = await import("./librarian/answerKeyPlan.js");
+  const bookId = chapter.chapterId.replace(/-ch\d+$/i, "");
+  const balance = checkChapterAnswerBalance(chapter, loadAnswerKeyPlan(bookId));
+  for (const f of balance) console.log(`  [${f.checkId}] ${f.message}`);
   return findings.length === 0 ? 0 : 1;
 }
 
@@ -1855,6 +1861,28 @@ async function runVenuePlan(args: string[], flags: Record<string, string | boole
   const path = writeVenuePlan(plan);
   console.log(formatVenuePlan(plan));
   console.log(`\nWritten: ${path}`);
+  return 0;
+}
+
+/** `answer-key-plan <bookId> --from N --to M [--questions Q]` — pre-authoring
+ *  allocator for quiz correctIndex. Deals each chapter a balanced target
+ *  distribution so the book aggregates under the F3 ceiling by construction.
+ *  Author scores for truth first, then arranges the choices to the target. */
+async function runAnswerKeyPlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: answer-key-plan <bookId> --from N --to M [--questions Q]");
+    return 2;
+  }
+  const questions = typeof flags["questions"] === "string" ? parseInt(flags["questions"] as string, 10) : undefined;
+  const { planAnswerKeys, writeAnswerKeyPlan } = await import("./librarian/answerKeyPlan.js");
+  const plan = planAnswerKeys(bookId, from, to, questions);
+  const path = writeAnswerKeyPlan(plan);
+  for (let n = from; n <= to; n++) console.log(`  ch${String(n).padStart(2, "0")}: [${(plan.allocation[n] ?? []).join(",")}]`);
+  console.log(`\naggregate counts=[${plan.aggregate.counts.join(",")}] maxFraction=${plan.aggregate.maxFraction.toFixed(3)} (ceiling ${0.4})`);
+  console.log(`Written: ${path}`);
   return 0;
 }
 
@@ -3580,6 +3608,8 @@ async function main() {
       return runExemplarPlan(args, flags);
     case "venue-plan":
       return runVenuePlan(args, flags);
+    case "answer-key-plan":
+      return runAnswerKeyPlan(args, flags);
     case "pedagogy-plan":
       return runPedagogyPlan(args, flags);
     case "qc-open-round":

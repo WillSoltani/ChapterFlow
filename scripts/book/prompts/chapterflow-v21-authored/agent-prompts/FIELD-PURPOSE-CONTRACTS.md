@@ -30,6 +30,7 @@ construction; a field with nothing real to say falls back on the skeletons below
 3. State the live tradeoff as a fork the person must take now ("must tell the room whether the problem is entitled kids — or a scarcity culture").
 4. Keep the concept *off-stage*: it is what the choice illustrates, not a prop anyone handles.
 5. Vary the scene SHAPE across the chapter's six examples and FIT the staging to the topic. Span venue kinds (domestic, relational, civic, occupational, commercial, recreational) — a personal/relational subject belongs at a kitchen table, on a phone call, or in a text thread, not at a workplace prop. A venue can be a relationship channel, not only a physical place.
+6. The **named source case is the stage, not a prop.** The case in your sidecar (and the planSpec.requiredBeat) is the scene's binding setting; the dealt venue is fallback-only. If the dealt venue can't host the real case, *discard the venue* and stage the case in its own setting. Never relocate the scene to the dealt venue and demote the real case to notes "glowing on a phone," and never invent a spectator who reads the case off a screen — the person in the source case is the actor.
 
 **REJECT:**
 - A concept label made the actor or object — "Cleo lifts a productive vulnerability folder," "Aisha studies scarcity." Ideas can't be held or studied; this fails the reader because it gives them a label to memorize instead of a moment to inhabit (pairs with AC1).
@@ -37,6 +38,8 @@ construction; a field with nothing real to say falls back on the skeletons below
 - No decision — a static description or a restated source summary. With no fork to resolve, the reader has nothing to test the concept against.
 - Detached from any named case — a hypothetical "someone, somewhere." Ungrounded stakes feel invented, so the lesson doesn't transfer.
 - The SAME scene skeleton across most examples — every scenario opening "<Name> <tactile-verb>s at/beside a <occupational prop>" (a microphone stand, a mat bay, a service window). Different venues wearing one identical shape still read as templated, and on a personal topic the workplace staging is incongruous; QC caps example_coherence at YELLOW for it (staging uniformity).
+- The scene staged at an arbitrary dealt venue while the real source case is demoted to a prop — case notes/a report "glowing on a phone," an invented onlooker reading about it off a screen. This buries the case the reader is supposed to inhabit; the named case must BE the scene (deterministic blocker SL3).
+- The planSpec.domain or an internal format tag written into the prose. A Title-Case paste of the domain ("Peyton's Teacher Setting Terms For grade-update calls") or a format id ("coach_talk", "inner_monologue") is planning scaffolding, never reader text (deterministic blockers SL1/SL2).
 
 **POSITIVE:** "Aisha sits at 7:15 p.m. in a Houston school auditorium with a note card that reads, 'Why are kids so self-absorbed?' The PTA president wants a clean answer before the open mic. Aisha must tell the room whether the problem is entitled children — or a scarcity culture that makes young people fight to seem special."
 **NEGATIVE:** "Aisha, 8:40 a.m. at the auditorium: Scarcity. She studies a productive-scarcity folder." (concept-label header + concept-as-object; no decision, no scene)
