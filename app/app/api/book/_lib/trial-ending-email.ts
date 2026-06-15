@@ -3,7 +3,7 @@ import "server-only";
 import type Stripe from "stripe";
 import { sendEmail } from "@/app/app/api/book/_lib/email-service";
 import { getEmailComplianceConfig } from "@/app/app/api/book/_lib/email-compliance";
-import { isEmailSuppressed } from "@/app/app/api/book/_lib/repo";
+import { isEmailSuppressed, markTrialEndingEmailSent } from "@/app/app/api/book/_lib/repo";
 
 /**
  * Sends the "your free trial ends soon" reminder when Stripe fires
@@ -106,6 +106,18 @@ export async function sendTrialEndingEmail(
     `Questions? Reply to this email or contact ${config.supportAddress}.</p></div>`;
 
   if (!config.senderEmail) return { sent: false, reason: "no_sender" };
+
+  // Per-(customer, trial_end) dedup (L12). Claim the send marker conditionally
+  // BEFORE dispatching so a webhook redelivery of trial_will_end (e.g. after a
+  // successful send but a failing recordStripeWebhookEvent) cannot re-send this
+  // transactional pre-charge notice. The loser of the claim skips the send.
+  const claimed = await markTrialEndingEmailSent(
+    tableName,
+    subscription.customer,
+    subscription.trial_end,
+  );
+  if (!claimed) return { sent: false, reason: "already_sent" };
+
   const result = await sendEmail({
     to: email,
     subject,
