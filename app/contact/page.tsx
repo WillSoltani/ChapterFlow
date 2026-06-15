@@ -14,7 +14,7 @@ export default function ContactPage() {
     <div className="min-h-screen flex flex-col" style={{ background: "var(--bg-base)" }}>
       <header
         className="sticky top-0 z-30 backdrop-blur-md border-b"
-        style={{ borderColor: "var(--border-subtle)", background: "var(--bg-base)/80" }}
+        style={{ borderColor: "var(--border-subtle)", background: "color-mix(in srgb, var(--bg-base) 80%, transparent)" }}
       >
         <div className="max-w-3xl mx-auto px-6 py-4">
           <Link
