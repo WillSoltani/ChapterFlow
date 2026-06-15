@@ -97,12 +97,20 @@ export function RetentionClient() {
         </AdminCard>
 
         <AdminCard title="Reading frequency" description="Last 30 days">
-          <div className="space-y-2">
-            <FreqRow label="Daily readers (16-30d)" value={data?.frequency.daily ?? 0} total={total} color="var(--cf-success-text)" />
-            <FreqRow label="Weekly readers (3-15d)" value={data?.frequency.weekly ?? 0} total={total} color="var(--cf-accent)" />
-            <FreqRow label="Monthly readers (1-2d)" value={data?.frequency.monthly ?? 0} total={total} color="var(--cf-amber-text, var(--cf-warning-text))" />
-            <FreqRow label="Dormant (0d)" value={data?.frequency.dormant ?? 0} total={total} color="var(--cf-text-soft)" />
-          </div>
+          {loading && !data ? (
+            <div className="space-y-2">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="h-8 animate-pulse rounded bg-(--cf-surface-muted)" />
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <FreqRow label="Daily readers (16-30d)" value={data?.frequency.daily ?? 0} total={total} color="var(--cf-success-text)" />
+              <FreqRow label="Weekly readers (3-15d)" value={data?.frequency.weekly ?? 0} total={total} color="var(--cf-accent)" />
+              <FreqRow label="Monthly readers (1-2d)" value={data?.frequency.monthly ?? 0} total={total} color="var(--cf-amber-text, var(--cf-warning-text))" />
+              <FreqRow label="Dormant (0d)" value={data?.frequency.dormant ?? 0} total={total} color="var(--cf-text-soft)" />
+            </div>
+          )}
         </AdminCard>
       </div>
 
