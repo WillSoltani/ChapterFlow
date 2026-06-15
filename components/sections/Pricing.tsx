@@ -14,6 +14,7 @@ import {
   ANNUAL_SAVINGS_PCT,
   formatAmount,
   TRIAL_CTA_LABEL,
+  FREE_OFFER_LABEL,
   UPGRADE_RETURN_PATH,
   UPGRADE_LOGIN_URL,
 } from "@/lib/pricing";
@@ -231,6 +232,17 @@ export function Pricing() {
           </div>
         </SectionReveal>
 
+        {/* ---- Free-access models clarifier ---- */}
+        <SectionReveal delay={0.08}>
+          <p
+            className="mt-4 text-[13px] text-(--text-muted) text-center max-w-xl mx-auto leading-[1.6]"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Read {FREE_OFFER_LABEL} with no card — or start a {PRICING.trialDays}-day
+            Pro trial for unlimited access.
+          </p>
+        </SectionReveal>
+
         {/* ---- Pricing cards ---- */}
         <div className="mt-8 flex flex-col md:flex-row gap-6 justify-center items-center md:items-stretch">
           {/* FREE card */}
@@ -290,7 +302,7 @@ export function Pricing() {
                 className="mt-8 block w-full text-center border border-(--border-medium) text-(--text-heading) hover:bg-(--bg-glass) rounded-xl py-3.5 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Get 2 free books
+                Get {FREE_OFFER_LABEL}
               </Link>
             </div>
           </SectionReveal>
