@@ -10,7 +10,7 @@ import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
   getUserSettingsItem,
-  putUserSettingsItem,
+  updateUserSettingsItem,
 } from "@/app/app/api/book/_lib/repo";
 
 export const runtime = "nodejs";
@@ -85,7 +85,6 @@ export async function PATCH(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
-    const existing = await getUserSettingsItem(tableName, user.sub);
 
     let bodyRaw: unknown;
     try {
@@ -115,13 +114,11 @@ export async function PATCH(req: Request) {
       validateNotificationPreferences(settings.notifications);
     }
 
-    const mergedSettings = mergeSettings(existing?.settings ?? {}, settings);
-
-    const saved = await putUserSettingsItem(tableName, {
-      userId: user.sub,
-      settings: mergedSettings,
-      createdAt: existing?.createdAt,
-    });
+    // Read-modify-write under optimistic concurrency so a concurrent write
+    // (e.g. a one-click email unsubscribe) cannot be silently clobbered.
+    const saved = await updateUserSettingsItem(tableName, user.sub, (current) =>
+      mergeSettings(current, settings),
+    );
 
     return bookOk({
       settings: saved.settings,
