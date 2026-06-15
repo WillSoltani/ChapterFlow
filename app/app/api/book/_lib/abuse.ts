@@ -7,6 +7,7 @@ import type { AuthedUser } from "@/app/app/api/_lib/auth";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { listRecentRiskEvents, recordRiskEvent } from "@/app/app/api/book/_lib/repo";
 import type { BookRiskEventScope, BookRiskEventType } from "@/app/app/api/book/_lib/types";
+import { readClientIp as readIp, coarseNetworkPrefix } from "@/app/app/api/book/_lib/client-ip";
 
 export const BOOK_DEVICE_COOKIE = "cf_device";
 const BOOK_DEVICE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
@@ -41,81 +42,6 @@ function parseCookie(cookieHeader: string | null, name: string): string | null {
     const trimmed = part.trim();
     if (!trimmed.startsWith(prefix)) continue;
     return decodeURIComponent(trimmed.slice(prefix.length));
-  }
-  return null;
-}
-
-// Trusted proxy hops (CloudFront, plus any edge layer) in front of this app.
-// The real client IP is the X-Forwarded-For entry this many positions from the
-// RIGHT — the one our own edge appended. The leftmost entries are supplied by
-// the client and MUST NOT be trusted: an attacker could rotate a fake leftmost
-// token to mint a fresh network fingerprint per request and defeat the
-// free-unlock velocity checks. Mirrors readClientIp in book-requests/route.ts.
-const TRUSTED_PROXY_HOPS = Number(process.env.RATE_LIMIT_TRUSTED_PROXY_HOPS) || 1;
-
-function readIp(req: Request): string | null {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const chain = forwarded
-      .split(",")
-      .map((part) => part.trim())
-      .filter(Boolean);
-    if (chain.length > 0) {
-      // Trust the Nth entry from the right (appended by our edge), never the
-      // leftmost client-controlled token.
-      const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
-      return chain[idx] ?? chain[chain.length - 1];
-    }
-  }
-  const realIp = req.headers.get("x-real-ip")?.trim();
-  if (realIp) return realIp;
-  const cloudfrontViewer = req.headers.get("cloudfront-viewer-address")?.trim();
-  if (cloudfrontViewer) {
-    const host = cloudfrontViewer.split(":")[0]?.trim();
-    if (host) return host;
-  }
-  return null;
-}
-
-// Expand a (possibly "::"-compressed) IPv6 to its full 8-group form so that
-// compressed forms like "2001:db8::1" still yield a network prefix instead of
-// being dropped. Returns null for anything that is not a well-formed IPv6
-// literal. Group casing/leading zeros are preserved verbatim so an already-full
-// address produces the same prefix string as before this expansion was added.
-function expandIpv6(ip: string): string[] | null {
-  // Drop a zone id (e.g. fe80::1%eth0) before parsing.
-  const bare = ip.split("%")[0] ?? ip;
-  if (!/^[0-9a-fA-F:]+$/.test(bare) || (bare.match(/::/g)?.length ?? 0) > 1) {
-    return null;
-  }
-  const [head, tail, extra] = bare.split("::");
-  if (extra !== undefined) return null;
-  const headGroups = head ? head.split(":") : [];
-  const tailGroups = tail ? tail.split(":") : [];
-  let groups: string[];
-  if (bare.includes("::")) {
-    const fill = 8 - headGroups.length - tailGroups.length;
-    if (fill < 0) return null;
-    groups = [...headGroups, ...Array(fill).fill("0"), ...tailGroups];
-  } else {
-    groups = headGroups;
-  }
-  if (groups.length !== 8) return null;
-  if (groups.some((g) => !/^[0-9a-fA-F]{1,4}$/.test(g))) return null;
-  return groups;
-}
-
-function coarseNetworkPrefix(ip: string | null): string | null {
-  if (!ip) return null;
-  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(ip)) {
-    const octets = ip.split(".");
-    if (octets.length !== 4) return null;
-    return `${octets[0]}.${octets[1]}.${octets[2]}.0/24`;
-  }
-  if (ip.includes(":")) {
-    const groups = expandIpv6(ip);
-    if (!groups) return null;
-    return `${groups.slice(0, 4).join(":")}::/64`;
   }
   return null;
 }
