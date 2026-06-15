@@ -159,6 +159,24 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, handleClose]);
 
+  // Body scroll lock while the drawer is open (with scrollbar-gutter
+  // compensation to avoid layout shift), restoring the previous values on
+  // close/unmount. Mirrors the shared OverlayShell pattern in
+  // components/ui/Dialog.tsx so behavior matches NotesDrawer's Sheet.
+  useEffect(() => {
+    if (!open) return;
+    const body = document.body;
+    const prevOverflow = body.style.overflow;
+    const prevPad = body.style.paddingRight;
+    const gutter = window.innerWidth - document.documentElement.clientWidth;
+    body.style.overflow = "hidden";
+    if (gutter > 0) body.style.paddingRight = `${gutter}px`;
+    return () => {
+      body.style.overflow = prevOverflow;
+      body.style.paddingRight = prevPad;
+    };
+  }, [open]);
+
   // Auto-focus input when drawer opens
   useEffect(() => {
     if (open) {
@@ -303,7 +321,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
       <aside
         className={[
           "fixed z-[60] flex flex-col border-(--cf-border) bg-(--cf-surface-strong) shadow-(--shadow-modal) transition-transform duration-200",
-          "inset-x-0 bottom-0 h-[70vh] rounded-t-3xl border md:inset-y-0 md:right-0 md:left-auto md:h-full md:w-[400px] md:rounded-none md:border-l md:border-t-0",
+          "inset-x-0 bottom-0 h-[70dvh] max-h-[90dvh] rounded-t-3xl border md:inset-y-0 md:right-0 md:left-auto md:h-full md:max-h-none md:w-[400px] md:rounded-none md:border-l md:border-t-0",
           open ? "translate-y-0 md:translate-x-0" : "translate-y-full md:translate-y-0 md:translate-x-full",
         ].join(" ")}
         role="dialog"
@@ -428,7 +446,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
         </div>
 
         {/* Input */}
-        <div className="border-t border-(--cf-divider) px-4 py-3">
+        <div className="border-t border-(--cf-divider) px-4 py-3 pb-safe">
           <form
             onSubmit={(e) => {
               e.preventDefault();
