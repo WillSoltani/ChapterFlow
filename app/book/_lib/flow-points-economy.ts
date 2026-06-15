@@ -239,10 +239,6 @@ export function getInsightPointsReward(rewardId: FlowPointsRewardId): FlowPoints
   return INSIGHT_POINTS_REWARDS.find((reward) => reward.rewardId === rewardId) ?? null;
 }
 
-export function getAchievementIP(badgeId: string): number {
-  return BADGE_DEFINITIONS.find((badge) => badge.id === badgeId)?.flowPoints ?? 0;
-}
-
 export function getBadgeName(badgeId: string): string | null {
   return BADGE_DEFINITIONS.find((badge) => badge.id === badgeId)?.name ?? null;
 }
