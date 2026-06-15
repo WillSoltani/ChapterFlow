@@ -209,6 +209,7 @@ export function ChapterReaderClient({
     hydrated: contentHydrated,
     source: contentSource,
     error: contentError,
+    status: contentStatus,
   } = useChapterContent({
     bookId,
     chapterNumber,
@@ -216,10 +217,14 @@ export function ChapterReaderClient({
     localFallback,
     refetchKey: contentRefetchKey,
   });
-  // We're serving a cached/offline copy: the live fetch failed and we fell back
-  // to the local package. Surfaced as a non-blocking notice so the reader knows
-  // the content may be stale (does NOT block reading).
-  const servingOfflineCopy = contentSource === "local" && contentError !== null;
+  // We're serving a cached/offline copy: the live fetch failed for a CONNECTIVITY
+  // reason (network error → no HTTP status) and we fell back to the local
+  // package. Surfaced as a non-blocking notice so the reader knows the content
+  // may be stale (does NOT block reading). An access/gating error carries an HTTP
+  // status (401/402/403/404) — that is NOT "offline", so we don't tell an online
+  // user to "reconnect"; those paths are handled by the access guards above.
+  const servingOfflineCopy =
+    contentSource === "local" && contentError !== null && contentStatus === null;
   // Force the chapter's id to the manifest/route chapterId. The content payload
   // can carry a different internal chapterId (e.g. "ch02-identity-driven-change")
   // than the manifest ("atomic-habits-ch02"); progress/unlock state is keyed by
