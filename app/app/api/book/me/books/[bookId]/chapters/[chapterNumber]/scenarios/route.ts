@@ -37,6 +37,10 @@ import { putOpsMetric } from "@/app/app/api/book/_lib/cloudwatch-metrics";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
+import { ddbDoc } from "@/app/app/api/_lib/aws";
+import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { ConditionalCheckFailedException } from "@aws-sdk/client-dynamodb";
+import { bookUserPk } from "@/app/app/api/book/_lib/keys";
 import type {
   BookScenarioLookupItem,
   BookScenarioModerationItem,
@@ -51,6 +55,12 @@ import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 export const runtime = "nodejs";
 
 const SCENARIO_APPROVAL_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
+
+// Per-user/day cap on scenario submissions. Each accepted submission can fire a
+// Haiku moderation call (validateScenario) and, on auto_approve, awards Insight
+// Points — so an uncapped POST is both an LLM cost-abuse vector and a
+// points-farming avenue (L41). Generous enough not to bother a real contributor.
+const SCENARIO_SUBMIT_DAILY_LIMIT = 20;
 
 function normalizeScenarioPerspective(value: string): string {
   const cleaned = value.replace(/\s+/g, " ").trim();
@@ -189,6 +199,46 @@ export async function POST(
       bookId,
       interactionChapterNumber: chapterNumberInt,
     });
+
+    // ── Per-user daily submission cap (L41) ──────────────────────────────────
+    // Atomically reserve one submission against the daily cap BEFORE the Haiku
+    // moderation call (validateScenario) below. The conditional increment
+    // serializes concurrent requests — only the writer that brings the count to
+    // the limit succeeds; the rest fail the condition and get 429 — and counts
+    // the attempt the moment it is accepted, so a caller can't farm cheap LLM
+    // calls or coax-for-auto_approve point grants past the cap. TTL'd so the
+    // counter self-cleans a few days after the day it tracks.
+    const submitDay = createdAt.slice(0, 10);
+    const submitLimitTtl = Math.floor(Date.now() / 1000) + 3 * 86400;
+    try {
+      await ddbDoc.send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(user.sub), SK: `SCENARIO_SUBMIT_LIMIT#${submitDay}` },
+          UpdateExpression:
+            "SET #count = if_not_exists(#count, :zero) + :one, updatedAt = :now, entity = :entity, #ttl = :ttl",
+          ConditionExpression: "attribute_not_exists(#count) OR #count < :limit",
+          ExpressionAttributeNames: { "#count": "count", "#ttl": "ttl" },
+          ExpressionAttributeValues: {
+            ":zero": 0,
+            ":one": 1,
+            ":now": createdAt,
+            ":entity": "SCENARIO_SUBMIT_LIMIT",
+            ":ttl": submitLimitTtl,
+            ":limit": SCENARIO_SUBMIT_DAILY_LIMIT,
+          },
+        }),
+      );
+    } catch (e) {
+      if (e instanceof ConditionalCheckFailedException) {
+        throw new BookApiError(
+          429,
+          "submission_limit",
+          `Daily scenario submission limit reached (${SCENARIO_SUBMIT_DAILY_LIMIT}/day). Try again tomorrow.`
+        );
+      }
+      throw e;
+    }
 
     // ── AI Validation ───────────────────────────────────────────────────────
     const apiKey = await getServerEnv("ANTHROPIC_API_KEY");
