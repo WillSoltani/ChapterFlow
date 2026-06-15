@@ -41,7 +41,7 @@ const STORAGE_KEY = "chapterflow_onboarding";
 /* ── Store ── */
 
 let state: OnboardingState = DEFAULT_STATE;
-let listeners: Set<() => void> = new Set();
+const listeners: Set<() => void> = new Set();
 
 function emitChange() {
   for (const listener of listeners) listener();
