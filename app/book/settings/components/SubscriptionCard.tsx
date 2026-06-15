@@ -10,6 +10,7 @@ import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
+  freeBookSlots: number;
   currentPeriodEnd?: string;
   cancelAtPeriodEnd?: boolean;
   price: string;
@@ -28,6 +29,7 @@ const TIER_DISPLAY: Record<BillingInterval, { name: string; badge?: string }> = 
 
 export function SubscriptionCard({
   plan,
+  freeBookSlots,
   currentPeriodEnd,
   cancelAtPeriodEnd,
   price,
@@ -152,7 +154,9 @@ export function SubscriptionCard({
       <div className="flex items-center gap-2">
         <span className="text-base font-bold text-(--cf-text-1)">Free Plan</span>
       </div>
-      <p className="mt-1 text-sm text-(--cf-text-3)">You have access to 2 books.</p>
+      <p className="mt-1 text-sm text-(--cf-text-3)">
+        You have access to {freeBookSlots} book{freeBookSlots === 1 ? "" : "s"}.
+      </p>
 
       <div className="mt-4 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-muted) p-4">
         <p className="text-sm font-semibold text-(--cf-text-1)">

@@ -332,6 +332,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
   const isPro = billingState.payload?.entitlement.plan === "PRO";
   const plan = billingState.payload?.entitlement.plan ?? "FREE";
   const price = billingState.payload?.paywall.price ?? MONTHLY_PRICE_WITH_CURRENCY;
+  // Free-tier slot count is server-driven (BOOK_FREE_SLOTS_DEFAULT, per-user
+  // overridable) — never hardcode it in the UI.
+  const freeBookSlots = billingState.payload?.entitlement.freeBookSlots ?? 2;
 
   // --- Reading Profile logic ---
   function handleProfileChange(profile: ReadingProfile) {
@@ -492,7 +495,9 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
   }
 
   function getAccountSummary() {
-    return plan === "PRO" ? "Pro plan" : "Free plan · 2 books";
+    return plan === "PRO"
+      ? "Pro plan"
+      : `Free plan · ${freeBookSlots} book${freeBookSlots === 1 ? "" : "s"}`;
   }
 
   // --- Search helpers ---
@@ -1422,6 +1427,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             <div className="px-3 py-3" id="subscription">
               <SubscriptionCard
                 plan={plan}
+                freeBookSlots={freeBookSlots}
                 currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
                 cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
                 price={price}
