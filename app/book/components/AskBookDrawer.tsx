@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Send, Sparkles, Square, Trash2, X } from "lucide-react";
 
 type Message = {
@@ -104,7 +104,14 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
   const inputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const messagesRef = useRef<Message[]>(messages);
-  messagesRef.current = messages;
+  // Keep the latest-messages ref in sync after commit (instead of writing it
+  // during render). messagesRef is only ever read inside the async handleSubmit
+  // event handler (for the fetch `history` payload), which always runs after
+  // effects have flushed, so the read sees the same last-committed value either
+  // way — behaviour is identical to the previous render-phase assignment.
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
 
   // Hydrate messages from sessionStorage on mount
   useEffect(() => {
@@ -260,12 +267,13 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
   // Determine if we should show follow-up suggestions (memoized to avoid re-shuffle on every render)
   const lastMessage = messages[messages.length - 1];
   const showFollowUps = !streaming && messages.length > 0 && lastMessage?.role === "assistant" && lastMessage?.content;
-  const followUpsKey = messages.length;
-  const followUpsRef = useRef<{ key: number; items: string[] }>({ key: -1, items: [] });
-  if (showFollowUps && followUpsRef.current.key !== followUpsKey) {
-    followUpsRef.current = { key: followUpsKey, items: pickFollowUps(messages) };
-  }
-  const followUps = showFollowUps ? followUpsRef.current.items : [];
+  // pickFollowUps is fully deterministic (seeded Fisher-Yates seeded by
+  // messages.length, with `asked` built from the immutable user-message
+  // contents), so memoizing on `messages` yields the same items the previous
+  // length-keyed ref produced. Recomputes harmlessly during streaming, but
+  // showFollowUps is false then so it is never displayed mid-turn.
+  const followUpItems = useMemo(() => pickFollowUps(messages), [messages]);
+  const followUps = showFollowUps ? followUpItems : [];
 
   return (
     <>
