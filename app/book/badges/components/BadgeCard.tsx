@@ -12,7 +12,10 @@ type BadgeCardProps = {
   onClick: () => void;
 };
 
-const METALLIC_GRADIENTS: Record<string, string> = {
+// Single source of truth for the metallic tier-pill gradients. BadgeDetailModal's
+// TierPillDisplay imports this so the two pill renderers can never drift apart.
+// (Lives here rather than badge-utils.ts to stay within this change's scope.)
+export const METALLIC_GRADIENTS: Record<string, string> = {
   bronze: "linear-gradient(135deg, #CD7F32, #E8A862)",
   silver: "linear-gradient(135deg, #C0C0C0, #E8E8E8)",
   gold: "linear-gradient(135deg, #FFD700, #FFF0A0)",
