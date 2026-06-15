@@ -3272,7 +3272,14 @@ export async function redeemLicenseKey(
   const now = nowIso();
   const expiresAt = (() => {
     const d = new Date();
+    const day = d.getDate();
     d.setMonth(d.getMonth() + params.validMonths);
+    // setMonth rolls an overflowing day-of-month into the following month (e.g.
+    // Jan 31 + 1mo -> Mar 3, since Feb has no 31st), silently granting extra
+    // days. Clamp back to the last day of the intended month when that happens.
+    if (d.getDate() !== day) {
+      d.setDate(0);
+    }
     return d.toISOString();
   })();
   const normalized = params.code.toUpperCase().trim();
