@@ -7,7 +7,7 @@ import { getUserAccessibleChapter } from "@/app/app/api/book/_lib/content-servic
 import { isBookApiError } from "@/app/app/api/book/_lib/errors";
 import { AuthError } from "@/app/app/api/_lib/auth";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { GetCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { GetCommand, PutCommand, DeleteCommand } from "@aws-sdk/lib-dynamodb";
 import { bookUserPk, reflectionFeedbackSk, feedbackLimitSk, nowIso } from "@/app/app/api/book/_lib/keys";
 import { streamReflectionFeedback } from "@/app/app/api/book/_lib/ai-service";
 import { getReflectionFeedbackModel } from "@/app/app/api/book/_lib/ai-config";
@@ -133,9 +133,18 @@ export async function POST(req: Request, ctx: Params) {
       throw err;
     }
 
+    // The rate-limit slot was claimed above to close the concurrent/abort race.
+    // If generation cannot actually proceed (no API key) or fails, release the
+    // slot so a transient failure doesn't burn the user's once-per-day attempt.
+    const releaseLimitSlot = () =>
+      ddbDoc.send(
+        new DeleteCommand({ TableName: tableName, Key: { PK: pk, SK: limitSk } }),
+      );
+
     // Get API key
     const apiKey = await getServerEnv("ANTHROPIC_API_KEY");
     if (!apiKey) {
+      await releaseLimitSlot().catch(() => {});
       return bookErr(req, 503, "ai_unavailable", "AI feedback is not available");
     }
     const model = await getReflectionFeedbackModel();
@@ -195,6 +204,14 @@ export async function POST(req: Request, ctx: Params) {
             );
           }
         } catch (err) {
+          // Release the daily slot ONLY when no usable feedback was produced, so
+          // a genuine pre-output failure is retryable. If feedback was already
+          // streamed (fullText present, same >50 threshold as the cache write), a
+          // later cache-write error or a client-abort throw must NOT release the
+          // slot — that would hand back a free paid retry / break abort protection.
+          if (fullText.length <= 50) {
+            await releaseLimitSlot().catch(() => {});
+          }
           controller.enqueue(
             encoder.encode(
               `data: ${JSON.stringify({ type: "error", message: "AI feedback failed" })}\n\n`,
