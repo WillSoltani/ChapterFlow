@@ -5,8 +5,7 @@
  * quiz's `correctIndex` actually points at the right answer — `pickCorrectIndex`
  * only validates the index is in range. That blind spot shipped the `hooked`
  * book with 21 of 72 questions marking the WRONG choice correct, past a GREEN
- * book-gate (see agent-prompts/REDO-hooked-quiz-answer-keys.md). This module
- * closes that one blind spot.
+ * book-gate. This module closes that one blind spot.
  *
  * Method (matches the design in this session's roadmap, Lever A / D1):
  *   1. For each question, show a model the prompt + the three choices + the
