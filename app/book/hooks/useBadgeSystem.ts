@@ -59,6 +59,8 @@ type UseBadgeSystemArgs = {
 type UseBadgeSystemResult = {
   hydrated: boolean;
   analytics: ReturnType<typeof useBookAnalytics>["analytics"];
+  error: ReturnType<typeof useBookAnalytics>["error"];
+  refetch: ReturnType<typeof useBookAnalytics>["refetch"];
   badgeStats: BadgeProgressStats | null;
   badges: BadgeState[];
   visibleBadges: BadgeState[];
@@ -420,7 +422,7 @@ export function useBadgeSystem({
   dailyGoalMinutes,
   plan = "FREE",
 }: UseBadgeSystemArgs): UseBadgeSystemResult {
-  const { analytics, hydrated } = useBookAnalytics(selectedBookIds, dailyGoalMinutes);
+  const { analytics, hydrated, error, refetch } = useBookAnalytics(selectedBookIds, dailyGoalMinutes);
   const [revision, setRevision] = useState(0);
   const [earnedHistory, setEarnedHistory] = useState<Record<string, string>>({});
 
@@ -587,6 +589,8 @@ export function useBadgeSystem({
   return {
     hydrated,
     analytics,
+    error,
+    refetch,
     badgeStats,
     badges,
     visibleBadges,
