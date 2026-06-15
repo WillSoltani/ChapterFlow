@@ -186,7 +186,7 @@ export const INSIGHT_POINTS_EARNING_RULES: InsightPointsEarningRule[] = [
     displayValue: "+5 IP",
     detail: "Type your own answer in the 'Think First' prompt before revealing the analysis. Awarded once per example.",
     cadence: "per_example",
-    note: "One-time per example. Empty submissions don't count.",
+    note: "One-time per example. Write a real answer (at least 20 characters) — empty or one-word submissions don't count.",
   },
   {
     sourceType: "streak_day",
