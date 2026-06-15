@@ -292,6 +292,8 @@ export type CriticCheckId =
   | "BP21.quiz_cross_chapter_duplicate"
   | "BP26.exemplar_chapter_reuse"
   | "BP27.venue_stamping"
+  | "BP28.callback_frame_reuse"
+  | "BP29.timing_anchor_stamping"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
   | "schema.quiz_unexpected_field"

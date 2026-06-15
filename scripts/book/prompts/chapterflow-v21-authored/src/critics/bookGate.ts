@@ -18,13 +18,22 @@ import {
 } from "./quizQuality.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { loadBannedPhrases } from "./shared.js";
-import { checkBookExemplarChapterReuse, checkBookVenueStamping } from "./bookRepetition.js";
+import {
+  checkBookCallbackFrameReuse,
+  checkBookExemplarChapterReuse,
+  checkBookTimingAnchorStamping,
+  checkBookVenueStamping,
+} from "./bookRepetition.js";
 
 export type BookGateFinding = {
   catalogId: string;            // F1, F3, etc. (from FAILURE-MODES.md)
   severity: "blocker" | "major" | "minor";
   message: string;
   evidence?: string;
+  /** Offending chapters, when the finding is chapter-scoped — lets the write-
+   *  orchestrator barrier re-dispatch exactly those chapters. Absent for
+   *  book-wide findings (e.g. F3 answer-position drift). */
+  chapters?: number[];
 };
 
 export type BookGateReport = {
@@ -131,6 +140,7 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
       catalogId: "F1",
       severity: "blocker",
       message: `${duplicatedNames.length} protagonist name(s) appear as named characters in multiple chapters: ${duplicatedNames.slice(0, 5).map((d) => `${d.name}(ch${d.chapters.join(",")})`).join(", ")}${duplicatedNames.length > 5 ? ", …" : ""}. Regenerate affected examples with distinct names.`,
+      chapters: [...new Set(duplicatedNames.flatMap((d) => d.chapters))].sort((a, b) => a - b),
     });
   }
 
@@ -151,6 +161,7 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
         catalogId: "B6",
         severity: "minor",
         message: `Multiple chapters open hook with same 50-char prefix "${opener}": chapters ${chs.join(", ")}`,
+        chapters: chs,
       });
     }
   }
@@ -173,6 +184,7 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
           catalogId: "B6",
           severity: "minor",
           message: `Chapter ${chapters[i].number} sentence-length avg (${avgSentLen[i].toFixed(1)}) deviates >7 words from book mean (${mean.toFixed(1)}). Possible voice drift.`,
+          chapters: [chapters[i].number],
         });
       }
     }
@@ -199,6 +211,7 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
         catalogId: "A10",
         severity: "blocker",
         message: `Schema inconsistency: "${field}" present on ${present.length}/${chapters.length} chapters but missing on ${missing.length} (chapters ${missing.join(", ")}). Likely cache-skip regression. Backfill before shipping.`,
+        chapters: missing,
       });
     }
   }
@@ -214,6 +227,7 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
       severity: f.severity,
       message: f.message,
       evidence: f.evidence,
+      chapters: f.chapters,
     });
   }
 
@@ -260,6 +274,32 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
       severity: f.severity as "blocker" | "major" | "minor",
       message: f.message,
       evidence: f.evidence,
+    });
+  }
+
+  // ── BP28/BP29 — review-card callback-frame reuse + try-now clock stamping. ──
+  // The two structural-sameness axes the model sweep (`repeated_unit` /
+  // `location_stamping`) caught on the-daily-stoic but no deterministic gate saw.
+  // Both carry chapters[] so the write-orchestrator barrier re-dispatches only
+  // the offenders. BP28 is SHADOW major (calibrate to zero on the clean corpus
+  // before any blocker promotion); BP29 is lexically FP-safe (clean corpus has
+  // zero try-now clock stamps).
+  for (const f of checkBookCallbackFrameReuse(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+  for (const f of checkBookTimingAnchorStamping(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
     });
   }
 

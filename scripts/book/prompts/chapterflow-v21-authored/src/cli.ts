@@ -1643,6 +1643,10 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : flat[0].number;
   const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : flat[flat.length - 1].number;
   const includeAll = flags["all"] === true;
+  if (!Number.isInteger(from) || !Number.isInteger(to) || from < 1 || to < from) {
+    console.error(`Invalid chapter range: --from ${String(flags["from"] ?? from)} --to ${String(flags["to"] ?? to)}. Use integers with 1 <= from <= to.`);
+    return 2;
+  }
   const plan = planNames(bookId, from, to);
   writeNamePlan(plan);
   // REDO path (--all): deal FRESH shapes — carrying a templated chapter's own
@@ -1671,6 +1675,23 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const { planAnswerKeys, writeAnswerKeyPlan } = await import("./librarian/answerKeyPlan.js");
   const answerKeyPlan = planAnswerKeys(bookId, from, to);
   writeAnswerKeyPlan(answerKeyPlan);
+  // Callback plan: per-chapter spaced-recall target (which prior chapter + which
+  // question frame) so review-card callbacks don't collapse onto one concept+shell
+  // (the repeated_unit sweep family / BP28).
+  const { planCallbacks, writeCallbackPlan } = await import("./librarian/callbackPlan.js");
+  const callbackPlan = planCallbacks(bookId, from, to);
+  writeCallbackPlan(callbackPlan);
+  // Scene-mode plan: per-chapter narrative stance, capping the retrospective-
+  // evidence-review stance book-wide (the scene_skeleton sweep family). Used to
+  // reconcile the shapePlan slots below.
+  const { planSceneModes, writeSceneModePlan, dampenRetrospectiveShapes } = await import("./librarian/sceneModePlan.js");
+  const sceneModePlan = planSceneModes(bookId, from, to);
+  writeSceneModePlan(sceneModePlan);
+  // Timing plan: per-chapter situational action trigger so try-this-now actions
+  // don't reuse one arbitrary clock stamp (the location_stamping sweep family / BP29).
+  const { planTiming, writeTimingPlan } = await import("./librarian/timingPlan.js");
+  const timingPlan = planTiming(bookId, from, to);
+  writeTimingPlan(timingPlan);
   // Carried name allocations for authored chapters include every capitalized
   // token the extractor saw ("University", "All", "Tonight" — junk from
   // scenario text). Pasting those as an exclusive allowlist breaks redo
@@ -1697,8 +1718,13 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     // junk falls back to the raw allocation rather than an empty list.
     const names = (bankNames.length >= 3 ? bankNames : allocated).join(", ");
 
-    // Shape palette: slot-pinned structural variety (the anti-skeleton plan).
-    const shapeIds = shapePlan.allocation[ch.number] ?? [];
+    // Shape palette: slot-pinned structural variety (the anti-skeleton plan),
+    // reconciled with the dealt narrative stance so chapters NOT dealt the
+    // retrospective stance don't get a postmortem/audit scene — capping the
+    // postmortem-evidence skeleton book-wide (scene_skeleton family).
+    const dealtShapeIds = shapePlan.allocation[ch.number] ?? [];
+    const stance = sceneModePlan.allocation[ch.number]?.stance ?? "live_unfolding";
+    const shapeIds = dampenRetrospectiveShapes(dealtShapeIds, stance);
     const shapeLines = shapeIds
       .map((id, i) => `    ${i + 1}. ${id} — ${shapeDefs.get(id) ?? "use the format the planSpec names"}`)
       .join("\n");
@@ -1764,8 +1790,23 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const voice = formatVoiceBible(bookId);
     const voiceLine = voice ? `• VOICE (the book's charter — every field obeys it):\n    ${voice}\n` : "";
 
+    // Spaced-recall callback: dealt a distinct prior chapter + question frame so
+    // the book's callback cards don't collapse onto one concept+shell (BP28).
+    const cb = callbackPlan.allocation[ch.number];
     const recallLine = ch.number > 1
-      ? `• Spaced recall: make 1–2 review cards explicitly resurface a concept from an EARLIER chapter of this book (name the concept on the card front).\n`
+      ? (cb
+        ? `• Spaced recall: make ONE review card resurface the core concept from CHAPTER ${cb.callbackChapter} (name that concept on the front). ${cb.directive} Do NOT reuse one concept+question shell across the book (e.g. "How does X help with Y") — your callback target and frame are dealt to differ from every other chapter's.\n`
+        : `• Spaced recall: make 1–2 review cards resurface a concept from an EARLIER chapter (name it on the front); use a question frame no other chapter reuses.\n`)
+      : "";
+    // Narrative stance: book-wide cap on the retrospective-evidence scene engine.
+    const sceneMode = sceneModePlan.allocation[ch.number];
+    const sceneModeLine = sceneMode
+      ? `• SCENE STANCE (book-wide variety — most chapters must NOT review evidence after a closed outcome): ${sceneMode.stance} — ${sceneMode.directive}\n`
+      : "";
+    // Action timing: situational trigger, never an arbitrary clock stamp (BP29).
+    const tm = timingPlan.allocation[ch.number];
+    const timingLine = tm
+      ? `• ACTION TIMING (try-this-now): ${tm.directive} Do NOT schedule the action at an arbitrary clock time (no "9:10 a.m.") — anchor it to a situational moment in the reader's own day.\n`
       : "";
 
     blocks.push(
@@ -1776,16 +1817,18 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• Use ONLY these character names: ${names}\n` +
         `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
         `${shapeLines}\n` +
+        sceneModeLine +
         venueLine +
         rhetoricLine +
         pedagogyLines +
         answerKeyLine +
+        timingLine +
         specificsLine +
         exemplarLine +
         voiceLine +
         `• Quiz distractors: each distractor is a NAMED plausible misconception (what a hasty reader of THIS chapter would actually believe) — never a junk-prefix mutation or rephrasing of the correct choice.\n` +
         recallLine +
-        `• One name = one person across breakdown→examples→quiz.\n` +
+        `• One name = one person across breakdown→examples→quiz — and that person's role stays fixed for the whole book. NEVER reuse a real source-figure's name for a fictional actor (persona drift).\n` +
         `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring law).\n` +
         `• Save to state/chapters/${chapterId}.v21-native.chapter.json\n` +
         `• PLAIN LANGUAGE (R2.7 — product direction): every abstract claim is followed within TWO sentences by something the reader can SEE (a person, a scene, a number). Say it like you'd say it to a smart friend at lunch. Define terms-of-art in everyday words the first time; never stack two undefined abstractions in one sentence. Each breakdown tier OPENS concrete, not with a thesis. Short common words win. This applies to EVERY reader-facing field (quiz, cards, examples, hook, keyTakeaway, plan), not just the breakdown — a gate (E7) flags fancy words with their plain swap (utilize→use, leverage→use, facilitate→help) and any sentence over 34 words (over 24 in a one-liner). Target grade 7–9.\n` +
@@ -1801,6 +1844,40 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   );
   console.log(blocks.join("\n\n"));
   console.log(`\nPaste each block above into its own Codex agent (run them in parallel). When they finish, check the batch:\n  npx tsx src/cli.ts book-gate ${bookId}`);
+
+  // --barrier: run book-gate as a deterministic pre-QC barrier and print
+  // targeted re-dispatch hints for the offending chapters. The CLI stays
+  // deterministic over files (it never spawns); the WRITE-ORCHESTRATE session
+  // loops: re-author offenders → re-run --barrier until PASS. So by the time QC
+  // runs, the deterministic families (incl. BP28/BP29) are already cleared.
+  if (flags["barrier"] === true) {
+    console.log(`\n──────────── barrier ────────────`);
+    console.log(`[barrier] Running book-gate as a pre-QC barrier for ${bookId}...\n`);
+    const gateCode = await runBookGate([bookId]); // full report (derive-artifacts + shadow checks)
+    const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+    const { runBookGate: runBookGateCritic } = await import("./critics/bookGate.js");
+    const report = runBookGateCritic(bookId, loadBookChapters(bookId));
+    const offenders = new Set<number>();
+    for (const f of report.findings) {
+      const actionable =
+        f.severity === "blocker" || f.catalogId.startsWith("BP28") || f.catalogId.startsWith("BP29");
+      if (actionable) for (const c of f.chapters ?? []) offenders.add(c);
+    }
+    if (gateCode === 0 && offenders.size === 0) {
+      console.log(`\n[barrier] PASS — book-gate clean and no structural-sameness offenders. Hand off to QC.`);
+      return 0;
+    }
+    if (offenders.size > 0) {
+      console.log(`\n[barrier] Re-dispatch ONLY these offending chapters (their deals are idempotent — a redo gets the same varied assignment), fix the findings above, then re-run --barrier:`);
+      for (const n of [...offenders].sort((a, b) => a - b)) {
+        console.log(`  npx tsx src/cli.ts fanout ${bookId} --from ${n} --to ${n} --all`);
+      }
+    } else {
+      console.log(`\n[barrier] Remaining findings are book-wide (no single offending chapter) — address per the messages above, then re-run --barrier.`);
+    }
+    console.log(`\n[barrier] Loop until PASS; cap at 3 re-dispatch rounds — a finding that survives 3 rounds is a source/plan problem, so STOP and surface it to the operator.`);
+    return 1;
+  }
   return 0;
 }
 

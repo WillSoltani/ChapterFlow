@@ -71,6 +71,11 @@ function fnv1a(s: string): number {
 }
 
 export function planRhetoric(bookId: string, from: number, to: number): RhetoricPlan {
+  // Defensive: a NaN/<1/inverted range from the CLI would index the rotation
+  // with a negative modulo (undefined shape entries).
+  if (!Number.isInteger(from) || !Number.isInteger(to) || from < 1 || to < from) {
+    return { schemaVersion: "rhetoric-plan-v1", bookId, createdAt: new Date().toISOString(), allocation: {}, diagnostics: { counterShapeCounts: {}, hookClassCounts: {} } };
+  }
   const counterOffset = fnv1a(bookId) % COUNTER_SHAPES.length;
   const hookOffset = fnv1a(`${bookId}:hook`) % HOOK_OPENER_CLASSES.length;
   const allocation: Record<number, RhetoricAllocation> = {};
@@ -93,13 +98,21 @@ export function planRhetoric(bookId: string, from: number, to: number): Rhetoric
   // Round-robin satisfies the caps for any contiguous range ≥ 5; the assert
   // guards against a future palette/length change breaking the math.
   if (N >= 5) {
-    const negation = counterShapeCounts["negation_correction"] ?? 0;
-    if (negation / N >= 0.4) {
-      throw new Error(`rhetoric-plan invariant violated: negation_correction ${negation}/${N} >= 0.40 (B11/B14 risk).`);
+    // B14 caps EVERY counter shape at 0.40 (not just negation_correction) — and
+    // a profile-less fresh book gets the 0.40 default (the author-voice
+    // relaxation is never wired in bookGate/cli). daring-greatly ships its top
+    // two shapes at 42.9%, so we must keep the MAX of all shapes < 0.40, not
+    // only the negation shell.
+    const maxCounter = Math.max(0, ...Object.values(counterShapeCounts));
+    if (maxCounter / N >= 0.4) {
+      throw new Error(`rhetoric-plan invariant violated: a counter shape lands ${maxCounter}/${N} >= 0.40 (B11/B14 risk — B14 caps every shape).`);
     }
+    // Keep the dominant hook class under 0.45 — strictly under B13's 0.50
+    // default so a profile-less fresh book clears the gate with margin (clean
+    // books sit at 46-47%).
     const maxHook = Math.max(0, ...Object.values(hookClassCounts));
-    if (maxHook / N >= 0.5) {
-      throw new Error(`rhetoric-plan invariant violated: a hook class lands ${maxHook}/${N} >= 0.50 (B13 risk).`);
+    if (maxHook / N >= 0.45) {
+      throw new Error(`rhetoric-plan invariant violated: a hook class lands ${maxHook}/${N} >= 0.45 (B13 0.50 with margin).`);
     }
   }
   return {

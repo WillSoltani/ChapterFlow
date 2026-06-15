@@ -138,12 +138,18 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
   if (decision.checks.bookGate === "FAIL") {
     for (const f of raw.bookGate.findings.filter((x) => x.severity === "blocker" || x.severity === "major")) {
       out.push({
+        // Chapter-scoped book-gate findings (F1, BP28/BP29, B-class) carry the
+        // offending chapters so repair targets only those; book-wide findings
+        // (e.g. F3) leave chapters undefined and repair addresses the whole book.
+        chapters: f.chapters,
         unitId: "book",
         repairClass: f.catalogId,
         severity: severity(f.severity),
         quote: nonemptyText(f.evidence, f.message),
         problem: f.message,
-        expectedFix: "Repair the book-wide pattern, not one isolated chapter; rerun book-gate before a fresh QC round.",
+        expectedFix: f.chapters?.length
+          ? "Repair the named offending chapters so the cross-chapter pattern no longer fires; rerun book-gate before a fresh QC round."
+          : "Repair the book-wide pattern, not one isolated chapter; rerun book-gate before a fresh QC round.",
         globalTheme: "book_gate",
       });
     }

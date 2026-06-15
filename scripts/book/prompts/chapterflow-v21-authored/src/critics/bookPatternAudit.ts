@@ -145,7 +145,7 @@ function tokenize(
     .filter((t) => opts.keepStopwords || !STOPWORDS.has(t));
 }
 
-function normalizeSurfaceFrame(text: string, chapterTitle?: string): string[] {
+export function normalizeSurfaceFrame(text: string, chapterTitle?: string): string[] {
   let raw = stripLeadingLabel(compact(text));
   if (chapterTitle) {
     raw = raw.replace(new RegExp(escapeRegExp(chapterTitle), "ig"), " ");
