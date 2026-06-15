@@ -1,12 +1,27 @@
 import "server-only";
 
-import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import {
+  GetCommand,
+  PutCommand,
+  QueryCommand,
+  UpdateCommand,
+  type UpdateCommandOutput,
+} from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, eventParticipationSk, nowIso } from "./keys";
 import { awardFlowPoints } from "./flow-points-repo";
 import { putBadgeAward } from "./repo";
 import { createNotification } from "./notifications-repo";
 import type { EventDefinition, EventParticipationItem } from "./types";
+
+function isConditionalCheckFailed(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  const rec = error as Record<string, unknown>;
+  return (
+    rec.name === "ConditionalCheckFailedException" ||
+    rec.__type === "ConditionalCheckFailedException"
+  );
+}
 
 export async function joinEvent(
   tableName: string,
@@ -83,55 +98,84 @@ export async function recordEventChapter(
   eventDef?: EventDefinition,
 ): Promise<EventParticipationItem | null> {
   const today = new Date().toISOString().slice(0, 10);
-  const now = nowIso();
 
-  // Get current progress
-  const current = await getEventProgress(tableName, userId, eventId);
-  if (!current || current.completed) return current;
+  // Read-modify-write under optimistic concurrency. The Update is guarded by an
+  // `updatedAt = :expected` ConditionExpression so two concurrent loop
+  // completions for the same event cannot read the same `current` and clobber
+  // each other's increment (lost-update race). On a conflicting write we re-read
+  // the latest state and recompute, so the counter advances exactly once per
+  // distinct chapterId.
+  const MAX_ATTEMPTS = 5;
+  let justCompleted = false;
+  let result: UpdateCommandOutput | null = null;
 
-  // Update daily progress
-  const dailyProgress = { ...current.dailyProgress };
-  const todayChapters = dailyProgress[today] ?? [];
-  if (todayChapters.includes(chapterId)) return current; // Already counted
-  dailyProgress[today] = [...todayChapters, chapterId];
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+    const now = nowIso();
 
-  const totalChaptersCompleted = current.totalChaptersCompleted + 1;
+    // Get current progress
+    const current = await getEventProgress(tableName, userId, eventId);
+    if (!current || current.completed) return current;
 
-  // Check if event is now complete
-  const justCompleted =
-    eventDef != null &&
-    eventDef.targetChapters > 0 &&
-    totalChaptersCompleted >= eventDef.targetChapters;
+    // Update daily progress
+    const dailyProgress = { ...current.dailyProgress };
+    const todayChapters = dailyProgress[today] ?? [];
+    if (todayChapters.includes(chapterId)) return current; // Already counted
+    dailyProgress[today] = [...todayChapters, chapterId];
 
-  const updateParts = [
-    "dailyProgress = :dp",
-    "totalChaptersCompleted = :total",
-    "updatedAt = :now",
-  ];
-  const exprValues: Record<string, unknown> = {
-    ":dp": dailyProgress,
-    ":total": totalChaptersCompleted,
-    ":now": now,
-  };
+    const totalChaptersCompleted = current.totalChaptersCompleted + 1;
 
-  if (justCompleted) {
-    updateParts.push("completed = :t", "completedAt = :now");
-    updateParts.push("badgeAwarded = :t", "ipBonusAwarded = :t");
-    exprValues[":t"] = true;
+    // Check if event is now complete
+    justCompleted =
+      eventDef != null &&
+      eventDef.targetChapters > 0 &&
+      totalChaptersCompleted >= eventDef.targetChapters;
+
+    const updateParts = [
+      "dailyProgress = :dp",
+      "totalChaptersCompleted = :total",
+      "updatedAt = :now",
+    ];
+    const exprValues: Record<string, unknown> = {
+      ":dp": dailyProgress,
+      ":total": totalChaptersCompleted,
+      ":now": now,
+      ":expected": current.updatedAt,
+    };
+
+    if (justCompleted) {
+      updateParts.push("completed = :t", "completedAt = :now");
+      updateParts.push("badgeAwarded = :t", "ipBonusAwarded = :t");
+      exprValues[":t"] = true;
+    }
+
+    try {
+      result = await ddbDoc.send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(userId), SK: eventParticipationSk(eventId) },
+          UpdateExpression: `SET ${updateParts.join(", ")}`,
+          ConditionExpression: "updatedAt = :expected",
+          ExpressionAttributeValues: exprValues,
+          ReturnValues: "ALL_NEW",
+        }),
+      );
+      break;
+    } catch (error: unknown) {
+      // A concurrent writer advanced the record; re-read and retry.
+      if (isConditionalCheckFailed(error)) continue;
+      throw error;
+    }
   }
 
-  const result = await ddbDoc.send(
-    new UpdateCommand({
-      TableName: tableName,
-      Key: { PK: bookUserPk(userId), SK: eventParticipationSk(eventId) },
-      UpdateExpression: `SET ${updateParts.join(", ")}`,
-      ExpressionAttributeValues: exprValues,
-      ReturnValues: "ALL_NEW",
-    }),
-  );
+  if (!result) {
+    // Exhausted retries under sustained contention; report the latest state
+    // without double-counting rather than silently clobbering.
+    return getEventProgress(tableName, userId, eventId);
+  }
 
   // Award IP, persist the completion badge, and notify (fire-and-forget).
   if (justCompleted && eventDef) {
+    const now = nowIso();
     awardFlowPoints(tableName, {
       userId,
       amount: eventDef.bonusIP,
