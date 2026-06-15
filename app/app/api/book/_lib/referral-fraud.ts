@@ -21,6 +21,24 @@ function sha(value: string): string {
   return createHash("sha256").update(value).digest("base64url");
 }
 
+// Coarsen an IP to the same /24 (IPv4) or /64 (IPv6) prefix that abuse.ts uses
+// when it records "network"-scope risk events, so the fingerprint we look up
+// here matches what recordRiskSignals wrote.
+function coarseNetworkPrefix(ip: string | null): string | null {
+  if (!ip) return null;
+  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(ip)) {
+    const octets = ip.split(".");
+    if (octets.length !== 4) return null;
+    return `${octets[0]}.${octets[1]}.${octets[2]}.0/24`;
+  }
+  if (ip.includes(":")) {
+    const segments = ip.split(":").filter(Boolean);
+    if (segments.length < 4) return null;
+    return `${segments.slice(0, 4).join(":")}::/64`;
+  }
+  return null;
+}
+
 // ── Main fraud check (§6.6) ────────────────────────────────────────────────
 
 /**
@@ -51,13 +69,12 @@ export async function checkReferralFraud(params: {
 
   const crossReferral = await checkCrossReferral(tableName, inviteeUserId, inviterUserId);
 
-  const sameDevice = Boolean(
-    inviteeDeviceId && inviterDeviceId && inviteeDeviceId === inviterDeviceId
-  );
-
   // Distinct users on the invitee's device in the last 30 days — queried
-  // whenever a device id is present (cheap at solo-founder scale).
+  // whenever a device id is present (cheap at solo-founder scale). The same
+  // 30-day window also tells us whether the INVITER already used this device,
+  // which is the most common self-referral (two accounts on one phone).
   let deviceVelocityCount = 0;
+  let inviterUsedInviteeDevice = false;
   if (inviteeDeviceId) {
     const deviceHash = sha(`device:${inviteeDeviceId}`);
     const deviceEvents = await listRecentRiskEvents(tableName, {
@@ -66,14 +83,47 @@ export async function checkReferralFraud(params: {
       limit: 30,
     });
     const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
-    deviceVelocityCount = new Set(
+    const recentDeviceUsers = new Set(
       deviceEvents
         .filter((e) => Date.parse(e.createdAt) > thirtyDaysAgo)
         .map((e) => e.userId)
-    ).size;
+    );
+    deviceVelocityCount = recentDeviceUsers.size;
+    inviterUsedInviteeDevice = recentDeviceUsers.has(inviterUserId);
   }
 
-  const sameIp = Boolean(inviteeIp && inviterIp && inviteeIp === inviterIp);
+  // Same device — either an explicit (invitee, inviter) fingerprint match when
+  // both are supplied, OR the inviter showing up in the invitee's device-event
+  // history. The caller cannot pass the inviter's live deviceId (it is only
+  // known on the inviter's own requests), so without the history lookup this
+  // signal was dead: a second account on the same phone slipped through until a
+  // THIRD account tripped deviceVelocity. The history lookup catches it at the
+  // 2nd activation.
+  const sameDevice =
+    Boolean(inviteeDeviceId && inviterDeviceId && inviteeDeviceId === inviterDeviceId) ||
+    inviterUsedInviteeDevice;
+
+  // Same network — an explicit (invitee, inviter) IP match when both are
+  // supplied, OR the inviter appearing in the invitee's coarse-network event
+  // history. The caller can only observe the invitee's live IP, so the history
+  // lookup is what makes this signal real for the common case.
+  let inviterUsedInviteeNetwork = false;
+  const inviteeNetworkPrefix = coarseNetworkPrefix(inviteeIp);
+  if (inviteeNetworkPrefix) {
+    const networkHash = sha(`network:${inviteeNetworkPrefix}`);
+    const networkEvents = await listRecentRiskEvents(tableName, {
+      scope: "network",
+      fingerprint: networkHash,
+      limit: 60,
+    });
+    const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    inviterUsedInviteeNetwork = networkEvents.some(
+      (e) => e.userId === inviterUserId && Date.parse(e.createdAt) > thirtyDaysAgo
+    );
+  }
+
+  const sameIp =
+    Boolean(inviteeIp && inviterIp && inviteeIp === inviterIp) || inviterUsedInviteeNetwork;
 
   // Inviter activations in the last 7 days. Skip the query when an earlier,
   // higher-priority signal already blocks — evaluateReferralFraud short-circuits

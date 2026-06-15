@@ -50,6 +50,19 @@ test("same device blocks + flags", () => {
   assert.equal(evaluateReferralFraud({ ...clean, sameDevice: true }).reason, "device_fingerprint_match");
 });
 
+test("2nd account on the inviter's device is blocked BELOW the velocity threshold", () => {
+  // M11 regression: a same-device self-referral must be caught at the SECOND
+  // activation. At that point only the inviter has prior device events plus the
+  // new invitee, so deviceVelocityCount is 1 (well under DEVICE_VELOCITY_THRESHOLD=3).
+  // referral-fraud.ts now derives sameDevice=true from the inviter appearing in
+  // the invitee's device-event history, so the reward is blocked here, not only
+  // once a THIRD account trips deviceVelocity.
+  const r = evaluateReferralFraud({ ...clean, sameDevice: true, deviceVelocityCount: 1 });
+  assert.equal(r.allowed, false);
+  assert.equal(r.flagForReview, true);
+  assert.equal(r.reason, "device_fingerprint_match");
+});
+
 test("device velocity blocks at >= 3 but not at 2 (boundary)", () => {
   assert.equal(evaluateReferralFraud({ ...clean, deviceVelocityCount: 2 }).allowed, true);
   const r = evaluateReferralFraud({ ...clean, deviceVelocityCount: 3 });
