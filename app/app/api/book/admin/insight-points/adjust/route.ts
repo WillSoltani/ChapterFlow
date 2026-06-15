@@ -4,14 +4,10 @@ import "server-only";
 // POST /api/book/admin/insight-points/adjust
 // Capped at ±10,000 IP. Requires admin auth. All adjustments logged.
 
-import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
+import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import {
-  getBookAdminGroupName,
-  getBookAnalyticsTableName,
-  getBookTableName,
-} from "@/app/app/api/book/_lib/env";
+import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
   bookOk,
@@ -27,7 +23,6 @@ import {
   nowIso,
 } from "@/app/app/api/book/_lib/keys";
 import { getUserFlowPointsState } from "@/app/app/api/book/_lib/flow-points-repo";
-import { analyticsTrackFlowPointsTransaction } from "@/app/app/api/book/_lib/analytics-repo";
 
 export const runtime = "nodejs";
 
@@ -35,13 +30,10 @@ const MAX_ADJUSTMENT = 10_000; // §9.4 — capped at ±10,000
 
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
-    const admin = await requireActiveBookUser();
-
-    // Verify admin authorization
-    const adminGroup = await getBookAdminGroupName();
-    if (!admin.groups?.includes(adminGroup)) {
-      throw new BookApiError(403, "forbidden", "Admin access required.");
-    }
+    // Centralized admin authz (also enforces account lifecycle status). Using
+    // the shared helper ensures any future hardening (MFA, a second admin group,
+    // step-up auth) automatically covers this money-adjacent endpoint.
+    const admin = await requireAdminUser();
 
     const bodyRaw = await req.json();
     const body = requireBodyObject(bodyRaw);
@@ -132,20 +124,14 @@ export async function POST(req: Request) {
       throw error;
     }
 
-    // Fire-and-forget analytics
-    getBookAnalyticsTableName()
-      .then((at) => {
-        if (!at) return;
-        return analyticsTrackFlowPointsTransaction(at, {
-          userId,
-          deltaPoints: amount,
-          direction: isPositive ? "earn" : "spend",
-          sourceType: "admin_adjustment",
-          sourceId: `admin:${admin.sub}:${transactionId}`,
-          metadata: { reason, adminUserId: admin.sub },
-        });
-      })
-      .catch(() => {});
+    // Intentionally do NOT mirror admin adjustments into the analytics snapshot.
+    // analyticsTrackFlowPointsTransaction unconditionally stamps the target user's
+    // lastActiveAt/updatedAt and emits a flow_points_earned/spent activity event,
+    // which would make a dormant/comped/refunded user look active and inflate
+    // engagement KPIs (DAU, activeUsersByPlan, retention cohorts, event counts).
+    // The authoritative balance + audit trail are the engagement item and ledger
+    // entry written above in the main table; back-office grants must not pollute
+    // user-engagement metrics. (M16)
 
     const state = await getUserFlowPointsState(tableName, userId);
 
