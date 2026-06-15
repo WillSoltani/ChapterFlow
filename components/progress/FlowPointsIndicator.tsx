@@ -64,7 +64,7 @@ export function FlowPointsIndicator({
           className="text-sm font-semibold tabular-nums"
           style={{ color: "var(--text-heading)" }}
         >
-          {points.toLocaleString()} Insight Points
+          {points.toLocaleString()} Insight Points (IP)
         </span>
       </div>
       {availableIPToday > 0 && (
