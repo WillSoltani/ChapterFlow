@@ -25,14 +25,15 @@ export function bookErr(
   status: number,
   code: string,
   message: string,
-  details?: unknown
+  details?: unknown,
+  requestId?: string
 ): NextResponse<ErrorEnvelope> {
   return NextResponse.json(
     {
       error: {
         code,
         message,
-        requestId: requestIdFromHeaders(req),
+        requestId: requestId ?? requestIdFromHeaders(req),
         details,
       },
     },
@@ -40,25 +41,60 @@ export function bookErr(
   );
 }
 
+/**
+ * Fire-and-forget hook to surface unexpected server errors to an external
+ * monitor. We reuse the established `ChapterFlow/Ops` CloudWatch metric path
+ * (`putOpsMetric`) so the existing OpsFailure alarm fires on unhandled API
+ * errors instead of relying on raw CloudWatch log scraping. Imported lazily so
+ * the AWS-SDK / `server-only` cost is only paid on the (rare) error path and
+ * never blocks the response. Swallows its own failures.
+ */
+function reportUnhandledError(name: string): void {
+  void import("./cloudwatch-metrics")
+    .then(({ putOpsMetric }) =>
+      putOpsMetric("OpsFailure", 1, { context: "book_api_unhandled_error", error: name })
+    )
+    .catch(() => {
+      /* monitoring must never break the request */
+    });
+}
+
 export async function withBookApiErrors<T>(
   req: Request,
   fn: () => Promise<NextResponse<T | ErrorEnvelope>>
 ): Promise<NextResponse<T | ErrorEnvelope>> {
+  // Compute the correlation id once so the logged line and the client envelope
+  // carry the SAME requestId — needed to tie a user's 500 to its log entry.
+  const requestId = requestIdFromHeaders(req);
   try {
     return await fn();
   } catch (error: unknown) {
     if (error instanceof AuthError) {
-      return bookErr(req, 401, "unauthenticated", "Authentication is required.");
+      return bookErr(req, 401, "unauthenticated", "Authentication is required.", undefined, requestId);
     }
     if (isBookApiError(error)) {
-      return bookErr(req, error.status, error.code, error.message, error.details);
+      return bookErr(req, error.status, error.code, error.message, error.details, requestId);
     }
 
-    console.error("book_api_unhandled_error", {
-      message: error instanceof Error ? error.message : String(error),
-      stack: error instanceof Error ? error.stack : undefined,
-    });
-    return bookErr(req, 500, "server_error", "An unexpected server error occurred.");
+    const name = error instanceof Error ? error.name : "UnknownError";
+    const message = error instanceof Error ? error.message : String(error);
+    // Cap the message so a runaway error string can't bloat the log line, and
+    // never log the full stack in production: stacks can incidentally surface
+    // identifiers, and CloudWatch is for correlation, not forensic dumps. In
+    // non-production we keep the stack to aid local/staging debugging.
+    const shortMessage = message.length > 300 ? `${message.slice(0, 300)}…` : message;
+    if (process.env.NODE_ENV === "production") {
+      console.error("book_api_unhandled_error", { name, message: shortMessage, requestId });
+      reportUnhandledError(name);
+    } else {
+      console.error("book_api_unhandled_error", {
+        name,
+        message: shortMessage,
+        requestId,
+        stack: error instanceof Error ? error.stack : undefined,
+      });
+    }
+    return bookErr(req, 500, "server_error", "An unexpected server error occurred.", undefined, requestId);
   }
 }
 
