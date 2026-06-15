@@ -700,7 +700,7 @@ function CommitmentFollowUpSection() {
                     type="button"
                     onClick={handleComplete}
                     disabled={activeReflection.trim().length < 10 || submitting}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-(--cf-accent) px-3 py-1.5 text-xs font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-(--cf-accent) px-3 py-1.5 text-xs font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-50"
                   >
                     <CheckCircle className="h-3.5 w-3.5" />
                     {submitting ? "Saving..." : "Submit (+25 IP)"}
@@ -941,6 +941,20 @@ export function WorkspacePage() {
       {/* Noise texture overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" />
 
+      {/* Skip to main content (WCAG 2.4.1) — first focusable element in the
+          authenticated shell, ahead of the (optional) billing banner's dismiss
+          control and TopNav's ~12 controls. */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+        style={{
+          background: "var(--accent-teal)",
+          color: "var(--primary-foreground)",
+        }}
+      >
+        Skip to main content
+      </a>
+
       {/* Pro upgrade success banner (the single billing-success surface) */}
       {showProBanner && (
         <div
@@ -977,15 +991,19 @@ export function WorkspacePage() {
         />
 
         <main
-          className="mx-auto w-full px-4 py-5 md:px-8 md:py-7 lg:px-10 xl:px-16"
+          id="main"
+          tabIndex={-1}
+          className="mx-auto w-full px-4 py-5 focus:outline-none md:px-8 md:py-7 lg:px-10 xl:px-16"
           style={{ maxWidth: 1800 }}
         >
           {error && !data ? (
-            <ErrorBanner
-              title="We couldn’t load your dashboard"
-              message={error}
-              onRetry={refetch}
-            />
+            <div className="grid min-h-[60vh] place-content-center">
+              <ErrorBanner
+                title="We couldn’t load your dashboard"
+                message={error}
+                onRetry={refetch}
+              />
+            </div>
           ) : isLoading || !data ? (
             <DashboardSkeleton />
           ) : (
