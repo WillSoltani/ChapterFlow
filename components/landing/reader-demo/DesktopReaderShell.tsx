@@ -74,7 +74,11 @@ export function DesktopReaderShell() {
   // Off-screen the interval would otherwise keep cycling + AnimatePresence-
   // swapping the heavy reader subtree, burning main-thread time for no benefit.
   const rootRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(rootRef, { amount: 0.3 });
+  // `once` latches true the first time the demo scrolls into view: the loop never
+  // auto-starts at page load while below the fold, and — unlike a toggling gate —
+  // re-entering the viewport mid-phase does NOT restart the dwell from zero (which
+  // could otherwise indefinitely defer/freeze the advance on repeated partial scroll).
+  const isInView = useInView(rootRef, { amount: 0.3, once: true });
 
   const hasInteracted = useRef(false);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
