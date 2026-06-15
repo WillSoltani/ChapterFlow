@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
 import { DEMO_QUIZ_BY_DEPTH } from "./demoChapter";
 
@@ -29,13 +29,10 @@ export function PhoneQuizView({ isActive }: PhoneQuizViewProps) {
 
   // Cinematic auto-answer choreography
   useEffect(() => {
-    if (!isActive) {
-      setSelectedIndex(null);
-      setRevealed(false);
-      setRingPercent(0);
-      setShowConfetti(false);
-      return;
-    }
+    // While inactive the component is never mounted with a transition into
+    // active (each JSX call site passes a constant isActive), so the four
+    // choreography states stay at their initial reset values. Nothing to do.
+    if (!isActive) return;
 
     const t1 = setTimeout(() => setSelectedIndex(question.correctIndex), 1500);
     const t2 = setTimeout(() => setRevealed(true), 2000);
@@ -63,23 +60,21 @@ export function PhoneQuizView({ isActive }: PhoneQuizViewProps) {
       : circumference - (ringPercent / 100) * circumference;
 
   // Confetti particles (15 instead of 25 for the small phone)
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 15 }, (_, i) => ({
-        id: i,
-        x: `${(Math.random() - 0.5) * 140}px`,
-        y: `${-50 - Math.random() * 80}px`,
-        r: `${Math.random() * 720}deg`,
-        color:
-          i % 3 === 0
-            ? "var(--cr-accent)"
-            : i % 3 === 1
-              ? "var(--cr-warning)"
-              : "var(--cr-success)",
-        delay: `${Math.random() * 0.25}s`,
-        size: 3 + Math.random() * 3,
-      })),
-    []
+  const [particles] = useState(() =>
+    Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      x: `${(Math.random() - 0.5) * 140}px`,
+      y: `${-50 - Math.random() * 80}px`,
+      r: `${Math.random() * 720}deg`,
+      color:
+        i % 3 === 0
+          ? "var(--cr-accent)"
+          : i % 3 === 1
+            ? "var(--cr-warning)"
+            : "var(--cr-success)",
+      delay: `${Math.random() * 0.25}s`,
+      size: 3 + Math.random() * 3,
+    }))
   );
 
   return (
