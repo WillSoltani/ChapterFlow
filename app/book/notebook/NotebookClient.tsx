@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  BookOpen,
   FileText,
   Bookmark,
   Target,
@@ -19,16 +18,17 @@ import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 
 type NotebookResponse = { entries: NotebookEntry[]; totalCount: number };
 
-const TYPE_ICONS: Record<NotebookEntryType, typeof FileText> = {
+// Only the entry types the /me/notebook route actually emits. The 'reflection'
+// type is part of NotebookEntryType but is never produced by the API, so it is
+// intentionally absent here (and from the filter tabs) to avoid a dead filter.
+const TYPE_ICONS: Partial<Record<NotebookEntryType, typeof FileText>> = {
   note: FileText,
-  reflection: BookOpen,
   bookmark: Bookmark,
   commitment: Target,
 };
 
-const TYPE_LABELS: Record<NotebookEntryType, string> = {
+const TYPE_LABELS: Partial<Record<NotebookEntryType, string>> = {
   note: "Note",
-  reflection: "Reflection",
   bookmark: "Bookmark",
   commitment: "Commitment",
 };
@@ -154,7 +154,7 @@ export function NotebookClient() {
             />
           </div>
           <div className="flex gap-1.5">
-            {(["all", "note", "reflection", "bookmark", "commitment"] as const).map((t) => (
+            {(["all", "note", "bookmark", "commitment"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
@@ -165,7 +165,7 @@ export function NotebookClient() {
                     : "border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
                 }`}
               >
-                {t === "all" ? "All" : TYPE_LABELS[t]}
+                {t === "all" ? "All" : TYPE_LABELS[t] ?? t}
               </button>
             ))}
           </div>
@@ -215,7 +215,7 @@ export function NotebookClient() {
                   </span>
                 </h2>
                 {group.entries.map((entry) => {
-                  const Icon = TYPE_ICONS[entry.type];
+                  const Icon = TYPE_ICONS[entry.type] ?? FileText;
                   // Only link when we have a real bookId; a blank one would
                   // produce /book/library//chapter/N which 404s.
                   const href = entry.bookId
