@@ -1,4 +1,11 @@
 import type { Metadata } from "next";
+import { LEGAL_ENTITY_NAME, SUPPORT_EMAIL } from "@/lib/legal-entity";
+import {
+  PRICING,
+  ANNUAL_TOTAL_AMOUNT,
+  formatAmount,
+  formatAmountWithCurrency,
+} from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Terms of Service | ChapterFlow",
@@ -24,7 +31,7 @@ export default function TermsOfServicePage() {
             1. Acceptance of Terms
           </h2>
           <p>
-            By accessing or using ChapterFlow (&quot;the Service&quot;), operated by SiliconX Software Solutions, a business
+            By accessing or using ChapterFlow (&quot;the Service&quot;), operated by {LEGAL_ENTITY_NAME}, a business
             registered in Nova Scotia, Canada (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;), you agree to be bound
             by these Terms of Service. If you do not agree, do not use the Service.
           </p>
@@ -49,13 +56,14 @@ export default function TermsOfServicePage() {
           <p className="mb-3">ChapterFlow offers two tiers of access:</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              <strong style={{ color: "var(--text-heading)" }}>Free Plan:</strong> Access to up to 2 complete books,
+              <strong style={{ color: "var(--text-heading)" }}>Free Plan:</strong> Access to up to {PRICING.freeBookLimit} complete books,
               Standard and Guided learning modes, and core features including quizzes, progress tracking, and Insight Points.
             </li>
             <li>
-              <strong style={{ color: "var(--text-heading)" }}>Pro Plan:</strong> $7.99 CAD per month, $5.99 CAD/month
-              billed annually ($71.88/year), or $59.99 CAD/year paid upfront. Includes unlimited book access,
-              all learning modes including Challenge mode, and enhanced features. Pro includes a 14-day free
+              <strong style={{ color: "var(--text-heading)" }}>Pro Plan:</strong>{" "}
+              {formatAmountWithCurrency(PRICING.monthlyAmount)} per month, {formatAmount(PRICING.annualMonthlyAmount)} CAD/month
+              billed annually ({formatAmount(ANNUAL_TOTAL_AMOUNT)}/year), or {formatAmount(PRICING.annualUpfrontAmount)} CAD/year paid upfront. Includes unlimited book access,
+              all learning modes including Challenge mode, and enhanced features. Pro includes a {PRICING.trialDays}-day free
               trial for new subscribers.
             </li>
           </ul>
@@ -69,12 +77,12 @@ export default function TermsOfServicePage() {
             <li>Pro subscriptions are billed through Stripe on a recurring monthly or annual basis.</li>
             <li>
               <strong style={{ color: "var(--text-heading)" }}>Auto-renewal:</strong> A valid payment method is
-              required to begin the 14-day free trial. Your subscription renews automatically — the free trial
+              required to begin the {PRICING.trialDays}-day free trial. Your subscription renews automatically — the free trial
               converts to a paid subscription when it ends, and paid subscriptions renew each billing period — and
               your payment method is charged at the then-current price until you cancel.
             </li>
             <li>You may cancel your subscription at any time through the Billing section in Settings. Cancellation takes effect at the end of your current billing period.</li>
-            <li>If you cancel during the 14-day free trial, you will not be charged.</li>
+            <li>If you cancel during the {PRICING.trialDays}-day free trial, you will not be charged.</li>
             <li>
               <strong style={{ color: "var(--text-heading)" }}>No refunds:</strong> Except where required by law or
               in the case of a duplicate charge or billing error, subscription fees are non-refundable, including the
@@ -129,7 +137,7 @@ export default function TermsOfServicePage() {
           <p className="mb-3">
             ChapterFlow provides original educational summaries, scenarios, and quizzes inspired by ideas from
             published non-fiction books. All ChapterFlow-original content (summaries, examples, quiz questions,
-            interface design) is owned by SiliconX Software Solutions. Original book content remains the property
+            interface design) is owned by {LEGAL_ENTITY_NAME}. Original book content remains the property
             of its respective authors and publishers.
           </p>
           <p className="mb-3">
@@ -145,7 +153,7 @@ export default function TermsOfServicePage() {
             <strong style={{ color: "var(--text-heading)" }}>Your content:</strong> Your reading progress, notes,
             quiz responses, and scenario submissions are your data, subject to our{" "}
             <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-teal)" }}>Privacy Policy</a>.
-            By submitting content such as scenarios, you grant SiliconX Software Solutions a non-exclusive,
+            By submitting content such as scenarios, you grant {LEGAL_ENTITY_NAME} a non-exclusive,
             worldwide, royalty-free license to store, display, adapt, and distribute that content within the
             Service to operate and improve it; you retain ownership and may request its removal, and you confirm
             your submissions do not infringe anyone else&apos;s rights. You can export all your data at any time from
@@ -158,7 +166,7 @@ export default function TermsOfServicePage() {
             9. Limitation of Liability
           </h2>
           <p>
-            ChapterFlow is provided &quot;as is&quot; without warranties of any kind, either express or implied. SiliconX Software Solutions
+            ChapterFlow is provided &quot;as is&quot; without warranties of any kind, either express or implied. {LEGAL_ENTITY_NAME}
             shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising
             from your use of or inability to use the Service, including but not limited to loss of data, loss of
             progress, or service interruptions. Our total liability for any claim shall not exceed the amount you
@@ -178,7 +186,7 @@ export default function TermsOfServicePage() {
             You may deactivate your account at any time from Settings. Deactivation preserves your data and you
             can reactivate by signing back in. You may also permanently delete your account from Settings. Deleted
             accounts become non-functional. Alternatively, you can contact{" "}
-            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>{" "}
             for account-related requests.
           </p>
         </section>
@@ -210,7 +218,7 @@ export default function TermsOfServicePage() {
           </h2>
           <p>
             For questions about these Terms, contact us at{" "}
-            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>.
           </p>
         </section>
       </div>
