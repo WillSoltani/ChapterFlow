@@ -97,9 +97,9 @@ export function Hero() {
               }}
               variants={fadeUp}
             >
-              Most readers forget the majority of a book within weeks.
-              ChapterFlow turns every chapter into a structured loop that
-              actually makes ideas stick &mdash; for good.
+              Research on the forgetting curve shows most readers lose much of
+              a book within weeks. ChapterFlow turns every chapter into a
+              structured loop that actually makes ideas stick &mdash; for good.
             </motion.p>
 
             {/* Primary CTA */}
