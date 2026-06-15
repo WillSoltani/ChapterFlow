@@ -8,7 +8,15 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
-import { PRICING, ANNUAL_TOTAL_AMOUNT, ANNUAL_SAVINGS_PCT, formatAmount, TRIAL_CTA_LABEL } from "@/lib/pricing";
+import {
+  PRICING,
+  ANNUAL_TOTAL_AMOUNT,
+  ANNUAL_SAVINGS_PCT,
+  formatAmount,
+  TRIAL_CTA_LABEL,
+  UPGRADE_RETURN_PATH,
+  UPGRADE_LOGIN_URL,
+} from "@/lib/pricing";
 
 /* ------------------------------------------------------------------ */
 /*  Inline icons                                                      */
@@ -115,7 +123,13 @@ export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
   const { loggedIn } = useAuthStatus();
   const freeHref = loggedIn ? "/book" : AUTH_LOGIN_BOOK_URL;
-  const proHref = loggedIn ? "/book/settings" : AUTH_LOGIN_BOOK_URL;
+  // The Pro CTA advertises "Start 14-day free trial" with a "card required,
+  // charged when the trial ends" promise — so it must land on the trial-start
+  // (Stripe checkout) surface, not the free reader. Logged-in: the settings
+  // Billing tab (upgrade action). Logged-out: login → that same surface via
+  // returnTo, instead of AUTH_LOGIN_BOOK_URL which dumped new visitors in /book
+  // (the reader) with no checkout.
+  const proHref = loggedIn ? UPGRADE_RETURN_PATH : UPGRADE_LOGIN_URL;
   const perMonthAmount = isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount;
   const annualTotal = formatAmount(ANNUAL_TOTAL_AMOUNT);
 

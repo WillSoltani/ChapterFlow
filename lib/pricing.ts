@@ -117,6 +117,32 @@ export function monthlySubscriptionCents(
 /** Canonical CTA shown on every upgrade button, e.g. "Start 14-day free trial". */
 export const TRIAL_CTA_LABEL = `Start ${PRICING.trialDays}-day free trial`;
 
+/**
+ * Where the "Start free trial" / upgrade CTA must land so it actually presents
+ * the trial-start (Stripe checkout) step — the settings Billing tab, which
+ * renders the upgrade action (ProFeatureCard → launchBillingAction("upgrade")).
+ * That page already shows the prominent upgrade button, so the destination no
+ * longer dead-ends in the free reader the way `/book` did.
+ *
+ * The `upgrade=1` hint is a forward-compatible deep-link marker: the settings
+ * client does not read it yet, but it lets a follow-on change auto-open / scroll
+ * to the upgrade step without re-touching this CTA. It is inert (harmless) until
+ * then.
+ */
+export const UPGRADE_RETURN_PATH = "/book/settings?upgrade=1";
+
+/**
+ * Logged-out variant of the upgrade CTA target: send the visitor through
+ * `/auth/login` with a returnTo of {@link UPGRADE_RETURN_PATH} so that after
+ * sign-in they land on the trial-start surface — NOT `/book` (the free reader),
+ * which delivered no checkout despite the "card required, charged when the trial
+ * ends" promise on the button. `sanitizeReturnTo` accepts this same-origin path
+ * (query string included) verbatim, so the deep-link survives the auth round-trip.
+ */
+export const UPGRADE_LOGIN_URL = `/auth/login?returnTo=${encodeURIComponent(
+  UPGRADE_RETURN_PATH,
+)}`;
+
 /** Annual-tier discount badge, e.g. "Save 25%". */
 export const ANNUAL_SAVINGS_BADGE = `Save ${ANNUAL_SAVINGS_PCT}%`;
 
