@@ -10,9 +10,19 @@ comes next. You never have to remember the step order.
 | 2 | QC | `QC-CODEX-SESSION.md` | `QC <book>` | `QC AUTO PASS` — every chapter PUBLISHABLE (copy the round id it prints) |
 | 3 | Commit + push + publish | `PUBLISH-AFTER-QC-CODEX-SESSION.md` | `Finalize and publish <book> from QC round <roundId>. Commit and push.` | package written, committed, pushed |
 
+## Faster phase-1: parallel writer-orchestrator (optional)
+For the write portion, `WRITE-ORCHESTRATE-CODEX-SESSION.md` (`Write the book <book>`)
+replaces the sequential single-session write with an **orchestrator that dispatches up
+to 6 writer subagents at a time** (one chapter each, from its own source), runs the
+book-gate barrier, and re-dispatches only the chapters that fail. It needs research done
+first (run the research phase of prompt 1), then orchestrates the write and stops at the
+same `phase: qc` handoff. Use it for short, drift-free per-chapter contexts with the
+book-wide invariants enforced by the orchestrator rather than left to one long session.
+
 ## What each phase does
 1. **Generate** — runs the status-driven loop (research → write → gate). It never QCs
-   or publishes; it stops at `phase: qc` and hands off to prompt 2.
+   or publishes; it stops at `phase: qc` and hands off to prompt 2. (Or: do research here,
+   then hand the write to `WRITE-ORCHESTRATE-CODEX-SESSION.md` for the parallel path above.)
 2. **QC** — opens a QC round, you review every chapter honestly and submit, and
    `qc-auto` converges to `QC AUTO PASS`. It does **not** publish. On PASS it prints the
    round id and the exact prompt-3 command. If it says **REPAIR REQUIRED**, it hands a

@@ -1659,6 +1659,16 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   writeExemplarPlan(exemplarPlan);
   const venuePlan = planVenues(bookId, from, to);
   writeVenuePlan(venuePlan);
+  // Rhetoric plan: per-chapter counterintuition shape + hook opener class so the
+  // BOOK doesn't converge on one opener (B11 negation-shell / B13 "what" hook).
+  const { planRhetoric, writeRhetoricPlan } = await import("./librarian/rhetoricPlan.js");
+  const rhetoricPlan = planRhetoric(bookId, from, to);
+  writeRhetoricPlan(rhetoricPlan);
+  // Answer-key plan: per-chapter balanced correctIndex target so the book stays
+  // under the F3 ceiling by construction instead of drifting to index 0.
+  const { planAnswerKeys, writeAnswerKeyPlan } = await import("./librarian/answerKeyPlan.js");
+  const answerKeyPlan = planAnswerKeys(bookId, from, to);
+  writeAnswerKeyPlan(answerKeyPlan);
   // Carried name allocations for authored chapters include every capitalized
   // token the extractor saw ("University", "All", "Tonight" — junk from
   // scenario text). Pasting those as an exclusive allowlist breaks redo
@@ -1709,7 +1719,15 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const venueIds = venuePlan.allocation[ch.number] ?? [];
     const venueLines = venueIds.map((venue, i) => `    ${i + 1}. ${venue}`).join("\n");
     const venueLine = venueIds.length
-      ? `• VENUES: example[i] is set at the dealt venue[i] and example[i].planSpec.venue MUST equal that exact venue string (a venue is a PLACE or a relationship CHANNEL — a phone call, a text thread — not a script; furnish it from the scene's own logic). Never relocate two examples to the same venue. FIT the staging to THIS chapter's topic: a personal/relational subject belongs at a kitchen table, a phone call, or a text thread, NOT a workplace prop. And VARY the scene SHAPE across the six examples — do NOT open every scenario as "<Name> <tactile-verb>s at/beside a <work prop>"; the dealt venues already span kinds (domestic, relational, civic, occupational, commercial, recreational), so let each scene's grammar differ.\n${venueLines}\n`
+      ? `• VENUES (a FALLBACK palette for variety — NOT a mandate): the SOURCE CASE is the stage. Stage each example in its source case's own natural setting. Only if a case has no natural setting, draw a venue from the list below for variety. NEVER relocate the real case to a dealt venue and demote the case to notes "glowing on a phone" or an invented onlooker (SL3 blocks this). A venue may be a relationship CHANNEL (a phone call, a text thread), not only a place. Don't put two examples at the same venue; FIT staging to the topic (a personal/relational subject belongs at a kitchen table or on a phone call, not a workplace prop). VARY the scene SHAPE — don't open every scenario "<Name> <verb>s at/beside a <prop>". Set example[i].planSpec.venue to the setting you actually used (optional).\n    palette: ${venueIds.join("; ")}\n`
+      : "";
+    const rhet = rhetoricPlan.allocation[ch.number];
+    const rhetoricLine = rhet
+      ? `• OPENERS (anti-clustering — the book must not converge on one shape): counterintuition = ${rhet.counterShape} — ${rhet.counterDirective} || hook = ${rhet.hookOpenerClass} — ${rhet.hookDirective} These are YOUR assigned shapes; do not default to the "X is not Y" negation shell (B11) or open the hook with "What" (B13).\n`
+      : "";
+    const akTarget = answerKeyPlan.allocation[ch.number] ?? [];
+    const answerKeyLine = akTarget.length
+      ? `• ANSWER-KEY TARGET — place the correct answers at these positions across the ${akTarget.length} questions: [${akTarget.join(", ")}]. Score each question for TRUTH first, then arrange the (unchanged) choices so the correct one lands on its target position. This keeps the book balanced (prevents F3 answer-position drift). NEVER change which choice is true to hit a position.\n`
       : "";
 
     // Source specifics: the sidecar's real anchors, pasted so the writer
@@ -1758,7 +1776,9 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
         `${shapeLines}\n` +
         venueLine +
+        rhetoricLine +
         pedagogyLines +
+        answerKeyLine +
         specificsLine +
         exemplarLine +
         voiceLine +
@@ -1883,6 +1903,25 @@ async function runAnswerKeyPlan(args: string[], flags: Record<string, string | b
   for (let n = from; n <= to; n++) console.log(`  ch${String(n).padStart(2, "0")}: [${(plan.allocation[n] ?? []).join(",")}]`);
   console.log(`\naggregate counts=[${plan.aggregate.counts.join(",")}] maxFraction=${plan.aggregate.maxFraction.toFixed(3)} (ceiling ${0.4})`);
   console.log(`Written: ${path}`);
+  return 0;
+}
+
+/** `rhetoric-plan <bookId> --from N --to M` — pre-authoring allocator for the
+ *  counterintuition paradox shape (B11/B14) and the hook opener class (B13).
+ *  Deals varied shapes so no opener clusters across the book by construction. */
+async function runRhetoricPlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
+    console.error("Usage: rhetoric-plan <bookId> --from N --to M");
+    return 2;
+  }
+  const { planRhetoric, writeRhetoricPlan, formatRhetoricPlan } = await import("./librarian/rhetoricPlan.js");
+  const plan = planRhetoric(bookId, from, to);
+  const path = writeRhetoricPlan(plan);
+  console.log(formatRhetoricPlan(plan));
+  console.log(`\nWritten: ${path}`);
   return 0;
 }
 
@@ -3610,6 +3649,8 @@ async function main() {
       return runVenuePlan(args, flags);
     case "answer-key-plan":
       return runAnswerKeyPlan(args, flags);
+    case "rhetoric-plan":
+      return runRhetoricPlan(args, flags);
     case "pedagogy-plan":
       return runPedagogyPlan(args, flags);
     case "qc-open-round":
