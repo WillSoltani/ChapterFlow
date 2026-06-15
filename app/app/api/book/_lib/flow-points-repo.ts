@@ -674,6 +674,7 @@ export async function redeemFlowPointsReward(
             // gift-claim guard. NULL-aware (attribute_type ... :nullType) because
             // this very write stores licenseExpiresAt as a DynamoDB NULL, so a
             // stored-NULL expiry must not block a legitimate extend.
+            // Spec + truth-table tests: _lib/pro-grant-guard-core.ts (keep in sync).
             ConditionExpression:
               "(attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :periodEnd) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :periodEnd))",
             ExpressionAttributeNames: {

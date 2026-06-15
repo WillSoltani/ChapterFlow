@@ -36,6 +36,7 @@ import {
   gradeQuizAttemptQuestions,
   remainingCooldownSeconds,
 } from "@/app/app/api/book/_lib/quiz-session";
+import { answersCoverAssignedQuestions } from "@/app/app/api/book/_lib/quiz-coverage-core";
 import {
   countRecentQuizAttempts,
   getUserBookState,
@@ -337,14 +338,11 @@ export async function POST(
     // not just the right count. The legacy index-only scorer grades against the
     // full quiz.questions pool, so a count-only check could be satisfied with
     // answers to non-assigned pool questions (whose correct indices are exposed),
-    // re-opening the pass/unlock bypass. Set-equality forces a bijection with the
-    // assigned subset (and rejects duplicate response ids, which collapse the set).
-    const attemptQuestionIds = new Set(attemptQuestions.map((q) => q.questionId));
-    const responseQuestionIds = new Set(responses.map((r) => r.questionId));
-    const answersExactlyCoverAttempt =
-      responses.length === attemptQuestions.length &&
-      responseQuestionIds.size === attemptQuestionIds.size &&
-      [...attemptQuestionIds].every((id) => responseQuestionIds.has(id));
+    // re-opening the pass/unlock bypass. See answersCoverAssignedQuestions (tested).
+    const answersExactlyCoverAttempt = answersCoverAssignedQuestions(
+      attemptQuestions.map((q) => q.questionId),
+      responses.map((r) => r.questionId)
+    );
     if (!answersExactlyCoverAttempt) {
       throw new BookApiError(
         400,

@@ -113,6 +113,7 @@ export async function POST(
                 // this field" via attribute_type(..., :nullType) so a flow_points/
                 // license user can still apply a gift that extends a shorter or
                 // already-expired grant.
+                // Spec + truth-table tests: _lib/pro-grant-guard-core.ts (keep in sync).
                 ConditionExpression:
                   "(attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :expires) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :expires))",
                 ExpressionAttributeNames: { "#plan": "plan" },
