@@ -19,6 +19,12 @@ import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
 
+// Minimum trimmed reflection length required before any IP is awarded. Matches
+// the AI-feedback route's "short_reflection" threshold so a non-empty
+// reflection has the same definition everywhere and the economy copy
+// ("Empty submissions don't count") is actually enforceable server-side.
+const REFLECTION_MIN_LENGTH = 20;
+
 export async function POST(
   req: Request,
   { params }: { params: Promise<{ bookId: string; chapterNumber: string }> }
@@ -41,17 +47,21 @@ export async function POST(
     const body = requireBodyObject(bodyRaw);
 
     const exampleId = typeof body.exampleId === "string" ? body.exampleId.trim() : "";
-    const reflectionLengthRaw = body.reflectionLength;
+    // The actual reflection text is the source of truth for "did the user
+    // write something" — never the client-supplied reflectionLength, which a
+    // farmer could set to any value with no real text. Mirrors the 20-char
+    // minimum the AI-feedback route enforces so the two stay consistent.
+    const reflectionText = typeof body.reflectionText === "string" ? body.reflectionText.trim() : "";
 
     if (!exampleId) {
       throw new BookApiError(400, "invalid_example_id", "exampleId is required.");
     }
-    if (
-      typeof reflectionLengthRaw !== "number" ||
-      !Number.isFinite(reflectionLengthRaw) ||
-      reflectionLengthRaw < 1
-    ) {
-      throw new BookApiError(400, "empty_reflection", "Reflection cannot be empty.");
+    if (reflectionText.length < REFLECTION_MIN_LENGTH) {
+      throw new BookApiError(
+        400,
+        "empty_reflection",
+        `Reflection must be at least ${REFLECTION_MIN_LENGTH} characters.`
+      );
     }
 
     const tableName = await getBookTableName();
