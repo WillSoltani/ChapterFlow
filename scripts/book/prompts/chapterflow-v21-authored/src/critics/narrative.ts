@@ -346,19 +346,37 @@ const SCENE_ANCHORS = [
   // scene deictics
   "sunday night", "before the meeting", "after the meeting",
   "hovers over", "hovering over", "hovers above", "is hovering over",
+  // historical/ancient-register deictics (Stoic/philosophy books are concrete
+  // but not modern-office; these never occur in a 21st-century-office scene, so
+  // adding them is monotonic — C2 fires LESS, never on a new modern scene)
+  "at dusk", "by dusk", "by dawn", "before first light", "at first light",
+  "in the lesson room", "in the courtyard", "on the stair", "in the colonnade",
+  "in the forum", "by lamplight",
 ];
 
 const ROLE_ANCHORS = [
   "manager", "teacher", "student", "founder", "parent", "coach", "director",
   "vp", " pm ", "engineer", "designer", "nurse", "doctor", "lead", "principal",
   "partner", "trainer", "attorney", "analyst", "producer",
+  // historical/ancient-register roles
+  "emperor", "senator", "clerk", "scribe", "slave", "freedman", "merchant",
+  "guard", "soldier", "philosopher", "herald", "sailor", "magistrate", "tutor",
 ];
 
 const CONCRETE_OBJECT_ANCHOR_RE =
-  /\b(?:clipboard|dashboard|counter|table|desk|screen|laptop|whiteboard|memo|memos|chart|folder|binder|briefing|docket|proposal|draft|invoice|worksheet|headset|map|plan|form|report|note|notes|email|inbox|calendar|radio|camera|microscope|slide|spreadsheet|contract|ballot|case file|waiting room|practice room|courtroom|kitchen|warehouse|lab|clinic|hospital|studio|classroom|conference room|hearing room|boardroom|shop floor|control room|break room)\b/;
+  /\b(?:clipboard|dashboard|counter|table|desk|screen|laptop|whiteboard|memo|memos|chart|folder|binder|briefing|docket|proposal|draft|invoice|worksheet|headset|map|plan|form|report|note|notes|email|inbox|calendar|radio|camera|microscope|slide|spreadsheet|contract|ballot|case file|waiting room|practice room|courtroom|kitchen|warehouse|lab|clinic|hospital|studio|classroom|conference room|hearing room|boardroom|shop floor|control room|break room|tablet|tablets|wax seal|seal|scroll|scrolls|reed|stylus|lamp|wick|cloak|jar|amphora|spear|broom|ledger|petition|decree|dispatch|colonnade|courtyard|portico|stoa|altar|forum|marketplace|granary|aqueduct|shirt|closet|workbench|wrench|gate board)\b/;
 
 const PLACE_PHRASE_RE =
   /\b(?:at|in|on|inside|outside|beside|behind|under|across)\s+(?:the|a|an|her|his|their)\s+[a-z0-9'-]+(?:\s+[a-z0-9'-]+){0,4}\b/;
+
+// A specific NAMED place after a locative preposition ("in Nicopolis", "outside
+// Epictetus's room", "across Nero's court"). PLACE_PHRASE_RE requires a lowercase
+// article, so proper-noun / possessive places (common in historical-register
+// scenes) slip past it even though they are concrete settings. Tested on the
+// ORIGINAL (cased) text, so it keys on the capital letter. Only ever makes C2
+// pass MORE — it cannot raise any book's count.
+const PROPER_PLACE_RE =
+  /\b(?:at|in|on|inside|outside|beside|behind|near|across|through|along)\s+(?:the\s+|a\s+|an\s+|her\s+|his\s+|their\s+)?[A-Z][a-z]+(?:'s)?\b/;
 
 export function checkSpecificScene(ex: Example): CriticFinding[] {
   const findings: CriticFinding[] = [];
@@ -371,7 +389,8 @@ export function checkSpecificScene(ex: Example): CriticFinding[] {
     const lower = text.toLowerCase();
     const hasAnchor = SCENE_ANCHORS.some((a) => lower.includes(a));
     const hasRole = ROLE_ANCHORS.some((r) => lower.includes(r));
-    const hasConcretePlace = PLACE_PHRASE_RE.test(lower) && CONCRETE_OBJECT_ANCHOR_RE.test(lower);
+    const hasPlace = PLACE_PHRASE_RE.test(lower) || PROPER_PLACE_RE.test(text);
+    const hasConcretePlace = hasPlace && CONCRETE_OBJECT_ANCHOR_RE.test(lower);
     const hasLabeledSceneObject = /\blabeled\b/.test(lower);
     return hasAnchor || hasRole || hasConcretePlace || hasLabeledSceneObject;
   });
@@ -441,9 +460,14 @@ const DECISION_CUES = [
  *  cue. Forcing decision language into discovery/observation shapes (audit,
  *  vignette, dialogue…) produced incoherent scenes and book-wide deadline
  *  stamps (stillness QC, 2026-06-11). */
+// Only formats whose scene-shape definition is a LIVE binary choice carry a
+// decision-beat requirement. mistake_recovery (noticing/repair), predict_reveal
+// (reveal), decision_memo (a written artifact), and planning_choice (allocation)
+// center on something other than forcing a fork, so demanding an explicit
+// decision cue in them is a false positive — it over-fired on contemplative,
+// register-varied scenes assigned those shapes. Keep only the two true forks.
 const DECISION_FORMATS = new Set([
-  "decision_point", "dilemma", "mistake_recovery", "predict_reveal",
-  "planning_choice", "decision_memo",
+  "decision_point", "dilemma",
 ]);
 
 export function checkDecisionPoint(ex: Example): CriticFinding[] {

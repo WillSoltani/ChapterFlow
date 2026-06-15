@@ -30,6 +30,18 @@ const QUIZ_APPLICATION_OPENERS = [
   /^\s*someone\s/i,
 ];
 
+// Mid-prompt question stems that mark an application/analysis item even when the
+// prompt does not OPEN with a whitelisted subject (e.g. a scenario-first prompt
+// that ends "…what should she infer first?"). Register-agnostic.
+const QUIZ_APPLICATION_STEMS = [
+  /\bwhat should\b/i,
+  /\bwhat (would|will) (she|he|they|you)\b/i,
+  /\bwhat is the (cleanest|best|first|right|smartest|wisest|safest)\b/i,
+  /\bwhich (choice|action|move|plan|response|read|reading|step|option|inference)\b[^?]*\bbest\b/i,
+  /\bbest (next )?(move|step|response|read|action|inference)\b/i,
+  /\bwhat should (she|he|they|you) (infer|do|conclude|prioritize|notice|change|fix)\b/i,
+];
+
 export function checkQuizTestsApplication(q: QuizQuestion): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const prompt = (q.prompt ?? "").trim();
@@ -60,7 +72,8 @@ export function checkQuizTestsApplication(q: QuizQuestion): CriticFinding[] {
 
   // Minor hint: flag if none of the preferred application-style openers are present
   const hasAppOpener = QUIZ_APPLICATION_OPENERS.some((re) => re.test(prompt));
-  if (!hasAppOpener && prompt.length < 120) {
+  const hasAppStem = QUIZ_APPLICATION_STEMS.some((re) => re.test(prompt));
+  if (!hasAppOpener && !hasAppStem && prompt.length < 120) {
     findings.push(
       finding(
         "pedagogy.quiz_tests_application",

@@ -103,6 +103,13 @@ const BANNED_TAIL_CLAUSES: ReadonlyArray<string> = [
  * anchored qualifier ("in most cases," "for the kind of judgments the
  * chapter describes") that preserves the wrong reading.
  */
+// When the absolute sits inside a hypothetical/reported clause ("forgiveness
+// requires acting AS IF the insult NEVER happened"), the absolute belongs to the
+// misconception the stem is testing, not to a gratuitous strawman tell — so it is
+// not a length/extremity giveaway. Suppress those; keep firing on a bare absolute
+// claim ("this NEVER works").
+const STRAWMAN_HYPOTHETICAL = /\b(as if|as though|pretend(?:s|ing)?|imagin\w+|act(?:s|ing)? as (?:if|though)|believe[s]? that)\b/i;
+
 export function checkQuizStrawmanDistractors(quiz: QuizV21): CriticFinding[] {
   const findings: CriticFinding[] = [];
   for (const q of quiz.questions ?? []) {
@@ -114,6 +121,10 @@ export function checkQuizStrawmanDistractors(quiz: QuizV21): CriticFinding[] {
       if (typeof choice !== "string") continue;
       const match = choice.match(STRAWMAN_TRIGGER);
       if (match) {
+        // FP guard: absolute embedded in a hypothetical clause BEFORE the trigger
+        // is part of the named misconception, not a strawman tell.
+        const before = choice.slice(0, match.index ?? 0);
+        if (STRAWMAN_HYPOTHETICAL.test(before)) continue;
         findings.push(
           finding(
             "BP15.quiz_strawman_distractor",
