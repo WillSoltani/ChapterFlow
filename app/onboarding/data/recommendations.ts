@@ -2,7 +2,7 @@
  *
  * Ranks the real catalog (ONBOARDING_BOOKS) by how well each book matches the
  * interests + motivation the user picked, so the swipe deck is seeded from the
- * full 67-book catalog rather than a 3-book stub. Pure + deterministic: the
+ * full published catalog rather than a 3-book stub. Pure + deterministic: the
  * same inputs always produce the same ordering (no Math.random tie-breaks).
  */
 
