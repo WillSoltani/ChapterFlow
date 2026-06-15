@@ -8,6 +8,7 @@ import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/app/book/admin/_components/EmptyState";
 import { downloadCSV } from "@/app/book/admin/_components/csv";
+import { MAX_SYNC_RECIPIENTS } from "@/app/app/api/book/admin/segments/notify-limits-core";
 
 type FilterField =
   | "plan"
@@ -582,8 +583,8 @@ function NotifyModal({
                   {matchCount.toLocaleString()}
                 </span>{" "}
                 user{matchCount === 1 ? "" : "s"}
-                {matchCount > 5000
-                  ? " (capped at 5,000 per send)"
+                {matchCount > MAX_SYNC_RECIPIENTS
+                  ? ` (over the ${MAX_SYNC_RECIPIENTS.toLocaleString()}-recipient per-send cap — refine your filters)`
                   : ""}
                 .
               </p>

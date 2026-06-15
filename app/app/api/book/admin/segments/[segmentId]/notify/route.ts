@@ -13,17 +13,16 @@ import { buildSegmentUsers } from "@/app/app/api/book/_lib/admin-metrics";
 import { runSegment } from "@/app/app/api/book/_lib/segment-engine";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 import type { BookUserNotificationItem } from "@/app/app/api/book/_lib/types";
+import { MAX_SYNC_RECIPIENTS } from "@/app/app/api/book/admin/segments/notify-limits-core";
 
 export const runtime = "nodejs";
 
-// Synchronous fan-out is capped FAR below what a 30s Lambda can safely flush.
-// Each recipient costs a settings read + an in-app write and, when enabled, a
-// CASL/CAN-SPAM-compliant SES send and a per-device push Query — so realistic
-// throughput is well under the 5000 the old code allowed. Anything larger must
-// run through an async worker (see the H9 handoff note): OpenNext ignores Next's
-// `maxDuration` export, so the single default ServerFn's 30s timeout (set in
-// infra/lib/chapterflow-frontend-stack.ts) is a hard wall we cannot raise here.
-const MAX_SYNC_RECIPIENTS = 500;
+// MAX_SYNC_RECIPIENTS (imported above) caps synchronous fan-out FAR below what a
+// 30s Lambda can safely flush: each recipient costs a settings read + an in-app
+// write and, when enabled, a CASL/CAN-SPAM-compliant SES send and a per-device
+// push Query. Anything larger must run through an async worker (see the H9 handoff
+// note): OpenNext ignores Next's `maxDuration` export, so the single default
+// ServerFn's 30s timeout (infra/lib/chapterflow-frontend-stack.ts) is a hard wall.
 
 // How many sends run concurrently. Bounded so we don't open hundreds of
 // simultaneous DynamoDB/SES sockets, but high enough to clear the capped
