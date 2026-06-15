@@ -14,6 +14,10 @@ type BadgeTimelineProps = {
 export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps) {
   const [expanded, setExpanded] = useState(false);
   const reduced = useReducedMotion();
+  // Capture "now" once per mount so the render stays pure (react-hooks/purity).
+  // The 7-day NEW window only flips after ~7 days of continuous mount, which
+  // never happens in a real session, so per-mount-stable is behavior-identical.
+  const [now] = useState(() => Date.now());
 
   const sorted = [...earnedBadges]
     .filter((b) => b.earnedDate)
@@ -55,7 +59,7 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
           <div className="space-y-5">
             {visible.map((badge, i) => {
               const isRecent = badge.earnedDate
-                ? (Date.now() - new Date(badge.earnedDate).getTime()) < 7 * 24 * 60 * 60 * 1000
+                ? (now - new Date(badge.earnedDate).getTime()) < 7 * 24 * 60 * 60 * 1000
                 : false;
 
               return (
