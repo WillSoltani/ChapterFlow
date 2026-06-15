@@ -158,7 +158,7 @@ export async function recordEventChapter(
       body: `You completed "${eventDef.title}" and earned ${eventDef.bonusIP} IP!`,
       metadata: {
         eventId,
-        badgeId: eventDef.badge.badgeId,
+        badgeId: eventDef.badge?.badgeId ?? null,
         ip: eventDef.bonusIP,
       },
     }).catch(() => {});
