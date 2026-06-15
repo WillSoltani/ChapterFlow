@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
@@ -14,11 +13,6 @@ export async function GET(req: NextRequest) {
     return new NextResponse("Missing server env vars", { status: 500 });
   }
 
-  const cookieStore = await cookies();
-  cookieStore.delete("id_token");
-  cookieStore.delete("access_token");
-  cookieStore.delete("refresh_token");
-  cookieStore.delete("auth_expires_at");
   const returnTo = sanitizeReturnTo(
     req.nextUrl.searchParams.get("returnTo"),
     logoutRedirect
