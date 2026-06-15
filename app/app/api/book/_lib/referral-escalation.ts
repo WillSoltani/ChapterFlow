@@ -17,6 +17,7 @@ import { putBadgeAward } from "@/app/app/api/book/_lib/repo";
 import {
   ESCALATION_MILESTONES,
   REFERRAL_ANNUAL_CAP,
+  highestPassedTier,
   selectNewMilestones,
   type EscalationMilestone,
 } from "@/app/app/api/book/_lib/referral-escalation-core";
@@ -147,7 +148,19 @@ export async function checkReferralEscalation(
   }
 
   const activatedInvites = (profile.activatedInvites as number) ?? 0;
-  const highestMilestoneReached = (profile.highestMilestoneReached as number) ?? 0;
+  // §6.3 — Seed highestMilestoneReached for an inviter whose profile predates the
+  // escalation feature (the field is absent). markReferralActivationRewarded just
+  // ADD-incremented activatedInvites by exactly 1, so (activatedInvites - 1) is the
+  // count BEFORE this activation and highestPassedTier of it is the tier reached
+  // pre-go-live. selectNewMilestones then awards ONLY a tier this activation newly
+  // crosses — never the whole 3/5/10/25 ladder as a retroactive lump grant to the
+  // existing inviter base. A new inviter still earns each tier as they cross it
+  // (e.g. 2->3 seeds highestPassedTier(2)=0, so the 3-tier IS awarded); once a tier
+  // is awarded the field is persisted and used directly thereafter. Defaulting to 0
+  // here would lump-grant every already-passed tier — the bug this fixes.
+  const highestMilestoneReached =
+    (profile.highestMilestoneReached as number) ??
+    highestPassedTier(activatedInvites - 1);
   // Default the rolling-window counter to 0 (NOT the lifetime activatedInvites):
   // this feature was unwired until now, so every existing inviter lacks this
   // field, and seeding it from the lifetime total would mark high-volume inviters
