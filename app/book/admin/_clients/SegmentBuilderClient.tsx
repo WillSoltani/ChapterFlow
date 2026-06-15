@@ -100,6 +100,7 @@ export function SegmentBuilderClient() {
   const [segments, setSegments] = useState<Segment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -112,6 +113,8 @@ export function SegmentBuilderClient() {
 
   // Notify modal state
   const [notifyOpen, setNotifyOpen] = useState<Segment | null>(null);
+  // Inline delete-confirm state (avoids native confirm())
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
   const loadSegments = () => {
     setLoading(true);
@@ -124,6 +127,12 @@ export function SegmentBuilderClient() {
   useEffect(() => {
     loadSegments();
   }, []);
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = window.setTimeout(() => setToast(null), 3000);
+    return () => window.clearTimeout(t);
+  }, [toast]);
 
   // Debounced preview — refetch when filters change
   useEffect(() => {
@@ -183,9 +192,10 @@ export function SegmentBuilderClient() {
   };
 
   const deleteSegment = async (segmentId: string) => {
-    if (!confirm("Delete this segment?")) return;
+    setConfirmDeleteId(null);
     try {
       await fetchBookJson(`/app/api/book/admin/segments/${segmentId}`, { method: "DELETE" });
+      setToast("Segment deleted.");
       loadSegments();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to delete");
@@ -326,12 +336,13 @@ export function SegmentBuilderClient() {
               {preview && preview.preview.length > 0 && (
                 <button
                   type="button"
-                  onClick={() =>
-                    downloadCSV(
+                  onClick={() => {
+                    const exported = downloadCSV(
                       preview.preview as unknown as Record<string, unknown>[],
                       `segment-preview-${new Date().toISOString().slice(0, 10)}.csv`,
-                    )
-                  }
+                    );
+                    if (!exported) setToast("Nothing to export.");
+                  }}
                   className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
                 >
                   <Download className="h-3.5 w-3.5" />
@@ -418,14 +429,34 @@ export function SegmentBuilderClient() {
                         <Send className="h-3 w-3" />
                         Notify
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => deleteSegment(s.segmentId)}
-                        className="rounded-md border border-(--cf-border) bg-(--cf-surface) p-1.5 text-(--cf-text-soft) hover:bg-(--cf-danger-soft) hover:text-(--cf-danger-text)"
-                        aria-label="Delete segment"
-                      >
-                        <Trash2 className="h-3 w-3" />
-                      </button>
+                      {confirmDeleteId === s.segmentId ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => deleteSegment(s.segmentId)}
+                            className="inline-flex items-center gap-1 rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2 py-1 text-[11px] font-semibold text-(--cf-danger-text) hover:opacity-90"
+                          >
+                            <Trash2 className="h-3 w-3" />
+                            Confirm delete
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setConfirmDeleteId(null)}
+                            className="rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[11px] text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+                          >
+                            Cancel
+                          </button>
+                        </>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setConfirmDeleteId(s.segmentId)}
+                          className="rounded-md border border-(--cf-border) bg-(--cf-surface) p-1.5 text-(--cf-text-soft) hover:bg-(--cf-danger-soft) hover:text-(--cf-danger-text)"
+                          aria-label="Delete segment"
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -441,9 +472,15 @@ export function SegmentBuilderClient() {
           onClose={() => setNotifyOpen(null)}
           onSuccess={(msg) => {
             setNotifyOpen(null);
-            alert(msg);
+            setToast(msg);
           }}
         />
+      )}
+
+      {toast && (
+        <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-(--cf-border) bg-(--cf-surface-strong) px-3 py-2 text-sm text-(--cf-text-1) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
+          {toast}
+        </div>
       )}
     </div>
   );
@@ -462,6 +499,30 @@ function NotifyModal({
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Live match count for this segment's filters (re-run on open so the admin
+  // sees how many users will actually be notified before firing).
+  const [matchCount, setMatchCount] = useState<number | null>(null);
+  const [countLoading, setCountLoading] = useState(true);
+  // Two-step send: first click reveals an inline confirm echoing the count.
+  const [confirming, setConfirming] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setCountLoading(true);
+    adminPost<PreviewResp>("/segments/preview", { filters: segment.filters })
+      .then((res) => {
+        if (!cancelled) setMatchCount(res.matchCount);
+      })
+      .catch(() => {
+        if (!cancelled) setMatchCount(null);
+      })
+      .finally(() => {
+        if (!cancelled) setCountLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [segment.filters]);
 
   const send = async () => {
     setSending(true);
@@ -474,10 +535,13 @@ function NotifyModal({
       onSuccess(`Sent to ${res.sent} of ${res.targetedCount} users (${res.failed} failed).`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to send");
+      setConfirming(false);
     } finally {
       setSending(false);
     }
   };
+
+  const canSend = !!title.trim() && !!message.trim();
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
@@ -491,6 +555,7 @@ function NotifyModal({
               To segment: <span className="font-medium">{segment.name}</span>
             </p>
           </div>
+
           <button
             type="button"
             onClick={onClose}
@@ -501,35 +566,88 @@ function NotifyModal({
           </button>
         </div>
         <div className="space-y-3">
+          <div className="rounded-xl border border-(--cf-accent-border)/30 bg-(--cf-accent-soft)/20 px-3 py-2.5">
+            {countLoading ? (
+              <p className="text-[13px] text-(--cf-text-3)">
+                Counting recipients…
+              </p>
+            ) : matchCount === null ? (
+              <p className="text-[13px] text-(--cf-danger-text)">
+                Could not load the recipient count. Re-run the segment before sending.
+              </p>
+            ) : (
+              <p className="text-[13px] text-(--cf-text-1)">
+                This will notify{" "}
+                <span className="font-semibold tabular-nums text-(--cf-accent)">
+                  {matchCount.toLocaleString()}
+                </span>{" "}
+                user{matchCount === 1 ? "" : "s"}
+                {matchCount > 5000
+                  ? " (capped at 5,000 per send)"
+                  : ""}
+                .
+              </p>
+            )}
+          </div>
           <input
             type="text"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setConfirming(false);
+            }}
             placeholder="Notification title"
             className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-[13px] text-(--cf-text-1) focus:border-(--cf-accent) focus:outline-none"
           />
           <textarea
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              setConfirming(false);
+            }}
             placeholder="Message body"
             rows={4}
             className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-[13px] text-(--cf-text-1) focus:border-(--cf-accent) focus:outline-none"
           />
           {error && <p className="text-[12px] text-(--cf-danger-text)">{error}</p>}
+          {confirming && !sending && (
+            <p className="text-[12px] font-medium text-(--cf-danger-text)">
+              This sends an in-app and email notification to{" "}
+              {matchCount !== null ? matchCount.toLocaleString() : "these"} user
+              {matchCount === 1 ? "" : "s"} and cannot be undone. Send anyway?
+            </p>
+          )}
           <div className="flex items-center gap-2">
+            {confirming ? (
+              <button
+                type="button"
+                onClick={send}
+                disabled={!canSend || sending || countLoading}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-danger-text) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+              >
+                <Send className="h-3.5 w-3.5" />
+                {sending
+                  ? "Sending..."
+                  : `Confirm send to ${
+                      matchCount !== null ? matchCount.toLocaleString() : "users"
+                    }`}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setConfirming(true)}
+                disabled={!canSend || sending || countLoading}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+              >
+                <Send className="h-3.5 w-3.5" />
+                Send now
+              </button>
+            )}
             <button
               type="button"
-              onClick={send}
-              disabled={!title.trim() || !message.trim() || sending}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
-            >
-              <Send className="h-3.5 w-3.5" />
-              {sending ? "Sending..." : "Send now"}
-            </button>
-            <button
-              type="button"
-              onClick={onClose}
-              className="rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3.5 py-1.5 text-[13px] font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+              onClick={confirming ? () => setConfirming(false) : onClose}
+              disabled={sending}
+              className="rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3.5 py-1.5 text-[13px] font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted) disabled:opacity-60"
             >
               Cancel
             </button>
