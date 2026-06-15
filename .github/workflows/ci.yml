@@ -56,9 +56,15 @@ jobs:
       - name: Build OpenNext
         run: npx open-next build
 
-  # ── Smoke gate: drive the real app in a browser (Playwright) ─────────────
+  # ── Smoke gate (DEV BUILD ONLY): drive the app in a browser (Playwright) ──
+  # SCOPE WARNING (M51): this job runs the app via `npm run dev` — the Turbopack
+  # DEV server with DEV_AUTH_BYPASS=1 and no data plane. It verifies that the
+  # authed app SHELL renders, but with auth BYPASSED and NO DynamoDB. It does
+  # NOT exercise the production bundle, real-auth redirects, or DynamoDB-backed
+  # pages — do not mistake a green here for prod-build coverage. The prod bundle
+  # is browser-driven by the separate `e2e-prod` job below.
   e2e:
-    name: E2E Smoke
+    name: E2E Smoke (dev build)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -83,7 +89,7 @@ jobs:
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
-      - name: Run E2E smoke tests
+      - name: Run E2E smoke tests (dev bypass)
         run: npm run test:e2e
 
       - name: Upload Playwright report
@@ -91,6 +97,52 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  # ── Smoke gate (PROD BUILD): browser-drive the production bundle ──────────
+  # M51: builds the app with `next build` and serves it with `next start`
+  # (NODE_ENV=production, DEV_AUTH_BYPASS has no effect), then runs the "@prod"
+  # Playwright specs. This catches prod-build-only crashes / hydration drift the
+  # dev job hides, and asserts the REAL middleware auth bounce (unauthenticated
+  # protected route -> /auth/login), which is invisible under dev auth-bypass.
+  # COGNITO_* placeholders make middleware run its real auth check; still NO
+  # BOOK_TABLE_NAME, so this stays data-plane-free (the bounce happens before any
+  # DB read). A DynamoDB-backed page smoke would need a disposable test backend
+  # and is a follow-up.
+  e2e-prod:
+    name: E2E Smoke (prod build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      E2E_MODE: "prod"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=optional
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E smoke tests (prod bundle)
+        # playwright.config.ts (E2E_MODE=prod) runs `next build` + `next start`
+        # via its webServer and greps the "@prod" specs.
+        run: npm run test:e2e
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report-prod
           path: playwright-report/
           retention-days: 7
 
@@ -136,6 +188,67 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
           exit 0
+
+  # ── Hard gate: ESLint ratchet (L89) — fails only on NEW correctness debt ──
+  # The advisory `lint` job never blocks, `next build` does not run ESLint, and
+  # nothing else enforces JS/TS correctness lint — so correctness regressions
+  # (exhaustive-deps, floating promises, unused error handlers, prefer-const,
+  # etc.) can ship freely and the debt baseline can grow unbounded.
+  #
+  # This mirrors the repo's existing baseline model (scan-style-drift's
+  # allowlist): a committed snapshot of the CURRENT error count below. The job
+  # counts ESLint *errors* (severity 2) and fails ONLY when the count exceeds
+  # the baseline — i.e. on NEW errors. It does not force a big-bang cleanup; as
+  # debt is paid down, ratchet the baseline LOWER (it must never go up).
+  #
+  # Baseline captured 2026-06-14 (`npx eslint . --format json`): 46 errors.
+  lint-ratchet:
+    name: Lint Ratchet (no new errors)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      # Committed baseline: the current ESLint error count. Lower this (never
+      # raise it) as errors are fixed. New errors above this number block CI.
+      ESLINT_ERROR_BASELINE: "46"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=optional
+
+      - name: ESLint ratchet
+        run: |
+          set -uo pipefail
+          npx eslint . --format json > eslint-report.json || true
+          ERRORS=$(node -e "const r=require('./eslint-report.json');let e=0;for(const f of r)e+=f.errorCount;console.log(e);")
+          echo "ESLint errors: ${ERRORS} (baseline: ${ESLINT_ERROR_BASELINE})"
+          {
+            echo "## ESLint ratchet"
+            echo ""
+            echo "- Current errors: \`${ERRORS}\`"
+            echo "- Baseline: \`${ESLINT_ERROR_BASELINE}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "${ERRORS}" -gt "${ESLINT_ERROR_BASELINE}" ]; then
+            echo "::error::ESLint error count ${ERRORS} exceeds baseline ${ESLINT_ERROR_BASELINE} — new correctness-lint debt is not allowed. Fix the new error(s) or, if intentional, justify and update ESLINT_ERROR_BASELINE in ci.yml."
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "❌ **${ERRORS} > ${ESLINT_ERROR_BASELINE}** — new ESLint errors introduced." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [ "${ERRORS}" -lt "${ESLINT_ERROR_BASELINE}" ]; then
+            echo "::warning::ESLint error count ${ERRORS} is BELOW baseline ${ESLINT_ERROR_BASELINE} — lower ESLINT_ERROR_BASELINE in ci.yml to lock in the win."
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "⬇️ **${ERRORS} < ${ESLINT_ERROR_BASELINE}** — ratchet the baseline down to lock in the cleanup." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "✅ No new ESLint errors." >> "$GITHUB_STEP_SUMMARY"
+          fi
 
   # ── Hard gate: CDK synth (backend) for the dev environment ───────────────
   infra-checks:
