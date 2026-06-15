@@ -476,7 +476,7 @@ function ResultsScreen({
       </p>
 
       {session.provisional && (
-        <p className="mt-2 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-400">
+        <p className="mt-2 rounded-lg bg-accent-amber-glow px-3 py-1.5 text-xs font-medium text-(--cr-warning)">
           Scored offline \u2014 result will be verified when you reconnect.
         </p>
       )}
@@ -549,6 +549,9 @@ export function QuizPanel({
   const [retriesUsed, setRetriesUsed] = useState<Record<string, number>>({});
   const [resultView, setResultView] = useState<"results" | "review-mistakes">("results");
   const [previousIncorrectIds, setPreviousIncorrectIds] = useState<Set<string>>(new Set());
+  // Polite SR announcement for per-question grading + final score (WCAG 4.1.3).
+  // The live region is always mounted (below); only its text changes.
+  const [liveMessage, setLiveMessage] = useState("");
 
   const maxRetries = QUIZ_RETRIES_PER_QUESTION[learningMode];
   const [oneByOneIndex, setOneByOneIndex] = useState(0);
@@ -596,6 +599,23 @@ export function QuizPanel({
     }
   }, [session]);
 
+  // Announce the final score to screen readers once the result lands (WCAG 4.1.3).
+  const announcedResultRef = useRef(false);
+  useEffect(() => {
+    const result = session?.result;
+    if (!result) {
+      announcedResultRef.current = false;
+      return;
+    }
+    if (announcedResultRef.current) return;
+    announcedResultRef.current = true;
+    setLiveMessage(
+      result.passed
+        ? `Quiz passed — score ${result.correctAnswers} of ${result.totalQuestions}.`
+        : `Quiz not passed — score ${result.correctAnswers} of ${result.totalQuestions}.`
+    );
+  }, [session?.result]);
+
   const handleAnswer = useCallback(
     (questionId: string, choiceId: string) => {
       if (!session) return;
@@ -607,6 +627,7 @@ export function QuizPanel({
       if (isCorrect) {
         onAnswer(questionId, choiceId);
         setQuestionFeedback((prev) => ({ ...prev, [questionId]: "correct" }));
+        setLiveMessage("Correct.");
       } else {
         const used = (retriesUsed[questionId] ?? 0) + 1;
         setRetriesUsed((prev) => ({ ...prev, [questionId]: used }));
@@ -619,8 +640,17 @@ export function QuizPanel({
         if (used >= maxRetries + 1) {
           onAnswer(questionId, choiceId);
           setQuestionFeedback((prev) => ({ ...prev, [questionId]: "incorrect-final" }));
+          const correctIndex = question.choices.findIndex((c) => c.choiceId === question.correctChoiceId);
+          const correctLetter = OPTION_LABELS[correctIndex] ?? "?";
+          setLiveMessage(`Incorrect. The correct answer is ${correctLetter}.`);
         } else {
           setQuestionFeedback((prev) => ({ ...prev, [questionId]: "incorrect-retry" }));
+          const retriesLeft = maxRetries - used;
+          setLiveMessage(
+            retriesLeft > 0
+              ? `Incorrect — ${retriesLeft} ${retriesLeft === 1 ? "retry" : "retries"} left.`
+              : "Incorrect — try once more."
+          );
         }
       }
     },
@@ -738,6 +768,11 @@ export function QuizPanel({
   return (
     <section className="cr-reading-content space-y-5">
       <h2 data-phase-heading className="sr-only">Quiz</h2>
+      {/* Persistent polite live region: announces per-question grading and the
+       *  final score to screen readers (WCAG 4.1.3). Stays mounted; text only. */}
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {liveMessage}
+      </div>
       {/* Sticky question progress bar */}
       {!submitted && (
         <div
