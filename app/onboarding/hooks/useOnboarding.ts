@@ -169,13 +169,10 @@ export function useOnboarding() {
         // selected, so the flow still works.
         break;
       case 3:
-        defaults.tone = "direct";
-        break;
-      case 4:
         defaults.dailyGoal = 20;
         defaults.chapterOrder = "summary_first";
         break;
-      case 5:
+      case 4:
         // Shelf skip is handled by the shelf component itself
         break;
     }

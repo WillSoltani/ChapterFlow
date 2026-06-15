@@ -10,7 +10,7 @@ export type BadgeCategory =
   | "Examples"
   | "Notes"
   | "Exploration"
-  | "Premium";
+  | "Elite";
 
 export type BadgeTier = "bronze" | "silver" | "gold" | "platinum" | "unique" | "secret";
 

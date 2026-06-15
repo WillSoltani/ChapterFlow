@@ -10,7 +10,6 @@ import { stepVariants, stepTransition } from "../utils/animations";
 import OnboardingProgress from "./OnboardingProgress";
 import StepMotivation from "./StepMotivation";
 import StepInterests from "./StepInterests";
-import StepTone from "./StepTone";
 import StepPace from "./StepPace";
 import StepStarterShelf from "./StepStarterShelf";
 import StepFirstLoop from "./StepFirstLoop";
@@ -21,14 +20,14 @@ export function OnboardingFlow() {
   const { currentStep, direction, nextStep, prevStep, skipStep, clearOnboarding } = onboarding;
   const prefersReducedMotion = useReducedMotion();
 
-  // Ref for Step 6 sub-step back navigation
+  // Ref for the First Loop step (final step) sub-step back navigation
   const loopBackRef = useRef<(() => void) | null>(null);
 
   const normalizeStarterShelfItem = (item: StarterShelfItem): string =>
     typeof item === "string" ? item : item.id ?? "";
 
   const handleBack = useCallback(() => {
-    if (currentStep === 6 && loopBackRef.current) {
+    if (currentStep === 5 && loopBackRef.current) {
       loopBackRef.current();
     } else {
       prevStep();
@@ -243,8 +242,8 @@ export function OnboardingFlow() {
           </div>
         </div>
 
-        {/* Skip — visible on steps 1-5 (not step 6) */}
-        {currentStep < 6 && (
+        {/* Skip — visible on steps 1-4 (not the final First Loop step) */}
+        {currentStep < 5 && (
           <button
             onClick={handleSkip}
             className="flex min-h-12 cursor-pointer items-center border-none bg-transparent font-(family-name:--font-dm-sans) text-[13px] text-(--text-muted) transition-colors duration-200 hover:text-(--text-secondary)"
@@ -274,15 +273,12 @@ export function OnboardingFlow() {
               <StepInterests onNext={nextStep} onSkip={nextStep} />
             )}
             {currentStep === 3 && (
-              <StepTone onNext={nextStep} />
-            )}
-            {currentStep === 4 && (
               <StepPace onNext={nextStep} />
             )}
-            {currentStep === 5 && (
+            {currentStep === 4 && (
               <StepStarterShelf onNext={nextStep} />
             )}
-            {currentStep === 6 && (
+            {currentStep === 5 && (
               <StepFirstLoop onFinish={handleFinish} onBack={prevStep} backRef={loopBackRef} />
             )}
           </motion.div>

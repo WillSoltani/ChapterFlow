@@ -129,7 +129,7 @@ export const CATEGORY_ORDER: BadgeCategory[] = [
   "Examples",
   "Notes",
   "Exploration",
-  "Premium",
+  "Elite",
 ];
 
 export const CATEGORY_META: Record<BadgeCategory, { title: string; description: string }> = {
@@ -165,8 +165,8 @@ export const CATEGORY_META: Record<BadgeCategory, { title: string; description: 
     title: "Exploration & Discovery",
     description: "Expanding the boundaries of what you read.",
   },
-  Premium: {
-    title: "Premium",
+  Elite: {
+    title: "Elite",
     description: "Subtle markers that reward advanced usage without punishing free readers.",
   },
 };
@@ -183,7 +183,7 @@ export const FILTER_OPTIONS: { value: BadgeFilter; label: string }[] = [
   { value: "Examples", label: "Examples" },
   { value: "Notes", label: "Notes" },
   { value: "Exploration", label: "Exploration" },
-  { value: "Premium", label: "Premium" },
+  { value: "Elite", label: "Elite" },
 ];
 
 // ── Category grouping ───────────────────────────────────────────────────────

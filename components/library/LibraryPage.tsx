@@ -11,6 +11,7 @@ import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { getBookCoverPath } from "@/lib/book-covers";
+import { deriveReaderLevel, type ReaderLevel } from "@/lib/reader-levels";
 import { HeroRecommendation } from "./HeroRecommendation";
 import { ActiveReads } from "./ActiveReads";
 import { WeeklyChallenge } from "./WeeklyChallenge";
@@ -26,13 +27,13 @@ import { CURATED_SECTIONS, type LibraryBook } from "./libraryData";
 function CelebrationToast({
   bookTitle,
   xp,
-  level,
+  readerLevel,
   visible,
   onDismiss,
 }: {
   bookTitle: string;
   xp: number;
-  level: number;
+  readerLevel: ReaderLevel;
   visible: boolean;
   onDismiss: () => void;
 }) {
@@ -65,7 +66,8 @@ function CelebrationToast({
             </p>
             <p className="mt-1 text-[13px]" style={{ color: "var(--accent-amber)" }}>
               {/* Only claim IP when there's a real, non-zero figure. */}
-              {xp > 0 ? `+${xp} IP earned · ` : ""}Level {level} Reader
+              {xp > 0 ? `+${xp} IP earned · ` : ""}
+              {readerLevel}
             </p>
           </div>
         </motion.div>
@@ -113,6 +115,17 @@ export function LibraryPage() {
     [entitlement, entries, insightPointsBalance, firstName],
   );
   const weeklyChallenge = WEEKLY_CHALLENGE;
+
+  // Named reader tier (NAMED TIERS, not numeric "Level N") — shared derivation
+  // with the Progress page via deriveReaderLevel, keyed on the same basis
+  // (total completed chapters across the reader's library).
+  const readerLevel = useMemo(
+    () =>
+      deriveReaderLevel(
+        entries.reduce((sum, entry) => sum + (entry.chaptersCompleted ?? 0), 0),
+      ),
+    [entries],
+  );
 
   const booksById = useMemo(() => new Map(books.map((b) => [b.id, b])), [books]);
   const isFreeUser = !userStats.isPro;
@@ -387,7 +400,7 @@ export function LibraryPage() {
         <CelebrationToast
           bookTitle={celebratedBookData.title}
           xp={celebratedBookData.userProgress?.xpEarned ?? 0}
-          level={userStats.level}
+          readerLevel={readerLevel}
           visible={showCelebrationToast}
           onDismiss={() => setShowCelebrationToast(false)}
         />

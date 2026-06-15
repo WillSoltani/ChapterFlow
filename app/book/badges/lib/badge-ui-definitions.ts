@@ -12,7 +12,7 @@ export type BadgeCategory =
   | "Examples"
   | "Notes"
   | "Exploration"
-  | "Premium";
+  | "Elite";
 
 export type BadgeTier = "Bronze" | "Silver" | "Gold" | "Platinum";
 export type BadgePrestige = 1 | 2 | 3 | 4;
@@ -831,11 +831,11 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     flowPoints: 20,
   },
 
-  // ─── Premium ──────────────────────────────────────────────────────────────────
+  // ─── Elite ──────────────────────────────────────────────────────────────────
   {
     id: "pro-activated",
     name: "Pro Activated",
-    category: "Premium",
+    category: "Elite",
     description: "Upgrade to Pro.",
     whyItMatters: "It marks a stronger commitment to long term use of the product.",
     howToEarn: "Activate Pro access.",
@@ -849,7 +849,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
   {
     id: "pro-multi-track",
     name: "Pro Multi Track",
-    category: "Premium",
+    category: "Elite",
     description: "Maintain active progress across multiple books with Pro.",
     whyItMatters: "It rewards a more ambitious reading practice without punishing free users.",
     howToEarn: "Use Pro while actively progressing in three books.",
@@ -871,7 +871,7 @@ export const BADGE_FILTERS = [
   "Books",
   "Notes",
   "Exploration",
-  "Premium",
+  "Elite",
 ] as const;
 
 export type BadgeFilter = (typeof BADGE_FILTERS)[number];
@@ -1026,6 +1026,6 @@ export function filterBadges(badges: BadgeState[], filter: BadgeFilter) {
   if (filter === "Books") return badges.filter((badge) => badge.category === "Books");
   if (filter === "Notes") return badges.filter((badge) => badge.category === "Notes");
   if (filter === "Exploration") return badges.filter((badge) => badge.category === "Exploration" || badge.category === "Examples");
-  if (filter === "Premium") return badges.filter((badge) => badge.category === "Premium");
+  if (filter === "Elite") return badges.filter((badge) => badge.category === "Elite");
   return badges;
 }

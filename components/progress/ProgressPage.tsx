@@ -15,12 +15,12 @@ import type {
   ActiveBook,
   CompletedBook,
   DailyQuest,
-  ReaderLevel,
   ReviewData,
   StepNumber,
   LearningStep,
 } from "./progressTypes";
 import { getBookCoverPath } from "@/lib/book-covers";
+import { deriveReaderLevel, deriveReaderLevelProgress } from "@/lib/reader-levels";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
 import { ReviewSessionFSRS } from "@/app/book/components/ReviewSessionFSRS";
@@ -69,20 +69,6 @@ const DAILY_QUEST_TEMPLATES: ReadonlyArray<DailyQuest> = [
     completed: false,
   },
 ];
-
-function deriveReaderLevel(totalChapters: number): ReaderLevel {
-  if (totalChapters >= 100) return "Thought Leader";
-  if (totalChapters >= 25) return "Knowledge Builder";
-  if (totalChapters >= 5) return "Active Learner";
-  return "Curious Reader";
-}
-
-function deriveReaderLevelProgress(totalChapters: number): number {
-  if (totalChapters >= 100) return 100;
-  if (totalChapters >= 25) return Math.round(((totalChapters - 25) / 75) * 100);
-  if (totalChapters >= 5) return Math.round(((totalChapters - 5) / 20) * 100);
-  return Math.round((totalChapters / 5) * 100);
-}
 
 const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber }> = {
   summary: { step: "summary", stepNumber: 1 },

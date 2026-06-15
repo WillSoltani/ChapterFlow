@@ -10,13 +10,13 @@ import { track } from "@/lib/analytics";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
 import {
   PRICING,
-  ANNUAL_TOTAL_AMOUNT,
   ANNUAL_SAVINGS_PCT,
   formatAmount,
   TRIAL_CTA_LABEL,
   FREE_OFFER_LABEL,
   UPGRADE_RETURN_PATH,
   UPGRADE_LOGIN_URL,
+  PRICING_TIER_DISPLAY,
 } from "@/lib/pricing";
 
 /* ------------------------------------------------------------------ */
@@ -132,7 +132,6 @@ export function Pricing() {
   // (the reader) with no checkout.
   const proHref = loggedIn ? UPGRADE_RETURN_PATH : UPGRADE_LOGIN_URL;
   const perMonthAmount = isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount;
-  const annualTotal = formatAmount(ANNUAL_TOTAL_AMOUNT);
 
   const toggleFaq = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -341,17 +340,27 @@ export function Pricing() {
                   className="text-[48px] font-bold leading-none text-(--text-heading)"
                   style={{ fontFamily: "var(--font-jetbrains)" }}
                 >
-                  {formatAmount(perMonthAmount)}
+                  {isAnnual
+                    ? PRICING_TIER_DISPLAY.annual_upfront.price
+                    : formatAmount(perMonthAmount)}
                 </span>
                 <span className="ml-1 text-[16px] text-(--text-muted)">
-                  {PRICING.currency} / month{isAnnual ? " · billed annually" : ""}
+                  {PRICING.currency} / {isAnnual ? "year" : "month"}
                 </span>
               </div>
 
               <p className="mt-1 text-[13px] text-(--accent-teal)">
-                That&apos;s {formatAmount(perMonthAmount / 30)}/day
-                {isAnnual && (
-                  <span className="text-(--text-muted)"> &middot; {annualTotal} {PRICING.currency} billed today</span>
+                {isAnnual ? (
+                  <>
+                    That&apos;s {formatAmount(PRICING.annualMonthlyAmount)}/month
+                    <span className="text-(--text-muted)">
+                      {" "}
+                      &middot; billed {PRICING_TIER_DISPLAY.annual_upfront.price}{" "}
+                      {PRICING.currency} once a year
+                    </span>
+                  </>
+                ) : (
+                  <>That&apos;s {formatAmount(perMonthAmount / 30)}/day</>
                 )}
               </p>
 
@@ -382,11 +391,12 @@ export function Pricing() {
                 className="mt-6 mb-3 text-[12px] text-(--text-muted) text-center leading-[1.6]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                {PRICING.trialDays}-day free trial, then {formatAmount(perMonthAmount)}{" "}
-                {PRICING.currency}/month
-                {isAnnual ? ` (${annualTotal} ${PRICING.currency} billed annually)` : ""}. A card
-                is required; you won&apos;t be charged until the trial ends, and you can cancel
-                anytime before then.{" "}
+                {PRICING.trialDays}-day free trial, then{" "}
+                {isAnnual
+                  ? `${PRICING_TIER_DISPLAY.annual_upfront.price} ${PRICING.currency}/year (${formatAmount(PRICING.annualMonthlyAmount)} ${PRICING.currency}/month)`
+                  : `${formatAmount(perMonthAmount)} ${PRICING.currency}/month`}
+                . A card is required; you won&apos;t be charged until the trial ends, and you can
+                cancel anytime before then.{" "}
                 <Link
                   href="/legal/refund"
                   className="underline hover:text-(--text-secondary)"

@@ -60,14 +60,14 @@ export function BookRow({
           className="font-(family-name:--font-display) text-xl font-semibold"
           style={{ color: "var(--cf-text-1)" }}
         >
-          {isNewUser ? "Build Your Bookshelf" : "Your Books"}
+          {isNewUser ? "Build your bookshelf" : "Your books"}
         </h2>
         <Link
           href="/book/library"
           className="text-sm font-medium transition-colors hover:underline"
           style={{ color: "var(--cf-accent)" }}
         >
-          Browse Library →
+          Browse library →
         </Link>
       </div>
 

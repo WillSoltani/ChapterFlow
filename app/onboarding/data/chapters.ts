@@ -1,4 +1,4 @@
-/* ── Sample chapter content for Step 6 (First Learning Loop) ── */
+/* ── Sample chapter content for Step 5 (First Learning Loop) ── */
 
 import type { Motivation, Tone } from "../hooks/useOnboarding";
 

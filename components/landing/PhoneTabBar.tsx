@@ -75,7 +75,7 @@ const tabs = [
   { label: "Home", active: true, icon: <HomeIcon /> },
   { label: "Library", active: false, icon: <LibraryIcon /> },
   { label: "Progress", active: false, icon: <ProgressIcon /> },
-  { label: "Badges", active: false, icon: <BadgesIcon /> },
+  { label: "Achievements", active: false, icon: <BadgesIcon /> },
 ];
 
 export function PhoneTabBar() {
