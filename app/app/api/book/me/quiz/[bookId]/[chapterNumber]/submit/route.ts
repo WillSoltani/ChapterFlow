@@ -333,11 +333,23 @@ export async function POST(
     // answer would otherwise grade as 100% and pass the quiz (unlocking the
     // next chapter and farming Insight Points). Require one answer per
     // attempt question so neither path can pass on partial coverage.
-    if (responses.length !== attemptQuestions.length) {
+    // Require the responses to answer EXACTLY the assigned attempt questions —
+    // not just the right count. The legacy index-only scorer grades against the
+    // full quiz.questions pool, so a count-only check could be satisfied with
+    // answers to non-assigned pool questions (whose correct indices are exposed),
+    // re-opening the pass/unlock bypass. Set-equality forces a bijection with the
+    // assigned subset (and rejects duplicate response ids, which collapse the set).
+    const attemptQuestionIds = new Set(attemptQuestions.map((q) => q.questionId));
+    const responseQuestionIds = new Set(responses.map((r) => r.questionId));
+    const answersExactlyCoverAttempt =
+      responses.length === attemptQuestions.length &&
+      responseQuestionIds.size === attemptQuestionIds.size &&
+      [...attemptQuestionIds].every((id) => responseQuestionIds.has(id));
+    if (!answersExactlyCoverAttempt) {
       throw new BookApiError(
         400,
         "invalid_answers",
-        `responses must include exactly ${attemptQuestions.length} answers.`
+        `responses must answer exactly the ${attemptQuestions.length} assigned question(s).`
       );
     }
 
