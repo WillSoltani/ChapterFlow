@@ -14,6 +14,18 @@ let ssmClientPromise: Promise<{
 const resolvedValueCache = new Map<string, string>();
 const missingCache = new Set<string>();
 
+// Distinguishes "loadFromSsm hit a transient/credential/network error" from
+// "loadFromSsm genuinely found nothing". On the no-prefix fallback path the
+// error is swallowed (SSM is optional there), but getServerEnv must NOT cache
+// the name as permanently missing on a transient blip — otherwise one bad
+// lookup poisons the value for the whole process lifetime.
+class SsmTransientError extends Error {
+  constructor(public readonly cause: unknown) {
+    super(cause instanceof Error ? cause.message : String(cause));
+    this.name = "SsmTransientError";
+  }
+}
+
 async function getSsmClient() {
   if (ssmClientPromise) return ssmClientPromise;
 
@@ -106,13 +118,16 @@ async function loadFromSsm(key: string): Promise<string | undefined> {
   }
 
   if (lastError) {
-    // Only propagate SSM errors when SSM is explicitly configured via SSM_PREFIX.
-    // Without a prefix, SSM is an optional fallback — credential/network failures
-    // should not crash the request.
+    // When SSM is explicitly configured via SSM_PREFIX, propagate the error so the
+    // request fails loudly (and a later call retries fresh — nothing is cached).
     if (SSM_PREFIX) throw lastError;
+    // Without a prefix, SSM is an optional fallback — credential/network failures
+    // should not crash the request. But signal the failure as transient so the
+    // caller does NOT cache this name as permanently missing on a transient blip.
     console.warn("book_ssm_fallback_skipped", {
       message: lastError instanceof Error ? lastError.message : String(lastError),
     });
+    throw new SsmTransientError(lastError);
   }
   return undefined;
 }
@@ -127,7 +142,17 @@ export async function getServerEnv(name: string): Promise<string | undefined> {
   if (resolvedValueCache.has(name)) return resolvedValueCache.get(name);
   if (missingCache.has(name)) return undefined;
 
-  const fromSsm = await loadFromSsm(name);
+  let fromSsm: string | undefined;
+  try {
+    fromSsm = await loadFromSsm(name);
+  } catch (error: unknown) {
+    // A transient/credential/network blip on the no-prefix fallback path must not
+    // poison missingCache for the process lifetime — return undefined for this
+    // request only, so a later call retries fresh. (With SSM_PREFIX set, the error
+    // is a real one and propagates instead of being swallowed here.)
+    if (error instanceof SsmTransientError) return undefined;
+    throw error;
+  }
   if (!fromSsm) {
     missingCache.add(name);
     return undefined;
