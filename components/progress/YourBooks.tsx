@@ -47,7 +47,7 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
           className="text-base font-semibold"
           style={{ color: "var(--text-heading)" }}
         >
-          Your Books
+          Your books
         </h2>
 
         {/* Tab filters */}
@@ -100,7 +100,7 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
               border: "1px solid var(--border-subtle)",
             }}
           >
-            Browse Library {"\u2192"}
+            Browse library {"\u2192"}
           </Link>
         </div>
       ) : (
@@ -134,7 +134,7 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
                   border: "1px solid var(--border-subtle)",
                 }}
               >
-                Browse Library {"\u2192"}
+                Browse library {"\u2192"}
               </Link>
             </div>
           )}

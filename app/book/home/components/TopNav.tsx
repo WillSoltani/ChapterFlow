@@ -59,7 +59,7 @@ const navItems: NavItem[] = [
   { id: "home", label: "Home", href: "/dashboard", icon: Home },
   { id: "library", label: "Library", href: "/book/library", icon: LayoutGrid },
   { id: "progress", label: "Progress", href: "/book/progress", icon: TrendingUp },
-  { id: "badges", label: "Badges", href: "/book/badges", icon: Shield },
+  { id: "badges", label: "Achievements", href: "/book/badges", icon: Shield },
 ];
 
 /** Shown only in desktop top nav (too many items for mobile bottom bar) */

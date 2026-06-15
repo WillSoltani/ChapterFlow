@@ -96,17 +96,17 @@ function getCTAHref(userState: UserState, book: CurrentBook | null): string {
 function getCTAText(userState: UserState, book: CurrentBook | null): string {
   switch (userState) {
     case "new_user":
-      return "Pick Your First Book";
+      return "Pick your first book";
     case "active_reader":
-      return `Continue Chapter ${book?.currentChapter ?? 1}`;
+      return `Continue chapter ${book?.currentChapter ?? 1}`;
     case "quiz_pending":
-      return "Take the Quiz";
+      return "Take the quiz";
     case "between_books":
-      return "Explore Library";
+      return "Explore library";
     case "returning":
-      return "Pick Up Where You Left Off";
+      return "Pick up where you left off";
     case "free_limit_reached":
-      return "Unlock Your Full Library";
+      return "Unlock your full library";
     default:
       return "Continue";
   }
@@ -119,13 +119,13 @@ function getHeroTitle(
 ): string {
   switch (userState) {
     case "new_user":
-      return "Start Your Reading Journey";
+      return "Start your reading journey";
     case "returning":
-      return `Welcome Back, ${firstName}!`;
+      return `Welcome back, ${firstName}!`;
     case "between_books":
-      return "What's Next?";
+      return "What's next?";
     default:
-      return book?.title ?? "Your Next Book";
+      return book?.title ?? "Your next book";
   }
 }
 
@@ -164,7 +164,7 @@ export function HeroSessionCard({
   const ctaText = getCTAText(userState, currentBook);
   const ctaHref = getCTAHref(userState, currentBook);
   const title = hasPersonalizedShelf
-    ? "Your Shelf Is Ready"
+    ? "Your shelf is ready"
     : getHeroTitle(userState, currentBook, firstName);
   const subtitle = hasPersonalizedShelf
     ? `We picked ${starterShelfBooks.length} books based on your interests`

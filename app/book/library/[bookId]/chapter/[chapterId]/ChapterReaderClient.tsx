@@ -947,13 +947,12 @@ export function ChapterReaderClient({
           contentTone={contentTone}
           onChangeContentTone={(tone) => {
             if (tone === contentTone) return;
+            // Persist the preference (it still parameterizes the quiz endpoint's
+            // tone) but show no "tone changed" toast: the live catalog is all
+            // v21, whose prose is tone-invariant (a single canonical voice), so
+            // the chapter text does not actually change. The old toast claimed
+            // a prose change that never happened.
             patchBookPrefs("extended", { contentTone: tone });
-            const labels: Record<string, string> = {
-              gentle: "Gentle tone. Warm, invitational framing.",
-              direct: "Direct tone. Clean, efficient language.",
-              competitive: "Competitive tone. Edge-focused, challenge-driven.",
-            };
-            setToast(labels[tone] ?? `Switched to ${tone} tone.`);
           }}
           showProgressBar={bookPrefs.reading.showProgressBar}
           showEstimatedReadingTime={bookPrefs.reading.showEstimatedReadingTime}

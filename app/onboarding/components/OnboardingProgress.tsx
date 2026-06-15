@@ -9,13 +9,13 @@ interface OnboardingProgressProps {
 
 export default function OnboardingProgress({
   currentStep,
-  totalSteps = 6,
+  totalSteps = 5,
 }: OnboardingProgressProps) {
   const prefersReducedMotion = useReducedMotion();
 
   // On the terminal celebration step the visible label and the aria-label both
   // switch to "Setup complete" so the announced and visible copy stay in sync
-  // (no more "Almost there" / "step 6 of 6" mismatch).
+  // (no more "Almost there" / "step 5 of 5" mismatch).
   const isComplete = currentStep >= totalSteps;
   const statusLabel = isComplete
     ? "Setup complete"

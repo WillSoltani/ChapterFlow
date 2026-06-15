@@ -87,7 +87,7 @@ const CATEGORY_DESCRIPTIONS: Record<BadgeCategory, string> = {
   Examples: "Application focused milestones tied to personal, school, and work context usage.",
   Notes: "Quiet reflection markers that reward writing, synthesis, and knowledge capture.",
   Exploration: "Broader library and category discovery that expands the range of your reading practice.",
-  Premium: "Subtle premium markers that reward advanced usage without punishing free readers.",
+  Elite: "Subtle premium markers that reward advanced usage without punishing free readers.",
 };
 
 const CATEGORY_ORDER: BadgeCategory[] = [
@@ -99,7 +99,7 @@ const CATEGORY_ORDER: BadgeCategory[] = [
   "Examples",
   "Notes",
   "Exploration",
-  "Premium",
+  "Elite",
 ];
 
 const NEXT_TIER_MAP: Record<string, string> = {
