@@ -49,7 +49,7 @@ export function MobileStickyBar() {
       initial={{ y: 100 }}
       animate={{ y: shown ? 0 : 100 }}
       transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }}
-      className="fixed bottom-0 inset-x-0 z-40 md:hidden"
+      className="fixed bottom-0 inset-x-0 z-40 md:hidden pb-safe"
       style={{
         background: "color-mix(in srgb, var(--bg-base) 90%, transparent)",
         backdropFilter: "blur(24px)",
@@ -72,7 +72,7 @@ export function MobileStickyBar() {
         <button
           type="button"
           onClick={handleDismiss}
-          className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-(--text-muted) hover:text-(--text-heading) hover:bg-(--bg-glass) transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+          className="flex-shrink-0 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full text-(--text-muted) hover:text-(--text-heading) hover:bg-(--bg-glass) transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
           aria-label="Dismiss"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
