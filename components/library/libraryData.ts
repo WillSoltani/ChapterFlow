@@ -82,27 +82,6 @@ type LibraryBookOverride = Partial<
   Omit<LibraryBook, "id" | "title" | "author" | "totalChapters" | "estimatedReadingTimeMinutes">
 >;
 
-// ── Mock user stats ──
-export const MOCK_USER_STATS: UserStats = {
-  firstName: "Will",
-  level: 4,
-  xp: 1250,
-  xpToNextLevel: 2000,
-  booksCompleted: 0,
-  currentStreak: 5,
-  streakIsActiveToday: true,
-  nextBadge: { name: "Avid Reader", booksAway: 2 },
-  isPro: true,
-  freeBooksUsed: 1,
-  freeBooksLimit: 2,
-};
-
-// ── Mock weekly challenge ──
-export const MOCK_WEEKLY_CHALLENGE: WeeklyChallenge = {
-  description: "Start a book in Psychology",
-  category: "Psychology",
-};
-
 function inferLibraryCategory(categories: string[]): Category {
   const normalized = categories.map((category) => category.toLowerCase());
   if (normalized.includes("communication")) return "Communication";

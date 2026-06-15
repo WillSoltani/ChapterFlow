@@ -14,12 +14,12 @@ import type {
   ProgressPageData,
   ActiveBook,
   CompletedBook,
+  DailyQuest,
   ReaderLevel,
   ReviewData,
   StepNumber,
   LearningStep,
 } from "./progressTypes";
-import { mockProgressData } from "./progressMockData";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
@@ -36,6 +36,38 @@ import { ProInsightsPreview } from "./ProInsightsPreview";
 // ──────────────────────────────────────────────────
 // Data transformation: hooks → ProgressPageData
 // ──────────────────────────────────────────────────
+
+// Structural shells for the daily quests. `current`/`completed` are placeholders
+// only — every value is recomputed from real analytics in `buildProgressData`.
+const DAILY_QUEST_TEMPLATES: ReadonlyArray<DailyQuest> = [
+  {
+    id: "q1",
+    title: "Read for 10 minutes",
+    icon: "\u{1F4D6}",
+    current: 0,
+    target: 10,
+    type: "progress",
+    completed: false,
+  },
+  {
+    id: "q2",
+    title: "Complete a quiz",
+    icon: "\u{1F9E0}",
+    current: 0,
+    target: 1,
+    type: "boolean",
+    completed: false,
+  },
+  {
+    id: "q3",
+    title: "Review 5 concepts",
+    icon: "\u{1F504}",
+    current: 0,
+    target: 5,
+    type: "progress",
+    completed: false,
+  },
+];
 
 function deriveReaderLevel(totalChapters: number): ReaderLevel {
   if (totalChapters >= 100) return "Thought Leader";
@@ -260,7 +292,7 @@ function buildProgressData(
   const effectiveMilestones = nextMilestones;
 
   // Build daily quests with real completion data
-  const wiredQuests = mockProgressData.dailyQuests
+  const wiredQuests = DAILY_QUEST_TEMPLATES
     .filter((q) => {
       if (q.id === "q3" && totalCompletedChapters === 0) return false;
       return true;
