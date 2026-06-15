@@ -7,6 +7,7 @@ function ensureHttpsUrl(input: string): string {
     ? trimmed
     : `https://${trimmed}`;
   const parsed = new URL(withScheme);
+  if (parsed.protocol !== "https:") parsed.protocol = "https:";
   return parsed.toString().replace(/\/+$/, "");
 }
 
