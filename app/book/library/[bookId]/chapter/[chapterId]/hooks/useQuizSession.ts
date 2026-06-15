@@ -134,7 +134,9 @@ export function useQuizSession(params: {
 }) {
   const { bookId, chapterNumber, difficulty, contentTone, enabled, localQuiz, retryIncorrectOnly = false } = params;
   const localQuizRef = useRef(localQuiz);
-  localQuizRef.current = localQuiz;
+  useEffect(() => {
+    localQuizRef.current = localQuiz;
+  });
   const [session, setSession] = useState<QuizSessionView | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [explanationOpen, setExplanationOpen] = useState<Record<string, boolean>>({});
