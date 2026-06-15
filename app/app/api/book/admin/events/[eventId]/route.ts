@@ -5,6 +5,7 @@ import {
   bookOk,
   bookErr,
   requireBodyObject,
+  requireInteger,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
@@ -64,6 +65,23 @@ export async function PATCH(req: Request, ctx: Params) {
       books = body.books.map((b) => (b as string).trim());
     }
 
+    // M4 — enforce the same numeric bounds the POST creator applies via
+    // requireInteger so a PATCH can't persist an out-of-range
+    // dailyChapterTarget/targetChapters/bonusIP (the latter feeds
+    // awardFlowPoints when the event badge is earned).
+    const dailyChapterTarget =
+      body.dailyChapterTarget !== undefined
+        ? requireInteger(body.dailyChapterTarget, "dailyChapterTarget", { min: 1, max: 10 })
+        : existing.dailyChapterTarget;
+    const targetChapters =
+      body.targetChapters !== undefined
+        ? requireInteger(body.targetChapters, "targetChapters", { min: 1, max: 200 })
+        : existing.targetChapters;
+    const bonusIP =
+      body.bonusIP !== undefined
+        ? requireInteger(body.bonusIP, "bonusIP", { min: 0, max: 5000 })
+        : existing.bonusIP;
+
     const updated: EventDefinitionItem = {
       ...existing,
       title: typeof body.title === "string" ? body.title : existing.title,
@@ -71,9 +89,9 @@ export async function PATCH(req: Request, ctx: Params) {
       startDate: typeof body.startDate === "string" ? body.startDate : existing.startDate,
       endDate: typeof body.endDate === "string" ? body.endDate : existing.endDate,
       books,
-      dailyChapterTarget: typeof body.dailyChapterTarget === "number" ? body.dailyChapterTarget : existing.dailyChapterTarget,
-      targetChapters: typeof body.targetChapters === "number" ? body.targetChapters : existing.targetChapters,
-      bonusIP: typeof body.bonusIP === "number" ? body.bonusIP : existing.bonusIP,
+      dailyChapterTarget,
+      targetChapters,
+      bonusIP,
       badge: body.badge && typeof body.badge === "object" ? (body.badge as EventDefinitionItem["badge"]) : existing.badge,
       active: typeof body.active === "boolean" ? body.active : existing.active,
     };
