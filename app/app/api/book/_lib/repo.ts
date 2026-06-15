@@ -2040,6 +2040,20 @@ export async function adminUpdateUserEntitlement(
     segments.push("proStatus = :proStatus");
     values[":proStatus"] = params.proStatus;
   }
+  // A manual PRO grant is a comp, not a Stripe-billed subscription. Stamp
+  // proSource="admin" so revenue/reconciliation routes (scanAllEntitlements →
+  // revenue MRR filter, reconciliation prosource_mismatch) exclude it from
+  // Stripe MRR while still surfacing it in the proSourceBreakdown. When an admin
+  // sets the plan back to FREE, clear proSource so a previously comped row no
+  // longer claims a PRO source. A pure freeBookSlots/proStatus tweak (no plan
+  // change) leaves proSource untouched so we never clobber a real Stripe source.
+  if (params.plan === "PRO") {
+    segments.push("proSource = :proSource");
+    values[":proSource"] = "admin";
+  } else if (params.plan === "FREE") {
+    segments.push("proSource = :proSource");
+    values[":proSource"] = null;
+  }
   // unlockedBookIds is created lazily by reserveBookEntitlement's ADD; do not
   // initialize it here (an empty Set can no longer be marshalled).
 
@@ -2076,6 +2090,42 @@ export async function adminUpdateUserEntitlement(
     currentPeriodEnd: readStr(item.currentPeriodEnd),
     updatedAt: readStr(item.updatedAt) || updatedAt,
   };
+}
+
+/**
+ * Write a back-office admin audit record. Generalizes the segment-shaped
+ * writeAuditEntry in admin-segments-repo.ts to any admin action that mutates a
+ * single target user (entitlement overrides, etc.) so comped/granted state is
+ * traceable for fraud investigation and accountability.
+ *
+ * Shape matches the existing ADMIN_AUDIT rows: PK groups every action by the
+ * acting admin (BOOKAUDIT#<adminUserId>), SK orders them by time#action.
+ */
+export async function writeAdminAudit(
+  tableName: string,
+  entry: {
+    adminUserId: string;
+    action: string;
+    targetUserId: string;
+    params?: Record<string, unknown>;
+  }
+): Promise<void> {
+  const now = nowIso();
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: `BOOKAUDIT#${entry.adminUserId}`,
+        SK: `${now}#${entry.action}`,
+        entity: "ADMIN_AUDIT",
+        adminUserId: entry.adminUserId,
+        action: entry.action,
+        targetUserId: entry.targetUserId,
+        params: entry.params ?? {},
+        createdAt: now,
+      },
+    })
+  );
 }
 
 export async function deleteBookVersion(
