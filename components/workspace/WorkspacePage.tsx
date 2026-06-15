@@ -1000,7 +1000,7 @@ export function WorkspacePage() {
             <div className="grid min-h-[60vh] place-content-center">
               <ErrorBanner
                 title="We couldn’t load your dashboard"
-                message={error}
+                message="Something went wrong loading your dashboard. Please try again."
                 onRetry={refetch}
               />
             </div>
