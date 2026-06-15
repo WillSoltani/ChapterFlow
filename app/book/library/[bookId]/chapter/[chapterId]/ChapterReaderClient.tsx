@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { BookLock, CheckCircle2, CloudOff } from "lucide-react";
+import { BookLock, CheckCircle2, CloudOff, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   getChapterById,
@@ -204,13 +204,22 @@ export function ChapterReaderClient({
   );
   // Production content path: fetch from the API, adapt to the BookChapter UI
   // shape, fall back to the local package on any error (offline/dev/gated).
-  const { chapter: baseChapter, hydrated: contentHydrated } = useChapterContent({
+  const {
+    chapter: baseChapter,
+    hydrated: contentHydrated,
+    source: contentSource,
+    error: contentError,
+  } = useChapterContent({
     bookId,
     chapterNumber,
     book: bookMeta,
     localFallback,
     refetchKey: contentRefetchKey,
   });
+  // We're serving a cached/offline copy: the live fetch failed and we fell back
+  // to the local package. Surfaced as a non-blocking notice so the reader knows
+  // the content may be stale (does NOT block reading).
+  const servingOfflineCopy = contentSource === "local" && contentError !== null;
   // Force the chapter's id to the manifest/route chapterId. The content payload
   // can carry a different internal chapterId (e.g. "ch02-identity-driven-change")
   // than the manifest ("atomic-habits-ch02"); progress/unlock state is keyed by
@@ -486,7 +495,12 @@ export function ChapterReaderClient({
 
   useEffect(() => {
     if (!toast) return;
-    const timeout = window.setTimeout(() => setToast(null), 1800);
+    // Content-aware dismiss: short confirmations clear quickly, but longer
+    // decision-relevant messages (quiz-fail coaching + score, submit errors)
+    // linger so they can actually be read.
+    const isLong = toast.length > 40;
+    const duration = isLong ? 5000 : 1800;
+    const timeout = window.setTimeout(() => setToast(null), duration);
     return () => window.clearTimeout(timeout);
   }, [toast]);
 
@@ -979,7 +993,10 @@ export function ChapterReaderClient({
           </div>
         )}
 
-        {/* Single hint above the fold so users know what unlocks "Continue" */}
+        {/* Single hint above the fold so users know what unlocks "Continue".
+         *  Comprehension-framed — we deliberately hide the raw time/scroll
+         *  quota so the gate reads as "engage with the section", not a number
+         *  to game. */}
         {!state.focusMode && state.activeTab !== "quiz" && !phaseCompletion.currentPhaseReady && (() => {
           const t = getPhaseThresholds(learningMode, state.activeTab);
           const seconds = t.minTime;
@@ -987,11 +1004,21 @@ export function ChapterReaderClient({
           if (!seconds && !pct) return null;
           return (
             <p className="mt-4 text-[12px] text-(--cr-text-secondary)">
-              Read for {seconds}s or scroll to {pct}% to continue.
-              {state.activeTab === "examples" && learningMode === "challenge" && " You also need to react to every scenario."}
+              Take a moment with this section — Continue unlocks once you&apos;ve read it.
+              {state.activeTab === "examples" && learningMode === "challenge" && " Be sure to react to every scenario, too."}
             </p>
           );
         })()}
+
+        {/* Non-blocking offline notice — reuses the quiz "saved locally"
+         *  provisional banner styling. Reading is never blocked; this only
+         *  tells the reader the content may be a stale cached copy. */}
+        {servingOfflineCopy && (
+          <p className="mt-4 flex items-center gap-1.5 text-[12px] text-(--cr-text-disabled)">
+            <CloudOff className="h-3.5 w-3.5" />
+            Showing an offline copy — reconnect for the latest.
+          </p>
+        )}
 
         {/* Content area — constrained to user's preferred reading width for comfortable line length */}
         <div
@@ -1286,19 +1313,33 @@ export function ChapterReaderClient({
 
 
       {/* Bottom-CENTER lane (sync pill above the toast) — kept clear of the
-       *  bottom-right FAB column and padded for the iOS home indicator. */}
-      {syncFailed && !toast && (
-        <div className="pointer-events-none fixed bottom-[calc(env(safe-area-inset-bottom)+5rem)] left-1/2 z-40 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
-          <CloudOff className="h-3.5 w-3.5" />
-          Changes saved locally only
-        </div>
-      )}
+       *  bottom-right FAB column and padded for the iOS home indicator.
+       *  Both surfaces are wrapped in a PERSISTENT live region (mounted at all
+       *  times; text flows in via state) so screen readers announce mode/tone
+       *  switches, bookmark/notes/step confirmations, daily-goal, quiz-fail
+       *  coaching and the offline sync pill as they appear. */}
+      <div role="status" aria-live="polite" aria-atomic="true">
+        {syncFailed && !toast && (
+          <div className="pointer-events-none fixed bottom-[calc(env(safe-area-inset-bottom)+5rem)] left-1/2 z-40 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
+            <CloudOff className="h-3.5 w-3.5" />
+            Changes saved locally only
+          </div>
+        )}
 
-      {toast && (
-        <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] left-1/2 z-50 -translate-x-1/2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
-          {toast}
-        </div>
-      )}
+        {toast && (
+          <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-start gap-2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
+            <span>{toast}</span>
+            <button
+              type="button"
+              onClick={() => setToast(null)}
+              aria-label="Dismiss notification"
+              className="-mr-1 -mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-(--cr-text-secondary) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
+      </div>
 
       {/* Focus-mode indicator anchored bottom-LEFT so it never sits under the
        *  bottom-right FAB column (the Ask launcher stays visible in focus mode). */}
