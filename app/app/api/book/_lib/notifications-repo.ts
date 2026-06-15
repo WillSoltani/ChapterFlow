@@ -198,6 +198,39 @@ export async function listNotifications(
   }));
 }
 
+// Count unread notifications without materializing the partition. A Select:COUNT
+// query lets the listing endpoint show an accurate unread badge while only
+// fetching a bounded display page (see listNotifications(limit)), instead of
+// reading every lifetime notification on each poll.
+export async function countUnreadNotifications(
+  tableName: string,
+  userId: string
+): Promise<number> {
+  let count = 0;
+  let lastEvaluatedKey: Record<string, unknown> | undefined;
+
+  do {
+    const res = await ddbDoc.send(
+      new QueryCommand({
+        TableName: tableName,
+        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+        FilterExpression: "attribute_not_exists(readAt) OR readAt = :null",
+        ExpressionAttributeValues: {
+          ":pk": bookUserPk(userId),
+          ":prefix": "NOTIF#",
+          ":null": null,
+        },
+        Select: "COUNT",
+        ExclusiveStartKey: lastEvaluatedKey,
+      })
+    );
+    count += res.Count ?? 0;
+    lastEvaluatedKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
+  } while (lastEvaluatedKey);
+
+  return count;
+}
+
 export async function markNotificationRead(
   tableName: string,
   userId: string,
@@ -232,17 +265,24 @@ export async function markAllNotificationsRead(
   const now = nowIso();
 
   for (const n of unread) {
-    await ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: {
-          PK: bookUserPk(userId),
-          SK: notificationSk(n.createdAt, n.notificationId),
-        },
-        UpdateExpression: "SET readAt = :now",
-        ExpressionAttributeValues: { ":now": now },
-      })
-    );
+    try {
+      await ddbDoc.send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: {
+            PK: bookUserPk(userId),
+            SK: notificationSk(n.createdAt, n.notificationId),
+          },
+          // Guard like markNotificationRead: a row whose createdAt/notificationId
+          // didn't round-trip cleanly would otherwise upsert a phantom NOTIF#.
+          ConditionExpression: "attribute_exists(PK) AND attribute_exists(SK)",
+          UpdateExpression: "SET readAt = :now",
+          ExpressionAttributeValues: { ":now": now },
+        })
+      );
+    } catch (error) {
+      if (!isConditionalCheckFailed(error)) throw error;
+    }
   }
 
   return unread.length;

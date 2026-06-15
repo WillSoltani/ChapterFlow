@@ -5,18 +5,26 @@ import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { bookOk, requireBodyObject, requireString, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import {
   listNotifications,
+  countUnreadNotifications,
   markNotificationRead,
 } from "@/app/app/api/book/_lib/notifications-repo";
 import { notificationSk } from "@/app/app/api/book/_lib/keys";
 
 export const runtime = "nodejs";
 
+// Notifications have no TTL and grow for the life of the account, so the bell
+// fetches a bounded display page and gets the unread badge from a COUNT query
+// instead of reading the whole partition into memory on every poll.
+const NOTIFICATION_PAGE_SIZE = 50;
+
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
-    const notifications = await listNotifications(tableName, user.sub);
-    const unreadCount = notifications.filter((n) => !n.readAt).length;
+    const [notifications, unreadCount] = await Promise.all([
+      listNotifications(tableName, user.sub, NOTIFICATION_PAGE_SIZE),
+      countUnreadNotifications(tableName, user.sub),
+    ]);
     return bookOk({ notifications, unreadCount });
   });
 }
