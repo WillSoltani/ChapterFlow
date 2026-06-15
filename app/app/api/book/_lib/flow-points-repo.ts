@@ -8,6 +8,11 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
+  grantUpgradeConditionExpression,
+  GRANT_UPGRADE_CONDITION_NAMES,
+  GRANT_UPGRADE_CONDITION_VALUES,
+} from "@/app/app/api/book/_lib/pro-grant-guard-core";
+import {
   BookApiError,
   isTransactionConditionFailedAt,
 } from "@/app/app/api/book/_lib/errors";
@@ -675,18 +680,14 @@ export async function redeemFlowPointsReward(
             // this very write stores licenseExpiresAt as a DynamoDB NULL, so a
             // stored-NULL expiry must not block a legitimate extend.
             // Spec + truth-table tests: _lib/pro-grant-guard-core.ts (keep in sync).
-            ConditionExpression:
-              "(attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :periodEnd) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :periodEnd))",
+            ConditionExpression: grantUpgradeConditionExpression(":periodEnd"),
             ExpressionAttributeNames: {
-              "#plan": "plan",
+              ...GRANT_UPGRADE_CONDITION_NAMES,
             },
             ExpressionAttributeValues: {
-              ":proPlan": "PRO",
+              ...GRANT_UPGRADE_CONDITION_VALUES,
               ":activeStatus": "active",
               ":flowSource": "flow_points",
-              ":stripeSource": "stripe",
-              ":adminSource": "admin",
-              ":nullType": "NULL",
               ":periodEnd": params.passExpiresAt ?? now,
               ":nullValue": null,
               ":updatedAt": now,

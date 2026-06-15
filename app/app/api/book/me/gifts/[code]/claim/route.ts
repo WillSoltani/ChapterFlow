@@ -14,6 +14,11 @@ import {
 import { GetCommand, TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { GIFT_PRO_DAYS } from "../../_constants";
+import {
+  grantUpgradeConditionExpression,
+  GRANT_UPGRADE_CONDITION_NAMES,
+  GRANT_UPGRADE_CONDITION_VALUES,
+} from "@/app/app/api/book/_lib/pro-grant-guard-core";
 
 export const runtime = "nodejs";
 
@@ -114,19 +119,15 @@ export async function POST(
                 // license user can still apply a gift that extends a shorter or
                 // already-expired grant.
                 // Spec + truth-table tests: _lib/pro-grant-guard-core.ts (keep in sync).
-                ConditionExpression:
-                  "(attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :expires) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :expires))",
-                ExpressionAttributeNames: { "#plan": "plan" },
+                ConditionExpression: grantUpgradeConditionExpression(":expires"),
+                ExpressionAttributeNames: { ...GRANT_UPGRADE_CONDITION_NAMES },
                 ExpressionAttributeValues: {
-                  ":proPlan": "PRO",
+                  ...GRANT_UPGRADE_CONDITION_VALUES,
                   ":active": "active",
                   ":giftSource": "gift_code",
-                  ":stripeSource": "stripe",
-                  ":adminSource": "admin",
                   ":expires": proExpires,
                   ":now": now,
                   ":defaultSlots": 2,
-                  ":nullType": "NULL",
                 },
               },
             },
