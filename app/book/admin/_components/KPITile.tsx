@@ -12,6 +12,7 @@ export function KPITile({
   spark,
   hint,
   format = "number",
+  currency,
 }: {
   label: string;
   value: number | string;
@@ -19,8 +20,9 @@ export function KPITile({
   spark?: Spark;
   hint?: string;
   format?: "number" | "currency" | "minutes" | "percent";
+  currency?: string;
 }) {
-  const display = formatValue(value, format);
+  const display = formatValue(value, format, currency);
   const deltaInfo = formatDelta(delta);
 
   return (
@@ -71,7 +73,7 @@ export function KPITile({
                 }}
                 labelStyle={{ color: "var(--cf-text-3)" }}
                 itemStyle={{ color: "var(--cf-text-1)" }}
-                formatter={((v: number) => [formatValue(v, format), label]) as never}
+                formatter={((v: number) => [formatValue(v, format, currency), label]) as never}
               />
               <Area
                 type="monotone"
@@ -89,9 +91,11 @@ export function KPITile({
   );
 }
 
-function formatValue(value: number | string, format: KPITileFormat): string {
+function formatValue(value: number | string, format: KPITileFormat, currency?: string): string {
   if (typeof value === "string") return value;
-  if (format === "currency") return `$${value.toLocaleString()}`;
+  if (format === "currency") {
+    return `$${value.toLocaleString()}${currency ? ` ${currency}` : ""}`;
+  }
   if (format === "minutes") return `${Math.round(value).toLocaleString()}m`;
   if (format === "percent") return `${value.toFixed(1)}%`;
   return value.toLocaleString();
