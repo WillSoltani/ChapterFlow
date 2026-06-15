@@ -7,6 +7,20 @@ import { createPortal } from "react-dom";
 const FOCUSABLE =
   'a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),button:not([disabled]),[tabindex]:not([tabindex="-1"]),iframe,object,embed,[contenteditable="true"],audio[controls],video[controls]';
 
+// Base z-index for the first overlay; each nested overlay renders 10 above the
+// previous one so a child overlay always paints over its parent.
+const OVERLAY_BASE_Z = 100;
+
+/**
+ * Module-level stack of currently-open overlay ids. Because every OverlayShell
+ * attaches its Escape / focus-trap handlers to `document`, two open overlays
+ * would otherwise both react to a single keypress (Escape closing both, focus
+ * traps fighting). The stack lets each handler cheaply check whether it is the
+ * topmost overlay and no-op otherwise. Insertion order = visual stacking order.
+ */
+const overlayStack: string[] = [];
+let overlaySeq = 0;
+
 interface BaseOverlayProps {
   open: boolean;
   onClose: () => void;
@@ -55,7 +69,37 @@ function OverlayShell({
   const panelRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
 
+  // Stable per-instance id used to track this overlay's place in the stack.
+  const overlayIdRef = useRef<string | null>(null);
+  if (overlayIdRef.current == null) overlayIdRef.current = `overlay-${++overlaySeq}`;
+  // Depth (and thus z-index) of this overlay among the currently-open ones; -1
+  // until it has registered in the shared stack.
+  const [stackIndex, setStackIndex] = useState(-1);
+
   useEffect(() => setMounted(true), []);
+
+  // Register this overlay in the shared stack while open, and remove it on close
+  // /unmount. Only the topmost overlay handles Escape and runs the Tab focus
+  // trap; the keyboard handlers read the live stack at event time (see
+  // isTopmost), so they never re-subscribe when the top changes — they just
+  // no-op while another overlay is above them. The depth is surfaced into render
+  // state so a nested overlay's z-index paints it above its parent.
+  useEffect(() => {
+    // The ref is always initialized by the time effects run (set during render).
+    const id = overlayIdRef.current;
+    if (!open || id == null) return;
+    overlayStack.push(id);
+    setStackIndex(overlayStack.length - 1);
+    return () => {
+      const i = overlayStack.lastIndexOf(id);
+      if (i !== -1) overlayStack.splice(i, 1);
+    };
+  }, [open]);
+
+  // True when this overlay is the topmost open one (and thus owns keyboard
+  // behavior). Read at event time so a child opening/closing flips ownership
+  // without re-binding any document listeners.
+  const isTopmost = () => overlayStack[overlayStack.length - 1] === overlayIdRef.current;
 
   // Body scroll lock (with scrollbar-gutter compensation to avoid layout shift).
   useEffect(() => {
@@ -72,11 +116,13 @@ function OverlayShell({
     };
   }, [open]);
 
-  // Escape to close.
+  // Escape to close. Only the topmost overlay reacts: e.stopPropagation() does
+  // NOT stop sibling document-level listeners, so without the stack check every
+  // open overlay would close on a single Escape.
   useEffect(() => {
     if (!open || !closeOnEscape) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && isTopmost()) {
         e.stopPropagation();
         onClose();
       }
@@ -106,7 +152,9 @@ function OverlayShell({
       el.getClientRects().length > 0 || el === document.activeElement;
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== "Tab") return;
+      // Only the topmost overlay traps focus; otherwise two traps fight over
+      // which panel keeps focus.
+      if (e.key !== "Tab" || !isTopmost()) return;
       const panel = panelRef.current;
       if (!panel) return;
       const items = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(isVisible);
@@ -158,11 +206,16 @@ function OverlayShell({
   const containerAlign =
     layout === "bottom" ? "items-end justify-center" : "items-center justify-center p-4";
 
+  // Derive z-index from stack depth so a nested overlay paints above its parent.
+  // Falls back to the base before this instance has registered (stackIndex < 0).
+  const zIndex = OVERLAY_BASE_Z + Math.max(stackIndex, 0) * 10;
+
   return createPortal(
     <AnimatePresence>
       {open && (
         <div
-          className={`fixed inset-0 z-[100] flex ${containerAlign}`}
+          className={`fixed inset-0 flex ${containerAlign}`}
+          style={{ zIndex }}
           onClick={(e) => {
             if (closeOnBackdrop && e.target === e.currentTarget) onClose();
           }}
