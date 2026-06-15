@@ -24,13 +24,28 @@ const IP_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const IP_CACHE_MAX = 5000;
 const IPAPI_TIMEOUT_MS = 1500;
 
+// Trusted proxy hops (CloudFront, plus any edge layer) in front of this app.
+// The real client IP is the X-Forwarded-For entry this many positions from the
+// RIGHT — the one our own edge appended. The leftmost entries are supplied by
+// the client and MUST NOT be trusted: an attacker could inject a fake leftmost
+// token to make the server geolocate (and persist) an IP of their choosing.
+// Override via env if the deployment adds/removes a hop.
+const TRUSTED_PROXY_HOPS = Number(process.env.RATE_LIMIT_TRUSTED_PROXY_HOPS) || 1;
+
 function extractClientIp(headers: Headers): string | null {
-  // x-forwarded-for can be a comma-separated chain; the leftmost is the
-  // original client.
+  // x-forwarded-for can be a comma-separated chain. Trust the Nth entry from the
+  // RIGHT (appended by our edge), never the leftmost client-controlled token.
   const xff = headers.get("x-forwarded-for");
   if (xff) {
-    const first = xff.split(",")[0]?.trim();
-    if (first && !isPrivateIp(first)) return first;
+    const chain = xff
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean);
+    if (chain.length > 0) {
+      const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
+      const ip = chain[idx] ?? chain[chain.length - 1];
+      if (ip && !isPrivateIp(ip)) return ip;
+    }
   }
   const real = headers.get("x-real-ip");
   if (real && !isPrivateIp(real)) return real.trim();
