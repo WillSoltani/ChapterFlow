@@ -61,12 +61,17 @@ export type InsightPointsPayload = {
   }>;
 };
 
+export type RedeemFeedback = {
+  message: string;
+  tone: "success" | "error";
+};
+
 type InsightPointsState = {
   loading: boolean;
   payload: InsightPointsPayload | null;
   error: string | null;
   redeemingRewardId: string | null;
-  redeemMessage: string | null;
+  redeemMessage: RedeemFeedback | null;
 };
 
 export function useInsightPoints(enabled = true) {
@@ -128,7 +133,7 @@ export function useInsightPoints(enabled = true) {
   }, [refresh]);
 
   const redeemReward = useCallback(
-    async (rewardId: string): Promise<string | null> => {
+    async (rewardId: string): Promise<RedeemFeedback> => {
       setState((current) => ({
         ...current,
         redeemingRewardId: rewardId,
@@ -139,23 +144,25 @@ export function useInsightPoints(enabled = true) {
           method: "POST",
           body: JSON.stringify({ rewardId }),
         });
+        const feedback: RedeemFeedback = { message: payload.message, tone: "success" };
         setState((current) => ({
           ...current,
           redeemingRewardId: null,
-          redeemMessage: payload.message,
+          redeemMessage: feedback,
         }));
         emitBookStorageChanged("insight-points");
         await refresh();
-        return null;
+        return feedback;
       } catch (error: unknown) {
         const message =
           error instanceof Error ? error.message : "Unable to redeem reward.";
+        const feedback: RedeemFeedback = { message, tone: "error" };
         setState((current) => ({
           ...current,
           redeemingRewardId: null,
-          redeemMessage: message,
+          redeemMessage: feedback,
         }));
-        return message;
+        return feedback;
       }
     },
     [refresh]
