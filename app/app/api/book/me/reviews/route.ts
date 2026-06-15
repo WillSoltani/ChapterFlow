@@ -17,7 +17,8 @@ export async function GET(req: Request) {
     const url = new URL(req.url);
     const mode = url.searchParams.get("mode") ?? "due";
     const bookId = url.searchParams.get("bookId") ?? undefined;
-    const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "20", 10), 50);
+    const parsedLimit = Number.parseInt(url.searchParams.get("limit") ?? "20", 10);
+    const limit = Number.isFinite(parsedLimit) && parsedLimit > 0 ? Math.min(parsedLimit, 50) : 20;
 
     if (mode === "stats") {
       const stats = await getReviewStats(tableName, user.sub);
