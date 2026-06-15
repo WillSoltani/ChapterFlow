@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Gift, Lock, TrendingUp, Users, Zap, Copy } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
+import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useInsightPoints, type InsightPointsPayload } from "@/app/book/hooks/useInsightPoints";
 
@@ -200,7 +201,7 @@ function ReferralSection({ referral }: { referral: InsightPointsPayload["referra
 }
 
 export function RewardsPageClient() {
-  const { loading, payload, error, redeemingRewardId, redeemMessage, redeemReward } =
+  const { loading, payload, error, redeemingRewardId, redeemMessage, redeemReward, refresh } =
     useInsightPoints();
   const { identity } = useBookViewer();
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -221,7 +222,7 @@ export function RewardsPageClient() {
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-(--cf-text-1)">Rewards</h1>
           <p className="mt-1 text-sm text-(--cf-text-soft)">
-            Redeem Insight Points for bonus books and Pro passes.
+            Redeem Insight Points (IP) for bonus books and Pro passes.
           </p>
         </div>
 
@@ -236,13 +237,16 @@ export function RewardsPageClient() {
           </div>
         )}
 
-        {/* Error */}
+        {/* Error — never surface the raw server message; route through the
+            shared ErrorBanner with safe copy and a soft retry. */}
         {error && (
-          <div
-            role="alert"
-            className="rounded-xl border border-(--cf-danger-border) bg-(--cf-danger-soft) p-4 text-center text-[14px] text-(--cf-danger-text)"
-          >
-            {error}
+          <div className="grid min-h-[40vh] place-content-center">
+            <ErrorBanner
+              className="mx-auto max-w-md"
+              title="We couldn't load Rewards"
+              message="Something went wrong loading your Insight Points. Please try again."
+              onRetry={() => void refresh()}
+            />
           </div>
         )}
 

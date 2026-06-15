@@ -24,6 +24,7 @@ import { getBookCoverPath } from "@/lib/book-covers";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
 import { ReviewSessionFSRS } from "@/app/book/components/ReviewSessionFSRS";
+import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { HeroSection } from "./HeroSection";
 import { DailyQuests } from "./DailyQuests";
 import { WeeklySummary } from "./WeeklySummary";
@@ -615,7 +616,7 @@ export function ProgressPage() {
   // ── Loading state ──
   if (!onboardingHydrated || !hydrated || !onboarding.setupComplete) {
     return (
-      <main className="cf-app-shell">
+      <div className="cf-app-shell">
         <TopNav
           name={viewerName}
           avatarUrl={viewerIdentity.avatarDataUrl}
@@ -627,17 +628,17 @@ export function ProgressPage() {
           showGlobalSearchPanel
           logoVariant="dashboard"
         />
-        <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+        <main className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
           <ProgressSkeleton />
-        </section>
-      </main>
+        </main>
+      </div>
     );
   }
 
   // ── Error state ──
   if (!displayData) {
     return (
-      <main className="cf-app-shell">
+      <div className="cf-app-shell">
         <TopNav
           name={viewerName}
           avatarUrl={viewerIdentity.avatarDataUrl}
@@ -649,36 +650,19 @@ export function ProgressPage() {
           showGlobalSearchPanel
           logoVariant="dashboard"
         />
-        <section className="mx-auto flex min-h-[60vh] w-full max-w-7xl flex-col items-center justify-center gap-4 px-4 py-10 sm:px-6">
-          <span className="text-4xl">{"\u{1F635}"}</span>
-          <h2
-            className="text-xl font-semibold"
-            style={{ color: "var(--text-heading)" }}
-          >
-            Something went wrong
-          </h2>
-          <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-            We couldn&apos;t load your progress data.
-          </p>
-          <button
-            type="button"
-            onClick={() => window.location.reload()}
-            className="cursor-pointer rounded-xl px-6 py-2.5 text-sm font-medium transition-colors"
-            style={{
-              background: "var(--cf-border-strong)",
-              border: "1px solid var(--cf-border-strong)",
-              color: "var(--text-heading)",
-            }}
-          >
-            Try again {"\u2192"}
-          </button>
-        </section>
-      </main>
+        <main className="mx-auto grid min-h-[60vh] w-full max-w-md place-content-center px-4 py-10 sm:px-6">
+          <ErrorBanner
+            title="We couldn't load your progress"
+            message="Something went wrong loading your progress data. Please try again."
+            onRetry={() => window.location.reload()}
+          />
+        </main>
+      </div>
     );
   }
 
   return (
-    <main className="cf-app-shell">
+    <div className="cf-app-shell">
       <TopNav
         name={viewerName}
         avatarUrl={viewerIdentity.avatarDataUrl}
@@ -691,7 +675,7 @@ export function ProgressPage() {
         logoVariant="dashboard"
       />
 
-      <motion.section
+      <motion.main
         className="mx-auto w-full max-w-7xl space-y-6 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24"
         initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -815,7 +799,7 @@ export function ProgressPage() {
           <ProInsightsPreview isPro={displayData.user.isPro} />
         </motion.div>
       </motion.div>
-      </motion.section>
+      </motion.main>
 
       {showReviewSession && (
         <ReviewSessionFSRS
@@ -826,6 +810,6 @@ export function ProgressPage() {
           }}
         />
       )}
-    </main>
+    </div>
   );
 }
