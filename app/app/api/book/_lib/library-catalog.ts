@@ -1,5 +1,7 @@
 import "server-only";
 
+import { cache } from "react";
+
 import { REGION } from "@/app/app/api/_lib/aws";
 import type {
   BookDifficulty,
@@ -142,45 +144,64 @@ export async function listPublishedLibraryCatalog(params: {
     .sort((left, right) => left.title.localeCompare(right.title));
 }
 
+// Per-request dedupe: React cache() memoizes by argument reference/value within
+// a single server render pass. Keyed on the primitive args (not an object, which
+// would be a fresh reference on every call) so sequential chapter navigations and
+// any sibling reads in the same request reuse one catalog/index/manifest fetch
+// instead of re-issuing the three parallel DynamoDB + S3 reads each time.
+const loadPublishedLibraryBookDetail = cache(
+  async (
+    tableName: string,
+    contentBucket: string,
+    bookId: string
+  ): Promise<LibraryBookDetail> => {
+    const [catalog, presentationIndex, manifestPayload] = await Promise.all([
+      getCatalogBook(tableName, bookId),
+      readLibraryCatalogIndex(contentBucket),
+      getPublishedBookManifest({ tableName, contentBucket, bookId }),
+    ]);
+
+    if (!catalog || catalog.status !== "PUBLISHED" || !catalog.currentPublishedVersion) {
+      throw new BookApiError(404, "book_not_found", "Book not found.");
+    }
+
+    const detail = buildLibraryCatalogBook({
+      catalog,
+      extra: presentationIndex.get(bookId),
+      chapterCount: manifestPayload.manifest.chapterCount,
+      estimatedMinutes: manifestPayload.manifest.chapters.reduce(
+        (sum, chapter) => sum + Math.max(chapter.readingTimeMinutes, 1),
+        0
+      ),
+      contentBucket,
+    });
+
+    const chapters: LibraryChapterSummary[] = manifestPayload.manifest.chapters.map((chapter) => ({
+      id: chapter.chapterId,
+      chapterId: chapter.chapterId,
+      number: chapter.number,
+      code: chapterCode(chapter.number),
+      title: chapter.title,
+      minutes: chapter.readingTimeMinutes,
+    }));
+
+    return {
+      ...detail,
+      chapterCount: manifestPayload.manifest.chapterCount,
+      publishedVersion: manifestPayload.version,
+      chapters,
+    };
+  }
+);
+
 export async function getPublishedLibraryBookDetail(params: {
   tableName: string;
   contentBucket: string;
   bookId: string;
 }): Promise<LibraryBookDetail> {
-  const [catalog, presentationIndex, manifestPayload] = await Promise.all([
-    getCatalogBook(params.tableName, params.bookId),
-    readLibraryCatalogIndex(params.contentBucket),
-    getPublishedBookManifest(params),
-  ]);
-
-  if (!catalog || catalog.status !== "PUBLISHED" || !catalog.currentPublishedVersion) {
-    throw new BookApiError(404, "book_not_found", "Book not found.");
-  }
-
-  const detail = buildLibraryCatalogBook({
-    catalog,
-    extra: presentationIndex.get(params.bookId),
-    chapterCount: manifestPayload.manifest.chapterCount,
-    estimatedMinutes: manifestPayload.manifest.chapters.reduce(
-      (sum, chapter) => sum + Math.max(chapter.readingTimeMinutes, 1),
-      0
-    ),
-    contentBucket: params.contentBucket,
-  });
-
-  const chapters: LibraryChapterSummary[] = manifestPayload.manifest.chapters.map((chapter) => ({
-    id: chapter.chapterId,
-    chapterId: chapter.chapterId,
-    number: chapter.number,
-    code: chapterCode(chapter.number),
-    title: chapter.title,
-    minutes: chapter.readingTimeMinutes,
-  }));
-
-  return {
-    ...detail,
-    chapterCount: manifestPayload.manifest.chapterCount,
-    publishedVersion: manifestPayload.version,
-    chapters,
-  };
+  return loadPublishedLibraryBookDetail(
+    params.tableName,
+    params.contentBucket,
+    params.bookId
+  );
 }
