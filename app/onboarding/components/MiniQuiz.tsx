@@ -34,27 +34,24 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
 
   const isLastQuestion = currentQuestion >= questions.length - 1;
 
-  const handleSelect = useCallback(
-    (letter: string) => {
-      if (showFeedback) return;
+  const handleSelect = (letter: string) => {
+    if (showFeedback) return;
 
-      setSelectedLetter(letter);
-      setShowFeedback(true);
+    setSelectedLetter(letter);
+    setShowFeedback(true);
 
-      const correct =
-        question.options.find((o) => o.letter === letter)?.isCorrect ?? false;
+    const correct =
+      question.options.find((o) => o.letter === letter)?.isCorrect ?? false;
 
-      if (correct) {
-        setScore((s) => s + 1);
-        setShowMiniConfetti(true);
-        setTimeout(() => setShowMiniConfetti(false), 2000);
-      }
-      // No auto-advance here. Correct answers auto-advance via the effect below
-      // (the feedback is short); wrong answers wait for the user to read the
-      // explanation and tap "Next" — never force-advancing past it.
-    },
-    [showFeedback, question]
-  );
+    if (correct) {
+      setScore((s) => s + 1);
+      setShowMiniConfetti(true);
+      setTimeout(() => setShowMiniConfetti(false), 2000);
+    }
+    // No auto-advance here. Correct answers auto-advance via the effect below
+    // (the feedback is short); wrong answers wait for the user to read the
+    // explanation and tap "Next" — never force-advancing past it.
+  };
 
   // Advance to the next question, or finish the quiz on the last one. Guarded
   // against double-firing: on the last question a manual "See your result" tap
