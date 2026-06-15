@@ -26,7 +26,13 @@ export function downloadCSV<T extends Record<string, unknown>>(
 
   const escape = (val: unknown): string => {
     if (val === null || val === undefined) return "";
-    const str = typeof val === "object" ? JSON.stringify(val) : String(val);
+    let str = typeof val === "object" ? JSON.stringify(val) : String(val);
+    // Neutralize spreadsheet formula triggers (OWASP CSV-injection mitigation):
+    // prefix a leading '=', '+', '-', '@', tab, or CR with a single quote so the
+    // value is treated as text when opened in Excel/Sheets.
+    if (/^[=+\-@\t\r]/.test(str)) {
+      str = `'${str}`;
+    }
     if (/[",\n\r]/.test(str)) {
       return `"${str.replace(/"/g, '""')}"`;
     }
