@@ -793,6 +793,27 @@ html.transitioning *::after {
    COMPONENT CLASSES (from original)
    ───────────────────────────────────────── */
 @layer components {
+  /*
+   * Centralized legal-document typography. Used by every page under
+   * app/legal/** via `<article className="prose-legal">`. The
+   * @tailwindcss/typography plugin ships `prose` and its modifiers but not a
+   * `legal` variant, so without this rule `prose-legal` would be a no-op class
+   * and the pages would rely entirely on per-element inline styles. These
+   * defaults mirror the legal pages' base text treatment; per-element inline
+   * styles (headings, link colors) still win on specificity, so this is
+   * non-regressive while giving the class real meaning for future edits.
+   */
+  .prose-legal {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .prose-legal a {
+    color: var(--accent-teal);
+    text-decoration: underline;
+  }
+
   .cf-app-shell,
   .cf-app-shell-subtle {
     position: relative;
