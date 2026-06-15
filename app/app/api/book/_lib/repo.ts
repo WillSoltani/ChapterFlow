@@ -2,6 +2,7 @@ import {
   GetCommand,
   PutCommand,
   QueryCommand,
+  type QueryCommandInput,
   type TransactWriteCommandInput,
   UpdateCommand,
   DeleteCommand,
@@ -193,20 +194,54 @@ function isConditionalCheckFailed(error: unknown): boolean {
   );
 }
 
+/**
+ * Hard cap on the number of 1MB pages a full-partition query will follow.
+ * Guards against a pathological/runaway partition pinning a request forever.
+ * 50 pages × 1MB is well beyond any realistic per-user or catalog partition.
+ */
+const MAX_QUERY_PAGES = 50;
+
+/**
+ * Run a DynamoDB Query and follow `LastEvaluatedKey` until the full result set
+ * has been read, accumulating every page's `Items`. A single `QueryCommand`
+ * returns at most 1MB, so any unbounded full-partition list must paginate or it
+ * silently truncates as the partition grows. Mirrors the loop already used in
+ * admin-metrics.ts / economy-health.ts / soft-decay.ts.
+ *
+ * Pass the same input you would give `QueryCommand` (without
+ * `ExclusiveStartKey`); a `Limit`, if supplied, is treated as a per-page hint.
+ */
+async function queryAllItems(
+  input: Omit<QueryCommandInput, "ExclusiveStartKey">
+): Promise<Record<string, unknown>[]> {
+  const items: Record<string, unknown>[] = [];
+  let lastKey: Record<string, unknown> | undefined;
+  let pages = 0;
+  do {
+    const res = await ddbDoc.send(
+      new QueryCommand({ ...input, ExclusiveStartKey: lastKey })
+    );
+    for (const item of res.Items ?? []) {
+      items.push(item);
+    }
+    lastKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
+    pages += 1;
+  } while (lastKey && pages < MAX_QUERY_PAGES);
+  return items;
+}
+
 export async function listPublishedCatalogItems(tableName: string): Promise<BookCatalogItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": catalogPk(),
-        ":prefix": "BOOK#",
-      },
-      ScanIndexForward: true,
-    })
-  );
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": catalogPk(),
+      ":prefix": "BOOK#",
+    },
+    ScanIndexForward: true,
+  });
   const out: BookCatalogItem[] = [];
-  for (const item of res.Items ?? []) {
+  for (const item of rows) {
     const bookId = readStr(item.bookId);
     const title = readStr(item.title);
     const author = readStr(item.author);
@@ -854,19 +889,17 @@ export async function listAllUserProgress(
   tableName: string,
   userId: string
 ): Promise<BookUserProgress[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "PROGRESS#",
-      },
-      ScanIndexForward: false,
-    })
-  );
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "PROGRESS#",
+    },
+    ScanIndexForward: false,
+  });
   const out: BookUserProgress[] = [];
-  for (const item of res.Items ?? []) {
+  for (const item of rows) {
     const bookId = readStr(item.bookId);
     if (!bookId) continue;
     out.push({
@@ -2216,7 +2249,13 @@ export async function readManifest(
 
 export function summarizeProgress(
   entries: BookUserProgress[],
-  ent: BookUserEntitlement | null
+  ent: BookUserEntitlement | null,
+  // Per-book total chapter count (e.g. from book manifests / catalog). When a
+  // book's real chapterCount is supplied, "completed" means every chapter is
+  // done (completedChapters.length >= chapterCount), which is exact and handles
+  // out-of-order completion. When a count is unknown the legacy heuristic is
+  // used so callers that cannot supply counts keep their previous behaviour.
+  chapterCounts?: Map<string, number> | Record<string, number>
 ): {
   booksStarted: number;
   booksCompleted: number;
@@ -2226,6 +2265,13 @@ export function summarizeProgress(
   freeBookSlots: number;
   unlockedBooksCount: number;
 } {
+  const chapterCountFor = (bookId: string): number | undefined => {
+    if (!chapterCounts) return undefined;
+    const raw =
+      chapterCounts instanceof Map ? chapterCounts.get(bookId) : chapterCounts[bookId];
+    return typeof raw === "number" && Number.isFinite(raw) && raw > 0 ? raw : undefined;
+  };
+
   const booksStarted = entries.length;
   let booksCompleted = 0;
   let chaptersCompleted = 0;
@@ -2233,7 +2279,15 @@ export function summarizeProgress(
 
   for (const p of entries) {
     chaptersCompleted += p.completedChapters.length;
-    if (p.completedChapters.length > 0 && p.currentChapterNumber <= p.completedChapters.length) {
+    const totalChapters = chapterCountFor(p.bookId);
+    const isCompleted =
+      totalChapters !== undefined
+        ? // Exact: every chapter of the book has been completed.
+          p.completedChapters.length >= totalChapters
+        : // Fallback heuristic when the book's real chapter count is unknown.
+          p.completedChapters.length > 0 &&
+          p.currentChapterNumber <= p.completedChapters.length;
+    if (isCompleted) {
       booksCompleted += 1;
     }
     for (const value of Object.values(p.bestScoreByChapter)) {
@@ -2560,18 +2614,16 @@ export async function listSavedBooks(
   tableName: string,
   userId: string
 ): Promise<BookUserSavedBookItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "SAVED#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserSavedBookItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "SAVED#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserSavedBookItem | null> = rows
     .map((item) => {
       const bookId = readStr(item.bookId);
       if (!bookId) return null;
@@ -2705,18 +2757,16 @@ export async function listAllUserBookStates(
   tableName: string,
   userId: string
 ): Promise<BookUserBookStateItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "BOOKSTATE#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserBookStateItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "BOOKSTATE#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserBookStateItem | null> = rows
     .map((item) => {
       const bookId = readStr(item.bookId);
       if (!bookId) return null;
@@ -2786,18 +2836,16 @@ export async function listUserChapterStates(
   tableName: string,
   userId: string
 ): Promise<BookUserChapterStateItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "CHAPTERSTATE#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserChapterStateItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "CHAPTERSTATE#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserChapterStateItem | null> = rows
     .map((item) => {
       const bookId = readStr(item.bookId);
       const chapterNumber = readNum(item.chapterNumber);
@@ -2860,18 +2908,16 @@ export async function listReadingDays(
   tableName: string,
   userId: string
 ): Promise<BookUserReadingDayItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "READINGDAY#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserReadingDayItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "READINGDAY#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserReadingDayItem | null> = rows
     .map((item) => {
       const dayKey = readStr(item.dayKey);
       if (!dayKey) return null;
@@ -2890,18 +2936,16 @@ export async function listBadgeAwards(
   tableName: string,
   userId: string
 ): Promise<BookUserBadgeAwardItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "BADGE#",
-      },
-      ScanIndexForward: true,
-    })
-  );
-  const items: Array<BookUserBadgeAwardItem | null> = (res.Items ?? [])
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "BADGE#",
+    },
+    ScanIndexForward: true,
+  });
+  const items: Array<BookUserBadgeAwardItem | null> = rows
     .map((item) => {
       const badgeId = readStr(item.badgeId);
       if (!badgeId) return null;
@@ -3203,32 +3247,31 @@ export async function listLicenseKeys(
   tableName: string,
   statusFilter?: "available" | "redeemed" | "revoked"
 ): Promise<LicenseKeyItem[]> {
-  const params: Record<string, unknown> = {
+  // All license-key index items live under one constant partition, so a single
+  // page (1MB) silently truncates once the program scales. Read every page
+  // first, then apply the status filter client-side: a server-side
+  // FilterExpression is evaluated per 1MB page before truncation, so it would
+  // under-count whenever the partition exceeds one page.
+  const rows = await queryAllItems({
     TableName: tableName,
     KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
     ExpressionAttributeValues: {
       ":pk": licenseIndexPk(),
       ":prefix": "CODE#",
-    } as Record<string, unknown>,
-  };
-
-  if (statusFilter) {
-    params.FilterExpression = "#status = :statusFilter";
-    params.ExpressionAttributeNames = { "#status": "status" };
-    (params.ExpressionAttributeValues as Record<string, unknown>)[":statusFilter"] = statusFilter;
-  }
-
-  const res = await ddbDoc.send(new QueryCommand(params as never));
-  return (res.Items ?? []).map((item) => ({
-    code: item.code as string,
-    plan: "PRO" as const,
-    validMonths: (item.validMonths as number) ?? 1,
-    status: item.status as "available" | "redeemed" | "revoked",
-    redeemedBy: item.redeemedBy as string | undefined,
-    redeemedAt: item.redeemedAt as string | undefined,
-    createdAt: item.createdAt as string,
-    note: item.note as string | undefined,
-  }));
+    },
+  });
+  return rows
+    .map((item) => ({
+      code: item.code as string,
+      plan: "PRO" as const,
+      validMonths: (item.validMonths as number) ?? 1,
+      status: item.status as "available" | "redeemed" | "revoked",
+      redeemedBy: item.redeemedBy as string | undefined,
+      redeemedAt: item.redeemedAt as string | undefined,
+      createdAt: item.createdAt as string,
+      note: item.note as string | undefined,
+    }))
+    .filter((key) => !statusFilter || key.status === statusFilter);
 }
 
 /** Revoke a license key. Updates both the main record and the index item. */
