@@ -16,6 +16,15 @@ import {
 } from "@/app/app/api/book/_lib/email-compliance";
 import type { BookUserNotificationItem, NotificationPreferences } from "@/app/app/api/book/_lib/types";
 
+function isConditionalCheckFailed(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  const rec = error as Record<string, unknown>;
+  return (
+    rec.name === "ConditionalCheckFailedException" ||
+    rec.__type === "ConditionalCheckFailedException"
+  );
+}
+
 /** Map an in-app notification type to the unsubscribe category for its email. */
 function emailCategoryForNotificationType(type: string): EmailCategory {
   if (type.includes("reading_reminder")) return "reading_reminder";
@@ -149,22 +158,34 @@ export async function createNotification(
 export async function listNotifications(
   tableName: string,
   userId: string,
-  limit = 50
+  // Cap on the number of items returned. When omitted, the full partition is
+  // paginated so the unread count / read-all sweep cover every notification
+  // (a single Query Limit is only a per-page hint and undercounts older items).
+  limit?: number
 ): Promise<BookUserNotificationItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "NOTIF#",
-      },
-      ScanIndexForward: false,
-      Limit: limit,
-    })
-  );
+  const items: Record<string, unknown>[] = [];
+  let lastEvaluatedKey: Record<string, unknown> | undefined;
 
-  return (res.Items ?? []).map((item) => ({
+  do {
+    const res = await ddbDoc.send(
+      new QueryCommand({
+        TableName: tableName,
+        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+        ExpressionAttributeValues: {
+          ":pk": bookUserPk(userId),
+          ":prefix": "NOTIF#",
+        },
+        ScanIndexForward: false,
+        ExclusiveStartKey: lastEvaluatedKey,
+      })
+    );
+    items.push(...(res.Items ?? []));
+    lastEvaluatedKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
+  } while (lastEvaluatedKey && (limit === undefined || items.length < limit));
+
+  const capped = limit === undefined ? items : items.slice(0, limit);
+
+  return capped.map((item) => ({
     userId,
     notificationId: String(item.notificationId ?? ""),
     type: String(item.type ?? "badge_earned") as BookUserNotificationItem["type"],
@@ -182,21 +203,31 @@ export async function markNotificationRead(
   userId: string,
   sk: string
 ): Promise<void> {
-  await ddbDoc.send(
-    new UpdateCommand({
-      TableName: tableName,
-      Key: { PK: bookUserPk(userId), SK: sk },
-      UpdateExpression: "SET readAt = :now",
-      ExpressionAttributeValues: { ":now": nowIso() },
-    })
-  );
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: { PK: bookUserPk(userId), SK: sk },
+        // Only update an existing notification — without this guard the Update
+        // would upsert a phantom NOTIF# row from client-supplied createdAt/id.
+        ConditionExpression: "attribute_exists(PK) AND attribute_exists(SK)",
+        UpdateExpression: "SET readAt = :now",
+        ExpressionAttributeValues: { ":now": nowIso() },
+      })
+    );
+  } catch (error) {
+    // No such notification: treat marking a non-existent item as a no-op.
+    if (!isConditionalCheckFailed(error)) throw error;
+  }
 }
 
 export async function markAllNotificationsRead(
   tableName: string,
   userId: string
 ): Promise<number> {
-  const items = await listNotifications(tableName, userId, 200);
+  // No limit: mark every unread notification, including ones beyond the newest
+  // page (a capped read left older items permanently unread).
+  const items = await listNotifications(tableName, userId);
   const unread = items.filter((n) => !n.readAt);
   const now = nowIso();
 
