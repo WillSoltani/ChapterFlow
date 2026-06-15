@@ -44,7 +44,9 @@ export function ThemeModeToggle({
       aria-pressed={isDark}
       title={`Theme: ${preferenceLabel}`}
       className={[
-        "group inline-flex items-center rounded-full border p-1 transition-colors focus-visible:outline-none focus-visible:ring-2 motion-reduce:transition-none",
+        // min-h-11 floors the hit box at 44px (WCAG 2.2 target size) while the
+        // slider below keeps its h-8 visual; the button centers it vertically.
+        "group inline-flex min-h-11 items-center justify-center rounded-full border p-1 transition-colors focus-visible:outline-none focus-visible:ring-2 motion-reduce:transition-none",
         hydrated ? "opacity-100" : "pointer-events-none opacity-0",
         shellClassName,
         className,
