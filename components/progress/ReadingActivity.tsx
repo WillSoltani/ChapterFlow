@@ -188,7 +188,7 @@ export function ReadingActivity({
         <EmptyState
           title="Your reading pattern will appear here after your first session"
           description=""
-          ctaLabel="Start Reading \u2192"
+          ctaLabel={"Start Reading →"}
           onCtaClick={onStartReading}
           className="py-6"
         />
