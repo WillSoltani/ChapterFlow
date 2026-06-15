@@ -129,9 +129,12 @@ function sortBooks(books: LibraryBook[], sort: SortOption): LibraryBook[] {
   const sorted = [...books];
   switch (sort) {
     case "popular":
-      return sorted.sort((a, b) => (a.popular === b.popular ? b.title.localeCompare(a.title) : a.popular ? -1 : 1));
+      // "Featured" order: hand-picked books first (see FEATURED_REASON — these
+      // are curated IDs, not usage telemetry), then a stable forward-alphabetical
+      // fallback so the remaining list isn't arbitrarily reverse-alphabetical.
+      return sorted.sort((a, b) => (a.popular === b.popular ? a.title.localeCompare(b.title) : a.popular ? -1 : 1));
     case "newest":
-      return sorted.sort((a, b) => (a.isNew === b.isNew ? b.title.localeCompare(a.title) : a.isNew ? -1 : 1));
+      return sorted.sort((a, b) => (a.isNew === b.isNew ? a.title.localeCompare(b.title) : a.isNew ? -1 : 1));
     case "shortest":
       return sorted.sort((a, b) => a.estimatedHours - b.estimatedHours);
     case "alphabetical":
@@ -140,7 +143,10 @@ function sortBooks(books: LibraryBook[], sort: SortOption): LibraryBook[] {
 }
 
 const SORT_OPTIONS: { value: SortOption; label: string }[] = [
-  { value: "popular", label: "Most popular" },
+  // "popular" is the default and ranks the hand-picked POPULAR_IDS first, so the
+  // label is "Featured" (curated) rather than "Most popular", which would imply
+  // real usage telemetry the catalog does not track (see FEATURED_REASON).
+  { value: "popular", label: "Featured" },
   { value: "newest", label: "Newest added" },
   { value: "shortest", label: "Shortest read" },
   { value: "alphabetical", label: "Alphabetical" },
