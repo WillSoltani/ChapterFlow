@@ -1,16 +1,27 @@
 import "server-only";
 
-import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import {
+  GetCommand,
+  PutCommand,
+  QueryCommand,
+  TransactWriteCommand,
+  UpdateCommand,
+} from "@aws-sdk/lib-dynamodb";
+import crypto from "crypto";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, pairSk, pairInvitePk, pairInviteSk, pairNudgeSk, streakSk, nowIso } from "./keys";
 import { getUserProfileItem, listAllUserProgress } from "./repo";
 import type { BookUserPairItem, BookPairInviteItem } from "./types";
 
 function generateInviteCode(): string {
+  // CSPRNG-backed (matches the referral-code generator's crypto path). The
+  // alphabet is exactly 32 chars (a power of two), so masking each random byte
+  // with & 31 maps it onto the alphabet uniformly — no modulo bias.
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const bytes = crypto.randomBytes(8);
   let code = "";
   for (let i = 0; i < 8; i++) {
-    code += chars[Math.floor(Math.random() * chars.length)];
+    code += chars[bytes[i] & 31];
   }
   return code;
 }
@@ -95,48 +106,70 @@ export async function acceptPairInvite(
     updatedAt: now,
   };
 
-  await Promise.all([
-    ddbDoc.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: {
-          PK: bookUserPk(invite.inviterUserId),
-          SK: pairSk(acceptingUserId),
-          entity: "BOOK_USER_PAIR",
-          ...pairItem,
-        },
+  // Commit all three writes atomically so a losing concurrent accept fails
+  // cleanly instead of clobbering. The pair Puts require the records not to
+  // already exist (attribute_not_exists) and the invite Put requires it to still
+  // be pending; if any condition fails the whole transaction is cancelled and we
+  // surface "Invite already used" rather than a half-written/duplicated link.
+  try {
+    await ddbDoc.send(
+      new TransactWriteCommand({
+        TransactItems: [
+          {
+            Put: {
+              TableName: tableName,
+              Item: {
+                PK: bookUserPk(invite.inviterUserId),
+                SK: pairSk(acceptingUserId),
+                entity: "BOOK_USER_PAIR",
+                ...pairItem,
+              },
+              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+            },
+          },
+          {
+            Put: {
+              TableName: tableName,
+              Item: {
+                PK: bookUserPk(acceptingUserId),
+                SK: pairSk(invite.inviterUserId),
+                entity: "BOOK_USER_PAIR",
+                userId: acceptingUserId,
+                partnerId: invite.inviterUserId,
+                pairedAt: now,
+                status: "active",
+                createdAt: now,
+                updatedAt: now,
+              },
+              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+            },
+          },
+          {
+            // Mark invite as accepted, but only while it is still pending.
+            Put: {
+              TableName: tableName,
+              Item: {
+                ...invite,
+                PK: pairInvitePk(inviteCode),
+                SK: pairInviteSk(),
+                status: "accepted",
+                acceptedBy: acceptingUserId,
+              },
+              ConditionExpression: "#status = :pending",
+              ExpressionAttributeNames: { "#status": "status" },
+              ExpressionAttributeValues: { ":pending": "pending" },
+            },
+          },
+        ],
       }),
-    ),
-    ddbDoc.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: {
-          PK: bookUserPk(acceptingUserId),
-          SK: pairSk(invite.inviterUserId),
-          entity: "BOOK_USER_PAIR",
-          userId: acceptingUserId,
-          partnerId: invite.inviterUserId,
-          pairedAt: now,
-          status: "active",
-          createdAt: now,
-          updatedAt: now,
-        },
-      }),
-    ),
-    // Mark invite as accepted
-    ddbDoc.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: {
-          ...invite,
-          PK: pairInvitePk(inviteCode),
-          SK: pairInviteSk(),
-          status: "accepted",
-          acceptedBy: acceptingUserId,
-        },
-      }),
-    ),
-  ]);
+    );
+  } catch (err: unknown) {
+    const name = err && typeof err === "object" && "name" in err ? (err as { name: string }).name : "";
+    if (name === "TransactionCanceledException" || name === "ConditionalCheckFailedException") {
+      return { pair: null as never, error: "Invite already used" };
+    }
+    throw err;
+  }
 
   return { pair: pairItem };
 }
