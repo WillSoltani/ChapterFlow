@@ -28,6 +28,7 @@ import {
   submissionsDir,
 } from "./artifacts.js";
 import { appendFindings, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
+import { allFindingsFabricated } from "./findingValidity.js";
 import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
 import { writeRepairBrief } from "./repairBrief.js";
 import { currentSessionId } from "../sessionProvenance.js";
@@ -244,6 +245,9 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
 
   const sweepSubmission = latestValidSubmission<ValidatedSweepSubmission>(bookId, roundId, "sweep");
   if (sweepSubmission && !options.dryRun) writeSweepRecordFromSubmission(sweepSubmission);
+  // A sweep whose findings ALL cite non-existent chapter fields is fabricated and
+  // provides no valid evidence — it must not gate the book as REVISE.
+  const sweepAllFabricated = !!sweepSubmission && allFindingsFabricated(sweepSubmission.findings);
   const keyResolution = resolveManualKeyJudges(bookId, roundId);
   if (keyResolution.errors.length) errors.push(...keyResolution.errors.map((e) => `manual-keyjudge: ${e}`));
 
@@ -338,6 +342,12 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     const sameReviewerConfirm = publishableCandidate && bar && confirm && bar.reviewer === confirm.reviewer && confirm.decision === "PUBLISHABLE";
     const unactionableBar = barGate === "YELLOW" && barHasUnactionableSubfloor(bar);
     const unactionableConfirm = publishableCandidate && confirmHasUnactionableDecision(confirm);
+    // A fabricated sweep (verdict FAIL, all findings cite non-existent fields) is
+    // excluded from the REVISE trigger so the chapter's REAL failures still drive
+    // the verdict; if nothing else fails it routes to NEEDS_MORE_QC (re-run the
+    // sweep), never PUBLISHABLE on an invalid sweep.
+    const unactionableSweep = checks.sweep === "FAIL" && sweepAllFabricated;
+    const sweepBlocks = checks.sweep !== "PASS" && !unactionableSweep;
 
     let finalVerdict: EvidenceChapterDecision["finalVerdict"] = "NEEDS_MORE_QC";
     let reason = "";
@@ -360,7 +370,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       checks.authorCheck !== "PASS" ||
       checks.intraBook !== "PASS" ||
       checks.bookGate !== "PASS" ||
-      checks.sweep !== "PASS" ||
+      sweepBlocks ||
       checks.manualKeyJudge !== "PASS" ||
       checks.barRead === "YELLOW" ||
       (publishableCandidate && checks.confirmRead === "REVISE") ||
@@ -371,6 +381,10 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       reason = checks.majors !== "PASS"
         ? "one or more current major findings are unresolved or not round-backed"
         : publishableCandidate && checks.confirmRead === "REVISE" ? confirm?.reason ?? "confirm read requires revision" : "one or more gates, reads, or repair-ledger checks require revision";
+    } else if (unactionableSweep) {
+      // Nothing real failed, but the sweep verdict was non-pass on fabricated
+      // findings — don't publish on an invalid sweep; ask for a fresh one.
+      reason = "sweep returned a non-pass verdict but its finding(s) cite a chapter field that does not exist — re-run the sweep";
     } else {
       const block = currentNegativeAttestationBlocksPublishable(bookId, ch);
       if (block) {
