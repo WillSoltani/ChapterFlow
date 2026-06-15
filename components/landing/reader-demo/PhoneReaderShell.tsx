@@ -117,14 +117,23 @@ export function PhoneReaderShell() {
     };
   }, [phase, hovered, userInteracted, prefersReducedMotion, interstitialFrom]);
 
-  // Scroll the active phase into view as it changes (smooth)
+  // Align the active phase to the top of the phone screen as phases advance.
+  // IMPORTANT: scroll ONLY this inner phone container — never the page. Element
+  // .scrollIntoView() scrolls EVERY scrollable ancestor, including the window, so
+  // as the demo auto-advanced it kept yanking the whole landing page up to this
+  // section ("the front page scrolls to the top, then slowly back down").
+  // container.scrollTo() moves just the phone's own scroll area; the page stays put.
   useEffect(() => {
     if (userInteracted || prefersReducedMotion) return;
     const container = scrollContainerRef.current;
     if (!container) return;
     const target = container.querySelector(`[data-phase="${phase}"]`);
     if (target instanceof HTMLElement) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      const top =
+        container.scrollTop +
+        (target.getBoundingClientRect().top -
+          container.getBoundingClientRect().top);
+      container.scrollTo({ top, behavior: "smooth" });
     }
   }, [phase, userInteracted, prefersReducedMotion]);
 
