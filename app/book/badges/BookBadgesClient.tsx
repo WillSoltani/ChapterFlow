@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { TopNav } from "@/app/book/home/components/TopNav";
+import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
@@ -203,6 +204,33 @@ export function BookBadgesClient() {
         />
         <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
           <LoadingSkeleton />
+        </section>
+      </main>
+    );
+  }
+
+  // Error state: the dashboard fetch failed and we have no last-good analytics,
+  // so the page would render an empty catalog with a 0/0 header — misrepresenting
+  // the account as having no badges. Surface a retry instead of a blank page.
+  if (badgeSystem.error && !badgeSystem.analytics) {
+    return (
+      <main className="cf-app-shell">
+        <TopNav
+          name={viewerName}
+          avatarUrl={viewerIdentity.avatarDataUrl}
+          activeTab="badges"
+          searchQuery=""
+          onSearchChange={() => {}}
+          searchInputRef={searchRef}
+          showSearch={false}
+          logoVariant="dashboard"
+        />
+        <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
+          <ErrorBanner
+            title="We couldn’t load your badges"
+            message={badgeSystem.error}
+            onRetry={badgeSystem.refetch}
+          />
         </section>
       </main>
     );
