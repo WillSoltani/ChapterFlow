@@ -6,9 +6,9 @@
  * What this is NOT: the Stripe Price IDs that are actually CHARGED live in env
  * (BOOK_STRIPE_PRICE_ID / _ANNUAL / _ANNUAL_UPFRONT) and are resolved server-
  * side in env.ts. This module is display-only. When a number changes here you
- * must also update the matching Stripe Price, and the legal Terms copy in
- * app/legal/terms/page.tsx (which intentionally restates these figures as prose
- * — it is not generated from this module).
+ * must also update the matching Stripe Price. The legal Terms copy in
+ * app/legal/terms/page.tsx now interpolates these figures from this module, so
+ * it no longer needs to be edited by hand when a price changes.
  *
  * Currency is single-CAD today. To support multiple currencies later, turn the
  * scalar amounts into a per-currency map and thread a currency code through the
