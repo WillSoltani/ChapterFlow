@@ -210,7 +210,6 @@ export function RewardsPageClient() {
       <TopNav
         name={identity.displayName || "Reader"}
         avatarUrl={identity.avatarDataUrl}
-        activeTab="badges"
         searchQuery=""
         onSearchChange={() => {}}
         searchInputRef={searchRef}
