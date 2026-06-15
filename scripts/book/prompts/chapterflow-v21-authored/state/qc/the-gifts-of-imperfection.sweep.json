@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "sweep-attest-v1",
+  "bookId": "the-gifts-of-imperfection",
+  "roundId": "r20260614223527-7ec2d3",
+  "verdict": "PASS",
+  "reviewer": "codex-qc:independent-v21-sweep",
+  "attestedAt": "2026-06-15T01:04:28.450Z",
+  "contentHashes": {
+    "1": "48e8a0b1ff0bfe91",
+    "2": "0a160f4412272f97",
+    "3": "2882d16e86c34c1b",
+    "4": "188be0a07cf2077e",
+    "5": "cbd941b7b0b2139d",
+    "6": "24e7c4aec80fc3f0",
+    "7": "62d940de2c6d80b5",
+    "8": "74453e1c76a2ce2a",
+    "9": "32631481bb91f905",
+    "10": "8f3294ebc8d3e36f",
+    "11": "73fd1172c5e2bfe6",
+    "12": "ec3a46633a13ca57",
+    "13": "37af502292a99a2d"
+  },
+  "checkedFamilies": [
+    "scene_skeleton",
+    "persona_drift",
+    "repeated_unit",
+    "location_stamping"
+  ],
+  "findings": []
+}

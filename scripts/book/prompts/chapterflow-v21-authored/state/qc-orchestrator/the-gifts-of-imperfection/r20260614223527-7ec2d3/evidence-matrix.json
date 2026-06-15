@@ -1,0 +1,477 @@
+{
+  "schemaVersion": "qc-evidence-matrix-v1",
+  "bookId": "the-gifts-of-imperfection",
+  "roundId": "r20260614223527-7ec2d3",
+  "generatedAt": "2026-06-15T01:04:36.446Z",
+  "chapters": [
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 1,
+      "chapterId": "the-gifts-of-imperfection-ch01",
+      "contentHash": "48e8a0b1ff0bfe91",
+      "sourceHash": "090e74bb2921739a",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch01.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch01.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch01.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 2,
+      "chapterId": "the-gifts-of-imperfection-ch02",
+      "contentHash": "0a160f4412272f97",
+      "sourceHash": "bbe8777a3d05dad7",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch02.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch02.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch02.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 3,
+      "chapterId": "the-gifts-of-imperfection-ch03",
+      "contentHash": "2882d16e86c34c1b",
+      "sourceHash": "3dc8a0556670572d",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch03.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch03.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch03.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 4,
+      "chapterId": "the-gifts-of-imperfection-ch04",
+      "contentHash": "188be0a07cf2077e",
+      "sourceHash": "067c6f27488cd717",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch04.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch04.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch04.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 5,
+      "chapterId": "the-gifts-of-imperfection-ch05",
+      "contentHash": "cbd941b7b0b2139d",
+      "sourceHash": "9b5bbba44f1e1078",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms publishable: the chapter teaches self-compassion clearly; the compressed memorable line is advisory, not a blocking defect.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch05.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch05.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch05.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 6,
+      "chapterId": "the-gifts-of-imperfection-ch06",
+      "contentHash": "24e7c4aec80fc3f0",
+      "sourceHash": "89d79c96412e5655",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch06.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch06.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch06.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 7,
+      "chapterId": "the-gifts-of-imperfection-ch07",
+      "contentHash": "62d940de2c6d80b5",
+      "sourceHash": "02fd3b06300f92cd",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch07.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch07.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch07.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 8,
+      "chapterId": "the-gifts-of-imperfection-ch08",
+      "contentHash": "74453e1c76a2ce2a",
+      "sourceHash": "86dcfe66aa15c990",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch08.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch08.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch08.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 9,
+      "chapterId": "the-gifts-of-imperfection-ch09",
+      "contentHash": "32631481bb91f905",
+      "sourceHash": "d9baa1e3ce24b422",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms publishable: the chapter coheres around creativity over comparison; one mismatched if-then plan is advisory, not blocking.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch09.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch09.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch09.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 10,
+      "chapterId": "the-gifts-of-imperfection-ch10",
+      "contentHash": "8f3294ebc8d3e36f",
+      "sourceHash": "e27cb6329904f406",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch10.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch10.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch10.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 11,
+      "chapterId": "the-gifts-of-imperfection-ch11",
+      "contentHash": "73fd1172c5e2bfe6",
+      "sourceHash": "07558fd7c9597afc",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch11.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch11.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch11.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 12,
+      "chapterId": "the-gifts-of-imperfection-ch12",
+      "contentHash": "ec3a46633a13ca57",
+      "sourceHash": "5793c62bf6c7aed8",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch12.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch12.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch12.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "the-gifts-of-imperfection",
+      "roundId": "r20260614223527-7ec2d3",
+      "chapterNumber": 13,
+      "chapterId": "the-gifts-of-imperfection-ch13",
+      "contentHash": "37af502292a99a2d",
+      "sourceHash": "7ee275e99e75e020",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Second read confirms the chapter remains publishable: content is coherent, source-grounded, actionable, and free of blocking defects.",
+      "evidence": {
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection-ch13.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/the-gifts-of-imperfection.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/bar/ch13.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/submissions/confirm/ch13.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -130,7 +130,7 @@
         "format": "text_thread",
         "requiredBeat": "Pair The Alchemist's vocation pull with one realistic next action."
       },
-      "scenario": "Chen rereads a text from Alice after his night shift: \"The Alchemist made me think of your drawing class.\" Paulo Coelho is on the break-room table, and Outliers is open to a note about effort and reward. Chen is tired, and the community center window closes at midnight.",
+      "scenario": "Chen rereads a text from Alice after his night shift: \"The Alchemist made me think of your drawing class.\" Paulo Coelho is on the break-room table. Outliers is open to a note about effort and reward. Chen is tired, and the community center window closes at midnight.",
       "whatToDo": "Chen should register one drawing class for the next month and keep the shift schedule intact while he tests the call in real time.",
       "whyItMatters": "The faithful step is smaller than a reckless leap. Chen gives the gift a place to serve without pretending bills no longer matter."
     }
@@ -246,7 +246,7 @@
           "Carla should keep purpose separate from paid work so neither gets messy."
         ],
         "correctIndex": 0,
-        "explanation": "The guidepost is grounded. Purpose may need a slash, a day job, or gradual redesign rather than a sudden exit.",
+        "explanation": "The guidepost is grounded. Purpose may need a slash, a day job, or gradual redesign instead of a sudden exit.",
         "bloomsLevel": "evaluate",
         "depthLevel": "deep"
       },

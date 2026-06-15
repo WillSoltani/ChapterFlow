@@ -1,0 +1,24 @@
+{
+  "bookId": "the-gifts-of-imperfection",
+  "roundId": "r20260614223527-7ec2d3",
+  "finalizedAt": "2026-06-15T01:04:36.465Z",
+  "evidenceMatrix": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/evidence-matrix.json",
+  "repairBrief": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-brief.md",
+  "repairPrompt": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/the-gifts-of-imperfection/r20260614223527-7ec2d3/repair-prompt.md",
+  "ledger": {
+    "open": 2
+  },
+  "majors": {
+    "unresolved": 0,
+    "book": 0,
+    "chapter": 0
+  },
+  "attestationsWritten": 13,
+  "verdicts": {
+    "PUBLISHABLE": 13,
+    "REVISE": 0,
+    "CORRUPTION": 0,
+    "NEEDS_MORE_QC": 0
+  },
+  "errors": []
+}
