@@ -66,3 +66,20 @@ export function selectNewMilestones(
       highestMilestoneReached < milestone.activations
   );
 }
+
+/**
+ * The highest escalation tier already reached at a given lifetime activation count
+ * — the largest milestone.activations <= activatedInvites, or 0 if none. Used to
+ * seed highestMilestoneReached for inviters whose profile predates the escalation
+ * feature (the field is absent), so only tiers crossed AFTER go-live pay out and
+ * the installed base never receives a retroactive lump grant.
+ */
+export function highestPassedTier(activatedInvites: number): number {
+  let highest = 0;
+  for (const milestone of ESCALATION_MILESTONES) {
+    if (activatedInvites >= milestone.activations) {
+      highest = milestone.activations;
+    }
+  }
+  return highest;
+}
