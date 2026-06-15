@@ -370,7 +370,7 @@ type ExampleV21 = {
     stakes: string;
     format: string;               // see ExampleFormat list below
     requiredBeat: string;         // the exact beat the example must hit
-    venue?: string;                // v21.1 no-api QC: exact dealt venue string from fanout (a PLACE or a relationship CHANNEL — fit it to the chapter's topic; see staging rule below)
+    venue?: string;                // OPTIONAL. Only the `fanout` path deals venues; if you were handed a dealt venue, set this to that exact string (it is verified against the plan). The next-task flow does NOT deal venues — leave it unset and just vary the staging by topic (see staging rule below). A venue is a PLACE or a relationship CHANNEL.
     exemplar?: string;             // v21.1 no-api QC: owned marquee exemplar used, or ""
   };
   scenario: string;               // 280-520 chars; usually 55-95 words
@@ -512,7 +512,7 @@ The most error-prone section. The ship gate has 6+ critic checks here.
 
 7. **Distinct domains.** No two examples in the chapter use the same domain. Span industries / settings / role types.
 
-8. **Vary the scene SHAPE, and fit staging to the topic.** Do NOT open every scenario with the same skeleton ("<Name> <tactile-verb>s at/beside a <occupational prop>"). The six dealt venues already span kinds (domestic, relational, civic, occupational, commercial, recreational) — let each scene's grammar and setting differ. Staging must FIT the chapter's subject: a personal/relational topic (boundaries, family, habits) belongs at a kitchen table, on a phone call, in a text thread, in a parked car — NOT at a workplace counter or job-site prop. A venue can be a relationship CHANNEL, not only a physical place.
+8. **Vary the scene SHAPE, and fit staging to the topic.** Do NOT open every scenario with the same skeleton ("<Name> <tactile-verb>s at/beside a <occupational prop>"). Span venue KINDS across the six examples (domestic, relational, civic, occupational, commercial, recreational) so each scene's grammar and setting differ — no book may anchor more than two chapters to the same venue (book-gate BP27 blocks it). Staging must FIT the chapter's subject: a personal/relational topic (boundaries, family, habits) belongs at a kitchen table, on a phone call, in a text thread, in a parked car — NOT at a workplace counter or job-site prop. A venue can be a relationship CHANNEL, not only a physical place.
 
 8. **whatToDo is one move, not a list.** State the action the protagonist took or should take. One verb, one object, one reason.
 
