@@ -86,17 +86,10 @@ export async function POST(req: Request, ctx: Params) {
 
     const pk = bookUserPk(user.sub);
     const today = new Date().toISOString().slice(0, 10);
-
-    // Rate limit check
     const limitSk = feedbackLimitSk(today, exampleId);
-    const limitCheck = await ddbDoc.send(
-      new GetCommand({ TableName: tableName, Key: { PK: pk, SK: limitSk } }),
-    );
-    if (limitCheck.Item) {
-      return bookErr(req, 429, "rate_limited", "Feedback already requested for this example today");
-    }
 
-    // Check cache
+    // Check cache before claiming the rate-limit slot, so a repeat of the same
+    // reflection still serves the cached feedback for free.
     const feedbackSk = reflectionFeedbackSk(bookId, chapterNumber, exampleId);
     const cacheCheck = await ddbDoc.send(
       new GetCommand({ TableName: tableName, Key: { PK: pk, SK: feedbackSk } }),
@@ -110,6 +103,34 @@ export async function POST(req: Request, ctx: Params) {
         JSON.stringify({ feedbackText: cachedText, cached: true }),
         { status: 200, headers: { "Content-Type": "application/json" } },
       );
+    }
+
+    // Atomically claim the per-example daily rate-limit slot BEFORE streaming.
+    // A conditional Put (attribute_not_exists) closes the read-then-write race
+    // where concurrent requests for the same exampleId all pass a GetItem check,
+    // and guarantees the marker exists even if the client aborts mid-stream — so
+    // a caller cannot exceed the once-per-example-per-day limit (and the paid
+    // Sonnet calls it gates) by racing or aborting.
+    const limitTtl = Math.floor(Date.now() / 1000) + 2 * 86400;
+    try {
+      await ddbDoc.send(
+        new PutCommand({
+          TableName: tableName,
+          Item: {
+            PK: pk,
+            SK: limitSk,
+            entity: "FEEDBACK_RATE_LIMIT",
+            createdAt: nowIso(),
+            ttl: limitTtl,
+          },
+          ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+        }),
+      );
+    } catch (err) {
+      if (isConditionalCheckFailed(err)) {
+        return bookErr(req, 429, "rate_limited", "Feedback already requested for this example today");
+      }
+      throw err;
     }
 
     // Get API key
@@ -173,21 +194,6 @@ export async function POST(req: Request, ctx: Params) {
               }),
             );
           }
-
-          // Write rate limit marker
-          const limitTtl = Math.floor(Date.now() / 1000) + 2 * 86400;
-          await ddbDoc.send(
-            new PutCommand({
-              TableName: tableName,
-              Item: {
-                PK: pk,
-                SK: limitSk,
-                entity: "FEEDBACK_RATE_LIMIT",
-                createdAt: nowIso(),
-                ttl: limitTtl,
-              },
-            }),
-          );
         } catch (err) {
           controller.enqueue(
             encoder.encode(
@@ -217,6 +223,15 @@ export async function POST(req: Request, ctx: Params) {
     console.error("[feedback] Error:", err);
     return bookErr(req, 500, "internal_error", "An unexpected error occurred");
   }
+}
+
+function isConditionalCheckFailed(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  const rec = error as Record<string, unknown>;
+  return (
+    rec.name === "ConditionalCheckFailedException" ||
+    rec.__type === "ConditionalCheckFailedException"
+  );
 }
 
 function simpleHash(text: string): string {
