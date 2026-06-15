@@ -31,6 +31,10 @@ function SignupInner() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [consented, setConsented] = useState(false);
+  // Surfaced when a sign-up path is attempted with consent unchecked, so the
+  // gate isn't a silent no-op (e.g. pressing Enter in the email field, or a
+  // disabled button reached via keyboard). Cleared the moment consent is given.
+  const [consentHint, setConsentHint] = useState(false);
 
   // Preserve where the visitor was headed (e.g. a gift or invite page). The
   // /auth/login route sanitizes returnTo server-side, so we pass it through raw.
@@ -44,12 +48,19 @@ function SignupInner() {
   }
 
   function startOAuth(provider: "Google" | "SignInWithApple") {
-    if (!consented) return;
+    if (!consented) {
+      setConsentHint(true);
+      return;
+    }
     window.location.assign(loginHref({ identity_provider: provider }));
   }
 
   function startEmail() {
-    if (!consented || !email.trim()) return;
+    if (!consented) {
+      setConsentHint(true);
+      return;
+    }
+    if (!email.trim()) return;
     // login_hint prefills the email on the hosted UI; it's validated/ignored
     // server-side if it isn't a real address.
     window.location.assign(loginHref({ login_hint: email.trim() }));
@@ -81,8 +92,13 @@ function SignupInner() {
           <input
             type="checkbox"
             checked={consented}
-            onChange={(e) => setConsented(e.target.checked)}
+            onChange={(e) => {
+              setConsented(e.target.checked);
+              if (e.target.checked) setConsentHint(false);
+            }}
             aria-label="I agree to the Terms of Service and Privacy Policy"
+            aria-describedby={consentHint ? "signup-consent-hint" : undefined}
+            aria-invalid={consentHint || undefined}
             className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-(--cf-accent)"
           />
           <span>
@@ -107,6 +123,19 @@ function SignupInner() {
             .
           </span>
         </label>
+
+        {/* Consent hint — shown only when a sign-up path is attempted without
+            ticking the box, so the gate points back to the checkbox instead of
+            silently doing nothing. */}
+        {consentHint && (
+          <p
+            id="signup-consent-hint"
+            role="alert"
+            className="-mt-3 mb-5 text-[13px] leading-relaxed text-(--cf-danger-text)"
+          >
+            Please agree to the Terms to continue.
+          </p>
+        )}
 
         {/* OAuth buttons */}
         <div className="flex flex-col gap-3">
