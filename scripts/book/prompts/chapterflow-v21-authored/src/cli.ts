@@ -1913,22 +1913,20 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   // targeted re-dispatch hints for the offending chapters. The CLI stays
   // deterministic over files (it never spawns); the WRITE-ORCHESTRATE session
   // loops: re-author offenders → re-run --barrier until PASS. So by the time QC
-  // runs, the deterministic families (incl. BP28/BP29) are already cleared.
+  // runs, the actionable shadow-major families (BP28/BP29/BP30/BP31) — each
+  // zero-on-clean and a known bar REVISE driver — are already cleared, even
+  // though they don't fail bookGate.passed (only blockers do). Single source of
+  // truth for the offender set: isWriteBarrierActionable in critics/bookGate.ts.
   if (flags["barrier"] === true) {
     console.log(`\n──────────── barrier ────────────`);
     console.log(`[barrier] Running book-gate as a pre-QC barrier for ${bookId}...\n`);
     const gateCode = await runBookGate([bookId]); // full report (derive-artifacts + shadow checks)
     const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
-    const { runBookGate: runBookGateCritic } = await import("./critics/bookGate.js");
+    const { runBookGate: runBookGateCritic, isWriteBarrierActionable } = await import("./critics/bookGate.js");
     const report = runBookGateCritic(bookId, loadBookChapters(bookId));
     const offenders = new Set<number>();
     for (const f of report.findings) {
-      const actionable =
-        f.severity === "blocker" ||
-        f.catalogId.startsWith("BP28") ||
-        f.catalogId.startsWith("BP29") ||
-        f.catalogId.startsWith("BP30");
-      if (actionable) for (const c of f.chapters ?? []) offenders.add(c);
+      if (isWriteBarrierActionable(f)) for (const c of f.chapters ?? []) offenders.add(c);
     }
     if (gateCode === 0 && offenders.size === 0) {
       console.log(`\n[barrier] PASS — book-gate clean and no structural-sameness offenders. Hand off to QC.`);
