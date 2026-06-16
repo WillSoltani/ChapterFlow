@@ -76,10 +76,10 @@ export function ImplementationPlanCard({ plan, fontScaleClass }: ImplementationP
           </div>
 
           {/* 24-Hour Challenge */}
-          <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3">
+          <div className="rounded-lg border border-(--accent-amber)/20 bg-(--accent-amber)/5 px-4 py-3">
             <div className="flex items-center gap-2 mb-1.5">
-              <Zap className="h-3.5 w-3.5 text-amber-500" />
-              <p className="text-xs font-semibold uppercase tracking-[0.06em] text-amber-500">
+              <Zap className="h-3.5 w-3.5 text-(--accent-amber)" />
+              <p className="text-xs font-semibold uppercase tracking-[0.06em] text-(--accent-amber)">
                 24-Hour Challenge
               </p>
             </div>

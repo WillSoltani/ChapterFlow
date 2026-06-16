@@ -66,7 +66,7 @@ export function Footer() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="nav-link text-[13px] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                className="nav-link text-[13px] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                 style={{ color: "var(--text-muted)" }}
               >
                 {link.label}
@@ -81,22 +81,22 @@ export function Footer() {
           style={{ color: "var(--text-muted)" }}
         >
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/legal/terms" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+            <Link href="/legal/terms" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
               Terms
             </Link>
-            <Link href="/legal/privacy" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+            <Link href="/legal/privacy" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
               Privacy
             </Link>
-            <Link href="/legal/refund" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+            <Link href="/legal/refund" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
               Refunds
             </Link>
-            <Link href="/legal/cookies" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+            <Link href="/legal/cookies" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
               Cookies
             </Link>
-            <Link href="/legal/copyright" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+            <Link href="/legal/copyright" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
               Copyright
             </Link>
-            <Link href="/legal/data-rights" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
+            <Link href="/legal/data-rights" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
               Data Rights
             </Link>
           </div>

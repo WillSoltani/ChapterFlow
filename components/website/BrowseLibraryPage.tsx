@@ -331,7 +331,7 @@ function SearchBar({
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => onRequestBook(query)}
-                className="inline-flex items-center justify-center min-h-[44px] px-2 text-[12px] mt-1 font-medium hover:underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                className="inline-flex items-center justify-center min-h-[44px] px-2 text-[12px] mt-1 font-medium hover:underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
                 style={{ color: "var(--accent-cyan)" }}
               >
                 Request &ldquo;{query}&rdquo; &rarr;
@@ -386,7 +386,7 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
         <Link
           href={bookHref(book.id)}
           onClick={() => track("book_card_click", { source: "browse_library_featured", bookId: book.id })}
-          className="mt-3 text-[13px] font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+          className="mt-3 text-[13px] font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{ color: "var(--accent-cyan)" }}
         >
           Start reading →
@@ -569,7 +569,7 @@ function FilterBar({
                 if (e.key === "Escape") setSortOpen(false);
                 if (e.key === "ArrowDown") { e.preventDefault(); setSortOpen(true); }
               }}
-              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
               style={{ color: "var(--text-secondary)" }}
             >
               <span className="hidden sm:inline">Sort:</span>{" "}
@@ -597,7 +597,7 @@ function FilterBar({
                       if (e.key === "Escape") { setSortOpen(false); }
                       if (e.key === "Enter" || e.key === " ") { onSortChange(opt.value); setSortOpen(false); }
                     }}
-                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
                     style={{
                       color: sortBy === opt.value ? "var(--accent-cyan)" : "var(--text-secondary)",
                       fontWeight: sortBy === opt.value ? 600 : 400,
@@ -625,7 +625,7 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
   return (
     <Link
       href={bookHref(book.id)}
-      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded-lg"
+      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded-lg"
       aria-label={`${book.title} by ${book.author} — ${DIFFICULTY_LABEL[book.difficulty]}, ${book.chapters} chapters`}
       onClick={() => track("book_card_click", { source: "browse_library", bookId: book.id })}
     >
@@ -789,7 +789,7 @@ function BookRow({
         {canLeft && (
           <button
             onClick={() => scroll("left")}
-            className="absolute left-2 top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-40 group-hover/row:opacity-100 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+            className="absolute left-2 top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-40 group-hover/row:opacity-100 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
             style={{
               background: "rgba(17, 24, 39, 0.85)",
               backdropFilter: "blur(8px)",
@@ -841,7 +841,7 @@ function BookRow({
         {canRight && (
           <button
             onClick={() => scroll("right")}
-            className="absolute right-2 top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-40 group-hover/row:opacity-100 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
+            className="absolute right-2 top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-40 group-hover/row:opacity-100 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
             style={{
               background: "rgba(17, 24, 39, 0.85)",
               backdropFilter: "blur(8px)",
@@ -983,7 +983,7 @@ function ZeroResults({
       <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
         <button
           onClick={onClear}
-          className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+          className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{ background: "var(--bg-raised)", border: "1px solid var(--border-medium)", color: "var(--text-heading)" }}
         >
           Clear search
@@ -991,7 +991,7 @@ function ZeroResults({
         {query.trim() && (
           <button
             onClick={() => onRequestBook(query)}
-            className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-transform duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-transform duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
             style={{ background: "var(--accent-cyan)", color: "var(--primary-foreground)" }}
           >
             Request &ldquo;{query.trim()}&rdquo;
@@ -1038,7 +1038,7 @@ function BottomCTA() {
             <Link
               href={AUTH_LOGIN_BOOK_URL}
               onClick={() => track("cta_click", { source: "browse_library_bottom_cta" })}
-              className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-[15px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+              className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-[15px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
               style={{ backgroundColor: "var(--accent-cyan)", color: "var(--primary-foreground)" }}
             >
               Open my first book →

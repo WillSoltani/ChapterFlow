@@ -24,7 +24,7 @@ export function ThemeModeToggle({
 
   const shellClassName =
     variant === "site"
-      ? "border-white/12 bg-white/[0.06] text-text-primary hover:bg-white/[0.1] focus-visible:ring-cyan-300/45"
+      ? "border-white/12 bg-white/[0.06] text-text-primary hover:bg-white/[0.1] focus-visible:ring-(--accent-cyan)/45"
       : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-surface-strong) focus-visible:ring-(--cf-accent-border)";
   const thumbClassName =
     variant === "site"

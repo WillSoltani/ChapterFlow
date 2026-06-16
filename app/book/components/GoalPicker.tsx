@@ -60,7 +60,7 @@ export function GoalPicker({ value, onChange }: GoalPickerProps) {
           step={5}
           value={value}
           onChange={(event) => onChange(clampGoal(Number(event.target.value)))}
-          className="w-full accent-amber-400"
+          className="w-full accent-(--accent-amber)"
         />
 
         <div className="flex items-center gap-2">
