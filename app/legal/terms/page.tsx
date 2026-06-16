@@ -87,7 +87,7 @@ export default function TermsOfServicePage() {
               <strong style={{ color: "var(--text-heading)" }}>No refunds:</strong> Except where required by law or
               in the case of a duplicate charge or billing error, subscription fees are non-refundable, including the
               unused portion of an annual term. See our{" "}
-              <a href="/legal/refund" className="underline" style={{ color: "var(--accent-teal)" }}>Refund &amp; Cancellation Policy</a>.
+              <a href="/legal/refund" className="underline" style={{ color: "var(--accent-cyan)" }}>Refund &amp; Cancellation Policy</a>.
             </li>
             <li>After cancellation, you retain access to your completed books and reading progress. To start new books beyond the free limit, you must resubscribe.</li>
             <li>We reserve the right to change pricing with 30 days&apos; notice. Existing subscribers remain on their current rate until their next renewal after the notice period.</li>
@@ -147,12 +147,12 @@ export default function TermsOfServicePage() {
             by the authors or publishers of those books, and are not a substitute for reading the original works.
             Book titles, author names, and trademarks belong to their respective owners and are used only to
             identify the works discussed. If you believe content infringes your rights, see our{" "}
-            <a href="/legal/copyright" className="underline" style={{ color: "var(--accent-teal)" }}>Copyright &amp; Takedown Policy</a>.
+            <a href="/legal/copyright" className="underline" style={{ color: "var(--accent-cyan)" }}>Copyright &amp; Takedown Policy</a>.
           </p>
           <p>
             <strong style={{ color: "var(--text-heading)" }}>Your content:</strong> Your reading progress, notes,
             quiz responses, and scenario submissions are your data, subject to our{" "}
-            <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-teal)" }}>Privacy Policy</a>.
+            <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-cyan)" }}>Privacy Policy</a>.
             By submitting content such as scenarios, you grant {LEGAL_ENTITY_NAME} a non-exclusive,
             worldwide, royalty-free license to store, display, adapt, and distribute that content within the
             Service to operate and improve it; you retain ownership and may request its removal, and you confirm
@@ -186,7 +186,7 @@ export default function TermsOfServicePage() {
             You may deactivate your account at any time from Settings. Deactivation preserves your data and you
             can reactivate by signing back in. You may also permanently delete your account from Settings. Deleted
             accounts become non-functional. Alternatively, you can contact{" "}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{SUPPORT_EMAIL}</a>{" "}
             for account-related requests.
           </p>
         </section>
@@ -218,7 +218,7 @@ export default function TermsOfServicePage() {
           </h2>
           <p>
             For questions about these Terms, contact us at{" "}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>.
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{SUPPORT_EMAIL}</a>.
           </p>
         </section>
       </div>

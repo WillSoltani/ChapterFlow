@@ -75,7 +75,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
         <div>
           <p
             style={{
-              fontFamily: "var(--font-sora, sans-serif)",
+              fontFamily: "var(--font-display, sans-serif)",
               fontSize: 16,
               fontWeight: 600,
               color: "var(--cf-text-1)",
@@ -87,7 +87,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
           </p>
           <p
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 13,
               color: "var(--cf-text-soft)",
               margin: "4px 0 0",
@@ -110,7 +110,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
         <Clock size={14} style={{ color: "var(--cf-text-soft)" }} />
         <span
           style={{
-            fontFamily: "var(--font-dm-sans, sans-serif)",
+            fontFamily: "var(--font-body, sans-serif)",
             fontSize: 13,
             color: "var(--cf-text-soft)",
           }}
@@ -125,7 +125,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
           key={i}
           variants={staggerItem}
           style={{
-            fontFamily: "var(--font-dm-sans, sans-serif)",
+            fontFamily: "var(--font-body, sans-serif)",
             fontSize: 17,
             lineHeight: 1.75,
             color: "var(--cf-text-1)",
@@ -150,7 +150,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
         >
           <p
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 11,
               fontWeight: 600,
               letterSpacing: "0.1em",
@@ -163,7 +163,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
           </p>
           <p
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 16,
               fontStyle: "italic",
               lineHeight: 1.7,

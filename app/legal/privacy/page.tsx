@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p className="mb-3">
             ChapterFlow uses a small number of cookies and browser local storage. For full details, see our{" "}
-            <a href="/legal/cookies" className="underline" style={{ color: "var(--accent-teal)" }}>Cookie Policy</a>.
+            <a href="/legal/cookies" className="underline" style={{ color: "var(--accent-cyan)" }}>Cookie Policy</a>.
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li><strong style={{ color: "var(--text-heading)" }}>Authentication cookies:</strong> Secure, httpOnly cookies for your session tokens, plus a client-readable session expiry cookie for proactive session management.</li>
@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
             <li><strong style={{ color: "var(--text-heading)" }}>Reading history:</strong> Choose whether your daily reading activity is tracked.</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Data export:</strong> Download all your data — reading history, notes, bookmarks, quiz results, badges, and any usage analytics and approximate-location telemetry we hold (collected while Share Usage Analytics is enabled) — in JSON, CSV, or Markdown format (the JSON and Markdown exports include the usage-analytics detail).</li>
             <li><strong style={{ color: "var(--text-heading)" }}>Account deactivation:</strong> Temporarily disable your account from Settings. Your data is preserved and you can reactivate by signing back in.</li>
-            <li><strong style={{ color: "var(--text-heading)" }}>Account deletion:</strong> Permanently delete your account from Settings. You can also contact us at <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.</li>
+            <li><strong style={{ color: "var(--text-heading)" }}>Account deletion:</strong> Permanently delete your account from Settings. You can also contact us at <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-cyan)" }}>support@chapterflow.ca</a>.</li>
           </ul>
         </section>
 
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <p>
             To request complete erasure of your data, contact us at{" "}
-            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.
+            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-cyan)" }}>support@chapterflow.ca</a>.
           </p>
         </section>
 
@@ -177,7 +177,7 @@ export default function PrivacyPolicyPage() {
           <p>
             ChapterFlow is operated by SiliconX Software Solutions (Nova Scotia, Canada). If you have questions
             about this Privacy Policy or your personal data, contact us at{" "}
-            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.
+            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-cyan)" }}>support@chapterflow.ca</a>.
           </p>
         </section>
       </div>

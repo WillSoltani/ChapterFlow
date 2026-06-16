@@ -26,7 +26,7 @@ const DIFFICULTY_COLORS: Record<string, string> = {
 
 const BADGE_CONFIG: Record<string, { label: string; color: string; glow?: boolean }> = {
   "staff-pick": { label: "Staff Pick ★", color: "var(--accent-gold)" },
-  new: { label: "New", color: "var(--accent-red)" },
+  new: { label: "New", color: "var(--accent-rose)" },
 };
 
 export function BookCard({ book, index = 0, layout = "grid", showProLock = false }: BookCardProps) {

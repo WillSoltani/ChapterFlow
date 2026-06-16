@@ -287,7 +287,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
           borderStyle: "solid",
           borderColor: "var(--accent-cyan)",
           color: "var(--accent-cyan)",
-          fontFamily: "var(--font-sora, sans-serif)",
+          fontFamily: "var(--font-display, sans-serif)",
           fontWeight: 700,
           fontSize: 22,
           textTransform: "uppercase",
@@ -308,7 +308,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
           borderStyle: "solid",
           borderColor: "var(--accent-rose)",
           color: "var(--accent-rose)",
-          fontFamily: "var(--font-sora, sans-serif)",
+          fontFamily: "var(--font-display, sans-serif)",
           fontWeight: 700,
           fontSize: 22,
           textTransform: "uppercase",
@@ -325,7 +325,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
       {/* Title */}
       <p
         style={{
-          fontFamily: "var(--font-sora, sans-serif)",
+          fontFamily: "var(--font-display, sans-serif)",
           fontSize: 18,
           fontWeight: 600,
           color: "var(--cf-text-1)",
@@ -340,7 +340,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
       {/* Author */}
       <p
         style={{
-          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontFamily: "var(--font-body, sans-serif)",
           fontSize: 14,
           color: "var(--cf-text-3)",
           textAlign: "center",
@@ -358,20 +358,20 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
             background: "var(--cf-surface-muted)",
             border: "1px solid var(--cf-border-strong)",
             color: "var(--cf-text-3)",
-            fontFamily: "var(--font-dm-sans, sans-serif)",
+            fontFamily: "var(--font-body, sans-serif)",
           }}
         >
           {book.category}
         </span>
         <span
           className="rounded-full px-3 py-1 text-xs"
-          style={{ ...difficultyStyle(book.difficulty), fontFamily: "var(--font-dm-sans, sans-serif)" }}
+          style={{ ...difficultyStyle(book.difficulty), fontFamily: "var(--font-body, sans-serif)" }}
         >
           {book.difficulty}
         </span>
         <span
           className="flex items-center gap-1 text-xs"
-          style={{ color: "var(--cf-text-soft)", fontFamily: "var(--font-dm-sans, sans-serif)" }}
+          style={{ color: "var(--cf-text-soft)", fontFamily: "var(--font-body, sans-serif)" }}
         >
           <Clock size={12} />~{book.estimatedHours}h
         </span>
@@ -380,7 +380,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
       {/* Tagline */}
       <p
         style={{
-          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontFamily: "var(--font-body, sans-serif)",
           fontSize: 13,
           color: "var(--cf-text-soft)",
           fontStyle: "italic",
@@ -465,7 +465,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.4, ease: "easeOut" }}
         style={{
-          fontFamily: "var(--font-sora, sans-serif)",
+          fontFamily: "var(--font-display, sans-serif)",
           fontSize: 28,
           fontWeight: 600,
           color: "var(--cf-text-1)",
@@ -488,7 +488,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
             <BookCoverImage book={book} width={100} height={140} radius={12} titleSize={11} />
             <p
               style={{
-                fontFamily: "var(--font-dm-sans, sans-serif)",
+                fontFamily: "var(--font-body, sans-serif)",
                 fontSize: 13,
                 fontWeight: 500,
                 color: "var(--cf-text-1)",
@@ -501,7 +501,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
             </p>
             <p
               style={{
-                fontFamily: "var(--font-dm-sans, sans-serif)",
+                fontFamily: "var(--font-body, sans-serif)",
                 fontSize: 11,
                 color: "var(--cf-text-soft)",
                 textAlign: "center",
@@ -652,7 +652,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
       {/* Header */}
       <h2
         style={{
-          fontFamily: "var(--font-sora, sans-serif)",
+          fontFamily: "var(--font-display, sans-serif)",
           fontSize: "clamp(24px, 5vw, 32px)",
           fontWeight: 600,
           color: "var(--cf-text-1)",
@@ -664,7 +664,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
       </h2>
       <p
         style={{
-          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontFamily: "var(--font-body, sans-serif)",
           fontSize: 16,
           color: "var(--cf-text-3)",
           textAlign: "center",
@@ -678,7 +678,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
       {/* Counter */}
       <p
         style={{
-          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontFamily: "var(--font-body, sans-serif)",
           fontSize: 14,
           color:
             selectedCount === 0
@@ -794,7 +794,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           >
             <p
               style={{
-                fontFamily: "var(--font-sora, sans-serif)",
+                fontFamily: "var(--font-display, sans-serif)",
                 fontSize: 18,
                 fontWeight: 600,
                 color: "var(--cf-text-1)",
@@ -805,7 +805,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
             </p>
             <p
               style={{
-                fontFamily: "var(--font-dm-sans, sans-serif)",
+                fontFamily: "var(--font-body, sans-serif)",
                 fontSize: 14,
                 color: "var(--cf-text-3)",
                 margin: 0,
@@ -904,7 +904,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
                 >
                   <span
                     style={{
-                      fontFamily: "var(--font-dm-sans, sans-serif)",
+                      fontFamily: "var(--font-body, sans-serif)",
                       fontSize: 14,
                       color: "var(--cf-border-strong)",
                     }}
@@ -921,7 +921,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
       {/* Bottom text */}
       <p
         style={{
-          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontFamily: "var(--font-body, sans-serif)",
           fontSize: 13,
           color: "var(--cf-text-soft)",
           textAlign: "center",

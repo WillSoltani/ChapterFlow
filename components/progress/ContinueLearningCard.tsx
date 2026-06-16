@@ -286,7 +286,7 @@ export function NoActiveBooksCard() {
         href="/book/library"
         className="mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all"
         style={{
-          background: "var(--accent-teal)",
+          background: "var(--accent-cyan)",
           color: "var(--bg-base)",
         }}
       >

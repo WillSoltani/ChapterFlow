@@ -48,7 +48,7 @@ function SubStepIndicator({ current }: { current: SubStep }) {
           <span
             key={step.key}
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 13,
               fontWeight: isActive ? 600 : 400,
               padding: "5px 12px",
@@ -135,7 +135,7 @@ export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLo
         <div style={{ textAlign: "center", marginBottom: 8 }}>
           <p
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 14,
               color: "var(--cf-text-soft)",
               textTransform: "uppercase",

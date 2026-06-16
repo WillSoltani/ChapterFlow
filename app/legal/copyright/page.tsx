@@ -62,7 +62,7 @@ export default function CopyrightPolicyPage() {
           <p className="mb-3">
             If you are a rights holder (or authorized to act for one) and believe content on ChapterFlow infringes
             your copyright or other intellectual-property rights, email{" "}
-            <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{LEGAL_CONTACT_EMAIL}</a>{" "}
+            <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{LEGAL_CONTACT_EMAIL}</a>{" "}
             with the subject line &quot;Copyright Notice&quot; and include:
           </p>
           <ul className="list-disc pl-6 space-y-2">
@@ -93,9 +93,9 @@ export default function CopyrightPolicyPage() {
           </h2>
           <p>
             Copyright and other intellectual-property notices:{" "}
-            <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{LEGAL_CONTACT_EMAIL}</a>.
+            <a href={`mailto:${LEGAL_CONTACT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{LEGAL_CONTACT_EMAIL}</a>.
             See also our{" "}
-            <a href="/legal/terms" className="underline" style={{ color: "var(--accent-teal)" }}>Terms of Service</a>.
+            <a href="/legal/terms" className="underline" style={{ color: "var(--accent-cyan)" }}>Terms of Service</a>.
           </p>
         </section>
       </div>

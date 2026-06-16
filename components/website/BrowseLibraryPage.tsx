@@ -332,7 +332,7 @@ function SearchBar({
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => onRequestBook(query)}
                 className="inline-flex items-center justify-center min-h-[44px] px-2 text-[12px] mt-1 font-medium hover:underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
-                style={{ color: "var(--accent-teal)" }}
+                style={{ color: "var(--accent-cyan)" }}
               >
                 Request &ldquo;{query}&rdquo; &rarr;
               </button>
@@ -364,7 +364,7 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
       <div className="flex flex-col min-w-0 flex-1">
         <span
           className="text-[10px] px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider w-fit"
-          style={{ background: "color-mix(in srgb, var(--accent-cyan) 10%, transparent)", color: "var(--accent-teal)" }}
+          style={{ background: "color-mix(in srgb, var(--accent-cyan) 10%, transparent)", color: "var(--accent-cyan)" }}
         >
           {reason}
         </span>
@@ -387,7 +387,7 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
           href={bookHref(book.id)}
           onClick={() => track("book_card_click", { source: "browse_library_featured", bookId: book.id })}
           className="mt-3 text-[13px] font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
-          style={{ color: "var(--accent-teal)" }}
+          style={{ color: "var(--accent-cyan)" }}
         >
           Start reading →
         </Link>
@@ -529,7 +529,7 @@ function FilterBar({
                 className="shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-200"
                 style={
                   activeCategory === "All"
-                    ? { background: "var(--accent-teal)", color: "var(--primary-foreground)", fontWeight: 600 }
+                    ? { background: "var(--accent-cyan)", color: "var(--primary-foreground)", fontWeight: 600 }
                     : { background: "var(--bg-elevated)", color: "var(--text-secondary)", border: "1px solid var(--border-subtle)" }
                 }
               >
@@ -544,7 +544,7 @@ function FilterBar({
                   className="shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-200 whitespace-nowrap"
                   style={
                     activeCategory === cat.name
-                      ? { background: "var(--accent-teal)", color: "var(--primary-foreground)", fontWeight: 600 }
+                      ? { background: "var(--accent-cyan)", color: "var(--primary-foreground)", fontWeight: 600 }
                       : { background: "var(--bg-elevated)", color: "var(--text-secondary)", border: "1px solid var(--border-subtle)" }
                   }
                 >
@@ -599,7 +599,7 @@ function FilterBar({
                     }}
                     className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
                     style={{
-                      color: sortBy === opt.value ? "var(--accent-teal)" : "var(--text-secondary)",
+                      color: sortBy === opt.value ? "var(--accent-cyan)" : "var(--text-secondary)",
                       fontWeight: sortBy === opt.value ? 600 : 400,
                     }}
                   >
@@ -664,7 +664,7 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
             >
               {DIFFICULTY_LABEL[book.difficulty]}
             </span>
-            <span className="text-[11px] font-medium ml-auto" style={{ color: "var(--accent-teal)" }}>
+            <span className="text-[11px] font-medium ml-auto" style={{ color: "var(--accent-cyan)" }}>
               Start reading →
             </span>
           </div>
@@ -776,7 +776,7 @@ function BookRow({
           <button
             onClick={onSeeAll}
             className="text-[13px] font-medium hover:underline underline-offset-4 transition-colors"
-            style={{ color: "var(--accent-teal)" }}
+            style={{ color: "var(--accent-cyan)" }}
           >
             {seeAllLabel}
           </button>
@@ -992,7 +992,7 @@ function ZeroResults({
           <button
             onClick={() => onRequestBook(query)}
             className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-transform duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
-            style={{ background: "var(--accent-teal)", color: "var(--primary-foreground)" }}
+            style={{ background: "var(--accent-cyan)", color: "var(--primary-foreground)" }}
           >
             Request &ldquo;{query.trim()}&rdquo;
           </button>
@@ -1039,7 +1039,7 @@ function BottomCTA() {
               href={AUTH_LOGIN_BOOK_URL}
               onClick={() => track("cta_click", { source: "browse_library_bottom_cta" })}
               className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-[15px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
-              style={{ backgroundColor: "var(--accent-teal)", color: "var(--primary-foreground)" }}
+              style={{ backgroundColor: "var(--accent-cyan)", color: "var(--primary-foreground)" }}
             >
               Open my first book →
             </Link>

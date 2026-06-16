@@ -115,7 +115,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
       {/* Subtitle */}
       <p
         style={{
-          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontFamily: "var(--font-body, sans-serif)",
           fontSize: 15,
           color: "var(--cf-text-3)",
           marginBottom: 24,
@@ -135,7 +135,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
           {/* Question label */}
           <p
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 12,
               fontWeight: 500,
               color: "var(--cf-text-soft)",
@@ -150,7 +150,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
           {/* Question text */}
           <p
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 18,
               fontWeight: 500,
               color: "var(--cf-text-1)",
@@ -222,7 +222,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                 >
                   <span
                     style={{
-                      fontFamily: "var(--font-dm-sans, sans-serif)",
+                      fontFamily: "var(--font-body, sans-serif)",
                       fontSize: 15,
                       color: "var(--cf-text-1)",
                       lineHeight: 1.4,
@@ -282,7 +282,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 style={{
-                  fontFamily: "var(--font-dm-sans, sans-serif)",
+                  fontFamily: "var(--font-body, sans-serif)",
                   fontSize: 14,
                   marginTop: 14,
                   fontWeight: isCorrect ? 500 : 400,

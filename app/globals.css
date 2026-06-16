@@ -217,18 +217,11 @@ body {
   --accent-violet-glow: rgba(139, 92, 246, 0.15);
   --accent-rose-glow: rgba(244, 63, 94, 0.15);
 
-  /* ── Accent aliases (backward compat — DEPRECATED; migrate to --accent-*) ──
-     Survivors still have live consumers (teal, green, green-hover, red, blue,
-     blue-glow, flame, flame-glow, gold). The 5 unused aliases
-     (teal-hover, teal-glow, orange, gold-glow, green-glow) were removed. */
-  --accent-teal: var(--accent-cyan);
-  --accent-green: var(--accent-emerald);
-  --accent-green-hover: #059669;
-  --accent-red: var(--accent-rose);
-  --accent-blue: var(--accent-cyan);
-  --accent-blue-glow: rgba(34, 211, 238, 0.12);
-  --accent-flame: var(--accent-amber);
-  --accent-flame-glow: rgba(245, 158, 11, 0.15);
+  /* ── Brand accent (gold — has live consumers; not part of the --accent-*
+        unified palette, so it stays a standalone token). The deprecated
+        teal/green/green-hover/red/blue/blue-glow/flame/flame-glow aliases were
+        removed; their consumers were migrated to the canonical --accent-*
+        tokens. ── */
   --accent-gold: #E8B931;
 
   /* ── Functional ── */
@@ -273,7 +266,13 @@ body {
   --radius-full-val: 9999px;
   --radius-pill: 9999px;
 
-  /* ── Motion timing ── */
+  /* ── Motion timing ──
+     Raw design-token values, consumed only via var(--duration-*) / var(--ease-*)
+     in transition/animation declarations. They are intentionally NOT registered
+     in @theme as Tailwind utilities: minting `--ease-*` would generate `ease-*`
+     classes that override Tailwind's built-in `ease-out`/`ease-in`/etc. timing
+     utilities (and `--duration-*` would shadow the built-in `duration-*` scale),
+     so the scale is kept var-only to avoid clobbering Tailwind's defaults. */
   --duration-instant: 100ms;
   --duration-micro: 150ms;
   --duration-fast: 200ms;
@@ -286,10 +285,6 @@ body {
   /* ── Fonts ── */
   --font-display: var(--font-satoshi);
   --font-body: var(--font-jakarta);
-
-  /* ── Font aliases (onboarding components) ── */
-  --font-sora: var(--font-satoshi);
-  --font-dm-sans: var(--font-jakarta);
 
   /* ── CF legacy compat tokens ── */
   --cf-site-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -434,15 +429,8 @@ html:not(.dark) {
   --accent-violet-glow: rgba(124, 58, 237, 0.12);
   --accent-rose-glow: rgba(225, 29, 72, 0.12);
 
-  /* ── Accent aliases (backward compat — DEPRECATED; migrate to --accent-*) ── */
-  --accent-teal: var(--accent-cyan);
-  --accent-green: var(--accent-emerald);
-  --accent-green-hover: #047857;
-  --accent-red: var(--accent-rose);
-  --accent-blue: var(--accent-cyan);
-  --accent-blue-glow: rgba(8, 145, 178, 0.08);
-  --accent-flame: var(--accent-amber);
-  --accent-flame-glow: rgba(217, 119, 6, 0.1);
+  /* ── Brand accent (gold — standalone token; deprecated accent aliases removed,
+        see dark :root note). ── */
   --accent-gold: #E8B931;
 
   /* ── Functional ── */
@@ -781,7 +769,7 @@ html.transitioning *::after {
   }
 
   .prose-legal a {
-    color: var(--accent-teal);
+    color: var(--accent-cyan);
     text-decoration: underline;
   }
 
@@ -1140,6 +1128,61 @@ html[data-motion="reduced"] *::after {
   scroll-behavior: auto !important;
 }
 
+/* ── Consolidated animation kill-list ──
+   The universal clamp above already neutralizes animations globally, but these
+   page-scoped targets (Library shimmer, book-detail and chapter-reader effects)
+   carry `!important` animations / inline-style animations that the clamp alone
+   cannot fully override, so they need an explicit `animation: none !important`.
+   This single :where()-grouped list (identical declaration for every target,
+   zero added specificity) replaces the previously duplicated per-feature pairs
+   and is shared verbatim by BOTH reduced-motion triggers — the OS-level media
+   query and the in-app html[data-motion="reduced"] toggle.
+   (bd-card-enter / bd-pulse-ring remain media-query-only below, preserving the
+   prior behavior where the in-app toggle did not cover them.) */
+@media (prefers-reduced-motion: reduce) {
+  :where(
+    .animate-shimmer,
+    [class*="animate-[shimmer"],
+    [class*="animate-[proShimmer"],
+    .bd-chapter-shimmer::before,
+    .bd-pulse-active,
+    .bd-shake,
+    .bd-dot-pulse,
+    [style*="bd-card-enter"],
+    [style*="bd-pulse-ring"],
+    [style*="cr-float"],
+    [style*="cr-stepper-pulse"],
+    [style*="cr-pulse-glow"],
+    [style*="cr-card-enter"],
+    [style*="cr-interstitial"],
+    [style*="cr-confetti"],
+    [style*="cr-ring-fill"],
+    [style*="cr-dot-fill"]
+  ) {
+    animation: none !important;
+  }
+}
+
+html[data-motion="reduced"] :where(
+  .animate-shimmer,
+  [class*="animate-[shimmer"],
+  [class*="animate-[proShimmer"],
+  .bd-chapter-shimmer::before,
+  .bd-pulse-active,
+  .bd-shake,
+  .bd-dot-pulse,
+  [style*="cr-float"],
+  [style*="cr-stepper-pulse"],
+  [style*="cr-pulse-glow"],
+  [style*="cr-card-enter"],
+  [style*="cr-interstitial"],
+  [style*="cr-confetti"],
+  [style*="cr-ring-fill"],
+  [style*="cr-dot-fill"]
+) {
+  animation: none !important;
+}
+
 /* ─────────────────────────────────────────
    FORCED COLORS (Windows High Contrast / forced-colors mode)
    ─────────────────────────────────────────
@@ -1234,8 +1277,8 @@ html[data-motion="reduced"] *::after {
 
 /* ── Badge glow pulse (Library) ── */
 @keyframes badge-pulse {
-  0%, 100% { box-shadow: 0 0 8px var(--accent-teal); }
-  50% { box-shadow: 0 0 16px var(--accent-teal); }
+  0%, 100% { box-shadow: 0 0 8px var(--accent-cyan); }
+  50% { box-shadow: 0 0 16px var(--accent-cyan); }
 }
 
 .badge-glow {
@@ -1274,19 +1317,8 @@ html[data-motion="reduced"] *::after {
   100% { background-position: -200% 0; }
 }
 
-/* Disable shimmer animations when reduced motion is active */
-@media (prefers-reduced-motion: reduce) {
-  .animate-shimmer,
-  [class*="animate-[shimmer"],
-  [class*="animate-[proShimmer"] {
-    animation: none !important;
-  }
-}
-html[data-motion="reduced"] .animate-shimmer,
-html[data-motion="reduced"] [class*="animate-[shimmer"],
-html[data-motion="reduced"] [class*="animate-[proShimmer"] {
-  animation: none !important;
-}
+/* (shimmer reduced-motion kill-list moved into the consolidated :where() list
+   in the REDUCED MOTION section above — shared by both triggers.) */
 
 /* WAVE2: extract — page-scoped settings premium-slider CSS */
 /* ── Settings slider (premium glassmorphic) ── */
@@ -1568,23 +1600,9 @@ html:not(.dark) .cf-icon-wrap {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .bd-chapter-shimmer::before,
-  .bd-pulse-active,
-  .bd-shake,
-  .bd-dot-pulse,
-  [style*="bd-card-enter"],
-  [style*="bd-pulse-ring"] {
-    animation: none !important;
-  }
-}
-
-html[data-motion="reduced"] .bd-chapter-shimmer::before,
-html[data-motion="reduced"] .bd-pulse-active,
-html[data-motion="reduced"] .bd-shake,
-html[data-motion="reduced"] .bd-dot-pulse {
-  animation: none !important;
-}
+/* (book-detail reduced-motion kill-list moved into the consolidated :where()
+   list in the REDUCED MOTION section above — shared by both triggers, with
+   bd-card-enter / bd-pulse-ring kept media-query-only as before.) */
 
 /* ── Light mode overrides for book detail ── */
 html:not(.dark) .bd-chapter-shimmer::before {
@@ -2011,30 +2029,9 @@ html[data-contrast="high"] :focus-visible {
 }
 
 /* Reader animations are applied via inline `style="animation: cr-… "`, so the
-   kill-list must use [style*=] selectors (the old [class*="cr-float"] /
-   .cr-stepper-pulse class selectors never matched anything). cr-pulse-glow was
-   also missing. The OS-level (media query) and in-app (data-motion) variants
-   cover the identical set. */
-@media (prefers-reduced-motion: reduce) {
-  [style*="cr-float"],
-  [style*="cr-stepper-pulse"],
-  [style*="cr-pulse-glow"],
-  [style*="cr-card-enter"],
-  [style*="cr-interstitial"],
-  [style*="cr-confetti"],
-  [style*="cr-ring-fill"],
-  [style*="cr-dot-fill"] {
-    animation: none !important;
-  }
-}
-
-html[data-motion="reduced"] [style*="cr-float"],
-html[data-motion="reduced"] [style*="cr-stepper-pulse"],
-html[data-motion="reduced"] [style*="cr-pulse-glow"],
-html[data-motion="reduced"] [style*="cr-card-enter"],
-html[data-motion="reduced"] [style*="cr-interstitial"],
-html[data-motion="reduced"] [style*="cr-confetti"],
-html[data-motion="reduced"] [style*="cr-ring-fill"],
-html[data-motion="reduced"] [style*="cr-dot-fill"] {
-  animation: none !important;
-}
+   kill-list uses [style*=] selectors (the old [class*="cr-float"] /
+   .cr-stepper-pulse class selectors never matched anything); cr-pulse-glow was
+   also missing. These [style*="cr-…"] selectors now live in the consolidated
+   :where() kill-list in the REDUCED MOTION section above, shared verbatim by
+   both the OS-level media query and the in-app data-motion toggle (they cover
+   the identical set). */

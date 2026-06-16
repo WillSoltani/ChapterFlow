@@ -54,7 +54,7 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
         >
           <p
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 11,
               fontWeight: 700,
               letterSpacing: "0.08em",
@@ -67,7 +67,7 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
           </p>
           <p
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 15,
               lineHeight: 1.7,
               color: "var(--cf-text-1)",

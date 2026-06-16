@@ -21,7 +21,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
       {/* Checkmark circle */}
       <motion.div
         className="w-12 h-12 rounded-full flex items-center justify-center"
-        style={{ background: "var(--accent-teal)" }}
+        style={{ background: "var(--accent-cyan)" }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 12 }}
@@ -44,7 +44,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
       <p
         className="text-[18px] font-semibold mt-4"
         style={{
-          color: "var(--accent-teal)",
+          color: "var(--accent-cyan)",
           fontFamily: "var(--font-display)",
         }}
       >
@@ -65,7 +65,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
         href="/auth/login?returnTo=%2Fbook"
         className="cta-shine inline-flex items-center gap-1 mt-5 px-6 py-2.5 rounded-full text-[14px] font-semibold transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
         style={{
-          backgroundColor: "var(--accent-teal)",
+          backgroundColor: "var(--accent-cyan)",
           color: "var(--primary-foreground)",
           fontFamily: "var(--font-body)",
         }}

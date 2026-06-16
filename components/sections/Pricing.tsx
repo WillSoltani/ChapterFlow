@@ -25,13 +25,13 @@ import {
 
 function CheckIcon() {
   return (
-    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--accent-green)/15">
+    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--accent-emerald)/15">
       <svg
         width="12"
         height="12"
         viewBox="0 0 12 12"
         fill="none"
-        className="text-(--accent-green)"
+        className="text-(--accent-emerald)"
       >
         <path
           d="M2.5 6.5L4.5 8.5L9.5 3.5"
@@ -207,7 +207,7 @@ export function Pricing() {
               aria-checked={isAnnual}
               aria-label="Toggle annual pricing"
               className="relative w-12 h-6 rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-              style={{ background: isAnnual ? "var(--accent-teal)" : "var(--bg-elevated)" }}
+              style={{ background: isAnnual ? "var(--accent-cyan)" : "var(--bg-elevated)" }}
             >
               <div
                 className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform"
@@ -223,7 +223,7 @@ export function Pricing() {
               Annual
               <span
                 className="ml-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full"
-                style={{ color: "var(--accent-teal)", background: "color-mix(in srgb, var(--accent-cyan) 10%, transparent)" }}
+                style={{ color: "var(--accent-cyan)", background: "color-mix(in srgb, var(--accent-cyan) 10%, transparent)" }}
               >
                 Save {ANNUAL_SAVINGS_PCT}%
               </span>
@@ -322,7 +322,7 @@ export function Pricing() {
               <span
                 className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10 text-[11px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-full whitespace-nowrap"
                 style={{
-                  background: "var(--accent-teal)",
+                  background: "var(--accent-cyan)",
                   color: "var(--primary-foreground)",
                   boxShadow:
                     "0 4px 14px color-mix(in srgb, var(--accent-cyan) 35%, transparent), 0 0 0 1px color-mix(in srgb, var(--accent-cyan) 50%, transparent)",
@@ -331,7 +331,7 @@ export function Pricing() {
                 Most popular
               </span>
 
-              <span className="text-[12px] uppercase tracking-[0.1em] text-(--accent-teal) font-semibold">
+              <span className="text-[12px] uppercase tracking-[0.1em] text-(--accent-cyan) font-semibold">
                 Pro
               </span>
 
@@ -349,7 +349,7 @@ export function Pricing() {
                 </span>
               </div>
 
-              <p className="mt-1 text-[13px] text-(--accent-teal)">
+              <p className="mt-1 text-[13px] text-(--accent-cyan)">
                 {isAnnual ? (
                   <>
                     That&apos;s {formatAmount(PRICING.annualMonthlyAmount)}/month

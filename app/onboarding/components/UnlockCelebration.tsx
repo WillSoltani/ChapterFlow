@@ -132,7 +132,7 @@ export default function UnlockCelebration({
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: noMotion ? 0 : 0.7, duration: 0.4, ease: "easeOut" }}
         style={{
-          fontFamily: "var(--font-sora, sans-serif)",
+          fontFamily: "var(--font-display, sans-serif)",
           fontSize: 32,
           fontWeight: 700,
           color: "var(--cf-text-1)",
@@ -148,7 +148,7 @@ export default function UnlockCelebration({
         animate={{ opacity: 1 }}
         transition={{ delay: noMotion ? 0 : 0.85, duration: 0.3 }}
         style={{
-          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontFamily: "var(--font-body, sans-serif)",
           fontSize: 16,
           color: "var(--cf-text-3)",
           margin: "0 0 32px",
@@ -228,7 +228,7 @@ export default function UnlockCelebration({
               </span>
               <span
                 style={{
-                  fontFamily: "var(--font-dm-sans, sans-serif)",
+                  fontFamily: "var(--font-body, sans-serif)",
                   fontSize: 12,
                   color: "var(--cf-text-3)",
                 }}
@@ -248,7 +248,7 @@ export default function UnlockCelebration({
         animate={{ opacity: 1 }}
         transition={{ delay: noMotion ? 0 : 1.45, duration: 0.3 }}
         style={{
-          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontFamily: "var(--font-body, sans-serif)",
           fontSize: 12,
           color: "var(--cf-text-soft)",
           margin: "12px 0 0",
@@ -274,7 +274,7 @@ export default function UnlockCelebration({
       >
         <p
           style={{
-            fontFamily: "var(--font-dm-sans, sans-serif)",
+            fontFamily: "var(--font-body, sans-serif)",
             fontSize: 14,
             color: "var(--cf-text-soft)",
             margin: 0,
@@ -312,7 +312,7 @@ export default function UnlockCelebration({
           <p
             role="alert"
             style={{
-              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontFamily: "var(--font-body, sans-serif)",
               fontSize: 13,
               color: "var(--accent-rose)",
               margin: 0,

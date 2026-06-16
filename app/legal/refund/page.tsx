@@ -114,11 +114,11 @@ export default function RefundPolicyPage() {
           </h2>
           <p>
             Questions about billing, cancellation, or a refund request? Email us at{" "}
-            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.
+            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-cyan)" }}>support@chapterflow.ca</a>.
             See also our{" "}
-            <a href="/legal/terms" className="underline" style={{ color: "var(--accent-teal)" }}>Terms of Service</a>{" "}
+            <a href="/legal/terms" className="underline" style={{ color: "var(--accent-cyan)" }}>Terms of Service</a>{" "}
             and{" "}
-            <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-teal)" }}>Privacy Policy</a>.
+            <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-cyan)" }}>Privacy Policy</a>.
           </p>
         </section>
       </div>

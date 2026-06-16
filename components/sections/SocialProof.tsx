@@ -82,7 +82,7 @@ function ProofCard({ proof, index }: ProofCardProps) {
     >
       {/* Icon */}
       <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center text-(--accent-teal)"
+        className="w-11 h-11 rounded-xl flex items-center justify-center text-(--accent-cyan)"
         style={{
           background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)",
           border: "1px solid color-mix(in srgb, var(--accent-cyan) 25%, transparent)",
@@ -94,7 +94,7 @@ function ProofCard({ proof, index }: ProofCardProps) {
 
       {/* Stat */}
       <p
-        className="text-[15px] font-bold mt-4 text-(--accent-teal)"
+        className="text-[15px] font-bold mt-4 text-(--accent-cyan)"
         style={{ fontFamily: "var(--font-display)" }}
       >
         {proof.stat}

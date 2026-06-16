@@ -77,7 +77,7 @@ export function Library() {
                 Every title is broken into chapters with summaries, scenarios,
                 and quizzes. Browse by topic, pick a book, start reading with
                 structure.{" "}
-                <span style={{ color: "var(--accent-teal)" }}>
+                <span style={{ color: "var(--accent-cyan)" }}>
                   {activeCategory === "All"
                     ? `Showing ${filteredBooks.length} of ${BOOK_COUNT}.`
                     : `Showing ${filteredBooks.length} of ${BOOKS_CATALOG.filter((b) => b.category === activeCategory).length} in ${activeCategory}.`}
@@ -120,7 +120,7 @@ export function Library() {
                     onClick={() => setActiveCategory(category)}
                     className={`flex-shrink-0 rounded-full px-4 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 ${
                       isActive
-                        ? "bg-(--accent-teal) text-primary-foreground font-semibold"
+                        ? "bg-(--accent-cyan) text-primary-foreground font-semibold"
                         : "bg-transparent border border-(--border-subtle) text-(--text-secondary) hover:text-(--text-heading)"
                     }`}
                   >
@@ -153,7 +153,7 @@ export function Library() {
                   })
                 }
                 className="mt-3 inline-block text-[13px] font-semibold hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
-                style={{ color: "var(--accent-teal)" }}
+                style={{ color: "var(--accent-cyan)" }}
               >
                 Browse all {activeCategory} books &rarr;
               </Link>
@@ -231,7 +231,7 @@ export function Library() {
                   <span className="text-[11px] uppercase tracking-[0.1em] text-(--text-muted)">
                     {stat.label}
                   </span>
-                  <span className="text-[32px] font-bold text-(--accent-teal)">
+                  <span className="text-[32px] font-bold text-(--accent-cyan)">
                     {stat.prefix}
                     <CounterAnimation
                       target={stat.target}

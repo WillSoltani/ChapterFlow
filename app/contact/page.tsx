@@ -37,7 +37,7 @@ export default function ContactPage() {
         </h1>
         <p className="text-[15px] leading-[1.75] mb-8" style={{ color: "var(--text-secondary)" }}>
           The fastest way to reach us is by email. Write to{" "}
-          <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-teal)" }}>{SUPPORT_EMAIL}</a>{" "}
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{SUPPORT_EMAIL}</a>{" "}
           and we&apos;ll get back to you as soon as we can.
         </p>
 
@@ -49,22 +49,22 @@ export default function ContactPage() {
           <div>
             <h2 className="text-[16px] font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Billing &amp; cancellation</h2>
             <p>You can manage or cancel your subscription anytime in{" "}
-              <Link href="/book/settings" className="underline" style={{ color: "var(--accent-teal)" }}>Settings</Link>.
+              <Link href="/book/settings" className="underline" style={{ color: "var(--accent-cyan)" }}>Settings</Link>.
               For billing questions, see our{" "}
-              <Link href="/legal/refund" className="underline" style={{ color: "var(--accent-teal)" }}>Refund &amp; Cancellation Policy</Link>{" "}
+              <Link href="/legal/refund" className="underline" style={{ color: "var(--accent-cyan)" }}>Refund &amp; Cancellation Policy</Link>{" "}
               or email us.</p>
           </div>
           <div>
             <h2 className="text-[16px] font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Privacy &amp; your data</h2>
             <p>To access, export, correct, or delete your data, see your{" "}
-              <Link href="/legal/data-rights" className="underline" style={{ color: "var(--accent-teal)" }}>Data Rights</Link>{" "}
+              <Link href="/legal/data-rights" className="underline" style={{ color: "var(--accent-cyan)" }}>Data Rights</Link>{" "}
               and our{" "}
-              <Link href="/legal/privacy" className="underline" style={{ color: "var(--accent-teal)" }}>Privacy Policy</Link>.</p>
+              <Link href="/legal/privacy" className="underline" style={{ color: "var(--accent-cyan)" }}>Privacy Policy</Link>.</p>
           </div>
           <div>
             <h2 className="text-[16px] font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Copyright &amp; legal notices</h2>
             <p>Intellectual-property and takedown notices are handled per our{" "}
-              <Link href="/legal/copyright" className="underline" style={{ color: "var(--accent-teal)" }}>Copyright &amp; Takedown Policy</Link>.</p>
+              <Link href="/legal/copyright" className="underline" style={{ color: "var(--accent-cyan)" }}>Copyright &amp; Takedown Policy</Link>.</p>
           </div>
         </div>
 

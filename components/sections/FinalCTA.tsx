@@ -23,7 +23,7 @@ export function FinalCTA() {
             className="mt-2 text-[24px] md:text-[28px] font-bold"
             style={{
               fontFamily: "var(--font-display)",
-              color: "var(--accent-teal)",
+              color: "var(--accent-cyan)",
             }}
           >
             No summaries. No shortcuts. Real retention.
