@@ -28,7 +28,7 @@ import {
 } from "framer-motion";
 import { Button } from "@/app/book/components/ui/Button";
 import { Card } from "@/app/book/components/ui/Card";
-import { BookCover } from "@/app/book/components/BookCover";
+import { BookCover } from "@/components/ui/BookCover";
 import { cn } from "@/app/book/components/ui/cn";
 
 /* ─── Inline markdown helper ─── */

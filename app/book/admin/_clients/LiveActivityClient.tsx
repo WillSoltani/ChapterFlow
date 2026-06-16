@@ -5,7 +5,7 @@ import { Pause, Play, RefreshCw, Radio } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
-import { EmptyState } from "@/app/book/admin/_components/EmptyState";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { TableSkeleton } from "@/app/book/admin/_components/Skeleton";
 
 type LiveEvent = {

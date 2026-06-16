@@ -2,7 +2,7 @@
 
 import { CheckCircle2, Clock3 } from "lucide-react";
 import type { BookCatalogItem } from "@/app/book/data/booksCatalog";
-import { BookCover } from "@/app/book/components/BookCover";
+import { BookCover } from "@/components/ui/BookCover";
 
 const difficultyStyles: Record<BookCatalogItem["difficulty"], string> = {
   Easy: "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)",

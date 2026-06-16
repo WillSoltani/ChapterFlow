@@ -5,7 +5,7 @@ import { Sparkles, Plus, Database } from "lucide-react";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import type { EventDefinitionItem } from "@/app/app/api/book/_lib/types";
 import { PageHeader } from "@/app/book/admin/_components/AdminCard";
-import { EmptyState } from "@/app/book/admin/_components/EmptyState";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 
 type EventsResponse = { events: EventDefinitionItem[] };

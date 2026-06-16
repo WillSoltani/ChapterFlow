@@ -6,7 +6,7 @@ import { adminGet, adminPost } from "@/app/book/admin/_components/admin-api";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
-import { EmptyState } from "@/app/book/admin/_components/EmptyState";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { downloadCSV } from "@/app/book/admin/_components/csv";
 import { MAX_SYNC_RECIPIENTS } from "@/app/app/api/book/admin/segments/notify-limits-core";
 

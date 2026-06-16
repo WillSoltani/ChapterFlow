@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { ProgressRing } from "../ui/ProgressRing";
 
 interface DailyGoalRingProps {
   completedMinutes: number;
@@ -27,11 +27,6 @@ export function DailyGoalRing({
   hasEndowedProgress = false,
 }: DailyGoalRingProps) {
   const prefersReduced = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const outerPercent = targetMinutes > 0
     ? Math.min(100, (completedMinutes / targetMinutes) * 100)
@@ -58,17 +53,12 @@ export function DailyGoalRing({
     size: number,
     containerClass: string
   ) {
-    const outerRadius = (size - outerStroke) / 2;
-    const outerCircumference = 2 * Math.PI * outerRadius;
-    const outerOffset =
-      outerCircumference * (1 - effectiveOuterPercent / 100);
-
-    const innerRadius = outerRadius - gap;
-    const innerCircumference = 2 * Math.PI * innerRadius;
-    const innerOffset =
-      innerCircumference * (1 - innerPercent / 100);
-
-    const center = size / 2;
+    // The inner ring sits at radius (outerRadius - gap). ProgressRing derives
+    // its radius from `size` as (size - stroke)/2, so to place the inner arc at
+    // the original radius we give it a smaller size:
+    //   (innerSize - innerStroke)/2 === (size - outerStroke)/2 - gap
+    //   => innerSize === size - outerStroke - 2*gap + innerStroke
+    const innerSize = size - outerStroke - 2 * gap + innerStroke;
 
     return (
       <div
@@ -80,80 +70,45 @@ export function DailyGoalRing({
         aria-valuemax={100}
         aria-label={`Daily goal: ${completedMinutes} of ${targetMinutes} minutes completed. ${stepsCompleted} of ${totalSteps} learning steps done today.`}
       >
-        <svg width={size} height={size} className="-rotate-90">
-          {/* Outer track */}
-          <circle
-            cx={center}
-            cy={center}
-            r={outerRadius}
-            fill="none"
-            stroke={CYAN_TRACK}
+        {/* Outer arc — reading minutes. Keep the bespoke 8px completion glow on
+            a wrapping element (ProgressRing's built-in glow is 6px) for exact
+            visual parity. */}
+        <div
+          className="absolute inset-0 inline-flex items-center justify-center"
+          style={{
+            filter: isGoalComplete
+              ? `drop-shadow(0 0 8px ${CYAN})`
+              : undefined,
+          }}
+        >
+          <ProgressRing
+            percent={effectiveOuterPercent}
+            size={size}
             strokeWidth={outerStroke}
+            color={CYAN}
+            trackColor={CYAN_TRACK}
+            showLabel={false}
+            showCompletionGlow={false}
+            delay={150}
+            decorative
           />
-          {/* Outer progress */}
-          <motion.circle
-            cx={center}
-            cy={center}
-            r={outerRadius}
-            fill="none"
-            stroke={CYAN}
-            strokeWidth={outerStroke}
-            strokeLinecap="round"
-            strokeDasharray={outerCircumference}
-            initial={{
-              strokeDashoffset: prefersReduced
-                ? outerOffset
-                : outerCircumference,
-            }}
-            animate={{
-              strokeDashoffset: mounted ? outerOffset : outerCircumference,
-            }}
-            transition={{
-              duration: prefersReduced ? 0 : 1,
-              ease: [0.4, 0, 0.2, 1],
-              delay: prefersReduced ? 0 : 0.15,
-            }}
-            style={{
-              filter: isGoalComplete
-                ? `drop-shadow(0 0 8px ${CYAN})`
-                : undefined,
-            }}
-          />
+        </div>
 
-          {/* Inner track */}
-          <circle
-            cx={center}
-            cy={center}
-            r={innerRadius}
-            fill="none"
-            stroke={PURPLE_TRACK}
+        {/* Inner arc — learning steps. Smaller diameter, centered over the
+            outer ring. No completion glow. */}
+        <div className="absolute inset-0 inline-flex items-center justify-center">
+          <ProgressRing
+            percent={innerPercent}
+            size={innerSize}
             strokeWidth={innerStroke}
+            color={PURPLE}
+            trackColor={PURPLE_TRACK}
+            showLabel={false}
+            showCompletionGlow={false}
+            delay={350}
+            decorative
           />
-          {/* Inner progress */}
-          <motion.circle
-            cx={center}
-            cy={center}
-            r={innerRadius}
-            fill="none"
-            stroke={PURPLE}
-            strokeWidth={innerStroke}
-            strokeLinecap="round"
-            strokeDasharray={innerCircumference}
-            initial={{
-              strokeDashoffset: prefersReduced
-                ? innerOffset
-                : innerCircumference,
-            }}
-            animate={{
-              strokeDashoffset: mounted ? innerOffset : innerCircumference,
-            }}
-            transition={{
-              duration: prefersReduced ? 0 : 1,
-              ease: [0.4, 0, 0.2, 1],
-              delay: prefersReduced ? 0 : 0.35,
-            }}
-          />
-        </svg>
+        </div>
 
         {/* Center text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -164,7 +119,7 @@ export function DailyGoalRing({
               animate={{ scale: 1 }}
               transition={{ delay: 1.2, type: "spring", stiffness: 300 }}
             >
-              {"\u2713"} Done!
+              {"✓"} Done!
             </motion.span>
           ) : completedMinutes === 0 && !hasEndowedProgress ? (
             <span
@@ -190,7 +145,7 @@ export function DailyGoalRing({
               : completedMinutes === 0 && !hasEndowedProgress
                 ? "to go"
                 : hasEndowedProgress && completedMinutes === 0
-                  ? "You\u2019re already on your way"
+                  ? "You’re already on your way"
                   : `of ${targetMinutes} min goal`}
           </span>
         </div>
