@@ -47,7 +47,6 @@ const REAL_BOOK_COVER_PATHS: Record<string, string> = {
   "the-33-strategies-of-war": "/book-covers/the-33-strategies-of-war.webp",
   "the-48-laws-of-power": "/book-covers/the-48-laws-of-power.webp",
   "the-almanack-of-naval-ravikant": "/book-covers/the-almanack-of-naval-ravikant.webp",
-  "the-art-of-thinking-clearly": "/book-covers/the-art-of-thinking-clearly.webp",
   "the-art-of-war": "/book-covers/the-art-of-war.webp",
   "the-war-of-art": "/book-covers/the-war-of-art.webp",
   "the-charisma-myth": "/book-covers/the-charisma-myth.webp",
