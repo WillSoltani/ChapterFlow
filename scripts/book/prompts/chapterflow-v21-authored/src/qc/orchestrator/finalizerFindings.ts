@@ -235,8 +235,21 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
       for (const hit of axis.hits) {
         out.push(axisFinding(chapterNumber, axis, nonemptyText(hit.quote), hit.defect));
       }
-      if (axis.hits.length === 0 && axis.score < 0.85 && axis.score >= 0.6 && raw.bar.notes?.trim()) {
-        out.push(axisFinding(chapterNumber, axis, raw.bar.notes.trim(), `Bar read scored ${axis.axis} ${axis.score.toFixed(2)}: ${raw.bar.notes.trim()}`));
+      if (axis.hits.length === 0) {
+        if (axis.score < 0.6) {
+          // P1.5 — a sub-0.6 axis with NO cited hit still REVISEs the chapter.
+          // Always synthesise an actionable (major) finding so the chapter has a
+          // repair target and is never demoted to NEEDS_MORE_QC with nothing to
+          // fix ("non-publishable decision lacked actionable repair evidence").
+          out.push(axisFinding(
+            chapterNumber,
+            axis,
+            nonemptyText(raw.bar.notes?.trim(), `bar.${axis.axis} scored ${axis.score.toFixed(2)} below the 0.60 floor`),
+            `Bar read scored ${axis.axis} ${axis.score.toFixed(2)} (below the 0.60 floor) but cited no specific hit — re-author this axis to publishable quality.`,
+          ));
+        } else if (axis.score < 0.85 && raw.bar.notes?.trim()) {
+          out.push(axisFinding(chapterNumber, axis, raw.bar.notes.trim(), `Bar read scored ${axis.axis} ${axis.score.toFixed(2)}: ${raw.bar.notes.trim()}`));
+        }
       }
     }
   }

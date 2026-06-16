@@ -24,6 +24,7 @@ import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkQuizAnswerLabelLeak,
   checkQuizAnswerLengthRatio,
+  checkQuizChoiceLabelUniform,
   checkQuizCorrectLongestRate,
   checkQuizBannedTailPhrase,
   checkQuizDuplicateChoices,
@@ -256,6 +257,10 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // second true-positive confirms it (the SC9-reversal caution). The sibling
   // families repeated_unit/scene_skeleton get NO gate — not separable from clean.
   "BP30.action_container_reuse": "major",
+  // BP31 — uniform Title-Case quiz choice labels: every choice wears a
+  // "Label:" tag so the key is sortable by label valence without reading. SHADOW
+  // major (zero across the clean+gold corpus; not in ENFORCED_MAJOR).
+  "BP31.quiz_choice_label_uniform": "major",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
@@ -705,6 +710,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
   }
   for (const f of checkQuizAnswerLabelLeak(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizChoiceLabelUniform(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
   }
   for (const f of checkQuizDuplicateChoices(chapter.quiz)) {

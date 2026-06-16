@@ -4,7 +4,7 @@ import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS, makeChapter, runCli, writeFixtureBook } from "./helpers.js";
-import { checkQcAttestation, attestationPath, chapterContentHash, loadAttestation } from "../src/critics/qcAttestation.js";
+import { checkQcAttestation, attestationPath, chapterContentHash, loadAttestation, writeAttestation } from "../src/critics/qcAttestation.js";
 import { runBookGate } from "../src/critics/bookGate.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../src/critics/semantic/publishableBar.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
@@ -13,6 +13,8 @@ import { checkManualKeyJudge, keyDerivationPath, keyPackDir, loadKeyPack, manual
 import { unresolvedMajors, waiverPath } from "../src/qc/majorDisposition.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import {
+  barArtifactPath,
+  confirmArtifactPath,
   evidenceMatrixPath,
   orchestratorRoundDir,
   qcSummaryPath,
@@ -413,7 +415,169 @@ test("confirm-candidates writes confirm cards only for green candidates", () => 
   }
 });
 
-test("finalize treats bar YELLOW without sub-floor hits as NEEDS_MORE_QC", () => {
+// P2 — turn the green single-chapter fixture into an INCREMENTAL round where ch5
+// is carried (no fresh per-chapter reads this round, but a prior fresh PUBLISHABLE
+// attestation). Cross-chapter signals (sweep/book-gate) stay live.
+function setupCarriedChapter(opts: { attestationContentHash?: string } = {}): ChapterV21 {
+  const chapter = clonedCleanChapter(GREEN_BOOK);
+  setupGreenEvidence(GREEN_BOOK, [chapter]);
+  rmSync(barArtifactPath(GREEN_BOOK, ROUND, SOURCE_CHAPTER_NUMBER), { force: true });
+  rmSync(confirmArtifactPath(GREEN_BOOK, ROUND, SOURCE_CHAPTER_NUMBER), { force: true });
+  const rr = JSON.parse(readFileSync(roundRecordPath(GREEN_BOOK, ROUND), "utf8"));
+  rr.carriedChapters = [SOURCE_CHAPTER_NUMBER];
+  rr.reviewChapters = [];
+  writeFileSync(roundRecordPath(GREEN_BOOK, ROUND), JSON.stringify(rr, null, 2) + "\n", "utf8");
+  writeAttestation({
+    schemaVersion: "qc-attest-v1",
+    bookId: GREEN_BOOK,
+    chapterNumber: SOURCE_CHAPTER_NUMBER,
+    chapterId: chapter.chapterId,
+    verdict: "PUBLISHABLE",
+    contentHash: opts.attestationContentHash ?? chapterContentHash(chapter),
+    hashVersion: "v2",
+    reviewer: "codex-qc:auto:r-prior",
+    reviewedAt: "2026-01-01T00:00:00.000Z",
+    roundId: "r-prior",
+    roundRole: "attest",
+  });
+  return chapter;
+}
+
+test("P2: an incremental round CARRIES an unchanged-PUBLISHABLE chapter without a fresh bar/confirm read", () => {
+  try {
+    cleanup();
+    setupCarriedChapter();
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", JSON.stringify(result.chapters[0]));
+    assert.equal(result.attestationsWritten, 0, "carried-green chapter keeps its prior attestation (no re-attest)");
+    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.roundId, "r-prior", "prior attestation + its valid artifacts preserved for promote");
+  } finally {
+    cleanup();
+  }
+});
+
+test("P2 GUARD: a failing book-wide sweep DEMOTES a carried chapter (a new cross-chapter collision can't ship green)", () => {
+  try {
+    cleanup();
+    setupCarriedChapter();
+    // A sibling's repair introduced a new cross-chapter collision THIS round: the
+    // book-wide sweep now FAILs implicating the carried chapter. Non-fabricated —
+    // the finding cites no dotted container.field path.
+    writeSweepRecordFromSubmission({
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: GREEN_BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep-fixture",
+      verdict: "REVISE",
+      checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER,
+        unitId: "quiz",
+        repairClass: "repeated_unit",
+        severity: "major",
+        quote: "A reused review prompt shared across chapters.",
+        problem: "Cross-chapter templating implicates this carried chapter.",
+        expectedFix: "Vary the shared unit so it is chapter-specific.",
+      }],
+    });
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].finalVerdict, "REVISE", "a carried chapter newly implicated by the sweep must be demoted, not carried green");
+    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "the stale PUBLISHABLE attestation is overwritten");
+  } finally {
+    cleanup();
+  }
+});
+
+test("P2: a carried chapter whose content CHANGED since its attestation is NOT carried (re-reviewed)", () => {
+  try {
+    cleanup();
+    // Attestation hash deliberately does not match the current content → stale →
+    // the round's carried hint is ignored and the chapter needs a fresh review.
+    setupCarriedChapter({ attestationContentHash: "deadbeefdeadbeef" });
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].finalVerdict, "NEEDS_MORE_QC", "an edited carried chapter must be re-reviewed, never carried on a stale attestation");
+  } finally {
+    cleanup();
+  }
+});
+
+test("P1.4: a complete fresh positive read supersedes a STALE prior-round REVISE on identical content", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]); // bar=codex-qc:bar-fixture, confirm=codex-qc:confirm-fixture (DISTINCT)
+    // Pre-seed a stale REVISE from a PRIOR round on byte-identical content — the
+    // book-wide-major pin that the old finalizer could never release.
+    writeAttestation({
+      schemaVersion: "qc-attest-v1",
+      bookId: GREEN_BOOK,
+      chapterNumber: SOURCE_CHAPTER_NUMBER,
+      chapterId: chapter.chapterId,
+      verdict: "REVISE",
+      contentHash: chapterContentHash(chapter),
+      hashVersion: "v2",
+      reviewer: "codex-qc:auto:r-prior",
+      reviewedAt: "2026-01-01T00:00:00.000Z",
+      roundId: "r-prior",
+      findings: ["book-wide venue major (since resolved)"],
+    });
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", JSON.stringify(result.chapters[0]));
+    assert.match(result.chapters[0].reason, /superseded a stale prior-round/);
+    const att = loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER);
+    assert.equal(att?.verdict, "PUBLISHABLE");
+    assert.ok(
+      att?.history?.some((h) => h.verdict === "REVISE" && h.roundId === "r-prior"),
+      `prior REVISE must be auditable in history: ${JSON.stringify(att?.history?.map((h) => h.verdict))}`,
+    );
+  } finally {
+    cleanup();
+  }
+});
+
+test("P1.4: a SAME-reviewer confirm does NOT supersede a stale REVISE (author≠reviewer preserved)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    // Overwrite the confirm so its reviewer == the bar reviewer: not an independent read.
+    writeConfirmReadArtifact({
+      schemaVersion: "qc-confirm-read-v1",
+      bookId: GREEN_BOOK,
+      roundId: ROUND,
+      role: "confirm",
+      reviewer: "codex-qc:bar-fixture",
+      chapterNumber: SOURCE_CHAPTER_NUMBER,
+      chapterId: chapter.chapterId,
+      contentHash: chapterContentHash(chapter),
+      decision: "PUBLISHABLE",
+      reason: "Same reviewer as the bar — not an independent confirm.",
+      findings: [],
+    });
+    writeAttestation({
+      schemaVersion: "qc-attest-v1",
+      bookId: GREEN_BOOK,
+      chapterNumber: SOURCE_CHAPTER_NUMBER,
+      chapterId: chapter.chapterId,
+      verdict: "REVISE",
+      contentHash: chapterContentHash(chapter),
+      hashVersion: "v2",
+      reviewer: "codex-qc:auto:r-prior",
+      reviewedAt: "2026-01-01T00:00:00.000Z",
+      roundId: "r-prior",
+      findings: ["prior REVISE"],
+    });
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.notEqual(result.chapters[0].finalVerdict, "PUBLISHABLE", "same-reviewer confirm must not launder a stale REVISE");
+    assert.match(result.chapters[0].reason, /confirm reviewer must differ/);
+    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "stale REVISE attestation stays untouched");
+  } finally {
+    cleanup();
+  }
+});
+
+test("P1.5: finalize REVISEs a sub-0.6 bar axis even when it cited no hit (synthesises a repair target)", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -436,10 +600,14 @@ test("finalize treats bar YELLOW without sub-floor hits as NEEDS_MORE_QC", () =>
       verdict: computeVerdict(chapter.chapterId, axes, true),
     });
     const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
-    assert.equal(result.incomplete, true);
-    assert.equal(result.repairRequired, false);
-    assert.equal(result.chapters[0].finalVerdict, "NEEDS_MORE_QC");
-    assert.match(result.chapters[0].reason, /sub-0\.6 axis without a cited hit/);
+    // No longer a dead-end: a sub-0.6 axis without a cited hit now REVISEs with a
+    // synthetic, actionable repair finding instead of stranding in NEEDS_MORE_QC.
+    assert.equal(result.repairRequired, true);
+    assert.equal(result.chapters[0].finalVerdict, "REVISE");
+    const ledger = effectiveLedger(GREEN_BOOK, ROUND);
+    const synth = ledger.find((f) => f.repairClass === "example_coherence" && f.unitId === "bar.example_coherence");
+    assert.ok(synth, `expected a synthesised example_coherence finding: ${JSON.stringify(ledger.map((f) => f.repairClass))}`);
+    assert.match(synth!.problem, /below the 0\.60 floor/);
   } finally {
     cleanup();
   }

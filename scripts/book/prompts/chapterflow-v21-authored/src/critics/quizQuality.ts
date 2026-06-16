@@ -329,6 +329,55 @@ export function checkQuizAnswerLabelLeak(quiz: QuizV21): CriticFinding[] {
   return findings;
 }
 
+/**
+ * Uniform Title-Case choice labels (BP31). Every choice wearing a Title-Case
+ * "Label: sentence" tag ("Private Self-Governance: …" / "Status Proof: …" /
+ * "Audience Craft: …") lets a reader sort the key by the VALENCE of the labels
+ * alone — the key's tag reads virtuous, the distractors' tags self-condemn —
+ * without engaging the chapter. This is the-daily-stoic's quiz_distractor_quality
+ * REVISE driver (54/108 questions; the bar floors the axis to ~0.54). It is the
+ * lexical, deterministically-separable half of the defect: ALL-three-Title-Case-
+ * labelled is ZERO across the entire clean+gold corpus (year-of-less, drive,
+ * range, four-thousand-weeks, rework, the-let-them-theory, unreasonable-
+ * hospitality, gifts-of-imperfection, daring-greatly, start-with-why) and 54 on
+ * the-daily-stoic. We fire ONLY on this all-uniform Title-Case signal — the
+ * any-case / asymmetric label form is NOT separable (clean unreasonable-
+ * hospitality carries 26 asymmetric any-case labels and shipped), so the
+ * key-plain / distractors-labelled variant stays the writer-card ban + the model
+ * bar's job (the SC9 caution). SHADOW major: surfaces and names the question
+ * without flipping the gate; BP27 (explicit wrongness-marker labels) remains the
+ * blocker for its narrower case.
+ *
+ * A "Title-Case label" = 1–4 tokens, each capitalised (hyphens/apostrophes
+ * allowed inside a token), before the first ": ". A sentence that merely
+ * contains ": " ("She said: stop") is not a label — "said" is lowercase — and
+ * the all-choices condition means a single stray dialogue colon never fires.
+ */
+const TITLE_CASE_LABEL = /^[A-Z][A-Za-z0-9'\-]*(?:[ ][A-Z][A-Za-z0-9'\-]*){0,3}$/;
+
+function isTitleCaseLabel(choice: unknown): boolean {
+  return TITLE_CASE_LABEL.test(choiceLabel(choice));
+}
+
+export function checkQuizChoiceLabelUniform(quiz: QuizV21): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  for (const q of quiz.questions ?? []) {
+    const choices = q.choices ?? [];
+    if (choices.length < 2) continue;
+    if (!choices.every(isTitleCaseLabel)) continue;
+    const labels = choices.map((c) => `"${choiceLabel(c)}:"`).join(", ");
+    findings.push(
+      finding(
+        "BP31.quiz_choice_label_uniform" as any,
+        "major",
+        `${q.questionId} every choice wears a Title-Case category label (${labels}) — a reader can sort the key by the labels' valence without reading the chapter. Drop the labels: write every choice as a plain sentence in the same register, so only meaning separates the key.`,
+        truncate((choices as string[]).join(" | "), 160),
+      ),
+    );
+  }
+  return findings;
+}
+
 export function checkQuizDuplicateChoices(quiz: QuizV21): CriticFinding[] {
   const findings: CriticFinding[] = [];
   for (const q of quiz.questions ?? []) {
