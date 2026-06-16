@@ -189,6 +189,19 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           exit 0
 
+      - name: Cover coverage (advisory)
+        run: |
+          set +e
+          npx tsx scripts/ci/check-cover-coverage.ts --warn-only 2>&1 | tee cover.log
+          {
+            echo "## Cover coverage (advisory)"
+            echo ""
+            echo '```'
+            cat cover.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+
   # ── Hard gate: ESLint ratchet (L89) — fails only on NEW correctness debt ──
   # The advisory `lint` job never blocks, `next build` does not run ESLint, and
   # nothing else enforces JS/TS correctness lint — so correctness regressions
