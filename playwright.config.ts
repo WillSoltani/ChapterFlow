@@ -21,6 +21,8 @@ import { defineConfig, devices } from "@playwright/test";
 // Both modes are wired as separate CI jobs (.github/workflows/ci.yml).
 const E2E_MODE = process.env.E2E_MODE === "prod" ? "prod" : "dev";
 const IS_PROD = E2E_MODE === "prod";
+// Opt-in (local only): run the @visual screenshot specs instead of the smoke suite.
+const RUN_VISUAL = process.env.RUN_VISUAL === "1";
 const BASE_URL = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 
 // Production smoke build: a real `next build` + `next start`, with the COGNITO
@@ -49,8 +51,12 @@ export default defineConfig({
   timeout: 90_000,
   expect: { timeout: 15_000 },
   // dev mode: run everything EXCEPT prod-only specs. prod mode: run ONLY them.
-  grep: IS_PROD ? /@prod/ : undefined,
-  grepInvert: IS_PROD ? undefined : /@prod/,
+  // @visual specs are EXCLUDED from both CI jobs by default — their screenshot
+  // baselines are host-specific (committed as chromium-darwin) and would fail on
+  // the Linux CI runner. They are a LOCAL gate, opted into with RUN_VISUAL=1
+  // (`npm run test:visual`), which flips the selection to ONLY @visual.
+  grep: IS_PROD ? /@prod/ : RUN_VISUAL ? /@visual/ : undefined,
+  grepInvert: IS_PROD ? undefined : RUN_VISUAL ? undefined : /@prod|@visual/,
   use: {
     baseURL: BASE_URL,
     headless: true,

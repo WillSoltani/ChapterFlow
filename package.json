@@ -16,8 +16,8 @@
     "verify": "npm run typecheck && npm run test && npm run scan:style && npm run build",
     "test": "FILES=$(find app lib -name '*.test.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no test files found' >&2; exit 1; fi; tsx --test $FILES",
     "test:e2e": "playwright test",
-    "test:visual": "playwright test --grep @visual",
-    "test:visual:update": "playwright test --grep @visual --update-snapshots"
+    "test:visual": "RUN_VISUAL=1 playwright test",
+    "test:visual:update": "RUN_VISUAL=1 playwright test --update-snapshots"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.104.1",
