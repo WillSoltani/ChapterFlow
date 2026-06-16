@@ -25,6 +25,15 @@ Do this:
 CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<bookname>" --pass
 ```
 
+   **Re-QC after a repair?** That command is for a book's **first** QC round. A repair
+   changes chapters, so every re-QC is a fresh round — add `--incremental` so it re-reviews
+   ONLY the changed chapters and carries the already-PUBLISHABLE ones forward (the book-wide
+   sweep still runs over every chapter):
+
+   ```bash
+   CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<bookname>" --pass --incremental
+   ```
+
 5. If workflow/subagents are available, launch the generated workflow at
    `state/qc-orchestrator/<bookId>/<roundId>/qc-auto.workflow.js`.
 6. Monitor all phases until the run reaches PASS, REPAIR REQUIRED, or INCOMPLETE.
