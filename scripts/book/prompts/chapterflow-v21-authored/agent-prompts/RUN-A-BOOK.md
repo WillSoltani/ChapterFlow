@@ -40,6 +40,19 @@ The author must not grade its own work, and the publisher acts on a finished rou
 own grading. Within the write and QC phases, a subagent does ONE unit and never crosses roles
 (a writer never QCs; a reviewer never edits or certifies its own read).
 
+## Reasoning effort per role (GPT)
+Set each session's GPT reasoning-effort/verbosity to match the role — the pipeline emits a
+`[ROLE: … · reasoning: … · verbosity: …]` header on the fanout card and review packet, and
+`npx tsx src/cli.ts roles` lists them. Rule of thumb: **high** reasoning for the writer,
+researcher, and every QC reviewer (bar/confirm/keyA/keyB) + repair; **minimal** for the
+write/QC orchestrators and publish (they run the CLI and read exit codes, not content).
+The pipeline recommends; you set the actual session control. See `roles/README.md`.
+
+## Structured output (GPT)
+For the QC reviewer roles, bind the role's JSON Schema (`npx tsx src/cli.ts qc-schema <role>`)
+as the subagent's GPT `response_format` so the submission is shape-valid by construction — no
+FILL_ME round-trips. The CLI still re-checks the cross-field rules at `qc-submit`.
+
 ## If something goes sideways
 - Phase 2 `book-gate` barrier keeps failing the SAME book-wide blocker for 3 re-dispatch
   rounds → it's a Step-1 source problem, not authoring. Stop and fix research (phase 1).

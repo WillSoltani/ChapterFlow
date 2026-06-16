@@ -313,7 +313,15 @@ export function planNames(
   const allocation: Record<number, string[]> = {};
   const shortChapters: number[] = [];
   const alreadyAuthored: number[] = [];
-  let cursor = 0;
+  // forceFresh (the `--all` re-dispatch path) keys the slice to the chapter's
+  // position in the BOOK, not the call's range, so chapter N always gets
+  // available[(N-1)*perChapter ...]. Without this, a per-chapter re-dispatch
+  // (`fanout --from N --to N --all`, what the barrier prints) starts cursor at 0
+  // and deals available[0:perChapter] — so two offenders dealt in SEPARATE calls
+  // collide on the same fresh names, an F1 reintroduction. A whole-book forceFresh
+  // (fromChapter=1) is unchanged (cursor 0, advances normally). Clamp so a chapter
+  // past the bank degrades to a short slice/warn rather than an out-of-range start.
+  let cursor = opts.forceFresh ? Math.min((fromChapter - 1) * perChapter, Math.max(0, available.length - perChapter)) : 0;
   for (let ch = fromChapter; ch <= toChapter; ch++) {
     if (!opts.forceFresh && usedByChapter[ch] !== undefined) {
       // Authored already: carry its REAL names through (idempotent re-plan) and

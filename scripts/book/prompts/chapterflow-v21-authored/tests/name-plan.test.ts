@@ -71,6 +71,27 @@ test("name-plan excludes source-figure first names from the dealt pool", () => {
   }
 });
 
+test("forceFresh per-chapter re-dispatches dealt in SEPARATE calls are DISJOINT (no F1 reintroduction)", () => {
+  try {
+    resetFixture();
+    // The barrier prints per-chapter `fanout --from N --to N --all` commands; an
+    // orchestrator that deals all offender cards up-front (before any writer rewrites)
+    // must NOT get the same available[0:perChapter] window for two different chapters.
+    const ch3 = quietWarn(() => planNames(BOOK, 3, 3, 7, { forceFresh: true })).allocation[3];
+    const ch5 = quietWarn(() => planNames(BOOK, 5, 5, 7, { forceFresh: true })).allocation[5];
+    assert.equal(ch3.length, 7);
+    assert.equal(ch5.length, 7);
+    const overlap = ch3.filter((n) => ch5.includes(n));
+    assert.deepEqual(overlap, [], `ch3 and ch5 re-dispatches must not share names; overlap=${overlap.join(",")}`);
+    // And a per-chapter deal matches the slice that chapter gets in a whole-book deal.
+    const whole = quietWarn(() => planNames(BOOK, 1, 12, 7, { forceFresh: true })).allocation;
+    assert.deepEqual(whole[3], ch3, "per-chapter ch3 must match its whole-book slice");
+    assert.deepEqual(whole[5], ch5, "per-chapter ch5 must match its whole-book slice");
+  } finally {
+    resetFixture();
+  }
+});
+
 test("name-plan warns and proceeds when a source sidecar is missing", () => {
   try {
     resetFixture();

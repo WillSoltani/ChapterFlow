@@ -19,6 +19,26 @@ When the operator says **`QC <book>`** — do exactly this.
 > and computes the verdict, so a subagent CANNOT make a failing chapter publishable,
 > and no subagent may attest, collect, finalize, promote, or edit.
 
+**You are the head of QC, guarding the reader's trust.** Your job is genuine independence
+(separate reviewers, honest reads) and reading the verdict correctly — not pushing the book
+through. A REVISE you dispatch back is the system working, not a failure.
+
+## How to read the finalize verdict and decide
+- **`REPAIR REQUIRED`** → real defects. Open the printed `repair-prompt.md` in a fresh **Writer**
+  session. Read its `affected chapters:` line — it is bucketed (`[edit]` / `[book-wide status]` /
+  `[re-QC only]`). A **`CLASS DEFECT:`** banner means a defect repeats across sibling units (e.g.
+  every `ifThenPlans` entry): tell the writer to fix the WHOLE class at its source, not just the
+  quoted units — fixing only the quoted ones leaves the siblings to re-fail next round.
+- **A chapter REVISEs round after round, each time on a DIFFERENT axis** → the bar surfaces the
+  single worst axis; fixing it uncovers the next-latent one. That is convergence, not a loop — keep
+  repairing. But if the SAME finding survives 2 repairs with a genuine fix each time, the defect may
+  be a research/source limitation; surface it rather than grinding.
+- **`NEEDS_MORE_QC`** → a unit's submission is missing/stale (e.g. a bar subagent didn't submit).
+  Re-spawn ONLY that unit against the SAME round; never fabricate a submission or force a pass.
+- **`STALE_ROUND`** → chapters changed after the round opened. Start a FRESH round.
+- After any repair, the round is stale → re-QC as a fresh **`--incremental`** round (only changed
+  chapters are re-reviewed; already-PUBLISHABLE ones carry forward; the book-wide sweep still runs).
+
 ## 0. Setup
 ```bash
 cd scripts/book/prompts/chapterflow-v21-authored
@@ -45,6 +65,11 @@ CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<book>" --pass --incre
 `--incremental` only matters at this open step; the resume/finalize commands below
 (`--round <roundId>`) read the carried set from the round record automatically.
 
+> Optional `--tiebreak`: add it to this open command for a variance-prone book (one that
+> flaps REVISE/PASS at the 84/85 boundary on re-runs). A chapter whose first bar read lands
+> borderline then gets 2 extra independent reads, combined by per-axis median — see Wave 3.5.
+> Default off; everything below is unchanged when it's not set. (Composable with `--incremental`.)
+
 Open REVIEW-PACKET.md once: it holds, for every QC unit, the exact `qc-submit` command
 and a JSON skeleton whose `reviewer` is already the correct derived id and whose judgment
 fields are placeholders that FAIL validation until filled from a real read.
@@ -70,6 +95,16 @@ CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<book>" --pass --round
 ```
 This collects the submissions, re-runs the deterministic gates, and writes
 `confirm-candidates.json` (the chapters on a publishable trajectory). Read that file.
+
+**Wave 3.5 — tiebreak (only with `--tiebreak`, and only if the CLI asks).** When the round
+was opened with `--tiebreak`, a chapter whose first bar read lands borderline (overall 83–87,
+or an axis near the 0.6 floor) is held with a `tiebreak` blocker and the CLI writes
+`task-cards/bar-tiebreak/chNN-t2.md` (+ `-t3.md`). Dispatch those as FRESH independent bar
+reviewers (use the round's bar token; submit with `--variant t2` / `--variant t3`). They must
+NOT read the first submission. The CLI combines all reads of that chapter by per-axis MEDIAN, so
+one noisy sample can't flip the verdict (a cited corruption still RED-gates). Re-run collect; once
+the tiebreak reads are in, the chapter resolves to a stable verdict. Skip this wave entirely if
+no `bar-tiebreak` cards were written.
 
 ## 4. Wave 4 — confirm reads (≤6 agents, parallel; ONLY candidates)
 For each chapter in `confirm-candidates.json`, spawn a confirm subagent (≤6 at once).

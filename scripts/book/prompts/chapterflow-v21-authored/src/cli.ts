@@ -22,6 +22,7 @@ import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
 import { BookCriticReport, BookPackage, ChapterV21 } from "./types.js";
+import { roleHintHeader } from "./roles.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
 import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileName, assertNoShadowStateDir } from "./lib/chapterPaths.js";
@@ -165,12 +166,18 @@ Commands:
                                      Render repair-ledger.jsonl to repair-brief.md.
   qc-orchestrate <bookId> --verify-repair --round <roundId>
                                      Re-run repair validation and append stale/still-open/QC-rerun statuses.
-  qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --token <token> --file <submission.json>
+  qc-submit <bookId> --round <roundId> --role sweep|keyA|keyB|bar|confirm|major --token <token> --file <submission.json> [--variant t2|t3]
                                      Validate and store a structured QC submission for an orchestrated round.
-  qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]
+                                     --variant t2|t3: a bar self-consistency tiebreak read (see qc-auto --tiebreak).
+  qc-schema <role|schemaVersion>     Print the JSON Schema for a QC submission role — bind as a GPT
+                                     structured-output response_format (the CLI still re-checks cross-field rules).
+  roles [<roleId>]                   List the pipeline roles with recommended GPT reasoning/verbosity,
+                                     or print one role's full profile (roles/ROLE-DEFINITIONS.json).
+  qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--incremental] [--tiebreak] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]
                                      One-command no-api Codex QC autopilot. Creates/reuses a round,
                                      writes workflow tasking, collects submissions, finalizes evidence,
                                      and reports PASS/REPAIR/INCOMPLETE without using paid APIs.
+                                     --tiebreak: borderline bar reads get extra independent reads, combined by median.
   qc-diagnose <bookId> --round <roundId>
                                      Explain evidence-matrix verdicts, common failures, repair prompt,
                                      and the exact next QC command.
@@ -1656,10 +1663,13 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     console.error(`Invalid chapter range: --from ${String(flags["from"] ?? from)} --to ${String(flags["to"] ?? to)}. Use integers with 1 <= from <= to.`);
     return 2;
   }
-  const plan = planNames(bookId, from, to);
+  // REDO path (--all): deal FRESH names/shapes/pedagogy — carrying a chapter's own
+  // CURRENT values would re-pin the very thing the redo exists to break. For names
+  // specifically, the carry-through echoes the colliding names that triggered F1
+  // (and `extractNamesFromText` proper-noun pollution), so a `--all` re-dispatch must
+  // deal a fresh disjoint pool — otherwise the offender card re-emits the collision.
+  const plan = planNames(bookId, from, to, 7, { forceFresh: includeAll });
   writeNamePlan(plan);
-  // REDO path (--all): deal FRESH shapes — carrying a templated chapter's own
-  // uniform formats would re-pin the very skeleton the redo exists to break.
   const shapePlan = planShapes(bookId, from, to, 6, { forceFresh: includeAll });
   writeShapePlan(shapePlan);
   const shapeDefs = new Map(loadSceneShapes().map((s) => [s.id, s.definition]));
@@ -1859,8 +1869,10 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
 
     blocks.push(
       `─── Chapter ${ch.number} — "${ch.title}"${written ? "  (already written — re-do)" : ""} ───\n` +
-        `Write chapter ${ch.number} of "${title}" for ChapterFlow. Work in this folder:\n` +
+        `${roleHintHeader("write")}\n` +
+        `You are an expert nonfiction writer. Write chapter ${ch.number} of "${title}" for ChapterFlow — one chapter a curious reader will actually remember and use. The dealt constraints below are not hoops to clear; they are the variety tools that keep this chapter from collapsing into the same scene-and-quiz shell as its siblings. Use them to make it genuinely good. Work in this folder:\n` +
         `  ${PIPE}\n` +
+        `• SCOPE: author EXACTLY this one chapter (chapter ${ch.number}). Do NOT QC, publish, package, or edit any other chapter — sibling chapters are being authored in parallel; never touch their files.\n` +
         `• Read its source notes: ${sidecarPath ?? "(no sidecar found — STOP and run Step-1 research for this chapter first)"}\n` +
         `• Use ONLY these character names: ${names}\n` +
         `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
@@ -1892,7 +1904,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• PLAIN LANGUAGE (R2.7 — product direction): every abstract claim is followed within TWO sentences by something the reader can SEE (a person, a scene, a number). Say it like you'd say it to a smart friend at lunch. Define terms-of-art in everyday words the first time; never stack two undefined abstractions in one sentence. Each breakdown tier OPENS concrete, not with a thesis. Short common words win. This applies to EVERY reader-facing field (quiz, cards, examples, hook, keyTakeaway, plan), not just the breakdown — a gate (E7) flags fancy words with their plain swap (utilize→use, leverage→use, facilitate→help) and any sentence over 34 words (over 24 in a one-liner). Target grade 7–9.\n` +
         `• TWO-PASS: after drafting, self-critique against agent-prompts/FIELD-PURPOSE-CONTRACTS.md (concept-as-actor, templated loops, echo-template explanations, bare-label card fronts, proposition-not-action whatToDo) AND against R2.7 (read your fastRead aloud — if a sentence wouldn't survive being said to a friend, rewrite it) and FIX what you find before gating.\n` +
         `• THE REAL TARGET IS THE PUBLISHABLE BAR, NOT THE GATE. QC's verdict comes from a reviewer scoring your chapter on 8 weighted axes (PASS = ≥85/100, no axis <0.6). A gate-clean chapter can still be REVISE'd. BEFORE you finish, run \`npx tsx src/cli.ts publishable-rubric\` and self-score this draft on every axis; fix any axis you'd score below ~0.85 and ANY corruption-axis hit (quiz_key_correctness, example_coherence, prose_coherence, factual_accuracy). The biggest levers: derive each quiz key yourself from the source and confirm the keyed index, make distractors real misconceptions, give each example a concrete acting scene with a decision, keep prose concrete + plain.\n` +
-        `• gate-chapter majors are DIAGNOSTIC HINTS toward those axes, not the bar itself: C2/E4 → example_coherence/prose_coherence (specific scenes, concrete openers), E7/E1/A13 → prose readability, C23 → example variety. Fix the ones that are real quality defects (the gold reference books trip some of these and still pass — don't game a threshold; fix the underlying scene/sentence).\n` +
+        `• gate-chapter majors (C2/E4 → example_coherence/prose_coherence, E7/E1/A13 → prose readability, C23 → example variety) are NOT free hints — QC's finalizer BLOCKS the chapter on any unresolved major, so handing one off costs a whole QC round downstream. TRIAGE every major before you finish: fix the genuine scene/sentence defect (most are real). The gold reference books trip a few of these on genuinely good prose — leave ONLY a major you can defend as that kind of false positive; never hand off one you simply didn't look at.\n` +
         `• QUIZ KEYS (quiz_key_correctness, weight 18 — the heaviest axis): the blind keyA/keyB judge re-derives each answer from prompt + choices + this chapter's source testableFacts[] ONLY (claim/becauseMechanism/commonError/errorIsWhy), never your prose. Anchor each question to a testableFact (set its sourceAnchorId), key the choice that fact uniquely supports, and build the two distractors from that fact's commonError. See STEP-2 "Derive every key the way the BLIND judge will".\n` +
         `• SOURCE FIDELITY (factual_accuracy — a CORRUPTION veto; one drifted fact RED-gates the whole book): every fact, number, date, and attributed quote traces to this chapter's source sidecar; complete every named framework with the source's EXACT member names (no renames, no dropped items). If the sidecar can't ground a claim, cut it — never invent.\n` +
         `• REVIEW CARDS (card_learning_value — CORRUPTION if the back doesn't answer the front): each back ANSWERS its front in the card's OWN words and tests understanding (give the mechanism / named parts), is NOT pasted from the breakdown, and ENDS on a complete sentence (80–400 chars). Fronts retrieve an idea, not a bare label.\n` +
@@ -1907,7 +1919,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
       `\n`,
   );
   console.log(blocks.join("\n\n"));
-  console.log(`\nPaste each block above into its own Codex agent (run them in parallel). When they finish, check the batch:\n  npx tsx src/cli.ts book-gate ${bookId}`);
+  console.log(`\nEach "─── Chapter N ───" block above is a COMPLETE, ready-to-paste writer dispatch prompt — paste one block VERBATIM as a fresh writer subagent's entire instruction (run them in parallel). Do not wrap, summarize, or add your own framing; the block already carries the persona, scope, dealt variety, and the gate/rubric loop. When the batch finishes, check it:\n  npx tsx src/cli.ts book-gate ${bookId}`);
 
   // --barrier: run book-gate as a deterministic pre-QC barrier and print
   // targeted re-dispatch hints for the offending chapters. The CLI stays
@@ -2139,6 +2151,7 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
       chapters: orch.parseChapterList(flags["chapters"]),
       allowDirtyPreflight: flags["allow-dirty-preflight"] === true,
       incremental: flags["incremental"] === true,
+      tiebreak: flags["tiebreak"] === true,
     });
     for (const m of result.messages) console.log(m);
     if (result.errors.length) for (const e of result.errors) console.error(e);
@@ -2232,14 +2245,53 @@ async function runQcSubmit(args: string[], flags: Record<string, string | boolea
     console.error(`Unknown role "${role}". Use one of: ${SUBMISSION_ROLES.join(", ")}`);
     return 2;
   }
+  const variant = typeof flags["variant"] === "string" ? flags["variant"] : "";
+  if (variant && variant !== "t2" && variant !== "t3") {
+    console.error(`Invalid --variant "${variant}". Use t2 or t3 (the bar self-consistency tiebreak reads).`);
+    return 2;
+  }
   const { submitQcArtifact } = await import("./qc/orchestrator/index.js");
-  const result = submitQcArtifact(bookId, roundId, role as any, file, token);
+  const result = submitQcArtifact(bookId, roundId, role as any, file, token, (variant || undefined) as "t2" | "t3" | undefined);
   for (const m of result.messages) console.log(m);
   if (result.errors.length) {
     for (const e of result.errors) console.error(e);
     return 1;
   }
   return 0;
+}
+
+async function runQcSchema(args: string[]): Promise<number> {
+  const which = args[0];
+  const { submissionJsonSchemaForRole, allSubmissionJsonSchemas } = await import("./qc/orchestrator/submissionSchemas.js");
+  const all = allSubmissionJsonSchemas() as Record<string, object>;
+  if (!which) {
+    console.error("Usage: qc-schema <role|schemaVersion>");
+    console.error("  roles: sweep, keyA, keyB, bar, confirm, major");
+    console.error(`  schemas: ${Object.keys(all).join(", ")}`);
+    console.error("Use the printed JSON Schema as a GPT structured-output `response_format` so a reviewer");
+    console.error("subagent emits a shape-valid submission. The CLI still re-checks cross-field rules at qc-submit.");
+    return 2;
+  }
+  const byRole = submissionJsonSchemaForRole(which);
+  if (byRole) { console.log(JSON.stringify(byRole.schema, null, 2)); return 0; }
+  if (all[which]) { console.log(JSON.stringify(all[which], null, 2)); return 0; }
+  console.error(`Unknown role/schema "${which}". Roles: sweep, keyA, keyB, bar, confirm, major. Schemas: ${Object.keys(all).join(", ")}`);
+  return 2;
+}
+
+async function runRoles(args: string[]): Promise<number> {
+  const { loadRoleDefinitions, formatRoleProfile, getRole } = await import("./roles.js");
+  const which = args[0];
+  if (!which) {
+    console.log("Pipeline roles (roles/ROLE-DEFINITIONS.json) — recommended GPT reasoning/verbosity per role:");
+    for (const r of loadRoleDefinitions()) {
+      console.log(`  ${r.roleId.padEnd(17)} reasoning:${r.reasoningEffort.padEnd(8)} verbosity:${r.verbosity.padEnd(7)} ${r.title}`);
+    }
+    console.log("\n`roles <roleId>` prints a role's full profile. The operator sets each session's GPT reasoning-effort to match.");
+    return 0;
+  }
+  console.log(formatRoleProfile(which));
+  return getRole(which) ? 0 : 2;
 }
 
 function listMarkdownFiles(dir: string): string[] {
@@ -2271,7 +2323,7 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   if (g) return g;
   const input = args.join(" ").trim();
   if (!input || flags["pass"] !== true) {
-    console.error('Usage: qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]');
+    console.error('Usage: qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--incremental] [--tiebreak] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]');
     return 2;
   }
   if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") {
@@ -2320,7 +2372,7 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   let roundId = typeof flags["round"] === "string" ? flags["round"] : "";
 
   if (!roundId || !existsSyncFs(artifacts.roundRecordPath(bookId, roundId))) {
-    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters, allowDirtyPreflight: flags["allow-dirty-preflight"] === true, incremental: flags["incremental"] === true });
+    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters, allowDirtyPreflight: flags["allow-dirty-preflight"] === true, incremental: flags["incremental"] === true, tiebreak: flags["tiebreak"] === true });
     for (const m of created.messages) console.log(m);
     if (created.errors.length) for (const e of created.errors) console.error(e);
     roundId = created.roundId;
@@ -3817,6 +3869,10 @@ async function main() {
       return runQcOrchestrate(args, flags);
     case "qc-submit":
       return runQcSubmit(args, flags);
+    case "qc-schema":
+      return runQcSchema(args);
+    case "roles":
+      return runRoles(args);
     case "qc-auto":
       return runQcAuto(args, flags);
     case "publish-after-qc":

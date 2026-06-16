@@ -6,7 +6,7 @@ import { runShipGate } from "../../critics/finalGate.js";
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
 import { chapterContentHash, isApprovedReviewer, approvedReviewerRoles, isAttestationFresh, loadAttestation } from "../../critics/qcAttestation.js";
-import { AXIS_WEIGHTS, computeVerdict } from "../../critics/semantic/publishableBar.js";
+import { AXIS_WEIGHTS, combineBarAxes, computeVerdict, type PublishableVerdict } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { runIntraBookChecks } from "../../critics/intraBook.js";
 import { writeBarPack } from "../barReview.js";
@@ -15,7 +15,7 @@ import { unresolvedMajors } from "../majorDisposition.js";
 import { isNoApiCodexQcMode } from "../noApiMode.js";
 import { openQcRound, qcRoundPath, verifyQcRoundToken, type QcRoundRole } from "../qcRound.js";
 import { checkSourceV2Gate, sourceHashFor } from "../sourceV2Gate.js";
-import { loadSweepRecord, writeSweepPack, REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
+import { loadSweepRecord, writeSweepPack, writeSweepRecordFromSubmission, REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
 import { writeReviewPacket } from "./reviewPacket.js";
 export { reviewPacketPath } from "./reviewPacket.js";
 import {
@@ -27,12 +27,15 @@ import {
   submissionsDir,
   taskCardsDir,
   loadBarReadArtifact,
+  loadAllBarReads,
+  BAR_READ_VARIANTS,
+  type BarReadVariant,
   writeBarReadArtifact,
   writeConfirmReadArtifact,
 } from "./artifacts.js";
 import { appendFindingsFromSubmission, appendStatusEvents, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
 import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
-import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission } from "./schemas.js";
+import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
 export { finalizeQcRound } from "./finalize.js";
 
 export type QcOrchestratorRoundRecord = {
@@ -57,6 +60,10 @@ export type QcOrchestratorRoundRecord = {
    *  `carriedChapters` inherit their last fresh PUBLISHABLE attestation. */
   reviewChapters?: number[];
   carriedChapters?: number[];
+  /** WS-1 self-consistency tiebreak (present only when `--tiebreak`). When set, a
+   *  chapter whose first bar read lands borderline gets 2 extra independent reads
+   *  (t2/t3) and the per-axis MEDIAN decides — variance-smoothing the 84/85 flap. */
+  tiebreak?: boolean;
 };
 
 export type OrchestratorResult = {
@@ -189,7 +196,7 @@ export function checkRoundFreshness(bookId: string, roundId: string, chapters?: 
   return { fresh: staleChapters.length === 0, staleChapters, missingHashes: false };
 }
 
-export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean; incremental?: boolean } = {}): OrchestratorResult {
+export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean; incremental?: boolean; tiebreak?: boolean } = {}): OrchestratorResult {
   const errors: string[] = [];
   const messages: string[] = [];
   if (!isNoApiCodexQcMode()) {
@@ -294,6 +301,7 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
     taskCards: cards,
     chapterContentHashes: chapterHashRecord(selected),
     ...(incremental ? { reviewChapters: reviewChapters.map((ch) => ch.number), carriedChapters: carriedChapters.map((ch) => ch.number) } : {}),
+    ...(options.tiebreak ? { tiebreak: true } : {}),
   };
   writeText(roundRecordPath(bookId, roundId), JSON.stringify(record, null, 2) + "\n");
   writeText(qcSummaryPath(bookId, roundId), JSON.stringify({ bookId, roundId, createdAt: record.createdAt, submissions: 0, ledger: {}, attestationsWritten: 0 }, null, 2) + "\n");
@@ -301,11 +309,43 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   return { ok: errors.length === 0, roundId, roundDir: orchestratorRoundDir(bookId, roundId), errors, messages };
 }
 
+// WS-1 self-consistency tiebreak: bands around the GREEN/YELLOW boundary (85) and the
+// 0.6 axis floor where one noisy model sample flips the verdict. A chapter here gets
+// extra independent reads combined by per-axis median. A RED (cited corruption) is
+// decisive, never borderline.
+const BORDERLINE_OVERALL_LO = 83, BORDERLINE_OVERALL_HI = 87;
+const BORDERLINE_AXIS_LO = 0.55, BORDERLINE_AXIS_HI = 0.65;
+
+function isBorderlineVerdict(v: PublishableVerdict): boolean {
+  if (v.gate === "RED") return false;
+  if (v.overall >= BORDERLINE_OVERALL_LO && v.overall < BORDERLINE_OVERALL_HI) return true;
+  return v.axes.some((a) => a.score >= BORDERLINE_AXIS_LO && a.score < BORDERLINE_AXIS_HI);
+}
+
+/** Emit the bar-tiebreak task cards still missing for a borderline chapter (t2/t3).
+ *  `existingReads` includes the primary, so 1 → [t2,t3], 2 → [t3]. */
+function emitTiebreakCards(bookId: string, roundId: string, ch: ChapterV21, existingReads: number): string[] {
+  const missing = BAR_READ_VARIANTS.slice(Math.max(0, existingReads - 1));
+  const nn = String(ch.number).padStart(2, "0");
+  return missing.map((v) => writeText(
+    resolve(taskCardsDir(bookId, roundId), "bar-tiebreak", `ch${nn}-${v}.md`),
+    cardHeader(bookId, roundId, `bar-tiebreak ${v} ch${nn}`, "<bar-token from REVIEW-PACKET.md>") + [
+      `TIEBREAK READ (${v}): this chapter's bar read landed borderline (overall 83–87, or an axis near the 0.6 floor).`,
+      "Score it INDEPENDENTLY — do NOT read the prior bar submission. The CLI combines all reads of this chapter by per-axis MEDIAN, so one noisy sample cannot flip the verdict (a cited corruption still RED-gates).",
+      `Required schema: qc-bar-read-v2. Required artifact contentHash: ${chapterContentHash(ch)}.`,
+      `Submit (use the round's bar token from REVIEW-PACKET.md): npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role bar --variant ${v} --token <bar-token> --file <submission.json>`,
+      "",
+    ].join("\n"),
+  ));
+}
+
 export function generateConfirmCandidates(bookId: string, roundId: string, options: { chapters?: number[] } = {}): { ok: boolean; path: string; taskCards: string[]; candidates: number[]; skipped: Array<{ chapterNumber: number; blockers: string[] }>; errors: string[] } {
   const errors: string[] = [];
   const chapters = selectedRoundChapters(bookId, roundId, options.chapters);
   const allChapters = loadBookChapters(bookId);
   resolveManualKeyJudges(bookId, roundId);
+  const roundRecord = existsSync(roundRecordPath(bookId, roundId)) ? JSON.parse(readFileSync(roundRecordPath(bookId, roundId), "utf8")) as QcOrchestratorRoundRecord : null;
+  const tiebreakOn = roundRecord?.tiebreak === true;
   const source = checkSourceV2Gate(bookId, chapters.map((ch) => ch.number));
   const sweep = loadSweepRecord(bookId);
   const bookGate = runBookGate(bookId, allChapters);
@@ -319,6 +359,9 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
     const contentHash = chapterContentHash(ch);
     const keyJudge = loadManualKeyJudge(bookId, ch.number);
     const bar = loadBarReadArtifact(bookId, roundId, ch.number);
+    // WS-1: combine the primary read with any matching tiebreak variants (t2/t3) so the
+    // GREEN check uses the variance-smoothed per-axis median, not one noisy sample.
+    const barReads = loadAllBarReads(bookId, roundId, ch.number).filter((r) => r.chapterId === ch.chapterId && r.contentHash === chapterContentHash(ch));
     const shipGate = runShipGate(ch);
     const authorFindings = checkAuthoringContract(ch, { sidecar: loadChapterSidecar(ch.chapterId), filePath: `state/chapters/${ch.chapterId}.v21-native.chapter.json` });
     const intraFindings = runIntraBookChecks(ch, allChapters.filter((other) => other.number < ch.number));
@@ -340,11 +383,18 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
     if (!bar || bar.chapterId !== ch.chapterId || bar.contentHash !== contentHash) {
       blockers.push("barRead");
     } else {
-      const barGate = computeVerdict(ch.chapterId, [
+      const verdict = computeVerdict(ch.chapterId, [
         { axis: "quiz_key_correctness", score: 1, tier: "PUBLISHABLE", hits: [] },
-        ...bar.axes,
-      ], true).gate;
-      if (barGate !== "GREEN") blockers.push("barRead");
+        ...combineBarAxes(barReads.map((r) => r.axes)),
+      ], true);
+      if (tiebreakOn && barReads.length < 3 && isBorderlineVerdict(verdict)) {
+        // Borderline → gather extra independent reads before deciding. Emit the missing
+        // t2/t3 cards and block this chapter until they're combined (next collect).
+        taskCards.push(...emitTiebreakCards(bookId, roundId, ch, barReads.length));
+        blockers.push("tiebreak");
+      } else if (verdict.gate !== "GREEN") {
+        blockers.push("barRead");
+      }
     }
     if (ledgerFindings.length > 0) blockers.push("repairLedger");
     if (chapterMajorFindings.length > 0) blockers.push("majors");
@@ -379,9 +429,10 @@ function stripPlaintextSecrets(raw: any): any {
   return raw;
 }
 
-export function submitQcArtifact(bookId: string, roundId: string, role: SubmissionRole, file: string, token: string): { ok: boolean; path?: string; errors: string[]; messages: string[] } {
+export function submitQcArtifact(bookId: string, roundId: string, role: SubmissionRole, file: string, token: string, variant?: BarReadVariant): { ok: boolean; path?: string; errors: string[]; messages: string[] } {
   if (!SUBMISSION_ROLES.includes(role)) return { ok: false, errors: [`Unknown role ${role}.`], messages: [] };
   if (!token) return { ok: false, errors: [`qc-submit requires --token for role ${role}.`], messages: [] };
+  if (variant && role !== "bar") return { ok: false, errors: [`--variant is only valid for role bar (the self-consistency tiebreak), not ${role}.`], messages: [] };
   if (!verifyQcRoundToken(bookId, roundId, role as QcRoundRole, token)) {
     return { ok: false, errors: [`Invalid ${role} token for ${bookId} round ${roundId}.`], messages: [] };
   }
@@ -414,11 +465,12 @@ export function submitQcArtifact(bookId: string, roundId: string, role: Submissi
     verifiedRole: role,
     submittedAt: new Date().toISOString(),
     copiedFrom: resolve(file),
+    ...(variant ? { variant } : {}),
   }, null, 2) + "\n", "utf8");
   const messages = [`submission stored: ${dest}`];
   if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") {
-    const artifact = writeBarReadArtifact(validation.submission);
-    messages.push(`bar-read artifact stored: ${artifact}`);
+    const artifact = writeBarReadArtifact(validation.submission, variant);
+    messages.push(`bar-read${variant ? ` (${variant})` : ""} artifact stored: ${artifact}`);
   }
   if (validation.submission.schemaVersion === "qc-confirm-read-v1") {
     const artifact = writeConfirmReadArtifact(validation.submission);
@@ -427,15 +479,21 @@ export function submitQcArtifact(bookId: string, roundId: string, role: Submissi
   return { ok: true, path: dest, errors: [], messages };
 }
 
-function submissionFiles(bookId: string, roundId: string): Array<{ role: SubmissionRole; path: string }> {
-  const out: Array<{ role: SubmissionRole; path: string }> = [];
+function submissionFiles(bookId: string, roundId: string): Array<{ role: SubmissionRole; path: string; variant?: BarReadVariant }> {
+  const out: Array<{ role: SubmissionRole; path: string; variant?: BarReadVariant }> = [];
   for (const role of SUBMISSION_ROLES) {
     const dir = submissionsDir(bookId, roundId, role);
     if (!existsSync(dir)) continue;
     for (const f of readdirSync(dir).filter((name) => name.endsWith(".json") && !name.endsWith(".meta.json")).sort()) {
       const p = resolve(dir, f);
-      if (/^ch\d+\.bar-read\.json$/.test(f) || /^ch\d+\.confirm-read\.json$/.test(f)) continue;
-      out.push({ role, path: p });
+      // Skip the derived bar/confirm artifact files (incl. tiebreak variants ch03.bar-read-t2.json) — they are NOT submissions.
+      if (/^ch\d+\.bar-read(-t\d+)?\.json$/.test(f) || /^ch\d+\.confirm-read\.json$/.test(f)) continue;
+      let variant: BarReadVariant | undefined;
+      try {
+        const meta = existsSync(`${p}.meta.json`) ? loadJsonFile(`${p}.meta.json`) : null;
+        if (meta?.variant === "t2" || meta?.variant === "t3") variant = meta.variant;
+      } catch { /* malformed/absent meta → treat as the primary read */ }
+      out.push({ role, path: p, variant });
     }
   }
   return out;
@@ -472,6 +530,7 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
   let submissions = 0;
   let appended = 0;
   let duplicates = 0;
+  let latestSweep: ValidatedSweepSubmission | null = null;
   for (const item of submissionFiles(bookId, roundId)) {
     let raw: any;
     try {
@@ -486,13 +545,19 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
       continue;
     }
     submissions++;
-    if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") writeBarReadArtifact(validation.submission);
+    if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") writeBarReadArtifact(validation.submission, item.variant);
     if (validation.submission.schemaVersion === "qc-confirm-read-v1") writeConfirmReadArtifact(validation.submission);
     if (validation.submission.schemaVersion === "qc-key-derive-v2") writeKeyDerivationFromSubmission(validation.submission);
+    if (validation.submission.schemaVersion === "qc-sweep-submission-v1") latestSweep = validation.submission as ValidatedSweepSubmission;
     const merged = appendFindingsFromSubmission({ bookId, roundId, role: item.role, submissionFile: item.path, submission: validation.submission as ValidatedSubmission });
     appended += merged.appended;
     duplicates += merged.duplicates;
   }
+  // Write the durable sweep record from the newest valid sweep submission (submissionFiles
+  // is oldest→newest, so the last one wins — matching finalize's latestValidSubmission).
+  // collect runs BEFORE generateConfirmCandidates, which reads loadSweepRecord; without this
+  // the first candidate pass sees no fresh record and falsely blocks every chapter on "sweep".
+  if (latestSweep) writeSweepRecordFromSubmission(latestSweep);
   const briefPath = writeRepairBrief(bookId, roundId);
   const promptPath = writeRepairPrompt(bookId, roundId);
   const summary = {

@@ -23,6 +23,29 @@ test("citesNonexistentField passes real field references and non-field prose", (
   assert.equal(citesNonexistentField({ unitId: "u", quote: "see e.g. the note", problem: "the file.txt and section.two are fine", expectedFix: "" }), null);
 });
 
+test("citesNonexistentField does NOT mis-flag a dotted array-element path (the ch4 false-positive)", () => {
+  // the-daily-stoic ch04: a REAL confirm REVISE cited `examples.ex01.scenario`. The old
+  // 2-level regex matched `examples.ex01`, read `ex01` as a non-existent field, and dropped
+  // the finding as fabricated. The fix validates the FINAL field after an array subscript.
+  assert.equal(
+    citesNonexistentField({
+      unitId: "examples.ex01.scenario",
+      quote: "Clara marks three plain facts in the city council anteroom before a Roman forum.",
+      problem: "examples.ex01.scenario blends a modern anteroom with an ancient forum",
+      expectedFix: "Recast the scene as one coherent setting.",
+    }),
+    null,
+    "examples.ex01.scenario is a real array-element field reference, not fabricated",
+  );
+  // numeric subscript form, and a bare element reference with no field, are also fine.
+  assert.equal(citesNonexistentField({ unitId: "examples.0.whatToDo", quote: "q", problem: "examples.0.whatToDo is a proposition", expectedFix: "" }), null);
+  assert.equal(citesNonexistentField({ unitId: "examples.ex02", quote: "q", problem: "examples.ex02 is abstract", expectedFix: "" }), null);
+  // The genuine 2-level fabrication is still caught even with the new subscript tolerance.
+  assert.equal(citesNonexistentField(fabricated), "implementationPlan.challenge");
+  // A truly invented field AFTER a real subscript is still caught (we validate the final token).
+  assert.equal(citesNonexistentField({ unitId: "examples.ex01.bogusfield", quote: "q", problem: "examples.ex01.bogusfield", expectedFix: "" }), "examples.bogusfield");
+});
+
 test("allFindingsFabricated is true only when EVERY finding is invented", () => {
   const real = { unitId: "chapter:2:example[1]", quote: "q", problem: "scenario lacks a setting", expectedFix: "add one" };
   assert.equal(allFindingsFabricated([fabricated]), true);

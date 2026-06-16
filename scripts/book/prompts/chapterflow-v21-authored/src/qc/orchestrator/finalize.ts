@@ -6,7 +6,7 @@ import { runBookGate } from "../../critics/bookGate.js";
 import { runShipGate } from "../../critics/finalGate.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
 import { chapterContentHash, isAttestationFresh, loadAttestation, writeAttestation, type QcAttestation, type QcVerdict } from "../../critics/qcAttestation.js";
-import { computeVerdict, type AxisScore, type FailureTier } from "../../critics/semantic/publishableBar.js";
+import { combineBarAxes, computeVerdict, type AxisScore, type FailureTier } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { runIntraBookChecks } from "../../critics/intraBook.js";
 import { loadBookChapters, loadManualKeyJudge, manualKeyJudgePath, resolveManualKeyJudges, type ManualKeyJudgeRecord } from "../manualKeyJudge.js";
@@ -18,6 +18,7 @@ import {
   confirmArtifactPath,
   evidenceMatrixPath,
   loadBarReadArtifact,
+  loadAllBarReads,
   loadConfirmReadArtifact,
   orchestratorRoundDir,
   qcSummaryPath,
@@ -320,7 +321,12 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       if (bar.chapterId !== ch.chapterId || bar.contentHash !== contentHash) barGate = "STALE";
       else {
         const keyStatus = keyJudge?.status ?? "MISSING";
-        barGate = computeVerdict(ch.chapterId, injectedBarAxes(bar, keyStatus), true).gate;
+        // WS-1: fold the primary read together with any matching tiebreak variants (t2/t3)
+        // by per-axis median before computing the verdict — variance-smoothing the borderline
+        // flap. With one read this is the identity; a cited corruption is never medianed away.
+        const reads = loadAllBarReads(bookId, roundId, ch.number).filter((r) => r.chapterId === ch.chapterId && r.contentHash === contentHash);
+        const combinedBar = { ...bar, axes: combineBarAxes(reads.map((r) => r.axes)) };
+        barGate = computeVerdict(ch.chapterId, injectedBarAxes(combinedBar, keyStatus), true).gate;
       }
     }
     checks.barRead = barGate;
