@@ -10,6 +10,7 @@ import { findSourceSidecar } from "../librarian/sourceSidecars.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import { finding, truncate } from "./shared.js";
 import { normalizeSurfaceFrame } from "./bookPatternAudit.js";
+import { checkQuizChoiceLabelUniform } from "./quizQuality.js";
 
 /** A book-level finding that names the offending chapters structurally (not just
  *  in prose) so the write-orchestrator barrier can re-dispatch exactly those. */
@@ -361,6 +362,30 @@ export function checkBookActionContainerReuse(chapters: ChapterV21[]): BookRepet
       "major",
       `the try-this-now action funnels into the timer/calendar container in ${chs.length} of ${N} chapters (${(chs.length / N * 100).toFixed(0)}%): ch${chs.join(", ch")}. The practice keeps landing in the same arbitrary scheduling shell instead of a chapter-specific action. Deal each chapter a distinct action mechanism (write a line / say it aloud / move an object / observe-and-count / …); reserve the timer/calendar container for the one chapter genuinely about scheduling (actionMechanismPlan).`,
       `${chs.length}/${N} chapters use a timer/calendar container`,
+    ),
+    chapters: chs,
+  }];
+}
+
+// ── BP31 — uniform Title-Case quiz choice labels (the quiz_distractor_quality
+// valence-telegraph). Book-wide companion to the per-chapter gate check
+// (checkQuizChoiceLabelUniform): lists every chapter whose quiz has a question
+// with ALL choices Title-Case labelled, so the QC barrier + repair brief can
+// name them. NOT density-gated — the signal is zero across the entire clean+gold
+// corpus, so any chapter carrying it is a true positive. SHADOW major.
+export function checkBookQuizChoiceLabelUniform(chapters: ChapterV21[]): BookRepetitionFinding[] {
+  const hits: number[] = [];
+  for (const ch of chapters) {
+    if (checkQuizChoiceLabelUniform(ch.quiz).length > 0) hits.push(ch.number);
+  }
+  if (hits.length === 0) return [];
+  const chs = [...hits].sort((a, b) => a - b);
+  return [{
+    ...finding(
+      "BP31.quiz_choice_label_uniform",
+      "major",
+      `${chs.length} chapter(s) build quiz choices as uniform Title-Case category labels (ch${chs.join(", ch")}) — the key is sortable by label valence without reading the chapter. Rewrite every choice as a plain sentence in the same register (no "Label:" prefix on any choice).`,
+      `${chs.length} chapter(s) with uniform Title-Case quiz labels`,
     ),
     chapters: chs,
   }];

@@ -4,7 +4,7 @@ import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { makeChapter, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
-import { chapterContentHash } from "../src/critics/qcAttestation.js";
+import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { createQcOrchestrationRound } from "../src/qc/orchestrator/index.js";
 import { orchestratorRoundDir, roundRecordPath, taskCardsDir } from "../src/qc/orchestrator/artifacts.js";
@@ -33,6 +33,7 @@ function sourceSidecar(n: number): any {
 }
 
 function cleanup(): void {
+  for (const n of [1, 2]) rmSync(attestationPath(BOOK, n), { force: true });
   for (const n of [1, 2]) rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`), { force: true });
   rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
   rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
@@ -87,6 +88,43 @@ test("qc orchestrator create writes round layout, packs, and role task cards", (
     const round = JSON.parse(readFileSync(roundRecordPath(BOOK, ROUND), "utf8"));
     assert.deepEqual(round.chapters, [1]);
     assert.equal(round.schemaVersion, "qc-orchestrator-round-v1");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanup();
+  }
+});
+
+test("P2: incremental create reviews only changed chapters and carries the rest (sweep stays book-wide)", () => {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    setup(); // ch1 + ch2 fixtures + source sidecars
+    // ch1 already carries a fresh PUBLISHABLE attestation → must be carried, not re-reviewed.
+    writeAttestation({
+      schemaVersion: "qc-attest-v1",
+      bookId: BOOK,
+      chapterNumber: 1,
+      chapterId: `${BOOK}-ch01`,
+      verdict: "PUBLISHABLE",
+      contentHash: chapterContentHash(makeChapter(BOOK, 1)),
+      hashVersion: "v2",
+      reviewer: "codex-qc:auto:r-old",
+      reviewedAt: "2026-01-01T00:00:00.000Z",
+      roundId: "r-old",
+      roundRole: "attest",
+    });
+    const result = createQcOrchestrationRound(BOOK, { roundId: ROUND, incremental: true, allowDirtyPreflight: true });
+    assert.equal(result.ok, true, result.errors.join("\n"));
+    const round = JSON.parse(readFileSync(roundRecordPath(BOOK, ROUND), "utf8"));
+    assert.deepEqual(round.chapters, [1, 2], "round still spans the full book so the cross-chapter sweep covers everything");
+    assert.deepEqual(round.carriedChapters, [1]);
+    assert.deepEqual(round.reviewChapters, [2]);
+    // The reviewed chapter gets a bar card; the carried one does not.
+    assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "bar", "ch02.md")), true, "reviewed chapter gets a bar card");
+    assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "bar", "ch01.md")), false, "carried chapter gets NO bar card");
+    // The book-wide sweep card is always written.
+    assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "00-sweep.md")), true, "sweep card always written");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;

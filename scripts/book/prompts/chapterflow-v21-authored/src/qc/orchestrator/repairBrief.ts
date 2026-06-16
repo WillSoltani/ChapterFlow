@@ -16,8 +16,8 @@ function chapterPath(bookId: string, n: number): string {
   return `state/chapters/${bookId}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`;
 }
 
-function validationCommands(bookId: string, findings: EffectiveLedgerFinding[]): string[] {
-  const chapters = [...new Set(findings.flatMap((f) => f.chapterNumber !== undefined ? [f.chapterNumber] : f.chapters ?? []))].sort((a, b) => a - b);
+function validationCommands(bookId: string, findings: EffectiveLedgerFinding[], extraChapters: number[] = []): string[] {
+  const chapters = [...new Set([...findings.flatMap((f) => f.chapterNumber !== undefined ? [f.chapterNumber] : f.chapters ?? []), ...extraChapters])].sort((a, b) => a - b);
   const lines: string[] = [];
   for (const n of chapters) {
     lines.push(`npx tsx src/cli.ts author-check ${chapterPath(bookId, n)}`);
@@ -35,6 +35,22 @@ function readEvidenceMatrix(bookId: string, roundId: string): any | null {
   } catch {
     return null;
   }
+}
+
+/**
+ * P1.3 — every non-PUBLISHABLE chapter in the verdict matrix, not just the ones
+ * that happen to carry a ledger finding. A book-wide major (e.g. venue-stamping)
+ * fails ALL chapters → REVISE but emits a finding for only one or two, so the
+ * ledger-only "affected chapters" line under-named the repair scope and left the
+ * rest un-repaired round after round. Union this with the ledger chapters.
+ */
+function nonPublishableMatrixChapters(bookId: string, roundId: string): number[] {
+  const matrix = readEvidenceMatrix(bookId, roundId);
+  if (!Array.isArray(matrix?.chapters)) return [];
+  return matrix.chapters
+    .filter((d: any) => d?.finalVerdict === "REVISE" || d?.finalVerdict === "CORRUPTION" || d?.finalVerdict === "NEEDS_MORE_QC")
+    .map((d: any) => d?.chapterNumber)
+    .filter((n: any) => Number.isInteger(n) && n > 0);
 }
 
 function failedChecks(decision: any): string[] {
@@ -101,7 +117,7 @@ export function renderRepairBriefMarkdown(bookId: string, roundId: string, findi
   lines.push("");
   lines.push("## Validation commands");
   lines.push("```bash");
-  for (const cmd of validationCommands(bookId, active)) lines.push(cmd);
+  for (const cmd of validationCommands(bookId, active, nonPublishableMatrixChapters(bookId, roundId))) lines.push(cmd);
   lines.push("```");
   lines.push("");
   if (active.length === 0) {
@@ -155,7 +171,9 @@ export function writeRepairBrief(bookId: string, roundId: string): string {
 
 export function renderRepairPromptMarkdown(bookId: string, roundId: string, findings = effectiveLedger(bookId, roundId)): string {
   const active = findings.filter((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun");
-  const chapters = [...new Set(active.flatMap((f) => f.chapterNumber !== undefined ? [f.chapterNumber] : f.chapters ?? []))].sort((a, b) => a - b);
+  const matrixChapters = nonPublishableMatrixChapters(bookId, roundId);
+  const ledgerChapters = active.flatMap((f) => f.chapterNumber !== undefined ? [f.chapterNumber] : f.chapters ?? []);
+  const chapters = [...new Set([...ledgerChapters, ...matrixChapters])].sort((a, b) => a - b);
   const themes = [...new Set(active.map((f) => f.globalTheme || f.repairClass || "general"))].sort();
   const lines: string[] = [];
   lines.push("You are a fresh Writer Codex repair session for ChapterFlow.");
@@ -213,7 +231,7 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
   lines.push("");
   lines.push("validation commands:");
   lines.push("```bash");
-  for (const cmd of validationCommands(bookId, active)) lines.push(cmd);
+  for (const cmd of validationCommands(bookId, active, matrixChapters)) lines.push(cmd);
   lines.push("```");
   return lines.join("\n") + "\n";
 }

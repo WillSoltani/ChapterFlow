@@ -5,7 +5,7 @@ import { runBookGate } from "../../critics/bookGate.js";
 import { runShipGate } from "../../critics/finalGate.js";
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
-import { chapterContentHash, isApprovedReviewer, approvedReviewerRoles } from "../../critics/qcAttestation.js";
+import { chapterContentHash, isApprovedReviewer, approvedReviewerRoles, isAttestationFresh, loadAttestation } from "../../critics/qcAttestation.js";
 import { AXIS_WEIGHTS, computeVerdict } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { runIntraBookChecks } from "../../critics/intraBook.js";
@@ -51,6 +51,12 @@ export type QcOrchestratorRoundRecord = {
   };
   taskCards: string[];
   chapterContentHashes?: Record<string, string>;
+  /** P2 incremental re-QC (present only on incremental rounds). `chapters` stays
+   *  the FULL book (finalize must span it for the cross-chapter sweep);
+   *  `reviewChapters` got fresh per-chapter bar/key/confirm cards this round,
+   *  `carriedChapters` inherit their last fresh PUBLISHABLE attestation. */
+  reviewChapters?: number[];
+  carriedChapters?: number[];
 };
 
 export type OrchestratorResult = {
@@ -79,6 +85,15 @@ function ensureRoundLayout(bookId: string, roundId: string): void {
 
 function chapterHashRecord(chapters: ChapterV21[]): Record<string, string> {
   return Object.fromEntries(chapters.map((ch) => [String(ch.number), chapterContentHash(ch)]));
+}
+
+/** P2 — a chapter is "carryable" in an incremental round when its last
+ *  attestation is a PUBLISHABLE on byte-identical content. The attestation (NOT
+ *  the round record) is the authority: a forged round can never carry a chapter
+ *  no independent reviewer has passed at these exact bytes. */
+function carryableChapter(bookId: string, ch: ChapterV21): boolean {
+  const att = loadAttestation(bookId, ch.number);
+  return !!att && att.verdict === "PUBLISHABLE" && isAttestationFresh(att, ch);
 }
 
 function writeText(path: string, text: string): string {
@@ -174,7 +189,7 @@ export function checkRoundFreshness(bookId: string, roundId: string, chapters?: 
   return { fresh: staleChapters.length === 0, staleChapters, missingHashes: false };
 }
 
-export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean } = {}): OrchestratorResult {
+export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean; incremental?: boolean } = {}): OrchestratorResult {
   const errors: string[] = [];
   const messages: string[] = [];
   if (!isNoApiCodexQcMode()) {
@@ -202,6 +217,20 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
     if (!source.passed) errors.push(`source-v2-gate BLOCK (${source.findings.length} blocker(s)) — fix sources before opening a QC round.`);
     if (!bookGate.passed) errors.push(`book-gate BLOCK (${bookGate.findings.filter((f) => f.severity === "blocker").length} blocker(s)) — fix book-wide blockers before opening a QC round.`);
     return { ok: false, roundId: "", roundDir: "", errors, messages };
+  }
+
+  // P2 — incremental re-QC (default OFF). Re-review only chapters whose content
+  // changed since their last PUBLISHABLE; carry the rest. The book-wide SWEEP
+  // still runs over ALL chapters (writeSweepPack loads the whole book), and
+  // finalize re-evaluates every cross-chapter signal for carried chapters, so a
+  // sibling's repair that introduces a new cross-chapter collision still demotes
+  // a carried chapter. Never enabled on an explicit `--chapters` subset.
+  const incremental = !!options.incremental && !only;
+  const carriedChapters = incremental ? selected.filter((ch) => carryableChapter(bookId, ch)) : [];
+  const carriedNumbers = new Set(carriedChapters.map((ch) => ch.number));
+  const reviewChapters = incremental ? selected.filter((ch) => !carriedNumbers.has(ch.number)) : selected;
+  if (incremental && reviewChapters.length === 0) {
+    return { ok: true, roundId: "", roundDir: "", errors: [], messages: [...messages, `incremental: all ${selected.length} chapters carry a fresh PUBLISHABLE attestation — nothing to re-QC, no round opened.`] };
   }
 
   let opened: ReturnType<typeof openQcRound>;
@@ -237,13 +266,13 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   } else {
     messages.push(`bar-pack: wrote ${barPack.packPath}`);
   }
-  const cards = taskCardPaths(bookId, roundId, selected, opened.tokens);
+  const cards = taskCardPaths(bookId, roundId, reviewChapters, opened.tokens);
   // Self-contained reviewer packet (content/rubric pointers + per-role submit
   // commands + invalid-until-filled JSON skeletons). Written here because the
   // plaintext round tokens only exist at creation time.
   let reviewPacket: string | undefined;
   try {
-    reviewPacket = writeReviewPacket(bookId, roundId, selected, opened.tokens);
+    reviewPacket = writeReviewPacket(bookId, roundId, reviewChapters, opened.tokens);
     messages.push(`review-packet: wrote ${reviewPacket}`);
   } catch (err) {
     errors.push(`review-packet failed: ${(err as Error).message}`);
@@ -264,6 +293,7 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
     },
     taskCards: cards,
     chapterContentHashes: chapterHashRecord(selected),
+    ...(incremental ? { reviewChapters: reviewChapters.map((ch) => ch.number), carriedChapters: carriedChapters.map((ch) => ch.number) } : {}),
   };
   writeText(roundRecordPath(bookId, roundId), JSON.stringify(record, null, 2) + "\n");
   writeText(qcSummaryPath(bookId, roundId), JSON.stringify({ bookId, roundId, createdAt: record.createdAt, submissions: 0, ledger: {}, attestationsWritten: 0 }, null, 2) + "\n");

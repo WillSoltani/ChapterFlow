@@ -34,7 +34,7 @@ Every field you write must use specific terminology and proper nouns from these 
 **Derive every key the way the BLIND judge will (quiz_key_correctness — the heaviest QC axis, weight 18, and a CORRUPTION veto).** The keyA/keyB key-judge re-derives the correct answer with access to ONLY the prompt + the three choices + this chapter's `testableFacts[]` (each: `claim` / `becauseMechanism` / `commonError` / `errorIsWhy`). It NEVER sees your breakdown, examples, keyTakeaway, or explanation. So:
 - **Anchor every question to a `testableFacts[]` entry** and set its `sourceAnchorId` to that fact's id. A question built only from the breakdown or an example — with no backing testableFact — cannot be cited by the judge and lands in NEEDS_ADJUDICATION (a non-PASS). With 9 questions, reuse facts across questions if needed, but each key must be derivable from one.
 - **The keyed choice must be the answer that entry's `claim` + `becauseMechanism` supports** — uniquely, against the other two choices. If a choice is "correct" by your prose but not by the testableFact, the blind judge will land on a different index → wrong-key CORRUPTION.
-- **Build the two distractors from the source's named wrong move** — the entry's `commonError` (and `errorIsWhy`). A distractor that mirrors the real misconception is a tempting near-miss; an invented one risks being a second defensible answer the judge can't rule out.
+- **Build the two distractors from the wrong move the source describes** — the entry's `commonError` (and `errorIsWhy`), written as a plain sentence in the key's register with NO label or category prefix on any choice. A distractor that mirrors the real misconception is a tempting near-miss; an invented one risks being a second defensible answer the judge can't rule out. ("Build from the commonError" means render the misreading itself — never tag a choice with a `Capitalized: ` category label; uniform labels let a reader sort the key by valence without reading, and the bar REVISEs it.)
 - **Read the keyed choice and its explanation together, last:** the explanation must defend the keyed index and name why a distractor fails. If it could be pasted under a different choice unchanged, or argues toward a non-keyed choice, the key is wrong — fix the index.
 
 1. After writing the 9 questions, score each choice independently for correctness.
@@ -550,7 +550,9 @@ longest choice — at introduction, 68% of the catalog's questions could be
 aced by picking the longest option without reading. Target: the key is the
 longest in ≤45% of a chapter's questions (chance is ~33%). Give distractors
 scenario-specific substance; trim hedging from keys. Each distractor is a
-NAMED misconception, written with the same care as the key.
+real misconception from the source, written as a plain sentence in the key's
+register — no `Label:` / category prefix on any choice (uniform Title-Case
+labels telegraph the key by valence and REVISE the quiz_distractor_quality axis).
 
 
 **Read this section twice. This is where the most defects emerge.**

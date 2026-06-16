@@ -218,10 +218,6 @@ function unresolvedMajorsForChapter(unresolved: MajorFindingSnapshot[], chapterN
   };
 }
 
-function barHasUnactionableSubfloor(bar: NonNullable<ReturnType<typeof loadBarReadArtifact>> | null): boolean {
-  return !!bar && bar.axes.some((axis) => axis.score < 0.6 && axis.hits.length === 0);
-}
-
 function confirmHasUnactionableDecision(confirm: NonNullable<ReturnType<typeof loadConfirmReadArtifact>> | null): boolean {
   return !!confirm && (confirm.decision === "REVISE" || confirm.decision === "CORRUPTION") && confirm.findings.length === 0;
 }
@@ -260,6 +256,13 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   // stale by checkRoundFreshness and must be re-opened.
   const selectedSet = selectedChapterNumbers(bookId, roundId, options);
   const chapters = selectedSet ? allChapters.filter((ch) => selectedSet.includes(ch.number)) : allChapters;
+  // P2 — chapters this incremental round carried (no fresh per-chapter cards).
+  // Only present on incremental rounds; the attestation freshness check below is
+  // the authority, so this set alone never carries a chapter.
+  const roundRecord = readJson(roundRecordPath(bookId, roundId));
+  const carriedSet: Set<number> | null = Array.isArray(roundRecord?.carriedChapters)
+    ? new Set(roundRecord.carriedChapters.map((n: unknown) => Number(n)))
+    : null;
   const unresolvedMajorFindings = unresolvedMajors(bookId, chapters, true);
   const bookGate = runBookGate(bookId, allChapters);
   const bookGateStatus: EvidenceStatus = bookGate.passed ? "PASS" : "FAIL";
@@ -327,6 +330,24 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       else checks.confirmRead = confirm.decision;
     }
 
+    // P2 — incremental carry-forward. A chapter the round carried got no fresh
+    // bar/confirm/key cards, so its per-chapter axes read MISSING. Inherit its
+    // prior INDEPENDENT positive read for THOSE axes ONLY — every cross-chapter
+    // signal (sweep, book-gate, majors, repair-ledger, ship-gate, author-check)
+    // was evaluated fresh above and is untouched, so a sibling's repair that newly
+    // implicates this carried chapter still demotes it (checks.sweep === "FAIL" →
+    // REVISE below). The fresh prior PUBLISHABLE attestation is the authority; if
+    // the chapter was edited after round creation, isAttestationFresh fails and it
+    // is NOT carried (→ NEEDS_MORE_QC, correctly re-reviewed).
+    if (carriedSet?.has(ch.number) && checks.barRead === "MISSING") {
+      const carried = loadAttestation(bookId, ch.number);
+      if (carried && carried.verdict === "PUBLISHABLE" && isAttestationFresh(carried, ch)) {
+        checks.barRead = "GREEN";
+        checks.confirmRead = "PUBLISHABLE";
+        checks.manualKeyJudge = "PASS";
+      }
+    }
+
     const missingRequired = [checks.sweep, checks.manualKeyJudge, checks.sourceV2, checks.barRead].some((s) => s === "MISSING" || s === "STALE");
     const publishableCandidate = checks.manualKeyJudge === "PASS" &&
       checks.barRead === "GREEN" &&
@@ -340,7 +361,10 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       checks.majors === "PASS";
     const confirmMissingForCandidate = publishableCandidate && (checks.confirmRead === "MISSING" || checks.confirmRead === "STALE");
     const sameReviewerConfirm = publishableCandidate && bar && confirm && bar.reviewer === confirm.reviewer && confirm.decision === "PUBLISHABLE";
-    const unactionableBar = barGate === "YELLOW" && barHasUnactionableSubfloor(bar);
+    // P1.5 — a sub-0.6 bar axis with no cited hit is no longer "unactionable":
+    // finalizerFindings now synthesises a major repair finding for it, so it
+    // routes to REVISE (via the barRead === "YELLOW" disjunction below) with a
+    // real target instead of dead-ending in NEEDS_MORE_QC.
     const unactionableConfirm = publishableCandidate && confirmHasUnactionableDecision(confirm);
     // A fabricated sweep (verdict FAIL, all findings cite non-existent fields) is
     // excluded from the REVISE trigger so the chapter's REAL failures still drive
@@ -357,8 +381,6 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       reason = "publishable candidate is missing a fresh confirm read";
     } else if (sameReviewerConfirm) {
       reason = "confirm reviewer must differ from bar reviewer";
-    } else if (unactionableBar) {
-      reason = "bar read has a sub-0.6 axis without a cited hit";
     } else if (unactionableConfirm) {
       reason = "confirm read returned a non-publishable decision without quote-backed findings";
     } else if (keyJudge?.status === "CORRUPTION" || checks.barRead === "RED" || (publishableCandidate && checks.confirmRead === "CORRUPTION")) {
@@ -387,11 +409,33 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       reason = "sweep returned a non-pass verdict but its finding(s) cite a chapter field that does not exist — re-run the sweep";
     } else {
       const block = currentNegativeAttestationBlocksPublishable(bookId, ch);
-      if (block) {
+      // P1.4 — a chapter REVISE'd in an earlier round (typically by a since-
+      // resolved book-wide major) is otherwise pinned forever: on byte-identical
+      // content the stale REVISE attestation blocks PUBLISHABLE and the chapter
+      // reads NEEDS_MORE_QC with no path forward. Let THIS round's complete,
+      // independently-reviewed positive read supersede it — but ONLY a full pass
+      // driven by two DISTINCT reviewers (bar GREEN + a different confirm reviewer
+      // PUBLISHABLE, majors PASS, ledger clean), never the mere absence of
+      // findings, so author≠reviewer is preserved and a writer cannot self-certify.
+      const completeFreshPositive =
+        publishableCandidate &&               // bar GREEN + key/sweep/gates PASS + majors PASS + ledger clean, all fresh
+        checks.confirmRead === "PUBLISHABLE" && // a fresh, same-hash confirm decision...
+        !sameReviewerConfirm;                  // ...from a reviewer DISTINCT from the bar reviewer
+      // Require a v2 (full-coverage) prior hash so "byte-identical content" is
+      // genuinely true: a v1 attestation's freshness uses the include-list
+      // projection and a v1-invisible edit could change the real (v2) content
+      // while still reading "fresh", so a legacy v1 REVISE is NOT self-superseded
+      // (it falls through to the block → NEEDS_MORE_QC, human supersede). Current-
+      // flow attestations are always v2, so this never affects a normal round.
+      const existing = loadAttestation(bookId, ch.number);
+      const priorRoundStale = !!existing && existing.hashVersion === "v2" && !!existing.roundId && existing.roundId !== roundId;
+      if (block && !(completeFreshPositive && priorRoundStale)) {
         reason = block;
       } else {
         finalVerdict = "PUBLISHABLE";
-        reason = confirm?.reason ?? "all required no-api QC evidence is fresh and publishable";
+        reason = block
+          ? "superseded a stale prior-round non-publishable attestation on byte-identical content via a complete fresh positive read (bar GREEN + independent confirm PUBLISHABLE + majors PASS + ledger clean)"
+          : confirm?.reason ?? "all required no-api QC evidence is fresh and publishable";
       }
     }
 
@@ -466,6 +510,13 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     const chapterByNumber = new Map(chapters.map((ch) => [ch.number, ch]));
     for (const decision of decisions) {
       if (decision.finalVerdict === "NEEDS_MORE_QC") continue;
+      // P2 — a carried chapter that stayed PUBLISHABLE keeps its PRIOR attestation
+      // (and that round's still-valid, same-hash bar/confirm artifacts, which
+      // promote re-verifies). Re-attesting here would stamp THIS round, which has
+      // no fresh bar/confirm for a carried chapter, and promote would then reject
+      // it (QC0.bar_read_missing). A carried chapter that was DEMOTED this round
+      // falls through and overwrites its stale PUBLISHABLE as normal.
+      if (carriedSet?.has(decision.chapterNumber) && decision.finalVerdict === "PUBLISHABLE") continue;
       const ch = chapterByNumber.get(decision.chapterNumber);
       if (!ch) continue;
       const verdict: QcVerdict = decision.finalVerdict;

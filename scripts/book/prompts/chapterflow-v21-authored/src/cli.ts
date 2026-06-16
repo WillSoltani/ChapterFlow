@@ -1877,7 +1877,14 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         specificsLine +
         exemplarLine +
         voiceLine +
-        `• Quiz distractors: each distractor is a NAMED plausible misconception (what a hasty reader of THIS chapter would actually believe) — never a junk-prefix mutation or rephrasing of the correct choice.\n` +
+        `• QUIZ DISTRACTORS — all three choices must read as the SAME KIND of answer (axis quiz_distractor_quality, weight 14, floor 0.6 — this axis is REVISE-ing the whole book). A reader who has NOT read the chapter must be unable to pick the key from surface form alone.\n` +
+        `  1. NO labels or category prefixes on ANY choice. Each choice is a plain sentence. Never write 'Capitalized Phrase: …' (e.g. "Status Proof: …", "Assumption Test: …"). If you tag one choice, you must remove the tag from ALL choices.\n` +
+        `  2. NO valence-sorting. The key must not be the choice that "sounds virtuous/correct" while the distractors "sound wrong." On their face, all three look equally reasonable to someone who doesn't know the answer.\n` +
+        `  3. Each distractor is a genuine near-miss — what a thoughtful reader who skimmed THIS chapter would actually conclude — built from the source fact's commonError. Not a caricature, not the key reworded, not a junk-prefix mutation.\n` +
+        `  4. Same register, length, and specificity across all three (same sentence shape, similar length; no choice more polished or more hedged than the others).\n` +
+        `  GOOD (no labels, key plausible among plausibles): "They prove the inventory can stay practical because habits are already controlled." / "They show the ban extends proven habit change rather than replacing prior progress." / "They make the first month a budgeting exercise with little connection to skills."\n` +
+        `  BAD (labels + valence → key obvious): "Private Self-Governance: the note trains his conduct first." (keyed) / "Status Proof: the note mattered for public image." / "Audience Craft: the note is a polished lesson to impress."\n` +
+        `  SELF-CHECK before submit: strip each choice to its bare clause and ask — "could someone who never read the chapter still guess the key?" If yes, rewrite the distractors as real near-misses.\n` +
         recallLine +
         `• One name = one person across breakdown→examples→quiz — and that person's role stays fixed for the whole book. NEVER reuse a real source-figure's name for a fictional actor (persona drift).\n` +
         `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring law).\n` +
@@ -2133,6 +2140,7 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
       roundId: roundId || undefined,
       chapters: orch.parseChapterList(flags["chapters"]),
       allowDirtyPreflight: flags["allow-dirty-preflight"] === true,
+      incremental: flags["incremental"] === true,
     });
     for (const m of result.messages) console.log(m);
     if (result.errors.length) for (const e of result.errors) console.error(e);
@@ -2314,7 +2322,7 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   let roundId = typeof flags["round"] === "string" ? flags["round"] : "";
 
   if (!roundId || !existsSyncFs(artifacts.roundRecordPath(bookId, roundId))) {
-    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters, allowDirtyPreflight: flags["allow-dirty-preflight"] === true });
+    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters, allowDirtyPreflight: flags["allow-dirty-preflight"] === true, incremental: flags["incremental"] === true });
     for (const m of created.messages) console.log(m);
     if (created.errors.length) for (const e of created.errors) console.error(e);
     roundId = created.roundId;

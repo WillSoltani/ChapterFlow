@@ -390,8 +390,10 @@ construction; a field with nothing real to say falls back on the skeletons below
 1. Write the key as the move the idea actually endorses, in the same plain register as the distractors.
 2. Build each distractor from a misreading the chapter explicitly corrects (deny-the-behavior, fix-by-comparison, escalate-the-rule), phrased as something a sincere person would choose.
 3. Pressure-test for format tells: equal length, parallel grammar, no junk-directive prefixes, no "right sentence + wrong container-noun" — swap wording until only *meaning* separates the key.
+4. NO `Label:` / category prefix on ANY choice — every choice is a plain sentence. If you tag one choice with a `Capitalized Phrase:` label, you must remove the tag from ALL choices.
 
 **REJECT:**
+- **Uniform category labels on every choice** ("Status Proof: …" / "Private Self-Governance: …" / "Audience Craft: …") — the reader sorts the key by the labels' *valence* (the virtuous-sounding tag) without reading the chapter. This is a deterministic gate (BP31) AND the model bar's quiz_distractor_quality REVISE driver. Write every choice as a plain sentence in the same register; if any choice carries a `Capitalized: ` tag, strip it from all three.
 - **A distractor that is the correct sentence wearing a junk prefix** ("Reverse/Flatten/Prefer X over…") or decided by a trailing container-noun (roster vs. memo) — the reader passes by spotting the odd word, so the item tests pattern-matching, not the idea, and a careless writer hides a wrong key behind it.
 - **Source-summary distractors** ("would be managed through", "would outrank") — these are pasted breakdown phrasing, not moves a person makes; they read as "wrong because they sound like a summary," letting the reader eliminate by tone instead of by understanding.
 - **The key being the only clean / only long / only specific choice** — when the answer is findable by format the chapter is never exercised; a reader who understood nothing still scores.
@@ -403,6 +405,8 @@ construction; a field with nothing real to say falls back on the skeletons below
 - "Rowan should compare his schedule with a busier parent to prove the stress is manageable."
 
 **NEGATIVE:** key = "Name the deficit reflex, then choose one grounded action." / distractor = "Reverse the deficit reflex, then choose one grounded action." — same sentence, junk prefix; answer is found by spotting "Reverse," not by understanding.
+
+**NEGATIVE (labels):** key = "Private Self-Governance: the note trains his conduct first." / distractors = "Status Proof: the note mattered for public image." / "Audience Craft: the note is a polished lesson to impress." — every choice is tagged and the key's tag is the only virtuous-sounding one, so the reader picks by label valence. Strip all three labels and write plain sentences.
 
 ---
 

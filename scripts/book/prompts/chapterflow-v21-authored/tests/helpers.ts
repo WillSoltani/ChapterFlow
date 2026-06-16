@@ -309,3 +309,31 @@ export function cleanCorpusChapterFiles(): { bookId: string; files: string[] }[]
     ).filter((p) => existsSync(p)),
   }));
 }
+
+/** Verified-clean corpus for the BP31 quiz-choice-label detector. DELIBERATELY
+ *  EXCLUDES stillness-is-the-key and pmbok-guide: "clean" is per-family —
+ *  stillness is clean for BP28/29/30 (cleanCorpusChapterFiles above) but is a
+ *  DEFECT book for uniform Title-Case quiz labels (78 of 288 questions), so it
+ *  cannot anchor the label detector's zero-on-clean pin. These ten books were
+ *  measured at ZERO all-Title-Case-labelled questions on disk; the defect book
+ *  (the-daily-stoic) fires on 54/108. */
+export function labelCleanCorpusChapterFiles(): { bookId: string; files: string[] }[] {
+  const CLEAN = [
+    { bookId: "the-year-of-less", count: 12 },
+    { bookId: "the-gifts-of-imperfection", count: 13 },
+    { bookId: "drive", count: 11 },
+    { bookId: "range", count: 12 },
+    { bookId: "four-thousand-weeks", count: 14 },
+    { bookId: "rework", count: 22 },
+    { bookId: "the-let-them-theory", count: 20 },
+    { bookId: "unreasonable-hospitality", count: 20 },
+    { bookId: "daring-greatly", count: 7 },
+    { bookId: "start-with-why", count: 14 },
+  ];
+  return CLEAN.map((g) => ({
+    bookId: g.bookId,
+    files: Array.from({ length: g.count }, (_, i) =>
+      resolve(STATE_CHAPTERS, `${g.bookId}-ch${String(i + 1).padStart(2, "0")}.v21-native.chapter.json`),
+    ).filter((p) => existsSync(p)),
+  }));
+}
