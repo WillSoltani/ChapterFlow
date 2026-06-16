@@ -54,10 +54,21 @@ First run prints `QC AUTO INCOMPLETE` + a **REVIEW-PACKET.md** path and a task-c
 directory. Capture the **round id**. (If it prints `QC AUTO PASS`, you're done → step 6.
 If `STALE_ROUND`, start a fresh round with the printed command.)
 
+**Re-QC after a repair?** Use the command above only for a book's **first** QC round. A
+repair changes chapters, so every re-QC is a **fresh round** — open it with `--incremental`
+so it re-reviews ONLY the changed chapters and carries the already-PUBLISHABLE ones forward
+(the book-wide sweep still runs over every chapter, so a new cross-chapter collision is still
+caught):
+```bash
+CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "<book>" --pass --incremental --max-agents 6
+```
+`--incremental` only matters at this open step; the resume/finalize commands below
+(`--round <roundId>`) read the carried set from the round record automatically.
+
 > Optional `--tiebreak`: add it to this open command for a variance-prone book (one that
 > flaps REVISE/PASS at the 84/85 boundary on re-runs). A chapter whose first bar read lands
 > borderline then gets 2 extra independent reads, combined by per-axis median — see Wave 3.5.
-> Default off; everything below is unchanged when it's not set.
+> Default off; everything below is unchanged when it's not set. (Composable with `--incremental`.)
 
 Open REVIEW-PACKET.md once: it holds, for every QC unit, the exact `qc-submit` command
 and a JSON skeleton whose `reviewer` is already the correct derived id and whose judgment
@@ -116,7 +127,10 @@ Branch on the headline:
   (step 1); never finalize a stale round.
 - **`QC AUTO REPAIR REQUIRED`** → real defects. Open the printed **repair-prompt.md** in a
   fresh **Writer** session (NOT this one, NOT a subagent — one session reviews OR edits,
-  never both). After the writer edits, the round is stale → start a FRESH round (step 1).
+  never both). The repair-prompt's `affected chapters:` line is bucketed: re-author the
+  `[edit]` chapters, fix `[book-wide status]` patterns at their source (don't re-author each),
+  and leave `[re-QC only]` chapters untouched. After the writer edits, the round is stale →
+  start a FRESH **`--incremental`** round (step 1).
 
 ## 6. On a full-book PASS — hand off (do NOT publish here)
 Report the **round id** and `qc-status: PASS`, then tell the operator to open a NEW
