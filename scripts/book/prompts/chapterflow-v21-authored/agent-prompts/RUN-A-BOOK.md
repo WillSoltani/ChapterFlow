@@ -47,6 +47,7 @@ own grading. Within the write and QC phases, a subagent does ONE unit and never 
   unit against the same round, then re-finalize. Never force a pass.
 - Phase 3 says **STALE_ROUND** → chapters changed after the round opened. Start a fresh round.
 - Phase 3 says **REPAIR REQUIRED** → open the printed repair prompt in a fresh *writer*
-  session, fix the named fields, then re-run phase 3 (a fresh round).
+  session, fix the named fields, then re-run phase 3 as a fresh **`--incremental`** round
+  (only the changed chapters are re-reviewed; already-PUBLISHABLE chapters carry forward).
 - Phase 4 dry-run **blocks** → it prints the failed check + a resume command. Fix and re-run;
   it physically cannot ship a book that hasn't passed QC.
