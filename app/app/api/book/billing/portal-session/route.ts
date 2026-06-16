@@ -31,7 +31,7 @@ export async function POST(req: Request) {
         throw new BookApiError(
           400,
           "not_stripe_subscriber",
-          "Your Pro access is from Flow Points — there's no Stripe subscription to manage."
+          "Your Pro access is from Insight Points — there's no Stripe subscription to manage."
         );
       }
       if (source === "gift_code") {
