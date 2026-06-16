@@ -6,7 +6,7 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CounterAnimation } from "@/components/ui/CounterAnimation";
-import { BookCover } from "@/app/book/components/BookCover";
+import { BookCover } from "@/components/ui/BookCover";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { getBookCoverPath } from "@/lib/book-covers";

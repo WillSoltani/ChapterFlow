@@ -4,7 +4,7 @@ import { useId, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { BookCover } from "./BookCover";
+import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
 import { useLibraryContext, computeProLocked } from "./LibraryContext";
 import { formatReadingTime, type LibraryBook } from "./libraryData";

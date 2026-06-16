@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, RefreshCw, Clock, Sparkles } from "lucide-react";
-import { BookCover } from "@/app/book/components/BookCover";
+import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
 import { ProgressRing } from "./ProgressRing";
 import type { LibraryBookEntry } from "@/app/book/_lib/library-data";

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { BookCover } from "./BookCover";
+import { BookCover } from "@/components/ui/BookCover";
 import { useLibraryContext } from "./LibraryContext";
 import { type LibraryBook } from "./libraryData";
 

@@ -14,7 +14,7 @@ import {
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
-import { EmptyState } from "@/app/book/admin/_components/EmptyState";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, KPITileSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
 import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";

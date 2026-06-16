@@ -17,7 +17,7 @@ import { adminGet, adminPost } from "@/app/book/admin/_components/admin-api";
 import { downloadCSV } from "@/app/book/admin/_components/csv";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
-import { EmptyState } from "@/app/book/admin/_components/EmptyState";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { TableSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { StatBox } from "@/app/book/admin/_components/StatBox";
 

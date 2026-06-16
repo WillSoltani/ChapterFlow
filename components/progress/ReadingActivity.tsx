@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReadingActivityData } from "./progressTypes";
-import { EmptyState } from "./EmptyState";
+import { EmptyState } from "@/components/ui/EmptyState";
 
 interface ReadingActivityProps {
   activity: ReadingActivityData;

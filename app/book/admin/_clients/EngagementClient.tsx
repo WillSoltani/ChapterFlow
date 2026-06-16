@@ -17,7 +17,7 @@ import {
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
-import { EmptyState } from "@/app/book/admin/_components/EmptyState";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { StatBox } from "@/app/book/admin/_components/StatBox";
 import { RangeSelector } from "@/app/book/admin/_components/RangeSelector";

@@ -2,7 +2,7 @@
 
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
-import { BookCover } from "@/app/book/components/BookCover";
+import { BookCover } from "@/components/ui/BookCover";
 import type { LibraryBookEntry } from "@/app/book/_lib/library-data";
 
 type BookCardEntry = Pick<
