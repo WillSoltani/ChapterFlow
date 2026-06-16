@@ -91,13 +91,17 @@ test("P1.3: repair prompt names a non-PUBLISHABLE matrix chapter that has NO led
       chapters: [
         { chapterNumber: 2, finalVerdict: "REVISE", reason: "quiz", checks: { barRead: "YELLOW" }, majorStatus: { book: [], chapter: [] } },
         { chapterNumber: 3, finalVerdict: "REVISE", reason: "one or more current major findings are unresolved", checks: { majors: "FAIL" }, majorStatus: { book: [], chapter: [] } },
+        { chapterNumber: 5, finalVerdict: "NEEDS_MORE_QC", reason: "missing evidence", checks: { barRead: "MISSING" }, majorStatus: { book: [], chapter: [] } },
         { chapterNumber: 7, finalVerdict: "PUBLISHABLE", reason: "ok", checks: {}, majorStatus: { book: [], chapter: [] } },
       ],
     }, null, 2), "utf8");
     const prompt = renderRepairPromptMarkdown(BOOK, ROUND);
     const affected = prompt.split("\n").find((l) => l.startsWith("affected chapters:")) ?? "";
-    assert.match(affected, /ch02/, affected);
-    assert.match(affected, /ch03/, `matrix-only REVISE chapter must be named: ${affected}`);
+    // Bucketed by why: direct finding → [edit]; matrix-only REVISE → [book-wide];
+    // NEEDS_MORE_QC → [re-QC only]; PUBLISHABLE never named.
+    assert.match(affected, /ch02 \[edit\]/, `direct-finding chapter must be marked [edit]: ${affected}`);
+    assert.match(affected, /ch03 \[book-wide/, `matrix-only REVISE chapter must be marked [book-wide]: ${affected}`);
+    assert.match(affected, /ch05 \[re-QC only/, `NEEDS_MORE_QC chapter must be marked [re-QC only]: ${affected}`);
     assert.doesNotMatch(affected, /ch07/, `PUBLISHABLE chapter must NOT be named: ${affected}`);
     assert.match(prompt, /gate-chapter state\/chapters\/zz-fixture-brief-ch03/, "ch03 must get validation commands");
   } finally {

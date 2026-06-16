@@ -38,6 +38,23 @@ export type BookGateFinding = {
   chapters?: number[];
 };
 
+/** The shadow-major catalog prefixes that, while they do NOT fail bookGate.passed
+ *  (only blockers do), ARE actionable at the WRITE barrier (`fanout --barrier`):
+ *  zero-on-clean structural-sameness detectors that drive a known bar REVISE, so
+ *  the writer should re-author the offending chapters BEFORE handing off to QC
+ *  rather than discover them at QC and bounce through a repair cycle. This is a
+ *  separate axis from the ship-gate blocker / ENFORCED_MAJOR decision: a finding
+ *  can be barrier-actionable without being a hard gate failure. */
+const WRITE_BARRIER_ACTIONABLE_PREFIXES = ["BP28", "BP29", "BP30", "BP31"];
+
+/** True when a book-gate finding should trigger a targeted write-barrier
+ *  re-dispatch of its chapters: any blocker, or a zero-on-clean structural-
+ *  sameness shadow major (BP28/BP29/BP30/BP31). Single source of truth for the
+ *  `fanout --barrier` offender set. */
+export function isWriteBarrierActionable(f: BookGateFinding): boolean {
+  return f.severity === "blocker" || WRITE_BARRIER_ACTIONABLE_PREFIXES.some((p) => f.catalogId.startsWith(p));
+}
+
 export type BookGateReport = {
   bookId: string;
   chapterCount: number;

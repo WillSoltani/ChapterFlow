@@ -53,6 +53,26 @@ function nonPublishableMatrixChapters(bookId: string, roundId: string): number[]
     .filter((n: any) => Number.isInteger(n) && n > 0);
 }
 
+/**
+ * Split the verdict matrix's non-PUBLISHABLE chapters by WHY they failed, so the
+ * repair prompt can distinguish chapters that need direct edits from those only
+ * caught by a shared/book-wide status (fix the pattern at its source — do not
+ * re-author each member, which would needlessly invalidate a carried-green
+ * chapter) and those that just need a fresh QC read.
+ */
+function categorizeMatrixChapters(bookId: string, roundId: string): { revise: number[]; needsMoreQc: number[] } {
+  const matrix = readEvidenceMatrix(bookId, roundId);
+  const out = { revise: [] as number[], needsMoreQc: [] as number[] };
+  if (!Array.isArray(matrix?.chapters)) return out;
+  for (const d of matrix.chapters) {
+    const n = d?.chapterNumber;
+    if (!Number.isInteger(n) || n <= 0) continue;
+    if (d.finalVerdict === "REVISE" || d.finalVerdict === "CORRUPTION") out.revise.push(n);
+    else if (d.finalVerdict === "NEEDS_MORE_QC") out.needsMoreQc.push(n);
+  }
+  return out;
+}
+
 function failedChecks(decision: any): string[] {
   const checks = decision?.checks ?? {};
   const bad: string[] = [];
@@ -173,7 +193,18 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
   const active = findings.filter((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun");
   const matrixChapters = nonPublishableMatrixChapters(bookId, roundId);
   const ledgerChapters = active.flatMap((f) => f.chapterNumber !== undefined ? [f.chapterNumber] : f.chapters ?? []);
-  const chapters = [...new Set([...ledgerChapters, ...matrixChapters])].sort((a, b) => a - b);
+  // Bucket the affected chapters by why they failed so a repair writer edits only
+  // what needs editing (over-naming would invalidate carried-green chapters).
+  const ledgerSet = new Set<number>(ledgerChapters);
+  const matrixCat = categorizeMatrixChapters(bookId, roundId);
+  const fmt = (ns: number[]) => [...new Set(ns)].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ");
+  const editChapters = [...ledgerSet].sort((a, b) => a - b);
+  const bookWideChapters = matrixCat.revise.filter((n) => !ledgerSet.has(n));
+  const reQcChapters = matrixCat.needsMoreQc.filter((n) => !ledgerSet.has(n));
+  const buckets: string[] = [];
+  if (editChapters.length) buckets.push(`${fmt(editChapters)} [edit]`);
+  if (bookWideChapters.length) buckets.push(`${fmt(bookWideChapters)} [book-wide status — fix the shared pattern at its source; do NOT re-author each]`);
+  if (reQcChapters.length) buckets.push(`${fmt(reQcChapters)} [re-QC only — missing/stale evidence, no edits]`);
   const themes = [...new Set(active.map((f) => f.globalTheme || f.repairClass || "general"))].sort();
   const lines: string[] = [];
   lines.push("You are a fresh Writer Codex repair session for ChapterFlow.");
@@ -189,7 +220,7 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
   lines.push("");
   lines.push(`bookId: ${bookId}`);
   lines.push(`roundId: ${roundId}`);
-  lines.push(`affected chapters: ${chapters.length ? chapters.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ") : "none"}`);
+  lines.push(`affected chapters: ${buckets.length ? buckets.join("; ") : "none"}`);
   lines.push("");
   lines.push(...renderFinalizerCauseSection(bookId, roundId));
   if (active.length === 0) {

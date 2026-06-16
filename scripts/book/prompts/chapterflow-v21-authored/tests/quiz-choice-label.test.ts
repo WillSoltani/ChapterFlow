@@ -19,6 +19,7 @@ import { test, skip } from "./harness.js";
 import { makeChapter, labelCleanCorpusChapterFiles } from "./helpers.js";
 import { checkQuizChoiceLabelUniform } from "../src/critics/quizQuality.js";
 import { checkBookQuizChoiceLabelUniform } from "../src/critics/bookRepetition.js";
+import { isWriteBarrierActionable, type BookGateFinding } from "../src/critics/bookGate.js";
 import type { ChapterV21, QuizV21 } from "../src/types.js";
 
 function quizOf(...questions: { choices: string[]; correctIndex?: number }[]): QuizV21 {
@@ -102,6 +103,22 @@ test("BP31 book-wide names exactly the chapters carrying a uniform-labelled ques
   assert.equal(findings.length, 1, JSON.stringify(findings));
   assert.deepEqual(findings[0].chapters, [2, 4]);
   assert.equal(findings[0].checkId, "BP31.quiz_choice_label_uniform");
+});
+
+test("BP31 is write-barrier ACTIONABLE (re-dispatched before QC), alongside BP28/29/30 + blockers", () => {
+  const mk = (catalogId: string, severity: BookGateFinding["severity"]): BookGateFinding => ({ catalogId, severity, message: "", evidence: "", chapters: [1] });
+  // The fix: a BP31 shadow major must trigger a targeted write-barrier re-dispatch
+  // so the writer re-authors the labelled quiz BEFORE handing off to QC.
+  assert.equal(isWriteBarrierActionable(mk("BP31.quiz_choice_label_uniform", "major")), true, "BP31 must be barrier-actionable");
+  // Parity with its sibling shadow majors and with hard blockers.
+  assert.equal(isWriteBarrierActionable(mk("BP28.callback_frame_reuse", "major")), true);
+  assert.equal(isWriteBarrierActionable(mk("BP29.timing_anchor_stamping", "major")), true);
+  assert.equal(isWriteBarrierActionable(mk("BP30.action_container_reuse", "major")), true);
+  assert.equal(isWriteBarrierActionable(mk("F1.cross_chapter_dup", "blocker")), true);
+  // A non-listed major (a per-chapter check, not a book-wide structural-sameness
+  // detector) does NOT trigger barrier re-dispatch.
+  assert.equal(isWriteBarrierActionable(mk("BP15.quiz_strawman_distractor", "major")), false, "an un-listed major must not trigger barrier re-dispatch");
+  assert.equal(isWriteBarrierActionable(mk("schema.quiz_lowercase_choice_start", "minor")), false);
 });
 
 // ── Clean-corpus calibration: ZERO across the verified-clean + gold corpus.
