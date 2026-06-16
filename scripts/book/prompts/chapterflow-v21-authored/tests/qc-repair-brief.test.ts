@@ -57,6 +57,73 @@ test("repair brief renders rules, exact finding details, and validation commands
   }
 });
 
+test("A5: repeated same-class findings on sibling units render ONE class-level banner", () => {
+  try {
+    cleanup();
+    // The-daily-stoic ch3 shape: plan_actionability fires on ifThenPlans[1] AND [2] AND [3].
+    // A flat per-instance list invites whack-a-mole (the writer fixes the quoted units and
+    // leaves the siblings); a CLASS DEFECT banner tells it to fix the whole container.
+    const mk = (i: number) => ({
+      chapterNumber: 3,
+      unitId: `implementationPlan.ifThenPlans[${i}]`,
+      repairClass: "plan_actionability",
+      severity: "major" as const,
+      quote: `Plan ${i} routes the reader to a source-specific test instead of the named tool.`,
+      problem: "Uses a source-specific named test, not the chapter's one Awareness Audit.",
+      expectedFix: "Route the plan through the Awareness Audit.",
+      globalTheme: "plan_actionability",
+    });
+    const submission: ValidatedSweepSubmission = {
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep",
+      verdict: "REVISE",
+      checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"],
+      findings: [mk(1), mk(2), mk(3)],
+    };
+    appendFindingsFromSubmission({ bookId: BOOK, roundId: ROUND, role: "sweep", submissionFile: "sweep.json", submission });
+    const prompt = renderRepairPromptMarkdown(BOOK, ROUND);
+    assert.match(prompt, /CLASS DEFECT: plan_actionability × 3 on `implementationPlan\.ifThenPlans`/, prompt);
+    assert.match(prompt, /fix ALL instances of this pattern at the source/);
+    // The individual findings are still listed as evidence beneath the banner.
+    assert.match(prompt, /implementationPlan\.ifThenPlans\[1\]/);
+    assert.match(prompt, /implementationPlan\.ifThenPlans\[3\]/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("A5: a single finding (no siblings) gets NO class banner", () => {
+  try {
+    cleanup();
+    const submission: ValidatedSweepSubmission = {
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep",
+      verdict: "REVISE",
+      checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"],
+      findings: [{
+        chapterNumber: 4,
+        unitId: "implementationPlan.ifThenPlans[0]",
+        repairClass: "plan_actionability",
+        severity: "major",
+        quote: "One plan only.",
+        problem: "Single instance.",
+        expectedFix: "Fix it.",
+        globalTheme: "plan_actionability",
+      }],
+    };
+    appendFindingsFromSubmission({ bookId: BOOK, roundId: ROUND, role: "sweep", submissionFile: "sweep.json", submission });
+    assert.doesNotMatch(renderRepairPromptMarkdown(BOOK, ROUND), /CLASS DEFECT/, "a lone finding must not get a class banner");
+  } finally {
+    cleanup();
+  }
+});
+
 test("P1.3: repair prompt names a non-PUBLISHABLE matrix chapter that has NO ledger finding", () => {
   try {
     cleanup();

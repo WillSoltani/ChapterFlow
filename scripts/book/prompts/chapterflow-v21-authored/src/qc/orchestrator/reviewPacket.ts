@@ -26,6 +26,7 @@ import type { QcRoundRole } from "../qcRound.js";
 import { qcReviewerId } from "../reviewerId.js";
 import { sourceHashFor } from "../sourceV2Gate.js";
 import { REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
+import { roleHintHeader } from "../../roles.js";
 import { barPackPath } from "../barReview.js";
 import { orchestratorRoundDir } from "./artifacts.js";
 
@@ -75,6 +76,22 @@ export function writeReviewPacket(
   L.push("chapter are deliberately different so the confirm read counts as an independent second");
   L.push("reviewer. If a human/other agent reviews instead, keep the same role prefix (codex-qc).");
   L.push("Submit each filled skeleton to its own file, then run its qc-submit command.");
+  L.push("");
+  L.push("HOW TO DISPATCH (orchestrator): each numbered section below is a COMPLETE, ready-to-paste");
+  L.push("subagent prompt. Spawn ONE fresh subagent per unit and paste its section VERBATIM as that");
+  L.push("subagent's entire instruction — do not wrap, summarize, or add your own framing. Every");
+  L.push("subagent reviews exactly ONE unit, reads the real content, fills ONLY its own skeleton, runs");
+  L.push("ONLY its own qc-submit, and NEVER runs collect/finalize/qc-attest/promote or edits a chapter.");
+  L.push("Dispatch each chapter's confirm read as a SEPARATE subagent from its bar read — independence is");
+  L.push("what their different reviewer ids certify.");
+  L.push("");
+  L.push("STRUCTURED OUTPUT (recommended): each role has a JSON Schema — `npx tsx src/cli.ts qc-schema <role>`");
+  L.push("(sweep|keyA|keyB|bar|confirm|major). Bind it as the subagent's GPT `response_format` so the");
+  L.push("submission is shape-valid by construction (no FILL_ME round-trips). The CLI still re-checks the");
+  L.push("cross-field rules at qc-submit (e.g. REVISE needs a finding; an axis <0.6 needs a cited hit).");
+  L.push("");
+  L.push("RECOMMENDED REASONING per role (set each subagent's GPT session to match — see `npx tsx src/cli.ts roles`):");
+  for (const role of ["sweep", "keyA", "keyB", "bar", "confirm", "major"]) L.push(`  ${roleHintHeader(role)}`);
   L.push("");
 
   // ── Sweep (book-wide cross-chapter templating) ─────────────────────────────

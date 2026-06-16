@@ -189,6 +189,13 @@ export function writeRepairBrief(bookId: string, roundId: string): string {
   return path;
 }
 
+/** The unit "container" — the unitId with any trailing array subscript removed, so
+ *  `implementationPlan.ifThenPlans[2]` and `[3]` (or `chapter:8:example[4]` and `[5]`)
+ *  collapse to one container. Used to detect a defect repeated across sibling units. */
+function unitContainer(unitId: string): string {
+  return unitId.replace(/\[\d+\]\s*$/, "");
+}
+
 export function renderRepairPromptMarkdown(bookId: string, roundId: string, findings = effectiveLedger(bookId, roundId)): string {
   const active = findings.filter((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun");
   const matrixChapters = nonPublishableMatrixChapters(bookId, roundId);
@@ -247,16 +254,34 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
   for (const [chapter, chapterFindings] of [...byChapter.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
     lines.push("");
     lines.push(`## ${chapter}`);
-    for (const f of chapterFindings.slice().sort((a, b) => (SEVERITY_RANK[a.severity] ?? 99) - (SEVERITY_RANK[b.severity] ?? 99))) {
-      lines.push("");
-      lines.push(`- findingId: ${f.findingId}`);
-      lines.push(`  severity: ${f.severity}`);
-      lines.push(`  repairClass: ${f.repairClass}`);
-      lines.push(`  unitId: ${f.unitId}`);
-      lines.push(`  quote: "${f.quote}"`);
-      lines.push(`  problem: ${f.problem}`);
-      lines.push(`  expected fix: ${f.expectedFix}`);
-      lines.push(`  source roles: ${[...new Set(f.sources.map((s) => s.sourceRole))].join(", ")}`);
+    // Group by (repairClass, unit-container) so a defect repeated across sibling units
+    // (e.g. plan_actionability on ifThenPlans[1]/[2]/[3]) renders ONE class-level
+    // instruction. Re-authoring only the quoted units leaves siblings to re-fail next
+    // round (the whack-a-mole stall observed on the-daily-stoic ch3 across 3 QC rounds).
+    const groups = new Map<string, EffectiveLedgerFinding[]>();
+    for (const f of chapterFindings) {
+      const gkey = `${f.repairClass} ${unitContainer(f.unitId)}`;
+      if (!groups.has(gkey)) groups.set(gkey, []);
+      groups.get(gkey)!.push(f);
+    }
+    const bySeverity = (a: EffectiveLedgerFinding, b: EffectiveLedgerFinding) => (SEVERITY_RANK[a.severity] ?? 99) - (SEVERITY_RANK[b.severity] ?? 99);
+    const orderedGroups = [...groups.values()].sort((a, b) => bySeverity(a[0], b[0]));
+    for (const group of orderedGroups) {
+      if (group.length >= 2) {
+        lines.push("");
+        lines.push(`- CLASS DEFECT: ${group[0].repairClass} × ${group.length} on \`${unitContainer(group[0].unitId)}\` — fix ALL instances of this pattern at the source, not only the units quoted below. The findings are EVIDENCE of ONE defect; re-authoring just the quoted units leaves the siblings to re-fail next round.`);
+      }
+      for (const f of group.slice().sort(bySeverity)) {
+        lines.push("");
+        lines.push(`- findingId: ${f.findingId}`);
+        lines.push(`  severity: ${f.severity}`);
+        lines.push(`  repairClass: ${f.repairClass}`);
+        lines.push(`  unitId: ${f.unitId}`);
+        lines.push(`  quote: "${f.quote}"`);
+        lines.push(`  problem: ${f.problem}`);
+        lines.push(`  expected fix: ${f.expectedFix}`);
+        lines.push(`  source roles: ${[...new Set(f.sources.map((s) => s.sourceRole))].join(", ")}`);
+      }
     }
   }
   lines.push("");

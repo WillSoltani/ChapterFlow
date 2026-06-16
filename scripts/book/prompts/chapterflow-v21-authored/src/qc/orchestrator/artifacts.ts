@@ -48,8 +48,14 @@ export function confirmCandidatesPath(bookId: string, roundId: string): string {
   return resolve(orchestratorRoundDir(bookId, roundId), "confirm-candidates.json");
 }
 
-export function barArtifactPath(bookId: string, roundId: string, chapterNumber: number): string {
-  return resolve(submissionsDir(bookId, roundId, "bar"), `ch${String(chapterNumber).padStart(2, "0")}.bar-read.json`);
+/** Self-consistency tiebreak variants: the extra independent bar reads of a
+ *  borderline chapter, stored alongside the primary read without overwriting it. */
+export type BarReadVariant = "t2" | "t3";
+export const BAR_READ_VARIANTS: readonly BarReadVariant[] = ["t2", "t3"];
+
+export function barArtifactPath(bookId: string, roundId: string, chapterNumber: number, variant?: BarReadVariant): string {
+  const suffix = variant ? `-${variant}` : "";
+  return resolve(submissionsDir(bookId, roundId, "bar"), `ch${String(chapterNumber).padStart(2, "0")}.bar-read${suffix}.json`);
 }
 
 export function confirmArtifactPath(bookId: string, roundId: string, chapterNumber: number): string {
@@ -65,8 +71,8 @@ function readJson(path: string): any | null {
   }
 }
 
-export function writeBarReadArtifact(submission: ValidatedBarReadSubmission): string {
-  const path = barArtifactPath(submission.bookId, submission.roundId, submission.chapterNumber);
+export function writeBarReadArtifact(submission: ValidatedBarReadSubmission, variant?: BarReadVariant): string {
+  const path = barArtifactPath(submission.bookId, submission.roundId, submission.chapterNumber, variant);
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, JSON.stringify({ ...submission, storedAt: new Date().toISOString() }, null, 2), "utf8");
   return path;
@@ -79,9 +85,22 @@ export function writeConfirmReadArtifact(submission: ValidatedConfirmReadSubmiss
   return path;
 }
 
-export function loadBarReadArtifact(bookId: string, roundId: string, chapterNumber: number): ValidatedBarReadSubmission | null {
-  const raw = readJson(barArtifactPath(bookId, roundId, chapterNumber));
+export function loadBarReadArtifact(bookId: string, roundId: string, chapterNumber: number, variant?: BarReadVariant): ValidatedBarReadSubmission | null {
+  const raw = readJson(barArtifactPath(bookId, roundId, chapterNumber, variant));
   return raw?.schemaVersion === "qc-bar-read-v1" || raw?.schemaVersion === "qc-bar-read-v2" ? raw as ValidatedBarReadSubmission : null;
+}
+
+/** The primary bar read plus any present tiebreak variants, for the self-consistency
+ *  combine. Returns [] when no primary read exists. */
+export function loadAllBarReads(bookId: string, roundId: string, chapterNumber: number): ValidatedBarReadSubmission[] {
+  const primary = loadBarReadArtifact(bookId, roundId, chapterNumber);
+  if (!primary) return [];
+  const out = [primary];
+  for (const v of BAR_READ_VARIANTS) {
+    const r = loadBarReadArtifact(bookId, roundId, chapterNumber, v);
+    if (r) out.push(r);
+  }
+  return out;
 }
 
 export function loadConfirmReadArtifact(bookId: string, roundId: string, chapterNumber: number): ValidatedConfirmReadSubmission | null {

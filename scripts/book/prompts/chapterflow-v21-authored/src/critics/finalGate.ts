@@ -25,6 +25,7 @@ import {
   checkQuizAnswerLabelLeak,
   checkQuizAnswerLengthRatio,
   checkQuizChoiceLabelUniform,
+  checkQuizPronounReferent,
   checkQuizCorrectLongestRate,
   checkQuizBannedTailPhrase,
   checkQuizDuplicateChoices,
@@ -261,6 +262,10 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // "Label:" tag so the key is sortable by label valence without reading. SHADOW
   // major (zero across the clean+gold corpus; not in ENFORCED_MAJOR).
   "BP31.quiz_choice_label_uniform": "major",
+  // BP32 — quiz pronoun/referent mismatch: the stem's protagonist gender and the
+  // choices' gender unambiguously conflict (name-swap residue). SHADOW major (zero
+  // across the clean+gold corpus; not in ENFORCED_MAJOR).
+  "BP32.quiz_pronoun_referent_mismatch": "major",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
@@ -713,6 +718,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
   }
   for (const f of checkQuizChoiceLabelUniform(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizPronounReferent(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
   }
   for (const f of checkQuizDuplicateChoices(chapter.quiz)) {

@@ -33,7 +33,14 @@ const CONTAINER_FIELDS: Record<string, ReadonlySet<string>> = {
   memorableLines: new Set(["text"]),
 };
 
-const PATH_RE = /\b([a-zA-Z]+)\.([a-zA-Z][a-zA-Z0-9]*)\b/g;
+// Matches `container.field` OR `container.<subscript>.field`, where <subscript> is a
+// numeric (`0`) or id-like (`ex01`) ARRAY ELEMENT reference. When a subscript is
+// present we validate the FINAL field, not the subscript — so a reviewer citing a real
+// defect as `examples.ex01.scenario` is no longer mis-flagged as fabricated (the
+// subscript `ex01` is not a `examples` field, but `scenario` is). The true 2-level
+// catch (`implementationPlan.challenge` — a field that genuinely does not exist) is
+// preserved.
+const PATH_RE = /\b([a-zA-Z]+)\.(?:(?:\d+|[a-zA-Z]+\d+)\.)?([a-zA-Z][a-zA-Z0-9]*)\b/g;
 
 /** The first `container.field` reference in the finding that names a field which
  *  does NOT exist on a known container, or null when the finding is clean. */
@@ -44,8 +51,14 @@ export function citesNonexistentField(
   PATH_RE.lastIndex = 0;
   let m: RegExpExecArray | null;
   while ((m = PATH_RE.exec(text)) !== null) {
-    const allowed = CONTAINER_FIELDS[m[1]];
-    if (allowed && !allowed.has(m[2])) return `${m[1]}.${m[2]}`;
+    const container = m[1];
+    const field = m[2];
+    const allowed = CONTAINER_FIELDS[container];
+    if (!allowed) continue;
+    // A bare array-element subscript in field position (`examples.ex01`, `item3`) is
+    // an element reference, not a field claim — never fabricated.
+    if (/^[a-zA-Z]+\d+$/.test(field)) continue;
+    if (!allowed.has(field)) return `${container}.${field}`;
   }
   return null;
 }

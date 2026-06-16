@@ -378,6 +378,57 @@ export function checkQuizChoiceLabelUniform(quiz: QuizV21): CriticFinding[] {
   return findings;
 }
 
+/**
+ * Pronoun / referent drift (BP32). A quiz question whose STEM establishes the
+ * protagonist's gender with pronouns (she/her vs he/his) while its CHOICES answer
+ * with the OPPOSITE gendered pronoun — e.g. the-daily-stoic ch03 "Selma drafts a post…
+ * how patient *she* looked" with choices "*He* should correct *his* motive". This is
+ * name-swap RESIDUE: a `--all` re-dispatch renamed the stem protagonist (a different
+ * gender) but the choice pronouns were never updated. No deterministic gate caught it,
+ * so it leaked to the model bar as quiz_distractor_quality and only surfaced once it
+ * became the binding axis (3rd QC round). [[gpt-pipeline-run-daily-stoic-2026-06-16]]
+ *
+ * We fire ONLY on an UNAMBIGUOUS stem-gender vs choice-gender CONFLICT — both sides
+ * must each resolve to a single, opposite gender. A question with mixed pronouns (a
+ * two-person scene) or no pronouns resolves to null and NEVER fires, so the signal is
+ * a pure internal contradiction with zero name→gender guessing. SHADOW major (surfaces
+ * + names the question without flipping the gate). A1 (planNames forceFresh on `--all`)
+ * prevents the residue at source; this is the deterministic safety net.
+ */
+const FEMALE_PRONOUN = /\b(?:she|her|hers|herself)\b/gi;
+const MALE_PRONOUN = /\b(?:he|him|his|himself)\b/gi;
+
+/** A single gender when the text's gendered pronouns are present and ALL agree;
+ *  null when there are none or they are mixed (undetermined → never fires). */
+function pronounGender(text: string): "she/her" | "he/him" | null {
+  const f = (text.match(FEMALE_PRONOUN) ?? []).length;
+  const m = (text.match(MALE_PRONOUN) ?? []).length;
+  if (f > 0 && m === 0) return "she/her";
+  if (m > 0 && f === 0) return "he/him";
+  return null;
+}
+
+export function checkQuizPronounReferent(quiz: QuizV21): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  for (const q of quiz.questions ?? []) {
+    const stemGender = pronounGender(q.prompt ?? "");
+    if (!stemGender) continue;
+    const choiceGender = pronounGender((q.choices ?? []).join("  "));
+    if (!choiceGender) continue;
+    if (stemGender !== choiceGender) {
+      findings.push(
+        finding(
+          "BP32.quiz_pronoun_referent_mismatch" as any,
+          "major",
+          `${q.questionId} the stem refers to the protagonist as "${stemGender}" but the choices answer with "${choiceGender}" — a pronoun/referent mismatch (usually name-swap residue). Make the choices' pronouns match the stem's protagonist.`,
+          truncate(`${q.prompt} | ${(q.choices ?? []).join(" / ")}`, 200),
+        ),
+      );
+    }
+  }
+  return findings;
+}
+
 export function checkQuizDuplicateChoices(quiz: QuizV21): CriticFinding[] {
   const findings: CriticFinding[] = [];
   for (const q of quiz.questions ?? []) {

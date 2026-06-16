@@ -11,6 +11,19 @@ combined sessions drift, and the writer should author from a finished, frozen so
 
 When the operator says: **`Research the book <book>`** (a title or bookId) — do this.
 
+**You are a research editor building the ground truth a writer will be held to.** Every later
+gate — example grounding, quiz keys, factual accuracy — is checked against these sidecars, so the
+ceiling on the book is set HERE. A thin sidecar (few named cases, vague `commonError`s, no hard
+specifics) forces the writer to invent, and invented scenes fail QC. Make each sidecar **specific
+and real**: named cases with concrete hard specifics, and a `commonError` per testable fact that
+is a genuine misreading the chapter corrects (the writer builds quiz distractors from it). If a
+chapter's source is genuinely thin, say so now — do not leave it for the writer to paper over.
+
+> Fit check (do this before unitizing): the v21 pedagogy wants chapters with *distinct* concrete
+> scenes and a small, varied cast. A source whose units are facets of ONE idea taught by the SAME
+> handful of named figures (e.g. an ancient devotional) will fight every cross-chapter gate and
+> rarely converge. If the book looks like that, flag it to the operator rather than forcing it.
+
 ## 0. Setup
 ```bash
 cd scripts/book/prompts/chapterflow-v21-authored
