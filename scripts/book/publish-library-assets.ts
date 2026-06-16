@@ -122,12 +122,39 @@ async function putObject(params: {
   );
 }
 
+async function listAvailableCovers(coversDir: string): Promise<Set<string>> {
+  try {
+    return new Set(await fs.readdir(coversDir));
+  } catch {
+    return new Set();
+  }
+}
+
 async function main() {
   const args = parseArgs(process.argv);
   const s3 = new S3Client({ region: REGION });
   const root = process.cwd();
   const coversDir = path.join(root, "public", "book-covers");
-  const catalog = buildCatalog(args.prefix);
+  const availableCovers = await listAvailableCovers(coversDir);
+
+  // A missing cover file is non-fatal: drop its coverAssetKey so the catalog
+  // never references an object we didn't upload (the app falls back to its
+  // placeholder), and the deploy isn't blocked by a not-yet-designed raster.
+  const missingCovers: string[] = [];
+  const catalog = buildCatalog(args.prefix).map((item) => {
+    const filename = item.coverAssetKey?.split("/").at(-1);
+    if (filename && !availableCovers.has(filename)) {
+      missingCovers.push(`${item.bookId} (${filename})`);
+      return { ...item, coverAssetKey: undefined };
+    }
+    return item;
+  });
+  if (missingCovers.length > 0) {
+    console.warn(
+      `⚠ ${missingCovers.length} cover file(s) missing on disk — publishing those entries without a cover: ${missingCovers.join(", ")}`
+    );
+  }
+
   const usedCoverFiles = new Set(
     catalog
       .map((item) => item.coverAssetKey?.split("/").at(-1) || null)
