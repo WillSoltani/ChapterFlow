@@ -56,6 +56,7 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
   `CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1`; absent record is absence-safe otherwise).
 - FP-risk: **low** — SV4 requires ONE identical note **over reused sources** (`distinctRefs <
   verified`); distinct sources with a shared note do not fire (regression-tested).
+- Caught by: `source-verify.test.ts`, `no-api-promote.test.ts` (SV4 fires on an injected rubber-stamp record).
 
 **FC-2026-06-17-002 — allocator↔critic contradiction (`paradox_colon` vs B4)**
 - Stage: write (deal time)
@@ -66,6 +67,7 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
 - Fix type: prevention (reworded directive) + a **class-level** deal↔gate invariant test (no
   allocator directive may contain any banned phrase) — fixes the whole class, not the instance.
 - Status: **confirmed twice** → prevented. FP-risk: **low** (test is exact-substring).
+- Caught by: `rhetoric-plan.test.ts` (no allocator directive may contain a hard-banned phrase).
 
 **FC-2026-06-17-003 — exemplar double-owner (fanout card vs SP5)**
 - Stage: QC/publish
@@ -76,6 +78,7 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
 - Fix type: single source of truth (cards read the same persisted plan the gate reads) + a
   producer↔validator contract test.
 - Status: **confirmed twice** → prevented. FP-risk: **low**.
+- Caught by: `exemplar-plan.test.ts`, `plan-enforcement.test.ts` (cross-chapter exemplar ownership + the producer↔validator contract).
 
 **FC-2026-06-17-004 — QC PASS ≠ publishable (SP gate too late)**
 - Stage: publish
@@ -86,6 +89,7 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
 - Fix type: shift-left — fold SP into `finalize` + `verifyRepair` so a QC PASS predicts publish;
   keep the preflight as a now-no-op backstop.
 - Status: **prevented** (shifted left). FP-risk: **low** (same deterministic check, run earlier).
+- Caught by: `qc-finalize-evidence.test.ts` (a chapter violating its dealt SHAPE plan REVISEs at finalize).
 
 **FC-2026-06-17-005 — reviewer session non-independence**
 - Stage: QC
@@ -98,6 +102,7 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
 - Status: **opt-in hard gate** under `CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1` (absence-safe:
   legacy/un-stamped books and the inline single-session fallback never block). FP-risk: **low** —
   fires only when two roles provably share one session id.
+- Caught by: `qc-session-independence.test.ts`, `manual-keyjudge.test.ts` (same-session keyA/keyB BLOCKs; collision primitives gated + absence-safe).
 
 **FC-2026-06-17-006 — book-wide sameness families (BP28/BP29/BP30/BP31)**
 - Stage: write
@@ -108,6 +113,7 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
   then promoted to **write-barrier actionable** (`WRITE_BARRIER_ACTIONABLE_PREFIXES`).
 - Status: **rung 3 — write-barrier actionable** (NOT hard blockers: they have not cleared the
   gold-corpus-zero + ≥2-TP bar for `ENFORCED_MAJOR`). FP-risk: **low**.
+- Caught by: `book-repetition.test.ts` (BP28–30), `quiz-choice-label.test.ts` (BP31) — inject-and-catch + paired no-false-positive.
 
 ---
 
@@ -146,3 +152,9 @@ shared by the whole battery. (Books absent on a machine SKIP loudly, never silen
   co-update of both the code and this ledger.
 - When a class is promoted, move it **one rung** and record the evidence (which corpus, how many
   TPs). Skipping rungs is how a pipeline overfits.
+- **Every class carries a `Caught by:` test** — the fault-injection inventory. The calibration
+  corpus (above) proves a detector does NOT fire on good books (no false **positive**); the
+  `Caught by:` test proves it DOES fire on an injected defect (no false **negative**). Together they
+  bound each class. The contract test asserts every `FC-*` entry names a `*.test.ts` that actually
+  exists in `tests/`, so deleting a catch-test — or adding a class with none — fails CI. (These are
+  synthetic fixtures, not real books: see `defect-corpus.test.ts` for the canonical pattern.)

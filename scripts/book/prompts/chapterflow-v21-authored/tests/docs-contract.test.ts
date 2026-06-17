@@ -9,7 +9,7 @@
  */
 
 import assert from "node:assert/strict";
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
@@ -157,6 +157,21 @@ test("the failure-class registry documents the anti-overfit promotion ladder and
   const regressionCmd = /tests\/run\.ts corpus calibration enforced repetition label pronoun/;
   assert.match(reg, regressionCmd, "registry must document the runnable gold-corpus regression command");
   assert.match(doc("agent-prompts/RUN-A-BOOK.md"), regressionCmd, "runbook must point maintainers at the gold-corpus regression");
+});
+
+test("every failure-class entry names an EXISTING catch-test (the fault-injection / false-negative inventory)", () => {
+  const reg = doc("docs/pipeline/FAILURE-CLASS-REGISTRY.md");
+  const fcEntries = [...reg.matchAll(/^\*\*FC-\d{4}-\d{2}-\d{2}-\d{3} —/gm)];
+  const caughtBy = [...reg.matchAll(/^- Caught by:\s*(.+)$/gm)];
+  assert.ok(fcEntries.length >= 6, `expected the seeded FC entries, found ${fcEntries.length}`);
+  // Every failure class must carry exactly one Caught-by line — no class without a catch-test.
+  assert.equal(caughtBy.length, fcEntries.length, "every FC entry must have exactly one 'Caught by:' line");
+  // Every named *.test.ts must actually exist — deleting/renaming a catch-test fails CI here.
+  const named = caughtBy.flatMap((m) => [...m[1].matchAll(/([\w-]+\.test\.ts)/g)].map((x) => x[1]));
+  assert.ok(named.length >= fcEntries.length, "each Caught-by line must name at least one test file");
+  for (const f of new Set(named)) {
+    assert.ok(existsSync(resolve(PIPELINE_DIR, "tests", f)), `registry names catch-test ${f}, but tests/${f} does not exist`);
+  }
 });
 
 test("QC-ORCHESTRATE turns reviewer independence into recorded evidence (per-subagent CHAPTERFLOW_SESSION_ID)", () => {
