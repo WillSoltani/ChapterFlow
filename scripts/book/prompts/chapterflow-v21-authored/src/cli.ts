@@ -77,6 +77,8 @@ Commands:
                                      blockers. --json feeds the same model to a harness.
   diagnose <bookId>                  Triage "why didn't this book pass?": runs book-status + major-status
                                      + source-verify-check + qc-diagnose (latest round) in one pass.
+  qc-metrics [--last N] [--json]     Quality telemetry over the last N books: first-pass publishable rate,
+                                     avg rounds to pass, top failing bar axis, top deterministic blocker.
   check-source <bookId>              Run the source-coherence critic against the latest research
                                      bundle for a book. Use after producing bibliography + every
                                      chapter source via the research playbook. Exits 0 on PASS.
@@ -2804,6 +2806,29 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     incomplete: finalized.chapters.filter((d) => d.finalVerdict === "NEEDS_MORE_QC").length,
   };
 
+  // Best-effort quality telemetry — one append-only row per finalization (see `qc-metrics`).
+  // Observability only: read back into no verdict, and a failure here NEVER breaks the QC run.
+  try {
+    const { loadBarReadArtifact } = await import("./qc/orchestrator/artifacts.js");
+    const { buildQcFinalizationMetric, appendQcFinalizationMetric } = await import("./qc/metrics.js");
+    const failingBarAxes: string[] = [];
+    for (const d of finalized.chapters) {
+      if (d.finalVerdict === "PUBLISHABLE" || (d.checks.barRead !== "YELLOW" && d.checks.barRead !== "RED")) continue;
+      const bar = loadBarReadArtifact(bookId, roundId, d.chapterNumber);
+      for (const a of bar?.axes ?? []) if (a.tier !== "PUBLISHABLE") failingBarAxes.push(a.axis);
+    }
+    appendQcFinalizationMetric(buildQcFinalizationMetric({
+      bookId,
+      roundId,
+      timestamp: new Date().toISOString(),
+      mode: chapters?.length ? "subset" : "full",
+      incremental: flags["incremental"] === true,
+      tiebreak: flags["tiebreak"] === true,
+      decisions: finalized.chapters,
+      failingBarAxes,
+    }));
+  } catch { /* telemetry is best-effort — never break QC */ }
+
   if (finalized.allPublishable) {
     if (staleDiagnosticsOnly) {
       console.log(`QC AUTO INCOMPLETE — ${bookId}`);
@@ -2953,6 +2978,19 @@ async function runQcRepairPrompt(args: string[], flags: Record<string, string | 
   }
   const { writeRepairPrompt } = await import("./qc/orchestrator/repairBrief.js");
   console.log(`repair prompt: ${writeRepairPrompt(bookId, roundId)}`);
+  return 0;
+}
+
+/** `qc-metrics [--last N] [--json]` — aggregate the quality telemetry (state/metrics/
+ *  qc-finalizations.jsonl, one row per qc-auto finalization): first-pass publishable rate,
+ *  average rounds to a clean pass, top failing bar axis, top deterministic blocker. Read-only. */
+async function runQcMetrics(flags: Record<string, string | boolean>): Promise<number> {
+  const lastN = typeof flags["last"] === "string" ? Math.max(1, parseInt(flags["last"] as string, 10) || 10) : 10;
+  const { loadQcFinalizationMetrics, aggregateQcMetrics, formatQcMetrics } = await import("./qc/metrics.js");
+  const records = loadQcFinalizationMetrics();
+  const summary = aggregateQcMetrics(records, lastN);
+  if (flags["json"] === true) console.log(JSON.stringify(summary, null, 2));
+  else console.log(formatQcMetrics(summary, lastN));
   return 0;
 }
 
@@ -4251,6 +4289,8 @@ async function main() {
       return runQcRepairPrompt(args, flags);
     case "qc-diagnose":
       return runQcDiagnose(args, flags);
+    case "qc-metrics":
+      return runQcMetrics(flags);
     case "source-v2-gate":
       return runSourceV2Gate(args);
     case "key-pack":

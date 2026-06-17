@@ -81,6 +81,8 @@ scripts/book/prompts/chapterflow-v21-authored/.chapterflow/
 # accidental-shadow paths are excluded:
 /state/                                                                   # repo-root SHADOW state dir — forbidden (gates read the pipeline copy)
 scripts/book/prompts/chapterflow-v21-authored/state/gate-attempts.json    # machine churn, rewritten every gate run
+# append-only quality telemetry — local accrual, not durable product state
+scripts/book/prompts/chapterflow-v21-authored/state/metrics/
 scripts/book/prompts/chapterflow-v21-authored/state/gate-verdicts/        # derived verdict sidecars (later phases)
 scripts/book/prompts/chapterflow-v21-authored/state/chapters/.backup-*/   # ad-hoc backup snapshots — use git, not dirs
 scripts/book/prompts/chapterflow-v21-authored/scratch/_shadow-drive-backup-*/  # Phase-0 migration backup
