@@ -139,6 +139,22 @@ test("the runbook documents the strict-production env AND the session-id footgun
   assert.match(runbook, /do NOT also `export CHAPTERFLOW_SESSION_ID`/i, "runbook must warn against a single exported session id under strict mode");
 });
 
+test("the failure-class registry documents the anti-overfit promotion ladder and AGREES with the code", async () => {
+  const reg = doc("docs/pipeline/FAILURE-CLASS-REGISTRY.md");
+  // The hard-blocker gate (the anti-overfit valve) must be present and intact.
+  assert.match(reg, /clean corpus/i, "registry must keep the clean-corpus-zero criterion");
+  assert.match(reg, /gold corpus/i, "registry must keep the gold-corpus-zero criterion");
+  assert.match(reg, /2 true positive/i, "registry must keep the >=2-true-positives criterion");
+  // The ladder must name the REAL mechanisms it maps to (not aspirational ones).
+  assert.match(reg, /ENFORCED_MAJOR/, "registry must reference the hard-blocker set");
+  assert.match(reg, /WRITE_BARRIER_ACTIONABLE_PREFIXES/, "registry must reference the rung-3 mechanism");
+  // Code-tie forcing function: ENFORCED_MAJOR is empty AND the registry says so. Promoting a class
+  // to a hard blocker must update BOTH the code and this ledger together, or this fails.
+  const { ENFORCED_MAJOR } = await import("../src/critics/finalGate.js");
+  assert.equal(ENFORCED_MAJOR.size, 0, "if you promote a class to ENFORCED_MAJOR, update the failure-class registry too");
+  assert.match(reg, /ENFORCED_MAJOR[^\n]{0,60}empty/i, "registry must state ENFORCED_MAJOR is empty while it is");
+});
+
 test("QC-ORCHESTRATE turns reviewer independence into recorded evidence (per-subagent CHAPTERFLOW_SESSION_ID)", () => {
   const qc = doc("agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md");
   assert.match(qc, /export CHAPTERFLOW_SESSION_ID/, "each reviewer subagent must stamp its own session id");
