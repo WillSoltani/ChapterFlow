@@ -313,7 +313,7 @@ export function HeroSessionCard({
           <div className="mt-6">
             <Link href={ctaHref}>
               <motion.span
-                className="cta-shine inline-flex cursor-pointer items-center rounded-xl px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                className="cta-shine inline-flex cursor-pointer items-center rounded-xl border border-transparent forced-colors:border-[ButtonText] px-6 sm:px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                 style={{
                   background: "linear-gradient(135deg, var(--cf-accent), var(--cf-accent-strong))",
                   boxShadow: "0 8px 24px var(--cf-accent-shadow), 0 2px 6px var(--cf-accent-shadow)",
@@ -332,7 +332,7 @@ export function HeroSessionCard({
                     : ctaText
                 }
               >
-                <span className="flex items-center gap-2.5">
+                <span className="flex items-center gap-2.5 whitespace-nowrap">
                   {ctaText}
                   <span className="cta-arrow inline-block transition-transform duration-200">
                     →

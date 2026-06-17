@@ -206,11 +206,11 @@ export function Pricing() {
               role="switch"
               aria-checked={isAnnual}
               aria-label="Toggle annual pricing"
-              className="relative w-12 h-6 rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+              className="relative w-12 h-6 rounded-full transition-colors cursor-pointer border border-transparent forced-colors:border-[ButtonText] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
               style={{ background: isAnnual ? "var(--accent-cyan)" : "var(--bg-elevated)" }}
             >
               <div
-                className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform"
+                className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform border border-transparent forced-colors:border-[ButtonText] forced-colors:bg-[Highlight]"
                 style={{ transform: isAnnual ? "translateX(26px)" : "translateX(2px)" }}
               />
             </button>
