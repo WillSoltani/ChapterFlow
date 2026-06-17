@@ -89,6 +89,8 @@ Commands:
   source-verify-schema               Print the JSON Schema for a filled source-verify record (bind as GPT response_format)
   source-verify-workbench <bookId>   Emit a local offline HTML form to fill the record per item (verdict/sourceRef/note,
                                      copy-search-query); its Download button writes the JSON source-verify-check reads.
+  source-verify-import <bookId> --record <p>  Copy a filled record (e.g. the workbench download) to the CANONICAL
+                                     path the publish gate reads, after validating it parses.
   source-fit <bookId> [--json]       ADVISORY research-time fit classifier: OK/WATCH/RISKY from sidecar diversity
                                      (thin chapters, figure concentration, framework repetition). Catch a doomed run
                                      before writing. Never blocks (exits 0). Calibrated zero-RISKY on the clean corpus.
@@ -893,8 +895,43 @@ async function runSourceVerifyWorkbench(args: string[], flags: Record<string, st
   const recordPath = resolve(dirname(htmlPath), "source-verify-record.json");
   const total = chapters.reduce((n, c) => n + c.items.length, 0);
   console.log(`source-verify-workbench — ${bookId}: wrote ${total} item(s) to ${htmlPath}`);
-  console.log(`Open it, verify each item against a real source, click Download, save next to it, then:`);
-  console.log(`  npx tsx src/cli.ts source-verify-check ${bookId} --record ${recordPath}`);
+  console.log(`Open it, verify each item against a real source, click Download (→ source-verify-record.json), then import`);
+  console.log(`to the CANONICAL path the publish gate reads (avoids the two-path footgun):`);
+  console.log(`  npx tsx src/cli.ts source-verify-import ${bookId} --record ${recordPath}`);
+  console.log(`  npx tsx src/cli.ts source-verify-check ${bookId}    # then verify the canonical record`);
+  return 0;
+}
+
+/** `source-verify-import <bookId> --record <path>` — copy a FILLED record (e.g. the workbench's
+ *  downloaded source-verify-record.json) to the CANONICAL path `source-verify-check` and the
+ *  publish gate read by default (`.chapterflow/source-verify-<book>.md`), after validating it
+ *  parses. Closes the two-path footgun: the workbench writes to its own dir, but the publish
+ *  preflight (`sourceVerifyGateFindings`) only reads the canonical path. */
+async function runSourceVerifyImport(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const recordFlag = flags["record"];
+  if (!bookId || typeof recordFlag !== "string") {
+    console.error("Usage: source-verify-import <bookId> --record <path-to-filled-record.json>");
+    return 2;
+  }
+  const src = resolve(process.cwd(), recordFlag);
+  if (!existsSyncFs(src)) {
+    console.error(`No record file at ${src}.`);
+    return 2;
+  }
+  const { parseSourceVerifyRecord, sourceVerifyRecordPath } = await import("./critics/sourceVerify.js");
+  const text = readFileSync(src, "utf8");
+  const { record, error } = parseSourceVerifyRecord(text);
+  if (error || !record) {
+    console.error(`Not a valid source-verify record: ${error ?? "unparseable"}. Fill it in the workbench and re-download.`);
+    return 2;
+  }
+  const dest = sourceVerifyRecordPath(bookId);
+  mkdirSync(dirname(dest), { recursive: true });
+  writeFileSync(dest, text, "utf8");
+  console.log(`source-verify-import — ${bookId}: imported to the canonical path ${dest}`);
+  console.log(`Now verify it (this is the exact record the publish gate reads):`);
+  console.log(`  npx tsx src/cli.ts source-verify-check ${bookId}`);
   return 0;
 }
 
@@ -4270,6 +4307,8 @@ async function main() {
       return runSourceVerifySchema();
     case "source-verify-workbench":
       return runSourceVerifyWorkbench(args, flags);
+    case "source-verify-import":
+      return runSourceVerifyImport(args, flags);
     case "source-fit":
       return runSourceFit(args, flags);
     case "derive-artifacts":

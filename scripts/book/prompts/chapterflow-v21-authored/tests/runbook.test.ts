@@ -41,6 +41,7 @@ test("runbookPlan maps each book-status phase to the right orchestrate prompt + 
   assert.match(pub.openPrompt, /PUBLISH-AFTER-QC-CODEX-SESSION\.md/);
   assert.match(pub.next, /publish-after-qc "zz-book" --round <PASS-roundId> --dry-run/);
 
+  assert.equal(runbookPlan("write-chapter", "zz-book").label, "Write", "research-complete (0 chapters written) is the WRITE handoff, not more research");
   assert.equal(runbookPlan("gating", "zz-book").label, "Write");
   assert.equal(runbookPlan("generating (2/7 written)", "zz-book").label, "Write");
   assert.equal(runbookPlan("research-bibliography", "zz-book").label, "Research");
