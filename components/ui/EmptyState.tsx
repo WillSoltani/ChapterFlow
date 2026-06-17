@@ -36,7 +36,22 @@ interface EmptyStateProps {
 function isComponentIcon(
   icon: React.ReactNode | LucideIcon,
 ): icon is LucideIcon {
-  return typeof icon === "function";
+  // A plain function component.
+  if (typeof icon === "function") return true;
+  // lucide-react icons (and any React.forwardRef / React.memo component) are
+  // EXOTIC component OBJECTS, not functions — `typeof` is "object". Treat those
+  // as component references so they render as `<Icon />`, not as a raw React
+  // child (which throws "Objects are not valid as a React child {$$typeof,
+  // render}"). A already-rendered element (react.element) is deliberately NOT
+  // matched here so node/emoji callers still render inline.
+  if (typeof icon === "object" && icon !== null) {
+    const tag = (icon as { $$typeof?: symbol }).$$typeof;
+    return (
+      tag === Symbol.for("react.forward_ref") ||
+      tag === Symbol.for("react.memo")
+    );
+  }
+  return false;
 }
 
 export function EmptyState({
