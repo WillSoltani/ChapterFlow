@@ -27,7 +27,7 @@ export default function TermsOfServicePage() {
 
       <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             1. Acceptance of Terms
           </h2>
           <p>
@@ -38,7 +38,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             2. Account Registration
           </h2>
           <ul className="list-disc pl-6 space-y-2">
@@ -50,7 +50,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             3. Free and Pro Plans
           </h2>
           <p className="mb-3">ChapterFlow offers two tiers of access:</p>
@@ -70,7 +70,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             4. Billing and Cancellation
           </h2>
           <ul className="list-disc pl-6 space-y-2">
@@ -95,7 +95,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             5. License Keys
           </h2>
           <p>
@@ -105,7 +105,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             6. Insight Points
           </h2>
           <ul className="list-disc pl-6 space-y-2">
@@ -117,7 +117,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             7. Acceptable Use
           </h2>
           <p className="mb-3">You agree not to:</p>
@@ -131,7 +131,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             8. Content and Intellectual Property
           </h2>
           <p className="mb-3">
@@ -162,7 +162,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             9. Limitation of Liability
           </h2>
           <p>
@@ -175,7 +175,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             10. Termination
           </h2>
           <p>
@@ -192,7 +192,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             11. Changes to These Terms
           </h2>
           <p>
@@ -203,7 +203,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             12. Governing Law
           </h2>
           <p>
@@ -213,7 +213,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             13. Contact
           </h2>
           <p>

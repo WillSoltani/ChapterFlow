@@ -285,6 +285,13 @@ body {
   /* ── Fonts ── */
   --font-display: var(--font-satoshi);
   --font-body: var(--font-jakarta);
+  /* Literary serif reading voice — consumed by batch 04 (useBookPreferences
+     repoint + default flip). var(--font-newsreader) is supplied by the
+     next/font import batch 04 adds to app/layout.tsx; the bare 'Newsreader'
+     family + serif stack are graceful fallbacks until then. */
+  --font-reading: var(--font-newsreader, 'Newsreader'), 'Source Serif 4', Charter, Georgia, serif;
+  --reader-measure: 680px;   /* ~66ch reading column */
+  --reader-leading: 1.7;
 
   /* ── CF legacy compat tokens ── */
   --cf-site-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -344,6 +351,13 @@ body {
   --cf-teal-border: rgba(34, 211, 238, 0.24);
   --cf-gold-soft: rgba(232, 185, 49, 0.1);
   --cf-gold-border: rgba(232, 185, 49, 0.24);
+  /* Pro-CTA single treatment (canonical = DiscoveryRow amber→gold).
+     Consumed by batches 07/08/09/10/11 — CTAs set
+     background: var(--cf-upgrade-accent); box-shadow: var(--cf-upgrade-accent-shadow); */
+  --cf-upgrade-accent: linear-gradient(to right, var(--accent-amber), var(--accent-gold));
+  --cf-upgrade-accent-shadow: 0 4px 16px var(--accent-amber-glow), 0 1px 3px var(--accent-amber-glow);
+  /* Soft cyan onboarding field wash — consumed by batch 13. */
+  --cf-onboarding-warm: color-mix(in srgb, var(--accent-cyan) 6%, transparent);
   --cf-control-height-sm: 2rem;
   --cf-control-height-md: 2.375rem;
   --cf-control-height-lg: 2.75rem;
@@ -520,6 +534,12 @@ html:not(.dark) {
   --cf-teal-border: rgba(8, 145, 178, 0.2);
   --cf-gold-soft: rgba(180, 83, 9, 0.06);
   --cf-gold-border: rgba(180, 83, 9, 0.2);
+  /* Pro-CTA single treatment (amber→gold) — light-theme amber/gold resolve here.
+     Consumed by batches 07/08/09/10/11. */
+  --cf-upgrade-accent: linear-gradient(to right, var(--accent-amber), var(--accent-gold));
+  --cf-upgrade-accent-shadow: 0 4px 16px var(--accent-amber-glow), 0 1px 3px var(--accent-amber-glow);
+  /* Soft cyan onboarding field wash — consumed by batch 13. */
+  --cf-onboarding-warm: color-mix(in srgb, var(--accent-cyan) 6%, transparent);
   --cf-input-inset-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.03);
   --cf-ring-track: #E7E5E4;
   --cf-progress-track: #E7E5E4;
@@ -773,13 +793,30 @@ html.transitioning *::after {
     text-decoration: underline;
   }
 
+  /* Open the legal heading scale: section h2 ≈ 1.4× the 15px body so numbered
+     sections separate by SIZE, not weight+color alone. Baseline for any
+     /legal/* h2 that lacks an inline size; the Terms page's own inline sizes
+     were bumped to 21px to match (a Tailwind utility class wins over this
+     element rule on equal specificity + later source order). */
+  .prose-legal h2 {
+    font-size: 1.3125rem;   /* 21px */
+    line-height: 1.3;
+    margin-top: 1.75rem;
+    font-weight: 600;
+  }
+
   .cf-app-shell,
   .cf-app-shell-subtle {
     position: relative;
     min-height: 100vh;
     overflow-x: clip;
     color: var(--cf-text-1);
-    font-family: var(--reading-font-family, inherit);
+    /* Chrome is ALWAYS the sans body face; the literary serif reading voice is
+       scoped to .cr-reading-content. --reading-font-family (written globally on
+       <html> by useBookPreferences) must NOT leak into chrome, or flipping the
+       prose default to serif (batch 04/10, NS-1) would render every dashboard /
+       settings page in serif. Enables the batch-04/10 serif default. */
+    font-family: var(--font-body);
     font-size: var(--reading-font-size, 1rem);
     line-height: var(--reading-line-height, 1.6);
     letter-spacing: var(--reading-letter-spacing, 0);
@@ -810,6 +847,7 @@ html.transitioning *::after {
   .cf-panel-strong {
     border: 1px solid var(--cf-border);
     border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg-val);   /* 16px — single canonical card radius */
     box-shadow: var(--cf-shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
@@ -966,6 +1004,41 @@ html.transitioning *::after {
   .cf-btn-primary:active:not(:disabled) {
     transform: translateY(0);
     filter: brightness(0.98);
+  }
+
+  /* Canonical press affordance — one tactile beat for every button / tappable
+     card. Uses the .cf-btn transition tokens so timing matches exactly. Adopted
+     broadly in the batch-19 sweep (replaces ad-hoc active:scale-{95,90,100} and
+     framer whileTap scale one-offs). Reduced-motion → no scale. */
+  .cf-pressable {
+    transition:
+      transform var(--cf-transition-fast),
+      box-shadow var(--cf-transition-med),
+      filter var(--cf-transition-fast);
+    will-change: transform;
+  }
+
+  .cf-pressable:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cf-pressable {
+      transition: none;
+    }
+
+    .cf-pressable:active:not(:disabled) {
+      transform: none;
+    }
+  }
+
+  /* Single focus-ring target so the batch-19 sweep can migrate the divergent
+     ring sites onto ONE class. Identical to the global :focus-visible recipe
+     (cyan, 2px, offset 2px, radius 4px) — dormant until adopted. */
+  .cf-focus:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   .cf-btn-secondary {
@@ -1649,6 +1722,10 @@ html:not(.dark) .bd-chapter-shimmer::before {
   --cr-accent-hover: var(--accent-cyan);
   --cr-accent-muted: var(--accent-cyan-glow);
   --cr-accent-glow: var(--accent-cyan-glow);
+  /* Decisively FILLED active depth chip / current-phase node (replaces the
+     15%-alpha --cr-accent-muted wash). Consumed by batch 05 (ReadingDepthSwitch
+     + PhaseStepper). --cr-accent-muted is left unchanged for its consumers. */
+  --cr-accent-active: color-mix(in srgb, var(--cr-accent) 16%, transparent);
 
   /* ── Chapter Reader Track / Fill ── */
   --cr-track: var(--cf-ring-track);
