@@ -10,7 +10,7 @@ import {
   NotebookPen,
   Settings,
 } from "lucide-react";
-import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
+import type { LearningMode, ContentTone, FontFamily } from "@/app/book/settings/types/settings";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
 import { ReaderSettingsMenu, type LineSpacingPref } from "./ReaderSettingsMenu";
@@ -51,6 +51,12 @@ type ChapterHeaderProps = {
   onChangeLineSpacing: (value: LineSpacingPref) => void;
   contentWidth: number;
   onChangeContentWidth: (px: number) => void;
+  // NS-2 typeface, threaded straight through to ReaderSettingsMenu. Optional so
+  // the single prefs instance can be wired in by the parent (ChapterReaderClient,
+  // batch-05 handoff) without this file taking a second useBookPreferences
+  // instance (which would full-state-clobber other reading prefs).
+  fontFamily?: FontFamily;
+  onChangeFontFamily?: (value: FontFamily) => void;
 };
 
 export function ChapterHeader({
@@ -83,6 +89,8 @@ export function ChapterHeader({
   onChangeLineSpacing,
   contentWidth,
   onChangeContentWidth,
+  fontFamily,
+  onChangeFontFamily,
 }: ChapterHeaderProps) {
   void _trackedMinutesToday;
   void _showProgressBar;
@@ -104,6 +112,44 @@ export function ChapterHeader({
   const [settingsOpen, setSettingsOpen] = useState(false);
   const settingsAnchorRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+
+  // Context-aware Back (finding #23). A back affordance must return to where the
+  // reader came from, not always book-detail. We read the entry origin client-
+  // side (no useSearchParams -> no Suspense boundary / dynamic-render cost) from
+  // a `?from=` param (producer: HeroSessionCard, batch-07 handoff) and fall back
+  // to the in-app referrer. The origin map is a CLOSED allowlist, so an attacker
+  // putting `?from=https://evil` can never redirect Back off-site.
+  const libraryHref = `/book/library/${encodeURIComponent(bookId)}`;
+  const [backHref, setBackHref] = useState(libraryHref);
+  const [backLabel, setBackLabel] = useState<"Back to library" | "Back to dashboard">(
+    "Back to library",
+  );
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const library = `/book/library/${encodeURIComponent(bookId)}`;
+    const ORIGINS: Record<string, { href: string; label: "Back to dashboard" }> = {
+      dashboard: { href: "/dashboard", label: "Back to dashboard" },
+    };
+    const from = new URLSearchParams(window.location.search).get("from");
+    if (from && ORIGINS[from]) {
+      setBackHref(ORIGINS[from].href);
+      setBackLabel(ORIGINS[from].label);
+      return;
+    }
+    // No explicit origin: honor an in-app dashboard referrer, else library.
+    try {
+      const ref = document.referrer ? new URL(document.referrer) : null;
+      if (ref && ref.origin === window.location.origin && ref.pathname.startsWith("/dashboard")) {
+        setBackHref("/dashboard");
+        setBackLabel("Back to dashboard");
+        return;
+      }
+    } catch {
+      /* malformed referrer — fall through to the library default */
+    }
+    setBackHref(library);
+    setBackLabel("Back to library");
+  }, [bookId]);
 
   // Publish header height as a CSS var so child sticky rows can offset themselves.
   useEffect(() => {
@@ -186,13 +232,13 @@ export function ChapterHeader({
         <div className="flex items-center justify-between gap-3 py-3">
           <div className="flex min-w-0 items-center gap-3">
             <Link
-              href={`/book/library/${encodeURIComponent(bookId)}`}
+              href={backHref}
               className="min-h-11 min-w-11 inline-flex items-center justify-center gap-1 rounded-lg p-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
-              aria-label="Back to library"
+              aria-label={backLabel}
             >
               <ArrowLeft className="h-4 w-4" />
             </Link>
-            <h1 className="truncate text-sm font-semibold text-(--cr-text-heading)">
+            <h1 className="truncate text-sm font-semibold text-(--cr-text-heading) font-(family-name:--font-display)">
               {chapterLabel}: {chapterTitle}
             </h1>
           </div>
@@ -230,9 +276,9 @@ export function ChapterHeader({
         {/* Left: back + chapter label */}
         <div className="flex min-w-0 items-center gap-2">
           <Link
-            href={`/book/library/${encodeURIComponent(bookId)}`}
+            href={backHref}
             className="min-h-11 min-w-11 inline-flex items-center justify-center gap-1.5 rounded-lg p-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
-            aria-label="Back to library"
+            aria-label={backLabel}
           >
             <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline text-sm font-medium">Back</span>
@@ -285,6 +331,8 @@ export function ChapterHeader({
               onChangeLineSpacing={onChangeLineSpacing}
               contentWidth={contentWidth}
               onChangeContentWidth={onChangeContentWidth}
+              fontFamily={fontFamily}
+              onChangeFontFamily={onChangeFontFamily}
             />
           </div>
           <button
@@ -374,7 +422,7 @@ function TitleBlock({
         {bookTitle} &middot; {author}
       </p>
       <h1
-        className="mt-2 text-[28px] sm:text-[36px] font-bold tracking-tight text-(--cr-text-heading) leading-[1.15]"
+        className="mt-2 text-[28px] sm:text-[36px] font-bold tracking-tight text-(--cr-text-heading) leading-[1.15] font-(family-name:--font-display)"
       >
         {chapterLabel}: {chapterTitle}
       </h1>

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono, Newsreader } from "next/font/google";
 import localFont from "next/font/local";
 import {
   CHAPTERFLOW_NAME,
@@ -31,6 +31,18 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
+});
+
+// Literary serif reading voice (NS-1). Provides the --font-newsreader variable
+// that globals.css's --font-reading token references; reserved EXCLUSIVELY for
+// reading prose (.cr-reading-content), never for app chrome. Newsreader is a
+// variable font, so loading normal + italic axes covers all reading weights in
+// two self-hosted files (leaner than pinning static instances).
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  display: "swap",
+  style: ["normal", "italic"],
 });
 
 export const viewport: Viewport = {
@@ -86,7 +98,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${satoshi.variable} ${jakarta.variable} ${jetbrainsMono.variable}`}
+      className={`${satoshi.variable} ${jakarta.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
       suppressHydrationWarning
     >
       <head>

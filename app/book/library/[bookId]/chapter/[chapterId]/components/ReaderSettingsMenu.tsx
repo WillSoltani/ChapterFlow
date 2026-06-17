@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
-import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
+import type { LearningMode, ContentTone, FontFamily } from "@/app/book/settings/types/settings";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 
 const MODE_OPTIONS: Array<{
@@ -69,6 +69,16 @@ const WIDTH_OPTIONS: Array<{ id: "narrow" | "medium" | "wide"; label: string; px
   { id: "wide", label: "Wide", px: 960 },
 ];
 
+// NS-2: first-class typeface control (Apple Books / Kindle style). The binary
+// toggle only ever sets serif vs. sans; the accessibility "opendyslexic" option
+// stays reachable on the full Settings page and maps to "Sans" lit here so the
+// toggle never appears empty.
+type TypefaceToggle = "serif" | "sans-serif";
+const TYPEFACE_OPTIONS: Array<{ id: TypefaceToggle; label: string }> = [
+  { id: "serif", label: "Serif" },
+  { id: "sans-serif", label: "Sans" },
+];
+
 const FONT_MIN = 12;
 const FONT_MAX = 24;
 
@@ -92,6 +102,11 @@ export type ReaderSettingsMenuProps = {
   onChangeLineSpacing: (value: LineSpacingPref) => void;
   contentWidth: number;
   onChangeContentWidth: (px: number) => void;
+  // NS-2 typeface (Serif/Sans). Optional so the reader compiles before the
+  // single prefs instance is wired through (batch-05 handoff); the control only
+  // renders once onChangeFontFamily is provided.
+  fontFamily?: FontFamily;
+  onChangeFontFamily?: (value: FontFamily) => void;
 };
 
 export function ReaderSettingsMenu({
@@ -113,6 +128,8 @@ export function ReaderSettingsMenu({
   onChangeLineSpacing,
   contentWidth,
   onChangeContentWidth,
+  fontFamily,
+  onChangeFontFamily,
 }: ReaderSettingsMenuProps) {
   const popoverRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -318,6 +335,21 @@ export function ReaderSettingsMenu({
                       }}
                     />
                   </div>
+
+                  {/* Typeface (NS-2) — first-class Serif/Sans, Apple Books style.
+                      Rendered only once the prefs instance is wired through
+                      (batch-05 handoff). opendyslexic shows "Sans" lit. */}
+                  {onChangeFontFamily && (
+                    <div>
+                      <p className="mb-1.5 text-xs font-medium text-(--cr-text-secondary)">Typeface</p>
+                      <Segmented
+                        ariaLabel="Typeface"
+                        options={TYPEFACE_OPTIONS}
+                        value={fontFamily === "serif" ? "serif" : "sans-serif"}
+                        onChange={onChangeFontFamily}
+                      />
+                    </div>
+                  )}
                 </div>
               </SettingsSection>
             </div>
