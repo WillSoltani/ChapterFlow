@@ -106,6 +106,7 @@ export function BookHero({
                 className="h-52 w-36 rounded-xl border border-(--cf-border) md:h-72 md:w-48"
                 fallbackClassName="text-6xl"
                 sizes="220px"
+                priority
               />
             </div>
           </motion.div>

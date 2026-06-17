@@ -346,8 +346,8 @@ export function LibraryPage() {
                         ))}
                         <a
                           href="/pricing"
-                          className="ml-2 rounded-lg px-4 py-2 text-[13px] font-semibold transition-colors"
-                          style={{ background: "var(--accent-cyan)", color: "var(--bg-base)" }}
+                          className="ml-2 rounded-lg px-4 py-2 text-[13px] font-semibold text-black transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                          style={{ background: "var(--cf-upgrade-accent)" }}
                         >
                           Upgrade to Pro →
                         </a>

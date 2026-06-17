@@ -102,6 +102,7 @@ export function HeroRecommendation({
               coverImage={heroBook.coverImage}
               width={200}
               height={300}
+              priority
             />
           </div>
 
