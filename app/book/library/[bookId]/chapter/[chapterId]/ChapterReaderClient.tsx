@@ -885,12 +885,16 @@ export function ChapterReaderClient({
        *  so the two FABs never collide at the bottom edge (incl. ≤390px). */}
       <div
         className={[
-          "pointer-events-none fixed right-4 z-50 md:right-6",
+          // Mobile: dock full-width-with-gutters (left-4 right-4) so the expanded
+          // card hugs the reading column edge-to-edge instead of overhanging the
+          // prose. md+: revert to the right-anchored auto-width float (left-auto
+          // cancels the mobile left edge), so desktop/tablet are unchanged.
+          "pointer-events-none fixed left-4 right-4 z-50 md:left-auto md:right-6",
           "bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] md:bottom-[calc(env(safe-area-inset-bottom)+5rem)]",
           state.focusMode ? "hidden" : "",
         ].join(" ")}
       >
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto md:ml-auto">
           <AudioPlayer
             bookId={bookId}
             chapterNumber={chapter.order}

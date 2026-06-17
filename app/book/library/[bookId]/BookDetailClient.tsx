@@ -413,15 +413,6 @@ export function BookDetailClient({
               const status = getCardStatus(chapter);
               const isCurrent = status === "in-progress";
               const isVisible = matchesFilter(chapter);
-              const isLocked = status === "locked" || status === "next-unlockable";
-
-              // Progressive opacity for locked chapters: closest to active = 0.7, then 0.6, then 0.5
-              let lockedOpacity = 1;
-              if (isLocked) {
-                const activeIdx = chapters.findIndex((c) => getCardStatus(c) === "in-progress");
-                const distance = activeIdx >= 0 ? index - activeIdx : index;
-                lockedOpacity = Math.max(0.5, 0.8 - distance * 0.1);
-              }
 
               return (
                 <div
@@ -430,7 +421,7 @@ export function BookDetailClient({
                   className="transition-all duration-300 ease-in-out"
                   style={{
                     maxHeight: isVisible ? "200px" : "0px",
-                    opacity: isVisible ? (isLocked ? lockedOpacity : 1) : 0,
+                    opacity: isVisible ? 1 : 0,
                     marginBottom: "0px",
                     overflow: "hidden",
                     pointerEvents: isVisible ? "auto" : "none",
@@ -513,35 +504,26 @@ export function BookDetailClient({
       </section>
       </PageTransition>
 
-      {/* Mobile sticky CTA — gated to /pricing when the free limit blocks this book */}
-      {accessBlocked ? (
+      {/* Mobile sticky CTA — Continue/Start for an unblocked book. When the free
+          limit blocks this book, the hero "Upgrade to start" + the paywall banner
+          already provide the upgrade path, so we render no sticky bar here: a third
+          (and label-duplicate) "Upgrade to start" would be a redundant primary CTA. */}
+      {!accessBlocked && currentChapter && (
         <div className="fixed bottom-20 left-4 right-4 z-50 lg:hidden">
-          <Link
-            href="/pricing"
+          <button
+            type="button"
+            onClick={() =>
+              openChapter(currentChapter, {
+                sessionMode: progressPercent === 0,
+              })
+            }
             className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
           >
-            <Sparkles className="h-4.5 w-4.5" />
-            Upgrade to start
-          </Link>
+            {completedCount > 0
+              ? `Continue Chapter ${currentChapter.number}`
+              : `Start Chapter ${currentChapter.number}`}
+          </button>
         </div>
-      ) : (
-        currentChapter && (
-          <div className="fixed bottom-20 left-4 right-4 z-50 lg:hidden">
-            <button
-              type="button"
-              onClick={() =>
-                openChapter(currentChapter, {
-                  sessionMode: progressPercent === 0,
-                })
-              }
-              className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
-            >
-              {completedCount > 0
-                ? `Continue Chapter ${currentChapter.number}`
-                : `Start Chapter ${currentChapter.number}`}
-            </button>
-          </div>
-        )
       )}
 
       {/* Modals */}
