@@ -58,25 +58,35 @@ export function DashboardShellSkeleton() {
             <SkeletonBlock height={16} width="55%" />
           </div>
 
-          {/* Hero card */}
-          <div className="rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) p-6 md:p-8">
-            <SkeletonBlock height={14} width={120} />
-            <div className="mt-4">
-              <SkeletonBlock height={36} width="50%" />
-            </div>
-            <div className="mt-2">
-              <SkeletonBlock height={16} width="30%" />
-            </div>
-            <div className="mt-6">
-              <SkeletonBlock height={48} width={220} />
-            </div>
-          </div>
-
-          {/* Weekly strip */}
+          {/* Momentum band (promoted under the greeting, ahead of the hero) */}
           <div className="flex gap-3">
             {Array.from({ length: 7 }).map((_, i) => (
               <SkeletonBlock key={i} height={32} width={32} className="rounded-lg" />
             ))}
+          </div>
+
+          {/* Hero card — two-column md:flex-row (text + 200×300 cover) on the
+              raised surface, matching the live hero so the route fallback, the
+              in-component skeleton, and the final hero share one geometry. */}
+          <div
+            className="flex flex-col rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-strong) md:flex-row"
+            style={{ boxShadow: "var(--cf-shadow-lg)" }}
+          >
+            <div className="flex-1 p-6 md:p-8">
+              <SkeletonBlock height={14} width={120} />
+              <div className="mt-4">
+                <SkeletonBlock height={36} width="50%" />
+              </div>
+              <div className="mt-2">
+                <SkeletonBlock height={16} width="30%" />
+              </div>
+              <div className="mt-6">
+                <SkeletonBlock height={48} width={220} />
+              </div>
+            </div>
+            <div className="hidden items-center justify-center p-8 md:flex">
+              <SkeletonBlock width={200} height={300} className="rounded-lg" />
+            </div>
           </div>
 
           {/* Book row */}

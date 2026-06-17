@@ -39,12 +39,15 @@ export function WeeklyMomentumStrip({
 
   return (
     <motion.div
-      className="mt-5 rounded-xl px-5 py-4"
+      className="mt-5 rounded-2xl px-5 py-4"
       style={{
+        // Momentum band under the greeting: rounded-2xl + border-strong reads as
+        // a defined band (the day's reason-to-return). Stays on --cf-surface-muted
+        // so it sits a tier BELOW the raised --cf-surface-strong hero.
         background: "var(--cf-surface-muted)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        border: "1px solid var(--cf-border)",
+        border: "1px solid var(--cf-border-strong)",
       }}
       initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
       animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
