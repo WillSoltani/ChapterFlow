@@ -1,0 +1,365 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "eat-that-frog-ch11",
+  "number": 11,
+  "title": "Upgrade your key skills",
+  "readingTimeMinutes": 9,
+  "hook": "15 minutes on the weak skill can save the hour you keep losing to one report.",
+  "counterintuition": "A task can be urgent and still feel blocked by a skill you have not built yet. Name the weak move, and the task becomes practice instead of proof that you are lazy.",
+  "tryThisNow": "At your next task handoff, write SKILL on a sticky note or screen edge. Put the practice file for the hard task in plain sight.",
+  "keyTakeaway": "Important work keeps slipping when a weak skill sits under it. Name the skill, learn one useful move, practice on real work, and ask for feedback.",
+  "breakdown": {
+    "fastRead": "Arlo has moved the report three times. The notes are ready, but the chart summary stays blank. Avery asks, \"Which part can you not do yet?\" Arlo taps the chart and says, \"This part. I can gather facts. I cannot explain the line.\" Now the next move is clear. He needs a short lesson, a rough paragraph, and feedback on what is unclear. Skill shrinks fear.\n\nA hard task often hides a weak skill. Better skill makes the task feel less threatening. When the threat drops, starting takes less force.",
+    "deepRead": "Weak skill adds drag, and drag often looks like delay. If a report needs a chart summary you do not know how to write, each start feels like walking into a wall. A short lesson, one rough attempt, and one marked-up comment remove a piece of that wall.\n\nHudson sees it in a daily learning routine. Before sales calls, he reads one short section on opening questions. Then he practices one line out loud before writing call notes. On Monday the routine feels slow. By Friday, the notes take less time because he is not inventing every sentence from scratch. Daily learning compounds when the same small skill meets the same real work.\n\nRandom learning does not do that. A course on an interesting topic can feel useful while the delayed presentation waits untouched. Ask which skill has the highest consequence right now. If the weak point is a report, learn report structure. If the weak point is a sales call, practice the call. Practice turns training into speed.\n\nFeedback finishes the loop. Avery can spot the fuzzy chart, the loose opening, or the slide that buries the conclusion. Effort matters, but effort without feedback may repeat the same weak move with more energy.",
+    "fullRead": "Gavin has two course tabs open and a client deck waiting beside them. One course looks interesting. The other teaches how to lead a slide with the client result, which is the exact part Avery marked in red. Gavin closes the first tab. The useful course is the one that touches the work.\n\nThat is the plain test for skill upgrading. Skill upgrading means improving the ability that most affects your high-value task. It starts with the report, presentation, or sales call that keeps slipping, then asks what ability would make the next start easier.\n\nUse the Skill-upgrade loop. Identify key skill. Learn deliberately. Practice on real work. Seek feedback. Identify key skill means you name the exact weak move, such as chart summary or opening question. Learn deliberately means you read, listen, take a course, or study a model aimed at that move. Practice on real work means the lesson touches the actual report, presentation, or call. Seek feedback means a capable person shows what improved and what still drags.\n\nAvery keeps the loop practical for Arlo. She does not ask him to become a better person by Friday. She asks for one rough chart summary, then circles the sentence where the reader gets lost. Arlo can fix that sentence today. The skill is small enough to practice and close enough to matter.\n\nThis is why daily learning matters. Ten or 15 focused minutes do not look heroic. They do not feel like a rescue. But the minutes stack when they hit the same skill again and again. Hudson's call notes get faster because he reads, practices, and uses the line on real calls.\n\nBusyness can hide the weak skill. Dean can answer twenty messages and still avoid the first sentence of a presentation. Camille can buy a course and improve nothing if the lesson never becomes a draft, a call script, or a reviewed slide. Do not study to hide.\n\nBetter skill also changes how the task feels. The same report that looked like a wall becomes a set of moves: outline, chart, summary, review. The work may still be hard, but the mind has fewer excuses to run toward lighter tasks. Confidence grows after the hands learn what to do, not before. Speed follows skill.\n\nThe counter-case is simple. If Arlo has a client report due in 40 minutes and the chart summary is already good enough, opening a new course would be a mistake. The right move is to send the report. Learn after the handoff. Skill work serves execution."
+  },
+  "examples": [
+    {
+      "exampleId": "eat-that-frog-ch11-ex01",
+      "sourceAnchorId": "ch11.ex.2",
+      "title": "Arlo Names the Chart",
+      "tags": [
+        "report",
+        "weak skill",
+        "dialogue"
+      ],
+      "planSpec": {
+        "domain": "delayed report review",
+        "audience": "Arlo, an analyst who keeps delaying the same report",
+        "stakes": "A hidden skill gap can look like laziness while the report keeps slipping.",
+        "format": "dialogue",
+        "requiredBeat": "Let two people uncover the weak report skill through the exchange itself.",
+        "venue": "report review call",
+        "exemplar": ""
+      },
+      "scenario": "\"The report moved again,\" Avery says on the review call. Arlo does not defend the calendar. \"I can gather the notes. I freeze at the chart summary.\" Avery asks, \"So the underdeveloped skill is explaining the chart, not writing the whole report?\" Arlo writes chart summary at the top of the file.",
+      "whatToDo": "Arlo names the exact weak skill, drafts one rough chart summary, and asks Avery to mark only the unclear parts before he revises.",
+      "whyItMatters": "The exchange turns delay into information. Once the weak skill is named, practice can aim at the bottleneck instead of blaming the whole task."
+    },
+    {
+      "exampleId": "eat-that-frog-ch11-ex02",
+      "sourceAnchorId": "ch11.ex.1",
+      "title": "Hudson's Friday Notes",
+      "tags": [
+        "daily learning",
+        "reading",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "daily sales learning routine",
+        "audience": "Hudson, a sales rep building a priority skill",
+        "stakes": "A short learning habit looks too small until it changes repeated work.",
+        "format": "predict_reveal",
+        "requiredBeat": "Reveal daily learning making priority work more familiar and faster.",
+        "venue": "sales call prep desk",
+        "exemplar": ""
+      },
+      "scenario": "Anyone watching Hudson's sales prep on Monday would expect the reading block to slow him down. He reads one page, says one opening question aloud, and then writes call notes. On Friday the surprise shows up: the notes take less time because the same priority skill has been warmed up all week.",
+      "whatToDo": "Hudson keeps the daily learning block tied to the sales call skill, then practices one line on the real call notes before dialing.",
+      "whyItMatters": "Small learning compounds when it meets the same important task. The habit matters because it makes future starts more familiar."
+    },
+    {
+      "exampleId": "eat-that-frog-ch11-ex03",
+      "sourceAnchorId": "ch11.ex.3",
+      "title": "Gavin Sends the Rough Slide",
+      "tags": [
+        "course",
+        "feedback",
+        "text thread"
+      ],
+      "planSpec": {
+        "domain": "course choice and feedback",
+        "audience": "Gavin, a project lead choosing learning that must affect a deck",
+        "stakes": "A course can become comfort unless it creates practice and feedback.",
+        "format": "text_thread",
+        "requiredBeat": "Use a short message exchange to bind the course to the bottleneck skill and feedback.",
+        "venue": "project text thread",
+        "exemplar": ""
+      },
+      "scenario": "On Tuesday morning in the project text thread, project lead Gavin posts beside a client slide file. Gavin: \"Bought the presentation course.\"\nAvery: \"Which slide changes today?\"\nGavin: \"Client result slide.\"\nAvery: \"Send the rough one after lesson 2.\"\nGavin: \"Even ugly?\"\nAvery: \"Especially then. Feedback needs something real.\"",
+      "whatToDo": "Gavin ties the course to one client slide, sends the rough version after the lesson, and asks for feedback before polishing.",
+      "whyItMatters": "The thread keeps learning attached to execution. The course builds usable confidence only when practice and feedback follow."
+    },
+    {
+      "exampleId": "eat-that-frog-ch11-ex04",
+      "sourceAnchorId": "ch11.ex.2",
+      "title": "Dean Restarts the Opening",
+      "tags": [
+        "presentation",
+        "reset",
+        "underdeveloped skill"
+      ],
+      "planSpec": {
+        "domain": "presentation draft reset",
+        "audience": "Dean, a presenter who keeps rearranging the easy parts",
+        "stakes": "Visible work can stay busy while the weak presentation skill stays untouched.",
+        "format": "reset_moment",
+        "requiredBeat": "Interrupt the routine and restart by naming the weak presentation skill.",
+        "venue": "presentation draft at his laptop",
+        "exemplar": ""
+      },
+      "scenario": "Dean's presentation draft begins with fonts, slide order, and a fresh title page. Avery's comment in the margin stops him: \"Say the conclusion first.\" Dean closes the design panel and starts again on a blank slide. The underdeveloped skill is not layout. It is stating the result in one clear sentence.",
+      "whatToDo": "Dean interrupts the easy polish routine, names the weak presentation skill, and writes the conclusion sentence before touching layout again.",
+      "whyItMatters": "The pause moves effort toward the skill that blocks the task. Busy polish can feel productive while the real weakness stays hidden."
+    },
+    {
+      "exampleId": "eat-that-frog-ch11-ex05",
+      "sourceAnchorId": "ch11.ex.3",
+      "title": "Isabelle's Red Mark",
+      "tags": [
+        "course",
+        "feedback",
+        "vignette"
+      ],
+      "planSpec": {
+        "domain": "course feedback table",
+        "audience": "Isabelle, a course participant turning feedback into practice",
+        "stakes": "Feedback has value only when it changes the next real draft.",
+        "format": "vignette",
+        "requiredBeat": "Show the feedback loop through one close observed course moment.",
+        "venue": "course table",
+        "exemplar": ""
+      },
+      "scenario": "A red mark sits in the margin of Isabelle's course feedback handout. Beside it, Avery has written, \"Lead with the client result.\" Her laptop shows the actual deck, not a sample slide. The coffee has gone cold, and the first slide now has one plain sentence where the old title used to sit.",
+      "whatToDo": "Isabelle copies the feedback into the real deck and rewrites the first slide so the lesson changes the next presentation.",
+      "whyItMatters": "The small mark shows the loop working. Feedback speeds improvement when it reaches the work the reader was avoiding."
+    },
+    {
+      "exampleId": "eat-that-frog-ch11-ex06",
+      "sourceAnchorId": "ch11.ex.1",
+      "title": "Camille Stops Collecting",
+      "tags": [
+        "daily learning",
+        "mistake recovery",
+        "practice"
+      ],
+      "planSpec": {
+        "domain": "learning plan correction",
+        "audience": "Camille, a manager who notices training has drifted away from execution",
+        "stakes": "Buying courses can feel like progress while practice never touches priority work.",
+        "format": "mistake_recovery",
+        "requiredBeat": "Notice the error mid-stream and recover by turning learning into practice on real work.",
+        "venue": "online course dashboard",
+        "exemplar": ""
+      },
+      "scenario": "Camille opens another reading module and catches her own error before the video loads. Her daily learning note names report structure as the priority skill, but the report file is still empty. She closes the module, opens the draft, and turns the lesson into practice on the summary paragraph.",
+      "whatToDo": "Camille stops collecting course time, writes one real paragraph, and asks Avery to flag the part that still feels unclear.",
+      "whyItMatters": "The recovery keeps training honest. Learning is productive when it supports execution, not when it becomes a softer place to hide."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "eat-that-frog-ch11-q01",
+        "sourceAnchorId": "ch11.fact.1",
+        "prompt": "A log shows Arlo delayed the same report 4 times, then cleared easier messages each morning. Which reading fits the skill-upgrade rule?",
+        "choices": [
+          "The repeated delay may point to a weak report skill that needs practice.",
+          "The repeated delay mainly shows he should choose easier work first.",
+          "The repeated delay proves the report is the wrong task for him."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 1 says skill gaps can cause procrastination. Easy work may feel active, but it can hide the skill friction inside the report.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch11-q02",
+        "sourceAnchorId": "ch11.fact.2",
+        "prompt": "Two presenters feel nervous before the same client talk. One waits to feel confident; the other practices the opening. Which response fits?",
+        "choices": [
+          "Waiting fits because confidence should come before the first practice round.",
+          "Waiting fits if the topic is important enough to deserve a better mood.",
+          "Practicing fits because better skill builds speed and confidence together."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 2 supports improving the key skill first. Waiting for confidence reverses the order; practice is what helps confidence grow.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch11-q03",
+        "sourceAnchorId": "ch11.fact.3",
+        "prompt": "Isabelle can study slide color, report structure, or a fun software demo. Her delayed task is a report. What should lead?",
+        "choices": [
+          "The fun software demo should lead because any learning keeps momentum alive.",
+          "Slide color should lead because a visible skill is easier to judge.",
+          "Report structure should lead because learning should target high-consequence work."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 3 says learning should target tasks with high consequence. Interesting learning is a near miss when the delayed report needs a report skill.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch11-q04",
+        "sourceAnchorId": "ch11.fact.4",
+        "prompt": "A sheet shows 10 short reading sessions tied to one sales skill, then faster call prep. What should Hudson infer?",
+        "choices": [
+          "The short sessions mattered only because sales work was already familiar.",
+          "The short sessions compounded because the same skill met the same work.",
+          "The short sessions should now be replaced by occasional longer study."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 4 says daily learning compounds over time. The trap is treating occasional learning as equal to repeated work on the same skill.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch11-q05",
+        "sourceAnchorId": "ch11.fact.5",
+        "prompt": "After a course session, Isabelle has 3 drafts of the same slide. The weak opening remains, and Avery has not seen it yet. Which next move fits?",
+        "choices": [
+          "Ask a capable person to mark what is unclear in the opening.",
+          "Keep practicing alone until effort turns into a cleaner opening.",
+          "Move to a new course so the old slide feels less frustrating."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 5 says feedback speeds skill improvement. More solo effort can repeat the same weak move if no one points out what is unclear.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch11-q06",
+        "sourceAnchorId": "ch11.fact.6",
+        "prompt": "Dean's Friday list is full of replies, but the avoided sales call depends on one weak question skill. Which response fits?",
+        "choices": [
+          "He should protect busyness because easier work keeps the day moving.",
+          "He should name the weak question skill instead of hiding it behind activity.",
+          "He should avoid sales calls until a stronger teammate can take them."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 6 says a weak skill should be named rather than hidden behind busyness. Easier work can keep motion alive while the gap stays untouched.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch11-q07",
+        "sourceAnchorId": "ch11.fact.7",
+        "prompt": "Before opening the next module, Camille sees 3 course purchases while the report draft is still empty. Which reading matches the warning?",
+        "choices": [
+          "The courses count as improvement because buying them shows commitment.",
+          "The courses count as improvement if the topics are broad enough.",
+          "The courses help only when practice follows on the real report."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 7 says training is productive when it supports execution. Course buying is a near miss if no real draft or practice follows.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch11-q08",
+        "sourceAnchorId": "ch11.fact.8",
+        "prompt": "Gavin feels heavy resistance before a presentation, then notices he cannot state the result clearly. What should he read first?",
+        "choices": [
+          "The resistance may be skill friction, so he should practice the result.",
+          "The resistance proves the presentation is mischosen and should be dropped.",
+          "The resistance should fade before he touches the presentation again."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 8 says better skill lowers emotional resistance. The feeling does not automatically prove the task is wrong; it may point to the weak move.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch11-q09",
+        "sourceAnchorId": "ch11.fact.9",
+        "prompt": "Two teams seek more output. One adds software; the other improves the skill that blocks its main report. Which reading fits?",
+        "choices": [
+          "Only the software team can multiply output because tools scale work.",
+          "The skill team can also multiply output because better key skills speed work.",
+          "Neither team can multiply output until someone else takes over the work."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 9 says key-skill upgrading can multiply output. The near miss is assuming only tools or delegation can do that.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "eat-that-frog-ch11-card01",
+      "sourceAnchorId": "ch11.concept",
+      "front": "What does skill upgrading mean when a task keeps slipping?",
+      "back": "It means finding the ability that most affects the delayed task, then improving that ability through learning, practice, and feedback tied to real work.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "eat-that-frog-ch11-card02",
+      "sourceAnchorId": "ch11.fact.1",
+      "front": "Why can procrastination be useful information instead of only a willpower failure?",
+      "back": "A delayed report, presentation, or sales call may reveal a weak skill. The delay points to the place where training would lower fear and speed up starting.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch11-card03",
+      "sourceAnchorId": "ch11.fact.5",
+      "front": "How does feedback change skill practice?",
+      "back": "Feedback shows the part your own eye misses. It turns repeated effort into corrected practice, so the same weak move is not rehearsed again.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch11-card04",
+      "sourceAnchorId": "ch11.concept",
+      "front": "Name the four parts of the Skill-upgrade loop and what each one does.",
+      "back": "Identify key skill names the bottleneck. Learn deliberately targets it. Practice on real work makes the lesson useful. Seek feedback corrects the next attempt.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "eat-that-frog-ch11-card05",
+      "sourceAnchorId": "ch11.concept",
+      "front": "How would you restate frictionless start (Ch 9), then use it on a stalled skill task?",
+      "back": "Frictionless start means setting up the space so beginning has fewer excuses. Here, put the practice file and feedback note in view before the hard task begins.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "eat-that-frog-ch11-card06",
+      "sourceAnchorId": "ch11.fact.7",
+      "front": "When does training become another form of delay?",
+      "back": "Training becomes delay when it never touches execution. A course should lead to a draft, a practice call, a reviewed slide, or another real work output.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Mark the Skill Gap",
+    "coreSkill": "Practice turning delay into a named skill target. Mark the Skill Gap by writing the weak skill beside the stalled task, then run the Skill-upgrade loop: Identify key skill, Learn deliberately, Practice on real work, Seek feedback. The goal is not to study more; it is to make the next start easier.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch11.fact.1",
+        "context": "A report, presentation, or sales call has slipped again.",
+        "plan": "If the same important task slips again, then Mark the Skill Gap by naming the one ability that makes the task feel hard."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.3",
+        "context": "A tempting course does not match the task you keep delaying.",
+        "plan": "If learning feels interesting but unrelated, then Mark the Skill Gap and choose the lesson that helps the delayed task first."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.5",
+        "context": "You have practiced alone and the same weak spot remains.",
+        "plan": "If solo practice repeats the same flaw, then Mark the Skill Gap and ask one capable person for focused feedback."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, at your next transition between tasks, write SKILL on a sticky note, screen edge, or notebook margin. Beside it, name one weak skill and open the file where you will practice it.",
+    "weeklyPractice": "At the end of this week, look back once and name what changed about one key skill: the task that started faster, the feedback you used, or the practice you repeated."
+  },
+  "memorableLines": [
+    {
+      "text": "Skill shrinks fear.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the chapter's mechanism into a plain line."
+    },
+    {
+      "text": "Practice turns training into speed.",
+      "location": "breakdown.deepRead",
+      "why": "It separates useful learning from passive study."
+    },
+    {
+      "text": "Do not study to hide.",
+      "location": "breakdown.fullRead",
+      "why": "It names the chapter's sharpest warning in portable form."
+    }
+  ]
+}

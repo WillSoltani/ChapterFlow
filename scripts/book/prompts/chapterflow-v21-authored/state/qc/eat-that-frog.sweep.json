@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "sweep-attest-v1",
+  "bookId": "eat-that-frog",
+  "roundId": "r20260617212052-0a49dc",
+  "verdict": "PASS",
+  "reviewer": "codex-qc:r20260617212052-0a49dc:sweep",
+  "attestedAt": "2026-06-17T22:40:30.367Z",
+  "contentHashes": {
+    "1": "ffd8006e5c8f2962",
+    "2": "1c4a81e04482ff57",
+    "3": "18cfb136edb0f48c",
+    "4": "5225b23f1813bc06",
+    "5": "446c8a4aa6953cc8",
+    "6": "69225dee0be10dfd",
+    "7": "fbbda4fb0a5483c1",
+    "8": "30f85a1ac0119dcb",
+    "9": "141565a58e49f3c7",
+    "10": "6782787107834076",
+    "11": "95687ee22c38d4d2",
+    "12": "5ebaed114e5a2184",
+    "13": "7323fbb01d870eb1",
+    "14": "19b0d29a979f079c",
+    "15": "ae4a9c6bcef06d92",
+    "16": "b315d8ce1dc7bb57",
+    "17": "2a70a364d102cf12",
+    "18": "491894d022a6b6ac",
+    "19": "45c43c88005f57ed",
+    "20": "e3ab9a26d6d598f9",
+    "21": "c768df2a50799ec7"
+  },
+  "checkedFamilies": [
+    "scene_skeleton",
+    "persona_drift",
+    "repeated_unit",
+    "location_stamping"
+  ],
+  "findings": []
+}

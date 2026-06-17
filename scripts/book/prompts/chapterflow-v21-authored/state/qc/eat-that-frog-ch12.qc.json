@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "eat-that-frog",
+  "chapterNumber": 12,
+  "chapterId": "eat-that-frog-ch12",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "5ebaed114e5a2184",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:auto:r20260617212052-0a49dc",
+  "reviewedAt": "2026-06-17T21:43:18.494Z",
+  "reviewerSessionId": "qc-finalize-20260617184250",
+  "roundId": "r20260617212052-0a49dc",
+  "roundRole": "confirm",
+  "dimensions": {
+    "sourceV2": true,
+    "shipGate": true,
+    "bookGate": true,
+    "sweepClean": true,
+    "keysCorrect": true,
+    "barGreen": true,
+    "confirmPassed": true,
+    "noOpenRepairFindings": true
+  },
+  "evidence": {
+    "orchestratorRoundId": "r20260617212052-0a49dc",
+    "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617212052-0a49dc/evidence-matrix.json",
+    "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog-ch12.manual-keyjudge.json",
+    "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog.sweep.json",
+    "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617212052-0a49dc/submissions/bar/ch12.bar-read.json",
+    "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617212052-0a49dc/submissions/confirm/ch12.confirm-read.json",
+    "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617212052-0a49dc/repair-ledger.jsonl",
+    "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617212052-0a49dc/repair-brief.md"
+  },
+  "findings": [],
+  "notes": "qc-orchestrator finalize: PUBLISHABLE; Chapter 12 consistently teaches key constraints and bottlenecks: examples, quiz items, review cards, and action plan align with the source facts without factual drift, incoherent scenes, or weak distractor/key issues.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "eat-that-frog",
+      "chapterNumber": 12,
+      "chapterId": "eat-that-frog-ch12",
+      "verdict": "REVISE",
+      "contentHash": "5a36049fd2bdd1f0",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:auto:r20260617100532-d30d83",
+      "reviewedAt": "2026-06-17T10:24:22.311Z",
+      "reviewerSessionId": "qc-parent-collect-20260617072402",
+      "roundId": "r20260617100532-d30d83",
+      "roundRole": "attest",
+      "dimensions": {
+        "sourceV2": true,
+        "shipGate": true,
+        "bookGate": true,
+        "sweepClean": true,
+        "keysCorrect": true,
+        "barGreen": true,
+        "confirmPassed": false,
+        "noOpenRepairFindings": true
+      },
+      "evidence": {
+        "orchestratorRoundId": "r20260617100532-d30d83",
+        "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617100532-d30d83/evidence-matrix.json",
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog-ch12.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617100532-d30d83/submissions/bar/ch12.bar-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617100532-d30d83/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617100532-d30d83/repair-brief.md"
+      },
+      "findings": [],
+      "notes": "qc-orchestrator finalize: REVISE; one or more current major findings are unresolved or not round-backed"
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "eat-that-frog",
+      "chapterNumber": 12,
+      "chapterId": "eat-that-frog-ch12",
+      "verdict": "REVISE",
+      "contentHash": "5a36049fd2bdd1f0",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:auto:r20260617112415-02b7ae",
+      "reviewedAt": "2026-06-17T11:46:12.520Z",
+      "reviewerSessionId": "qc-collect-20260617112415-02b7ae",
+      "roundId": "r20260617112415-02b7ae",
+      "roundRole": "attest",
+      "dimensions": {
+        "sourceV2": true,
+        "shipGate": true,
+        "bookGate": true,
+        "sweepClean": false,
+        "keysCorrect": true,
+        "barGreen": true,
+        "confirmPassed": false,
+        "noOpenRepairFindings": false
+      },
+      "evidence": {
+        "orchestratorRoundId": "r20260617112415-02b7ae",
+        "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/evidence-matrix.json",
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog-ch12.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/submissions/bar/ch12.bar-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/repair-brief.md"
+      },
+      "findings": [
+        "blocker qcf-93341390a6711349 book-wide-sweep: The sweep pack repeatedly uses the same opening scene skeleton: a small work object moves/travels/slides from one surface or container to another, and that motion reveals or starts the hard task. This is not just shared Eat That Frog vocabulary; it is the same hook frame with swapped nouns across more than one third of the chapters."
+      ],
+      "notes": "qc-orchestrator finalize: REVISE; one or more gates, reads, or repair-ledger checks require revision"
+    }
+  ]
+}

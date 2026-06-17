@@ -1,0 +1,365 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "eat-that-frog-ch18",
+  "number": 18,
+  "title": "Slice and dice the task",
+  "readingTimeMinutes": 9,
+  "hook": "A job too big to face gets its first edge the moment you carve one thin slice off it.",
+  "counterintuition": "A task can feel too large to hold in your head and still be small enough to touch with one slice. Size blocks the mood, not the next move.",
+  "tryThisNow": "At your next handoff between tasks, move one sticky note onto a large task. Compare two first slices, choose the one tied to the result, and start it.",
+  "keyTakeaway": "Big tasks shrink when you cut one visible slice, start it, and keep that slice tied to the result you still owe.",
+  "breakdown": {
+    "fastRead": "Beatrice carries a sticky note from the edge of her folder to the blank pricing page. \"The proposal is still huge,\" she tells Aline. \"Good,\" Aline says. \"Do not lift the whole thing. Punch one hole. Price one line.\"\n\nSlice and dice means cut a large task into pieces small enough to start now. The Swiss cheese method makes small holes wherever the work can be entered. The salami slice method finishes one thin piece, then the next. A five-minute start gets the file open before the whole job feels possible. Small starts make big work touchable.",
+    "deepRead": "A large task scares the mind by arriving all at once. The proposal, report, or tax file looks like one wall. A slice gives the wall an edge. Beatrice can see a pricing line. Pauline can see one receipt. Claire can see one source title.\n\nAt the receipt counter, Pauline keeps wiping the same clear patch beside a pile of receipts. \"I am getting ready,\" she says. Aline moves one receipt beside the laptop. \"No more ready. Five minutes, one receipt.\" Pauline types the coffee receipt and reaches for the next one before the mug cools.\n\nThat is why a small start works. It separates beginning from finishing. The job may still be large, but the body is now in contact with it. Momentum often comes after the first mark, not before it.\n\nSwiss cheese holes fit tasks with many entry points. Write one paragraph, make one call, sort one pile, or list three missing facts. Salami slices fit tasks that need order. Finish the title slide, then the chart note, then the closing ask. One finished slice beats six open tabs.\n\nSmall does not mean loose. A useful slice can be seen and checked. \"Improve the report\" is fog. \"Draft the first paragraph\" is a slice.",
+    "fullRead": "A finished job still matters. Slicing does not make a weak result acceptable. It only makes the first move small enough to take. Oscar can cut the memo into pieces, but the client still needs the recommendation.\n\nOn a client call, Oscar says, \"I made six little slices.\" Aline asks, \"Which one moves the memo?\" Oscar reads the list: format headers, rename files, clean chart colors. Then he stops. \"None of them says what we recommend.\" Aline says, \"Then the next slice is the recommendation paragraph. Not the colors.\"\n\nThat is the hard part of slicing. Small pieces can become a neat hiding place. A person can feel busy while the frog stays untouched. The test is simple: does this slice move the larger outcome? If not, it is only motion.\n\nUse three cuts. First, make Swiss cheese holes when the task has many good doors. Beatrice can price one line before she knows every paragraph. Claire can copy one source title before the whole report has shape. Each hole weakens the solid look of the task.\n\nSecond, use salami slices when order matters. Emmett handles a deck by finishing the first slide, then the next note, then the final ask. The slice is thin, but it is complete. That matters because completion gives the mind proof it can continue.\n\nThird, use the five-minute start when resistance is the main barrier. Pauline does not promise to finish the tax file beside her laptop. She only opens it and enters one receipt. Once the file is open, the second receipt is easier to touch.\n\nThe method fails when the slice is not tied to behavior. A label on a note is not a cut. Beatrice has to write the number. Emmett has to complete one part. Pauline has to get the task open. Without a visible act, the method becomes another pleasant name for delay.\n\nPick a slice that is easy to identify. If the first step needs a speech, it is too cloudy. Say it in plain words: open the file, list the missing names, draft the first sentence, send the question, sort the first pile. Clear slices beat brave speeches.\n\nKeep the big result on the page while the slice stays small. Put the final outcome at the top. Put the next slice under it. That stops small work from drifting into safe chores.\n\nThe counter-case is real. If Nash has a clean handoff note due before the meeting ends, slicing the heading again would waste the moment. He should send the good enough note. Slice the task to start the frog, not to keep it on the plate."
+  },
+  "examples": [
+    {
+      "exampleId": "eat-that-frog-ch18-ex01",
+      "sourceAnchorId": "ch18.ex.1",
+      "title": "Beatrice Prices One Line",
+      "tags": [
+        "Swiss cheese",
+        "proposal",
+        "partial start"
+      ],
+      "planSpec": {
+        "domain": "proposal draft that feels too large",
+        "audience": "Beatrice, an analyst facing a stalled proposal",
+        "stakes": "The full proposal looks too solid to enter, so delay seems reasonable.",
+        "format": "predict_reveal",
+        "requiredBeat": "Let the expected need for a full draft break when one Swiss cheese hole changes the task.",
+        "venue": "pricing review board",
+        "exemplar": ""
+      },
+      "scenario": "Everyone at the pricing review board expects Beatrice to ask for another day. The large task has blank sections, red comments, and a pricing page no one has touched. \"So I need the whole draft before I can move?\" she asks. Aline slides a sticky note onto one pricing line. \"No. Make one Swiss cheese hole, a partial start.\" Ten minutes later, that line has a rough number.",
+      "whatToDo": "Beatrice moves the sticky note to one pricing line, writes the rough number, and leaves the rest of the proposal closed for the moment.",
+      "whyItMatters": "The Swiss cheese hole gives the task a point of entry. A partial start beats waiting for courage to cover the whole proposal."
+    },
+    {
+      "exampleId": "eat-that-frog-ch18-ex02",
+      "sourceAnchorId": "ch18.ex.2",
+      "title": "Emmett's Deck Thread",
+      "tags": [
+        "salami slice",
+        "deck",
+        "sequence"
+      ],
+      "planSpec": {
+        "domain": "client deck built one part at a time",
+        "audience": "Emmett, a manager turning a large deck into ordered slices",
+        "stakes": "A serious deadline can make thin slices look too slow.",
+        "format": "text_thread",
+        "requiredBeat": "Use a short message exchange to show the salami slice method as ordered completion.",
+        "venue": "team message thread",
+        "exemplar": ""
+      },
+      "scenario": "Emmett types in the team thread: \"Deck still feels huge.\" Aline answers, \"Name the first salami slice, a thin slice.\" Emmett sends, \"Title slide.\" Aline writes, \"Complete one part. Then the chart note.\" Emmett asks, \"Only those two?\" Aline replies, \"Yes. One finished slice beats six open tabs.\"",
+      "whatToDo": "Emmett finishes the title slide, then writes the chart note before opening the rest of the deck.",
+      "whyItMatters": "The salami slice method protects order. One completed piece builds motion without asking the reader to feel ready for the whole deck."
+    },
+    {
+      "exampleId": "eat-that-frog-ch18-ex03",
+      "sourceAnchorId": "ch18.ex.3",
+      "title": "Pauline Enters One Receipt",
+      "tags": [
+        "five minutes",
+        "tax file",
+        "start"
+      ],
+      "planSpec": {
+        "domain": "tax file avoided at home",
+        "audience": "Pauline, a freelancer avoiding a pile of receipts",
+        "stakes": "Waiting to feel ready keeps the task closed.",
+        "format": "reset_moment",
+        "requiredBeat": "Interrupt the avoidance routine and restart with a five-minute start.",
+        "venue": "receipt counter",
+        "exemplar": ""
+      },
+      "scenario": "The kettle clicks off while Pauline keeps wiping the clean side of the receipt counter. The tax receipts sit beside the laptop. \"I am preparing again,\" she says. Aline puts one receipt on the keyboard. \"Reset smaller. Five minutes is the initial interval. Get the task open.\" Pauline leaves the cloth in the sink and enters the coffee receipt.",
+      "whatToDo": "Pauline stops cleaning, moves one receipt onto the keyboard, and uses the five-minute start to enter that first item.",
+      "whyItMatters": "The five-minute start separates beginning from finishing. The reader can open the task before the whole file feels possible."
+    },
+    {
+      "exampleId": "eat-that-frog-ch18-ex04",
+      "sourceAnchorId": "ch18.ex.1",
+      "title": "Claire Copies the Source",
+      "tags": [
+        "Swiss cheese",
+        "report",
+        "entry point"
+      ],
+      "planSpec": {
+        "domain": "research report with many entry points",
+        "audience": "Claire, a student who sees the report as one solid block",
+        "stakes": "Partial work can look messy even when it lowers avoidance.",
+        "format": "vignette",
+        "requiredBeat": "Show one close observed moment where a Swiss cheese hole makes the report less solid.",
+        "venue": "library table",
+        "exemplar": ""
+      },
+      "scenario": "At the library table, Claire's large task has a heading and a wide blank middle. A pencil rests across the margin. Aline reads the heading aloud: \"Evidence list.\" Claire copies one source title under it. The page still looks unfinished, but the Swiss cheese method has made one of the small holes that partial starts depend on.",
+      "whatToDo": "Claire writes one source title under the evidence heading and marks the next empty line for the following source.",
+      "whyItMatters": "A small hole makes avoidance less believable. The reader can enter a large task through any useful spot."
+    },
+    {
+      "exampleId": "eat-that-frog-ch18-ex05",
+      "sourceAnchorId": "ch18.ex.2",
+      "title": "Oscar Keeps the Memo Honest",
+      "tags": [
+        "salami slice",
+        "outcome",
+        "dialogue"
+      ],
+      "planSpec": {
+        "domain": "consulting memo broken into slices",
+        "audience": "Oscar, a consultant keeping small pieces tied to the final memo",
+        "stakes": "Small pieces can become busywork if they lose the larger outcome.",
+        "format": "dialogue",
+        "requiredBeat": "Let two people keep salami slices connected to the whole result through the exchange.",
+        "venue": "client call",
+        "exemplar": ""
+      },
+      "scenario": "\"I made six tiny slices,\" Oscar says on the client call. \"Which salami slice is the thin slice that moves the memo?\" Aline asks. Oscar checks the page. \"The recommendation paragraph.\" \"Then complete one part first.\" \"Not the color pass?\" \"Only if color sends the memo.\" Oscar crosses out the polish task.",
+      "whatToDo": "Oscar chooses the recommendation paragraph as the next salami slice and drops the polish task until the memo has its main point.",
+      "whyItMatters": "Small pieces need a line back to the final result. Slicing should start the frog, not turn harmless chores into progress."
+    },
+    {
+      "exampleId": "eat-that-frog-ch18-ex06",
+      "sourceAnchorId": "ch18.ex.3",
+      "title": "Nash Catches the Setup",
+      "tags": [
+        "five minutes",
+        "mistake recovery",
+        "momentum"
+      ],
+      "planSpec": {
+        "domain": "handoff note delayed after a meeting",
+        "audience": "Nash, a project lead who notices he is using setup as delay",
+        "stakes": "A short start can be dismissed as a trick while setup becomes the real delay.",
+        "format": "mistake_recovery",
+        "requiredBeat": "Notice the error mid-stream and recover by using the five-minute start on the real handoff note.",
+        "venue": "meeting-room doorway",
+        "exemplar": ""
+      },
+      "scenario": "Nash is labeling folders after the meeting when he notices the trick. The handoff note is blank, and the neat labels are cover. \"Five minutes is the initial interval only if I get the task open,\" he tells Aline at the meeting-room doorway. He moves the folder under his pen and writes the first sentence. Continuing can wait until the real work has begun.",
+      "whatToDo": "Nash stops labeling folders, moves the handoff folder under his pen, and spends the five-minute start on the first sentence.",
+      "whyItMatters": "Momentum often appears after contact with the task. The short start must touch the real work, not the setup around it."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "eat-that-frog-ch18-q01",
+        "sourceAnchorId": "ch18.fact.1",
+        "prompt": "Beatrice's proposal log shows three days of message cleanup and no movement on the proposal. Which first move fits slice and dice?",
+        "choices": [
+          "She should wait for enough time to finish the proposal.",
+          "She should keep clearing light work until the proposal feels smaller.",
+          "She should divide the proposal and start one small piece."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 1 says large tasks should be divided into small pieces. The waiting choice treats size as a reason not to touch the proposal.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch18-q02",
+        "sourceAnchorId": "ch18.fact.2",
+        "prompt": "Two people face the same heavy report: one waits to feel ready, and one drafts one rough paragraph. Which response fits?",
+        "choices": [
+          "Waiting fits when the report deserves a calm full start.",
+          "Drafting fits because a small start can cut through resistance.",
+          "Waiting fits if easier work rebuilds confidence first."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 2 supports the small start. Waiting for the feeling to change keeps the report untouched.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch18-q03",
+        "sourceAnchorId": "ch18.fact.3",
+        "prompt": "Claire's report now has one copied source title under a rough heading, with many blanks left. How should that partial work be read?",
+        "choices": [
+          "It has made the report messier and less useful.",
+          "It should be replaced once the full outline is clear.",
+          "It has weakened avoidance by opening the task."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 3 says the Swiss cheese method uses partial work to weaken avoidance. The blanks can look messy, but the task has been entered.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch18-q04",
+        "sourceAnchorId": "ch18.fact.4",
+        "prompt": "Emmett's deck has a title slide, a chart note, and a closing ask left before a deadline. Which move matches the salami slice method?",
+        "choices": [
+          "Finish the first small section, then move to the next one.",
+          "Open every section so the whole deck feels active.",
+          "Wait for a longer work block because thin slices are too slow."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 4 says salami slices use sequential small completion. Opening everything can look active while no slice gets finished.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch18-q05",
+        "sourceAnchorId": "ch18.fact.5",
+        "prompt": "Pauline says five minutes on the tax file is fake work because the file will remain unfinished. Which answer fits the source fact?",
+        "choices": [
+          "The short start matters only if the tax file is completed.",
+          "The short start works after the task already feels easy.",
+          "The short start counts because beginning and finishing are separate."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 5 says a timed start separates beginning from finishing. Calling it fake work misses the value of getting the task open.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch18-q06",
+        "sourceAnchorId": "ch18.fact.6",
+        "prompt": "Nash writes one handoff sentence after moving the folder under his pen, then keeps going for several more lines. What does that pattern show?",
+        "choices": [
+          "Momentum should have appeared before the first sentence.",
+          "Momentum often appears after contact with the task.",
+          "Momentum proves the handoff note was not the real frog."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 6 says momentum often appears after contact. The near miss is waiting for momentum before the first sentence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch18-q07",
+        "sourceAnchorId": "ch18.fact.7",
+        "prompt": "Oscar writes two possible first slices for a memo: \"improve the memo\" and \"draft the recommendation paragraph.\" Which one fits better?",
+        "choices": [
+          "Improve the memo fits because broad wording leaves more room to adjust.",
+          "Draft the recommendation paragraph fits because the first slice is easy to identify.",
+          "Improve the memo fits if the details can be chosen while working."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 7 says the first slice should be easy to identify. Broad wording can hide the next move even when it sounds responsible.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch18-q08",
+        "sourceAnchorId": "ch18.fact.8",
+        "prompt": "Aline sees a proposal broken into font checks and file names while the client recommendation stays blank. Which warning applies?",
+        "choices": [
+          "Slicing should not become an excuse to avoid the whole result.",
+          "Slicing means lower standards are acceptable on large tasks.",
+          "Slicing works best when easy pieces replace the main outcome."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 8 says slicing is not an excuse to avoid the whole result. Formatting checks are a near miss when the recommendation stays blank.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch18-q09",
+        "sourceAnchorId": "ch18.fact.9",
+        "prompt": "A task board shows Beatrice completed label cleanup, folder names, and chart colors while the report's main answer stayed blank. Which diagnosis fits best?",
+        "choices": [
+          "The small pieces are too far from the larger outcome.",
+          "The small pieces can replace clarity about the final result.",
+          "The small pieces matter mainly because visible activity lowers worry."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 9 says small pieces need connection to the larger outcome. Finished bits can still miss if they do not move the report.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "eat-that-frog-ch18-card01",
+      "sourceAnchorId": "ch18.concept",
+      "front": "What does slice and dice mean when a task feels too large to start?",
+      "back": "It means divide the large job into small pieces, then begin with one piece or one short work interval.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "eat-that-frog-ch18-card02",
+      "sourceAnchorId": "ch18.ex.1",
+      "front": "How does the Swiss cheese method weaken avoidance?",
+      "back": "Swiss cheese means making small holes through partial starts. A paragraph, call, list, or source title gives attention a place to enter, so the large task feels less solid.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch18-card03",
+      "sourceAnchorId": "ch18.ex.2",
+      "front": "How is the salami slice method different from random small work?",
+      "back": "A salami slice is a thin slice done in order. You complete one part, then the next, so motivation grows from finished movement.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch18-card04",
+      "sourceAnchorId": "ch18.fact.5",
+      "front": "Why can a five-minute start count as real work?",
+      "back": "It separates beginning from finishing. The short start opens the task and lets attention touch the work before the whole job feels possible.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch18-card05",
+      "sourceAnchorId": "ch18.concept",
+      "front": "How would you restate visible next marker (Ch 10), then use it on today's large task?",
+      "back": "Name the nearest point you can reach, not the whole road. On a large task, turn that marker into the first clear slice you can start now.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "eat-that-frog-ch18-card06",
+      "sourceAnchorId": "ch18.fact.8",
+      "front": "When does slicing become another way to avoid the frog?",
+      "back": "It becomes avoidance when the slices no longer serve the result. Tiny tasks must still move the proposal, report, memo, call, or file forward.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Mark the First Slice",
+    "coreSkill": "Practice turning a large task into one visible next move. Mark the First Slice by naming two possible pieces, comparing them, and choosing the one tied to the final result. The goal is to touch the frog, not arrange the plate.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch18.fact.1",
+        "context": "A task feels too large to begin.",
+        "plan": "If the whole task feels too large, then Mark the First Slice by writing the smallest useful piece beside the file."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.7",
+        "context": "The first slice sounds broad or cloudy.",
+        "plan": "If the first slice is hard to picture, then compare two smaller options and choose the one you can see yourself doing."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.8",
+        "context": "Small pieces become safe busywork.",
+        "plan": "If a slice does not move the final result, then cross it out and pick a piece that touches the real frog."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, at your next handoff between tasks, move one object onto a large task. Use it as the cue to Mark the First Slice and start that piece.",
+    "weeklyPractice": "This week, ask one person to flag when your small pieces look disconnected from the result. Compare notes once, then rename one better first slice."
+  },
+  "memorableLines": [
+    {
+      "text": "Small starts make big work touchable.",
+      "location": "breakdown.fastRead",
+      "why": "It turns the chapter's mechanism into a short rule."
+    },
+    {
+      "text": "One finished slice beats six open tabs.",
+      "location": "breakdown.deepRead",
+      "why": "It separates completed progress from scattered activity."
+    },
+    {
+      "text": "Clear slices beat brave speeches.",
+      "location": "breakdown.fullRead",
+      "why": "It makes the action test easy to remember."
+    }
+  ]
+}

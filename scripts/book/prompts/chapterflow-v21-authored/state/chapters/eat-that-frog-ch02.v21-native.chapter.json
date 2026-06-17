@@ -1,0 +1,364 @@
+{
+  "chapterId": "eat-that-frog-ch02",
+  "number": 2,
+  "title": "Plan every day in advance",
+  "readingTimeMinutes": 11,
+  "hook": "Leave the morning unplanned and it fills with everyone else's priorities before you finish your coffee.",
+  "counterintuition": "The day becomes freer when it is pinned down: a written list lets you change course without letting every interruption steer.",
+  "tryThisNow": "Before you send your next reply, write START on a sticky note beside the screen, then add one line naming the task you will open after the reply.",
+  "keyTakeaway": "Plan before pressure: write the day, mark the first hard item, and let monthly, weekly, and master lists feed the page so work begins by choice.",
+  "breakdown": {
+    "fastRead": "Leah expects the short list to make her day feel heavier. Instead, the page gives the day edges. Alan Lakein's old planning maxim works because it turns planning from a nice idea into a work step: if the day is not planned, drift has already been invited.\n\nThe useful list is not a memory dump. It is a map for attention. Write the tasks, mark the priority, and let the first hard item meet you before messages do. A plan is a promise made before noise arrives.",
+    "deepRead": "Ten quiet minutes can save an hour because they move decisions out of the rush. Eric learns this when his daily list sits beside the keyboard before the first reply. The list is plain: three calls, one budget draft, one report section, and two errands. The priority marks change the page. The budget draft gets an A. The errands wait. He is not trying to feel organized; he is removing a small argument from the first work minute.\n\nOn Eric's page, loose claims leave his head and sit where his eyes can compare them. Priority marks turn the list from storage into sequence. Then the daily list can pull from the bigger lists: master list for everything, monthly list for what belongs soon, weekly list for this stretch, daily list for what gets done now. A list without order is only a parking lot.\n\nWhen a client call lands at noon, Eric crosses one item forward and keeps the first priority visible. Changing the page is not failure. The budget draft still has a place. It is how the plan stays alive while the day moves.",
+    "fullRead": "Agathe's notebook has four pages marked with paper clips. One says Master list. One says Monthly list. One says Weekly list. One says Daily list. The clips look fussy until a new project arrives and nothing has to live in her head. The raw idea goes to the master list. The timing lands on the monthly page. The next few actions move to the weekly page. Tomorrow gets one line, not the whole project.\n\nThat is why advance planning is more than writing a lot of tasks. A single daily list can become a junk drawer. It may hold a tax form, a call home, a launch plan, and a lightbulb to buy. The page looks busy, but it gives no order. The four-list hierarchy protects today from carrying every promise at once. It also protects the large promise from vanishing behind small errands.\n\nAlan Lakein's planning rule has force because it is harsh in a useful way. If you do not plan, you are not neutral. You are letting the next sound, the next badge, or the next easy chore make the choice. That does not mean the list is sacred. It means the list gets first claim on your attention before the day starts bidding.\n\nPriority marks are the hinge. Vernon can write fifteen items and still hide from the frog. One mark beside the highest-value task removes that cover. The page now asks for a sequence, not a mood. If the marked item is too large, the next move is to split it into visible steps. Project planning benefits from listing every step first because the hidden step is often where work stalls.\n\nThe best small test is visible behavior. Did a task get written? Did one item get ranked above the others? Did a project step move from weekly hope to daily action? If the answer is no, the reader has heard a planning slogan, not used a planning rule. Paper earns its keep when it changes the next minute.\n\nCompletion also becomes measurable. Bernard can feel busy after six quick tasks, but the list shows whether the chosen item moved. This matters because work often rewards motion with relief. Crossed-off trivia feels good for a minute. The planned priority is less flattering and more useful. It tells you whether the day served the result you chose.\n\nFollow this rule least when the situation calls for immediate care. A broken pipe, a sick child, or a legal deadline may deserve a direct response before any list is rebuilt. Advance planning governs ordinary work pressure. It should not make you slow to act when delay is the danger. For the usual day, though, write first, rank first, then begin. Revise the page; do not surrender the day."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch02.ex.1",
+      "title": "Lakein List Surprise",
+      "tags": [
+        "Alan Lakein",
+        "planning",
+        "prediction"
+      ],
+      "planSpec": {
+        "domain": "daily work planning",
+        "audience": "reader who treats planning as optional",
+        "stakes": "an unplanned morning lets easy work pick the order",
+        "format": "predict_reveal",
+        "requiredBeat": "use Alan Lakein's planning maxim to show that no plan already shapes the day",
+        "venue": "office desk",
+        "exemplar": "Alan Lakein"
+      },
+      "scenario": "Leah copies Alan Lakein's planning maxim on an index card and predicts the card will only scold her. At her office desk, the card sits beside a blank daily list while the inbox fills. By lunch, the surprise is plain: the written list did not trap her. It kept one hard budget draft from being buried under six easy replies.",
+      "whatToDo": "Leah writes the daily list before opening the inbox, marks the budget draft first, and leaves Lakein's planning card where her hand reaches for the mouse.",
+      "whyItMatters": "The scene turns a maxim into behavior. Planning has force only when it changes what gets written, marked, protected, or started before drift takes over."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch02.ex.2",
+      "title": "Ten-Minute Thread",
+      "tags": [
+        "daily list",
+        "text thread",
+        "priority marks"
+      ],
+      "planSpec": {
+        "domain": "team message exchange",
+        "audience": "reader who waits for the day to declare itself",
+        "stakes": "messages can turn the first priority into a side note",
+        "format": "text_thread",
+        "requiredBeat": "show a 10-minute daily list turning inventory into sequence with priority marks",
+        "venue": "text thread",
+        "exemplar": ""
+      },
+      "scenario": "Before work, Eric stands by the office coffee counter with his phone in one hand and a blank pad in the other. Eden texts, \"Can you check the slide title first?\" Eric replies, \"Ten minutes. Making the daily list.\" A moment later: \"A is the client draft. B is the slide title. C is receipts.\" Eden sends back, \"Good. Send the draft before the pretty title eats the morning.\"",
+      "whatToDo": "Eric spends 10 minutes writing the daily list and adds priority marks before he answers the first request in full.",
+      "whyItMatters": "The exchange shows the list doing its job. It does not collect tasks for comfort; it tells the next message where it belongs in the order."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch02.ex.3",
+      "title": "Four-Page Restart",
+      "tags": [
+        "master list",
+        "weekly list",
+        "reset"
+      ],
+      "planSpec": {
+        "domain": "project planning notebook",
+        "audience": "reader carrying long commitments on today's page",
+        "stakes": "today becomes overloaded when every project lands there",
+        "format": "reset_moment",
+        "requiredBeat": "interrupt a routine and restart with master, monthly, weekly, and daily lists",
+        "venue": "library reading table",
+        "exemplar": ""
+      },
+      "scenario": "Vernon begins his usual routine at a library reading table by filling one page until it looks heroic. Then the page swallows a grant proposal, a dentist call, and next month's travel. He stops, turns to four fresh pages, and labels them Master list, Monthly list, Weekly list, Daily list. The grant no longer crowds the dentist call.",
+      "whatToDo": "Vernon restarts the page: every loose task moves to the right horizon, then only tomorrow's real actions land on the daily list.",
+      "whyItMatters": "The reset keeps the daily page honest. Longer horizons feed today, but they should not crush today under every unfinished promise."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch02.ex.2",
+      "title": "Margin Priority Mark",
+      "tags": [
+        "10 minutes",
+        "vignette",
+        "daily list"
+      ],
+      "planSpec": {
+        "domain": "quiet desk setup",
+        "audience": "reader who writes lists without ordering them",
+        "stakes": "a full list can still hide the first task",
+        "format": "vignette",
+        "requiredBeat": "show priority marks turning a 10-minute daily list from inventory into sequence",
+        "venue": "office desk",
+        "exemplar": ""
+      },
+      "scenario": "Eden's pencil taps once in the margin of a yellow pad. The daily list is only 10 minutes old. Seven lines sit under the date. Beside one line, the priority mark is darker than the words: finish renewal memo. The coffee is still hot, the email tab is still closed, and the page has already made one small demand.",
+      "whatToDo": "Eden darkens the priority mark beside the renewal memo and places the pad across the keyboard before opening mail.",
+      "whyItMatters": "The mark turns a list into a sequence. Without it, a neat page can still invite the easiest item to pose as the right one."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch02.ex.3",
+      "title": "Friday Evidence Trail",
+      "tags": [
+        "postmortem",
+        "monthly list",
+        "daily list"
+      ],
+      "planSpec": {
+        "domain": "missed project handoff",
+        "audience": "reader whose daily list keeps losing project work",
+        "stakes": "large obligations disappear when no horizon feeds the day",
+        "format": "postmortem",
+        "requiredBeat": "reconstruct how the master, monthly, weekly, and daily lists failed or helped",
+        "venue": "returned phone call",
+        "exemplar": ""
+      },
+      "scenario": "The handoff failed before Hubert returned the phone call. The evidence was on the pages: the master list held the project name, the monthly list named the week, but the weekly list never gave the daily list a next step. By Friday, the daily page had errands, replies, and no handoff. The missing bridge did the damage.",
+      "whatToDo": "Hubert adds one next step to the weekly list, copies it onto Monday's daily list, and marks it before smaller replies.",
+      "whyItMatters": "The review shows why horizons need to connect. A master list can remember a project, but the daily list needs a next action it can execute."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch02.ex.2",
+      "title": "Reply Before Repair",
+      "tags": [
+        "mistake recovery",
+        "before work",
+        "priority"
+      ],
+      "planSpec": {
+        "domain": "email response habit",
+        "audience": "reader who starts by clearing small messages",
+        "stakes": "a morning scramble can feel productive while skipping the priority",
+        "format": "mistake_recovery",
+        "requiredBeat": "notice the error mid-stream and recover by making the daily list before work pressure peaks",
+        "venue": "returned phone call",
+        "exemplar": ""
+      },
+      "scenario": "Bernard is halfway through a quick reply when he notices the blank daily list under his wrist. The reply is harmless, but the pattern is not. Yesterday began the same way and the report never moved. He saves the draft, pulls the pad closer, and spends 10 minutes listing the day before the next response writes the order for him.",
+      "whatToDo": "Bernard saves the reply, writes the daily list, marks the report first, and returns to the message only after the first work block is named.",
+      "whyItMatters": "The recovery catches the real error while it is still small. Planning before work pressure peaks keeps a useful reply from becoming the day's steering wheel."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch02.fact.1",
+        "prompt": "A work log shows four busy mornings and no progress on the budget draft. The only written page was an unmarked task list. Which reading fits best?",
+        "choices": [
+          "The page worked as intended, since capturing everything you did is what a planned day really means.",
+          "The page gave some control, but it needed ranking so the hard priority could beat low-value activity.",
+          "The page failed mainly because a list should stay mental when the day has many moving parts."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 1 says a written list increases control, but the control has to serve the harder priority. An equal-weight list can still let easy work lead.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch02.fact.2",
+        "prompt": "Two teammates plan a launch day. One writes the list before messages begin; the other waits to see which requests arrive. Which response matches advance planning?",
+        "choices": [
+          "Waiting lets the real interruptions reveal the right order before the list hardens.",
+          "Writing early matters only when the day has no urgent outside requests to answer.",
+          "Writing early lowers decision friction before fresh requests start bargaining for attention."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 2 supports planning before work because it reduces decision friction. Waiting for interruptions makes the day's first pressure too powerful.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch02.fact.3",
+        "prompt": "A planner has one daily page holding a tax form, a future trip, a project launch, and today's calls. Which change would help first?",
+        "choices": [
+          "Keep the single page, then circle any item that still feels important at midmorning.",
+          "Move only the future trip off the page, since travel is the one item not tied to work.",
+          "Feed the daily page from master, monthly, and weekly lists so each horizon has a job."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 3 says longer planning horizons feed the daily list. The fix is not a bigger daily page; it is separating timing before choosing today's actions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch02.fact.4",
+        "prompt": "A list has twelve items, all written with the same weight. Another list has eight items and three priority marks. Which one better guides work?",
+        "choices": [
+          "The twelve-item list, because a fuller inventory gives more control over the day.",
+          "The eight-item list, but only because fewer tasks reduce pressure before work starts.",
+          "The marked list, because priority marks turn inventory into a sequence for action."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fact 4 says priority marks convert a list into a sequence. The number of items matters less than whether the page tells work what comes first.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch02.fact.5",
+        "prompt": "Agathe keeps tomorrow's tasks in her head so she can adjust on the fly. By noon, three small chores keep returning to mind. What explains the pattern?",
+        "choices": [
+          "Mental planning is useful, but only when the tasks are equal in value and easy to recall.",
+          "Unwritten tasks keep tugging at attention because the mind is still trying to store them.",
+          "Small chores repeat because the daily list was made too early to include later details."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 5 says unwritten tasks keep pulling attention. Writing them down frees the mind to compare and rank them instead of rehearsing them.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch02.fact.6",
+        "prompt": "Bernard's marked task is ready, then a client moves a call and two items need new slots. Which conclusion best fits the source rule?",
+        "choices": [
+          "The plan can be revised and still keep its job as the day's guide.",
+          "The plan was useful only until the first outside request changed the order.",
+          "The plan should now be dropped until the day settles into a clearer pattern."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 6 says a plan can be revised without being abandoned. A changed call asks for a changed page, not a surrender to drift.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch02.fact.7",
+        "prompt": "A morning log shows the first list being made after seven replies, two calls, and a request from a manager. What should the reader infer?",
+        "choices": [
+          "The list is late only if those early messages were less important than the planned work.",
+          "The list should have been prepared before execution pressure gave those requests first claim.",
+          "The list still works if the reader adds every new request before choosing the priority."
+        ],
+        "correctIndex": 1,
+        "explanation": "Fact 7 says the daily list should be prepared before execution pressure peaks. Once replies and calls lead, planning starts behind the day.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch02.fact.8",
+        "prompt": "Two project leads open the same messy assignment. Leah lists every step before starting; Eric begins with the most visible step. Which response fits?",
+        "choices": [
+          "Leah fits because project planning benefits from naming every step before action starts.",
+          "Eric fits because visible steps reveal the plan faster than a complete written sequence.",
+          "Both fit because project work only needs a list after the first obstacle appears."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 8 says project planning benefits from listing every step first. The visible step can be tempting, but it may hide the real order.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch02.fact.9",
+        "prompt": "A worker says the day felt productive, but there is no written record of what was finished. Which answer best follows the list rule?",
+        "choices": [
+          "Working from a list makes completion measurable instead of leaving progress to feeling.",
+          "A strong sense of motion is enough when the tasks are familiar and short.",
+          "A written record mainly matters when someone else needs proof of the work."
+        ],
+        "correctIndex": 0,
+        "explanation": "Fact 9 says working from a list makes completion measurable. Feeling busy can mislead; the list shows whether the chosen work moved.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch02.concept",
+      "front": "What does advance planning mean before work starts?",
+      "back": "It means building master, monthly, weekly, and daily lists before action starts, then using the daily page to work from choice rather than impulse.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch02.fact.4",
+      "front": "Why are priority marks more than decoration on a daily list?",
+      "back": "They turn a task inventory into a sequence. The mark tells the reader which item gets first claim, so easy items cannot quietly choose the order.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch02.ex.3",
+      "front": "Name the four lists in the planning hierarchy and the job each one does.",
+      "back": "The master list catches everything. The monthly list sets timing. The weekly list narrows the current stretch. The daily list names today's action.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch02.fact.6",
+      "front": "When interruptions change the day, what should happen to the plan?",
+      "back": "Revise the page and keep using it. The source rule treats changes as part of planning, not as proof that planning was wasted.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch02.ex.3",
+      "front": "Recall goal clarity before action (Ch 1): name one concrete moment here where it actually bites.",
+      "back": "Vernon's four-page restart shows it. The master list holds the project, and the daily list names the next action instead of carrying a vague wish.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch02.fact.7",
+      "front": "Why should the daily list be ready before work pressure peaks?",
+      "back": "Because the first replies, calls, and requests begin bidding for attention. A ready list gives the chosen priority a place before the scramble starts.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Mark Tomorrow's First Line",
+    "coreSkill": "Practice turning a list into a first action before pressure arrives. Write the day's tasks, mark the one that matters most, and keep the mark visible when replies begin. The reader tool is Mark Tomorrow's First Line: one written line that names the next task before the next message pulls you away.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch02.fact.2",
+        "context": "A reply asks for a quick answer before the day is planned.",
+        "plan": "If the next reply appears before the daily list is written, then write one START line on paper before sending the response."
+      },
+      {
+        "sourceAnchorId": "ch02.fact.4",
+        "context": "The list is full but every item has the same weight.",
+        "plan": "If the page looks busy but flat, then add one priority mark before doing any small item."
+      },
+      {
+        "sourceAnchorId": "ch02.fact.6",
+        "context": "A new interruption makes the old order impossible.",
+        "plan": "If the day changes, then move one item on the page and keep the marked task visible."
+      }
+    ],
+    "twentyFourHourChallenge": "For the next 24 hours, put the word START on a sticky note, notebook margin, or phone wallpaper. Before you send your next response, write one line naming the priority you will open afterward.",
+    "weeklyPractice": "At the end of this week, look back once at your lists. Name what changed about planning before pressure: the first task, the number of rewritten items, or how quickly you began."
+  },
+  "memorableLines": [
+    {
+      "text": "A plan is a promise made before noise arrives.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the timing rule short enough to carry into a busy morning."
+    },
+    {
+      "text": "A list without order is only a parking lot.",
+      "location": "breakdown.deepRead",
+      "why": "It separates task capture from priority in a concrete image."
+    },
+    {
+      "text": "Revise the page; do not surrender the day.",
+      "location": "breakdown.fullRead",
+      "why": "It gives interruption recovery a crisp rule without making the plan rigid."
+    }
+  ]
+}

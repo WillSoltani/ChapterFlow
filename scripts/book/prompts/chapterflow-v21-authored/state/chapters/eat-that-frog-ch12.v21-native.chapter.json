@@ -1,0 +1,352 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "eat-that-frog-ch12",
+  "number": 12,
+  "title": "Identify your key constraints",
+  "readingTimeMinutes": 8,
+  "hook": "Pour more effort into a narrow pipe and you get more pressure, not more flow.",
+  "counterintuition": "Despite the urge to push harder everywhere, slow progress usually has one narrow place setting the pace. Widening the easy places can leave the real bottleneck untouched.",
+  "tryThisNow": "Before you start your next work block, move the hard task note to the top of your desk and pre-write the sentence: The speed is set by ____.",
+  "keyTakeaway": "Find the narrowest point before adding effort: name the goal, find the limiter, classify it, then reduce that constraint first.",
+  "breakdown": {
+    "fastRead": "Edmund's memo sits beside three open tabs and one cold mug. He wants to work harder, but the Theory of Constraints says the whole system moves at the speed of its bottleneck, the narrowest point in the flow. If Edmund improves a task that is not the bottleneck, the work still waits at the same choke point. Find the neck before you push the bottle. The first move is plain: name the goal, ask what sets the speed, then put your best effort there.",
+    "deepRead": "A bottleneck works like a narrow doorway in a busy hall. Ten people can hurry toward it, but only one can pass at a time. More running behind the doorway does not clear the doorway. It just makes the line louder.\n\nCarter and Bruno see the same delayed product plan. Carter adds polish to the slides, rewrites the agenda, and asks the team for more hustle. Bruno walks the work backward and finds the wait: one approval sits between the finished draft and the market test. Carter's work feels useful because it is visible. Bruno's work is useful because it touches the point that sets the speed.\n\nThe hard part is naming the real constraint instead of the most annoying one. It may be internal, like a missing skill, fear of prospecting, weak planning, or poor follow-through. It may be external, like a market, supplier, budget, staffing gap, or approval queue. The question is not, \"What bothers me?\" The question is, \"What is stopping the result from moving?\"\n\nA constraint is a work variable, not a moral verdict. If Maelle cannot make calls because she lacks a sales script, the skill gap is not a character flaw. It is the narrow point to train. Name the bottleneck without drama. Then reduce it with the next visible move: write the ask, practice the call, negotiate the approval, or redesign the handoff.",
+    "fullRead": "Vivian's first pass at the training board looks neat enough to fool her. The class has columns for goal, tasks, owner, and due date. A new learner asks why the last three projects still missed their dates. Vivian starts to point at the long task column, then stops at the blank approval column. The slowest-looking work was not setting the pace. The missing approval was.\n\nThis is where constraint thinking saves effort from becoming theater. A person can clear small tasks all day and still leave the system stuck. They answer messages, revise notes, and tidy files while the one blocked approval, weak skill, or market test sits untouched. Activity rises; capacity does not.\n\nThe Constraint audit has four parts: Name goal, Find limiting factor, Classify internal/external, Remove or reduce. The order matters. Start with the goal, because a bottleneck only makes sense in relation to a result. A supplier delay may be the constraint for shipping. A fear of asking for referrals may be the constraint for sales. A budget cap may be the constraint for hiring. Without the goal, every obstacle can pose as the main one.\n\nOnce the goal is named, ask which point controls pace. That question is sharper than asking what is hard. A hard task may be harmless today. A small approval may hold the whole line. A noisy market complaint may not matter if the true problem is that the offer is reaching the wrong buyers. The speed question keeps you from choosing the most dramatic problem instead of the strongest one.\n\nClassifying the constraint keeps blame honest. Internal constraints live in your own behavior or ability: a skill gap, fear, planning, follow-through. External constraints sit outside your direct control: market demand, an approval chain, a supplier, budget, or staffing. The type changes the next move. An internal skill gap calls for practice or help. An external approval gap calls for a request, a negotiation, or a redesigned path.\n\nAmelia uses this in a late message draft to Warren. The old draft says, \"We need more effort on every front.\" She deletes it and writes, \"The market test is waiting on one approval. Can you approve, decline, or name the missing condition by Friday?\" The new words do not solve the whole project. They press on the narrow point.\n\nConstraints also move. Once you reduce one bottleneck, the next narrow point can appear. A team may fix the approval queue and then discover the market message is weak. A person may learn the sales script and then find planning is the next drag. That is not failure. Removing one constraint raises the system's capacity, then shows the next place to improve.\n\nThe overcorrection is easy to miss. Constraint thinking curdles when it becomes a hunt for one grand villain behind every delay. Some work has several live risks. Some goals are still fuzzy. Some people use the word bottleneck to avoid ordinary chores that simply need doing. Warren can point at the market all week and still refuse to practice the call. The idea works only when it changes visible behavior. A named constraint should move a task, a sentence, a request, a practice block, or a decision. If nothing changes on the page or in the room, the bottleneck was only a label."
+  },
+  "examples": [
+    {
+      "exampleId": "eat-that-frog-ch12-ex01",
+      "sourceAnchorId": "ch12.ex.1",
+      "title": "Edmund's Bottleneck Memo",
+      "tags": [
+        "Theory of Constraints",
+        "bottleneck"
+      ],
+      "planSpec": {
+        "domain": "written bottleneck decision memo",
+        "audience": "Edmund, a project lead naming the narrowest point before adding effort",
+        "stakes": "More effort on non-bottlenecks keeps the whole system waiting at the same point.",
+        "format": "decision_memo",
+        "requiredBeat": "Use a written memo to show the Theory of Constraints and the bottleneck before action intensifies.",
+        "venue": "project memo",
+        "exemplar": "Theory of Constraints"
+      },
+      "scenario": "At the project table before the launch review, lead Edmund writes a memo with the subject line \"What sets the speed?\" Under Theory of Constraints, the system moves at its narrowest point. He lists five delays and circles one: the market test cannot start until a single approval clears. Edmund crosses out \"everyone try harder\" and writes, \"Bottleneck: approval queue.\"",
+      "whatToDo": "Edmund sends the memo with the bottleneck named. He moves slide polish below the approval request and asks for one clear approve, decline, or missing-condition reply.",
+      "whyItMatters": "The memo turns the Theory of Constraints into a decision rule. The system speeds up only when the narrowest point is reduced, not when nearby work looks busier."
+    },
+    {
+      "exampleId": "eat-that-frog-ch12-ex02",
+      "sourceAnchorId": "ch12.fact.8",
+      "title": "Carter and Bruno Split",
+      "tags": [
+        "internal constraint",
+        "external blame"
+      ],
+      "planSpec": {
+        "domain": "two responses to one slow sales goal",
+        "audience": "Carter and Bruno, peers reading the same missed target differently",
+        "stakes": "Outside blame can hide an internal bottleneck that needs practice.",
+        "format": "contrast",
+        "requiredBeat": "Give equal weight to one person blaming market conditions and another testing for an internal constraint.",
+        "venue": "sales review table",
+        "exemplar": ""
+      },
+      "scenario": "The sales review table has one number in red. Carter says the market is slow and spends the next hour improving the report font for the manager. Bruno opens the call log and sees twelve prospects never reached. He writes a first-call script before the next dialing block. One treats the market as the wall; one tests the skill gap.",
+      "whatToDo": "Carter keeps polishing around the miss, while Bruno names prospecting fear as a possible internal constraint and drafts the first sentence he will say on the call.",
+      "whyItMatters": "The split shows why external blame needs a check. A hard market may be real, but missed calls can still be the narrow point inside the person's behavior."
+    },
+    {
+      "exampleId": "eat-that-frog-ch12-ex03",
+      "sourceAnchorId": "ch12.ex.2",
+      "title": "Maelle's Skill Gap Talk",
+      "tags": [
+        "skill gap",
+        "planning"
+      ],
+      "planSpec": {
+        "domain": "peer coaching on a hidden internal constraint",
+        "audience": "Maelle, a coordinator blaming the schedule while avoiding follow-through",
+        "stakes": "A missing skill will keep setting the speed until it is named without shame.",
+        "format": "coach_talk",
+        "requiredBeat": "Use a mentor line to reframe an internal constraint as trainable work.",
+        "venue": "desk-side coaching conversation",
+        "exemplar": ""
+      },
+      "scenario": "At the desk-side review, coordinator Maelle keeps three unfinished follow-up notes open. \"The schedule keeps breaking,\" she says. Vivian does not argue about planning. She points to the blank replies and the weak follow-through behind them. \"A bottleneck is not an insult; it is the place training will pay.\" Maelle names the skill gap and writes the sentence she has been dodging.",
+      "whatToDo": "Maelle treats weak follow-through as a trainable internal constraint. She writes the reply first, then asks Vivian to review the wording before she sends it.",
+      "whyItMatters": "Calling the gap trainable keeps the work usable. The reader can admit a skill constraint without turning it into a verdict on character."
+    },
+    {
+      "exampleId": "eat-that-frog-ch12-ex04",
+      "sourceAnchorId": "ch12.concept",
+      "title": "Vivian's Narrow Door Class",
+      "tags": [
+        "constraint audit",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "training session on finding the limiting factor",
+        "audience": "Vivian, an instructor helping learners stop treating every obstacle as equal",
+        "stakes": "Learners waste effort if every obstacle receives the same attention.",
+        "format": "school_case",
+        "requiredBeat": "Use learner confusion to teach Name goal, Find limiting factor, Classify internal/external, Remove or reduce.",
+        "venue": "training room whiteboard",
+        "exemplar": "Theory of Constraints"
+      },
+      "scenario": "During the constraint audit drill in the training room, instructor Vivian draws a hallway on the whiteboard with one narrow door. A learner marks every obstacle with the same red pen: budget, staffing, supplier, skill gap. Vivian erases three marks and asks the class to name the goal first. Only then do they choose which doorway controls the line.",
+      "whatToDo": "Vivian makes the class run the Constraint audit in order: Name goal, Find limiting factor, Classify internal/external, Remove or reduce.",
+      "whyItMatters": "The class learns that equal-looking obstacles are not equal constraints. The goal decides which narrow point deserves the first fix."
+    },
+    {
+      "exampleId": "eat-that-frog-ch12-ex05",
+      "sourceAnchorId": "ch12.fact.6",
+      "title": "Amelia's Moving Constraint",
+      "tags": [
+        "constraint shift",
+        "capacity"
+      ],
+      "planSpec": {
+        "domain": "before and after after one bottleneck is reduced",
+        "audience": "Amelia, an operator checking whether the constraint changed",
+        "stakes": "A fixed old diagnosis can hide the new point that now sets the speed.",
+        "format": "before_after",
+        "requiredBeat": "Show the same process before and after one constraint improves, with the next bottleneck appearing.",
+        "venue": "supplier handoff board",
+        "exemplar": "Theory of Constraints"
+      },
+      "scenario": "On Monday, Amelia's supplier handoff board stalls at missing parts. She spends the day chasing parts and nothing else moves. By Thursday, the supplier lane is clear, yet orders still wait. Amelia traces the line again and finds the new choke point: staffing in final packing. The constraint moved after the first one improved.",
+      "whatToDo": "Amelia rechecks the flow instead of defending Monday's diagnosis. She names staffing as the new limiting factor and moves the next request there.",
+      "whyItMatters": "A solved bottleneck raises capacity and exposes the next one. The reader should keep asking what sets the speed now, not worship the first answer."
+    },
+    {
+      "exampleId": "eat-that-frog-ch12-ex06",
+      "sourceAnchorId": "ch12.ex.3",
+      "title": "Warren's Market Reply",
+      "tags": [
+        "external constraint",
+        "market"
+      ],
+      "planSpec": {
+        "domain": "dialogue about an external market constraint",
+        "audience": "Warren, a founder deciding whether the market or private effort is the choke point",
+        "stakes": "Outside limits require direct problem solving, not more private effort.",
+        "format": "dialogue",
+        "requiredBeat": "Let an external constraint emerge through a short exchange about market demand and approval.",
+        "venue": "late-night text exchange",
+        "exemplar": ""
+      },
+      "scenario": "In a late-night text thread, founder Warren types, \"Stay up and rewrite the plan?\" Amelia answers, \"Which part is blocked?\" Warren replies, \"Buyers like the offer. The market test needs approval.\" Amelia writes, \"Then the plan is not the bottleneck.\" The thread stays open while Warren rewrites one sentence.",
+      "whatToDo": "Warren stops adding private effort to the plan and writes the approval ask. He names the external constraint directly instead of treating it as a motivation problem.",
+      "whyItMatters": "Market and approval constraints need contact with the outside point. More private work can feel noble while the real external choke point remains untouched."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "eat-that-frog-ch12-q01",
+        "sourceAnchorId": "ch12.fact.1",
+        "prompt": "A project log shows one approval queue holds the launch while five other tasks move freely. What should Amelia infer first?",
+        "choices": [
+          "The whole team should add effort across every open task.",
+          "The free-moving tasks deserve polish before the queue is touched.",
+          "The approval queue is probably the dominant constraint right now."
+        ],
+        "correctIndex": 2,
+        "explanation": "One dominant constraint usually sets the pace. Extra effort on every task feels fair, but it leaves the launch waiting at the same queue.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch12-q02",
+        "sourceAnchorId": "ch12.fact.2",
+        "prompt": "Carter improves report formatting while the sales calls are still not being made. Which reading fits constraint thinking?",
+        "choices": [
+          "He is improving a non-constraint while the likely limiter stays in place.",
+          "He is reducing the key constraint because every obstacle needs equal care.",
+          "He is making broad progress because visible polish supports the whole goal."
+        ],
+        "correctIndex": 0,
+        "explanation": "Improving non-constraints brings little progress. The near miss is treating every obstacle as equal because the activity is visible.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch12-q03",
+        "sourceAnchorId": "ch12.fact.3",
+        "prompt": "At a sales review, Bruno sees two facts on the board: the call script is weak, and the market is slow. How should he sort the constraint?",
+        "choices": [
+          "He should assume the market is the constraint because outside limits are easier to see.",
+          "He should test whether the limiter is internal, external, or both before choosing the next move.",
+          "He should treat the call script as private motivation because constraints are mostly outside the person."
+        ],
+        "correctIndex": 1,
+        "explanation": "Constraints can be internal or external. Sorting the type matters because a skill gap needs practice, while a market block needs outside action.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch12-q04",
+        "sourceAnchorId": "ch12.fact.4",
+        "prompt": "A team wants to work late before anyone has named the bottleneck. Which response fits the bottleneck rule best?",
+        "choices": [
+          "They should start extra hours and discover the bottleneck through motion.",
+          "They should name the bottleneck before they add more effort.",
+          "They should split effort across all visible obstacles to stay fair."
+        ],
+        "correctIndex": 1,
+        "explanation": "The bottleneck should be named before effort intensifies. More motion first can bury the narrow point under busyness.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch12-q05",
+        "sourceAnchorId": "ch12.fact.5",
+        "prompt": "Maelle admits her follow-up skill is weak, though blaming the schedule feels easier. What should she notice?",
+        "choices": [
+          "An internal constraint may be harder to admit but still belongs in the work plan.",
+          "An internal constraint should be treated as a character flaw before it is trained.",
+          "An internal constraint matters less than schedule pressure because it is private."
+        ],
+        "correctIndex": 0,
+        "explanation": "Internal constraints are often harder to admit. Treat them as trainable work variables, not character flaws.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch12-q06",
+        "sourceAnchorId": "ch12.fact.6",
+        "prompt": "A supplier delay is fixed on Thursday, but orders still wait in packing. What should Amelia do next?",
+        "choices": [
+          "Keep treating the supplier as the constraint because it was the first diagnosis.",
+          "Trace the work again because the constraint can move after one point improves.",
+          "Stop the audit because removing one constraint finishes the whole problem."
+        ],
+        "correctIndex": 1,
+        "explanation": "A constraint can change after it improves. The first diagnosis is useful only while it still sets the speed.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch12-q07",
+        "sourceAnchorId": "ch12.fact.7",
+        "prompt": "Vivian sees one task taking the longest, but another small approval is holding the whole class project. Which question helps most?",
+        "choices": [
+          "Which task looks most difficult to the people doing the work?",
+          "Which task has been on the board for the most days?",
+          "Which point is setting the speed of the whole result?"
+        ],
+        "correctIndex": 2,
+        "explanation": "The speed question finds the limiter. The slowest-looking task can be a near miss if another point holds the whole result.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch12-q08",
+        "sourceAnchorId": "ch12.fact.8",
+        "prompt": "Two teammates blame the market after weak sales. One checks the missed calls; the other rewrites a market note. Which response better fits constraint thinking?",
+        "choices": [
+          "The market note fits because outside blame is usually accurate when conditions are hard.",
+          "Both fit equally because hard conditions make internal checks less useful.",
+          "The missed-call check fits because outside blame can hide an internal bottleneck."
+        ],
+        "correctIndex": 2,
+        "explanation": "Outside blame can be partly true and still hide an internal bottleneck. The missed calls are visible behavior to test.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch12-q09",
+        "sourceAnchorId": "ch12.fact.9",
+        "prompt": "Warren removes one approval block and the project starts moving faster, but a new staffing issue appears. How should he read that?",
+        "choices": [
+          "Removing a constraint raised capacity and revealed the next narrow point.",
+          "Removing a constraint should have finished the entire problem at once.",
+          "Removing a constraint mostly proved the old diagnosis was mistaken."
+        ],
+        "correctIndex": 0,
+        "explanation": "Reducing a constraint raises capacity. It does not finish every problem; it often makes the next bottleneck visible.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "eat-that-frog-ch12-card01",
+      "sourceAnchorId": "ch12.concept",
+      "front": "What is a key constraint in plain work language?",
+      "back": "It is the internal or external factor that most slows movement toward the goal. In a system, it is the narrow point that sets the speed for everything behind it.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "eat-that-frog-ch12-card02",
+      "sourceAnchorId": "ch12.ex.1",
+      "front": "Why does the Theory of Constraints warn against improving nearby non-bottlenecks first?",
+      "back": "A non-bottleneck can look useful while the real choke point still controls the result. Widening the easy part of the system does little if the narrowest point stays narrow.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch12-card03",
+      "sourceAnchorId": "ch12.concept",
+      "front": "What are the four moves in the Constraint audit?",
+      "back": "Name goal, Find limiting factor, Classify internal/external, and Remove or reduce. The order keeps the reader from treating every obstacle as equal.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch12-card04",
+      "sourceAnchorId": "ch12.fact.5",
+      "front": "Why can an internal constraint be harder to handle than an external one?",
+      "back": "It asks you to admit a skill gap, fear, weak planning, or poor follow-through. The useful move is to treat that as trainable work, not as a verdict on character.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "eat-that-frog-ch12-card05",
+      "sourceAnchorId": "ch12.concept",
+      "front": "How would role accountability (Ch 7) change the way you handle a bottleneck situation?",
+      "back": "Role accountability makes you ask which required output is weak before naming the bottleneck. It keeps the constraint tied to a real result area, not just to the task that feels loud.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Find the Speed Setter",
+    "coreSkill": "Practice finding the speed setter before adding effort. Name the goal, ask what is actually slowing the result, then mark the constraint as internal or external. The skill is useful only when it changes the next visible move.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch12.fact.4",
+        "context": "The first urge is to work harder across the whole list",
+        "plan": "If you want to add effort everywhere, then use Find the Speed Setter and write one sentence: The result is waiting on ____."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.5",
+        "context": "A missing skill or fear is easier to blame on conditions",
+        "plan": "If the outside story feels too neat, then use Find the Speed Setter and write the internal gap you would train first."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.3",
+        "context": "An approval, supplier, budget, or market gap blocks the work",
+        "plan": "If the narrow point sits outside your control, then use Find the Speed Setter and draft the exact ask, refusal, or condition request."
+      }
+    ],
+    "twentyFourHourChallenge": "Before you start your next work block, pre-write the actual sentence you will use: The speed is set by ____. Then move one digital note or paper task so that sentence is the first thing you see.",
+    "weeklyPractice": "For one week, tally each time you start work before naming the speed setter. At week's end, read the number and pick the one repeated trigger to change."
+  },
+  "memorableLines": [
+    {
+      "text": "Find the neck before you push the bottle.",
+      "location": "breakdown.fastRead",
+      "why": "It makes the bottleneck image easy to carry."
+    },
+    {
+      "text": "A constraint is a work variable, not a moral verdict.",
+      "location": "breakdown.deepRead",
+      "why": "It keeps internal constraints trainable instead of shaming."
+    },
+    {
+      "text": "Activity rises; capacity does not.",
+      "location": "breakdown.fullRead",
+      "why": "It warns against busy work around the bottleneck."
+    }
+  ]
+}

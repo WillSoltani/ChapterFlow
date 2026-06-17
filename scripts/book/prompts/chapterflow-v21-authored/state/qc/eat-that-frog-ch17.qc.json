@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "eat-that-frog",
+  "chapterNumber": 17,
+  "chapterId": "eat-that-frog-ch17",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "2a70a364d102cf12",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:auto:r20260617112415-02b7ae",
+  "reviewedAt": "2026-06-17T11:53:10.715Z",
+  "reviewerSessionId": "qc-finalize-20260617112415-02b7ae",
+  "roundId": "r20260617112415-02b7ae",
+  "roundRole": "confirm",
+  "dimensions": {
+    "sourceV2": true,
+    "shipGate": true,
+    "bookGate": true,
+    "sweepClean": true,
+    "keysCorrect": true,
+    "barGreen": true,
+    "confirmPassed": true,
+    "noOpenRepairFindings": true
+  },
+  "evidence": {
+    "orchestratorRoundId": "r20260617112415-02b7ae",
+    "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/evidence-matrix.json",
+    "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog-ch17.manual-keyjudge.json",
+    "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog.sweep.json",
+    "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/submissions/bar/ch17.bar-read.json",
+    "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/submissions/confirm/ch17.confirm-read.json",
+    "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/repair-ledger.jsonl",
+    "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617112415-02b7ae/repair-brief.md"
+  },
+  "findings": [],
+  "notes": "qc-orchestrator finalize: PUBLISHABLE; Adversarial confirm read of chapter 17 found the bar PASS defensible: the focus lesson matches all source facts, examples are coherent, quiz answers align with both key reads, action steps are usable, and no corruption or blocking defect appears.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "eat-that-frog",
+      "chapterNumber": 17,
+      "chapterId": "eat-that-frog-ch17",
+      "verdict": "REVISE",
+      "contentHash": "f54640a32b7caa74",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:auto:r20260617100532-d30d83",
+      "reviewedAt": "2026-06-17T10:24:22.313Z",
+      "reviewerSessionId": "qc-parent-collect-20260617072402",
+      "roundId": "r20260617100532-d30d83",
+      "roundRole": "attest",
+      "dimensions": {
+        "sourceV2": true,
+        "shipGate": true,
+        "bookGate": true,
+        "sweepClean": true,
+        "keysCorrect": true,
+        "barGreen": false,
+        "confirmPassed": false,
+        "noOpenRepairFindings": false
+      },
+      "evidence": {
+        "orchestratorRoundId": "r20260617100532-d30d83",
+        "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617100532-d30d83/evidence-matrix.json",
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog-ch17.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/eat-that-frog.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617100532-d30d83/submissions/bar/ch17.bar-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617100532-d30d83/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617100532-d30d83/repair-brief.md"
+      },
+      "findings": [
+        "major qcf-076df7d4b3425d3b eat-that-frog-ch17-card06: The card front asks for a comparison between frictionless start and attention protection, but the back only explains attention protection; it does not directly answer which matters more or resolve the comparison."
+      ],
+      "notes": "qc-orchestrator finalize: REVISE; one or more current major findings are unresolved or not round-backed"
+    }
+  ]
+}

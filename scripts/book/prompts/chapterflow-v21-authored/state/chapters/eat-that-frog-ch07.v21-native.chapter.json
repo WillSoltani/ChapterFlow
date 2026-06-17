@@ -1,0 +1,359 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "eat-that-frog-ch07",
+  "number": 7,
+  "title": "Focus on key result areas",
+  "readingTimeMinutes": 8,
+  "hook": "7 lines in my job description once fooled me: one weak line still ran the whole role.",
+  "counterintuition": "Why does one weak result area matter more than a stack of finished tasks? Because your role is judged by required outputs, not by how busy the day looked.",
+  "tryThisNow": "During your first coffee, take 10 minutes to write one line: \"Today I remove ___ so I can improve ___, my weakest key result area.\"",
+  "keyTakeaway": "Name the few outputs your role is paid for, rate yourself in each one, and improve the weakest high-consequence area first.",
+  "breakdown": {
+    "fastRead": "Yves has a job description on his desk and a full inbox behind it. The page lists outputs, not moods: reports delivered, calls handled, client issues closed, numbers checked. He has been treating the day like a pile of tasks. The page makes a sharper claim. A role is a handful of promises.\n\nKey result areas are the few outputs your job is paid to produce. If one is weak, the rest cannot hide it for long. The weak area sets the ceiling. Busyness is not proof of output. Rate the promise, not the noise.",
+    "deepRead": "The mechanism is simple: a clear output gives effort a place to land. Without that place, a person can answer messages all morning and still miss the result that counts. With it, each task has to answer a plain test: which required output does this serve?\n\nDelphine brings her manager Beckett a list of activities. Beckett circles only three lines: monthly close, client renewals, and error-free handoffs. \"These are the places your role has to work,\" he says. \"Everything else is support.\" Delphine does not leave with more pressure. She leaves with fewer places to look.\n\nThe next step is honest rating. A vague self-view lets comfort edit the story. A score beside each area is harder to dodge. If client renewals are strong, handoffs are fair, and monthly close is poor, the weak area has named itself. One low required output can cap the whole role.\n\nThat is why avoidance often hides inside useful work. Fabrice can improve a slide deck, clear a folder, and help a teammate. All three may be decent tasks. But if his weakest result area is error-free handoffs, those tasks become a polite detour. The frog is often the area you least want to rate.\n\nThe scorecard makes the dodge visible. One neglected output can hold the role down. Judge the required result before you judge the busy day.",
+    "fullRead": "A manager conversation is where the scorecard becomes practical. You may think the key result areas are obvious. Your manager may be judging a different set of outputs. If those two lists do not match, a person can work hard all week and land outside the scorecard.\n\nSo ask directly. Not with a long speech, and not with a plea for praise. Bring the job description, bring your draft scorecard, and ask which outputs matter most. A clean question can save months of well-meant activity. \"Which results define success here?\" is better than guessing from the last five requests.\n\nWallace writes that question at the top of a one-page memo before a review. Under it he lists four result areas: renewal calls closed, service errors resolved, reports sent on time, and handoffs documented. The memo is plain enough to argue with. That is its power. A hidden expectation cannot be improved. A written one can.\n\nOnce the areas are named, the priority rule changes. A task tied to a key result beats unrelated activity, even when the unrelated activity is easier, friendlier, or more visible. A short handoff note may outrank a long internal thread. A hard renewal call may outrank a tidy archive. The work does not become important because it feels heavy. It becomes important because it serves a required output.\n\nThe first improvement should usually go to the weakest high-consequence area. That does not mean you ignore strengths. It means you stop using strengths as cover. If Tristan is great with clients but sloppy with handoffs, more client charm will not fix the dropped handoff. If Manon writes clean reports but avoids renewal calls, a better report template will not close the renewal gap.\n\nDo not confuse this with self-blame. A low score is information. It tells you where the next skill, checklist, conversation, or practice block belongs. The aim is not to feel bad about the weak area. The aim is to stop letting it quietly decide the ceiling.\n\nWhere this breaks is real emergency work. If a server is down, a client is in danger, or payroll is wrong today, the immediate incident may outrank the neat scorecard for a while. Key result areas help you choose normal work and improvement work. They cannot replace judgment when urgent harm is already on the table.\n\nAfter the fire is handled, come back to the page. Name outputs. Rate each one. Ask the manager to correct the list. Then subtract one low-value demand so the weak required output gets attention. The job description stops being a drawer document and becomes a daily test."
+  },
+  "examples": [
+    {
+      "exampleId": "eat-that-frog-ch07-ex01",
+      "sourceAnchorId": "ch07.ex.1",
+      "title": "Yves's Scorecard Page",
+      "tags": [
+        "job description",
+        "scorecard"
+      ],
+      "planSpec": {
+        "domain": "job description as scorecard",
+        "audience": "Yves, an operations analyst turning a role into required outputs",
+        "stakes": "A loose task list can hide whether the role is producing the essential outputs.",
+        "format": "vignette",
+        "requiredBeat": "Show a job description becoming a scorecard of essential outputs rather than a loose activity list.",
+        "venue": "desk with a marked job description",
+        "exemplar": ""
+      },
+      "scenario": "A coffee ring touches the corner of Yves's job description. He runs a finger down the verbs: prepare, close, check, hand off. The inbox is open behind the page, but the paper is quieter and stricter. Four boxes become a scorecard of essential outputs. The loose activity pile on his notepad suddenly looks less like a job and more like noise around it.",
+      "whatToDo": "Yves rewrites the job description as four required outputs. He gives each one a score instead of judging the day by how many tasks he touched.",
+      "whyItMatters": "The scorecard turns a role into visible responsibility. Once the outputs are named, busy activity has to prove which result it serves."
+    },
+    {
+      "exampleId": "eat-that-frog-ch07-ex02",
+      "sourceAnchorId": "ch07.ex.3",
+      "title": "Delphine's Manager List",
+      "tags": [
+        "manager",
+        "clarification"
+      ],
+      "planSpec": {
+        "domain": "manager clarification conversation",
+        "audience": "Delphine, a team member checking success criteria with Beckett",
+        "stakes": "Effort can drift if manager expectations are inferred from routine requests.",
+        "format": "dialogue",
+        "requiredBeat": "Let manager clarification define the most important results through the exchange.",
+        "venue": "manager one-on-one",
+        "exemplar": ""
+      },
+      "scenario": "Delphine sets her activity list on the small table after the Monday one-on-one agenda opens. Beckett slides it aside and taps her draft scorecard. \"Which success criteria do you think shape your evaluation?\" \"Fast replies, clean handoffs, and renewal calls.\" \"Close,\" Beckett says. \"Renewal calls, clean handoffs, then fast replies.\" Delphine makes the clarification before either of them talks about effort.",
+      "whatToDo": "Delphine asks Beckett to rank the success criteria directly. She edits the scorecard while the manager can still correct it.",
+      "whyItMatters": "A direct manager question prevents private guessing. The role gets judged by agreed outputs instead of whatever recent request felt loudest."
+    },
+    {
+      "exampleId": "eat-that-frog-ch07-ex03",
+      "sourceAnchorId": "ch07.ex.2",
+      "title": "Fabrice Finds The Gap",
+      "tags": [
+        "weakest area",
+        "rating"
+      ],
+      "planSpec": {
+        "domain": "weakest key result area recovery",
+        "audience": "Fabrice, a coordinator noticing his own low score midweek",
+        "stakes": "Several strong areas can hide the one required output that caps performance.",
+        "format": "mistake_recovery",
+        "requiredBeat": "Show the protagonist noticing his own error and correcting course toward the weakest required area.",
+        "venue": "midweek handoff review",
+        "exemplar": ""
+      },
+      "scenario": "Fabrice is halfway through polishing a status deck when the handoff log on his desk catches him. Three clean client notes, two tidy reports, and one late handoff. He had called the week productive because the visible work looked good. The low score marks the weakest area, the required output that can set his performance ceiling. He closes the deck and writes the missing handoff first.",
+      "whatToDo": "Fabrice stops protecting the strong areas. He rates each key result, sees the weak handoff score, and moves the next block to that output.",
+      "whyItMatters": "The moment of noticing matters more than the cleanup. A weak required output can cap the whole role even when other work looks polished."
+    },
+    {
+      "exampleId": "eat-that-frog-ch07-ex04",
+      "sourceAnchorId": "ch07.fact.8",
+      "title": "Wallace's One-Page Memo",
+      "tags": [
+        "measurable responsibility",
+        "memo"
+      ],
+      "planSpec": {
+        "domain": "decision memo for key result areas",
+        "audience": "Wallace, a service lead making role accountability measurable",
+        "stakes": "Informal responsibility can stay fuzzy unless outputs are written clearly.",
+        "format": "decision_memo",
+        "requiredBeat": "Use a written artifact to carry the scene and show measurable responsibility.",
+        "venue": "one-page role memo",
+        "exemplar": ""
+      },
+      "scenario": "Wallace's memo to his manager begins: \"Subject: my four key result areas. 1. Resolve service errors within the agreed window. 2. Send reports on time. 3. Document handoffs before close. 4. Return renewal calls before the queue ages. I will rate each Friday. Please mark any missing output before I build next week's list.\"",
+      "whatToDo": "Wallace writes the result areas as a memo and asks for correction. He turns informal responsibility into outputs that can be rated.",
+      "whyItMatters": "A written scorecard can be checked. Informal responsibility feels flexible, but it often hides the very output that needs practice."
+    },
+    {
+      "exampleId": "eat-that-frog-ch07-ex05",
+      "sourceAnchorId": "ch07.fact.5",
+      "title": "Tristan And Manon Split",
+      "tags": [
+        "key result",
+        "activity"
+      ],
+      "planSpec": {
+        "domain": "activity versus output contrast",
+        "audience": "Tristan and Manon, two team leads sorting the same work queue",
+        "stakes": "Job-related activity can crowd out a task tied to a key result.",
+        "format": "contrast",
+        "requiredBeat": "Show two people approaching one queue in opposite ways with different outcomes.",
+        "venue": "shared work queue",
+        "exemplar": ""
+      },
+      "scenario": "At the customer-success desk before the noon queue review, Tristan opens the shared renewal board. He clears six internal comments because each one is job-related and easy to close. Manon, the other team lead, starts with two renewal calls because renewals are a key result area on her scorecard. By noon, Tristan has more check marks. Manon has protected the output the role is paid to produce.",
+      "whatToDo": "Manon ranks the work by the key result it serves. Tristan counts related activity, while Manon gives the first block to the required output.",
+      "whyItMatters": "Both approaches look responsible from a distance. The difference is whether the task serves a key result or merely belongs somewhere near the job."
+    },
+    {
+      "exampleId": "eat-that-frog-ch07-ex06",
+      "sourceAnchorId": "ch07.fact.6",
+      "title": "Beckett's Weak-Area Line",
+      "tags": [
+        "weakest area",
+        "improvement"
+      ],
+      "planSpec": {
+        "domain": "coach talk on the first constraint",
+        "audience": "Beckett, a manager coaching a stuck employee after ratings",
+        "stakes": "A person may build strengths while the weakest high-consequence area keeps setting the ceiling.",
+        "format": "coach_talk",
+        "requiredBeat": "Use a mentor reframe to make the weakest high-consequence area the first improvement target.",
+        "venue": "ratings conversation",
+        "exemplar": ""
+      },
+      "scenario": "In a Thursday ratings conversation beside the handoff report, the employee says, \"My strongest area is client rapport.\" Beckett, the manager, nods at the ratings page. \"Good. But your lowest score is handoff accuracy, and that is where work breaks.\" The employee asks if he should spend the month deepening rapport. Beckett says, \"Improve the first constraint, or your strengths keep working for a ceiling.\"",
+      "whatToDo": "Beckett points to the weakest high-consequence score and makes it the first practice target. He does not let a strength become cover for the gap.",
+      "whyItMatters": "The reframe keeps improvement from becoming comfort. Building a strength is useful, but the weak required output usually deserves the first repair."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "eat-that-frog-ch07-q01",
+        "sourceAnchorId": "ch07.fact.1",
+        "prompt": "Two employees study the same job description. One turns it into required outputs; the other makes a longer task list. Which reading fits the idea?",
+        "choices": [
+          "The output list fits because a role has a limited number of key result areas.",
+          "The longer task list fits because a role is best understood as all visible work.",
+          "The mixed list fits because activity and output should be judged together."
+        ],
+        "correctIndex": 0,
+        "explanation": "The source fact says every role has a limited number of key result areas. A long task list may feel complete, but it can hide the required outputs.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch07-q02",
+        "sourceAnchorId": "ch07.fact.2",
+        "prompt": "A weekly note shows strong effort overall, with ten tasks completed and two extra meetings handled, but no score beside handoffs, renewals, or reports. What is missing first?",
+        "choices": [
+          "A single effort score that captures the whole week.",
+          "A longer description of the tasks completed each day.",
+          "A rating in each key result area, not just an effort summary."
+        ],
+        "correctIndex": 2,
+        "explanation": "Performance should be rated in each key result area. Overall effort can be sincere and still miss the category-specific weak spot.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch07-q03",
+        "sourceAnchorId": "ch07.fact.3",
+        "prompt": "A scorecard shows four strong areas and one weak required area, and the weak area is part of the role's evaluated work. How should that weak score be read?",
+        "choices": [
+          "The strong areas fully offset the one weak required area.",
+          "The weak area can cap the role even when other scores are strong.",
+          "The weak area matters only after every strength has stopped improving."
+        ],
+        "correctIndex": 1,
+        "explanation": "The weakest key area can limit the whole role. Strong areas help, but they do not fully cancel a weak required output.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch07-q04",
+        "sourceAnchorId": "ch07.fact.4",
+        "prompt": "A worker is guessing priorities from the last few requests a manager sent. What would fit the manager-clarification move better?",
+        "choices": [
+          "Ask the manager directly which results define success.",
+          "Infer the priorities from the requests that arrived most recently.",
+          "Treat every manager request as equal until the next review."
+        ],
+        "correctIndex": 0,
+        "explanation": "Manager expectations should be clarified directly. Recent requests may be urgent or casual, but they are not a reliable map of key result areas.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch07-q05",
+        "sourceAnchorId": "ch07.fact.5",
+        "prompt": "Two tasks are both job-related before the first work block. One serves a key result area; the other is easier, faster, and more visible. Which should lead?",
+        "choices": [
+          "The task tied to the key result should lead because it serves a required output.",
+          "The easier task should lead because visible progress can build useful momentum.",
+          "The job-related task that arrived first should lead because order keeps work fair."
+        ],
+        "correctIndex": 0,
+        "explanation": "A task tied to a key result outranks unrelated activity. The near miss is treating any job-related activity as equal progress.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch07-q06",
+        "sourceAnchorId": "ch07.fact.6",
+        "prompt": "After ratings, one person wants to spend the month improving an already strong area. Which response fits the weakest-area rule?",
+        "choices": [
+          "Keep building the strength because it seems like the clearest gain this month.",
+          "Split the month evenly so no area receives more attention than another.",
+          "Improve the weakest high-consequence area before deepening a comfortable strength."
+        ],
+        "correctIndex": 2,
+        "explanation": "Improvement should focus on the weakest high-consequence area first. Building a strength can be useful, but it may leave the ceiling unchanged.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch07-q07",
+        "sourceAnchorId": "ch07.fact.7",
+        "prompt": "A log shows twelve actions completed, but no client issue closed, report sent, or handoff documented. What should the reader infer?",
+        "choices": [
+          "The actions prove output because the person stayed active.",
+          "The activity may not equal output because required results are missing.",
+          "The output should be assumed because a long list shows effort."
+        ],
+        "correctIndex": 1,
+        "explanation": "Activities are not the same as outputs. A busy log can be real work and still fail to produce the result the role is paid for.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch07-q08",
+        "sourceAnchorId": "ch07.fact.8",
+        "prompt": "One team keeps responsibility informal; another writes the key outputs and rates them weekly. What changes in the second team?",
+        "choices": [
+          "Responsibility stays informal but feels easier to discuss.",
+          "Responsibility becomes broader because more tasks fit the role.",
+          "Responsibility becomes measurable because outputs are named and rated."
+        ],
+        "correctIndex": 2,
+        "explanation": "Key result areas turn work into measurable responsibility. Informal responsibility can sound flexible while leaving the real output fuzzy.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch07-q09",
+        "sourceAnchorId": "ch07.fact.9",
+        "prompt": "Someone keeps choosing tidy tasks while delaying the weak result area. Which diagnosis best matches the source fact?",
+        "choices": [
+          "The delay mainly shows a fixed personality trait around hard work.",
+          "The delay is a priority issue because the weak area is being avoided.",
+          "The delay is harmless if the tidy tasks are still part of the job."
+        ],
+        "correctIndex": 1,
+        "explanation": "Avoiding a weak area is a common form of procrastination. Treat it as a priority issue, not a fixed personality problem.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "eat-that-frog-ch07-card01",
+      "sourceAnchorId": "ch07.concept",
+      "front": "What is a key result area in plain words?",
+      "back": "A key result area is one of the few outputs your role is paid to produce. It is not a mood, a task pile, or a wish; it is a result you can name and rate.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "eat-that-frog-ch07-card02",
+      "sourceAnchorId": "ch07.ex.1",
+      "front": "How does a job description become a useful scorecard?",
+      "back": "Rewrite it as required outputs, then rate yourself beside each one. The page stops describing duties and starts showing whether the role is working.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch07-card03",
+      "sourceAnchorId": "ch07.fact.3",
+      "front": "Why can one weak key result area matter so much?",
+      "back": "A weak required output can set the ceiling for the role. Strong areas still help, but they do not fully erase the place where performance breaks.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch07-card04",
+      "sourceAnchorId": "ch07.fact.4",
+      "front": "What should you ask a manager before trusting your own scorecard?",
+      "back": "Ask which results define success in the role. Direct clarification beats guessing from recent requests, praise, or the tasks that happen to be loud.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch07-card05",
+      "sourceAnchorId": "ch07.fact.6",
+      "front": "What is the first repair target after you rate the scorecard?",
+      "back": "Start with the weakest high-consequence result area. That is where one focused skill, checklist, or practice block is most likely to lift the whole role.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "eat-that-frog-ch07-card06",
+      "sourceAnchorId": "ch07.concept",
+      "front": "In one sentence, how does written result (Ch 1) connect to role accountability here?",
+      "back": "The written result from Ch 1 names the target; key result areas break your role into the few outputs that prove whether your daily work is hitting it.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Build The Role Scorecard",
+    "coreSkill": "Practice turning your role into a short scorecard of required outputs. Build The Role Scorecard by naming the key result areas, rating each one honestly, and giving the first improvement block to the weakest high-consequence area.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch07.fact.4",
+        "context": "Your list of key result areas is still a guess",
+        "plan": "If the scorecard is based on guesses, then ask your manager which outputs define success before you rank tomorrow's work."
+      },
+      {
+        "sourceAnchorId": "ch07.fact.5",
+        "context": "An easy task competes with a task tied to a key result",
+        "plan": "If both tasks look job-related, then choose the one tied to the key result before the easier visible activity."
+      },
+      {
+        "sourceAnchorId": "ch07.fact.6",
+        "context": "Your strongest area is asking for more practice",
+        "plan": "If a strength is pulling attention from the weak high-consequence area, then subtract one comfort task and practice the weak output first."
+      }
+    ],
+    "twentyFourHourChallenge": "In the next 24 hours, during your first coffee or first commute pause, write one line: \"I will remove ___ today so my weakest key result area, ___, gets the first serious block.\"",
+    "weeklyPractice": "For five workdays, keep a daily Role Scorecard log with three columns: key result served, weakest area touched, and one low-value demand removed. Review the column that stayed blank."
+  },
+  "memorableLines": [
+    {
+      "text": "A role is a handful of promises.",
+      "location": "breakdown.fastRead",
+      "why": "It turns the job description into a short set of required outputs."
+    },
+    {
+      "text": "The weak area sets the ceiling.",
+      "location": "breakdown.fastRead",
+      "why": "It names why the weakest key result area deserves first attention."
+    },
+    {
+      "text": "Rate the promise, not the noise.",
+      "location": "breakdown.fastRead",
+      "why": "It keeps the reader from mistaking activity for output."
+    }
+  ]
+}

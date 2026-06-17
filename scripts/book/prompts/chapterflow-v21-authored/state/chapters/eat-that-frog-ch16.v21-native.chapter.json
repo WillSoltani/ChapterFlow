@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "eat-that-frog-ch16",
+  "number": 16,
+  "title": "Technology is a wonderful servant",
+  "readingTimeMinutes": 9,
+  "hook": "Is the device in your hand running your priorities, or running its own notifications?",
+  "counterintuition": "Servant tools have teeth: the same screen can scatter a morning and protect the work that matters. The difference is the job you give it before it starts talking back.",
+  "tryThisNow": "Before you send your next reply, spend 10 minutes reviewing one recent tool miss and write one line: This tool should serve ____ by ____.",
+  "keyTakeaway": "Make each tool pass the servant test: Define objective, Choose tool, Reduce friction, and Measure output before novelty steals the work.",
+  "breakdown": {
+    "fastRead": "William's calendar flashes while the hard proposal is still open. The alert is not there to make him feel busy. It guards a priority appointment, the block where the frog gets first claim on his mind. A reminder can either pull him toward noise or back to the work he chose.\n\nTools should earn their keep. Technology serves when it automates, organizes, teaches, reminds, or carries a message toward a chosen result. It fails when it becomes a second task made of settings and feeds. The Servant technology test is plain: Define objective, Choose tool, Reduce friction, Measure output. If the tool does not help the frog move, it is not serving yet.",
+    "deepRead": "A tool becomes useful when it removes a small drag from important work. The drag might be memory, setup, weak skill, repeated typing, or a message that needs to be clear before it leaves the screen. A calendar can hold a priority appointment. An online course can close a skill gap. A template can spare the mind from rebuilding the same low-judgment step again.\n\nYann sees this at his course desk with an online course paused beside an unfinished report. He does not browse the course catalog for a pleasant lesson. He writes the gap first: weak chart labels slow every weekly report. Then he searches for the shortest lesson on clear chart titles and practices on the next graph. The course earns its place because it helps one real file improve.\n\nServant technology starts with control. Define objective means name the result before the tool chooses the room. Choose tool means pick the smallest device, app, course, template, alarm, or search that fits that result. Reduce friction means make the next good step easier to start. Measure output means check whether the work moved, not whether the tool felt new.\n\nNovelty is not output. A shiny app can make the day feel modern while the frog still waits. A dull calendar block can be more valuable than a new dashboard if it protects the first hour of real work.",
+    "fullRead": "Rachel's monthly report shipped early only after the team looked backward at the evidence. The finished file had fewer copy errors, fewer late replies, and no missing chart labels. The cause was not a burst of willpower. Two weeks earlier, Rachel had turned the repeated header, chart note, and closing paragraph into a template. The keyboard shortcut did not do the thinking. It kept the low-judgment setup from eating the thinking.\n\nThat is the best place for automation: repeated steps that waste attention but do not need fresh judgment. A template can hold the report frame. A shortcut can paste the same meeting link. A calendar reminder can guard the priority appointment. These tools are not the frog. They clear the mud around the frog.\n\nThe danger is making the tool the hero. Nancy catches herself halfway through a settings tour for a new task app. The proposal file is closed. The app has eight color choices open. She notices the swap: she has traded the high-value task for a neat control panel. She closes the settings, opens the proposal, and writes the first rough paragraph. Let the task choose the tool.\n\nCommunication needs the same rule. Hailey's draft reply has three links, two updates, and one vague request. Before sending, she writes a line above the draft: \"Purpose: get one approval by Friday.\" That line cuts the reply in half. More messages would not help. A purposeful message has a job. It should make the next action easier for the person reading it.\n\nThe Servant technology test keeps the order straight. Define objective before picking the app. Choose tool after the result is clear. Reduce friction by removing a repeat step, a memory load, or a skill gap. Measure output by checking the visible work: the protected appointment happened, the chart improved, the report shipped, the reply got a clear answer.\n\nBryce and Brandon show the split. Bryce opens every new writing tool his feed recommends and ends the day with a tidy setup but no draft. Brandon keeps one plain template for recurring proposals, one calendar block for the first draft, and one search note for the skill he is missing. Bryce has more tools. Brandon has more output.\n\nDo the opposite when the work needs human judgment, care, or direct talk. Do not automate a hard apology, a sensitive choice, or a question that needs a real conversation. In those moments, the servant tool may be a blank page that helps you write one honest sentence before you speak. The screen is useful only while it stays under the work."
+  },
+  "examples": [
+    {
+      "exampleId": "eat-that-frog-ch16-ex01",
+      "sourceAnchorId": "ch16.ex.1",
+      "title": "William's Calendar Restart",
+      "tags": [
+        "calendar",
+        "reminders",
+        "priority appointment"
+      ],
+      "planSpec": {
+        "domain": "calendar reset before priority work",
+        "audience": "William, a manager whose morning reminder interrupts a message habit",
+        "stakes": "A reminder can defend attention or add more noise, depending on the objective behind it.",
+        "format": "reset_moment",
+        "requiredBeat": "A routine gets interrupted and restarts around the Calendar and reminder system.",
+        "venue": "calendar alert",
+        "exemplar": ""
+      },
+      "scenario": "William's cursor is already inside a message reply when the Calendar and reminder system slides a priority appointment onto his lock screen. He stops before typing the first word. The old routine would clear messages until the proposal felt too late. He closes the inbox, opens the proposal file, and restarts the morning with the calendar guarding the frog.",
+      "whatToDo": "William treats the calendar alert as a command to protect the priority appointment. He closes the reply and opens the hard file before the message thread can set the hour.",
+      "whyItMatters": "The pause shows the servant rule in motion. A reminder helps only when it sends attention back to the chosen objective instead of adding one more signal."
+    },
+    {
+      "exampleId": "eat-that-frog-ch16-ex02",
+      "sourceAnchorId": "ch16.ex.2",
+      "title": "Yann's Course Notebook",
+      "tags": [
+        "online courses",
+        "search tools",
+        "skill gap"
+      ],
+      "planSpec": {
+        "domain": "targeted online learning for a report skill",
+        "audience": "Yann, an analyst using a course to improve one weak report move",
+        "stakes": "Learning becomes useful only when it is matched to a real performance gap.",
+        "format": "vignette",
+        "requiredBeat": "One small lived moment shows the Online learning tool tied to a performance gap.",
+        "venue": "course desk",
+        "exemplar": ""
+      },
+      "scenario": "Yann's course desk holds a laptop, a chipped mug, and one page labeled \"chart titles.\" The Online learning tool is paused at minute six. He skips broad online courses and audio programs, uses search tools for short labels, and returns to the report. No grand plan appears. The lesson meets one performance gap.",
+      "whatToDo": "Yann names the exact skill gap before learning. He watches only the lesson that helps the next chart title and applies it to the report in front of him.",
+      "whyItMatters": "The detail keeps online learning from becoming browsing. A course serves when it builds a skill needed for execution, not when it fills a quiet hour."
+    },
+    {
+      "exampleId": "eat-that-frog-ch16-ex03",
+      "sourceAnchorId": "ch16.ex.3",
+      "title": "Rachel's Template Evidence",
+      "tags": [
+        "templates",
+        "automation",
+        "recurring work"
+      ],
+      "planSpec": {
+        "domain": "report postmortem after a template change",
+        "audience": "Rachel, a team lead reviewing why a recurring report improved",
+        "stakes": "Automation should reduce repeated setup without replacing judgment.",
+        "format": "postmortem",
+        "requiredBeat": "Open after the outcome and reconstruct how Template and automation mattered.",
+        "venue": "monthly report review",
+        "exemplar": ""
+      },
+      "scenario": "Rachel's monthly report is already sent when the review begins. The evidence sits in the change log: fewer copied headers, one keyboard shortcut for the standard note, and a Template and automation file for the recurring work. The cleaner result came from removing repeated setup, not from asking the team to think less.",
+      "whatToDo": "Rachel keeps the template for repeatable parts and leaves the analysis open for judgment. She uses the shortcut only where the step is low-judgment and repeated.",
+      "whyItMatters": "The postmortem marks the right target for automation. Repetition can be trimmed so attention is saved for the work that still needs thought."
+    },
+    {
+      "exampleId": "eat-that-frog-ch16-ex04",
+      "sourceAnchorId": "ch16.concept",
+      "title": "Nancy Catches the Settings Swap",
+      "tags": [
+        "purposeful tool use",
+        "user control"
+      ],
+      "planSpec": {
+        "domain": "recovering from a tool setup detour",
+        "audience": "Nancy, a designer noticing that tool setup has replaced the hard task",
+        "stakes": "A powerful tool can steal control when the objective is not named first.",
+        "format": "mistake_recovery",
+        "requiredBeat": "Nancy notices her own error mid-stream and returns to purposeful tool use.",
+        "venue": "design desk",
+        "exemplar": ""
+      },
+      "scenario": "Nancy has the proposal closed and the task app open to color settings. The mistake lands when she sees the blank document behind the window. Purposeful tool use was supposed to support the high-value task, yet the tool has become the task. She closes the settings panel and writes the first rough paragraph.",
+      "whatToDo": "Nancy names the swap out loud: the tool is not the output. She reopens the proposal and uses the app only to hold the next work block.",
+      "whyItMatters": "The noticing matters more than the fix. A reader can catch the moment a tool starts asking for service and put the objective back in charge."
+    },
+    {
+      "exampleId": "eat-that-frog-ch16-ex05",
+      "sourceAnchorId": "ch16.fact.8",
+      "title": "Hailey's Reply Memo",
+      "tags": [
+        "communication",
+        "objective",
+        "output"
+      ],
+      "planSpec": {
+        "domain": "written note before a work reply",
+        "audience": "Hailey, a coordinator making a message serve one result",
+        "stakes": "More communication can hide the one response the work needs.",
+        "format": "decision_memo",
+        "requiredBeat": "A written artifact carries the scene and shows purposeful communication.",
+        "venue": "draft reply",
+        "exemplar": ""
+      },
+      "scenario": "Hailey's unsent reply sits beside a calendar block labeled \"highest-value task.\" Her small memo uses the Servant technology test: \"Objective: get one approval by Friday. Tool: short email. Output: yes, no, or missing condition.\" The draft below it shrinks from five paragraphs to six clear lines. The technology can carry the message, but the memo gives it a job.",
+      "whatToDo": "Hailey writes the objective line before sending. She cuts any link, aside, or update that does not help the reader give the needed approval.",
+      "whyItMatters": "The memo turns communication into servant technology. A message serves when it moves one clear response, not when it proves the sender worked hard."
+    },
+    {
+      "exampleId": "eat-that-frog-ch16-ex06",
+      "sourceAnchorId": "ch16.concept",
+      "title": "Bryce and Brandon Split",
+      "tags": [
+        "servant technology test",
+        "output"
+      ],
+      "planSpec": {
+        "domain": "two writers choosing tools for recurring proposals",
+        "audience": "Bryce and Brandon, peers taking opposite approaches to writing tools",
+        "stakes": "Novelty can feel productive while a plain system protects the actual output.",
+        "format": "contrast",
+        "requiredBeat": "Two named people approach one tool choice in opposite ways and outcomes diverge.",
+        "venue": "proposal week",
+        "exemplar": ""
+      },
+      "scenario": "By Friday, Bryce has tried three writing apps, a fresh dashboard, and a new automation menu. His proposal has a title and little else. Brandon works from the Servant technology test: Define objective, Choose tool, Reduce friction, Measure output. He keeps one template, one calendar block, and one finished draft.",
+      "whatToDo": "Bryce chases the tool stack, while Brandon lets the objective choose the tool. Brandon measures the draft produced, not the number of features explored.",
+      "whyItMatters": "The contrast makes the output test plain. A tool is valuable only when it reduces friction around important work and leaves visible progress behind."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "eat-that-frog-ch16-q01",
+        "sourceAnchorId": "ch16.fact.1",
+        "prompt": "William has three new work apps open before naming the result he wants. Which first move fits purposeful tool use?",
+        "choices": [
+          "He should test the newest app first and keep whichever feels fastest.",
+          "He should name the objective first, then choose the tool that serves it.",
+          "He should keep all three apps open so no possible feature is lost."
+        ],
+        "correctIndex": 1,
+        "explanation": "Technology should serve a chosen objective. Starting with the app treats novelty as progress before the result has a job for the tool.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch16-q02",
+        "sourceAnchorId": "ch16.fact.2",
+        "prompt": "A calendar log shows Nancy missed two proposal blocks after meetings ran long. What should she infer from the pattern?",
+        "choices": [
+          "The calendar mainly stored meeting times and did not need to protect work blocks.",
+          "The calendar should guard priority appointments, not just record other people's meetings.",
+          "The calendar worked well if it kept a full record of every meeting."
+        ],
+        "correctIndex": 1,
+        "explanation": "Digital tools can protect priority appointments. Treating the calendar as storage misses its job of defending the chosen work block.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch16-q03",
+        "sourceAnchorId": "ch16.fact.3",
+        "prompt": "Yann wants to improve a report and has a search tab full of online courses. Which choice best uses the learning tool?",
+        "choices": [
+          "He should browse several popular courses before naming the report skill.",
+          "He should save a broad course list so future gaps feel covered.",
+          "He should pick the lesson tied to the report skill that is slowing him."
+        ],
+        "correctIndex": 2,
+        "explanation": "Online learning helps when it meets a real performance gap. A broad course list can feel useful while the weak report skill stays untouched.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch16-q04",
+        "sourceAnchorId": "ch16.fact.4",
+        "prompt": "Rachel's team wants to automate a recurring report. Which boundary should guide the choice?",
+        "choices": [
+          "They should automate the parts that require the freshest judgment first.",
+          "They should automate every step the software can reach during report week.",
+          "They should automate repeated low-judgment steps and keep analysis human."
+        ],
+        "correctIndex": 2,
+        "explanation": "Automation belongs on repeated low-judgment steps. Applying it everywhere can remove attention from places that still need judgment.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "eat-that-frog-ch16-q05",
+        "sourceAnchorId": "ch16.fact.5",
+        "prompt": "Hailey compares two tools for the same reply: one removes setup friction, the other adds features. Which test matters most?",
+        "choices": [
+          "Choose the tool that makes the important reply easier to finish.",
+          "Choose the tool with the richer feature set for later possibilities.",
+          "Choose the tool that makes the task feel more impressive to manage."
+        ],
+        "correctIndex": 0,
+        "explanation": "The right tool reduces friction around important work. Features are a near miss when they draw attention away from finishing the reply.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch16-q06",
+        "sourceAnchorId": "ch16.fact.6",
+        "prompt": "Bryce ends Friday with a new dashboard and no draft. Brandon ends with an old template and a finished proposal. Which reading fits the output test?",
+        "choices": [
+          "Brandon used the stronger tool because output, not novelty, proved its value.",
+          "Bryce used the stronger tool because newer software showed more range.",
+          "Both used strong tools if each setup felt organized by Friday."
+        ],
+        "correctIndex": 0,
+        "explanation": "A tool should be judged by output. A new dashboard can feel useful, but the finished proposal is the better proof.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch16-q07",
+        "sourceAnchorId": "ch16.fact.7",
+        "prompt": "A reminder pops up for Rachel, but the task name is vague. What should happen before she trusts the alert?",
+        "choices": [
+          "She should add more reminders so one of them catches the right task.",
+          "She should follow the alert because any reminder creates priority.",
+          "She should clarify the priority the reminder is meant to support."
+        ],
+        "correctIndex": 2,
+        "explanation": "Reminders support commitments when priorities are clear. More alerts cannot solve the problem of an unclear task.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "eat-that-frog-ch16-q08",
+        "sourceAnchorId": "ch16.fact.8",
+        "prompt": "Nancy drafts a reply with five updates, but she needs one approval. Which revision makes communication serve the work?",
+        "choices": [
+          "Cut the reply to the request that helps the reader approve, decline, or name the missing condition.",
+          "Add the extra updates so the reader sees the full work behind the request.",
+          "Send separate messages for each update so communication stays visible."
+        ],
+        "correctIndex": 0,
+        "explanation": "Purposeful communication makes the next action easier. More updates can bury the approval the work actually needs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch16-q09",
+        "sourceAnchorId": "ch16.fact.9",
+        "prompt": "A powerful app starts suggesting new flows before Brandon has named the proposal result. Which response keeps user control?",
+        "choices": [
+          "He should accept the app's flow so the stronger software can guide the work.",
+          "He should state the result first and use only the flow that serves it.",
+          "He should explore the suggested flows until the best one feels clear."
+        ],
+        "correctIndex": 1,
+        "explanation": "Servant technology requires user control. The app can help only after Brandon names the result it must serve.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "eat-that-frog-ch16-card01",
+      "sourceAnchorId": "ch16.concept",
+      "front": "What are the four parts of the Servant technology test?",
+      "back": "Define objective, Choose tool, Reduce friction, and Measure output. The order keeps the task in charge before the device, app, course, or template starts shaping the work.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch16-card02",
+      "sourceAnchorId": "ch16.ex.1",
+      "front": "How does a calendar become servant technology instead of storage?",
+      "back": "It protects a priority appointment with the high-value task. The calendar is not just a record of meetings; it sends attention back to the work already chosen.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "eat-that-frog-ch16-card03",
+      "sourceAnchorId": "ch16.fact.6",
+      "front": "Recall long-term consequence (Ch 4): name one concrete moment here where it actually bites.",
+      "back": "Bryce and Brandon make the consequence visible: Bryce collects tools, while Brandon finishes a proposal. The later result proves the plain template mattered more than the new dashboard.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "eat-that-frog-ch16-card04",
+      "sourceAnchorId": "ch16.ex.2",
+      "front": "Why should online courses, audio programs, or search tools start with a performance gap?",
+      "back": "Online courses, audio programs, and search tools serve only when they build the skill needed for execution. Without a performance gap, learning can become comfortable delay.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch16-card05",
+      "sourceAnchorId": "ch16.ex.3",
+      "front": "Where does automation belong in recurring work?",
+      "back": "Use it on repeated low-judgment steps: copied headers, standard notes, routine links, and other setup drag. Keep judgment, analysis, and sensitive choices in human hands.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch16-card06",
+      "sourceAnchorId": "ch16.fact.9",
+      "front": "What warning sign shows a tool has stopped serving?",
+      "back": "The tool starts asking for attention while the frog stays untouched. Settings, feeds, features, or dashboards become the work instead of helping the work move.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Servant Tool Test",
+    "coreSkill": "Practice making a tool prove its service before it earns your time. Name the objective, choose the smallest fitting tool, remove one friction point, and check the output. The skill is not using more technology; it is keeping technology under the frog.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch16.fact.1",
+        "context": "If a new app looks tempting before the task is named",
+        "plan": "If a new app pulls your attention, then run the Servant Tool Test on paper. Write the objective first and open the app only if it reduces a real friction point."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.4",
+        "context": "If a recurring task starts with the same setup again",
+        "plan": "If the setup is repeated and low-judgment, then make one template or shortcut. Use it to protect attention for the part that needs thought."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.7",
+        "context": "If a reminder fires and the task still feels vague",
+        "plan": "If the alert names no clear priority, then rewrite the calendar block with the actual frog. Let the reminder guard a commitment, not a blur."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.8",
+        "context": "If a reply grows longer while the needed response stays unclear",
+        "plan": "If the draft keeps expanding, then write one objective line above it. Cut the message until it asks for the response the work needs."
+      }
+    ],
+    "twentyFourHourChallenge": "For the next 24 hours, before one work reply, write one line above the draft: This tool should serve ____ by ____. Send only after the line has changed the message.",
+    "weeklyPractice": "For seven days, keep a daily log with four columns: tool used, frog served, friction removed, output seen. At week's end, drop one tool that filled a column with no output."
+  },
+  "memorableLines": [
+    {
+      "text": "Tools should earn their keep.",
+      "location": "breakdown.fastRead",
+      "why": "It turns the servant standard into a sentence the reader can use before opening an app."
+    },
+    {
+      "text": "Novelty is not output.",
+      "location": "breakdown.deepRead",
+      "why": "It cuts through the common mistake of treating a new tool as proof of progress."
+    },
+    {
+      "text": "Let the task choose the tool.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader a short rule for keeping technology under the work."
+    }
+  ]
+}

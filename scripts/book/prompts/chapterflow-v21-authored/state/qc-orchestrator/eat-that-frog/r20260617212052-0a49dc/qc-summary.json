@@ -1,0 +1,22 @@
+{
+  "bookId": "eat-that-frog",
+  "roundId": "r20260617212052-0a49dc",
+  "finalizedAt": "2026-06-17T22:40:41.627Z",
+  "evidenceMatrix": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617212052-0a49dc/evidence-matrix.json",
+  "repairBrief": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617212052-0a49dc/repair-brief.md",
+  "repairPrompt": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/eat-that-frog/r20260617212052-0a49dc/repair-prompt.md",
+  "ledger": {},
+  "majors": {
+    "unresolved": 0,
+    "book": 0,
+    "chapter": 0
+  },
+  "attestationsWritten": 11,
+  "verdicts": {
+    "PUBLISHABLE": 21,
+    "REVISE": 0,
+    "CORRUPTION": 0,
+    "NEEDS_MORE_QC": 0
+  },
+  "errors": []
+}

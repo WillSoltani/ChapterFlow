@@ -1,0 +1,358 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "eat-that-frog-ch03",
+  "number": 3,
+  "title": "Apply the 80/20 rule to everything",
+  "readingTimeMinutes": 9,
+  "hook": "10 lines on a pad can hide the 2 that decide the week.",
+  "counterintuition": "What looks like a fair task list is actually a trap when the small jobs get first choice.",
+  "tryThisNow": "Next quick-win pull, sit where you work. Move the list under your hand and pre-write: \"I start the highest-consequence task first.\"",
+  "keyTakeaway": "Rank tasks by consequence first; the Vital few get prime attention before quick work steals the day.",
+  "breakdown": {
+    "fastRead": "Valerie and Pascal face the same 10-task sheet at a conference room table. Valerie circles the 2 jobs tied to the week's result. Pascal starts with the eight smaller jobs because they will fall fast. By lunch, Pascal has more checks. Valerie has moved the work that matters.\n\nThe 80/20 rule says results are uneven. Vilfredo Pareto is tied to the rule because many inputs matter a little, while a few matter a lot. On a task list, those few are the Vital few. The many smaller items are the Trivial many.\n\nChecked boxes can hide a wasted day. Before you begin, ask which task changes money, risk, a kept word, skill, or duty if it gets done. That task gets your first real attention. The small jobs can wait their turn.",
+    "deepRead": "Every task line takes the same space on paper, so the list lies by looking neat. A one-line errand and a client decision both sit in the same black ink. The 80/20 rule tells you to stop reading the list as equal rows. Read it as consequence.\n\nBonnie hears this mistake in a training room before a work sprint. A teammate wants to refill forms, sort the queue notes, and answer the easiest callbacks before touching the hard file. Bonnie turns the page sideways and says, \"Fast is not the same as first.\" The sentence works because both choices are real work. One choice only feels safer.\n\nQuick wins are tempting because they end cleanly. You get a small proof that you are busy. The danger is not the small job itself. The danger is letting relief choose the order. Ease is a poor judge of worth.\n\nA hard high-value task can outrank several easy ones. If the high-value item is too large, start the first visible piece. Open the file. Draft the first paragraph. Make the first call. The first move should be plain enough that delay has fewer places to hide.",
+    "fullRead": "Madeline sits in an onboarding class while the instructor writes Vital few on one side of the board and Trivial many on the other. She frowns because the words sound unfair. The instructor does not call the smaller jobs worthless. He puts 10 tasks under the headings and asks which 2 would change the week.\n\nThat is the plain test. The 80/20 rule asks you to judge value before you spend effort. A few customers may bring most revenue. A few projects may shape the year. A few skills may raise the value of every later hour. The rule is not a praise song for busyness. It asks where the work will land.\n\nUse a visible mark. Write the list. Put a V beside the one or two tasks with the largest consequence. If the V task is uncomfortable, do not treat that as proof against it. Hardness may be the reason you keep cleaning around it.\n\nQuick wins still have a place. A tiny chore can warm up your hand. A minor call can keep faith with another person. But quick work becomes trouble when it protects you from the important task. Sorting files can look noble while the real result sits closed.\n\nThe Vital few deserve the first chair. Give them the cleanest block of attention, not the crumbs after the day has been picked over. If the important work is large, start one piece that can be seen. Move the folder. Write the first sentence. Dial the first number.\n\nRomain changes his task rack at a community center hall before volunteers arrive. Last week the donation labels sat at eye level and the donor pickup calls hid behind a stack of hangers. This week he pins the pickup calls in front. The rack is no shorter, but his hand reaches for the work with consequence first.\n\nCedric makes the same move on a phone call with a client proposal. He wants to finish three small edits before the proposal draft. Then he asks which item would still matter if the afternoon collapsed. The proposal opens. The edits wait. Value has to be judged while choice is still alive.\n\nThe rule can be misused by people who want a shortcut more than judgment. If Aspen calls a task trivial only because it is dull, she is hiding preference inside math. Ask what changes if the task is finished. Money, danger, a kept promise, a skill, or a duty are stronger clues than mood.\n\nThis rule fails the emergency dispatcher, the nurse in triage, and anyone whose whole list carries live, equal-risk duties. For those roles, private ranking can do harm. The 80/20 rule fits a normal workday with discretion, where some tasks plainly carry more consequence than others. Equal treatment can be delay in tidy clothes."
+  },
+  "examples": [
+    {
+      "exampleId": "eat-that-frog-ch03-ex01",
+      "sourceAnchorId": "ch03.ex.2",
+      "title": "Two Copies of 10 Tasks",
+      "tags": [
+        "10 tasks",
+        "priority",
+        "contrast"
+      ],
+      "planSpec": {
+        "domain": "10-task workday",
+        "audience": "Valerie and Pascal, two team leads ranking the same task sheet",
+        "stakes": "The day can end with many checks or with the two high-value tasks finished.",
+        "format": "contrast",
+        "requiredBeat": "Show two high-value tasks worth the other eight combined.",
+        "venue": "a conference room table",
+        "exemplar": ""
+      },
+      "scenario": "Two copies of the same 10-task sheet land on a conference room table. Valerie circles the two high-value tasks and pulls the budget memo close. Pascal starts with the eight minor tasks because they will fall fast. At noon, Pascal has more checks, but Valerie has moved the work with the combined value.",
+      "whatToDo": "Valerie ranks the 10 tasks by consequence, then moves the two high-value items to the top of the page.",
+      "whyItMatters": "The contrast shows why counting completions can mislead. A reader needs to ask which two tasks carry the value of the other eight."
+    },
+    {
+      "exampleId": "eat-that-frog-ch03-ex02",
+      "sourceAnchorId": "ch03.ex.3",
+      "title": "Fast Is Not First",
+      "tags": [
+        "quick wins",
+        "coaching",
+        "minor chores"
+      ],
+      "planSpec": {
+        "domain": "low-value quick wins",
+        "audience": "Bonnie, a peer coach before a task sprint",
+        "stakes": "Visible completion will feel good while the important task stays heavy.",
+        "format": "coach_talk",
+        "requiredBeat": "Reframe quick wins as relief, not proof of priority.",
+        "venue": "a community center hall",
+        "exemplar": ""
+      },
+      "scenario": "Before a Monday task sprint at a community center hall, peer coach Bonnie watches a teammate stack minor chores beside an important task. The quick wins promise visible completion and a safer mood. Bonnie turns the list sideways and says, \"Fast is not the same as first.\" The teammate has to rank the important task before the easy stack cleans up the morning.",
+      "whatToDo": "Bonnie has the teammate mark the important file with a V and push the quick-win stack below it.",
+      "whyItMatters": "Quick wins are tempting because they finish cleanly. The coaching move separates relief from real priority."
+    },
+    {
+      "exampleId": "eat-that-frog-ch03-ex03",
+      "sourceAnchorId": "ch03.ex.1",
+      "title": "Pareto on the Board",
+      "tags": [
+        "Pareto",
+        "80/20",
+        "training"
+      ],
+      "planSpec": {
+        "domain": "onboarding class on uneven results",
+        "audience": "Madeline, a new analyst learning the Pareto principle",
+        "stakes": "A learner may treat every row as equal because the worksheet looks even.",
+        "format": "school_case",
+        "requiredBeat": "Teach the Vital few and Trivial many through uneven distribution.",
+        "venue": "an onboarding classroom",
+        "exemplar": "Vilfredo Pareto"
+      },
+      "scenario": "In an onboarding classroom, Madeline studies a worksheet with customers, projects, skills, and duties in even rows. The instructor writes Vilfredo Pareto, 80/20, Vital few, and Trivial many on the board. Madeline keeps counting rows until the exercise asks which few would move most of the result.",
+      "whatToDo": "Madeline sorts the worksheet into Vital few and Trivial many, then names why equal rows can carry unequal value.",
+      "whyItMatters": "The class setting makes uneven distribution visible. The reader sees why a neat list still needs a consequence test."
+    },
+    {
+      "exampleId": "eat-that-frog-ch03-ex04",
+      "sourceAnchorId": "ch03.concept",
+      "title": "The Rack Reordered",
+      "tags": [
+        "before and after",
+        "80/20",
+        "responsibilities"
+      ],
+      "planSpec": {
+        "domain": "task rack sorted by consequence",
+        "audience": "Romain, a volunteer coordinator changing one priority cue",
+        "stakes": "The same rack can reward motion or consequence depending on what sits first.",
+        "format": "before_after",
+        "requiredBeat": "Show the 80/20 lens applied to responsibilities and projects.",
+        "venue": "a community center hall",
+        "exemplar": ""
+      },
+      "scenario": "Last week, Romain cleared the community center task rack from left to right: labels, supply slips, small signs, then the donor pickup calls he never reached. This morning he changes one cue. The two calls with the largest consequence sit at eye level. The rack is not shorter, but his first reach has changed.",
+      "whatToDo": "Romain puts the two highest-consequence responsibilities at eye level before the small chores can claim the shift.",
+      "whyItMatters": "The same list behaves differently when placement favors value. A reader can move one object before effort starts."
+    },
+    {
+      "exampleId": "eat-that-frog-ch03-ex05",
+      "sourceAnchorId": "ch03.fact.8",
+      "title": "Before Effort Goes",
+      "tags": [
+        "dialogue",
+        "value test",
+        "effort"
+      ],
+      "planSpec": {
+        "domain": "phone call about a task list",
+        "audience": "Cedric, a freelancer checking value before effort",
+        "stakes": "A person may use finished work to guess value after the useful choice has passed.",
+        "format": "dialogue",
+        "requiredBeat": "Let the exchange reveal that value must be judged before effort is spent.",
+        "venue": "a phone call",
+        "exemplar": ""
+      },
+      "scenario": "\"I can finish three small edits before the proposal,\" Cedric says on the phone.\n\n\"Will those edits change the week?\"\n\n\"They will make the list shorter.\"\n\n\"Shorter is not the same test. Which task would still matter if your afternoon collapsed?\"\n\nCedric touches the proposal file and leaves the edits closed.",
+      "whatToDo": "Cedric judges value before spending effort, then opens the proposal while the easy edits remain untouched.",
+      "whyItMatters": "The exchange keeps value from being guessed after the fact. The reader sees the choice while it can still change the day."
+    },
+    {
+      "exampleId": "eat-that-frog-ch03-ex06",
+      "sourceAnchorId": "ch03.fact.7",
+      "title": "The Work Mask",
+      "tags": [
+        "inner monologue",
+        "avoidance",
+        "minor work"
+      ],
+      "planSpec": {
+        "domain": "minor work hiding avoidance",
+        "audience": "Aspen, a manager catching delay inside useful-looking tasks",
+        "stakes": "Work-related minor tasks can hide fear of the valuable task.",
+        "format": "inner_monologue",
+        "requiredBeat": "Show avoidance hiding inside productive-looking minor work.",
+        "venue": "a kitchen table",
+        "exemplar": ""
+      },
+      "scenario": "Aspen's task list sits beside a mug at the kitchen table: vendor terms, renewal call, file low-value receipts. Receipts would be small work. She could finish the stack and feel decent. But the renewal call is the important task with consequence. Her mind keeps sliding away from the phone. That slide is the tell.",
+      "whatToDo": "Aspen leaves the receipts in place, writes the first sentence for the renewal call, and dials before minor work absorbs the morning.",
+      "whyItMatters": "Avoidance often looks productive from the outside. Naming the slide helps the reader start the high-value task first."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "eat-that-frog-ch03-q01",
+        "sourceAnchorId": "ch03.fact.1",
+        "prompt": "Two team leads finish Friday with different evidence. One has nine small checks; one has the client decision finished. Which judgment fits the 80/20 rule?",
+        "choices": [
+          "Treat the nine checks as the stronger day because more lines closed.",
+          "Treat the neatest list as the stronger day because motion stayed visible.",
+          "Treat the client decision as stronger because consequence outranks count."
+        ],
+        "correctIndex": 2,
+        "explanation": "The source fact tests consequence, not count. A full checklist can still miss the task that changes the result.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch03-q02",
+        "sourceAnchorId": "ch03.fact.2",
+        "prompt": "A work log lists 10 tasks. Two drive most of the week's result, while eight keep the surface neat. Which first move fits the 80/20 rule?",
+        "choices": [
+          "Divide attention across all 10 tasks so the plan looks balanced.",
+          "Clear the eight upkeep tasks so the list gains early motion.",
+          "Protect the two result-driving tasks before the day gets spent."
+        ],
+        "correctIndex": 2,
+        "explanation": "The fact says a minority of tasks can carry most results. Equal attention would treat uneven value as if it were even.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch03-q03",
+        "sourceAnchorId": "ch03.fact.3",
+        "prompt": "At the community center hall, Bonnie sees three quick chores beside one hard file before a task sprint. The chores would be done in minutes. How should she read the pull?",
+        "choices": [
+          "The quick chores are attractive because they finish fast, so she should test their consequence.",
+          "The quick chores are the best start because visible progress can warm up the day.",
+          "The quick chores are the safest priority because speed shows where energy should go."
+        ],
+        "correctIndex": 0,
+        "explanation": "Low-value tasks tempt because they finish quickly. The fix is to test consequence before speed chooses the order.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch03-q04",
+        "sourceAnchorId": "ch03.fact.4",
+        "prompt": "Pascal opens his laptop with a hard analysis and six small inbox items waiting. He wants the inbox gone first. Which next move matches the residue warning?",
+        "choices": [
+          "Wait for the inbox to shrink, then begin the larger analysis.",
+          "Use the early stretch to make the whole list look lighter.",
+          "Start the high-value analysis before leftover work fills the day."
+        ],
+        "correctIndex": 2,
+        "explanation": "Starting with high value protects the day from residue. Small items can consume the room the important task needed.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch03-q05",
+        "sourceAnchorId": "ch03.fact.5",
+        "prompt": "Madeline's practice sheet includes customers, projects, skills, and duties. Which use of 80/20 matches the broader lesson?",
+        "choices": [
+          "Apply it across customers, projects, skills, and duties when value is uneven.",
+          "Keep it for sales figures where the uneven pattern is easiest to count.",
+          "Use it only for customer lists and leave daily responsibilities outside it."
+        ],
+        "correctIndex": 0,
+        "explanation": "The source names customers, projects, skills, and responsibilities. Treating 80/20 as sales-only is too narrow.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch03-q06",
+        "sourceAnchorId": "ch03.fact.6",
+        "prompt": "Romain sees one hard duty with a large result and several easy duties with small results. Which ranking follows the rule?",
+        "choices": [
+          "Let several easy duties add up until they outrank the hard one.",
+          "Put the hard high-value duty above the easy low-value duties.",
+          "Give the easy duties first place because there are more of them."
+        ],
+        "correctIndex": 1,
+        "explanation": "The fact says a hard high-value task should outrank several easy low-value tasks. Number and comfort are weaker clues.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "eat-that-frog-ch03-q07",
+        "sourceAnchorId": "ch03.fact.7",
+        "prompt": "Aspen keeps filing receipts while the renewal call waits on the table. What should she notice about that work?",
+        "choices": [
+          "Useful-looking minor work may be avoidance when it protects delay.",
+          "Work-related filing is harmless because it still clears something.",
+          "A full table of small work proves the morning is being used well."
+        ],
+        "correctIndex": 0,
+        "explanation": "Avoidance can hide inside real work. The filing is not harmless if it keeps the consequence task untouched.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "eat-that-frog-ch03-q08",
+        "sourceAnchorId": "ch03.fact.8",
+        "prompt": "Cedric learns after lunch that three finished edits changed little, while the unstarted proposal carried the result. What should change tomorrow?",
+        "choices": [
+          "Use finished effort afterward to decide which task deserved the time.",
+          "Judge value before spending effort, while the choice can still move.",
+          "Let the number of completed edits reveal the strongest task later."
+        ],
+        "correctIndex": 1,
+        "explanation": "Value has to be judged before effort is spent. Looking back after the work is done cannot protect the priority.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "eat-that-frog-ch03-q09",
+        "sourceAnchorId": "ch03.fact.9",
+        "prompt": "Valerie has a loud request, a quick errand, and one Vital few task at the start of the morning. Where should prime attention go?",
+        "choices": [
+          "Give it to the loud request because urgency has already announced itself.",
+          "Give it to the Vital few task before noise and ease take over.",
+          "Give it to the quick errand because a fast finish clears space."
+        ],
+        "correctIndex": 1,
+        "explanation": "Prime attention belongs to the Vital few. Loudness and speed can feel urgent without proving consequence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "eat-that-frog-ch03-card01",
+      "sourceAnchorId": "ch03.concept",
+      "front": "Which matters more in this task-list situation - goal clarity before action (Ch 1) or the 80/20 rule - and why?",
+      "back": "Goal clarity names the result first. The 80/20 rule takes over once the list exists: choose the few tasks with the largest consequence before easy work gets the day.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "eat-that-frog-ch03-card02",
+      "sourceAnchorId": "ch03.ex.1",
+      "front": "What does Vilfredo Pareto's 80/20 rule ask you to see on a task list?",
+      "back": "It asks you to see uneven value. A few tasks may produce most of the result while many other tasks keep the surface neat.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "eat-that-frog-ch03-card03",
+      "sourceAnchorId": "ch03.ex.3",
+      "front": "Why can quick wins be risky when an important task is waiting?",
+      "back": "Quick wins finish cleanly, so they offer relief and visible proof. They become risky when that relief lets the important task stay untouched.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch03-card04",
+      "sourceAnchorId": "ch03.ex.1",
+      "front": "What are the two named parts of the Pareto principle framework used here?",
+      "back": "Vilfredo Pareto's 80/20 framework names the Vital few and the Trivial many. Uneven distribution is why the Vital few get prime attention.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "eat-that-frog-ch03-card05",
+      "sourceAnchorId": "ch03.concept",
+      "front": "Who can be misled by the 80/20 rule?",
+      "back": "It can mislead people whose duties carry live, equal risk, such as emergency dispatchers or triage nurses. The rule fits workdays where tasks clearly differ in consequence.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Mark the Vital Few",
+    "coreSkill": "Practice marking the Vital few before effort starts. Write the list, put a V beside the one or two tasks with the largest consequence, then move the marked page where your hand reaches first.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch03.ex.3",
+        "context": "The next time quick wins make minor chores feel attractive",
+        "plan": "Move the minor chores below the marked V and pre-write, \"Visible completion waits until the important task starts.\""
+      },
+      {
+        "sourceAnchorId": "ch03.fact.9",
+        "context": "The next time a loud request tries to take the first block",
+        "plan": "Put the marked V in front of the request and pre-write, \"I can handle this after the high-value task starts.\""
+      },
+      {
+        "sourceAnchorId": "ch03.fact.7",
+        "context": "The next time small chores start looking safer than the hard task",
+        "plan": "Place the hard-task file on top of the list and pre-write the first sentence you will use to begin."
+      }
+    ],
+    "twentyFourHourChallenge": "For the next 24 hours, the next time quick wins pull, move one easy item below your marked V and pre-write the exact refusal you will say to yourself.",
+    "weeklyPractice": "For one week, tally each time you choose a quick win before a marked V task. At week's end, read the number and choose one placement change for the next list."
+  },
+  "memorableLines": [
+    {
+      "text": "Checked boxes can hide a wasted day.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the danger of counting completions instead of consequence."
+    },
+    {
+      "text": "Ease is a poor judge of worth.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the reader a compact test for quick-win temptation."
+    },
+    {
+      "text": "The Vital few deserve the first chair.",
+      "location": "breakdown.fullRead",
+      "why": "It turns the 80/20 rule into a portable priority image."
+    }
+  ]
+}
