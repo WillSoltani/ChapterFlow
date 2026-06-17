@@ -64,7 +64,9 @@ export function runbookPlan(phase: string, bookId: string): RunbookPlan {
       next: `${STRICT} npx tsx src/cli.ts publish-after-qc "${bookId}" --round <PASS-roundId> --dry-run`,
     };
   }
-  if (phase === "gating" || phase.startsWith("generating")) {
+  // "write-chapter" = research COMPLETE, 0 chapters written yet (book-status sets phase to the
+  // next-task kind when writtenChapters === 0) — that is the write handoff, NOT more research.
+  if (phase === "write-chapter" || phase === "gating" || phase.startsWith("generating")) {
     return {
       label: "Write",
       openPrompt: "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
