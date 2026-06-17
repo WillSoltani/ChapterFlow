@@ -198,37 +198,44 @@ export async function listNotifications(
   }));
 }
 
-// Count unread notifications without materializing the partition. A Select:COUNT
-// query lets the listing endpoint show an accurate unread badge while only
-// fetching a bounded display page (see listNotifications(limit)), instead of
-// reading every lifetime notification on each poll.
+// The notification bell caps its badge at "99+" (see NotificationBell.tsx), so
+// an exact lifetime unread count is never displayed. Notifications have no TTL
+// and the NOTIF# partition grows for the life of the account, so paginating the
+// whole partition with Select:COUNT made the per-poll (60s) read cost O(account
+// lifetime). Instead, count unread only within the newest UNREAD_COUNT_SCAN_LIMIT
+// items: `Limit` bounds the items DynamoDB reads (RCU), the unread filter is
+// applied to that bounded page, and res.Count is the exact unread total below
+// the cap or saturates at the cap — exactly what the "99+" badge needs, at O(1)
+// read cost regardless of partition size.
+//
+// Trade-off: unread items older than the newest ~100 are not counted. That only
+// undercounts for a user who has read their newest 100+ notifications but left
+// older ones unread (atypical), and it errs low — the badge never over-promises.
+// If an exact lifetime count is ever needed, switch to a denormalized counter
+// maintained on create / markRead / markAll.
+const UNREAD_COUNT_SCAN_LIMIT = 100;
+
 export async function countUnreadNotifications(
   tableName: string,
   userId: string
 ): Promise<number> {
-  let count = 0;
-  let lastEvaluatedKey: Record<string, unknown> | undefined;
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+      FilterExpression: "attribute_not_exists(readAt) OR readAt = :null",
+      ExpressionAttributeValues: {
+        ":pk": bookUserPk(userId),
+        ":prefix": "NOTIF#",
+        ":null": null,
+      },
+      Select: "COUNT",
+      ScanIndexForward: false,
+      Limit: UNREAD_COUNT_SCAN_LIMIT,
+    })
+  );
 
-  do {
-    const res = await ddbDoc.send(
-      new QueryCommand({
-        TableName: tableName,
-        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-        FilterExpression: "attribute_not_exists(readAt) OR readAt = :null",
-        ExpressionAttributeValues: {
-          ":pk": bookUserPk(userId),
-          ":prefix": "NOTIF#",
-          ":null": null,
-        },
-        Select: "COUNT",
-        ExclusiveStartKey: lastEvaluatedKey,
-      })
-    );
-    count += res.Count ?? 0;
-    lastEvaluatedKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
-  } while (lastEvaluatedKey);
-
-  return count;
+  return res.Count ?? 0;
 }
 
 export async function markNotificationRead(
