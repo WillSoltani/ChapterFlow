@@ -133,7 +133,7 @@ export function TopNav({
   }, [avatarUrl]);
 
   const focusSearchInput = () => {
-    const preferMobile = window.matchMedia("(max-width: 767px)").matches;
+    const preferMobile = window.matchMedia("(max-width: 1023px)").matches;
     const target = preferMobile ? mobileSearchRef.current : desktopSearchRef.current;
     target?.focus();
     searchInputRef.current = target;
@@ -274,7 +274,7 @@ export function TopNav({
             </Link>
 
             {/* Desktop nav — hidden on mobile (use bottom tab bar instead) */}
-            <nav className="ml-5 hidden items-center gap-0.5 md:flex">
+            <nav className="ml-5 hidden items-center gap-0.5 lg:flex">
               {[...navItems, ...desktopOnlyNavItems].map((item) => {
                 const active = item.id === activeTab;
                 const Icon = item.icon;
@@ -311,7 +311,7 @@ export function TopNav({
 
             {/* Desktop search */}
             {showSearch ? (
-              <div className="relative hidden flex-1 justify-center px-4 md:flex">
+              <div className="relative hidden flex-1 justify-center px-4 lg:flex">
                 <SearchBox
                   ref={desktopSearchRef}
                   value={searchQuery}
@@ -340,7 +340,7 @@ export function TopNav({
                 ) : null}
               </div>
             ) : (
-              <div className="hidden flex-1 md:block" />
+              <div className="hidden flex-1 lg:block" />
             )}
 
             {/* Right: notifications + settings + profile */}
@@ -351,7 +351,7 @@ export function TopNav({
               <Link
                 href="/book/settings"
                 className={[
-                  "hidden min-h-11 min-w-11 items-center justify-center rounded-xl border transition md:inline-flex",
+                  "hidden min-h-11 min-w-11 items-center justify-center rounded-xl border transition lg:inline-flex",
                   activeTab === "settings"
                     ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
                     : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
@@ -384,7 +384,7 @@ export function TopNav({
                     initial
                   )}
                 </span>
-                <span className="hidden text-sm font-medium md:inline-flex">{name || "Reader"}</span>
+                <span className="hidden text-sm font-medium lg:inline-flex">{name || "Reader"}</span>
               </Link>
 
               <button
@@ -466,7 +466,7 @@ export function TopNav({
 
           {/* Mobile search row */}
           {showSearch ? (
-            <div className="relative mt-2.5 md:hidden">
+            <div className="relative mt-2.5 lg:hidden">
               <SearchBox
                 ref={mobileSearchRef}
                 value={searchQuery}
@@ -499,7 +499,7 @@ export function TopNav({
       </header>
 
       {/* ── Mobile bottom tab bar ── */}
-      <nav className="cf-topbar fixed bottom-0 left-0 right-0 z-40 pb-safe md:hidden">
+      <nav className="cf-topbar fixed bottom-0 left-0 right-0 z-40 bg-(--cf-page-bg) pb-safe lg:hidden">
         <div className="flex items-stretch">
           {navItems.map((item) => {
             const active = item.id === activeTab;
