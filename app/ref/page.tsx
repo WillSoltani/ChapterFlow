@@ -44,7 +44,7 @@ export default function ReferralLandingPage() {
           </Link>
           <Link
             href="/auth/login?returnTo=%2Fbook"
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) px-4 text-[14px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-muted)"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[14px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface)"
           >
             I already have an account
           </Link>

@@ -153,7 +153,7 @@ export const INSIGHT_POINTS_REWARDS: FlowPointsRewardDefinition[] = [
     durationDays: 7,
     oneTimePerUser: true,
     freeOnly: true,
-    highlight: "A short premium sprint that lets engaged readers feel the full product.",
+    highlight: "A short premium sprint so you can feel the full product.",
   },
   {
     rewardId: "pro_pass_30d",
@@ -164,7 +164,7 @@ export const INSIGHT_POINTS_REWARDS: FlowPointsRewardDefinition[] = [
     durationDays: 30,
     oneTimePerUser: true,
     freeOnly: true,
-    highlight: "High-value and intentionally hard to reach without real usage or quality referrals.",
+    highlight: "The biggest reward — a full month of Pro for your most dedicated reading.",
   },
 ];
 
