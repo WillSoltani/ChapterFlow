@@ -8,6 +8,7 @@ import { mkdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { loadNameBank, planNames } from "../src/librarian/namePlan.js";
+import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
 
@@ -66,6 +67,20 @@ test("name-plan excludes source-figure first names from the dealt pool", () => {
     const dealt = Object.values(plan.allocation).flat();
     assert.equal(plan.diagnostics.sourceFigureExcluded, 1);
     assert.ok(!dealt.includes("Benjamin"), "Benjamin Franklin's first name must not be dealt as a protagonist name");
+  } finally {
+    resetFixture();
+  }
+});
+
+test("C7 deal↔gate consistency: the allocator NEVER deals a name the C7 ship-gate bans", () => {
+  try {
+    resetFixture();
+    const banned = new Set(C7_BANNED_NAMES);
+    // Whole-book deal across a wide range — every dealt name must avoid the banned pool,
+    // so a writer is never handed a name the gate then blocks (the Owen incident class).
+    const dealt = Object.values(quietWarn(() => planNames(BOOK, 1, 20, 7, { forceFresh: true })).allocation).flat();
+    const offenders = [...new Set(dealt.filter((n) => banned.has(n)))];
+    assert.deepEqual(offenders, [], `allocator dealt C7-banned name(s): ${offenders.join(", ")}`);
   } finally {
     resetFixture();
   }

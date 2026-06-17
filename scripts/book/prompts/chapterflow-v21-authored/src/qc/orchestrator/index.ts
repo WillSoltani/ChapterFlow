@@ -16,7 +16,7 @@ import { unresolvedMajors } from "../majorDisposition.js";
 import { isNoApiCodexQcMode } from "../noApiMode.js";
 import { openQcRound, qcRoundPath, verifyQcRoundToken, type QcRoundRole } from "../qcRound.js";
 import { checkSourceV2Gate, sourceHashFor } from "../sourceV2Gate.js";
-import { loadSweepRecord, writeSweepPack, writeSweepRecordFromSubmission, REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
+import { loadSweepRecord, sweepChapterStatus, writeSweepPack, writeSweepRecordFromSubmission, REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
 import { writeReviewPacket } from "./reviewPacket.js";
 export { reviewPacketPath } from "./reviewPacket.js";
 import {
@@ -160,12 +160,16 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
   return paths;
 }
 
-function confirmTaskCard(bookId: string, roundId: string, chapter: ChapterV21, token = "<confirm-token>"): string {
+function confirmTaskCard(bookId: string, roundId: string, chapter: ChapterV21, token = "<confirm-token from REVIEW-PACKET.md>"): string {
   return cardHeader(bookId, roundId, `confirm ch${String(chapter.number).padStart(2, "0")}`, token) + [
     "Confirm this publishable candidate or return REVISE/CORRUPTION with exact findings.",
     "Only use this card if the chapter is listed in confirm-candidates.json.",
     `Required schema: qc-confirm-read-v1. Required artifact contentHash: ${chapterContentHash(chapter)}.`,
-    `Submit: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role confirm --token ${token} --file <submission.json>`,
+    // The plaintext confirm token only survives in REVIEW-PACKET.md (the round persists
+    // salted hashes), so a card written at confirm-candidates time cannot embed it —
+    // point the operator there, exactly like the bar-tiebreak card does. Without this
+    // pointer the emitted command's <confirm-token> fails qc-submit verbatim.
+    `Submit (use the round's confirm token from REVIEW-PACKET.md): npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role confirm --token <confirm-token> --file <submission.json>`,
     "",
   ].join("\n");
 }
@@ -379,7 +383,7 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
     if (authorFindings.length > 0) blockers.push("authorCheck");
     if (intraFindings.some((f) => f.severity === "blocker")) blockers.push("intraBook");
     if (!bookGate.passed) blockers.push("bookGate");
-    if (!sweep || sweep.roundId !== roundId || sweep.contentHashes[String(ch.number)] !== contentHash || sweep.verdict !== "PASS") blockers.push("sweep");
+    if (sweepChapterStatus(sweep, ch.number, contentHash, roundId) !== "PASS") blockers.push("sweep");
     if (!keyJudge || keyJudge.contentHash !== contentHash || keyJudge.sourceHash !== (sourceHashFor(bookId, ch.number) ?? "") || keyJudge.status !== "PASS") blockers.push("manualKeyJudge");
     if (!bar || bar.chapterId !== ch.chapterId || bar.contentHash !== contentHash) {
       blockers.push("barRead");

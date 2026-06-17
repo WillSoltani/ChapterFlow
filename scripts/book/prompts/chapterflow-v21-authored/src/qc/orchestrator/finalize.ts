@@ -13,7 +13,7 @@ import { loadBookChapters, loadManualKeyJudge, manualKeyJudgePath, resolveManual
 import { unresolvedMajors, type MajorFindingSnapshot } from "../majorDisposition.js";
 import { checkSourceV2Gate, sourceHashFor } from "../sourceV2Gate.js";
 import { checkPlanEnforcement, type PlanFinding } from "../planEnforcement.js";
-import { loadSweepRecord, sweepRecordPath, writeSweepRecordFromSubmission } from "../sweep.js";
+import { loadSweepRecord, sweepChapterStatus, sweepRecordPath, writeSweepRecordFromSubmission } from "../sweep.js";
 import {
   barArtifactPath,
   confirmArtifactPath,
@@ -169,6 +169,21 @@ function attestationForDecision(chapter: ChapterV21, decision: EvidenceChapterDe
   const existing = loadAttestation(decision.bookId, chapter.number);
   const { history: _history, ...existingSansHistory } = existing ?? {};
   const publishable = verdict === "PUBLISHABLE";
+  // Idempotent re-finalize: if an existing attestation already records THIS verdict on
+  // THIS content for THIS round, nothing about the review changed — preserve its
+  // reviewedAt / reviewerSessionId / history so the written file is BYTE-IDENTICAL.
+  // (Re-stamping a fresh timestamp + growing history on every finalize made a
+  // `--include-state` re-publish stage a phantom diff, defeating the publish-idempotency
+  // guard and re-creating the duplicate publish commit the guard exists to prevent.)
+  const unchanged = !!existing
+    && existing.verdict === verdict
+    && existing.contentHash === decision.contentHash
+    && existing.roundId === decision.roundId;
+  const reviewedAt = unchanged && typeof existing!.reviewedAt === "string" ? existing!.reviewedAt : new Date().toISOString();
+  const reviewerSessionId = unchanged ? existing!.reviewerSessionId : currentSessionId();
+  const history = unchanged
+    ? existing!.history
+    : (existing ? [...(existing.history ?? []), existingSansHistory as any].slice(-10) : undefined);
   return {
     schemaVersion: "qc-attest-v1",
     bookId: decision.bookId,
@@ -178,8 +193,8 @@ function attestationForDecision(chapter: ChapterV21, decision: EvidenceChapterDe
     contentHash: decision.contentHash,
     hashVersion: "v2",
     reviewer: `codex-qc:auto:${decision.roundId}`,
-    reviewedAt: new Date().toISOString(),
-    reviewerSessionId: currentSessionId(),
+    reviewedAt,
+    reviewerSessionId,
     roundId: decision.roundId,
     roundRole: publishable ? "confirm" : "attest",
     dimensions: {
@@ -204,7 +219,7 @@ function attestationForDecision(chapter: ChapterV21, decision: EvidenceChapterDe
     },
     findings,
     notes: `qc-orchestrator finalize: ${decision.finalVerdict}; ${decision.reason}`,
-    history: existing ? [...(existing.history ?? []), existingSansHistory as any].slice(-10) : undefined,
+    history,
   };
 }
 
@@ -314,9 +329,12 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       planEnforcement: chapterPlanFindings.length === 0 ? "PASS" : "FAIL",
     };
 
-    if (sweepRecord?.roundId === roundId) {
-      if (sweepRecord.contentHashes?.[String(ch.number)] !== contentHash) checks.sweep = "STALE";
-      else checks.sweep = sweepRecord.verdict === "PASS" ? "PASS" : "FAIL";
+    {
+      // A book-level sweep REVISE only FAILS the chapters its findings name (see
+      // sweepChapterStatus) — clean, unnamed chapters stay publishable candidates
+      // instead of stranding in the [re-QC only] bucket. MISSING leaves the default.
+      const sweepStatus = sweepChapterStatus(sweepRecord ?? null, ch.number, contentHash, roundId);
+      if (sweepStatus !== "MISSING") checks.sweep = sweepStatus;
     }
 
     if (keyJudge) {

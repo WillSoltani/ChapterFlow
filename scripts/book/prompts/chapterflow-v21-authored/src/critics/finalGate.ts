@@ -79,6 +79,13 @@ export type GateReport = {
   };
 };
 
+// C7 — the over-used protagonist first names a chapter may NOT use unless the
+// pre-authoring name allocator freshly DEALT it (the echo-loophole below). This is the
+// SINGLE SOURCE OF TRUTH: src/librarian/namePlan.ts imports it and subtracts it from
+// the deal pool, so the allocator can never hand a writer a name the gate then bans
+// (the two lists used to drift independently). Keep this and the bank reconciled.
+export const C7_BANNED_NAMES = ["Priya","Omar","Maya","Marcus","Elena","Lena","Victor","Theo","Jonah","Mateo","Tessa","Owen","Mira","Malik","Nadia","Felix","Caleb","Talia","Elise","Naomi"];
+
 function allocatedNamesForChapter(chapter: ChapterV21): Set<string> {
   const parsed = parseChapterId(chapter.chapterId);
   if (!parsed) return new Set();
@@ -661,9 +668,8 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     const exFullText = `${ex.scenario} ${ex.whatToDo} ${ex.whyItMatters} ${ex.title}`;
     runRegisterChecks(unit, exFullText, push);
 
-    // C7 — banned-pool name in scenario
-    const bannedPool = ["Priya","Omar","Maya","Marcus","Elena","Lena","Victor","Theo","Jonah","Mateo","Tessa","Owen","Mira","Malik","Nadia","Felix","Caleb","Talia","Elise","Naomi"];
-    for (const name of bannedPool) {
+    // C7 — banned-pool name in scenario (shared list; see C7_BANNED_NAMES above)
+    for (const name of C7_BANNED_NAMES) {
       if (allocatedNames.has(name)) continue;
       if (new RegExp(`\\b${name}\\b`).test(ex.scenario) || new RegExp(`\\b${name}\\b`).test(ex.title)) {
         push("C7", unit, `banned-pool protagonist name "${name}" used`, ex.scenario);

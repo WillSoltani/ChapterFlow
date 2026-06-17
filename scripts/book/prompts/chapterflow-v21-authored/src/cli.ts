@@ -77,6 +77,7 @@ Commands:
   source-verify <bookId> [--write p] Emit the operator sidecar-vs-reality verification packet
                                      (claim-by-claim + entity-existence + URL-liveness). check-source
                                      proves STRUCTURE; this proves the sidecar is TRUE before writing.
+  source-verify-check <bookId> [--record p] Read the FILLED record back; reject rubber-stamps / non-VERIFIED items
   derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
@@ -783,16 +784,65 @@ async function runSourceVerify(args: string[], flags: Record<string, string | bo
     return 2;
   }
   const packet = buildSourceVerificationPacket(bookId, sidecars);
-  const writePath = typeof flags["write"] === "string" ? (flags["write"] as string) : undefined;
+  const { sourceVerifyRecordPath } = await import("./critics/sourceVerify.js");
+  // Default the write target to the canonical path the check + publish gate read, so
+  // `source-verify` (emit) and `source-verify-check` (read) agree by construction.
+  const writePath = typeof flags["write"] === "string"
+    ? resolve(process.cwd(), flags["write"] as string)
+    : flags["write"] === true
+      ? sourceVerifyRecordPath(bookId)
+      : undefined;
   if (writePath) {
-    const out = resolve(process.cwd(), writePath);
-    mkdirSync(dirname(out), { recursive: true });
-    writeFileSync(out, packet, "utf8");
-    console.log(`source-verify — ${bookId}: wrote verification packet to ${out}`);
+    mkdirSync(dirname(writePath), { recursive: true });
+    writeFileSync(writePath, packet, "utf8");
+    console.log(`source-verify — ${bookId}: wrote verification packet to ${writePath}`);
+    console.log(`Fill every verdict/sourceRef, then: npx tsx src/cli.ts source-verify-check ${bookId}`);
   } else {
     console.log(packet);
   }
   return 0;
+}
+
+/** `source-verify-check <bookId> [--record <path>]` — WS-4 consumer. Reads the FILLED
+ *  verification record back and refuses a rubber-stamp (uniform notes/sources, missing
+ *  coverage, non-VERIFIED items). This is what makes the source-reality gate real
+ *  rather than decorative; it also runs inside the publish preflight. */
+async function runSourceVerifyCheck(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: source-verify-check <bookId> [--record <path>]");
+    return 2;
+  }
+  const { expectedSourceChapters, loadSourceV2Sidecar } = await import("./qc/sourceV2Gate.js");
+  const { verifiableItems, parseSourceVerifyRecord, checkSourceVerifyRecord, sourceVerifyRecordPath } = await import("./critics/sourceVerify.js");
+  const items = expectedSourceChapters(bookId).flatMap((n) => {
+    const sc = loadSourceV2Sidecar(bookId, n);
+    return sc ? verifiableItems(sc) : [];
+  });
+  if (items.length === 0) {
+    console.error(`No verifiable source items for "${bookId}" — run research (phase 1) and check-source first.`);
+    return 2;
+  }
+  const recordPath = typeof flags["record"] === "string" ? resolve(process.cwd(), flags["record"] as string) : sourceVerifyRecordPath(bookId);
+  if (!existsSyncFs(recordPath)) {
+    console.error(`No source-verify record at ${recordPath}.`);
+    console.error(`Emit one: npx tsx src/cli.ts source-verify ${bookId} --write — then verify every item against a real source.`);
+    return 2;
+  }
+  const { record, error } = parseSourceVerifyRecord(readFileSync(recordPath, "utf8"));
+  if (error || !record) {
+    console.error(`source-verify-check — ${bookId}: ${error ?? "unparseable record"}`);
+    return 2;
+  }
+  const findings = checkSourceVerifyRecord(items, record);
+  if (findings.length === 0) {
+    console.log(`source-verify-check — ${bookId}: PASS — ${items.length} item(s) VERIFIED with distinct, cited sources.`);
+    return 0;
+  }
+  const blockers = findings.filter((f) => f.severity === "blocker");
+  console.log(`source-verify-check — ${bookId}: ${blockers.length} blocker(s) of ${findings.length} finding(s)`);
+  for (const f of findings) console.log(`  [${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}] ${f.severity}: ${f.message}`);
+  return blockers.length > 0 ? 1 : 0;
 }
 
 /** `next-task <bookId>` — operator helper for inline-session generation.
@@ -3940,6 +3990,8 @@ async function main() {
       return runCheckSource(args);
     case "source-verify":
       return runSourceVerify(args, flags);
+    case "source-verify-check":
+      return runSourceVerifyCheck(args, flags);
     case "derive-artifacts":
       return runDeriveArtifacts(args);
     case "research":

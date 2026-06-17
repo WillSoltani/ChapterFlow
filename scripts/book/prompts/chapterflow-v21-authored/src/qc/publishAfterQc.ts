@@ -17,7 +17,8 @@ import { checkManualKeyJudge, loadBookChapters } from "./manualKeyJudge.js";
 import { unresolvedMajors } from "./majorDisposition.js";
 import { qcRoundPath } from "./qcRound.js";
 import { checkPlanEnforcement } from "./planEnforcement.js";
-import { checkSourceV2Gate } from "./sourceV2Gate.js";
+import { checkSourceV2Gate, expectedSourceChapters, loadSourceV2Sidecar } from "./sourceV2Gate.js";
+import { verifiableItems, sourceVerifyGateFindings } from "../critics/sourceVerify.js";
 import { checkSweep } from "./sweep.js";
 import { resolveBookIdentifier } from "./auto/resolveBook.js";
 import { finalizeQcRound } from "./orchestrator/finalize.js";
@@ -270,6 +271,16 @@ function noApiPreflightBlockers(bookId: string): string[] {
   blockers.push(...checkPlanEnforcement(bookId, chapters).map((f) => `plan ch${f.chapterNumber} ${f.checkId}: ${f.message}`));
   blockers.push(...checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`));
   blockers.push(...unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`));
+  // WS-4 source-reality gate: a PRESENT-but-rubber-stamped verification record (the
+  // digital-minimalism failure) blocks; an absent record blocks only under the opt-in
+  // CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1, so the gold corpus is not retroactively bricked.
+  const svItems = expectedSourceChapters(bookId).flatMap((n) => {
+    const sc = loadSourceV2Sidecar(bookId, n);
+    return sc ? verifiableItems(sc) : [];
+  });
+  blockers.push(...sourceVerifyGateFindings(bookId, svItems, { require: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY === "1" })
+    .filter((f) => f.severity === "blocker")
+    .map((f) => `source-verify ${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}: ${f.message}`));
   return blockers;
 }
 
@@ -353,7 +364,7 @@ function stageAndMaybeCommit(args: {
   push: boolean;
   runner: Runner;
   warnings: string[];
-}): { staged: string[]; commitHash?: string; pushed?: boolean; errors: string[] } {
+}): { staged: string[]; commitHash?: string; pushed?: boolean; pushError?: string; alreadyCommitted?: boolean; errors: string[] } {
   const staged = stagingPlan(args.bookId, args.roundId, { includeState: args.includeState, registeredFiles: args.registeredFiles });
   const allowed = new Set(staged.map((p) => resolve(p)));
   const unsafe = unsafePublishFiles(staged, { allGreen: true });
@@ -397,6 +408,26 @@ function stageAndMaybeCommit(args: {
       errors: unexpectedCached.map((p) => `Refusing to commit staged file outside publish plan: ${rel(p)}`),
     };
   }
+  // IDEMPOTENCY: with a deterministic package (promoteBook now preserves
+  // packageId/createdAt) a re-run over unchanged content stages NOTHING new — the
+  // `git add` above leaves an empty index. That means the publish commit already
+  // exists (typically: a prior run committed, then its push failed). Do NOT create
+  // a second/duplicate commit — adopt the existing HEAD and go straight to push.
+  if (cached.length === 0) {
+    const head = git(["rev-parse", "HEAD"], args.runner).trim();
+    const headSubject = git(["log", "-1", "--format=%s"], args.runner).trim();
+    let pushedExisting = false;
+    let pushErr: string | undefined;
+    if (args.push) {
+      try { git(["push"], args.runner); pushedExisting = true; }
+      catch (err) { pushErr = (err as Error).message; }
+    }
+    // Only assert "this IS the publish commit (skipped a duplicate)" when HEAD's subject
+    // says so; otherwise the tree merely already contains identical content (e.g. an
+    // unrelated later commit) — still safe to push, but don't mislabel HEAD.
+    const isPublishCommit = headSubject === `Publish ${args.bookId} v21 package`;
+    return { staged, commitHash: head, pushed: pushedExisting, pushError: pushErr, alreadyCommitted: isPublishCommit, errors: [] };
+  }
   git(["diff", "--check"], args.runner);
   git(["diff", "--cached", "--check"], args.runner);
   runPublishTests(args.runner);
@@ -409,12 +440,17 @@ function stageAndMaybeCommit(args: {
   ].join("\n");
   git(["commit", "-m", msg], args.runner);
   const commitHash = git(["rev-parse", "HEAD"], args.runner).trim();
+  // The commit SUCCEEDED above. Push is a separate, retryable step: a push failure
+  // (almost always "remote moved") must NOT erase the fact that the commit exists,
+  // or the caller wrongly reports "no commit performed" and an operator re-runs into
+  // a duplicate commit. Capture the push error and report it accurately instead.
   let pushed = false;
+  let pushError: string | undefined;
   if (args.push) {
-    git(["push"], args.runner);
-    pushed = true;
+    try { git(["push"], args.runner); pushed = true; }
+    catch (err) { pushError = (err as Error).message; }
   }
-  return { staged, commitHash, pushed, errors: [] };
+  return { staged, commitHash, pushed, pushError, errors: [] };
 }
 
 function applyCleanup(bookId: string, roundId: string, cleanup: PublishAfterQcOptions["cleanup"], dryRun: boolean): { cleaned: string[]; preserved: string[]; warnings: string[] } {
@@ -587,6 +623,8 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
   cleaned = cleanupResult.cleaned;
   preserved = cleanupResult.preserved;
 
+  let pushError: string | undefined;
+  let alreadyCommitted = false;
   try {
     const gitResult = stageAndMaybeCommit({
       bookId,
@@ -602,9 +640,34 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
     staged = gitResult.staged;
     commitHash = gitResult.commitHash;
     pushed = gitResult.pushed ?? false;
+    pushError = gitResult.pushError;
+    alreadyCommitted = gitResult.alreadyCommitted ?? false;
     if (gitResult.errors.length) return { ok: false, bookId, roundId, packagePath, registeredFiles, cleaned, preserved, staged, errors: gitResult.errors, warnings, next };
   } catch (err) {
+    // A throw here happens BEFORE the commit (push is now non-throwing), so commitHash
+    // is genuinely undefined and "no commit performed" is accurate.
     return { ok: false, bookId, roundId, packagePath, registeredFiles, cleaned, preserved, staged, commitHash, pushed, errors: [`git/validation failed: ${(err as Error).message}`], warnings, next };
+  }
+
+  if (alreadyCommitted && commitHash) {
+    warnings.push(`Publish content already committed at ${commitHash}; skipped a duplicate commit (idempotent re-run).`);
+  }
+
+  if (commitHash && pushError) {
+    // The commit SUCCEEDED; only the push failed (almost always "remote moved").
+    // Report it ACCURATELY — the commit EXISTS locally — so the operator reconciles
+    // and re-pushes instead of re-promoting into a duplicate commit.
+    return {
+      ok: false, bookId, roundId, packagePath, registeredFiles, cleaned, preserved, staged,
+      commitHash, pushed: false,
+      errors: [`Publish commit ${commitHash} was created locally, but git push FAILED: ${pushError}`],
+      warnings,
+      next: [
+        `the publish commit ${commitHash} IS on your local branch — do NOT re-promote from scratch`,
+        `reconcile with the remote (git pull --rebase, or rebase your single publish commit onto origin/<branch>), then: git push`,
+        `or re-run this exact publish-after-qc --commit --push: it detects the existing commit and only pushes`,
+      ],
+    };
   }
 
   next.push("verify production route / app catalog");
@@ -630,12 +693,16 @@ export function formatPublishAfterQcResult(result: PublishAfterQcResult): string
     for (const p of result.staged) lines.push(`  ${rel(p)}`);
   }
   lines.push(`commit: ${result.commitHash ?? "skipped"}`);
-  lines.push(`push: ${result.pushed ? "success" : "skipped"}`);
+  lines.push(`push: ${result.pushed ? "success" : result.commitHash && !result.ok ? "FAILED (commit exists locally)" : "skipped"}`);
   for (const w of result.warnings) lines.push(`warning: ${w}`);
   if (!result.ok && result.errors.length) {
     lines.push(`reason: ${result.errors[0]}`);
     if (result.next?.some((n) => n.startsWith("repair prompt:"))) lines.push(result.next.find((n) => n.startsWith("repair prompt:"))!);
-    lines.push("no publish/commit/push performed");
+    // Only claim "nothing committed" when that is TRUE. A push that failed AFTER a
+    // successful commit advanced HEAD — printing "no commit performed" there is the
+    // exact mis-report that lured a re-run into a duplicate publish commit.
+    if (!result.commitHash) lines.push("no publish/commit/push performed");
+    else lines.push(`commit ${result.commitHash} EXISTS locally; reconcile + push (or re-run publish — it will only push, not re-commit)`);
   }
   if (result.next?.length) {
     lines.push("next:");

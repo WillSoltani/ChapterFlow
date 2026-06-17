@@ -34,6 +34,7 @@ import { fileURLToPath } from "url";
 
 import { ChapterV21 } from "../types.js";
 import { CHAPTERS_DIR, isSiblingFile, normSlug } from "../lib/chapterPaths.js";
+import { C7_BANNED_NAMES } from "../critics/finalGate.js";
 import { extractNamesFromText } from "./libraryState.js";
 import { findSourceSidecar } from "./sourceSidecars.js";
 
@@ -301,7 +302,12 @@ export function planNames(
   const crossBook = bankNamesUsedByOtherBooks(bookId);
   const offset = bank.length ? nameHash(bookId) % bank.length : 0;
   const rotated = bank.slice(offset).concat(bank.slice(0, offset));
-  const available = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n));
+  // Never DEAL a name the C7 ship-gate bans (single source of truth: C7_BANNED_NAMES).
+  // The gate only LICENSES a freshly-dealt banned name, and that license evaporates once
+  // the chapter is on disk (the echo-loophole) — so a dealt banned name becomes a
+  // guaranteed late blocker. Subtracting it here keeps deal↔gate consistent up front.
+  const bannedC7 = new Set(C7_BANNED_NAMES);
+  const available = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n) && !bannedC7.has(n));
   const needed = perChapter * Math.max(0, toChapter - fromChapter + 1);
   if (available.length < needed) {
     console.warn(

@@ -246,6 +246,24 @@ export function loadSweepRecord(bookId: string): SweepRecord | null {
   }
 }
 
+/**
+ * Per-chapter sweep status for a round. The sweep VERDICT is book-level, but a
+ * REVISE/CORRUPTION must only FAIL the chapters its findings actually NAME — else one
+ * global finding (e.g. persona_drift across ch2/ch3) strands every other, clean chapter
+ * in a non-publishable "[re-QC only]" bucket with no actionable repair. A non-PASS
+ * verdict whose findings name NO chapters fails closed (an unexplained REVISE still
+ * blocks). Returns MISSING when the record is absent or from another round, STALE when
+ * the chapter's content moved under the sweep.
+ */
+export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: number, contentHash: string, roundId: string): "PASS" | "FAIL" | "STALE" | "MISSING" {
+  if (!rec || rec.roundId !== roundId) return "MISSING";
+  if (rec.contentHashes?.[String(chapterNumber)] !== contentHash) return "STALE";
+  if (rec.verdict === "PASS") return "PASS";
+  const findings = rec.findings ?? [];
+  if (findings.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
+  return findings.some((f) => (f.chapters ?? []).length > 0) ? "PASS" : "FAIL";
+}
+
 export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFinding[] {
   const sev: "blocker" | "advisory" = enforce ? "blocker" : "advisory";
   const parsed = chapters[0]?.chapterId ? parseChapterId(chapters[0].chapterId) : null;

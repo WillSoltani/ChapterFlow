@@ -411,7 +411,9 @@ test("confirm-candidates writes confirm cards only for green candidates", () => 
     assert.deepEqual(result.candidates, [SOURCE_CHAPTER_NUMBER]);
     assert.ok(existsSync(resolve(taskCardsDir(GREEN_BOOK, ROUND), "confirm", `ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}.md`)));
     const card = readFileSync(resolve(taskCardsDir(GREEN_BOOK, ROUND), "confirm", `ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}.md`), "utf8");
-    assert.match(card, /<confirm-token>/);
+    // The card must POINT to the real token in REVIEW-PACKET.md (the round persists only
+    // salted hashes), not ship a bare placeholder that fails qc-submit verbatim.
+    assert.match(card, /confirm token from REVIEW-PACKET\.md/i);
   } finally {
     cleanup();
   }

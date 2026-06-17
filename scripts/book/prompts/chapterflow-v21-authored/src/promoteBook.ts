@@ -334,10 +334,21 @@ export function promoteBook(input: PromotionInput): PromotionResult {
   }
 
   // Step 6: Build the BookPackageV21 and write it to the library.
+  // Idempotent re-promote: if a package already exists, PRESERVE its packageId +
+  // createdAt so a re-run over unchanged chapters writes a BYTE-IDENTICAL file.
+  // (These two fields used to embed Date.now()/new Date() on every run, so a
+  // re-publish after a failed push staged a spurious diff and created a DUPLICATE
+  // publish commit — the partial-state bug. Stable identity → no phantom diff.)
+  mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
+  const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
+  let existingPkg: Partial<BookPackageV21> | null = null;
+  if (existsSync(packagePath)) {
+    try { existingPkg = JSON.parse(readFileSync(packagePath, "utf8")) as Partial<BookPackageV21>; } catch { existingPkg = null; }
+  }
   const pkg: BookPackageV21 = {
     schemaVersion: V21_SCHEMA_VERSION,
-    packageId: `${bookId}-v21-${Date.now()}`,
-    createdAt: new Date().toISOString(),
+    packageId: typeof existingPkg?.packageId === "string" ? existingPkg.packageId : `${bookId}-v21-${Date.now()}`,
+    createdAt: typeof existingPkg?.createdAt === "string" ? existingPkg.createdAt : new Date().toISOString(),
     contentOwner: input.contentOwner ?? "chapterflow",
     book: {
       bookId,
@@ -351,9 +362,6 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     // package validator / reader.
     chapters: loadedChapters.map((c) => stripInternalFields(c)).sort((a, b) => a.number - b.number),
   };
-
-  mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
-  const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
   writeFileSync(packagePath, JSON.stringify(pkg, null, 2), "utf8");
 
   return {

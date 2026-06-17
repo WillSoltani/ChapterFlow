@@ -34,15 +34,13 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "**/*.mts",
-    ".next/dev/types/**/*.ts",
-    ".next-chapterflow/types/**/*.ts",
-    ".next-chapterflow/dev/types/**/*.ts",
-    ".next-cf-dev/types/**/*.ts",
-    ".next-cf-dev/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "infra/**",
-    "cdk.out/**"
+    "cdk.out/**",
+    ".next-chapterflow/**",
+    ".next-cf-dev/**"
   ]
 }

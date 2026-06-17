@@ -20,6 +20,19 @@
  * the job of the factual-accuracy axis downstream.
  */
 
+import { existsSync, readFileSync } from "fs";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+
+const PIPELINE_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
+
+/** Canonical location of a book's FILLED verification record/packet. `source-verify`
+ *  emits here and `source-verify-check` / the publish gate read here, so emit↔check
+ *  agree by construction. */
+export function sourceVerifyRecordPath(bookId: string): string {
+  return resolve(PIPELINE_DIR, ".chapterflow", `source-verify-${bookId}.md`);
+}
+
 export type SourceVerifyItem = {
   chapterNumber: number;
   kind: "named_example" | "testable_fact";
@@ -28,11 +41,26 @@ export type SourceVerifyItem = {
   detail: string;
 };
 
+export type SourceVerifyFinding = {
+  checkId: "SV1" | "SV2" | "SV3" | "SV4" | "SV5";
+  severity: "blocker" | "advisory";
+  chapterNumber?: number;
+  message: string;
+};
+
+export type SourceVerifyRecord = {
+  schemaVersion?: string;
+  bookId?: string;
+  chapters?: Array<{ chapterNumber: number; items?: Array<{ id: string; kind?: string; verdict?: string; sourceRef?: string; note?: string }> }>;
+};
+
 /** Pull the verifiable, real-world assertions out of one chapter's sidecar. */
 export function verifiableItems(sc: any): SourceVerifyItem[] {
   const chapterNumber = Number(sc?.chapterNumber ?? sc?.number ?? 0);
   const items: SourceVerifyItem[] = [];
-  for (const ex of sc?.namedExamples ?? []) {
+  const namedExamples = Array.isArray(sc?.namedExamples) ? sc.namedExamples : [];
+  for (let i = 0; i < namedExamples.length; i++) {
+    const ex = namedExamples[i];
     // Only real-world named cases need a reality check; a clearly fictional
     // illustration (realWorld === false) is the writer's to invent, not research's.
     if (ex?.realWorld === false) continue;
@@ -40,7 +68,9 @@ export function verifiableItems(sc: any): SourceVerifyItem[] {
     items.push({
       chapterNumber,
       kind: "named_example",
-      id: String(ex?.id ?? ex?.label ?? "named-example"),
+      // Unique-by-construction id so two id-less, label-less named examples can't collapse
+      // to one record entry (which would let SV1 coverage / SV2/SV3 checks skip one).
+      id: String(ex?.id ?? ex?.label ?? `named-example.${chapterNumber}.${i}`),
       claim: String(ex?.label ?? ex?.summary ?? "").trim(),
       detail: `hardSpecifics: ${hard.length ? hard.join(" · ") : "(none — a named case with no concrete specifics cannot be verified)"}`,
     });
@@ -109,4 +139,105 @@ export function buildSourceVerificationPacket(bookId: string, sidecars: any[]): 
   L.push("When every item is VERIFIED (or its sidecar fixed and re-verified), the source is sound");
   L.push("and you may proceed to the write phase. Surface any UNVERIFIABLE/WRONG item to the operator.");
   return L.join("\n") + "\n";
+}
+
+/** Extract the `source-verify-record-v1` JSON from a FILLED packet (markdown with a
+ *  fenced ```json block) or from raw JSON. The buildSourceVerificationPacket() emitter
+ *  embeds exactly such a block; the operator fills its verdicts/sourceRefs in place. */
+export function parseSourceVerifyRecord(text: string): { record: SourceVerifyRecord | null; error?: string } {
+  const src = text ?? "";
+  const trimmed = src.trim();
+  if (trimmed.startsWith("{")) {
+    try { return { record: JSON.parse(trimmed) as SourceVerifyRecord }; }
+    catch (e) { return { record: null, error: `record JSON is invalid: ${(e as Error).message}` }; }
+  }
+  const blocks = [...src.matchAll(/```json\s*\n([\s\S]*?)\n```/g)].map((m) => m[1]);
+  for (const b of blocks) {
+    if (!b.includes("source-verify-record-v1")) continue;
+    try { return { record: JSON.parse(b) as SourceVerifyRecord }; }
+    catch (e) { return { record: null, error: `record JSON block is invalid: ${(e as Error).message}` }; }
+  }
+  return { record: null, error: "no source-verify-record-v1 JSON block found in the packet" };
+}
+
+/**
+ * Gate a FILLED verification record against the verifiable items it claims to cover.
+ * This is what turns the WS-4 packet from DECORATIVE into a real gate: emitting a
+ * packet proves nothing; reading the filled record back and refusing to trust a
+ * rubber-stamp is the gate.
+ *
+ * Blocks on: (SV1) incomplete coverage vs the sidecars' verifiable items; (SV2) any
+ * item not VERIFIED (FILL_ME/UNVERIFIABLE/WRONG); (SV3) a VERIFIED item with no
+ * sourceRef. And the two rubber-stamp SIGNATURES the digital-minimalism run produced
+ * — (SV4) one identical note reused across every VERIFIED item, and (SV5) one
+ * identical sourceRef across every VERIFIED item. A faithful per-item verification
+ * cannot share a single note or a single source across many distinct cases/facts.
+ */
+export function checkSourceVerifyRecord(expectedItems: SourceVerifyItem[], record: SourceVerifyRecord | null): SourceVerifyFinding[] {
+  const out: SourceVerifyFinding[] = [];
+  if (!record || !Array.isArray(record.chapters)) {
+    return [{ checkId: "SV1", severity: "blocker", message: "source-verify record is missing or has no chapters[] — fill the verification packet before publishing." }];
+  }
+  const recItems = record.chapters.flatMap((c) => (c.items ?? []).map((it) => ({ ...it, chapterNumber: c.chapterNumber })));
+  const recById = new Map(recItems.map((it) => [String(it.id), it]));
+
+  // SV1 — coverage: every verifiable item must have a record entry.
+  for (const exp of expectedItems) {
+    if (!recById.has(String(exp.id))) {
+      out.push({ checkId: "SV1", severity: "blocker", chapterNumber: exp.chapterNumber, message: `item "${exp.id}" (ch${exp.chapterNumber}) has no verification record entry — coverage is incomplete.` });
+    }
+  }
+
+  // SV2/SV3 — per-item verdict + citation.
+  for (const it of recItems) {
+    const verdict = String(it.verdict ?? "").trim().toUpperCase();
+    if (verdict !== "VERIFIED") {
+      out.push({ checkId: "SV2", severity: "blocker", chapterNumber: it.chapterNumber, message: `item "${it.id}" (ch${it.chapterNumber}) verdict is "${it.verdict || "FILL_ME"}", not VERIFIED — resolve or cut it before publishing.` });
+      continue;
+    }
+    if (!String(it.sourceRef ?? "").trim()) {
+      out.push({ checkId: "SV3", severity: "blocker", chapterNumber: it.chapterNumber, message: `item "${it.id}" (ch${it.chapterNumber}) is VERIFIED with no sourceRef — a verified claim must cite a real source.` });
+    }
+  }
+
+  // SV4/SV5 — rubber-stamp signatures (only meaningful at scale).
+  const verified = recItems.filter((it) => String(it.verdict ?? "").trim().toUpperCase() === "VERIFIED");
+  if (verified.length >= 5) {
+    const distinctNotes = new Set(verified.map((it) => String(it.note ?? "").trim()).filter(Boolean));
+    const distinctRefs = new Set(verified.map((it) => String(it.sourceRef ?? "").trim()).filter(Boolean));
+    // SV4 — one identical note across every item is a bulk-fill signature, but ONLY a
+    // rubber-stamp when it is NOT backed by per-item distinct sources. A boilerplate note
+    // over genuinely DISTINCT real sourceRefs is honest-if-terse, not a stamp; one note
+    // over REUSED sources is the digital-minimalism shape (1 note, 81 items, 22 refs).
+    if (distinctNotes.size === 1 && distinctRefs.size < verified.length) {
+      out.push({ checkId: "SV4", severity: "blocker", message: `all ${verified.length} VERIFIED items carry ONE identical note over only ${distinctRefs.size} distinct source(s) — that is a bulk rubber-stamp, not per-item verification. Verify each item against its own source.` });
+    }
+    // SV5 — a single source cannot ground every distinct named case and fact.
+    if (distinctRefs.size === 1) {
+      out.push({ checkId: "SV5", severity: "blocker", message: `all ${verified.length} VERIFIED items cite ONE identical sourceRef — a single source cannot ground every distinct named case and fact. Cite per-item sources.` });
+    }
+  }
+
+  return out;
+}
+
+/**
+ * Publish-time source-reality gate. Reads the canonical filled record and checks it.
+ * A PRESENT-but-bad record (rubber-stamped or non-VERIFIED) always blocks — that is
+ * the digital-minimalism failure mode. An ABSENT record blocks only when `require`
+ * (mirrors CHAPTERFLOW_REQUIRE_KEYJUDGE) so the gold corpus / pre-feature books are
+ * not retroactively bricked.
+ */
+export function sourceVerifyGateFindings(bookId: string, expectedItems: SourceVerifyItem[], opts: { require?: boolean } = {}): SourceVerifyFinding[] {
+  const path = sourceVerifyRecordPath(bookId);
+  if (!existsSync(path)) {
+    return opts.require
+      ? [{ checkId: "SV1", severity: "blocker", message: `no source-verify record at ${path} (CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1). Run \`source-verify ${bookId} --write ${path}\`, verify every item, then re-check.` }]
+      : [];
+  }
+  const { record, error } = parseSourceVerifyRecord(readFileSync(path, "utf8"));
+  if (error || !record) {
+    return [{ checkId: "SV1", severity: "blocker", message: `source-verify record at ${path} could not be parsed: ${error ?? "unknown error"}` }];
+  }
+  return checkSourceVerifyRecord(expectedItems, record);
 }
