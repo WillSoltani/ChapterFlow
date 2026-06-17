@@ -395,7 +395,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
               <div
                 className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                   msg.role === "user"
-                    ? "bg-(--cf-accent) text-white"
+                    ? "bg-(--cf-accent) text-(--cf-accent-contrast)"
                     : "bg-(--cf-surface-muted) text-(--cf-text-1)"
                 }`}
               >
@@ -466,7 +466,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
               <button
                 type="submit"
                 disabled={!input.trim()}
-                className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-(--cf-accent) text-white transition hover:brightness-110 disabled:opacity-50"
+                className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-(--cf-accent) text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-50"
                 aria-label="Send message"
               >
                 <Send className="h-4 w-4" />
