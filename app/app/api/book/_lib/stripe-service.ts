@@ -26,8 +26,15 @@ export async function getStripeClient(): Promise<Stripe> {
   // Pin the API version so Stripe payload shapes don't drift unexpectedly
   // when the SDK is upgraded. Bump intentionally and re-test all webhook
   // event handlers when changing this string.
+  //
+  // Stripe SDK v22 dropped the `Stripe.LatestApiVersion` namespace alias, so
+  // the cast is derived from the constructor's own config type instead. This
+  // keeps the deliberate (non-"latest") pin compiling without depending on a
+  // namespaced type that may move again across SDK majors.
   const stripe = new stripeMod.default(key, {
-    apiVersion: "2024-06-20" as Stripe.LatestApiVersion,
+    apiVersion: "2024-06-20" as NonNullable<
+      ConstructorParameters<typeof stripeMod.default>[1]
+    >["apiVersion"],
   });
   cachedClient = { key, stripe };
   return stripe;
