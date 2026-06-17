@@ -235,3 +235,70 @@ test("manual keyjudge: stale content hash blocks a previously clean record", () 
     cleanup();
   }
 });
+
+// An incremental QC round re-derives keys only for the re-QC'd chapters. The CARRIED
+// chapters must keep the resolution from the round that last derived them on the SAME
+// content — NOT be clobbered to "missing keyA/keyB derivation" (the eat-that-frog publish
+// block: the round PASSED QC but the publish preflight read the clobbered key records).
+test("manual keyjudge: an incremental round CARRIES FORWARD a prior resolution for an un-re-derived chapter; a CHANGED chapter still needs a fresh key", () => {
+  const OLD = "r-key-old";
+  const NEW = "r-key-new";
+  const cleanup2 = () => {
+    rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
+    for (const r of [OLD, NEW]) {
+      rmSync(keyPackDir(BOOK, r), { recursive: true, force: true });
+      rmSync(qcRoundPath(BOOK, r), { force: true });
+    }
+    rmSync(manualKeyJudgePath(BOOK, 1), { force: true });
+    rmSync(resolve(TMP_DIR, `${BOOK}.answers.json`), { force: true });
+    rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
+  };
+  const answersForRound = (chapter: ReturnType<typeof makeChapter>, round: string): string => {
+    const packHash = JSON.parse(readFileSync(resolve(keyPackDir(BOOK, round), "ch01.key-pack.json"), "utf8")).packHash;
+    const answers = chapter.quiz.questions.map((q, i) => ({
+      questionIndex: i,
+      choiceIndex: q.correctIndex,
+      confidence: 0.95,
+      reason: `The source fact fact${i} supports this choice because it matches the fixture mechanism and rejects the plausible error.`,
+      sourceFactIds: [`fact${i}`],
+    }));
+    const p = resolve(TMP_DIR, `${BOOK}.answers.json`);
+    writeFileSync(p, JSON.stringify({ chapters: [{ chapterNumber: 1, packHash, answers }] }, null, 2), "utf8");
+    return p;
+  };
+  try {
+    cleanup2();
+    mkdirSync(TMP_DIR, { recursive: true });
+    const chapter = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    const sourceDir = resolve(REPO_ROOT, ".chapterflow/runs", BOOK, RUN, "sidecars/source");
+    mkdirSync(sourceDir, { recursive: true });
+    writeFileSync(resolve(sourceDir, "ch01.source.json"), JSON.stringify(sourceSidecar(1), null, 2), "utf8");
+
+    // Round OLD: full derivation of ch1 → PASS.
+    const old = openQcRound(BOOK, OLD);
+    writeKeyPacks(BOOK, OLD);
+    const oldAnswers = answersForRound(chapter, OLD);
+    validateAndWriteKeyDerivation(BOOK, OLD, "keyA", old.tokens.keyA, oldAnswers);
+    validateAndWriteKeyDerivation(BOOK, OLD, "keyB", old.tokens.keyB, oldAnswers);
+    assert.equal(resolveManualKeyJudges(BOOK, OLD).records[0].status, "PASS");
+
+    // Round NEW: an incremental round that did NOT re-derive ch1 (no keyA/keyB for it).
+    openQcRound(BOOK, NEW);
+    writeKeyPacks(BOOK, NEW);
+    const carried = resolveManualKeyJudges(BOOK, NEW).records[0];
+    assert.equal(carried.status, "PASS", `carried chapter must stay PASS, got: ${carried.reason}`);
+    assert.equal(carried.roundId, OLD, "record must point at the round that actually derived the keys");
+
+    // But if the chapter CONTENT changes, the prior derivation no longer matches → it
+    // genuinely needs a fresh key (the carry-forward must not mask real staleness).
+    const edited = structuredClone(chapter);
+    edited.title = `${edited.title} CHANGED`;
+    writeFixtureBook(STATE_CHAPTERS, [edited]);
+    const changed = resolveManualKeyJudges(BOOK, NEW).records[0];
+    assert.equal(changed.status, "BLOCK");
+    assert.match(changed.reason, /missing keyA\/keyB/);
+  } finally {
+    cleanup2();
+  }
+});
