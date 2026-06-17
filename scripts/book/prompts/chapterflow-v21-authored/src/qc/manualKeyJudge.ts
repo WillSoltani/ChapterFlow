@@ -291,25 +291,78 @@ export function loadManualKeyJudge(bookId: string, chapterNumber: number): Manua
   }
 }
 
+/** Round ids that have key packs for this book, most-recent first (round ids are
+ *  timestamp-prefixed, so lexical-desc == chronological-desc). */
+function roundIdsForBook(bookId: string): string[] {
+  const dir = resolve(QC_PACKS_DIR, bookId);
+  if (!existsSync(dir)) return [];
+  const ids = readdirSync(dir, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name);
+  // Order by the round's actual openedAt (chronological DESC), NOT the dir name — so the
+  // "most recent matching round" tie-break is correct even for custom (non-timestamp)
+  // round ids: a later FIXED round supersedes an older one, never masking a newer
+  // CORRUPTION with an older PASS. Fall back to the id string if round.json is absent.
+  const openedAt = (id: string): string => loadQcRound(bookId, id)?.openedAt ?? id;
+  return ids.sort((x, y) => {
+    const ox = openedAt(x);
+    const oy = openedAt(y);
+    return ox > oy ? -1 : ox < oy ? 1 : 0;
+  });
+}
+
+/** The round whose keyA AND keyB derived this chapter on its CURRENT content+source.
+ *  Prefers the current round (a re-QC'd chapter); else the most recent prior round that
+ *  still matches (a carried chapter keeps its resolution across incremental rounds rather
+ *  than being clobbered to "missing keyA/keyB derivation"). Returns null when no round
+ *  derived this chapter on its current content — i.e. it genuinely needs a fresh key. */
+function derivationForChapter(
+  bookId: string,
+  chapterNumber: number,
+  contentHash: string,
+  sourceHash: string,
+  currentRoundId: string,
+  orderedRoundIds: string[],
+): { roundId: string; a: KeyDerivation; b: KeyDerivation; ca: KeyDerivation["chapters"][number]; cb: KeyDerivation["chapters"][number] } | null {
+  const ordered = [currentRoundId, ...orderedRoundIds.filter((r) => r !== currentRoundId)];
+  for (const rid of ordered) {
+    const a = loadDerivation(bookId, rid, "keyA");
+    const b = loadDerivation(bookId, rid, "keyB");
+    if (!a || !b) continue;
+    const ca = a.chapters.find((c) => c.chapterNumber === chapterNumber);
+    const cb = b.chapters.find((c) => c.chapterNumber === chapterNumber);
+    if (ca && cb && ca.contentHash === contentHash && cb.contentHash === contentHash && ca.sourceHash === sourceHash && cb.sourceHash === sourceHash) {
+      return { roundId: rid, a, b, ca, cb };
+    }
+  }
+  return null;
+}
+
 export function resolveManualKeyJudges(bookId: string, roundId: string): { records: ManualKeyJudgeRecord[]; errors: string[] } {
-  const a = loadDerivation(bookId, roundId, "keyA");
-  const b = loadDerivation(bookId, roundId, "keyB");
   const chapters = loadBookChapters(bookId);
   const errors: string[] = [];
   const records: ManualKeyJudgeRecord[] = [];
   mkdirSync(QC_DIR, { recursive: true });
-  const byA = new Map((a?.chapters ?? []).map((c) => [c.chapterNumber, c]));
-  const byB = new Map((b?.chapters ?? []).map((c) => [c.chapterNumber, c]));
+  const orderedRounds = roundIdsForBook(bookId); // chronological desc; computed once
   for (const ch of chapters) {
-    const pack = loadKeyPack(bookId, roundId, ch.number);
     const contentHash = chapterContentHash(ch);
     const sourceHash = sourceHashFor(bookId, ch.number) ?? "";
+    // Content-addressed carry-forward: resolve each chapter from the latest round whose
+    // keyA AND keyB derived it on its CURRENT content. Without this, an incremental round
+    // — which only re-derives the re-QC'd chapters — clobbers every CARRIED chapter's
+    // valid record to "missing keyA/keyB derivation", and the publish preflight then
+    // blocks on chapters QC already passed (the eat-that-frog publish failure).
+    const found = derivationForChapter(bookId, ch.number, contentHash, sourceHash, roundId, orderedRounds);
+    const recRoundId = found?.roundId ?? roundId;
+    const a = found?.a ?? null;
+    const b = found?.b ?? null;
+    const ca = found?.ca;
+    const cb = found?.cb;
+    const pack = loadKeyPack(bookId, recRoundId, ch.number);
     let status: ManualKeyJudgeRecord["status"] = "BLOCK";
     let reason = "";
     const mismatches: ManualKeyJudgeRecord["mismatches"] = [];
     const disagreements: number[] = [];
-    const ca = byA.get(ch.number);
-    const cb = byB.get(ch.number);
     if (!pack) reason = "missing key pack";
     else if (!a || !b || !ca || !cb) reason = "missing keyA/keyB derivation";
     else if (sessionsCollide(a.reviewerSessionId, b.reviewerSessionId)) reason = `keyA and keyB were derived in the SAME session (${a.reviewerSessionId}) — the two blind keys must be independent; re-derive keyB in a separate session`;
@@ -359,7 +412,7 @@ export function resolveManualKeyJudges(bookId: string, roundId: string): { recor
       bookId,
       chapterNumber: ch.number,
       chapterId: ch.chapterId,
-      roundId,
+      roundId: recRoundId,
       resolvedAt: new Date().toISOString(),
       status,
       contentHash,
