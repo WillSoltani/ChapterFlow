@@ -80,14 +80,14 @@ export function GrowthClient() {
           ) : (
             <div className="h-56">
               <ResponsiveContainer>
-                <BarChart data={data?.signups ?? []} margin={{ top: 10, right: 10, bottom: 0, left: -10 }}>
+                <BarChart data={data?.signups ?? []} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
                   <CartesianGrid stroke="var(--cf-border)" vertical={false} />
                   <XAxis
                     dataKey="date"
                     tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
                     tickFormatter={fmtDate}
                   />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
+                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={40} allowDecimals={false} />
                   <Tooltip content={<DarkTooltip />} />
                   <Bar dataKey="value" fill="var(--cf-accent)" isAnimationActive={false} radius={[4, 4, 0, 0]} />
                 </BarChart>
@@ -135,14 +135,14 @@ export function GrowthClient() {
           ) : (
             <div className="h-48">
               <ResponsiveContainer>
-                <BarChart data={data?.referrals ?? []} margin={{ top: 10, right: 10, bottom: 0, left: -10 }}>
+                <BarChart data={data?.referrals ?? []} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
                   <CartesianGrid stroke="var(--cf-border)" vertical={false} />
                   <XAxis
                     dataKey="date"
                     tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
                     tickFormatter={fmtDate}
                   />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
+                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={40} allowDecimals={false} />
                   <Tooltip content={<DarkTooltip />} />
                   <Bar dataKey="value" fill="var(--cf-success-text)" isAnimationActive={false} radius={[4, 4, 0, 0]} />
                 </BarChart>
@@ -177,15 +177,19 @@ function FunnelView({ funnel }: { funnel?: GrowthResponse["funnel"] }) {
     <div className="space-y-2.5">
       {steps.map((s, i) => {
         const pct = (s.value / max) * 100;
+        // Guard against impossible (>100%) "conversions": these four steps are
+        // sourced from independent proxy event series (see growth/route.ts), not a
+        // real monotonic cohort, so a later step can exceed its predecessor. Render
+        // no percent rather than a misleading 5-digit figure (e.g. "20200% from prev").
         const conv =
-          i > 0 && steps[i - 1].value > 0
+          i > 0 && steps[i - 1].value > 0 && s.value <= steps[i - 1].value
             ? `${((s.value / steps[i - 1].value) * 100).toFixed(0)}% from prev`
             : "";
         return (
           <div key={s.label}>
-            <div className="mb-1 flex items-center justify-between text-[12px]">
-              <span className="font-medium text-(--cf-text-2)">{s.label}</span>
-              <span className="tabular-nums text-(--cf-text-3)">
+            <div className="mb-1 flex items-center justify-between gap-x-3 text-[12px]">
+              <span className="min-w-0 font-medium text-(--cf-text-2)">{s.label}</span>
+              <span className="shrink-0 whitespace-nowrap text-right tabular-nums text-(--cf-text-3)">
                 {s.value.toLocaleString()}
                 {conv && <span className="ml-2 text-(--cf-text-soft)">{conv}</span>}
               </span>
