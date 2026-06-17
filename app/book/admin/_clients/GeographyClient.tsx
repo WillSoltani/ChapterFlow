@@ -128,7 +128,7 @@ export function GeographyClient() {
                 <TableSkeleton rows={8} cols={5} />
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-[12px]">
+                  <table className="w-full min-w-[520px] text-[12px]">
                     <thead>
                       <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
                         <th className="py-2 pr-3">Country</th>
@@ -247,7 +247,7 @@ export function GeographyClient() {
                 }
               >
                 <div className="overflow-x-auto">
-                  <table className="w-full text-[12px]">
+                  <table className="w-full min-w-[520px] text-[12px]">
                     <thead>
                       <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
                         <th className="py-2 pr-3">Approx. coordinates</th>
