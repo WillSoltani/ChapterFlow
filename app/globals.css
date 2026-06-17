@@ -164,7 +164,7 @@ body {
   --secondary: #1A2332;
   --secondary-foreground: #E8ECF1;
   --muted: #1A2332;
-  --muted-foreground: #5C6B7A;
+  --muted-foreground: #7C8B9A; /* was #5C6B7A (3.53:1) → 5.53:1 on --cf-page-bg; tracks --text-tertiary (VB-004 sibling) */
   --accent: rgba(34, 211, 238, 0.14);
   --accent-foreground: #22D3EE;
   --destructive: #F43F5E;
@@ -336,7 +336,7 @@ body {
   --cf-danger-soft: rgba(244, 63, 94, 0.1);
   --cf-danger-bg: rgba(244, 63, 94, 0.1);
   --cf-danger-border: rgba(244, 63, 94, 0.24);
-  --cf-danger-text: #F43F5E;
+  --cf-danger-text: #FB7185; /* rose-400; was #F43F5E (4.42:1 on danger-soft∘surface) → 6.03:1 (VB-025 dark) */
   --cf-focus-ring: 0 0 0 3px rgba(34, 211, 238, 0.9);
   --cf-blue-soft: rgba(34, 211, 238, 0.1);
   --cf-blue-border: rgba(34, 211, 238, 0.24);
@@ -512,7 +512,7 @@ html:not(.dark) {
   --cf-danger-soft: rgba(225, 29, 72, 0.06);
   --cf-danger-bg: #FFF1F2;
   --cf-danger-border: rgba(225, 29, 72, 0.2);
-  --cf-danger-text: #E11D48;
+  --cf-danger-text: #BE123C; /* rose-700 (=--accent-rose-dim); was #E11D48 (4.26:1 on light danger-soft) → 5.71:1 (VB-025 light) */
   --cf-focus-ring: 0 0 0 3px rgba(8, 145, 178, 0.9);
   --cf-blue-soft: rgba(8, 145, 178, 0.06);
   --cf-blue-border: rgba(8, 145, 178, 0.2);
