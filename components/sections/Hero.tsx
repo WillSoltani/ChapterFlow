@@ -80,8 +80,14 @@ export function Hero() {
               <span
                 className="bg-clip-text text-transparent"
                 style={{
+                  // Light mode: --accent-cyan is a dark teal, so a 35% white mix
+                  // pushed the lightest glyph below the 3:1 large-text floor.
+                  // Dropping to 15% lifts it clear (~4:1) while keeping the base
+                  // on --accent-cyan (theme-aware: bright cyan in dark) so the
+                  // dark headline stays a luminous cyan sweep — anchoring the
+                  // light end on --accent-cyan-muted would instead dim DARK mode.
                   backgroundImage:
-                    "linear-gradient(135deg, var(--accent-cyan), color-mix(in srgb, var(--accent-cyan), white 35%))",
+                    "linear-gradient(135deg, var(--accent-cyan), color-mix(in srgb, var(--accent-cyan), white 15%))",
                   WebkitBackgroundClip: "text",
                 }}
               >

@@ -1,6 +1,7 @@
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FinalCTALinks } from "@/components/landing/FinalCTALinks";
+import { LEARNING_LOOP_STEPS } from "@/lib/learning-loop";
 
 export function FinalCTA() {
   return (
@@ -26,7 +27,7 @@ export function FinalCTA() {
               color: "var(--accent-cyan)",
             }}
           >
-            No summaries. No shortcuts. Real retention.
+            No skimming. No shortcuts. Real retention.
           </p>
 
           <p
@@ -36,7 +37,7 @@ export function FinalCTA() {
               color: "var(--text-secondary)",
             }}
           >
-            Every chapter is a 20-minute loop: read, apply, prove, unlock.
+            Every chapter is a 20-minute loop: {LEARNING_LOOP_STEPS.join(", ")}.
             Start free &mdash; no credit card, no commitment.
           </p>
 

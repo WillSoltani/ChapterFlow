@@ -17,6 +17,7 @@ import {
   UPGRADE_RETURN_PATH,
   UPGRADE_LOGIN_URL,
   PRICING_TIER_DISPLAY,
+  PRO_FEATURES,
 } from "@/lib/pricing";
 
 /* ------------------------------------------------------------------ */
@@ -142,21 +143,13 @@ export function Pricing() {
     "Access to the full book library",
     "Finish up to 2 books",
     "Lite and Standard depth modes",
-    "Chapter summaries and scenarios",
+    "Chapter summaries and examples",
     "Chapter quizzes",
   ];
   const freeMissing = ["Deeper depth mode", "Unlimited books"];
 
-  /* ---- Pro features ---- */
-  const proFeatures = [
-    "Access to the full book library",
-    "Unlimited books",
-    "Lite and Standard depth modes",
-    "Chapter summaries and scenarios",
-    "Chapter quizzes",
-    "Deeper depth mode",
-    "Priority new title requests",
-  ];
+  /* ---- Pro features (single source of truth: lib/pricing.ts) ---- */
+  const proFeatures = PRO_FEATURES;
 
   return (
     <section id="pricing" className="pt-14 pb-6 lg:pt-20 lg:pb-8">
@@ -406,12 +399,19 @@ export function Pricing() {
                 .
               </p>
 
-              {/* CTA */}
+              {/* CTA — upgrade = "the win", so it carries the single canonical
+                  gold Pro-CTA accent (--cf-upgrade-accent, from batch 01), the
+                  same treatment as the dashboard "Go Pro" pill. text-black for
+                  ≥4.5:1 on gold. NOT the cyan product accent (cyan = "the work"). */}
               <Link
                 href={proHref}
                 onClick={() => track("cta_click", { source: "pricing_pro" })}
-                className="block w-full text-center bg-(--accent-cyan) text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-                style={{ fontFamily: "var(--font-display)" }}
+                className="block w-full text-center rounded-xl py-3.5 font-semibold text-black transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  background: "var(--cf-upgrade-accent)",
+                  boxShadow: "var(--cf-upgrade-accent-shadow)",
+                }}
               >
                 {TRIAL_CTA_LABEL}
               </Link>
