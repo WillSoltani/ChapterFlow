@@ -284,16 +284,22 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
 
   return (
     <>
-      {/* Floating chat launcher — reader-tokened and anchored to the bottom-edge
-       *  FAB column (safe-area aware; the audio FAB stacks above it). */}
+      {/* Floating chat launcher — a labelled "Ask Raymond" pill (Shape rule:
+       *  rounded-full action pills) so the control reads as Raymond without the
+       *  icon-only ambiguity, while still floating clear of the prose at the
+       *  bottom edge (safe-area aware; the audio bar reserves space to its left).
+       *  aria-label gives it an explicit accessible name (the title attribute
+       *  alone is never announced on touch / by most screen readers). */}
       {!open && (
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] md:right-6"
+          className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-50 flex items-center gap-2 rounded-full bg-(--cr-accent) px-4 py-3 text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] md:right-6"
           title="Ask Raymond"
+          aria-label="Ask Raymond about this chapter"
         >
           <Sparkles className="h-5 w-5" />
+          <span className="text-sm font-semibold">Ask Raymond</span>
         </button>
       )}
 
@@ -352,6 +358,21 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
             </button>
           </div>
         </div>
+
+        {/* SR-only live region: announce the completed assistant reply once
+         *  streaming ends (mirrors QuizPanel's dedicated role=status /
+         *  aria-live=polite node). Without this the token-by-token stream is
+         *  silent to screen-reader users — WCAG 4.1.3 Status Messages. A single
+         *  dedicated node avoids the double-speak of marking the whole message
+         *  list live, and it sits inside the inert-gated <aside> so it is only
+         *  active while the drawer is open. */}
+        <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          {streaming
+            ? "Raymond is responding…"
+            : lastMessage?.role === "assistant" && lastMessage.content
+              ? `Raymond replied: ${lastMessage.content}`
+              : ""}
+        </p>
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
@@ -459,6 +480,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
                 onClick={handleAbort}
                 className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-danger-text) transition-colors hover:bg-(--cf-danger-bg)"
                 title="Stop generating"
+                aria-label="Stop generating"
               >
                 <Square className="h-3.5 w-3.5" />
               </button>

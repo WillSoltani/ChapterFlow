@@ -55,12 +55,24 @@ export function ReadingDepthSwitch({ value, onChange, variant = "horizontal" }: 
             onClick={() => onChange(option.id)}
             aria-pressed={active}
             className={[
-              "rounded-xl border px-3 py-1.5 text-sm font-semibold transition",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)",
+              // Weight lives in the active/inactive branches (NOT the base) so the
+              // active `font-bold` is not cancelled by a base `font-semibold` —
+              // two conflicting Tailwind weight utilities otherwise resolve to the
+              // wrong one by source order.
+              "rounded-xl border px-3 py-1.5 text-sm transition",
+              // ≥3:1 focus ring (house rule): the old --cr-accent-glow ring was a
+              // 12–15%-alpha wash that barely read. Matches the reader's other
+              // controls (PhaseStepper, shortcuts dialog) which use the 55% mix.
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]",
               isVertical ? "w-full text-left flex items-baseline gap-2" : "",
               active
-                ? "border-(--cr-glass-border-teal) bg-(--cr-accent-muted) text-(--cr-accent)"
-                : "border-(--cr-glass-border) bg-(--cr-bg-surface-3) text-(--cr-text-secondary) hover:border-(--cr-glass-border-teal)",
+                // Decisively FILLED active chip: solid --cr-accent border + the
+                // 16% --cr-accent-active fill (replaces the faint 15%-alpha
+                // --cr-accent-muted wash that made the selected depth read no
+                // stronger than its siblings) + bold weight as a second,
+                // colour-independent cue for forced-colors / colourblind users.
+                ? "border-(--cr-accent) bg-(--cr-accent-active) text-(--cr-accent) font-bold"
+                : "border-(--cr-glass-border) bg-(--cr-bg-surface-3) text-(--cr-text-secondary) font-semibold hover:border-(--cr-glass-border-teal)",
             ].join(" ")}
           >
             <span>{option.label}</span>

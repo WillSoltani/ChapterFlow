@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { BookLock, CheckCircle2, CloudOff, X } from "lucide-react";
+import { BookLock, CheckCircle2, CloudOff, Lightbulb, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   getChapterById,
@@ -56,8 +56,12 @@ import type { LearningMode, ContentTone } from "@/app/book/settings/types/settin
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
+import { TRIAL_CTA_LABEL, UPGRADE_RETURN_PATH, MONTHLY_PRICE_WITH_CURRENCY, PRICING } from "@/lib/pricing";
 
 const SCENARIO_SUBMISSION_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
+
+/** Dismiss-once flag for the first-chapter Summary/Examples/Quiz loop coachmark. */
+const READER_LOOP_COACHMARK_KEY = "cf-reader-loop-coachmark-seen:v1";
 
 function mapLearningStyleToDepth(value: string): ReadingDepth {
   if (value === "concise") return "simple";
@@ -132,6 +136,9 @@ export function ChapterReaderClient({
   );
   const [bookAccessMessage, setBookAccessMessage] = useState<string | null>(null);
   const [paywallHit, setPaywallHit] = useState(false);
+  // First-real-chapter coachmark explaining the Summary/Examples/Quiz loop +
+  // the READ time tiers. Shown once (chapter 1 only), then never again.
+  const [showLoopCoachmark, setShowLoopCoachmark] = useState(false);
 
   // Phase transition interstitial state
   const [interstitial, setInterstitial] = useState<{
@@ -244,6 +251,21 @@ export function ChapterReaderClient({
     setLastReadChapter,
     markChapterComplete,
   } = useBookProgress(bookId, chapters);
+
+  // First-chapter loop coachmark: show once on chapter 1 only, gated on a
+  // localStorage seen-flag (client-only state — no prod write).
+  useEffect(() => {
+    if (chapter?.order !== 1) return;
+    try {
+      if (!localStorage.getItem(READER_LOOP_COACHMARK_KEY)) setShowLoopCoachmark(true);
+    } catch {}
+  }, [chapter?.order]);
+  const dismissLoopCoachmark = useCallback(() => {
+    setShowLoopCoachmark(false);
+    try {
+      localStorage.setItem(READER_LOOP_COACHMARK_KEY, "1");
+    } catch {}
+  }, []);
 
   const {
     hydrated: chapterHydrated,
@@ -646,29 +668,75 @@ export function ChapterReaderClient({
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
           <div className="w-full cr-glass-reading p-8 text-center">
             <BookLock className="mx-auto h-10 w-10 text-(--cr-text-disabled)" />
-            <h1 className="mt-4 text-3xl font-bold text-(--cr-text-heading)">
-              Book access paused
-            </h1>
-            <p className="mt-2 text-(--cr-text-secondary)">
-              {bookAccessMessage ||
-                "We couldn't unlock this book right now. Please head back and try again."}
-            </p>
-            <div className="mt-5 flex flex-col items-center gap-3">
-              {paywallHit && (
+            {paywallHit ? (
+              // Real paywall at the highest-intent moment: lead with value +
+              // price + the free trial (cyan = "doing the work" / primary CTA,
+              // NOT gold). Price/trial figures come from lib/pricing.ts so the
+              // wall stays in sync with the landing + settings billing copy.
+              <>
+                <h1 className="mt-4 text-3xl font-bold text-(--cr-text-heading)">
+                  Unlimited books for {MONTHLY_PRICE_WITH_CURRENCY}/mo
+                </h1>
+                <p className="mt-1 text-sm text-(--cr-text-secondary)">
+                  That&rsquo;s about ${(PRICING.monthlyAmount / 30).toFixed(2)} a day — and the
+                  first {PRICING.trialDays} days are free. Cancel anytime.
+                </p>
+                {/* Benefits mirror the canonical Pro differentiators advertised
+                 *  on the landing Pricing card (components/sections/Pricing.tsx:
+                 *  proFeatures) + the genuinely Pro-gated audio route (free is
+                 *  capped at 2 books / Lite+Standard depth). Every claim is a real
+                 *  Pro unlock — no aspirational copy. */}
+                <ul className="mx-auto mt-5 max-w-sm space-y-2 text-left">
+                  {[
+                    "Unlimited books — read every title in the library",
+                    "Deeper depth mode on every chapter",
+                    "Text-to-speech audio for hands-free reading",
+                    "Priority requests for new titles",
+                  ].map((benefit) => (
+                    <li
+                      key={benefit}
+                      className="flex items-start gap-2 text-sm text-(--cr-text-secondary)"
+                    >
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-(--cr-accent)" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 flex flex-col items-center gap-3">
+                  <Link
+                    href={UPGRADE_RETURN_PATH}
+                    className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cr-bg-root) focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
+                  >
+                    {TRIAL_CTA_LABEL}
+                  </Link>
+                  <Link
+                    href={`/book/library/${encodeURIComponent(bookId)}`}
+                    className="inline-flex rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-active) px-4 py-2 text-sm font-medium text-(--cr-accent)"
+                  >
+                    Back to book
+                  </Link>
+                </div>
+              </>
+            ) : (
+              // Non-paywall block (transient access error): keep the original
+              // copy + the quiet secondary "Back to book" (matches the sibling
+              // load-error / chapter-lock terminal screens).
+              <>
+                <h1 className="mt-4 text-3xl font-bold text-(--cr-text-heading)">
+                  Book access paused
+                </h1>
+                <p className="mt-2 text-(--cr-text-secondary)">
+                  {bookAccessMessage ||
+                    "We couldn't unlock this book right now. Please head back and try again."}
+                </p>
                 <Link
-                  href="/book/settings"
-                  className="inline-flex rounded-xl px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) bg-(--cr-accent)"
+                  href={`/book/library/${encodeURIComponent(bookId)}`}
+                  className="mt-5 inline-flex rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-4 py-2 text-sm font-medium text-(--cr-accent)"
                 >
-                  Upgrade to Pro
+                  Back to book
                 </Link>
-              )}
-              <Link
-                href={`/book/library/${encodeURIComponent(bookId)}`}
-                className="inline-flex rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-4 py-2 text-sm font-medium text-(--cr-accent)"
-              >
-                Back to book
-              </Link>
-            </div>
+              </>
+            )}
           </div>
         </section>
       </main>
@@ -1001,6 +1069,33 @@ export function ChapterReaderClient({
           </div>
         )}
 
+        {/* First-chapter loop coachmark — one-time, dismiss-once (chapter 1 only).
+         *  Explains the Summary → Examples → Quiz loop + the READ time tiers, the
+         *  way Apple Books / Headspace introduce a novel reading mechanic with a
+         *  single first-use hint. Ties to the cyan "work" channel via
+         *  --cr-accent-active; static (no ambient animation). Canonical phase
+         *  names match the live PhaseStepper. */}
+        {showLoopCoachmark && !state.focusMode && (
+          <div className="mt-3 flex items-start gap-3 rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-active) p-3 text-left">
+            <Lightbulb className="mt-0.5 h-4 w-4 flex-shrink-0 text-(--cr-accent)" />
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-(--cr-text-heading)">The same loop you just tried</p>
+              <p className="mt-0.5 text-[13px] text-(--cr-text-secondary)">
+                Read the <strong>Summary</strong>, see it in <strong>Examples</strong>, then prove it stuck in the{" "}
+                <strong>Quiz</strong> to unlock the next chapter. The READ chips (Fast / Deep / Full) set how much detail you get.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={dismissLoopCoachmark}
+              className="rounded-lg p-1 text-(--cr-text-secondary) transition hover:text-(--cr-text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+              aria-label="Dismiss tip"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        )}
+
         {/* Single hint above the fold so users know what unlocks "Continue".
          *  Comprehension-framed — we deliberately hide the raw time/scroll
          *  quota so the gate reads as "engage with the section", not a number
@@ -1028,11 +1123,16 @@ export function ChapterReaderClient({
           </p>
         )}
 
-        {/* Content area — constrained to user's preferred reading width for comfortable line length */}
+        {/* Content area — constrained to the user's preferred reading width. The
+         *  `min(<px>, 72ch)` cap reins the WIDE preset back to a comfortable
+         *  measure (~72ch of this container's base font) while leaving the
+         *  narrower presets at their px width. The ch resolves against this
+         *  container's base font (the reading font-size is applied to the
+         *  descendant prose, not here), so the cap is a stable column ceiling. */}
         <div
           ref={contentRef}
           className="mx-auto mt-4 space-y-5"
-          style={{ maxWidth: `${bookPrefs.reading.contentWidth}px` }}
+          style={{ maxWidth: `min(${bookPrefs.reading.contentWidth}px, 72ch)` }}
         >
           {showSummary && (
             <motion.div
