@@ -1,0 +1,364 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "hyperfocus-ch04",
+  "number": 4,
+  "title": "Taming Distractions",
+  "readingTimeMinutes": 10,
+  "hook": "Your default is to meet every alert in combat, and the alert picked the arena.",
+  "counterintuition": "Distraction is not one enemy to crush, but a set of cues to sort. A buzz, a stray errand, and a tempting tab each need a different control.",
+  "tryThisNow": "Before you start your next focus block, move one tempting cue out of reach, close one noisy tab, walk across the room, and rehearse where one stray thought will go.",
+  "keyTakeaway": "Tame distraction by changing the cue before it grabs you: block outside pulls, capture inside urges, and batch the checks you choose.",
+  "breakdown": {
+    "fastRead": "Forty seconds can feel like nothing until it is all the time a computer worker gets. Harvard Business Review cites that rough average before people are distracted or interrupted. One ping may look small. After it lands, Gloria Mark's UC Irvine research points to a bigger cost: more than 20 minutes can pass before the old depth returns.\n\nPrevention beats rescue. Block outside pulls before they arrive. Capture inside urges before they loop. Batch messages before the inbox becomes the job. Cues beat willpower when the cue arrives first.",
+    "deepRead": "A cue changes the room before you argue with yourself. A phone on the desk says, someone may need you. An open inbox says, fresh work may be waiting. A half-remembered errand says, hold me in mind or lose me. None of these has to win. Each one just has to enter your attention.\n\nThat is why distraction taming starts before the tug. The controls are simple, but they are not the same control. Outside interruptions need walls: silence alerts, move the device, close the inbox, set a check window. Inside interruptions need capture: write the task, idea, or worry where you will see it later. A listed urge is lighter than a hidden urge.\n\nGloria Mark's interrupted-work research at UC Irvine makes the cost feel less like a mood. The mind has to rebuild what the task was, what mattered, and what came next. The 20-plus-minute recovery cost is not a moral failure. It is the price of losing the thread.\n\nThe deeper trick is that tempting work often has better bait. It is newer, easier, scarier, or more pleasant than the hard target. A deadline can focus you because threat raises the target's salience. You can also raise salience on purpose: place the needed file in front of you, name the next step, and make the side door harder to enter.",
+    "fullRead": "Some distractions are chosen on purpose, and that matters. A walk after a hard draft can restore attention. A friend at the door may deserve the whole room. The move is not to bleach life clean of noise. It is to know which pull you are accepting and which one is stealing the work you picked.\n\nStart with the outside world. The Harvard Business Review figure, about 40 seconds before distraction or interruption, explains why brave ignoring fails. A badge on the mail app does not wait for your best self. It offers a new target. Even if you do not answer, part of your mind has already checked whether answering might matter.\n\nThen sort the inside world. A remembered bill, a new idea, or a worry about dinner does not need a fight. It needs a landing place. Write it on a capture list and return. The aim is not to forget the thought. It is to stop rehearsing it while you are trying to think about something else.\n\nThe UC Irvine interruption work gives the recovery cost a body. Picture the cursor blinking where you left it, the paragraph still open, the old sentence suddenly unfamiliar. The screen has not changed much. The mind has. It now has to rebuild the path into the work before the next useful sentence can appear.\n\nEmail needs its own rule because it mixes real work with constant switching. Fast replies can look productive from the outside. Inside the task, each visit breaks the thread and asks you to choose again. Batching email protects attention because it reduces the number of times the inbox gets to become the main thing.\n\nPleasure, threat, and novelty explain why the wrong target wins so often. A bright link is fresh. A tense message feels urgent. An easy errand offers a clean finish. The important task may sit there plain and quiet. To keep it alive, give it visible shape. Put the source document on screen. Clear the rival tab. Write the next verb on paper.\n\nThe hard case is a distraction you partly want. News may calm you for five minutes. A message may make you feel useful. A small admin task may give you a clean win. Naming those rewards is not shame. It is how you choose the right control. Some cues need removal. Some need a later window. Some need a short chosen break after the main target has earned it.\n\nDo not sterilize life to protect attention. Use the opposite move when the interruption is the work: a sick child, a safety issue, a true emergency, or a conversation you chose because it matters more than the draft. Taming distraction is not hiding from the world. It is making sure the world does not choose for you by default."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch04.ex1",
+      "title": "Forty Second Budget",
+      "tags": [
+        "planning",
+        "attention"
+      ],
+      "planSpec": {
+        "domain": "analyst focus planning",
+        "audience": "computer workers protecting a first work block",
+        "stakes": "scarce attention may be spent before depth starts",
+        "format": "planning_choice",
+        "requiredBeat": "Use the HBR 40-second statistic to allocate attention before work begins.",
+        "venue": "a teacher's desk",
+        "exemplar": "Harvard Business Review"
+      },
+      "scenario": "Stella has not opened the spreadsheet. At a teacher's desk used for the after-school data review, she writes Harvard Business Review and 40 seconds at the top of a yellow pad. The choice is still only a plan: leave chat open for fast help, close it for one clean run, or set one check window after the first section. Her scarce resource is not time on the clock. It is unbroken attention.",
+      "whatToDo": "Stella chooses the check window before the first cell is touched. She treats chat as a planned channel, not as a live vote on what deserves her mind.",
+      "whyItMatters": "The scene shows prevention before temptation. If the average pull arrives in less than a minute, waiting to feel strong is already late."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch04.ex3",
+      "title": "Twenty Minute Fork",
+      "tags": [
+        "research",
+        "interruption"
+      ],
+      "planSpec": {
+        "domain": "research lab analysis",
+        "audience": "people who underestimate refocusing cost",
+        "stakes": "one interruption may erase the shape of the task",
+        "format": "dilemma",
+        "requiredBeat": "Use Gloria Mark's UC Irvine interruption research to face the cost of a live interruption.",
+        "venue": "a swimming pool edge",
+        "exemplar": "Gloria Mark"
+      },
+      "scenario": "Coralie stands at the swimming pool edge while the swim club's meet results upload on her laptop. Gloria Mark's UC Irvine finding, more than 20 minutes to regain depth after interrupted work, is marked in her notes. A parent waves her over with a quick roster question. The decision pinches: answer now and lose the scoring pattern, or defer and let the meet desk stall. Both options cost her.",
+      "whatToDo": "Coralie gives the parent a precise return point, then marks the scoring line she must resume. She protects the task thread without pretending the person is unimportant.",
+      "whyItMatters": "A serious interruption is not just the seconds it takes. The cost includes rebuilding the mental map after the old target has gone dim."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch04.fact.4",
+      "title": "The Silent Buzz",
+      "tags": [
+        "dialogue",
+        "notifications"
+      ],
+      "planSpec": {
+        "domain": "design review exchange",
+        "audience": "teams who think unanswered alerts do no harm",
+        "stakes": "an alert can shift attention before a reply happens",
+        "format": "dialogue",
+        "requiredBeat": "Show that notifications distract even when no one answers them.",
+        "venue": "a salon chair",
+        "exemplar": "Harvard Business Review"
+      },
+      "scenario": "Kevin sits in a salon chair with foil folded along his hair while Celine reviews the appointment app on a tablet. His phone lights up, face-up on the shelf. \"I did not answer it,\" he says. Celine points to the half-written note he stopped midword. \"Harvard Business Review did not say the problem starts after the reply. It starts when the alert becomes a possible target.\"",
+      "whatToDo": "Kevin turns the phone face down and puts the tablet's alert banner away before he finishes the note. He removes the cue that kept entering the work.",
+      "whyItMatters": "A notification does not need a reply to steal attention. It only has to offer a new target while the chosen one is fragile."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch04.fact.6",
+      "title": "Inbox Reveal",
+      "tags": [
+        "email",
+        "batching"
+      ],
+      "planSpec": {
+        "domain": "client service desk",
+        "audience": "workers who equate fast replies with high output",
+        "stakes": "responsiveness may quietly lower the quality of valuable work",
+        "format": "predict_reveal",
+        "requiredBeat": "Set up continuous email as the expected productive move, then reveal why batching works better.",
+        "venue": "a direct-message thread",
+        "exemplar": "Harvard Business Review"
+      },
+      "scenario": "William expects the service report to improve when the inbox stays open beside it. The numbers look obvious: more replies, fewer waiting clients, cleaner conscience. By late afternoon, the reveal is on the draft itself. The report has three broken sections and no clear finding. Batching email would have reduced task switches. Constant checking made the inbox look like work while the higher-value work thinned out.",
+      "whatToDo": "William sets two mail windows and writes the report between them. He measures the day by the finished analysis, not by reply speed alone.",
+      "whyItMatters": "Fast email can feel useful while it breaks the main task. Batching protects the work that needs a continuous line of thought."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch04.fact.5",
+      "title": "Errand Thread",
+      "tags": [
+        "internal urges",
+        "capture"
+      ],
+      "planSpec": {
+        "domain": "direct-message support",
+        "audience": "people whose own thoughts interrupt focused work",
+        "stakes": "an internal reminder may loop until it is captured",
+        "format": "text_thread",
+        "requiredBeat": "Use a short message exchange to show internal interruptions being captured and deferred.",
+        "venue": "a direct-message thread",
+        "exemplar": ""
+      },
+      "scenario": "Yann's direct-message thread with Nancy sits beside a grant draft.\nYann: I keep remembering the printer ink.\nNancy: HBR's outside-pull warning is not this one. Did you write it somewhere you trust?\nYann: No, I keep holding it in my head.\nNancy: Then it is not a reminder. It is an open tab.\nYann writes ink on the capture list. The grant sentence stops competing with the errand.",
+      "whatToDo": "Yann puts the errand on a visible capture list and returns to the grant sentence. He defers the thought instead of trying to crush it.",
+      "whyItMatters": "Internal distractions often need a landing place. Suppressing them can keep them active, while capture gives the mind permission to release them."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch04.fact.9",
+      "title": "Cue Path Reset",
+      "tags": [
+        "environment",
+        "reset"
+      ],
+      "planSpec": {
+        "domain": "home office reset",
+        "audience": "readers who treat distractibility as character",
+        "stakes": "a weak setup may be blamed on a weak person",
+        "format": "reset_moment",
+        "requiredBeat": "Show environmental design changing the cue path without changing personality.",
+        "venue": "a bedroom closet",
+        "exemplar": "UC Irvine"
+      },
+      "scenario": "Nancy reaches for the news tab before the first paragraph of her proposal is done. She stops with her fingers on the keys. UC Irvine sits in her notes beside interrupted work, but the fix is physical: laptop on the desk, phone charger in the bedroom closet, capture pad by the keyboard. She restarts the paragraph with fewer cues asking to be chosen.",
+      "whatToDo": "Nancy pauses, changes the setup, and restarts the proposal from the last complete sentence. She redesigns the cue path before judging herself.",
+      "whyItMatters": "The reset treats attention as context-sensitive. Changing what the mind meets first can change behavior without a new personality."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch04.fact.1",
+        "prompt": "At the teacher's desk, Stella sees the 40-second HBR figure before planning her first work block. Which reading should shape her setup?",
+        "choices": [
+          "She should plan for a few large interruptions that may arrive near the end of the block.",
+          "She should use the short average as proof that focused work is rarely worth starting.",
+          "She should protect the block early because tiny interruptions can arrive before depth forms."
+        ],
+        "correctIndex": 2,
+        "explanation": "The 40-second figure points to frequent small pulls. Stella should prevent early cue contact, not treat interruption as rare or use it as a reason to give up.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch04.fact.2",
+        "prompt": "At the pool meet desk, Coralie loses her place after a roster question and thinks she only spent one minute away. What did she miss?",
+        "choices": [
+          "She missed that every roster question should be answered only after the full meet ends.",
+          "She missed that refocusing mainly depends on whether the interruption was polite.",
+          "She missed that the task context may take more than 20 minutes to rebuild."
+        ],
+        "correctIndex": 2,
+        "explanation": "The cited interruption work treats recovery as costly. The roster question may be brief, but rebuilding the scoring context can take far longer.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch04.fact.3",
+        "prompt": "Before Kevin starts a hard edit, he can either move the phone or promise to ignore it. Which choice fits the prevention logic?",
+        "choices": [
+          "He should move the phone before the cue can compete with the edit.",
+          "He should keep the phone nearby so each ignored buzz strengthens discipline.",
+          "He should wait for the first buzz and then decide whether the edit matters."
+        ],
+        "correctIndex": 0,
+        "explanation": "Prevention lowers the willpower demand. Removing the cue helps Kevin avoid a direct contest with novelty and possible reward.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch04.fact.4",
+        "prompt": "Celine says her alerts are harmless because she rarely answers them. Which response best matches the warning about cues?",
+        "choices": [
+          "Her alerts matter only when Celine replies before the current task is saved.",
+          "Her alerts can matter once they add a new possible target to her attention.",
+          "Her alerts become a problem mainly when the message sender expects speed."
+        ],
+        "correctIndex": 1,
+        "explanation": "The shift can happen before action. An unanswered alert still introduces another target, which is why cue removal matters.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch04.fact.5",
+        "prompt": "Yann remembers an errand while drafting and keeps repeating it silently. Which move handles the internal interruption well?",
+        "choices": [
+          "He should repeat the errand until it feels less urgent beside the draft.",
+          "He should capture the errand on a trusted list and return to the sentence.",
+          "He should push the errand away and hope it disappears before lunch."
+        ],
+        "correctIndex": 1,
+        "explanation": "Internal interruptions need capture, not suppression. Writing the errand down lets Yann defer it without keeping it active in memory.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch04.fact.6",
+        "prompt": "William answers email all morning and calls it productive because clients get fast replies. Which test should he use next?",
+        "choices": [
+          "He should count reply speed alone because email is visible to clients.",
+          "He should compare fast replies with the quality lost through task switching.",
+          "He should leave the inbox open so fewer messages become urgent later."
+        ],
+        "correctIndex": 1,
+        "explanation": "Batching protects attention by reducing switches. William has to weigh responsiveness against the higher-value work that continuous checking weakens.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch04.fact.7",
+        "prompt": "In her home office, Nancy keeps choosing a bright news tab over a dull proposal. Which explanation best fits the pull she feels?",
+        "choices": [
+          "The news tab has novelty and reward cues that can beat the proposal's quiet importance.",
+          "The proposal has become unimportant because her attention moved toward fresher material.",
+          "The news tab deserves priority when it feels easier to enter than the proposal."
+        ],
+        "correctIndex": 0,
+        "explanation": "Attention favors novelty, reward, and threat. That does not make the news more important; it means the proposal needs a stronger cue path.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch04.fact.8",
+        "prompt": "After days of avoiding the same report, Stella sits down when the grant deadline is one day away. What changed in the task's pull?",
+        "choices": [
+          "The deadline made the task more enjoyable than the other available choices.",
+          "The deadline proved she works best only when pressure is high.",
+          "The deadline raised the task's threat and made it harder to ignore."
+        ],
+        "correctIndex": 2,
+        "explanation": "Urgency increases salience through threat, not pleasure. Stella can learn from that pull without deciding pressure is the only way to work.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch04.fact.9",
+        "prompt": "Kevin calls himself distractible after another broken work session. Which next step follows the environmental design claim?",
+        "choices": [
+          "He should alter the cues around the session before treating distractibility as fixed.",
+          "He should accept that his character sets the ceiling for focused work.",
+          "He should keep the same setup until stronger habits appear on their own."
+        ],
+        "correctIndex": 0,
+        "explanation": "The tactics assume ordinary minds respond to context. Kevin should change what attention meets first before judging himself as the problem.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch04.concept",
+      "front": "What four distraction controls should you sort before work starts?",
+      "back": "Use all four: block external interruptions, capture internal interruptions, remove tempting cues, and batch communication. Each one handles a different kind of pull.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch04.fact.2",
+      "front": "Why can a one-minute interruption cost far more than one minute?",
+      "back": "The mind has to rebuild the task context after it is derailed. Gloria Mark's UC Irvine research makes that recovery cost visible as lost depth, not mere annoyance.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch04.fact.5",
+      "front": "Why does a capture list help with internal interruptions?",
+      "back": "A list gives the thought a safe landing place. The mind can stop rehearsing the errand, idea, or worry and return to the chosen task.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch04.fact.6",
+      "front": "How does batching email protect attention better than constant checking?",
+      "back": "Batching reduces task switches. Email still gets handled, but the inbox receives fewer chances to replace the work that needs a continuous line of thought.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch04.concept",
+      "front": "What one sentence connects hyperfocus (Ch 3) to distraction taming?",
+      "back": "Hyperfocus chooses one valuable target; distraction taming protects that target by blocking outside pulls, capturing inside urges, and reducing tempting cues.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch04.fact.7",
+      "front": "Why do pleasure, threat, and novelty often beat importance?",
+      "back": "They make a cue feel vivid now. Important work may be quiet until you raise its salience with a visible next step, a clearer setup, or a firmer boundary.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Stage the Cue Path",
+    "coreSkill": "Practice setting the room before the pull arrives. Stage the Cue Path means you look for outside pulls, inside urges, tempting cues, and communication checks before a focus block. Then you change one cue so the task is easier to stay with.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch04.fact.9",
+        "context": "If your first focus block begins with the phone in sight",
+        "plan": "If the phone is visible, then Stage the Cue Path by moving it out of reach before the first sentence, cell, or call starts."
+      },
+      {
+        "sourceAnchorId": "ch04.fact.5",
+        "context": "If a remembered task starts looping while you work",
+        "plan": "If the thought repeats, then Stage the Cue Path by writing it on a capture list and returning to the exact line you left."
+      },
+      {
+        "sourceAnchorId": "ch04.fact.6",
+        "context": "If the inbox feels like the safest way to feel productive",
+        "plan": "If email starts pulling you in, then Stage the Cue Path by naming the next mail window and closing the inbox until that window."
+      },
+      {
+        "sourceAnchorId": "ch04.fact.7",
+        "context": "If a dull task competes with a bright tab",
+        "plan": "If the bright tab pulls harder, then Stage the Cue Path by closing it and placing the needed file or note in the center of the screen."
+      }
+    ],
+    "twentyFourHourChallenge": "Before you start your next important work moment in the next day, stage it once: move one cue, close one channel, walk to the doorway and back, then rehearse capturing one stray urge.",
+    "weeklyPractice": "For one week, change one part of your setup: keep the phone charger outside your work area. Watch whether your first task lasts longer before the first reach."
+  },
+  "memorableLines": [
+    {
+      "text": "Cues beat willpower when the cue arrives first.",
+      "location": "breakdown.fastRead",
+      "why": "It compresses the prevention logic into a line the reader can use before work."
+    },
+    {
+      "text": "A listed urge is lighter than a hidden urge.",
+      "location": "breakdown.deepRead",
+      "why": "It makes internal capture feel concrete and easy to remember."
+    },
+    {
+      "text": "Do not sterilize life to protect attention.",
+      "location": "breakdown.fullRead",
+      "why": "It guards against the shallow reading that all distraction is bad."
+    }
+  ]
+}

@@ -68,6 +68,7 @@ import auto_think_and_grow_rich_Json from "@/book-packages/think-and-grow-rich.v
 import auto_stillness_is_the_key_Json from "@/book-packages/stillness-is-the-key.v21.json";
 import auto_the_gifts_of_imperfection_Json from "@/book-packages/the-gifts-of-imperfection.v21.json";
 import auto_digital_minimalism_Json from "@/book-packages/digital-minimalism.v21.json";
+import auto_hyperfocus_Json from "@/book-packages/hyperfocus.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { isV21RawPackage, normalizeV21Package } from "@/app/book/lib/v21-adapter";
 
@@ -1973,4 +1974,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_digital_minimalism_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["digital-minimalism"] = (tone) => normalizeAnyPackage(auto_digital_minimalism_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "hyperfocus" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_hyperfocus_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["hyperfocus"] = (tone) => normalizeAnyPackage(auto_hyperfocus_Json, tone);
 }

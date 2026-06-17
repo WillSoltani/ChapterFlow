@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "hyperfocus",
+  "chapterNumber": 5,
+  "chapterId": "hyperfocus-ch05",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "1d9aff325feb5320",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:auto:r20260617215025-918d3d",
+  "reviewedAt": "2026-06-17T22:01:12.866Z",
+  "reviewerSessionId": "qc-orchestrator-20260617190107",
+  "roundId": "r20260617215025-918d3d",
+  "roundRole": "confirm",
+  "dimensions": {
+    "sourceV2": true,
+    "shipGate": true,
+    "bookGate": true,
+    "sweepClean": true,
+    "keysCorrect": true,
+    "barGreen": true,
+    "confirmPassed": true,
+    "noOpenRepairFindings": true
+  },
+  "evidence": {
+    "orchestratorRoundId": "r20260617215025-918d3d",
+    "evidenceMatrixPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/evidence-matrix.json",
+    "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch05.manual-keyjudge.json",
+    "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+    "barReadPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/submissions/bar/ch05.bar-read.json",
+    "confirmReadPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/submissions/confirm/ch05.confirm-read.json",
+    "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+    "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+  },
+  "findings": [],
+  "notes": "qc-orchestrator finalize: PUBLISHABLE; Independent adversarial confirm read found the chapter's quiz keys, examples, cards, plan, source fidelity, and memorable lines publishable.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "hyperfocus",
+      "chapterNumber": 5,
+      "chapterId": "hyperfocus-ch05",
+      "verdict": "REVISE",
+      "contentHash": "5c166cd55099038f",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:auto:r20260617211822-582f88",
+      "reviewedAt": "2026-06-17T21:43:20.477Z",
+      "reviewerSessionId": "qc-parent-finalize-20260617184312",
+      "roundId": "r20260617211822-582f88",
+      "roundRole": "attest",
+      "dimensions": {
+        "sourceV2": true,
+        "shipGate": true,
+        "bookGate": true,
+        "sweepClean": true,
+        "keysCorrect": true,
+        "barGreen": true,
+        "confirmPassed": false,
+        "noOpenRepairFindings": true
+      },
+      "evidence": {
+        "orchestratorRoundId": "r20260617211822-582f88",
+        "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/evidence-matrix.json",
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch05.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/submissions/bar/ch05.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/submissions/confirm/ch05.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/repair-brief.md"
+      },
+      "findings": [
+        "advisory qcf-cab8f8adb4855dfa hyperfocus-ch05.breakdown.deepRead: Could not verify this caffeine-duration claim from the supplied ch05 source facts; no contradiction found, but factual confidence is reduced."
+      ],
+      "notes": "qc-orchestrator finalize: REVISE; Adversarial confirm read does not clear the factual bar: the chapter makes a precise reader-facing caffeine-duration claim that is not supported by the supplied ch05 source facts, and the same unsupported number is reused in the example/card learning surface."
+    }
+  ]
+}

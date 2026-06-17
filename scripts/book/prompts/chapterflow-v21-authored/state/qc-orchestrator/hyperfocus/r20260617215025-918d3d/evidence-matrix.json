@@ -1,0 +1,361 @@
+{
+  "schemaVersion": "qc-evidence-matrix-v1",
+  "bookId": "hyperfocus",
+  "roundId": "r20260617215025-918d3d",
+  "generatedAt": "2026-06-17T22:38:05.904Z",
+  "chapters": [
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 1,
+      "chapterId": "hyperfocus-ch01",
+      "contentHash": "e025604aa6ea534e",
+      "sourceHash": "8d7fd4ef1a383e76",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch01.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 2,
+      "chapterId": "hyperfocus-ch02",
+      "contentHash": "7ef015486cd21770",
+      "sourceHash": "b5af082ac01a7a80",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch02.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 3,
+      "chapterId": "hyperfocus-ch03",
+      "contentHash": "53bae84307ed889d",
+      "sourceHash": "d431cc2da8ca7cce",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch03.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 4,
+      "chapterId": "hyperfocus-ch04",
+      "contentHash": "09f8e8a8640a21b4",
+      "sourceHash": "1b9b08b69d6001ff",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch04.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 5,
+      "chapterId": "hyperfocus-ch05",
+      "contentHash": "1d9aff325feb5320",
+      "sourceHash": "987812c19d3d5df0",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "Independent adversarial confirm read found the chapter's quiz keys, examples, cards, plan, source fidelity, and memorable lines publishable.",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch05.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "barReadPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/submissions/bar/ch05.bar-read.json",
+        "confirmReadPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/submissions/confirm/ch05.confirm-read.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 6,
+      "chapterId": "hyperfocus-ch06",
+      "contentHash": "7de95ed74bea9fe1",
+      "sourceHash": "61475b7f3fcee225",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch06.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 7,
+      "chapterId": "hyperfocus-ch07",
+      "contentHash": "0ac90ecae83b2256",
+      "sourceHash": "f48418cffafe6ea4",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch07.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 8,
+      "chapterId": "hyperfocus-ch08",
+      "contentHash": "162dfe7bdc0be487",
+      "sourceHash": "b8311ece031ad348",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch08.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 9,
+      "chapterId": "hyperfocus-ch09",
+      "contentHash": "0ed339f786abc884",
+      "sourceHash": "c74213e5f15ccfe1",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch09.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    },
+    {
+      "bookId": "hyperfocus",
+      "roundId": "r20260617215025-918d3d",
+      "chapterNumber": 10,
+      "chapterId": "hyperfocus-ch10",
+      "contentHash": "df213e91321b2379",
+      "sourceHash": "d318ba40afcf2545",
+      "checks": {
+        "sourceV2": "PASS",
+        "shipGate": "PASS",
+        "authorCheck": "PASS",
+        "intraBook": "PASS",
+        "bookGate": "PASS",
+        "sweep": "PASS",
+        "manualKeyJudge": "PASS",
+        "barRead": "GREEN",
+        "confirmRead": "PUBLISHABLE",
+        "repairLedger": "NO_OPEN_BLOCKERS",
+        "majors": "PASS",
+        "planEnforcement": "PASS"
+      },
+      "majorStatus": {
+        "status": "PASS",
+        "chapter": [],
+        "book": []
+      },
+      "finalVerdict": "PUBLISHABLE",
+      "reason": "all required no-api QC evidence is fresh and publishable",
+      "evidence": {
+        "manualKeyJudgePath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch10.manual-keyjudge.json",
+        "sweepPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+        "repairLedgerPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-ledger.jsonl",
+        "repairBriefPath": "/private/tmp/cf-hyperfocus-publish.9751HK/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617215025-918d3d/repair-brief.md"
+      }
+    }
+  ],
+  "errors": []
+}

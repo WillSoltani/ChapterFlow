@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "hyperfocus",
+  "chapterNumber": 2,
+  "chapterId": "hyperfocus-ch02",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "7ef015486cd21770",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:auto:r20260617211822-582f88",
+  "reviewedAt": "2026-06-17T21:40:49.068Z",
+  "reviewerSessionId": "qc-parent-finalize-20260617184042",
+  "roundId": "r20260617211822-582f88",
+  "roundRole": "confirm",
+  "dimensions": {
+    "sourceV2": true,
+    "shipGate": true,
+    "bookGate": true,
+    "sweepClean": true,
+    "keysCorrect": true,
+    "barGreen": true,
+    "confirmPassed": true,
+    "noOpenRepairFindings": true
+  },
+  "evidence": {
+    "orchestratorRoundId": "r20260617211822-582f88",
+    "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/evidence-matrix.json",
+    "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus-ch02.manual-keyjudge.json",
+    "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/hyperfocus.sweep.json",
+    "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/submissions/bar/ch02.bar-read.json",
+    "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/submissions/confirm/ch02.confirm-read.json",
+    "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/repair-ledger.jsonl",
+    "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/hyperfocus/r20260617211822-582f88/repair-brief.md"
+  },
+  "findings": [],
+  "notes": "qc-orchestrator finalize: PUBLISHABLE; Adversarial second read found no substantiated defect: quiz keys match the source facts, examples are coherent, prose is concrete and readable, review cards answer their prompts, plans use the named tool, facts are supported, and memorable lines are compact."
+}

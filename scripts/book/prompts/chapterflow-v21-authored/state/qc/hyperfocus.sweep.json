@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "sweep-attest-v1",
+  "bookId": "hyperfocus",
+  "roundId": "r20260617215025-918d3d",
+  "verdict": "PASS",
+  "reviewer": "codex-qc:r20260617215025-918d3d:sweep",
+  "attestedAt": "2026-06-17T22:38:03.501Z",
+  "contentHashes": {
+    "1": "e025604aa6ea534e",
+    "2": "7ef015486cd21770",
+    "3": "53bae84307ed889d",
+    "4": "09f8e8a8640a21b4",
+    "5": "1d9aff325feb5320",
+    "6": "7de95ed74bea9fe1",
+    "7": "0ac90ecae83b2256",
+    "8": "162dfe7bdc0be487",
+    "9": "0ed339f786abc884",
+    "10": "df213e91321b2379"
+  },
+  "checkedFamilies": [
+    "scene_skeleton",
+    "persona_drift",
+    "repeated_unit",
+    "location_stamping"
+  ],
+  "findings": []
+}
