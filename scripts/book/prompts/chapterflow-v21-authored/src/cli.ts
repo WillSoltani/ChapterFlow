@@ -73,6 +73,8 @@ Commands:
                                      re-run next-task. Loop until "all done".
   runbook <bookId>                   Operator dashboard: phase + strict env + exact next command +
                                      prompt to open + live warnings (source-verify state, token reminder).
+  diagnose <bookId>                  Triage "why didn't this book pass?": runs book-status + major-status
+                                     + source-verify-check + qc-diagnose (latest round) in one pass.
   check-source <bookId>              Run the source-coherence critic against the latest research
                                      bundle for a book. Use after producing bibliography + every
                                      chapter source via the research playbook. Exits 0 on PASS.
@@ -899,6 +901,54 @@ async function runRunbook(args: string[]): Promise<number> {
   }
 
   console.log(formatRunbook(bookId, status.phase, plan, warnings));
+  return 0;
+}
+
+/** `diagnose <bookId|title>` — one triage entry point for "why didn't this book pass?".
+ *  Composes the existing book-level diagnostics in order (book-status → major-status →
+ *  source-verify-check → qc-diagnose on the latest round) behind one command, so the operator
+ *  stops debugging by vibes. It RUNS the existing renderers (no re-implemented logic — they stay
+ *  the single source of truth); the only new logic is the ordering + latest-round resolution,
+ *  which lives pure + tested in src/diagnose.ts. Always exits 0 — it is informational; the
+ *  individual commands remain the gates. */
+async function runDiagnose(args: string[], _flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: diagnose <bookId|title>");
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
+
+  const { latestRoundId } = await import("./qc/orchestrator/artifacts.js");
+  const { diagnosePlan, formatDiagnoseHeader, formatDiagnoseStep, formatDiagnoseNotes } = await import("./diagnose.js");
+  const roundId = latestRoundId(bookId);
+  const { steps, notes } = diagnosePlan(bookId, roundId);
+
+  console.log(formatDiagnoseHeader(bookId, roundId));
+  for (const step of steps) {
+    console.log(formatDiagnoseStep(step));
+    switch (step.kind) {
+      case "book-status":
+        await runBookStatus([bookId], {});
+        break;
+      case "major-status":
+        await runMajorStatus([bookId]);
+        break;
+      case "source-verify-check":
+        await runSourceVerifyCheck([bookId], {});
+        break;
+      case "qc-diagnose":
+        await runQcDiagnose([bookId], { round: roundId as string });
+        break;
+    }
+  }
+  if (notes.length > 0) {
+    console.log("");
+    console.log(formatDiagnoseNotes(notes));
+  }
   return 0;
 }
 
@@ -4045,6 +4095,8 @@ async function main() {
       return runNextTask(args);
     case "runbook":
       return runRunbook(args);
+    case "diagnose":
+      return runDiagnose(args, flags);
     case "check-source":
       return runCheckSource(args);
     case "source-verify":

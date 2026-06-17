@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { chapterContentHash, type QcAttestation, type QcFinding } from "../../critics/qcAttestation.js";
@@ -10,6 +10,20 @@ export const QC_ORCHESTRATOR_DIR = resolve(CANONICAL_STATE, "qc-orchestrator");
 
 export function orchestratorRoundDir(bookId: string, roundId: string): string {
   return resolve(QC_ORCHESTRATOR_DIR, bookId, roundId);
+}
+
+/** The most recent QC round id on disk for this book, or null if none exists. Round ids are
+ *  timestamp-prefixed (`r<YYYYMMDDHHMMSS>-…`), so lexical max == most recent. Only counts a
+ *  directory that has a round.json — a real opened round, not a stray/partial dir. */
+export function latestRoundId(bookId: string): string | null {
+  const dir = resolve(QC_ORCHESTRATOR_DIR, bookId);
+  if (!existsSync(dir)) return null;
+  let best: string | null = null;
+  for (const entry of readdirSync(dir)) {
+    if (!existsSync(roundRecordPath(bookId, entry))) continue;
+    if (best === null || entry > best) best = entry;
+  }
+  return best;
 }
 
 export function submissionsDir(bookId: string, roundId: string, role?: string): string {
