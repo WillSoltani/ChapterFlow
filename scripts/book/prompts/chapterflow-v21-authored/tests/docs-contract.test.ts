@@ -190,6 +190,25 @@ test("WS-5: the writer card forbids defending a deterministic register ban (B4) 
   assert.match(orch, /NEVER an FP/, "the write-orchestrate prompt must say a deterministic register ban is never an FP");
 });
 
+test("the fanout writer card pins its critical guidance (anti prompt-drift contract)", () => {
+  // The owner's prompt-compiler goal — reduce prompt drift — without the compiler. The card is
+  // per-chapter COMPUTED (names/exemplar-ownership/shape/mechanism vary by chapter), so static
+  // section files would lose that conditionality; these source-text contracts pin the invariant
+  // guidance instead, so a future edit that drops a load-bearing instruction fails CI.
+  const cli = readFileSync(resolve(PIPELINE_DIR, "src/cli.ts"), "utf8");
+  // Answer TRUTH overrides target placement — the F3 balance must never bend a key.
+  assert.match(cli, /Score each question for TRUTH first[\s\S]{0,200}NEVER change which choice is true/, "card must keep answer-truth-over-placement");
+  // The quiz key is derived from the source testableFacts the blind judge uses (not prose).
+  assert.match(cli, /quiz_key_correctness[\s\S]{0,280}testableFacts/, "card must keep key-from-source guidance");
+  // Distractor sameness / no telegraphing labels (the BP31 family).
+  assert.match(cli, /SAME KIND of answer/, "card must keep distractor-sameness (no-label) guidance");
+  // Source fidelity is a factual_accuracy CORRUPTION veto, and ungrounded claims are cut, not invented.
+  assert.match(cli, /factual_accuracy[\s\S]{0,40}CORRUPTION/i, "card must mark factual_accuracy a corruption veto");
+  assert.match(cli, /can't ground a claim, cut it[\s\S]{0,6}never invent/, "card must forbid inventing ungrounded claims");
+  // The real target is the publishable bar — self-score before finishing.
+  assert.match(cli, /THE REAL TARGET IS THE PUBLISHABLE BAR/, "card must keep the publishable-bar self-score");
+});
+
 test("WS-5: the confirm read is dispatched with an ADVERSARIAL (refute-the-PASS) stance", () => {
   const pkt = readFileSync(resolve(PIPELINE_DIR, "src/qc/orchestrator/reviewPacket.ts"), "utf8");
   assert.match(pkt, /ADVERSARIAL STANCE/, "the confirm section must instruct an adversarial stance");
