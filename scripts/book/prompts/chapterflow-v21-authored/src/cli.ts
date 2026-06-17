@@ -85,6 +85,8 @@ Commands:
                                      proves STRUCTURE; this proves the sidecar is TRUE before writing.
   source-verify-check <bookId> [--record p] Read the FILLED record back; reject rubber-stamps / non-VERIFIED items
   source-verify-schema               Print the JSON Schema for a filled source-verify record (bind as GPT response_format)
+  source-verify-workbench <bookId>   Emit a local offline HTML form to fill the record per item (verdict/sourceRef/note,
+                                     copy-search-query); its Download button writes the JSON source-verify-check reads.
   derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
@@ -816,6 +818,51 @@ async function runSourceVerify(args: string[], flags: Record<string, string | bo
 async function runSourceVerifySchema(): Promise<number> {
   const { sourceVerifyRecordJsonSchema } = await import("./critics/sourceVerify.js");
   console.log(JSON.stringify(sourceVerifyRecordJsonSchema(), null, 2));
+  return 0;
+}
+
+/** `source-verify-workbench <bookId>` — emit a local, offline HTML form for filling the
+ *  source-verify record per item (verdict dropdown + sourceRef + note + copy-search-query),
+ *  instead of hand-editing the Markdown packet. Its "Download" button produces the same
+ *  `source-verify-record-v1` JSON that `source-verify-check --record` already reads. No-API:
+ *  the page runs entirely in the browser; the operator verifies each item against a real source. */
+async function runSourceVerifyWorkbench(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: source-verify-workbench <bookId>");
+    return 2;
+  }
+  const { expectedSourceChapters, loadSourceV2Sidecar, sourceSidecarPathFor } = await import("./qc/sourceV2Gate.js");
+  const { verifiableItems } = await import("./critics/sourceVerify.js");
+  const { buildSourceVerifyWorkbench } = await import("./sourceVerifyWorkbench.js");
+  const chapterNumbers = expectedSourceChapters(bookId);
+  if (chapterNumbers.length === 0) {
+    console.error(`No research run / chapter index for "${bookId}". Run the research playbook (phase 1) first.`);
+    return 2;
+  }
+  const chapters = chapterNumbers
+    .map((n) => {
+      const sc = loadSourceV2Sidecar(bookId, n);
+      if (!sc) return null;
+      const items = verifiableItems(sc);
+      if (items.length === 0) return null;
+      return { chapterNumber: n, sidecarPath: sourceSidecarPathFor(bookId, n) ?? `(chapter ${n})`, items };
+    })
+    .filter((c): c is { chapterNumber: number; sidecarPath: string; items: ReturnType<typeof verifiableItems> } => c !== null);
+  if (chapters.length === 0) {
+    console.error(`No verifiable source items for "${bookId}". Run research (phase 1) before verifying.`);
+    return 2;
+  }
+  const html = buildSourceVerifyWorkbench(bookId, chapters);
+  const outDir = resolve(process.cwd(), ".chapterflow", "source-verify", bookId);
+  const htmlPath = typeof flags["out"] === "string" ? resolve(process.cwd(), flags["out"] as string) : resolve(outDir, "index.html");
+  mkdirSync(dirname(htmlPath), { recursive: true });
+  writeFileSync(htmlPath, html, "utf8");
+  const recordPath = resolve(dirname(htmlPath), "source-verify-record.json");
+  const total = chapters.reduce((n, c) => n + c.items.length, 0);
+  console.log(`source-verify-workbench — ${bookId}: wrote ${total} item(s) to ${htmlPath}`);
+  console.log(`Open it, verify each item against a real source, click Download, save next to it, then:`);
+  console.log(`  npx tsx src/cli.ts source-verify-check ${bookId} --record ${recordPath}`);
   return 0;
 }
 
@@ -4142,6 +4189,8 @@ async function main() {
       return runSourceVerifyCheck(args, flags);
     case "source-verify-schema":
       return runSourceVerifySchema();
+    case "source-verify-workbench":
+      return runSourceVerifyWorkbench(args, flags);
     case "derive-artifacts":
       return runDeriveArtifacts(args);
     case "research":
