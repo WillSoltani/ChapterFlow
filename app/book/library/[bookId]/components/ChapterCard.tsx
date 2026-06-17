@@ -77,7 +77,7 @@ export function ChapterCard({
         onClick={handleClick}
         onMouseEnter={onMouseEnter}
         className={[
-          "w-full rounded-2xl bg-(--cf-surface-muted) p-4 text-left opacity-50",
+          "w-full rounded-2xl bg-(--cf-surface-muted) p-4 text-left",
           "cursor-default select-none",
           shaking ? "bd-shake" : "",
         ].join(" ")}
@@ -92,12 +92,12 @@ export function ChapterCard({
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
                 <span className={`shrink-0 text-sm ${codeClass}`}>{chapter.code}</span>
-                <span className={`truncate ${titleClass}`}>{chapter.title}</span>
+                <span className={`line-clamp-2 sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
               </div>
               <StepIndicators stepsCompleted={0} lockedDots />
             </div>
           </div>
-          <span className="shrink-0 whitespace-nowrap text-xs" style={{ color: "var(--text-tertiary)" }}>
+          <span className="shrink-0 whitespace-nowrap text-xs text-(--cf-text-soft)">
             {chapter.minutes} min
           </span>
         </div>
@@ -129,7 +129,7 @@ export function ChapterCard({
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
                 <span className={`shrink-0 text-sm ${codeClass}`}>{chapter.code}</span>
-                <span className={`truncate ${titleClass}`}>{chapter.title}</span>
+                <span className={`line-clamp-2 sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
               </div>
               <StepIndicators stepsCompleted={0} lockedDots />
               <span className="mt-1 block text-xs font-medium" style={{ color: "var(--accent-emerald)" }}>
@@ -137,7 +137,7 @@ export function ChapterCard({
               </span>
             </div>
           </div>
-          <span className="shrink-0 whitespace-nowrap text-xs" style={{ color: "var(--text-tertiary)" }}>
+          <span className="shrink-0 whitespace-nowrap text-xs text-(--cf-text-soft)">
             {chapter.minutes} min
           </span>
         </div>
@@ -214,7 +214,7 @@ export function ChapterCard({
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <span className={`shrink-0 text-sm ${codeClass}`}>{chapter.code}</span>
-              <span className={`truncate ${titleClass}`}>{chapter.title}</span>
+              <span className={`line-clamp-2 sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
             </div>
             <div className="mt-2 flex items-center gap-2">
               <StepIndicators
