@@ -47,6 +47,53 @@ function PrimaryButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   );
 }
 
+// Map the raw pair-repo API strings (and a 401 status) to warm, recovery-first
+// microcopy in the gift-invalid voice (title + cause + recovery). The backend
+// strings are an internal contract — never render them to the reader directly.
+function friendlyPairError(status: number | null, raw: string): { title: string; body: string } {
+  if (status === 401) {
+    return {
+      title: "One more step",
+      body: "Your session expired before we could accept this invite. Sign in again and we'll finish it for you.",
+    };
+  }
+  const r = raw.toLowerCase();
+  if (r.includes("not found") || r.includes("missing its code")) {
+    return {
+      title: "We couldn't find that invite",
+      body: "This reading-partner link isn't valid or has expired. Ask your partner to send you a fresh invite.",
+    };
+  }
+  if (r.includes("expired")) {
+    return {
+      title: "This invite has expired",
+      body: "Reading-partner links don't last forever. Ask your partner to send a new one.",
+    };
+  }
+  if (r.includes("already used")) {
+    return {
+      title: "This invite was already used",
+      body: "This link has already been accepted and can't be used again. Ask your partner for a fresh invite.",
+    };
+  }
+  if (r.includes("cannot pair with yourself")) {
+    return {
+      title: "That's your own invite",
+      body: "You can't pair with yourself. Share this link with the friend you want to read alongside.",
+    };
+  }
+  if (r.includes("already has a partner") || r.includes("you already have a partner")) {
+    return {
+      title: "You're already paired up",
+      body: "One of you already has a reading partner. Leave your current pairing first if you'd like to switch.",
+    };
+  }
+  return {
+    title: "We couldn't accept this invite",
+    body: "Something went wrong on our end. Try the link again, or ask your partner to resend it.",
+  };
+}
+
 function PairAcceptInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -117,10 +164,11 @@ function PairAcceptInner() {
           ? `/book/pair-accept?code=${encodeURIComponent(code)}`
           : "/book/pair-accept",
     );
+    const friendly = friendlyPairError(errorStatus, errorMessage);
     body = (
       <PairCard icon={<AlertCircle className="h-7 w-7" />} tone="danger">
-        <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Reading partner invite</h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">{errorMessage}</p>
+        <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">{friendly.title}</h1>
+        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">{friendly.body}</p>
         {errorStatus === 401 ? (
           <>
             <a

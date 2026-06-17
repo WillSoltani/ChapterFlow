@@ -30,13 +30,8 @@ function AppleIcon() {
 function SignupInner() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
-  const [consented, setConsented] = useState(false);
-  // Surfaced when a sign-up path is attempted with consent unchecked, so the
-  // gate isn't a silent no-op (e.g. pressing Enter in the email field, or a
-  // disabled button reached via keyboard). Cleared the moment consent is given.
-  const [consentHint, setConsentHint] = useState(false);
-  // Surfaced when the email path is attempted (consent given) with an empty
-  // email field, so the button isn't a silent dead control. Cleared on typing.
+  // Surfaced when the email path is attempted with an empty email field, so the
+  // button isn't a silent dead control. Cleared on typing.
   const [emailHint, setEmailHint] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
@@ -51,19 +46,13 @@ function SignupInner() {
     return `/auth/login?${params.toString()}`;
   }
 
+  // Consent is action-implied (fine print under the CTAs), so every provider is
+  // immediately actionable — no checkbox gate before the first tap.
   function startOAuth(provider: "Google" | "SignInWithApple") {
-    if (!consented) {
-      setConsentHint(true);
-      return;
-    }
     window.location.assign(loginHref({ identity_provider: provider }));
   }
 
   function startEmail() {
-    if (!consented) {
-      setConsentHint(true);
-      return;
-    }
     if (!email.trim()) {
       // Don't silently no-op: signal the missing email and move focus to it.
       setEmailHint(true);
@@ -75,20 +64,8 @@ function SignupInner() {
     window.location.assign(loginHref({ login_hint: email.trim() }));
   }
 
-  // Which helper/alert each control points its aria-describedby at, in priority
-  // order. The static pre-click helper now carries an id so it is associated.
-  const consentDescribedBy = consentHint
-    ? "signup-consent-hint"
-    : !consented
-      ? "signup-consent-static"
-      : undefined;
-  const emailDescribedBy = consentHint
-    ? "signup-consent-hint"
-    : emailHint
-      ? "signup-email-hint"
-      : !consented
-        ? "signup-consent-static"
-        : undefined;
+  // The email control points its aria-describedby at the empty-field hint.
+  const emailDescribedBy = emailHint ? "signup-email-hint" : undefined;
 
   return (
     <AuthScreen>
@@ -109,74 +86,12 @@ function SignupInner() {
           </p>
         </div>
 
-        {/* Consent */}
-        <label className="mb-5 flex cursor-pointer select-none items-start gap-2.5 text-[13px] leading-relaxed text-(--cf-text-3)">
-          <input
-            type="checkbox"
-            checked={consented}
-            onChange={(e) => {
-              setConsented(e.target.checked);
-              if (e.target.checked) setConsentHint(false);
-            }}
-            aria-label="I agree to the Terms of Service and Privacy Policy"
-            aria-describedby={consentHint ? "signup-consent-hint" : undefined}
-            aria-invalid={consentHint || undefined}
-            className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-(--cf-accent)"
-          />
-          <span>
-            I agree to the{" "}
-            <a
-              href="/legal/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-(--cf-accent) underline underline-offset-2"
-            >
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a
-              href="/legal/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-(--cf-accent) underline underline-offset-2"
-            >
-              Privacy Policy
-            </a>
-            .
-          </span>
-        </label>
-
-        {/* Consent hint — shown only when a sign-up path is attempted without
-            ticking the box, so the gate points back to the checkbox instead of
-            silently doing nothing. */}
-        {consentHint ? (
-          <p
-            id="signup-consent-hint"
-            role="alert"
-            className="-mt-3 mb-5 text-[13px] leading-relaxed text-(--cf-danger-text)"
-          >
-            Please agree to the Terms to continue.
-          </p>
-        ) : (
-          !consented && (
-            /* Static helper so the consent gate is legible before any click,
-               without dimming the (visually enabled) action buttons. */
-            <p
-              id="signup-consent-static"
-              className="-mt-3 mb-5 text-[13px] leading-relaxed text-(--cf-text-3)"
-            >
-              Agree to the Terms to continue.
-            </p>
-          )
-        )}
-
         {/* OAuth buttons */}
         <div className="flex flex-col gap-3">
           <button
             type="button"
             onClick={() => startOAuth("Google")}
             aria-label="Continue with Google"
-            aria-describedby={consentDescribedBy}
             className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong)"
           >
             <GoogleIcon />
@@ -187,7 +102,6 @@ function SignupInner() {
             type="button"
             onClick={() => startOAuth("SignInWithApple")}
             aria-label="Continue with Apple"
-            aria-describedby={consentDescribedBy}
             className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[15px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-strong)"
           >
             <AppleIcon />
@@ -255,8 +169,32 @@ function SignupInner() {
           </a>
         </p>
 
+        {/* Action-implied consent — standard consent-on-action fine print, so
+            the providers stay one tap away with no gate before the first click. */}
+        <p className="mt-6 text-center text-[13px] leading-relaxed text-(--cf-text-3)">
+          By continuing, you agree to our{" "}
+          <a
+            href="/legal/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-(--cf-accent) underline underline-offset-2"
+          >
+            Terms of Service
+          </a>{" "}
+          and{" "}
+          <a
+            href="/legal/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-(--cf-accent) underline underline-offset-2"
+          >
+            Privacy Policy
+          </a>
+          .
+        </p>
+
         {/* Trust line */}
-        <p className="mt-6 text-center text-[13px] text-(--cf-text-3)">
+        <p className="mt-2 text-center text-[13px] text-(--cf-text-3)">
           No credit card required. Free forever for 2 books.
         </p>
       </motion.div>

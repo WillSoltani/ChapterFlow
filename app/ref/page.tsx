@@ -31,8 +31,9 @@ export default function ReferralLandingPage() {
         </h1>
         <p className="mb-7 text-[14px] leading-relaxed text-(--cf-text-3)">
           Create your free account and finish your first learning loop — you&apos;ll
-          both earn bonus Insight Points when you do. ChapterFlow turns any book
-          into a skill you actually keep.
+          earn 80 Insight Points and your friend earns 180, a real head start
+          toward bonus books and Pro passes. ChapterFlow turns any book into a
+          skill you actually keep.
         </p>
 
         <div className="flex flex-col gap-3">

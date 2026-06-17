@@ -76,30 +76,69 @@ export default function ComingSoonPage() {
             lineHeight: 1.5,
           }}
         >
-          This feature is being built. Check back soon.
+          We&apos;re still putting this part of ChapterFlow together. Your books,
+          progress, and streak are all waiting on your dashboard in the meantime.
         </p>
 
-        <button
-          onClick={() => router.back()}
-          className="cursor-pointer"
+        <div
           style={{
             marginTop: 32,
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            gap: 8,
-            fontFamily: "var(--font-body)",
-            fontSize: 14,
-            color: "var(--text-secondary)",
-            background: "none",
-            border: "none",
-            transition: "color 200ms",
+            gap: 16,
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-heading)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
         >
-          <ArrowLeft size={16} />
-          Go back
-        </button>
+          <button
+            onClick={() => router.push("/dashboard")}
+            className="cursor-pointer"
+            style={{
+              minHeight: 44,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0 24px",
+              borderRadius: 12,
+              fontFamily: "var(--font-body)",
+              fontSize: 15,
+              fontWeight: 600,
+              color: "var(--accent-cyan)",
+              background: "color-mix(in srgb, var(--accent-cyan) 8%, transparent)",
+              border: "1px solid color-mix(in srgb, var(--accent-cyan) 40%, transparent)",
+              transition: "background 200ms",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = "color-mix(in srgb, var(--accent-cyan) 14%, transparent)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "color-mix(in srgb, var(--accent-cyan) 8%, transparent)")
+            }
+          >
+            Go to your dashboard
+          </button>
+
+          <button
+            onClick={() => router.back()}
+            className="cursor-pointer"
+            style={{
+              minHeight: 44,
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              fontFamily: "var(--font-body)",
+              fontSize: 14,
+              color: "var(--text-secondary)",
+              background: "none",
+              border: "none",
+              transition: "color 200ms",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-heading)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+          >
+            <ArrowLeft size={16} />
+            Go back
+          </button>
+        </div>
       </motion.div>
     </div>
   );
