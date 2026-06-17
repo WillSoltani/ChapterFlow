@@ -195,9 +195,20 @@ function cachedFiles(runner: Runner): string[] {
 
 function runPublishTests(runner: Runner): void {
   runner("npx", ["tsc", "-p", ".", "--noEmit"], { cwd: PIPELINE_DIR });
+  // The self-test validates the pipeline CODE, on synthetic fixtures — it must run in a
+  // HERMETIC env. The operator's book-publish flags (REQUIRE_SOURCE_VERIFY /
+  // ENFORCE_SESSION_INDEPENDENCE) gate the REAL book's preflight, which has already
+  // passed; leaking them here imposes real-book requirements on fixtures (e.g.
+  // zz-fixture-publish-green has no source-verify record, so SV1 fails the slice under
+  // REQUIRE_SOURCE_VERIFY=1 and blocks EVERY strict publish — the eat-that-frog/hyperfocus
+  // publish ordeal). Tests that exercise those gates set the flag themselves; strip the
+  // ambient values so the self-test is deterministic regardless of the publish env.
+  const env: NodeJS.ProcessEnv = { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "1" };
+  delete env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
+  delete env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
   runner("npx", ["tsx", "tests/run.ts", "qc-orchestrator", "qc-finalize", "no-api-promote", "qc-auto", "qc-submission", "publish-after-qc"], {
     cwd: PIPELINE_DIR,
-    env: { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "1" },
+    env,
   });
 }
 

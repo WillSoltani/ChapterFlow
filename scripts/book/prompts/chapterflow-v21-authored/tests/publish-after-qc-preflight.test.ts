@@ -343,10 +343,17 @@ test("formatPreflightChecklist marks passed checks ✓ and failed checks ✗ wit
 
 test("publish-after-qc all-green fixture passes dry-run without staging or publishing", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  // Hermetic: this fixture is a synthetic green book with no source-verify record, so an
+  // ambient CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 (the operator's publish env, which the
+  // publish wrapper used to leak into this self-test) would fail SV1 and make the
+  // "every check passes" assertion env-dependent. Source-verify-when-required is covered
+  // by the source-verify gate tests; pin it OFF here so this green-path test is deterministic.
+  const prevSV = process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
   const stagedBefore = runCli(["help"]).status; // cheap CLI smoke; dry-run should not need git.
   assert.equal(stagedBefore, 0);
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    delete process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
     cleanup([GREEN_BOOK]);
     setupGreen(GREEN_BOOK);
     const pkgPath = resolve(REPO_ROOT, "book-packages", `${GREEN_BOOK}.v21.json`);
@@ -361,6 +368,8 @@ test("publish-after-qc all-green fixture passes dry-run without staging or publi
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    if (prevSV === undefined) delete process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
+    else process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY = prevSV;
     cleanup([GREEN_BOOK]);
   }
 });
