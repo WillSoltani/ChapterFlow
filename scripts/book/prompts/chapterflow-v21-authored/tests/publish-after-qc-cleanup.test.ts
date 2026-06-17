@@ -31,12 +31,13 @@ function cleanup(): void {
   rmSync(dirname(orchestratorRoundDir(BOOK, ROUND)), { recursive: true, force: true });
 }
 
-test("publish-after-qc transient cleanup removes only task, workflow, repair, input, and token artifacts", () => {
+test("publish-after-qc transient cleanup removes task, workflow, REVIEW-PACKET, repair, input, and token artifacts", () => {
   cleanup();
   try {
     const roundDir = orchestratorRoundDir(BOOK, ROUND);
     write(resolve(taskCardsDir(BOOK, ROUND), "00-sweep.md"), `token ${fakeToken("sweep")}`);
     write(resolve(roundDir, "qc-auto.workflow.js"), "workflow");
+    write(resolve(roundDir, "REVIEW-PACKET.md"), `confirm token ${fakeToken("confirm")}`);
     write(repairPromptPath(BOOK, ROUND), "repair prompt");
     write(repairBriefPath(BOOK, ROUND), "repair brief");
     write(resolve(submissionsDir(BOOK, ROUND, "bar"), "ch01.input.json"), "{}");
@@ -51,6 +52,7 @@ test("publish-after-qc transient cleanup removes only task, workflow, repair, in
 
     assert.ok(remove.has(taskCardsDir(BOOK, ROUND)));
     assert.ok(remove.has(resolve(roundDir, "qc-auto.workflow.js")));
+    assert.ok(remove.has(resolve(roundDir, "REVIEW-PACKET.md")), "REVIEW-PACKET.md carries live role tokens and must be cleaned on publish");
     assert.ok(remove.has(repairPromptPath(BOOK, ROUND)));
     assert.ok(remove.has(repairBriefPath(BOOK, ROUND)));
     assert.ok(remove.has(resolve(submissionsDir(BOOK, ROUND, "bar"), "ch01.input.json")));

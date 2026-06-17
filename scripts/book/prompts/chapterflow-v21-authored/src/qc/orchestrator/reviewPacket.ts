@@ -72,9 +72,12 @@ export function writeReviewPacket(
   for (const axis of Object.keys(AXIS_WEIGHTS) as AxisId[]) L.push(`  - ${axis} (weight ${AXIS_WEIGHTS[axis]})`);
   L.push("");
   L.push("Reviewer label: each skeleton below is PRE-FILLED with its own derived reviewer id");
-  L.push("(codex-qc:<round>:<role>:ch<NN>). Do NOT change it — the bar and confirm ids for a");
-  L.push("chapter are deliberately different so the confirm read counts as an independent second");
-  L.push("reviewer. If a human/other agent reviews instead, keep the same role prefix (codex-qc).");
+  L.push("(codex-qc:<round>:<role>:ch<NN>). Do NOT change it — but be clear what it does and does NOT");
+  L.push("mean: the id LABELS the role; it does NOT by itself make the confirm read independent (bar and");
+  L.push("confirm ids always differ by their role suffix). Real independence comes ONLY from dispatching");
+  L.push("a genuinely SEPARATE fresh agent for the confirm read — and even then it is the SAME model");
+  L.push("family as the bar, so they share blind spots. The adversarial confirm stance below is the");
+  L.push("mitigation, not a guarantee. If a human/other-family agent reviews, keep the role prefix (codex-qc).");
   L.push("Submit each filled skeleton to its own file, then run its qc-submit command.");
   L.push("");
   L.push("HOW TO DISPATCH (orchestrator): each numbered section below is a COMPLETE, ready-to-paste");
@@ -82,8 +85,9 @@ export function writeReviewPacket(
   L.push("subagent's entire instruction — do not wrap, summarize, or add your own framing. Every");
   L.push("subagent reviews exactly ONE unit, reads the real content, fills ONLY its own skeleton, runs");
   L.push("ONLY its own qc-submit, and NEVER runs collect/finalize/qc-attest/promote or edits a chapter.");
-  L.push("Dispatch each chapter's confirm read as a SEPARATE subagent from its bar read — independence is");
-  L.push("what their different reviewer ids certify.");
+  L.push("Dispatch each chapter's confirm read as a SEPARATE, FRESH subagent from its bar read. Their");
+  L.push("different reviewer ids only LABEL the roles — they do NOT certify independence; a genuinely");
+  L.push("separate agent plus the adversarial stance (below) is what gives the second read its value.");
   L.push("");
   L.push("STRUCTURED OUTPUT (recommended): each role has a JSON Schema — `npx tsx src/cli.ts qc-schema <role>`");
   L.push("(sweep|keyA|keyB|bar|confirm|major). Bind it as the subagent's GPT `response_format` so the");

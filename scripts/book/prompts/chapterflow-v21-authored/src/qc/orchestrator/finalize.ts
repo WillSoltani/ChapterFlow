@@ -33,7 +33,7 @@ import { appendFindings, effectiveLedger, ledgerStatusSummary } from "./ledger.j
 import { allFindingsFabricated } from "./findingValidity.js";
 import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
 import { writeRepairBrief } from "./repairBrief.js";
-import { currentSessionId } from "../sessionProvenance.js";
+import { currentSessionId, loadAuthorProvenance, sessionsCollide, sessionsCollideAmong } from "../sessionProvenance.js";
 import { validateSubmission, type SubmissionRole, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
 
 export type EvidenceStatus =
@@ -397,6 +397,20 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       checks.planEnforcement === "PASS";
     const confirmMissingForCandidate = publishableCandidate && (checks.confirmRead === "MISSING" || checks.confirmRead === "STALE");
     const sameReviewerConfirm = publishableCandidate && bar && confirm && bar.reviewer === confirm.reviewer && confirm.decision === "PUBLISHABLE";
+    // Session independence (opt-in CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE, absence-safe):
+    // each reviewer subagent stamps its own CHAPTERFLOW_SESSION_ID, captured per submission.
+    // These turn "separate reviewers" from a derived role-string label into recorded evidence —
+    // bar≠confirm, bar≠tiebreak variants, and neither reviewer == the chapter's author session.
+    const authorSessionId = loadAuthorProvenance(ch.chapterId)?.authorSessionId;
+    const barConfirmSameSession = publishableCandidate && !!bar && !!confirm && confirm.decision === "PUBLISHABLE" && sessionsCollide(bar.reviewerSessionId, confirm.reviewerSessionId);
+    const reviewerIsAuthorSession = publishableCandidate && (
+      (!!bar && sessionsCollide(authorSessionId, bar.reviewerSessionId)) ||
+      (!!confirm && sessionsCollide(authorSessionId, confirm.reviewerSessionId))
+    );
+    const barReadSessions = bar
+      ? loadAllBarReads(bookId, roundId, ch.number).filter((r) => r.chapterId === ch.chapterId && r.contentHash === contentHash).map((r) => r.reviewerSessionId)
+      : [];
+    const barVariantSameSession = publishableCandidate && sessionsCollideAmong(barReadSessions);
     // P1.5 — a sub-0.6 bar axis with no cited hit is no longer "unactionable":
     // finalizerFindings now synthesises a major repair finding for it, so it
     // routes to REVISE (via the barRead === "YELLOW" disjunction below) with a
@@ -417,6 +431,12 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       reason = "publishable candidate is missing a fresh confirm read";
     } else if (sameReviewerConfirm) {
       reason = "confirm reviewer must differ from bar reviewer";
+    } else if (reviewerIsAuthorSession) {
+      reason = `a reviewer session matches the chapter's author session (${authorSessionId}) — the author cannot grade their own work; re-review in a fresh session`;
+    } else if (barConfirmSameSession) {
+      reason = `bar and confirm were graded in the SAME session (${bar?.reviewerSessionId}) — dispatch the confirm read as a separate session`;
+    } else if (barVariantSameSession) {
+      reason = "two bar reads (primary + tiebreak variants) share a session — each tiebreak read must be an independent session";
     } else if (unactionableConfirm) {
       reason = "confirm read returned a non-publishable decision without quote-backed findings";
     } else if (keyJudge?.status === "CORRUPTION" || checks.barRead === "RED" || (publishableCandidate && checks.confirmRead === "CORRUPTION")) {

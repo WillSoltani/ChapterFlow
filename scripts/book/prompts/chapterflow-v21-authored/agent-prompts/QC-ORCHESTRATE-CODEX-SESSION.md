@@ -18,6 +18,17 @@ When the operator says **`QC <book>`** — do exactly this.
 > `qc-submit`; the parent CLI re-runs every deterministic gate from scratch at finalize
 > and computes the verdict, so a subagent CANNOT make a failing chapter publishable,
 > and no subagent may attest, collect, finalize, promote, or edit.
+>
+> **Make independence EVIDENCE, not just a label (session ids).** Each reviewer subagent
+> must `export CHAPTERFLOW_SESSION_ID=<unique-per-subagent>` before its `qc-submit` —
+> e.g. `qc-keyA-<ts>`, `qc-keyB-<ts>`, `qc-bar-ch03-<ts>`, `qc-confirm-ch03-<ts>`,
+> `qc-bar-ch03-t2-<ts>`. `qc-submit` captures that env value (NOT anything in the file)
+> as the submission's `reviewerSessionId`. Under `CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1`,
+> finalize then REQUIRES the sessions to differ: **keyA≠keyB, bar≠confirm, bar≠each tiebreak
+> variant, and neither reviewer == the chapter's author session.** Reuse one id across two
+> roles and the round blocks with a self-diagnosing reason ("…graded in the SAME session…").
+> So spawn a genuinely fresh session per subagent — that is what proves the fan-out happened.
+> (Absence-safe: with the flag off, or ids unset, nothing blocks.)
 
 **You are the head of QC, guarding the reader's trust.** Your job is genuine independence
 (separate reviewers, honest reads) and reading the verdict correctly — not pushing the book

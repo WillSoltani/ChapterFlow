@@ -6,6 +6,7 @@ import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, CHAPTERS_DIR, isSiblingFile, parseChapterId } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadQcRound, verifyQcRoundToken } from "./qcRound.js";
+import { currentSessionId, sessionsCollide } from "./sessionProvenance.js";
 import { loadSourceV2Sidecar, sourceFactsForPack, sourceHashFor, type SourceFactForPack } from "./sourceV2Gate.js";
 
 export const QC_PACKS_DIR = resolve(CANONICAL_STATE, "qc-packs");
@@ -44,6 +45,10 @@ export type KeyDerivation = {
   bookId: string;
   roundId: string;
   role: "keyA" | "keyB";
+  /** The reviewer session that derived this key (CHAPTERFLOW_SESSION_ID at submit). When
+   *  present on both keys and equal under enforcement, the two "blind" keys were NOT
+   *  independent — sessionsCollide blocks (see resolveManualKeyJudges). */
+  reviewerSessionId?: string;
   derivedAt: string;
   chapters: Array<{
     chapterNumber: number;
@@ -245,6 +250,7 @@ export function validateAndWriteKeyDerivation(bookId: string, roundId: string, r
     bookId,
     roundId,
     role,
+    reviewerSessionId: currentSessionId(),
     derivedAt: new Date().toISOString(),
     chapters,
   };
@@ -306,6 +312,7 @@ export function resolveManualKeyJudges(bookId: string, roundId: string): { recor
     const cb = byB.get(ch.number);
     if (!pack) reason = "missing key pack";
     else if (!a || !b || !ca || !cb) reason = "missing keyA/keyB derivation";
+    else if (sessionsCollide(a.reviewerSessionId, b.reviewerSessionId)) reason = `keyA and keyB were derived in the SAME session (${a.reviewerSessionId}) — the two blind keys must be independent; re-derive keyB in a separate session`;
     else if (pack.contentHash !== contentHash || ca.contentHash !== contentHash || cb.contentHash !== contentHash) reason = "stale content hash";
     else if (pack.sourceHash !== sourceHash || ca.sourceHash !== sourceHash || cb.sourceHash !== sourceHash) reason = "stale source hash";
     else if (ca.packHash !== pack.packHash || cb.packHash !== pack.packHash) reason = "stale pack hash";

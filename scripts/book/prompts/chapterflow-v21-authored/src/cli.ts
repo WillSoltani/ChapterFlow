@@ -22,6 +22,7 @@ import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
 import { BookCriticReport, BookPackage, ChapterV21 } from "./types.js";
+import type { RunbookStatus } from "./runbook.js";
 import { roleHintHeader } from "./roles.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
@@ -71,6 +72,13 @@ Commands:
                                      validation command. Read the printed playbook, produce the
                                      artifact inline (no subprocess), save to the printed path,
                                      re-run next-task. Loop until "all done".
+  runbook <bookId> [--json]          Operator control panel: phase + strict env (live OK/MISSING) +
+                                     source-v2/source-verify state + qc round + next command + prompt +
+                                     blockers. --json feeds the same model to a harness.
+  diagnose <bookId>                  Triage "why didn't this book pass?": runs book-status + major-status
+                                     + source-verify-check + qc-diagnose (latest round) in one pass.
+  qc-metrics [--last N] [--json]     Quality telemetry over the last N books: first-pass publishable rate,
+                                     avg rounds to pass, top failing bar axis, top deterministic blocker.
   check-source <bookId>              Run the source-coherence critic against the latest research
                                      bundle for a book. Use after producing bibliography + every
                                      chapter source via the research playbook. Exits 0 on PASS.
@@ -78,6 +86,12 @@ Commands:
                                      (claim-by-claim + entity-existence + URL-liveness). check-source
                                      proves STRUCTURE; this proves the sidecar is TRUE before writing.
   source-verify-check <bookId> [--record p] Read the FILLED record back; reject rubber-stamps / non-VERIFIED items
+  source-verify-schema               Print the JSON Schema for a filled source-verify record (bind as GPT response_format)
+  source-verify-workbench <bookId>   Emit a local offline HTML form to fill the record per item (verdict/sourceRef/note,
+                                     copy-search-query); its Download button writes the JSON source-verify-check reads.
+  source-fit <bookId> [--json]       ADVISORY research-time fit classifier: OK/WATCH/RISKY from sidecar diversity
+                                     (thin chapters, figure concentration, framework repetition). Catch a doomed run
+                                     before writing. Never blocks (exits 0). Calibrated zero-RISKY on the clean corpus.
   derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
@@ -162,10 +176,11 @@ Commands:
   qc-orchestrate <bookId> --confirm-candidates --round <roundId>
                                      Generate confirm task cards only for chapters whose current
                                      evidence is a publishable candidate.
-  qc-orchestrate <bookId> --finalize --round <roundId> [--chapters 1,2] [--no-attest]
+  qc-orchestrate <bookId> --finalize --round <roundId> [--chapters 1,2] [--no-attest] [--dry-run]
                                      Build evidence-matrix.json and write only evidence-backed
                                      PUBLISHABLE/REVISE/CORRUPTION attestations. NEEDS_MORE_QC is
-                                     recorded in the matrix and never attested.
+                                     recorded in the matrix and never attested. --dry-run previews
+                                     the verdict and writes NOTHING (no attestations/matrix/ledger).
   qc-orchestrate <bookId> --render-repair --round <roundId>
                                      Render repair-ledger.jsonl to repair-brief.md.
   qc-orchestrate <bookId> --verify-repair --round <roundId>
@@ -803,6 +818,86 @@ async function runSourceVerify(args: string[], flags: Record<string, string | bo
   return 0;
 }
 
+/** `source-verify-schema` — print the JSON Schema for a FILLED source-verify record, to bind
+ *  as a GPT structured-output `response_format` (mirrors `qc-schema`). The verifier's record is
+ *  then shape-valid by construction; `source-verify-check` still re-checks substance. */
+async function runSourceVerifySchema(): Promise<number> {
+  const { sourceVerifyRecordJsonSchema } = await import("./critics/sourceVerify.js");
+  console.log(JSON.stringify(sourceVerifyRecordJsonSchema(), null, 2));
+  return 0;
+}
+
+/** `source-fit <bookId> [--json]` — ADVISORY research-time fit classifier. Computes diversity
+ *  metrics from the source-v2 sidecars (thin chapters, figure concentration, framework repetition,
+ *  fact thinness) and prints an OK/WATCH/RISKY verdict so a doomed/repetitive run is caught before
+ *  authoring. Never blocks — exits 0 regardless. */
+async function runSourceFit(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: source-fit <bookId|title> [--json]");
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  const { expectedSourceChapters, loadSourceV2Sidecar } = await import("./qc/sourceV2Gate.js");
+  const { computeSourceFitMetrics, classifySourceFit, formatSourceFit } = await import("./sourceFit.js");
+  const sidecars = expectedSourceChapters(bookId).map((n) => loadSourceV2Sidecar(bookId, n)).filter((sc) => sc !== null);
+  if (sidecars.length === 0) {
+    console.error(`No source sidecars for "${bookId}" — run research (phase 1) first.`);
+    return 2;
+  }
+  const report = classifySourceFit(bookId, computeSourceFitMetrics(sidecars));
+  if (flags["json"] === true) console.log(JSON.stringify(report, null, 2));
+  else console.log(formatSourceFit(report));
+  return 0;
+}
+
+/** `source-verify-workbench <bookId>` — emit a local, offline HTML form for filling the
+ *  source-verify record per item (verdict dropdown + sourceRef + note + copy-search-query),
+ *  instead of hand-editing the Markdown packet. Its "Download" button produces the same
+ *  `source-verify-record-v1` JSON that `source-verify-check --record` already reads. No-API:
+ *  the page runs entirely in the browser; the operator verifies each item against a real source. */
+async function runSourceVerifyWorkbench(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: source-verify-workbench <bookId>");
+    return 2;
+  }
+  const { expectedSourceChapters, loadSourceV2Sidecar, sourceSidecarPathFor } = await import("./qc/sourceV2Gate.js");
+  const { verifiableItems } = await import("./critics/sourceVerify.js");
+  const { buildSourceVerifyWorkbench } = await import("./sourceVerifyWorkbench.js");
+  const chapterNumbers = expectedSourceChapters(bookId);
+  if (chapterNumbers.length === 0) {
+    console.error(`No research run / chapter index for "${bookId}". Run the research playbook (phase 1) first.`);
+    return 2;
+  }
+  const chapters = chapterNumbers
+    .map((n) => {
+      const sc = loadSourceV2Sidecar(bookId, n);
+      if (!sc) return null;
+      const items = verifiableItems(sc);
+      if (items.length === 0) return null;
+      return { chapterNumber: n, sidecarPath: sourceSidecarPathFor(bookId, n) ?? `(chapter ${n})`, items };
+    })
+    .filter((c): c is { chapterNumber: number; sidecarPath: string; items: ReturnType<typeof verifiableItems> } => c !== null);
+  if (chapters.length === 0) {
+    console.error(`No verifiable source items for "${bookId}". Run research (phase 1) before verifying.`);
+    return 2;
+  }
+  const html = buildSourceVerifyWorkbench(bookId, chapters);
+  const outDir = resolve(process.cwd(), ".chapterflow", "source-verify", bookId);
+  const htmlPath = typeof flags["out"] === "string" ? resolve(process.cwd(), flags["out"] as string) : resolve(outDir, "index.html");
+  mkdirSync(dirname(htmlPath), { recursive: true });
+  writeFileSync(htmlPath, html, "utf8");
+  const recordPath = resolve(dirname(htmlPath), "source-verify-record.json");
+  const total = chapters.reduce((n, c) => n + c.items.length, 0);
+  console.log(`source-verify-workbench — ${bookId}: wrote ${total} item(s) to ${htmlPath}`);
+  console.log(`Open it, verify each item against a real source, click Download, save next to it, then:`);
+  console.log(`  npx tsx src/cli.ts source-verify-check ${bookId} --record ${recordPath}`);
+  return 0;
+}
+
 /** `source-verify-check <bookId> [--record <path>]` — WS-4 consumer. Reads the FILLED
  *  verification record back and refuses a rubber-stamp (uniform notes/sources, missing
  *  coverage, non-VERIFIED items). This is what makes the source-reality gate real
@@ -843,6 +938,134 @@ async function runSourceVerifyCheck(args: string[], flags: Record<string, string
   console.log(`source-verify-check — ${bookId}: ${blockers.length} blocker(s) of ${findings.length} finding(s)`);
   for (const f of findings) console.log(`  [${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}] ${f.severity}: ${f.message}`);
   return blockers.length > 0 ? 1 : 0;
+}
+
+/** `runbook <bookId> [--json]` — deterministic, READ-ONLY operator control panel: the book's
+ *  phase (from book-status), the strict env with live OK/MISSING status, the source-v2 gate +
+ *  source-verify record state, the latest QC round, the exact next command, the prompt to open,
+ *  and any blockers. Re-derives nothing — phase comes from computeBookStatus, gate/record state
+ *  from the existing checks; the phase→prompt map + formatting live in src/runbook.ts. */
+async function runRunbook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: runbook <bookId|title> [--json]");
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  const { computeBookStatus } = await import("./lifecycle/bookStatus.js");
+  const { runbookPlan, formatRunbook, runbookJson, strictEnvStatus } = await import("./runbook.js");
+  const bookStatus = computeBookStatus(bookId);
+  const plan = runbookPlan(bookStatus.phase, bookId);
+
+  const { sourceVerifyRecordPath, parseSourceVerifyRecord, checkSourceVerifyRecord, verifiableItems } = await import("./critics/sourceVerify.js");
+  const { expectedSourceChapters, loadSourceV2Sidecar, checkSourceV2Gate } = await import("./qc/sourceV2Gate.js");
+  const { latestRoundId } = await import("./qc/orchestrator/artifacts.js");
+
+  const blockers: { kind: string; message: string }[] = [];
+
+  // source-v2 STRUCTURE gate (cheap; "N/A" when there are no source chapters yet).
+  let sourceV2: RunbookStatus["sourceV2"] = "N/A";
+  try {
+    const v2 = checkSourceV2Gate(bookId);
+    if (v2.chaptersChecked > 0) {
+      sourceV2 = v2.passed ? "PASS" : "BLOCK";
+      if (!v2.passed) for (const f of v2.findings) blockers.push({ kind: "sourceV2", message: f.message });
+    }
+  } catch {
+    sourceV2 = "N/A";
+  }
+
+  // source-verify REALITY record state.
+  const items = expectedSourceChapters(bookId).flatMap((n) => {
+    const sc = loadSourceV2Sidecar(bookId, n);
+    return sc ? verifiableItems(sc) : [];
+  });
+  let sourceVerify: RunbookStatus["sourceVerify"] = "N/A";
+  if (items.length > 0) {
+    const svPath = sourceVerifyRecordPath(bookId);
+    if (!existsSyncFs(svPath)) {
+      sourceVerify = "ABSENT";
+    } else {
+      const { record, error } = parseSourceVerifyRecord(readFileSync(svPath, "utf8"));
+      if (error || !record) {
+        sourceVerify = "UNPARSEABLE";
+        blockers.push({ kind: "sourceVerify", message: `record present but unparseable (${error ?? "?"}) — re-emit and re-fill` });
+      } else {
+        const svBlockers = checkSourceVerifyRecord(items, record).filter((f) => f.severity === "blocker");
+        sourceVerify = svBlockers.length === 0 ? "PRESENT_PASS" : "PRESENT_BAD";
+        for (const f of svBlockers) blockers.push({ kind: "sourceVerify", message: f.message });
+      }
+    }
+  }
+
+  const notes: string[] = [];
+  if (plan.label === "QC" || plan.label === "Publish") {
+    notes.push("REVIEW-PACKET.md (if present) carries live role tokens — publish cleanup removes it");
+  }
+
+  const status: RunbookStatus = {
+    phase: bookStatus.phase,
+    env: strictEnvStatus(process.env),
+    sourceV2,
+    sourceVerify,
+    qcRound: latestRoundId(bookId),
+    blockers,
+    notes,
+  };
+
+  if (flags["json"] === true) console.log(JSON.stringify(runbookJson(bookId, plan, status), null, 2));
+  else console.log(formatRunbook(bookId, plan, status));
+  return 0;
+}
+
+/** `diagnose <bookId|title>` — one triage entry point for "why didn't this book pass?".
+ *  Composes the existing book-level diagnostics in order (book-status → major-status →
+ *  source-verify-check → qc-diagnose on the latest round) behind one command, so the operator
+ *  stops debugging by vibes. It RUNS the existing renderers (no re-implemented logic — they stay
+ *  the single source of truth); the only new logic is the ordering + latest-round resolution,
+ *  which lives pure + tested in src/diagnose.ts. Always exits 0 — it is informational; the
+ *  individual commands remain the gates. */
+async function runDiagnose(args: string[], _flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: diagnose <bookId|title>");
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
+
+  const { latestRoundId } = await import("./qc/orchestrator/artifacts.js");
+  const { diagnosePlan, formatDiagnoseHeader, formatDiagnoseStep, formatDiagnoseNotes } = await import("./diagnose.js");
+  const roundId = latestRoundId(bookId);
+  const { steps, notes } = diagnosePlan(bookId, roundId);
+
+  console.log(formatDiagnoseHeader(bookId, roundId));
+  for (const step of steps) {
+    console.log(formatDiagnoseStep(step));
+    switch (step.kind) {
+      case "book-status":
+        await runBookStatus([bookId], {});
+        break;
+      case "major-status":
+        await runMajorStatus([bookId]);
+        break;
+      case "source-verify-check":
+        await runSourceVerifyCheck([bookId], {});
+        break;
+      case "qc-diagnose":
+        await runQcDiagnose([bookId], { round: roundId as string });
+        break;
+    }
+  }
+  if (notes.length > 0) {
+    console.log("");
+    console.log(formatDiagnoseNotes(notes));
+  }
+  return 0;
 }
 
 /** `next-task <bookId>` — operator helper for inline-session generation.
@@ -2356,7 +2579,12 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     // round that predates freshness tracking or whose chapters changed since
     // the round was opened. --no-attest stays allowed for diagnostics.
     const finalizeChapters = orch.parseChapterList(flags["chapters"]);
-    const wantAttest = flags["no-attest"] !== true;
+    // --dry-run previews the verdict and writes NOTHING durable (no attestations, evidence
+    // matrix, qc-summary, repair brief, or ledger). finalizeQcRound already supports this; the
+    // CLI just has to pass it. A dry-run never attests, so it is neither gated nor blocked by the
+    // stale-round refusal (which only guards attestation writes).
+    const isDryRun = flags["dry-run"] === true;
+    const wantAttest = flags["no-attest"] !== true && !isDryRun;
     if (wantAttest) {
       const freshness = orch.checkRoundFreshness(bookId, roundId, finalizeChapters);
       if (!freshness.fresh) {
@@ -2369,11 +2597,17 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     const result = orch.finalizeQcRound(bookId, roundId, {
       chapters: finalizeChapters,
       attest: wantAttest,
+      dryRun: isDryRun,
     });
     console.log(JSON.stringify({
       ...result,
+      dryRun: isDryRun,
       collected: collected.summary,
     }, null, 2));
+    if (isDryRun) {
+      const wouldAttest = result.chapters.filter((c) => c.finalVerdict === "PUBLISHABLE").length;
+      console.error(`DRY RUN — nothing written. Would attest ${wouldAttest} PUBLISHABLE chapter(s) and write the evidence matrix on a real run.`);
+    }
     for (const e of [...collected.errors, ...result.errors]) console.error(e);
     if (result.incomplete) return 3;
     if (result.repairRequired) return 1;
@@ -2613,6 +2847,29 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     incomplete: finalized.chapters.filter((d) => d.finalVerdict === "NEEDS_MORE_QC").length,
   };
 
+  // Best-effort quality telemetry — one append-only row per finalization (see `qc-metrics`).
+  // Observability only: read back into no verdict, and a failure here NEVER breaks the QC run.
+  try {
+    const { loadBarReadArtifact } = await import("./qc/orchestrator/artifacts.js");
+    const { buildQcFinalizationMetric, appendQcFinalizationMetric } = await import("./qc/metrics.js");
+    const failingBarAxes: string[] = [];
+    for (const d of finalized.chapters) {
+      if (d.finalVerdict === "PUBLISHABLE" || (d.checks.barRead !== "YELLOW" && d.checks.barRead !== "RED")) continue;
+      const bar = loadBarReadArtifact(bookId, roundId, d.chapterNumber);
+      for (const a of bar?.axes ?? []) if (a.tier !== "PUBLISHABLE") failingBarAxes.push(a.axis);
+    }
+    appendQcFinalizationMetric(buildQcFinalizationMetric({
+      bookId,
+      roundId,
+      timestamp: new Date().toISOString(),
+      mode: chapters?.length ? "subset" : "full",
+      incremental: flags["incremental"] === true,
+      tiebreak: flags["tiebreak"] === true,
+      decisions: finalized.chapters,
+      failingBarAxes,
+    }));
+  } catch { /* telemetry is best-effort — never break QC */ }
+
   if (finalized.allPublishable) {
     if (staleDiagnosticsOnly) {
       console.log(`QC AUTO INCOMPLETE — ${bookId}`);
@@ -2762,6 +3019,19 @@ async function runQcRepairPrompt(args: string[], flags: Record<string, string | 
   }
   const { writeRepairPrompt } = await import("./qc/orchestrator/repairBrief.js");
   console.log(`repair prompt: ${writeRepairPrompt(bookId, roundId)}`);
+  return 0;
+}
+
+/** `qc-metrics [--last N] [--json]` — aggregate the quality telemetry (state/metrics/
+ *  qc-finalizations.jsonl, one row per qc-auto finalization): first-pass publishable rate,
+ *  average rounds to a clean pass, top failing bar axis, top deterministic blocker. Read-only. */
+async function runQcMetrics(flags: Record<string, string | boolean>): Promise<number> {
+  const lastN = typeof flags["last"] === "string" ? Math.max(1, parseInt(flags["last"] as string, 10) || 10) : 10;
+  const { loadQcFinalizationMetrics, aggregateQcMetrics, formatQcMetrics } = await import("./qc/metrics.js");
+  const records = loadQcFinalizationMetrics();
+  const summary = aggregateQcMetrics(records, lastN);
+  if (flags["json"] === true) console.log(JSON.stringify(summary, null, 2));
+  else console.log(formatQcMetrics(summary, lastN));
   return 0;
 }
 
@@ -3986,12 +4256,22 @@ async function main() {
       return runGenerateBook(args, flags);
     case "next-task":
       return runNextTask(args);
+    case "runbook":
+      return runRunbook(args, flags);
+    case "diagnose":
+      return runDiagnose(args, flags);
     case "check-source":
       return runCheckSource(args);
     case "source-verify":
       return runSourceVerify(args, flags);
     case "source-verify-check":
       return runSourceVerifyCheck(args, flags);
+    case "source-verify-schema":
+      return runSourceVerifySchema();
+    case "source-verify-workbench":
+      return runSourceVerifyWorkbench(args, flags);
+    case "source-fit":
+      return runSourceFit(args, flags);
     case "derive-artifacts":
       return runDeriveArtifacts(args);
     case "research":
@@ -4052,6 +4332,8 @@ async function main() {
       return runQcRepairPrompt(args, flags);
     case "qc-diagnose":
       return runQcDiagnose(args, flags);
+    case "qc-metrics":
+      return runQcMetrics(flags);
     case "source-v2-gate":
       return runSourceV2Gate(args);
     case "key-pack":

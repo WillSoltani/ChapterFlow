@@ -72,6 +72,8 @@ infra/dist/
 # reads it, and that runs locally. Kept on disk, never tracked. (History still
 # contains the old copies — purge via git filter-repo + force-push to fully remove.)
 /.chapterflow/
+# pipeline runtime dir: source-verify records + workbench, qc-orchestrator rounds — transient, never tracked
+scripts/book/prompts/chapterflow-v21-authored/.chapterflow/
 
 # ChapterFlow v21 pipeline state (durability hygiene — Phase 0).
 # Chapters + indexes ARE the product of Step-2 work and MUST stay tracked
@@ -79,6 +81,8 @@ infra/dist/
 # accidental-shadow paths are excluded:
 /state/                                                                   # repo-root SHADOW state dir — forbidden (gates read the pipeline copy)
 scripts/book/prompts/chapterflow-v21-authored/state/gate-attempts.json    # machine churn, rewritten every gate run
+# append-only quality telemetry — local accrual, not durable product state
+scripts/book/prompts/chapterflow-v21-authored/state/metrics/
 scripts/book/prompts/chapterflow-v21-authored/state/gate-verdicts/        # derived verdict sidecars (later phases)
 scripts/book/prompts/chapterflow-v21-authored/state/chapters/.backup-*/   # ad-hoc backup snapshots — use git, not dirs
 scripts/book/prompts/chapterflow-v21-authored/scratch/_shadow-drive-backup-*/  # Phase-0 migration backup

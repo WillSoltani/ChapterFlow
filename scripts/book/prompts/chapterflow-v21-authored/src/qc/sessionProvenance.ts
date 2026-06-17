@@ -80,3 +80,22 @@ export function violatesSessionIndependence(authorSessionId: string | undefined,
   if (authorSessionId == null || reviewerSessionId == null) return false;
   return authorSessionId === reviewerSessionId;
 }
+
+/** Two reviewer sessions collide — the same session produced both reads, so they are
+ *  NOT independent. Same opt-in + absence-safe contract as violatesSessionIndependence:
+ *  no block unless independence is ENFORCED and BOTH ids are present. This is what turns
+ *  "separate reviewers" (keyA≠keyB, bar≠confirm, bar≠tiebreak) from a derived role-string
+ *  label into recorded evidence — each subagent stamps its own CHAPTERFLOW_SESSION_ID. */
+export function sessionsCollide(a: string | undefined, b: string | undefined): boolean {
+  if (!sessionIndependenceEnforced()) return false;
+  if (a == null || b == null) return false;
+  return a === b;
+}
+
+/** Any two of the given reviewer sessions collide (for the bar primary + tiebreak variants).
+ *  Absence-safe per id: undefined ids never pair. No block unless independence is ENFORCED. */
+export function sessionsCollideAmong(ids: Array<string | undefined>): boolean {
+  if (!sessionIndependenceEnforced()) return false;
+  const present = ids.filter((x): x is string => x != null);
+  return new Set(present).size < present.length;
+}

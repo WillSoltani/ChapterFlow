@@ -37,6 +37,7 @@ export type ValidatedSweepSubmission = {
   roundId: string;
   role: "sweep";
   reviewer: string;
+  reviewerSessionId?: string;
   verdict: "PASS" | "REVISE" | "CORRUPTION";
   checkedFamilies: SweepFamily[];
   findings: SubmissionFinding[];
@@ -48,6 +49,7 @@ export type ValidatedKeyDeriveSubmission = {
   roundId: string;
   role: "keyA" | "keyB";
   reviewer?: string;
+  reviewerSessionId?: string;
   chapters: Array<{
     chapterNumber: number;
     chapterId?: string;
@@ -70,6 +72,7 @@ export type ValidatedBarReadSubmission = {
   roundId: string;
   role: "bar";
   reviewer: string;
+  reviewerSessionId?: string;
   chapterNumber: number;
   chapterId: string;
   contentHash: string;
@@ -85,6 +88,7 @@ export type ValidatedConfirmReadSubmission = {
   roundId: string;
   role: "confirm";
   reviewer: string;
+  reviewerSessionId?: string;
   chapterNumber: number;
   chapterId: string;
   contentHash: string;
@@ -99,6 +103,7 @@ export type ValidatedMajorTriageSubmission = {
   roundId: string;
   role: "major";
   reviewer: string;
+  reviewerSessionId?: string;
   findings: SubmissionFinding[];
   dispositions: Array<{
     findingId: string;
@@ -233,6 +238,7 @@ function validateSweep(bookId: string, roundId: string, role: SubmissionRole, ra
       roundId,
       role: "sweep",
       reviewer: String(raw.reviewer),
+      reviewerSessionId: nonempty(raw?.reviewerSessionId) ? String(raw.reviewerSessionId) : undefined,
       verdict: raw.verdict,
       checkedFamilies,
       findings,
@@ -276,7 +282,7 @@ function validateKeyDerive(bookId: string, roundId: string, role: SubmissionRole
     };
   }) : [];
   if (errors.length) return { ok: false, errors };
-  return { ok: true, submission: { schemaVersion: "qc-key-derive-v2", bookId, roundId, role: role as "keyA" | "keyB", reviewer: nonempty(raw?.reviewer) ? String(raw.reviewer) : undefined, chapters } };
+  return { ok: true, submission: { schemaVersion: "qc-key-derive-v2", bookId, roundId, role: role as "keyA" | "keyB", reviewer: nonempty(raw?.reviewer) ? String(raw.reviewer) : undefined, reviewerSessionId: nonempty(raw?.reviewerSessionId) ? String(raw.reviewerSessionId) : undefined, chapters } };
 }
 
 function normalizeHit(raw: any, errors: string[], context: string): AxisHit {
@@ -339,6 +345,7 @@ function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw:
       roundId,
       role: "bar",
       reviewer: String(raw.reviewer),
+      reviewerSessionId: nonempty(raw?.reviewerSessionId) ? String(raw.reviewerSessionId) : undefined,
       chapterNumber,
       chapterId: String(raw.chapterId),
       contentHash: String(raw.contentHash),
@@ -366,7 +373,7 @@ function validateConfirm(bookId: string, roundId: string, role: SubmissionRole, 
   if (raw?.decision === "PUBLISHABLE" && findings.length > 0) errors.push("PUBLISHABLE confirm-read must not include open findings");
   if ((raw?.decision === "REVISE" || raw?.decision === "CORRUPTION") && findings.length === 0) errors.push(`${raw.decision} confirm-read requires at least one quote-backed finding`);
   if (errors.length) return { ok: false, errors };
-  return { ok: true, submission: { schemaVersion: "qc-confirm-read-v1", bookId, roundId, role: "confirm", reviewer: String(raw.reviewer), chapterNumber, chapterId: String(raw.chapterId), contentHash: String(raw.contentHash), decision: raw.decision, reason, findings } };
+  return { ok: true, submission: { schemaVersion: "qc-confirm-read-v1", bookId, roundId, role: "confirm", reviewer: String(raw.reviewer), reviewerSessionId: nonempty(raw?.reviewerSessionId) ? String(raw.reviewerSessionId) : undefined, chapterNumber, chapterId: String(raw.chapterId), contentHash: String(raw.contentHash), decision: raw.decision, reason, findings } };
 }
 
 function validateMajor(bookId: string, roundId: string, role: SubmissionRole, raw: any): SubmissionValidationResult {
@@ -384,7 +391,7 @@ function validateMajor(bookId: string, roundId: string, role: SubmissionRole, ra
   }) : [];
   if (!Array.isArray(raw?.dispositions)) errors.push("dispositions[] is required");
   if (errors.length) return { ok: false, errors };
-  return { ok: true, submission: { schemaVersion: "qc-major-triage-v1", bookId, roundId, role: "major", reviewer: String(raw.reviewer), findings, dispositions } };
+  return { ok: true, submission: { schemaVersion: "qc-major-triage-v1", bookId, roundId, role: "major", reviewer: String(raw.reviewer), reviewerSessionId: nonempty(raw?.reviewerSessionId) ? String(raw.reviewerSessionId) : undefined, findings, dispositions } };
 }
 
 export function validateSubmission(bookId: string, roundId: string, role: SubmissionRole, raw: unknown): SubmissionValidationResult {

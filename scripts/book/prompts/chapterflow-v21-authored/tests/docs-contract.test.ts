@@ -9,7 +9,7 @@
  */
 
 import assert from "node:assert/strict";
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
@@ -110,6 +110,86 @@ test("WS-4: the research prompt requires the sidecar-vs-reality source-verify st
   assert.match(research, /source-verify <bookId>/, "research must run source-verify before the write handoff");
   assert.match(research, /A clean `check-source` is\s*\*\*not\*\* proof the source is true|not\b[\s\S]{0,40}proof the source is true/i, "research must state check-source does not prove reality");
   assert.match(research, /Provenance, not plausibility/, "research must demand provenance over plausibility");
+  // The machine check must be REQUIRED before handoff — a self-attested "all VERIFIED" is the
+  // exact rubber-stamp bypass that shipped digital-minimalism's invented sources.
+  assert.match(research, /source-verify-check/, "research must require the source-verify-check machine gate, not just a self-attested VERIFIED");
+});
+
+test("WS-4: the publish runbook documents CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 as the new-book default", () => {
+  const publish = doc("agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md");
+  assert.match(publish, /CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1/, "the publish prompt must tell operators to require source-verify for new books");
+});
+
+test("the repair prompt encodes the load-bearing repair discipline (edit-only bucket, CLASS DEFECT, no certifying)", () => {
+  const repair = doc("agent-prompts/REPAIR-CODEX-SESSION.md");
+  assert.match(repair, /\[re-QC only\]/, "must name the [re-QC only] bucket");
+  assert.match(repair, /Do NOT edit these/i, "must forbid editing [re-QC only] chapters — that invalidates their carried attestations");
+  assert.match(repair, /CLASS DEFECT/, "must address CLASS DEFECT findings");
+  assert.match(repair, /fix the class, not the quotes|class-level|whole class/i, "CLASS DEFECT must be a class-level fix, not quote-patching");
+  assert.match(repair, /qc-submit/, "must reference the certifying commands it forbids");
+  assert.match(repair, /Do \*\*NOT\*\* run|never run .*certif/i, "the writer-repair session must not run certifying commands");
+});
+
+test("the runbook documents the strict-production env AND the session-id footgun (so a strict run can't self-block)", () => {
+  const runbook = doc("agent-prompts/RUN-A-BOOK.md");
+  assert.match(runbook, /CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1/, "runbook must list the source-verify flag");
+  assert.match(runbook, /CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1/, "runbook must list the session-independence flag");
+  // The footgun: a single exported CHAPTERFLOW_SESSION_ID makes author==reviewer and blocks
+  // every chapter under ENFORCE_SESSION_INDEPENDENCE=1 — this warning must not silently vanish.
+  assert.match(runbook, /do NOT also `export CHAPTERFLOW_SESSION_ID`/i, "runbook must warn against a single exported session id under strict mode");
+});
+
+test("the failure-class registry documents the anti-overfit promotion ladder and AGREES with the code", async () => {
+  const reg = doc("docs/pipeline/FAILURE-CLASS-REGISTRY.md");
+  // The hard-blocker gate (the anti-overfit valve) must be present and intact.
+  assert.match(reg, /clean corpus/i, "registry must keep the clean-corpus-zero criterion");
+  assert.match(reg, /gold corpus/i, "registry must keep the gold-corpus-zero criterion");
+  assert.match(reg, /2 true positive/i, "registry must keep the >=2-true-positives criterion");
+  // The ladder must name the REAL mechanisms it maps to (not aspirational ones).
+  assert.match(reg, /ENFORCED_MAJOR/, "registry must reference the hard-blocker set");
+  assert.match(reg, /WRITE_BARRIER_ACTIONABLE_PREFIXES/, "registry must reference the rung-3 mechanism");
+  // Code-tie forcing function: ENFORCED_MAJOR is empty AND the registry says so. Promoting a class
+  // to a hard blocker must update BOTH the code and this ledger together, or this fails.
+  const { ENFORCED_MAJOR } = await import("../src/critics/finalGate.js");
+  assert.equal(ENFORCED_MAJOR.size, 0, "if you promote a class to ENFORCED_MAJOR, update the failure-class registry too");
+  assert.match(reg, /ENFORCED_MAJOR[^\n]{0,60}empty/i, "registry must state ENFORCED_MAJOR is empty while it is");
+  // The gold-corpus regression must stay discoverable + executable (registry AND runbook).
+  const regressionCmd = /tests\/run\.ts corpus calibration enforced repetition label pronoun/;
+  assert.match(reg, regressionCmd, "registry must document the runnable gold-corpus regression command");
+  assert.match(doc("agent-prompts/RUN-A-BOOK.md"), regressionCmd, "runbook must point maintainers at the gold-corpus regression");
+});
+
+test("the production definition-of-done enumerates the real per-phase stack and the runtime checklist", () => {
+  const dod = doc("docs/pipeline/PRODUCTION-DEFINITION-OF-DONE.md");
+  for (const c of ["check-source", "source-v2-gate", "source-verify-check", "author-check", "gate-chapter", "fanout --barrier", "manual-keyjudge", "publish-after-qc"]) {
+    assert.ok(dod.includes(c), `DoD must list the ${c} check`);
+  }
+  // It must point at the runtime checklist that ENFORCES the publish half (not just prose).
+  assert.match(dod, /noApiPreflightChecks/, "DoD must reference the runtime preflight checklist");
+});
+
+test("every failure-class entry names an EXISTING catch-test (the fault-injection / false-negative inventory)", () => {
+  const reg = doc("docs/pipeline/FAILURE-CLASS-REGISTRY.md");
+  const fcEntries = [...reg.matchAll(/^\*\*FC-\d{4}-\d{2}-\d{2}-\d{3} —/gm)];
+  const caughtBy = [...reg.matchAll(/^- Caught by:\s*(.+)$/gm)];
+  assert.ok(fcEntries.length >= 6, `expected the seeded FC entries, found ${fcEntries.length}`);
+  // Every failure class must carry exactly one Caught-by line — no class without a catch-test.
+  assert.equal(caughtBy.length, fcEntries.length, "every FC entry must have exactly one 'Caught by:' line");
+  // Every named *.test.ts must actually exist — deleting/renaming a catch-test fails CI here.
+  const named = caughtBy.flatMap((m) => [...m[1].matchAll(/([\w-]+\.test\.ts)/g)].map((x) => x[1]));
+  assert.ok(named.length >= fcEntries.length, "each Caught-by line must name at least one test file");
+  for (const f of new Set(named)) {
+    assert.ok(existsSync(resolve(PIPELINE_DIR, "tests", f)), `registry names catch-test ${f}, but tests/${f} does not exist`);
+  }
+});
+
+test("QC-ORCHESTRATE turns reviewer independence into recorded evidence (per-subagent CHAPTERFLOW_SESSION_ID)", () => {
+  const qc = doc("agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md");
+  assert.match(qc, /export CHAPTERFLOW_SESSION_ID/, "each reviewer subagent must stamp its own session id");
+  assert.match(qc, /reviewerSessionId/, "the prompt must name the captured per-submission field");
+  assert.match(qc, /keyA≠keyB/, "the prompt must state the keyA≠keyB session requirement");
+  const runbook = doc("agent-prompts/RUN-A-BOOK.md");
+  assert.match(runbook, /reviewer SUBAGENT stamps its OWN id/, "RUN-A-BOOK must mention per-subagent session ids under enforcement");
 });
 
 test("WS-5: the writer card forbids defending a deterministic register ban (B4) as a false positive", () => {
@@ -117,6 +197,25 @@ test("WS-5: the writer card forbids defending a deterministic register ban (B4) 
   assert.match(cli, /DETERMINISTIC register ban[\s\S]{0,160}can NEVER be defended as a false positive/, "the writer card must carve out B-class lexical bans from the defensible-FP allowance");
   const orch = doc("agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md");
   assert.match(orch, /NEVER an FP/, "the write-orchestrate prompt must say a deterministic register ban is never an FP");
+});
+
+test("the fanout writer card pins its critical guidance (anti prompt-drift contract)", () => {
+  // The owner's prompt-compiler goal — reduce prompt drift — without the compiler. The card is
+  // per-chapter COMPUTED (names/exemplar-ownership/shape/mechanism vary by chapter), so static
+  // section files would lose that conditionality; these source-text contracts pin the invariant
+  // guidance instead, so a future edit that drops a load-bearing instruction fails CI.
+  const cli = readFileSync(resolve(PIPELINE_DIR, "src/cli.ts"), "utf8");
+  // Answer TRUTH overrides target placement — the F3 balance must never bend a key.
+  assert.match(cli, /Score each question for TRUTH first[\s\S]{0,200}NEVER change which choice is true/, "card must keep answer-truth-over-placement");
+  // The quiz key is derived from the source testableFacts the blind judge uses (not prose).
+  assert.match(cli, /quiz_key_correctness[\s\S]{0,280}testableFacts/, "card must keep key-from-source guidance");
+  // Distractor sameness / no telegraphing labels (the BP31 family).
+  assert.match(cli, /SAME KIND of answer/, "card must keep distractor-sameness (no-label) guidance");
+  // Source fidelity is a factual_accuracy CORRUPTION veto, and ungrounded claims are cut, not invented.
+  assert.match(cli, /factual_accuracy[\s\S]{0,40}CORRUPTION/i, "card must mark factual_accuracy a corruption veto");
+  assert.match(cli, /can't ground a claim, cut it[\s\S]{0,6}never invent/, "card must forbid inventing ungrounded claims");
+  // The real target is the publishable bar — self-score before finishing.
+  assert.match(cli, /THE REAL TARGET IS THE PUBLISHABLE BAR/, "card must keep the publishable-bar self-score");
 });
 
 test("WS-5: the confirm read is dispatched with an ADVERSARIAL (refute-the-PASS) stance", () => {

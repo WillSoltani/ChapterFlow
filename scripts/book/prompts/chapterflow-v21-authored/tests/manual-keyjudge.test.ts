@@ -127,6 +127,35 @@ test("manual keyjudge: keyA + keyB clean agreement passes", () => {
   }
 });
 
+test("manual keyjudge: keyA + keyB derived in the SAME session block under enforcement; distinct sessions pass", () => {
+  const prevEnforce = process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+  const prevSession = process.env.CHAPTERFLOW_SESSION_ID;
+  try {
+    const { chapter, tokens, roundId } = setup();
+    const answers = writeAnswers(chapter);
+    process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = "1";
+    // Same session derives BOTH "blind" keys → they are not independent → BLOCK.
+    process.env.CHAPTERFLOW_SESSION_ID = "qc-keys-shared";
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyA", tokens.keyA, answers).errors, []);
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyB", tokens.keyB, answers).errors, []);
+    let result = resolveManualKeyJudges(BOOK, roundId);
+    assert.equal(result.records[0].status, "BLOCK");
+    assert.match(result.records[0].reason, /SAME session/);
+
+    // Re-derive keyB in a DISTINCT session → independence restored → PASS.
+    process.env.CHAPTERFLOW_SESSION_ID = "qc-keyB-distinct";
+    assert.deepEqual(validateAndWriteKeyDerivation(BOOK, roundId, "keyB", tokens.keyB, answers).errors, []);
+    result = resolveManualKeyJudges(BOOK, roundId);
+    assert.equal(result.records[0].status, "PASS");
+  } finally {
+    if (prevEnforce === undefined) delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+    else process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = prevEnforce;
+    if (prevSession === undefined) delete process.env.CHAPTERFLOW_SESSION_ID;
+    else process.env.CHAPTERFLOW_SESSION_ID = prevSession;
+    cleanup();
+  }
+});
+
 test("manual keyjudge: keyA + keyB agreeing against the stored key records CORRUPTION", () => {
   try {
     const { chapter, tokens, roundId } = setup();

@@ -5,6 +5,7 @@ import { dirname, resolve } from "path";
 import { test } from "./harness.js";
 import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, runCli, writeFixtureBook } from "./helpers.js";
 import { promoteBook } from "../src/promoteBook.js";
+import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
@@ -79,6 +80,41 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
     assert.ok(qcIds.includes("QC0.no_api_round_missing"), `round-backed attestation blocker missing: ${qcIds.join(", ")}`);
   } finally {
     console.warn = oldWarn;
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanup();
+  }
+});
+
+test("no-api promote enforces the source-verify RECORD gate inside promoteBook (a direct promote-book can't bypass WS-4)", () => {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  const oldWarn = console.warn;
+  const recordPath = sourceVerifyRecordPath(BOOK);
+  try {
+    console.warn = () => {};
+    cleanup();
+    const chapters = [1].map((n) => makeChapter(BOOK, n));
+    writeFixtureBook(STATE_CHAPTERS, chapters);
+    // A PRESENT-but-rubber-stamped record (one identical note over reused sources) must block
+    // promotion via promoteBook itself — not just via the publish-after-qc preflight wrapper.
+    const items = [1, 2, 3, 4, 5].map((i) => ({ id: `f${i}`, kind: "testable_fact", verdict: "VERIFIED", sourceRef: `https://example.com/${i % 2}`, note: "stamp" }));
+    const record = { schemaVersion: "source-verify-record-v1", bookId: BOOK, chapters: [{ chapterNumber: 1, items }] };
+    mkdirSync(dirname(recordPath), { recursive: true });
+    writeFileSync(recordPath, "```json\n" + JSON.stringify(record) + "\n```\n", "utf8");
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    const result = promoteBook({
+      bookId: BOOK,
+      title: "Fixture",
+      author: "Nobody",
+      chapters: chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title })) as any,
+    });
+    assert.equal(result.promoted, false);
+    const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
+    const noApiIds = (report.noApiCodexQc.findings ?? []).map((f: any) => f.checkId);
+    assert.ok(noApiIds.includes("SV4"), `source-verify rubber-stamp (SV4) blocker missing from promoteBook: ${noApiIds.join(", ")}`);
+  } finally {
+    console.warn = oldWarn;
+    rmSync(recordPath, { force: true });
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
     cleanup();
