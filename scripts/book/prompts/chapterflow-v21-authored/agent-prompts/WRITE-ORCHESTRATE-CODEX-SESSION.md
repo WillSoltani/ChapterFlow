@@ -91,7 +91,9 @@ spawn one subagent per chapter, in parallel, each with this contract:
 > the 8 bar axes QC grades on (PASS = ≥85/100, no axis <0.6); fix any axis below ~0.85 and any
 > corruption-axis hit before you return. gate-chapter is deterministic and does NOT predict the
 > bar — a gate-clean chapter is routinely REVISE'd. Do NOT QC, publish, or touch any other
-> chapter. If gate-chapter halts on a circuit-breaker (exit 3), STOP and report — do not keep
+> chapter. Edit ONLY this chapter's JSON under `state/chapters/` — NEVER pipeline code, gates,
+> allocators, or config (`src/`, `config/`, `agent-prompts/`); if a gate looks wrong, report it,
+> don't edit it. If gate-chapter halts on a circuit-breaker (exit 3), STOP and report — do not keep
 > patching.
 >
 > <paste this chapter's fanout card here>

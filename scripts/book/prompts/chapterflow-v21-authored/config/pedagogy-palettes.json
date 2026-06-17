@@ -81,7 +81,7 @@
     {
       "id": "schedule-event",
       "definition": "Convert the lesson into a specific future event on the calendar. The exercise succeeds only if time, place, and trigger are named.",
-      "example": "Schedule a 15-minute review tomorrow at 9:30 and attach the one document you will inspect."
+      "example": "Schedule a 15-minute review for a named time tomorrow and attach the one document you will inspect."
     },
     {
       "id": "notice-and-record",

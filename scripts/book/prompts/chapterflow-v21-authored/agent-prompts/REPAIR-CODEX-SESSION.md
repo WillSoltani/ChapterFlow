@@ -7,6 +7,18 @@ is re-earned in a SEPARATE fresh QC session afterward — never by you.
 Input: the round's `repair-prompt.md` (printed by phase-3 QC when it says **REPAIR REQUIRED**). It
 groups chapters into two buckets and may mark some findings **CLASS DEFECT**.
 
+## Scope boundary — chapter CONTENT only (do not cross it)
+Your edits go to **chapter JSON files under `state/chapters/`** only. Re-dealing a dealt slot by
+**running** a CLI allocator (step 3 below) is fine — it updates a `state/` plan. But you must
+**NEVER hand-edit** pipeline code, allocators, gates, prompts, or config — any file under `src/`,
+`config/`, or `agent-prompts/`. A book-wide pattern (venue stamping, a templated quiz stem) is fixed
+by **re-authoring the offending chapters' content** so they stop sharing the pattern (stage examples
+in different settings, write distinct quiz stems) — **not** by editing the venue palette, an
+allocator, or the card generator. A code/config edit changes every future book and corrupts the
+operator's tree. If a finding can **only** be fixed by hand-editing pipeline code/config (an
+allocator/gate/palette/generator bug, not chapter content), **STOP and report it to the operator** —
+do not edit code.
+
 ## The two buckets — obey them exactly
 - **[edit]** — chapters with actionable findings. Edit ONLY these.
 - **[re-QC only]** — chapters with missing/stale evidence and NO edits needed (typically a clean

@@ -2152,8 +2152,8 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const quizB = pedagogy ? quizDefs.get(pedagogy.quizOpeners[1]) : undefined;
     const pedagogyLines = pedagogy
       ? `• HOOK SHAPE: ${pedagogy.hookShape} — ${hookDefs.get(pedagogy.hookShape) ?? "follow the dealt hook shape."}\n` +
-        `• TRY-THIS-NOW GRAMMAR: ${pedagogy.tryThisNowGrammar} — ${tryGrammar?.definition ?? "follow the dealt exercise grammar."} (example: ${tryGrammar?.example ?? "keep it concrete."}); marquee tactic family: ${pedagogy.tacticFamily} — ${tacticDefs.get(pedagogy.tacticFamily) ?? "follow the dealt tactic family."}. The dealt GRAMMAR shapes the sentence; the dealt FAMILY shapes the action. Other chapters own other families — do not borrow their moves (no phone-facedown unless dealt). This is a FORM, not a stamp: write a fresh opening for it — do not copy the example's first words (the outliers fleet caught identical grammar stamps recycling every third chapter).\n` +
-        `• QUIZ OPENERS: draw from two FORMS — ${pedagogy.quizOpeners[0]} (e.g. ${quizA?.example ?? "use the dealt opener."}) and ${pedagogy.quizOpeners[1]} (e.g. ${quizB?.example ?? "use the dealt opener."}). These are question SHAPES, not sentences: never reuse a literal stem twice in the chapter (the first qc-run sweep caught "What happens next" stamped 34× book-wide), vary the phrasing inside each form, and let 1-2 questions per chapter break form entirely. Keyed answer must NOT be reliably the longest choice (BP25 — target ≤45% of questions, ~33% ideal).\n`
+        `• TRY-THIS-NOW GRAMMAR: ${pedagogy.tryThisNowGrammar} — ${tryGrammar?.definition ?? "follow the dealt exercise grammar."} (example: ${tryGrammar?.example ?? "keep it concrete."}); marquee tactic family: ${pedagogy.tacticFamily} — ${tacticDefs.get(pedagogy.tacticFamily) ?? "follow the dealt tactic family."}. The dealt GRAMMAR shapes the sentence; the dealt FAMILY shapes the action. Other chapters own other families — do not borrow their moves (no phone-facedown unless dealt). This is a FORM, not a stamp: write a fresh action for it — do not copy the example's WORDING, and not just its first words: any time, number, or name you copy from it (a clock like "9:30", a count) stamps book-wide across the chapters dealt this same form and trips BP29 timing / grammar stamps (the outliers fleet caught these recycling every third chapter).\n` +
+        `• QUIZ OPENERS: draw from two FORMS — ${pedagogy.quizOpeners[0]} (e.g. ${quizA?.example ?? "use the dealt opener."}) and ${pedagogy.quizOpeners[1]} (e.g. ${quizB?.example ?? "use the dealt opener."}). These are question SHAPES, not sentences. The (e.g. …) is ONE illustration of the shape — NEVER copy its wording: the SAME form is dealt to many chapters, so a copied example stem stamps book-wide and trips BP20 (a gate BLOCKER) — the qc-run sweep has caught "What happens next" 34× and "what should the reader infer first" 10× exactly this way. Write every stem in your chapter's own scenario language; never reuse a literal stem twice in the chapter; vary the phrasing inside each form; let 1-2 questions per chapter break form entirely. Keyed answer must NOT be reliably the longest choice (BP25 — target ≤45% of questions, ~33% ideal).\n`
       : "";
     const exemplar = exemplarPlan.allocation[ch.number];
     const exemplarLine = exemplar
@@ -2163,7 +2163,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
       : "";
     const venueIds = venuePlan.allocation[ch.number] ?? [];
     const venueLine = venueIds.length
-      ? `• VENUES (a FALLBACK palette for variety — NOT a mandate): the SOURCE CASE is the stage. Stage each example in its source case's own natural setting. Only if a case has no natural setting, draw a venue from the list below for variety. NEVER relocate the real case to a dealt venue and demote the case to notes "glowing on a phone" or an invented onlooker (SL3 blocks this). A venue may be a relationship CHANNEL (a phone call, a text thread), not only a place. Don't put two examples at the same venue; FIT staging to the topic (a personal/relational subject belongs at a kitchen table or on a phone call, not a workplace prop). VARY the scene SHAPE — don't open every scenario "<Name> <verb>s at/beside a <prop>". Set example[i].planSpec.venue to the setting you actually used (optional).\n    palette: ${venueIds.join("; ")}\n`
+      ? `• VENUES (a FALLBACK palette for variety — NOT a mandate): the SOURCE CASE is the stage. Stage each example in its source case's own natural setting. Only if a case has no natural setting, draw a venue FROM YOUR DEALT PALETTE BELOW for variety — do NOT reach for a generic kitchen table, conference room, or break room; those are the settings every chapter defaults to, and 3+ chapters sharing one venue trips BP27.venue_stamping (a book-gate major QC will REVISE on). NEVER relocate the real case to a dealt venue and demote the case to notes "glowing on a phone" or an invented onlooker (SL3 blocks this). A venue may be a relationship CHANNEL (a phone call, a text thread), not only a place. Don't put two examples at the same venue; FIT staging to the topic (a personal/relational subject belongs in a home or direct-channel setting, not a workplace prop). VARY the scene SHAPE — don't open every scenario "<Name> <verb>s at/beside a <prop>". Set example[i].planSpec.venue to the setting you actually used (optional).\n    palette: ${venueIds.join("; ")}\n`
       : "";
     const rhet = rhetoricPlan.allocation[ch.number];
     const rhetoricLine = rhet
@@ -2338,13 +2338,19 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     console.log(`[barrier] Running book-gate as a pre-QC barrier for ${bookId}...\n`);
     const gateCode = await runBookGate([bookId]); // full report (derive-artifacts + shadow checks)
     const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
-    const { runBookGate: runBookGateCritic, isWriteBarrierActionable } = await import("./critics/bookGate.js");
+    const { runBookGate: runBookGateCritic, isWriteBarrierActionable, isUnsurfacedBarrierMajor } = await import("./critics/bookGate.js");
     const report = runBookGateCritic(bookId, loadBookChapters(bookId));
     const offenders = new Set<number>();
+    // Book-wide majors that pass book-gate (no blocker) yet QC finalize REVISEs on
+    // (checks.majors !== "PASS"): without surfacing them, a bare-"PASS" barrier
+    // hands QC a guaranteed repair round (the BP27 venue / F4 leak observed on
+    // eat-that-frog). Shift-left: name them so they're fixed while writers are warm.
+    const residualMajors: typeof report.findings = [];
     for (const f of report.findings) {
       if (isWriteBarrierActionable(f)) for (const c of f.chapters ?? []) offenders.add(c);
+      else if (isUnsurfacedBarrierMajor(f)) residualMajors.push(f);
     }
-    if (gateCode === 0 && offenders.size === 0) {
+    if (gateCode === 0 && offenders.size === 0 && residualMajors.length === 0) {
       console.log(`\n[barrier] PASS — book-gate clean and no structural-sameness offenders. Hand off to QC.`);
       return 0;
     }
@@ -2353,7 +2359,20 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
       for (const n of [...offenders].sort((a, b) => a - b)) {
         console.log(`  npx tsx src/cli.ts fanout ${bookId} --from ${n} --to ${n} --all`);
       }
-    } else {
+    }
+    if (residualMajors.length > 0) {
+      console.log(`\n[barrier] ${residualMajors.length} book-wide MAJOR(s) pass book-gate but QC will REVISE on them (checks.majors must be PASS) — DO NOT qc-stamp-author yet, or you buy a full QC round to rediscover these. Resolve each, then re-run --barrier:`);
+      for (const f of residualMajors) {
+        if (f.chapters?.length) {
+          console.log(`  [${f.catalogId}] ch${f.chapters.join(", ch")} — ${f.message}`);
+          console.log(`     fix: re-dispatch those chapters so they stop sharing the pattern: npx tsx src/cli.ts fanout ${bookId} --from <n> --to <n> --all`);
+        } else {
+          console.log(`  [${f.catalogId}] book-wide (no single chapter) — ${f.message}`);
+          console.log(`     fix: rebalance the pattern across the book (e.g. answer-position spread, phrase budget) — not a single-chapter re-dispatch.`);
+        }
+      }
+    }
+    if (offenders.size === 0 && residualMajors.length === 0) {
       console.log(`\n[barrier] Remaining findings are book-wide (no single offending chapter) — address per the messages above, then re-run --barrier.`);
     }
     console.log(`\n[barrier] Loop until PASS; cap at 3 re-dispatch rounds — a finding that survives 3 rounds is a source/plan problem, so STOP and surface it to the operator.`);

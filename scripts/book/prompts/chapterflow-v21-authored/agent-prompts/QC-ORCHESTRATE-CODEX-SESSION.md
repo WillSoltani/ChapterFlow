@@ -38,8 +38,10 @@ through. A REVISE you dispatch back is the system working, not a failure.
 - **`REPAIR REQUIRED`** → real defects. Open the printed `repair-prompt.md` in a fresh **Writer**
   session. Read its `affected chapters:` line — it is bucketed (`[edit]` / `[book-wide status]` /
   `[re-QC only]`). A **`CLASS DEFECT:`** banner means a defect repeats across sibling units (e.g.
-  every `ifThenPlans` entry): tell the writer to fix the WHOLE class at its source, not just the
-  quoted units — fixing only the quoted ones leaves the siblings to re-fail next round.
+  every `ifThenPlans` entry): tell the writer to fix the WHOLE class in the chapter CONTENT, not just
+  the quoted units — fixing only the quoted ones leaves the siblings to re-fail next round. "At its
+  source" means the chapter's own content/source case — NEVER pipeline code, gates, allocators, or
+  config; the generated `repair-prompt.md` states this boundary.
 - **A chapter REVISEs round after round, each time on a DIFFERENT axis** → the bar surfaces the
   single worst axis; fixing it uncovers the next-latent one. That is convergence, not a loop — keep
   repairing. But if the SAME finding survives 2 repairs with a genuine fix each time, the defect may
