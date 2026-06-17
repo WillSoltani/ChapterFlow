@@ -10,7 +10,7 @@ import { useLibraryDashboard } from "@/app/book/hooks/useLibraryDashboard";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
-import { getBookCoverPath } from "@/lib/book-covers";
+import { BookCover } from "@/components/ui/BookCover";
 import { deriveReaderLevel, type ReaderLevel } from "@/lib/reader-levels";
 import { HeroRecommendation } from "./HeroRecommendation";
 import { ActiveReads } from "./ActiveReads";
@@ -332,14 +332,15 @@ export function LibraryPage() {
                         {topProBooks.map((book) => (
                           <div
                             key={book.id}
-                            className="shrink-0 overflow-hidden"
+                            className="relative shrink-0 overflow-hidden"
                             style={{ width: 36, height: 50, borderRadius: 4, boxShadow: "var(--shadow-book)" }}
                           >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={getBookCoverPath(book.id)}
-                              alt={book.title}
-                              className="h-full w-full object-cover"
+                            <BookCover
+                              bookId={book.id}
+                              title={book.title}
+                              coverGradient={book.coverGradient}
+                              coverImage={book.coverImage}
+                              fill
                             />
                           </div>
                         ))}

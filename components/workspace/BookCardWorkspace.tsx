@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ProBadge } from "./ProBadge";
-import { getBookCoverPath } from "@/lib/book-covers";
+import { BookCover } from "@/components/ui/BookCover";
 import { formatRatingsCount } from "@/app/book/data/bookRatings";
 
 interface UserBookData {
@@ -42,8 +41,6 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
   const prefersReducedMotion = useReducedMotion();
   const { variant, book } = props;
 
-  const coverSrc = book.coverUrl || getBookCoverPath(book.id);
-
   return (
     <Link href={`/book/library/${book.id}`} className="block flex-shrink-0">
     <motion.div
@@ -67,14 +64,14 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
       {/* Cover */}
       <div className="relative">
         <div className="relative overflow-hidden" style={{ height: 200 }}>
-          <Image
-            src={coverSrc}
-            alt={`${book.title} by ${book.author}`}
-            width={170}
-            height={200}
-            className="h-full w-full object-cover ring-1 ring-white/[0.06] shadow-shadow-elevated"
-            loading="lazy"
+          <BookCover
+            bookId={book.id}
+            title={book.title}
+            coverGradient={book.gradient ?? "linear-gradient(135deg, #155e75 0%, #082f49 100%)"}
+            coverImage={book.coverUrl || undefined}
+            fill
             sizes="170px"
+            className="ring-1 ring-white/[0.06] shadow-shadow-elevated"
           />
           {/* Subtle bottom fade for text readability */}
           <div
