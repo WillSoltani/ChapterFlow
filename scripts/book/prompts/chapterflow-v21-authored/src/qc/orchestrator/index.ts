@@ -37,6 +37,7 @@ import {
 import { appendFindingsFromSubmission, appendStatusEvents, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
 import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
 import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
+import { currentSessionId } from "../sessionProvenance.js";
 export { finalizeQcRound } from "./finalize.js";
 
 export type QcOrchestratorRoundRecord = {
@@ -447,6 +448,17 @@ export function submitQcArtifact(bookId: string, roundId: string, role: Submissi
   } catch (err) {
     return { ok: false, errors: [`Could not read submission file: ${(err as Error).message}`], messages: [] };
   }
+  // Capture the SUBMITTER's session (CHAPTERFLOW_SESSION_ID) as the authoritative
+  // reviewerSessionId — taken from the ENV, never the file (a subagent can't claim
+  // whose session produced it). This flows through validation into the stored raw +
+  // the bar/confirm artifacts + the keyA/keyB derivation, so collect/finalize can
+  // enforce keyA≠keyB / bar≠confirm / bar≠tiebreak / reviewer≠author independence.
+  // Absent env → strip any file-provided value, keeping enforcement absence-safe.
+  const reviewerSessionId = currentSessionId();
+  if (raw && typeof raw === "object") {
+    if (reviewerSessionId) raw.reviewerSessionId = reviewerSessionId;
+    else delete raw.reviewerSessionId;
+  }
   const validation = validateSubmission(bookId, roundId, role, raw);
   if (validation.ok === false) return { ok: false, errors: validation.errors, messages: [] };
   // Reviewer-identity gate at the fresh-ingest door. A submission's reviewer must
@@ -521,6 +533,7 @@ function writeKeyDerivationFromSubmission(submission: ValidatedKeyDeriveSubmissi
     bookId: submission.bookId,
     roundId: submission.roundId,
     role: submission.role,
+    reviewerSessionId: submission.reviewerSessionId,
     derivedAt: new Date().toISOString(),
     chapters,
   };

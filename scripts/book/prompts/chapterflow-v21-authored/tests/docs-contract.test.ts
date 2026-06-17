@@ -139,6 +139,15 @@ test("the runbook documents the strict-production env AND the session-id footgun
   assert.match(runbook, /do NOT also `export CHAPTERFLOW_SESSION_ID`/i, "runbook must warn against a single exported session id under strict mode");
 });
 
+test("QC-ORCHESTRATE turns reviewer independence into recorded evidence (per-subagent CHAPTERFLOW_SESSION_ID)", () => {
+  const qc = doc("agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md");
+  assert.match(qc, /export CHAPTERFLOW_SESSION_ID/, "each reviewer subagent must stamp its own session id");
+  assert.match(qc, /reviewerSessionId/, "the prompt must name the captured per-submission field");
+  assert.match(qc, /keyA≠keyB/, "the prompt must state the keyA≠keyB session requirement");
+  const runbook = doc("agent-prompts/RUN-A-BOOK.md");
+  assert.match(runbook, /reviewer SUBAGENT stamps its OWN id/, "RUN-A-BOOK must mention per-subagent session ids under enforcement");
+});
+
 test("WS-5: the writer card forbids defending a deterministic register ban (B4) as a false positive", () => {
   const cli = readFileSync(resolve(PIPELINE_DIR, "src/cli.ts"), "utf8");
   assert.match(cli, /DETERMINISTIC register ban[\s\S]{0,160}can NEVER be defended as a false positive/, "the writer card must carve out B-class lexical bans from the defensible-FP allowance");

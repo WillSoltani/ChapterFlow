@@ -62,6 +62,12 @@ cannot grade its own work"). Set it FRESH per phase instead — e.g. `CHAPTERFLO
 for the write / `qc-stamp-author` step and `CHAPTERFLOW_SESSION_ID=qc-<ts>` for the QC session.
 (The block is self-diagnosing — it says "Re-QC in a fresh session.")
 
+Under enforcement the QC phase goes further: each reviewer SUBAGENT stamps its OWN id
+(`qc-keyA-<ts>` ≠ `qc-keyB-<ts>`, `qc-bar-ch03-<ts>` ≠ `qc-confirm-ch03-<ts>` ≠ each tiebreak
+variant, and none == the author id). `qc-submit` records it as the submission's `reviewerSessionId`,
+and finalize blocks (self-diagnosing) if two roles share a session — that is how the fan-out is
+PROVEN, not just claimed. See `QC-ORCHESTRATE-CODEX-SESSION.md`.
+
 ## Reasoning effort per role (GPT)
 Set each session's GPT reasoning-effort/verbosity to match the role — the pipeline emits a
 `[ROLE: … · reasoning: … · verbosity: …]` header on the fanout card and review packet, and
