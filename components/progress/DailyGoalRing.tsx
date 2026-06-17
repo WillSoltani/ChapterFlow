@@ -62,7 +62,7 @@ export function DailyGoalRing({
 
     return (
       <div
-        className={`relative inline-flex items-center justify-center ${containerClass}`}
+        className={`relative items-center justify-center ${containerClass}`}
         style={{ width: size, height: size }}
         role="progressbar"
         aria-valuenow={Math.round(effectiveOuterPercent)}

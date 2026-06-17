@@ -52,11 +52,11 @@ export function SegmentedControl<T extends string>({
           >
             {isSelected && (
               reducedMotion ? (
-                <div className="absolute inset-0 rounded-[9px] bg-(--cf-surface-strong) shadow-(--cf-shadow-sm)" />
+                <div className="absolute inset-0 rounded-[9px] bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) border border-transparent forced-colors:border-[Highlight]" />
               ) : (
                 <motion.div
                   layoutId={groupId}
-                  className="absolute inset-0 rounded-[9px] bg-(--cf-surface-strong) shadow-(--cf-shadow-sm)"
+                  className="absolute inset-0 rounded-[9px] bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) border border-transparent forced-colors:border-[Highlight]"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )

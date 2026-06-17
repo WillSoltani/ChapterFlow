@@ -21,6 +21,7 @@ export function ToggleSwitch({ checked, onChange, disabled, label }: ToggleSwitc
       onClick={() => onChange(!checked)}
       className={cn(
         "relative w-11 h-6 shrink-0 cursor-pointer rounded-full transition-colors duration-200",
+        "border border-transparent forced-colors:border-[ButtonText]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent)/40 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
         "disabled:cursor-not-allowed disabled:opacity-40",
         checked
@@ -30,10 +31,10 @@ export function ToggleSwitch({ checked, onChange, disabled, label }: ToggleSwitc
     >
       <motion.div
         className={cn(
-          "absolute top-1 w-4 h-4 rounded-full pointer-events-none",
+          "absolute top-1 w-4 h-4 rounded-full pointer-events-none border border-transparent",
           checked
-            ? "bg-white shadow-[0_0_4px_var(--cf-accent-shadow)]"
-            : "bg-(--cf-text-soft) shadow-shadow-card"
+            ? "bg-white shadow-[0_0_4px_var(--cf-accent-shadow)] forced-colors:bg-[Highlight] forced-colors:border-[Highlight]"
+            : "bg-(--cf-text-soft) shadow-shadow-card forced-colors:bg-[GrayText] forced-colors:border-[GrayText]"
         )}
         animate={{ left: checked ? 22 : 4 }}
         transition={{ type: "spring", stiffness: 500, damping: 30 }}

@@ -46,7 +46,7 @@ export function SliderControl({
             step={step}
             value={value}
             onChange={(e) => onChange(Number(e.target.value))}
-            className="premium-slider w-28 sm:w-32"
+            className="premium-slider w-28 sm:w-32 forced-colors:[appearance:auto]! forced-colors:[-webkit-appearance:auto]! forced-colors:[height:1.5rem]! forced-colors:border forced-colors:border-[ButtonText]"
             style={{
               background: `linear-gradient(90deg, var(--cf-accent) 0%, var(--cf-accent-strong) ${percentage}%, var(--cf-surface-strong) ${percentage}%)`,
             }}
