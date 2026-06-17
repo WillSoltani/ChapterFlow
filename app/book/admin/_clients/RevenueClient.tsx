@@ -135,7 +135,7 @@ export function RevenueClient() {
               <ResponsiveContainer>
                 <BarChart
                   data={data?.subscriptionEvents ?? []}
-                  margin={{ top: 10, right: 10, bottom: 0, left: -10 }}
+                  margin={{ top: 10, right: 10, bottom: 0, left: 0 }}
                 >
                   <CartesianGrid stroke="var(--cf-border)" vertical={false} />
                   <XAxis
@@ -143,7 +143,7 @@ export function RevenueClient() {
                     tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
                     tickFormatter={fmtDate}
                   />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
+                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={40} allowDecimals={false} />
                   <Tooltip content={<DarkTooltip />} />
                   <Bar
                     dataKey="value"
@@ -205,7 +205,7 @@ export function RevenueClient() {
               <ResponsiveContainer>
                 <BarChart
                   data={data?.licenseRedemptions ?? []}
-                  margin={{ top: 10, right: 10, bottom: 0, left: -10 }}
+                  margin={{ top: 10, right: 10, bottom: 0, left: 0 }}
                 >
                   <CartesianGrid stroke="var(--cf-border)" vertical={false} />
                   <XAxis
@@ -213,7 +213,7 @@ export function RevenueClient() {
                     tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
                     tickFormatter={fmtDate}
                   />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
+                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={40} allowDecimals={false} />
                   <Tooltip content={<DarkTooltip />} />
                   <Bar
                     dataKey="value"

@@ -91,7 +91,7 @@ export function AdminShell({
   }));
 
   return (
-    <div className="flex min-h-screen bg-(--cf-page-bg) text-(--cf-text-1)">
+    <div className="flex min-h-screen flex-col bg-(--cf-page-bg) text-(--cf-text-1) md:flex-row">
       {/* Sidebar */}
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-(--cf-border) bg-(--cf-surface) md:flex">
         <div className="flex items-center gap-2 border-b border-(--cf-border) px-5 py-4">
@@ -153,12 +153,12 @@ export function AdminShell({
       </aside>
 
       {/* Mobile top bar */}
-      <div className="md:hidden">
+      <div className="w-full md:hidden">
         <MobileNav pathname={pathname} userEmail={userEmail} groups={groups} />
       </div>
 
       {/* Content */}
-      <main className="flex-1 overflow-x-hidden">
+      <main className="w-full flex-1 overflow-x-hidden md:w-auto md:min-w-0">
         <div className="mx-auto max-w-[1400px] px-4 pb-16 pt-7 sm:px-6 sm:pt-8 md:px-10 md:pb-20 lg:px-12">
           {children}
         </div>

@@ -102,14 +102,14 @@ export function PerformanceClient() {
           ) : (
             <div className="h-64">
               <ResponsiveContainer>
-                <LineChart data={data?.trend ?? []} margin={{ top: 10, right: 10, bottom: 0, left: -10 }}>
+                <LineChart data={data?.trend ?? []} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
                   <CartesianGrid stroke="var(--cf-border)" vertical={false} />
                   <XAxis
                     dataKey="date"
                     tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
                     tickFormatter={fmtDate}
                   />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={36} />
+                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={48} allowDecimals={false} />
                   <Tooltip content={<DarkTooltip />} />
                   <Line
                     type="monotone"

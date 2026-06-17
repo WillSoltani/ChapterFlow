@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp, AlertTriangle } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
@@ -42,8 +42,12 @@ export function FunnelsClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
-          {data.warnings.join(" · ")}
+        <div
+          role="status"
+          className="mb-4 flex items-start gap-2 rounded-xl border border-(--cf-warning-border) bg-(--cf-warning-soft) p-3 text-[13px] text-(--cf-warning-text)"
+        >
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          <p className="min-w-0 flex-1 leading-relaxed">{data.warnings.join(" · ")}</p>
         </div>
       ) : null}
 
@@ -64,11 +68,11 @@ export function FunnelsClient() {
                 prev && prev.count > 0 ? Math.round((s.count / prev.count) * 100) : 100;
               return (
                 <div key={s.key}>
-                  <div className="mb-1 flex items-center justify-between text-[12px]">
-                    <span className="font-medium text-(--cf-text-2)">
+                  <div className="mb-1 flex flex-col gap-0.5 text-[12px] sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
+                    <span className="min-w-0 font-medium text-(--cf-text-2)">
                       {i + 1}. {s.label}
                     </span>
-                    <span className="tabular-nums text-(--cf-text-3)">
+                    <span className="shrink-0 whitespace-nowrap tabular-nums text-(--cf-text-3)">
                       {s.count.toLocaleString()}{" "}
                       <span className="text-(--cf-text-soft)">
                         ({s.pct}% of total · {conversionFromPrev}% from prev)

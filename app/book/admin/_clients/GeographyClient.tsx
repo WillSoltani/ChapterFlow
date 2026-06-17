@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Globe, Download } from "lucide-react";
+import { Globe, Download, AlertTriangle } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
@@ -69,8 +69,12 @@ export function GeographyClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
-          {data.warnings.join(" · ")}
+        <div
+          role="status"
+          className="mb-4 flex items-start gap-2 rounded-xl border border-(--cf-warning-border) bg-(--cf-warning-soft) p-3 text-[13px] text-(--cf-warning-text)"
+        >
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          <p className="min-w-0 flex-1 leading-relaxed">{data.warnings.join(" · ")}</p>
         </div>
       ) : null}
 
