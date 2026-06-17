@@ -43,13 +43,15 @@
     },
     {
       "id": "object-in-motion",
-      "definition": "Begin with an object or artifact moving through a process, and let its path reveal the chapter's tension. No questions, digits, first person, or second person. Miniature example: \"The receipt traveled from pocket to drawer to apology before anyone read it.\"",
-      "auditClass": "declarative_image"
+      "definition": "Begin with an object or artifact moving through a process, and let its path reveal the chapter's tension. No questions, digits, first person, or second person. This shape is dealt to more than one chapter, so pick a DIFFERENT object and a DIFFERENT path each time; never reuse a small note/card/receipt travelling from one surface to another — that shared frame stamps the book and trips the scene_skeleton sweep.",
+      "auditClass": "declarative_image",
+      "sceneSkeletonProne": true
     },
     {
       "id": "room-after-action",
-      "definition": "Open after the decisive action, with the room or workspace showing what the people have not yet understood. Keep it observational and image-led. Miniature example: \"The conference room was quiet except for the marker cap left open beside the wrong chart.\"",
-      "auditClass": "declarative_image"
+      "definition": "Open after the decisive action, with the room or workspace showing what the people have not yet understood. Keep it observational and image-led. This shape is dealt to more than one chapter, so choose a DIFFERENT room and a DIFFERENT telling detail each time; never reuse a quiet-room-with-one-object-left-behind frame.",
+      "auditClass": "declarative_image",
+      "sceneSkeletonProne": true
     }
   ],
   "tryThisNowGrammars": [

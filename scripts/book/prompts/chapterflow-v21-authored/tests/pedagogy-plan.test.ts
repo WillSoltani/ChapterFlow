@@ -68,13 +68,28 @@ test("pedagogy palettes load with unique ids, substantial definitions, and valid
     // a test-authored sample. Authors imitate the example — if it lands in
     // the wrong classifyHook bucket, the feature moves catalog-audit's
     // numbers the wrong way.
-    const embedded = entry.definition.match(/Miniature example: ["“](.+?)["”]/);
-    assert.ok(embedded, `${entry.id}'s definition must embed a 'Miniature example: "…"'`);
-    assert.equal(
-      classifyHook(embedded![1]),
-      entry.auditClass,
-      `${entry.id}'s OWN example ("${embedded![1].slice(0, 60)}…") classifies as ${classifyHook(embedded![1])}, not its declared ${entry.auditClass}`,
-    );
+    // Scene-skeleton-prone shapes (object-in-motion, room-after-action) INTENTIONALLY
+    // omit a copyable miniature example: the card prints the definition verbatim, and a
+    // concrete "[object] travels A→B" example is exactly the skeleton blind writers copy
+    // (the eat-that-frog scene_skeleton failure). For every OTHER shape keep the
+    // non-circular ground-truth check — the embedded example must classify as its declared
+    // auditClass (authors imitate the example). declarative_image is still ground-truthed
+    // via concrete-ironic-image, which is not prone and keeps its example.
+    if (entry.sceneSkeletonProne) {
+      assert.doesNotMatch(
+        entry.definition,
+        /Miniature example:/i,
+        `${entry.id} is scene-skeleton-prone: it must NOT carry a copyable miniature example (writers copy it → scene_skeleton)`,
+      );
+    } else {
+      const embedded = entry.definition.match(/Miniature example: ["“](.+?)["”]/);
+      assert.ok(embedded, `${entry.id}'s definition must embed a 'Miniature example: "…"'`);
+      assert.equal(
+        classifyHook(embedded![1]),
+        entry.auditClass,
+        `${entry.id}'s OWN example ("${embedded![1].slice(0, 60)}…") classifies as ${classifyHook(embedded![1])}, not its declared ${entry.auditClass}`,
+      );
+    }
   }
   assert.ok(hookClassCounts.question >= 2, "need at least 2 question hook shapes");
   assert.ok(hookClassCounts.direct_address >= 2, "need at least 2 direct-address hook shapes");
