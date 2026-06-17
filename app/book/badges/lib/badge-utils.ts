@@ -249,47 +249,6 @@ export function getDefaultOpenCategory(groups: BadgeCategoryGroup[]): string | n
   return bestCategory ?? groups[0]?.id ?? null;
 }
 
-// ── Tier colors ─────────────────────────────────────────────────────────────
-
-export const TIER_COLORS: Record<BadgeTier, { bg: string; text: string; glow: string; gradient: string }> = {
-  bronze: {
-    bg: "bg-[#cd7f32]/20",
-    text: "text-[#cd7f32]",
-    glow: "shadow-[0_0_15px_rgba(205,127,50,0.12)]",
-    gradient: "from-[#cd7f32] to-[#a0622a]",
-  },
-  silver: {
-    bg: "bg-[#c0c0c0]/20",
-    text: "text-[#c0c0c0]",
-    glow: "shadow-[0_0_15px_rgba(192,192,192,0.12)]",
-    gradient: "from-[#c0c0c0] to-[#a8a8a8]",
-  },
-  gold: {
-    bg: "bg-[#ffd700]/20",
-    text: "text-[#ffd700]",
-    glow: "shadow-[0_0_15px_rgba(255,215,0,0.15)]",
-    gradient: "from-[#ffd700] to-[#e6c200]",
-  },
-  platinum: {
-    bg: "bg-[#8b7dff]/20",
-    text: "text-[#8b7dff]",
-    glow: "shadow-[0_0_20px_rgba(139,125,255,0.15)]",
-    gradient: "from-[#e5e4e2] via-[#8b7dff] to-[#e5e4e2]",
-  },
-  unique: {
-    bg: "bg-accent-amber/20",
-    text: "text-accent-amber",
-    glow: "shadow-[0_0_12px_rgba(245,158,11,0.1)]",
-    gradient: "from-accent-amber to-accent-amber",
-  },
-  secret: {
-    bg: "bg-accent-violet/20",
-    text: "text-accent-violet",
-    glow: "shadow-[0_0_12px_rgba(139,92,246,0.1)]",
-    gradient: "from-accent-violet to-accent-violet",
-  },
-};
-
 // ── Progress text ───────────────────────────────────────────────────────────
 
 export function getProgressText(badge: BadgeWithProgress): string {
