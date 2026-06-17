@@ -111,6 +111,32 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
 
 ---
 
+## Gold-corpus regression — how to check the rung-2/3/4 bars
+
+The "zero on clean corpus / zero on gold corpus" bars above are not aspirational — they are
+**executable**, and they already run on every `npm test`. The gold-corpus regression IS the
+calibration test subset; run just that subset with:
+
+```bash
+npx tsx tests/run.ts corpus calibration enforced repetition label pronoun
+```
+
+That selects exactly the regression battery — `gold-corpus`, `calibration`,
+`critic-register-calibration`, `enforced-major`, `book-repetition` (BP28–30), `quiz-choice-label`
+(BP31), `quiz-pronoun-referent` (BP32), and `defect-corpus` (the must-CATCH side) — running every
+detector over the real reference chapters in `state/chapters/` and asserting the bar each rung
+requires. A green run is the evidence for a promotion; a new detector that fires here is NOT
+zero-FP and must not move up.
+
+**Why this is the harness, not a separate `corpus-regression` command:** "clean corpus" is
+**per-detector**, not global — e.g. `stillness-is-the-key` is clean for BP28/29/30 but is a DEFECT
+book for BP31 (78/288 uniform Title-Case labels), so BP31's clean set deliberately excludes it
+(`labelCleanCorpusChapterFiles()`). Each calibration test already uses the RIGHT clean set for its
+detector; a flat command that ran every detector over one corpus would falsely flag those known
+per-family defects as regressions. The corpus book lists live in `tests/helpers.ts`
+(`goldChapterFiles` / `cleanCorpusChapterFiles` / `labelCleanCorpusChapterFiles`) — one source,
+shared by the whole battery. (Books absent on a machine SKIP loudly, never silently pass.)
+
 ## Keeping the registry honest
 
 - The actual enforcement state lives in **code**, not here: `ENFORCED_MAJOR` (`finalGate.ts`) is the

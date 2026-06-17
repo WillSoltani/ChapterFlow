@@ -93,3 +93,13 @@ FILL_ME round-trips. The CLI still re-checks the cross-field rules at `qc-submit
   (only the changed chapters are re-reviewed; already-PUBLISHABLE chapters carry forward).
 - Phase 4 dry-run **blocks** → it prints the failed check + a resume command. Fix and re-run;
   it physically cannot ship a book that hasn't passed QC.
+
+## Changing a detector or gate? Run the gold-corpus regression first (maintainers)
+A new check risks false positives on good books. Before you promote one, run the regression over
+the real reference chapters and confirm it stays zero where it must:
+```bash
+npx tsx tests/run.ts corpus calibration enforced repetition label pronoun
+```
+This IS the gold-corpus regression (the calibration test subset). The promotion ladder + the
+"never hard-block unless clean+gold zero and ≥2 true positives" rule live in
+`docs/pipeline/FAILURE-CLASS-REGISTRY.md`.

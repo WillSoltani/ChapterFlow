@@ -153,6 +153,10 @@ test("the failure-class registry documents the anti-overfit promotion ladder and
   const { ENFORCED_MAJOR } = await import("../src/critics/finalGate.js");
   assert.equal(ENFORCED_MAJOR.size, 0, "if you promote a class to ENFORCED_MAJOR, update the failure-class registry too");
   assert.match(reg, /ENFORCED_MAJOR[^\n]{0,60}empty/i, "registry must state ENFORCED_MAJOR is empty while it is");
+  // The gold-corpus regression must stay discoverable + executable (registry AND runbook).
+  const regressionCmd = /tests\/run\.ts corpus calibration enforced repetition label pronoun/;
+  assert.match(reg, regressionCmd, "registry must document the runnable gold-corpus regression command");
+  assert.match(doc("agent-prompts/RUN-A-BOOK.md"), regressionCmd, "runbook must point maintainers at the gold-corpus regression");
 });
 
 test("QC-ORCHESTRATE turns reviewer independence into recorded evidence (per-subagent CHAPTERFLOW_SESSION_ID)", () => {
