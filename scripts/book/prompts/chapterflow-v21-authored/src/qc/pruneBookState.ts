@@ -122,7 +122,9 @@ function removeEmptyDirs(dir: string): void {
     if (e.isDirectory()) removeEmptyDirs(resolve(dir, e.name));
   }
   try {
-    if (readdirSync(dir).length === 0) rmSync(dir, { force: true, recursive: false });
+    // recursive:true is required to remove a directory (even an empty one); we only call
+    // it once the dir is empty, so this never deletes a kept (e.g. tracked-audit) subtree.
+    if (readdirSync(dir).length === 0) rmSync(dir, { force: true, recursive: true });
   } catch {
     /* not empty / race — leave it */
   }
