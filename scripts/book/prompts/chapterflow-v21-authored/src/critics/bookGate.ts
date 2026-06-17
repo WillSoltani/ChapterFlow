@@ -55,6 +55,18 @@ export function isWriteBarrierActionable(f: BookGateFinding): boolean {
   return f.severity === "blocker" || WRITE_BARRIER_ACTIONABLE_PREFIXES.some((p) => f.catalogId.startsWith(p));
 }
 
+/** True for a book-wide MAJOR the barrier must SURFACE but not re-dispatch by
+ *  chapter: a major that does NOT fail bookGate.passed (only blockers do) and is
+ *  NOT in the structural-sameness re-dispatch set — yet QC finalize REVISEs on
+ *  ANY unresolved major (checks.majors must be PASS). Left silent, it passes the
+ *  barrier and then guarantees a QC repair round (BP27 venue stamping, F4 phrase
+ *  budget). Calibrated-safe to surface: a promoted/published book carries zero
+ *  book-wide majors (a still-blocked book may carry some — which is exactly the
+ *  shift-left signal), so this never bounces a shippable book. */
+export function isUnsurfacedBarrierMajor(f: BookGateFinding): boolean {
+  return f.severity === "major" && !isWriteBarrierActionable(f);
+}
+
 export type BookGateReport = {
   bookId: string;
   chapterCount: number;

@@ -129,6 +129,8 @@ export function renderRepairBriefMarkdown(bookId: string, roundId: string, findi
   lines.push(`# Repair brief — ${bookId} (${roundId})`);
   lines.push("");
   lines.push("## Repair-agent rules");
+  lines.push("- SCOPE: edits go to chapter JSON under `state/chapters/` only (re-dealing a dealt slot by RUNNING a CLI allocator is fine — it updates a `state/` plan). NEVER hand-edit pipeline code, allocators, gates, prompts, or config — any file under `src/`, `config/`, or `agent-prompts/`. \"Fix at the source\" / \"fix the class\" means re-authoring the offending chapters' CONTENT so they stop sharing the pattern (e.g. stage examples in different settings, write distinct quiz stems) — NOT editing the venue palette, an allocator, or the card generator. A code/config edit changes every future book and is out of bounds here.");
+  lines.push("- If a finding can ONLY be fixed by hand-editing pipeline code/config (an allocator/gate/palette/generator bug, not chapter content), STOP and report it to the operator. Do not edit code.");
   lines.push("- Do not run `qc-attest`, `bar-attest`, `sweep-attest`, `key-resolve`, `major-disposition`, `promote-book`, or any command that certifies publishability.");
   lines.push("- Do not mark findings closed. Only repair chapter content.");
   lines.push("- Preserve quiz keys unless a finding explicitly identifies a wrong key and the source facts support the correction.");
@@ -216,10 +218,12 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
   const lines: string[] = [];
   lines.push("You are a fresh Writer Codex repair session for ChapterFlow.");
   lines.push("Your job is to repair the listed chapters only.");
+  lines.push("SCOPE: your edits go to chapter JSON under state/chapters/ only (re-dealing a dealt slot by RUNNING a CLI allocator is fine — it updates a state/ plan). You must NEVER hand-edit pipeline code, allocators, gates, prompts, or config — any file under src/, config/, or agent-prompts/. \"Fix root causes\" / \"fix the class at its source\" below means re-authoring the offending chapters' CONTENT so they stop sharing the pattern (stage examples in different settings, write distinct quiz stems) — NOT editing the venue palette, an allocator, or the card generator. A code/config edit changes every future book and is out of bounds for a repair session.");
+  lines.push("If a finding can ONLY be fixed by hand-editing pipeline code/config (an allocator/gate/palette/generator bug, not chapter content), STOP and report it to the operator. Do not edit code.");
   lines.push("You are not a QC reviewer.");
   lines.push("You must not run qc-attest, qc-submit, sweep-attest, bar-attest,");
   lines.push("key-resolve, major-disposition, promote-book, or any command that certifies.");
-  lines.push("Fix root causes, not just quoted text.");
+  lines.push("Fix root causes in the chapter CONTENT, not just the quoted text.");
   lines.push("Preserve source-v2 provenance.");
   lines.push("After each edited chapter, run author-check and gate-chapter.");
   lines.push("After all edits, run book-gate.");

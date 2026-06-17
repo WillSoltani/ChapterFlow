@@ -41,12 +41,21 @@ test("repair brief renders rules, exact finding details, and validation commands
     const md = renderRepairBriefMarkdown(BOOK, ROUND);
     assert.match(md, /Do not run `qc-attest`/);
     assert.match(md, /Final publishability always requires a fresh QC round/);
+    // Scope boundary: a repair session edits chapter content ONLY — never pipeline
+    // code/config. This is the guard against a repair agent editing src/cli.ts +
+    // config/venue-palette.json (which it did when "fix at the source" had no bound).
+    assert.match(md, /chapter JSON under .?state\/chapters/i);
+    assert.match(md, /NEVER hand-edit pipeline code/i);
+    assert.match(md, /STOP and report it to the operator/i);
     assert.match(md, /quiz.questions\[3\]/);
     assert.match(md, /Reverse the harbor check/);
     assert.match(md, /npx tsx src\/cli.ts author-check state\/chapters\/zz-fixture-brief-ch02/);
     assert.match(md, /npx tsx src\/cli.ts book-gate zz-fixture-brief/);
     const prompt = renderRepairPromptMarkdown(BOOK, ROUND);
     assert.match(prompt, /^You are a fresh Writer Codex repair session for ChapterFlow\./);
+    assert.match(prompt, /chapter JSON under state\/chapters\//i);
+    assert.match(prompt, /NEVER hand-edit pipeline code/i);
+    assert.match(prompt, /STOP and report it to the operator/i);
     assert.match(prompt, /You are not a QC reviewer/);
     assert.match(prompt, /must not run qc-attest, qc-submit, sweep-attest, bar-attest/);
     assert.match(prompt, /affected chapters: ch02/);
