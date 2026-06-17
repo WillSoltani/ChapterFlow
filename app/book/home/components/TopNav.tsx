@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   Bookmark,
   ChevronDown,
+  Gift,
   Home,
   LayoutGrid,
   LogOut,
@@ -29,7 +30,7 @@ import { ThemeModeToggle } from "@/components/ThemeModeToggle";
 import { NotificationBell } from "@/app/book/_components/NotificationBell";
 import { performLogout } from "@/lib/logout";
 
-export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" | "badges" | "events" | "notebook" | "settings" | "profile";
+export type BookNavTab = "home" | "library" | "journeys" | "saved" | "progress" | "badges" | "events" | "notebook" | "settings" | "profile" | "rewards";
 
 type TopNavProps = {
   name: string;
@@ -62,19 +63,22 @@ const navItems: NavItem[] = [
   { id: "badges", label: "Achievements", href: "/book/badges", icon: Shield },
 ];
 
-/** Shown only in desktop top nav (too many items for mobile bottom bar) */
-const desktopOnlyNavItems: NavItem[] = [
+/** Secondary product areas — surfaced through the "More" sheet (mobile) and the
+ *  profile dropdown (desktop), not the primary inline/bottom nav. Kept the same
+ *  on every breakpoint so the IA tier is consistent across devices. */
+const secondaryNavItems: NavItem[] = [
   { id: "journeys", label: "Journeys", href: "/book/journeys", icon: Map },
   { id: "events", label: "Events", href: "/book/events", icon: Trophy },
 ];
 
 /**
- * Reachable on mobile through the bottom bar's "More" sheet — the desktop-only
- * nav items (Journeys/Events) plus the secondary destinations, so phone users
- * aren't cut off from any product area.
+ * The full secondary set, reachable on mobile through the bottom bar's "More"
+ * sheet (and on desktop through the profile dropdown) — the secondary product
+ * areas plus Rewards and the utility destinations, so no product area is cut off.
  */
 const moreNavItems: NavItem[] = [
-  ...desktopOnlyNavItems,
+  ...secondaryNavItems,
+  { id: "rewards", label: "Rewards", href: "/rewards", icon: Gift },
   { id: "saved", label: "Read Next", href: "/book/saved", icon: Bookmark },
   { id: "notebook", label: "Notebook", href: "/book/notebook", icon: NotebookPen },
   { id: "settings", label: "Settings", href: "/book/settings", icon: Settings },
@@ -219,6 +223,18 @@ export function TopNav({
 
   return (
     <>
+      {/* Skip to main content (WCAG 2.4.1 Bypass Blocks) — the first focusable
+          element on every authenticated surface. Targets the page's #main region,
+          which each client renders AFTER this nav, so activating it bypasses the
+          whole nav. Cyan chrome ("doing the work"), not a celebration surface. */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-(--cf-accent-contrast) focus:shadow-[0_6px_20px_var(--cf-accent-shadow)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+        style={{ background: "var(--cf-accent)" }}
+      >
+        Skip to main content
+      </a>
+
       {/* ── Top header ── */}
       <header className="cf-topbar sticky top-0 z-30">
         <div ref={headerRef} className="mx-auto w-full max-w-450 px-4 py-2.5 sm:px-6 lg:px-10 xl:px-16">
@@ -273,16 +289,20 @@ export function TopNav({
               )}
             </Link>
 
-            {/* Desktop nav — hidden on mobile (use bottom tab bar instead) */}
-            <nav className="ml-5 hidden items-center gap-0.5 lg:flex">
-              {[...navItems, ...desktopOnlyNavItems].map((item) => {
+            {/* Desktop / tablet nav — primary set only. Journeys/Events/Rewards are
+                secondary (profile dropdown here, "More" sheet on mobile). Shown from
+                the md tablet band up; smaller screens use the bottom tab bar. */}
+            <nav aria-label="Primary" className="ml-5 hidden items-center gap-0.5 md:flex">
+              {navItems.map((item) => {
                 const active = item.id === activeTab;
                 const Icon = item.icon;
                 return (
                   <Link
                     key={item.id}
                     href={item.href}
-                    className="relative inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium transition duration-150"
+                    title={item.label}
+                    aria-label={item.label}
+                    className="relative inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition duration-150 lg:px-3.5"
                     style={
                       active
                         ? { background: "var(--cf-accent-soft)", color: "var(--accent-cyan)" }
@@ -303,7 +323,9 @@ export function TopNav({
                     aria-current={active ? "page" : undefined}
                   >
                     <Icon className="h-3.5 w-3.5" />
-                    {item.label}
+                    {/* Icon-only across the md tablet band (label would overflow the
+                        top bar at 768); full labels return at lg. */}
+                    <span className="hidden lg:inline">{item.label}</span>
                   </Link>
                 );
               })}
@@ -343,8 +365,10 @@ export function TopNav({
               <div className="hidden flex-1 lg:block" />
             )}
 
-            {/* Right: notifications + settings + profile */}
-            <div className="relative flex items-center gap-1.5">
+            {/* Right: notifications + settings + profile.
+                md:ml-auto right-aligns the cluster across the tablet band, where the
+                centered desktop search (lg+) isn't present to absorb the free space. */}
+            <div className="relative flex items-center gap-1.5 md:ml-auto lg:ml-0">
               <NotificationBell />
               <ThemeModeToggle className="h-9" />
 
@@ -417,6 +441,27 @@ export function TopNav({
                     >
                       <User className="h-3.5 w-3.5 text-(--cf-text-3)" />
                       Profile
+                    </Link>
+                    <Link
+                      href="/rewards"
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
+                    >
+                      <Gift className="h-3.5 w-3.5 text-(--cf-text-3)" />
+                      Rewards
+                    </Link>
+                    <Link
+                      href="/book/journeys"
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
+                    >
+                      <Map className="h-3.5 w-3.5 text-(--cf-text-3)" />
+                      Journeys
+                    </Link>
+                    <Link
+                      href="/book/events"
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
+                    >
+                      <Trophy className="h-3.5 w-3.5 text-(--cf-text-3)" />
+                      Events
                     </Link>
                     <Link
                       href="/book/saved"
@@ -498,8 +543,8 @@ export function TopNav({
         </div>
       </header>
 
-      {/* ── Mobile bottom tab bar ── */}
-      <nav className="cf-topbar fixed bottom-0 left-0 right-0 z-40 bg-(--cf-page-bg) pb-safe lg:hidden">
+      {/* ── Mobile bottom tab bar (below the md tablet band) ── */}
+      <nav aria-label="Primary, mobile" className="cf-topbar fixed bottom-0 left-0 right-0 z-40 bg-(--cf-page-bg) pb-safe md:hidden">
         <div className="flex items-stretch">
           {navItems.map((item) => {
             const active = item.id === activeTab;
@@ -571,7 +616,7 @@ export function TopNav({
           <h2 id="more-sheet-title" className="px-2 pb-2 text-sm font-semibold text-(--cf-text-1)">
             More
           </h2>
-          <nav className="flex flex-col gap-0.5">
+          <nav aria-label="More navigation" className="flex flex-col gap-0.5">
             {moreNavItems.map((item) => {
               const active = item.id === activeTab;
               const Icon = item.icon;

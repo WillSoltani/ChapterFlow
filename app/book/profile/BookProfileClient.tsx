@@ -719,7 +719,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
           showSearch={false}
           logoVariant="dashboard"
         />
-        <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 lg:px-10 lg:pt-8 xl:px-16">
+        <section id="main" tabIndex={-1} className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 focus:outline-none sm:px-6 lg:px-10 lg:pt-8 xl:px-16">
           <ErrorBanner
             title="We couldn’t load your profile"
             message={analyticsError}
@@ -774,10 +774,12 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
 
       {/* H7: Consistent spacing — 48px mobile (space-y-12), 64px desktop (lg:space-y-16) */}
       <motion.section
+        id="main"
+        tabIndex={-1}
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="mx-auto w-full max-w-450 space-y-12 px-4 pb-28 pt-7 sm:px-6 lg:space-y-16 lg:px-10 lg:pt-8 xl:px-16"
+        className="mx-auto w-full max-w-450 space-y-12 px-4 pb-28 pt-7 focus:outline-none sm:px-6 lg:space-y-16 lg:px-10 lg:pt-8 xl:px-16"
       >
 
         {/* ═══ SECTION 1: Identity Hero Banner ═══ */}
