@@ -22,6 +22,7 @@ import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
 import { BookCriticReport, BookPackage, ChapterV21 } from "./types.js";
+import type { RunbookStatus } from "./runbook.js";
 import { roleHintHeader } from "./roles.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
@@ -71,8 +72,9 @@ Commands:
                                      validation command. Read the printed playbook, produce the
                                      artifact inline (no subprocess), save to the printed path,
                                      re-run next-task. Loop until "all done".
-  runbook <bookId>                   Operator dashboard: phase + strict env + exact next command +
-                                     prompt to open + live warnings (source-verify state, token reminder).
+  runbook <bookId> [--json]          Operator control panel: phase + strict env (live OK/MISSING) +
+                                     source-v2/source-verify state + qc round + next command + prompt +
+                                     blockers. --json feeds the same model to a harness.
   diagnose <bookId>                  Triage "why didn't this book pass?": runs book-status + major-status
                                      + source-verify-check + qc-diagnose (latest round) in one pass.
   check-source <bookId>              Run the source-coherence critic against the latest research
@@ -859,48 +861,83 @@ async function runSourceVerifyCheck(args: string[], flags: Record<string, string
   return blockers.length > 0 ? 1 : 0;
 }
 
-/** `runbook <bookId>` — deterministic operator dashboard: the book's phase (from
- *  book-status), the strict env, the exact next command, the prompt to open, and live
- *  warnings (source-verify state + the REVIEW-PACKET token reminder). Re-derives nothing —
- *  phase comes from computeBookStatus; the phase→prompt map lives in src/runbook.ts. */
-async function runRunbook(args: string[]): Promise<number> {
+/** `runbook <bookId> [--json]` — deterministic, READ-ONLY operator control panel: the book's
+ *  phase (from book-status), the strict env with live OK/MISSING status, the source-v2 gate +
+ *  source-verify record state, the latest QC round, the exact next command, the prompt to open,
+ *  and any blockers. Re-derives nothing — phase comes from computeBookStatus, gate/record state
+ *  from the existing checks; the phase→prompt map + formatting live in src/runbook.ts. */
+async function runRunbook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const input = args.join(" ").trim();
   if (!input) {
-    console.error("Usage: runbook <bookId|title>");
+    console.error("Usage: runbook <bookId|title> [--json]");
     return 2;
   }
   const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
   const resolved = resolveBookIdentifier(input);
   const bookId = resolved.ok === false ? input : resolved.bookId;
   const { computeBookStatus } = await import("./lifecycle/bookStatus.js");
-  const { runbookPlan, formatRunbook } = await import("./runbook.js");
-  const status = computeBookStatus(bookId);
-  const plan = runbookPlan(status.phase, bookId);
+  const { runbookPlan, formatRunbook, runbookJson, strictEnvStatus } = await import("./runbook.js");
+  const bookStatus = computeBookStatus(bookId);
+  const plan = runbookPlan(bookStatus.phase, bookId);
 
-  const warnings: string[] = [];
-  // Live source-verify state.
   const { sourceVerifyRecordPath, parseSourceVerifyRecord, checkSourceVerifyRecord, verifiableItems } = await import("./critics/sourceVerify.js");
-  const { expectedSourceChapters, loadSourceV2Sidecar } = await import("./qc/sourceV2Gate.js");
-  const svPath = sourceVerifyRecordPath(bookId);
-  if (existsSyncFs(svPath)) {
-    const items = expectedSourceChapters(bookId).flatMap((n) => {
-      const sc = loadSourceV2Sidecar(bookId, n);
-      return sc ? verifiableItems(sc) : [];
-    });
-    const { record, error } = parseSourceVerifyRecord(readFileSync(svPath, "utf8"));
-    if (error || !record) warnings.push(`source-verify record present but UNPARSEABLE (${error ?? "?"}) — re-emit and re-fill`);
-    else {
-      const blockers = checkSourceVerifyRecord(items, record).filter((f) => f.severity === "blocker");
-      warnings.push(blockers.length === 0 ? "source-verify record present and PASS" : `source-verify record present but ${blockers.length} blocker(s) — run \`source-verify-check ${bookId}\``);
+  const { expectedSourceChapters, loadSourceV2Sidecar, checkSourceV2Gate } = await import("./qc/sourceV2Gate.js");
+  const { latestRoundId } = await import("./qc/orchestrator/artifacts.js");
+
+  const blockers: { kind: string; message: string }[] = [];
+
+  // source-v2 STRUCTURE gate (cheap; "N/A" when there are no source chapters yet).
+  let sourceV2: RunbookStatus["sourceV2"] = "N/A";
+  try {
+    const v2 = checkSourceV2Gate(bookId);
+    if (v2.chaptersChecked > 0) {
+      sourceV2 = v2.passed ? "PASS" : "BLOCK";
+      if (!v2.passed) for (const f of v2.findings) blockers.push({ kind: "sourceV2", message: f.message });
     }
-  } else {
-    warnings.push(`no source-verify record — run \`source-verify ${bookId} --write\`, verify every item, then \`source-verify-check ${bookId}\``);
-  }
-  if (plan.label === "QC" || plan.label === "Publish") {
-    warnings.push("REVIEW-PACKET.md (if present) carries live role tokens — publish cleanup removes it");
+  } catch {
+    sourceV2 = "N/A";
   }
 
-  console.log(formatRunbook(bookId, status.phase, plan, warnings));
+  // source-verify REALITY record state.
+  const items = expectedSourceChapters(bookId).flatMap((n) => {
+    const sc = loadSourceV2Sidecar(bookId, n);
+    return sc ? verifiableItems(sc) : [];
+  });
+  let sourceVerify: RunbookStatus["sourceVerify"] = "N/A";
+  if (items.length > 0) {
+    const svPath = sourceVerifyRecordPath(bookId);
+    if (!existsSyncFs(svPath)) {
+      sourceVerify = "ABSENT";
+    } else {
+      const { record, error } = parseSourceVerifyRecord(readFileSync(svPath, "utf8"));
+      if (error || !record) {
+        sourceVerify = "UNPARSEABLE";
+        blockers.push({ kind: "sourceVerify", message: `record present but unparseable (${error ?? "?"}) — re-emit and re-fill` });
+      } else {
+        const svBlockers = checkSourceVerifyRecord(items, record).filter((f) => f.severity === "blocker");
+        sourceVerify = svBlockers.length === 0 ? "PRESENT_PASS" : "PRESENT_BAD";
+        for (const f of svBlockers) blockers.push({ kind: "sourceVerify", message: f.message });
+      }
+    }
+  }
+
+  const notes: string[] = [];
+  if (plan.label === "QC" || plan.label === "Publish") {
+    notes.push("REVIEW-PACKET.md (if present) carries live role tokens — publish cleanup removes it");
+  }
+
+  const status: RunbookStatus = {
+    phase: bookStatus.phase,
+    env: strictEnvStatus(process.env),
+    sourceV2,
+    sourceVerify,
+    qcRound: latestRoundId(bookId),
+    blockers,
+    notes,
+  };
+
+  if (flags["json"] === true) console.log(JSON.stringify(runbookJson(bookId, plan, status), null, 2));
+  else console.log(formatRunbook(bookId, plan, status));
   return 0;
 }
 
@@ -4094,7 +4131,7 @@ async function main() {
     case "next-task":
       return runNextTask(args);
     case "runbook":
-      return runRunbook(args);
+      return runRunbook(args, flags);
     case "diagnose":
       return runDiagnose(args, flags);
     case "check-source":
