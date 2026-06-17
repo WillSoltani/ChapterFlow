@@ -105,6 +105,30 @@ test("handoff does not re-document fixed gaps as open (the next developer reads 
   assert.match(s, /tsc -p \. --noEmit/, "the handoff must tell the next developer how to typecheck");
 });
 
+test("WS-4: the research prompt requires the sidecar-vs-reality source-verify step before handoff", () => {
+  const research = doc("agent-prompts/RESEARCH-CODEX-SESSION.md");
+  assert.match(research, /source-verify <bookId>/, "research must run source-verify before the write handoff");
+  assert.match(research, /A clean `check-source` is\s*\*\*not\*\* proof the source is true|not\b[\s\S]{0,40}proof the source is true/i, "research must state check-source does not prove reality");
+  assert.match(research, /Provenance, not plausibility/, "research must demand provenance over plausibility");
+});
+
+test("WS-5: the writer card forbids defending a deterministic register ban (B4) as a false positive", () => {
+  const cli = readFileSync(resolve(PIPELINE_DIR, "src/cli.ts"), "utf8");
+  assert.match(cli, /DETERMINISTIC register ban[\s\S]{0,160}can NEVER be defended as a false positive/, "the writer card must carve out B-class lexical bans from the defensible-FP allowance");
+  const orch = doc("agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md");
+  assert.match(orch, /NEVER an FP/, "the write-orchestrate prompt must say a deterministic register ban is never an FP");
+});
+
+test("WS-5: the confirm read is dispatched with an ADVERSARIAL (refute-the-PASS) stance", () => {
+  const pkt = readFileSync(resolve(PIPELINE_DIR, "src/qc/orchestrator/reviewPacket.ts"), "utf8");
+  assert.match(pkt, /ADVERSARIAL STANCE/, "the confirm section must instruct an adversarial stance");
+  assert.match(pkt, /try to REFUTE/i, "the confirm reviewer must be told to try to refute PUBLISHABLE");
+  assert.match(pkt, /self-preference|low-perplexity|blind spot/i, "the packet must name the single-family self-preference bias it counters");
+  const roles = JSON.parse(doc("roles/ROLE-DEFINITIONS.json"));
+  const confirm = roles.roles.find((r: { roleId: string }) => r.roleId === "confirm");
+  assert.match(confirm.modelHint, /ADVERSARIAL|refute/i, "the confirm role hint must carry the adversarial stance (role diversity from the bar)");
+});
+
 test("STEP-2 carries the plain-language direction (R2.7) and fanout pins it", () => {
   const s = doc("agent-prompts/STEP-2-WRITE-CHAPTERS.md");
   assert.match(s, /R2\.7 — Plain language beats abstraction/);

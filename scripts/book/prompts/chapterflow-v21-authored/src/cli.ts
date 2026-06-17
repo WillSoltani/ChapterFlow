@@ -74,6 +74,9 @@ Commands:
   check-source <bookId>              Run the source-coherence critic against the latest research
                                      bundle for a book. Use after producing bibliography + every
                                      chapter source via the research playbook. Exits 0 on PASS.
+  source-verify <bookId> [--write p] Emit the operator sidecar-vs-reality verification packet
+                                     (claim-by-claim + entity-existence + URL-liveness). check-source
+                                     proves STRUCTURE; this proves the sidecar is TRUE before writing.
   derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
@@ -754,6 +757,42 @@ async function runCheckSource(args: string[]): Promise<number> {
   if (realness.some((f) => f.severity === "blocker")) report.passed = false;
   console.log(formatSourceCoherenceReport(report));
   return report.passed ? 0 : 1;
+}
+
+/** `source-verify <bookId> [--write <path>]` — WS-4. Emits the operator-side
+ *  sidecar-vs-reality verification packet (claim-by-claim + entity-existence +
+ *  URL-liveness). check-source proves STRUCTURE; this proves the sidecar is TRUE
+ *  before the writer authors from it. No-API: the CLI emits, a web-enabled operator
+ *  verifies. */
+async function runSourceVerify(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: source-verify <bookId> [--write <path>]");
+    return 2;
+  }
+  const { expectedSourceChapters, loadSourceV2Sidecar } = await import("./qc/sourceV2Gate.js");
+  const { buildSourceVerificationPacket } = await import("./critics/sourceVerify.js");
+  const chapterNumbers = expectedSourceChapters(bookId);
+  if (chapterNumbers.length === 0) {
+    console.error(`No research run / chapter index for "${bookId}". Run the research playbook (phase 1) first.`);
+    return 2;
+  }
+  const sidecars = chapterNumbers.map((n) => loadSourceV2Sidecar(bookId, n)).filter((sc) => sc !== null);
+  if (sidecars.length === 0) {
+    console.error(`No source sidecars found for "${bookId}". Run research (phase 1) before verifying.`);
+    return 2;
+  }
+  const packet = buildSourceVerificationPacket(bookId, sidecars);
+  const writePath = typeof flags["write"] === "string" ? (flags["write"] as string) : undefined;
+  if (writePath) {
+    const out = resolve(process.cwd(), writePath);
+    mkdirSync(dirname(out), { recursive: true });
+    writeFileSync(out, packet, "utf8");
+    console.log(`source-verify — ${bookId}: wrote verification packet to ${out}`);
+  } else {
+    console.log(packet);
+  }
+  return 0;
 }
 
 /** `next-task <bookId>` — operator helper for inline-session generation.
@@ -1610,13 +1649,13 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   if (g) return g;
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: fanout <bookId> [--from N --to M] [--all]");
+    console.error("Usage: fanout <bookId> [--from N --to M] [--all] [--write-dir <path>]");
     return 2;
   }
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
   const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
   const { planPedagogy, writePedagogyPlan, loadPedagogyPalettes } = await import("./librarian/pedagogyPlan.js");
-  const { planExemplars, writeExemplarPlan } = await import("./librarian/exemplarPlan.js");
+  const { planExemplars, writeExemplarPlan, formatExemplarOwned, formatExemplarForbidden } = await import("./librarian/exemplarPlan.js");
   const { planVenues, writeVenuePlan } = await import("./librarian/venuePlan.js");
   const { findRunArtifact } = await import("./lib/runDirs.js");
   const { formatVoiceBible } = await import("./lib/voiceBible.js");
@@ -1663,12 +1702,33 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     console.error(`Invalid chapter range: --from ${String(flags["from"] ?? from)} --to ${String(flags["to"] ?? to)}. Use integers with 1 <= from <= to.`);
     return 2;
   }
+  // --write-dir (deal cards to files, step 1) and --barrier (post-write gate, step 3)
+  // are separate workflow steps — combining them would silently drop the barrier (the
+  // write-dir path returns before the barrier block runs). Fail fast, don't no-op the gate.
+  if (flags["write-dir"] && flags["barrier"] === true) {
+    console.error("fanout: --write-dir and --barrier are separate steps — run --write-dir to deal cards, then `fanout <bookId> --barrier` after authoring.");
+    return 2;
+  }
+  // The WHOLE-book range — cross-chapter plans (name pools, exemplar ownership) must
+  // be derived over every chapter so a partial-range deal can't persist an incomplete
+  // cross-chapter view that later disagrees with the gate / a sibling's card.
+  const fullFrom = flat[0].number;
+  const fullTo = flat[flat.length - 1].number;
   // REDO path (--all): deal FRESH names/shapes/pedagogy — carrying a chapter's own
   // CURRENT values would re-pin the very thing the redo exists to break. For names
   // specifically, the carry-through echoes the colliding names that triggered F1
   // (and `extractNamesFromText` proper-noun pollution), so a `--all` re-dispatch must
   // deal a fresh disjoint pool — otherwise the offender card re-emits the collision.
-  const plan = planNames(bookId, from, to, 7, { forceFresh: includeAll });
+  //
+  // INITIAL deal (no --all): derive over the WHOLE book, not the requested range. A
+  // per-chapter `fanout --from N --to N` (what an operator runs when the full output is
+  // too large) used to start the cursor at 0 for every unauthored chapter, so ch1..ch6
+  // all got available[0:7] — the F1 collision digital-minimalism ate a re-author round
+  // on. Deriving whole-book gives chapter N its disjoint slice regardless of the range.
+  // The `--all` redo stays range-scoped (a TARGETED refresh of the offender only).
+  const plan = includeAll
+    ? planNames(bookId, from, to, 7, { forceFresh: true })
+    : planNames(bookId, fullFrom, fullTo, 7, { forceFresh: false });
   writeNamePlan(plan);
   const shapePlan = planShapes(bookId, from, to, 6, { forceFresh: includeAll });
   writeShapePlan(shapePlan);
@@ -1680,7 +1740,16 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const tryDefs = new Map(pedagogyPalettes.tryThisNowGrammars.map((g) => [g.id, g]));
   const tacticDefs = new Map(pedagogyPalettes.tacticFamilies.map((f) => [f.id, f.definition]));
   const quizDefs = new Map(pedagogyPalettes.quizOpeners.map((q) => [q.id, q]));
-  const exemplarPlan = planExemplars(bookId, from, to);
+  // Exemplar OWNERSHIP is cross-chapter: who owns a repeated source figure can only
+  // be decided by looking at the WHOLE book. A range-scoped deal (the per-chapter
+  // `fanout --from N --to N` an operator runs when the full output is too large)
+  // would compute forbidden=∅ for every chapter and OVERWRITE the persisted plan with
+  // that partial view — so the card says "FORBIDDEN: none" while the SP5 gate later
+  // enforces the full-book owner (the digital-minimalism ch5/"Facebook Like" publish
+  // block). Always derive ownership over every chapter (fullFrom..fullTo, computed
+  // above) so the card a writer sees and the gate that judges it read one identical,
+  // complete plan.
+  const exemplarPlan = planExemplars(bookId, fullFrom, fullTo);
   writeExemplarPlan(exemplarPlan);
   const venuePlan = planVenues(bookId, from, to);
   writeVenuePlan(venuePlan);
@@ -1738,6 +1807,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const bankSet = new Set(loadNameBank());
   const chaptersDir = resolve(PIPE, "state/chapters");
   const blocks: string[] = [];
+  const cardMeta: Array<{ number: number; chapterId: string }> = [];
   let pending = 0;
   let done = 0;
   for (const ch of flat) {
@@ -1777,10 +1847,9 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
       : "";
     const exemplar = exemplarPlan.allocation[ch.number];
     const exemplarLine = exemplar
-      ? `• MARQUEE EXEMPLARS: this chapter owns ${exemplar.assigned.length ? exemplar.assigned.join(", ") : "none"}. ` +
-        `FORBIDDEN (owned by other chapters): ${
-          exemplar.forbidden.length ? exemplar.forbidden.map((item) => `${item.name} (ch${item.ownerChapter})`).join(", ") : "none"
-        } — at most a passing mention, never with date/place stamping, never as a teaching unit, never in quiz/cards. Set example[i].planSpec.exemplar to the owned exemplar used by that scene, or "" when none is used.\n`
+      ? `• MARQUEE EXEMPLARS: this chapter owns ${formatExemplarOwned(exemplar)}. ` +
+        `FORBIDDEN (owned by other chapters): ${formatExemplarForbidden(exemplar)}` +
+        ` — at most a passing mention, never with date/place stamping, never as a teaching unit, never in quiz/cards. Set example[i].planSpec.exemplar to the owned exemplar used by that scene, or "" when none is used.\n`
       : "";
     const venueIds = venuePlan.allocation[ch.number] ?? [];
     const venueLine = venueIds.length
@@ -1904,7 +1973,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• PLAIN LANGUAGE (R2.7 — product direction): every abstract claim is followed within TWO sentences by something the reader can SEE (a person, a scene, a number). Say it like you'd say it to a smart friend at lunch. Define terms-of-art in everyday words the first time; never stack two undefined abstractions in one sentence. Each breakdown tier OPENS concrete, not with a thesis. Short common words win. This applies to EVERY reader-facing field (quiz, cards, examples, hook, keyTakeaway, plan), not just the breakdown — a gate (E7) flags fancy words with their plain swap (utilize→use, leverage→use, facilitate→help) and any sentence over 34 words (over 24 in a one-liner). Target grade 7–9.\n` +
         `• TWO-PASS: after drafting, self-critique against agent-prompts/FIELD-PURPOSE-CONTRACTS.md (concept-as-actor, templated loops, echo-template explanations, bare-label card fronts, proposition-not-action whatToDo) AND against R2.7 (read your fastRead aloud — if a sentence wouldn't survive being said to a friend, rewrite it) and FIX what you find before gating.\n` +
         `• THE REAL TARGET IS THE PUBLISHABLE BAR, NOT THE GATE. QC's verdict comes from a reviewer scoring your chapter on 8 weighted axes (PASS = ≥85/100, no axis <0.6). A gate-clean chapter can still be REVISE'd. BEFORE you finish, run \`npx tsx src/cli.ts publishable-rubric\` and self-score this draft on every axis; fix any axis you'd score below ~0.85 and ANY corruption-axis hit (quiz_key_correctness, example_coherence, prose_coherence, factual_accuracy). The biggest levers: derive each quiz key yourself from the source and confirm the keyed index, make distractors real misconceptions, give each example a concrete acting scene with a decision, keep prose concrete + plain.\n` +
-        `• gate-chapter majors (C2/E4 → example_coherence/prose_coherence, E7/E1/A13 → prose readability, C23 → example variety) are NOT free hints — QC's finalizer BLOCKS the chapter on any unresolved major, so handing one off costs a whole QC round downstream. TRIAGE every major before you finish: fix the genuine scene/sentence defect (most are real). The gold reference books trip a few of these on genuinely good prose — leave ONLY a major you can defend as that kind of false positive; never hand off one you simply didn't look at.\n` +
+        `• gate-chapter majors (C2/E4 → example_coherence/prose_coherence, E7/E1/A13 → prose readability, C23 → example variety) are NOT free hints — QC's finalizer BLOCKS the chapter on any unresolved major, so handing one off costs a whole QC round downstream. TRIAGE every major before you finish: fix the genuine scene/sentence defect (most are real). The gold reference books trip a few of these on genuinely good prose — leave ONLY a major you can defend as that kind of false positive; never hand off one you simply didn't look at. EXCEPTION — a DETERMINISTIC register ban (B-class: B4 banned-phrase, B5 em-dash, and the other lexical bans) is house POLICY, not a prose-quality call: it can NEVER be defended as a false positive. The phrase is forbidden no matter how good the sentence reads — rewrite it. (digital-minimalism ch1 self-attested a banned-phrase B4 as an FP twice and ate two QC rounds.)\n` +
         `• QUIZ KEYS (quiz_key_correctness, weight 18 — the heaviest axis): the blind keyA/keyB judge re-derives each answer from prompt + choices + this chapter's source testableFacts[] ONLY (claim/becauseMechanism/commonError/errorIsWhy), never your prose. Anchor each question to a testableFact (set its sourceAnchorId), key the choice that fact uniquely supports, and build the two distractors from that fact's commonError. See STEP-2 "Derive every key the way the BLIND judge will".\n` +
         `• SOURCE FIDELITY (factual_accuracy — a CORRUPTION veto; one drifted fact RED-gates the whole book): every fact, number, date, and attributed quote traces to this chapter's source sidecar; complete every named framework with the source's EXACT member names (no renames, no dropped items). If the sidecar can't ground a claim, cut it — never invent.\n` +
         `• REVIEW CARDS (card_learning_value — CORRUPTION if the back doesn't answer the front): each back ANSWERS its front in the card's OWN words and tests understanding (give the mechanism / named parts), is NOT pasted from the breakdown, and ENDS on a complete sentence (80–400 chars). Fronts retrieve an idea, not a bare label.\n` +
@@ -1912,6 +1981,31 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• Then run: npx tsx src/cli.ts gate-chapter state/chapters/${chapterId}.v21-native.chapter.json\n` +
         `  Fix every blocker, then re-run until it prints "Gate verdict: PASS — 0 blockers". Stop only when it is gate-clean AND you'd self-score every bar axis ≥0.85.`,
     );
+    cardMeta.push({ number: ch.number, chapterId });
+  }
+  // --write-dir <path>: emit one card FILE per chapter instead of one large stdout
+  // blob. The blob is what pushed operators to pull cards via per-chapter `fanout
+  // --from N --to N` calls — the workaround that defeated cross-chapter name/exemplar
+  // disjointness. With files, the operator deals the whole book in ONE call (cursors
+  // advance correctly) and hands each writer subagent its own file.
+  const writeDir = typeof flags["write-dir"] === "string" ? (flags["write-dir"] as string) : undefined;
+  if (writeDir) {
+    const outDir = resolve(process.cwd(), writeDir);
+    mkdirSync(outDir, { recursive: true });
+    const written: string[] = [];
+    for (let i = 0; i < blocks.length; i++) {
+      const meta = cardMeta[i];
+      const file = resolve(outDir, `ch${String(meta.number).padStart(2, "0")}.authoring-card.md`);
+      writeFileSync(file, blocks[i] + "\n", "utf8");
+      written.push(file);
+    }
+    console.log(
+      `fanout — ${bookId} (ch${from}-${to}): wrote ${written.length} authoring-card file(s) to ${outDir}` +
+        (includeAll ? "" : `  [${done} already written, skipped — use --all to include]`),
+    );
+    for (const f of written) console.log(`  ${f}`);
+    console.log(`\nEach file is a COMPLETE, ready-to-paste writer dispatch prompt. Hand one file to one fresh writer subagent VERBATIM (run them in parallel, ≤6 at a time). When the batch finishes, check it:\n  npx tsx src/cli.ts book-gate ${bookId}`);
+    return 0;
   }
   console.log(
     `fanout — ${bookId} (ch${from}-${to}): ${pending} prompt(s) to paste` +
@@ -2001,18 +2095,37 @@ async function runPedagogyPlan(args: string[], flags: Record<string, string | bo
   return 0;
 }
 
-/** `exemplar-plan <bookId> --from N --to M` — pre-authoring ownership ledger
+/** `exemplar-plan <bookId> [--from N --to M]` — pre-authoring ownership ledger
  *  for repeated marquee source figures/cases. Deals each repeated exemplar to
- *  exactly one chapter and forbids teaching-unit reuse elsewhere. */
+ *  exactly one chapter and forbids teaching-unit reuse elsewhere. Exemplar ownership
+ *  is inherently CROSS-CHAPTER and this command persists the single canonical artifact
+ *  the SP5 gate reads, so it derives over the WHOLE book — a partial range would
+ *  compute forbidden=∅ and clobber the full plan (the deal↔gate inconsistency WS-2
+ *  closes on the fanout path). --from/--to are ignored for the ownership computation. */
 async function runExemplarPlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
-  const from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
-  const to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
-  if (!bookId || Number.isNaN(from) || Number.isNaN(to)) {
-    console.error("Usage: exemplar-plan <bookId> --from N --to M");
+  if (!bookId) {
+    console.error("Usage: exemplar-plan <bookId> [--from N --to M]");
     return 2;
   }
   const { planExemplars, writeExemplarPlan, formatExemplarPlan } = await import("./librarian/exemplarPlan.js");
+  const { expectedSourceChapters } = await import("./qc/sourceV2Gate.js");
+  const nums = expectedSourceChapters(bookId);
+  let from: number;
+  let to: number;
+  if (nums.length > 0) {
+    from = Math.min(...nums);
+    to = Math.max(...nums);
+    if (flags["from"] || flags["to"]) console.log("note: exemplar ownership is cross-chapter — deriving over the whole book and ignoring --from/--to.");
+  } else {
+    // No chapter index (pre-research): fall back to the operator-supplied range.
+    from = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : NaN;
+    to = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : NaN;
+    if (Number.isNaN(from) || Number.isNaN(to)) {
+      console.error("No chapter index for this book yet — run research first, or pass --from N --to M.");
+      return 2;
+    }
+  }
   const plan = planExemplars(bookId, from, to);
   const path = writeExemplarPlan(plan);
   console.log(formatExemplarPlan(plan));
@@ -3825,6 +3938,8 @@ async function main() {
       return runNextTask(args);
     case "check-source":
       return runCheckSource(args);
+    case "source-verify":
+      return runSourceVerify(args, flags);
     case "derive-artifacts":
       return runDeriveArtifacts(args);
     case "research":

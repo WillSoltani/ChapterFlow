@@ -67,11 +67,11 @@
     },
     {
       "roleId": "confirm",
-      "title": "QC confirm — independent second read",
+      "title": "QC confirm — adversarial second read",
       "reasoningEffort": "high",
       "verbosity": "low",
-      "modelHint": "A SECOND independent read; do not rely on the bar read. Careful judgment, terse output.",
-      "boundaries": ["Independent second read of ONE candidate chapter; decide PUBLISHABLE/REVISE/CORRUPTION.", "Non-PUBLISHABLE needs ≥1 quote-backed finding; PUBLISHABLE needs zero findings.", "A different reviewer id than the bar read."],
+      "modelHint": "An ADVERSARIAL second read: assume a defect exists and try to REFUTE the bar's PASS. One model family shares blind spots, so don't pass it because it reads fluent. Refute or confirm; terse output.",
+      "boundaries": ["Adversarial second read of ONE candidate chapter; try to refute PUBLISHABLE, then decide PUBLISHABLE/REVISE/CORRUPTION.", "Hunt the single weakest axis; do not rubber-stamp output that merely scans well (self-preference bias).", "Non-PUBLISHABLE needs ≥1 quote-backed finding; PUBLISHABLE needs zero findings.", "A different reviewer id than the bar read."],
       "promptPath": "agent-prompts/QC-SESSION-PROMPT.md"
     },
     {

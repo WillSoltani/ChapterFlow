@@ -5,6 +5,7 @@ import type { AxisScore } from "../../critics/semantic/publishableBar.js";
 import type { ManualKeyJudgeRecord } from "../manualKeyJudge.js";
 import type { MajorFindingSnapshot } from "../majorDisposition.js";
 import type { SourceV2GateReport } from "../sourceV2Gate.js";
+import type { PlanFinding } from "../planEnforcement.js";
 import type { SweepRecord } from "../sweep.js";
 import type { EvidenceChapterDecision } from "./finalize.js";
 import type { SubmissionFinding, ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "./schemas.js";
@@ -20,6 +21,7 @@ export type FinalizerRawEvidence = {
   bar: ValidatedBarReadSubmission | null;
   confirm: ValidatedConfirmReadSubmission | null;
   confirmAccepted: boolean;
+  planFindings: PlanFinding[];
 };
 
 function chapterLabel(n: number): string {
@@ -64,6 +66,31 @@ function majorFindingToRepair(f: MajorFindingSnapshot, chapterNumber?: number): 
       ? "Repair the book-wide pattern across all affected chapters, then rerun book-gate and major-status."
       : "Repair the current major finding in this chapter, then rerun author-check, gate-chapter, and major-status.",
     globalTheme: "major",
+  };
+}
+
+function planFindingToRepair(f: PlanFinding): SubmissionFinding {
+  const expectedFix =
+    f.checkId === "SP5.exemplar_ownership_violation"
+      ? "This exemplar is OWNED by another chapter. Remove it as a teaching unit here (at most a passing mention, never staged/quoted/quizzed), or re-author the scene around this chapter's own owned exemplar. Then rerun gate-chapter."
+      : f.checkId === "SP2.shape_plan_mismatch"
+      ? "Re-author this example to the scene SHAPE the chapter was dealt (planSpec.format must equal the dealt allocation). If the repair genuinely required a different shape, re-deal the chapter's shape plan rather than silently diverging. Then rerun gate-chapter."
+      : f.checkId === "SP3.shape_slot_reused"
+      ? "Two examples in this chapter use the same scene shape — re-author one to a distinct shape so no shape repeats within the chapter."
+      : "Restore the example's required planSpec fields (domain, audience, stakes, format, requiredBeat), then rerun gate-chapter.";
+  // unitId must NOT look like a `container.field` path with a non-existent field
+  // (the fabricated-finding guard in appendFindings would drop it). Reference the
+  // example by index — taken from the message — or fall back to the checkId.
+  const exampleMatch = f.message.match(/example\[(\d+)\]/);
+  return {
+    chapterNumber: f.chapterNumber,
+    unitId: exampleMatch ? `example[${exampleMatch[1]}]` : f.checkId,
+    repairClass: f.checkId,
+    severity: "blocker",
+    quote: nonemptyText(f.evidence, f.message),
+    problem: f.message,
+    expectedFix,
+    globalTheme: "plan_enforcement",
   };
 }
 
@@ -158,6 +185,10 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
   if (decision.checks.majors === "FAIL") {
     for (const f of decision.majorStatus.chapter) out.push(majorFindingToRepair(f, chapterNumber));
     for (const f of decision.majorStatus.book) out.push(majorFindingToRepair(f));
+  }
+
+  if (decision.checks.planEnforcement === "FAIL") {
+    for (const f of raw.planFindings) out.push(planFindingToRepair(f));
   }
 
   if (decision.checks.manualKeyJudge === "FAIL" || decision.checks.manualKeyJudge === "NEEDS_ADJUDICATION") {

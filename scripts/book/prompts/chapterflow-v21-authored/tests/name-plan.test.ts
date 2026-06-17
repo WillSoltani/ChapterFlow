@@ -92,6 +92,33 @@ test("forceFresh per-chapter re-dispatches dealt in SEPARATE calls are DISJOINT 
   }
 });
 
+test("WS-6: a whole-book NON-forceFresh deal gives unauthored chapters DISJOINT pools (what fanout now derives)", () => {
+  try {
+    resetFixture();
+    // No chapters authored yet = fanout's INITIAL deal. Deriving over the whole book
+    // advances the cursor per chapter, so every chapter gets a distinct slice — the
+    // property the fanout whole-book derivation relies on to avoid the F1 collision.
+    const whole = quietWarn(() => planNames(BOOK, 1, 6, 7, { forceFresh: false })).allocation;
+    const seen = new Set<string>();
+    for (let n = 1; n <= 6; n++) {
+      for (const name of whole[n]) {
+        assert.ok(!seen.has(name), `name "${name}" dealt to two chapters in the whole-book deal`);
+        seen.add(name);
+      }
+    }
+    // The BUG the whole-book derivation avoids: a per-chapter NON-forceFresh deal starts
+    // the cursor at 0 for every UNAUTHORED chapter, so two SEPARATE per-chapter calls
+    // (the operator workaround when the full fanout output was too large) collide on
+    // available[0:7]. This is the digital-minimalism ch1..ch6 F1 collision.
+    const ch1 = quietWarn(() => planNames(BOOK, 1, 1, 7, { forceFresh: false })).allocation[1];
+    const ch2 = quietWarn(() => planNames(BOOK, 2, 2, 7, { forceFresh: false })).allocation[2];
+    const overlap = ch1.filter((n) => ch2.includes(n));
+    assert.ok(overlap.length > 0, "per-chapter non-forceFresh deals collide (cursor 0) — exactly why fanout must derive whole-book");
+  } finally {
+    resetFixture();
+  }
+});
+
 test("name-plan warns and proceeds when a source sidecar is missing", () => {
   try {
     resetFixture();

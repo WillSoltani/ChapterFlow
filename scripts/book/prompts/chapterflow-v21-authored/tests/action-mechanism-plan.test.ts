@@ -2,6 +2,24 @@ import assert from "node:assert/strict";
 
 import { test } from "./harness.js";
 import { planActionMechanisms, ACTION_MECHANISMS } from "../src/librarian/actionMechanismPlan.js";
+import { loadPedagogyPalettes } from "../src/librarian/pedagogyPlan.js";
+
+// WS-3 — the try-this-now GRAMMAR (sentence shape) and the ACTION MECHANISM (container)
+// are dealt by two independent allocators. The `ten-minute-timer` grammar used to
+// mandate "the clock is part of the exercise structure" — a timer device — while the
+// mechanism reserves the timer/calendar CONTAINER to one chapter and forbids it
+// everywhere else, so a non-timer chapter dealt that grammar got contradictory
+// instructions (digital-minimalism ch2). The grammar must now defer the container to
+// the mechanism, and only `timer_or_calendar` may own a timer/calendar container.
+test("a time-box GRAMMAR defers the action container to the MECHANISM (no grammar↔mechanism timer conflict)", () => {
+  const ped = loadPedagogyPalettes();
+  const timeBox = ped.tryThisNowGrammars.find((g: any) => g.id === "ten-minute-timer");
+  assert.ok(timeBox, "ten-minute-timer grammar exists");
+  assert.match(timeBox.definition, /ACTION MECHANISM/, "the time-box grammar must explicitly defer the container to the dealt ACTION MECHANISM");
+  assert.doesNotMatch(timeBox.definition, /clock is part of the exercise structure/, "the grammar must not mandate a timer device as the container");
+  // The reserved timer/calendar mechanism still exists (the one chapter that owns a timer container).
+  assert.ok(ACTION_MECHANISMS.some((m) => m.id === "timer_or_calendar" && /timer or calendar/i.test(m.directive)), "timer_or_calendar mechanism owns the timer container");
+});
 
 test("action-mechanism plan keeps every mechanism under the 0.34 density cap and uses valid ids", () => {
   const ids = new Set(ACTION_MECHANISMS.map((m) => m.id));

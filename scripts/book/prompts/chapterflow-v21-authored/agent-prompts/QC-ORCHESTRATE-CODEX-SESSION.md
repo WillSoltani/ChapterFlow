@@ -80,6 +80,11 @@ unit, fills only its own skeleton from a real read, runs only its own `qc-submit
 copies the `reviewer` id from its skeleton verbatim.** Wait for each wave to finish
 before the next.
 
+> **Close each completed reviewer before spawning the next wave.** A finished subagent holds
+> its concurrency slot until closed, so a later wave's spawn fails at the cap mid-wave. Close
+> the wave's agents, then start the next. (A `npx tsx` sandbox IPC `listen EPERM` is the
+> runner's temp socket — rerun the same command with escalation, it's not a QC failure.)
+
 - **Wave 1 — sweep (1 agent, barrier):** the book-wide cross-chapter templating sweep
   (4 families). PASS only if none fire; REVISE/CORRUPTION need ≥1 quote-backed finding.
 - **Wave 2 — keyA + keyB (2 agents, parallel):** two INDEPENDENT blind quiz-key

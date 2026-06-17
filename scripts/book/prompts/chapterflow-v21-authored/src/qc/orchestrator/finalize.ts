@@ -12,6 +12,7 @@ import { runIntraBookChecks } from "../../critics/intraBook.js";
 import { loadBookChapters, loadManualKeyJudge, manualKeyJudgePath, resolveManualKeyJudges, type ManualKeyJudgeRecord } from "../manualKeyJudge.js";
 import { unresolvedMajors, type MajorFindingSnapshot } from "../majorDisposition.js";
 import { checkSourceV2Gate, sourceHashFor } from "../sourceV2Gate.js";
+import { checkPlanEnforcement, type PlanFinding } from "../planEnforcement.js";
 import { loadSweepRecord, sweepRecordPath, writeSweepRecordFromSubmission } from "../sweep.js";
 import {
   barArtifactPath,
@@ -62,6 +63,10 @@ export type EvidenceChapterDecision = {
     confirmRead: "PUBLISHABLE" | "REVISE" | "CORRUPTION" | "MISSING" | "STALE";
     repairLedger: "NO_OPEN_BLOCKERS" | "OPEN_FINDINGS" | "NEEDS_QC_RERUN";
     majors: EvidenceStatus;
+    // SP plan-conformance (shape obedience, within-chapter shape reuse, exemplar
+    // ownership). Shifted left from the publish preflight so a QC verdict predicts
+    // publish — a deterministic check, recomputed fresh for every chapter.
+    planEnforcement: EvidenceStatus;
   };
   majorStatus: {
     status: EvidenceStatus;
@@ -267,6 +272,10 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   const unresolvedMajorFindings = unresolvedMajors(bookId, chapters, true);
   const bookGate = runBookGate(bookId, allChapters);
   const bookGateStatus: EvidenceStatus = bookGate.passed ? "PASS" : "FAIL";
+  // SP plan-conformance, computed once over the whole book (exemplar ownership is
+  // cross-chapter) and filtered per chapter below. Same deterministic tier as
+  // ship-gate/book-gate — shifted left from publish so a clean QC predicts publish.
+  const planFindingsAll = checkPlanEnforcement(bookId, allChapters);
   const sweepRecord = loadSweepRecord(bookId);
   const briefPath = repairBriefPath(bookId, roundId);
   const promptPath = repairPromptPath(bookId, roundId);
@@ -288,6 +297,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     const needsQcRerun = ledgerFindings.some((f) => f.status === "needs_qc_rerun");
     const openSerious = ledgerFindings.some((f) => f.severity === "blocker" || f.severity === "major");
     const majorStatus = unresolvedMajorsForChapter(unresolvedMajorFindings, ch.number);
+    const chapterPlanFindings = planFindingsAll.filter((f) => f.chapterNumber === ch.number);
 
     const checks: EvidenceChapterDecision["checks"] = {
       sourceV2: source.passed ? "PASS" : "FAIL",
@@ -301,6 +311,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       confirmRead: "MISSING",
       repairLedger: needsQcRerun ? "NEEDS_QC_RERUN" : openSerious ? "OPEN_FINDINGS" : "NO_OPEN_BLOCKERS",
       majors: majorStatus.status,
+      planEnforcement: chapterPlanFindings.length === 0 ? "PASS" : "FAIL",
     };
 
     if (sweepRecord?.roundId === roundId) {
@@ -364,7 +375,8 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       checks.intraBook === "PASS" &&
       checks.bookGate === "PASS" &&
       checks.repairLedger === "NO_OPEN_BLOCKERS" &&
-      checks.majors === "PASS";
+      checks.majors === "PASS" &&
+      checks.planEnforcement === "PASS";
     const confirmMissingForCandidate = publishableCandidate && (checks.confirmRead === "MISSING" || checks.confirmRead === "STALE");
     const sameReviewerConfirm = publishableCandidate && bar && confirm && bar.reviewer === confirm.reviewer && confirm.decision === "PUBLISHABLE";
     // P1.5 — a sub-0.6 bar axis with no cited hit is no longer "unactionable":
@@ -403,10 +415,13 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       checks.barRead === "YELLOW" ||
       (publishableCandidate && checks.confirmRead === "REVISE") ||
       checks.repairLedger !== "NO_OPEN_BLOCKERS" ||
-      checks.majors !== "PASS"
+      checks.majors !== "PASS" ||
+      checks.planEnforcement !== "PASS"
     ) {
       finalVerdict = "REVISE";
-      reason = checks.majors !== "PASS"
+      reason = checks.planEnforcement !== "PASS"
+        ? "chapter violates its dealt plan (scene shape, shape reuse, or exemplar ownership) — caught at QC, not deferred to publish"
+        : checks.majors !== "PASS"
         ? "one or more current major findings are unresolved or not round-backed"
         : publishableCandidate && checks.confirmRead === "REVISE" ? confirm?.reason ?? "confirm read requires revision" : "one or more gates, reads, or repair-ledger checks require revision";
     } else if (unactionableSweep) {
@@ -477,6 +492,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       bar,
       confirm,
       confirmAccepted: publishableCandidate,
+      planFindings: chapterPlanFindings,
     });
   }
 

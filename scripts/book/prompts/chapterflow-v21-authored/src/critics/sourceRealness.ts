@@ -77,6 +77,18 @@ export function checkSourceRealness(chapters: any[]): SourceCoherenceFinding[] {
         if (mech && !CAUSAL.test(mech)) findings.push({ code: "SC10.3.degenerate_testable_fact", severity: "blocker", scope: `chapter:${chNum}`,
           message: `testableFact "${f?.id ?? ""}": becauseMechanism has no causal link — it must explain WHY the claim is true (because/since/so that…), so it can seed a real explanation.`, evidence: mech.slice(0, 80) });
       }
+      // SC10.4 (WS-4) — provenance presence. A fact with no `derivedFrom` pointer
+      // traces to nothing; a real-world named case with no hardSpecifics can't be
+      // verified against reality. ADVISORY — structural realness can't prove TRUTH;
+      // the operator `source-verify` step is the sidecar-vs-reality gate. Surfaces the
+      // gap (the digital-minimalism sidecars were structurally clean yet unverified).
+      const noProvenance = facts.filter((f: any) => !String(f?.derivedFrom ?? "").trim()).length;
+      const unverifiableCases = (Array.isArray(sc?.namedExamples) ? sc.namedExamples : [])
+        .filter((e: any) => e?.realWorld !== false && !(Array.isArray(e?.hardSpecifics) && e.hardSpecifics.length > 0)).length;
+      if (noProvenance > 0 || unverifiableCases > 0) {
+        findings.push({ code: "SC10.4.unverified_provenance", severity: "minor", scope: `chapter:${chNum}`,
+          message: `${noProvenance} fact(s) lack a derivedFrom provenance pointer and ${unverifiableCases} real-world case(s) lack hardSpecifics — they cannot be verified against a real source. Run \`source-verify ${sc?.bookId ?? ""}\`.`.replace("source-verify  ", "source-verify <bookId>") });
+      }
     } else {
       // ── v1 (rich + thin): ADVISORY only ─────────────────────────────────
       if (shape === "thin-v1" || shape === "unknown" || realEntityCount(sc) < 2) weakV1++;
