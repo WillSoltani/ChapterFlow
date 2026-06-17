@@ -3,6 +3,7 @@
 // Implements §8.1 — IP Balance Display (header bar: compact diamond icon + number)
 
 import { motion, useReducedMotion } from "framer-motion";
+import { CounterAnimation } from "@/components/ui/CounterAnimation";
 
 /** Geometric diamond/prism icon for Insight Points — §8.1 */
 function InsightPointsIcon({ size = 16 }: { size?: number }) {
@@ -58,13 +59,23 @@ export function FlowPointsIndicator({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, delay: 0.35 }}
     >
-      <div className="flex items-center gap-1.5">
+      <div
+        className="flex items-center gap-1.5"
+        title="Insight Points (IP) — earned when you pass a quiz or finish a book. Spend them on bonus books and Pro passes."
+        aria-label={`${points.toLocaleString()} Insight Points (IP). Insight Points are earned by passing quizzes and finishing books, and spent on bonus books and Pro passes.`}
+      >
         <InsightPointsIcon size={16} />
         <span
           className="text-sm font-semibold tabular-nums"
           style={{ color: "var(--text-heading)" }}
         >
-          {points.toLocaleString()} Insight Points (IP)
+          <CounterAnimation
+            key={points}
+            target={points}
+            duration={0.8}
+            className="text-sm font-semibold tabular-nums"
+          />{" "}
+          Insight Points (IP)
         </span>
       </div>
       {availableIPToday > 0 && (
