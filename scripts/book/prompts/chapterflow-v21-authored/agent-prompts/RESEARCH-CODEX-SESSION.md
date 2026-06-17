@@ -60,9 +60,24 @@ npx tsx src/cli.ts source-verify <bookId> --write .chapterflow/source-verify-<bo
 ```
 Open that packet and, for every named case and testable fact, confirm it is REAL against a source
 you cite (claim-by-claim; the figure exists, the hardSpecifics/quote/number match; if you cite a
-URL, confirm it RESOLVES). Fill the record's `verdict` per item. Any **UNVERIFIABLE** or **WRONG**
-item is a research defect — fix the sidecar (or cut the case) and re-verify; never hand an
-unverified case to the writer. Proceed only when every item is VERIFIED.
+URL, confirm it RESOLVES). Fill the record's `verdict` and `sourceRef` per item. Any
+**UNVERIFIABLE** or **WRONG** item is a research defect — fix the sidecar (or cut the case) and
+re-verify; never hand an unverified case to the writer.
+
+Tip: bind the record's JSON Schema (`npx tsx src/cli.ts source-verify-schema`) as your
+structured-output `response_format` so the filled record is shape-valid by construction (it forces
+a real verdict per item — no `FILL_ME` left behind). The machine check below stays authoritative on
+substance.
+
+Then run the MACHINE check — a self-attested "all VERIFIED" is **not** enough. It rejects a bulk
+rubber-stamp (one note or one source reused across many items), incomplete coverage, a VERIFIED
+item with no `sourceRef`, and any non-VERIFIED verdict:
+```bash
+npx tsx src/cli.ts source-verify-check <bookId>
+```
+Proceed to the writer **only** when `source-verify-check` prints `PASS` (exit 0). Cite a DISTINCT
+real source per item and write a per-item note — a single boilerplate note pasted across every
+item is what flags the rubber-stamp.
 
 ## 2. Hand off to the writer
 When the phase reaches `write-chapter`, research is done. Hand off in a NEW session to

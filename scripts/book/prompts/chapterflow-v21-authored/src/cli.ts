@@ -71,6 +71,8 @@ Commands:
                                      validation command. Read the printed playbook, produce the
                                      artifact inline (no subprocess), save to the printed path,
                                      re-run next-task. Loop until "all done".
+  runbook <bookId>                   Operator dashboard: phase + strict env + exact next command +
+                                     prompt to open + live warnings (source-verify state, token reminder).
   check-source <bookId>              Run the source-coherence critic against the latest research
                                      bundle for a book. Use after producing bibliography + every
                                      chapter source via the research playbook. Exits 0 on PASS.
@@ -78,6 +80,7 @@ Commands:
                                      (claim-by-claim + entity-existence + URL-liveness). check-source
                                      proves STRUCTURE; this proves the sidecar is TRUE before writing.
   source-verify-check <bookId> [--record p] Read the FILLED record back; reject rubber-stamps / non-VERIFIED items
+  source-verify-schema               Print the JSON Schema for a filled source-verify record (bind as GPT response_format)
   derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
@@ -803,6 +806,15 @@ async function runSourceVerify(args: string[], flags: Record<string, string | bo
   return 0;
 }
 
+/** `source-verify-schema` — print the JSON Schema for a FILLED source-verify record, to bind
+ *  as a GPT structured-output `response_format` (mirrors `qc-schema`). The verifier's record is
+ *  then shape-valid by construction; `source-verify-check` still re-checks substance. */
+async function runSourceVerifySchema(): Promise<number> {
+  const { sourceVerifyRecordJsonSchema } = await import("./critics/sourceVerify.js");
+  console.log(JSON.stringify(sourceVerifyRecordJsonSchema(), null, 2));
+  return 0;
+}
+
 /** `source-verify-check <bookId> [--record <path>]` — WS-4 consumer. Reads the FILLED
  *  verification record back and refuses a rubber-stamp (uniform notes/sources, missing
  *  coverage, non-VERIFIED items). This is what makes the source-reality gate real
@@ -843,6 +855,51 @@ async function runSourceVerifyCheck(args: string[], flags: Record<string, string
   console.log(`source-verify-check — ${bookId}: ${blockers.length} blocker(s) of ${findings.length} finding(s)`);
   for (const f of findings) console.log(`  [${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}] ${f.severity}: ${f.message}`);
   return blockers.length > 0 ? 1 : 0;
+}
+
+/** `runbook <bookId>` — deterministic operator dashboard: the book's phase (from
+ *  book-status), the strict env, the exact next command, the prompt to open, and live
+ *  warnings (source-verify state + the REVIEW-PACKET token reminder). Re-derives nothing —
+ *  phase comes from computeBookStatus; the phase→prompt map lives in src/runbook.ts. */
+async function runRunbook(args: string[]): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: runbook <bookId|title>");
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  const { computeBookStatus } = await import("./lifecycle/bookStatus.js");
+  const { runbookPlan, formatRunbook } = await import("./runbook.js");
+  const status = computeBookStatus(bookId);
+  const plan = runbookPlan(status.phase, bookId);
+
+  const warnings: string[] = [];
+  // Live source-verify state.
+  const { sourceVerifyRecordPath, parseSourceVerifyRecord, checkSourceVerifyRecord, verifiableItems } = await import("./critics/sourceVerify.js");
+  const { expectedSourceChapters, loadSourceV2Sidecar } = await import("./qc/sourceV2Gate.js");
+  const svPath = sourceVerifyRecordPath(bookId);
+  if (existsSyncFs(svPath)) {
+    const items = expectedSourceChapters(bookId).flatMap((n) => {
+      const sc = loadSourceV2Sidecar(bookId, n);
+      return sc ? verifiableItems(sc) : [];
+    });
+    const { record, error } = parseSourceVerifyRecord(readFileSync(svPath, "utf8"));
+    if (error || !record) warnings.push(`source-verify record present but UNPARSEABLE (${error ?? "?"}) — re-emit and re-fill`);
+    else {
+      const blockers = checkSourceVerifyRecord(items, record).filter((f) => f.severity === "blocker");
+      warnings.push(blockers.length === 0 ? "source-verify record present and PASS" : `source-verify record present but ${blockers.length} blocker(s) — run \`source-verify-check ${bookId}\``);
+    }
+  } else {
+    warnings.push(`no source-verify record — run \`source-verify ${bookId} --write\`, verify every item, then \`source-verify-check ${bookId}\``);
+  }
+  if (plan.label === "QC" || plan.label === "Publish") {
+    warnings.push("REVIEW-PACKET.md (if present) carries live role tokens — publish cleanup removes it");
+  }
+
+  console.log(formatRunbook(bookId, status.phase, plan, warnings));
+  return 0;
 }
 
 /** `next-task <bookId>` — operator helper for inline-session generation.
@@ -3986,12 +4043,16 @@ async function main() {
       return runGenerateBook(args, flags);
     case "next-task":
       return runNextTask(args);
+    case "runbook":
+      return runRunbook(args);
     case "check-source":
       return runCheckSource(args);
     case "source-verify":
       return runSourceVerify(args, flags);
     case "source-verify-check":
       return runSourceVerifyCheck(args, flags);
+    case "source-verify-schema":
+      return runSourceVerifySchema();
     case "derive-artifacts":
       return runDeriveArtifacts(args);
     case "research":

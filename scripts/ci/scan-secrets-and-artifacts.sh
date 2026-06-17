@@ -2,13 +2,18 @@
 #
 # scan-secrets-and-artifacts.sh — pre-commit / CI guard.
 #
-# Blocks two classes of mistake that have already bitten this PUBLIC repo:
+# Blocks these classes of mistake that have already bitten this PUBLIC repo:
 #   1. Committed build artifacts / caches (.next*, .open-next, node_modules,
 #      infra/cdk.out, *.swp, .chapterflow/, *.tsbuildinfo, .env*, .DS_Store).
 #      A committed Turbopack cache (.next-chapterflow-bookcheck) once leaked a
 #      live Stripe key — see public-repo-secret-leak history.
 #   2. High-confidence secret tokens in file content (Stripe / AWS / Anthropic /
 #      OpenAI / ElevenLabs / GitHub / Google / PEM private keys).
+#   3. Transient QC-orchestration artifacts by path (REVIEW-PACKET.md, task-cards/,
+#      qc-auto.workflow.js) — regenerated per round, never durable state.
+#   4. Live per-round QC role tokens in content (cfq-{sweep,keyA,keyB,bar,confirm,
+#      major,attest}-…). REVIEW-PACKET.md / task cards carry them BY DESIGN; this is
+#      the backstop for a manual commit made outside publish-after-qc's own guard.
 #
 # Modes:
 #   --staged    scan files staged for commit (paths) + the index (secrets)  [pre-commit hook]
@@ -33,6 +38,14 @@ ENV_ALLOW='\.(example|sample|template)$'
 # Each alternative is length-guarded so doc placeholders (`sk-ant-...`,
 # `sk_live_...`) do NOT match — only real-shaped tokens do.
 SECRET_RE='sk_live_[A-Za-z0-9]{20,}|sk_test_[A-Za-z0-9]{20,}|rk_live_[A-Za-z0-9]{20,}|whsec_[A-Za-z0-9]{24,}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}|sk-ant-[A-Za-z0-9_-]{30,}|sk-proj-[A-Za-z0-9_-]{20,}|xi-api-[0-9a-f]{32}|ghp_[A-Za-z0-9]{36}|gho_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{40,}|xox[baprs]-[A-Za-z0-9-]{10,}|AIza[0-9A-Za-z_-]{35}|-----BEGIN [A-Z ]*PRIVATE KEY-----'
+
+# Live per-round QC role tokens. Length-guarded ({16,}) so bare prefixes (`cfq-sweep-`) and
+# short test fixtures (`cfq-confirm-secret`) do NOT match — only real round tokens (≥20-char
+# random suffixes) do.
+ROLE_TOKEN_RE='cfq-(sweep|keyA|keyB|bar|confirm|major|attest)-[A-Za-z0-9_-]{16,}'
+
+# Transient QC-orchestration artifacts — regenerated every round, never durable state.
+TRANSIENT_PATHS='(^|/)REVIEW-PACKET\.md$|(^|/)task-cards/|(^|/)qc-auto\.workflow\.js$'
 
 red() { printf '\033[31m%s\033[0m\n' "$1"; }
 
@@ -62,6 +75,15 @@ run_selftest() {
     "process.env.BOOK_STRIPE_SECRET_KEY" ; do
     if printf '%s' "$neg" | grep -qE "$SECRET_RE"; then
       red "selftest: FALSE POSITIVE on: $neg"; fails=$((fails + 1))
+    fi
+  done
+  # Role-token pattern: a real-shaped round token matches; bare prefixes / short fixtures do not.
+  if ! printf '%s' "cfq-confirm-""0123456789abcdefABCDef" | grep -qE "$ROLE_TOKEN_RE"; then
+    red "selftest: FAILED to detect a role token"; fails=$((fails + 1))
+  fi
+  for rneg in "cfq-sweep-secret" "cfq-confirm-" "cfq-bar-"; do
+    if printf '%s' "$rneg" | grep -qE "$ROLE_TOKEN_RE"; then
+      red "selftest: FALSE POSITIVE on role pattern: $rneg"; fails=$((fails + 1))
     fi
   done
   if [ "$fails" -eq 0 ]; then
@@ -109,6 +131,30 @@ if [ -n "$HITS" ]; then
   echo
   echo "  Never commit live credentials — read them from process.env / SSM."
   echo "  If a value here was ever real, ROTATE it (history rewrite does not un-leak)."
+  echo
+  problems=$((problems + 1))
+fi
+
+# ── 3. transient QC-orchestration artifacts by path ──────────────────────────
+BADTRANSIENT=$(printf '%s\n' "$FILES" | grep -E "$TRANSIENT_PATHS" || true)
+if [ -n "$BADTRANSIENT" ]; then
+  red "✖ Transient QC-orchestration artifacts must not be committed (regenerated per round):"
+  printf '%s\n' "$BADTRANSIENT" | sed 's/^/    /'
+  echo
+  echo "  REVIEW-PACKET.md / task cards / qc-auto.workflow.js are one-time round artifacts;"
+  echo "  publish-after-qc cleans them. Remove them from the commit (they are not durable state)."
+  echo
+  problems=$((problems + 1))
+fi
+
+# ── 4. live QC role tokens in content ────────────────────────────────────────
+ROLEHITS=$(git grep $GREP_SCOPE -I -nE "$ROLE_TOKEN_RE" -- ":(exclude)$SELF" 2>/dev/null || true)
+if [ -n "$ROLEHITS" ]; then
+  red "✖ Live QC role token(s) in staged content (cfq-…) — never commit per-round tokens:"
+  printf '%s\n' "$ROLEHITS" | sed 's/^/    /'
+  echo
+  echo "  These are minted per QC round (carried by REVIEW-PACKET.md / task cards). Remove the"
+  echo "  file from the commit; publish-after-qc cleans them automatically."
   echo
   problems=$((problems + 1))
 fi

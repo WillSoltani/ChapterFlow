@@ -110,6 +110,33 @@ test("WS-4: the research prompt requires the sidecar-vs-reality source-verify st
   assert.match(research, /source-verify <bookId>/, "research must run source-verify before the write handoff");
   assert.match(research, /A clean `check-source` is\s*\*\*not\*\* proof the source is true|not\b[\s\S]{0,40}proof the source is true/i, "research must state check-source does not prove reality");
   assert.match(research, /Provenance, not plausibility/, "research must demand provenance over plausibility");
+  // The machine check must be REQUIRED before handoff — a self-attested "all VERIFIED" is the
+  // exact rubber-stamp bypass that shipped digital-minimalism's invented sources.
+  assert.match(research, /source-verify-check/, "research must require the source-verify-check machine gate, not just a self-attested VERIFIED");
+});
+
+test("WS-4: the publish runbook documents CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 as the new-book default", () => {
+  const publish = doc("agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md");
+  assert.match(publish, /CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1/, "the publish prompt must tell operators to require source-verify for new books");
+});
+
+test("the repair prompt encodes the load-bearing repair discipline (edit-only bucket, CLASS DEFECT, no certifying)", () => {
+  const repair = doc("agent-prompts/REPAIR-CODEX-SESSION.md");
+  assert.match(repair, /\[re-QC only\]/, "must name the [re-QC only] bucket");
+  assert.match(repair, /Do NOT edit these/i, "must forbid editing [re-QC only] chapters — that invalidates their carried attestations");
+  assert.match(repair, /CLASS DEFECT/, "must address CLASS DEFECT findings");
+  assert.match(repair, /fix the class, not the quotes|class-level|whole class/i, "CLASS DEFECT must be a class-level fix, not quote-patching");
+  assert.match(repair, /qc-submit/, "must reference the certifying commands it forbids");
+  assert.match(repair, /Do \*\*NOT\*\* run|never run .*certif/i, "the writer-repair session must not run certifying commands");
+});
+
+test("the runbook documents the strict-production env AND the session-id footgun (so a strict run can't self-block)", () => {
+  const runbook = doc("agent-prompts/RUN-A-BOOK.md");
+  assert.match(runbook, /CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1/, "runbook must list the source-verify flag");
+  assert.match(runbook, /CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1/, "runbook must list the session-independence flag");
+  // The footgun: a single exported CHAPTERFLOW_SESSION_ID makes author==reviewer and blocks
+  // every chapter under ENFORCE_SESSION_INDEPENDENCE=1 — this warning must not silently vanish.
+  assert.match(runbook, /do NOT also `export CHAPTERFLOW_SESSION_ID`/i, "runbook must warn against a single exported session id under strict mode");
 });
 
 test("WS-5: the writer card forbids defending a deterministic register ban (B4) as a false positive", () => {

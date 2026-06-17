@@ -31,7 +31,8 @@ import { runIntraBookChecks } from "./critics/intraBook.js";
 import { checkQcAttestation } from "./critics/qcAttestation.js";
 import { checkKeyJudge } from "./critics/quizKeyGate.js";
 import { isNoApiCodexQcMode } from "./qc/noApiMode.js";
-import { checkSourceV2Gate } from "./qc/sourceV2Gate.js";
+import { checkSourceV2Gate, expectedSourceChapters, loadSourceV2Sidecar } from "./qc/sourceV2Gate.js";
+import { verifiableItems, sourceVerifyGateFindings } from "./critics/sourceVerify.js";
 import { checkPlanEnforcement } from "./qc/planEnforcement.js";
 import { checkManualKeyJudge } from "./qc/manualKeyJudge.js";
 import { checkSweep } from "./qc/sweep.js";
@@ -244,6 +245,23 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       severity: "blocker" as const,
       message: f.message,
     })));
+    // Source REALITY gate (WS-4) — enforced HERE, the single point ALL promotion paths pass
+    // through, so a direct `promote-book` cannot bypass it (publish-after-qc also runs it in
+    // preflight as an early catch). check-source above proves STRUCTURE; this rejects a filled
+    // record that is rubber-stamped or non-VERIFIED. Present-but-bad always blocks; an absent
+    // record blocks only under CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 (keeps the gold corpus safe).
+    const svItems = expectedSourceChapters(bookId).flatMap((n) => {
+      const sc = loadSourceV2Sidecar(bookId, n);
+      return sc ? verifiableItems(sc) : [];
+    });
+    noApiFindings.push(...sourceVerifyGateFindings(bookId, svItems, { require: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY === "1" })
+      .filter((f) => f.severity === "blocker")
+      .map((f) => ({
+        chapter: f.chapterNumber,
+        checkId: f.checkId,
+        severity: "blocker" as const,
+        message: f.message,
+      })));
     noApiFindings.push(...checkPlanEnforcement(bookId, loadedChapters).map((f) => ({
       chapter: f.chapterNumber,
       checkId: f.checkId,

@@ -15,6 +15,7 @@ import {
   verifiableItems,
   checkSourceVerifyRecord,
   parseSourceVerifyRecord,
+  sourceVerifyRecordJsonSchema,
   type SourceVerifyItem,
 } from "../src/critics/sourceVerify.js";
 
@@ -95,6 +96,28 @@ test("checkSourceVerifyRecord BLOCKS incomplete coverage — a verifiable item m
   const r = rec([verified(1, "note one", "https://a")]); // record covers only f1, EXP5 needs f1..f5
   const f = checkSourceVerifyRecord(EXP5, r);
   assert.ok(f.some((x) => x.checkId === "SV1" && x.message.includes("ch01.f2")), "uncovered item → SV1");
+});
+
+test("source-verify-schema matches the record shape the checker consumes (producer↔consumer contract)", () => {
+  const schema: any = sourceVerifyRecordJsonSchema();
+  assert.equal(schema.properties.schemaVersion.const, "source-verify-record-v1");
+  const item = schema.properties.chapters.items.properties.items.items;
+  // The bound output must commit a REAL verdict — FILL_ME is not in the enum.
+  assert.deepEqual(item.properties.verdict.enum, ["VERIFIED", "UNVERIFIABLE", "WRONG"]);
+  assert.deepEqual(item.properties.kind.enum, ["named_example", "testable_fact"]);
+  // The schema's required item fields must be exactly the ones checkSourceVerifyRecord reads,
+  // so a schema-valid record never trips a parse/coverage error for a shape reason.
+  assert.deepEqual([...item.required].sort(), ["id", "kind", "note", "sourceRef", "verdict"]);
+  // Forward contract: a record shaped per the schema parses and checks clean.
+  const conforming = {
+    schemaVersion: "source-verify-record-v1",
+    bookId: "zz",
+    chapters: [{ chapterNumber: 1, items: [1, 2, 3, 4, 5].map((i) => ({ id: `f${i}`, kind: "testable_fact", verdict: "VERIFIED", sourceRef: `https://example.com/${i}`, note: `checked ${i}` })) }],
+  };
+  const { record, error } = parseSourceVerifyRecord(JSON.stringify(conforming));
+  assert.equal(error, undefined);
+  const exp: SourceVerifyItem[] = conforming.chapters[0].items.map((it) => ({ chapterNumber: 1, kind: "testable_fact", id: it.id, claim: "", detail: "" }));
+  assert.deepEqual(checkSourceVerifyRecord(exp, record), [], "a schema-conforming all-VERIFIED record must pass the checker");
 });
 
 test("parseSourceVerifyRecord extracts the record JSON from an emitted markdown packet", () => {

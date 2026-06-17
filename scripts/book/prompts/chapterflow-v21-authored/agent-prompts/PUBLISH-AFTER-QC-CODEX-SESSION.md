@@ -70,10 +70,23 @@ Add `--commit --push` only after checking the dry run. To version the book itsel
 — without it, only the final package + registered web files are committed:
 
 ```bash
-CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc "<bookname>" --round <roundId> --title "..." --author "..." --include-state --commit --push
+CHAPTERFLOW_NO_API_CODEX_QC=1 CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 npx tsx src/cli.ts publish-after-qc "<bookname>" --round <roundId> --title "..." --author "..." --include-state --commit --push
 ```
 (`--push` requires `--commit`. Drop `--include-state` if your repo keeps generated book
 state out of git and tracks only the package.)
+
+**New books: always set `CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1`** (on the dry run too), mirroring
+`CHAPTERFLOW_REQUIRE_KEYJUDGE=1`. With it, publish refuses a book whose source-verify record is
+missing OR rubber-stamped — a present-but-bad record blocks even without the flag, but the flag
+also blocks an ABSENT record, closing the "just don't produce a record" bypass. Omit it only for a
+legacy/gold book that predates the gate and legitimately has no record.
+
+**Also set `CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1`** for new books. It blocks a chapter whose
+QC reviewer session id equals its author session id (a writer rubber-stamping their own chapter),
+and is absence-safe (no-op if either id is missing). Because you run the write phase and the QC
+phase as SEPARATE sessions with distinct `CHAPTERFLOW_SESSION_ID`s, this bites correctly. Honest
+scope: it enforces author≠reviewer only; it does NOT make the bar↔confirm reads independent (same
+model family — that stays the adversarial confirm stance's job, not a guarantee).
 
 Commit and push only after all of these pass:
 - publish-relevant typecheck/tests pass;

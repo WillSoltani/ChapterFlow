@@ -143,6 +143,11 @@ export function transientCleanupPlan(bookId: string, roundId: string): { remove:
   if (existsSync(cards)) remove.add(cards);
   const workflow = resolve(roundDir, "qc-auto.workflow.js");
   if (existsSync(workflow)) remove.add(workflow);
+  // REVIEW-PACKET.md carries the round's LIVE plaintext role tokens (operators copy the
+  // bar/confirm tokens from it — the round itself persists only salted hashes). Remove it on
+  // publish so live tokens don't linger on disk after the round is done.
+  const reviewPacket = resolve(roundDir, "REVIEW-PACKET.md");
+  if (existsSync(reviewPacket)) remove.add(reviewPacket);
 
   if (!ledgerHasOpenFindings(bookId, roundId)) {
     for (const p of [repairPromptPath(bookId, roundId), repairBriefPath(bookId, roundId)]) {

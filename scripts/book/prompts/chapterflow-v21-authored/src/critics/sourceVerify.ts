@@ -75,11 +75,16 @@ export function verifiableItems(sc: any): SourceVerifyItem[] {
       detail: `hardSpecifics: ${hard.length ? hard.join(" · ") : "(none — a named case with no concrete specifics cannot be verified)"}`,
     });
   }
-  for (const f of sc?.testableFacts ?? []) {
+  const testableFacts = Array.isArray(sc?.testableFacts) ? sc.testableFacts : [];
+  for (let i = 0; i < testableFacts.length; i++) {
+    const f = testableFacts[i];
     items.push({
       chapterNumber,
       kind: "testable_fact",
-      id: String(f?.id ?? "fact"),
+      // Unique-by-construction id (matching the named-example fallback) so two id-less
+      // facts can't collapse to one record entry and slip SV1 coverage / SV2/SV3 checks.
+      // sourceV2Gate requires fact ids today, but this function must not depend on that.
+      id: String(f?.id ?? `fact.${chapterNumber}.${i}`),
       claim: String(f?.claim ?? "").trim(),
       detail: `derivedFrom: ${f?.derivedFrom ? String(f.derivedFrom) : "(none — fact has no provenance pointer)"}`,
     });
@@ -139,6 +144,53 @@ export function buildSourceVerificationPacket(bookId: string, sidecars: any[]): 
   L.push("When every item is VERIFIED (or its sidecar fixed and re-verified), the source is sound");
   L.push("and you may proceed to the write phase. Surface any UNVERIFIABLE/WRONG item to the operator.");
   return L.join("\n") + "\n";
+}
+
+/**
+ * JSON Schema for a FILLED source-verify-record-v1 — bind as a GPT structured-output
+ * `response_format` so the verifier emits a shape-valid record (no FILL_ME round-trips).
+ * Lives HERE, next to parseSourceVerifyRecord/checkSourceVerifyRecord that consume it, so
+ * the producer schema and the consumer checker cannot drift (a contract test asserts it).
+ * Note: `verdict` excludes FILL_ME on purpose — a bound output must COMMIT a real verdict;
+ * structured output guarantees shape, `source-verify-check` stays authoritative on substance.
+ */
+export function sourceVerifyRecordJsonSchema(): object {
+  return {
+    $schema: "https://json-schema.org/draft/2020-12/schema",
+    type: "object",
+    additionalProperties: false,
+    required: ["schemaVersion", "bookId", "chapters"],
+    properties: {
+      schemaVersion: { const: "source-verify-record-v1" },
+      bookId: { type: "string" },
+      chapters: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["chapterNumber", "items"],
+          properties: {
+            chapterNumber: { type: "integer" },
+            items: {
+              type: "array",
+              items: {
+                type: "object",
+                additionalProperties: false,
+                required: ["id", "kind", "verdict", "sourceRef", "note"],
+                properties: {
+                  id: { type: "string" },
+                  kind: { type: "string", enum: ["named_example", "testable_fact"] },
+                  verdict: { type: "string", enum: ["VERIFIED", "UNVERIFIABLE", "WRONG"] },
+                  sourceRef: { type: "string" },
+                  note: { type: "string" },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
 }
 
 /** Extract the `source-verify-record-v1` JSON from a FILLED packet (markdown with a
