@@ -101,7 +101,7 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
               whileTap={prefersReducedMotion ? {} : { scale: 0.97 }}
               onClick={() => toggleInterest(slug)}
               aria-pressed={isSelected}
-              className="relative flex min-h-12 items-center gap-2 overflow-hidden rounded-(--radius-lg-val) px-4 py-3"
+              className="relative flex min-h-12 items-start gap-2 overflow-hidden rounded-(--radius-lg-val) px-4 py-3"
               style={{
                 backgroundColor: isSelected
                   ? "color-mix(in srgb, var(--accent-cyan) 10%, transparent)"
@@ -116,14 +116,14 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
               <Icon
                 size={20}
                 strokeWidth={1.5}
-                className="shrink-0"
+                className="mt-0.5 shrink-0"
                 style={{
                   color: isSelected ? "var(--accent-cyan)" : "var(--text-secondary)",
                   transition: "color var(--duration-fast) var(--ease-out)",
                 }}
               />
               <span
-                className="overflow-hidden text-ellipsis whitespace-nowrap text-sm"
+                className="min-w-0 break-words text-sm leading-tight"
                 style={{
                   color: isSelected ? "var(--text-heading)" : "var(--text-primary)",
                   transition: "color var(--duration-fast) var(--ease-out)",

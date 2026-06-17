@@ -188,7 +188,7 @@ export function OnboardingFlow() {
 
       {/* Header */}
       <header
-        className="fixed top-7 left-0 right-0 z-40 flex items-center justify-between px-5 py-3"
+        className="fixed top-7 left-0 right-0 z-40 flex items-center justify-between bg-(--bg-base)/85 px-5 py-3 backdrop-blur-md"
       >
         {/* Left side: back button + logo */}
         <div className="flex items-center gap-3">
