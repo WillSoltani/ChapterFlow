@@ -115,6 +115,21 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
   gold-corpus-zero + ≥2-TP bar for `ENFORCED_MAJOR`). FP-risk: **low**.
 - Caught by: `book-repetition.test.ts` (BP28–30), `quiz-choice-label.test.ts` (BP31) — inject-and-catch + paired no-false-positive.
 
+**FC-2026-06-17-007 — poor source fit (doomed / repetitive run)**
+- Stage: research
+- Failure: a book whose chapters are all facets of one idea taught by the same few figures, or
+  whose sidecars are too thin, fights v21 pedagogy → a doomed or templated run discovered only
+  AFTER 7+ chapters are authored.
+- Root cause: the research prompt's "poor fit" warning is prose the operator can skip (the same
+  decorative-guidance failure as the source-verify rubber-stamp, FC-001).
+- Fix type: prevention (rung 1) — `source-fit` computes diversity metrics from the sidecars
+  (thin chapters, figure concentration, framework repetition, fact thinness) and prints
+  OK/WATCH/RISKY at research time. ADVISORY (never blocks).
+- Status: **advisory**. FP-risk: **low** — calibrated zero-RISKY across the clean corpus
+  (gifts/year-of-less/stillness + digital-minimalism all read OK); thresholds grounded in the
+  measured clean floors (MIN_NAMED=2, MIN_FACTS=3, figure-concentration ≥60% vs the clean ~15%).
+- Caught by: `source-fit.test.ts` (a monotonous/thin fixture reads RISKY; a varied one reads OK).
+
 ---
 
 ## Gold-corpus regression — how to check the rung-2/3/4 bars

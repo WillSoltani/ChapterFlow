@@ -89,6 +89,9 @@ Commands:
   source-verify-schema               Print the JSON Schema for a filled source-verify record (bind as GPT response_format)
   source-verify-workbench <bookId>   Emit a local offline HTML form to fill the record per item (verdict/sourceRef/note,
                                      copy-search-query); its Download button writes the JSON source-verify-check reads.
+  source-fit <bookId> [--json]       ADVISORY research-time fit classifier: OK/WATCH/RISKY from sidecar diversity
+                                     (thin chapters, figure concentration, framework repetition). Catch a doomed run
+                                     before writing. Never blocks (exits 0). Calibrated zero-RISKY on the clean corpus.
   derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
@@ -821,6 +824,32 @@ async function runSourceVerify(args: string[], flags: Record<string, string | bo
 async function runSourceVerifySchema(): Promise<number> {
   const { sourceVerifyRecordJsonSchema } = await import("./critics/sourceVerify.js");
   console.log(JSON.stringify(sourceVerifyRecordJsonSchema(), null, 2));
+  return 0;
+}
+
+/** `source-fit <bookId> [--json]` — ADVISORY research-time fit classifier. Computes diversity
+ *  metrics from the source-v2 sidecars (thin chapters, figure concentration, framework repetition,
+ *  fact thinness) and prints an OK/WATCH/RISKY verdict so a doomed/repetitive run is caught before
+ *  authoring. Never blocks — exits 0 regardless. */
+async function runSourceFit(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: source-fit <bookId|title> [--json]");
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  const { expectedSourceChapters, loadSourceV2Sidecar } = await import("./qc/sourceV2Gate.js");
+  const { computeSourceFitMetrics, classifySourceFit, formatSourceFit } = await import("./sourceFit.js");
+  const sidecars = expectedSourceChapters(bookId).map((n) => loadSourceV2Sidecar(bookId, n)).filter((sc) => sc !== null);
+  if (sidecars.length === 0) {
+    console.error(`No source sidecars for "${bookId}" — run research (phase 1) first.`);
+    return 2;
+  }
+  const report = classifySourceFit(bookId, computeSourceFitMetrics(sidecars));
+  if (flags["json"] === true) console.log(JSON.stringify(report, null, 2));
+  else console.log(formatSourceFit(report));
   return 0;
 }
 
@@ -4241,6 +4270,8 @@ async function main() {
       return runSourceVerifySchema();
     case "source-verify-workbench":
       return runSourceVerifyWorkbench(args, flags);
+    case "source-fit":
+      return runSourceFit(args, flags);
     case "derive-artifacts":
       return runDeriveArtifacts(args);
     case "research":

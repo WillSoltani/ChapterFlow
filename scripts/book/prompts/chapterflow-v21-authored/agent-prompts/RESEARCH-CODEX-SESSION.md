@@ -79,6 +79,16 @@ Proceed to the writer **only** when `source-verify-check` prints `PASS` (exit 0)
 real source per item and write a per-item note — a single boilerplate note pasted across every
 item is what flags the rubber-stamp.
 
+### Advisory: is this book a good v21 fit?
+Some books fight v21 pedagogy — all chapters facets of one idea taught by the same few figures, or
+sidecars too thin to ground varied examples. Catch that NOW, before authoring 7+ chapters:
+```bash
+npx tsx src/cli.ts source-fit <bookId>
+```
+It prints `OK` / `WATCH` / `RISKY` from sidecar diversity (it never blocks). On `RISKY`, re-unitize
+the source (more distinct cases/figures per chapter) or pick a different book before handing off —
+a RISKY source produces a templated, repetitive book that QC will REVISE chapter after chapter.
+
 ## 2. Hand off to the writer
 When the phase reaches `write-chapter`, research is done. Hand off in a NEW session to
 **`WRITE-ORCHESTRATE-CODEX-SESSION.md`** (the parallel writer-orchestrator) with:
