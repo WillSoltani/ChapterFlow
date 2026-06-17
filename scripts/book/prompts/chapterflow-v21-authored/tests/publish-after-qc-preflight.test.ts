@@ -13,7 +13,7 @@ import { qcRoundPath, openQcRound } from "../src/qc/qcRound.js";
 import { repairLedgerPath, roundRecordPath, orchestratorRoundDir, writeBarReadArtifact, writeConfirmReadArtifact } from "../src/qc/orchestrator/artifacts.js";
 import { REQUIRED_SWEEP_FAMILIES, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { sourceHashFor, sourceSidecarPathFor } from "../src/qc/sourceV2Gate.js";
-import { publishAfterQc } from "../src/qc/publishAfterQc.js";
+import { publishAfterQc, formatPreflightChecklist } from "../src/qc/publishAfterQc.js";
 
 const GREEN_BOOK = "zz-fixture-publish-green";
 const REVISE_BOOK = "zz-fixture-publish-revise";
@@ -329,6 +329,18 @@ test("publish-after-qc blocks REVISE evidence and prints repair prompt path", ()
   }
 });
 
+test("formatPreflightChecklist marks passed checks ✓ and failed checks ✗ with a count", () => {
+  const out = formatPreflightChecklist([
+    { check: "source-v2", blockers: [] },
+    { check: "sweep", blockers: ["sweep BP30: ...", "sweep BP31: ..."] },
+    { check: "majors", blockers: [] },
+  ]);
+  assert.match(out, /2\/3 checks passed/);
+  assert.match(out, /✓ source-v2/);
+  assert.match(out, /✗ sweep \(2 blocker\(s\)\)/);
+  assert.match(out, /✓ majors/);
+});
+
 test("publish-after-qc all-green fixture passes dry-run without staging or publishing", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   const stagedBefore = runCli(["help"]).status; // cheap CLI smoke; dry-run should not need git.
@@ -343,6 +355,9 @@ test("publish-after-qc all-green fixture passes dry-run without staging or publi
     assert.equal(result.ok, true, result.errors.join("\n"));
     assert.equal(existsSync(pkgPath), false, "dry-run must not promote a package");
     assert.ok(result.next?.some((line) => line.includes("would promote")));
+    // The definition-of-done checklist is populated and every item passed on the green fixture.
+    assert.ok((result.checks?.length ?? 0) >= 10, "preflight checklist should enumerate every DoD check");
+    assert.ok(result.checks!.every((c) => c.blockers.length === 0), "every preflight check should PASS on the all-green fixture");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;

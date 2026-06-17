@@ -159,6 +159,15 @@ test("the failure-class registry documents the anti-overfit promotion ladder and
   assert.match(doc("agent-prompts/RUN-A-BOOK.md"), regressionCmd, "runbook must point maintainers at the gold-corpus regression");
 });
 
+test("the production definition-of-done enumerates the real per-phase stack and the runtime checklist", () => {
+  const dod = doc("docs/pipeline/PRODUCTION-DEFINITION-OF-DONE.md");
+  for (const c of ["check-source", "source-v2-gate", "source-verify-check", "author-check", "gate-chapter", "fanout --barrier", "manual-keyjudge", "publish-after-qc"]) {
+    assert.ok(dod.includes(c), `DoD must list the ${c} check`);
+  }
+  // It must point at the runtime checklist that ENFORCES the publish half (not just prose).
+  assert.match(dod, /noApiPreflightChecks/, "DoD must reference the runtime preflight checklist");
+});
+
 test("every failure-class entry names an EXISTING catch-test (the fault-injection / false-negative inventory)", () => {
   const reg = doc("docs/pipeline/FAILURE-CLASS-REGISTRY.md");
   const fcEntries = [...reg.matchAll(/^\*\*FC-\d{4}-\d{2}-\d{2}-\d{3} —/gm)];

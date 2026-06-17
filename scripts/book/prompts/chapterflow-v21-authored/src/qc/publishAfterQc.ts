@@ -75,6 +75,8 @@ export type PublishAfterQcResult = {
   errors: string[];
   warnings: string[];
   next?: string[];
+  /** The publish-preflight definition-of-done checklist (which items passed). */
+  checks?: PreflightCheck[];
 };
 
 type Metadata = { title?: string; author?: string; source?: string };
@@ -258,24 +260,23 @@ function chapterSpecs(bookId: string) {
   }
 }
 
-function noApiPreflightBlockers(bookId: string): string[] {
+export type PreflightCheck = { check: string; blockers: string[] };
+
+/** The publish-preflight as a STRUCTURED per-check battery — every check appears whether it
+ *  passed (empty blockers) or failed, so publish-after-qc can print a "definition of done"
+ *  checklist of which items passed. noApiPreflightBlockers derives the flat list from this, so
+ *  the gating behaviour is byte-identical to before. */
+function noApiPreflightChecks(bookId: string): PreflightCheck[] {
   const chapters = loadBookChapters(bookId).sort((a, b) => a.number - b.number);
-  const blockers: string[] = [];
+  const ship: string[] = [], intra: string[] = [], qcStatus: string[] = [], quizKey: string[] = [], manualKey: string[] = [];
   for (const ch of chapters) {
-    const ship = runShipGate(ch);
-    blockers.push(...ship.blockers.map((f) => `ship ch${ch.number} ${f.catalogId}: ${f.message}`));
-    const intra = runIntraBookChecks(ch, chapters.filter((other) => other.number < ch.number));
-    blockers.push(...intra.filter((f) => f.severity === "blocker").map((f) => `intra ch${ch.number} ${f.checkId}: ${f.message}`));
-    blockers.push(...checkQcAttestation(ch, true).map((f) => `qc-status ch${ch.number} ${f.checkId}: ${f.message}`));
-    blockers.push(...checkKeyJudge(ch, true, process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE === "1").map((f) => `quiz-key ch${ch.number} ${f.checkId}: ${f.message}`));
-    blockers.push(...checkManualKeyJudge(ch, true).map((f) => `manual-keyjudge ch${ch.number} ${f.checkId}: ${f.message}`));
+    ship.push(...runShipGate(ch).blockers.map((f) => `ship ch${ch.number} ${f.catalogId}: ${f.message}`));
+    intra.push(...runIntraBookChecks(ch, chapters.filter((other) => other.number < ch.number)).filter((f) => f.severity === "blocker").map((f) => `intra ch${ch.number} ${f.checkId}: ${f.message}`));
+    qcStatus.push(...checkQcAttestation(ch, true).map((f) => `qc-status ch${ch.number} ${f.checkId}: ${f.message}`));
+    quizKey.push(...checkKeyJudge(ch, true, process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE === "1").map((f) => `quiz-key ch${ch.number} ${f.checkId}: ${f.message}`));
+    manualKey.push(...checkManualKeyJudge(ch, true).map((f) => `manual-keyjudge ch${ch.number} ${f.checkId}: ${f.message}`));
   }
   const bookGate = runBookGate(bookId, chapters);
-  blockers.push(...bookGate.findings.filter((f) => f.severity === "blocker").map((f) => `book-gate ${f.catalogId}: ${f.message}`));
-  blockers.push(...checkSourceV2Gate(bookId, chapters.map((ch) => ch.number)).findings.map((f) => `source-v2 ch${f.chapterNumber} ${f.checkId}: ${f.message}`));
-  blockers.push(...checkPlanEnforcement(bookId, chapters).map((f) => `plan ch${f.chapterNumber} ${f.checkId}: ${f.message}`));
-  blockers.push(...checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`));
-  blockers.push(...unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`));
   // WS-4 source-reality gate: a PRESENT-but-rubber-stamped verification record (the
   // digital-minimalism failure) blocks; an absent record blocks only under the opt-in
   // CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1, so the gold corpus is not retroactively bricked.
@@ -283,10 +284,31 @@ function noApiPreflightBlockers(bookId: string): string[] {
     const sc = loadSourceV2Sidecar(bookId, n);
     return sc ? verifiableItems(sc) : [];
   });
-  blockers.push(...sourceVerifyGateFindings(bookId, svItems, { require: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY === "1" })
-    .filter((f) => f.severity === "blocker")
-    .map((f) => `source-verify ${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}: ${f.message}`));
-  return blockers;
+  return [
+    { check: "ship-gate", blockers: ship },
+    { check: "intra-book", blockers: intra },
+    { check: "qc-status", blockers: qcStatus },
+    { check: "quiz-key", blockers: quizKey },
+    { check: "manual-keyjudge", blockers: manualKey },
+    { check: "book-gate", blockers: bookGate.findings.filter((f) => f.severity === "blocker").map((f) => `book-gate ${f.catalogId}: ${f.message}`) },
+    { check: "source-v2", blockers: checkSourceV2Gate(bookId, chapters.map((ch) => ch.number)).findings.map((f) => `source-v2 ch${f.chapterNumber} ${f.checkId}: ${f.message}`) },
+    { check: "plan-enforcement", blockers: checkPlanEnforcement(bookId, chapters).map((f) => `plan ch${f.chapterNumber} ${f.checkId}: ${f.message}`) },
+    { check: "sweep", blockers: checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`) },
+    { check: "majors", blockers: unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`) },
+    { check: "source-verify", blockers: sourceVerifyGateFindings(bookId, svItems, { require: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY === "1" }).filter((f) => f.severity === "blocker").map((f) => `source-verify ${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}: ${f.message}`) },
+  ];
+}
+
+function noApiPreflightBlockers(bookId: string): string[] {
+  return noApiPreflightChecks(bookId).flatMap((c) => c.blockers);
+}
+
+/** Render the publish-preflight checklist — which definition-of-done items passed. */
+export function formatPreflightChecklist(checks: PreflightCheck[]): string {
+  const passed = checks.filter((c) => c.blockers.length === 0).length;
+  const lines = [`publish preflight — ${passed}/${checks.length} checks passed:`];
+  for (const c of checks) lines.push(c.blockers.length === 0 ? `  ✓ ${c.check}` : `  ✗ ${c.check} (${c.blockers.length} blocker(s))`);
+  return lines.join("\n");
 }
 
 function packageLooksV21(path: string): boolean {
@@ -537,7 +559,8 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
       errors.push(`ch${String(d.chapterNumber).padStart(2, "0")} ${d.finalVerdict}: ${d.reason}`);
     }
   }
-  const blockers = noApiPreflightBlockers(bookId);
+  const preflightChecks = noApiPreflightChecks(bookId);
+  const blockers = preflightChecks.flatMap((c) => c.blockers);
   if (blockers.length) errors.push(...blockers.slice(0, 20));
   if (errors.length) {
     return {
@@ -546,6 +569,7 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
       roundId,
       errors,
       warnings,
+      checks: preflightChecks,
       next: [
         `repair prompt: ${repairPrompt}`,
         `resume: CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass --round ${roundId}`,
@@ -588,7 +612,7 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
     next.push(`would push: ${options.push === true ? "yes, after commit" : "no"}`);
     next.push(`publish: CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc ${JSON.stringify(bookId)} --round ${roundId} --title ${JSON.stringify(meta.title)} --author ${JSON.stringify(meta.author)}`);
     if (options.commit || options.push) next.push("add --commit --push after reviewing the dry run");
-    return { ok: true, bookId, roundId, packagePath, registeredFiles, cleaned, preserved, staged, pushed: false, errors, warnings, next };
+    return { ok: true, bookId, roundId, packagePath, registeredFiles, cleaned, preserved, staged, pushed: false, errors, warnings, checks: preflightChecks, next };
   }
 
   try {
@@ -676,7 +700,7 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
   }
 
   next.push("verify production route / app catalog");
-  return { ok: true, bookId, roundId, packagePath, registeredFiles, cleaned, preserved, staged, commitHash, pushed, errors, warnings, next };
+  return { ok: true, bookId, roundId, packagePath, registeredFiles, cleaned, preserved, staged, commitHash, pushed, errors, warnings, checks: preflightChecks, next };
 }
 
 export function formatPublishAfterQcResult(result: PublishAfterQcResult): string {
@@ -684,6 +708,7 @@ export function formatPublishAfterQcResult(result: PublishAfterQcResult): string
   const lines: string[] = [];
   lines.push(result.ok ? `PUBLISH AFTER QC PASS - ${book}` : `PUBLISH AFTER QC BLOCKED - ${book}`);
   if (result.roundId) lines.push(`round: ${result.roundId}`);
+  if (result.checks?.length) lines.push(formatPreflightChecklist(result.checks));
   if (result.packagePath) lines.push(`package: ${result.packagePath}`);
   if (result.registeredFiles?.length) {
     lines.push("registered:");
