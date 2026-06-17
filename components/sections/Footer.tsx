@@ -61,12 +61,12 @@ export function Footer() {
           </div>
 
           {/* Right: Nav links */}
-          <nav className="flex flex-row gap-6">
+          <nav className="flex flex-row flex-wrap justify-center gap-x-6 gap-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="nav-link text-[13px] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+                className="nav-link whitespace-nowrap text-[13px] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                 style={{ color: "var(--text-muted)" }}
               >
                 {link.label}
