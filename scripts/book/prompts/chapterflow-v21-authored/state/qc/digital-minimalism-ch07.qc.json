@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "qc-attest-v1",
+  "bookId": "digital-minimalism",
+  "chapterNumber": 7,
+  "chapterId": "digital-minimalism-ch07",
+  "verdict": "PUBLISHABLE",
+  "contentHash": "d4316b005a09bcf1",
+  "hashVersion": "v2",
+  "reviewer": "codex-qc:auto:r20260617025157-b9b1bf",
+  "reviewedAt": "2026-06-17T03:12:59.082Z",
+  "roundId": "r20260617025157-b9b1bf",
+  "roundRole": "confirm",
+  "dimensions": {
+    "sourceV2": true,
+    "shipGate": true,
+    "bookGate": true,
+    "sweepClean": true,
+    "keysCorrect": true,
+    "barGreen": true,
+    "confirmPassed": true,
+    "noOpenRepairFindings": true
+  },
+  "evidence": {
+    "orchestratorRoundId": "r20260617025157-b9b1bf",
+    "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/evidence-matrix.json",
+    "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/digital-minimalism-ch07.manual-keyjudge.json",
+    "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/digital-minimalism.sweep.json",
+    "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/submissions/bar/ch07.bar-read.json",
+    "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/submissions/confirm/ch07.confirm-read.json",
+    "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/repair-ledger.jsonl",
+    "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/repair-brief.md"
+  },
+  "findings": [],
+  "notes": "qc-orchestrator finalize: PUBLISHABLE; Deep confirm read tried to refute publishability across quiz keys, examples, cards, plan actions, memorable lines, and source fidelity; no quote-backed blocker held.",
+  "history": [
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "digital-minimalism",
+      "chapterNumber": 7,
+      "chapterId": "digital-minimalism-ch07",
+      "verdict": "REVISE",
+      "contentHash": "117824fae81fe14b",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:auto:r20260617021855-8ea0b5",
+      "reviewedAt": "2026-06-17T02:30:08.372Z",
+      "roundId": "r20260617021855-8ea0b5",
+      "roundRole": "attest",
+      "dimensions": {
+        "sourceV2": true,
+        "shipGate": true,
+        "bookGate": true,
+        "sweepClean": false,
+        "keysCorrect": true,
+        "barGreen": true,
+        "confirmPassed": false,
+        "noOpenRepairFindings": false
+      },
+      "evidence": {
+        "orchestratorRoundId": "r20260617021855-8ea0b5",
+        "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617021855-8ea0b5/evidence-matrix.json",
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/digital-minimalism-ch07.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/digital-minimalism.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617021855-8ea0b5/submissions/bar/ch07.bar-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617021855-8ea0b5/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617021855-8ea0b5/repair-brief.md"
+      },
+      "findings": [
+        "major qcf-9234550e4b7f073e digital-minimalism-sweep-persona-drift: The sweep pack reuses the same first names for apparently different actors or roles, creating persona drift. Charles reads as a teen peer in one chapter 4 scenario and as a sales lead in another. Gaelle is introduced as a public-interest attorney, then as a peer coach on a factory floor.",
+        "major qcf-3efa8ef6960b6b70 digital-minimalism-sweep-persona-drift: The sweep pack reuses the same first names for apparently different actors or roles, creating persona drift. Charles reads as a teen peer in one chapter 4 scenario and as a sales lead in another. Gaelle is introduced as a public-interest attorney, then as a peer coach on a factory floor."
+      ],
+      "notes": "qc-orchestrator finalize: REVISE; one or more gates, reads, or repair-ledger checks require revision"
+    },
+    {
+      "schemaVersion": "qc-attest-v1",
+      "bookId": "digital-minimalism",
+      "chapterNumber": 7,
+      "chapterId": "digital-minimalism-ch07",
+      "verdict": "PUBLISHABLE",
+      "contentHash": "d4316b005a09bcf1",
+      "hashVersion": "v2",
+      "reviewer": "codex-qc:auto:r20260617025157-b9b1bf",
+      "reviewedAt": "2026-06-17T03:09:54.100Z",
+      "roundId": "r20260617025157-b9b1bf",
+      "roundRole": "confirm",
+      "dimensions": {
+        "sourceV2": true,
+        "shipGate": true,
+        "bookGate": true,
+        "sweepClean": true,
+        "keysCorrect": true,
+        "barGreen": true,
+        "confirmPassed": true,
+        "noOpenRepairFindings": true
+      },
+      "evidence": {
+        "orchestratorRoundId": "r20260617025157-b9b1bf",
+        "evidenceMatrixPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/evidence-matrix.json",
+        "manualKeyJudgePath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/digital-minimalism-ch07.manual-keyjudge.json",
+        "sweepPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/digital-minimalism.sweep.json",
+        "barReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/submissions/bar/ch07.bar-read.json",
+        "confirmReadPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/submissions/confirm/ch07.confirm-read.json",
+        "repairLedgerPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/repair-ledger.jsonl",
+        "repairBriefPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/digital-minimalism/r20260617025157-b9b1bf/repair-brief.md"
+      },
+      "findings": [],
+      "notes": "qc-orchestrator finalize: PUBLISHABLE; Deep confirm read tried to refute publishability across quiz keys, examples, cards, plan actions, memorable lines, and source fidelity; no quote-backed blocker held."
+    }
+  ]
+}

@@ -67,6 +67,7 @@ import auto_rich_dad_poor_dad_Json from "@/book-packages/rich-dad-poor-dad.v21.j
 import auto_think_and_grow_rich_Json from "@/book-packages/think-and-grow-rich.v21.json";
 import auto_stillness_is_the_key_Json from "@/book-packages/stillness-is-the-key.v21.json";
 import auto_the_gifts_of_imperfection_Json from "@/book-packages/the-gifts-of-imperfection.v21.json";
+import auto_digital_minimalism_Json from "@/book-packages/digital-minimalism.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { isV21RawPackage, normalizeV21Package } from "@/app/book/lib/v21-adapter";
 
@@ -1965,4 +1966,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_gifts_of_imperfection_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-gifts-of-imperfection"] = (tone) => normalizeAnyPackage(auto_the_gifts_of_imperfection_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "digital-minimalism" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_digital_minimalism_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["digital-minimalism"] = (tone) => normalizeAnyPackage(auto_digital_minimalism_Json, tone);
 }

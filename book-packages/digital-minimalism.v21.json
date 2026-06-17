@@ -1,0 +1,2053 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "packageId": "digital-minimalism-v21-1781665980913",
+  "createdAt": "2026-06-17T03:13:00.913Z",
+  "contentOwner": "chapterflow",
+  "book": {
+    "bookId": "digital-minimalism",
+    "title": "Digital Minimalism",
+    "author": "Cal Newport",
+    "categories": [
+      "Productivity",
+      "Communication",
+      "Psychology"
+    ],
+    "tags": [
+      "lopsided-arms-race",
+      "digital-minimalism",
+      "digital-declutter",
+      "solitude-deprivation",
+      "conversation-centric-connection",
+      "high-quality-leisure",
+      "attention-resistance"
+    ]
+  },
+  "chapters": [
+    {
+      "chapterId": "digital-minimalism-ch01",
+      "number": 1,
+      "title": "A Lopsided Arms Race",
+      "readingTimeMinutes": 12,
+      "hook": "Have I been calling it willpower when my phone was built to win?",
+      "counterintuition": "Useful tools became hard to resist: the same features that helped us connect also taught us to check.",
+      "tryThisNow": "Within the next 24 hours, the first time you touch your laptop lid before a reflex check, record the cue, the app, and who chose the timing.",
+      "keyTakeaway": "Size the contest before blaming your willpower: useful tools can still be built to capture attention, so choose rules from values, not convenience.",
+      "breakdown": {
+        "fastRead": "Steve Jobs held up the iPhone at Macworld in January 2007 as three tools in one: a phone, an iPod, and an internet communicator. That pitch was clean and useful. It did not sound like a plan for a pocket slot machine of alerts, feeds, and social checks.\n\nThe mismatch is the start of the lopsided arms race. One side has an ordinary person with a vague hope to check less. The other has platforms that test taps, colors, alerts, and rewards. Convenience is not consent.\n\nFacebook shows the same drift in a smaller button. A Like turns approval into a public signal that costs almost nothing to give. Soon the person is not only posting. They are returning to see who noticed. A useful tool can still become a leash.",
+        "deepRead": "The contest starts when a tool changes who gets to choose the moment. Pull-based use begins with you: open the map, send the message, play the song. Interruption-based use begins with the tool: buzz, badge, tag, count, red dot. Once the device asks first, your good intention has to answer a fresh request all day.\n\nFacebook's Like button made that shift feel friendly. The 2009 rollout gave people a fast way to show approval. A tap could tell Aspen that the photo landed, the joke worked, or the group cared. The signal was small, but it was public, repeated, and tied to status. That is why it changed behavior. Social approval became a design feature.\n\nLow-value checks still pay the platform. Cedric's two-minute glance in a grocery line may not help him much, but it can add data, ad space, and one more turn of the habit. The company does not need every session to be wise. It needs many sessions to be frequent enough.\n\nWillpower needs a map before it needs a scold. The map has three parts: ordinary user intention, platform engagement incentives, and design tuned by tests. Cedric can still make choices, but he should stop treating the contest as a fair arm wrestle. A person with one private promise is facing teams that measure which cue brings him back.",
+        "fullRead": "A birthday reminder can be genuinely useful. Gwen does want to know when her cousin is celebrating, and a Facebook group can save a real evening of phone calls. That is why scolding screens misses the point. The most effective attention traps often arrive wrapped around real help.\n\nThe first skill is to separate the benefit from the capture system around it. If Gwen needs the group event, she can ask what exact job the tool does. Does it tell her the date, gather RSVPs, or share photos after the party? Then she can ask what extra cost rides along: feed drift, approval checks, alerts, or a habit of opening the app whenever she feels bored.\n\nThat split changes the moral story. Gwen is not weak because a useful tool kept pulling her back. She is also not helpless. She can judge the tool by the value it serves, then write a rule that protects that value from the parts built to take more.\n\nMacworld 2007 helps here because the iPhone's first story was not false. A phone plus iPod plus internet communicator really was useful. The later problem was growth past the reason for adoption. Once a tool gains a place in daily life, new apps and feeds can add claims on attention that were never part of the original bargain.\n\nFacebook's Like button gives the small version of the same pattern. One tap looks too tiny to matter. Across a day, though, it teaches a loop: post, wait, check, feel seen, check again. The user feels a private itch. The platform sees a working product.\n\nThis is why tips alone feel thin. Turning off one alert may help, but the next convenience will still ask for entry. Without a rule for what belongs, each new feature gets judged at its best moment. The calendar invite is useful. The group thread is useful. The news link is useful. One by one, usefulness becomes the wrong test.\n\nThe better test starts with autonomy, a plain word for self-rule. Ask whether the tool helps a chosen value without taking more attention than that value deserves. If the answer is no, the tool may need a strict rule, a narrow window, or no place at all. A strict rule is not anti-technology. It is pro-choice.\n\nThe precondition is honesty about the opponent. Digital minimalism assumes you can name the contest before you choose your tools. When that honesty is absent, convenience keeps winning by default. You keep asking whether the app has any use, and the app keeps asking for your life in small, easy pieces."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Macworld Tape Review",
+          "tags": [
+            "history",
+            "adoption"
+          ],
+          "scenario": "Romain pauses the Macworld 2007 footage in a media lab after the auditorium applause fades. His notebook lists Steve Jobs, iPhone, phone plus iPod plus internet communicator. The find changes his read: the launch pitch sold elegant utility, not a life of feed checks. The later habit problem grew after the tool had already earned a place in the pocket.",
+          "whatToDo": "Romain writes the original job of the iPhone beside its later attention cost. He separates the reason for adoption from the habits that arrived after adoption.",
+          "whyItMatters": "A tool can be useful at entry and costly later. Seeing that drift keeps the reader from blaming the first yes for every later capture loop."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Like Count Loop",
+          "tags": [
+            "social feedback",
+            "design"
+          ],
+          "scenario": "Aspen stares at the Facebook Like button spec on her desk after lunch. Tiny, she thinks. Too small to matter. Then the wrong turn lands: if a tap is public, fast, and tied to social validation, people will post and come back to count it. The 2009 rollout stops looking like decoration and starts looking like a return path.",
+          "whatToDo": "Aspen names the feedback loop before praising the feature. She asks what the Like button trains people to repeat, not only what it lets them express.",
+          "whyItMatters": "Small design pieces can steer large habits when they make approval visible. The reader learns to inspect the loop, not the button size."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Home Screen Budget",
+          "tags": [
+            "attention",
+            "planning"
+          ],
+          "scenario": "Cedric has not moved a single icon yet. At the dinner table, his phone, grocery list, and work badge sit beside one another while he budgets attention for the week. The lopsided arms race makes the scarce item plain. He is not choosing which apps are pleasant. He is deciding which tools deserve a daily place before platform engagement incentives begin asking for more.",
+          "whatToDo": "Cedric gives each app a job before it earns home-screen space. Anything without a named value moves off the first screen before the week starts.",
+          "whyItMatters": "Planning before the cue appears protects user intention. Once alerts and feeds begin, convenience gets louder than the values Cedric meant to serve."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Group Thread Price",
+          "tags": [
+            "community",
+            "tradeoff"
+          ],
+          "scenario": "On Thursday night in the community center hall, Gwen coordinates the art co-op through a Facebook group chat while the feed waits one swipe away. Leaving the group would strand members who rely on her updates. Staying with no rule would turn every pickup time into twenty minutes of scrolling and Like checks. She has to choose between lost coordination and an attention cost that keeps growing.",
+          "whatToDo": "Gwen keeps the group but narrows the rule: open Facebook for co-op updates only, then leave before the feed or Like counts become the task.",
+          "whyItMatters": "Real usefulness does not excuse unlimited use. The move keeps the benefit while refusing the extra capture bundled around it."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Approval Signal Exchange",
+          "tags": [
+            "dialogue",
+            "social approval"
+          ],
+          "scenario": "Oliver points to the Like button chart on the conference room screen. Maxime says, \"It is only a tap.\" Oliver answers, \"Then why do people return to count it?\" The room goes quiet. Facebook's 2009 rollout made social validation measurable and public, and the tap's low cost is exactly why the checking loop can run so often.",
+          "whatToDo": "Oliver tests the feature by the behavior it invites after the tap. He treats repeat checking as part of the design result, not as a side issue.",
+          "whyItMatters": "A design choice should be judged by the habit it creates. Low friction can make social approval feel casual while training repeated return."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Two Minute Reveal",
+          "tags": [
+            "advertising",
+            "habit"
+          ],
+          "scenario": "At the coffee shop counter after the lunch rush, attention auditor Brielle expects the phone audit to show one obvious problem: long scrolling sessions. The receipt beside her cup says otherwise. Most pickups lasted under two minutes, yet each one added data, ads, and another tug on the habit. The surprise is the scale. Low-value checking can be profitable even when each glance feels too small to count.",
+          "whatToDo": "Brielle records the tiny checks instead of ignoring them. She counts who gains from each glance before deciding whether the glance served her.",
+          "whyItMatters": "Short checks are not harmless just because they are brief. At platform scale, frequency can matter more than duration."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "Romain replays the January 2007 iPhone keynote and then checks his own feed habit. Which reading best fits the evidence?",
+            "choices": [
+              "The iPhone was sold as a social-feed hub, so later checking mainly fulfilled the first pitch Jobs gave.",
+              "The iPhone entered as a useful phone, iPod, and internet tool, then later use grew past that pitch.",
+              "The iPhone became risky only because people stopped valuing its original helpful features."
+            ],
+            "correctIndex": 1,
+            "explanation": "The launch story centered on converged utility. The later feed habit shows how a tool can grow beyond the reason people first accepted it.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "While reviewing Facebook's 2009 Like button for a training deck, Aspen says, \"It is only a Like,\" and wants to mark it harmless. What does her line miss before the team copies the pattern?",
+            "choices": [
+              "A Like matters mainly when people mistake quick social feedback for lasting friendship.",
+              "A Like can make approval quick, public, and measurable enough to invite return checks.",
+              "A Like becomes harmful only when Aspen's post has no practical purpose for her friends."
+            ],
+            "correctIndex": 1,
+            "explanation": "The Like button is small, but its signal is visible and repeatable. That can turn approval into a loop of posting and checking.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "After two co-op members miss pickup updates, Gwen says her Facebook group is useful. Which next judgment keeps the split clear?",
+            "choices": [
+              "She should accept the full platform cost because one group feature saves coordination work for the co-op each week.",
+              "She should drop the group because a useful feature usually hides a larger social cost.",
+              "She should keep the useful job separate from feeds, alerts, and checks that exceed that job."
+            ],
+            "correctIndex": 2,
+            "explanation": "A real benefit can coexist with extra capture. The right test asks what job the tool serves and what attention cost rides along.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Cedric thinks push alerts merely save him from forgetting messages. Which result should he expect if he leaves them unexamined?",
+            "choices": [
+              "Cedric will notice fewer urges because alerts remove the need to remember message tasks on busy days.",
+              "Cedric will keep full control because alerts only appear after he chooses a goal.",
+              "Cedric will answer platform timing more often before he has chosen to seek anything."
+            ],
+            "correctIndex": 2,
+            "explanation": "Push alerts move the first move from user to device. They may help at times, but they also make Cedric respond to someone else's timing.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Brielle dismisses her two-minute coffee line checks because they are not binges. Which account better sizes the platform's interest?",
+            "choices": [
+              "Two-minute checks matter only when they replace a longer task Brielle had clearly planned to finish.",
+              "Two-minute checks are mostly private lapses unless Brielle posts during them.",
+              "Two-minute checks can still add habit, data, and ad space when they happen often."
+            ],
+            "correctIndex": 2,
+            "explanation": "Attention companies can profit from many small sessions. The low value to Brielle does not mean the glance has low value to the platform.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Oliver says he can solve compulsive checking by deciding to be more disciplined. Which reply best fits the arms-race frame?",
+            "choices": [
+              "Oliver needs structural rules because his private promise faces tested cues built across many users.",
+              "Oliver needs a stronger personal slogan because the main problem is forgetting his intention.",
+              "Oliver needs to wait for better apps because design teams will reduce checking on their own."
+            ],
+            "correctIndex": 0,
+            "explanation": "Willpower still matters, but it is facing systems tuned at scale. A promise without rules keeps restarting against tested triggers.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "After a weekend offline, Maxime wants to ban every screen because attention capture worries him. Which response keeps the core threat in view?",
+            "choices": [
+              "Maxime should judge whether each tool serves chosen values without steering his behavior away from them.",
+              "Maxime should treat any screen as the same problem so the rule stays simple and easy to follow.",
+              "Maxime should keep tools that feel convenient and remove tools that feel boring."
+            ],
+            "correctIndex": 0,
+            "explanation": "The danger is lost self-rule, not the mere presence of a screen. A selected tool can stay if its rules serve Maxime's values.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Aspen turns off a few notifications and calls the problem solved. What should happen when the next handy feature appears?",
+            "choices": [
+              "Aspen will still need a value-based standard for deciding whether that feature belongs.",
+              "Aspen can admit the feature if it reduces the number of alerts she sees.",
+              "Aspen should delay judgment until the feature has become part of daily life."
+            ],
+            "correctIndex": 0,
+            "explanation": "Notification tactics address one symptom. A philosophy decides which tools belong before each new convenience gets a default yes.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "\"The app helps with birthdays, so my daily browsing is justified,\" Gwen tells the group. What is the flaw in that defense?",
+            "choices": [
+              "Birthday reminders are too minor to count as a real benefit for Gwen's group or family planning.",
+              "One useful feature does not justify all the feed time and approval checks attached to it.",
+              "Daily browsing is acceptable when Gwen can name a social reason for opening the app."
+            ],
+            "correctIndex": 1,
+            "explanation": "Usefulness has to be weighed against full cost. A birthday feature can be real while the extra browsing still fails Gwen's values.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What three forces make the lopsided arms race unfair?",
+          "back": "It pits ordinary user intention against platform engagement incentives and behavioral design optimization. That source phrase means design tuned by tests.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why does Steve Jobs's Macworld 2007 iPhone pitch matter for judging today's phone habits?",
+          "back": "It shows the iPhone entered as a phone, iPod, and internet communicator. Later feed dependence grew beyond the Macworld 2007 utility story.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "How did Facebook's Like button change social approval?",
+          "back": "It made approval quick, public, and measurable. That small signal gave people a reason to post, return, and check whether they had been noticed.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "How can a genuinely useful feature still become costly?",
+          "back": "The useful job can lower resistance, while feeds, alerts, and rewards take extra time around it. Judge the whole cost, not the best feature alone.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "Why are willpower tips too small for this problem?",
+          "back": "A private promise faces products tested across many users. Self-control works better after the person creates rules that match the scale of the cues.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "What is the core threat if screen time itself is not the enemy?",
+          "back": "The threat is lost autonomy: a tool starts steering behavior away from chosen values. Some tools can stay when their rules protect self-rule.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Run the Value Admission Test",
+        "coreSkill": "Practice asking what a tool is admitted to do before judging whether it feels useful. Run the Value Admission Test by naming the value served, the exact feature needed, and the attention cost bundled around it. The skill protects autonomy by refusing to let convenience choose the rule.",
+        "ifThenPlans": [
+          {
+            "context": "If an app defends itself with one useful feature.",
+            "plan": "If the feature is real, then write its exact job and the extra attention cost beside it. Run the Value Admission Test before giving the whole app daily access."
+          },
+          {
+            "context": "If a buzz or badge asks before you chose to ask.",
+            "plan": "If the device moves first, then name who chose the timing. Keep the alert only if that timing serves a value you can state."
+          },
+          {
+            "context": "If a check feels too brief to count.",
+            "plan": "If the glance is under two minutes, then record it anyway. Tiny sessions still count when they build habit, data, or ad space."
+          },
+          {
+            "context": "If a new convenient tool wants a default yes.",
+            "plan": "If the tool asks for entry, then pause at the Value Admission Test. Decide which value it serves before deciding where it lives."
+          }
+        ],
+        "twentyFourHourChallenge": "Within the next 24 hours, the first time your hand touches a doorknob while your phone is in it, run the Value Admission Test on the next app you open. Record the cue, value, feature, and capture cost.",
+        "weeklyPractice": "Ask one person to flag when they see you reach for a tool without a clear purpose this week. Compare notes once, then choose one rule to narrow that tool."
+      },
+      "memorableLines": [
+        {
+          "text": "Convenience is not consent.",
+          "location": "breakdown.fastRead",
+          "why": "It turns the chapter's warning into a short test for every new tool."
+        },
+        {
+          "text": "A useful tool can still become a leash.",
+          "location": "breakdown.fastRead",
+          "why": "It keeps the useful feature and the capture risk in one sharp line."
+        },
+        {
+          "text": "Willpower needs a map before it needs a scold.",
+          "location": "breakdown.deepRead",
+          "why": "It moves the reader from shame toward sizing the real contest."
+        }
+      ]
+    },
+    {
+      "chapterId": "digital-minimalism-ch02",
+      "number": 2,
+      "title": "Digital Minimalism",
+      "readingTimeMinutes": 12,
+      "hook": "Your next download sounds useful, but what will it ask back from your life?",
+      "counterintuition": "What looks like discipline about fewer apps is actually accounting for attention. A tool earns its place only when it serves a chosen value better than the other ways you could spend that time.",
+      "tryThisNow": "Before you send your next reply, spend 10 minutes rehearsing one pause at the doorway into the thread: name the value, the cost, and the shortest response that protects both.",
+      "keyTakeaway": "Digital minimalism asks each tool to show its value receipt: what it serves, why it beats the alternatives, and what rules keep its cost low.",
+      "breakdown": {
+        "fastRead": "Henry David Thoreau walked to Walden Pond in 1845 with a strange kind of ledger. He was not just counting dollars. He was asking how much of a life a purchase quietly claims. A faster wagon may save a trip, then demand more work to buy and tend it.\n\nYour phone apps deserve the same math. Digital minimalism is the habit of admitting only tools that strongly serve a real value, then using them under rules. A small benefit is not enough. If a tool costs attention all week, its gain has to be worth that cost. Useful is not the same as worth keeping.",
+        "deepRead": "Wade sees the mechanism the moment a messaging app adds three new channels to his workday. One channel helps his project. The other two add places to check, badges to clear, and small worries that trail him into dinner. Digital clutter is costly because each item asks the mind to stay available.\n\nThe cure is not a proud purge. It is a stricter admission test. First, name the value the tool serves. Second, ask whether it serves that value better than a quieter option. Third, write the rules that keep the tool from spilling past that job. A useful tool still needs a fence.\n\nAmish communities show why this is not the same as hating technology. A phone may sit in a shanty outside the home, or a tool may be shared for business, because the test is social effect. Will it help work while leaving family life intact? Will it strengthen community norms, or pull people away from them? Saying yes slowly can be more modern than saying yes by default. The cleanest digital life is not empty; it is well defended.",
+        "fullRead": "Paleo and CrossFit make a useful comparison because they give people more than scattered tips. A person facing a menu or a workout does not renegotiate every choice from scratch. The named philosophy carries a rule set, an identity, and a way to answer pressure before the pressure arrives.\n\nDigital minimalism works the same way. Without a philosophy, each tool arrives alone and pleads a small case. This app helps with one group chat. That feed gives one smart link. Another platform keeps one cousin close. Each claim may be true. Attention pays the full bill. The total bill includes checking, switching, updates, stray emotion, and the habit of wondering what else is waiting.\n\nThe three principles keep the test honest. Clutter is costly: every extra place to look leaves a trace in the mind. Optimization is important: a good tool used with default settings can bury the very value that justified it. Intentionality is satisfying: rules feel less harsh when they express what you picked on purpose. A tool needs a job, a reason to beat its rivals, and a use pattern that protects the job. That last part matters because approval alone is too weak. An admitted platform still needs hours, settings, and routes that fit the value named on the receipt.\n\nHadley learns this with a family photo feed. The value is real: grandparents want pictures. The default use is messy: posting invites scrolling, checking reactions, and losing the quiet minute she meant to share. The minimalist answer is not to shame the wish to connect. It is to choose the best low-cost way to serve it, maybe a shared album opened twice a week, or a direct message after Sunday lunch. The value stays; the side effects lose their seat.\n\nMarshall sees the same pattern with work chat. One channel gives his project a faster path to the client. Four side channels create jokes, polls, and late-night pings that make him feel behind before he reads the real note. A maximalist counts each channel's benefit one by one. A minimalist counts the shape of the whole workday. The receipt can say yes to the client channel and no to the rest.\n\nThis breaks when the situation is urgent, legal, or safety related. A parent waiting on a hospital update should not run a full value receipt before answering the clinic portal. A worker under a required security alert should not ignore the tool to protect a calm ideal. Digital minimalism governs ordinary admission and use; it is not a reason to dodge real duty. The strong rule is strict enough to say no to good things, and humble enough to step aside when the cost of delay is the real danger."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Walden Cart Pause",
+          "tags": [
+            "attention cost",
+            "Thoreau",
+            "reset"
+          ],
+          "scenario": "Russell reaches for a new task app at a library reading table, then stops with his finger over the install button. Beside his notebook he has copied Henry David Thoreau's Walden Pond arithmetic from 1845: count the labor cost, not just the price. The app promises faster lists, but it also adds badges, sync errors, and one more place to inspect before dinner.",
+          "whatToDo": "Russell closes the store page and writes the value receipt first: which value the app serves, what quieter option it beats, and what rule would keep it from becoming another check-in loop.",
+          "whyItMatters": "The pause turns usefulness into a full cost question. Walden-style accounting makes attention part of the price, so a small speed gain cannot hide a larger drain."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Phone Outside Supper",
+          "tags": [
+            "Amish",
+            "family life",
+            "vignette"
+          ],
+          "scenario": "Hadley sets the cordless phone on a small shelf outside the kitchen before supper, copying how Amish communities use phone shanties in miniature. The pot is still steaming, her son's worksheet is beside the plates, and the family can still call a doctor or a neighbor. What changes is the room: family life is no longer waiting under a ringing tool.",
+          "whatToDo": "Hadley keeps the phone available but moves it out of the meal's center. She protects the value, family attention, by changing where the useful device is allowed to live.",
+          "whyItMatters": "The Amish example teaches placement, not rejection. A tool can be admitted for a real need while its setting keeps it from reshaping the value it was meant to serve."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "CrossFit Rule Talk",
+          "tags": [
+            "philosophy",
+            "CrossFit",
+            "dialogue"
+          ],
+          "scenario": "\"I saved five screen-time tricks,\" Florent says at the hiking trailhead, tugging at his pack strap. Zachary laughs. He points to the CrossFit sticker on his bottle. \"That is like saving five random lifts and calling it training.\" Florent answers, \"So I need the rule before the trick.\" Zachary nods: \"Paleo works that way too.\"",
+          "whatToDo": "Florent turns the pile of tips into one standard: a tool stays only when it strongly serves a named value and has rules for use before pressure arrives.",
+          "whyItMatters": "Paleo and CrossFit show the power of a philosophy. A stable rule set lowers the number of fresh judgments needed when convenience starts making its case."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Default Feed Catch",
+          "tags": [
+            "optimization",
+            "default use",
+            "recovery"
+          ],
+          "scenario": "Marshall starts a Monday office message to a former client with Henry David Thoreau's Walden ledger taped beside his monitor. Eight minutes later, he is still in the platform feed. The approved value was one relationship, not a tour of everyone else's announcements. His cursor blinks in the unsent note while two live options remain: keep browsing because the site is useful, or change the use pattern before sending.",
+          "whatToDo": "Marshall bookmarks the direct message page, logs out after the note, and removes the feed shortcut. He keeps the useful contact while cutting the default path that captured him.",
+          "whyItMatters": "Optimization matters after admission. A good tool can still fail the value test when its default route mixes the needed feature with low-value noise."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Good Tool Memo",
+          "tags": [
+            "strict filter",
+            "memo",
+            "attention"
+          ],
+          "scenario": "Willow's memo to the product team begins with a Walden Pond question: how much life will this convenience claim? It lists the gain, faster status checks, then the cost: another login, another alert stream, another Friday cleanup. The final line is still unsent: \"We will use the current report unless this tool becomes the best support for launch risk.\"",
+          "whatToDo": "Willow sends the memo with the value receipt attached. She rejects a good tool because its modest gain does not beat the attention cost or the team's current report.",
+          "whyItMatters": "A philosophy that cannot reject good things will drift back to maximalism. Attention is finite, so small benefits need a high bar before they get a seat."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Two Album Systems",
+          "tags": [
+            "value density",
+            "contrast",
+            "family"
+          ],
+          "scenario": "Wade tells his mother on a phone call home that he deleted every photo app except one, then spends the call checking likes inside it. Across town, Zachary keeps three tools: a shared album for grandparents, cloud backup for storage, and no social feed. Wade has fewer icons. Zachary has tighter rules and a calmer call.",
+          "whatToDo": "Wade compares his one app with Zachary's three-tool setup by value density, not by count. He changes the rule so family photos travel without reaction checking.",
+          "whyItMatters": "Minimalism is not a contest to own the fewest apps. The better measure is whether each tool earns its cost and stays inside the value it serves."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "\"The calendar app helps once a month, so it belongs on my phone.\" What does this reply miss?",
+            "choices": [
+              "It treats any occasional benefit as enough without asking whether the app strongly serves a value better than quieter options.",
+              "It underrates how a calendar can support planning when notifications are set with care for specific events.",
+              "It assumes monthly use should be moved to paper even when a shared schedule would reduce missed commitments."
+            ],
+            "correctIndex": 0,
+            "explanation": "Digital minimalism rejects the any-benefit test. The app may help, but it still has to beat alternatives and justify its attention cost.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "When a designer says a dormant app is harmless because it is closed most days, what is likely being left out?",
+            "choices": [
+              "The designer may be overlooking storage limits, even if the app rarely affects the mind during normal work.",
+              "The designer may be assuming old apps matter only when they become expensive subscriptions.",
+              "The designer may be ignoring future prompts, possible checks, and the mental slot created by another place to look."
+            ],
+            "correctIndex": 2,
+            "explanation": "Clutter costs more than active minutes. A closed app can still add prompts, decisions, and a standing sense that something might need checking.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A club approves a social platform for event notices, then members start drifting through the feed after each post. Which next step fits the philosophy?",
+            "choices": [
+              "Keep the platform as approved and trust members to leave once the notice has been posted.",
+              "Drop all online event notices so the feed can no longer compete with club meetings.",
+              "Keep the event function but set a direct-post rule that avoids the feed before and after notices."
+            ],
+            "correctIndex": 2,
+            "explanation": "The tool may serve a real value, but default use is not neutral. Optimization captures the notice without accepting the feed around it.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "\"These rules feel strict, but they match the evenings I want.\" What does that response reveal?",
+            "choices": [
+              "The rules work mainly because the speaker has a low taste for new tools and prefers a quiet home.",
+              "The rules will stay satisfying only if the speaker explains them to other people often enough.",
+              "The rules feel less like deprivation because they express a chosen value instead of vague dislike."
+            ],
+            "correctIndex": 2,
+            "explanation": "Intentionality satisfies when limits express values. The relief comes from self-government, not from being anti-technology.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Your team wants a faster project tool that saves ten minutes per meeting but adds setup work and daily upkeep. How would Walden arithmetic read the trade?",
+            "choices": [
+              "It would count the saved meeting minutes first and treat upkeep as a separate training issue.",
+              "It would compare the saved minutes with the labor, care, and attention needed to own the tool.",
+              "It would prefer the older tool unless the new one removes every manual step from the project."
+            ],
+            "correctIndex": 1,
+            "explanation": "Thoreau's cost logic asks whether the convenience saves more life than it costs. Speed alone is an incomplete ledger.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "An Amish business keeps a phone for customers but leaves it outside the home. Which reading is most accurate?",
+            "choices": [
+              "The phone is tolerated as a temporary compromise until the community can return to older tools.",
+              "The phone is being judged by its effect on work, family life, and community norms in each setting.",
+              "The phone is acceptable in business because paid work has a higher value than household attention."
+            ],
+            "correctIndex": 1,
+            "explanation": "The Amish case is selective adoption, not blanket refusal. The same tool can be placed under rules when its social effect changes.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A colleague collects screen-time tips but changes course whenever a new app sounds convenient. What would the Paleo and CrossFit analogy suggest?",
+            "choices": [
+              "The colleague needs more tips from people with different routines before choosing a personal mix.",
+              "The colleague needs a named rule set that settles repeated choices before convenience starts bargaining.",
+              "The colleague needs to copy one expert's full setup so each technology choice is already decided."
+            ],
+            "correctIndex": 1,
+            "explanation": "A philosophy reduces repeated renegotiation. Scattered tips can be sensible and still fail when each new case reopens the standard.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Hadley keeps ten tightly ruled tools, while Florent keeps four platforms that bleed into every free minute. Who is closer to the standard?",
+            "choices": [
+              "Hadley is closer because each tool has to earn its attention cost under clear rules.",
+              "Florent is closer because the lower number of platforms shows a cleaner digital life.",
+              "Neither is close because a minimalist digital life should avoid comparing one setup with another."
+            ],
+            "correctIndex": 0,
+            "explanation": "Raw count is only a weak proxy. Value density matters more: what each tool serves, what it costs, and how tightly it is governed.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "\"The service is useful, so rejecting it wastes value.\" Which answer best catches the flaw?",
+            "choices": [
+              "Attention is finite, so a useful service can still lose if its modest gain crowds out higher priorities.",
+              "Useful services should be postponed until several friends have tested whether the gain lasts.",
+              "A service with clear value should be accepted first and constrained only after costs appear."
+            ],
+            "correctIndex": 0,
+            "explanation": "A strict philosophy must say no to good but nonessential tools. Otherwise small benefits rebuild the same clutter.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What does digital minimalism ask before a tool earns a place?",
+          "back": "It asks whether the tool strongly serves a deeply held value, whether it is better than plausible alternatives, and what rules keep its cost from swallowing the benefit.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "How does Walden cost accounting change the way you judge a convenience?",
+          "back": "It counts the whole price in lived hours: money earned, setup, upkeep, attention, and worry. A faster tool fails if the hidden costs exceed the time it claims to save.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "What does the Amish technology example retrieve besides refusal?",
+          "back": "It retrieves selective adoption. A device may be allowed in one setting and constrained in another because the deciding question is its effect on family life, work, and community norms.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "Why does optimization matter after a useful tool is admitted?",
+          "back": "Default use often mixes the valuable feature with low-value noise. Optimization writes the use pattern so the person gets the benefit without accepting the platform's whole design.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "Where does lopsided arms race (Ch 1) help here, and where would leaning on it mislead you?",
+          "back": "It helps explain why weak tips lose against engineered capture. It misleads if it makes every choice sound like combat; this step also asks which tools deserve admission at all.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "Why is a lower app count not the final measure of digital minimalism?",
+          "back": "Fewer tools can still be poorly governed. The better test is value density: each tool earns its attention cost, serves a clear value, and stays inside rules that protect that value.",
+          "difficulty": "easy"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Run the Value Receipt",
+        "coreSkill": "Practice making each tool show its receipt before you give it attention. Name the value it serves, the quieter alternative it has to beat, and the rule that keeps use narrow. The skill is not refusal; it is deliberate admission.",
+        "ifThenPlans": [
+          {
+            "context": "If a new app sounds useful because it solves one small annoyance",
+            "plan": "If the benefit is only occasional, then run the Value Receipt before installing it: value, alternative, cost, and use rule."
+          },
+          {
+            "context": "If an approved platform pulls you toward its feed while you are doing one task",
+            "plan": "If the platform starts widening the task, then name the value you came for and change the path to reach only that feature."
+          },
+          {
+            "context": "If a faster tool asks for setup, upkeep, or daily checking",
+            "plan": "If speed is the pitch, then add the hidden labor to the Value Receipt before you count the saved minutes."
+          },
+          {
+            "context": "If you feel wasteful saying no to a useful service",
+            "plan": "If the service is good but nonessential, then compare its small gain with the higher priority it would crowd."
+          }
+        ],
+        "twentyFourHourChallenge": "Before your next important reply today, rehearse the Value Receipt once out loud: the value, the cost, the alternative, and the shortest response that protects the value.",
+        "weeklyPractice": "For one week, change one environment cue: remove one nonessential app shortcut from your first screen, and watch whether fewer doorway checks make replies cleaner."
+      },
+      "memorableLines": [
+        {
+          "text": "Useful is not the same as worth keeping.",
+          "location": "breakdown.fastRead",
+          "why": "It compresses the chapter's strict filter into one clean contrast."
+        },
+        {
+          "text": "A useful tool still needs a fence.",
+          "location": "breakdown.deepRead",
+          "why": "It makes optimization concrete and easy to recall."
+        },
+        {
+          "text": "Attention pays the full bill.",
+          "location": "breakdown.fullRead",
+          "why": "It turns hidden digital cost into a memorable accounting image."
+        }
+      ]
+    },
+    {
+      "chapterId": "digital-minimalism-ch03",
+      "number": 3,
+      "title": "The Digital Declutter",
+      "readingTimeMinutes": 11,
+      "hook": "30 days can clear your feeds and still leave your old default in charge.",
+      "counterintuition": "A useful app can be optional and still deserve a break. The test is not whether Facebook, Twitter, Instagram, or news feeds ever help. It is whether you can step away long enough to choose them on purpose.",
+      "tryThisNow": "The next time you feel the pull to reopen a feed, block 10 minutes for the offline replacement and place its object where your thumb expects the app.",
+      "keyTakeaway": "A digital declutter works when you remove optional tools for thirty days, fill the space with better offline choices, then let only value-bound tools return under rules.",
+      "breakdown": {
+        "fastRead": "Carmen writes Facebook, Twitter, Instagram, and news feeds on a classroom board. A student raises his hand: \"But Instagram helps my art group.\" Carmen does not erase it. She asks whether thirty days away would cause serious harm or just friction.\n\nThat is the first turn in a digital declutter. Optional does not mean worthless. It means removable long enough to test the habit. A clean break needs a better use for the empty time. Empty space invites old loops. Filled space teaches taste. A reset without reentry is just a pause.",
+        "deepRead": "The thirty-day break works because it gives cravings time to speak plainly. A weekend detox can feel like a stunt. You grit your teeth, count the hours, and return to the same feed with a tiny medal. Thirty days is harder to fake. By the second week, the itch has a pattern: boredom after dinner, fear of missing a group update, the small reach for online news when work gets dull.\n\nThousands of declutter participants made that pattern visible. Many reported early discomfort, then found reading, walking, family talk, exercise, projects, and sleep waiting under the noise. The screen had not only taken time. It had trained the first move.\n\nDistance makes appetite honest. Replacement makes distance livable.\n\nThe process has four plain parts. Define optional technologies and rules before you begin. Take a thirty-day break. Explore high-quality alternatives. Reintroduce selectively with rules. Those words matter in order. If you do not write the rules first, every craving becomes a lawyer. If you do not fill the opened time, boredom argues that the old tool was a need.\n\nNova learns this while talking with Madelyn about a family Facebook group. Nova missed the photos, but the missed feeling alone is not enough. The reintroduction test asks whether the tool serves an important value, is the strongest route to that value, and will follow a clear operating procedure. Desktop-only for twenty minutes on Sunday is a rule. \"Less often\" is a wish.",
+        "fullRead": "Jude stops at the edge of the reset when his work login asks for two apps he wanted to delete. If he removes every digital service, he risks missing client notes. If he keeps every service, the thirty days becomes theater. The honest move is narrower and less dramatic: keep work-mandated and essential logistical tools, then fence them tightly.\n\nThis is the cost of the reset. You give up the clean story that one purge fixes everything. You also give up the comfort of vague moderation. A digital declutter is strict during the break and fussy afterward. It asks for written rules, better evenings, and a little awkwardness when a friend expects instant replies.\n\nA punishing month sends people back fast. They remove Facebook, Twitter, Instagram, online news, streaming queues, and games, then stare at the wall and call the wall freedom. The reset is not meant to make life bare. It is meant to let richer activity show up again. A walk, a book, music practice, a household project, or a real call gives the hand somewhere better to go.\n\nThe later choice is even more exacting. A tool can come back only if it passes the reintroduction test: serves a deeply held value, best way to serve that value, and used under a specific operating procedure. The last piece keeps the old default from sneaking in through the side door. Desktop-only use, scheduled windows, and purpose-limited checks change the room around the habit.\n\nRules are where desire becomes design.\n\nThat design may look small. Lorraine may let online news return only in one saved reading block from selected sources. Douglas may keep Instagram off his phone and open it on a laptop for a named group. Olivia may write that streaming is for planned movie nights, not the first answer to a tired evening. None of this sounds heroic. That is why it works.\n\nThe lopsided arms race from chapter 1 explains why a reset must be stronger than good intentions. Platforms are built to catch idle time. A vague promise to check less walks into that contest underdressed. Thirty days creates enough quiet to hear your own values again. Reentry gives those values rules.\n\nThe price shows up in small social moments. Jude may answer a friend later than usual. Lorraine may miss a headline before lunch. Douglas may need to open a laptop instead of tapping from the couch. The reset buys control by making some convenient paths less convenient.\n\nWhat you lose is frictionless access. What you gain is a digital life that has to earn its place."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Carmen's Optional List",
+          "tags": [
+            "optional tools",
+            "classroom",
+            "social feeds"
+          ],
+          "scenario": "At a public library help desk, Carmen leads a free declutter class and writes Facebook, Twitter, Instagram, and online news on a sheet of butcher paper. Douglas points at Instagram and says, \"My art group uses that.\" Carmen asks him to sort serious harm from inconvenience before the thirty days start.",
+          "whatToDo": "Carmen keeps Instagram on the list and has Douglas write one rule: if the art group truly needs him, he will use email for thirty days and check whether the value survives.",
+          "whyItMatters": "The lesson protects useful tools from lazy rejection, but it also protects the reset from loopholes. Optional means testable, not worthless."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Douglas Finds the Evening",
+          "tags": [
+            "thirty days",
+            "replacement",
+            "participants"
+          ],
+          "scenario": "On the first Monday, Douglas stands at the kitchen sink. Optional technologies are gone. He tells Olivia, \"This feels like losing a limb.\" Three weeks later, the same counter holds a library novel, a walking map, and a half-fixed cabinet hinge. Like thousands of participants, he finds the thirty days stop feeling empty.",
+          "whatToDo": "Douglas names the rough first week without treating it as failure. He fills the opened time with reading, walking, and one household project before he judges what the phone gave him.",
+          "whyItMatters": "Thousands of participants reported this arc: discomfort first, then recovered attention. Replacement turns abstinence into information about what the screen displaced."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Nova's Sunday Rule",
+          "tags": [
+            "reintroduction",
+            "desktop-only",
+            "family group"
+          ],
+          "scenario": "\"I missed the family photos,\" Nova says on a returned phone call. Madelyn asks, \"Do you miss Facebook, or do you miss your aunt's group?\" Nova pauses. \"The group.\" Madelyn asks for the named value and operating rule. Nova answers, \"Desktop-only use, Sunday, twenty minutes.\"",
+          "whatToDo": "Nova ties Facebook to one named value, checks that it is the best way to see the family group, and gives it a desktop-only Sunday window.",
+          "whyItMatters": "Reintroduction is not a relief valve. It is where the reset becomes an operating system for tools that earned their way back."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Lorraine Hears the Pull",
+          "tags": [
+            "inner pull",
+            "news feeds",
+            "rules"
+          ],
+          "scenario": "At 11:40 a.m., Lorraine sits in a quiet call center pod between shifts with her badge beside the keyboard. She feels the old reach for online news. Just one headline. No, that is the loophole talking. Twitter would call itself work, Instagram would call itself rest, Facebook would call itself family.",
+          "whatToDo": "Lorraine leaves the phone in her bag, reads the prewritten rule, and uses the next break for the paperback she packed for the reset.",
+          "whyItMatters": "Cravings are persuasive in the moment. Written rules prevent every urge from becoming a fresh trial with a friendly judge."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Olivia Plans the Empty Space",
+          "tags": [
+            "planning",
+            "offline activity",
+            "rules"
+          ],
+          "scenario": "Before deleting anything, Olivia stands by a thrift store rack with a notebook open. Saturday nights used to dissolve into streaming queues. She has two hours to assign before the thirty days begin: a borrowed guitar lesson, a friend walk, or the old promise that she will \"find something\" when boredom arrives.",
+          "whatToDo": "Olivia writes the first week's replacements before the reset starts. She chooses one walk, one music practice, and one repair project so empty time has a place to land.",
+          "whyItMatters": "The declutter is not bare abstinence. Better offline activity makes the opened space livable and shows what the screen had crowded out."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Jude Narrows the Work Tools",
+          "tags": [
+            "essential tools",
+            "work rules",
+            "dilemma"
+          ],
+          "scenario": "At 7:15 a.m. on a fishing pier, client account manager Jude stares at two bad choices before a call. Delete every app and miss work-mandated messages, or keep the work tools and risk turning the declutter into a loophole. He has to choose a narrower rule before the thirty days begin.",
+          "whatToDo": "Jude keeps the required work tools, removes entertainment feeds, and writes a fixed check window so essential access does not become all-day grazing.",
+          "whyItMatters": "A sincere reset does not require reckless withdrawal from obligations. It targets optional attention drains and fences necessary tools."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "Carmen suggests a weekend away from feeds before a busy month. Douglas says that should prove enough. Which forecast fits the reset?",
+            "choices": [
+              "A weekend break proves the person can return with the old apps unchanged.",
+              "The thirty-day break matters because routine cravings need time to weaken and show themselves.",
+              "The weekend break is enough when the person returns with a clear promise to use feeds less."
+            ],
+            "correctIndex": 1,
+            "explanation": "Thirty days is the source standard. A weekend can feel novel and survivable, while the longer break reveals the routine urges that keep the habit alive.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "At Carmen's library class, Douglas points to Instagram and says, \"My art group uses it, so it cannot be optional.\" What does that response miss?",
+            "choices": [
+              "A tool with any benefit should stay available during the whole reset.",
+              "A useful tool can still be removable when leaving it causes inconvenience rather than serious harm.",
+              "A social tool should be removed only when it has no value for any group."
+            ],
+            "correctIndex": 1,
+            "explanation": "Optional does not mean useless. The test is serious harm, so a helpful service can still be tested if its value can wait or move for thirty days.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "Nova starts the reset with no written rules beside her laptop and plans to decide exceptions as they arise. Which result is most likely?",
+            "choices": [
+              "She will adapt better because each urge can be judged with fresh information.",
+              "She will stay flexible because cravings usually become weaker when rules are unwritten.",
+              "She will face daily renegotiation because cravings are good at making exceptions sound reasonable."
+            ],
+            "correctIndex": 2,
+            "explanation": "Prewritten rules answer before the craving starts arguing. Improvised rules leave the hardest moments in charge of the standard.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "After three restless evenings in her apartment, Lorraine says, \"I deleted the feeds and planned nothing else.\" What is the weak spot?",
+            "choices": [
+              "She should treat the empty time as proof that the old feeds were necessary.",
+              "She should bring one feed back first, then look for better activities later.",
+              "She needs satisfying offline activity so the open time becomes livable and revealing."
+            ],
+            "correctIndex": 2,
+            "explanation": "Pure abstinence makes boredom louder. Replacement activities make the break bearable and show what the feed had displaced.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Thousands of participants first felt unsettled, then reported more reading, walking, projects, and conversation. What does that pattern show?",
+            "choices": [
+              "Large turnout proves the thirty-day reset is easy for most people.",
+              "Early discomfort can hide later recovery of time and attention.",
+              "Reports from many people mainly show that everyone should remove every service."
+            ],
+            "correctIndex": 1,
+            "explanation": "The public reports include difficulty and recovery. The evidence is not ease; it is the change that appears after habit noise quiets.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "After day thirty, Madelyn wants to restore Twitter because she missed checking it. Which first question fits reintroduction?",
+            "choices": [
+              "Which deeply held value would this tool serve if it came back?",
+              "How strong was the craving during the reset compared with other tools?",
+              "Could the tool return now and receive a rule sometime next week?"
+            ],
+            "correctIndex": 0,
+            "explanation": "Missing a tool is not the same as valuing it. Reentry starts by naming the priority the tool serves, then testing rule and fit.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "On the returned phone call, Nova chooses the family group and says, \"I will just use Facebook less.\" Which rule best fits reentry?",
+            "choices": [
+              "She keeps the app on her phone but trusts the reset to make it feel less tempting.",
+              "She checks whenever she remembers the family group and stops when the feed feels stale.",
+              "She uses Facebook on desktop only, in one Sunday window, for that family group."
+            ],
+            "correctIndex": 2,
+            "explanation": "A concrete operating rule changes the cues. A promise to use less leaves the old phone, feed, and habit path intact.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Olivia finishes thirty days and wants to judge success by how many tools stay gone forever. What should she measure instead?",
+            "choices": [
+              "Whether the tools that return create a better default under clear rules.",
+              "Whether the break felt austere enough to prove that optional tools are bad.",
+              "Whether she missed each service less by the final day than on the first day."
+            ],
+            "correctIndex": 0,
+            "explanation": "The goal is redesign, not purity. Some tools may return when they serve values and operate under constraints.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "On the pier before a client call, Jude needs a work login but fears keeping it will ruin the reset. Which move is sound?",
+            "choices": [
+              "Keep the required tool under narrowed rules while removing optional attention drains.",
+              "Delete every digital service so the reset proves he is fully committed.",
+              "Keep all work and entertainment tools because one required login breaks the method."
+            ],
+            "correctIndex": 0,
+            "explanation": "The reset targets optional drains, not essential obligations. Narrow rules keep necessary access from becoming a broad loophole.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "c01",
+          "front": "What are the four parts of the digital declutter process?",
+          "back": "Define optional technologies and rules, take a thirty-day break, explore high-quality alternatives, then reintroduce selectively with rules.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "c02",
+          "front": "Why can a useful service still count as optional during the reset?",
+          "back": "Optional means you can step away without serious harm. A platform may help in small ways, yet still be removable long enough to test whether its value survives the break.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "c03",
+          "front": "What turns a reintroduced tool from a wish into a rule?",
+          "back": "The tool gets an operating procedure: desktop-only use, a scheduled window, or a purpose-limited check. The rule changes cues instead of trusting vague moderation.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "c04",
+          "front": "Why does the thirty-day break need high-quality offline activity?",
+          "back": "Empty time feels stale and pushes people back to feeds. Reading, walking, projects, music, or real conversation make the break livable and reveal what the screen displaced.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "c05",
+          "front": "How would you, in one sentence, connect lopsided arms race (Ch 1) to the digital declutter?",
+          "back": "Because platforms are built to capture idle time, the digital declutter answers the lopsided arms race with a month of distance and strict rules for anything that returns.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Reset Before Return",
+        "coreSkill": "Practice catching the moment a tool calls itself necessary. Use Reset Before Return: remove optional tools long enough to hear the craving, fill the opened time with a better activity, then let a tool return only with a value and rule.",
+        "ifThenPlans": [
+          {
+            "context": "If a useful app argues that it cannot be optional",
+            "plan": "If the app offers a real benefit, then ask whether thirty days away would cause serious harm or just friction. Put it on the reset list unless the harm is real."
+          },
+          {
+            "context": "If the first empty evening starts to feel stale",
+            "plan": "If the open space feels bad, then use Reset Before Return by starting the replacement you chose: a walk, book, project, music practice, or real call."
+          },
+          {
+            "context": "If a tool asks to come back after day thirty",
+            "plan": "If a service returns, then name the value, check whether it is the best route, and write the operating rule before you open it."
+          }
+        ],
+        "twentyFourHourChallenge": "For the next 24 hours, use Reset Before Return once: when a feed pull hits, put a 10-minute calendar block on a replacement activity and note which app lost its grip.",
+        "weeklyPractice": "At week's end, review once and name what changed about Reset Before Return: which optional tool felt less necessary, which replacement worked, and which reentry rule needs tightening."
+      },
+      "memorableLines": [
+        {
+          "text": "Empty space invites old loops.",
+          "location": "breakdown.fastRead",
+          "why": "It makes the replacement problem easy to remember."
+        },
+        {
+          "text": "Distance makes appetite honest.",
+          "location": "breakdown.deepRead",
+          "why": "It compresses why the thirty-day break is needed."
+        },
+        {
+          "text": "Rules are where desire becomes design.",
+          "location": "breakdown.fullRead",
+          "why": "It turns reintroduction into a portable rule."
+        }
+      ]
+    },
+    {
+      "chapterId": "digital-minimalism-ch04",
+      "number": 4,
+      "title": "Spend Time Alone",
+      "readingTimeMinutes": 11,
+      "hook": "I once called an empty room solitude; what input would still follow you through your next quiet minute?",
+      "counterintuition": "Despite the name, solitude is not about finding an empty room. A phone can crowd a bedroom, while a walk through Washington, DC can leave the mind free.",
+      "tryThisNow": "At your next handoff between tasks, step away from the loudest screen and write one line: the cue, the input you wanted, and the thought it would cover.",
+      "keyTakeaway": "Solitude protects judgment by removing outside input long enough for your own thoughts to line up before the next feed, message, or voice takes over.",
+      "breakdown": {
+        "fastRead": "Abraham Lincoln rode away from the White House during the Civil War and spent time in a cottage in Washington, DC. He was not quitting the war. He was making room to think while the war kept asking for him. Quiet is not solitude if the crowd fits in your pocket.\n\nSolitude means freedom from input from other minds. You can lose it alone in bed with a phone. You can find it on a city walk with no feed, no podcast, and no reply box. The skill is input control: protect a few empty minutes so your own fear, grief, plans, and values can speak before the next voice arrives.",
+        "deepRead": "Lincoln's ride worked because it broke the chain of demands. The White House had visitors, dispatches, papers, and urgent news from the Civil War. The Soldiers' Home did not make the war vanish. It gave Abraham Lincoln a stretch where the next person was not already talking at him. Input control is self-respect in practical clothes.\n\nRaymond Kethledge and Michael Erwin make the same claim in their leadership book. They treat solitude as a leadership act, not a mood. A leader under pressure needs a place where fear can settle, anger can cool, and conscience can form a sentence. That is why solitude helps with clarity, emotional balance, and moral courage. The aim is not to become less social. The aim is to stop borrowing every thought from the last message, meeting, or feed.\n\nPhones made the old gaps disappear. A line at the store used to leave you with your own mind for two minutes. A walk to the car could let a hard talk replay and lose its sting. Now the hand reaches for input before the thought has a chance. Solitude deprivation is the long habit of not being alone with your mind. It can happen in small bites all day. The fix starts small too: one errand without the phone, one walk without audio, one page of writing before asking the crowd.",
+        "fullRead": "Jean Twenge's iGen work gives the warning a date. Around 2012, as smartphones became common, teen social patterns and mental-health signs shifted in sharp ways. The claim is not that one device explains every sad hour. The claim is more careful: constant mediated connection has a cost, and the timing is too strong to wave away as old-person panic.\n\nA teen in a checkout line may lose only forty seconds to a phone. The deeper cost is the lost gap where the mind sorts itself. A regret needs a few quiet minutes before it becomes a lesson. A fear needs room before it becomes a plan. A clear mind needs empty minutes, not empty rooms.\n\nAt the Soldiers' Home, Abraham Lincoln shows why solitude and loneliness are different. Loneliness is the pain of missing connection. Solitude is the choice to remove outside input for a while. One can hurt, and the other can heal. Lincoln's routine did not mean he rejected the cabinet, the army, or the public. It meant he needed enough room to return to them with judgment intact.\n\nIn Lead Yourself First, Kethledge and Erwin's leadership cases keep the idea from becoming soft self-care. They show people using quiet to decide, not to drift. A judge, a soldier, or a manager may need to stop hearing the room for a while so the right answer can be heard at all. The same pattern works at ordinary scale. Before a hard message, write the plain sentence you are afraid to send. Before you fill a walk with audio, notice whether you are learning or hiding. Before you pick up the phone in a line, ask what feeling you are trying not to meet.\n\nYour grocery trip can become one of the four simple practices. Leave the phone at home, take long walks, use written reflection, and protect idle moments. None of them requires a cabin or a perfect morning. A slow walk after lunch can work. Five lines in a notebook can work if no other voice gets the page first.\n\nA blank kitchen counter can feel kinder than a blank weekend. Solitude is chosen, not forced. A person trapped without help is not gaining the same gift as a person who turns off input for a short spell. The practice should give the mind a chair, a page, and a few minutes of air. If it starts to feel like punishment, change the form. Walk instead of sitting still. Write one line instead of a page. Leave the phone in the kitchen for an errand, then come back to the people who count on you.\n\nA friend in tears at the door may need your face more than your quiet. Do not use solitude as a shield. A sick child, a partner in distress, a co-worker asking for a clear answer, or a friend waiting outside may call for connection first. Solitude serves life best when it prepares you to return. Used to dodge care, it becomes another form of hiding."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Soldiers' Home Guess",
+          "tags": [
+            "leadership",
+            "history",
+            "judgment"
+          ],
+          "scenario": "Noah stands at the Soldiers' Home cottage in Washington, DC with a tour ledger open on the rail. He expects the Abraham Lincoln story to be about leaving the Civil War behind for a few quiet hours. The guide turns toward the road from the White House and says the ride gave Lincoln space to keep carrying the war, not a way to drop it.",
+          "whatToDo": "Noah changes the note he was about to write. He records the ride as a pause for judgment under pressure, then names what input had to be absent for thought to form.",
+          "whyItMatters": "The reveal keeps solitude tied to duty. When the reader faces a heavy role, the move is not escape; it is clearing enough room to return with a steadier mind."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Twenge Text Pause",
+          "tags": [
+            "teens",
+            "phone habits",
+            "mental health"
+          ],
+          "scenario": "Brock, a tenth grader on the school gym steps at 5:20 p.m. after practice, texts Julian with a cracked phone in his hand: \"Twenge says iGen changed after 2012. Is that just adults blaming phones?\" Julian replies, \"Maybe. But I checked six times during one walk home.\" Brock types, deletes, then sends, \"So the walk had people in it the whole time.\"",
+          "whatToDo": "Brock lets the next buzz sit and writes one plain note: the walk was not quiet while the thread kept filling it. He names the input before judging the mood.",
+          "whyItMatters": "The exchange makes the risk concrete. Connection can feel warm and still erase the small spaces where a teen notices fear, envy, boredom, or grief."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Commute Restart",
+          "tags": [
+            "commute",
+            "smartphone",
+            "idle moments"
+          ],
+          "scenario": "Malcolm, a project lead, boards the 6 p.m. ferry after work with his phone already in his palm. The dock horn sounds, and he sees the words solitude deprivation in an article title he had saved. He stops before opening anything, pockets the device, and restarts the crossing by watching the water until the first hard thought from the day arrives.",
+          "whatToDo": "Malcolm treats the horn as a reset cue. He moves the phone out of reach and lets the first unfilled minute show what he had been trying to avoid.",
+          "whyItMatters": "A reset moment turns a habit into a choice. The reader learns to spot the exact instant when a small check would steal a natural pocket of thought."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Counter Note",
+          "tags": [
+            "writing",
+            "home",
+            "reflection"
+          ],
+          "scenario": "Preston writes at the kitchen counter after marking a Lead Yourself First passage on leadership cases. The kettle clicks, and a handwritten note sits beside his mug. The note has one sentence about tomorrow's call and one crossed-out excuse. No app is open. No friend is weighing in. His own words, slow and blunt, make the problem less cloudy.",
+          "whatToDo": "Preston writes the sentence before seeking advice. He keeps the page free of incoming input so the next call begins with his own thought in order.",
+          "whyItMatters": "Writing can be solitude when it is self-directed. It gives a busy person a small structure for thought without turning the problem over to the crowd."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "Leadership Quiet Talk",
+          "tags": [
+            "leadership",
+            "dialogue",
+            "moral courage"
+          ],
+          "scenario": "Daniel sets Lead Yourself First on the coffee table. Noel says, \"Raymond Kethledge and Michael Erwin make quiet sound like a job requirement.\" Daniel answers, \"Not quiet. Space before the room tells you what to think.\" Noel points to the leadership cases on moral courage. \"So an extrovert may need it most before the vote.\"",
+          "whatToDo": "Daniel separates solitude from temperament. He asks what pressure will speak first in the meeting, then plans a silent walk before the vote.",
+          "whyItMatters": "The dialogue keeps the practice open to any leader. Solitude is a discipline for clear judgment, not a badge for people who already like silence."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Podcast Walk Recovery",
+          "tags": [
+            "walks",
+            "audio",
+            "recovery"
+          ],
+          "scenario": "Charles, a sales lead on a Saturday ski trip, shuffles through the ski lift line with a podcast in one ear and calls the walk from the lot his solitude practice. Halfway through a story, he catches the error: another mind is still doing the talking. He pauses the audio, drops the earbud in his glove, and lets the cold air make room for his own worry.",
+          "whatToDo": "Charles names the podcast as input, not failure. He removes the earbud and finishes the walk with no voice filling the space.",
+          "whyItMatters": "The recovery teaches the hard edge. A walk helps when motion meets uninterrupted thought; audio may be useful, but it is not solitude."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "\"I was alone in my room all evening, so I got plenty of solitude.\" What does this claim miss if the person spent the evening scrolling?",
+            "choices": [
+              "The room was empty, but the phone kept bringing other minds into the evening.",
+              "The room was quiet, but solitude also requires a longer block of planned time.",
+              "The room was private, but solitude works best when it happens outdoors."
+            ],
+            "correctIndex": 0,
+            "explanation": "Solitude is defined by input, not by walls. Scrolling means other minds kept entering the room, so the empty setting did not give the mind its own space.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "A commuter checks messages for thirty seconds at every stop and says the habit is too brief to matter. Which result should worry him most?",
+            "choices": [
+              "The commuter may finish fewer messages because each stop is too short for a full reply.",
+              "The commuter may erase the small idle gaps where his mind would have processed the day.",
+              "The commuter may need a stricter social media limit before the commute becomes useful."
+            ],
+            "correctIndex": 1,
+            "explanation": "Solitude deprivation can come from repeated tiny checks. The issue is not only total minutes; it is the loss of natural gaps for reflection.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "\"Lincoln went to the Soldiers' Home because public duty had become too much.\" Which reading better fits the Civil War example?",
+            "choices": [
+              "The trips gave Lincoln room to think so he could return to duty with clearer judgment.",
+              "The trips show that wartime leaders need private comfort more than public pressure.",
+              "The trips prove that withdrawal matters most when decisions can wait until later."
+            ],
+            "correctIndex": 0,
+            "explanation": "The Soldiers' Home routine matters because it served responsibility. Time away from the White House made judgment possible under pressure.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "A team lead says solitude advice is mainly for introverts who dislike meetings. How would Kethledge and Erwin's frame answer?",
+            "choices": [
+              "The team lead is right when the role requires fast group decisions more than private judgment.",
+              "The team lead misses that solitude is a practice for clarity, balance, and moral courage.",
+              "The team lead should replace meetings with quiet time when pressure rises."
+            ],
+            "correctIndex": 1,
+            "explanation": "Lead Yourself First treats solitude as a leadership discipline. It is not a personality preference, and it does not cancel the need to meet.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "A parent dismisses Jean Twenge's iGen signal by saying adults have worried about new media for decades. What does that answer overlook?",
+            "choices": [
+              "The parent overlooks that teen distress can be solved only by returning to older media habits.",
+              "The parent overlooks the post-2012 timing pattern in teen social life and mental-health signs.",
+              "The parent overlooks that phones matter mainly when teens use public social feeds for hours."
+            ],
+            "correctIndex": 1,
+            "explanation": "The source uses Twenge as a warning signal, not nostalgia. The timing after broad smartphone adoption makes constant connection hard to dismiss.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "During a lunch walk, Noel keeps a leadership podcast playing and calls the walk solitude. What would happen if he wanted the solitude benefit?",
+            "choices": [
+              "Noel would pick a better podcast that helps him think about the leadership problem.",
+              "Noel would walk longer so the audio has enough time to settle into useful advice.",
+              "Noel would remove the incoming voice and let motion carry his own thoughts."
+            ],
+            "correctIndex": 2,
+            "explanation": "A phone-free walk works because movement meets uninterrupted thought. A podcast may be useful, but it is still input from another mind.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "At a kitchen counter before a tense call, Preston writes three plain lines before asking friends what to do. Why can that count as solitude?",
+            "choices": [
+              "Preston is making the problem more efficient by turning it into a written task.",
+              "Preston is collecting advice more slowly so each outside view has a clearer place.",
+              "Preston is giving his own thought a sequence before outside input enters."
+            ],
+            "correctIndex": 2,
+            "explanation": "Written reflection can be solitude when it is self-directed. The value is not speed; writing orders the mind before other voices arrive.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "A friend worries that asking for regular quiet means pulling away from people. Which answer best respects the solitude boundary?",
+            "choices": [
+              "Quiet can restore steadiness, which may improve later connection with the friend.",
+              "Quiet should be used mainly when the friend already understands the need for space.",
+              "Quiet is useful because the friend can wait while personal priorities come first."
+            ],
+            "correctIndex": 0,
+            "explanation": "Solitude and connection serve different needs. The practice should restore self-knowledge and steadiness, not become a rejection of people.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "During a busy product launch, a coworker says constant checking is mostly a productivity leak. Which deeper risk should he see?",
+            "choices": [
+              "The coworker may lose the chance to batch messages into fewer work sessions.",
+              "The coworker may need stronger app rules before his schedule can recover.",
+              "The coworker may lose chances to examine values, fears, regrets, and plans."
+            ],
+            "correctIndex": 2,
+            "explanation": "Lost minutes matter, but the deeper loss is self-reflection. Constant input leaves fewer chances to test what matters and what needs repair.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What makes solitude different from merely being physically alone?",
+          "back": "Solitude depends on input. You have it when other minds are not entering through feeds, calls, messages, or audio, even if people are nearby.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why does Lincoln's Soldiers' Home routine count as responsibility rather than escape?",
+          "back": "The Civil War pressure remained. The ride from the White House gave Lincoln mental room to grieve, think, and judge before returning to public duty.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "How do Kethledge and Erwin make solitude a leadership discipline?",
+          "back": "They show quiet as a condition for clarity, emotional balance, and moral courage. The leader steps away from noise so conscience can form.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "What does Jean Twenge's iGen signal add to the warning about phones?",
+          "back": "It gives the concern a timing pattern. After smartphones became common around 2012, teen social life and mental-health signs shifted in ways worth taking seriously.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card05",
+          "front": "What does digital minimalism (Ch 2) get WRONG if you applied it naively to this solitude case?",
+          "back": "It might treat solitude as another tool-selection problem. Solitude also needs input-free gaps after every approved app has passed a value test.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "card06",
+          "front": "Why can writing one plain line create solitude during a busy day?",
+          "back": "Writing can put thought in order before outside voices arrive. When the line is self-directed, the page becomes a small room for the mind.",
+          "difficulty": "easy"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Write the Input Gap",
+        "coreSkill": "Practice noticing the moment before outside input enters. The move is Write the Input Gap: name the cue, the input you wanted, and the thought or feeling it would cover. This builds solitude without needing a retreat.",
+        "ifThenPlans": [
+          {
+            "context": "When a task ends and your hand reaches for the phone",
+            "plan": "If the handoff feels blank, then write one line naming the cue and place the phone one step farther away before choosing the next task."
+          },
+          {
+            "context": "When you start a walk with audio already playing",
+            "plan": "If the walk is meant to clear your head, then pause the audio and write the worry you expect the sound to cover."
+          },
+          {
+            "context": "When a hard decision sends you toward group advice",
+            "plan": "If you want to ask for input right away, then write one sentence that states your own first judgment before you contact anyone."
+          },
+          {
+            "context": "When quiet time might look like pulling away",
+            "plan": "If someone needs reassurance, then say when you will return and write the reason the quiet will help you show up better."
+          }
+        ],
+        "twentyFourHourChallenge": "For the next day, at one handoff between tasks, write one Input Gap line: the cue, the input you wanted, and the thought it would cover.",
+        "weeklyPractice": "For one week, tally each transition where you reach for input before thinking. At week's end, read the number and choose one gap to protect."
+      },
+      "memorableLines": [
+        {
+          "text": "Quiet is not solitude if the crowd fits in your pocket.",
+          "location": "breakdown.fastRead",
+          "why": "It makes the phone the visible test of the whole idea."
+        },
+        {
+          "text": "Input control is self-respect in practical clothes.",
+          "location": "breakdown.deepRead",
+          "why": "It turns an abstract practice into a sharp everyday standard."
+        },
+        {
+          "text": "A clear mind needs empty minutes, not empty rooms.",
+          "location": "breakdown.fullRead",
+          "why": "It corrects the common mistake in a portable sentence."
+        }
+      ]
+    },
+    {
+      "chapterId": "digital-minimalism-ch05",
+      "number": 5,
+      "title": "Don't Click \"Like\"",
+      "readingTimeMinutes": 10,
+      "hook": "I once counted a blinking heart as care, then wondered why the friendship still felt thin.",
+      "counterintuition": "A quick reaction looks like the polite way to keep up with people. In fact, the ease is the warning sign: the same click that feels social can replace the call that would have carried care.",
+      "tryThisNow": "Before you start your next message thread, take a ten-minute walk and say one sentence aloud: \"This person needs a real exchange, not another small signal.\"",
+      "keyTakeaway": "Trade weak social signals for conversation-centric connection: use quick messages for logistics, then give important relationships voice, time, and presence.",
+      "breakdown": {
+        "fastRead": "Sabrina sees Melanie's new photo while the kettle starts to hiss. Her thumb moves toward the heart, and for a second the click feels kind. Then she notices the small lie inside it: a one-click reaction would let her feel done with a friendship she has not heard in all month. A Like is not care; it is a receipt. Conversation is where care grows.\n\nSherry Turkle's work at MIT, especially Reclaiming Conversation, gives the sharper rule. Empathy needs tone, pause, repair, and the awkward wait while another person finds words. Tiny signals can greet people, but they cannot know them.",
+        "deepRead": "A quick signal works by lowering the cost of contact until the contact no longer asks much of you. Melanie can tap the Like button during a grocery line and feel she has reached Sabrina. Sabrina can answer a text with three bright words and feel she has kept pace. Nothing evil happened. The cost is quieter: both minds file the bond as tended.\n\nConversation-centric connection means treating voice, face, and sustained exchange as the main way a relationship is kept alive. Text can still handle logistics. A message can say, \"Train is late,\" or \"Can we talk Sunday?\" The error begins when logistics become the whole friendship. A ping can arrange a walk, but it cannot take the walk for you.\n\nGerald hears this from Pierre after a campus reading group on Reclaiming Conversation. Gerald says constant texting keeps him close to everyone. Pierre points to the coffee cups between them. \"If a tool keeps you near people but away from their voices, it is charging rent on the friendship.\" Gerald writes down a different rule: answer less often, but invite more real talk. Weak signals shrink when a stronger offer is easy to find.",
+        "fullRead": "Danielle sits in an MIT seminar with Reclaiming Conversation open beside a marked page on empathy. The class is not scolding phones. It is asking a harder question: what kind of social skill gets trained when a person lives by snippets? A face-to-face talk makes you wait. A call makes you hear when a joke misses. A walk makes silence part of the exchange.\n\nThe Like button matters because it sells social ease. Facebook did not invent friendship, and a one-click reaction is not useless. It can tell a distant cousin, \"I saw this.\" The trouble starts when that small nod pays off the debt that once would have led to a call. Weak signals are fine as sparks; they fail as meals.\n\nBrynn proves the rule by changing one variable. On Monday she keeps every thread open and sends small replies all day. By dinner, she has answered fourteen people and spoken to no one. The next week she posts a recurring window: Friday at the coffee shop, two seats, phone calls welcome after 7 p.m. Fewer people get instant replies. More people get her full attention.\n\nThis is why conversation office hours are practical, not rude. A recurring window tells friends when real contact is easy. It lets Brynn stop checking for every tiny cue, while making her more available for the kind of talk that can change a day. Concentrated availability beats scattered attention.\n\nFour rules keep the practice from becoming vague. Reserve text for logistics. Prioritize calls and in-person exchange. Concentrate availability. Avoid weak social signals when they would replace the stronger act. Gerald can still text a time and place. He just stops pretending the time-and-place text is the friendship.\n\nEverly feels the second-order effect at an airport gate. She stops before tapping a reaction and sees the bargain clearly: if she keeps paying friends with visible clicks, she will keep wanting visible clicks back. The feed has trained both sides of the trade. A direct note trains a different appetite.\n\nThe rule also loosens the platform's grip. If Gerald stops handing out visible reactions, he stops training himself to watch for them. The feed loses one of its hooks. He can still send the note that matters: \"I saw your post about your dad. Want to talk tonight?\" That sentence costs more than a click, which is why it carries more.\n\nDigital minimalism does not ask a parent on a night shift to hold coffee-shop hours while a child needs quick updates. It misleads the caregiver whose real job is short, urgent coordination. For that person, texts may be the bridge. The test is fit: use snippets to arrange care, not to pretend the care already happened."
+      },
+      "examples": [
+        {
+          "exampleId": "ex01",
+          "title": "Two Birthday Signals",
+          "tags": [
+            "social signals",
+            "friendship",
+            "contrast"
+          ],
+          "scenario": "Sabrina stands at her kitchen counter on Saturday morning as Facebook shows Melanie's birthday post and the Like button under a photo. Across town, Melanie waits at a bus stop with the same reminder about Sabrina. Sabrina taps the one-click reaction and closes the app. Melanie saves the post, pockets the phone, and plans a call after lunch.",
+          "whatToDo": "Sabrina should treat the tap as too small for the friendship and follow Melanie's path: choose one real contact, such as a call, visit, or voice note.",
+          "whyItMatters": "The contrast shows how social acknowledgement can feel complete while doing little. The better move spends effort where the bond can answer back."
+        },
+        {
+          "exampleId": "ex02",
+          "title": "Coffee Cup Reframe",
+          "tags": [
+            "mentor talk",
+            "Reclaiming Conversation",
+            "texting"
+          ],
+          "scenario": "Gerald, a graduate student, keeps his phone beside an MIT reading-group handout at a coffee shop after the 6 p.m. session on Sherry Turkle and Reclaiming Conversation. He tells Pierre that steady texts prove his friendships are healthy. Pierre turns his cup once. \"If a tool keeps you near people but away from their voices, it is charging rent on the friendship.\" Gerald looks back at the unread call invite.",
+          "whatToDo": "Gerald should keep the text thread for arranging time, then ask for a call or walk instead of counting the thread itself as closeness.",
+          "whyItMatters": "The reframe separates contact from connection. A stream of snippets can sit near a friendship without doing the richer work of listening."
+        },
+        {
+          "exampleId": "ex03",
+          "title": "Seminar Confusion",
+          "tags": [
+            "school case",
+            "empathy",
+            "conversation"
+          ],
+          "scenario": "Danielle, a first-year student, sits in an MIT seminar room at 2 p.m. with Reclaiming Conversation open and circles the word empathy. She asks why a text thread cannot count if both people share feelings there. The instructor has the class compare a quick reaction with a live exchange: in one, Danielle can leave; in the other, she must notice timing, tone, and repair.",
+          "whatToDo": "Danielle should sort each channel by the social work it can do, then reserve hard feelings for a call, walk, or face-to-face talk.",
+          "whyItMatters": "The school case makes the bandwidth difference visible. Communication is not one flat category when empathy depends on response and presence."
+        },
+        {
+          "exampleId": "ex04",
+          "title": "Friday Table Window",
+          "tags": [
+            "office hours",
+            "availability",
+            "coffee shop"
+          ],
+          "scenario": "Brynn's Tuesday begins with twelve text bubbles, three phone calls she lets ring out, and a coffee shop loyalty card unused in her wallet. A week later, the same table is held from 5 to 7 each Friday as a recurring window. Friends know visits and phone calls are welcome then, so Brynn no longer patrols every thread.",
+          "whatToDo": "Brynn should tell friends the recurring window plainly and protect it as real availability, not as another feed to monitor.",
+          "whyItMatters": "Office hours turn care from scattered reaction into a known place and time. The person becomes less reactive but more reachable for real talk."
+        },
+        {
+          "exampleId": "ex05",
+          "title": "The Saved Reply",
+          "tags": [
+            "dialogue",
+            "phone calls",
+            "friend visits"
+          ],
+          "scenario": "Pierre has a saved draft message open at 8 p.m.: \"So happy for you!\" Everly reads it on the couch. \"Will she know you mean it?\" she asks. Pierre points to the phone calls listed under the coffee shop's recurring window. \"The draft is polite.\" Everly nods. \"Then send the invite, not the applause.\"",
+          "whatToDo": "Pierre should replace the saved praise with a short invitation to talk during the window he has already made easy to use.",
+          "whyItMatters": "The exchange keeps the lesson inside the reply itself. Praise can be kind, but an invitation creates room for the other person to answer."
+        },
+        {
+          "exampleId": "ex06",
+          "title": "Feed Pause",
+          "tags": [
+            "inner monologue",
+            "checking loop",
+            "weak signal"
+          ],
+          "scenario": "Everly sits this afternoon at the east concourse gate with a boarding pass on her knee. Facebook is open, and the Like button waits under a friend's promotion news. She thinks, If I tap, I was there. Then another thought follows: if I tap, I will check who tapped mine. The one-click reaction teaches her which social acknowledgement to crave.",
+          "whatToDo": "Everly should close the feed and send one direct sentence later: she saw the news and wants to hear the story when the friend has time.",
+          "whyItMatters": "The pause exposes the reward loop from the inside. Giving weak signals can train the same hunger that makes receiving them feel urgent."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "A volunteer group wants to cut social media use, but one member worries the rule treats friendship as shallow. Which reply best fits the starting point?",
+            "choices": [
+              "The group should mute the worry so members stop defending old habits in public.",
+              "The group should keep every channel open because social need outweighs planned limits.",
+              "The group should honor the need for connection while changing the weak substitutes."
+            ],
+            "correctIndex": 2,
+            "explanation": "The critique begins by accepting social need as real. The target is substitution by weak signals, not friendship itself, so suppression and total openness both miss the mechanism.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Melanie tells Sabrina, \"I liked five posts from my old roommate this week, so I have been a good friend.\" What does this claim miss?",
+            "choices": [
+              "The roommate may prefer private comments because public reactions look casual.",
+              "The posts may need longer comments because the platform ranks those higher.",
+              "The likes may satisfy acknowledgement without creating conversation or understanding."
+            ],
+            "correctIndex": 2,
+            "explanation": "A Like can feel like reaching out because it is easy and public. More acknowledgement is not the same as deeper contact, which is the near-miss in the claim.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "During a family conflict, Danielle suggests moving from texts to a call. Which reason best matches Sherry Turkle's conversation standard?",
+            "choices": [
+              "A call asks people to hear tone, wait, respond, and repair what lands badly.",
+              "A call records fewer words, so each person can avoid overexplaining the conflict.",
+              "A call moves faster, so the family can finish the hard topic with less effort."
+            ],
+            "correctIndex": 0,
+            "explanation": "Turkle's standard is richer interaction: listening, timing, ambiguity, and response. The wrong choices treat the call as a shortcut, not as harder social work.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "At dinner, Gerald says a cousin keeps six chats active all day and has not made one call in months. What is the most likely social cost?",
+            "choices": [
+              "The chats may make logistics harder because everyone expects formal planning.",
+              "The chats may keep the bond superficially active while crowding out deeper contact.",
+              "The chats may prove the relationship is strong because attention arrives all day."
+            ],
+            "correctIndex": 1,
+            "explanation": "Constant texting can maintain a low-grade sense of contact. That can reduce the push to schedule calls, visits, or longer exchanges where the friendship deepens.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Brynn posts that Friday evenings are open for coffee, walks, or calls. Which outcome would show the office-hours idea working?",
+            "choices": [
+              "Friends know when real conversation is welcome, so Brynn can stop monitoring every ping.",
+              "Friends send fewer serious messages during the week, so Brynn can avoid awkward topics more politely.",
+              "Friends compete for the Friday window, so Brynn can measure which relationships matter most."
+            ],
+            "correctIndex": 0,
+            "explanation": "Conversation office hours concentrate availability. They are not avoidance or ranking; they make richer contact easier while reducing all-day reactivity.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Everly stops giving quick reactions for a week after noticing she checks her own posts for hearts. Beyond the platform's metrics, what personal habit might change?",
+            "choices": [
+              "She may need to post more often because fewer reactions make her less visible.",
+              "She may care less about visible reactions because she is no longer training on them.",
+              "She may lose track of friends because reactions are the fastest way to notice their news."
+            ],
+            "correctIndex": 1,
+            "explanation": "Giving and receiving visible reactions trains attention toward the reward loop. Opting out changes what Everly teaches herself to value.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "During a planning call, Pierre says, \"A short comment under a post is basically the same as a walk.\" Which distinction should correct him?",
+            "choices": [
+              "The comment is better when it is public, while the walk is better when it stays private.",
+              "The comment is useful only for logistics, while the walk is useful only for emotion.",
+              "The walk carries tone, pacing, context, and commitment that a quick comment lacks."
+            ],
+            "correctIndex": 2,
+            "explanation": "High-bandwidth contact carries more social information. A comment can be friendly, but it lacks much of the shared context and attention of a walk.",
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "When Pierre reads a friend's hard update, he refuses to click Like and instead schedules a visit. What does that choice show?",
+            "choices": [
+              "He is making care less visible so the relationship carries fewer social demands.",
+              "He is moving care from weak acknowledgement toward stronger presence.",
+              "He is proving that online signals damage every relationship that uses them."
+            ],
+            "correctIndex": 1,
+            "explanation": "The goal is social upgrade, not withdrawal. Pierre reduces a weak signal so he can spend more effort on a visit, which is stronger presence.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "A parent uses texts to coordinate pickup times, then expects the same thread to carry a hard talk with a teenager. What should change?",
+            "choices": [
+              "Keep the texts for coordination and move the emotional talk to voice or shared time.",
+              "Make the thread longer so the teenager has more written detail to review after pickup later.",
+              "Treat the useful pickup texts as proof that texting can handle closeness too."
+            ],
+            "correctIndex": 0,
+            "explanation": "Digital minimalism separates jobs. Texting can be excellent for logistics, but closeness usually needs a richer channel than the coordination thread.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "card01",
+          "front": "What does conversation-centric connection ask you to treat as the main form of relationship care?",
+          "back": "Treat voice, face, and sustained exchange as the main care channels. Likes, reactions, and quick texts can support a bond, but they should not replace calls, visits, walks, or real-time talk.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card02",
+          "front": "Why can a Like feel social while still weakening the next real contact?",
+          "back": "A Like lets you feel that you noticed someone with almost no effort. That feeling can close the mental loop before you call, ask a follow-up, or spend time with the person.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card03",
+          "front": "How does Sherry Turkle's conversation standard explain why empathy needs more than snippets?",
+          "back": "Conversation makes people listen, wait, read tone, respond, and repair. Those demands train empathy in a way that short comments and reactions do not.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card04",
+          "front": "What problem do conversation office hours solve?",
+          "back": "They make real contact predictable. Friends know when calls, walks, or visits are welcome, so you can stop being loosely available to every ping all day.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "card05",
+          "front": "How should texting and conversation divide the work of friendship?",
+          "back": "Use texting for coordination, such as times, places, and quick facts. Use calls, meals, walks, and face-to-face talk for the parts that need tone, attention, and depth.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "card06",
+          "front": "Recall digital declutter (Ch 3): name one concrete moment here where it actually bites.",
+          "back": "Brynn's Friday coffee-shop window shows the declutter idea in action. She replaces all-day thread checking with a chosen rule for richer contact, rather than leaving empty space.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Say the Stronger Channel",
+        "coreSkill": "Practice naming the channel that would carry care best before you react. The move is simple: pause at the next social prompt, say the stronger channel aloud, then use the tiny signal only if it supports that channel. This keeps logistics useful and keeps friendship from shrinking to visible clicks.",
+        "ifThenPlans": [
+          {
+            "context": "If a Like button feels like the whole reply to someone you care about",
+            "plan": "If the click would end your effort, then say the stronger channel aloud and send a short invite to talk instead."
+          },
+          {
+            "context": "If a text thread has stayed busy for days without one real exchange",
+            "plan": "If the thread is only keeping the bond warm, then say the stronger channel aloud and offer one call or walk."
+          },
+          {
+            "context": "If friends expect quick replies from you all day",
+            "plan": "If constant replies are thinning your attention, then say the stronger channel aloud and name a recurring window for calls or visits."
+          },
+          {
+            "context": "If a logistical text turns into a serious emotional topic",
+            "plan": "If coordination has become care, then say the stronger channel aloud and move the hard part to voice or shared time."
+          }
+        ],
+        "twentyFourHourChallenge": "For the next 24 hours, before you start your next social message thread, say one sentence aloud: \"This needs a stronger channel.\" Then choose call, walk, visit, or logistics-only text.",
+        "weeklyPractice": "For one week, run a swap experiment: replace one recurring Like or quick-reply habit with one spoken invitation. Compare the two halves by how much real exchange each produced."
+      },
+      "memorableLines": [
+        {
+          "text": "A Like is not care; it is a receipt.",
+          "location": "breakdown.fastRead",
+          "why": "It draws a clean line between acknowledgement and real relational effort."
+        },
+        {
+          "text": "A ping can arrange a walk, but it cannot take the walk for you.",
+          "location": "breakdown.deepRead",
+          "why": "It makes the role of texting concrete without demonizing the tool."
+        },
+        {
+          "text": "Weak signals are fine as sparks; they fail as meals.",
+          "location": "breakdown.fullRead",
+          "why": "It compresses the chapter's upgrade rule into a plain image."
+        }
+      ]
+    },
+    {
+      "chapterId": "digital-minimalism-ch06",
+      "number": 6,
+      "title": "Reclaim Leisure",
+      "readingTimeMinutes": 12,
+      "hook": "Which hobby would you still choose if it felt clumsy for the first week?",
+      "counterintuition": "Why does leisure that asks more from you often leave you steadier afterward? Because the effort is not a tax on the fun; it is part of how the fun gets deep enough to last.",
+      "tryThisNow": "During your next conversation about free time, move one hobby object into view and explain how it could make a hard first step easier than opening a feed.",
+      "keyTakeaway": "Reclaimed time stays reclaimed when you fill it with active leisure that takes setup, skill, people, or tools, then keep passive screens in a small planned box.",
+      "breakdown": {
+        "fastRead": "Daphne finds a free hour after dinner and notices how strange it feels to protect it. Arnold Bennett would have treated that hour as raw material, not leftover scraps. His reversal is simple: demanding activity can be better leisure than passive consumption. A bike ride, a repair, a club night, or a hard book may resist you at first. Easy fun fades when it asks nothing of you. The rule is not to turn rest into work. It is to give your free hours something strong enough to compete with the easiest screen in the room.",
+        "deepRead": "The mechanism is visible the moment the first obstacle appears. High-quality leisure has startup friction: the cold garage, the awkward first meeting, the out-of-tune guitar, the recipe that dirties three pans. A feed has almost none. That is why empty time slides toward it unless you give the hour another destination. Pete Adeney's Mr. Money Mustache world makes the point in a lively way. Bryan rolls a bike wheel across the garage while Delaney asks why anyone with a car would bother fixing spokes on a Saturday. Bryan says the ride is cheaper, yes, but the bigger reward is that his body and hands know how the afternoon was spent. Frugality stops feeling like a smaller life when biking, repair, and local competence make the day feel fuller. Hands remember progress before feeds do. This is also why social leisure matters. A club, game night, volunteer shift, or pickup match gives connection a shape. You do not have to maintain every weak tie through a platform when a few strong ties have a place to meet. The discrimination is practical: if an activity only fills time, it is fragile; if it builds skill, contact, service, or shared effort, it can hold the space your phone used to occupy.",
+        "fullRead": "Matthew Crawford's shop work adds a sharper edge: tools answer back. A motorcycle part either fits or it does not. A wooden joint either sits square or it wobbles. That concrete feedback can feel humbling, but it also gives agency back to the person doing the work. Screens often blur that line. You scroll, react, compare, and receive little clean evidence that you made anything better. Manual competence is not valuable only because it saves money. It gives the mind a real object, a standard, and a visible result.\n\nDrew learns this while helping Adeline fix a loose brake cable. The first ten minutes are all fumbling: wrong wrench, dropped bolt, grease on the towel. Then the cable tightens, the lever responds, and the bike becomes rideable again. Nobody would call those ten minutes effortless. They are satisfying because they were not effortless. The body knows the difference between being entertained and having done something.\n\nPlanning matters because good leisure rarely appears fully formed. You may need to buy the cheap tool, text the group, reserve the court, choose a hard book, or put the guitar where your hand will find it. That sounds less spontaneous than collapsing onto the couch, but it is often what lets real delight happen. Structure can protect play. When low-quality digital leisure stays unplanned, it becomes the default answer to every pause. When it is scheduled into a small window, it can stay a treat instead of becoming the shape of the day.\n\nThe planning should stay light enough to invite action. A reader does not need a full hobby curriculum before touching a tool. One visible object can be enough: the racket by the door, the library novel on the pillow, the bike pump beside the wheel. The object matters because it changes the first move. Instead of asking, \"What do I feel like doing?\" while a phone waits nearby, the room answers with a small prepared path. The path can still be playful. Friends can still improvise after the first serve, and a repair can still turn into a long talk over coffee.\n\nThere is still a counter-case. If Laurence comes home sick, child asleep at last, and a simple show helps him recover without crowding out anything better, the Bennett Principle should not scold him into building a bookshelf. Passive comfort can be honest rest when it is chosen, contained, and not covering an avoided life. A screen can rest you; it cannot replace a life. Reclaiming leisure means knowing the difference between a planned comfort and the kind of passive drift that quietly spends every open hour."
+      },
+      "examples": [
+        {
+          "exampleId": "ch06-ex01",
+          "title": "Bennett's Free Hour",
+          "tags": [
+            "dilemma",
+            "leisure",
+            "planning"
+          ],
+          "scenario": "Daphne leaves a printed note about Arnold Bennett on the kitchen table: early twentieth century, free hours, demanding activity. Bryan points to the couch and says she has earned an easy show. Daphne weighs two poor options: collapse into another night of passive consumption, or start the sketchbook practice that will feel clumsy for ten minutes before it feels alive.",
+          "whatToDo": "Daphne puts the remote in a drawer, leaves the sketchbook open beside Bennett's note, and asks Bryan to stay for the first page instead of praising the plan from across the room.",
+          "whyItMatters": "The move makes the first hard step visible and shared. When leisure has startup friction, a prepared object and one witness can keep the hour from sliding back to the easiest screen."
+        },
+        {
+          "exampleId": "ch06-ex02",
+          "title": "Garage Spoke Talk",
+          "tags": [
+            "dialogue",
+            "repair",
+            "frugality"
+          ],
+          "scenario": "At noon on the shop floor in Bryan's garage, bike mechanic Bryan spins a wobbly wheel beside a workbench and a mug of cold coffee. \"Why not just drive?\" Delaney asks. Bryan points to the Mr. Money Mustache post about Pete Adeney, financial independence, biking and repair. \"Because this is not only about saving gas,\" he says. \"I get a ride, a fixed wheel, and an afternoon I can feel in my legs.\"",
+          "whatToDo": "Bryan keeps the talk at the workbench. He lets Delaney hold the spoke key, names the repair step, and turns financial independence from a spreadsheet into a lived action.",
+          "whyItMatters": "The exchange turns less consumption into more agency. A reader can copy the pattern by pairing restraint with a body-level skill, not with a vague promise to spend less."
+        },
+        {
+          "exampleId": "ch06-ex03",
+          "title": "The Bolt Answers",
+          "tags": [
+            "predict_reveal",
+            "craft",
+            "agency"
+          ],
+          "scenario": "At the Saturday shop bench, Delaney expects the motorcycle repair to be a noble waste of time. A mechanic reads a marked page from Matthew Crawford's Shop Class as Soulcraft, then asks her to tighten one bolt on the stand. The surprise comes when the part stops rattling. \"That was the whole point?\" she asks. The mechanic smiles: \"The metal answered you.\"",
+          "whatToDo": "Delaney repeats the adjustment herself and listens for the rattle to disappear. She lets the tool give feedback before judging the repair by speed or savings.",
+          "whyItMatters": "Manual skill teaches through reality, not through likes or guesses. The reader learns to value a hobby that gives clear standards even when it starts slowly."
+        },
+        {
+          "exampleId": "ch06-ex04",
+          "title": "Pickup Game Thread",
+          "tags": [
+            "text_thread",
+            "social leisure",
+            "structure"
+          ],
+          "scenario": "Friday group text, 11:18 a.m. Holden: \"Pete Adeney's Mr. Money Mustache crowd would bike to the court, right?\" Adeline: \"Only if we actually meet instead of liking photos.\" Holden: \"I have not played in a year.\" Adeline: \"Good. Biking and repair can wait. Today we can be bad in person.\" By noon, the chat has become two borrowed rackets and a tennis court gate.",
+          "whatToDo": "Adeline turns the weak online signal into a shared appointment. She names a place, lowers the skill bar, and makes the connection happen through play.",
+          "whyItMatters": "Structured leisure gives friendship a body and a calendar. It does not require constant platform upkeep because people know when and where to meet."
+        },
+        {
+          "exampleId": "ch06-ex05",
+          "title": "Remote In The Bowl",
+          "tags": [
+            "reset_moment",
+            "screen limits",
+            "containment"
+          ],
+          "scenario": "After bedtime in the apartment hallway, Laurence starts the third episode with a baby monitor in one hand and the remote in the other. Drew taps the Arnold Bennett note on the table: free hours, demanding activity. \"Are we resting, or did the remote win again?\" Laurence pauses the show, carries the remote to a bowl by the door, and says one episode can stay.",
+          "whatToDo": "Laurence restarts the night with a rule he can see. He places the remote away from his hand, names the one planned episode, and pulls out the puzzle box for after.",
+          "whyItMatters": "The reset does not treat every show as failure. It keeps passive leisure inside a chosen window so it cannot quietly become the answer to every gap."
+        },
+        {
+          "exampleId": "ch06-ex06",
+          "title": "Grease On The Towel",
+          "tags": [
+            "vignette",
+            "manual skill",
+            "craft"
+          ],
+          "scenario": "At the workbench, Adeline holds the brake cable while a neighbor wipes grease from a towel already ruined for the purpose. Matthew Crawford's motorcycle repair pages sit open nearby, but the lesson is in the lever. Adeline squeezes; the brake grabs cleanly. \"It finally listens,\" the neighbor says, and she grins at the small, physical proof.",
+          "whatToDo": "Adeline stays with the awkward part until the feedback changes. She tests the lever again, cleans the tool, and treats the finished motion as the reward.",
+          "whyItMatters": "Startup friction is not a sign to quit. Skilled leisure often becomes satisfying only after the hand, tool, and material begin to answer one another."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch06-q01",
+            "prompt": "\"I deleted the apps, so better hobbies should show up on their own.\" What does this response miss?",
+            "choices": [
+              "It treats free hours as proof that discipline has already replaced entertainment.",
+              "It leaves empty time exposed to easy digital entertainment before better leisure is ready.",
+              "It assumes every screen habit should be replaced by the same outdoor activity."
+            ],
+            "correctIndex": 1,
+            "explanation": "The source fact says reclaimed time needs satisfying replacements. The first choice overstates discipline, and the third narrows leisure to one category.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q02",
+            "prompt": "A reader says a relaxing night should demand as little as possible. Which reply best fits the Bennett Principle?",
+            "choices": [
+              "Demanding activity can produce stronger satisfaction because skill and effort are part of the reward.",
+              "Passive activity is useful only when it trains a person to work harder the next day.",
+              "A restful night should be judged by whether it avoids tools, groups, and practice."
+            ],
+            "correctIndex": 0,
+            "explanation": "Bennett favors demanding activity over passive consumption. The other choices either make rest serve work or treat friction as automatic evidence against leisure.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q03",
+            "prompt": "After trying to replace scrolling, Holden chooses only running. What is the likely blind spot?",
+            "choices": [
+              "High-quality leisure can also include craft, music, clubs, repair, reading, or service.",
+              "Outdoor exercise matters less than private digital rules for long-term attention.",
+              "Any activity counts as high-quality leisure once it happens away from a phone."
+            ],
+            "correctIndex": 0,
+            "explanation": "The fact names active engagement across several forms, not only exercise. The other choices either leave the source focus or make the standard too loose.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q04",
+            "prompt": "Someone calls Mr. Money Mustache a lesson in spreadsheets and self-denial. What is the better reading?",
+            "choices": [
+              "The example links lower consumption with biking, repair, and competence that make life feel richer.",
+              "The example proves financial independence works when leisure is postponed until savings are complete.",
+              "The example treats frugality as a private accounting method with little effect on daily life."
+            ],
+            "correctIndex": 0,
+            "explanation": "Pete Adeney's case pairs frugality with active competence. The distractors flatten the example into deferred pleasure or accounting alone.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q05",
+            "prompt": "\"Repair hobbies are worth it because they save cash.\" What does Crawford's manual-competence argument add?",
+            "choices": [
+              "Repair matters when it turns every free hour into a practical job with measurable output.",
+              "Repair matters when it keeps entertainment away until useful chores are finished.",
+              "Repair gives concrete feedback from tools and materials, which restores agency."
+            ],
+            "correctIndex": 2,
+            "explanation": "Crawford's point is agency through contact with reality. The other choices reduce craft to productivity or delayed entertainment.",
+            "bloomsLevel": "understand",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch06-q06",
+            "prompt": "A group quits the platform chat but never sets a shared activity. What is most likely to happen next?",
+            "choices": [
+              "The friendship improves because less ambient contact leaves more room for stronger bonds.",
+              "The group avoids digital upkeep while keeping all the benefits of regular presence.",
+              "Connection weakens unless a club, game, volunteer shift, or gathering gives it structure."
+            ],
+            "correctIndex": 2,
+            "explanation": "The fact says structured shared activity carries connection better than ambient contact. Less online chatter alone does not create a meeting place.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q07",
+            "prompt": "\"A minimalist should never stream shows or browse for fun.\" Which correction fits the method?",
+            "choices": [
+              "Passive entertainment is acceptable only after all demanding leisure has become easy.",
+              "Passive entertainment can stay as a planned treat, but it should not fill every gap by default.",
+              "Passive entertainment should be replaced by social platforms that feel more active."
+            ],
+            "correctIndex": 1,
+            "explanation": "The source allows contained low-quality leisure. The first choice invents an ease test, and the third swaps one screen default for another.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q08",
+            "prompt": "Daphne's first guitar session feels awkward and tiring. What should she infer from the idea?",
+            "choices": [
+              "The hobby is probably mismatched because good leisure should relax her at once.",
+              "The hobby should be kept only if it quickly becomes cheaper than screen entertainment.",
+              "The awkward start may be normal friction before the activity becomes rewarding."
+            ],
+            "correctIndex": 2,
+            "explanation": "Fact 8 warns against reading startup friction as failure. The distractors expect instant ease or reduce the choice to price.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q09",
+            "prompt": "A team removes casual browsing but refuses to plan leisure because planning sounds joyless. What follows from the source logic?",
+            "choices": [
+              "Spontaneity works best when every free block stays open until the last moment.",
+              "Some structure gives reclaimed time a positive destination without killing play.",
+              "Planning matters only for work because leisure loses value once it is named."
+            ],
+            "correctIndex": 1,
+            "explanation": "The fact says planning protects the declutter from becoming a void. The other choices repeat the error that structure ruins leisure.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch06-card01",
+          "front": "What makes leisure high quality in a digital minimalist life?",
+          "back": "It asks for active engagement: skill, tools, movement, service, study, or shared effort. The test is whether the activity gives deeper satisfaction than passive digital consumption.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch06-card02",
+          "front": "How does the Bennett Principle reverse the usual idea of rest?",
+          "back": "It says demanding activity can be better leisure than passive ease. Effort, practice, and skill are not defects; they are often what make the reward durable.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-card03",
+          "front": "Why should startup friction not automatically disqualify a hobby?",
+          "back": "Many good activities begin with setup, awkwardness, weak skill, or tired muscles. That early drag can be the entry cost for satisfaction that lasts.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-card04",
+          "front": "What does Pete Adeney's Mr. Money Mustache example add to leisure?",
+          "back": "It shows reduced consumption becoming richer through biking, repair, and local competence. Frugality feels less like deprivation when daily life gets more active.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch06-card05",
+          "front": "Why does Matthew Crawford matter for a chapter about screens?",
+          "back": "His manual-competence argument shows why making and fixing restore agency. Tools and materials give feedback that passive information rarely provides.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "ch06-card06",
+          "front": "Which matters more for reclaimed free time, digital minimalism (Ch 2) or high-quality leisure, and why?",
+          "back": "Digital minimalism decides which tools deserve a place. High-quality leisure keeps the freed time from becoming empty, so the replacement activity carries the practical burden.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "ch06-card07",
+          "front": "Does the method ban low-quality digital leisure?",
+          "back": "No. It contains passive entertainment in planned windows so it stays a treat. The target is default drift, not every movie, show, or casual browse.",
+          "difficulty": "easy"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Place The Harder Fun",
+        "coreSkill": "Practice giving reclaimed time a visible destination before the easy screen claims it. Use the Place the Harder Fun move: put one tool, book, racket, recipe, or invitation where the next leisure moment will begin. Then treat early friction as a cue to start smaller, not as proof the activity is wrong.",
+        "ifThenPlans": [
+          {
+            "context": "An open evening appears after you reduce a screen habit.",
+            "plan": "If the hour feels empty, then choose the prepared object before choosing entertainment. Give the activity ten minutes before you judge it."
+          },
+          {
+            "context": "A hobby feels awkward during the first session.",
+            "plan": "If the first attempt feels clumsy, then name the friction out loud and make the next step smaller. Do not let awkwardness vote by itself."
+          },
+          {
+            "context": "You catch yourself relying on feed contact with friends.",
+            "plan": "If a relationship is living mostly in reactions and likes, then propose one shared activity with a place and a day."
+          },
+          {
+            "context": "You want a show, game, or browsing session.",
+            "plan": "If passive entertainment is the choice, then put it in a clear window first. Stop when the window ends and move the remote, controller, or app away."
+          }
+        ],
+        "twentyFourHourChallenge": "In the next 24 hours, move one leisure object into the spot where you usually reach for a screen. During your next conversation about free time, explain to one person why that object marks your first ten minutes.",
+        "weeklyPractice": "This week, teach the Bennett Principle to one person in plain language using your real leisure plan. Show the object you moved, name the first friction point, and ask them what would make the start easier."
+      },
+      "memorableLines": [
+        {
+          "text": "Easy fun fades when it asks nothing of you.",
+          "location": "breakdown.fastRead",
+          "why": "It compresses the chapter's reversal into one plain contrast."
+        },
+        {
+          "text": "Hands remember progress before feeds do.",
+          "location": "breakdown.deepRead",
+          "why": "It makes active competence feel bodily rather than abstract."
+        },
+        {
+          "text": "A screen can rest you; it cannot replace a life.",
+          "location": "breakdown.fullRead",
+          "why": "It preserves the counter-case while keeping the chapter's boundary clear."
+        }
+      ]
+    },
+    {
+      "chapterId": "digital-minimalism-ch07",
+      "number": 7,
+      "title": "Join the Attention Resistance",
+      "readingTimeMinutes": 12,
+      "hook": "Your lock screen is not neutral; it quietly votes before your values speak.",
+      "counterintuition": "Resistance is not a one-time deletion, but a steady redesign of the paths your attention can take. If the feed keeps the easiest door, your best values wait outside it.",
+      "tryThisNow": "During your next commute or first coffee, count each reflex pull toward a feed. Record the cue, the app, and rank the top three by risk to your attention.",
+      "keyTakeaway": "Attention resistance protects autonomy by making chosen tools easy and captured use hard: remove phone feeds, slow your news, and add friction where defaults keep winning.",
+      "breakdown": {
+        "fastRead": "Jaron Lanier gives the hard version of the move. In Ten Arguments for Deleting Your Social Media Accounts Right Now, he treats exit as a sane answer to surveillance and behavior manipulation, not as a stunt. A platform can help you and still be built to pull you back. Defaults vote before you do.\n\nYour job is to make the vote harder to cast. Remove social apps from the phone. Read news from selected sources after the rush has cooled. Use a platform with a purpose, a time, and a clean exit. The aim is not to hate tools. The aim is to keep your own hand on the switch.",
+        "deepRead": "Platforms win when return visits feel like your idea. A buzz, a badge, a new post, or a red dot can turn a free minute into a measured act. Tristan Harris and the Center for Humane Technology named this as a design problem. Time Well Spent was a way to ask what a screen was steering people toward before they had chosen it.\n\nThat is why rules beat mood. If Thomas keeps the account but removes the app, the account has not vanished. The thumb path has changed. A check now asks for a laptop, a browser, and a reason. That small delay gives his values a chance to speak.\n\nSlow media works the same way with news. Solene can still care about the world without letting breaking news own the shape of her day. She picks selected sources, waits for context, and reads when she can think. Speed is not the same as care. Friction is a fence around chosen attention.\n\nThe full tactic set has five parts: delete or exit corrosive platforms, remove social media from phones, use social media like a professional, embrace slow media, and use friction tools and single-purpose devices. Each part asks the same plain question: who decides what gets the next minute?",
+        "fullRead": "A dumb phone on the table can look pure while the laptop across the room still holds every feed. That is the danger of turning resistance into a costume. The plain phone is only a tool, not proof. Ask a plainer thing: does the easiest path still lead where you chose?\n\nJaron Lanier's exit case matters because some platforms mix surveillance, behavior manipulation, and public talk in ways a careful user may not be able to tame. Leaving can be rational. It is not the only honest answer. A freelance designer may need one network to find clients. A school volunteer may need a group page to post dates. Resistance asks them to write rules sharp enough that the tool works for the job and then goes quiet.\n\nTreating a platform as a work tool gives that rule a shape. Pierce names the purpose before opening the site. He writes the session length. He writes what success looks like. Then he leaves when the job is done. Without those marks, the session can become wandering with better shoes.\n\nTristan Harris adds the design warning. A feed, a notification, and a metric are not just taste choices. They steer behavior before a person can weigh the trade. That means the repair must reach the setting, not just the mood. Blockers, grayscale, separate devices, and single-purpose work tools are not signs of weak will. They are rails laid for the self you already chose.\n\nMurray's team shows the small version. No one throws a phone into the sea. They turn noisy internal posts into a summary, keep safety alerts, and make the feed serve one work path. The change is modest enough to last. It also proves the larger rule: change the room before you blame the mind.\n\nSlow media protects another edge. Constant headline checks can feel like duty, but duty without context often becomes noise. Solene waits for selected sources and delayed reading. She misses some heat and gains a clearer picture. A person can be later than the feed and wiser than the feed.\n\nPush the idea too far and it curdles. Purity can become another feed. You start checking whether you are austere enough, clean enough, severe enough. That is still attention captured by a display, only now the display is your own rule sheet. The goal is autonomy, not a museum of unused tools. Keep the tools that serve a chosen value. Make the captured uses harder. Then keep watching, because new defaults will keep asking for the next minute."
+      },
+      "examples": [
+        {
+          "exampleId": "ch07-ex01",
+          "title": "Lanier Lunch Correction",
+          "tags": [
+            "mistake",
+            "exit",
+            "social media"
+          ],
+          "scenario": "At noon Thomas types in the hospital cafeteria while his soup cools. He works as a patient advocate, and his lunch reply defends his social accounts as harmless. Jaron Lanier's Ten Arguments for Deleting Your Social Media Accounts Right Now sits beside the bowl. Thomas notices his own error: he has judged only the nice posts, not the surveillance and behavior manipulation that pay for the feed. The reply box is still open, and he can admit the account may need an exit.",
+          "whatToDo": "Thomas sends the shorter honest reply: the account is useful sometimes, but its business model keeps winning his spare minutes. He deletes one corrosive account before lunch ends.",
+          "whyItMatters": "The recovery happens at the moment of noticing. When the platform's incentives are the problem, more willpower inside the same feed may be weaker than leaving it."
+        },
+        {
+          "exampleId": "ch07-ex02",
+          "title": "Pierce's Default Memo",
+          "tags": [
+            "memo",
+            "defaults",
+            "ethics"
+          ],
+          "scenario": "Pierce's memo opens on a projector before the town hall: \"Tristan Harris and the Center for Humane Technology make this more than taste. Our default alert asks for attention before the user has a task. Time Well Spent would judge the path we create, not the color we pick.\" In the final line, he recommends changing the default from instant alerts to quiet summaries.",
+          "whatToDo": "Pierce keeps the memo concrete: name the default, state what it asks from the user, and recommend the quieter setting before anyone can wave it off as a design preference.",
+          "whyItMatters": "Written this way, the choice becomes ethical and practical. Defaults are part of the environment, so changing them protects attention before discipline is tested."
+        },
+        {
+          "exampleId": "ch07-ex03",
+          "title": "Two News Mornings",
+          "tags": [
+            "contrast",
+            "slow media",
+            "news"
+          ],
+          "scenario": "At 7:35 a.m. Gaelle refreshes breaking news in a rideshare back seat before the car clears the bridge. She works as a public-interest attorney and arrives with fragments and a tight jaw. Solene works as a policy analyst. She waits until lunch, reads two selected sources, and writes three lines of context in a notebook. Gaelle feels earlier; Solene can explain more. The same story leaves one person stirred and the other informed.",
+          "whatToDo": "Solene keeps the selected sources and delayed reading window. Gaelle changes one variable tomorrow: no headline refresh during the ride, only one chosen source after the morning rush.",
+          "whyItMatters": "Slow media does not mean caring less. It trades speed and frequency for context, so the reader can notice when checking is feeding nerves more than knowledge."
+        },
+        {
+          "exampleId": "ch07-ex04",
+          "title": "Murray's Feed Reframe",
+          "tags": [
+            "coach talk",
+            "work tools",
+            "friction"
+          ],
+          "scenario": "Murray walks the factory floor with a tablet that pings for every internal post. Renata, the peer coach, taps the notification list and brings up Tristan Harris's warning about interface defaults. \"Do not call it weak focus when the room keeps handing people a bell,\" she says. Murray stops blaming the crew and asks which alerts can become scheduled summaries.",
+          "whatToDo": "Murray changes the environment first: convert nonurgent pings into summaries, leave safety alerts alone, and make the feed a work tool with a clear entry point.",
+          "whyItMatters": "The coach talk moves the problem from character to design. When the setting keeps calling, friction is not a crutch; it is part of the work."
+        },
+        {
+          "exampleId": "ch07-ex05",
+          "title": "Tracy's Professional Session",
+          "tags": [
+            "school",
+            "professional use",
+            "purpose"
+          ],
+          "scenario": "Tracy stands in a community college lab after showing a short Tristan Harris clip from the Center for Humane Technology. New club officers plan social posts. One student says attention resistance means better photos and more frequent updates. Tracy writes three blanks on the board: purpose, schedule, exit. The confusion becomes the lesson. A platform can serve the club, but only if the session ends when the announcement, reply, or sign-up check is done.",
+          "whatToDo": "Tracy has each officer write one purpose, one session window, and one success mark before logging in. The class treats the feed as a tool, not a room to roam.",
+          "whyItMatters": "The teaching case separates polish from control. Professional use is not about looking busier online; it is about ending the session when the defined job is complete."
+        },
+        {
+          "exampleId": "ch07-ex06",
+          "title": "Gaelle's Missing App",
+          "tags": [
+            "before after",
+            "phone",
+            "friction"
+          ],
+          "scenario": "On Saturday Gaelle waits in the apartment laundry room while the washer shakes. She works as a public-interest attorney and used to check a feed between loads. After hearing Tristan Harris on interface defaults, she removed the phone app. The account stayed open, but the missing icon changes the urge. Fetching a laptop feels like a choice. Most times she folds towels instead; later she logs in for one message and leaves.",
+          "whatToDo": "Gaelle leaves the account active but removes the easiest path. She uses the desktop only for named tasks, then signs out before the feed becomes the next room she lives in.",
+          "whyItMatters": "The before-and-after shows why friction matters. Deleting the app can change the behavior even when the account still exists."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch07-q01",
+            "prompt": "During a vendor demo, Murray hears, \"The platform wants users to get value quickly, so more checking is still their choice.\" What does this miss?",
+            "choices": [
+              "It assumes reminders can be turned off without changing the platform's business incentives.",
+              "It misses that captured time and behavior data can reward extra checking beyond the user's aim.",
+              "It treats every ad-funded tool as useless even when a narrow task still has value."
+            ],
+            "correctIndex": 1,
+            "explanation": "The conflict is not only the user's intent. Platforms can gain from extra return visits, while the first and third choices shift the issue to settings or total rejection.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q02",
+            "prompt": "Thomas reads Lanier and says, \"If deletion is serious, every minimalist must delete every account.\" Which reply fits the case best?",
+            "choices": [
+              "Deletion is mainly a public signal, so Thomas should keep accounts and post less.",
+              "Deletion matters only after Thomas proves that every constrained-use rule failed first.",
+              "Deletion can be a rational exit when surveillance and manipulation defeat autonomy."
+            ],
+            "correctIndex": 2,
+            "explanation": "Lanier's argument supports exit as one strong strategy, not a universal rule. The other choices either reduce exit to image or make it a last resort only.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch07-q03",
+            "prompt": "Before Pierce's town hall, his team calls an instant-alert default \"just a style preference.\" Which response follows humane technology thinking?",
+            "choices": [
+              "The team should poll users about color and placement before judging the alert.",
+              "The team should keep the alert if most workers say they like fast updates.",
+              "The team should ask how the default steers behavior before choice can catch up."
+            ],
+            "correctIndex": 2,
+            "explanation": "Harris's work treats defaults as ethical design choices because they shape behavior. Taste and user preference matter, but they do not settle the steering effect.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q04",
+            "prompt": "Gaelle keeps her social account but deletes the phone app. A friend says nothing has changed. Which result is most likely?",
+            "choices": [
+              "Gaelle will need a stricter promise because active accounts make friction useless.",
+              "Gaelle will check with the same rhythm because the account still exists online.",
+              "Gaelle will face a small delay that turns reflex checks into more chosen sessions."
+            ],
+            "correctIndex": 2,
+            "explanation": "The account remains, but the easy access path is gone. That friction can interrupt automatic checking, while the other choices treat app removal as empty.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q05",
+            "prompt": "In Tracy's club workshop, officers need social media for event notices but keep drifting into the feed. What would professional use require?",
+            "choices": [
+              "Tracy defines the purpose, opens the site in a set window, and leaves when the notice is done.",
+              "Tracy improves the club's photos and posts more often so the account looks active.",
+              "Tracy keeps the account open between classes so replies can be handled as they arrive."
+            ],
+            "correctIndex": 0,
+            "explanation": "Professional use means a purpose, schedule, and exit condition. Better polish or constant availability can still leave the session open to wandering.",
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q06",
+            "prompt": "In the rideshare, Gaelle worries that delayed news reading will make her careless about the world. Which answer best reflects slow media?",
+            "choices": [
+              "Gaelle should scan headlines all day but avoid opening most articles.",
+              "Gaelle can use selected sources later, gaining context while losing some heat.",
+              "Gaelle should wait for friends to summarize news so she avoids anxious reading."
+            ],
+            "correctIndex": 1,
+            "explanation": "Slow media reduces speed and frequency to improve context. It is not headline skimming all day, and it is not outsourcing attention to friends.",
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q07",
+            "prompt": "On Murray's factory floor, a colleague calls blockers and single-purpose devices \"training wheels.\" Which reply best fits attention resistance?",
+            "choices": [
+              "They reshape the environment so the chosen action is easier when willpower is low.",
+              "They prove the user should leave every platform rather than keep making rules.",
+              "They work mainly by making devices unpleasant enough that work feels better."
+            ],
+            "correctIndex": 0,
+            "explanation": "Friction tools align the setting with the desired behavior. The other choices confuse design support with total exit or with making technology feel bad.",
+            "bloomsLevel": "evaluate",
+            "depthLevel": "deep"
+          },
+          {
+            "questionId": "ch07-q08",
+            "prompt": "After Solene finishes a digital declutter, she says attention should stay fixed now. What is the weak spot in that claim?",
+            "choices": [
+              "New defaults and old habits can return, so rules need review and repair.",
+              "A declutter only works when every social account is deleted at the end.",
+              "A reset mainly measures discipline, so later tool choices matter much less."
+            ],
+            "correctIndex": 0,
+            "explanation": "Attention resistance is ongoing. A declutter can reset habits, but platforms and routines keep changing, so the defenses need upkeep.",
+            "bloomsLevel": "understand",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch07-q09",
+            "prompt": "Solene wants to join the attention resistance without becoming anti-technology or performative. Which rule best matches the goal?",
+            "choices": [
+              "Solene should remove tools until her setup proves she is no longer tempted by feeds.",
+              "Solene should keep useful tools only where she sets the purpose, path, and stopping point.",
+              "Solene should treat modern platforms as acceptable whenever they help with a real task."
+            ],
+            "correctIndex": 1,
+            "explanation": "The goal is autonomy, not purity. Useful tools may remain, but the user sets terms. The other choices lean toward image or loose permission.",
+            "bloomsLevel": "create",
+            "depthLevel": "deep"
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch07-card01",
+          "front": "What does attention resistance ask you to resist?",
+          "back": "It asks you to resist letting feeds, alerts, platforms, and devices set the terms for your attention. You change the paths so chosen uses are easier than captured ones.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch07-card02",
+          "front": "When does Lanier's deletion argument become a rational exit rather than a stunt?",
+          "back": "Deletion makes sense when surveillance, behavior manipulation, and public-discourse harms are built into the platform's incentives. In that case, leaving can protect autonomy.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-card03",
+          "front": "Why do Tristan Harris and humane technology treat defaults as ethical choices?",
+          "back": "Interface defaults can invite a check before a person has named a task. Center for Humane Technology used Time Well Spent to judge that steering, not just screen style.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-card04",
+          "front": "How does slow media make someone better informed with fewer checks?",
+          "back": "It trades breaking news checks for selected sources and scheduled reading. Delayed consumption lets noise fade before attention is spent, so context has room to form.",
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-card05",
+          "front": "What three marks make social media use professional rather than wandering?",
+          "back": "Professional use has a purpose, a schedule, and an exit condition. The session starts with a job and ends when that job is done.",
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch07-card06",
+          "front": "How would you restate conversation-centric connection (Ch 5), then use it on attention resistance?",
+          "back": "Conversation-centric connection makes voice, face, and sustained exchange the main form of care. Attention resistance protects those channels without turning useful tools into forbidden objects.",
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "ch07-card07",
+          "front": "Why is autonomy a better target than technological purity?",
+          "back": "Purity can become image management. Autonomy asks who controls attention, so selected tools may stay when the user sets the purpose, path, and stopping point.",
+          "difficulty": "hard"
+        }
+      ],
+      "implementationPlan": {
+        "title": "Rank The Capture Paths",
+        "coreSkill": "Practice spotting the easiest path your attention takes before you argue with yourself. Use Rank The Capture Paths: count the cue, name the app or device, then rank the top risks by how often they override your own plan. Start with the highest-risk path and add one piece of friction.",
+        "ifThenPlans": [
+          {
+            "context": "Your thumb reaches for a feed during a routine pause.",
+            "plan": "If the reach happens during a pause, then mark the cue in your tally and remove the phone path from the highest-ranked feed."
+          },
+          {
+            "context": "A useful platform is needed for a real task.",
+            "plan": "If you need the platform, then write the purpose, session window, and exit condition before opening it."
+          },
+          {
+            "context": "Breaking news asks for another check before you can think.",
+            "plan": "If a headline tries to pull you back, then put it on the slow-media list and read from a selected source later."
+          },
+          {
+            "context": "A work device keeps offering other rooms to wander through.",
+            "plan": "If the device keeps opening side paths, then add one blocker, separate device, or single-purpose setup to the ranked path."
+          }
+        ],
+        "twentyFourHourChallenge": "For the next 24 hours, count every reflex reach for a feed during your commute, first coffee, meals, and task handoffs. Record the cue and rank the top three capture paths by risk.",
+        "weeklyPractice": "Run three spaced reps of Rank The Capture Paths this week. First, rank by frequency after one routine. Two days later, rank by risk across half a day. At week's end, add friction to the top path and check whether the count drops."
+      },
+      "memorableLines": [
+        {
+          "text": "Defaults vote before you do.",
+          "location": "breakdown.fastRead",
+          "why": "It makes invisible design pressure feel immediate and easy to recall."
+        },
+        {
+          "text": "Friction is a fence around chosen attention.",
+          "location": "breakdown.deepRead",
+          "why": "It turns blockers and device rules into a vivid protection image."
+        },
+        {
+          "text": "Purity can become another feed.",
+          "location": "breakdown.fullRead",
+          "why": "It names the overcorrection in a compact warning."
+        }
+      ]
+    }
+  ]
+}

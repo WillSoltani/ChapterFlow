@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "sweep-attest-v1",
+  "bookId": "digital-minimalism",
+  "roundId": "r20260617025157-b9b1bf",
+  "verdict": "PASS",
+  "reviewer": "codex-qc:sweep",
+  "attestedAt": "2026-06-17T03:12:58.002Z",
+  "contentHashes": {
+    "1": "70801116833ff59d",
+    "2": "01793b1230f702be",
+    "3": "e40b657d0b95996f",
+    "4": "d3dcb9a9d02c99cc",
+    "5": "b68b797ffdfb5041",
+    "6": "c43fc5ecf5136689",
+    "7": "d4316b005a09bcf1"
+  },
+  "checkedFamilies": [
+    "scene_skeleton",
+    "persona_drift",
+    "repeated_unit",
+    "location_stamping"
+  ],
+  "findings": []
+}

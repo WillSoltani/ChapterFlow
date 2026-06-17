@@ -1,0 +1,376 @@
+{
+  "chapterId": "digital-minimalism-ch07",
+  "number": 7,
+  "title": "Join the Attention Resistance",
+  "readingTimeMinutes": 12,
+  "hook": "Your lock screen is not neutral; it quietly votes before your values speak.",
+  "counterintuition": "Resistance is not a one-time deletion, but a steady redesign of the paths your attention can take. If the feed keeps the easiest door, your best values wait outside it.",
+  "tryThisNow": "During your next commute or first coffee, count each reflex pull toward a feed. Record the cue, the app, and rank the top three by risk to your attention.",
+  "keyTakeaway": "Attention resistance protects autonomy by making chosen tools easy and captured use hard: remove phone feeds, slow your news, and add friction where defaults keep winning.",
+  "breakdown": {
+    "fastRead": "Jaron Lanier gives the hard version of the move. In Ten Arguments for Deleting Your Social Media Accounts Right Now, he treats exit as a sane answer to surveillance and behavior manipulation, not as a stunt. A platform can help you and still be built to pull you back. Defaults vote before you do.\n\nYour job is to make the vote harder to cast. Remove social apps from the phone. Read news from selected sources after the rush has cooled. Use a platform with a purpose, a time, and a clean exit. The aim is not to hate tools. The aim is to keep your own hand on the switch.",
+    "deepRead": "Platforms win when return visits feel like your idea. A buzz, a badge, a new post, or a red dot can turn a free minute into a measured act. Tristan Harris and the Center for Humane Technology named this as a design problem. Time Well Spent was a way to ask what a screen was steering people toward before they had chosen it.\n\nThat is why rules beat mood. If Thomas keeps the account but removes the app, the account has not vanished. The thumb path has changed. A check now asks for a laptop, a browser, and a reason. That small delay gives his values a chance to speak.\n\nSlow media works the same way with news. Solene can still care about the world without letting breaking news own the shape of her day. She picks selected sources, waits for context, and reads when she can think. Speed is not the same as care. Friction is a fence around chosen attention.\n\nThe full tactic set has five parts: delete or exit corrosive platforms, remove social media from phones, use social media like a professional, embrace slow media, and use friction tools and single-purpose devices. Each part asks the same plain question: who decides what gets the next minute?",
+    "fullRead": "A dumb phone on the table can look pure while the laptop across the room still holds every feed. That is the danger of turning resistance into a costume. The plain phone is only a tool, not proof. Ask a plainer thing: does the easiest path still lead where you chose?\n\nJaron Lanier's exit case matters because some platforms mix surveillance, behavior manipulation, and public talk in ways a careful user may not be able to tame. Leaving can be rational. It is not the only honest answer. A freelance designer may need one network to find clients. A school volunteer may need a group page to post dates. Resistance asks them to write rules sharp enough that the tool works for the job and then goes quiet.\n\nTreating a platform as a work tool gives that rule a shape. Pierce names the purpose before opening the site. He writes the session length. He writes what success looks like. Then he leaves when the job is done. Without those marks, the session can become wandering with better shoes.\n\nTristan Harris adds the design warning. A feed, a notification, and a metric are not just taste choices. They steer behavior before a person can weigh the trade. That means the repair must reach the setting, not just the mood. Blockers, grayscale, separate devices, and single-purpose work tools are not signs of weak will. They are rails laid for the self you already chose.\n\nMurray's team shows the small version. No one throws a phone into the sea. They turn noisy internal posts into a summary, keep safety alerts, and make the feed serve one work path. The change is modest enough to last. It also proves the larger rule: change the room before you blame the mind.\n\nSlow media protects another edge. Constant headline checks can feel like duty, but duty without context often becomes noise. Solene waits for selected sources and delayed reading. She misses some heat and gains a clearer picture. A person can be later than the feed and wiser than the feed.\n\nPush the idea too far and it curdles. Purity can become another feed. You start checking whether you are austere enough, clean enough, severe enough. That is still attention captured by a display, only now the display is your own rule sheet. The goal is autonomy, not a museum of unused tools. Keep the tools that serve a chosen value. Make the captured uses harder. Then keep watching, because new defaults will keep asking for the next minute."
+  },
+  "examples": [
+    {
+      "exampleId": "ch07-ex01",
+      "sourceAnchorId": "ch07.ex.lanier",
+      "title": "Lanier Lunch Correction",
+      "tags": [
+        "mistake",
+        "exit",
+        "social media"
+      ],
+      "planSpec": {
+        "domain": "personal account cleanup",
+        "audience": "reader who treats deletion as overreaction",
+        "stakes": "a reflex defense of keeping feeds hides the platform's incentives",
+        "format": "mistake_recovery",
+        "requiredBeat": "show the protagonist noticing his own error while weighing Jaron Lanier's deletion argument",
+        "venue": "a long text thread",
+        "exemplar": "Jaron Lanier"
+      },
+      "scenario": "At noon Thomas types in the hospital cafeteria while his soup cools. He works as a patient advocate, and his lunch reply defends his social accounts as harmless. Jaron Lanier's Ten Arguments for Deleting Your Social Media Accounts Right Now sits beside the bowl. Thomas notices his own error: he has judged only the nice posts, not the surveillance and behavior manipulation that pay for the feed. The reply box is still open, and he can admit the account may need an exit.",
+      "whatToDo": "Thomas sends the shorter honest reply: the account is useful sometimes, but its business model keeps winning his spare minutes. He deletes one corrosive account before lunch ends.",
+      "whyItMatters": "The recovery happens at the moment of noticing. When the platform's incentives are the problem, more willpower inside the same feed may be weaker than leaving it."
+    },
+    {
+      "exampleId": "ch07-ex02",
+      "sourceAnchorId": "ch07.ex.harris",
+      "title": "Pierce's Default Memo",
+      "tags": [
+        "memo",
+        "defaults",
+        "ethics"
+      ],
+      "planSpec": {
+        "domain": "product design review",
+        "audience": "team deciding whether notification defaults matter",
+        "stakes": "a design choice can steer attention before users choose",
+        "format": "decision_memo",
+        "requiredBeat": "make a written artifact carry Tristan Harris's humane technology lesson",
+        "venue": "a town hall row",
+        "exemplar": "Center for Humane Technology"
+      },
+      "scenario": "Pierce's memo opens on a projector before the town hall: \"Tristan Harris and the Center for Humane Technology make this more than taste. Our default alert asks for attention before the user has a task. Time Well Spent would judge the path we create, not the color we pick.\" In the final line, he recommends changing the default from instant alerts to quiet summaries.",
+      "whatToDo": "Pierce keeps the memo concrete: name the default, state what it asks from the user, and recommend the quieter setting before anyone can wave it off as a design preference.",
+      "whyItMatters": "Written this way, the choice becomes ethical and practical. Defaults are part of the environment, so changing them protects attention before discipline is tested."
+    },
+    {
+      "exampleId": "ch07-ex03",
+      "sourceAnchorId": "ch07.ex.slow-media",
+      "title": "Two News Mornings",
+      "tags": [
+        "contrast",
+        "slow media",
+        "news"
+      ],
+      "planSpec": {
+        "domain": "morning news habits",
+        "audience": "reader who equates speed with being informed",
+        "stakes": "constant checks can feel responsible while adding little understanding",
+        "format": "contrast",
+        "requiredBeat": "show slow media through two opposite approaches with different outcomes",
+        "venue": "a rideshare back seat",
+        "exemplar": "slow media"
+      },
+      "scenario": "At 7:35 a.m. Gaelle refreshes breaking news in a rideshare back seat before the car clears the bridge. She works as a public-interest attorney and arrives with fragments and a tight jaw. Solene works as a policy analyst. She waits until lunch, reads two selected sources, and writes three lines of context in a notebook. Gaelle feels earlier; Solene can explain more. The same story leaves one person stirred and the other informed.",
+      "whatToDo": "Solene keeps the selected sources and delayed reading window. Gaelle changes one variable tomorrow: no headline refresh during the ride, only one chosen source after the morning rush.",
+      "whyItMatters": "Slow media does not mean caring less. It trades speed and frequency for context, so the reader can notice when checking is feeding nerves more than knowledge."
+    },
+    {
+      "exampleId": "ch07-ex04",
+      "sourceAnchorId": "ch07.ex.harris",
+      "title": "Murray's Feed Reframe",
+      "tags": [
+        "coach talk",
+        "work tools",
+        "friction"
+      ],
+      "planSpec": {
+        "domain": "team design coaching",
+        "audience": "manager blaming workers for weak focus",
+        "stakes": "the team may moralize a setting problem instead of changing the setting",
+        "format": "coach_talk",
+        "requiredBeat": "use a peer reframe to connect humane technology to environmental design",
+        "venue": "a factory floor",
+        "exemplar": "Tristan Harris"
+      },
+      "scenario": "Murray walks the factory floor with a tablet that pings for every internal post. Renata, the peer coach, taps the notification list and brings up Tristan Harris's warning about interface defaults. \"Do not call it weak focus when the room keeps handing people a bell,\" she says. Murray stops blaming the crew and asks which alerts can become scheduled summaries.",
+      "whatToDo": "Murray changes the environment first: convert nonurgent pings into summaries, leave safety alerts alone, and make the feed a work tool with a clear entry point.",
+      "whyItMatters": "The coach talk moves the problem from character to design. When the setting keeps calling, friction is not a crutch; it is part of the work."
+    },
+    {
+      "exampleId": "ch07-ex05",
+      "sourceAnchorId": "ch07.fact.5",
+      "title": "Tracy's Professional Session",
+      "tags": [
+        "school",
+        "professional use",
+        "purpose"
+      ],
+      "planSpec": {
+        "domain": "student communications class",
+        "audience": "learners who confuse professional social media with polished posting",
+        "stakes": "a useful platform becomes wandering unless the session has a job and an exit",
+        "format": "school_case",
+        "requiredBeat": "teach professional social media use as purpose, schedule, and exit condition",
+        "venue": "a climbing gym wall",
+        "exemplar": ""
+      },
+      "scenario": "Tracy stands in a community college lab after showing a short Tristan Harris clip from the Center for Humane Technology. New club officers plan social posts. One student says attention resistance means better photos and more frequent updates. Tracy writes three blanks on the board: purpose, schedule, exit. The confusion becomes the lesson. A platform can serve the club, but only if the session ends when the announcement, reply, or sign-up check is done.",
+      "whatToDo": "Tracy has each officer write one purpose, one session window, and one success mark before logging in. The class treats the feed as a tool, not a room to roam.",
+      "whyItMatters": "The teaching case separates polish from control. Professional use is not about looking busier online; it is about ending the session when the defined job is complete."
+    },
+    {
+      "exampleId": "ch07-ex06",
+      "sourceAnchorId": "ch07.fact.4",
+      "title": "Gaelle's Missing App",
+      "tags": [
+        "before after",
+        "phone",
+        "friction"
+      ],
+      "planSpec": {
+        "domain": "phone setup for focused work",
+        "audience": "reader who thinks an active account makes app removal pointless",
+        "stakes": "the same account can create different behavior when the easiest access path changes",
+        "format": "before_after",
+        "requiredBeat": "show removing social media from the phone changing use from reflexive to deliberate",
+        "venue": "a laundry room",
+        "exemplar": ""
+      },
+      "scenario": "On Saturday Gaelle waits in the apartment laundry room while the washer shakes. She works as a public-interest attorney and used to check a feed between loads. After hearing Tristan Harris on interface defaults, she removed the phone app. The account stayed open, but the missing icon changes the urge. Fetching a laptop feels like a choice. Most times she folds towels instead; later she logs in for one message and leaves.",
+      "whatToDo": "Gaelle leaves the account active but removes the easiest path. She uses the desktop only for named tasks, then signs out before the feed becomes the next room she lives in.",
+      "whyItMatters": "The before-and-after shows why friction matters. Deleting the app can change the behavior even when the account still exists."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "ch07-q01",
+        "sourceAnchorId": "ch07.fact.1",
+        "prompt": "During a vendor demo, Murray hears, \"The platform wants users to get value quickly, so more checking is still their choice.\" What does this miss?",
+        "choices": [
+          "It assumes reminders can be turned off without changing the platform's business incentives.",
+          "It misses that captured time and behavior data can reward extra checking beyond the user's aim.",
+          "It treats every ad-funded tool as useless even when a narrow task still has value."
+        ],
+        "correctIndex": 1,
+        "explanation": "The conflict is not only the user's intent. Platforms can gain from extra return visits, while the first and third choices shift the issue to settings or total rejection.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q02",
+        "sourceAnchorId": "ch07.fact.2",
+        "prompt": "Thomas reads Lanier and says, \"If deletion is serious, every minimalist must delete every account.\" Which reply fits the case best?",
+        "choices": [
+          "Deletion is mainly a public signal, so Thomas should keep accounts and post less.",
+          "Deletion matters only after Thomas proves that every constrained-use rule failed first.",
+          "Deletion can be a rational exit when surveillance and manipulation defeat autonomy."
+        ],
+        "correctIndex": 2,
+        "explanation": "Lanier's argument supports exit as one strong strategy, not a universal rule. The other choices either reduce exit to image or make it a last resort only.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q03",
+        "sourceAnchorId": "ch07.fact.3",
+        "prompt": "Before Pierce's town hall, his team calls an instant-alert default \"just a style preference.\" Which response follows humane technology thinking?",
+        "choices": [
+          "The team should poll users about color and placement before judging the alert.",
+          "The team should keep the alert if most workers say they like fast updates.",
+          "The team should ask how the default steers behavior before choice can catch up."
+        ],
+        "correctIndex": 2,
+        "explanation": "Harris's work treats defaults as ethical design choices because they shape behavior. Taste and user preference matter, but they do not settle the steering effect.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q04",
+        "sourceAnchorId": "ch07.fact.4",
+        "prompt": "Gaelle keeps her social account but deletes the phone app. A friend says nothing has changed. Which result is most likely?",
+        "choices": [
+          "Gaelle will need a stricter promise because active accounts make friction useless.",
+          "Gaelle will check with the same rhythm because the account still exists online.",
+          "Gaelle will face a small delay that turns reflex checks into more chosen sessions."
+        ],
+        "correctIndex": 2,
+        "explanation": "The account remains, but the easy access path is gone. That friction can interrupt automatic checking, while the other choices treat app removal as empty.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q05",
+        "sourceAnchorId": "ch07.fact.5",
+        "prompt": "In Tracy's club workshop, officers need social media for event notices but keep drifting into the feed. What would professional use require?",
+        "choices": [
+          "Tracy defines the purpose, opens the site in a set window, and leaves when the notice is done.",
+          "Tracy improves the club's photos and posts more often so the account looks active.",
+          "Tracy keeps the account open between classes so replies can be handled as they arrive."
+        ],
+        "correctIndex": 0,
+        "explanation": "Professional use means a purpose, schedule, and exit condition. Better polish or constant availability can still leave the session open to wandering.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q06",
+        "sourceAnchorId": "ch07.fact.6",
+        "prompt": "In the rideshare, Gaelle worries that delayed news reading will make her careless about the world. Which answer best reflects slow media?",
+        "choices": [
+          "Gaelle should scan headlines all day but avoid opening most articles.",
+          "Gaelle can use selected sources later, gaining context while losing some heat.",
+          "Gaelle should wait for friends to summarize news so she avoids anxious reading."
+        ],
+        "correctIndex": 1,
+        "explanation": "Slow media reduces speed and frequency to improve context. It is not headline skimming all day, and it is not outsourcing attention to friends.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q07",
+        "sourceAnchorId": "ch07.fact.7",
+        "prompt": "On Murray's factory floor, a colleague calls blockers and single-purpose devices \"training wheels.\" Which reply best fits attention resistance?",
+        "choices": [
+          "They reshape the environment so the chosen action is easier when willpower is low.",
+          "They prove the user should leave every platform rather than keep making rules.",
+          "They work mainly by making devices unpleasant enough that work feels better."
+        ],
+        "correctIndex": 0,
+        "explanation": "Friction tools align the setting with the desired behavior. The other choices confuse design support with total exit or with making technology feel bad.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "ch07-q08",
+        "sourceAnchorId": "ch07.fact.8",
+        "prompt": "After Solene finishes a digital declutter, she says attention should stay fixed now. What is the weak spot in that claim?",
+        "choices": [
+          "New defaults and old habits can return, so rules need review and repair.",
+          "A declutter only works when every social account is deleted at the end.",
+          "A reset mainly measures discipline, so later tool choices matter much less."
+        ],
+        "correctIndex": 0,
+        "explanation": "Attention resistance is ongoing. A declutter can reset habits, but platforms and routines keep changing, so the defenses need upkeep.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "ch07-q09",
+        "sourceAnchorId": "ch07.fact.9",
+        "prompt": "Solene wants to join the attention resistance without becoming anti-technology or performative. Which rule best matches the goal?",
+        "choices": [
+          "Solene should remove tools until her setup proves she is no longer tempted by feeds.",
+          "Solene should keep useful tools only where she sets the purpose, path, and stopping point.",
+          "Solene should treat modern platforms as acceptable whenever they help with a real task."
+        ],
+        "correctIndex": 1,
+        "explanation": "The goal is autonomy, not purity. Useful tools may remain, but the user sets terms. The other choices lean toward image or loose permission.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch07-card01",
+      "sourceAnchorId": "ch07.concept",
+      "front": "What does attention resistance ask you to resist?",
+      "back": "It asks you to resist letting feeds, alerts, platforms, and devices set the terms for your attention. You change the paths so chosen uses are easier than captured ones.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch07-card02",
+      "sourceAnchorId": "ch07.ex.lanier",
+      "front": "When does Lanier's deletion argument become a rational exit rather than a stunt?",
+      "back": "Deletion makes sense when surveillance, behavior manipulation, and public-discourse harms are built into the platform's incentives. In that case, leaving can protect autonomy.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-card03",
+      "sourceAnchorId": "ch07.ex.harris",
+      "front": "Why do Tristan Harris and humane technology treat defaults as ethical choices?",
+      "back": "Interface defaults can invite a check before a person has named a task. Center for Humane Technology used Time Well Spent to judge that steering, not just screen style.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-card04",
+      "sourceAnchorId": "ch07.ex.slow-media",
+      "front": "How does slow media make someone better informed with fewer checks?",
+      "back": "It trades breaking news checks for selected sources and scheduled reading. Delayed consumption lets noise fade before attention is spent, so context has room to form.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch07-card05",
+      "sourceAnchorId": "ch07.fact.5",
+      "front": "What three marks make social media use professional rather than wandering?",
+      "back": "Professional use has a purpose, a schedule, and an exit condition. The session starts with a job and ends when that job is done.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch07-card06",
+      "sourceAnchorId": "ch07.fact.9",
+      "front": "How would you restate conversation-centric connection (Ch 5), then use it on attention resistance?",
+      "back": "Conversation-centric connection makes voice, face, and sustained exchange the main form of care. Attention resistance protects those channels without turning useful tools into forbidden objects.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch07-card07",
+      "sourceAnchorId": "ch07.fact.9",
+      "front": "Why is autonomy a better target than technological purity?",
+      "back": "Purity can become image management. Autonomy asks who controls attention, so selected tools may stay when the user sets the purpose, path, and stopping point.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Rank The Capture Paths",
+    "coreSkill": "Practice spotting the easiest path your attention takes before you argue with yourself. Use Rank The Capture Paths: count the cue, name the app or device, then rank the top risks by how often they override your own plan. Start with the highest-risk path and add one piece of friction.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch07.fact.4",
+        "context": "Your thumb reaches for a feed during a routine pause.",
+        "plan": "If the reach happens during a pause, then mark the cue in your tally and remove the phone path from the highest-ranked feed."
+      },
+      {
+        "sourceAnchorId": "ch07.fact.5",
+        "context": "A useful platform is needed for a real task.",
+        "plan": "If you need the platform, then write the purpose, session window, and exit condition before opening it."
+      },
+      {
+        "sourceAnchorId": "ch07.fact.6",
+        "context": "Breaking news asks for another check before you can think.",
+        "plan": "If a headline tries to pull you back, then put it on the slow-media list and read from a selected source later."
+      },
+      {
+        "sourceAnchorId": "ch07.fact.7",
+        "context": "A work device keeps offering other rooms to wander through.",
+        "plan": "If the device keeps opening side paths, then add one blocker, separate device, or single-purpose setup to the ranked path."
+      }
+    ],
+    "twentyFourHourChallenge": "For the next 24 hours, count every reflex reach for a feed during your commute, first coffee, meals, and task handoffs. Record the cue and rank the top three capture paths by risk.",
+    "weeklyPractice": "Run three spaced reps of Rank The Capture Paths this week. First, rank by frequency after one routine. Two days later, rank by risk across half a day. At week's end, add friction to the top path and check whether the count drops."
+  },
+  "memorableLines": [
+    {
+      "text": "Defaults vote before you do.",
+      "location": "breakdown.fastRead",
+      "why": "It makes invisible design pressure feel immediate and easy to recall."
+    },
+    {
+      "text": "Friction is a fence around chosen attention.",
+      "location": "breakdown.deepRead",
+      "why": "It turns blockers and device rules into a vivid protection image."
+    },
+    {
+      "text": "Purity can become another feed.",
+      "location": "breakdown.fullRead",
+      "why": "It names the overcorrection in a compact warning."
+    }
+  ]
+}

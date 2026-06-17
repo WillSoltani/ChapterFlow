@@ -1,0 +1,363 @@
+{
+  "chapterId": "digital-minimalism-ch01",
+  "number": 1,
+  "title": "A Lopsided Arms Race",
+  "readingTimeMinutes": 12,
+  "hook": "Have I been calling it willpower when my phone was built to win?",
+  "counterintuition": "Useful tools became hard to resist: the same features that helped us connect also taught us to check.",
+  "tryThisNow": "Within the next 24 hours, the first time you touch your laptop lid before a reflex check, record the cue, the app, and who chose the timing.",
+  "keyTakeaway": "Size the contest before blaming your willpower: useful tools can still be built to capture attention, so choose rules from values, not convenience.",
+  "breakdown": {
+    "fastRead": "Steve Jobs held up the iPhone at Macworld in January 2007 as three tools in one: a phone, an iPod, and an internet communicator. That pitch was clean and useful. It did not sound like a plan for a pocket slot machine of alerts, feeds, and social checks.\n\nThe mismatch is the start of the lopsided arms race. One side has an ordinary person with a vague hope to check less. The other has platforms that test taps, colors, alerts, and rewards. Convenience is not consent.\n\nFacebook shows the same drift in a smaller button. A Like turns approval into a public signal that costs almost nothing to give. Soon the person is not only posting. They are returning to see who noticed. A useful tool can still become a leash.",
+    "deepRead": "The contest starts when a tool changes who gets to choose the moment. Pull-based use begins with you: open the map, send the message, play the song. Interruption-based use begins with the tool: buzz, badge, tag, count, red dot. Once the device asks first, your good intention has to answer a fresh request all day.\n\nFacebook's Like button made that shift feel friendly. The 2009 rollout gave people a fast way to show approval. A tap could tell Aspen that the photo landed, the joke worked, or the group cared. The signal was small, but it was public, repeated, and tied to status. That is why it changed behavior. Social approval became a design feature.\n\nLow-value checks still pay the platform. Cedric's two-minute glance in a grocery line may not help him much, but it can add data, ad space, and one more turn of the habit. The company does not need every session to be wise. It needs many sessions to be frequent enough.\n\nWillpower needs a map before it needs a scold. The map has three parts: ordinary user intention, platform engagement incentives, and design tuned by tests. Cedric can still make choices, but he should stop treating the contest as a fair arm wrestle. A person with one private promise is facing teams that measure which cue brings him back.",
+    "fullRead": "A birthday reminder can be genuinely useful. Gwen does want to know when her cousin is celebrating, and a Facebook group can save a real evening of phone calls. That is why scolding screens misses the point. The most effective attention traps often arrive wrapped around real help.\n\nThe first skill is to separate the benefit from the capture system around it. If Gwen needs the group event, she can ask what exact job the tool does. Does it tell her the date, gather RSVPs, or share photos after the party? Then she can ask what extra cost rides along: feed drift, approval checks, alerts, or a habit of opening the app whenever she feels bored.\n\nThat split changes the moral story. Gwen is not weak because a useful tool kept pulling her back. She is also not helpless. She can judge the tool by the value it serves, then write a rule that protects that value from the parts built to take more.\n\nMacworld 2007 helps here because the iPhone's first story was not false. A phone plus iPod plus internet communicator really was useful. The later problem was growth past the reason for adoption. Once a tool gains a place in daily life, new apps and feeds can add claims on attention that were never part of the original bargain.\n\nFacebook's Like button gives the small version of the same pattern. One tap looks too tiny to matter. Across a day, though, it teaches a loop: post, wait, check, feel seen, check again. The user feels a private itch. The platform sees a working product.\n\nThis is why tips alone feel thin. Turning off one alert may help, but the next convenience will still ask for entry. Without a rule for what belongs, each new feature gets judged at its best moment. The calendar invite is useful. The group thread is useful. The news link is useful. One by one, usefulness becomes the wrong test.\n\nThe better test starts with autonomy, a plain word for self-rule. Ask whether the tool helps a chosen value without taking more attention than that value deserves. If the answer is no, the tool may need a strict rule, a narrow window, or no place at all. A strict rule is not anti-technology. It is pro-choice.\n\nThe precondition is honesty about the opponent. Digital minimalism assumes you can name the contest before you choose your tools. When that honesty is absent, convenience keeps winning by default. You keep asking whether the app has any use, and the app keeps asking for your life in small, easy pieces."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch01.ex.iphone",
+      "title": "Macworld Tape Review",
+      "tags": [
+        "history",
+        "adoption"
+      ],
+      "planSpec": {
+        "domain": "technology history review",
+        "audience": "readers tracing phone habits",
+        "stakes": "misreading why the device entered daily life",
+        "format": "audit",
+        "requiredBeat": "Review the 2007 iPhone pitch and find the gap between utility and later feed dependence.",
+        "venue": "Macworld keynote archive",
+        "exemplar": "Macworld 2007"
+      },
+      "scenario": "Romain pauses the Macworld 2007 footage in a media lab after the auditorium applause fades. His notebook lists Steve Jobs, iPhone, phone plus iPod plus internet communicator. The find changes his read: the launch pitch sold elegant utility, not a life of feed checks. The later habit problem grew after the tool had already earned a place in the pocket.",
+      "whatToDo": "Romain writes the original job of the iPhone beside its later attention cost. He separates the reason for adoption from the habits that arrived after adoption.",
+      "whyItMatters": "A tool can be useful at entry and costly later. Seeing that drift keeps the reader from blaming the first yes for every later capture loop."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch01.ex.like-button",
+      "title": "Like Count Loop",
+      "tags": [
+        "social feedback",
+        "design"
+      ],
+      "planSpec": {
+        "domain": "social product design",
+        "audience": "platform users and builders",
+        "stakes": "mistaking tiny signals for harmless decoration",
+        "format": "inner_monologue",
+        "requiredBeat": "Show how Facebook's Like button turns approval into repeated checking.",
+        "venue": "product desk",
+        "exemplar": "Facebook's Like"
+      },
+      "scenario": "Aspen stares at the Facebook Like button spec on her desk after lunch. Tiny, she thinks. Too small to matter. Then the wrong turn lands: if a tap is public, fast, and tied to social validation, people will post and come back to count it. The 2009 rollout stops looking like decoration and starts looking like a return path.",
+      "whatToDo": "Aspen names the feedback loop before praising the feature. She asks what the Like button trains people to repeat, not only what it lets them express.",
+      "whyItMatters": "Small design pieces can steer large habits when they make approval visible. The reader learns to inspect the loop, not the button size."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch01.concept",
+      "title": "Home Screen Budget",
+      "tags": [
+        "attention",
+        "planning"
+      ],
+      "planSpec": {
+        "domain": "personal phone setup",
+        "audience": "people setting digital rules",
+        "stakes": "letting convenience choose the whole menu",
+        "format": "planning_choice",
+        "requiredBeat": "Allocate scarce attention before use begins, using the lopsided arms race frame.",
+        "venue": "a dinner table",
+        "exemplar": ""
+      },
+      "scenario": "Cedric has not moved a single icon yet. At the dinner table, his phone, grocery list, and work badge sit beside one another while he budgets attention for the week. The lopsided arms race makes the scarce item plain. He is not choosing which apps are pleasant. He is deciding which tools deserve a daily place before platform engagement incentives begin asking for more.",
+      "whatToDo": "Cedric gives each app a job before it earns home-screen space. Anything without a named value moves off the first screen before the week starts.",
+      "whyItMatters": "Planning before the cue appears protects user intention. Once alerts and feeds begin, convenience gets louder than the values Cedric meant to serve."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch01.fact.2",
+      "title": "Group Thread Price",
+      "tags": [
+        "community",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "community coordination",
+        "audience": "people who use useful social tools",
+        "stakes": "losing a real benefit or paying a hidden attention cost",
+        "format": "dilemma",
+        "requiredBeat": "Face two bad options when a useful platform also extracts more attention than its benefit requires.",
+        "venue": "a family group chat",
+        "exemplar": "Facebook Like"
+      },
+      "scenario": "On Thursday night in the community center hall, Gwen coordinates the art co-op through a Facebook group chat while the feed waits one swipe away. Leaving the group would strand members who rely on her updates. Staying with no rule would turn every pickup time into twenty minutes of scrolling and Like checks. She has to choose between lost coordination and an attention cost that keeps growing.",
+      "whatToDo": "Gwen keeps the group but narrows the rule: open Facebook for co-op updates only, then leave before the feed or Like counts become the task.",
+      "whyItMatters": "Real usefulness does not excuse unlimited use. The move keeps the benefit while refusing the extra capture bundled around it."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch01.ex.like-button",
+      "title": "Approval Signal Exchange",
+      "tags": [
+        "dialogue",
+        "social approval"
+      ],
+      "planSpec": {
+        "domain": "platform metrics review",
+        "audience": "teams judging engagement features",
+        "stakes": "confusing expression with habit design",
+        "format": "dialogue",
+        "requiredBeat": "Let two people uncover why a frictionless approval signal changes behavior.",
+        "venue": "a conference room table",
+        "exemplar": "Facebook's Like"
+      },
+      "scenario": "Oliver points to the Like button chart on the conference room screen. Maxime says, \"It is only a tap.\" Oliver answers, \"Then why do people return to count it?\" The room goes quiet. Facebook's 2009 rollout made social validation measurable and public, and the tap's low cost is exactly why the checking loop can run so often.",
+      "whatToDo": "Oliver tests the feature by the behavior it invites after the tap. He treats repeat checking as part of the design result, not as a side issue.",
+      "whyItMatters": "A design choice should be judged by the habit it creates. Low friction can make social approval feel casual while training repeated return."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch01.fact.5",
+      "title": "Two Minute Reveal",
+      "tags": [
+        "advertising",
+        "habit"
+      ],
+      "planSpec": {
+        "domain": "attention audit",
+        "audience": "people who dismiss short checks",
+        "stakes": "missing how small sessions add up",
+        "format": "predict_reveal",
+        "requiredBeat": "Set up the expectation that short checks do not matter, then reveal why platforms value them.",
+        "venue": "a coffee shop counter",
+        "exemplar": ""
+      },
+      "scenario": "At the coffee shop counter after the lunch rush, attention auditor Brielle expects the phone audit to show one obvious problem: long scrolling sessions. The receipt beside her cup says otherwise. Most pickups lasted under two minutes, yet each one added data, ads, and another tug on the habit. The surprise is the scale. Low-value checking can be profitable even when each glance feels too small to count.",
+      "whatToDo": "Brielle records the tiny checks instead of ignoring them. She counts who gains from each glance before deciding whether the glance served her.",
+      "whyItMatters": "Short checks are not harmless just because they are brief. At platform scale, frequency can matter more than duration."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch01.fact.1",
+        "prompt": "Romain replays the January 2007 iPhone keynote and then checks his own feed habit. Which reading best fits the evidence?",
+        "choices": [
+          "The iPhone was sold as a social-feed hub, so later checking mainly fulfilled the first pitch Jobs gave.",
+          "The iPhone entered as a useful phone, iPod, and internet tool, then later use grew past that pitch.",
+          "The iPhone became risky only because people stopped valuing its original helpful features."
+        ],
+        "correctIndex": 1,
+        "explanation": "The launch story centered on converged utility. The later feed habit shows how a tool can grow beyond the reason people first accepted it.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch01.fact.3",
+        "prompt": "While reviewing Facebook's 2009 Like button for a training deck, Aspen says, \"It is only a Like,\" and wants to mark it harmless. What does her line miss before the team copies the pattern?",
+        "choices": [
+          "A Like matters mainly when people mistake quick social feedback for lasting friendship.",
+          "A Like can make approval quick, public, and measurable enough to invite return checks.",
+          "A Like becomes harmful only when Aspen's post has no practical purpose for her friends."
+        ],
+        "correctIndex": 1,
+        "explanation": "The Like button is small, but its signal is visible and repeatable. That can turn approval into a loop of posting and checking.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch01.fact.2",
+        "prompt": "After two co-op members miss pickup updates, Gwen says her Facebook group is useful. Which next judgment keeps the split clear?",
+        "choices": [
+          "She should accept the full platform cost because one group feature saves coordination work for the co-op each week.",
+          "She should drop the group because a useful feature usually hides a larger social cost.",
+          "She should keep the useful job separate from feeds, alerts, and checks that exceed that job."
+        ],
+        "correctIndex": 2,
+        "explanation": "A real benefit can coexist with extra capture. The right test asks what job the tool serves and what attention cost rides along.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch01.fact.4",
+        "prompt": "Cedric thinks push alerts merely save him from forgetting messages. Which result should he expect if he leaves them unexamined?",
+        "choices": [
+          "Cedric will notice fewer urges because alerts remove the need to remember message tasks on busy days.",
+          "Cedric will keep full control because alerts only appear after he chooses a goal.",
+          "Cedric will answer platform timing more often before he has chosen to seek anything."
+        ],
+        "correctIndex": 2,
+        "explanation": "Push alerts move the first move from user to device. They may help at times, but they also make Cedric respond to someone else's timing.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch01.fact.5",
+        "prompt": "Brielle dismisses her two-minute coffee line checks because they are not binges. Which account better sizes the platform's interest?",
+        "choices": [
+          "Two-minute checks matter only when they replace a longer task Brielle had clearly planned to finish.",
+          "Two-minute checks are mostly private lapses unless Brielle posts during them.",
+          "Two-minute checks can still add habit, data, and ad space when they happen often."
+        ],
+        "correctIndex": 2,
+        "explanation": "Attention companies can profit from many small sessions. The low value to Brielle does not mean the glance has low value to the platform.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch01.fact.6",
+        "prompt": "Oliver says he can solve compulsive checking by deciding to be more disciplined. Which reply best fits the arms-race frame?",
+        "choices": [
+          "Oliver needs structural rules because his private promise faces tested cues built across many users.",
+          "Oliver needs a stronger personal slogan because the main problem is forgetting his intention.",
+          "Oliver needs to wait for better apps because design teams will reduce checking on their own."
+        ],
+        "correctIndex": 0,
+        "explanation": "Willpower still matters, but it is facing systems tuned at scale. A promise without rules keeps restarting against tested triggers.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch01.fact.8",
+        "prompt": "After a weekend offline, Maxime wants to ban every screen because attention capture worries him. Which response keeps the core threat in view?",
+        "choices": [
+          "Maxime should judge whether each tool serves chosen values without steering his behavior away from them.",
+          "Maxime should treat any screen as the same problem so the rule stays simple and easy to follow.",
+          "Maxime should keep tools that feel convenient and remove tools that feel boring."
+        ],
+        "correctIndex": 0,
+        "explanation": "The danger is lost self-rule, not the mere presence of a screen. A selected tool can stay if its rules serve Maxime's values.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch01.fact.9",
+        "prompt": "Aspen turns off a few notifications and calls the problem solved. What should happen when the next handy feature appears?",
+        "choices": [
+          "Aspen will still need a value-based standard for deciding whether that feature belongs.",
+          "Aspen can admit the feature if it reduces the number of alerts she sees.",
+          "Aspen should delay judgment until the feature has become part of daily life."
+        ],
+        "correctIndex": 0,
+        "explanation": "Notification tactics address one symptom. A philosophy decides which tools belong before each new convenience gets a default yes.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch01.fact.2",
+        "prompt": "\"The app helps with birthdays, so my daily browsing is justified,\" Gwen tells the group. What is the flaw in that defense?",
+        "choices": [
+          "Birthday reminders are too minor to count as a real benefit for Gwen's group or family planning.",
+          "One useful feature does not justify all the feed time and approval checks attached to it.",
+          "Daily browsing is acceptable when Gwen can name a social reason for opening the app."
+        ],
+        "correctIndex": 1,
+        "explanation": "Usefulness has to be weighed against full cost. A birthday feature can be real while the extra browsing still fails Gwen's values.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "card01",
+      "sourceAnchorId": "ch01.concept",
+      "front": "What three forces make the lopsided arms race unfair?",
+      "back": "It pits ordinary user intention against platform engagement incentives and behavioral design optimization. That source phrase means design tuned by tests.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "card02",
+      "sourceAnchorId": "ch01.ex.iphone",
+      "front": "Why does Steve Jobs's Macworld 2007 iPhone pitch matter for judging today's phone habits?",
+      "back": "It shows the iPhone entered as a phone, iPod, and internet communicator. Later feed dependence grew beyond the Macworld 2007 utility story.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card03",
+      "sourceAnchorId": "ch01.ex.like-button",
+      "front": "How did Facebook's Like button change social approval?",
+      "back": "It made approval quick, public, and measurable. That small signal gave people a reason to post, return, and check whether they had been noticed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card04",
+      "sourceAnchorId": "ch01.fact.2",
+      "front": "How can a genuinely useful feature still become costly?",
+      "back": "The useful job can lower resistance, while feeds, alerts, and rewards take extra time around it. Judge the whole cost, not the best feature alone.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "card05",
+      "sourceAnchorId": "ch01.fact.6",
+      "front": "Why are willpower tips too small for this problem?",
+      "back": "A private promise faces products tested across many users. Self-control works better after the person creates rules that match the scale of the cues.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "card06",
+      "sourceAnchorId": "ch01.fact.8",
+      "front": "What is the core threat if screen time itself is not the enemy?",
+      "back": "The threat is lost autonomy: a tool starts steering behavior away from chosen values. Some tools can stay when their rules protect self-rule.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Value Admission Test",
+    "coreSkill": "Practice asking what a tool is admitted to do before judging whether it feels useful. Run the Value Admission Test by naming the value served, the exact feature needed, and the attention cost bundled around it. The skill protects autonomy by refusing to let convenience choose the rule.",
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch01.fact.2",
+        "context": "If an app defends itself with one useful feature.",
+        "plan": "If the feature is real, then write its exact job and the extra attention cost beside it. Run the Value Admission Test before giving the whole app daily access."
+      },
+      {
+        "sourceAnchorId": "ch01.fact.4",
+        "context": "If a buzz or badge asks before you chose to ask.",
+        "plan": "If the device moves first, then name who chose the timing. Keep the alert only if that timing serves a value you can state."
+      },
+      {
+        "sourceAnchorId": "ch01.fact.5",
+        "context": "If a check feels too brief to count.",
+        "plan": "If the glance is under two minutes, then record it anyway. Tiny sessions still count when they build habit, data, or ad space."
+      },
+      {
+        "sourceAnchorId": "ch01.fact.9",
+        "context": "If a new convenient tool wants a default yes.",
+        "plan": "If the tool asks for entry, then pause at the Value Admission Test. Decide which value it serves before deciding where it lives."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next 24 hours, the first time your hand touches a doorknob while your phone is in it, run the Value Admission Test on the next app you open. Record the cue, value, feature, and capture cost.",
+    "weeklyPractice": "Ask one person to flag when they see you reach for a tool without a clear purpose this week. Compare notes once, then choose one rule to narrow that tool."
+  },
+  "memorableLines": [
+    {
+      "text": "Convenience is not consent.",
+      "location": "breakdown.fastRead",
+      "why": "It turns the chapter's warning into a short test for every new tool."
+    },
+    {
+      "text": "A useful tool can still become a leash.",
+      "location": "breakdown.fastRead",
+      "why": "It keeps the useful feature and the capture risk in one sharp line."
+    },
+    {
+      "text": "Willpower needs a map before it needs a scold.",
+      "location": "breakdown.deepRead",
+      "why": "It moves the reader from shame toward sizing the real contest."
+    }
+  ]
+}
