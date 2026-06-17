@@ -149,6 +149,14 @@ export function SubscriptionCard({
 
   const hasTiers = pricingTiers && pricingTiers.length > 1;
 
+  // The paywall price string from the entitlements API already includes the
+  // interval (e.g. "$7.99/month"), while the client fallback does not
+  // (e.g. "$7.99 CAD"). Strip any trailing interval so we append it exactly
+  // once and never render "/month/month". (VB-024)
+  const priceWithInterval = /\/(month|mo)\s*$/i.test(price)
+    ? price.replace(/\s*\/(month|mo)\s*$/i, "/month")
+    : `${price}/month`;
+
   return (
     <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface) p-5">
       <div className="flex items-center gap-2">
@@ -225,7 +233,7 @@ export function SubscriptionCard({
           </div>
         ) : (
           <p className="mt-2 text-sm font-semibold text-(--cf-text-1)">
-            {price}/month
+            {priceWithInterval}
           </p>
         )}
 
