@@ -94,7 +94,7 @@ export function BookCover({
       style={{ background: coverGradient, borderRadius }}
       aria-hidden="true"
     >
-      <span className="line-clamp-3 text-[12px] font-semibold leading-tight text-white">
+      <span className="line-clamp-3 hyphens-auto break-words text-[12px] font-semibold leading-tight text-white">
         {title}
       </span>
     </span>
@@ -120,7 +120,7 @@ export function BookCover({
     ) : null;
 
     const fallbackEl = showFallback
-      ? gradientFallback("absolute inset-0 flex items-center justify-center px-3 text-center")
+      ? gradientFallback("absolute inset-0 flex items-center justify-center px-2 text-center")
       : null;
 
     // Fill mode: positioned to the caller's relative box (BookCard / CompletedShelf / ActiveReads).
@@ -198,7 +198,7 @@ export function BookCover({
         coverGradient !== undefined ? (
           gradientFallback(
             [
-              "absolute inset-0 flex items-center justify-center px-3 text-center",
+              "absolute inset-0 flex items-center justify-center px-2 text-center",
               fallbackClassName,
             ]
               .filter(Boolean)
@@ -214,7 +214,7 @@ export function BookCover({
               .join(" ")}
           >
             <span className="text-3xl leading-none">{icon}</span>
-            <span className="line-clamp-3 text-xs font-semibold leading-tight text-(--cf-text-2)">
+            <span className="line-clamp-3 hyphens-auto break-words text-xs font-semibold leading-tight text-(--cf-text-2)">
               {title}
             </span>
           </span>
