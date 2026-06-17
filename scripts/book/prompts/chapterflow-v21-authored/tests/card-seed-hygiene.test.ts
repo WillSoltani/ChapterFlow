@@ -43,3 +43,25 @@ test("no pedagogy-palette example seeds a literal HH:MM clock-stamp (BP29) — t
     `a card-printed example must not seed a HH:MM clock (a copied clock stamps book-wide → BP29): ${offenders.join(" | ")}`,
   );
 });
+
+test("scene-skeleton-prone hook definitions carry NO copyable miniature template (de-seed lock)", () => {
+  // The hook card prints the whole `definition` verbatim. A scene-prone shape
+  // (object-in-motion / room-after-action) whose definition templates a concrete
+  // opener ("[object] traveled from A to B") hands every chapter dealt that shape the
+  // SAME frame → scene_skeleton. Their definitions must describe the shape, not seed it.
+  const raw = JSON.parse(readFileSync(PALETTES, "utf8"));
+  const prone = (raw.hookShapes ?? []).filter((h: any) => h.sceneSkeletonProne === true);
+  assert.ok(prone.length >= 2, "expected >=2 scene-skeleton-prone hook shapes tagged in config");
+  for (const h of prone) {
+    assert.doesNotMatch(
+      h.definition,
+      /Miniature example:/i,
+      `scene-prone hook "${h.id}" must not ship a copyable miniature template — writers copy it (scene_skeleton)`,
+    );
+    assert.doesNotMatch(
+      h.definition,
+      /\btravel(s|led|ed)?\s+from\b[\s\S]*\bto\b/i,
+      `scene-prone hook "${h.id}" must not seed an "[object] travels from A to B" skeleton`,
+    );
+  }
+});

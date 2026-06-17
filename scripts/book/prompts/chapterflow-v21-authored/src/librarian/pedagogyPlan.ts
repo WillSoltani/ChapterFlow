@@ -41,6 +41,7 @@ import { fileURLToPath } from "url";
 
 import { CHAPTERS_DIR, chapterFileName, isSiblingFile } from "../lib/chapterPaths.js";
 import type { HookShape } from "../critics/catalogAudit.js";
+import { assertMaxShare } from "./saturationGuard.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const PEDAGOGY_PALETTES_PATH = resolve(__dirname, "../../config/pedagogy-palettes.json");
@@ -51,11 +52,31 @@ const TRY_MIX_STEP = 3;  // coprime with 8 shipped grammars -> distinct 3-gramma
 const QUIZ_MIX_STEP = 5; // coprime with 6 shipped openers -> distinct opener pair
 const TACTIC_FAMILY_STEP = 5; // coprime with 24 shipped families -> 24-chapter period; no 12-window repeats
 const HOOK_CHAPTER_PATTERN = [0, 1, 0, 2] as const; // circularly no adjacent repeats; 0 remains dominant
+// Saturation caps (calibrated on the clean corpus). A scene-prone shape demoted to a
+// secondary slot peaks at exactly 0.40 of the book (N=5, certain phases); a non-prone
+// dominant peaks at ~0.571 (N=7) — both under their caps. The dominant is demoted away
+// from scene-prone shapes, so these are the deal-time tripwire: the eat-that-frog
+// object-in-motion 0.48 dominant deal can't recur, and a future regression fails loud.
+const HOOK_SCENE_PRONE_MAX_SHARE = 0.4; // a scene-skeleton-prone shape may not exceed this (its secondary-slot peak)
+const HOOK_ANY_MAX_SHARE = 0.6;         // no single hook shape may exceed this (worst legit dominant ~0.571 at N=7)
+// Saturation is a WHOLE-BOOK property, but the operator also re-deals single chapters
+// (fanout --from N --to N --all) and previews partial ranges, where a 1-3 chapter slice
+// is trivially 100%/67% of one shape. Only assert on a representative whole-book range —
+// the same guard the sibling planTiming uses (N>=5). The demotion runs for EVERY range,
+// so partial re-deals still get a non-prone dominant; this is just the regression tripwire.
+const MIN_SATURATION_CHECK_CHAPTERS = 5;
 
 export type HookShapePaletteEntry = {
   id: string;
   definition: string;
   auditClass: HookShape;
+  /** A declarative_image shape whose definition TEMPLATES a fixed concrete-scene
+   *  opener (object-in-motion: "[object] travels surface→surface"; room-after-action:
+   *  "[room], one object left behind"). Dealt to the dominant (50%-share) slot it
+   *  saturates the book into one scene_skeleton — a family with NO deterministic gate,
+   *  so only the flaky model sweep catches it (the eat-that-frog failure). Such a shape
+   *  is barred from the dominant slot; config marks it `sceneSkeletonProne: true`. */
+  sceneSkeletonProne: boolean;
 };
 
 export type TryThisNowGrammar = {
@@ -154,7 +175,7 @@ function cleanHookShape(value: unknown): HookShapePaletteEntry | null {
   const definition = value.definition;
   const auditClass = value.auditClass;
   if (typeof id !== "string" || typeof definition !== "string" || !isHookClass(auditClass)) return null;
-  return { id, definition, auditClass };
+  return { id, definition, auditClass, sceneSkeletonProne: value.sceneSkeletonProne === true };
 }
 
 function cleanTryGrammar(value: unknown): TryThisNowGrammar | null {
@@ -206,6 +227,12 @@ export function loadPedagogyPalettes(): PedagogyPalettes {
 
   const declarative = hookShapes.filter((entry) => entry.auditClass === "declarative_image").length;
   if (declarative > 3) throw new Error(`pedagogy-palettes.json has ${declarative} declarative_image hook shapes; cap is 3.`);
+  // The dominant-demotion (demoteSceneProneDominant) requires a non-prone shape in every
+  // 3-shape mix; with <=2 scene-prone shapes a 3-pick can never be all-prone, so a
+  // non-prone dominant always exists. Enforce the bound here so a future over-tagging
+  // fails loud at load, not silently as a scene-prone dominant.
+  const sceneProne = hookShapes.filter((entry) => entry.sceneSkeletonProne).length;
+  if (sceneProne > 2) throw new Error(`pedagogy-palettes.json tags ${sceneProne} hook shapes sceneSkeletonProne; cap is 2 (every 3-shape mix must keep a non-prone shape for the dominant slot).`);
   for (const required of ["question", "direct_address", "numeric", "first_person"] as const) {
     if (!hookShapes.some((entry) => entry.auditClass === required)) {
       throw new Error(`pedagogy-palettes.json must include at least one ${required} hook shape.`);
@@ -245,6 +272,46 @@ function authoredChapterExists(bookId: string, chapterNumber: number): boolean {
     if (match && parseInt(match[1], 10) === chapterNumber) return true;
   }
   return false;
+}
+
+/** The dominant hook (hookMix[0]) lands in 50% of the book via HOOK_CHAPTER_PATTERN.
+ *  A scene-skeleton-prone shape there saturates the whole book into one opener frame
+ *  the deterministic gates can't see (the eat-that-frog failure). Demote it: swap the
+ *  dominant with the first non-prone shape in the mix, so the dominant is always safe
+ *  and the scene-prone shape lands in a secondary slot (peaks at 0.40, under the cap).
+ *  loadPedagogyPalettes caps scene-prone shapes at 2, so a non-prone shape always exists
+ *  in a 3-shape mix; if a future config breaks that, the swap below throws (fail loud). */
+function demoteSceneProneDominant(hookMix: [string, string, string], palettes: PedagogyPalettes): void {
+  const prone = new Set(palettes.hookShapes.filter((h) => h.sceneSkeletonProne).map((h) => h.id));
+  if (!prone.has(hookMix[0])) return;
+  const swap = hookMix.findIndex((id, i) => i > 0 && !prone.has(id));
+  if (swap === -1) {
+    // Every shape in the 3-shape mix is scene-skeleton-prone — impossible while the
+    // palette tags <=2 shapes prone, but if a future config over-tags, FAIL LOUD here
+    // rather than silently deal a scene-prone dominant (the bug this guard exists to stop).
+    throw new Error(
+      `pedagogy-plan: cannot demote a scene-prone dominant — the dealt hook mix (${hookMix.join(", ")}) is entirely scene-skeleton-prone; tag fewer shapes sceneSkeletonProne in pedagogy-palettes.json.`,
+    );
+  }
+  [hookMix[0], hookMix[swap]] = [hookMix[swap], hookMix[0]];
+}
+
+/** Deal-time saturation cap (the assertTacticFamilyInvariants pattern, generalized):
+ *  no scene-prone shape over 40% and no shape at all over 60%. After the demotion this
+ *  always holds for a real book; it is the guarantee that a saturated hook deal cannot
+ *  be PRODUCED, so the class never reaches the writers or the flaky model sweep. */
+function assertHookSaturation(plan: PedagogyPlan, palettes: PedagogyPalettes): void {
+  const prone = new Set(palettes.hookShapes.filter((h) => h.sceneSkeletonProne).map((h) => h.id));
+  const values = Object.keys(plan.allocation)
+    .map(Number)
+    .sort((a, b) => a - b)
+    .map((c) => plan.allocation[c]?.hookShape)
+    .filter((x): x is string => typeof x === "string");
+  assertMaxShare(values, HOOK_ANY_MAX_SHARE, "pedagogy-plan hook saturation", {
+    ids: prone,
+    cap: HOOK_SCENE_PRONE_MAX_SHARE,
+    note: "scene-skeleton-prone shape must not be the dominant slot",
+  });
 }
 
 function assertNoConsecutiveHookRepeats(plan: PedagogyPlan): void {
@@ -295,6 +362,7 @@ export function planPedagogy(bookId: string, from: number, to: number, opts: Pla
   const quizPhase = Math.floor(hash / 389) % 2;
 
   const hookMix = pickIds(palettes.hookShapes, hookRotation, 3, HOOK_MIX_STEP, "hook shape") as [string, string, string];
+  demoteSceneProneDominant(hookMix, palettes); // a scene-skeleton-prone shape may never hold the 50% dominant slot
   const tryMix = pickIds(palettes.tryThisNowGrammars, tryRotation, 3, TRY_MIX_STEP, "tryThisNow grammar") as [string, string, string];
   const quizMix = pickIds(palettes.quizOpeners, quizRotation, 2, QUIZ_MIX_STEP, "quiz opener") as [string, string];
 
@@ -330,6 +398,7 @@ export function planPedagogy(bookId: string, from: number, to: number, opts: Pla
   };
   assertNoConsecutiveHookRepeats(plan);
   assertTacticFamilyInvariants(plan);
+  if (to - from + 1 >= MIN_SATURATION_CHECK_CHAPTERS) assertHookSaturation(plan, palettes);
   return plan;
 }
 
