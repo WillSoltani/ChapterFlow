@@ -26,21 +26,16 @@ export function SectionReveal({
   const isInView = useInView(ref, { once: true, amount: 0.15 });
   const prefersReducedMotion = useReducedMotion();
 
-  // No-JS robustness: SSR and the first client render are visible
-  // (opacity:1). Only after the component mounts on the client do we
-  // arm the opacity:0 -> 1 reveal. This guarantees below-the-fold
-  // content stays visible if JS is disabled, IntersectionObserver is
-  // unsupported, or hydration stalls. The in-view animation feel is
-  // unchanged for JS users.
+  // No-JS / hydration robustness: SSR and the first client render are visible
+  // (opacity:1). Only after the component mounts on the client do we arm the
+  // opacity:0 -> 1 reveal. This guarantees below-the-fold content stays visible
+  // if JS is disabled, IntersectionObserver is unsupported, or hydration stalls.
+  // The in-view animation feel is unchanged for JS users.
   const mounted = useSyncExternalStore(
     subscribeNoop,
     getClientSnapshot,
     getServerSnapshot,
   );
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
 
   const initialOffset =
     direction === "up"
@@ -49,15 +44,26 @@ export function SectionReveal({
         ? { x: -24, y: 0 }
         : { x: 24, y: 0 };
 
-  // Until mounted (SSR / no-JS), render fully visible with no transform.
   const hidden = { opacity: 0, ...initialOffset };
   const shown = { opacity: 1, x: 0, y: 0 };
 
-  // After mount, below-the-fold blocks snap to `hidden` instantly (no
-  // visible fade-out — they are off-screen), then animate the reveal on
+  // CRITICAL: we always render the SAME element (`motion.div`) and gate every
+  // client-only signal (useReducedMotion / useInView) behind `mounted`. Until
+  // mounted is true, the output is identical on the server and the first client
+  // render — fully visible, no transform, no animation. This removes the
+  // hydration mismatch that the old `if (prefersReducedMotion) return <div>`
+  // early-return caused: the server (reduced-motion unknown -> false) rendered a
+  // <motion.div> with an inline style, while a reduced-motion client rendered a
+  // bare <div> with none, and React ("won't be patched up") left content stuck
+  // at the server's inline opacity. Reduced-motion users now stay visible with
+  // no animation; the reveal only ever applies to motion-enabled clients.
+  const allowReveal = mounted && !prefersReducedMotion;
+
+  // After mount, motion-enabled below-the-fold blocks snap to `hidden` instantly
+  // (no visible fade-out — they are off-screen), then animate the reveal on
   // scroll-in with the original easing once `isInView` flips true.
-  const target = mounted && !isInView ? hidden : shown;
-  const revealing = target === shown && mounted;
+  const target = allowReveal && !isInView ? hidden : shown;
+  const revealing = allowReveal && isInView;
 
   return (
     <motion.div
