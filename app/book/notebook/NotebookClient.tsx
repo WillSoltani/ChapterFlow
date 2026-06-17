@@ -123,9 +123,11 @@ export function NotebookClient() {
               Notebook
             </h1>
             <p className="mt-1 text-sm text-(--cf-text-3)">
-              {filtered.length === entries.length
-                ? `${entries.length} ${entries.length === 1 ? "entry" : "entries"} across all your books`
-                : `${filtered.length} of ${entries.length} entries`}
+              {loading
+                ? "Loading your notes…"
+                : filtered.length === entries.length
+                  ? `${entries.length} ${entries.length === 1 ? "entry" : "entries"} across all your books`
+                  : `${filtered.length} of ${entries.length} entries`}
             </p>
           </div>
           <div className="relative">
@@ -161,7 +163,7 @@ export function NotebookClient() {
                 onClick={() => setTypeFilter(t)}
                 className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                   typeFilter === t
-                    ? "bg-(--cf-accent) text-white"
+                    ? "bg-(--cf-accent) text-(--cf-accent-contrast)"
                     : "border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
                 }`}
               >

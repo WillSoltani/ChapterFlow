@@ -387,7 +387,7 @@ function IdentityTooltip({
                 <div key={level.label} className="flex items-center gap-2 text-xs">
                   <span className={cn(
                     "inline-flex h-4 w-4 items-center justify-center rounded-full text-[8px]",
-                    isActive ? "bg-(--cf-accent) text-white" : isPast ? "bg-(--cf-success-soft) text-(--cf-success-text)" : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
+                    isActive ? "bg-(--cf-accent) text-(--cf-accent-contrast)" : isPast ? "bg-(--cf-success-soft) text-(--cf-success-text)" : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
                   )}>
                     {isPast ? <Check className="h-2.5 w-2.5" /> : isActive ? "→" : ""}
                   </span>
@@ -672,7 +672,7 @@ function LearningLoopSteps({ completedSteps }: { completedSteps: boolean[] }) {
                 className={cn(
                   "flex items-center justify-center rounded-full border-2 text-xs font-semibold transition-colors",
                   done
-                    ? "h-7 w-7 border-(--accent-cyan) bg-(--accent-cyan) text-white"
+                    ? "h-7 w-7 border-(--accent-cyan) bg-(--accent-cyan) text-(--cf-accent-contrast)"
                     : isCurrent
                       ? "h-8 w-8 border-(--accent-cyan) bg-transparent text-(--accent-cyan) cf-step-pulse"
                       : "h-7 w-7 border-(--cf-border) bg-transparent text-(--cf-text-soft)"

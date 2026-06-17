@@ -227,7 +227,7 @@ export function JourneyDetailClient() {
               type="button"
               onClick={handleStart}
               disabled={starting}
-              className="mt-5 inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+              className="mt-5 inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-5 py-2.5 text-sm font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-60"
             >
               {starting ? "Starting…" : "Start Journey"}
               <ArrowRight className="h-4 w-4" />
@@ -276,7 +276,7 @@ export function JourneyDetailClient() {
                     book.completed
                       ? "bg-(--cf-success-bg) text-(--cf-success-text)"
                       : isCurrent
-                        ? "bg-(--cf-accent) text-white"
+                        ? "bg-(--cf-accent) text-(--cf-accent-contrast)"
                         : "bg-(--cf-surface-muted) text-(--cf-text-3)",
                   ].join(" ")}
                 >
@@ -294,7 +294,7 @@ export function JourneyDetailClient() {
                       {book.title}
                     </h3>
                     {isCurrent && (
-                      <span className="rounded-md bg-(--cf-accent) px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">
+                      <span className="rounded-md bg-(--cf-accent) px-1.5 py-0.5 text-[10px] font-bold uppercase text-(--cf-accent-contrast)">
                         Up Next
                       </span>
                     )}
