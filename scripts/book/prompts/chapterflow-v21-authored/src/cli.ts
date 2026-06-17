@@ -94,6 +94,10 @@ Commands:
   source-fit <bookId> [--json]       ADVISORY research-time fit classifier: OK/WATCH/RISKY from sidecar diversity
                                      (thin chapters, figure concentration, framework repetition). Catch a doomed run
                                      before writing. Never blocks (exits 0). Calibrated zero-RISKY on the clean corpus.
+  prune-book-state <bookId> [--apply] After a book is PUBLISHED, sweep its leftover UNtracked working state
+                                     (key-packs, blind submissions, authoring cards, prior QC rounds, the source-
+                                     sidecar cache; ~7 MB/book) so the worktree stays lean. Keeps every git-tracked
+                                     artifact + the source-verify record. Dry-run by default; --apply deletes. [--json]
   derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
@@ -852,6 +856,35 @@ async function runSourceFit(args: string[], flags: Record<string, string | boole
   const report = classifySourceFit(bookId, computeSourceFitMetrics(sidecars));
   if (flags["json"] === true) console.log(JSON.stringify(report, null, 2));
   else console.log(formatSourceFit(report));
+  return 0;
+}
+
+async function runPruneBookState(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  if (!input) {
+    console.error("Usage: prune-book-state <bookId> [--apply] [--json]   (dry-run by default; removes ONLY untracked working state of a PUBLISHED book)");
+    return 2;
+  }
+  const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+  const resolved = resolveBookIdentifier(input);
+  const bookId = resolved.ok === false ? input : resolved.bookId;
+  const { pruneBookStatePlan, applyPruneBookState, formatPruneBookState } = await import("./qc/pruneBookState.js");
+  const plan = pruneBookStatePlan(bookId);
+  if (flags["json"] === true) {
+    console.log(JSON.stringify(plan, null, 2));
+    return plan.status === "ok" ? 0 : 1;
+  }
+  if (plan.status !== "ok") {
+    console.log(formatPruneBookState(plan));
+    return plan.status === "not-published" ? 1 : 2;
+  }
+  if (flags["apply"] === true) {
+    const r = applyPruneBookState(plan);
+    console.log(formatPruneBookState(plan, true));
+    console.log(`\nprune-book-state: removed ${r.removed} file(s), freed ~${(r.bytes / (1024 * 1024)).toFixed(1)} MB. Committed artifacts + the source-verify record are untouched.`);
+  } else {
+    console.log(formatPruneBookState(plan));
+  }
   return 0;
 }
 
@@ -4330,6 +4363,8 @@ async function main() {
       return runSourceVerifyImport(args, flags);
     case "source-fit":
       return runSourceFit(args, flags);
+    case "prune-book-state":
+      return runPruneBookState(args, flags);
     case "derive-artifacts":
       return runDeriveArtifacts(args);
     case "research":
