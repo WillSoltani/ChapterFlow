@@ -173,10 +173,11 @@ Commands:
   qc-orchestrate <bookId> --confirm-candidates --round <roundId>
                                      Generate confirm task cards only for chapters whose current
                                      evidence is a publishable candidate.
-  qc-orchestrate <bookId> --finalize --round <roundId> [--chapters 1,2] [--no-attest]
+  qc-orchestrate <bookId> --finalize --round <roundId> [--chapters 1,2] [--no-attest] [--dry-run]
                                      Build evidence-matrix.json and write only evidence-backed
                                      PUBLISHABLE/REVISE/CORRUPTION attestations. NEEDS_MORE_QC is
-                                     recorded in the matrix and never attested.
+                                     recorded in the matrix and never attested. --dry-run previews
+                                     the verdict and writes NOTHING (no attestations/matrix/ledger).
   qc-orchestrate <bookId> --render-repair --round <roundId>
                                      Render repair-ledger.jsonl to repair-brief.md.
   qc-orchestrate <bookId> --verify-repair --round <roundId>
@@ -2549,7 +2550,12 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     // round that predates freshness tracking or whose chapters changed since
     // the round was opened. --no-attest stays allowed for diagnostics.
     const finalizeChapters = orch.parseChapterList(flags["chapters"]);
-    const wantAttest = flags["no-attest"] !== true;
+    // --dry-run previews the verdict and writes NOTHING durable (no attestations, evidence
+    // matrix, qc-summary, repair brief, or ledger). finalizeQcRound already supports this; the
+    // CLI just has to pass it. A dry-run never attests, so it is neither gated nor blocked by the
+    // stale-round refusal (which only guards attestation writes).
+    const isDryRun = flags["dry-run"] === true;
+    const wantAttest = flags["no-attest"] !== true && !isDryRun;
     if (wantAttest) {
       const freshness = orch.checkRoundFreshness(bookId, roundId, finalizeChapters);
       if (!freshness.fresh) {
@@ -2562,11 +2568,17 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
     const result = orch.finalizeQcRound(bookId, roundId, {
       chapters: finalizeChapters,
       attest: wantAttest,
+      dryRun: isDryRun,
     });
     console.log(JSON.stringify({
       ...result,
+      dryRun: isDryRun,
       collected: collected.summary,
     }, null, 2));
+    if (isDryRun) {
+      const wouldAttest = result.chapters.filter((c) => c.finalVerdict === "PUBLISHABLE").length;
+      console.error(`DRY RUN — nothing written. Would attest ${wouldAttest} PUBLISHABLE chapter(s) and write the evidence matrix on a real run.`);
+    }
     for (const e of [...collected.errors, ...result.errors]) console.error(e);
     if (result.incomplete) return 3;
     if (result.repairRequired) return 1;
