@@ -32,7 +32,12 @@ const RHETORIC_PLANS_DIR = resolve(__dirname, "../../state/rhetoric-plans");
  *  included but the round-robin keeps it to ~N/K, far under the B11 50% / B14
  *  40% caps. Each carries a one-line author directive. */
 export const COUNTER_SHAPES: Array<{ id: CounterShape; directive: string }> = [
-  { id: "paradox_colon", directive: 'Open "The paradox: …" — name the tension head-on, then resolve it.' },
+  // The canonical colon-stem ("The paradox:") is a hard-banned phrase (B4) — dealing
+  // it set up a deal↔gate contradiction where any compliant writer tripped the gate by
+  // construction (digital-minimalism ch1). Keep the paradox MOVE, lose the banned stem:
+  // lead with the contradiction in fresh words. The no-allocator-directive-contains-a-
+  // banned-phrase invariant (rhetoric-plan.test.ts) guards this from regressing.
+  { id: "paradox_colon", directive: 'Lead with a paradox — hold up two facts that both hold yet seem to rule each other out, then resolve the tension. Phrase it in fresh words, not a worn colon-stem.' },
   { id: "what_looks_like", directive: 'Open "What looks like X is actually Y" — reframe the surface read.' },
   { id: "x_can_y_still", directive: 'Use "X can … and still …" — hold two true-at-once facts the reader thinks exclude each other.' },
   { id: "despite_led", directive: 'Open "Despite …" — concede the obvious, then overturn it.' },

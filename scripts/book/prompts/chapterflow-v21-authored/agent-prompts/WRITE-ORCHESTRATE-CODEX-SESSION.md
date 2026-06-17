@@ -32,6 +32,10 @@ writer's fault or the research's, and when to stop. Read the gate/barrier output
   QC's finalizer BLOCKS on unresolved majors, so accepting a chapter that still carries one costs
   you a whole QC round downstream. Have the writer TRIAGE its majors and fix the genuine ones
   before you accept it — leave only the ones it can defend as false positives on good prose.
+  **A deterministic register ban (B-class: B4 banned-phrase, B5 em-dash, the lexical bans) is the
+  one kind that is NEVER an FP — it is house policy, not prose judgement, so make the writer remove
+  the phrase, never accept a "but the sentence reads fine" defense (that wasted two QC rounds on
+  digital-minimalism ch1).**
 - **The SAME book-wide finding survives 3 re-dispatch rounds** → STOP. This is not an authoring
   problem you can grind out; the source/plan cannot support it. Surface a one-paragraph status to
   the operator — it is a Step-1 research problem, and more rounds will not fix it.
@@ -50,16 +54,25 @@ single-session `GENERATE-A-BOOK-CODEX-SESSION.md` fallback), then come back. Pro
 when the phase is `write-chapter`/`generating` and every chapter has a source sidecar.
 
 ## 1. Deal the plans + get the per-chapter authoring cards
+**Deal the WHOLE book in ONE call** and write each card to its own file:
 ```bash
-npx tsx src/cli.ts fanout <bookId> --from 1 --to <N>
+npx tsx src/cli.ts fanout <bookId> --from 1 --to <N> --write-dir state/authoring-cards/<bookId>
 ```
 This deals ALL pre-authoring plans (names, scene shapes, venues, pedagogy, exemplars,
 **rhetoric** = counterintuition shape + hook opener class, **answer-key** = balanced
-correctIndex targets) and prints one **authoring card per chapter**. Each card already
-contains everything that chapter's writer needs: its source-sidecar path, its reserved
+correctIndex targets) and writes one `chNN.authoring-card.md` **file** per chapter. Each
+card contains everything that chapter's writer needs: its source-sidecar path, its reserved
 names, dealt scene shapes, the OPENERS directive, the ANSWER-KEY TARGET, the source-
-case-binding rule, and its self-gate command. **The card is the dispatch unit** — you
-hand one card to one subagent, verbatim.
+case-binding rule, and its self-gate command. **The card file is the dispatch unit** — you
+hand one file to one subagent, verbatim.
+
+> **Deal once, over the whole book — do NOT pull cards with per-chapter `fanout --from N
+> --to N` calls.** Cross-chapter plans (the disjoint NAME pool per chapter, EXEMPLAR
+> ownership) are only correct when every chapter is dealt together: a per-chapter deal gives
+> every chapter the same head-of-pool names (an F1 collision) and an empty exemplar-forbidden
+> set (an ownership card that disagrees with the publish gate). `--write-dir` exists so the
+> full output never floods your context — that pressure is what used to force the per-chapter
+> workaround. (Without `--write-dir` the same command prints all cards to stdout.)
 
 ## 2. Dispatch in batches of ≤6 — one fresh writer subagent per chapter
 Split the chapters into batches of at most 6 (e.g. 13 → **6 + 6 + 1**). For each batch,
@@ -85,6 +98,12 @@ spawn one subagent per chapter, in parallel, each with this contract:
 
 Wait for a batch to finish before starting the next. Collect only each subagent's result
 (file path + gate verdict) — never its prose.
+
+> **Close each completed subagent before you spawn the next wave.** Finished subagents hold
+> their concurrency slot until explicitly closed, so a new spawn fails at the cap with a batch
+> only half-done. After a wave returns, close its agents, then spawn the next. (If `npx tsx`
+> fails with a sandbox IPC `listen EPERM`, rerun the same command with escalation — it's the
+> runner's temp socket, not a pipeline error.)
 
 ## 3. Barrier — gate the whole book and get the re-dispatch list (one command)
 ```bash

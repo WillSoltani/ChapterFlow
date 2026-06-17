@@ -3,6 +3,7 @@ import { basename, dirname, resolve } from "path";
 
 import { runBookGate } from "../../critics/bookGate.js";
 import { runShipGate } from "../../critics/finalGate.js";
+import { checkPlanEnforcement } from "../planEnforcement.js";
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
 import { chapterContentHash, isApprovedReviewer, approvedReviewerRoles, isAttestationFresh, loadAttestation } from "../../critics/qcAttestation.js";
@@ -626,14 +627,19 @@ export function verifyRepair(bookId: string, roundId: string): { ok: boolean; su
     edited.add(f.chapterNumber);
   }
 
-  const validationByChapter = new Map<number, { authorFindings: number; gateBlockers: number; intraBlockers: number }>();
+  // SP plan-conformance over the whole book (exemplar ownership is cross-chapter);
+  // a repair that silently changed a dealt scene shape or used a forbidden exemplar
+  // is caught HERE, in the repair loop, before the round re-QCs — not deferred to publish.
+  const planFindings = checkPlanEnforcement(bookId, chapters);
+  const validationByChapter = new Map<number, { authorFindings: number; gateBlockers: number; intraBlockers: number; planBlockers: number }>();
   for (const n of edited) {
     const ch = byNumber.get(n);
     if (!ch) continue;
     const authorFindings = checkAuthoringContract(ch, { sidecar: loadChapterSidecar(ch.chapterId), filePath: `state/chapters/${ch.chapterId}.v21-native.chapter.json` }).length;
     const gate = runShipGate(ch);
     const intra = runIntraBookChecks(ch, chapters.filter((other) => other.number < ch.number));
-    validationByChapter.set(n, { authorFindings, gateBlockers: gate.blockers.length, intraBlockers: intra.filter((f) => f.severity === "blocker").length });
+    const planBlockers = planFindings.filter((f) => f.chapterNumber === n).length;
+    validationByChapter.set(n, { authorFindings, gateBlockers: gate.blockers.length, intraBlockers: intra.filter((f) => f.severity === "blocker").length, planBlockers });
   }
   const bookGate = runBookGate(bookId, chapters);
   const bookBlockers = bookGate.findings.filter((f) => f.severity === "blocker").length;
@@ -641,7 +647,7 @@ export function verifyRepair(bookId: string, roundId: string): { ok: boolean; su
   for (const f of findings) {
     if (updates.some((u) => u.findingId === f.findingId)) continue;
     const validation = f.chapterNumber !== undefined ? validationByChapter.get(f.chapterNumber) : undefined;
-    const validationClean = !!validation && validation.authorFindings === 0 && validation.gateBlockers === 0 && validation.intraBlockers === 0 && bookBlockers === 0;
+    const validationClean = !!validation && validation.authorFindings === 0 && validation.gateBlockers === 0 && validation.intraBlockers === 0 && validation.planBlockers === 0 && bookBlockers === 0;
     if (!validationClean) {
       updates.push({ findingId: f.findingId, status: "still_open", reason: "chapter changed but validation commands still report blockers/findings", validation: { ...validation, bookBlockers } });
       continue;

@@ -52,6 +52,8 @@ function cleanup(): void {
     rmSync(waiverPath(bookId), { force: true });
     rmSync(sweepRecordPath(bookId), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${bookId}.manual-brief.json`), { force: true });
+    rmSync(resolve(PIPELINE_DIR, "state", "shape-plans", `${bookId}.shape-plan.json`), { force: true });
+    rmSync(resolve(PIPELINE_DIR, "state", "exemplar-plans", `${bookId}.exemplar-plan.json`), { force: true });
     for (const n of [1, 2, 3, 4, 5, 6]) {
       rmSync(attestationPath(bookId, n), { force: true });
       rmSync(manualKeyJudgePath(bookId, n), { force: true });
@@ -572,6 +574,54 @@ test("P1.4: a SAME-reviewer confirm does NOT supersede a stale REVISE (author≠
     assert.notEqual(result.chapters[0].finalVerdict, "PUBLISHABLE", "same-reviewer confirm must not launder a stale REVISE");
     assert.match(result.chapters[0].reason, /confirm reviewer must differ/);
     assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "stale REVISE attestation stays untouched");
+  } finally {
+    cleanup();
+  }
+});
+
+function writeShapePlan(bookId: string, chapterNumber: number, allocation: string[]): void {
+  const dir = resolve(PIPELINE_DIR, "state", "shape-plans");
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, `${bookId}.shape-plan.json`), JSON.stringify({ schemaVersion: "shape-plan-v1", bookId, allocation: { [chapterNumber]: allocation }, carriedChapters: [] }, null, 2), "utf8");
+}
+
+test("WS-1: a chapter that violates its dealt SHAPE plan REVISEs at finalize (SP2 shifted left from publish)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    // Deal a shape plan that matches every example EXCEPT example[0], whose dealt
+    // shape we set to a value the chapter does NOT use → exactly one SP2 violation.
+    const realFormats = chapter.examples.map((ex: any) => String(ex.planSpec.format));
+    const allocation = [...realFormats];
+    allocation[0] = realFormats[0] === "dialogue" ? "vignette" : "dialogue";
+    writeShapePlan(GREEN_BOOK, SOURCE_CHAPTER_NUMBER, allocation);
+
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    // Before WS-1 this chapter was PUBLISHABLE at QC and only blocked at publish preflight.
+    assert.equal(result.chapters[0].checks.planEnforcement, "FAIL");
+    assert.equal(result.chapters[0].finalVerdict, "REVISE", JSON.stringify(result.chapters[0]));
+    assert.match(result.chapters[0].reason, /dealt plan/);
+    const ledger = effectiveLedger(GREEN_BOOK, ROUND);
+    const sp = ledger.find((f) => f.repairClass === "SP2.shape_plan_mismatch");
+    assert.ok(sp, `expected an SP2 finalizer finding: ${JSON.stringify(ledger.map((f) => f.repairClass))}`);
+    assert.ok(sp!.sources.some((s) => s.sourceRole === "finalizer"));
+    const prompt = readFileSync(repairPromptPath(GREEN_BOOK, ROUND), "utf8");
+    assert.match(prompt, /SP2\.shape_plan_mismatch/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("WS-1: a clean green chapter passes the new planEnforcement check (no false-REVISE)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    // No shape/exemplar plan on disk → SP2/SP5 skip; SP1/SP3 must still pass on a real chapter.
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].checks.planEnforcement, "PASS", JSON.stringify(result.chapters[0].checks));
+    assert.equal(result.allPublishable, true);
   } finally {
     cleanup();
   }

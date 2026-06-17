@@ -336,6 +336,17 @@ export function writeExemplarPlan(plan: ExemplarPlan): string {
   return path;
 }
 
+/** The exact owned / forbidden strings the fanout MARQUEE EXEMPLARS card renders. The
+ *  forbidden renderer reads the SAME `allocation[ch].forbidden` the SP5 gate
+ *  (checkPlanEnforcement) enforces, so the card a writer is dealt and the gate that
+ *  judges it cannot drift apart on ownership. */
+export function formatExemplarOwned(entry: ExemplarChapterPlan): string {
+  return entry.assigned.length ? entry.assigned.join(", ") : "none";
+}
+export function formatExemplarForbidden(entry: ExemplarChapterPlan): string {
+  return entry.forbidden.length ? entry.forbidden.map((item) => `${item.name} (ch${item.ownerChapter})`).join(", ") : "none";
+}
+
 export function formatExemplarPlan(plan: ExemplarPlan): string {
   const lines: string[] = [`Exemplar plan — ${plan.bookId} ch${plan.fromChapter}-${plan.toChapter}`];
   lines.push(`  contested:${plan.diagnostics.contested}  missing-sidecars:${plan.diagnostics.chaptersWithoutSidecar.join(",") || "none"}`);

@@ -49,6 +49,21 @@ Read `phase:` and the `next:` block and run exactly what it prints, then re-run
 Loop until `book-status` shows **`phase: write-chapter`** (or `generating`) — that means
 research is complete: the index exists and every chapter has a source sidecar. **STOP there.**
 
+## 1b. Verify the sidecars against REALITY (do not skip — this is the grounding gate)
+`check-source` proves the sidecar is *structurally* grounded (enough facts, real-looking named
+entities); it CANNOT tell a real case from a plausible invented one. A clean `check-source` is
+**not** proof the source is true — a thin or one-shot-generated sidecar passes, then a writer
+invents a real person's scene/quote from it (the digital-minimalism failure). So fact-check the
+sidecars against real sources before the handoff:
+```bash
+npx tsx src/cli.ts source-verify <bookId> --write .chapterflow/source-verify-<bookId>.md
+```
+Open that packet and, for every named case and testable fact, confirm it is REAL against a source
+you cite (claim-by-claim; the figure exists, the hardSpecifics/quote/number match; if you cite a
+URL, confirm it RESOLVES). Fill the record's `verdict` per item. Any **UNVERIFIABLE** or **WRONG**
+item is a research defect — fix the sidecar (or cut the case) and re-verify; never hand an
+unverified case to the writer. Proceed only when every item is VERIFIED.
+
 ## 2. Hand off to the writer
 When the phase reaches `write-chapter`, research is done. Hand off in a NEW session to
 **`WRITE-ORCHESTRATE-CODEX-SESSION.md`** (the parallel writer-orchestrator) with:
@@ -63,3 +78,9 @@ detect research is done and go straight to writing.)
 - Every sidecar is paraphrase, never verbatim; no meta-references ("this chapter", "the author").
 - A thin/uncertain source is a Step-1 problem — make it specific now; do not leave it for
   the writer to paper over by inventing cases.
+- **Provenance, not plausibility.** Every named case and testable fact must trace to a REAL
+  source you actually consulted — set `derivedFrom` and verify it via `source-verify` (§1b). Do
+  NOT author the sidecars in one shot from a script/from memory: a dense-looking but unverified
+  sidecar is the exact failure mode — it passes `check-source` and poisons the whole book.
+- If the public source material is genuinely thin, **say so and flag it** — a flagged thin
+  chapter is a research decision; a papered-over one becomes an invented-scene QC failure later.

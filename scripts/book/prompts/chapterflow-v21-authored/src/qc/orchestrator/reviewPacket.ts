@@ -176,10 +176,19 @@ export function writeReviewPacket(
   }
 
   // ── Confirm read (per chapter; second independent reviewer) ────────────────
-  L.push("## 4. Confirm read — one per chapter (a SECOND, different reviewer)");
+  L.push("## 4. Confirm read — one per chapter (a SECOND, ADVERSARIAL reviewer)");
   L.push("Only for chapters listed in confirm-candidates.json after finalize. The confirm reviewer");
   L.push("MUST differ from the bar reviewer. decision = PUBLISHABLE / REVISE / CORRUPTION (replace FILL_ME);");
   L.push("reason ≥40 chars; PUBLISHABLE must have empty findings, REVISE/CORRUPTION need ≥1 quote-backed finding.");
+  L.push("");
+  L.push("> ADVERSARIAL STANCE — you are NOT here to rubber-stamp the bar's PASS. This pipeline runs one model");
+  L.push("> family, so bar and confirm share blind spots and over-rate output that merely READS fluent (the");
+  L.push("> documented LLM self-preference / low-perplexity bias). So ASSUME a defect exists and try to REFUTE");
+  L.push("> PUBLISHABLE: hunt the single weakest axis — a quiz key that doesn't follow from the cited source");
+  L.push("> fact, an example that STATES a concept instead of staging a person's decision, a card back that");
+  L.push("> doesn't answer its front, a memorable line that's just a teaching sentence, a plan step that's a");
+  L.push("> proposition not an action. Read DEEPER than the bar (high reasoning effort), not a quick second");
+  L.push("> look. Return PUBLISHABLE only when a genuine refutation attempt FAILS — and never because it scans well.");
   for (const ch of chapters) {
     L.push(`### confirm ${ch2(ch.number)} — ${ch.chapterId}`);
     L.push(submitCmd(bookId, roundId, "confirm", tokens.confirm, `<confirm-${ch2(ch.number)}.json>`));

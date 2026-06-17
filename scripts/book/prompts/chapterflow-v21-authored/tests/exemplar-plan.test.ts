@@ -8,9 +8,10 @@ import assert from "node:assert/strict";
 import { mkdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-import { formatExemplarPlan, planExemplars } from "../src/librarian/exemplarPlan.js";
+import { formatExemplarPlan, formatExemplarForbidden, planExemplars, writeExemplarPlan } from "../src/librarian/exemplarPlan.js";
+import { checkPlanEnforcement } from "../src/qc/planEnforcement.js";
 import { test } from "./harness.js";
-import { PIPELINE_DIR, runCli } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR, runCli } from "./helpers.js";
 
 const BOOK = "zz-fixture-exemplars";
 const REPO_ROOT = resolve(PIPELINE_DIR, "../../../..");
@@ -137,6 +138,38 @@ test("exemplar-plan CLI writes the plan and prints ownership", () => {
     assert.match(out, /Written:/);
   } finally {
     resetFixture();
+  }
+});
+
+test("WS-2 deal↔gate contract: the OWNERSHIP the plan deals is exactly what the SP5 gate enforces (whole-book vs partial)", () => {
+  try {
+    writeFixtureSidecars(); // Tiger Woods is shared by ch1 + ch2; owner resolves to ch2.
+    // The DEAL: derive ownership over the WHOLE book (what fanout now persists for
+    // every range) and write the artifact the gate reads.
+    writeExemplarPlan(planExemplars(BOOK, 1, 3));
+    // The GATE's view: a chapter-1 draft that stages Tiger Woods (owned by ch2) must
+    // be flagged SP5 — proving the card a writer is dealt and the gate that judges it
+    // agree on ownership.
+    const ch1 = makeChapter(BOOK, 1);
+    ch1.examples.forEach((ex: any, i) => { ex.planSpec.format = `shape_${i}`; ex.planSpec.exemplar = ""; });
+    (ch1.examples[0] as any).planSpec.exemplar = "Tiger Woods";
+    const flagged = checkPlanEnforcement(BOOK, [ch1]).filter((f) => f.checkId === "SP5.exemplar_ownership_violation");
+    assert.equal(flagged.length, 1, `whole-book plan must let the gate catch ch1 using ch2's owned exemplar: ${JSON.stringify(checkPlanEnforcement(BOOK, [ch1]))}`);
+    // The CARD a writer is dealt renders the SAME ownership the gate enforces (one
+    // renderer, no producer↔validator drift): the fanout MARQUEE EXEMPLARS forbidden
+    // line names the exact exemplar+owner SP5 flagged.
+    const cardForbidden = formatExemplarForbidden(planExemplars(BOOK, 1, 3).allocation[1]);
+    assert.match(cardForbidden, /Tiger Woods \(ch2\)/, "the card's FORBIDDEN line must name the exemplar+owner the SP5 gate flags");
+
+    // The BUG the fix prevents: a PARTIAL (single-chapter) deal computes forbidden=∅
+    // because it never sees ch2's claim — so the persisted plan and the gate silently
+    // DISAGREE and the violation only surfaces at publish. This is what fanout used to
+    // write when an operator pulled cards per chapter.
+    writeExemplarPlan(planExemplars(BOOK, 1, 1));
+    const missed = checkPlanEnforcement(BOOK, [ch1]).filter((f) => f.checkId === "SP5.exemplar_ownership_violation");
+    assert.equal(missed.length, 0, "a partial-range plan loses cross-chapter ownership — exactly the deal↔gate gap the whole-book fix closes");
+  } finally {
+    resetFixture(); // also removes the persisted exemplar-plan.json (PLAN_PATH)
   }
 });
 
