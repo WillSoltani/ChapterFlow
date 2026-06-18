@@ -204,7 +204,7 @@ export function GlobalSearchPanel({
                         className={optionBase + optionState(active)}
                       >
                         <BookText className="h-4 w-4 text-(--cf-accent)" />
-                        <span className="flex-1 truncate">{r.bookTitle}</span>
+                        <span className="min-w-0 flex-1 truncate">{r.bookTitle}</span>
                         <span className="text-xs text-(--cf-text-3)">{r.author}</span>
                       </button>
                     );
