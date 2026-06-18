@@ -64,6 +64,7 @@ import {
   INTENSITY_TO_QUIZ_STYLE,
   PERSONA_TO_MOTIVATION,
   MOTIVATION_TO_PERSONA,
+  DAILY_GOAL_TIERS,
 } from "./constants/defaults";
 
 // Types
@@ -81,6 +82,31 @@ import type {
   ColorBlindMode,
 } from "./types/settings";
 import type { LearningStyle, QuizIntensity, MotivationStyle } from "@/app/book/hooks/useOnboardingState";
+
+// Finding A: one user-facing depth vocabulary end to end. Settings' reading
+// profiles now read with the SAME names a buyer saw on Pricing (Lite / Standard
+// / Deeper) instead of the unrelated "Quick Learner / Balanced Reader / Deep
+// Diver" system. The descriptive old name is kept as a card sub-label so the
+// relabel doesn't disorient existing users. Source strings stay in profiles.ts;
+// this is a display override at the (owned) render sites.
+const DEPTH_DISPLAY: Record<ReadingProfile, string> = {
+  quick: "Lite",
+  balanced: "Standard",
+  deep: "Deeper",
+};
+
+// Finding C: the in-page section index (sticky left rail ≥lg, horizontal pill
+// row <lg). ids + icons mirror the six SettingsSection blocks below; `title`
+// matches each SettingsSection's aria-label so goToSection can find its anchor
+// without owning SettingsSection.tsx.
+const SETTINGS_SECTION_INDEX = [
+  { id: "reading", label: "Reading", title: "Reading Experience", icon: BookOpen },
+  { id: "goals", label: "Goals", title: "Goals & Motivation", icon: Target },
+  { id: "appearance", label: "Appearance", title: "Appearance", icon: Palette },
+  { id: "accessibility", label: "Accessibility", title: "Accessibility", icon: Accessibility },
+  { id: "notifications", label: "Notifications", title: "Notifications", icon: Bell },
+  { id: "account", label: "Account", title: "Account & Subscription", icon: User },
+] as const;
 
 // H26: The reading-reminder cron resolves each user's send time from the
 // device timezone stored in settings.notifications.reminderTimezone. Fall back
@@ -359,7 +385,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
     setDailyGoalMinutes(preset.defaults.dailyGoalPreset);
     patchSection("reading", { fontSize: preset.defaults.fontSize });
     triggerCelebration("profile-selected");
-    announce(`Reading profile changed to ${preset.label}`);
+    announce(`Reading profile changed to ${DEPTH_DISPLAY[profile]}`);
     showToast("Profile applied", "success");
     triggerToast();
   }
@@ -451,8 +477,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
 
   // --- Section summaries ---
   function getReadingSummary() {
-    const profile = READING_PROFILES.find((p) => p.id === ext.readingProfile);
-    const profileLabel = profile?.label ?? "Custom";
+    // Finding A: collapsed-section preview uses the canonical depth name too.
+    const profileLabel = DEPTH_DISPLAY[ext.readingProfile] ?? "Custom";
     return `${profileLabel} · ${preferences.reading.fontSize}px`;
   }
 
@@ -518,6 +544,19 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
     return isSectionExpanded(sectionId);
   }
 
+  // Finding C: section-index jump. Expand the target (a non-mutating UI toggle)
+  // then scroll its SettingsSection (matched by aria-label, since SettingsSection
+  // is not owned here) to just below the sticky TopNav (~64px + breathing room).
+  function goToSection(sectionId: string, sectionTitle: string) {
+    if (!isSectionExpanded(sectionId)) toggleSection(sectionId);
+    requestAnimationFrame(() => {
+      const el = document.querySelector(`section[aria-label="${sectionTitle}"]`);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top, behavior: reducedMotion ? "auto" : "smooth" });
+    });
+  }
+
   // ---------------------------------------------------------------------------
   // Render
   // ---------------------------------------------------------------------------
@@ -535,7 +574,11 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
         showGlobalSearchPanel={false}
         logoVariant="dashboard"
       />
-      <div className="px-4 pt-7 sm:px-6">
+      {/* Skip-link target (TopNav renders the shared "Skip to main content"
+          link to the #main anchor). This is the first content element AFTER
+          TopNav, so focusing it actually bypasses the nav (per batch 12 / PR 148:
+          the cf-app-shell wrapper contains TopNav, so it must NOT be the target). */}
+      <div id="main" tabIndex={-1} className="px-4 pt-7 sm:px-6 focus:outline-none">
       {/* Header */}
       <div className="mx-auto mb-6 flex max-w-5xl items-center justify-between">
         <div className="flex items-center gap-3">
@@ -560,7 +603,47 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
         <div className="w-16" />
       </div>
 
-      <div className="mx-auto max-w-5xl space-y-4">
+      <div className="mx-auto max-w-5xl">
+        {/* Finding C: section index — mobile/tablet horizontal pill row.
+            Scrolls internally (overflow-x-auto) so the PAGE never gains
+            horizontal scroll. Hidden ≥lg, where the sticky left rail takes over. */}
+        <nav
+          aria-label="Settings sections"
+          className="mb-4 flex gap-2 overflow-x-auto pb-1 lg:hidden"
+        >
+          {SETTINGS_SECTION_INDEX.map((s) => (
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => goToSection(s.id, s.title)}
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-xs font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+            >
+              <s.icon className="h-3.5 w-3.5" aria-hidden="true" />
+              {s.label}
+            </button>
+          ))}
+        </nav>
+
+        <div className="lg:grid lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-8">
+          {/* Desktop sticky section rail (≥lg) */}
+          <nav aria-label="Settings sections" className="hidden lg:block">
+            <div className="sticky top-24 space-y-0.5">
+              {SETTINGS_SECTION_INDEX.map((s) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => goToSection(s.id, s.title)}
+                  className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                >
+                  <s.icon className="h-4 w-4 shrink-0 text-(--cf-text-soft)" aria-hidden="true" />
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          {/* Content column */}
+          <div className="min-w-0 space-y-4">
         {/* Search */}
         <SettingsSearch query={query} onChange={setQuery} />
 
@@ -597,8 +680,10 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   options={READING_PROFILES.map((p) => ({
                     value: p.id,
                     emoji: p.emoji,
-                    label: p.label,
-                    description: p.description,
+                    // Finding A: canonical depth name (Lite/Standard/Deeper),
+                    // with the old descriptive name kept as a sub-label.
+                    label: DEPTH_DISPLAY[p.id],
+                    description: `${p.label} · ${p.description}`,
                     tint: p.tint,
                     selectedTint: p.selectedTint,
                   }))}
@@ -868,16 +953,23 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
               </p>
               <div className="mt-3">
                 <CardSelector<string>
-                  options={DAILY_GOAL_OPTIONS.map((opt) => ({
-                    value: String(opt.value),
-                    emoji: opt.emoji,
-                    label: opt.label,
-                    description: opt.subtext,
-                    prominentValue: `${opt.value} min`,
-                    tint: opt.tint,
-                    selectedTint: opt.selectedTint,
-                    badge: opt.recommended ? "Recommended" : undefined,
-                  }))}
+                  // Finding B: labels/subtext/"Most popular" come from the shared
+                  // DAILY_GOAL_TIERS (single source of truth, also consumed by
+                  // onboarding StepPace). DAILY_GOAL_OPTIONS is kept ONLY for its
+                  // per-value emoji/tint styling, looked up by value.
+                  options={DAILY_GOAL_TIERS.map((tier) => {
+                    const style = DAILY_GOAL_OPTIONS.find((o) => o.value === tier.value);
+                    return {
+                      value: String(tier.value),
+                      emoji: style?.emoji ?? "⏱️",
+                      label: tier.name,
+                      description: tier.subtext,
+                      prominentValue: tier.minutesLabel,
+                      tint: style?.tint,
+                      selectedTint: style?.selectedTint,
+                      badge: tier.recommended ? "Most popular" : undefined,
+                    };
+                  })}
                   value={hydrated ? String(ext.dailyGoalPreset) : "10"}
                   onChange={(v) => handleDailyGoalChange(Number(v) as DailyGoalPreset)}
                   label="Daily reading goal"
@@ -1622,8 +1714,10 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
           <span>v{appVersion}</span>
         </div>
         <div className="h-6" />
-      </div>
-      </div>
+          </div>{/* content column */}
+        </div>{/* section-rail grid */}
+      </div>{/* max-w-5xl */}
+      </div>{/* #main skip-target */}
 
       {/* Export Modal */}
       <ExportModal

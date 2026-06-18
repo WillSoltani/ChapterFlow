@@ -1,11 +1,16 @@
-import type { ExtendedSettings } from "../types/settings";
+import type { ExtendedSettings, DailyGoalPreset } from "../types/settings";
 
 export const EXTENDED_SETTINGS_STORAGE_KEY = "book-accelerator:settings-ext:v1";
 
 export const defaultExtendedSettings: ExtendedSettings = {
   // Reading Experience
   readingProfile: "balanced",
-  fontFamily: "sans-serif",
+  // NS-1: a literary serif is the reader's default prose voice (the report's #1
+  // change). Safe because (a) batch 01 scoped .cf-app-shell chrome to
+  // var(--font-body) so this never makes chrome serif, and (b) batch 04
+  // repointed fontMap.serif -> var(--font-reading) (Newsreader), so "serif"
+  // resolves to the crafted webface, not Georgia. (useBookPreferences.ts fontMap.)
+  fontFamily: "serif",
   lineSpacing: "comfortable",
   letterSpacing: "normal",
 
@@ -40,16 +45,44 @@ export const defaultExtendedSettings: ExtendedSettings = {
 
   // UI State
   personalizationDismissed: false,
+  // Finding C (progressive disclosure): collapse all sections except the first
+  // by default. A new/unset user lands on a short, scannable page instead of a
+  // ~2900px wall; useSettingsPage.isSectionExpanded falls back to "reading only"
+  // for any section the user has never explicitly toggled.
   sectionStates: {
     reading: true,
-    goals: true,
-    appearance: true,
-    accessibility: true,
-    notifications: true,
-    account: true,
+    goals: false,
+    appearance: false,
+    accessibility: false,
+    notifications: false,
+    account: false,
   },
   profileCustomized: false,
 };
+
+/**
+ * Canonical daily-goal tiers — single source of truth for the Settings daily
+ * goal cards and (serialized after this batch) the onboarding pace step
+ * (StepPace, batch 13). Reconciles the two pre-existing label systems:
+ * onboarding's "Light / Steady / Focused" (10/20/30) and Settings' "Casual /
+ * Regular / Committed / Intense" (5/10/20/30). We keep the 4 wired buckets
+ * (DailyGoalPreset = 5|10|20|30, dailyGoalPreset default = 10) and adopt the
+ * calmer onboarding adjectives, with one "Most popular" default on 10 min.
+ */
+export type DailyGoalTier = {
+  value: DailyGoalPreset;
+  minutesLabel: string; // "10 min"
+  name: string; // calm, shared sub-label
+  subtext: string; // one-line helper
+  recommended?: boolean; // the single "Most popular" default
+};
+
+export const DAILY_GOAL_TIERS: DailyGoalTier[] = [
+  { value: 5, minutesLabel: "5 min", name: "Light", subtext: "A quick chapter over coffee" },
+  { value: 10, minutesLabel: "10 min", name: "Steady", subtext: "Build a daily habit", recommended: true },
+  { value: 20, minutesLabel: "20 min", name: "Focused", subtext: "Real progress, every day" },
+  { value: 30, minutesLabel: "30 min", name: "Deep", subtext: "For the truly dedicated" },
+];
 
 /** Map quiz style values to the existing onboarding quizIntensity values */
 export const QUIZ_STYLE_TO_INTENSITY = {
