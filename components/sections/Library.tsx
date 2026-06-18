@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup, useReducedMotion } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CounterAnimation } from "@/components/ui/CounterAnimation";
@@ -47,6 +47,7 @@ const STATS = [
 
 export function Library() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const prefersReducedMotion = useReducedMotion();
 
   // Show up to 8 books — from the full catalog filtered by category
   const filteredBooks =
@@ -169,10 +170,10 @@ export function Library() {
                     <motion.div
                       key={book.id}
                       layout
-                      initial={{ opacity: 0, scale: 0.9 }}
+                      initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      exit={prefersReducedMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       className="group cursor-pointer"
                       whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.2 } }}
                     >
