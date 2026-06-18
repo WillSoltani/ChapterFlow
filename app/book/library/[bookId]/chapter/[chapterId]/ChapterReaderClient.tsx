@@ -34,15 +34,18 @@ import { ChapterBackgroundOrbs } from "@/app/book/library/[bookId]/chapter/[chap
 import { ContinueButton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ContinueButton";
 import {
   ExamplesList,
+  DEFAULT_VISIBLE_EXAMPLES,
   type ScenarioSubmissionDraft,
   type UserScenarioSubmission,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList";
+import { trackReaderFunnel } from "@/app/book/_lib/reader-analytics";
 import { NotesDrawer } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/NotesDrawer";
 import { QuizPanel } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/QuizPanel";
 import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
 import { AudioPlayer } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer";
 import { AskBookDrawer } from "@/app/book/components/AskBookDrawer";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
+import { CommitmentPrompt } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/CommitmentPrompt";
 import { ChapterCompleteModal } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal";
 import { Confetti } from "@/components/ui/Confetti";
 import { Dialog } from "@/components/ui/Dialog";
@@ -154,10 +157,28 @@ export function ChapterReaderClient({
   // Content area ref for scroll tracking
   const contentRef = useRef<HTMLDivElement>(null);
 
+  // §7 funnel timing/reach signals (refs, not state — no re-render churn).
+  // Declared up here because the setActiveTab wrapper (below) reads them.
+  const readerOpenedAtRef = useRef<number | null>(null);
+  const firstActionFiredRef = useRef(false);
+  const commitmentReachedFiredRef = useRef(false);
+
   // Resolve learning mode and content tone from unified settings
-  const { state: bookPrefs, patchSection: patchBookPrefs } = useBookPreferences();
+  const { state: bookPrefs, patchSection: patchBookPrefs, hydrated: bookPrefsHydrated } = useBookPreferences();
   const learningMode = bookPrefs.extended.learningMode;
   const contentTone = bookPrefs.extended.contentTone;
+  // First-visit short path: a reader who hasn't customized their learning profile
+  // starts on Fast (simple depth → the shortest existing quiz, 5 questions). Any
+  // saved preference is respected (profileCustomized flips this off). Gated on
+  // hydration so a same-device returning/customized reader (localStorage prefs)
+  // never flips. NOTE: on a fresh device whose newer settings arrive only via the
+  // async server-settings load, a customized reader can paint Fast first and then
+  // reconcile to their saved depth once that resolves — for v21 chapters this is a
+  // no-op (their activeDepth reads state.readingDepth, not this flag); for legacy
+  // non-v21 chapters it is a one-time content reconcile to the CORRECT saved depth.
+  // Per the owner decision, this lightens the DEFAULT path only — it does NOT change
+  // the server-resolved pass threshold or any global setting.
+  const defaultToFastPath = bookPrefsHydrated && !bookPrefs.extended.profileCustomized;
 
   const pauseSessionMode = () => {
     setSessionMode(false);
@@ -243,7 +264,7 @@ export function ChapterReaderClient({
     [baseChapter, chapterId],
   );
   const preferredReadingDepth: ReadingDepth = baseChapter?.isStrictV12
-    ? "standard"
+    ? (defaultToFastPath ? "simple" : "standard")
     : mapLearningStyleToDepth(onboarding.learningStyle);
 
   const {
@@ -298,7 +319,9 @@ export function ChapterReaderClient({
   const showQuiz = state.activeTab === "quiz";
   const activeDepth: ReadingDepth = chapter?.isStrictV12
     ? state.readingDepth
-    : modeToDepth(learningMode);
+    : defaultToFastPath
+      ? "simple"
+      : modeToDepth(learningMode);
   const quiz = useQuizSession({
     bookId,
     chapterNumber: chapter?.order ?? baseChapter?.order ?? 1,
@@ -329,8 +352,20 @@ export function ChapterReaderClient({
   // was always false; the previously persisted state never reflected reality.
   const quizPassed = quiz.session?.result?.passed === true;
 
-  // Total scenarios count for phase completion gating
-  const totalScenarios = chapter?.examplesDetailed?.length ?? 0;
+  // Examples shown for the active scope filter. The reader collapses to the first
+  // one (DEFAULT_VISIBLE_EXAMPLES) by default and discloses the rest behind
+  // "Show more"; computed once here so the phase gate and the rendered list agree.
+  const filteredExamples = useMemo(
+    () =>
+      [...(chapter?.examplesDetailed ?? []), ...approvedUserExamples].filter(
+        (example) => state.exampleFilter === "all" || example.scope === state.exampleFilter,
+      ),
+    [chapter, approvedUserExamples, state.exampleFilter],
+  );
+  // Challenge-mode examples gate targets only the DEFAULT-VISIBLE count, so
+  // expanding "Show more" is never required to advance, and a filtered-empty
+  // scope (0 examples) can't strand the gate (0 >= 0 passes).
+  const totalScenarios = Math.min(filteredExamples.length, DEFAULT_VISIBLE_EXAMPLES);
 
   // Phase completion tracking (scroll + time + gating)
   // Must be called before setActiveTab callback which references it
@@ -359,6 +394,18 @@ export function ChapterReaderClient({
       const newIndex = phaseOrder.indexOf(newTab);
 
       if (newIndex > currentIndex) {
+        // time-to-first-action: the reader's FIRST forward navigation (a genuine
+        // user action). Fired here, not in an effect, so a hydration-driven tab
+        // restore (practical-first start tab, or a returning reader's persisted
+        // tab) never counts as an action and biases the metric toward ~0ms.
+        if (!firstActionFiredRef.current && readerOpenedAtRef.current !== null) {
+          firstActionFiredRef.current = true;
+          trackReaderFunnel("time_to_first_action", {
+            bookId,
+            chapterNumber: chapter?.order,
+            msToFirstAction: Date.now() - readerOpenedAtRef.current,
+          });
+        }
         // Forward navigation: mark current phase completed first (this
         // unlocks the next phase), then show the interstitial.
         phaseCompletion.markPhaseCompleted(state.activeTab);
@@ -376,7 +423,7 @@ export function ChapterReaderClient({
         window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
       }
     },
-    [state.activeTab, setActiveTabRaw, phaseCompletion]
+    [state.activeTab, setActiveTabRaw, phaseCompletion, bookId, chapter]
   );
 
   // The Practice tab is no longer reachable through the stepper. If a user
@@ -601,7 +648,18 @@ export function ChapterReaderClient({
   // would invite the user to re-commit (→ a 409 on submit). Keyed on chapter.order
   // so navigating between chapters re-resolves the flag from server truth.
   const commitmentsEnabled = Boolean(chapterNumber) && Boolean(viewerIdentity?.sub);
-  const { activeCommitments, refresh: refreshCommitments } = useCommitments(commitmentsEnabled);
+  const {
+    activeCommitments,
+    loading: commitmentsLoading,
+    refresh: refreshCommitments,
+  } = useCommitments(commitmentsEnabled);
+  // The active commitment for THIS chapter (if any), so the elevated prompt's
+  // "Committed" view can show the real follow-up window, not the local default.
+  const activeChapterCommitment = chapter
+    ? activeCommitments.find(
+        (c) => c.bookId === bookId && c.chapterNumber === chapter.order && c.status === "active",
+      )
+    : undefined;
   useEffect(() => {
     if (!chapter) return;
     const hasActive = activeCommitments.some(
@@ -632,6 +690,27 @@ export function ChapterReaderClient({
     },
     [refreshCommitments],
   );
+
+  // §7 funnel timing/reach signals (refs declared up near contentRef). Analytics-
+  // only effects (no setState), so no churn. time_to_first_action is fired from the
+  // setActiveTab user-action path, not here, so a hydration-driven tab restore
+  // can't bias it.
+  useEffect(() => {
+    if (chapter && readerOpenedAtRef.current === null) {
+      readerOpenedAtRef.current = Date.now();
+    }
+  }, [chapter]);
+  // commitment_reached: the examples phase (where the commitment is surfaced) is shown.
+  useEffect(() => {
+    if (
+      state.activeTab === "examples" &&
+      chapter?.implementationPlan?.ifThenPlans?.length &&
+      !commitmentReachedFiredRef.current
+    ) {
+      commitmentReachedFiredRef.current = true;
+      trackReaderFunnel("commitment_reached", { bookId, chapterNumber: chapter.order });
+    }
+  }, [state.activeTab, chapter, bookId]);
 
   // The content fetch has settled but there is genuinely no chapter to show
   // (e.g. the API failed and there's no local fallback). Render an in-place
@@ -822,10 +901,8 @@ export function ChapterReaderClient({
   const activePredictionPrompt =
     chapter.predictionPromptByDepth[activeDepth] ?? chapter.predictionPrompt;
 
-  const examples = [...chapter.examplesDetailed, ...approvedUserExamples].filter((example) => {
-    if (state.exampleFilter === "all") return true;
-    return example.scope === state.exampleFilter;
-  });
+  // The same filtered set the gate is computed from (see filteredExamples above).
+  const examples = filteredExamples;
 
   // Font size, line height, and letter spacing are now controlled via CSS variables
   // on .cr-reading-content — no Tailwind class overrides needed.
@@ -911,6 +988,11 @@ export function ChapterReaderClient({
     setShowCompleteModal(false);
     quiz.trackNextChapterClick();
     if (nextChapter) {
+      trackReaderFunnel("next_chapter_started", {
+        bookId,
+        chapterNumber: chapter.order,
+        nextChapterNumber: nextChapter.order,
+      });
       const nextRoute = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(nextChapter.id)}`;
       router.push(sessionMode ? `${nextRoute}?session=1` : nextRoute);
       return;
@@ -1168,7 +1250,16 @@ export function ChapterReaderClient({
               {isV21Chapter ? (
                 <ReadingDepthSwitch
                   value={state.readingDepth}
-                  onChange={setReadingDepth}
+                  onChange={(depth) => {
+                    if (depth !== state.readingDepth) {
+                      trackReaderFunnel("depth_changed", {
+                        bookId,
+                        chapterNumber: chapter.order,
+                        depth,
+                      });
+                    }
+                    setReadingDepth(depth);
+                  }}
                 />
               ) : null}
               <SummaryCard
@@ -1233,6 +1324,13 @@ export function ChapterReaderClient({
                 fontScaleClass={textScaleClass}
                 readingDepth={activeDepth}
                 onScenarioInteraction={() => setScenarioInteractions((prev) => prev + 1)}
+                onExpand={(revealedCount) =>
+                  trackReaderFunnel("example_expanded", {
+                    bookId,
+                    chapterNumber: chapter.order,
+                    revealedCount,
+                  })
+                }
                 chapterId={chapterId}
                 bookId={bookId}
                 chapterNumber={chapter.order}
@@ -1240,6 +1338,29 @@ export function ChapterReaderClient({
                 fetchFailed={scenariosFetchFailed}
                 onRetryFetch={() => setScenariosRefetchKey((k) => k + 1)}
               />
+
+              {/* Commitment elevated into the default path: the chapter's central,
+               *  encouraged-not-required outcome sits right after the read + example,
+               *  before the quiz. Completion stays gated ONLY on the quiz pass — the
+               *  commitment never blocks advancing. Reads the server-hydrated
+               *  committedToChapter (Phase 0). Held until commitments hydrate so an
+               *  already-committed reader doesn't briefly see the commit form flash. */}
+              {!commitmentsLoading &&
+                chapter.implementationPlan?.ifThenPlans &&
+                chapter.implementationPlan.ifThenPlans.length > 0 && (
+                  <div className="mt-6">
+                    <CommitmentPrompt
+                      ifThenPlans={chapter.implementationPlan.ifThenPlans}
+                      bookId={bookId}
+                      chapterNumber={chapter.order}
+                      fontScaleClass={textScaleClass}
+                      onCommit={handleCommitment}
+                      hasActiveCommitment={committedToChapter}
+                      activeFollowUpDays={activeChapterCommitment?.followUpDays}
+                    />
+                  </div>
+                )}
+
               <ContinueButton
                 ready={phaseCompletion.currentPhaseReady}
                 onClick={() => setActiveTab("quiz")}

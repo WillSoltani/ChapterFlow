@@ -22,24 +22,30 @@ type PhaseCompletionConfig = {
   timeThreshold: number; // seconds
 };
 
+// These are CLIENT-SIDE forward-nav friction only (scroll% OR time to advance a
+// phase), persisted to localStorage. They are INDEPENDENT of the server-side
+// completion event — the quiz pass — so they never affect completion / streak /
+// IP integrity. The short default path keeps the content brief, so the dwell
+// timers are softened accordingly (a reader shouldn't be forced to wait on a
+// 2-minute read). Completion still cannot be reached without the quiz pass.
 const MODE_CONFIG: Record<LearningMode, Record<ChapterTab, PhaseCompletionConfig>> = {
   guided: {
-    summary: { scrollThreshold: 0.80, timeThreshold: 45 },
-    examples: { scrollThreshold: 0.80, timeThreshold: 30 },
+    summary: { scrollThreshold: 0.80, timeThreshold: 20 },
+    examples: { scrollThreshold: 0.80, timeThreshold: 10 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
     // Practice phase is rendered inside ChapterCompleteModal, not as a
     // navigable tab — these thresholds are not enforced at runtime.
     practice: { scrollThreshold: 0, timeThreshold: 0 },
   },
   standard: {
-    summary: { scrollThreshold: 0.90, timeThreshold: 60 },
-    examples: { scrollThreshold: 0.90, timeThreshold: 30 },
+    summary: { scrollThreshold: 0.90, timeThreshold: 30 },
+    examples: { scrollThreshold: 0.90, timeThreshold: 10 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
     practice: { scrollThreshold: 0, timeThreshold: 0 },
   },
   challenge: {
-    summary: { scrollThreshold: 0.90, timeThreshold: 60 },
-    examples: { scrollThreshold: 0.90, timeThreshold: 30 },
+    summary: { scrollThreshold: 0.90, timeThreshold: 30 },
+    examples: { scrollThreshold: 0.90, timeThreshold: 10 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
     practice: { scrollThreshold: 0, timeThreshold: 0 },
   },

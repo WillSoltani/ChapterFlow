@@ -9,11 +9,15 @@ import {
   useRef,
   useState,
 } from "react";
-import { MessageCircle, Plus, Sparkles, X } from "lucide-react";
+import { ChevronDown, MessageCircle, Plus, Sparkles, X } from "lucide-react";
 import type { ChapterExample, ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
-import { track } from "@/lib/analytics";
+
+// The short default path shows ONE example; the rest are progressively disclosed
+// behind "Show more". The phase gate (challenge mode) targets this count so
+// expanding is never required to advance. Exported so the reader's gate agrees.
+export const DEFAULT_VISIBLE_EXAMPLES = 1;
 
 // ─── types ────────────────────────────────────────────────────────────────────
 
@@ -48,6 +52,8 @@ type ExamplesListProps = {
   fontScaleClass: string;
   readingDepth: ReadingDepth;
   onScenarioInteraction?: () => void;
+  /** Fired once when the reader expands the collapsed examples list. */
+  onExpand?: (revealedCount: number) => void;
   chapterId?: string;
   bookId: string;
   chapterNumber: number;
@@ -273,6 +279,7 @@ export function ExamplesList({
   fontScaleClass,
   readingDepth,
   onScenarioInteraction,
+  onExpand,
   chapterId,
   bookId,
   chapterNumber,
@@ -282,6 +289,9 @@ export function ExamplesList({
 }: ExamplesListProps) {
   void _submissionPoints;
   const [currentIndex, setCurrentIndex] = useState(0);
+  // Progressive disclosure: show only the first example until the reader asks for
+  // more. Resets whenever the filtered set changes (a new filter starts collapsed).
+  const [expanded, setExpanded] = useState(false);
   const handleVisible = useCallback((index: number) => {
     setCurrentIndex(index);
   }, []);
@@ -398,7 +408,11 @@ export function ExamplesList({
             <button
               key={option.id}
               type="button"
-              onClick={() => onFilterChange(option.id)}
+              onClick={() => {
+                // A new filter starts collapsed (back to the short, one-example view).
+                setExpanded(false);
+                onFilterChange(option.id);
+              }}
               className={[
                 "rounded-full border px-3 py-1.5 text-[13px] font-medium transition",
                 active
@@ -483,21 +497,40 @@ export function ExamplesList({
             </div>
           </>
         ) : (
-          examples.map((example, index) => (
-            <ScenarioCard
-              key={example.id}
-              example={example}
-              index={index}
-              fontScaleClass={fontScaleClass}
-              readingDepth={readingDepth}
-              onInteraction={onScenarioInteraction}
-              chapterId={chapterId}
-              onVisible={handleVisible}
-              bookId={bookId}
-              chapterNumber={chapterNumber}
-              chapterTitle={chapterTitle}
-            />
-          ))
+          (expanded ? examples : examples.slice(0, DEFAULT_VISIBLE_EXAMPLES)).map(
+            (example, index) => (
+              <ScenarioCard
+                key={example.id}
+                example={example}
+                index={index}
+                fontScaleClass={fontScaleClass}
+                readingDepth={readingDepth}
+                onInteraction={onScenarioInteraction}
+                chapterId={chapterId}
+                onVisible={handleVisible}
+                bookId={bookId}
+                chapterNumber={chapterNumber}
+                chapterTitle={chapterTitle}
+              />
+            ),
+          )
+        )}
+
+        {/* Progressive disclosure: the rest of the examples stay one tap away. */}
+        {!expanded && examples.length > DEFAULT_VISIBLE_EXAMPLES && (
+          <button
+            type="button"
+            aria-expanded={false}
+            onClick={() => {
+              setExpanded(true);
+              onExpand?.(examples.length);
+            }}
+            className="cf-pressable flex w-full items-center justify-center gap-1.5 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-sm font-semibold text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-heading)"
+          >
+            <ChevronDown className="h-4 w-4" aria-hidden="true" />
+            Show {examples.length - DEFAULT_VISIBLE_EXAMPLES} more example
+            {examples.length - DEFAULT_VISIBLE_EXAMPLES === 1 ? "" : "s"}
+          </button>
         )}
       </div>
 
