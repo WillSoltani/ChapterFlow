@@ -19,6 +19,9 @@ type BookHeroProps = {
   unlockedCount: number;
   totalCount: number;
   completedCount: number;
+  /** Two-axis completion (feedback #4): chapters the reader has APPLIED (followed
+   *  through). Display-only; hidden until >= 1 to avoid "0 applied" noise. */
+  appliedCount: number;
   currentChapterOrder: number;
   firstChapterMinutes: number;
   onContinue: () => void;
@@ -42,6 +45,7 @@ export function BookHero({
   unlockedCount,
   totalCount,
   completedCount,
+  appliedCount,
   currentChapterOrder,
   firstChapterMinutes,
   onContinue,
@@ -223,6 +227,14 @@ export function BookHero({
                   <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">
                     {completedCount}/{totalCount} chapters complete
                   </span>
+                  {appliedCount >= 1 && (
+                    <span
+                      className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium"
+                      style={{ color: "var(--cf-gold-text)" }}
+                    >
+                      {appliedCount} applied
+                    </span>
+                  )}
                   <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">
                     {unlockedCount}/{totalCount} unlocked
                   </span>

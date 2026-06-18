@@ -97,6 +97,8 @@ export function BookDetailClient({
   const {
     hydrated,
     progress,
+    applicationStates,
+    appliedCount,
     currentChapter,
     completedCount,
     totalCount,
@@ -321,6 +323,7 @@ export function BookDetailClient({
           unlockedCount={unlockedCount}
           totalCount={totalCount}
           completedCount={completedCount}
+          appliedCount={appliedCount}
           currentChapterOrder={currentChapter?.number ?? 1}
           firstChapterMinutes={firstChapterMinutes}
           accessBlocked={accessBlocked}
@@ -470,6 +473,7 @@ export function BookDetailClient({
                     status={status}
                     score={progress.chapterScores[chapter.id]}
                     stepsCompleted={getStepsCompleted(chapter.id)}
+                    applicationState={applicationStates[chapter.id] ?? "none"}
                     isCurrent={isCurrent}
                     onClick={() => openChapter(chapter)}
                     onMouseEnter={() => {
