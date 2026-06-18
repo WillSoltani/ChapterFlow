@@ -436,6 +436,19 @@ export type ChapterV21 = {
   experiencePlan?: ExperiencePlanV21;
 };
 
+/** A "which pattern fits you?" reader personalization tag (RDRP*). The label is a
+ *  CONCRETE reader situation ("When you check your phone first thing"), never a
+ *  personality archetype ("The procrastinator"). Both indices are OPTIONAL and
+ *  0-based into the chapter's UNFILTERED authored arrays:
+ *    mapsToPlanIndex    → implementationPlan.ifThenPlans
+ *    mapsToExampleIndex → examples   (NOT the scope-filtered/displayed list) */
+export type ReaderPatternV21 = {
+  id: string;
+  label: string;
+  mapsToPlanIndex?: number;
+  mapsToExampleIndex?: number;
+};
+
 export type ExperiencePlanV21 = {
   /** "What to do when you slip" — the relatedness/resilience surface. */
   failureRecovery?: {
@@ -449,6 +462,12 @@ export type ExperiencePlanV21 = {
   transferPrompt?: {
     prompt: string;                     // 60–200 chars; the far-transfer question
     contexts: string[];                 // 2–5 short contexts, each 10–80 chars, each a DIFFERENT domain than the chapter's
+  };
+  /** Optional "which pattern fits you?" layer: routes the recommended example +
+   *  commitment plan to the reader's self-selected situation. Sibling of
+   *  failureRecovery/transferPrompt — author none, one, or all. */
+  behaviorLoop?: {
+    readerPatterns?: ReaderPatternV21[]; // 0–8 patterns; labels concrete + distinct per chapter
   };
 };
 

@@ -9,7 +9,8 @@ export type ReaderFunnelEvent =
   | "quiz_full_bank_opened"
   | "commitment_reached"
   | "next_chapter_started"
-  | "time_to_first_action";
+  | "time_to_first_action"
+  | "pattern_picked";
 
 /**
  * Fire-and-forget a reader-funnel event. Never blocks or throws into the UI; an

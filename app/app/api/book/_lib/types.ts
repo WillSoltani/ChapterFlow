@@ -112,6 +112,13 @@ export type ImplementationPlan = {
 /** v21 behavior-change layer (Layer A). Sub-objects are surfaced only when
  *  complete (the adapter drops partial/empty shapes), so the reader contract is
  *  all-or-nothing per sub-object. Mirrors the client `V21ExperiencePlan`. */
+export type V21ReaderPattern = {
+  id: string;
+  label: string;
+  mapsToPlanIndex?: number;
+  mapsToExampleIndex?: number;
+};
+
 export type V21ExperiencePlan = {
   failureRecovery?: {
     normalizingLine: string;
@@ -122,6 +129,10 @@ export type V21ExperiencePlan = {
   transferPrompt?: {
     prompt: string;
     contexts: string[];
+  };
+  /** Optional "which pattern fits you?" personalization layer (RDRP*). */
+  behaviorLoop?: {
+    readerPatterns?: V21ReaderPattern[];
   };
 };
 

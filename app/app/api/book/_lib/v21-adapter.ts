@@ -10,6 +10,7 @@ import type {
   ToneKeyed,
   V21ChapterExtras,
   V21ExperiencePlan,
+  V21ReaderPattern,
   VariantKey,
 } from "./types";
 
@@ -212,7 +213,32 @@ function adaptExperiencePlan(raw: unknown): V21ExperiencePlan | undefined {
     }
   }
 
-  return result.failureRecovery || result.transferPrompt ? result : undefined;
+  const bl = isRecord(raw.behaviorLoop) ? raw.behaviorLoop : undefined;
+  if (bl) {
+    const rawPatterns = Array.isArray(bl.readerPatterns) ? bl.readerPatterns : [];
+    const patterns: V21ReaderPattern[] = [];
+    for (const rp of rawPatterns) {
+      if (!isRecord(rp)) continue;
+      const id = asString(rp.id).trim();
+      const label = asString(rp.label).trim();
+      if (!id || !label) continue; // surface only complete patterns
+      const pattern: V21ReaderPattern = { id, label };
+      if (typeof rp.mapsToPlanIndex === "number" && Number.isInteger(rp.mapsToPlanIndex)) {
+        pattern.mapsToPlanIndex = rp.mapsToPlanIndex;
+      }
+      if (typeof rp.mapsToExampleIndex === "number" && Number.isInteger(rp.mapsToExampleIndex)) {
+        pattern.mapsToExampleIndex = rp.mapsToExampleIndex;
+      }
+      patterns.push(pattern);
+    }
+    if (patterns.length > 0) {
+      result.behaviorLoop = { readerPatterns: patterns };
+    }
+  }
+
+  return result.failureRecovery || result.transferPrompt || result.behaviorLoop
+    ? result
+    : undefined;
 }
 
 function adaptChapter(raw: unknown): BookPackageChapter {
@@ -277,9 +303,14 @@ export function isV21Raw(raw: unknown): boolean {
 
 /**
  * Convert a v21-authored raw package to the v13-shape BookPackage that the
- * existing validator and ingestion pipeline expect. Performs minimal
- * structural validation as it goes; the caller (validate-book-package.ts)
- * runs the full v13 validator on the output for defense in depth.
+ * existing validator and ingestion pipeline expect. Performs its OWN structural
+ * coercion (incl. the v21-only extras like experiencePlan/behaviorLoop) as it
+ * goes — validateBookPackage returns this output directly and does NOT re-run the
+ * v13 parser on it. That is deliberate: re-validating through parseV21Extras would
+ * strip experiencePlan (it carries only hook/counterintuition/tryThisNow/
+ * keyTakeaway/memorableLines). Do not add a re-validation pass here without first
+ * teaching parseV21Extras to passthrough experiencePlan, or the behavior-loop
+ * layer would silently vanish.
  */
 export function adaptV21ToV13(raw: unknown): BookPackage {
   const r = isRecord(raw) ? raw : {};

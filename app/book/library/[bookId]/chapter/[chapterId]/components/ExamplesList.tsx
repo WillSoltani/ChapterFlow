@@ -54,6 +54,9 @@ type ExamplesListProps = {
   onScenarioInteraction?: () => void;
   /** Fired once when the reader expands the collapsed examples list. */
   onExpand?: (revealedCount: number) => void;
+  /** A reader-pattern-routed example id (Phase 3). When set + present in the
+   *  filtered list, it becomes the first/collapsed-visible card. */
+  pinnedExampleId?: string | null;
   chapterId?: string;
   bookId: string;
   chapterNumber: number;
@@ -280,6 +283,7 @@ export function ExamplesList({
   readingDepth,
   onScenarioInteraction,
   onExpand,
+  pinnedExampleId,
   chapterId,
   bookId,
   chapterNumber,
@@ -358,6 +362,15 @@ export function ExamplesList({
   };
 
   const visibleNumber = Math.min(currentIndex + 1, Math.max(examples.length, 1));
+
+  // Reader-pattern routing (Phase 3): float the pinned example to the front so it
+  // becomes the collapsed/first card. No-op when unset or not in the filtered set.
+  const orderedExamples = useMemo(() => {
+    if (!pinnedExampleId) return examples;
+    const idx = examples.findIndex((e) => e.id === pinnedExampleId);
+    if (idx <= 0) return examples; // not found, or already first
+    return [examples[idx], ...examples.slice(0, idx), ...examples.slice(idx + 1)];
+  }, [examples, pinnedExampleId]);
 
   return (
     <section className="cr-reading-content">
@@ -497,7 +510,7 @@ export function ExamplesList({
             </div>
           </>
         ) : (
-          (expanded ? examples : examples.slice(0, DEFAULT_VISIBLE_EXAMPLES)).map(
+          (expanded ? orderedExamples : orderedExamples.slice(0, DEFAULT_VISIBLE_EXAMPLES)).map(
             (example, index) => (
               <ScenarioCard
                 key={example.id}

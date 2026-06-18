@@ -310,6 +310,34 @@ experiencePlan: {
 
 The illustrative wording above shows the SHAPE only; write your own — none of it is copyable.
 
+### Step 9.6 — `experiencePlan.behaviorLoop.readerPatterns` (OPTIONAL "which pattern fits you?")
+
+A nested, OPTIONAL sub-surface of `experiencePlan`: 2–8 concrete reader *situations* the reader can self-select. The reader picks the one that sounds like them, and the app routes the recommended example + pre-fills the matching commitment plan. Author it only when the chapter's skill shows up in a few clearly-different reader situations; omit `behaviorLoop` entirely otherwise.
+
+```ts
+behaviorLoop: {
+  readerPatterns: [
+    {
+      id: string,                 // kebab-case key, unique within the chapter (e.g. "morning-phone-reach")
+      label: string,              // 20-60 chars; a CONCRETE situation, not a personality type
+      mapsToPlanIndex?: number,   // optional 0-based index into implementationPlan.ifThenPlans
+      mapsToExampleIndex?: number // optional 0-based index into the UNFILTERED examples array
+    }
+    // … up to 8
+  ]
+}
+```
+
+### Rules
+
+1. **The label names a concrete SITUATION, never a personality archetype.** "When you reach for your phone the moment a task gets hard" is a pattern; "The procrastinator" / "Type A" / "The perfectionist" are vague archetypes and are BANNED (RDRP3).
+2. **Author fresh per chapter.** A `label` reused verbatim across chapters is a book-wide convergence defect (RDRP10). Each chapter's patterns are its own.
+3. **Indices are 0-based into the UNFILTERED authored arrays** (`examples` in authored order, `implementationPlan.ifThenPlans`), NOT the reader's scope-filtered/displayed view. An out-of-range index is a blocker (RDRP1) — both are optional, so omit a `mapsTo*Index` when no specific instance fits.
+4. **Each `id` is unique and non-empty; each `label` non-empty and 20–60 chars** (RDRP1/RDRP2).
+5. No banned phrases, em dashes, or meta-references (labels get the same register hygiene as every other string).
+
+The shape above is illustrative only — write your own patterns from the chapter's content.
+
 ---
 
 ## Step 10 — `memorableLines` (exactly 3 lines)

@@ -255,7 +255,8 @@ export type ReaderFunnelEvent =
   | "quiz_full_bank_opened"
   | "commitment_reached"
   | "next_chapter_started"
-  | "time_to_first_action";
+  | "time_to_first_action"
+  | "pattern_picked";
 
 export async function analyticsTrackReaderFunnel(
   table: string,

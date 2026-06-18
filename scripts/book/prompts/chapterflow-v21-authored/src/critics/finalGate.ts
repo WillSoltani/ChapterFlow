@@ -61,6 +61,9 @@ import {
   checkExperiencePlanStructure,
   checkNormalizingCliche,
   experiencePlanStrings,
+  checkReaderPatternStructure,
+  checkReaderPatternLabelLength,
+  checkReaderPatternLabelHygiene,
 } from "./experiencePlan.js";
 
 export type GateSeverity = "blocker" | "major" | "minor";
@@ -303,6 +306,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "EXP1.structure": "blocker",       // malformed/empty subfields or bad array cardinality
   "EXP2.length": "minor",            // a subfield is outside its char bounds (advisory)
   "EXP3.normalizing_cliche": "major", // normalizingLine/repairLine reassures instead of naming the mechanism
+  // readerPatterns (RDRP) — the optional "which pattern fits you?" sub-layer of
+  // experiencePlan.behaviorLoop. Same zero-fire-when-absent calibration as EXP*.
+  "RDRP1.structure": "blocker",      // bad cardinality (>8), empty/dupe id, empty label, or mapsTo*Index out of range
+  "RDRP2.label_length": "minor",     // a label outside 20–60 chars (advisory)
+  "RDRP3.label_hygiene": "major",    // a label is a vague personality archetype, not a concrete situation
 };
 
 /**
@@ -529,7 +537,21 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     for (const f of checkNormalizingCliche(ep)) push("EXP3.normalizing_cliche", "experiencePlan", f.message, f.evidence);
     // Shared register hygiene (meta-reference B1, chapter-number B2, em-dash B5,
     // banned phrases B4) over every authored string — same treatment as hook/etc.
+    // (experiencePlanStrings includes readerPattern labels.)
     for (const text of experiencePlanStrings(ep)) runRegisterChecks("experiencePlan", text, push);
+
+    // readerPatterns (RDRP1, RDRP2, RDRP3) — bounds drawn from the chapter so the
+    // index checks validate against the UNFILTERED authored arrays. Zero-fire when
+    // experiencePlan.behaviorLoop is absent.
+    if (ep.behaviorLoop?.readerPatterns) {
+      const bounds = {
+        ifThenPlansLength: chapter.implementationPlan?.ifThenPlans?.length ?? 0,
+        examplesLength: chapter.examples?.length ?? 0,
+      };
+      for (const f of checkReaderPatternStructure(ep, bounds)) push("RDRP1.structure", "behaviorLoop", f.message, f.evidence);
+      for (const f of checkReaderPatternLabelLength(ep)) push("RDRP2.label_length", "behaviorLoop", f.message, f.evidence);
+      for (const f of checkReaderPatternLabelHygiene(ep)) push("RDRP3.label_hygiene", "behaviorLoop", f.message, f.evidence);
+    }
   }
 
   // ── Breakdown (B1, B2, B4, B5, E1, E2, E3, B7, B8) ───────────────────────
