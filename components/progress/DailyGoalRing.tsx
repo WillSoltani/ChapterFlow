@@ -121,12 +121,12 @@ export function DailyGoalRing({
             >
               {"✓"} Done!
             </motion.span>
-          ) : completedMinutes === 0 && !hasEndowedProgress ? (
+          ) : completedMinutes === 0 ? (
             <span
               className="font-(family-name:--font-display) text-2xl font-bold"
               style={{ color: "var(--text-heading)" }}
             >
-              {targetMinutes}m
+              0m
             </span>
           ) : (
             <span
@@ -142,11 +142,7 @@ export function DailyGoalRing({
           >
             {isGoalComplete
               ? `${targetMinutes} min goal reached`
-              : completedMinutes === 0 && !hasEndowedProgress
-                ? "to go"
-                : hasEndowedProgress && completedMinutes === 0
-                  ? "You’re already on your way"
-                  : `of ${targetMinutes} min goal`}
+              : `of ${targetMinutes} min goal`}
           </span>
         </div>
 
