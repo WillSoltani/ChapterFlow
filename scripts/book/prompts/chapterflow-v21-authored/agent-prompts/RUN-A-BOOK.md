@@ -11,7 +11,7 @@ comes next. You never have to remember the step order.
 | # | Phase | Paste this file | Say to the agent | It stops at |
 |---|-------|-----------------|------------------|-------------|
 | 1 | Research | `RESEARCH-CODEX-SESSION.md` | `Research the book <book>` | `phase: write-chapter` — index + every source sidecar exist AND `source-verify-check <book>` prints `PASS` (each named case/fact verified against a DISTINCT real source — not structurally valid, not rubber-stamped) |
-| 2 | Write | `WRITE-ORCHESTRATE-CODEX-SESSION.md` | `Write the book <book>` | `phase: qc` — every chapter gate-clean + book-gate clean AND self-scored on the 8-axis publishable bar (`publishable-rubric`); gate-clean alone does NOT predict the QC verdict |
+| 2 | Write | `WRITE-ORCHESTRATE-CODEX-SESSION.md` | `Write the book <book>` | `phase: qc` — every chapter gate-clean + book-gate clean AND self-scored on the 9-axis publishable bar (`publishable-rubric`); gate-clean alone does NOT predict the QC verdict |
 | 3 | QC | `QC-ORCHESTRATE-CODEX-SESSION.md` | `QC <book>` | `QC AUTO PASS` — every chapter PUBLISHABLE (copy the round id) |
 | 4 | Commit + push + publish | `PUBLISH-AFTER-QC-CODEX-SESSION.md` | `Finalize and publish <book> from QC round <roundId>. Commit and push.` | package written, committed, pushed |
 
