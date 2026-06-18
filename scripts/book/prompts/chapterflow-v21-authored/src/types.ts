@@ -425,6 +425,31 @@ export type ChapterV21 = {
     location: string;                   // e.g., "breakdown.deepRead", "hook", "example[2].whyItMatters"
     why: string;                        // 1 sentence on what makes it stick
   }>;
+  /**
+   * Behavior-change layer (Layer A). Optional, authored per-chapter — NEVER
+   * dealt as a card with a copyable example (that is the card-seed convergence
+   * vector). Both sub-objects are independent: a chapter may have one, both, or
+   * neither. Gated by EXP1–EXP3 (chapter, finalGate) + EXP10/EXP11 (cross-
+   * chapter convergence, bookGate). Nested namespace so a later interactive
+   * "Layer B" can be added without schema churn.
+   */
+  experiencePlan?: ExperiencePlanV21;
+};
+
+export type ExperiencePlanV21 = {
+  /** "What to do when you slip" — the relatedness/resilience surface. */
+  failureRecovery?: {
+    normalizingLine: string;            // 60–160 chars; names the mechanism, NOT a shame script or self-compassion cliché
+    cueQuestion: string;                // 30–120 chars; a question that helps the reader NOTICE the slip
+    options: string[];                  // 2–4 short repair moves, each 15–120 chars
+    repairLine: string;                 // 60–200 chars; the single "get back on track" line
+  };
+  /** FAR transfer — "where else does this idea apply" (distinct from
+   *  implementationPlan, which is the plan for THIS chapter). */
+  transferPrompt?: {
+    prompt: string;                     // 60–200 chars; the far-transfer question
+    contexts: string[];                 // 2–5 short contexts, each 10–80 chars, each a DIFFERENT domain than the chapter's
+  };
 };
 
 export type ExampleV21 = {

@@ -56,6 +56,12 @@ import { checkReadingLevel } from "./readingLevel.js";
 import { checkPlainLanguage } from "./plainLanguage.js";
 import { checkScaffoldLeak } from "./scaffoldLeak.js";
 import { runSupportSectionAudit } from "./supportSectionAudit.js";
+import {
+  checkExperiencePlanLengths,
+  checkExperiencePlanStructure,
+  checkNormalizingCliche,
+  experiencePlanStrings,
+} from "./experiencePlan.js";
 
 export type GateSeverity = "blocker" | "major" | "minor";
 
@@ -291,6 +297,12 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // chapter's sidecar is schemaVersion source-v2, so v1 chapters never brick.
   "SC11.1.missing_provenance": "blocker",
   "SC11.2.anchor_specific_not_present": "blocker",
+  // experiencePlan (EXP) — the optional behavior-change layer. Every EXP check
+  // runs only when chapter.experiencePlan is present, so all three fire ZERO on
+  // the current corpus (no chapter carries the field). See critics/experiencePlan.ts.
+  "EXP1.structure": "blocker",       // malformed/empty subfields or bad array cardinality
+  "EXP2.length": "minor",            // a subfield is outside its char bounds (advisory)
+  "EXP3.normalizing_cliche": "major", // normalizingLine/repairLine reassures instead of naming the mechanism
 };
 
 /**
@@ -504,6 +516,20 @@ export function runShipGate(chapter: ChapterV21): GateReport {
         );
       }
     });
+  }
+
+  // ── experiencePlan (EXP1, EXP2, EXP3) ────────────────────────────────────
+  // Optional behavior-change layer. Checks run only when present, so they fire
+  // zero on chapters without the field. Cross-chapter convergence is bookGate's
+  // job (EXP10/EXP11) — a single chapter can't see its siblings.
+  if (chapter.experiencePlan) {
+    const ep = chapter.experiencePlan;
+    for (const f of checkExperiencePlanStructure(ep)) push("EXP1.structure", "experiencePlan", f.message, f.evidence);
+    for (const f of checkExperiencePlanLengths(ep)) push("EXP2.length", "experiencePlan", f.message, f.evidence);
+    for (const f of checkNormalizingCliche(ep)) push("EXP3.normalizing_cliche", "experiencePlan", f.message, f.evidence);
+    // Shared register hygiene (meta-reference B1, chapter-number B2, em-dash B5,
+    // banned phrases B4) over every authored string — same treatment as hook/etc.
+    for (const text of experiencePlanStrings(ep)) runRegisterChecks("experiencePlan", text, push);
   }
 
   // ── Breakdown (B1, B2, B4, B5, E1, E2, E3, B7, B8) ───────────────────────

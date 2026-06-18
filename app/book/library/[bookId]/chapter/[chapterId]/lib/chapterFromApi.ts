@@ -15,6 +15,7 @@ import {
   buildBookChapterFromRawV21,
   type BookChapter,
 } from "@/app/book/data/bookChapters";
+import type { V21ExperiencePlan } from "@/app/book/lib/v21-adapter";
 
 type ApiToneKeyed = {
   gentle?: string;
@@ -73,6 +74,7 @@ export type ApiChapter = {
     tryThisNow?: string;
     keyTakeaway?: string;
     memorableLines?: Array<{ text: string; location?: string; why?: string }>;
+    experiencePlan?: V21ExperiencePlan;
   };
 };
 
@@ -132,6 +134,7 @@ export function adaptApiChapterToBookChapter(
     tryThisNow: api.v21Extras?.tryThisNow,
     keyTakeaway: api.v21Extras?.keyTakeaway || flattenTone(api.keyTakeawayCard),
     memorableLines: api.v21Extras?.memorableLines,
+    experiencePlan: api.v21Extras?.experiencePlan,
     examples: (api.examples ?? []).map((ex) => ({
       exampleId: ex.exampleId,
       title: ex.title,
