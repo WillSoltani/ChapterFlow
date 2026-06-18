@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, CheckCircle2, XCircle } from "lucide-react";
+import { Loader2, CheckCircle2, XCircle, Check, Sparkles } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
 import type { BillingInterval, PricingTier } from "@/app/book/hooks/useBookEntitlements";
-import { ANNUAL_SAVINGS_BADGE, TRIAL_CTA_LABEL } from "@/lib/pricing";
+import { ANNUAL_SAVINGS_BADGE, TRIAL_CTA_LABEL, PRO_FEATURES } from "@/lib/pricing";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 type SubscriptionCardProps = {
@@ -106,7 +106,7 @@ export function SubscriptionCard({
     return (
       <div className="rounded-2xl border border-(--cf-accent-border) bg-linear-to-br from-(--cf-accent-muted) to-transparent p-5">
         <div className="flex items-center gap-2">
-          <span className="text-sm">&#10024;</span>
+          <Sparkles className="h-4 w-4 text-(--cf-gold-text)" aria-hidden="true" />
           <span className="text-base font-bold text-(--cf-text-1)">Pro Plan</span>
         </div>
         <p className="mt-0.5 text-xs text-(--cf-text-soft)">
@@ -166,14 +166,33 @@ export function SubscriptionCard({
         You have access to {freeBookSlots} book{freeBookSlots === 1 ? "" : "s"}.
       </p>
 
-      <div className="mt-4 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-muted) p-4">
-        <p className="text-sm font-semibold text-(--cf-text-1)">
-          &#10024; Upgrade to Pro
+      {/* Finding D: the upgrade upsell is the premium channel, NOT the cyan
+          product accent. The single canonical Pro-CTA signal (--cf-upgrade-accent,
+          amber→gold) is a gradient and can't be color-mixed, so the panel wears
+          the warm gold wash (--cf-gold-soft / --cf-gold-border) and the gradient
+          rides the CTA below — matching DiscoveryRow / Pricing / ProInsightsPreview. */}
+      <div
+        className="mt-4 rounded-xl border p-4"
+        style={{ background: "var(--cf-gold-soft)", borderColor: "var(--cf-gold-border)" }}
+      >
+        <p className="flex items-center gap-1.5 text-sm font-semibold text-(--cf-text-1)">
+          <Sparkles className="h-4 w-4 text-(--cf-gold-text)" aria-hidden="true" />
+          Upgrade to Pro
         </p>
-        <p className="mt-1 text-xs leading-relaxed text-(--cf-text-3)">
-          Unlock all {CATALOG_BOOK_COUNT_DISPLAY} books, text-to-speech, spaced repetition, reading analytics, and
-          export tools.
-        </p>
+        {/* Finding E: value prop driven by the shared PRO_FEATURES constant
+            (lib/pricing.ts) so the in-app upsell sells the SAME Pro as the
+            landing card — no more value-prop drift between funnel stages. */}
+        <ul className="mt-2 space-y-1.5">
+          {PRO_FEATURES.map((feature) => (
+            <li
+              key={feature}
+              className="flex items-start gap-2 text-xs leading-relaxed text-(--cf-text-3)"
+            >
+              <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-(--cf-gold-text)" aria-hidden="true" />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
 
         {hasTiers ? (
           <div className="mt-3 flex flex-col gap-2" role="radiogroup" aria-label="Billing interval">
@@ -237,19 +256,25 @@ export function SubscriptionCard({
           </p>
         )}
 
-        <Button
-          variant="primary"
-          size="sm"
-          className="mt-3 w-full"
+        {/* Finding D: the single canonical Pro-CTA — amber→gold gradient with a
+            black label (text-black clears AA on gold; --cf-upgrade-accent's light
+            ramp is darkened at the start for exactly this) and an amber focus
+            ring, so this reads identically to every other "Upgrade"/"Go Pro" CTA. */}
+        <button
+          type="button"
           disabled={actionLoading}
           onClick={handleUpgrade}
+          className={`mt-3 inline-flex h-(--cf-control-height-sm) w-full items-center justify-center gap-2 rounded-xl px-3 text-sm font-semibold text-black transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg) disabled:cursor-not-allowed disabled:opacity-70${
+            reducedMotion ? "" : " hover:scale-[1.02]"
+          }`}
+          style={{ background: "var(--cf-upgrade-accent)", boxShadow: "var(--cf-upgrade-accent-shadow)" }}
         >
           {actionLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
             TRIAL_CTA_LABEL
           )}
-        </Button>
+        </button>
         {actionError && (
           <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-danger-text)">
             <XCircle className="h-3.5 w-3.5" />

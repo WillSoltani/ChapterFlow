@@ -28,7 +28,12 @@ export function useSettingsPage() {
 
   const isSectionExpanded = useCallback(
     (sectionId: string) => {
-      return prefs.extended.sectionStates[sectionId] ?? true;
+      // Finding C (progressive disclosure): default only the first section
+      // ("reading") open; every other section a user has never explicitly
+      // toggled stays collapsed. An explicit stored boolean (from a prior
+      // toggle) always wins, so this never clobbers an existing preference.
+      const stored = prefs.extended.sectionStates[sectionId];
+      return stored ?? sectionId === "reading";
     },
     [prefs.extended.sectionStates]
   );
