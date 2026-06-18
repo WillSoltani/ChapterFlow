@@ -28,7 +28,8 @@ const gridLines = [
   { y: 240, label: "0%" },
 ];
 
-/* X-axis tick positions (inside the chart area, before the g translate) */
+/* X-axis tick positions, authored in 0..580 curve space (mapped into the grid
+   frame by the <g transform> that wraps these labels and the curve paths below) */
 const xLabels = [
   { x: 80, label: "Day 1" },
   { x: 230, label: "Day 3" },
@@ -165,37 +166,43 @@ export function Problem() {
                 </text>
               ))}
 
-              {/* X-axis labels */}
-              {xLabels.map((item) => (
-                <text
-                  key={item.label}
-                  x={item.x}
-                  y={270}
-                  textAnchor="middle"
-                  fill="var(--text-muted)"
-                  fontSize={11}
-                  fontFamily="var(--font-body)"
-                >
-                  {item.label}
-                </text>
-              ))}
+              {/* curve-space group: the x-tick labels and both curve paths are
+                  authored in 0..580 space; map them into the grid frame x=45..590
+                  (sx = 545/580 = 0.93966; verified 0→45, 580→590). Y is untouched,
+                  so labels stay on the baseline and the curves keep their shape. */}
+              <g transform="translate(45,0) scale(0.93966,1)">
+                {/* X-axis labels */}
+                {xLabels.map((item) => (
+                  <text
+                    key={item.label}
+                    x={item.x}
+                    y={270}
+                    textAnchor="middle"
+                    fill="var(--text-muted)"
+                    fontSize={11}
+                    fontFamily="var(--font-body)"
+                  >
+                    {item.label}
+                  </text>
+                ))}
 
-              {/* Animated curve paths */}
-              <AnimatedPath
-                d={redPath}
-                color="var(--accent-rose)"
-                isInView={chartInView}
-                skipAnimation={!!prefersReducedMotion}
-                delay={0.3}
-              />
+                {/* Animated curve paths */}
+                <AnimatedPath
+                  d={redPath}
+                  color="var(--accent-rose)"
+                  isInView={chartInView}
+                  skipAnimation={!!prefersReducedMotion}
+                  delay={0.3}
+                />
 
-              <AnimatedPath
-                d={tealPath}
-                color="var(--accent-cyan)"
-                isInView={chartInView}
-                skipAnimation={!!prefersReducedMotion}
-                delay={0.6}
-              />
+                <AnimatedPath
+                  d={tealPath}
+                  color="var(--accent-cyan)"
+                  isInView={chartInView}
+                  skipAnimation={!!prefersReducedMotion}
+                  delay={0.6}
+                />
+              </g>
             </svg>
 
             {/* Legend */}
