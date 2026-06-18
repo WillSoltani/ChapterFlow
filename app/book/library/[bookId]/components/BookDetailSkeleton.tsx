@@ -42,7 +42,7 @@ function ChapterRowSkeleton() {
 export function BookDetailSkeleton({ rows = 6 }: { rows?: number }) {
   return (
     <div
-      className="relative z-10 mx-auto w-full max-w-450 px-4 pb-28 pt-6 sm:px-6 md:pb-24 lg:px-10 xl:px-16"
+      className="relative z-10 mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16"
       aria-hidden="true"
     >
       {/* Breadcrumb */}
