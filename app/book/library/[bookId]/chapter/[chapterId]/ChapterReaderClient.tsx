@@ -1039,6 +1039,8 @@ export function ChapterReaderClient({
           onChangeLineSpacing={(value) => patchBookPrefs("extended", { lineSpacing: value })}
           contentWidth={bookPrefs.reading.contentWidth}
           onChangeContentWidth={(px) => patchBookPrefs("reading", { contentWidth: px })}
+          fontFamily={bookPrefs.extended.fontFamily}
+          onChangeFontFamily={(value) => patchBookPrefs("extended", { fontFamily: value })}
         />
 
         {/* Hook banner: only on the Summary phase. Sits BELOW the chapter
