@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Check, FileText, HelpCircle, Lightbulb, Lock } from "lucide-react";
 import type { ComponentType } from "react";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
@@ -66,6 +66,11 @@ export function PhaseStepper({
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
   const [mobileToast, setMobileToast] = useState<string | null>(null);
   const clampedProgress = Math.min(100, Math.max(0, progressPercent));
+  // North-Star motion rule: "nothing loops or pulses ambiently while prose is on
+  // screen … always useReducedMotion-guarded." The current-node halo pulse below
+  // is gated on this so reduced-motion users get a static (still decisively
+  // filled) current node.
+  const reduced = useReducedMotion();
 
   const handleLockedClick = useCallback(
     (phase: ChapterTab, event: React.MouseEvent) => {
@@ -141,7 +146,7 @@ export function PhaseStepper({
                     state === "completed"
                       ? "bg-(--cr-accent) text-(--cr-text-inverse)"
                       : state === "current"
-                        ? "bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_0_0_4px_var(--cr-accent-glow)]"
+                        ? "bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_0_0_4px_var(--cr-accent-active)]"
                         : state === "upcoming-unlocked"
                           ? "border-2 border-(--cr-text-secondary) bg-transparent text-(--cr-text-secondary)"
                           : "border-2 border-(--cr-text-disabled) bg-transparent text-(--cr-text-disabled) opacity-50 cursor-not-allowed",
@@ -151,7 +156,7 @@ export function PhaseStepper({
                         ? "cursor-default"
                         : "",
                   ].join(" ")}
-                  style={state === "current" ? { animation: "cr-stepper-pulse 2s ease-in-out infinite" } : undefined}
+                  style={state === "current" && !reduced ? { animation: "cr-stepper-pulse 2s ease-in-out infinite" } : undefined}
                 >
                   {state === "completed" ? (
                     <Check className="h-4 w-4" strokeWidth={2.5} />
