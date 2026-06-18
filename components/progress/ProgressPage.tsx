@@ -392,13 +392,10 @@ function SkeletonBlock({
 }) {
   return (
     <div
-      className={`cf-skeleton-shimmer rounded-xl ${className}`}
+      className={`animate-shimmer rounded-xl ${className}`}
       style={{
         width: width ?? "100%",
         height: height ?? 20,
-        background:
-          "linear-gradient(90deg, var(--cf-surface-muted) 0%, var(--cf-surface-strong) 50%, var(--cf-surface-muted) 100%)",
-        backgroundSize: "200% 100%",
       }}
     />
   );
@@ -614,7 +611,11 @@ export function ProgressPage() {
           showGlobalSearchPanel
           logoVariant="dashboard"
         />
-        <main className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+        <main
+          id="main"
+          tabIndex={-1}
+          className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24"
+        >
           <ProgressSkeleton />
         </main>
       </div>
@@ -636,7 +637,11 @@ export function ProgressPage() {
           showGlobalSearchPanel
           logoVariant="dashboard"
         />
-        <main className="mx-auto grid min-h-[60vh] w-full max-w-md place-content-center px-4 py-10 sm:px-6">
+        <main
+          id="main"
+          tabIndex={-1}
+          className="mx-auto grid min-h-[60vh] w-full max-w-md place-content-center px-4 py-10 focus:outline-none sm:px-6"
+        >
           <ErrorBanner
             title="We couldn't load your progress"
             message="Something went wrong loading your progress data. Please try again."
@@ -662,7 +667,9 @@ export function ProgressPage() {
       />
 
       <motion.main
-        className="mx-auto w-full max-w-7xl space-y-6 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24"
+        id="main"
+        tabIndex={-1}
+        className="mx-auto w-full max-w-7xl space-y-6 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24"
         initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
