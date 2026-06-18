@@ -16,7 +16,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { PartnerProgressCard } from "@/app/book/home/components/PartnerProgressCard";
 import { fetchBookJson, BookClientError } from "@/app/book/_lib/book-api";
-import type { BookUserCommitmentItem } from "@/app/app/api/book/_lib/types";
+import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
@@ -592,6 +592,9 @@ function CommitmentFollowUpSection() {
     () => searchParams.get("focusCommitment"),
   );
   const [reflections, setReflections] = useState<Record<string, string>>({});
+  // Optional structured "did it help?" per commitment — captured alongside the
+  // free-text reflection so "% helped" is measurable.
+  const [outcomes, setOutcomes] = useState<Record<string, CommitmentOutcome>>({});
   const [submitting, setSubmitting] = useState(false);
   const [skippingId, setSkippingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -632,9 +635,16 @@ function CommitmentFollowUpSection() {
         body: JSON.stringify({
           action: "complete",
           followThroughReflection: activeReflection.trim(),
+          // Optional — omitted entirely when the user didn't pick one.
+          ...(outcomes[activeId] ? { outcome: outcomes[activeId] } : {}),
         }),
       });
       setReflections((prev) => {
+        const next = { ...prev };
+        delete next[activeId];
+        return next;
+      });
+      setOutcomes((prev) => {
         const next = { ...prev };
         delete next[activeId];
         return next;
@@ -649,7 +659,7 @@ function CommitmentFollowUpSection() {
       setError(message);
     }
     setSubmitting(false);
-  }, [activeId, activeReflection, submitting, removeCommitment]);
+  }, [activeId, activeReflection, submitting, removeCommitment, outcomes]);
 
   const handleSkip = useCallback(
     async (id: string) => {
@@ -703,6 +713,37 @@ function CommitmentFollowUpSection() {
 
             {activeId === c.commitmentId ? (
               <div className="mt-3">
+                <fieldset className="mb-3">
+                  <legend className="mb-1.5 text-xs font-medium text-(--cf-text-2)">
+                    Did it help?
+                  </legend>
+                  <div className="flex flex-wrap gap-1.5">
+                    {([
+                      { value: "helped", label: "It helped" },
+                      { value: "partly", label: "Partly" },
+                      { value: "didnt", label: "Didn't really" },
+                    ] as const).map((opt) => {
+                      const selected = outcomes[c.commitmentId] === opt.value;
+                      return (
+                        <button
+                          key={opt.value}
+                          type="button"
+                          aria-pressed={selected}
+                          onClick={() =>
+                            setOutcomes((prev) => ({ ...prev, [c.commitmentId]: opt.value }))
+                          }
+                          className={`cf-pressable rounded-full border px-3 py-1 text-xs font-semibold transition ${
+                            selected
+                              ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
+                              : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+                          }`}
+                        >
+                          {opt.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
                 <textarea
                   value={reflections[c.commitmentId] ?? ""}
                   onChange={(e) =>

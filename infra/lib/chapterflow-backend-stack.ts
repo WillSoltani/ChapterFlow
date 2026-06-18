@@ -447,6 +447,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
           process.env.EMAIL_SUPPORT_ADDRESS ?? "support@chapterflow.ca",
         EMAIL_POSTAL_ADDRESS: process.env.EMAIL_POSTAL_ADDRESS ?? "",
         EMAIL_UNSUBSCRIBE_SECRET: process.env.EMAIL_UNSUBSCRIBE_SECRET ?? "",
+        // Behavior-loop day-3/7 commitment follow-up nudge. Ships dark: ""/"0" = off.
+        // Flip to "true" (or "1") to enable without a code change.
+        BOOK_ENABLE_COMMITMENT_FOLLOWUP:
+          process.env.BOOK_ENABLE_COMMITMENT_FOLLOWUP ?? "",
       },
     });
 

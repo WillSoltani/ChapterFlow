@@ -33,7 +33,7 @@ __export(reading_reminder_cron_exports, {
   handler: () => handler
 });
 module.exports = __toCommonJS(reading_reminder_cron_exports);
-var import_lib_dynamodb5 = require("@aws-sdk/lib-dynamodb");
+var import_lib_dynamodb6 = require("@aws-sdk/lib-dynamodb");
 var import_client_dynamodb = require("@aws-sdk/client-dynamodb");
 var import_client_sesv22 = require("@aws-sdk/client-sesv2");
 
@@ -575,6 +575,151 @@ async function processWelcomeBackNudge(ddb2, ses2, tableName2, config, userItems
   return { sent, skipped };
 }
 
+// lambda/lib/commitment-followup.ts
+var import_lib_dynamodb5 = require("@aws-sdk/lib-dynamodb");
+
+// lambda/lib/email-templates/commitment-followup.ts
+function commitmentFollowupEmail(params) {
+  const cta = `${params.appBaseUrl}/dashboard?focusCommitment=${encodeURIComponent(params.commitmentId)}`;
+  const plan = params.ifThenPlan.length > 120 ? `${params.ifThenPlan.slice(0, 117)}...` : params.ifThenPlan;
+  return {
+    subject: `How did it go, ${params.name}?`,
+    textBody: `Hi ${params.name},
+
+A little while ago you committed to one small action:
+
+"${plan}"
+
+Did you get a chance to try it? Take a moment to reflect on how it went \u2014 and earn 25 Insight Points for closing the loop.
+
+Reflect now: ${cta}`,
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">How did it go, ${params.name}?</h2><p>A little while ago you committed to one small action:</p><blockquote style="margin:12px 0;padding:8px 14px;border-left:3px solid #6366f1;color:#444">${plan}</blockquote><p>Did you get a chance to try it? Take a moment to reflect on how it went \u2014 and earn <strong>25 Insight Points</strong> for closing the loop.</p><p><a href="${cta}" style="color:#6366f1">Reflect now</a></p></div>`
+  };
+}
+
+// lambda/lib/commitment-followup.ts
+async function processCommitmentFollowup(ddb2, ses2, tableName2, config, userItems) {
+  let sent = 0;
+  let skipped = 0;
+  let errors = 0;
+  const nowMs = Date.now();
+  for (const item of userItems) {
+    const userId = item.PK.replace("BOOKUSER#", "");
+    const notifPrefs = item.settings?.notifications;
+    const emailAllowed = notifPrefs?.channels?.email !== false && notifPrefs?.achievementAlertsEnabled !== false && notifPrefs?.badgeCelebrationEnabled !== false;
+    let rows;
+    try {
+      const res = await ddb2.send(
+        new import_lib_dynamodb5.QueryCommand({
+          TableName: tableName2,
+          KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+          ExpressionAttributeValues: { ":pk": item.PK, ":prefix": "COMMITMENT#" }
+        })
+      );
+      rows = res.Items ?? [];
+    } catch (err) {
+      console.error(`[commitment-followup] query failed for ${userId}:`, err);
+      errors++;
+      continue;
+    }
+    const due = rows.filter(
+      (c) => c.status === "active" && !c.notificationSentAt && Number.isFinite(Date.parse(c.followUpDate)) && Date.parse(c.followUpDate) <= nowMs
+    );
+    if (due.length === 0) continue;
+    let email;
+    let name = "Reader";
+    if (emailAllowed) {
+      try {
+        const profile = await ddb2.send(
+          new import_lib_dynamodb5.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
+        );
+        email = profile.Item?.email;
+        name = profile.Item?.displayName ?? "Reader";
+      } catch (err) {
+        console.error(`[commitment-followup] profile lookup failed for ${userId}:`, err);
+      }
+    }
+    for (const c of due) {
+      try {
+        const dedupKey = `NUDGE_SENT#commitment_followup#${c.commitmentId}`;
+        const dedup = await ddb2.send(
+          new import_lib_dynamodb5.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
+        );
+        if (dedup.Item) {
+          skipped++;
+          continue;
+        }
+        const notifId = crypto.randomUUID();
+        const now = (/* @__PURE__ */ new Date()).toISOString();
+        const planPreview = c.ifThenPlan.length > 90 ? `${c.ifThenPlan.slice(0, 87)}...` : c.ifThenPlan;
+        await ddb2.send(
+          new import_lib_dynamodb5.PutCommand({
+            TableName: tableName2,
+            Item: {
+              PK: item.PK,
+              SK: `NOTIF#${now}#${notifId}`,
+              entity: "BOOK_USER_NOTIFICATION",
+              userId,
+              notificationId: notifId,
+              type: "commitment_followup",
+              title: "How did it go?",
+              body: `Time to reflect on the action you committed to: "${planPreview}"`,
+              channel: "in_app",
+              readAt: null,
+              metadata: { commitmentId: c.commitmentId, bookId: c.bookId },
+              createdAt: now
+            }
+          })
+        );
+        const ttl = Math.floor(nowMs / 1e3) + 30 * 86400;
+        await ddb2.send(
+          new import_lib_dynamodb5.PutCommand({
+            TableName: tableName2,
+            Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
+          })
+        );
+        await ddb2.send(
+          new import_lib_dynamodb5.UpdateCommand({
+            TableName: tableName2,
+            Key: { PK: item.PK, SK: `COMMITMENT#${c.commitmentId}` },
+            UpdateExpression: "SET notificationSentAt = :now",
+            ExpressionAttributeValues: { ":now": now }
+          })
+        );
+        sent++;
+        if (email && emailAllowed) {
+          try {
+            const tpl = commitmentFollowupEmail({
+              name,
+              ifThenPlan: c.ifThenPlan,
+              appBaseUrl: config.appBaseUrl,
+              commitmentId: c.commitmentId
+            });
+            await sendCompliantEmail(ses2, ddb2, tableName2, config, {
+              to: email,
+              userId,
+              category: "celebration",
+              subject: tpl.subject,
+              textBody: tpl.textBody,
+              htmlBody: tpl.htmlBody
+            });
+          } catch (err) {
+            console.error(`[commitment-followup] email send failed for ${userId}:`, err);
+          }
+        }
+      } catch (err) {
+        console.error(
+          `[commitment-followup] nudge failed for commitment ${c.commitmentId} (${userId}):`,
+          err
+        );
+        errors++;
+        continue;
+      }
+    }
+  }
+  return { sent, skipped, errors };
+}
+
 // lambda/lib/email-templates/reading-reminder.ts
 function readingReminderEmail(params) {
   const cta = `${params.appBaseUrl}/dashboard`;
@@ -592,7 +737,7 @@ Open ChapterFlow: ${cta}`,
 // lambda/reading-reminder-cron.ts
 var tableName = process.env.BOOK_TABLE_NAME;
 var REMINDER_CONCURRENCY = 8;
-var ddb = import_lib_dynamodb5.DynamoDBDocumentClient.from(new import_client_dynamodb.DynamoDBClient({}), {
+var ddb = import_lib_dynamodb6.DynamoDBDocumentClient.from(new import_client_dynamodb.DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true }
 });
 var ses = new import_client_sesv22.SESv2Client({});
@@ -625,7 +770,7 @@ async function batchGetByKeys(keys, projection) {
   let pending = keys;
   for (let attempt = 0; attempt < 4 && pending.length > 0; attempt++) {
     const res = await ddb.send(
-      new import_lib_dynamodb5.BatchGetCommand({
+      new import_lib_dynamodb6.BatchGetCommand({
         RequestItems: {
           [tableName]: { Keys: pending, ProjectionExpression: projection }
         }
@@ -664,7 +809,7 @@ async function processReminderUser(user, today, emailConfig) {
     const notifId = crypto.randomUUID();
     const now = (/* @__PURE__ */ new Date()).toISOString();
     await ddb.send(
-      new import_lib_dynamodb5.UpdateCommand({
+      new import_lib_dynamodb6.UpdateCommand({
         TableName: tableName,
         Key: { PK: pk, SK: `NOTIF#${now}#${notifId}` },
         UpdateExpression: "SET entity = :e, userId = :uid, notificationId = :nid, #type = :type, title = :title, body = :body, channel = :ch, readAt = :null, createdAt = :now",
@@ -698,7 +843,7 @@ async function processReminderUser(user, today, emailConfig) {
       }
     }
     await ddb.send(
-      new import_lib_dynamodb5.PutCommand({
+      new import_lib_dynamodb6.PutCommand({
         TableName: tableName,
         Item: {
           PK: pk,
@@ -725,7 +870,7 @@ async function handler() {
   const today = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
   do {
     const scan = await ddb.send(
-      new import_lib_dynamodb5.ScanCommand({
+      new import_lib_dynamodb6.ScanCommand({
         TableName: tableName,
         FilterExpression: "entity = :entity",
         ExpressionAttributeValues: { ":entity": "BOOK_USER_SETTINGS" },
@@ -763,15 +908,18 @@ async function handler() {
   console.log(
     `[reading-reminder-cron] Reminders done. Sent: ${sent}, Skipped: ${skipped}, Errors: ${errors}`
   );
-  const [streakResult, digestResult, welcomeResult] = await Promise.allSettled([
+  const commitmentFollowupEnabled = process.env.BOOK_ENABLE_COMMITMENT_FOLLOWUP === "true" || process.env.BOOK_ENABLE_COMMITMENT_FOLLOWUP === "1";
+  const [streakResult, digestResult, welcomeResult, commitmentResult] = await Promise.allSettled([
     processStreakAtRisk(ddb, ses, tableName, emailConfig, allUserItems),
     processWeeklyDigest(ddb, ses, tableName, emailConfig, allUserItems),
-    processWelcomeBackNudge(ddb, ses, tableName, emailConfig, allUserItems)
+    processWelcomeBackNudge(ddb, ses, tableName, emailConfig, allUserItems),
+    commitmentFollowupEnabled ? processCommitmentFollowup(ddb, ses, tableName, emailConfig, allUserItems) : Promise.resolve("disabled")
   ]);
   console.log("[reading-reminder-cron] Nudge results:", {
     streakAtRisk: streakResult.status === "fulfilled" ? streakResult.value : "failed",
     weeklyDigest: digestResult.status === "fulfilled" ? digestResult.value : "failed",
-    welcomeBack: welcomeResult.status === "fulfilled" ? welcomeResult.value : "failed"
+    welcomeBack: welcomeResult.status === "fulfilled" ? welcomeResult.value : "failed",
+    commitmentFollowup: commitmentResult.status === "fulfilled" ? commitmentResult.value : "failed"
   });
   return { sent, skipped, errors };
 }
