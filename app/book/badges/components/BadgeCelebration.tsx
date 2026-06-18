@@ -7,7 +7,7 @@ import { cn } from "@/app/book/components/ui/cn";
 import { Dialog } from "@/components/ui/Dialog";
 import { Confetti } from "@/components/ui/Confetti";
 import type { BadgeWithProgress, BadgeTier } from "../lib/badge-types";
-import { Share2, Check } from "lucide-react";
+import { Share2, Check, Trophy, Medal, Award, Star, Sparkles, Flame, type LucideIcon } from "lucide-react";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 
@@ -32,6 +32,32 @@ function getCelebrationLevel(tier: BadgeTier): CelebrationLevel {
   if (tier === "platinum" || tier === "secret") return "epic";
   if (tier === "silver" || tier === "gold") return "modal";
   return "bronze";
+}
+
+// Crafted lucide/gold marks instead of OS emoji for the celebration moment, so
+// reader / dashboard / onboarding / badges speak one visual language and the
+// "win" reads on the gold channel (--accent-gold). The badge's own `icon` emoji
+// is unchanged everywhere else (cards, timeline, detail) — this is celebration
+// presentation only.
+const TIER_ICON: Record<BadgeTier, LucideIcon> = {
+  bronze: Medal,
+  silver: Award,
+  gold: Trophy,
+  platinum: Star,
+  unique: Sparkles,
+  secret: Flame,
+};
+
+function TierMark({ tier, className }: { tier: BadgeTier; className?: string }) {
+  const Icon = TIER_ICON[tier] ?? Trophy;
+  return (
+    <Icon
+      className={className}
+      style={{ color: "var(--accent-gold)" }}
+      strokeWidth={2.25}
+      aria-hidden="true"
+    />
+  );
 }
 
 export function BadgeCelebration({
@@ -163,27 +189,33 @@ export function BadgeCelebration({
             <motion.button
               key={badge.id}
               type="button"
+              aria-label={
+                summaryMode && i === 0
+                  ? `You earned ${newlyEarned.length} new badges`
+                  : `Achievement unlocked: ${badge.name}`
+              }
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="cursor-pointer overflow-hidden rounded-2xl border border-accent-amber/20 bg-(--cf-surface-muted) text-left shadow-shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/50"
+              className="cursor-pointer overflow-hidden rounded-2xl border border-(--cf-gold-border) bg-(--cf-surface-muted) text-left shadow-shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
               onClick={() => router.push("/book/badges")}
             >
               <div className="flex items-center gap-3 px-4 py-3">
                 <motion.span
-                  className="text-2xl"
-                  initial={{ scale: 0 }}
+                  className="flex items-center justify-center text-(--accent-gold)"
+                  aria-hidden="true"
+                  initial={reduced ? false : { scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 >
-                  {badge.icon}
+                  <TierMark tier={badge.tier} className="h-6 w-6" />
                 </motion.span>
                 <div>
-                  <p className="text-xs font-medium" style={{ color: "var(--accent-amber)" }}>Achievement Unlocked</p>
+                  <p className="text-xs font-medium text-(--cf-text-soft)">Achievement Unlocked</p>
                   <p className="text-sm font-semibold text-(--cf-text-1)">
                     {summaryMode && i === 0
-                      ? `\u{1F389} You earned ${newlyEarned.length} new badges!`
+                      ? `You earned ${newlyEarned.length} new badges!`
                       : badge.name}
                   </p>
                 </div>
@@ -192,7 +224,7 @@ export function BadgeCelebration({
               <div className="h-0.5 w-full" style={{ background: "var(--cf-surface-strong)" }}>
                 <motion.div
                   className="h-full"
-                  style={{ background: "var(--accent-amber)" }}
+                  style={{ background: "var(--accent-gold)" }}
                   initial={{ width: "100%" }}
                   animate={{ width: "0%" }}
                   transition={{ duration: 5, ease: "linear" }}
@@ -203,9 +235,16 @@ export function BadgeCelebration({
         </AnimatePresence>
       </div>
 
-      {/* Confetti bursts full-screen behind the celebration (epic only). */}
+      {/* One fire-once, gold-tilted burst behind the celebration (epic only).
+          Gold = the win; tokens resolve per-theme inside Confetti. */}
       {heroVisible && heroBadge && !reduced && heroLevel === "epic" && (
-        <Confetti trigger origin="center" particleCount={120} zIndex={101} />
+        <Confetti
+          trigger
+          origin="center"
+          particleCount={120}
+          zIndex={101}
+          colors={["--accent-gold", "--cf-gold-border"]}
+        />
       )}
 
       {/* Hero celebration modal — Wave-0 Dialog (role=dialog, aria-modal, focus
@@ -222,17 +261,24 @@ export function BadgeCelebration({
           <div className="relative flex flex-col items-center px-6 py-10 text-center">
             {heroLevel === "modal" && <ShimmerOverlay />}
 
-            <motion.span
-              className={cn(
-                "leading-none",
-                heroLevel === "epic" ? "text-[120px]" : "text-[96px]"
-              )}
-              initial={{ scale: 0, rotate: -10 }}
+            <motion.div
+              aria-hidden="true"
+              className="flex items-center justify-center rounded-full"
+              style={{
+                width: heroLevel === "epic" ? 88 : 72,
+                height: heroLevel === "epic" ? 88 : 72,
+                background: "color-mix(in srgb, var(--accent-gold) 14%, transparent)",
+                border: "2px solid color-mix(in srgb, var(--accent-gold) 40%, transparent)",
+              }}
+              initial={reduced ? false : { scale: 0, rotate: -10 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 12, bounce: 0.5 }}
+              transition={{ type: "spring", stiffness: 260, damping: 18 }}
             >
-              {heroBadge.icon}
-            </motion.span>
+              <TierMark
+                tier={heroBadge.tier}
+                className={cn(heroLevel === "epic" ? "h-11 w-11" : "h-9 w-9")}
+              />
+            </motion.div>
 
             <motion.h2
               className="mt-6 text-2xl font-semibold text-(--cf-text-1)"
@@ -278,7 +324,7 @@ export function BadgeCelebration({
               <button
                 type="button"
                 onClick={() => onPinToShowcase(heroBadge.id)}
-                className="rounded-2xl border border-accent-amber/30 bg-accent-amber/10 px-5 py-2.5 text-sm font-medium text-accent-amber transition hover:bg-accent-amber/20"
+                className="rounded-2xl border border-(--cf-gold-border) bg-(--cf-gold-soft) px-5 py-2.5 text-sm font-medium text-(--cf-text-1) transition hover:bg-[color-mix(in_srgb,var(--accent-gold)_18%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
               >
                 Pin to Showcase
               </button>
@@ -345,7 +391,15 @@ function TypewriterText({ text, className }: { text: string; className?: string 
     return () => clearInterval(interval);
   }, [text, reduced]);
 
-  return <p className={className}>{displayed}</p>;
+  // The visible text types out, but the full narrative is always in the a11y
+  // tree (sr-only) so a screen reader opening the Dialog reads the whole story,
+  // not a half-typed fragment. (WCAG 1.1.1 / 4.1.3.)
+  return (
+    <p className={className}>
+      <span aria-hidden="true">{reduced ? text : displayed}</span>
+      <span className="sr-only">{text}</span>
+    </p>
+  );
 }
 
 function ShimmerOverlay() {

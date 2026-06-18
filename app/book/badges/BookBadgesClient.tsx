@@ -318,8 +318,11 @@ export function BookBadgesClient() {
 
 // ── Loading skeleton ────────────────────────────────────────────────────────
 
-function SkeletonPulse({ className }: { className?: string }) {
-  return <div className={`animate-pulse rounded-xl bg-(--cf-surface-strong) ${className ?? ""}`} />;
+// Single app-wide skeleton primitive: the `.animate-shimmer` sweep (globals.css)
+// used by Library/Workspace. It paints its own theme-aware gradient and
+// self-disables under prefers-reduced-motion, so no extra bg/guard is needed.
+function SkeletonBlock({ className }: { className?: string }) {
+  return <div className={`animate-shimmer rounded-xl ${className ?? ""}`} />;
 }
 
 function LoadingSkeleton() {
@@ -327,39 +330,39 @@ function LoadingSkeleton() {
     <div className="space-y-6">
       {/* Header skeleton */}
       <div>
-        <SkeletonPulse className="h-10 w-48" />
-        <SkeletonPulse className="mt-2 h-5 w-80" />
+        <SkeletonBlock className="h-10 w-48" />
+        <SkeletonBlock className="mt-2 h-5 w-80" />
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
-          <SkeletonPulse className="h-20 rounded-2xl" />
-          <SkeletonPulse className="h-20 rounded-2xl" />
-          <SkeletonPulse className="h-20 rounded-2xl" />
+          <SkeletonBlock className="h-20 rounded-2xl" />
+          <SkeletonBlock className="h-20 rounded-2xl" />
+          <SkeletonBlock className="h-20 rounded-2xl" />
         </div>
       </div>
 
       {/* Filter skeleton */}
       <div className="flex gap-2">
         {Array.from({ length: 6 }).map((_, i) => (
-          <SkeletonPulse key={i} className="h-8 w-20 rounded-full" />
+          <SkeletonBlock key={i} className="h-8 w-20 rounded-full" />
         ))}
       </div>
 
       {/* Showcase skeleton */}
-      <SkeletonPulse className="h-32 rounded-2xl" />
+      <SkeletonBlock className="h-32 rounded-2xl" />
 
       {/* Recommendations skeleton */}
       <div>
-        <SkeletonPulse className="h-5 w-32" />
+        <SkeletonBlock className="h-5 w-32" />
         <div className="mt-4 flex gap-3">
-          <SkeletonPulse className="h-48 w-[260px] shrink-0 rounded-2xl" />
-          <SkeletonPulse className="h-48 w-[260px] shrink-0 rounded-2xl" />
-          <SkeletonPulse className="h-48 w-[260px] shrink-0 rounded-2xl" />
+          <SkeletonBlock className="h-48 w-[260px] shrink-0 rounded-2xl" />
+          <SkeletonBlock className="h-48 w-[260px] shrink-0 rounded-2xl" />
+          <SkeletonBlock className="h-48 w-[260px] shrink-0 rounded-2xl" />
         </div>
       </div>
 
       {/* Grid skeleton */}
       <div className="space-y-3">
-        <SkeletonPulse className="h-16 rounded-2xl" />
-        <SkeletonPulse className="h-16 rounded-2xl" />
+        <SkeletonBlock className="h-16 rounded-2xl" />
+        <SkeletonBlock className="h-16 rounded-2xl" />
       </div>
     </div>
   );
