@@ -7,6 +7,7 @@ import {
   getUserEvents,
   scanAllUserSnapshots,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { countFunnelTail, scaleFunnelCount } from "@/app/app/api/book/_lib/funnels-tail-core";
 
 export const runtime = "nodejs";
 
@@ -15,6 +16,14 @@ type FunnelStep = {
   label: string;
   count: number;
   pct: number;
+  // Conversion denominator overrides. The head funnel is a linear chain, so each
+  // step's "conversion from prev" defaults to the step immediately above it. The
+  // behavior-loop tail is NOT linear — returned/reported_helped/applied are all
+  // outcomes of `first_commitment` (siblings, not a chain), so `applied` (any
+  // outcome) can exceed `reported_helped` (helped-only) and a naive prev-ratio
+  // would render a nonsensical >100%. These pin the true superset denominator.
+  prevKey?: string; // count is measured against the step with this key, not the visual prev
+  convLabel?: string; // wording for the conversion (default "from prev")
 };
 
 export async function GET(req: Request) {
@@ -68,7 +77,16 @@ export async function GET(req: Request) {
 
     let firstCommitment = 0;
     let firstAiFeedback = 0;
-    if (recentUserIds.length > 0) {
+    // Behavior-loop TAIL (feedback #8): what happens AFTER first commitment.
+    // Per-user PRESENCE (breadth) counts — a user with multiple followup_completed
+    // counts once. `returned` = any followup_completed (regardless of `helped`);
+    // `reportedHelped` = helped==="helped" ONLY (absent/partly/didnt are returned-
+    // but-not-helped); `applied` = application_complete (0 if the type is absent).
+    let returned = 0;
+    let reportedHelped = 0;
+    let applied = 0;
+    const sampleSize = recentUserIds.length;
+    if (sampleSize > 0) {
       const eventChecks = await Promise.all(
         recentUserIds.map((id) =>
           getUserEvents(analyticsTable, id, 200).catch(() => [] as Record<string, unknown>[]),
@@ -85,12 +103,16 @@ export async function GET(req: Request) {
         if (types.has("commitment_created")) firstCommitment += 1;
         if (types.has("ai_feedback_requested") || types.has("reflection_feedback")) firstAiFeedback += 1;
       }
-      // Scale up to estimate full population
-      if (recentUserIds.length < total) {
-        const factor = total / recentUserIds.length;
-        firstCommitment = Math.round(firstCommitment * factor);
-        firstAiFeedback = Math.round(firstAiFeedback * factor);
-      }
+      // Tail counts (per-user dedup + the helped/application_complete rules) live in
+      // the pure funnels-tail-core so they stay unit-testable.
+      const tail = countFunnelTail(eventChecks);
+      // Apply the SAME single scale factor (total / sampleSize) the head-of-funnel
+      // commitment step uses, so head and tail share one estimate basis.
+      firstCommitment = scaleFunnelCount(firstCommitment, sampleSize, total);
+      firstAiFeedback = scaleFunnelCount(firstAiFeedback, sampleSize, total);
+      returned = scaleFunnelCount(tail.returned, sampleSize, total);
+      reportedHelped = scaleFunnelCount(tail.reportedHelped, sampleSize, total);
+      applied = scaleFunnelCount(tail.applied, sampleSize, total);
     }
 
     const steps: FunnelStep[] = [
@@ -100,6 +122,14 @@ export async function GET(req: Request) {
       { key: "first_quiz", label: "First quiz attempt", count: firstQuizAttempt, pct: pct(firstQuizAttempt, total) },
       { key: "first_pass", label: "First quiz pass", count: firstQuizPass, pct: pct(firstQuizPass, total) },
       { key: "first_commitment", label: "First commitment (est.)", count: firstCommitment, pct: pct(firstCommitment, total) },
+      // Behavior-loop tail (feedback #8). Per-USER (breadth), same scale factor as above.
+      // All three are outcomes of first_commitment (returned/applied ⊆ committed,
+      // reported_helped ⊆ returned), so their conversion is shown "of committed" —
+      // never the prev-step ratio, which would render >100% (applied can exceed the
+      // helped-only reported_helped).
+      { key: "returned", label: "Returned & reported (est.)", count: returned, pct: pct(returned, total), prevKey: "first_commitment", convLabel: "of committed" },
+      { key: "reported_helped", label: "Reported it helped (est.)", count: reportedHelped, pct: pct(reportedHelped, total), prevKey: "first_commitment", convLabel: "of committed" },
+      { key: "applied", label: "Applied a chapter (est.)", count: applied, pct: pct(applied, total), prevKey: "first_commitment", convLabel: "of committed" },
       { key: "first_ai_fb", label: "First AI feedback (est.)", count: firstAiFeedback, pct: pct(firstAiFeedback, total) },
     ];
 
