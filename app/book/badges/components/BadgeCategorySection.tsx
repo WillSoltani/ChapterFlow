@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { ChevronDown, Zap } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeCategoryGroup, BadgeWithProgress } from "../lib/badge-types";
@@ -81,7 +82,7 @@ export function BadgeCategorySection({
           </span>
           <motion.div
             animate={{ rotate: open ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: DUR.fast }}
           >
             <ChevronDown className="h-4 w-4 text-(--cf-text-soft)" />
           </motion.div>
@@ -94,7 +95,7 @@ export function BadgeCategorySection({
             initial={reduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={reduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: DUR.fast, ease: EASE.standard }}
             className="overflow-hidden"
           >
             <div className="border-t border-(--cf-border) px-5 pb-5 pt-4">

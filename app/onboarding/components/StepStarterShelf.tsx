@@ -16,6 +16,7 @@ import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
 import type { OnboardingBook } from "@/app/onboarding/data/books";
 import { getBookCoverPath } from "@/app/onboarding/data/books";
 import { generateSwipeDeck, getTopPicks } from "@/app/onboarding/data/recommendations";
+import { DUR, EASE } from "@/lib/motion";
 import { Button } from "@/components/ui/button";
 import { MicroCelebration } from "@/app/book/settings/components/MicroCelebration";
 import type { CelebrationEvent } from "@/app/book/settings/types/settings";
@@ -211,12 +212,12 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
       busy.current = true;
       const targetX = dir === "right" ? 500 : -500;
       if (reducedMotion) {
-        await controls.start({ opacity: 0, transition: { duration: 0.1 } });
+        await controls.start({ opacity: 0, transition: { duration: DUR.instant } });
       } else {
         await controls.start({
           x: targetX,
           opacity: 0,
-          transition: { duration: 0.25, ease: "easeOut" },
+          transition: { duration: DUR.fast, ease: "easeOut" },
         });
       }
       onSwipe(dir);
@@ -239,7 +240,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
         controls.start({
           x: 0,
           transition: reducedMotion
-            ? { duration: 0.1 }
+            ? { duration: DUR.instant }
             : { type: "spring", stiffness: 300, damping: 25 },
         });
       }
@@ -458,14 +459,14 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
     <motion.div
       initial={reducedMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: DUR.normal }}
       className="flex flex-col items-center text-center"
       style={{ padding: "40px 20px" }}
     >
       <motion.h2
         initial={reducedMotion ? false : { opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.4, ease: "easeOut" }}
+        transition={{ delay: 0.3, duration: DUR.page, ease: EASE.standard }}
         style={{
           fontFamily: "var(--font-display, sans-serif)",
           fontSize: 28,
@@ -483,7 +484,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
             key={book.id}
             initial={reducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + i * 0.15, duration: 0.4, ease: "easeOut" }}
+            transition={{ delay: 0.5 + i * 0.15, duration: DUR.page, ease: EASE.standard }}
             className="flex flex-col items-center"
             style={{ maxWidth: 120 }}
           >
@@ -518,7 +519,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
       <motion.div
         initial={reducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.0, duration: 0.3 }}
+        transition={{ delay: 1.0, duration: DUR.normal }}
         style={{ marginTop: 24 }}
       >
         <Check size={24} style={{ color: "var(--accent-cyan)" }} />
@@ -727,7 +728,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               transition={
                 reducedMotion
                   ? { duration: 0 }
-                  : { duration: 0.3, ease: "easeOut" }
+                  : { duration: DUR.normal, ease: "easeOut" }
               }
               style={{
                 width: 12,
@@ -761,8 +762,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
             }}
             transition={
               reducedMotion
-                ? { duration: 0.1 }
-                : { duration: 0.3, ease: "easeOut" }
+                ? { duration: DUR.instant }
+                : { duration: DUR.normal, ease: "easeOut" }
             }
             style={{ opacity: 1 - (i + 1) * 0.2, zIndex: 2 - i }}
           >
@@ -781,8 +782,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               exit={{ opacity: 0 }}
               transition={
                 reducedMotion
-                  ? { duration: 0.1 }
-                  : { duration: 0.3, ease: "easeOut" }
+                  ? { duration: DUR.instant }
+                  : { duration: DUR.normal, ease: EASE.standard }
               }
               style={{ zIndex: 10 }}
             >
@@ -863,7 +864,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
             type="button"
             onClick={() => buttonSwipeRef.current?.("left")}
             aria-label="Skip this book"
-            className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) transition-[border-color,background-color,transform] duration-200 hover:border-[color-mix(in_srgb,var(--accent-rose)_50%,transparent)] hover:bg-[color-mix(in_srgb,var(--accent-rose)_10%,transparent)] focus-visible:border-[color-mix(in_srgb,var(--accent-rose)_50%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--accent-rose)_10%,transparent)] hover:scale-110 active:scale-90 motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:active:scale-100"
+            className="cf-pressable flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) transition-[border-color,background-color,transform] duration-200 hover:border-[color-mix(in_srgb,var(--accent-rose)_50%,transparent)] hover:bg-[color-mix(in_srgb,var(--accent-rose)_10%,transparent)] focus-visible:border-[color-mix(in_srgb,var(--accent-rose)_50%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--accent-rose)_10%,transparent)] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100"
           >
             <X size={24} style={{ color: "var(--accent-rose)" }} />
           </button>
@@ -872,7 +873,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
             type="button"
             onClick={() => buttonSwipeRef.current?.("right")}
             aria-label="Add to shelf"
-            className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) transition-[border-color,background-color,transform] duration-200 hover:border-[color-mix(in_srgb,var(--accent-cyan)_50%,transparent)] hover:bg-[color-mix(in_srgb,var(--accent-cyan)_10%,transparent)] focus-visible:border-[color-mix(in_srgb,var(--accent-cyan)_50%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--accent-cyan)_10%,transparent)] hover:scale-110 active:scale-90 motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:active:scale-100"
+            className="cf-pressable flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) transition-[border-color,background-color,transform] duration-200 hover:border-[color-mix(in_srgb,var(--accent-cyan)_50%,transparent)] hover:bg-[color-mix(in_srgb,var(--accent-cyan)_10%,transparent)] focus-visible:border-[color-mix(in_srgb,var(--accent-cyan)_50%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--accent-cyan)_10%,transparent)] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100"
           >
             <Heart size={24} style={{ color: "var(--accent-cyan)" }} />
           </button>
@@ -903,7 +904,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
                 <motion.div
                   initial={reducedMotion ? false : { scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  transition={{ duration: DUR.normal, ease: EASE.standard }}
                 >
                   <BookCoverImage book={book} width={48} height={68} radius={8} titleSize={7} />
                 </motion.div>

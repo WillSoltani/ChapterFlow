@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { X, Share2, Check } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/app/book/components/ui/cn";
@@ -58,7 +59,7 @@ export function BadgeDetailModal({
           <button
             type="button"
             onClick={onClose}
-            className="absolute right-4 top-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:text-(--cf-text-1)"
+            className="cf-pressable absolute right-4 top-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:text-(--cf-text-1)"
             aria-label="Close"
           >
             <X className="h-4 w-4" />
@@ -163,6 +164,7 @@ function EarnedModalContent({
           title={showcaseFull ? "Unpin a badge to make room" : undefined}
           className={cn(
             "flex-1 rounded-2xl border px-4 py-2.5 text-sm font-medium transition",
+            !showcaseFull && "cf-pressable",
             showcaseFull
               ? "cursor-not-allowed border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
               : isPinned
@@ -180,7 +182,7 @@ function EarnedModalContent({
         <button
           type="button"
           onClick={onShare}
-          className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+          className="cf-pressable inline-flex flex-1 items-center justify-center gap-1.5 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
         >
           {shareText ? <Check className="h-3.5 w-3.5" /> : <Share2 className="h-3.5 w-3.5" />}
           {shareText ?? "Share Achievement"}
@@ -210,7 +212,7 @@ function LockedModalContent({
         className="text-[96px] leading-none"
         initial={!reduced ? { scale: 0.95, opacity: 0 } : false}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: DUR.normal }}
         style={{ filter: "grayscale(100%) opacity(0.4)" }}
       >
         {badge.icon}
@@ -257,7 +259,7 @@ function LockedModalContent({
       <div className="mt-6 w-full">
         <Link
           href={ctaHref}
-          className="block w-full rounded-2xl border px-4 py-2.5 text-center text-sm font-medium transition"
+          className="cf-pressable block w-full rounded-2xl border px-4 py-2.5 text-center text-sm font-medium transition"
           style={{
             borderColor: "var(--cf-accent-border)",
             background: "var(--cf-accent-soft)",

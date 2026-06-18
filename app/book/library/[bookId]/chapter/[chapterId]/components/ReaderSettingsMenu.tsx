@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { X } from "lucide-react";
 import type { LearningMode, ContentTone, FontFamily } from "@/app/book/settings/types/settings";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
@@ -201,7 +202,7 @@ export function ReaderSettingsMenu({
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
-          transition={{ duration: 0.18, ease: "easeOut" }}
+          transition={{ duration: DUR.fast, ease: EASE.standard }}
           role="dialog"
           aria-label="Reading settings"
           tabIndex={-1}
@@ -253,7 +254,7 @@ export function ReaderSettingsMenu({
                   initial={reduced ? { opacity: 0 } : { opacity: 0, height: 0 }}
                   animate={reduced ? { opacity: 1 } : { opacity: 1, height: "auto" }}
                   exit={reduced ? { opacity: 0 } : { opacity: 0, height: 0 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  transition={{ duration: DUR.fast, ease: EASE.standard }}
                   className="space-y-4 overflow-hidden"
                 >
                   <SettingsSection label="Tone">

@@ -49,7 +49,7 @@ export function ResetProgressModal({
           <button
             type="button"
             onClick={handleClose}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent)"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) cf-pressable cf-focus"
             aria-label="Close"
           >
             <X className="h-4 w-4" />

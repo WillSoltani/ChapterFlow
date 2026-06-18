@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { ChevronDown } from "lucide-react";
 import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
@@ -53,7 +54,7 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
       <Link
         href={detailHref}
         aria-label={`${book.title} by ${book.author}`}
-        className="block rounded-[var(--radius-md-val)] outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
+        className="block rounded-[var(--radius-md-val)] cf-focus"
       >
         {/* Cover */}
         <motion.div
@@ -66,7 +67,7 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
           initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4, delay: index * 0.06 }}
+          transition={{ duration: DUR.page, delay: index * 0.06 }}
           whileHover={prefersReduced ? {} : { y: -4, boxShadow: "var(--shadow-elevated)" }}
         >
           <BookCover
@@ -158,10 +159,7 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
           className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px]"
           style={{ color: "var(--text-muted)" }}
         >
-          <span
-            className="rounded-full px-2 py-px"
-            style={{ border: "1px solid var(--border-subtle)", color: "var(--text-secondary)" }}
-          >
+          <span className="cf-chip px-2 py-px">
             {book.category}
           </span>
           <span className="flex items-center gap-1">

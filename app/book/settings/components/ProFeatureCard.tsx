@@ -48,7 +48,7 @@ export function ProFeatureCard({
         <button
           type="button"
           onClick={() => setShowModal(true)}
-          className="mt-3 text-xs font-medium text-(--cf-accent) hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) rounded"
+          className="cf-focus mt-3 text-xs font-medium text-(--cf-accent) hover:underline rounded"
         >
           Learn more &rarr;
         </button>
@@ -65,7 +65,7 @@ export function ProFeatureCard({
             type="button"
             onClick={() => setShowModal(false)}
             aria-label="Close"
-            className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
+            className="cf-pressable absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
           >
             <X className="h-4 w-4" />
           </button>

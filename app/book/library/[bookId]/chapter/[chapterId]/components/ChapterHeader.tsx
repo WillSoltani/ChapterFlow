@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import {
   ArrowLeft,
   Focus,
@@ -213,7 +214,7 @@ export function ChapterHeader({
           key={ipBalance}
           initial={{ scale: 1.4 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: DUR.slow }}
         >
           {ipBalance.toLocaleString()} IP
         </motion.span>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { INSIGHT_POINTS_EARNING_RULES } from "@/app/book/_lib/flow-points-economy";
 
 interface RewardsCardProps {
@@ -40,7 +41,7 @@ export function RewardsCard({
       transition={
         prefersReducedMotion
           ? undefined
-          : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+          : { duration: DUR.slow, ease: EASE.standard }
       }
     >
       {/* Points balance */}
@@ -95,7 +96,7 @@ export function RewardsCard({
             transition={
               prefersReducedMotion
                 ? { duration: 0 }
-                : { duration: 0.8, ease: "easeOut", delay: 0.4 }
+                : { duration: DUR.reveal, ease: "easeOut", delay: 0.4 }
             }
           />
         </div>

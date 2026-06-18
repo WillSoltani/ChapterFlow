@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
 
 interface UserBook {
@@ -32,8 +33,6 @@ interface BookRowProps {
   isPro?: boolean;
 }
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
 export function BookRow({
   userBooks,
   recommendedProBooks,
@@ -51,7 +50,7 @@ export function BookRow({
       transition={
         prefersReducedMotion
           ? undefined
-          : { duration: 0.5, ease }
+          : { duration: DUR.slow, ease: EASE.standard }
       }
     >
       {/* Section header */}
@@ -101,7 +100,7 @@ export function BookRow({
             transition={
               prefersReducedMotion
                 ? undefined
-                : { duration: 0.4, delay: i * 0.06, ease }
+                : { duration: DUR.page, delay: i * 0.06, ease: EASE.standard }
             }
           >
             <BookCardWorkspace variant="user" book={book} />
@@ -131,9 +130,9 @@ export function BookRow({
               prefersReducedMotion
                 ? undefined
                 : {
-                    duration: 0.4,
+                    duration: DUR.page,
                     delay: (userBooks.length + i) * 0.06,
-                    ease,
+                    ease: EASE.standard,
                   }
             }
           >

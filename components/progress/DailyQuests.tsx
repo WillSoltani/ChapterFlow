@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { BookOpen, Brain, RotateCcw, Check } from "lucide-react";
 import type { DailyQuest } from "./progressTypes";
 
@@ -50,7 +51,7 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
       }}
       initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 15 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.6 }}
+      transition={{ duration: DUR.normal, delay: 0.6 }}
     >
       {/* Header */}
       <div className="flex items-center justify-between">

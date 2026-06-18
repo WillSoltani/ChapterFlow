@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { Flame, Star, BarChart3, ArrowRight, Loader2 } from "lucide-react";
 import { Confetti } from "@/components/ui/Confetti";
 import { Button } from "@/components/ui/button";
@@ -191,7 +192,7 @@ export default function UnlockCelebration({
       <motion.h2
         initial={noMotion ? false : { opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: noMotion ? 0 : 0.7, duration: 0.4, ease: "easeOut" }}
+        transition={{ delay: noMotion ? 0 : 0.7, duration: DUR.page, ease: EASE.standard }}
         style={{
           fontFamily: "var(--font-display, sans-serif)",
           fontSize: 32,
@@ -207,7 +208,7 @@ export default function UnlockCelebration({
       <motion.p
         initial={noMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: noMotion ? 0 : 0.85, duration: 0.3 }}
+        transition={{ delay: noMotion ? 0 : 0.85, duration: DUR.normal }}
         style={{
           fontFamily: "var(--font-body, sans-serif)",
           fontSize: 16,
@@ -224,7 +225,7 @@ export default function UnlockCelebration({
       <motion.div
         initial={noMotion ? false : { opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: noMotion ? 0 : 0.95, duration: 0.35, ease: "easeOut" }}
+        transition={{ delay: noMotion ? 0 : 0.95, duration: DUR.normal, ease: EASE.standard }}
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -337,7 +338,7 @@ export default function UnlockCelebration({
       <motion.p
         initial={noMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: noMotion ? 0 : 1.45, duration: 0.3 }}
+        transition={{ delay: noMotion ? 0 : 1.45, duration: DUR.normal }}
         style={{
           fontFamily: "var(--font-body, sans-serif)",
           fontSize: 12,
@@ -352,7 +353,7 @@ export default function UnlockCelebration({
       <motion.div
         initial={noMotion ? { opacity: 1 } : { opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: noMotion ? 0 : 1.7, duration: 0.5, ease: "easeOut" }}
+        transition={{ delay: noMotion ? 0 : 1.7, duration: DUR.slow, ease: EASE.standard }}
         style={{
           display: "flex",
           flexDirection: "column",

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import {
   ArrowLeft,
   BookOpen,
@@ -586,7 +587,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             type="button"
             onClick={() => router.back()}
             aria-label="Go back"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+            className="cf-pressable cf-focus flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
           >
             <ArrowLeft className="h-4 w-4" />
           </button>
@@ -616,7 +617,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
               key={s.id}
               type="button"
               onClick={() => goToSection(s.id, s.title)}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-xs font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+              className="cf-pressable cf-focus inline-flex shrink-0 items-center gap-1.5 rounded-full border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-xs font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)"
             >
               <s.icon className="h-3.5 w-3.5" aria-hidden="true" />
               {s.label}
@@ -633,7 +634,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   key={s.id}
                   type="button"
                   onClick={() => goToSection(s.id, s.title)}
-                  className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                  className="cf-pressable cf-focus flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)"
                 >
                   <s.icon className="h-4 w-4 shrink-0 text-(--cf-text-soft)" aria-hidden="true" />
                   {s.label}
@@ -1052,7 +1053,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             <Divider />
 
             {/* 2E. Streak Mode */}
-            <div className="rounded-[13px] px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)">
+            <div className="rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)">
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-(--cf-text-1)">Streak mode</p>
@@ -1062,7 +1063,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                       initial={reducedMotion ? false : { opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={reducedMotion ? undefined : { opacity: 0, y: -4 }}
-                      transition={{ duration: 0.15 }}
+                      transition={{ duration: DUR.micro }}
                       className="mt-0.5 text-xs leading-relaxed text-(--cf-text-3)"
                     >
                       {ext.streakMode === "off"
@@ -1097,7 +1098,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
-                  transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: DUR.fast }}
                 >
                   <SettingRow
                     label="Skip days per week"
@@ -1145,7 +1146,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: DUR.fast }}
                     className="mx-3 mt-1 mb-2 text-[11px] italic text-(--cf-text-3)"
                   >
                     Enables leaderboard-style comparisons with other readers. You can switch
@@ -1251,7 +1252,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
-                  transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: DUR.fast }}
                   className="ml-6 flex items-center gap-3 border-l-2 border-(--cf-divider) pl-4 pb-3"
                 >
                   <div className="flex items-center gap-2">
@@ -1390,7 +1391,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
-                  transition={reducedMotion ? { duration: 0 } : { duration: 0.15 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: DUR.micro }}
                 >
                   <SettingRow
                     id="reminder-time"
@@ -1416,7 +1417,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
-                  transition={reducedMotion ? { duration: 0 } : { duration: 0.15 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: DUR.micro }}
                 >
                   <SettingRow
                     id="streak-alerts"
@@ -1453,7 +1454,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
-                  transition={reducedMotion ? { duration: 0 } : { duration: 0.15 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: DUR.micro }}
                 >
                   <SettingRow
                     label="Remind after"
@@ -1580,7 +1581,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
               <button
                 type="button"
                 onClick={() => setExportModalOpen(true)}
-                className="cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium"
+                className="cf-pressable cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium"
               >
                 Export
               </button>
@@ -1597,7 +1598,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
               <button
                 type="button"
                 onClick={() => setRefreshModalOpen(true)}
-                className="cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium"
+                className="cf-pressable cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium"
               >
                 Refresh
               </button>
@@ -1644,7 +1645,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                 <button
                   type="button"
                   onClick={performLogout}
-                  className="mt-3 flex w-full items-center gap-2.5 rounded-xl border border-(--cf-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-accent-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                  className="cf-pressable cf-focus mt-3 flex w-full items-center gap-2.5 rounded-xl border border-(--cf-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-accent-muted)"
                 >
                   <LogOut className="h-4 w-4 text-(--cf-text-3)" />
                   <div>
@@ -1657,7 +1658,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                 {isAdmin && (
                   <a
                     href="/book/admin"
-                    className="mt-2 flex w-full items-center gap-2.5 rounded-xl border border-(--cf-border) px-4 py-3 text-left text-sm font-medium text-(--cf-accent) transition-colors hover:bg-(--cf-accent-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                    className="cf-pressable cf-focus mt-2 flex w-full items-center gap-2.5 rounded-xl border border-(--cf-border) px-4 py-3 text-left text-sm font-medium text-(--cf-accent) transition-colors hover:bg-(--cf-accent-muted)"
                   >
                     <Settings2 className="h-4 w-4" />
                     <div>

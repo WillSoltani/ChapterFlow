@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import {
   TrendingUp,
   Flame,
@@ -60,7 +61,7 @@ export function MicroCelebration({ event, reducedMotion }: MicroCelebrationProps
           initial={{ opacity: 0, y: 10, scale: 0.8 }}
           animate={{ opacity: 1, y: -8, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.9 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: DUR.page, ease: EASE.standard }}
           className="pointer-events-none fixed bottom-20 left-1/2 z-50 -translate-x-1/2"
         >
           <div className="flex items-center gap-2 rounded-full bg-(--cf-surface-strong) border border-(--cf-border) px-4 py-2 shadow-shadow-elevated backdrop-blur-xl">

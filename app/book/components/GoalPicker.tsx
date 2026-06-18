@@ -21,7 +21,7 @@ type GoalPickerProps = {
 
 export function GoalPicker({ value, onChange }: GoalPickerProps) {
   return (
-    <div className="rounded-[30px] border border-(--cf-border) bg-(--cf-surface) px-4 py-5 sm:px-6 sm:py-6">
+    <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface) px-4 py-5 sm:px-6 sm:py-6">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
         {quickPickOptions.map((option) => {
           const selected = option === value;
@@ -31,7 +31,7 @@ export function GoalPicker({ value, onChange }: GoalPickerProps) {
               type="button"
               onClick={() => onChange(option)}
               className={[
-                "rounded-2xl border px-3 py-4 text-center transition duration-200",
+                "cf-pressable rounded-2xl border px-3 py-4 text-center transition duration-200",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-warning-border)",
                 selected
                   ? "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text) shadow-[0_0_0_2px_var(--cf-warning-border)]"

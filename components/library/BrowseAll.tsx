@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { BookCard } from "./BookCard";
 import {
   SORT_OPTIONS,
@@ -218,7 +219,7 @@ export function BrowseAll({
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: DUR.page }}
       id="browse-all"
       className="mt-16"
       style={{ maxWidth: 1080, margin: "64px auto 0" }}
@@ -448,7 +449,7 @@ export function BrowseAll({
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: "easeOut", delay: i * 0.03 }}
+                  transition={{ duration: DUR.fast, ease: EASE.standard, delay: i * 0.03 }}
                 >
                   <BookCard book={book} index={0} showProLock={showProLock} />
                 </motion.div>

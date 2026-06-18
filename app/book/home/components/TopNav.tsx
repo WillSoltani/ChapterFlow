@@ -243,7 +243,7 @@ export function TopNav({
             {/* Logo */}
             <Link
               href="/dashboard"
-              className="inline-flex shrink-0 items-center gap-2.5 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+              className="inline-flex shrink-0 items-center gap-2.5 rounded-xl cf-focus"
               aria-label="Go to ChapterFlow workspace"
             >
               {logoVariant === "dashboard" ? (

@@ -40,9 +40,9 @@ export function BookCard({
       aria-pressed={selected}
       aria-label={`Select ${book.title} by ${book.author}`}
       className={[
-        "group relative w-full overflow-hidden rounded-3xl border p-5 text-left transition duration-200 sm:p-6",
+        "cf-pressable group relative w-full overflow-hidden rounded-3xl border p-5 text-left transition duration-200 sm:p-6",
         "bg-(--cf-surface)",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+        "cf-focus",
         selected
           ? "border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_2px_var(--cf-accent-border),0_8px_28px_var(--cf-accent-shadow)]"
           : "border-(--cf-border) hover:-translate-y-0.5 hover:border-(--cf-border-strong) hover:shadow-shadow-card",

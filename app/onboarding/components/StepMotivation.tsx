@@ -9,6 +9,7 @@ import {
   staggerContainer,
   staggerItem,
 } from "@/app/onboarding/utils/animations";
+import { DUR } from "@/lib/motion";
 
 interface StepMotivationProps {
   onNext: () => void;
@@ -146,7 +147,7 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
                           }
                         : {}
                     }
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: DUR.normal }}
                   >
                     <Icon
                       size={32}

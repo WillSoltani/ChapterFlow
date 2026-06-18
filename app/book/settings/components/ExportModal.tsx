@@ -100,7 +100,7 @@ export function ExportModal({ open, onClose }: ExportModalProps) {
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
+          className="cf-pressable absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
         >
           <X className="h-4 w-4" />
         </button>
@@ -129,8 +129,8 @@ export function ExportModal({ open, onClose }: ExportModalProps) {
               onClick={() => handleExport(opt.format)}
               disabled={exporting !== null}
               className={cn(
-                "flex w-full items-center gap-3 rounded-xl border border-(--cf-border) px-4 py-3 text-left transition-colors",
-                "hover:bg-(--cf-surface-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+                "cf-pressable cf-focus flex w-full items-center gap-3 rounded-xl border border-(--cf-border) px-4 py-3 text-left transition-colors",
+                "hover:bg-(--cf-surface-muted)",
                 "disabled:opacity-50"
               )}
             >

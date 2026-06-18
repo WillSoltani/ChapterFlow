@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { Bookmark, BookmarkPlus } from "lucide-react";
 import type { ChapterSummaryBlock } from "@/app/book/data/bookChapters";
 import type { LearningMode } from "@/app/book/settings/types/settings";
@@ -223,7 +224,7 @@ export function SummaryCard({
                             height: open ? "auto" : 0,
                             opacity: open ? 1 : 0,
                           }}
-                          transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: "easeOut" }}
+                          transition={{ duration: prefersReducedMotion ? 0 : DUR.fast, ease: EASE.standard }}
                           className="overflow-hidden"
                         >
                           <p className={`mt-3 text-(--cr-text-secondary) ${fontScaleClass}`}>

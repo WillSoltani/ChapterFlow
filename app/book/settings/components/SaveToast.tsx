@@ -2,6 +2,7 @@
 import { useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { DUR } from "@/lib/motion";
 
 export function useSaveToast() {
   const [visible, setVisible] = useState(false);
@@ -28,7 +29,7 @@ export function SaveToast({ visible }: { visible: boolean }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: DUR.fast }}
           className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-4 py-2 rounded-full bg-(--cf-surface-muted) backdrop-blur-md border border-(--cf-border-strong) shadow-shadow-elevated"
         >
           <Check className="w-3.5 h-3.5 text-accent-emerald" />

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { ChevronRight, Lock, Search, Sparkles } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { PageTransition } from "@/components/ui/PageTransition";
@@ -272,7 +273,7 @@ export function BookDetailClient({
           re-enter the nav). */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold cf-focus"
         style={{
           background: "var(--accent-cyan)",
           color: "var(--primary-foreground)",
@@ -348,7 +349,7 @@ export function BookDetailClient({
             </p>
             <Link
               href="/pricing"
-              className="cf-btn cf-btn-primary mt-3 inline-flex rounded-xl px-5 py-3 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+              className="cf-btn cf-btn-primary mt-3 inline-flex rounded-xl px-5 py-3 text-sm font-semibold cf-focus"
             >
               <Sparkles className="h-4 w-4" />
               Upgrade to Pro
@@ -364,7 +365,7 @@ export function BookDetailClient({
           transition={
             prefersReducedMotion
               ? { duration: 0 }
-              : { duration: 0.4, ease: "easeOut" as const, delay: 0.6 }
+              : { duration: DUR.page, ease: EASE.standard, delay: 0.6 }
           }
         >
           {/* Section header */}
@@ -411,7 +412,7 @@ export function BookDetailClient({
                   onClick={() => setChapterFilter(option.id)}
                   className={[
                     "whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent)",
+                    "cf-focus",
                     chapterFilter === option.id
                       ? "cf-chip cf-chip-active"
                       : "text-(--cf-text-2) hover:bg-(--cf-surface-strong) hover:text-(--cf-text-1)",
@@ -526,7 +527,7 @@ export function BookDetailClient({
           transition={
             prefersReducedMotion
               ? { duration: 0 }
-              : { duration: 0.4, ease: "easeOut" as const, delay: 0.8 }
+              : { duration: DUR.page, ease: EASE.standard, delay: 0.8 }
           }
         >
           <BookDetails
@@ -600,7 +601,7 @@ export function BookDetailClient({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: DUR.fast }}
             className="cf-panel-strong fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-sm text-(--cf-text-1) shadow-shadow-book"
           >
             {lockedToast}

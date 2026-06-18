@@ -253,7 +253,7 @@ export function PracticePhase({
         <button
           type="button"
           onClick={onContinueToNextChapter}
-          className="w-full md:w-auto px-8 py-4 rounded-full font-semibold text-[16px] bg-(--cr-accent) text-(--cr-text-inverse) transition-transform hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)] focus-visible:ring-offset-2 inline-flex items-center justify-center gap-2"
+          className="cf-pressable w-full md:w-auto px-8 py-4 rounded-full font-semibold text-[16px] bg-(--cr-accent) text-(--cr-text-inverse) transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)] focus-visible:ring-offset-2 inline-flex items-center justify-center gap-2"
           style={{
             boxShadow:
               "0 0 24px color-mix(in srgb, var(--cr-accent) 35%, transparent)",

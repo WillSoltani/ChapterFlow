@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion, animate } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import {
   Share2,
   Check,
@@ -111,7 +112,7 @@ export function ChapterCompleteModal({
       return;
     }
     const controls = animate(0, totalIP, {
-      duration: 0.8,
+      duration: DUR.reveal,
       ease: "easeOut",
       onUpdate: (v) => setShownIP(Math.round(v)),
     });
@@ -184,7 +185,7 @@ export function ChapterCompleteModal({
                 <div>
                   <p
                     className="text-[40px] font-bold leading-none tabular-nums"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--accent-gold)" }}
+                    style={{ fontFamily: "var(--font-display)", color: "var(--cf-gold-text)" }}
                   >
                     +{shownIP}
                   </p>
@@ -195,7 +196,7 @@ export function ChapterCompleteModal({
                 <div>
                   <span
                     className="flex items-center justify-center gap-1.5 text-[34px] font-bold leading-none"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--accent-gold)" }}
+                    style={{ fontFamily: "var(--font-display)", color: "var(--cf-gold-text)" }}
                   >
                     <Flame className="h-7 w-7" aria-hidden="true" style={{ color: "var(--accent-gold)" }} />
                     {streak}
@@ -245,7 +246,7 @@ export function ChapterCompleteModal({
                       )}
                     </div>
                     {a.ip > 0 && (
-                      <span className="shrink-0 text-[12px] font-bold tabular-nums" style={{ color: "var(--accent-gold)" }}>
+                      <span className="shrink-0 text-[12px] font-bold tabular-nums" style={{ color: "var(--cf-gold-text)" }}>
                         +{a.ip} IP
                       </span>
                     )}
@@ -298,7 +299,7 @@ export function ChapterCompleteModal({
                         </span>
                         <span
                           className="font-bold tabular-nums"
-                          style={{ color: line.highlight ? "var(--accent-gold)" : "var(--cr-text-heading)" }}
+                          style={{ color: line.highlight ? "var(--cf-gold-text)" : "var(--cr-text-heading)" }}
                         >
                           +{line.amount}
                         </span>

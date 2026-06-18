@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import type { ReaderLevel, StreakData, Milestone } from "./progressTypes";
 
 interface PersonalizedGreetingProps {
@@ -103,7 +104,7 @@ export function PersonalizedGreeting({
         style={{ color: "var(--text-heading)" }}
         initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={{ duration: DUR.page, ease: EASE.standard }}
       >
         {greeting}, {name}
       </motion.h1>
@@ -114,7 +115,7 @@ export function PersonalizedGreeting({
         style={{ color: "var(--text-secondary)" }}
         initial={{ opacity: prefersReduced ? 1 : 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.1 }}
+        transition={{ duration: DUR.normal, delay: 0.1 }}
       >
         {motivation}
       </motion.p>
@@ -124,7 +125,7 @@ export function PersonalizedGreeting({
         className="mt-1 flex items-center gap-2"
         initial={{ opacity: prefersReduced ? 1 : 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.2 }}
+        transition={{ duration: DUR.normal, delay: 0.2 }}
       >
         <div
           className="flex items-center gap-2 rounded-lg px-2.5 py-1"

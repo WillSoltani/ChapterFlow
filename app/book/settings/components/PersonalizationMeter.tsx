@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
+import { DUR, EASE } from "@/lib/motion";
 
 type PersonalizationMeterProps = {
   percentage: number;
@@ -25,7 +26,7 @@ export function PersonalizationMeter({
       initial={reducedMotion ? false : { opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={reducedMotion ? undefined : { opacity: 0, height: 0, marginBottom: 0 }}
-      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: DUR.normal, ease: EASE.standard }}
       className="relative overflow-hidden rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) p-5 backdrop-blur-lg"
     >
       <button
@@ -51,7 +52,7 @@ export function PersonalizationMeter({
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${clamped}%` }}
-          transition={reducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={reducedMotion ? { duration: 0 } : { duration: DUR.reveal, ease: EASE.standard }}
           className={cn(
             "relative h-full rounded-full",
             isComplete

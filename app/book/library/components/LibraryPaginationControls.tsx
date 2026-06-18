@@ -44,8 +44,8 @@ function PageButton({
       aria-label={ariaLabel}
       onClick={onClick}
       className={cn(
-        "inline-flex min-h-10 min-w-10 items-center justify-center rounded-2xl border px-3 text-sm font-medium transition",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+        "cf-pressable inline-flex min-h-10 min-w-10 items-center justify-center rounded-2xl border px-3 text-sm font-medium transition",
+        "cf-focus",
         active
           ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text) shadow-shadow-card"
           : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)",
@@ -78,7 +78,7 @@ export function LibraryPaginationControls({
   const showPagination = totalPages > 1;
 
   return (
-    <div className="cf-panel rounded-[28px] p-4 sm:p-5">
+    <div className="cf-panel rounded-4xl p-4 sm:p-5">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="space-y-2">
           {showSummary ? (

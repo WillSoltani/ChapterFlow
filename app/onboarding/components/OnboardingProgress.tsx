@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 
 interface OnboardingProgressProps {
   currentStep: number;
@@ -116,7 +117,7 @@ export default function OnboardingProgress({
                   transition={
                     prefersReducedMotion
                       ? { duration: 0 }
-                      : { duration: 0.6, ease: "easeOut" }
+                      : { duration: DUR.slow, ease: "easeOut" }
                   }
                   style={{
                     position: "absolute",

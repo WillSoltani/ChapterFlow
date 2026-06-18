@@ -42,8 +42,7 @@ export function SegmentedControl<T extends string>({
             aria-checked={isSelected}
             onClick={() => onChange(opt.value)}
             className={cn(
-              "relative z-10 rounded-[9px] px-3 py-1.5 text-sm font-medium transition-colors duration-150",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-1 focus-visible:ring-offset-(--cf-page-bg)",
+              "cf-pressable cf-focus relative z-10 rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-150",
               "min-h-[44px] min-w-[44px]",
               isSelected
                 ? "text-(--cf-text-1) font-semibold"
@@ -52,11 +51,11 @@ export function SegmentedControl<T extends string>({
           >
             {isSelected && (
               reducedMotion ? (
-                <div className="absolute inset-0 rounded-[9px] bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) border border-transparent forced-colors:border-[Highlight]" />
+                <div className="absolute inset-0 rounded-md bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) border border-transparent forced-colors:border-[Highlight]" />
               ) : (
                 <motion.div
                   layoutId={groupId}
-                  className="absolute inset-0 rounded-[9px] bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) border border-transparent forced-colors:border-[Highlight]"
+                  className="absolute inset-0 rounded-md bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) border border-transparent forced-colors:border-[Highlight]"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )

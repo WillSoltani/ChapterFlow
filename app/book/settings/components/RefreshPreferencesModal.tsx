@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { DUR, EASE } from "@/lib/motion";
 import { Button } from "@/app/book/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { CardSelector } from "./controls/CardSelector";
@@ -106,7 +107,7 @@ export function RefreshPreferencesModal({
           type="button"
           onClick={handleClose}
           aria-label="Close"
-          className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft) z-10"
+          className="cf-pressable absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft) z-10"
         >
           <X className="h-4 w-4" />
         </button>
@@ -132,7 +133,7 @@ export function RefreshPreferencesModal({
             initial={reducedMotion ? false : "enter"}
             animate="center"
             exit={reducedMotion ? undefined : "exit"}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: DUR.fast, ease: EASE.standard }}
           >
             {step === 1 && (
               <div>

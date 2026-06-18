@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
@@ -253,7 +254,7 @@ export function BookBadgesClient() {
         className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16"
         initial={reduced ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: DUR.slow, ease: EASE.standard }}
       >
         <BadgePageHeader profile={profile} />
 

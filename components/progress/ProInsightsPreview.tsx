@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { Lock } from "lucide-react";
 import { MONTHLY_PRICE_WITH_CURRENCY } from "@/lib/pricing";
 
@@ -28,7 +29,7 @@ function BlurredChart({
         y: -2,
         borderColor: "var(--cf-border-strong)",
       }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: DUR.fast }}
     >
       {/* Blurred chart placeholder */}
       <div
@@ -81,7 +82,7 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: DUR.normal }}
     >
       <h2
         className="text-lg font-semibold"
@@ -145,11 +146,11 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
       <div className="mt-5 flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-between sm:text-left">
         <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
           See how you&apos;re really progressing {"\u2014"}{" "}
-          <span style={{ color: "var(--accent-gold)", fontWeight: 700 }}>{MONTHLY_PRICE_WITH_CURRENCY}/mo</span>
+          <span style={{ color: "var(--cf-gold-text)", fontWeight: 700 }}>{MONTHLY_PRICE_WITH_CURRENCY}/mo</span>
         </p>
         <Link
           href="/pricing"
-          className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold text-black transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+          className="cf-pressable inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold text-black transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
           style={{
             background: "var(--cf-upgrade-accent)",
             boxShadow: "var(--cf-upgrade-accent-shadow)",

@@ -671,7 +671,7 @@ function CommitmentFollowUpSection() {
   if (due.length === 0) return null;
 
   return (
-    <section className="cf-panel rounded-[26px] border border-(--cf-warning-border) bg-(--cf-surface) p-5 sm:p-6">
+    <section className="cf-panel rounded-3xl border border-(--cf-warning-border) bg-(--cf-surface) p-5 sm:p-6">
       <div className="mb-3 flex items-center gap-2">
         <Clock className="h-4 w-4 text-(--cf-warning-text)" />
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-(--cf-warning-text)">
@@ -713,7 +713,7 @@ function CommitmentFollowUpSection() {
                     type="button"
                     onClick={handleComplete}
                     disabled={activeReflection.trim().length < 10 || submitting}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-(--cf-accent) px-3 py-1.5 text-xs font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-50"
+                    className="cf-pressable inline-flex items-center gap-1.5 rounded-lg bg-(--cf-accent) px-3 py-1.5 text-xs font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-50"
                   >
                     <CheckCircle className="h-3.5 w-3.5" />
                     {submitting ? "Saving..." : "Submit (+25 IP)"}
@@ -732,7 +732,7 @@ function CommitmentFollowUpSection() {
                 <button
                   type="button"
                   onClick={() => setActiveId(c.commitmentId)}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1.5 text-xs font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
+                  className="cf-pressable inline-flex items-center gap-1.5 rounded-lg border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1.5 text-xs font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
                 >
                   How did it go?
                 </button>
@@ -960,7 +960,7 @@ export function WorkspacePage() {
           control and TopNav's ~12 controls. */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+        className="cf-focus sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold"
         style={{
           background: "var(--accent-cyan)",
           color: "var(--primary-foreground)",

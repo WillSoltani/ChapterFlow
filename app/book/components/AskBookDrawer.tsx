@@ -294,7 +294,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-50 flex items-center gap-2 rounded-full bg-(--cr-accent) px-4 py-3 text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] md:right-6"
+          className="cf-pressable fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-50 flex items-center gap-2 rounded-full bg-(--cr-accent) px-4 py-3 text-(--cr-text-inverse) shadow-lg transition hover:brightness-110 md:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] md:right-6"
           title="Ask Raymond"
           aria-label="Ask Raymond about this chapter"
         >
@@ -341,7 +341,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
               <button
                 type="button"
                 onClick={handleClear}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition-colors hover:text-(--cf-danger-text)"
+                className="cf-pressable inline-flex h-9 w-9 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition-colors hover:text-(--cf-danger-text)"
                 aria-label="Clear chat"
                 title="Clear chat"
               >
@@ -351,7 +351,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
             <button
               type="button"
               onClick={handleClose}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition-colors hover:text-(--cf-text-1)"
+              className="cf-pressable inline-flex h-9 w-9 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition-colors hover:text-(--cf-text-1)"
               aria-label="Close chat"
             >
               <X className="h-4 w-4" />
@@ -478,7 +478,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
               <button
                 type="button"
                 onClick={handleAbort}
-                className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-danger-text) transition-colors hover:bg-(--cf-danger-bg)"
+                className="cf-pressable inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-danger-text) transition-colors hover:bg-(--cf-danger-bg)"
                 title="Stop generating"
                 aria-label="Stop generating"
               >
@@ -488,7 +488,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
               <button
                 type="submit"
                 disabled={!input.trim()}
-                className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-(--cf-accent) text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-50"
+                className="cf-pressable inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-(--cf-accent) text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-50"
                 aria-label="Send message"
               >
                 <Send className="h-4 w-4" />

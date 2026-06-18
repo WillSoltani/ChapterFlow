@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import type { StreakData } from "./progressTypes";
 
 interface StreakDisplayProps {
@@ -33,7 +34,7 @@ export function StreakDisplay({ streak }: StreakDisplayProps) {
       className="flex flex-col gap-1.5"
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, delay: 0.3 }}
+      transition={{ duration: DUR.normal, delay: 0.3 }}
     >
       {hasStreak ? (
         <>
@@ -70,7 +71,7 @@ export function StreakDisplay({ streak }: StreakDisplayProps) {
             ) : (
               <Link
                 href="/rewards"
-                className="cursor-pointer transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/50 rounded"
+                className="cf-focus cursor-pointer transition-colors hover:underline rounded"
                 style={{ color: "var(--text-secondary)" }}
               >
                 Get a Flow Freeze {"\u2192"}

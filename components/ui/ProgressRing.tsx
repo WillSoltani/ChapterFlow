@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
+import { DUR, EASE } from "@/lib/motion";
 
 export interface ProgressRingProps {
   /** 0–100 */
@@ -102,8 +103,8 @@ export function ProgressRing({
           initial={{ strokeDashoffset: prefersReduced ? offset : circumference }}
           animate={{ strokeDashoffset: offset }}
           transition={{
-            duration: prefersReduced ? 0 : 0.8,
-            ease: [0.4, 0, 0.2, 1],
+            duration: prefersReduced ? 0 : DUR.reveal,
+            ease: EASE.standard,
             delay: prefersReduced ? 0 : delay / 1000,
           }}
           style={{

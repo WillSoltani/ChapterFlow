@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import type { WeeklyChallenge as WeeklyChallengeType } from "./libraryData";
 
 interface WeeklyChallengeProps {
@@ -27,7 +28,7 @@ export function WeeklyChallenge({ challenge, onBrowseCategory }: WeeklyChallenge
           initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, height: 0, marginTop: 0, padding: 0 }}
-          transition={{ duration: 0.25, delay: 0.6 }}
+          transition={{ duration: DUR.fast, delay: 0.6 }}
           className="relative mt-10 overflow-hidden rounded-xl px-6 py-5"
           style={{
             maxWidth: 1080,

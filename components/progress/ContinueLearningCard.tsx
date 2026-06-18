@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight } from "lucide-react";
 import type { ActiveBook, LearningStep } from "./progressTypes";
 import { StepIndicator } from "./StepIndicator";
@@ -56,7 +57,7 @@ export function ContinueLearningCard({
         x: prefersReduced ? 0 : 20,
       }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 }}
+      transition={{ duration: DUR.page, ease: EASE.standard, delay: 0.4 }}
     >
       {/* Header label */}
       <h2
@@ -155,14 +156,14 @@ export function ContinueLearningCard({
       <Link href={bookHref} className="mt-5 block">
         <motion.button
           type="button"
-          className="w-full cursor-pointer rounded-xl px-6 py-3.5 text-base font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+          className="cf-focus w-full cursor-pointer rounded-xl px-6 py-3.5 text-base font-semibold text-white transition-all"
           style={{
             background: "linear-gradient(135deg, var(--cf-accent), var(--cf-accent-strong))",
             border: "1px solid var(--cf-accent-border)",
             boxShadow: "0 4px 16px var(--cf-accent-shadow)",
           }}
           whileHover={{ scale: 1.02, y: -1 }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
           {ctaText} {"\u2192"}
@@ -192,7 +193,7 @@ export function ContinueLearningCard({
                 key={book.id}
                 type="button"
                 onClick={() => onSwitchBook?.(book.id)}
-                className="flex shrink-0 cursor-pointer items-center gap-2.5 rounded-xl px-3 py-2.5 transition-colors snap-start"
+                className="cf-pressable flex shrink-0 cursor-pointer items-center gap-2.5 rounded-xl px-3 py-2.5 transition-colors snap-start"
                 style={{
                   background: "var(--cf-surface-muted)",
                   border: "1px solid var(--cf-border)",
@@ -284,7 +285,7 @@ export function NoActiveBooksCard() {
       </p>
       <Link
         href="/book/library"
-        className="mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all"
+        className="cf-pressable mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all"
         style={{
           background: "var(--accent-cyan)",
           color: "var(--bg-base)",

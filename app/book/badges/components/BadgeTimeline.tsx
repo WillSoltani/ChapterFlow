@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { TIER_BORDER_COLORS } from "../lib/badge-utils";
@@ -67,12 +68,12 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
                   key={badge.id}
                   initial={reduced ? false : { opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.25, delay: i * 0.04 }}
+                  transition={{ duration: DUR.fast, delay: i * 0.04 }}
                 >
                   <button
                     type="button"
                     onClick={() => onBadgeClick(badge)}
-                    className="group relative flex items-start gap-3 text-left transition hover:opacity-90"
+                    className="cf-pressable group relative flex items-start gap-3 text-left transition hover:opacity-90"
                   >
                     {/* Timeline dot on the line -- 8px amber */}
                     <div
@@ -133,6 +134,7 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
           className="mt-4 text-sm font-medium transition"
           style={{ color: "var(--accent-cyan)" }}
           whileHover={{ x: 2 }}
+          whileTap={{ scale: 0.97 }}
         >
           {expanded ? "Show less \u2191" : "View full journey \u2193"}
         </motion.button>

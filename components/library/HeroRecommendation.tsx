@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
 import { ProgressRing } from "./ProgressRing";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
@@ -52,7 +53,7 @@ export function HeroRecommendation({
     <motion.section
       initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut", delay: 0.1 }}
+      transition={{ duration: DUR.normal, ease: EASE.standard, delay: 0.1 }}
       className="px-5 py-6 md:px-7"
     >
       {/* Glassmorphic hero card — figure-ground separation (Gestalt) */}
@@ -249,7 +250,7 @@ export function HeroRecommendation({
                 <Link
                   href={`/book/library/${encodeURIComponent(book.id)}`}
                   aria-label={`${book.title} by ${book.author}`}
-                  className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
+                  className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 transition-colors cf-focus"
                   style={{ border: "1px solid transparent" }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = "var(--border-medium)";

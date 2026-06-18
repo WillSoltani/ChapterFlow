@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import type { ActiveBook, CompletedBook } from "./progressTypes";
 import { ActiveBookRow, CompletedBookRow } from "./BookRow";
 
@@ -39,7 +40,7 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: DUR.normal }}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -62,18 +63,7 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setFilter(tab.id)}
-                  className="cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
-                  style={{
-                    background: isActive
-                      ? "rgba(34,211,238,0.15)"
-                      : "transparent",
-                    color: isActive
-                      ? "var(--accent-cyan)"
-                      : "var(--text-secondary)",
-                    border: isActive
-                      ? "1px solid rgba(34,211,238,0.3)"
-                      : "1px solid transparent",
-                  }}
+                  className={`cf-chip cf-pressable cf-focus cursor-pointer px-4 py-1.5 text-sm font-medium transition-colors${isActive ? " cf-chip-active" : ""}`}
                 >
                   {tab.label} ({tab.count})
                 </button>
@@ -94,7 +84,7 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
           </p>
           <Link
             href="/book/library"
-            className="mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium transition-colors"
+            className="cf-pressable mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium transition-colors"
             style={{
               color: "var(--text-secondary)",
               border: "1px solid var(--border-subtle)",
@@ -128,7 +118,7 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
               </p>
               <Link
                 href="/book/library"
-                className="mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium transition-colors"
+                className="cf-pressable mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium transition-colors"
                 style={{
                   color: "var(--text-secondary)",
                   border: "1px solid var(--border-subtle)",

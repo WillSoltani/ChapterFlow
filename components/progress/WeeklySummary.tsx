@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import type { WeekSummaryData, StreakData } from "./progressTypes";
 
 interface WeeklySummaryProps {
@@ -135,7 +136,7 @@ export function WeeklySummary({
       initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: DUR.normal }}
     >
       {/* Header */}
       <div className="flex items-center justify-between">

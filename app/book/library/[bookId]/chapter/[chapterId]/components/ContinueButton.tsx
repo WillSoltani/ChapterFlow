@@ -38,7 +38,7 @@ export function ContinueButton({
         disabled={!ready}
         onClick={onClick}
         className={[
-          "flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]",
+          "cf-pressable flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]",
           ready
             ? "bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_0_0_0_rgba(77,182,172,0.4)] hover:shadow-[0_4px_20px_rgba(77,182,172,0.3)] hover:opacity-90"
             : "cursor-not-allowed bg-(--cr-bg-surface-3) text-(--cr-text-disabled)",

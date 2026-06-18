@@ -46,7 +46,7 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 <button
                   type="button"
                   onClick={(e) => { e.stopPropagation(); onUnpin(badge.id); }}
-                  className="absolute -right-1 -top-1 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-(--cf-border-strong) bg-(--cf-surface-strong) text-(--cf-text-3) opacity-0 transition-opacity hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) group-hover:opacity-100"
+                  className="cf-pressable absolute -right-1 -top-1 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-(--cf-border-strong) bg-(--cf-surface-strong) text-(--cf-text-3) opacity-0 transition-opacity hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) group-hover:opacity-100"
                   aria-label={`Unpin ${badge.name}`}
                 >
                   <X className="h-3 w-3" />
@@ -55,7 +55,7 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 <button
                   type="button"
                   onClick={() => onBadgeClick(badge)}
-                  className="flex h-18 w-18 items-center justify-center rounded-2xl border border-accent-amber/20 bg-accent-amber/5 transition hover:border-accent-amber/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/50"
+                  className="cf-pressable flex h-18 w-18 items-center justify-center rounded-2xl border border-accent-amber/20 bg-accent-amber/5 transition hover:border-accent-amber/30 cf-focus"
                   tabIndex={0}
                 >
                   <span className="text-[48px] leading-none">{badge.icon}</span>

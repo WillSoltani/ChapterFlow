@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { cn } from "@/app/book/components/ui/cn";
 import { Dialog } from "@/components/ui/Dialog";
 import { Confetti } from "@/components/ui/Confetti";
@@ -197,8 +198,9 @@ export function BadgeCelebration({
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="cursor-pointer overflow-hidden rounded-2xl border border-(--cf-gold-border) bg-(--cf-surface-muted) text-left shadow-shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+              transition={{ duration: DUR.normal }}
+              whileTap={{ scale: 0.97 }}
+              className="cursor-pointer overflow-hidden rounded-2xl border border-(--cf-gold-border) bg-(--cf-surface-muted) text-left shadow-shadow-elevated cf-focus"
               onClick={() => router.push("/book/badges")}
             >
               <div className="flex items-center gap-3 px-4 py-3">
@@ -324,14 +326,14 @@ export function BadgeCelebration({
               <button
                 type="button"
                 onClick={() => onPinToShowcase(heroBadge.id)}
-                className="rounded-2xl border border-(--cf-gold-border) bg-(--cf-gold-soft) px-5 py-2.5 text-sm font-medium text-(--cf-text-1) transition hover:bg-[color-mix(in_srgb,var(--accent-gold)_18%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                className="cf-pressable rounded-2xl border border-(--cf-gold-border) bg-(--cf-gold-soft) px-5 py-2.5 text-sm font-medium text-(--cf-text-1) transition hover:bg-[color-mix(in_srgb,var(--accent-gold)_18%,transparent)] cf-focus"
               >
                 Pin to Showcase
               </button>
               <button
                 type="button"
                 onClick={handleDismissHero}
-                className="rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+                className="cf-pressable rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
               >
                 Continue
               </button>
@@ -364,7 +366,7 @@ function ShareButton({ badge }: { badge: BadgeWithProgress }) {
     <button
       type="button"
       onClick={handleShare}
-      className="inline-flex items-center gap-1.5 rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
+      className="cf-pressable inline-flex items-center gap-1.5 rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
     >
       {feedback ? <Check className="h-3.5 w-3.5" /> : <Share2 className="h-3.5 w-3.5" />}
       {feedback ?? "Share Achievement"}

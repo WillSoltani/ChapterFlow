@@ -89,7 +89,7 @@ export function SeasonalChallenge({ challenge, href }: SeasonalChallengeProps) {
       <Link
         href={href}
         aria-label={`${challenge.title} — view event`}
-        className={`${cardClass} transition hover:border-accent-amber/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)`}
+        className={`${cardClass} cf-pressable transition hover:border-accent-amber/40 cf-focus`}
       >
         {inner}
       </Link>

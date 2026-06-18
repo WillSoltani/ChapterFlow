@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { CheckCircle, XCircle, ArrowRight } from "lucide-react";
 import { getFirstLoopContent, getQuizFeedback } from "@/app/onboarding/data/chapters";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
@@ -80,7 +81,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
       <motion.div
         initial={noMotion ? false : { opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: DUR.page }}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -130,7 +131,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
           initial={noMotion ? false : { opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -30 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: DUR.fast }}
         >
           {/* Question label */}
           <p
@@ -197,7 +198,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                     !showFeedback && !noMotion ? { scale: 1.01 } : {}
                   }
                   whileTap={
-                    !showFeedback && !noMotion ? { scale: 0.98 } : {}
+                    !showFeedback && !noMotion ? { scale: 0.97 } : {}
                   }
                   style={{
                     display: "flex",
@@ -280,7 +281,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                 initial={noMotion ? false : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: DUR.fast }}
                 style={{
                   fontFamily: "var(--font-body, sans-serif)",
                   fontSize: 14,
@@ -303,7 +304,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
             <motion.div
               initial={noMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: noMotion ? 0 : 0.15, duration: 0.2 }}
+              transition={{ delay: noMotion ? 0 : 0.15, duration: DUR.fast }}
               className="mt-5 flex justify-end"
             >
               <Button onClick={advance}>

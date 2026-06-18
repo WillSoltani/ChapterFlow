@@ -171,7 +171,7 @@ function ReferralSection({ referral }: { referral: InsightPointsPayload["referra
         <button
           onClick={handleCopy}
           className={
-            "shrink-0 cursor-pointer rounded-lg border border-(--cf-border) px-3 py-2 text-[13px] font-medium transition-colors " +
+            "cf-pressable shrink-0 cursor-pointer rounded-lg border border-(--cf-border) px-3 py-2 text-[13px] font-medium transition-colors " +
             (copied
               ? "bg-(--cf-success-soft) text-(--cf-success-text)"
               : "bg-(--cf-surface) text-(--cf-text-1)")

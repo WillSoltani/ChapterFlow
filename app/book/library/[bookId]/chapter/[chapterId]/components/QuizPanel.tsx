@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { motion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -861,7 +862,7 @@ export function QuizPanel({
               animate={{
                 width: `${Math.round(((safeCurrentIndex + 1) / displayQuestions.length) * 100)}%`,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: DUR.normal }}
             />
           </div>
         </div>
