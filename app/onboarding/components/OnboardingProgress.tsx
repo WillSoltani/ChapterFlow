@@ -56,7 +56,7 @@ export default function OnboardingProgress({
       <div
         style={{
           display: "flex",
-          gap: 2,
+          gap: 3,
           width: "100%",
         }}
         role="progressbar"
@@ -75,12 +75,15 @@ export default function OnboardingProgress({
             <div
               key={stepIndex}
               style={{
+                // Bolder segmented rail (NS): a confident 6px bar on a clear
+                // --cf-border-strong track rather than a 3px hairline on the
+                // near-invisible surface-muted.
                 flex: 1,
-                height: 3,
-                borderRadius: 2,
+                height: 6,
+                borderRadius: 3,
                 position: "relative",
                 overflow: "hidden",
-                backgroundColor: "var(--cf-surface-muted)",
+                backgroundColor: "var(--cf-border-strong)",
               }}
             >
               <motion.div
@@ -100,7 +103,7 @@ export default function OnboardingProgress({
                 }
                 style={{
                   height: "100%",
-                  borderRadius: 2,
+                  borderRadius: 3,
                   background: "var(--accent-cyan)",
                 }}
               />

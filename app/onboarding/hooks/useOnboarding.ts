@@ -28,7 +28,9 @@ const DEFAULT_STATE: OnboardingState = {
   motivation: null,
   interests: [],
   tone: "direct",
-  dailyGoal: 20,
+  // Matches the shared DAILY_GOAL_TIERS "Most popular" default (10 = Steady) so
+  // the pre-selected pace card, its badge, and Settings' default all agree (P1[G]).
+  dailyGoal: 10,
   chapterOrder: "summary_first",
   starterShelf: [],
   firstQuizScore: 0,
@@ -169,7 +171,9 @@ export function useOnboarding() {
         // selected, so the flow still works.
         break;
       case 3:
-        defaults.dailyGoal = 20;
+        // Skipping pace adopts the shared "Most popular" default (10 = Steady),
+        // consistent with DEFAULT_STATE and Settings (P1[G]).
+        defaults.dailyGoal = 10;
         defaults.chapterOrder = "summary_first";
         break;
       case 4:

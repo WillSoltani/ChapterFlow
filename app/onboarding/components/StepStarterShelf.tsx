@@ -17,6 +17,8 @@ import type { OnboardingBook } from "@/app/onboarding/data/books";
 import { getBookCoverPath } from "@/app/onboarding/data/books";
 import { generateSwipeDeck, getTopPicks } from "@/app/onboarding/data/recommendations";
 import { Button } from "@/components/ui/button";
+import { MicroCelebration } from "@/app/book/settings/components/MicroCelebration";
+import type { CelebrationEvent } from "@/app/book/settings/types/settings";
 
 interface StepStarterShelfProps {
   onNext: () => void;
@@ -547,6 +549,12 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
   // ranked books once these (and the selected ones) are excluded.
   const [rejectedIds, setRejectedIds] = useState<string[]>([]);
   const [isComplete, setIsComplete] = useState(false);
+  // The gold MicroCelebration (batch 10) fired on each book "like" — the missing
+  // reward beat that gives the first swipe a payoff in the brand's celebration
+  // language. likeCount keys the toast so consecutive likes re-fire it; the
+  // component no-ops under reduced motion.
+  const [celebEvent, setCelebEvent] = useState<CelebrationEvent | null>(null);
+  const [likeCount, setLikeCount] = useState(0);
 
   // Ref for the button-triggered swipe — set synchronously by SwipeCard each render
   const buttonSwipeRef = useRef<((dir: "left" | "right") => void) | null>(null);
@@ -558,6 +566,12 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
       if (!frontBook) return;
 
       if (dir === "right") {
+        // Reward beat on the "like". On the 3rd pick the shelf transitions to
+        // ShelfComplete (its own celebration), so this naturally fires on the
+        // first two likes — exactly where the first swipe needed a payoff.
+        setCelebEvent("profile-selected");
+        setLikeCount((c) => c + 1);
+
         const newSelected = [...selectedBooks, frontBook];
         setSelectedBooks(newSelected);
 
@@ -649,6 +663,10 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
       role="region"
       aria-label="Book selection - swipe or use buttons to choose books"
     >
+      {/* Reward beat on each book "like" — gold toast in the brand's celebration
+          language (fixed overlay; no-ops under reduced motion). */}
+      <MicroCelebration key={likeCount} event={celebEvent} reducedMotion={!!reducedMotion} />
+
       {/* Header */}
       <h2
         style={{

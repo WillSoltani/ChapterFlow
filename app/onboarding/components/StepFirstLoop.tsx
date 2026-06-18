@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
+import { getBookById } from "@/app/onboarding/data/books";
 import {
   subStepVariants,
   subStepTransition,
@@ -77,7 +78,19 @@ function SubStepIndicator({ current }: { current: SubStep }) {
 
 export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLoopProps) {
   const prefersReducedMotion = useReducedMotion();
-  const { setFirstQuizScore, completeFirstChapter } = useOnboarding();
+  const { setFirstQuizScore, completeFirstChapter, starterShelf } = useOnboarding();
+
+  // Resolve the user's chosen starter books to cover paths for the first-win
+  // covers fan-in. Tolerates both StarterShelfItem shapes (string | {id}).
+  const starterCovers = useMemo(
+    () =>
+      (Array.isArray(starterShelf) ? starterShelf : [])
+        .map((item) => (typeof item === "string" ? item : item?.id))
+        .filter((id): id is string => typeof id === "string" && id.length > 0)
+        .map((id) => getBookById(id)?.cover)
+        .filter((cover): cover is string => typeof cover === "string" && cover.length > 0),
+    [starterShelf],
+  );
 
   const [subStep, setSubStep] = useState<SubStep>("summary");
 
@@ -223,6 +236,15 @@ export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLo
               <UnlockCelebration
                 quizScore={quizScore}
                 onFinish={handleCelebrationFinish}
+                // A brand-new onboarding user's first active day IS day 1. The
+                // completion route counts today as that day (currentStreak → 1)
+                // and the dashboard reflects it after the POST — but the
+                // celebration paints BEFORE that POST fires, so the response
+                // can't be known here. We pass the deterministic, honest 1
+                // explicitly (rather than leaving the prop silently unused) so
+                // the displayed streak stays server-truthful for a new user.
+                currentStreak={1}
+                starterCovers={starterCovers}
               />
             </motion.div>
           )}

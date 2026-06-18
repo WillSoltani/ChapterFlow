@@ -2,7 +2,7 @@
 
 import { useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 import { useOnboarding } from "../hooks/useOnboarding";
 import type { StarterShelfItem } from "../hooks/useOnboarding";
@@ -18,7 +18,6 @@ export function OnboardingFlow() {
   const router = useRouter();
   const onboarding = useOnboarding();
   const { currentStep, direction, nextStep, prevStep, skipStep, clearOnboarding } = onboarding;
-  const prefersReducedMotion = useReducedMotion();
 
   // Ref for the First Loop step (final step) sub-step back navigation
   const loopBackRef = useRef<(() => void) | null>(null);
@@ -122,24 +121,21 @@ export function OnboardingFlow() {
     <div
       id="onboarding-root"
       className="relative min-h-dvh overflow-hidden"
-      style={{ background: "var(--bg-base)" }}
+      style={{
+        // Calm canvas continuous with the landing Hero: one soft-cyan radial
+        // field (batch-01 --cf-onboarding-warm token, theme-aware) over the
+        // base, so the wide desktop viewport reads as deliberate calm rather
+        // than a small column floating in dead space.
+        background:
+          "radial-gradient(ellipse at 50% 30%, var(--cf-onboarding-warm), transparent 70%), var(--bg-base)",
+      }}
     >
-      {/* Background gradient orbs */}
+      {/* One quiet cyan ground orb — composes with the root radial into a single
+          calm field. The former off-brand violet orb and the ambient
+          slow-drifting orb were removed per the North Star "Quiet Library,
+          Earned Spark": the field is cyan (the work), and motion is earned by
+          progress, never ambient. */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Purple orb — top left */}
-        <div
-          className="absolute"
-          style={{
-            width: 500,
-            height: 500,
-            top: -200,
-            left: -150,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, color-mix(in srgb, var(--accent-violet) 12%, transparent) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* Teal orb — bottom right */}
         <div
           className="absolute"
           style={{
@@ -149,36 +145,6 @@ export function OnboardingFlow() {
             right: -100,
             borderRadius: "50%",
             background: "radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 8%, transparent) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* Blue orb — center right, slow drift */}
-        <motion.div
-          className="absolute"
-          animate={
-            prefersReducedMotion
-              ? {}
-              : {
-                  y: [0, -20, 0],
-                  x: [0, 10, 0],
-                }
-          }
-          transition={
-            prefersReducedMotion
-              ? { duration: 0 }
-              : {
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
-          }
-          style={{
-            width: 400,
-            height: 400,
-            top: "30%",
-            right: -50,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 10%, transparent) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -254,7 +220,7 @@ export function OnboardingFlow() {
       </header>
 
       {/* Main content */}
-      <main className="flex-1 flex items-center justify-center md:justify-start min-h-dvh px-5 md:px-8 pt-20 md:pt-24 pb-8">
+      <main className="flex-1 flex items-center justify-center min-h-dvh px-5 md:px-8 pt-20 md:pt-24 pb-8">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentStep}
