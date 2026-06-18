@@ -14,7 +14,10 @@ Do this only from the repo root or the pipeline directory:
 
 ```bash
 cd scripts/book/prompts/chapterflow-v21-authored
+# Strict production gates (set for every NEW book — required on the dry run too).
 export CHAPTERFLOW_NO_API_CODEX_QC=1
+export CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1
+export CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1
 ```
 
 First confirm the round still passes (a content edit after the round opened makes it stale):

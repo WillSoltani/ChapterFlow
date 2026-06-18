@@ -27,6 +27,12 @@ chapter's source is genuinely thin, say so now — do not leave it for the write
 ## 0. Setup
 ```bash
 cd scripts/book/prompts/chapterflow-v21-authored
+# Strict production gates — set these for every NEW book so a thin/unverified/self-graded
+# book fails BEFORE it can ship. Set them ONCE at the top of this session (they apply to
+# every cli.ts command below). Do NOT also export CHAPTERFLOW_SESSION_ID for the whole run.
+export CHAPTERFLOW_NO_API_CODEX_QC=1                  # carried; first bites at the write phase
+export CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1            # THE gate this phase exists to satisfy: an ABSENT source-verify record BLOCKS
+export CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1     # inert here (no session id yet); carried so later phases stay strict
 npx tsx src/cli.ts doctor <bookId>   # fix anything FATAL before continuing
 ```
 

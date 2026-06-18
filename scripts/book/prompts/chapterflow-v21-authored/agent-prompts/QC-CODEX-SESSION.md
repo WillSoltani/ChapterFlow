@@ -14,8 +14,11 @@ When the operator says: **`QC <book>`** — do exactly this.
 ## 0. Setup (once)
 ```bash
 cd scripts/book/prompts/chapterflow-v21-authored
+# Strict production gates (set for every NEW book; carried from research/write).
 export CHAPTERFLOW_NO_API_CODEX_QC=1
-# Optional but recommended — proves you are a different session than the author:
+export CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1
+export CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1
+# Proves you are a different session than the author (FRESH per phase — never one global id):
 export CHAPTERFLOW_SESSION_ID="qc-$(date +%Y%m%d%H%M%S)"
 ```
 

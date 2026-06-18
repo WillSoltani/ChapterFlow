@@ -9,6 +9,10 @@ When the operator says: **`Generate the book <book>`** (a title or a bookId) —
 ## 0. Setup (once)
 ```bash
 cd scripts/book/prompts/chapterflow-v21-authored
+# Strict production gates (set for every NEW book; a thin/unverified source then fails at research).
+export CHAPTERFLOW_NO_API_CODEX_QC=1
+export CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1
+export CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1
 # Recommended: tag this authoring session id; at the qc handoff (step 2) you run
 # `qc-stamp-author` so a later FRESH QC session can prove it didn't grade its own work.
 export CHAPTERFLOW_SESSION_ID="author-$(date +%Y%m%d%H%M%S)"

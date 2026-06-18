@@ -43,7 +43,11 @@ writer's fault or the research's, and when to stop. Read the gate/barrier output
 ## 0. Setup + preflight
 ```bash
 cd scripts/book/prompts/chapterflow-v21-authored
-export CHAPTERFLOW_SESSION_ID="author-$(date +%Y%m%d%H%M%S)"   # stamped so QC can prove independence
+# Strict production gates (set for every NEW book; carried from the research session).
+export CHAPTERFLOW_NO_API_CODEX_QC=1
+export CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1
+export CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1
+export CHAPTERFLOW_SESSION_ID="author-$(date +%Y%m%d%H%M%S)"   # stamped so QC can prove independence (FRESH per phase — never one global id)
 npx tsx src/cli.ts doctor <bookId>
 npx tsx src/cli.ts book-status "<book>"
 ```
