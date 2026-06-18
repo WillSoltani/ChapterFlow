@@ -165,7 +165,7 @@ export function KnowledgeReview({
                 className="cf-pressable cf-focus cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all"
                 style={{
                   background: "var(--accent-cyan)",
-                  color: "#fff",
+                  color: "var(--cf-accent-contrast)",
                   width: "fit-content",
                   border: "1px solid rgba(34,211,238,0.3)",
                   boxShadow: "0 4px 12px rgba(34,211,238,0.25)",
