@@ -10,7 +10,7 @@ import { useLibraryContext } from "./LibraryContext";
 import {
   formatReadingTime,
   getProgressMicrocopy,
-  getProgressColor,
+  getProgressTextColor,
   getPerChapterMinutes,
   type LibraryBook,
 } from "./libraryData";
@@ -188,7 +188,7 @@ export function HeroRecommendation({
               <p className="text-[14px] font-medium" style={{ color: "var(--text-heading)" }}>
                 Chapter {prog.currentChapter} of {heroBook.totalChapters} · {prog.percentComplete}% complete
               </p>
-              <p className="mt-0.5 text-[13px]" style={{ color: getProgressColor(prog.percentComplete) }}>
+              <p className="mt-0.5 text-[13px]" style={{ color: getProgressTextColor(prog.percentComplete) }}>
                 {getProgressMicrocopy(prog.percentComplete, chaptersLeft)}
               </p>
             </div>

@@ -1148,6 +1148,17 @@ export function getProgressColor(percent: number): string {
   return "var(--accent-cyan)";
 }
 
+// Same thresholds as getProgressColor, but returns the FLIPPING gold TEXT token
+// (--cf-gold-text: #B45309 light / #E8B931 dark) so the >=75% microcopy line stays
+// AA on the light hero card (4.93:1 vs 1.81:1 for --accent-gold). getProgressColor
+// keeps --accent-gold for graphical FILLS (ProgressRing). emerald/cyan are already
+// AA as text in both themes, so they are unchanged here.
+export function getProgressTextColor(percent: number): string {
+  if (percent >= 75) return "var(--cf-gold-text)";
+  if (percent >= 50) return "var(--accent-emerald)";
+  return "var(--accent-cyan)";
+}
+
 export function timeAgo(date: Date): string {
   const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
   if (seconds < 60) return "just now";
