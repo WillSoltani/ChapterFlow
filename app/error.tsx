@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { SUPPORT_EMAIL } from "@/lib/legal-entity";
 
-export default function GlobalError({
+export default function RootError({
   error,
   reset,
 }: {
