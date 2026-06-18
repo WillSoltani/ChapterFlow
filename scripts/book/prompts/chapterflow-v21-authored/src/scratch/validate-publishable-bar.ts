@@ -11,7 +11,7 @@ let failures = 0;
 const ok = (c: boolean, msg: string) => { console.log(`  ${c ? "✓" : "✗ FAIL"} ${msg}`); if (!c) failures++; };
 
 const ALL: AxisId[] = Object.keys(AXIS_WEIGHTS) as AxisId[];
-/** Build all 8 axes at a uniform score; optionally mark one axis as a CORRUPTION hit. */
+/** Build all axes at a uniform score; optionally mark one axis as a CORRUPTION hit. */
 function axes(score: number, opts?: { corrupt?: AxisId; floorAxis?: { axis: AxisId; score: number } }): AxisScore[] {
   return ALL.map((axis) => {
     let s = score;
@@ -24,6 +24,12 @@ function axes(score: number, opts?: { corrupt?: AxisId; floorAxis?: { axis: Axis
 }
 
 console.log("publishable-bar reducer — hard-rule tests:");
+
+// 0. Weights HARD INVARIANT: AXIS_WEIGHTS must sum to EXACTLY 100. PUBLISHABLE_FLOOR=85
+//    and computeVerdict assume a 0–100 scale; a drifted sum (99/101) silently breaks the
+//    floor semantics even though weightedOverall renormalizes by the weight-sum.
+{ const sum = Object.values(AXIS_WEIGHTS).reduce((a, b) => a + b, 0);
+  ok(sum === 100, `weights sum to EXACTLY 100 (got ${sum}) — drift breaks the 85 floor`); }
 
 // 1. Corruption veto: one wrong key + everything else perfect -> RED, not GREEN.
 { const v = computeVerdict("c1", axes(1.0, { corrupt: "quiz_key_correctness" }));

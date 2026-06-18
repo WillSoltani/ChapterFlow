@@ -115,6 +115,16 @@ A nested, optional sub-surface of `experiencePlan`: a small library of concrete 
 | RDRP10.label_convergence | The card-seed convergence failure mode applied to the pattern library: ≥2 chapters share the same readerPattern `label` after normalization (verbatim copy). | `runBookGate` groups every chapter's pattern labels by `normalizeConvergenceKey(label)`; any group spanning 2+ chapters is a major. | MAJOR (book) | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
 | RDRP11.index_validity | A `mapsTo*Index` out of range — a defensive book-level net behind RDRP1's per-chapter blocker. | `runBookGate` re-checks each pattern's indices against that chapter's `ifThenPlans`/`examples` lengths. | MAJOR (book) | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
 
+## MB. Model-bar (judgment-layer) quality axes
+
+These are **not deterministic critics** and never fire at `gate-chapter`/`book-gate`. They are weighted axes of the publishable bar (`AXIS_RUBRIC`/`AXIS_WEIGHTS` in [src/critics/semantic/publishableBar.ts](src/critics/semantic/publishableBar.ts)), scored 0–1 by the QC reviewer/judge and reduced through `computeVerdict`. Semantic patterns of this class have been proven NOT to separate from clean content deterministically (see "Rubric tuning" / the sweep-family calibration), so they live at the judgment layer by design. The bar enforces them: overall <85 or any axis <0.6 → YELLOW (`GENERATED_DRAFT`).
+
+### `behavioral_naturalness` (Plan A, #9) — productivity-theater micro-actions
+
+| Catalog id | Failure mode | FP-guard | Severity | Enforcement |
+| --- | --- | --- | --- | --- |
+| MB1.behavioral_naturalness | A chapter's prescribed micro-actions (`tryThisNow`, `implementationPlan` plans, the 24h challenge, "do this now" moves in examples) are **performative theater, not functional** — write your TARGET on a visible surface; contrived symbolic rituals (move a pen, turn around, walk to a door, rehearse a sentence out loud N times); prop-heavy staging needing 3+ objects assembled before you can start; or shame/coercive phrasing ("you MUST complete this challenge", "no excuses"). The reader is asked to perform a ritual rather than do the thing. | **Specificity is NOT the defect; behavioral implausibility is.** A concrete single-step low-friction action a real person would plausibly do scores ≥0.85, however specific. Mild prop-heaviness that is still functional scores 0.60–0.85. NEVER score a clean, plausible structural action below 0.6 — the 0.6 `AXIS_FLOOR` hard-caps the WHOLE book at YELLOW; reserve sub-0.6 for chapters dominated by theater/coercion, not one mildly props-y step. Ordinary if-then plans, journaling, a single timer, or one physical cue are GOOD. | QUALITY (YELLOW; **non-corruption** — never a RED veto) | model bar — `behavioral_naturalness` axis in [src/critics/semantic/publishableBar.ts](src/critics/semantic/publishableBar.ts); reviewer scores it per `agent-prompts/QC-SESSION-PROMPT.md` Layer 2 |
+
 ## BP. Book-level pattern audit
 
 These IDs are produced by the deterministic book-level pattern audit and surface in `score-chapters` as score caps. They do not run at chapter time; they run when scoring or validating a whole package.

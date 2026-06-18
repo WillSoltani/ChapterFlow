@@ -252,6 +252,15 @@ call.
 
 - 0 blockers, but >50 stylistic majors (e.g. F4 way over budget, D1 way
   over expected count) **or** SC9 firing on many chapters
+- 0 blockers and no corruption, but a publishable-bar quality axis scores
+  below the floor (overall <85 or any axis <0.6) — e.g. the
+  **`behavioral_naturalness`** axis (Plan A): the chapter's prescribed
+  micro-actions are productivity-theater (write your TARGET on a wall, move a
+  pen, "you must complete this challenge") rather than functional things a
+  real person would do. This is a YELLOW-worthy STYLE defect, never a RED
+  veto — `behavioral_naturalness` is **not** a corruption axis. FP-guard:
+  specificity is not the defect; never floor a clean, plausible structural
+  action below 0.6 (that hard-caps the whole book at YELLOW).
 
 Recommendation: shippable ONLY once `qc-status <bookId>` is all-PASS (the
 GREEN gate above applies to YELLOW too — gate tallies alone never ship);

@@ -87,6 +87,7 @@ test("qc-verdict: mechanical reduction — corruption veto, floors, partial-read
     { axis: "card_learning_value", score: 0.9 }, { axis: "example_coherence", score: 0.95 },
     { axis: "prose_coherence", score: 0.9 }, { axis: "memorable_line_quality", score: 0.85 },
     { axis: "plan_actionability", score: 0.9 }, { axis: "factual_accuracy", score: 0.95 },
+    { axis: "behavioral_naturalness", score: 0.9 },
   ]);
   const green = runCli(["qc-verdict", "zz-t", "--scores", clean]);
   assert.equal(green.status, 0, green.out);
