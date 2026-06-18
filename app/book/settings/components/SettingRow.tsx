@@ -20,11 +20,11 @@ export function SettingRow({
   return (
     <div
       id={id}
-      className={`flex items-center justify-between gap-4 rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted) ${
+      className={`flex flex-col items-start gap-2 rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted) sm:flex-row sm:items-center sm:justify-between sm:gap-4 ${
         highlighted ? "ring-1 ring-(--cf-accent-border) bg-(--cf-accent-muted)" : ""
       }`}
     >
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 w-full sm:flex-1">
         <p className="text-sm font-medium text-(--cf-text-1)">{label}</p>
         {description && (
           <p className="mt-0.5 text-xs leading-relaxed text-(--cf-text-3)">
@@ -32,7 +32,7 @@ export function SettingRow({
           </p>
         )}
       </div>
-      <div className="shrink-0">{children}</div>
+      <div className="w-full sm:w-auto sm:shrink-0">{children}</div>
     </div>
   );
 }
