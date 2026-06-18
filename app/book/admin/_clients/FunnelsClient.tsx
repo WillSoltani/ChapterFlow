@@ -80,8 +80,15 @@ export function FunnelsClient() {
                 : i > 0
                   ? data.steps[i - 1]
                   : null;
+              // Only meaningful when the base is a genuine superset of this step (positive,
+              // and this step never exceeds it). Head steps are independent filters, not a
+              // monotonic cohort, so a later step CAN exceed its visual predecessor — in that
+              // case the ratio is nonsense and we render "—". (Mirrors GrowthClient's guard;
+              // the tail steps already supply a true-superset `prevKey`, so they pass cleanly.)
               const conversionFromPrev =
-                base && base.count > 0 ? Math.round((s.count / base.count) * 100) : 100;
+                base && base.count > 0 && s.count <= base.count
+                  ? Math.round((s.count / base.count) * 100)
+                  : null;
               return (
                 <div key={s.key}>
                   <div className="mb-1 flex flex-col gap-0.5 text-[12px] sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
@@ -91,7 +98,10 @@ export function FunnelsClient() {
                     <span className="shrink-0 whitespace-nowrap tabular-nums text-(--cf-text-3)">
                       {s.count.toLocaleString()}{" "}
                       <span className="text-(--cf-text-soft)">
-                        ({s.pct}% of total · {conversionFromPrev}% {s.convLabel ?? "from prev"})
+                        ({s.pct}% of total
+                        {conversionFromPrev !== null
+                          ? ` · ${conversionFromPrev}% ${s.convLabel ?? "from prev"}`
+                          : ""})
                       </span>
                     </span>
                   </div>
