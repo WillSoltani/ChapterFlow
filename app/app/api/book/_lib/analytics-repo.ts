@@ -243,6 +243,31 @@ export async function analyticsTrackCommitment(
 }
 
 /**
+ * Reader behavior-loop funnel events (the §7 short-path / progressive-disclosure
+ * funnel). REQUIRED product events, written directly to the analytics table like
+ * quiz_attempt — NOT gated on the opt-in `analyticsParticipation` beacon consent,
+ * so the funnel is unbiased. The client `track()` shim is a no-op, so these come
+ * through a dedicated authenticated route (me/analytics/track). Fire-and-forget.
+ */
+export type ReaderFunnelEvent =
+  | "example_expanded"
+  | "depth_changed"
+  | "quiz_full_bank_opened"
+  | "commitment_reached"
+  | "next_chapter_started"
+  | "time_to_first_action";
+
+export async function analyticsTrackReaderFunnel(
+  table: string,
+  userId: string,
+  eventType: ReaderFunnelEvent,
+  payload: { bookId: string; chapterNumber?: number } & Record<string, unknown>
+): Promise<void> {
+  const now = nowIso();
+  await putEvent(table, userId, eventType, now, "FREE", payload);
+}
+
+/**
  * Set / refresh user-level location and locale fields on the analytics
  * snapshot. Cheap UpdateItem with merge semantics — only writes fields
  * that have non-empty values. Idempotent.

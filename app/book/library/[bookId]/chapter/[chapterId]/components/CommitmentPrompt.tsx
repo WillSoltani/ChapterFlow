@@ -17,6 +17,10 @@ type CommitmentPromptProps = {
     followUpDays: 3 | 7;
   }) => Promise<void>;
   hasActiveCommitment: boolean;
+  /** The follow-up window of the EXISTING active commitment (when hydrated from
+   *  the server), so the "Committed" view shows the real value rather than the
+   *  local default. Undefined until known / for a not-yet-committed chapter. */
+  activeFollowUpDays?: 3 | 7;
 };
 
 export function CommitmentPrompt({
@@ -26,6 +30,7 @@ export function CommitmentPrompt({
   fontScaleClass,
   onCommit,
   hasActiveCommitment,
+  activeFollowUpDays,
 }: CommitmentPromptProps) {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [followUpDays, setFollowUpDays] = useState<3 | 7>(3);
@@ -65,7 +70,7 @@ export function CommitmentPrompt({
           </p>
         </div>
         <p className={`mt-2 text-(--cr-text-secondary) leading-relaxed ${fontScaleClass}`}>
-          Check back on your home page in {followUpDays} days to reflect on how it went.
+          Check back on your home page in {activeFollowUpDays ?? followUpDays} days to reflect on how it went.
         </p>
       </section>
     );
