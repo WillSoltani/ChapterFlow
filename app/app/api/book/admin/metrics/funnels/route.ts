@@ -77,7 +77,12 @@ export async function GET(req: Request) {
       for (const events of eventChecks) {
         // crude: scan event types
         const types = new Set(events.map((e) => String(e.eventType ?? "")));
-        if (types.has("commitment_created") || types.has("commitment_followup")) firstCommitment += 1;
+        // Canonical commitment-funnel event names (analyticsTrackCommitment):
+        // commitment_created | followup_completed | followup_skipped. "first
+        // commitment" = the user saved a plan, so commitment_created is the
+        // sufficient signal. (The old "commitment_followup" clause referenced a
+        // notification type that is never emitted as an analytics event.)
+        if (types.has("commitment_created")) firstCommitment += 1;
         if (types.has("ai_feedback_requested") || types.has("reflection_feedback")) firstAiFeedback += 1;
       }
       // Scale up to estimate full population

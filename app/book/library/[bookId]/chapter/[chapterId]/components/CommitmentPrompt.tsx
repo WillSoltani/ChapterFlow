@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Check, Clock, Target } from "lucide-react";
 
 type IfThenPlan = { plan: string; context?: string };
@@ -32,6 +32,13 @@ export function CommitmentPrompt({
   const [submitting, setSubmitting] = useState(false);
   const [committed, setCommitted] = useState(hasActiveCommitment);
   const [error, setError] = useState<string | null>(null);
+
+  // The committed flag is hydrated asynchronously by the parent (server truth via
+  // useCommitments), so the prop can flip from false→true after mount. Mirror it
+  // into local state so the "Committed" view appears without needing a remount.
+  useEffect(() => {
+    setCommitted(hasActiveCommitment);
+  }, [hasActiveCommitment]);
 
   const handleCommit = useCallback(async () => {
     if (!selectedPlan || submitting) return;

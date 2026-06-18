@@ -582,8 +582,15 @@ function CommitmentFollowUpSection() {
   // status; the date gate ("is it time yet?") is applied once at fetch time
   // (inside the effect, where reading the clock is allowed) rather than during
   // render, so this list never reshuffles on an unrelated re-render.
+  const searchParams = useSearchParams();
   const [due, setDue] = useState<BookUserCommitmentItem[]>([]);
-  const [activeId, setActiveId] = useState<string | null>(null);
+  // Seed the open reflection box from the deep-link (/dashboard?focusCommitment=<id>,
+  // sent by a commitment_followup notification) — read once at mount. If that id
+  // isn't actually due, nothing renders for it (the `due.map` below never matches),
+  // which is the "ignore if not due" behavior; the user can still open any due item.
+  const [activeId, setActiveId] = useState<string | null>(
+    () => searchParams.get("focusCommitment"),
+  );
   const [reflections, setReflections] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [skippingId, setSkippingId] = useState<string | null>(null);
