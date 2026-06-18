@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import TappableCard from "./TappableCard";
 import { useOnboarding, type DailyGoal, type ChapterOrder } from "@/app/onboarding/hooks/useOnboarding";
+import { DAILY_GOAL_TIERS, type DailyGoalTier } from "@/app/book/settings/constants/defaults";
 import {
   staggerContainer,
   staggerItem,
@@ -21,23 +22,40 @@ interface StepPaceProps {
   onNext: () => void;
 }
 
+// Lucide icon per goal tier. The shared DAILY_GOAL_TIERS constant carries no
+// icon (Settings renders an emoji), so the icon is the only piece kept local —
+// it's pure presentation, NOT divergent data. The minute buckets, sub-labels
+// and the single "Most popular" default all come from the shared constant so
+// onboarding and Settings can never drift into "two products" again (P1[G]).
+const TIER_ICONS: Record<DailyGoal, typeof Coffee> = {
+  10: Coffee,
+  20: BookOpen,
+  30: Flame,
+};
+
+// Onboarding's DailyGoal union — and the completion route's VALID_DAILY_GOALS —
+// accept 10/20/30 only, so the shared constant's 5-min "Light" tier is NOT
+// offered here: a 5 would be coerced to 20 by the route, silently re-mapping the
+// user's pick (the exact failure this finding fixes). Adding the 4th tier needs
+// widening DailyGoal + the route's VALID_DAILY_GOALS — handed off, out of scope.
+// We map the shared tiers onto the existing card shape so the render loop below
+// is unchanged; the "Most popular" badge follows the constant's `recommended`.
 const dailyGoalOptions: {
   value: DailyGoal;
   label: string;
   sublabel: string;
   badge?: string;
   Icon: typeof Coffee;
-}[] = [
-  { value: 10, label: "10 min", sublabel: "Light", Icon: Coffee },
-  {
-    value: 20,
-    label: "20 min",
-    sublabel: "Steady",
-    badge: "Most popular",
-    Icon: BookOpen,
-  },
-  { value: 30, label: "30 min", sublabel: "Focused", Icon: Flame },
-];
+}[] = DAILY_GOAL_TIERS.filter(
+  (tier): tier is DailyGoalTier & { value: DailyGoal } =>
+    tier.value === 10 || tier.value === 20 || tier.value === 30,
+).map((tier) => ({
+  value: tier.value,
+  label: tier.minutesLabel,
+  sublabel: tier.name,
+  badge: tier.recommended ? "Most popular" : undefined,
+  Icon: TIER_ICONS[tier.value],
+}));
 
 const chapterOrderOptions: {
   value: ChapterOrder;

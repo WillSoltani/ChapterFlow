@@ -16,12 +16,16 @@ interface UnlockCelebrationProps {
   /** Real day-streak the completion route reported (the server counts today as
    *  the user's first active day). Falls back to 1 only if the route omitted it. */
   currentStreak?: number;
+  /** Cover image paths for the 3 chosen starter books — fanned in as the
+   *  first-win's personal payoff. Empty/omitted renders no fan (graceful). */
+  starterCovers?: string[];
 }
 
 export default function UnlockCelebration({
   quizScore,
   onFinish,
   currentStreak,
+  starterCovers,
 }: UnlockCelebrationProps) {
   const prefersReducedMotion = useReducedMotion();
   const noMotion = !!prefersReducedMotion;
@@ -56,23 +60,28 @@ export default function UnlockCelebration({
   const dayStreak =
     typeof currentStreak === "number" && currentStreak > 0 ? currentStreak : 1;
 
+  // North Star: gold = "the win". The streak and Insight-Points rewards move to
+  // the a11y-safe gold TEXT token (--cf-gold-text — bright gold on dark,
+  // amber-700 on light, both AA on their backgrounds; never the raw bright-gold
+  // literal, which fails contrast on white). Quiz score stays cyan: it's "the
+  // work", not the reward.
   const stats = [
     {
       icon: Flame,
       value: String(dayStreak),
       label: "Day streak",
-      iconColor: "var(--accent-amber)",
-      valueColor: "var(--accent-amber)",
-      glowBg: "color-mix(in srgb, var(--accent-amber) 12%, transparent)",
+      iconColor: "var(--cf-gold-text)",
+      valueColor: "var(--cf-gold-text)",
+      glowBg: "var(--cf-gold-soft)",
       delay: 1.0,
     },
     {
       icon: Star,
       value: String(totalEarned),
       label: "Insight Points",
-      iconColor: "var(--accent-amber)",
-      valueColor: "var(--accent-amber)",
-      glowBg: "color-mix(in srgb, var(--accent-amber) 12%, transparent)",
+      iconColor: "var(--cf-gold-text)",
+      valueColor: "var(--cf-gold-text)",
+      glowBg: "var(--cf-gold-soft)",
       delay: 1.15,
     },
     {
@@ -99,10 +108,15 @@ export default function UnlockCelebration({
         minHeight: 520,
       }}
     >
-      {/* Shared confetti — fires on mount; theme-aware palette stays visible on
-          the default light theme (the old CanvasConfetti's screen-blended white
-          particles vanished there). */}
-      <Confetti particleCount={120} duration={4500} origin="center" />
+      {/* Shared confetti — fires on mount. Gold-tilted palette so the first-win
+          burst reads as "the win" (NS); theme-aware (tokens resolve at fire
+          time) and visible on the default light theme. */}
+      <Confetti
+        particleCount={120}
+        duration={4500}
+        origin="center"
+        colors={["--accent-gold", "color-mix(in srgb, var(--accent-gold) 55%, white)"]}
+      />
 
       {/* Ambient glow — instant visual anchor before checkmark draws */}
       <motion.div
@@ -125,6 +139,53 @@ export default function UnlockCelebration({
       <div style={{ marginBottom: 24 }}>
         <AnimatedCheckmark />
       </div>
+
+      {/* Chosen-covers fan-in — the personal first-win payoff (NS): the 3 books
+          the user just picked fan in. Renders only if a shelf was chosen;
+          decorative (aria-hidden) and reduced-motion renders the final fan
+          instantly. */}
+      {starterCovers && starterCovers.length > 0 && (
+        <div
+          aria-hidden="true"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            height: 78,
+            marginBottom: 20,
+          }}
+        >
+          {starterCovers.slice(0, 3).map((src, i, arr) => {
+            const mid = (arr.length - 1) / 2;
+            const rot = (i - mid) * 9;
+            return (
+              <motion.img
+                key={`${src}-${i}`}
+                src={src}
+                alt=""
+                draggable={false}
+                initial={noMotion ? false : { opacity: 0, y: 16, rotate: 0, scale: 0.85 }}
+                animate={{ opacity: 1, y: 0, rotate: rot, scale: 1 }}
+                transition={
+                  noMotion
+                    ? { duration: 0 }
+                    : { delay: 0.45 + i * 0.12, type: "spring", stiffness: 300, damping: 22 }
+                }
+                style={{
+                  width: 46,
+                  height: 66,
+                  objectFit: "cover",
+                  borderRadius: 6,
+                  marginInline: -5,
+                  border: "2px solid var(--cf-surface)",
+                  boxShadow: "var(--cf-shadow-md)",
+                  transformOrigin: "bottom center",
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
 
       {/* Heading — 0.7s */}
       <motion.h2
@@ -151,12 +212,42 @@ export default function UnlockCelebration({
           fontFamily: "var(--font-body, sans-serif)",
           fontSize: 16,
           color: "var(--cf-text-3)",
-          margin: "0 0 32px",
+          margin: "0 0 18px",
           lineHeight: 1.5,
         }}
       >
         You just finished your first ChapterFlow session.
       </motion.p>
+
+      {/* First-win streak pill — gold "the win" framing (NS). Gold TEXT token +
+          gold-soft fill + gold border (a11y-safe in both themes). */}
+      <motion.div
+        initial={noMotion ? false : { opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: noMotion ? 0 : 0.95, duration: 0.35, ease: "easeOut" }}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "7px 16px",
+          borderRadius: 999,
+          background: "var(--cf-gold-soft)",
+          border: "1px solid var(--cf-gold-border)",
+          margin: "0 0 28px",
+        }}
+      >
+        <Flame size={16} strokeWidth={2.25} style={{ color: "var(--cf-gold-text)" }} />
+        <span
+          style={{
+            fontFamily: "var(--font-body, sans-serif)",
+            fontSize: 14,
+            fontWeight: 600,
+            color: "var(--cf-gold-text)",
+          }}
+        >
+          Day {dayStreak} — your streak starts now
+        </span>
+      </motion.div>
 
       {/* Stats row — staggered at 1.0s, 1.15s, 1.3s */}
       <div
@@ -254,7 +345,7 @@ export default function UnlockCelebration({
           margin: "12px 0 0",
         }}
       >
-        +{setupPoints} setup · +{streakBonusPoints} first-day streak
+        +{setupPoints} welcome bonus · +{streakBonusPoints} first-day streak
       </motion.p>
 
       {/* CTA section — appears at 1.7s */}
