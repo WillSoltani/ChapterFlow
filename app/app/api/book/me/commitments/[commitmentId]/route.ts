@@ -16,6 +16,7 @@ import {
 import { analyticsTrackCommitment } from "@/app/app/api/book/_lib/analytics-repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import type { CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
 
@@ -45,6 +46,18 @@ export async function PATCH(req: Request, ctx: Params) {
         return bookErr(req, 400, "invalid_reflection", "Reflection must be 10-1000 characters");
       }
 
+      // Optional structured self-report ("did it help?"). Reject any other value so
+      // a malformed client can't write garbage; absent is allowed (back-compat with
+      // clients that only send the reflection).
+      let outcome: CommitmentOutcome | undefined;
+      if (body.outcome !== undefined && body.outcome !== null) {
+        if (body.outcome === "helped" || body.outcome === "partly" || body.outcome === "didnt") {
+          outcome = body.outcome;
+        } else {
+          return bookErr(req, 400, "invalid_outcome", "outcome must be 'helped', 'partly', or 'didnt'");
+        }
+      }
+
       const ipAmount = INSIGHT_POINTS_AMOUNTS.commitmentFollowThrough;
 
       let updated;
@@ -56,6 +69,7 @@ export async function PATCH(req: Request, ctx: Params) {
           "completed",
           reflection,
           ipAmount,
+          outcome,
         );
       } catch (err) {
         if (err instanceof ConditionalCheckFailedException) {
@@ -80,6 +94,7 @@ export async function PATCH(req: Request, ctx: Params) {
             bookId: existing.bookId,
             chapterNumber: existing.chapterNumber,
             followUpDays: existing.followUpDays,
+            helped: outcome,
           });
         })
         .catch(() => {});

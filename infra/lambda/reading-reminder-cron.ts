@@ -42,6 +42,7 @@ import { SESv2Client } from "@aws-sdk/client-sesv2";
 import { processStreakAtRisk } from "./lib/streak-at-risk";
 import { processWeeklyDigest } from "./lib/weekly-digest";
 import { processWelcomeBackNudge } from "./lib/welcome-back-nudge";
+import { processCommitmentFollowup } from "./lib/commitment-followup";
 import { readingReminderEmail } from "./lib/email-templates/reading-reminder";
 import {
   resolveEmailConfig,
@@ -301,16 +302,28 @@ export async function handler() {
   );
 
   // ── Dispatch habit nudge sub-handlers ──────────────────────────────────
-  const [streakResult, digestResult, welcomeResult] = await Promise.allSettled([
-    processStreakAtRisk(ddb, ses, tableName, emailConfig, allUserItems as never),
-    processWeeklyDigest(ddb, ses, tableName, emailConfig, allUserItems as never),
-    processWelcomeBackNudge(ddb, ses, tableName, emailConfig, allUserItems as never),
-  ]);
+  // Commitment follow-up ships dark behind a kill-switch (default off) so it can
+  // be enabled independently of a code deploy. Convention matches soft-decay.ts.
+  const commitmentFollowupEnabled =
+    process.env.BOOK_ENABLE_COMMITMENT_FOLLOWUP === "true" ||
+    process.env.BOOK_ENABLE_COMMITMENT_FOLLOWUP === "1";
+
+  const [streakResult, digestResult, welcomeResult, commitmentResult] =
+    await Promise.allSettled([
+      processStreakAtRisk(ddb, ses, tableName, emailConfig, allUserItems as never),
+      processWeeklyDigest(ddb, ses, tableName, emailConfig, allUserItems as never),
+      processWelcomeBackNudge(ddb, ses, tableName, emailConfig, allUserItems as never),
+      commitmentFollowupEnabled
+        ? processCommitmentFollowup(ddb, ses, tableName, emailConfig, allUserItems as never)
+        : Promise.resolve("disabled" as const),
+    ]);
 
   console.log("[reading-reminder-cron] Nudge results:", {
     streakAtRisk: streakResult.status === "fulfilled" ? streakResult.value : "failed",
     weeklyDigest: digestResult.status === "fulfilled" ? digestResult.value : "failed",
     welcomeBack: welcomeResult.status === "fulfilled" ? welcomeResult.value : "failed",
+    commitmentFollowup:
+      commitmentResult.status === "fulfilled" ? commitmentResult.value : "failed",
   });
 
   return { sent, skipped, errors };

@@ -901,6 +901,11 @@ export type BookUserDepthModelItem = {
 
 export type CommitmentStatus = "active" | "completed" | "skipped" | "expired";
 
+// Structured self-report captured at follow-through time, alongside the free-text
+// reflection — so "% of commitments that helped" is measurable (it is not derivable
+// from free text). Set only on the `complete` action.
+export type CommitmentOutcome = "helped" | "partly" | "didnt";
+
 export type BookUserCommitmentItem = {
   userId: string;
   commitmentId: string;
@@ -913,6 +918,7 @@ export type BookUserCommitmentItem = {
   status: CommitmentStatus;
   followThroughReflection: string | null;
   followThroughSubmittedAt: string | null;
+  outcome?: CommitmentOutcome | null;
   ipAwarded: number;
   notificationSentAt: string | null;
   createdAt: string;

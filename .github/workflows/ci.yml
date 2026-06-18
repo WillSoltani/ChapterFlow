@@ -56,6 +56,34 @@ jobs:
       - name: Build OpenNext
         run: npx open-next build
 
+  # ── Lambda handler unit tests ─────────────────────────────────────────────
+  # infra/lambda has its own package.json (aws-sdk-client-mock + tsx) and is NOT
+  # covered by the app's `npm run test` glob (app/ + lib/ only). Run it here so
+  # the cron sub-handlers (e.g. the commitment follow-up exactly-once logic) are
+  # regression-gated on every PR — the deploy workflow only bundles them.
+  lambda-checks:
+    name: Lambda Handler Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: infra/package-lock.json
+
+      - name: Install infra dependencies
+        working-directory: infra
+        run: npm ci
+
+      - name: Lambda unit tests
+        working-directory: infra
+        run: npm test
+
   # ── Smoke gate (DEV BUILD ONLY): drive the app in a browser (Playwright) ──
   # SCOPE WARNING (M51): this job runs the app via `npm run dev` — the Turbopack
   # DEV server with DEV_AUTH_BYPASS=1 and no data plane. It verifies that the

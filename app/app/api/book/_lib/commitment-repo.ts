@@ -8,7 +8,7 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, commitmentSk, nowIso } from "./keys";
-import type { BookUserCommitmentItem, CommitmentStatus } from "./types";
+import type { BookUserCommitmentItem, CommitmentStatus, CommitmentOutcome } from "./types";
 
 const EXPIRY_GRACE_MS = 7 * 86400000;
 
@@ -133,6 +133,7 @@ export async function updateCommitmentStatus(
   status: CommitmentStatus,
   reflection?: string,
   ipAwarded?: number,
+  outcome?: CommitmentOutcome,
 ): Promise<BookUserCommitmentItem | null> {
   const now = nowIso();
 
@@ -152,6 +153,15 @@ export async function updateCommitmentStatus(
   if (ipAwarded !== undefined) {
     updateParts.push("ipAwarded = :ipAwarded");
     values[":ipAwarded"] = ipAwarded;
+  }
+
+  // `#outcome` is a defensive alias (not strictly required — OUTCOME isn't a
+  // DynamoDB reserved word). Gated so skip/expire paths (which never pass it)
+  // leave the field untouched and add no unused alias.
+  if (outcome !== undefined) {
+    updateParts.push("#outcome = :outcome");
+    names["#outcome"] = "outcome";
+    values[":outcome"] = outcome;
   }
 
   const result = await ddbDoc.send(
