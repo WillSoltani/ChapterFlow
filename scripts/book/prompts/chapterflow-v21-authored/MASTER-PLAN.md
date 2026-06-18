@@ -153,7 +153,7 @@ the day a key is funded — zero rework.
 
 ### Pillar 4 — Semantic tier + the publishable bar (catch the coherent-but-wrong residue)
 - **One rubric** (`publishableBar.ts`), two interchangeable readers (the Claude QC
-  session today; an automated judge when a key exists) scoring the same 8 axes.
+  session today; an automated judge when a key exists) scoring the same 9 axes.
 - **Two-tier verdict:** **CORRUPTION = RED veto** (one confident wrong key red-gates
   even at overall 90 — the average can never launder it); **GENERATED_DRAFT = YELLOW**
   (key-correct but templated distractors / recall cards / planning-note examples — the
@@ -162,7 +162,7 @@ the day a key is funded — zero rework.
 - **Automated judge** generalizes the existing `quizKeyJudge.ts` to 5 axes (distractor,
   card, example, prose, fact), fail-open, content-hash cached.
 - **Red-team corrections:**
-  - **Targeted, not blanket, human read.** A per-chapter 8-axis + by-hand hidden-key
+  - **Targeted, not blanket, human read.** A per-chapter 9-axis + by-hand hidden-key
     read across 160 chapters will be sampled (re-opening the hole). Make the
     deterministic battery the **100% coverage layer**; require the expensive hidden-key
     read **only on questions Pillar 3 flags** (format-identifiable / echo / position

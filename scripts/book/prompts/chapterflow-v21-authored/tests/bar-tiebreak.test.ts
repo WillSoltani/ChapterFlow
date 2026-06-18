@@ -11,17 +11,16 @@ import assert from "node:assert/strict";
 import { rmSync } from "fs";
 
 import { test } from "./harness.js";
-import { combineBarAxes, computeVerdict, type AxisScore, type AxisId } from "../src/critics/semantic/publishableBar.js";
+import { combineBarAxes, computeVerdict, AXIS_WEIGHTS, type AxisScore, type AxisId } from "../src/critics/semantic/publishableBar.js";
 import { writeBarReadArtifact, loadBarReadArtifact, loadAllBarReads } from "../src/qc/orchestrator/artifacts.js";
 import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 import type { ValidatedBarReadSubmission } from "../src/qc/orchestrator/schemas.js";
 
-const ALL_AXES: AxisId[] = [
-  "quiz_key_correctness", "example_coherence", "prose_coherence", "quiz_distractor_quality",
-  "card_learning_value", "plan_actionability", "factual_accuracy", "memorable_line_quality",
-];
+// Derive from the single source of truth so a new axis (Plan A added the 9th,
+// behavioral_naturalness) is covered automatically and this never drifts again.
+const ALL_AXES: AxisId[] = Object.keys(AXIS_WEIGHTS) as AxisId[];
 
-/** A full 8-axis read at a uniform score, then per-axis overrides. */
+/** A full bar read across EVERY axis at a uniform score, then per-axis overrides. */
 function read(base: number, overrides: Partial<Record<AxisId, Partial<AxisScore>>> = {}): AxisScore[] {
   return ALL_AXES.map((axis) => ({
     axis,
@@ -84,10 +83,12 @@ test("a cited CORRUPTION on ANY read SURVIVES the combine (RED veto never median
 test("variant bar reads are stored alongside the primary (no overwrite) and loadAllBarReads gathers them", () => {
   const BOOK = "zz-fixture-tiebreak";
   const ROUND = "r-tiebreak";
-  const NON_KEY: AxisId[] = ["example_coherence", "prose_coherence", "quiz_distractor_quality", "card_learning_value", "plan_actionability", "factual_accuracy", "memorable_line_quality"];
+  // Every bar axis except the injected key axis (derived from the source of truth so a
+  // new axis is covered automatically — see ALL_AXES above).
+  const NON_KEY: AxisId[] = ALL_AXES.filter((a) => a !== "quiz_key_correctness");
   // Realistic flap shape: every axis strong (0.9) except quiz_distractor_quality, which the
   // three reads score 0.58 / 0.62 / 0.61 (the the-daily-stoic ch3 case). v2 reads carry the
-  // 7 non-key axes; the key axis is injected (score 1) for the verdict, as the round does.
+  // non-key axes; the key axis is injected (score 1) for the verdict, as the round does.
   const KEY: AxisScore = { axis: "quiz_key_correctness", score: 1, tier: "PUBLISHABLE", hits: [] };
   const sub = (reviewer: string, qdq: number): ValidatedBarReadSubmission => {
     const axes: AxisScore[] = NON_KEY.map((axis) => ({ axis, score: axis === "quiz_distractor_quality" ? qdq : 0.9, tier: "PUBLISHABLE", hits: [] }));

@@ -196,7 +196,7 @@ means (AS1–AS13, BP family, C/E/F, SC9, etc.), read
 
 This is the semantic tier. With no model API configured, **you are it** — you score
 each read chapter against the same rubric the future automated judge will use
-(`src/critics/semantic/publishableBar.ts`: same 8 axes, same hard rules, same
+(`src/critics/semantic/publishableBar.ts`: same 9 axes, same hard rules, same
 `computeVerdict` reducer). The bar is **"a finished, publishable chapter," not "not
 corrupt."** Two failure tiers:
 
@@ -216,18 +216,19 @@ verification + two bar-read lenses per chapter + a cross-chapter sweep + adjudic
 attesting as `harness:<id>`). Your manual deep-reads then target ch01, one middle, one
 late, PLUS anything the gates, `author-check`, or the qc-run sweep flagged.
 
-**Score these 8 axes (0–1), citing a verbatim quote for any hit** (cite-or-it-didn't-happen).
+**Score these 9 axes (0–1), citing a verbatim quote for any hit** (cite-or-it-didn't-happen).
 Full rubric text is `AXIS_RUBRIC` in publishableBar.ts; the essentials:
 
 | Axis (weight) | What you check | A hit is |
 |---|---|---|
-| quiz_key_correctness (18) | the **hidden-key protocol** below | CORRUPTION |
-| example_coherence (16) | a real scene, named human acting — not a concept-as-actor / fixed-time header / planning note | CORRUPTION/DRAFT |
-| prose_coherence (14) | breakdown teaches; no clause-loop, no "X means The X is" seam, no mid-sentence end | CORRUPTION |
-| quiz_distractor_quality (14) | distractors are real wrong answers, not the key in disguise / format-findable | DRAFT |
-| card_learning_value (12) | front is a question; back answers it & tests understanding, not recall; not pasted from breakdown | DRAFT/CORRUPTION |
-| plan_actionability (12) | context = a situation; plan = an imperative using the chapter's named tool | DRAFT |
-| factual_accuracy (8) | named-framework enumerations complete & correct vs source | CORRUPTION |
+| quiz_key_correctness (17) | the **hidden-key protocol** below | CORRUPTION |
+| example_coherence (15) | a real scene, named human acting — not a concept-as-actor / fixed-time header / planning note | CORRUPTION/DRAFT |
+| prose_coherence (13) | breakdown teaches; no clause-loop, no "X means The X is" seam, no mid-sentence end | CORRUPTION |
+| quiz_distractor_quality (13) | distractors are real wrong answers, not the key in disguise / format-findable | DRAFT |
+| card_learning_value (11) | front is a question; back answers it & tests understanding, not recall; not pasted from breakdown | DRAFT/CORRUPTION |
+| plan_actionability (11) | context = a situation; plan = an imperative using the chapter's named tool | DRAFT |
+| factual_accuracy (7) | named-framework enumerations complete & correct vs source | CORRUPTION |
+| behavioral_naturalness (7) | the prescribed micro-actions (tryThisNow / plans / 24h challenge) are functional things a real person would DO — not performative theater (write TARGET on a wall), contrived rituals (move a pen, turn around), 3+-prop staging, or shame/coercion. Specificity is NOT the defect; behavioral implausibility is. Clean structural action ≥0.85 — NEVER floor a plausible action <0.6. | DRAFT |
 | memorable_line_quality (6) | portable aphorisms, not 20-word explanations | DRAFT |
 
 **Example-slate coherence (the 4HWW miss — read the 6 scenes TOGETHER, not one at a
@@ -322,7 +323,7 @@ Never compute the verdict yourself. Score every axis 0..1 per the rubric,
 then run:
 
 ```
-npx tsx src/cli.ts qc-verdict <chapterId> --scores '[{"axis":"quiz_key_correctness","score":1,"tier":"PUBLISHABLE","hits":[]}, ...all 8 axes...]'
+npx tsx src/cli.ts qc-verdict <chapterId> --scores '[{"axis":"quiz_key_correctness","score":1,"tier":"PUBLISHABLE","hits":[]}, ...all 9 axes...]'
 ```
 
 It applies the REAL computeVerdict — the corruption veto and the 85/0.6

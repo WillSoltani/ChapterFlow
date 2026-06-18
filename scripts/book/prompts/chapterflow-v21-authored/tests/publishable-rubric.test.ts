@@ -29,6 +29,21 @@ test("writer rubric surfaces every bar axis the reviewer scores (no drift)", () 
   }
 });
 
+test("AXIS_WEIGHTS pins the axis count (9) and sums to EXACTLY 100", () => {
+  // Pin the count so a missing OR extra axis fails CI (Plan A added the 9th,
+  // behavioral_naturalness). The sum MUST stay 100: PUBLISHABLE_FLOOR=85 and
+  // computeVerdict assume a 0–100 scale, so 99/101 silently breaks the floor.
+  assert.strictEqual(Object.keys(AXIS_WEIGHTS).length, 9, "expected exactly 9 bar axes");
+  const sum = Object.values(AXIS_WEIGHTS).reduce((a, b) => a + b, 0);
+  assert.strictEqual(sum, 100, `AXIS_WEIGHTS must sum to exactly 100, got ${sum}`);
+  // behavioral_naturalness is a quality axis, NOT a corruption veto.
+  assert.ok(AXIS_WEIGHTS.behavioral_naturalness >= 1, "behavioral_naturalness must carry a weight");
+  assert.ok(!CORRUPTION_AXES.has("behavioral_naturalness"), "behavioral_naturalness must NOT be a corruption axis");
+  // Its rubric encodes the FP-guard band so a clean structural action never false-floors.
+  assert.match(AXIS_RUBRIC.behavioral_naturalness, />=\s*0\.85/, "rubric must state the >=0.85 clean band");
+  assert.match(AXIS_RUBRIC.behavioral_naturalness, /NEVER score a clean/i, "rubric must state the never-floor-clean FP-guard");
+});
+
 test("writer rubric states the pass thresholds and corruption axes", () => {
   const out = formatWriterRubric();
   assert.ok(out.includes(String(PUBLISHABLE_FLOOR)), "must state the overall floor (85)");

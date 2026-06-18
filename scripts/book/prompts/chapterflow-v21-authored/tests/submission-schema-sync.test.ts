@@ -57,7 +57,7 @@ const ROUND = "r-schema";
 function validFixtures(): Record<SubmissionRole, any> {
   const env = { bookId: BOOK, roundId: ROUND };
   const finding = { unitId: "quiz.questions[1]", repairClass: "quiz_distractor_quality", severity: "major", quote: "q", problem: "p", expectedFix: "f" };
-  const nonKeyAxes = ["example_coherence", "prose_coherence", "quiz_distractor_quality", "card_learning_value", "plan_actionability", "factual_accuracy", "memorable_line_quality"];
+  const nonKeyAxes = ["example_coherence", "prose_coherence", "quiz_distractor_quality", "card_learning_value", "plan_actionability", "factual_accuracy", "behavioral_naturalness", "memorable_line_quality"];
   return {
     sweep: { schemaVersion: "qc-sweep-submission-v1", ...env, role: "sweep", reviewer: "codex-qc:r:sweep", verdict: "PASS", checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"], findings: [] },
     keyA: { schemaVersion: "qc-key-derive-v2", ...env, role: "keyA", reviewer: "codex-qc:r:keyA", chapters: [{ chapterNumber: 1, packHash: "h", answers: [{ questionIndex: 0, choiceIndex: 1, confidence: "high", reason: "Derived from the source fact that the chapter corrects.", sourceFactIds: ["ch01.fact.1"] }] }] },
