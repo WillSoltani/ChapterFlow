@@ -11,7 +11,6 @@ interface CompactHeaderProps {
   dailyProgress: number;
   insightPoints: number;
   subtitle: string;
-  isNewUser?: boolean;
 }
 
 function getTimeOfDay() {
@@ -27,9 +26,12 @@ export function CompactHeader({
   dailyProgress,
   insightPoints,
   subtitle,
-  isNewUser = false,
 }: CompactHeaderProps) {
   const prefersReducedMotion = useReducedMotion();
+  // Show the rewards cluster whenever the user actually HAS rewards — not gated
+  // on "new user". A just-onboarded reader has a day-1 streak + welcome IP, so
+  // the header should confirm the celebration, not contradict it.
+  const hasRewards = insightPoints > 0 || streakCount > 0;
 
   return (
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -79,10 +81,10 @@ export function CompactHeader({
         }
       >
         <Link href="/book/progress" className="inline-flex">
-          <StreakBadge count={streakCount} isNewUser={isNewUser} />
+          <StreakBadge count={streakCount} />
         </Link>
 
-        {!isNewUser && (
+        {hasRewards && (
           <>
             <Link href="/book/progress" className="inline-flex">
               <DailyGoalRing

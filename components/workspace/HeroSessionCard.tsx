@@ -112,6 +112,18 @@ function getCTAText(userState: UserState, book: CurrentBook | null): string {
   }
 }
 
+/**
+ * Append `?from=dashboard` to in-app chapter-reader hrefs so the reader's
+ * context-aware Back (ChapterHeader, batch 04) returns to /dashboard. Only
+ * touches `/book/library/{id}/chapter/{n}` — leaves /pricing and the
+ * /book/library browse target unchanged.
+ */
+function withDashboardReturn(href: string): string {
+  return /^\/book\/library\/[^/]+\/chapter\/\d+$/.test(href)
+    ? `${href}?from=dashboard`
+    : href;
+}
+
 function getHeroTitle(
   userState: UserState,
   book: CurrentBook | null,
@@ -163,6 +175,17 @@ export function HeroSessionCard({
   const badge = getStatusBadge(userState);
   const ctaText = getCTAText(userState, currentBook);
   const ctaHref = getCTAHref(userState, currentBook);
+  // Bridge the onboarding sample loop straight into the first REAL chapter: a
+  // new user with a personalized starter shelf gets a primary CTA that deep-links
+  // into chapter 1 of their top pick instead of bouncing back to the library.
+  const firstStarter = starterShelfBooks.length > 0 ? starterShelfBooks[0] : null;
+  const bridgeToFirstChapter = userState === "new_user" && firstStarter !== null;
+  const ctaHrefFinal = bridgeToFirstChapter
+    ? `/book/library/${firstStarter!.id}/chapter/1?from=dashboard`
+    : withDashboardReturn(ctaHref);
+  const ctaTextFinal = bridgeToFirstChapter
+    ? `Start Chapter 1 of ${firstStarter!.title}`
+    : ctaText;
   const title = hasPersonalizedShelf
     ? "Your shelf is ready"
     : getHeroTitle(userState, currentBook, firstName);
@@ -184,14 +207,16 @@ export function HeroSessionCard({
     <motion.div
       className="group rounded-2xl"
       style={{
-        background: "var(--cf-surface-muted)",
+        // Raised, primary surface ("Quiet Library, Earned Spark"): the
+        // continue-reading hero sits on --cf-surface-strong + --cf-shadow-lg so
+        // elevation unmistakably MEANS primary, while the shelves below stay on
+        // plain --cf-surface. A faint single cyan brand glow keeps it calm, not
+        // heavy.
+        background: "var(--cf-surface-strong)",
         backdropFilter: "blur(24px) saturate(140%)",
         WebkitBackdropFilter: "blur(24px) saturate(140%)",
         border: "1px solid var(--cf-border-strong)",
-        // Single cyan brand glow (theme-aware) + neutral elevation. Was a
-        // hardcoded violet glow that fought the cyan accent and stayed dark in
-        // light mode.
-        boxShadow: "0 0 80px -24px var(--cf-accent-shadow), var(--shadow-hero)",
+        boxShadow: "0 0 80px -28px var(--cf-accent-shadow), var(--cf-shadow-lg)",
       }}
       initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
       animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -201,12 +226,14 @@ export function HeroSessionCard({
           : { duration: 0.6, delay: 0.1, ease }
       }
     >
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col md:flex-row">
         {/* LEFT: Book info + CTA */}
         <div className="flex-1 p-6 md:p-8">
-          {/* Status badge */}
+          {/* Status badge — canonical .cf-pill shape primitive; the per-state
+              accent (cyan/gold/success) stays via the inline color overrides so
+              the state semantics are unchanged. */}
           <div
-            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1"
+            className="cf-pill px-3 py-1"
             style={{
               background: `${badge.color}10`,
               border: `1px solid ${badge.color}25`,
@@ -302,50 +329,50 @@ export function HeroSessionCard({
 
           {/* Learning loop (mobile) */}
           {showLoopIndicator && currentBook && (
-            <div className="mt-4 lg:hidden">
+            <div className="mt-4 md:hidden">
               <LearningLoopIndicator
                 currentStep={currentBook.currentLoopStep}
               />
             </div>
           )}
 
-          {/* CTA Button */}
+          {/* CTA Button — single canonical primary (.cf-btn-primary) so the hero
+              CTA is identical to every other primary button (gradient, hover,
+              active press, focus ring). Hover/press come from the shared CSS, not
+              a one-off framer scale, so it converges instead of diverging. */}
           <div className="mt-6">
-            <Link href={ctaHref}>
-              <motion.span
-                className="cta-shine inline-flex cursor-pointer items-center rounded-xl border border-transparent forced-colors:border-[ButtonText] px-6 sm:px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
-                style={{
-                  background: "linear-gradient(135deg, var(--cf-accent), var(--cf-accent-strong))",
-                  boxShadow: "0 8px 24px var(--cf-accent-shadow), 0 2px 6px var(--cf-accent-shadow)",
-                }}
-                whileHover={
-                  prefersReducedMotion ? undefined : { scale: 1.02 }
-                }
-                whileTap={
-                  prefersReducedMotion ? undefined : { scale: 0.97 }
-                }
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            <Link href={ctaHrefFinal}>
+              <span
+                className="cta-shine cf-btn cf-btn-primary cursor-pointer px-6 py-3.5 text-base sm:px-8 forced-colors:border-[ButtonText]"
                 role="button"
                 aria-label={
                   currentBook
                     ? `Continue reading chapter ${currentBook.currentChapter} of ${currentBook.title}`
-                    : ctaText
+                    : ctaTextFinal
                 }
               >
                 <span className="flex items-center gap-2.5 whitespace-nowrap">
-                  {ctaText}
+                  {ctaTextFinal}
                   <span className="cta-arrow inline-block transition-transform duration-200">
                     →
                   </span>
                 </span>
-              </motion.span>
+              </span>
             </Link>
+            {bridgeToFirstChapter && (
+              <Link
+                href="/book/library"
+                className="mt-3 inline-block rounded text-sm font-medium text-(--cf-accent) underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+              >
+                Browse library
+              </Link>
+            )}
           </div>
         </div>
 
         {/* RIGHT: Book cover + loop indicator (desktop only) */}
         {showBookCover && currentBook && (
-          <div className="hidden items-center justify-center p-8 lg:flex">
+          <div className="hidden items-center justify-center p-8 md:flex">
             <div className="flex flex-col items-center gap-5">
               {/* Book cover with ambient glow */}
               <div className="relative">
@@ -434,7 +461,7 @@ export function HeroSessionCard({
 
         {/* New user: starter shelf or decorative books */}
         {userState === "new_user" && (
-          <div className="hidden items-center justify-center p-8 lg:flex">
+          <div className="hidden items-center justify-center p-8 md:flex">
             <div className="flex gap-3">
               {(hasPersonalizedShelf
                 ? starterShelfBooks.slice(0, 3).map((book, i) => ({

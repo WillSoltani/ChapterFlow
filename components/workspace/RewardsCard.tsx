@@ -66,6 +66,13 @@ export function RewardsCard({
         </span>
       </div>
 
+      {/* Teach IP once, where it first appears, so it isn't a currency used
+          before it's defined. Wording matches the cross-batch one-liner shared
+          with the Rewards subhead (17) and FlowPointsIndicator (08). */}
+      <p className="mt-1.5 text-xs leading-snug" style={{ color: "var(--cf-text-soft)" }}>
+        Earned when you pass a quiz or finish a book. Spend them on bonus books.
+      </p>
+
       {/* Progress to next reward */}
       <div className="mt-3">
         <div

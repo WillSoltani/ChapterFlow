@@ -2,11 +2,13 @@
 
 interface StreakBadgeProps {
   count: number;
-  isNewUser?: boolean;
 }
 
-export function StreakBadge({ count, isNewUser = false }: StreakBadgeProps) {
-  if (isNewUser || count === 0) {
+export function StreakBadge({ count }: StreakBadgeProps) {
+  // Show the earned streak whenever count > 0 — even for a brand-new user whose
+  // day-1 streak (1) was just granted at onboarding. Conflating "new user" with
+  // "no streak" hid the just-awarded reward one screen after the celebration.
+  if (count === 0) {
     return (
       <div className="flex items-center gap-1.5">
         <span className="text-sm" style={{ color: "var(--cf-text-soft)" }}>

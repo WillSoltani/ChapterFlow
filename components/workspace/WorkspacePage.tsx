@@ -413,31 +413,44 @@ function DashboardSkeleton() {
         <SkeletonBlock height={16} width="55%" />
       </div>
 
-      {/* Hero card skeleton */}
-      <div
-        className="rounded-2xl p-6 md:p-8"
-        style={{
-          background: "var(--cf-surface-muted)",
-          border: "1px solid var(--cf-border-strong)",
-        }}
-      >
-        <SkeletonBlock height={14} width={120} />
-        <div className="mt-4">
-          <SkeletonBlock height={36} width="50%" />
-        </div>
-        <div className="mt-2">
-          <SkeletonBlock height={16} width="30%" />
-        </div>
-        <div className="mt-6">
-          <SkeletonBlock height={48} width={220} className="rounded-xl" />
-        </div>
-      </div>
-
-      {/* Weekly strip skeleton */}
+      {/* Momentum band skeleton — promoted under the greeting, ahead of the
+          hero (matches the live re-order so nothing jumps when data resolves) */}
       <div className="flex gap-3">
         {Array.from({ length: 7 }).map((_, i) => (
           <SkeletonBlock key={i} height={32} width={32} className="rounded-lg" />
         ))}
+      </div>
+
+      {/* Hero card skeleton — mirrors the real hero's two-column md:flex-row
+          layout (text + 200×300 cover) and raised surface so the skeleton hero
+          height equals the final hero height. Without the cover column the hero
+          grew ~100px when analytics resolved and everything below it jumped
+          (CLS). */}
+      <div
+        className="rounded-2xl"
+        style={{
+          background: "var(--cf-surface-strong)",
+          border: "1px solid var(--cf-border-strong)",
+          boxShadow: "var(--cf-shadow-lg)",
+        }}
+      >
+        <div className="flex flex-col md:flex-row">
+          <div className="flex-1 p-6 md:p-8">
+            <SkeletonBlock height={14} width={120} />
+            <div className="mt-4">
+              <SkeletonBlock height={36} width="50%" />
+            </div>
+            <div className="mt-2">
+              <SkeletonBlock height={16} width="30%" />
+            </div>
+            <div className="mt-6">
+              <SkeletonBlock height={48} width={220} className="rounded-xl" />
+            </div>
+          </div>
+          <div className="hidden items-center justify-center p-8 md:flex">
+            <SkeletonBlock width={200} height={300} className="rounded-lg" />
+          </div>
+        </div>
       </div>
 
       {/* Book row skeleton */}
@@ -785,9 +798,24 @@ function DashboardContent({
           dailyProgress={dailyProgress}
           insightPoints={data.user.insightPoints}
           subtitle={subtitle}
-          isNewUser={isNewUser}
         />
       </SectionWrapper>
+
+      {/* Section 1a: Momentum band — promoted directly under the greeting
+          (Duolingo's home pattern) so the day's reason-to-return frames the
+          continue-reading hero instead of sitting below it. */}
+      {!isNewUser && hasActivity && (
+        <SectionWrapper
+          {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+        >
+          <WeeklyMomentumStrip
+            weeklyActivity={data.weeklyActivity}
+            chaptersCompleted={data.weeklyStats.chaptersCompleted}
+            quizAverage={data.weeklyStats.quizAverage}
+            streakCount={data.user.streakCount}
+          />
+        </SectionWrapper>
+      )}
 
       {/* Section 1b: Commitment Follow-Up — proactively reminds the reader to
           report back on an if-then plan whose follow-up date has arrived. Renders
@@ -815,20 +843,6 @@ function DashboardContent({
           starterShelfBooks={data.starterShelfBooks}
         />
       </SectionWrapper>
-
-      {/* Section 3: Weekly Momentum Strip */}
-      {!isNewUser && hasActivity && (
-        <SectionWrapper
-          {...(prefersReducedMotion ? {} : { variants: itemVariants })}
-        >
-          <WeeklyMomentumStrip
-            weeklyActivity={data.weeklyActivity}
-            chaptersCompleted={data.weeklyStats.chaptersCompleted}
-            quizAverage={data.weeklyStats.quizAverage}
-            streakCount={data.user.streakCount}
-          />
-        </SectionWrapper>
-      )}
 
       {/* Section 4: Your Books */}
       <SectionWrapper

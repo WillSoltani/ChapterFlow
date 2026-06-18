@@ -127,8 +127,11 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
           <motion.span
             className="mt-3 inline-flex cursor-pointer items-center rounded-xl px-6 py-2.5 text-sm font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
             style={{
-              background: "linear-gradient(to right, var(--accent-amber), var(--accent-gold))",
-              boxShadow: "0 4px 16px var(--accent-amber-glow), 0 1px 3px var(--accent-amber-glow)",
+              // Single canonical Pro-CTA treatment (batch 01). Was an inline
+              // amber→gold gradient (the canonical source); now the shared token
+              // so every "Go Pro"/"Upgrade" reads identically across surfaces.
+              background: "var(--cf-upgrade-accent)",
+              boxShadow: "var(--cf-upgrade-accent-shadow)",
             }}
             whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
