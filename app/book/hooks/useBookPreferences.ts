@@ -157,9 +157,14 @@ const WEEKDAY_OPTIONS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as con
 export const defaultBookPreferencesState: BookPreferencesState = {
   reading: {
     defaultChapterTab: "summary",
-    fontSize: 16,
+    // Long-form comfort default (finding #13). Range 12-24 + per-user control
+    // unchanged; Apple Books/Kindle effective long-form defaults run higher.
+    fontSize: 18,
     lineSpacing: 155,
-    contentWidth: 680,
+    // Equals the "Narrow" preset (WIDTH_OPTIONS in ReaderSettingsMenu, ~68ch at
+    // 18px) so the lit Width segment matches the rendered width (finding #9).
+    // 680 matched no preset and lit "Narrow" while actually rendering wider.
+    contentWidth: 640,
     paragraphDensity: "balanced",
     focusModeDefault: false,
     showProgressBar: true,
@@ -1015,7 +1020,12 @@ export function useBookPreferences() {
     const root = document.documentElement;
 
     const fontMap: Record<string, string> = {
-      "serif": '"Georgia", "Times New Roman", serif',
+      // NS-1: the literary serif reading voice. Repointed Georgia -> the crafted
+      // Newsreader stack (--font-reading, defined in globals.css, self-hosted via
+      // next/font in app/layout.tsx). This var only ever reaches reading prose
+      // (.cr-reading-content); chrome is pinned to --font-body, so flipping the
+      // stored default to "serif" (defaults.ts, batch 10) cannot leak into chrome.
+      "serif": "var(--font-reading)",
       // Map the Sans-Serif option (and the default fallback below) to the
       // already-loaded brand body font so the reading surface matches the rest
       // of the app. Inter was never loaded, so it always fell back to system-ui.
