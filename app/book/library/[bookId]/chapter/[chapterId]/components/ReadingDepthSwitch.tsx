@@ -2,10 +2,15 @@
 
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 
-const options: Array<{ id: ReadingDepth; label: string; sub: string }> = [
-  { id: "simple", label: "Fast", sub: "2 min" },
-  { id: "standard", label: "Deep", sub: "5 min" },
-  { id: "deeper", label: "Full", sub: "10 min" },
+// The `Fast / Deep / Full` labels carry the depth cue on their own. We deliberately
+// omit a per-chip duration: the old hardcoded "2 / 5 / 10 min" subs were the same
+// constants for every book and chapter, so they contradicted (and were dwarfed by)
+// the header's per-chapter "N min read" estimate. `sub` stays optional so a real,
+// per-depth estimate can be plumbed in later without reintroducing fabricated numbers.
+const options: Array<{ id: ReadingDepth; label: string; sub?: string }> = [
+  { id: "simple", label: "Fast" },
+  { id: "standard", label: "Deep" },
+  { id: "deeper", label: "Full" },
 ];
 
 type ReadingDepthSwitchProps = {
@@ -76,9 +81,11 @@ export function ReadingDepthSwitch({ value, onChange, variant = "horizontal" }: 
             ].join(" ")}
           >
             <span>{option.label}</span>
-            <span className={isVertical ? "ml-auto text-xs font-normal opacity-75" : "ml-1 text-xs font-normal opacity-75"}>
-              {option.sub}
-            </span>
+            {option.sub ? (
+              <span className={isVertical ? "ml-auto text-xs font-normal opacity-75" : "ml-1 text-xs font-normal opacity-75"}>
+                {option.sub}
+              </span>
+            ) : null}
           </button>
         );
       })}
