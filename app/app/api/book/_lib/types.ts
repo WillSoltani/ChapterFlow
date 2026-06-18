@@ -917,6 +917,15 @@ export type CommitmentStatus = "active" | "completed" | "skipped" | "expired";
 // from free text). Set only on the `complete` action.
 export type CommitmentOutcome = "helped" | "partly" | "didnt";
 
+// Two-axis completion (feedback #4): the APPLICATION axis — "you used it" — DERIVED
+// from commitment follow-through, never stored on BookUserProgress, never a gate,
+// awards no IP. The quiz pass (`knowledgeComplete`) stays the sole completion gate.
+// Precedence is by status-strength, not recency: applied > committed > none.
+//   - "applied"   = a commitment was followed through (returned days later + reported)
+//   - "committed" = an if-then commitment is active (not yet followed through)
+//   - "none"      = no commitment, or only skipped/expired
+export type ChapterApplicationState = "none" | "committed" | "applied";
+
 export type BookUserCommitmentItem = {
   userId: string;
   commitmentId: string;
