@@ -272,7 +272,7 @@ export function AdminEventsClient() {
             <button
               type="button"
               onClick={openCreate}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-(--cf-accent-contrast) transition hover:brightness-110"
             >
               <Plus className="h-3.5 w-3.5" />
               New event
@@ -503,7 +503,7 @@ export function AdminEventsClient() {
                 type="button"
                 disabled={savingId === "form"}
                 onClick={handleSave}
-                className="rounded-xl bg-(--cf-accent) px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
+                className="rounded-xl bg-(--cf-accent) px-4 py-2.5 text-sm font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-50"
               >
                 {savingId === "form"
                   ? "Saving..."
@@ -533,7 +533,7 @@ export function AdminEventsClient() {
                 type="button"
                 onClick={handleSeed}
                 disabled={savingId === "seed"}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-60"
               >
                 <Database className="h-3.5 w-3.5" />
                 {savingId === "seed" ? "Seeding..." : "Seed starter events"}

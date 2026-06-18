@@ -329,7 +329,7 @@ export function SegmentBuilderClient() {
                 type="button"
                 onClick={saveSegment}
                 disabled={!name.trim() || filters.length === 0 || saving}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <Save className="h-3.5 w-3.5" />
                 {saving ? "Saving..." : "Save segment"}
@@ -638,7 +638,7 @@ function NotifyModal({
                 type="button"
                 onClick={() => setConfirming(true)}
                 disabled={!canSend || sending || countLoading}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-60"
               >
                 <Send className="h-3.5 w-3.5" />
                 Send now

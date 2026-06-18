@@ -239,7 +239,7 @@ export function EventDetailClient({ eventId }: { eventId: string }) {
                   type="button"
                   disabled={joining}
                   onClick={handleJoin}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-5 py-2.5 text-sm font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-60"
                 >
                   {joining ? (
                     <Loader2 className="h-4 w-4 animate-spin" />

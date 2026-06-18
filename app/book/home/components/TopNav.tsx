@@ -395,7 +395,7 @@ export function TopNav({
                 ].join(" ")}
                 aria-label="Profile"
               >
-                <span className="inline-flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-linear-to-br from-(--cf-accent) to-(--cf-accent-strong) text-xs font-bold text-white shadow-[0_0_10px_var(--cf-accent-shadow)]">
+                <span className="inline-flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-linear-to-br from-(--cf-accent) to-(--cf-accent-strong) text-xs font-bold text-(--cf-accent-contrast) shadow-[0_0_10px_var(--cf-accent-shadow)]">
                   {showAvatar ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
