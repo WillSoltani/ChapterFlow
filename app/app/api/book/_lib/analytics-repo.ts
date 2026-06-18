@@ -206,6 +206,43 @@ export async function analyticsTrackQuizInteraction(
 }
 
 /**
+ * Track a commitment-funnel event (the book-to-behavior loop).
+ *
+ *   commitment_created   — user saved an if-then plan (POST /me/commitments)
+ *   followup_completed   — user reported the outcome (PATCH action=complete)
+ *   followup_skipped     — user skipped the check-in (PATCH action=skip)
+ *
+ * These are REQUIRED product events, written directly to the analytics table the
+ * same way `quiz_attempt` is — they are NOT gated on the opt-in `analyticsParticipation`
+ * beacon consent, so the §7 conversion/return funnel is unbiased. The day-3/7 nudge
+ * itself is NOT counted here (its return-rate denominator is derived from the
+ * commitment table's `notificationSentAt`), so there is no double-count with
+ * `followup_completed`. Callers fire-and-forget.
+ */
+export async function analyticsTrackCommitment(
+  table: string,
+  userId: string,
+  eventType: "commitment_created" | "followup_completed" | "followup_skipped",
+  payload: {
+    commitmentId: string;
+    bookId: string;
+    chapterNumber: number;
+    followUpDays?: 3 | 7;
+    helped?: "helped" | "partly" | "didnt";
+  }
+): Promise<void> {
+  const now = nowIso();
+  await putEvent(table, userId, eventType, now, "FREE", {
+    commitmentId: payload.commitmentId,
+    bookId: payload.bookId,
+    chapterNumber: payload.chapterNumber,
+    followUpDays: payload.followUpDays,
+    helped: payload.helped,
+    contextKey: `COMMITMENT#${payload.bookId}#${String(payload.chapterNumber).padStart(4, "0")}`,
+  });
+}
+
+/**
  * Set / refresh user-level location and locale fields on the analytics
  * snapshot. Cheap UpdateItem with merge semantics — only writes fields
  * that have non-empty values. Idempotent.

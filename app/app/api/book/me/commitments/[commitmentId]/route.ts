@@ -8,11 +8,12 @@ import {
   requireBodyObject,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   getCommitment,
   updateCommitmentStatus,
 } from "@/app/app/api/book/_lib/commitment-repo";
+import { analyticsTrackCommitment } from "@/app/app/api/book/_lib/analytics-repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
@@ -70,6 +71,19 @@ export async function PATCH(req: Request, ctx: Params) {
         sourceId: commitmentId,
       });
 
+      // Always-on commitment-funnel event (not gated on beacon opt-in). Fire-and-forget.
+      getBookAnalyticsTableName()
+        .then((analyticsTable) => {
+          if (!analyticsTable) return;
+          return analyticsTrackCommitment(analyticsTable, user.sub, "followup_completed", {
+            commitmentId,
+            bookId: existing.bookId,
+            chapterNumber: existing.chapterNumber,
+            followUpDays: existing.followUpDays,
+          });
+        })
+        .catch(() => {});
+
       return bookOk({
         commitment: updated,
         ipAwarded: ipAmount,
@@ -85,6 +99,20 @@ export async function PATCH(req: Request, ctx: Params) {
           commitmentId,
           "skipped",
         );
+
+        // Always-on commitment-funnel event (not gated on beacon opt-in). Fire-and-forget.
+        getBookAnalyticsTableName()
+          .then((analyticsTable) => {
+            if (!analyticsTable) return;
+            return analyticsTrackCommitment(analyticsTable, user.sub, "followup_skipped", {
+              commitmentId,
+              bookId: existing.bookId,
+              chapterNumber: existing.chapterNumber,
+              followUpDays: existing.followUpDays,
+            });
+          })
+          .catch(() => {});
+
         return bookOk({ commitment: updated, ipAwarded: 0 });
       } catch (err) {
         if (err instanceof ConditionalCheckFailedException) {

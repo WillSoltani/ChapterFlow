@@ -7,12 +7,13 @@ import {
   requireBodyObject,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   createCommitment,
   listCommitments,
   hasActiveCommitmentForChapter,
 } from "@/app/app/api/book/_lib/commitment-repo";
+import { analyticsTrackCommitment } from "@/app/app/api/book/_lib/analytics-repo";
 import type { BookUserCommitmentItem } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
@@ -61,6 +62,20 @@ export async function POST(req: Request) {
     };
 
     const created = await createCommitment(tableName, item);
+
+    // Always-on commitment-funnel event (not gated on beacon opt-in). Fire-and-forget.
+    getBookAnalyticsTableName()
+      .then((analyticsTable) => {
+        if (!analyticsTable) return;
+        return analyticsTrackCommitment(analyticsTable, user.sub, "commitment_created", {
+          commitmentId: created.commitmentId,
+          bookId: created.bookId,
+          chapterNumber: created.chapterNumber,
+          followUpDays: created.followUpDays,
+        });
+      })
+      .catch(() => {});
+
     return bookOk({ commitment: created, created: true });
   });
 }

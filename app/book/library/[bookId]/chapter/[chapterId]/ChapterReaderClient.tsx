@@ -20,6 +20,7 @@ import { createReviewItem, createFlashcardReviewItem } from "@/app/book/_lib/spa
 import { getMotivationMessage } from "@/app/book/_lib/motivation-messages";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
+import { useCommitments } from "@/app/book/hooks/useCommitments";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterHeader } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterHeader";
 import { AutoCollapsingHookBanner } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/HookBanner";
@@ -594,6 +595,21 @@ export function ChapterReaderClient({
 
   const [committedToChapter, setCommittedToChapter] = useState(false);
 
+  // Hydrate the committed state from the server. Without this, `committedToChapter`
+  // resets to false on every mount/navigation, so a commitment made in a prior
+  // session (or before a mid-chapter reload) would not be reflected and the prompt
+  // would invite the user to re-commit (→ a 409 on submit). Keyed on chapter.order
+  // so navigating between chapters re-resolves the flag from server truth.
+  const commitmentsEnabled = Boolean(chapterNumber) && Boolean(viewerIdentity?.sub);
+  const { activeCommitments, refresh: refreshCommitments } = useCommitments(commitmentsEnabled);
+  useEffect(() => {
+    if (!chapter) return;
+    const hasActive = activeCommitments.some(
+      (c) => c.bookId === bookId && c.chapterNumber === chapter.order && c.status === "active",
+    );
+    setCommittedToChapter(hasActive);
+  }, [bookId, chapter, activeCommitments]);
+
   const handleCommitment = useCallback(
     async (params: { bookId: string; chapterNumber: number; ifThenPlan: string; followUpDays: 3 | 7 }) => {
       try {
@@ -602,15 +618,19 @@ export function ChapterReaderClient({
           body: JSON.stringify(params),
         });
         setCommittedToChapter(true);
+        // Re-pull server truth so the hydration effect (and any other reader of
+        // activeCommitments) reflects the new commitment, not just local state.
+        void refreshCommitments();
       } catch (err) {
         if (err instanceof BookClientError && err.status === 409) {
           setCommittedToChapter(true);
+          void refreshCommitments();
           return;
         }
         throw err;
       }
     },
-    [],
+    [refreshCommitments],
   );
 
   // The content fetch has settled but there is genuinely no chapter to show

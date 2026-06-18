@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import type { BookUserCommitmentItem } from "@/app/app/api/book/_lib/types";
 
@@ -76,9 +76,19 @@ export function useCommitments(enabled: boolean) {
     [refresh],
   );
 
-  const activeCommitments = commitments.filter((c) => c.status === "active");
-  const dueCommitments = activeCommitments.filter(
-    (c) => new Date(c.followUpDate) <= new Date(),
+  // Memoized so the derived arrays keep a stable reference between renders and
+  // only change when `commitments` actually changes (i.e. after a successful
+  // refresh). Without this, an unrelated re-render of a consumer (e.g. the large
+  // chapter reader) would hand effects keyed on these arrays a fresh reference
+  // every render, firing them against stale data — which caused a post-commit
+  // "Committed → form → Committed" flicker.
+  const activeCommitments = useMemo(
+    () => commitments.filter((c) => c.status === "active"),
+    [commitments],
+  );
+  const dueCommitments = useMemo(
+    () => activeCommitments.filter((c) => new Date(c.followUpDate) <= new Date()),
+    [activeCommitments],
   );
 
   return {

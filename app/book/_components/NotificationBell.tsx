@@ -7,6 +7,7 @@ import {
   BarChart3,
   Bell,
   BookOpen,
+  Clock,
   Flame,
   HandHeart,
   TrendingUp,
@@ -24,6 +25,9 @@ type Notification = {
   body: string;
   readAt: string | null;
   createdAt: string;
+  // Some notification types (e.g. commitment_followup) carry context ids used to
+  // deep-link to the specific item. Server returns the full record incl. metadata.
+  metadata?: { commitmentId?: string; bookId?: string } & Record<string, unknown>;
 };
 
 function getNotificationMeta(type: string): { icon: LucideIcon; color: string } {
@@ -34,6 +38,8 @@ function getNotificationMeta(type: string): { icon: LucideIcon; color: string } 
       return { icon: BarChart3, color: "var(--cf-accent)" };
     case "welcome_back_nudge":
       return { icon: HandHeart, color: "var(--cf-success-text)" };
+    case "commitment_followup":
+      return { icon: Clock, color: "var(--cf-info-text)" };
     case "reading_reminder":
       return { icon: BookOpen, color: "var(--cf-accent)" };
     case "badge_earned":
@@ -56,12 +62,14 @@ function getNotificationMeta(type: string): { icon: LucideIcon; color: string } 
 }
 
 /**
- * Where a notification deep-links to. Payloads don't carry context ids yet, so
- * links are type-level (the relevant product area). Returns null when there's
- * no sensible destination — the item is still clickable to mark it read.
+ * Where a notification deep-links to. Most links are type-level (the relevant
+ * product area). Types that carry context ids in `metadata` deep-link to the
+ * specific item (e.g. commitment_followup → the dashboard check-in for that
+ * commitment). Returns null when there's no sensible destination — the item is
+ * still clickable to mark it read.
  */
-function getNotificationHref(type: string): string | null {
-  switch (type) {
+function getNotificationHref(n: Pick<Notification, "type" | "metadata">): string | null {
+  switch (n.type) {
     case "streak_at_risk":
     case "streak_milestone":
     case "weekly_digest":
@@ -71,6 +79,10 @@ function getNotificationHref(type: string): string | null {
       return "/book/badges";
     case "tier_up":
       return "/rewards";
+    case "commitment_followup": {
+      const id = n.metadata?.commitmentId;
+      return id ? `/dashboard?focusCommitment=${encodeURIComponent(id)}` : "/dashboard";
+    }
     case "welcome_back_nudge":
     case "reading_reminder":
     case "insight_spark":
@@ -222,7 +234,7 @@ export function NotificationBell() {
               {notifications.slice(0, 20).map((n) => {
                 const meta = getNotificationMeta(n.type);
                 const Icon = meta.icon;
-                const href = getNotificationHref(n.type);
+                const href = getNotificationHref(n);
                 const itemClass = `flex w-full gap-3 px-4 py-3 text-left text-sm transition-colors hover:bg-(--cf-card-hover) ${
                   n.readAt ? "opacity-60" : ""
                 }`;
