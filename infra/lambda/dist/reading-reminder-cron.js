@@ -640,17 +640,31 @@ async function processCommitmentFollowup(ddb2, ses2, tableName2, config, userIte
       }
     }
     for (const c of due) {
+      const dedupKey = `NUDGE_SENT#commitment_followup#${c.commitmentId}`;
+      const now = (/* @__PURE__ */ new Date()).toISOString();
+      const ttl = Math.floor(nowMs / 1e3) + 30 * 86400;
       try {
-        const dedupKey = `NUDGE_SENT#commitment_followup#${c.commitmentId}`;
-        const dedup = await ddb2.send(
-          new import_lib_dynamodb5.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
+        await ddb2.send(
+          new import_lib_dynamodb5.PutCommand({
+            TableName: tableName2,
+            Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
+            ConditionExpression: "attribute_not_exists(SK)"
+          })
         );
-        if (dedup.Item) {
+      } catch (err) {
+        if (err?.name === "ConditionalCheckFailedException") {
           skipped++;
           continue;
         }
+        console.error(
+          `[commitment-followup] claim failed for commitment ${c.commitmentId} (${userId}):`,
+          err
+        );
+        errors++;
+        continue;
+      }
+      try {
         const notifId = crypto.randomUUID();
-        const now = (/* @__PURE__ */ new Date()).toISOString();
         const planPreview = c.ifThenPlan.length > 90 ? `${c.ifThenPlan.slice(0, 87)}...` : c.ifThenPlan;
         await ddb2.send(
           new import_lib_dynamodb5.PutCommand({
@@ -669,13 +683,6 @@ async function processCommitmentFollowup(ddb2, ses2, tableName2, config, userIte
               metadata: { commitmentId: c.commitmentId, bookId: c.bookId },
               createdAt: now
             }
-          })
-        );
-        const ttl = Math.floor(nowMs / 1e3) + 30 * 86400;
-        await ddb2.send(
-          new import_lib_dynamodb5.PutCommand({
-            TableName: tableName2,
-            Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
           })
         );
         await ddb2.send(

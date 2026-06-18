@@ -62,12 +62,9 @@ beforeEach(() => {
 
 test("due active commitment writes NOTIF# + dedup marker + notificationSentAt, in that order", async () => {
   ddbMock.on(QueryCommand).resolves({ Items: [dueActiveCommitment()] });
-  // PROFILE lookup → no email; dedup marker → absent.
-  ddbMock.on(GetCommand).callsFake((input) => {
-    const sk = String(input.Key?.SK ?? "");
-    if (sk.startsWith("NUDGE_SENT#")) return { Item: undefined };
-    return { Item: undefined }; // PROFILE
-  });
+  // Email off in this fixture, so PROFILE is never read; no dedup GET anymore
+  // (the conditional marker Put is the claim).
+  ddbMock.on(GetCommand).resolves({ Item: undefined });
   ddbMock.on(PutCommand).resolves({});
   ddbMock.on(UpdateCommand).resolves({});
 
@@ -76,17 +73,27 @@ test("due active commitment writes NOTIF# + dedup marker + notificationSentAt, i
   assert.deepEqual(result, { sent: 1, skipped: 0, errors: 0 });
 
   const puts = ddbMock.commandCalls(PutCommand);
-  assert.equal(puts.length, 2, "one NOTIF# put + one dedup-marker put");
+  assert.equal(puts.length, 2, "one dedup-marker claim put + one NOTIF# put");
 
-  const notifPut = puts[0].args[0].input as { Item: Record<string, unknown> };
+  // (A) The claim is FIRST and is a CONDITIONAL put — this is the idempotency key.
+  const markerPut = puts[0].args[0].input as {
+    Item: Record<string, unknown>;
+    ConditionExpression?: string;
+  };
+  assert.equal(markerPut.Item.SK, "NUDGE_SENT#commitment_followup#c-1");
+  assert.equal(typeof markerPut.Item.ttl, "number");
+  assert.equal(
+    markerPut.ConditionExpression,
+    "attribute_not_exists(SK)",
+    "the marker claim must be conditional, else a re-run re-sends",
+  );
+
+  // (B) The NOTIF# is written after the claim, with the time-sortable SK preserved.
+  const notifPut = puts[1].args[0].input as { Item: Record<string, unknown> };
   assert.equal(notifPut.Item.type, "commitment_followup");
   assert.equal((notifPut.Item.SK as string).startsWith("NOTIF#"), true);
   assert.deepEqual(notifPut.Item.metadata, { commitmentId: "c-1", bookId: "atomic-habits" });
   assert.equal(notifPut.Item.readAt, null);
-
-  const markerPut = puts[1].args[0].input as { Item: Record<string, unknown> };
-  assert.equal(markerPut.Item.SK, "NUDGE_SENT#commitment_followup#c-1");
-  assert.equal(typeof markerPut.Item.ttl, "number");
 
   const updates = ddbMock.commandCalls(UpdateCommand);
   assert.equal(updates.length, 1, "notificationSentAt set once");
@@ -97,32 +104,42 @@ test("due active commitment writes NOTIF# + dedup marker + notificationSentAt, i
   assert.match(upd.UpdateExpression, /notificationSentAt/);
   assert.equal(upd.Key.SK, "COMMITMENT#c-1");
 
-  // Order: NOTIF put → marker put → commitment update. The marker MUST precede the
-  // commitment update so a step-(D) failure cannot cause a re-send.
+  // Order: claim (marker) → NOTIF# → commitment update. The claim MUST be first so a
+  // failure after it can only DROP a nudge, never duplicate one.
   const ordered = ddbMock.calls().map((c) => c.args[0].constructor.name);
-  const notifIdx = ordered.indexOf("PutCommand");
-  const markerIdx = ordered.indexOf("PutCommand", notifIdx + 1);
+  const markerIdx = ordered.indexOf("PutCommand");
+  const notifIdx = ordered.indexOf("PutCommand", markerIdx + 1);
   const updateIdx = ordered.indexOf("UpdateCommand");
-  assert.ok(notifIdx < markerIdx, "NOTIF# before marker");
-  assert.ok(markerIdx < updateIdx, "marker before notificationSentAt update");
+  assert.ok(markerIdx < notifIdx, "claim (marker) before NOTIF#");
+  assert.ok(notifIdx < updateIdx, "NOTIF# before notificationSentAt update");
 });
 
-test("second run no-ops when the dedup marker already exists (no NOTIF/marker/update writes)", async () => {
+test("second run no-ops when the dedup marker already exists: conditional claim fails → skip, no NOTIF/update", async () => {
   // notificationSentAt is still null here, so the row passes the due filter — the
-  // dedup marker is what must stop the re-send.
+  // conditional marker claim is what must stop the re-send. Simulate the marker
+  // already existing: the conditional Put fails with ConditionalCheckFailedException.
   ddbMock.on(QueryCommand).resolves({ Items: [dueActiveCommitment()] });
-  ddbMock.on(GetCommand).callsFake((input) => {
-    const sk = String(input.Key?.SK ?? "");
-    if (sk.startsWith("NUDGE_SENT#")) return { Item: { SK: sk } }; // marker EXISTS
-    return { Item: undefined };
+  ddbMock.on(GetCommand).resolves({ Item: undefined });
+  ddbMock.on(PutCommand).callsFake((input) => {
+    const sk = String(input.Item?.SK ?? "");
+    if (sk.startsWith("NUDGE_SENT#")) {
+      const e = new Error("The conditional request failed");
+      (e as { name: string }).name = "ConditionalCheckFailedException";
+      throw e;
+    }
+    return {};
   });
-  ddbMock.on(PutCommand).resolves({});
   ddbMock.on(UpdateCommand).resolves({});
 
   const result = await processCommitmentFollowup(ddb, ses, TABLE, config, userItems as never);
 
   assert.deepEqual(result, { sent: 0, skipped: 1, errors: 0 });
-  assert.equal(ddbMock.commandCalls(PutCommand).length, 0, "no writes on the second run");
+  // The claim is attempted (and rejected); crucially NO NOTIF# is written and the
+  // commitment is NOT re-marked — so the user is never re-notified.
+  const notifPuts = ddbMock
+    .commandCalls(PutCommand)
+    .filter((p) => String((p.args[0].input as { Item?: { SK?: string } }).Item?.SK ?? "").startsWith("NOTIF#"));
+  assert.equal(notifPuts.length, 0, "no NOTIF# re-sent on the second run");
   assert.equal(ddbMock.commandCalls(UpdateCommand).length, 0);
 });
 
@@ -157,16 +174,17 @@ test("celebration-category email opt-out is honored: no email send, but the in-a
     },
   ];
   ddbMock.on(QueryCommand).resolves({ Items: [dueActiveCommitment()] });
-  ddbMock.on(GetCommand).resolves({ Item: undefined }); // dedup marker absent
-  ddbMock.on(PutCommand).resolves({});
+  ddbMock.on(GetCommand).resolves({ Item: undefined });
+  ddbMock.on(PutCommand).resolves({}); // conditional claim succeeds (marker absent)
   ddbMock.on(UpdateCommand).resolves({});
 
   const result = await processCommitmentFollowup(ddb, ses, TABLE, config, optedOut as never);
 
   assert.equal(result.sent, 1, "in-app nudge still fires");
   assert.equal(sesMock.commandCalls(SendEmailCommand).length, 0, "no email sent when celebration is unsubscribed");
-  // The email path (incl. the PROFILE lookup) is skipped entirely, so the only Get
-  // is the dedup-marker check — never a PROFILE read.
+  // The email path (incl. the PROFILE lookup) is skipped entirely when email is
+  // suppressed, so PROFILE is never read (the dedup check is now a conditional Put,
+  // not a Get).
   const profileGets = ddbMock
     .commandCalls(GetCommand)
     .filter((c) => (c.args[0].input as { Key?: { SK?: string } }).Key?.SK === "PROFILE");
@@ -181,7 +199,9 @@ test("a per-commitment write failure is isolated (errors++ , other commitments s
     ],
   });
   ddbMock.on(GetCommand).resolves({ Item: undefined });
-  // First NOTIF put (c-1) throws; subsequent puts succeed.
+  // First put (c-1's claim) throws a NON-conditional error; subsequent puts succeed.
+  // A generic failure counts toward `errors` (only a ConditionalCheckFailedException
+  // is a benign "already claimed" skip), and the next commitment still nudges.
   let putCount = 0;
   ddbMock.on(PutCommand).callsFake(() => {
     putCount += 1;

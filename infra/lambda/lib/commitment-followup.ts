@@ -46,16 +46,22 @@ type CommitmentRow = {
  * not yet been nudged, write ONE in-app notification (the guaranteed channel) plus
  * a best-effort email, then mark it nudged so it never fires twice.
  *
- * Exactly-once write order per commitment (the naive order double-sends):
- *   (A) skip if a dedup marker already exists (defence beyond the notificationSentAt
- *       filter — covers the window where the NOTIF# landed but the commitment update
- *       below failed on a prior run);
+ * No-duplicate write order per commitment (the naive NOTIF-then-marker order
+ * re-sends a duplicate notification if the marker write fails in between):
+ *   (A) CLAIM the nudge with a CONDITIONAL Put of the per-commitment dedup marker
+ *       (ConditionExpression attribute_not_exists). That conditional put is the
+ *       atomic idempotency key: if the marker already exists the put fails and we
+ *       skip, so a commitment is nudged AT MOST ONCE even if a prior run died after
+ *       the claim, or two cron invocations overlap. (The notificationSentAt filter
+ *       above is just a cheap pre-screen; this claim is the real guarantee.)
  *   (B) write the NOTIF# record directly (cron is standalone-bundled, so it does NOT
  *       go through the app-layer createNotification);
- *   (C) write the per-commitment dedup marker BEFORE the commitment update, so a
- *       step-(D) failure can never re-send;
- *   (D) UpdateCommand SET notificationSentAt = now (also the §7 return-rate
- *       denominator: "commitments that were nudged").
+ *   (C) UpdateCommand SET notificationSentAt = now — the durable, app-visible record
+ *       and the §7 return-rate denominator ("commitments that were nudged").
+ *
+ * Trade-off vs the old order: if the process dies between (A) and (B) the nudge is
+ * *missed* (the claim blocks a retry), never duplicated — the right bias for a
+ * reminder.
  *
  * Errors are isolated per commitment (log + count + continue); there is no retry
  * loop. When first enabled, the very first run nudges every already-overdue
@@ -130,24 +136,46 @@ export async function processCommitmentFollowup(
     }
 
     for (const c of due) {
+      const dedupKey = `NUDGE_SENT#commitment_followup#${c.commitmentId}`;
+      const now = new Date().toISOString();
+      const ttl = Math.floor(nowMs / 1000) + 30 * 86400;
+
+      // (A) CLAIM the nudge: conditional Put of the dedup marker. This is the
+      // atomic idempotency key — if the marker already exists the put fails with
+      // ConditionalCheckFailedException and we skip, so the commitment is nudged at
+      // most once (even across a prior partial run or two overlapping cron runs).
+      // A claim failure here is NOT a delivery error; only a NON-conditional
+      // failure counts toward `errors`.
       try {
-        // (A) Already nudged? Per-commitment dedup marker is authoritative.
-        const dedupKey = `NUDGE_SENT#commitment_followup#${c.commitmentId}`;
-        const dedup = await ddb.send(
-          new GetCommand({ TableName: tableName, Key: { PK: item.PK, SK: dedupKey } }),
+        await ddb.send(
+          new PutCommand({
+            TableName: tableName,
+            Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
+            ConditionExpression: "attribute_not_exists(SK)",
+          }),
         );
-        if (dedup.Item) {
+      } catch (err) {
+        if ((err as { name?: string })?.name === "ConditionalCheckFailedException") {
           skipped++;
           continue;
         }
+        console.error(
+          `[commitment-followup] claim failed for commitment ${c.commitmentId} (${userId}):`,
+          err,
+        );
+        errors++;
+        continue;
+      }
 
+      try {
         const notifId = crypto.randomUUID();
-        const now = new Date().toISOString();
         const planPreview =
           c.ifThenPlan.length > 90 ? `${c.ifThenPlan.slice(0, 87)}...` : c.ifThenPlan;
 
         // (B) In-app notification — the guaranteed channel. metadata.commitmentId
         // drives the NotificationBell deep-link to the exact dashboard check-in.
+        // (SK stays the time-sortable NOTIF#<createdAt>#<id> — notifications-repo
+        // lists newest-first by SK, so this prefix is load-bearing.)
         await ddb.send(
           new PutCommand({
             TableName: tableName,
@@ -168,18 +196,7 @@ export async function processCommitmentFollowup(
           }),
         );
 
-        // (C) Dedup marker BEFORE the commitment update (30-day TTL). The marker
-        // is what guarantees a successfully-nudged commitment is never re-nudged;
-        // notificationSentAt (set in step D) is the durable, app-visible record.
-        const ttl = Math.floor(nowMs / 1000) + 30 * 86400;
-        await ddb.send(
-          new PutCommand({
-            TableName: tableName,
-            Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl },
-          }),
-        );
-
-        // (D) Mark the commitment nudged.
+        // (C) Mark the commitment nudged — durable, app-visible record + §7 denominator.
         await ddb.send(
           new UpdateCommand({
             TableName: tableName,
