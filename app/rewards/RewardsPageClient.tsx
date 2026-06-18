@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Gift, Lock, TrendingUp, Users, Zap, Copy } from "lucide-react";
-import { TopNav } from "@/app/book/home/components/TopNav";
+import { TopNav, type BookNavTab } from "@/app/book/home/components/TopNav";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useInsightPoints, type InsightPointsPayload } from "@/app/book/hooks/useInsightPoints";
@@ -216,23 +216,44 @@ export function RewardsPageClient() {
         searchInputRef={searchRef}
         showSearch={false}
         logoVariant="dashboard"
+        // Batch 12 adds "rewards" to BookNavTab + a /rewards nav entry; until then
+        // this string matches no nav item, so nothing mis-highlights (safe no-op).
+        // The cast keeps this batch green on origin/main; drop it once batch 12 merges.
+        activeTab={"rewards" as BookNavTab}
       />
 
       <section className="mx-auto w-full max-w-2xl space-y-8 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-(--cf-text-1)">Rewards</h1>
           <p className="mt-1 text-sm text-(--cf-text-soft)">
-            Redeem Insight Points (IP) for bonus books and Pro passes.
+            <span className="font-medium text-(--cf-text-2)">Insight Points (IP)</span> are
+            earned when you pass a quiz or finish a book. Redeem them for bonus books and Pro
+            passes.
           </p>
         </div>
 
-        {/* Loading */}
+        {/* Loading — structured shimmer that mirrors the loaded geometry
+            (balance header + 2-col reward grid + ways-to-earn list) so a slow
+            first paint reads as "content loading," never blank/dead boxes.
+            .animate-shimmer is theme-aware and reduced-motion-safe (globals.css). */}
         {loading && (
-          <div className="space-y-4">
-            <div className="h-40 animate-pulse rounded-2xl bg-(--cf-surface-strong)" />
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="h-36 animate-pulse rounded-xl bg-(--cf-surface-strong)" />
-              <div className="h-36 animate-pulse rounded-xl bg-(--cf-surface-strong)" />
+          <div className="space-y-8" aria-hidden="true">
+            {/* Balance header skeleton (matches BalanceHeader rounded-2xl) */}
+            <div className="animate-shimmer h-40 rounded-2xl" />
+            {/* Reward catalog skeleton (matches the grid sm:grid-cols-2 of RewardCard) */}
+            <div className="space-y-4">
+              <div className="animate-shimmer h-4 w-32 rounded" />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="animate-shimmer h-36 rounded-xl" />
+                <div className="animate-shimmer h-36 rounded-xl" />
+                <div className="animate-shimmer h-36 rounded-xl" />
+                <div className="animate-shimmer h-36 rounded-xl" />
+              </div>
+            </div>
+            {/* Ways-to-earn skeleton (matches the bordered list panel) */}
+            <div className="space-y-4">
+              <div className="animate-shimmer h-4 w-28 rounded" />
+              <div className="animate-shimmer h-28 rounded-xl" />
             </div>
           </div>
         )}
@@ -271,6 +292,20 @@ export function RewardsPageClient() {
             )}
           </AnimatePresence>
         </div>
+
+        {/* Loaded but empty (no payload, no error) — never show a bare header.
+            "Try again" re-fires the existing read-only GET; not a mutating control. */}
+        {!loading && !payload && !error && (
+          <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-6 text-center text-[14px] text-(--cf-text-2)">
+            Your rewards are taking a moment to load.{" "}
+            <button
+              onClick={() => void refresh()}
+              className="cursor-pointer font-medium text-(--cf-accent) underline-offset-2 hover:underline"
+            >
+              Try again
+            </button>
+          </div>
+        )}
 
         {payload && (
           <>
