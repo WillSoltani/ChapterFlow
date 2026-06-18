@@ -212,9 +212,27 @@ export async function POST(req: Request, ctx: Params) {
           if (fullText.length <= 50) {
             await releaseLimitSlot().catch(() => {});
           }
+          // Log the real cause (status propagated from streamReflectionFeedback) so
+          // prod CloudWatch shows WHY feedback failed, and give the reader a
+          // category-aware message instead of a dead-end "AI feedback failed".
+          const status =
+            err && typeof err === "object" && "status" in err
+              ? (err as { status?: number }).status
+              : undefined;
+          console.error("[reflection-feedback] stream failed:", {
+            status,
+            name: err instanceof Error ? err.name : typeof err,
+            message: err instanceof Error ? err.message : String(err),
+          });
+          let userMessage = "Couldn't generate feedback right now. Please try again.";
+          if (status === 429) {
+            userMessage = "We're a bit busy right now. Please wait a moment and try again.";
+          } else if (status === 401 || status === 403) {
+            userMessage = "Feedback is temporarily unavailable. We're on it — please try later.";
+          }
           controller.enqueue(
             encoder.encode(
-              `data: ${JSON.stringify({ type: "error", message: "AI feedback failed" })}\n\n`,
+              `data: ${JSON.stringify({ type: "error", message: userMessage, retryable: true })}\n\n`,
             ),
           );
           controller.close();
