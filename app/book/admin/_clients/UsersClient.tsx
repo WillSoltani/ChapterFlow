@@ -146,16 +146,16 @@ export function UsersClient() {
         title="Users"
         description={users.length > 0 ? `${users.length} users loaded` : "Search and inspect any user"}
         action={
-          <div className="flex items-center gap-2">
-            <form onSubmit={onSearch} className="flex items-center gap-2">
-              <div className="relative">
+          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:flex-nowrap">
+            <form onSubmit={onSearch} className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:flex-nowrap">
+              <div className="relative w-full sm:w-auto">
                 <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-(--cf-text-soft)" />
                 <input
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search by email"
-                  className="w-72 rounded-lg border border-(--cf-border) bg-(--cf-surface) py-1.5 pl-8 pr-3 text-[12px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
+                  className="w-full sm:w-72 rounded-lg border border-(--cf-border) bg-(--cf-surface) py-1.5 pl-8 pr-3 text-[12px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
                 />
               </div>
               <button
@@ -198,7 +198,7 @@ export function UsersClient() {
           />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-[12px]">
+            <table className="w-full min-w-[640px] text-[12px]">
               <thead>
                 <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
                   <th className="py-2 pr-3">Email</th>

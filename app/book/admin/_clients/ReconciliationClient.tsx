@@ -108,7 +108,7 @@ export function ReconciliationClient() {
             />
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-[12px]">
+              <table className="w-full min-w-[520px] text-[12px]">
                 <thead>
                   <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
                     <th className="py-2 pr-3">Type</th>
