@@ -125,6 +125,34 @@ export const TRIAL_CTA_LABEL = `Start ${PRICING.trialDays}-day free trial`;
 export const FREE_OFFER_LABEL = "2 free books";
 
 /**
+ * Canonical Pro feature list — the single source of truth so the marketing
+ * Pricing card (landing) and the in-app SubscriptionCard sell the SAME Pro.
+ * Mirrors the in-app upsell's existing claims (Unlock all books, text-to-speech,
+ * spaced repetition, reading analytics, export — see SubscriptionCard.tsx) so
+ * cold visitors see the same value the settings card advertises; surfacing them
+ * here reconciles existing claims, it does not invent new ones.
+ *
+ * Depth-mode names stay canonical (Lite / Standard / Deeper) so a buyer who
+ * chose a depth by name on this card can find it by that same name in-app.
+ *
+ * Consumed by: components/sections/Pricing.tsx (landing) and — once batch 10
+ * lands on top of this — app/book/settings/components/SubscriptionCard.tsx.
+ */
+export const PRO_FEATURES = [
+  "Access to the full book library",
+  "Unlimited books",
+  "Lite and Standard depth modes",
+  "Deeper depth mode",
+  "Chapter summaries and examples",
+  "Chapter quizzes",
+  "Text-to-speech audio",
+  "Spaced-repetition review",
+  "Reading analytics",
+  "Export your notes",
+  "Priority new title requests",
+] as const;
+
+/**
  * Where the "Start free trial" / upgrade CTA must land so it actually presents
  * the trial-start (Stripe checkout) step — the settings Billing tab, which
  * renders the upgrade action (ProFeatureCard → launchBillingAction("upgrade")).

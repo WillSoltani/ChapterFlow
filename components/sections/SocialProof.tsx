@@ -9,6 +9,7 @@ import {
   CATALOG_CATEGORY_COUNT_DISPLAY,
 } from "@/lib/catalog-stats";
 import { FREE_OFFER_LABEL } from "@/lib/pricing";
+import { LEARNING_LOOP_STEPS } from "@/lib/learning-loop";
 
 /**
  * Proof band. Deliberately NOT testimonials — we don't have verifiable user
@@ -44,7 +45,7 @@ const PROOFS: Proof[] = [
     ),
     stat: `${CATALOG_BOOK_COUNT_DISPLAY} books · ${CATALOG_CATEGORY_COUNT_DISPLAY} categories`,
     title: "One structure across the whole library",
-    body: "Every title is rebuilt into the same four-step loop — summary, real-world scenario, quiz, unlock — so you always know how to read it.",
+    body: `Every title is rebuilt into the same four-step loop — ${LEARNING_LOOP_STEPS.join(", ")} — so you always know how to read it.`,
   },
   {
     icon: (
@@ -135,6 +136,34 @@ export function SocialProof() {
           <ProofCard key={proof.title} proof={proof} index={i} />
         ))}
       </div>
+
+      {/* Proof-at-a-glance band — real catalog scale + the honest free tier,
+          surfaced prominently. Numbers we can stand behind; NO fabricated user
+          counts, ratings, or testimonials (truth rule, see file header). */}
+      <SectionReveal delay={0.3}>
+        <div className="mt-12 flex flex-col items-center justify-center gap-x-10 gap-y-4 sm:flex-row">
+          <div className="text-center">
+            <p className="text-[28px] font-bold text-(--text-heading) font-(family-name:--font-display)">
+              {CATALOG_BOOK_COUNT_DISPLAY}
+            </p>
+            <p className="text-[13px] text-(--text-muted)">books rebuilt into the loop</p>
+          </div>
+          <div className="hidden h-8 w-px bg-(--border-subtle) sm:block" aria-hidden="true" />
+          <div className="text-center">
+            <p className="text-[28px] font-bold text-(--text-heading) font-(family-name:--font-display)">
+              {CATALOG_CATEGORY_COUNT_DISPLAY}
+            </p>
+            <p className="text-[13px] text-(--text-muted)">categories covered</p>
+          </div>
+          <div className="hidden h-8 w-px bg-(--border-subtle) sm:block" aria-hidden="true" />
+          <div className="text-center">
+            <p className="text-[28px] font-bold text-(--text-heading) font-(family-name:--font-display)">
+              2 free
+            </p>
+            <p className="text-[13px] text-(--text-muted)">full books, no card</p>
+          </div>
+        </div>
+      </SectionReveal>
 
       {/* Credibility line */}
       <SectionReveal delay={0.4}>

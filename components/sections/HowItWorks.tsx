@@ -26,7 +26,7 @@ const steps = [
     label: "APPLY",
     title: "See it in a real situation",
     description:
-      "Scenario examples translate abstract concepts into practical decisions at work, school, or in everyday life.",
+      "Examples translate abstract concepts into practical, real-world decisions at work, school, or in everyday life.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" />
@@ -53,9 +53,9 @@ const steps = [
   {
     number: "04",
     label: "PROGRESS",
-    title: "Unlock the next chapter",
+    title: "Practice, then progress",
     description:
-      "Pass the quiz, unlock the next chapter. Progress is earned, not scrolled through. Every unlock means real understanding.",
+      "A short practice step turns what you learned into something you'll actually use — then you move to the next chapter. Progress is earned, not scrolled through.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path
